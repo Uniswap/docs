@@ -1,0 +1,21 @@
+{
+  "unversionedId": "guides/javascript-sdk/04-trading",
+  "id": "guides/javascript-sdk/04-trading",
+  "isDocsHomePage": false,
+  "title": "Trading",
+  "description": "Looking for a quickstart?",
+  "source": "@site/docs/guides/javascript-sdk/04-trading.md",
+  "slug": "/guides/javascript-sdk/04-trading",
+  "permalink": "/docs/guides/javascript-sdk/04-trading",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/04-trading.md",
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Pricing",
+    "permalink": "/docs/guides/javascript-sdk/03-pricing"
+  },
+  "next": {
+    "title": "Pair Addresses",
+    "permalink": "/docs/guides/javascript-sdk/05-getting-pair-addresses"
+  }
+}

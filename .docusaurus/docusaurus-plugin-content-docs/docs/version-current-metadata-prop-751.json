@@ -138,7 +138,7 @@
       {
         "collapsed": true,
         "type": "category",
-        "label": "Guides",
+        "label": "Smart Contract Integration",
         "items": [
           {
             "type": "link",
@@ -148,7 +148,86 @@
           {
             "type": "link",
             "label": "Implement a Swap",
-            "href": "/docs/guides/02-trading-from-a-smart-contract"
+            "href": "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract"
+          },
+          {
+            "type": "link",
+            "label": "Providing Liquidity",
+            "href": "/docs/guides/smart-contract-integration/03-providing-liquidity"
+          },
+          {
+            "type": "link",
+            "label": "Building an Oracle",
+            "href": "/docs/guides/smart-contract-integration/04-building-an-oracle"
+          },
+          {
+            "type": "link",
+            "label": "Flash Swaps",
+            "href": "/docs/guides/smart-contract-integration/05-using-flash-swaps"
+          },
+          {
+            "type": "link",
+            "label": "Pair Addresses",
+            "href": "/docs/guides/smart-contract-integration/06-getting-pair-addresses"
+          },
+          {
+            "type": "link",
+            "label": "Supporting meta transactions",
+            "href": "/docs/guides/smart-contract-integration/07-supporting-meta-transactions"
+          }
+        ]
+      },
+      {
+        "collapsed": true,
+        "type": "category",
+        "label": "Interface Integration",
+        "items": [
+          {
+            "type": "link",
+            "label": "Using the API",
+            "href": "/docs/guides/interface-integration/01-using-the-api"
+          },
+          {
+            "type": "link",
+            "label": "Custom Linking",
+            "href": "/docs/guides/interface-integration/02-custom-interface-linking"
+          },
+          {
+            "type": "link",
+            "label": "Iframe Integration",
+            "href": "/docs/guides/interface-integration/03-iframe-integration"
+          }
+        ]
+      },
+      {
+        "collapsed": true,
+        "type": "category",
+        "label": "Javascript SDK",
+        "items": [
+          {
+            "type": "link",
+            "label": "SDK Quick start",
+            "href": "/docs/guides/javascript-sdk/01-quick-start"
+          },
+          {
+            "type": "link",
+            "label": "Fetching Data",
+            "href": "/docs/guides/javascript-sdk/02-fetching-data"
+          },
+          {
+            "type": "link",
+            "label": "Pricing",
+            "href": "/docs/guides/javascript-sdk/03-pricing"
+          },
+          {
+            "type": "link",
+            "label": "Trading",
+            "href": "/docs/guides/javascript-sdk/04-trading"
+          },
+          {
+            "type": "link",
+            "label": "Pair Addresses",
+            "href": "/docs/guides/javascript-sdk/05-getting-pair-addresses"
           }
         ]
       }
@@ -236,8 +315,21 @@
     "/docs/11-governance/04-glossary": "docs",
     "/docs/11-governance/05-adversarial-circumstances": "docs",
     "/docs/11-governance/06-governance-reference": "docs",
+    "/docs/guides/interface-integration/01-using-the-api": "guides",
+    "/docs/guides/interface-integration/02-custom-interface-linking": "guides",
+    "/docs/guides/interface-integration/03-iframe-integration": "guides",
+    "/docs/guides/javascript-sdk/01-quick-start": "guides",
+    "/docs/guides/javascript-sdk/02-fetching-data": "guides",
+    "/docs/guides/javascript-sdk/03-pricing": "guides",
+    "/docs/guides/javascript-sdk/04-trading": "guides",
+    "/docs/guides/javascript-sdk/05-getting-pair-addresses": "guides",
     "/docs/guides/": "guides",
-    "/docs/guides/02-trading-from-a-smart-contract": "guides",
+    "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract": "guides",
+    "/docs/guides/smart-contract-integration/03-providing-liquidity": "guides",
+    "/docs/guides/smart-contract-integration/04-building-an-oracle": "guides",
+    "/docs/guides/smart-contract-integration/05-using-flash-swaps": "guides",
+    "/docs/guides/smart-contract-integration/06-getting-pair-addresses": "guides",
+    "/docs/guides/smart-contract-integration/07-supporting-meta-transactions": "guides",
     "/docs/reference/": "reference",
     "/docs/reference/smart-contracts/02-pair": "reference",
     "/docs/reference/smart-contracts/03-pair-erc-20": "reference",

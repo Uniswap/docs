@@ -51,11 +51,36 @@ module.exports = {
   guides: [
     {
       type: 'category',
-      label: 'Guides',
+      label: 'Smart Contract Integration',
       items: [
-        'guides/01-quick-start',
-        'guides/02-trading-from-a-smart-contract',
+        'guides/smart-contract-integration/01-quick-start',
+        'guides/smart-contract-integration/02-trading-from-a-smart-contract',
+        'guides/smart-contract-integration/03-providing-liquidity',
+        'guides/smart-contract-integration/04-building-an-oracle',
+        'guides/smart-contract-integration/05-using-flash-swaps',
+        'guides/smart-contract-integration/06-getting-pair-addresses',
+        'guides/smart-contract-integration/07-supporting-meta-transactions',
         
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Interface Integration',
+      items: [
+        'guides/interface-integration/01-using-the-api',
+        'guides/interface-integration/02-custom-interface-linking',
+        'guides/interface-integration/03-iframe-integration',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Javascript SDK',
+      items: [
+        'guides/javascript-sdk/01-quick-start',
+        'guides/javascript-sdk/02-fetching-data',
+        'guides/javascript-sdk/03-pricing',
+        'guides/javascript-sdk/04-trading',
+        'guides/javascript-sdk/05-getting-pair-addresses',
       ],
     },
   ],

@@ -84,7 +84,7 @@ export default [
 },
 {
   path: '/docs',
-  component: ComponentCreator('/docs','12e'),
+  component: ComponentCreator('/docs','6f5'),
   
   routes: [
 {
@@ -204,12 +204,7 @@ export default [
 },
 {
   path: '/docs/guides/',
-  component: ComponentCreator('/docs/guides/','7da'),
-  exact: true,
-},
-{
-  path: '/docs/guides/02-trading-from-a-smart-contract',
-  component: ComponentCreator('/docs/guides/02-trading-from-a-smart-contract','973'),
+  component: ComponentCreator('/docs/guides/','a2a'),
   exact: true,
 },
 {
@@ -223,8 +218,78 @@ export default [
   exact: true,
 },
 {
+  path: '/docs/guides/interface-integration/01-using-the-api',
+  component: ComponentCreator('/docs/guides/interface-integration/01-using-the-api','141'),
+  exact: true,
+},
+{
+  path: '/docs/guides/interface-integration/02-custom-interface-linking',
+  component: ComponentCreator('/docs/guides/interface-integration/02-custom-interface-linking','648'),
+  exact: true,
+},
+{
+  path: '/docs/guides/interface-integration/03-iframe-integration',
+  component: ComponentCreator('/docs/guides/interface-integration/03-iframe-integration','b9e'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/01-quick-start',
+  component: ComponentCreator('/docs/guides/javascript-sdk/01-quick-start','e55'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/02-fetching-data',
+  component: ComponentCreator('/docs/guides/javascript-sdk/02-fetching-data','4d2'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/03-pricing',
+  component: ComponentCreator('/docs/guides/javascript-sdk/03-pricing','7e2'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/04-trading',
+  component: ComponentCreator('/docs/guides/javascript-sdk/04-trading','725'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/05-getting-pair-addresses',
+  component: ComponentCreator('/docs/guides/javascript-sdk/05-getting-pair-addresses','799'),
+  exact: true,
+},
+{
   path: '/docs/guides/mdx',
   component: ComponentCreator('/docs/guides/mdx','3d1'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract','6dd'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/03-providing-liquidity',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/03-providing-liquidity','457'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/04-building-an-oracle',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/04-building-an-oracle','b69'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/05-using-flash-swaps',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/05-using-flash-swaps','753'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/06-getting-pair-addresses',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/06-getting-pair-addresses','5ca'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/07-supporting-meta-transactions',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/07-supporting-meta-transactions','129'),
   exact: true,
 },
 {

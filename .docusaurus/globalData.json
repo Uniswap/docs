@@ -123,16 +123,6 @@
               "path": "/docs/doc3"
             },
             {
-              "id": "guides/01-quick-start",
-              "path": "/docs/guides/",
-              "sidebar": "guides"
-            },
-            {
-              "id": "guides/02-trading-from-a-smart-contract",
-              "path": "/docs/guides/02-trading-from-a-smart-contract",
-              "sidebar": "guides"
-            },
-            {
               "id": "guides/doc2",
               "path": "/docs/guides/doc2"
             },
@@ -141,8 +131,83 @@
               "path": "/docs/guides/doc3"
             },
             {
+              "id": "guides/interface-integration/01-using-the-api",
+              "path": "/docs/guides/interface-integration/01-using-the-api",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/interface-integration/02-custom-interface-linking",
+              "path": "/docs/guides/interface-integration/02-custom-interface-linking",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/interface-integration/03-iframe-integration",
+              "path": "/docs/guides/interface-integration/03-iframe-integration",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/01-quick-start",
+              "path": "/docs/guides/javascript-sdk/01-quick-start",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/02-fetching-data",
+              "path": "/docs/guides/javascript-sdk/02-fetching-data",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/03-pricing",
+              "path": "/docs/guides/javascript-sdk/03-pricing",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/04-trading",
+              "path": "/docs/guides/javascript-sdk/04-trading",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/05-getting-pair-addresses",
+              "path": "/docs/guides/javascript-sdk/05-getting-pair-addresses",
+              "sidebar": "guides"
+            },
+            {
               "id": "guides/mdx",
               "path": "/docs/guides/mdx"
+            },
+            {
+              "id": "guides/smart-contract-integration/01-quick-start",
+              "path": "/docs/guides/",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/02-trading-from-a-smart-contract",
+              "path": "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/03-providing-liquidity",
+              "path": "/docs/guides/smart-contract-integration/03-providing-liquidity",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/04-building-an-oracle",
+              "path": "/docs/guides/smart-contract-integration/04-building-an-oracle",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/05-using-flash-swaps",
+              "path": "/docs/guides/smart-contract-integration/05-using-flash-swaps",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/06-getting-pair-addresses",
+              "path": "/docs/guides/smart-contract-integration/06-getting-pair-addresses",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/07-supporting-meta-transactions",
+              "path": "/docs/guides/smart-contract-integration/07-supporting-meta-transactions",
+              "sidebar": "guides"
             },
             {
               "id": "mdx",

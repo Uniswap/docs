@@ -1,0 +1,21 @@
+{
+  "unversionedId": "guides/smart-contract-integration/07-supporting-meta-transactions",
+  "id": "guides/smart-contract-integration/07-supporting-meta-transactions",
+  "isDocsHomePage": false,
+  "title": "Supporting meta transactions",
+  "description": "All Uniswap V2 pool tokens support meta-transaction approvals via the permit function. This obviates the need for a blocking approve transaction before programmatic interactions with pool tokens can occur.",
+  "source": "@site/docs/guides/smart-contract-integration/07-supporting-meta-transactions.md",
+  "slug": "/guides/smart-contract-integration/07-supporting-meta-transactions",
+  "permalink": "/docs/guides/smart-contract-integration/07-supporting-meta-transactions",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/07-supporting-meta-transactions.md",
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Pair Addresses",
+    "permalink": "/docs/guides/smart-contract-integration/06-getting-pair-addresses"
+  },
+  "next": {
+    "title": "Using the API",
+    "permalink": "/docs/guides/interface-integration/01-using-the-api"
+  }
+}

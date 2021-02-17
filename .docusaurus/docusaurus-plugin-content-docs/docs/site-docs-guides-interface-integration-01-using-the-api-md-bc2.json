@@ -1,0 +1,21 @@
+{
+  "unversionedId": "guides/interface-integration/01-using-the-api",
+  "id": "guides/interface-integration/01-using-the-api",
+  "isDocsHomePage": false,
+  "title": "Using the API",
+  "description": "In this guide we will create a web interface that consumes and displays data from the Uniswap Subgraph. The goal is to provide a quick overview of a setup that you can extend to create your own UIs and analytics around Uniswap data.",
+  "source": "@site/docs/guides/interface-integration/01-using-the-api.md",
+  "slug": "/guides/interface-integration/01-using-the-api",
+  "permalink": "/docs/guides/interface-integration/01-using-the-api",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/interface-integration/01-using-the-api.md",
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Supporting meta transactions",
+    "permalink": "/docs/guides/smart-contract-integration/07-supporting-meta-transactions"
+  },
+  "next": {
+    "title": "Custom Linking",
+    "permalink": "/docs/guides/interface-integration/02-custom-interface-linking"
+  }
+}
