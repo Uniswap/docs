@@ -84,7 +84,7 @@ export default [
 },
 {
   path: '/docs',
-  component: ComponentCreator('/docs','6f5'),
+  component: ComponentCreator('/docs','76f'),
   
   routes: [
 {
@@ -300,6 +300,66 @@ export default [
 {
   path: '/docs/reference/',
   component: ComponentCreator('/docs/reference/','553'),
+  exact: true,
+},
+{
+  path: '/docs/reference/API/01-overview',
+  component: ComponentCreator('/docs/reference/API/01-overview','1f1'),
+  exact: true,
+},
+{
+  path: '/docs/reference/API/02-entities',
+  component: ComponentCreator('/docs/reference/API/02-entities','1ff'),
+  exact: true,
+},
+{
+  path: '/docs/reference/API/03-queries',
+  component: ComponentCreator('/docs/reference/API/03-queries','91d'),
+  exact: true,
+},
+{
+  path: '/docs/reference/Governance/05-governance-reference',
+  component: ComponentCreator('/docs/reference/Governance/05-governance-reference','afa'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/01-getting-started',
+  component: ComponentCreator('/docs/reference/SDK/01-getting-started','d5d'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/02-token',
+  component: ComponentCreator('/docs/reference/SDK/02-token','d7e'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/03-pair',
+  component: ComponentCreator('/docs/reference/SDK/03-pair','23f'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/04-route',
+  component: ComponentCreator('/docs/reference/SDK/04-route','de5'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/05-trade',
+  component: ComponentCreator('/docs/reference/SDK/05-trade','26f'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/06-fractions',
+  component: ComponentCreator('/docs/reference/SDK/06-fractions','481'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/07-fetcher',
+  component: ComponentCreator('/docs/reference/SDK/07-fetcher','3c4'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/08-other-exports',
+  component: ComponentCreator('/docs/reference/SDK/08-other-exports','790'),
   exact: true,
 },
 {

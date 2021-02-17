@@ -214,6 +214,66 @@
               "path": "/docs/mdx"
             },
             {
+              "id": "reference/API/01-overview",
+              "path": "/docs/reference/API/01-overview",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/API/02-entities",
+              "path": "/docs/reference/API/02-entities",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/API/03-queries",
+              "path": "/docs/reference/API/03-queries",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/Governance/05-governance-reference",
+              "path": "/docs/reference/Governance/05-governance-reference",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/01-getting-started",
+              "path": "/docs/reference/SDK/01-getting-started",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/02-token",
+              "path": "/docs/reference/SDK/02-token",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/03-pair",
+              "path": "/docs/reference/SDK/03-pair",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/04-route",
+              "path": "/docs/reference/SDK/04-route",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/05-trade",
+              "path": "/docs/reference/SDK/05-trade",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/06-fractions",
+              "path": "/docs/reference/SDK/06-fractions",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/07-fetcher",
+              "path": "/docs/reference/SDK/07-fetcher",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/08-other-exports",
+              "path": "/docs/reference/SDK/08-other-exports",
+              "sidebar": "reference"
+            },
+            {
               "id": "reference/smart-contracts/01-factory",
               "path": "/docs/reference/",
               "sidebar": "reference"

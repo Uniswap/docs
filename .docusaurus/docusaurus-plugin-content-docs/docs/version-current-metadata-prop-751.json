@@ -236,6 +236,40 @@
       {
         "collapsed": true,
         "type": "category",
+        "label": "API",
+        "items": [
+          {
+            "type": "link",
+            "label": "API Overview",
+            "href": "/docs/reference/API/01-overview"
+          },
+          {
+            "type": "link",
+            "label": "Entities",
+            "href": "/docs/reference/API/02-entities"
+          },
+          {
+            "type": "link",
+            "label": "Queries",
+            "href": "/docs/reference/API/03-queries"
+          }
+        ]
+      },
+      {
+        "collapsed": true,
+        "type": "category",
+        "label": "Governance",
+        "items": [
+          {
+            "type": "link",
+            "label": "Governance Reference",
+            "href": "/docs/reference/Governance/05-governance-reference"
+          }
+        ]
+      },
+      {
+        "collapsed": true,
+        "type": "category",
         "label": "Smart Contracts",
         "items": [
           {
@@ -282,13 +316,43 @@
         "items": [
           {
             "type": "link",
-            "label": "Factory",
-            "href": "/docs/reference/"
+            "label": "Getting Started",
+            "href": "/docs/reference/SDK/01-getting-started"
+          },
+          {
+            "type": "link",
+            "label": "Token",
+            "href": "/docs/reference/SDK/02-token"
           },
           {
             "type": "link",
             "label": "Pair",
-            "href": "/docs/reference/smart-contracts/02-pair"
+            "href": "/docs/reference/SDK/03-pair"
+          },
+          {
+            "type": "link",
+            "label": "Route",
+            "href": "/docs/reference/SDK/04-route"
+          },
+          {
+            "type": "link",
+            "label": "Trade",
+            "href": "/docs/reference/SDK/05-trade"
+          },
+          {
+            "type": "link",
+            "label": "Fractions",
+            "href": "/docs/reference/SDK/06-fractions"
+          },
+          {
+            "type": "link",
+            "label": "Fetcher",
+            "href": "/docs/reference/SDK/07-fetcher"
+          },
+          {
+            "type": "link",
+            "label": "Other Exports",
+            "href": "/docs/reference/SDK/08-other-exports"
           }
         ]
       }
@@ -330,6 +394,18 @@
     "/docs/guides/smart-contract-integration/05-using-flash-swaps": "guides",
     "/docs/guides/smart-contract-integration/06-getting-pair-addresses": "guides",
     "/docs/guides/smart-contract-integration/07-supporting-meta-transactions": "guides",
+    "/docs/reference/API/01-overview": "reference",
+    "/docs/reference/API/02-entities": "reference",
+    "/docs/reference/API/03-queries": "reference",
+    "/docs/reference/Governance/05-governance-reference": "reference",
+    "/docs/reference/SDK/01-getting-started": "reference",
+    "/docs/reference/SDK/02-token": "reference",
+    "/docs/reference/SDK/03-pair": "reference",
+    "/docs/reference/SDK/04-route": "reference",
+    "/docs/reference/SDK/05-trade": "reference",
+    "/docs/reference/SDK/06-fractions": "reference",
+    "/docs/reference/SDK/07-fetcher": "reference",
+    "/docs/reference/SDK/08-other-exports": "reference",
     "/docs/reference/": "reference",
     "/docs/reference/smart-contracts/02-pair": "reference",
     "/docs/reference/smart-contracts/03-pair-erc-20": "reference",

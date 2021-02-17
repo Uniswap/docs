@@ -106,7 +106,7 @@
     "sidebar": "sidebar---blogaf-9-d2e",
     "content": "content---blog-welcome-286-e55"
   },
-  "/docs-6f5": {
+  "/docs-76f": {
     "component": "component---theme-doc-page-1-be-9be",
     "versionMetadata": "versionMetadata---docs-0-b-3-5c5"
   },
@@ -281,6 +281,54 @@
   "/docs/reference/-553": {
     "component": "component---theme-doc-item-178-a40",
     "content": "content---docs-reference-470-fda"
+  },
+  "/docs/reference/API/01-overview-1f1": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-api-01-overview-61-c-d32"
+  },
+  "/docs/reference/API/02-entities-1ff": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-api-02-entities-52-a-d46"
+  },
+  "/docs/reference/API/03-queries-91d": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-api-03-queries-425-8f0"
+  },
+  "/docs/reference/Governance/05-governance-reference-afa": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-governance-05-governance-referencec-0-e-d1e"
+  },
+  "/docs/reference/SDK/01-getting-started-d5d": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-01-getting-started-7-a-0-c91"
+  },
+  "/docs/reference/SDK/02-token-d7e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-02-tokend-70-fa6"
+  },
+  "/docs/reference/SDK/03-pair-23f": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-03-pair-0-c-2-912"
+  },
+  "/docs/reference/SDK/04-route-de5": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-04-routebb-3-440"
+  },
+  "/docs/reference/SDK/05-trade-26f": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-05-tradedea-6e3"
+  },
+  "/docs/reference/SDK/06-fractions-481": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-06-fractions-3-bf-88e"
+  },
+  "/docs/reference/SDK/07-fetcher-3c4": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-07-fetcher-93-b-61f"
+  },
+  "/docs/reference/SDK/08-other-exports-790": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-08-other-exportsf-50-978"
   },
   "/docs/reference/smart-contracts/02-pair-b03": {
     "component": "component---theme-doc-item-178-a40",

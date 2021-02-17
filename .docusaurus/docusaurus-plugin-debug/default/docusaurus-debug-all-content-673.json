@@ -210,6 +210,36 @@
               {
                 "collapsed": true,
                 "type": "category",
+                "label": "API",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "reference/API/01-overview"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/API/02-entities"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/API/03-queries"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Governance",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "reference/Governance/05-governance-reference"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
                 "label": "Smart Contracts",
                 "items": [
                   {
@@ -249,11 +279,35 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "reference/smart-contracts/01-factory"
+                    "id": "reference/SDK/01-getting-started"
                   },
                   {
                     "type": "doc",
-                    "id": "reference/smart-contracts/02-pair"
+                    "id": "reference/SDK/02-token"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/03-pair"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/04-route"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/05-trade"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/06-fractions"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/07-fetcher"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/08-other-exports"
                   }
                 ]
               }
@@ -295,6 +349,18 @@
             "/docs/guides/smart-contract-integration/05-using-flash-swaps": "guides",
             "/docs/guides/smart-contract-integration/06-getting-pair-addresses": "guides",
             "/docs/guides/smart-contract-integration/07-supporting-meta-transactions": "guides",
+            "/docs/reference/API/01-overview": "reference",
+            "/docs/reference/API/02-entities": "reference",
+            "/docs/reference/API/03-queries": "reference",
+            "/docs/reference/Governance/05-governance-reference": "reference",
+            "/docs/reference/SDK/01-getting-started": "reference",
+            "/docs/reference/SDK/02-token": "reference",
+            "/docs/reference/SDK/03-pair": "reference",
+            "/docs/reference/SDK/04-route": "reference",
+            "/docs/reference/SDK/05-trade": "reference",
+            "/docs/reference/SDK/06-fractions": "reference",
+            "/docs/reference/SDK/07-fetcher": "reference",
+            "/docs/reference/SDK/08-other-exports": "reference",
             "/docs/reference/": "reference",
             "/docs/reference/smart-contracts/02-pair": "reference",
             "/docs/reference/smart-contracts/03-pair-erc-20": "reference",
@@ -1109,6 +1175,250 @@
               "version": "current"
             },
             {
+              "unversionedId": "reference/API/01-overview",
+              "id": "reference/API/01-overview",
+              "isDocsHomePage": false,
+              "title": "API Overview",
+              "description": "This section explains the Uniswap Subgraph and how to interact with it. The Uniswap subgraph indexes data from the Uniswap contracts over time. It organizes data about pairs, tokens, Uniswap as a whole, and more. The subgraph updates any time a transaction is made on Uniswap. The subgraph runs on The Graph protocol's hosted service and can be openly queried.",
+              "source": "@site/docs/reference/API/01-overview.md",
+              "slug": "/reference/API/01-overview",
+              "permalink": "/docs/reference/API/01-overview",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/API/01-overview.md",
+              "version": "current",
+              "sidebar": "reference",
+              "next": {
+                "title": "Entities",
+                "permalink": "/docs/reference/API/02-entities"
+              }
+            },
+            {
+              "unversionedId": "reference/API/02-entities",
+              "id": "reference/API/02-entities",
+              "isDocsHomePage": false,
+              "title": "Entities",
+              "description": "Entities define the schema of the subgraph, and represent the data that can be queried. Within each entity are sets of fields that store useful information related to the entity. Below is a list of the available entities within the Uniswap Subgraph, and descriptions for the available fields.",
+              "source": "@site/docs/reference/API/02-entities.md",
+              "slug": "/reference/API/02-entities",
+              "permalink": "/docs/reference/API/02-entities",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/API/02-entities.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "API Overview",
+                "permalink": "/docs/reference/API/01-overview"
+              },
+              "next": {
+                "title": "Queries",
+                "permalink": "/docs/reference/API/03-queries"
+              }
+            },
+            {
+              "unversionedId": "reference/API/03-queries",
+              "id": "reference/API/03-queries",
+              "isDocsHomePage": false,
+              "title": "Queries",
+              "description": "The subgraph can be queried to retrieve important information about Uniswap, pairs, tokens, transactions, users, and more. This page will provide examples for common queries.",
+              "source": "@site/docs/reference/API/03-queries.md",
+              "slug": "/reference/API/03-queries",
+              "permalink": "/docs/reference/API/03-queries",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/API/03-queries.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Entities",
+                "permalink": "/docs/reference/API/02-entities"
+              },
+              "next": {
+                "title": "Governance Reference",
+                "permalink": "/docs/reference/Governance/05-governance-reference"
+              }
+            },
+            {
+              "unversionedId": "reference/Governance/05-governance-reference",
+              "id": "reference/Governance/05-governance-reference",
+              "isDocsHomePage": false,
+              "title": "Governance Reference",
+              "description": "Uniswap protocol is goverened and upgraded by UNI token holders, using three distinct components; the UNI token, governance module, and Timelock. Together, these contracts allow the community to propose, vote, and implement changes to the uniswap protocol.",
+              "source": "@site/docs/reference/Governance/05-governance-reference.md",
+              "slug": "/reference/Governance/05-governance-reference",
+              "permalink": "/docs/reference/Governance/05-governance-reference",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/Governance/05-governance-reference.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Queries",
+                "permalink": "/docs/reference/API/03-queries"
+              },
+              "next": {
+                "title": "Factory",
+                "permalink": "/docs/reference/"
+              }
+            },
+            {
+              "unversionedId": "reference/SDK/01-getting-started",
+              "id": "reference/SDK/01-getting-started",
+              "isDocsHomePage": false,
+              "title": "Getting Started",
+              "description": "The pages that follow contain technical reference information on the Uniswap SDK.",
+              "source": "@site/docs/reference/SDK/01-getting-started.md",
+              "slug": "/reference/SDK/01-getting-started",
+              "permalink": "/docs/reference/SDK/01-getting-started",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/01-getting-started.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Common Errors",
+                "permalink": "/docs/reference/smart-contracts/07-common-errors"
+              },
+              "next": {
+                "title": "Token",
+                "permalink": "/docs/reference/SDK/02-token"
+              }
+            },
+            {
+              "unversionedId": "reference/SDK/02-token",
+              "id": "reference/SDK/02-token",
+              "isDocsHomePage": false,
+              "title": "Token",
+              "description": "`typescript",
+              "source": "@site/docs/reference/SDK/02-token.md",
+              "slug": "/reference/SDK/02-token",
+              "permalink": "/docs/reference/SDK/02-token",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/02-token.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Getting Started",
+                "permalink": "/docs/reference/SDK/01-getting-started"
+              },
+              "next": {
+                "title": "Pair",
+                "permalink": "/docs/reference/SDK/03-pair"
+              }
+            },
+            {
+              "unversionedId": "reference/SDK/03-pair",
+              "id": "reference/SDK/03-pair",
+              "isDocsHomePage": false,
+              "title": "Pair",
+              "description": "`typescript",
+              "source": "@site/docs/reference/SDK/03-pair.md",
+              "slug": "/reference/SDK/03-pair",
+              "permalink": "/docs/reference/SDK/03-pair",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/03-pair.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Token",
+                "permalink": "/docs/reference/SDK/02-token"
+              },
+              "next": {
+                "title": "Route",
+                "permalink": "/docs/reference/SDK/04-route"
+              }
+            },
+            {
+              "unversionedId": "reference/SDK/04-route",
+              "id": "reference/SDK/04-route",
+              "isDocsHomePage": false,
+              "title": "Route",
+              "description": "`typescript",
+              "source": "@site/docs/reference/SDK/04-route.md",
+              "slug": "/reference/SDK/04-route",
+              "permalink": "/docs/reference/SDK/04-route",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/04-route.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Pair",
+                "permalink": "/docs/reference/SDK/03-pair"
+              },
+              "next": {
+                "title": "Trade",
+                "permalink": "/docs/reference/SDK/05-trade"
+              }
+            },
+            {
+              "unversionedId": "reference/SDK/05-trade",
+              "id": "reference/SDK/05-trade",
+              "isDocsHomePage": false,
+              "title": "Trade",
+              "description": "`typescript",
+              "source": "@site/docs/reference/SDK/05-trade.md",
+              "slug": "/reference/SDK/05-trade",
+              "permalink": "/docs/reference/SDK/05-trade",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/05-trade.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Route",
+                "permalink": "/docs/reference/SDK/04-route"
+              },
+              "next": {
+                "title": "Fractions",
+                "permalink": "/docs/reference/SDK/06-fractions"
+              }
+            },
+            {
+              "unversionedId": "reference/SDK/06-fractions",
+              "id": "reference/SDK/06-fractions",
+              "isDocsHomePage": false,
+              "title": "Fractions",
+              "description": "Fraction",
+              "source": "@site/docs/reference/SDK/06-fractions.md",
+              "slug": "/reference/SDK/06-fractions",
+              "permalink": "/docs/reference/SDK/06-fractions",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/06-fractions.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Trade",
+                "permalink": "/docs/reference/SDK/05-trade"
+              },
+              "next": {
+                "title": "Fetcher",
+                "permalink": "/docs/reference/SDK/07-fetcher"
+              }
+            },
+            {
+              "unversionedId": "reference/SDK/07-fetcher",
+              "id": "reference/SDK/07-fetcher",
+              "isDocsHomePage": false,
+              "title": "Fetcher",
+              "description": "The data fetching logic is split from the rest of the code for better tree-shaking,",
+              "source": "@site/docs/reference/SDK/07-fetcher.md",
+              "slug": "/reference/SDK/07-fetcher",
+              "permalink": "/docs/reference/SDK/07-fetcher",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/07-fetcher.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Fractions",
+                "permalink": "/docs/reference/SDK/06-fractions"
+              },
+              "next": {
+                "title": "Other Exports",
+                "permalink": "/docs/reference/SDK/08-other-exports"
+              }
+            },
+            {
+              "unversionedId": "reference/SDK/08-other-exports",
+              "id": "reference/SDK/08-other-exports",
+              "isDocsHomePage": false,
+              "title": "Other Exports",
+              "description": "JSBI",
+              "source": "@site/docs/reference/SDK/08-other-exports.md",
+              "slug": "/reference/SDK/08-other-exports",
+              "permalink": "/docs/reference/SDK/08-other-exports",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/08-other-exports.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Fetcher",
+                "permalink": "/docs/reference/SDK/07-fetcher"
+              }
+            },
+            {
               "unversionedId": "reference/smart-contracts/01-factory",
               "id": "reference/smart-contracts/01-factory",
               "isDocsHomePage": false,
@@ -1120,6 +1430,10 @@
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/01-factory.md",
               "version": "current",
               "sidebar": "reference",
+              "previous": {
+                "title": "Governance Reference",
+                "permalink": "/docs/reference/Governance/05-governance-reference"
+              },
               "next": {
                 "title": "Pair",
                 "permalink": "/docs/reference/smart-contracts/02-pair"
@@ -1247,8 +1561,8 @@
                 "permalink": "/docs/reference/smart-contracts/06-router02"
               },
               "next": {
-                "title": "Factory",
-                "permalink": "/docs/reference/"
+                "title": "Getting Started",
+                "permalink": "/docs/reference/SDK/01-getting-started"
               }
             }
           ]

@@ -88,6 +88,22 @@ module.exports = {
   reference: [
     {
       type: 'category',
+      label: 'API',
+      items: [
+        'reference/API/01-overview',
+        'reference/API/02-entities',
+        'reference/API/03-queries',    
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Governance',
+      items: [
+        'reference/Governance/05-governance-reference',   
+      ],
+    },
+    {
+      type: 'category',
       label: 'Smart Contracts',
       items: [
         'reference/smart-contracts/01-factory',
@@ -104,8 +120,14 @@ module.exports = {
       type: 'category',
       label: 'SDK',
       items: [
-        'reference/smart-contracts/01-factory',
-        'reference/smart-contracts/02-pair',
+        'reference/SDK/01-getting-started',
+        'reference/SDK/02-token',
+        'reference/SDK/03-pair',
+        'reference/SDK/04-route',
+        'reference/SDK/05-trade',
+        'reference/SDK/06-fractions',
+        'reference/SDK/07-fetcher',
+        'reference/SDK/08-other-exports',
         
       ],
     },
