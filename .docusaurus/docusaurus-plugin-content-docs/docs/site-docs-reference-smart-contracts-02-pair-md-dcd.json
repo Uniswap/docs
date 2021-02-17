@@ -1,0 +1,21 @@
+{
+  "unversionedId": "reference/smart-contracts/02-pair",
+  "id": "reference/smart-contracts/02-pair",
+  "isDocsHomePage": false,
+  "title": "Pair",
+  "description": "This documentation covers Uniswap-specific functionality. For ERC-20 functionality, see Pair (ERC-20).",
+  "source": "@site/docs/reference/smart-contracts/02-pair.md",
+  "slug": "/reference/smart-contracts/02-pair",
+  "permalink": "/docs/reference/smart-contracts/02-pair",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/02-pair.md",
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Factory",
+    "permalink": "/docs/reference/"
+  },
+  "next": {
+    "title": "Pair (ERC-20)",
+    "permalink": "/docs/reference/smart-contracts/03-pair-erc-20"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "unversionedId": "guides/02-trading-from-a-smart-contract",
+  "id": "guides/02-trading-from-a-smart-contract",
+  "isDocsHomePage": false,
+  "title": "Implement a Swap",
+  "description": "When trading from a smart contract, the most important thing to keep in mind is that access to an external price source is required. Without this, trades can be frontrun for considerable loss.",
+  "source": "@site/docs/guides/02-trading-from-a-smart-contract.md",
+  "slug": "/guides/02-trading-from-a-smart-contract",
+  "permalink": "/docs/guides/02-trading-from-a-smart-contract",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/02-trading-from-a-smart-contract.md",
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Smart Contract Quick start",
+    "permalink": "/docs/guides/"
+  }
+}

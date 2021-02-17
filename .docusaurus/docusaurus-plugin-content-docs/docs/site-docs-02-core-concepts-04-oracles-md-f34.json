@@ -1,0 +1,21 @@
+{
+  "unversionedId": "02-core-concepts/04-oracles",
+  "id": "02-core-concepts/04-oracles",
+  "isDocsHomePage": false,
+  "title": "Oracles",
+  "description": "Introduction",
+  "source": "@site/docs/02-core-concepts/04-oracles.md",
+  "slug": "/02-core-concepts/04-oracles",
+  "permalink": "/docs/02-core-concepts/04-oracles",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/02-core-concepts/04-oracles.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Flash Swaps",
+    "permalink": "/docs/02-core-concepts/03-flash-swaps"
+  },
+  "next": {
+    "title": "Document Number 2",
+    "permalink": "/docs/doc2"
+  }
+}

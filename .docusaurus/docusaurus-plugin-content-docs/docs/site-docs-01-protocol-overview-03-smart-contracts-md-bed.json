@@ -1,0 +1,21 @@
+{
+  "unversionedId": "01-protocol-overview/03-smart-contracts",
+  "id": "01-protocol-overview/03-smart-contracts",
+  "isDocsHomePage": false,
+  "title": "Smart contracts",
+  "description": "Uniswap V2 is a binary smart contract system. Core contracts provide fundamental safety guarantees for all parties interacting with Uniswap. Periphery contracts interact with one or more core contracts but are not themselves part of the core.",
+  "source": "@site/docs/01-protocol-overview/03-smart-contracts.md",
+  "slug": "/01-protocol-overview/03-smart-contracts",
+  "permalink": "/docs/01-protocol-overview/03-smart-contracts",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/03-smart-contracts.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Ecosystem Participants",
+    "permalink": "/docs/01-protocol-overview/02-ecosystem-participants"
+  },
+  "next": {
+    "title": "Glossary",
+    "permalink": "/docs/01-protocol-overview/04-glossary"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "unversionedId": "guides/doc2",
+  "id": "guides/doc2",
+  "isDocsHomePage": false,
+  "title": "Document Number 2",
+  "description": "This is a link to another document. This is a link to an external page.",
+  "source": "@site/docs/guides/doc2.md",
+  "slug": "/guides/doc2",
+  "permalink": "/docs/guides/doc2",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/doc2.md",
+  "version": "current"
+}

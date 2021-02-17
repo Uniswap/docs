@@ -1,0 +1,132 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "docs": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "01-protocol-overview/01-how-uniswap-works",
+          "docs": [
+            {
+              "id": "01-protocol-overview/01-how-uniswap-works",
+              "path": "/docs/",
+              "sidebar": "docs"
+            },
+            {
+              "id": "01-protocol-overview/02-ecosystem-participants",
+              "path": "/docs/01-protocol-overview/02-ecosystem-participants",
+              "sidebar": "docs"
+            },
+            {
+              "id": "01-protocol-overview/03-smart-contracts",
+              "path": "/docs/01-protocol-overview/03-smart-contracts",
+              "sidebar": "docs"
+            },
+            {
+              "id": "01-protocol-overview/04-glossary",
+              "path": "/docs/01-protocol-overview/04-glossary",
+              "sidebar": "docs"
+            },
+            {
+              "id": "02-core-concepts/01-swaps",
+              "path": "/docs/02-core-concepts/01-swaps",
+              "sidebar": "docs"
+            },
+            {
+              "id": "02-core-concepts/02-pools",
+              "path": "/docs/02-core-concepts/02-pools",
+              "sidebar": "docs"
+            },
+            {
+              "id": "02-core-concepts/03-flash-swaps",
+              "path": "/docs/02-core-concepts/03-flash-swaps",
+              "sidebar": "docs"
+            },
+            {
+              "id": "02-core-concepts/04-oracles",
+              "path": "/docs/02-core-concepts/04-oracles",
+              "sidebar": "docs"
+            },
+            {
+              "id": "doc1",
+              "path": "/docs/doc1"
+            },
+            {
+              "id": "doc2",
+              "path": "/docs/doc2",
+              "sidebar": "docs"
+            },
+            {
+              "id": "doc3",
+              "path": "/docs/doc3"
+            },
+            {
+              "id": "guides/01-quick-start",
+              "path": "/docs/guides/",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/02-trading-from-a-smart-contract",
+              "path": "/docs/guides/02-trading-from-a-smart-contract",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/doc2",
+              "path": "/docs/guides/doc2"
+            },
+            {
+              "id": "guides/doc3",
+              "path": "/docs/guides/doc3"
+            },
+            {
+              "id": "guides/mdx",
+              "path": "/docs/guides/mdx"
+            },
+            {
+              "id": "mdx",
+              "path": "/docs/mdx"
+            },
+            {
+              "id": "reference/smart-contracts/01-factory",
+              "path": "/docs/reference/",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/02-pair",
+              "path": "/docs/reference/smart-contracts/02-pair",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/03-pair-erc-20",
+              "path": "/docs/reference/smart-contracts/03-pair-erc-20",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/04-library",
+              "path": "/docs/reference/smart-contracts/04-library",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/05-router01",
+              "path": "/docs/reference/smart-contracts/05-router01",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/06-router02",
+              "path": "/docs/reference/smart-contracts/06-router02",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/07-common-errors",
+              "path": "/docs/reference/smart-contracts/07-common-errors",
+              "sidebar": "reference"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

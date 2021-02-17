@@ -1,0 +1,775 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "docs": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "versionLabel": "Next",
+          "versionPath": "/docs",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/Users/Connor/Uniswap/uniswap-docs/sidebars.js",
+          "docsDirPath": "/Users/Connor/Uniswap/uniswap-docs/docs",
+          "docsDirPathLocalized": "/Users/Connor/Uniswap/uniswap-docs/i18n/en/docusaurus-plugin-content-docs-docs/current",
+          "mainDocId": "01-protocol-overview/01-how-uniswap-works",
+          "sidebars": {
+            "docs": [
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Protocol Overview",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "01-protocol-overview/01-how-uniswap-works"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "01-protocol-overview/02-ecosystem-participants"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "01-protocol-overview/03-smart-contracts"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "01-protocol-overview/04-glossary"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Core Concepts",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "02-core-concepts/01-swaps"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "02-core-concepts/02-pools"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "02-core-concepts/03-flash-swaps"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "02-core-concepts/04-oracles"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Advanced Topics",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "doc2"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Governance",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "doc2"
+                  }
+                ]
+              }
+            ],
+            "guides": [
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Guides",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "guides/01-quick-start"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/02-trading-from-a-smart-contract"
+                  }
+                ]
+              }
+            ],
+            "reference": [
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Smart Contracts",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/01-factory"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/02-pair"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/03-pair-erc-20"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/04-library"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/05-router01"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/06-router02"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/07-common-errors"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "SDK",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/01-factory"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/02-pair"
+                  }
+                ]
+              }
+            ]
+          },
+          "permalinkToSidebar": {
+            "/docs/": "docs",
+            "/docs/01-protocol-overview/02-ecosystem-participants": "docs",
+            "/docs/01-protocol-overview/03-smart-contracts": "docs",
+            "/docs/01-protocol-overview/04-glossary": "docs",
+            "/docs/02-core-concepts/01-swaps": "docs",
+            "/docs/02-core-concepts/02-pools": "docs",
+            "/docs/02-core-concepts/03-flash-swaps": "docs",
+            "/docs/02-core-concepts/04-oracles": "docs",
+            "/docs/doc2": "docs",
+            "/docs/guides/": "guides",
+            "/docs/guides/02-trading-from-a-smart-contract": "guides",
+            "/docs/reference/": "reference",
+            "/docs/reference/smart-contracts/02-pair": "reference",
+            "/docs/reference/smart-contracts/03-pair-erc-20": "reference",
+            "/docs/reference/smart-contracts/04-library": "reference",
+            "/docs/reference/smart-contracts/05-router01": "reference",
+            "/docs/reference/smart-contracts/06-router02": "reference",
+            "/docs/reference/smart-contracts/07-common-errors": "reference"
+          },
+          "docs": [
+            {
+              "unversionedId": "01-protocol-overview/01-how-uniswap-works",
+              "id": "01-protocol-overview/01-how-uniswap-works",
+              "isDocsHomePage": false,
+              "title": "How Uniswap works",
+              "description": "Uniswap is an automated liquidity protocol powered by a constant product formula",
+              "source": "@site/docs/01-protocol-overview/01-how-uniswap-works.md",
+              "slug": "/",
+              "permalink": "/docs/",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/01-how-uniswap-works.md",
+              "version": "current",
+              "sidebar": "docs",
+              "next": {
+                "title": "Ecosystem Participants",
+                "permalink": "/docs/01-protocol-overview/02-ecosystem-participants"
+              }
+            },
+            {
+              "unversionedId": "01-protocol-overview/02-ecosystem-participants",
+              "id": "01-protocol-overview/02-ecosystem-participants",
+              "isDocsHomePage": false,
+              "title": "Ecosystem Participants",
+              "description": "The Uniswap ecosystem is primarily comprised of three types of users: liquidity providers, traders, and developers. Liquidity providers are incentivized to contribute ERC-20 tokens to common liquidity pools. Traders can swap these tokens for one another for a fixed 0.30% fee (which goes to liquidity providers). Developers can integrate directly with Uniswap smart contracts to power new and exciting interactions with tokens, trading interfaces, retail experiences, and more.",
+              "source": "@site/docs/01-protocol-overview/02-ecosystem-participants.md",
+              "slug": "/01-protocol-overview/02-ecosystem-participants",
+              "permalink": "/docs/01-protocol-overview/02-ecosystem-participants",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/02-ecosystem-participants.md",
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "How Uniswap works",
+                "permalink": "/docs/"
+              },
+              "next": {
+                "title": "Smart contracts",
+                "permalink": "/docs/01-protocol-overview/03-smart-contracts"
+              }
+            },
+            {
+              "unversionedId": "01-protocol-overview/03-smart-contracts",
+              "id": "01-protocol-overview/03-smart-contracts",
+              "isDocsHomePage": false,
+              "title": "Smart contracts",
+              "description": "Uniswap V2 is a binary smart contract system. Core contracts provide fundamental safety guarantees for all parties interacting with Uniswap. Periphery contracts interact with one or more core contracts but are not themselves part of the core.",
+              "source": "@site/docs/01-protocol-overview/03-smart-contracts.md",
+              "slug": "/01-protocol-overview/03-smart-contracts",
+              "permalink": "/docs/01-protocol-overview/03-smart-contracts",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/03-smart-contracts.md",
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Ecosystem Participants",
+                "permalink": "/docs/01-protocol-overview/02-ecosystem-participants"
+              },
+              "next": {
+                "title": "Glossary",
+                "permalink": "/docs/01-protocol-overview/04-glossary"
+              }
+            },
+            {
+              "unversionedId": "01-protocol-overview/04-glossary",
+              "id": "01-protocol-overview/04-glossary",
+              "isDocsHomePage": false,
+              "title": "Glossary",
+              "description": "Automated market maker",
+              "source": "@site/docs/01-protocol-overview/04-glossary.md",
+              "slug": "/01-protocol-overview/04-glossary",
+              "permalink": "/docs/01-protocol-overview/04-glossary",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/04-glossary.md",
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Smart contracts",
+                "permalink": "/docs/01-protocol-overview/03-smart-contracts"
+              },
+              "next": {
+                "title": "Swaps",
+                "permalink": "/docs/02-core-concepts/01-swaps"
+              }
+            },
+            {
+              "unversionedId": "02-core-concepts/01-swaps",
+              "id": "02-core-concepts/01-swaps",
+              "isDocsHomePage": false,
+              "title": "Swaps",
+              "description": "Introduction",
+              "source": "@site/docs/02-core-concepts/01-swaps.md",
+              "slug": "/02-core-concepts/01-swaps",
+              "permalink": "/docs/02-core-concepts/01-swaps",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/02-core-concepts/01-swaps.md",
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Glossary",
+                "permalink": "/docs/01-protocol-overview/04-glossary"
+              },
+              "next": {
+                "title": "Pools",
+                "permalink": "/docs/02-core-concepts/02-pools"
+              }
+            },
+            {
+              "unversionedId": "02-core-concepts/02-pools",
+              "id": "02-core-concepts/02-pools",
+              "isDocsHomePage": false,
+              "title": "Pools",
+              "description": "Introduction",
+              "source": "@site/docs/02-core-concepts/02-pools.md",
+              "slug": "/02-core-concepts/02-pools",
+              "permalink": "/docs/02-core-concepts/02-pools",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/02-core-concepts/02-pools.md",
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Swaps",
+                "permalink": "/docs/02-core-concepts/01-swaps"
+              },
+              "next": {
+                "title": "Flash Swaps",
+                "permalink": "/docs/02-core-concepts/03-flash-swaps"
+              }
+            },
+            {
+              "unversionedId": "02-core-concepts/03-flash-swaps",
+              "id": "02-core-concepts/03-flash-swaps",
+              "isDocsHomePage": false,
+              "title": "Flash Swaps",
+              "description": "Uniswap flash swaps allow you to withdraw up to the full reserves of any ERC20 token on Uniswap and execute arbitrary logic at no upfront cost, provided that by the end of the transaction you either:",
+              "source": "@site/docs/02-core-concepts/03-flash-swaps.md",
+              "slug": "/02-core-concepts/03-flash-swaps",
+              "permalink": "/docs/02-core-concepts/03-flash-swaps",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/02-core-concepts/03-flash-swaps.md",
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Pools",
+                "permalink": "/docs/02-core-concepts/02-pools"
+              },
+              "next": {
+                "title": "Oracles",
+                "permalink": "/docs/02-core-concepts/04-oracles"
+              }
+            },
+            {
+              "unversionedId": "02-core-concepts/04-oracles",
+              "id": "02-core-concepts/04-oracles",
+              "isDocsHomePage": false,
+              "title": "Oracles",
+              "description": "Introduction",
+              "source": "@site/docs/02-core-concepts/04-oracles.md",
+              "slug": "/02-core-concepts/04-oracles",
+              "permalink": "/docs/02-core-concepts/04-oracles",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/02-core-concepts/04-oracles.md",
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Flash Swaps",
+                "permalink": "/docs/02-core-concepts/03-flash-swaps"
+              },
+              "next": {
+                "title": "Document Number 2",
+                "permalink": "/docs/doc2"
+              }
+            },
+            {
+              "unversionedId": "doc1",
+              "id": "doc1",
+              "isDocsHomePage": false,
+              "title": "Style Guide",
+              "description": "You can write content using GitHub-flavored Markdown syntax.",
+              "source": "@site/docs/doc1.md",
+              "slug": "/doc1",
+              "permalink": "/docs/doc1",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/doc1.md",
+              "version": "current",
+              "sidebar_label": "Style Guide"
+            },
+            {
+              "unversionedId": "doc2",
+              "id": "doc2",
+              "isDocsHomePage": false,
+              "title": "Document Number 2",
+              "description": "This is a link to another document. This is a link to an external page.",
+              "source": "@site/docs/doc2.md",
+              "slug": "/doc2",
+              "permalink": "/docs/doc2",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/doc2.md",
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Oracles",
+                "permalink": "/docs/02-core-concepts/04-oracles"
+              },
+              "next": {
+                "title": "Document Number 2",
+                "permalink": "/docs/doc2"
+              }
+            },
+            {
+              "unversionedId": "doc3",
+              "id": "doc3",
+              "isDocsHomePage": false,
+              "title": "This is Document Number 3",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac euismod odio, eu consequat dui. Nullam molestie consectetur risus id imperdiet. Proin sodales ornare turpis, non mollis massa ultricies id. Nam at nibh scelerisque, feugiat ante non, dapibus tortor. Vivamus volutpat diam quis tellus elementum bibendum. Praesent semper gravida velit quis aliquam. Etiam in cursus neque. Nam lectus ligula, malesuada et mauris a, bibendum faucibus mi. Phasellus ut interdum felis. Phasellus in odio pulvinar, porttitor urna eget, fringilla lectus. Aliquam sollicitudin est eros. Mauris consectetur quam vitae mauris interdum hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "source": "@site/docs/doc3.md",
+              "slug": "/doc3",
+              "permalink": "/docs/doc3",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/doc3.md",
+              "version": "current"
+            },
+            {
+              "unversionedId": "guides/01-quick-start",
+              "id": "guides/01-quick-start",
+              "isDocsHomePage": false,
+              "title": "Smart Contract Quick start",
+              "description": "Developing smart contracts for Ethereum involves a bevy of off-chain tools used for producing and testing bytecode",
+              "source": "@site/docs/guides/01-quick-start.md",
+              "slug": "/guides/",
+              "permalink": "/docs/guides/",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/01-quick-start.md",
+              "version": "current",
+              "sidebar": "guides",
+              "next": {
+                "title": "Implement a Swap",
+                "permalink": "/docs/guides/02-trading-from-a-smart-contract"
+              }
+            },
+            {
+              "unversionedId": "guides/02-trading-from-a-smart-contract",
+              "id": "guides/02-trading-from-a-smart-contract",
+              "isDocsHomePage": false,
+              "title": "Implement a Swap",
+              "description": "When trading from a smart contract, the most important thing to keep in mind is that access to an external price source is required. Without this, trades can be frontrun for considerable loss.",
+              "source": "@site/docs/guides/02-trading-from-a-smart-contract.md",
+              "slug": "/guides/02-trading-from-a-smart-contract",
+              "permalink": "/docs/guides/02-trading-from-a-smart-contract",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/02-trading-from-a-smart-contract.md",
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Smart Contract Quick start",
+                "permalink": "/docs/guides/"
+              }
+            },
+            {
+              "unversionedId": "guides/doc2",
+              "id": "guides/doc2",
+              "isDocsHomePage": false,
+              "title": "Document Number 2",
+              "description": "This is a link to another document. This is a link to an external page.",
+              "source": "@site/docs/guides/doc2.md",
+              "slug": "/guides/doc2",
+              "permalink": "/docs/guides/doc2",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/doc2.md",
+              "version": "current"
+            },
+            {
+              "unversionedId": "guides/doc3",
+              "id": "guides/doc3",
+              "isDocsHomePage": false,
+              "title": "This is Document Number 3",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac euismod odio, eu consequat dui. Nullam molestie consectetur risus id imperdiet. Proin sodales ornare turpis, non mollis massa ultricies id. Nam at nibh scelerisque, feugiat ante non, dapibus tortor. Vivamus volutpat diam quis tellus elementum bibendum. Praesent semper gravida velit quis aliquam. Etiam in cursus neque. Nam lectus ligula, malesuada et mauris a, bibendum faucibus mi. Phasellus ut interdum felis. Phasellus in odio pulvinar, porttitor urna eget, fringilla lectus. Aliquam sollicitudin est eros. Mauris consectetur quam vitae mauris interdum hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "source": "@site/docs/guides/doc3.md",
+              "slug": "/guides/doc3",
+              "permalink": "/docs/guides/doc3",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/doc3.md",
+              "version": "current"
+            },
+            {
+              "unversionedId": "guides/mdx",
+              "id": "guides/mdx",
+              "isDocsHomePage": false,
+              "title": "Powered by MDX",
+              "description": "You can write JSX and use React components within your Markdown thanks to MDX.",
+              "source": "@site/docs/guides/mdx.md",
+              "slug": "/guides/mdx",
+              "permalink": "/docs/guides/mdx",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/mdx.md",
+              "version": "current"
+            },
+            {
+              "unversionedId": "mdx",
+              "id": "mdx",
+              "isDocsHomePage": false,
+              "title": "Powered by MDX",
+              "description": "You can write JSX and use React components within your Markdown thanks to MDX.",
+              "source": "@site/docs/mdx.md",
+              "slug": "/mdx",
+              "permalink": "/docs/mdx",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/mdx.md",
+              "version": "current"
+            },
+            {
+              "unversionedId": "reference/smart-contracts/01-factory",
+              "id": "reference/smart-contracts/01-factory",
+              "isDocsHomePage": false,
+              "title": "Factory",
+              "description": "Code",
+              "source": "@site/docs/reference/smart-contracts/01-factory.md",
+              "slug": "/reference/",
+              "permalink": "/docs/reference/",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/01-factory.md",
+              "version": "current",
+              "sidebar": "reference",
+              "next": {
+                "title": "Pair",
+                "permalink": "/docs/reference/smart-contracts/02-pair"
+              }
+            },
+            {
+              "unversionedId": "reference/smart-contracts/02-pair",
+              "id": "reference/smart-contracts/02-pair",
+              "isDocsHomePage": false,
+              "title": "Pair",
+              "description": "This documentation covers Uniswap-specific functionality. For ERC-20 functionality, see Pair (ERC-20).",
+              "source": "@site/docs/reference/smart-contracts/02-pair.md",
+              "slug": "/reference/smart-contracts/02-pair",
+              "permalink": "/docs/reference/smart-contracts/02-pair",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/02-pair.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Factory",
+                "permalink": "/docs/reference/"
+              },
+              "next": {
+                "title": "Pair (ERC-20)",
+                "permalink": "/docs/reference/smart-contracts/03-pair-erc-20"
+              }
+            },
+            {
+              "unversionedId": "reference/smart-contracts/03-pair-erc-20",
+              "id": "reference/smart-contracts/03-pair-erc-20",
+              "isDocsHomePage": false,
+              "title": "Pair (ERC-20)",
+              "description": "This documentation covers ERC-20 functionality for denominating pool tokens. For Uniswap-specific functionality, see Pair.",
+              "source": "@site/docs/reference/smart-contracts/03-pair-erc-20.md",
+              "slug": "/reference/smart-contracts/03-pair-erc-20",
+              "permalink": "/docs/reference/smart-contracts/03-pair-erc-20",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/03-pair-erc-20.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Pair",
+                "permalink": "/docs/reference/smart-contracts/02-pair"
+              },
+              "next": {
+                "title": "Library",
+                "permalink": "/docs/reference/smart-contracts/04-library"
+              }
+            },
+            {
+              "unversionedId": "reference/smart-contracts/04-library",
+              "id": "reference/smart-contracts/04-library",
+              "isDocsHomePage": false,
+              "title": "Library",
+              "description": "Code",
+              "source": "@site/docs/reference/smart-contracts/04-library.md",
+              "slug": "/reference/smart-contracts/04-library",
+              "permalink": "/docs/reference/smart-contracts/04-library",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/04-library.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Pair (ERC-20)",
+                "permalink": "/docs/reference/smart-contracts/03-pair-erc-20"
+              },
+              "next": {
+                "title": "Router01",
+                "permalink": "/docs/reference/smart-contracts/05-router01"
+              }
+            },
+            {
+              "unversionedId": "reference/smart-contracts/05-router01",
+              "id": "reference/smart-contracts/05-router01",
+              "isDocsHomePage": false,
+              "title": "Router01",
+              "description": "UniswapV2Router01 should not be used any longer, because of the discovery of a low severity bug and the fact that some methods do not work with tokens that take fees on transfer. The current recommendation is to use UniswapV2Router02.",
+              "source": "@site/docs/reference/smart-contracts/05-router01.md",
+              "slug": "/reference/smart-contracts/05-router01",
+              "permalink": "/docs/reference/smart-contracts/05-router01",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/05-router01.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Library",
+                "permalink": "/docs/reference/smart-contracts/04-library"
+              },
+              "next": {
+                "title": "Router02",
+                "permalink": "/docs/reference/smart-contracts/06-router02"
+              }
+            },
+            {
+              "unversionedId": "reference/smart-contracts/06-router02",
+              "id": "reference/smart-contracts/06-router02",
+              "isDocsHomePage": false,
+              "title": "Router02",
+              "description": "Because routers are stateless and do not hold token balances, they can be replaced safely and trustlessly, if necessary. This may happen if more efficient smart contract patterns are discovered, or if additional functionality is desired. For this reason, routers have release numbers, starting at 01. This is currently recommended release, 02.",
+              "source": "@site/docs/reference/smart-contracts/06-router02.md",
+              "slug": "/reference/smart-contracts/06-router02",
+              "permalink": "/docs/reference/smart-contracts/06-router02",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/06-router02.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Router01",
+                "permalink": "/docs/reference/smart-contracts/05-router01"
+              },
+              "next": {
+                "title": "Common Errors",
+                "permalink": "/docs/reference/smart-contracts/07-common-errors"
+              }
+            },
+            {
+              "unversionedId": "reference/smart-contracts/07-common-errors",
+              "id": "reference/smart-contracts/07-common-errors",
+              "isDocsHomePage": false,
+              "title": "Common Errors",
+              "description": "This document covers a few error codes freqeuently encountered while building on Uniswap V2.",
+              "source": "@site/docs/reference/smart-contracts/07-common-errors.md",
+              "slug": "/reference/smart-contracts/07-common-errors",
+              "permalink": "/docs/reference/smart-contracts/07-common-errors",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/07-common-errors.md",
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Router02",
+                "permalink": "/docs/reference/smart-contracts/06-router02"
+              },
+              "next": {
+                "title": "Factory",
+                "permalink": "/docs/reference/"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": {
+      "blogPosts": [
+        {
+          "id": "welcome",
+          "metadata": {
+            "permalink": "/blog/welcome",
+            "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/blog/blog/2019-05-30-welcome.md",
+            "source": "@site/blog/2019-05-30-welcome.md",
+            "description": "Blog features are powered by the blog plugin. Simply add files to the blog directory. It supports tags as well!",
+            "date": "2019-05-30T00:00:00.000Z",
+            "tags": [
+              {
+                "label": "facebook",
+                "permalink": "/blog/tags/facebook"
+              },
+              {
+                "label": "hello",
+                "permalink": "/blog/tags/hello"
+              },
+              {
+                "label": "docusaurus",
+                "permalink": "/blog/tags/docusaurus"
+              }
+            ],
+            "title": "Welcome",
+            "readingTime": 0.175,
+            "truncated": false,
+            "nextItem": {
+              "title": "Hello",
+              "permalink": "/blog/hello-world"
+            }
+          }
+        },
+        {
+          "id": "hello-world",
+          "metadata": {
+            "permalink": "/blog/hello-world",
+            "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/blog/blog/2019-05-29-hello-world.md",
+            "source": "@site/blog/2019-05-29-hello-world.md",
+            "description": "Welcome to this blog. This blog is created with Docusaurus 2 alpha.",
+            "date": "2019-05-29T00:00:00.000Z",
+            "tags": [
+              {
+                "label": "hello",
+                "permalink": "/blog/tags/hello"
+              },
+              {
+                "label": "docusaurus",
+                "permalink": "/blog/tags/docusaurus"
+              }
+            ],
+            "title": "Hello",
+            "readingTime": 0.12,
+            "truncated": true,
+            "prevItem": {
+              "title": "Welcome",
+              "permalink": "/blog/welcome"
+            },
+            "nextItem": {
+              "title": "Hola",
+              "permalink": "/blog/hola"
+            }
+          }
+        },
+        {
+          "id": "hola",
+          "metadata": {
+            "permalink": "/blog/hola",
+            "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/blog/blog/2019-05-28-hola.md",
+            "source": "@site/blog/2019-05-28-hola.md",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet",
+            "date": "2019-05-28T00:00:00.000Z",
+            "tags": [
+              {
+                "label": "hola",
+                "permalink": "/blog/tags/hola"
+              },
+              {
+                "label": "docusaurus",
+                "permalink": "/blog/tags/docusaurus"
+              }
+            ],
+            "title": "Hola",
+            "readingTime": 0.12,
+            "truncated": false,
+            "prevItem": {
+              "title": "Hello",
+              "permalink": "/blog/hello-world"
+            }
+          }
+        }
+      ],
+      "blogListPaginated": [
+        {
+          "metadata": {
+            "permalink": "/blog",
+            "page": 1,
+            "postsPerPage": 10,
+            "totalPages": 1,
+            "totalCount": 3,
+            "previousPage": null,
+            "nextPage": null,
+            "blogDescription": "Blog",
+            "blogTitle": "Blog"
+          },
+          "items": [
+            "welcome",
+            "hello-world",
+            "hola"
+          ]
+        }
+      ],
+      "blogTags": {
+        "facebook": {
+          "name": "facebook",
+          "items": [
+            "welcome"
+          ],
+          "permalink": "/blog/tags/facebook"
+        },
+        "hello": {
+          "name": "hello",
+          "items": [
+            "welcome",
+            "hello-world"
+          ],
+          "permalink": "/blog/tags/hello"
+        },
+        "docusaurus": {
+          "name": "docusaurus",
+          "items": [
+            "welcome",
+            "hello-world",
+            "hola"
+          ],
+          "permalink": "/blog/tags/docusaurus"
+        },
+        "hola": {
+          "name": "hola",
+          "items": [
+            "hola"
+          ],
+          "permalink": "/blog/tags/hola"
+        }
+      },
+      "blogTagsListPath": "/blog/tags"
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": []
+  },
+  "docusaurus-plugin-debug": {
+    "default": null
+  },
+  "docusaurus-theme-classic": {
+    "default": null
+  }
+}

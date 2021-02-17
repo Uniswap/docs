@@ -1,0 +1,21 @@
+{
+  "unversionedId": "01-protocol-overview/02-ecosystem-participants",
+  "id": "01-protocol-overview/02-ecosystem-participants",
+  "isDocsHomePage": false,
+  "title": "Ecosystem Participants",
+  "description": "The Uniswap ecosystem is primarily comprised of three types of users: liquidity providers, traders, and developers. Liquidity providers are incentivized to contribute ERC-20 tokens to common liquidity pools. Traders can swap these tokens for one another for a fixed 0.30% fee (which goes to liquidity providers). Developers can integrate directly with Uniswap smart contracts to power new and exciting interactions with tokens, trading interfaces, retail experiences, and more.",
+  "source": "@site/docs/01-protocol-overview/02-ecosystem-participants.md",
+  "slug": "/01-protocol-overview/02-ecosystem-participants",
+  "permalink": "/docs/01-protocol-overview/02-ecosystem-participants",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/02-ecosystem-participants.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "How Uniswap works",
+    "permalink": "/docs/"
+  },
+  "next": {
+    "title": "Smart contracts",
+    "permalink": "/docs/01-protocol-overview/03-smart-contracts"
+  }
+}
