@@ -11,7 +11,7 @@
           "sidebarFilePath": "/Users/Connor/Uniswap/uniswap-docs/sidebars.js",
           "docsDirPath": "/Users/Connor/Uniswap/uniswap-docs/docs",
           "docsDirPathLocalized": "/Users/Connor/Uniswap/uniswap-docs/i18n/en/docusaurus-plugin-content-docs-docs/current",
-          "mainDocId": "01-protocol-overview/01-how-uniswap-works",
+          "mainDocId": "concepts/01-protocol-overview/01-how-uniswap-works",
           "sidebars": {
             "docs": [
               {
@@ -21,19 +21,19 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "01-protocol-overview/01-how-uniswap-works"
+                    "id": "concepts/01-protocol-overview/01-how-uniswap-works"
                   },
                   {
                     "type": "doc",
-                    "id": "01-protocol-overview/02-ecosystem-participants"
+                    "id": "concepts/01-protocol-overview/02-ecosystem-participants"
                   },
                   {
                     "type": "doc",
-                    "id": "01-protocol-overview/03-smart-contracts"
+                    "id": "concepts/01-protocol-overview/03-smart-contracts"
                   },
                   {
                     "type": "doc",
-                    "id": "01-protocol-overview/04-glossary"
+                    "id": "concepts/01-protocol-overview/04-glossary"
                   }
                 ]
               },
@@ -44,19 +44,19 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "02-core-concepts/01-swaps"
+                    "id": "concepts/02-core-concepts/01-swaps"
                   },
                   {
                     "type": "doc",
-                    "id": "02-core-concepts/02-pools"
+                    "id": "concepts/02-core-concepts/02-pools"
                   },
                   {
                     "type": "doc",
-                    "id": "02-core-concepts/03-flash-swaps"
+                    "id": "concepts/02-core-concepts/03-flash-swaps"
                   },
                   {
                     "type": "doc",
-                    "id": "02-core-concepts/04-oracles"
+                    "id": "concepts/02-core-concepts/04-oracles"
                   }
                 ]
               },
@@ -67,27 +67,27 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "03-advanced-topics/01-fees"
+                    "id": "concepts/03-advanced-topics/01-fees"
                   },
                   {
                     "type": "doc",
-                    "id": "03-advanced-topics/02-pricing"
+                    "id": "concepts/03-advanced-topics/02-pricing"
                   },
                   {
                     "type": "doc",
-                    "id": "03-advanced-topics/03-understanding-returns"
+                    "id": "concepts/03-advanced-topics/03-understanding-returns"
                   },
                   {
                     "type": "doc",
-                    "id": "03-advanced-topics/04-security"
+                    "id": "concepts/03-advanced-topics/04-security"
                   },
                   {
                     "type": "doc",
-                    "id": "03-advanced-topics/05-math"
+                    "id": "concepts/03-advanced-topics/05-math"
                   },
                   {
                     "type": "doc",
-                    "id": "03-advanced-topics/06-research"
+                    "id": "concepts/03-advanced-topics/06-research"
                   }
                 ]
               },
@@ -98,27 +98,27 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "11-governance/01-overview"
+                    "id": "concepts/11-governance/01-overview"
                   },
                   {
                     "type": "doc",
-                    "id": "11-governance/02-process"
+                    "id": "concepts/11-governance/02-process"
                   },
                   {
                     "type": "doc",
-                    "id": "11-governance/03-guide-to-voting"
+                    "id": "concepts/11-governance/03-guide-to-voting"
                   },
                   {
                     "type": "doc",
-                    "id": "11-governance/04-glossary"
+                    "id": "concepts/11-governance/04-glossary"
                   },
                   {
                     "type": "doc",
-                    "id": "11-governance/05-adversarial-circumstances"
+                    "id": "concepts/11-governance/05-adversarial-circumstances"
                   },
                   {
                     "type": "doc",
-                    "id": "11-governance/06-governance-reference"
+                    "id": "concepts/11-governance/06-governance-reference"
                   }
                 ]
               }
@@ -315,25 +315,25 @@
           },
           "permalinkToSidebar": {
             "/docs/": "docs",
-            "/docs/01-protocol-overview/02-ecosystem-participants": "docs",
-            "/docs/01-protocol-overview/03-smart-contracts": "docs",
-            "/docs/01-protocol-overview/04-glossary": "docs",
-            "/docs/02-core-concepts/01-swaps": "docs",
-            "/docs/02-core-concepts/02-pools": "docs",
-            "/docs/02-core-concepts/03-flash-swaps": "docs",
-            "/docs/02-core-concepts/04-oracles": "docs",
-            "/docs/03-advanced-topics/01-fees": "docs",
-            "/docs/03-advanced-topics/02-pricing": "docs",
-            "/docs/03-advanced-topics/03-understanding-returns": "docs",
-            "/docs/03-advanced-topics/04-security": "docs",
-            "/docs/03-advanced-topics/05-math": "docs",
-            "/docs/03-advanced-topics/06-research": "docs",
-            "/docs/11-governance/01-overview": "docs",
-            "/docs/11-governance/02-process": "docs",
-            "/docs/11-governance/03-guide-to-voting": "docs",
-            "/docs/11-governance/04-glossary": "docs",
-            "/docs/11-governance/05-adversarial-circumstances": "docs",
-            "/docs/11-governance/06-governance-reference": "docs",
+            "/docs/concepts/01-protocol-overview/02-ecosystem-participants": "docs",
+            "/docs/concepts/01-protocol-overview/03-smart-contracts": "docs",
+            "/docs/concepts/01-protocol-overview/04-glossary": "docs",
+            "/docs/concepts/02-core-concepts/01-swaps": "docs",
+            "/docs/concepts/02-core-concepts/02-pools": "docs",
+            "/docs/concepts/02-core-concepts/03-flash-swaps": "docs",
+            "/docs/concepts/02-core-concepts/04-oracles": "docs",
+            "/docs/concepts/03-advanced-topics/01-fees": "docs",
+            "/docs/concepts/03-advanced-topics/02-pricing": "docs",
+            "/docs/concepts/03-advanced-topics/03-understanding-returns": "docs",
+            "/docs/concepts/03-advanced-topics/04-security": "docs",
+            "/docs/concepts/03-advanced-topics/05-math": "docs",
+            "/docs/concepts/03-advanced-topics/06-research": "docs",
+            "/docs/concepts/11-governance/01-overview": "docs",
+            "/docs/concepts/11-governance/02-process": "docs",
+            "/docs/concepts/11-governance/03-guide-to-voting": "docs",
+            "/docs/concepts/11-governance/04-glossary": "docs",
+            "/docs/concepts/11-governance/05-adversarial-circumstances": "docs",
+            "/docs/concepts/11-governance/06-governance-reference": "docs",
             "/docs/guides/interface-integration/01-using-the-api": "guides",
             "/docs/guides/interface-integration/02-custom-interface-linking": "guides",
             "/docs/guides/interface-integration/03-iframe-integration": "guides",
@@ -371,32 +371,32 @@
           },
           "docs": [
             {
-              "unversionedId": "01-protocol-overview/01-how-uniswap-works",
-              "id": "01-protocol-overview/01-how-uniswap-works",
+              "unversionedId": "concepts/01-protocol-overview/01-how-uniswap-works",
+              "id": "concepts/01-protocol-overview/01-how-uniswap-works",
               "isDocsHomePage": false,
               "title": "How Uniswap works",
               "description": "Uniswap is an automated liquidity protocol powered by a constant product formula",
-              "source": "@site/docs/01-protocol-overview/01-how-uniswap-works.md",
+              "source": "@site/docs/concepts/01-protocol-overview/01-how-uniswap-works.md",
               "slug": "/",
               "permalink": "/docs/",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/01-how-uniswap-works.md",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/01-how-uniswap-works.md",
               "version": "current",
               "sidebar": "docs",
               "next": {
                 "title": "Ecosystem Participants",
-                "permalink": "/docs/01-protocol-overview/02-ecosystem-participants"
+                "permalink": "/docs/concepts/01-protocol-overview/02-ecosystem-participants"
               }
             },
             {
-              "unversionedId": "01-protocol-overview/02-ecosystem-participants",
-              "id": "01-protocol-overview/02-ecosystem-participants",
+              "unversionedId": "concepts/01-protocol-overview/02-ecosystem-participants",
+              "id": "concepts/01-protocol-overview/02-ecosystem-participants",
               "isDocsHomePage": false,
               "title": "Ecosystem Participants",
               "description": "The Uniswap ecosystem is primarily comprised of three types of users: liquidity providers, traders, and developers. Liquidity providers are incentivized to contribute ERC-20 tokens to common liquidity pools. Traders can swap these tokens for one another for a fixed 0.30% fee (which goes to liquidity providers). Developers can integrate directly with Uniswap smart contracts to power new and exciting interactions with tokens, trading interfaces, retail experiences, and more.",
-              "source": "@site/docs/01-protocol-overview/02-ecosystem-participants.md",
-              "slug": "/01-protocol-overview/02-ecosystem-participants",
-              "permalink": "/docs/01-protocol-overview/02-ecosystem-participants",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/02-ecosystem-participants.md",
+              "source": "@site/docs/concepts/01-protocol-overview/02-ecosystem-participants.md",
+              "slug": "/concepts/01-protocol-overview/02-ecosystem-participants",
+              "permalink": "/docs/concepts/01-protocol-overview/02-ecosystem-participants",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/02-ecosystem-participants.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
@@ -405,381 +405,381 @@
               },
               "next": {
                 "title": "Smart contracts",
-                "permalink": "/docs/01-protocol-overview/03-smart-contracts"
+                "permalink": "/docs/concepts/01-protocol-overview/03-smart-contracts"
               }
             },
             {
-              "unversionedId": "01-protocol-overview/03-smart-contracts",
-              "id": "01-protocol-overview/03-smart-contracts",
+              "unversionedId": "concepts/01-protocol-overview/03-smart-contracts",
+              "id": "concepts/01-protocol-overview/03-smart-contracts",
               "isDocsHomePage": false,
               "title": "Smart contracts",
               "description": "Uniswap V2 is a binary smart contract system. Core contracts provide fundamental safety guarantees for all parties interacting with Uniswap. Periphery contracts interact with one or more core contracts but are not themselves part of the core.",
-              "source": "@site/docs/01-protocol-overview/03-smart-contracts.md",
-              "slug": "/01-protocol-overview/03-smart-contracts",
-              "permalink": "/docs/01-protocol-overview/03-smart-contracts",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/03-smart-contracts.md",
+              "source": "@site/docs/concepts/01-protocol-overview/03-smart-contracts.md",
+              "slug": "/concepts/01-protocol-overview/03-smart-contracts",
+              "permalink": "/docs/concepts/01-protocol-overview/03-smart-contracts",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/03-smart-contracts.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Ecosystem Participants",
-                "permalink": "/docs/01-protocol-overview/02-ecosystem-participants"
+                "permalink": "/docs/concepts/01-protocol-overview/02-ecosystem-participants"
               },
               "next": {
                 "title": "Glossary",
-                "permalink": "/docs/01-protocol-overview/04-glossary"
+                "permalink": "/docs/concepts/01-protocol-overview/04-glossary"
               }
             },
             {
-              "unversionedId": "01-protocol-overview/04-glossary",
-              "id": "01-protocol-overview/04-glossary",
+              "unversionedId": "concepts/01-protocol-overview/04-glossary",
+              "id": "concepts/01-protocol-overview/04-glossary",
               "isDocsHomePage": false,
               "title": "Glossary",
               "description": "Automated market maker",
-              "source": "@site/docs/01-protocol-overview/04-glossary.md",
-              "slug": "/01-protocol-overview/04-glossary",
-              "permalink": "/docs/01-protocol-overview/04-glossary",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/01-protocol-overview/04-glossary.md",
+              "source": "@site/docs/concepts/01-protocol-overview/04-glossary.md",
+              "slug": "/concepts/01-protocol-overview/04-glossary",
+              "permalink": "/docs/concepts/01-protocol-overview/04-glossary",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/04-glossary.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Smart contracts",
-                "permalink": "/docs/01-protocol-overview/03-smart-contracts"
+                "permalink": "/docs/concepts/01-protocol-overview/03-smart-contracts"
               },
               "next": {
                 "title": "Swaps",
-                "permalink": "/docs/02-core-concepts/01-swaps"
+                "permalink": "/docs/concepts/02-core-concepts/01-swaps"
               }
             },
             {
-              "unversionedId": "02-core-concepts/01-swaps",
-              "id": "02-core-concepts/01-swaps",
+              "unversionedId": "concepts/02-core-concepts/01-swaps",
+              "id": "concepts/02-core-concepts/01-swaps",
               "isDocsHomePage": false,
               "title": "Swaps",
               "description": "Introduction",
-              "source": "@site/docs/02-core-concepts/01-swaps.md",
-              "slug": "/02-core-concepts/01-swaps",
-              "permalink": "/docs/02-core-concepts/01-swaps",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/02-core-concepts/01-swaps.md",
+              "source": "@site/docs/concepts/02-core-concepts/01-swaps.md",
+              "slug": "/concepts/02-core-concepts/01-swaps",
+              "permalink": "/docs/concepts/02-core-concepts/01-swaps",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/01-swaps.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Glossary",
-                "permalink": "/docs/01-protocol-overview/04-glossary"
+                "permalink": "/docs/concepts/01-protocol-overview/04-glossary"
               },
               "next": {
                 "title": "Pools",
-                "permalink": "/docs/02-core-concepts/02-pools"
+                "permalink": "/docs/concepts/02-core-concepts/02-pools"
               }
             },
             {
-              "unversionedId": "02-core-concepts/02-pools",
-              "id": "02-core-concepts/02-pools",
+              "unversionedId": "concepts/02-core-concepts/02-pools",
+              "id": "concepts/02-core-concepts/02-pools",
               "isDocsHomePage": false,
               "title": "Pools",
               "description": "Introduction",
-              "source": "@site/docs/02-core-concepts/02-pools.md",
-              "slug": "/02-core-concepts/02-pools",
-              "permalink": "/docs/02-core-concepts/02-pools",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/02-core-concepts/02-pools.md",
+              "source": "@site/docs/concepts/02-core-concepts/02-pools.md",
+              "slug": "/concepts/02-core-concepts/02-pools",
+              "permalink": "/docs/concepts/02-core-concepts/02-pools",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/02-pools.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Swaps",
-                "permalink": "/docs/02-core-concepts/01-swaps"
+                "permalink": "/docs/concepts/02-core-concepts/01-swaps"
               },
               "next": {
                 "title": "Flash Swaps",
-                "permalink": "/docs/02-core-concepts/03-flash-swaps"
+                "permalink": "/docs/concepts/02-core-concepts/03-flash-swaps"
               }
             },
             {
-              "unversionedId": "02-core-concepts/03-flash-swaps",
-              "id": "02-core-concepts/03-flash-swaps",
+              "unversionedId": "concepts/02-core-concepts/03-flash-swaps",
+              "id": "concepts/02-core-concepts/03-flash-swaps",
               "isDocsHomePage": false,
               "title": "Flash Swaps",
               "description": "Uniswap flash swaps allow you to withdraw up to the full reserves of any ERC20 token on Uniswap and execute arbitrary logic at no upfront cost, provided that by the end of the transaction you either:",
-              "source": "@site/docs/02-core-concepts/03-flash-swaps.md",
-              "slug": "/02-core-concepts/03-flash-swaps",
-              "permalink": "/docs/02-core-concepts/03-flash-swaps",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/02-core-concepts/03-flash-swaps.md",
+              "source": "@site/docs/concepts/02-core-concepts/03-flash-swaps.md",
+              "slug": "/concepts/02-core-concepts/03-flash-swaps",
+              "permalink": "/docs/concepts/02-core-concepts/03-flash-swaps",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/03-flash-swaps.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Pools",
-                "permalink": "/docs/02-core-concepts/02-pools"
+                "permalink": "/docs/concepts/02-core-concepts/02-pools"
               },
               "next": {
                 "title": "Oracles",
-                "permalink": "/docs/02-core-concepts/04-oracles"
+                "permalink": "/docs/concepts/02-core-concepts/04-oracles"
               }
             },
             {
-              "unversionedId": "02-core-concepts/04-oracles",
-              "id": "02-core-concepts/04-oracles",
+              "unversionedId": "concepts/02-core-concepts/04-oracles",
+              "id": "concepts/02-core-concepts/04-oracles",
               "isDocsHomePage": false,
               "title": "Oracles",
               "description": "Introduction",
-              "source": "@site/docs/02-core-concepts/04-oracles.md",
-              "slug": "/02-core-concepts/04-oracles",
-              "permalink": "/docs/02-core-concepts/04-oracles",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/02-core-concepts/04-oracles.md",
+              "source": "@site/docs/concepts/02-core-concepts/04-oracles.md",
+              "slug": "/concepts/02-core-concepts/04-oracles",
+              "permalink": "/docs/concepts/02-core-concepts/04-oracles",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/04-oracles.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Flash Swaps",
-                "permalink": "/docs/02-core-concepts/03-flash-swaps"
+                "permalink": "/docs/concepts/02-core-concepts/03-flash-swaps"
               },
               "next": {
                 "title": "Fees",
-                "permalink": "/docs/03-advanced-topics/01-fees"
+                "permalink": "/docs/concepts/03-advanced-topics/01-fees"
               }
             },
             {
-              "unversionedId": "03-advanced-topics/01-fees",
-              "id": "03-advanced-topics/01-fees",
+              "unversionedId": "concepts/03-advanced-topics/01-fees",
+              "id": "concepts/03-advanced-topics/01-fees",
               "isDocsHomePage": false,
               "title": "Fees",
               "description": "Liquidity provider fees",
-              "source": "@site/docs/03-advanced-topics/01-fees.md",
-              "slug": "/03-advanced-topics/01-fees",
-              "permalink": "/docs/03-advanced-topics/01-fees",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/03-advanced-topics/01-fees.md",
+              "source": "@site/docs/concepts/03-advanced-topics/01-fees.md",
+              "slug": "/concepts/03-advanced-topics/01-fees",
+              "permalink": "/docs/concepts/03-advanced-topics/01-fees",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/01-fees.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Oracles",
-                "permalink": "/docs/02-core-concepts/04-oracles"
+                "permalink": "/docs/concepts/02-core-concepts/04-oracles"
               },
               "next": {
                 "title": "Pricing",
-                "permalink": "/docs/03-advanced-topics/02-pricing"
+                "permalink": "/docs/concepts/03-advanced-topics/02-pricing"
               }
             },
             {
-              "unversionedId": "03-advanced-topics/02-pricing",
-              "id": "03-advanced-topics/02-pricing",
+              "unversionedId": "concepts/03-advanced-topics/02-pricing",
+              "id": "concepts/03-advanced-topics/02-pricing",
               "isDocsHomePage": false,
               "title": "Pricing",
               "description": "How are prices determined?",
-              "source": "@site/docs/03-advanced-topics/02-pricing.md",
-              "slug": "/03-advanced-topics/02-pricing",
-              "permalink": "/docs/03-advanced-topics/02-pricing",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/03-advanced-topics/02-pricing.md",
+              "source": "@site/docs/concepts/03-advanced-topics/02-pricing.md",
+              "slug": "/concepts/03-advanced-topics/02-pricing",
+              "permalink": "/docs/concepts/03-advanced-topics/02-pricing",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/02-pricing.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Fees",
-                "permalink": "/docs/03-advanced-topics/01-fees"
+                "permalink": "/docs/concepts/03-advanced-topics/01-fees"
               },
               "next": {
                 "title": "Understanding Returns",
-                "permalink": "/docs/03-advanced-topics/03-understanding-returns"
+                "permalink": "/docs/concepts/03-advanced-topics/03-understanding-returns"
               }
             },
             {
-              "unversionedId": "03-advanced-topics/03-understanding-returns",
-              "id": "03-advanced-topics/03-understanding-returns",
+              "unversionedId": "concepts/03-advanced-topics/03-understanding-returns",
+              "id": "concepts/03-advanced-topics/03-understanding-returns",
               "isDocsHomePage": false,
               "title": "Understanding Returns",
               "description": "Uniswap incentivizes users to add liquidity to trading pools by rewarding providers with the fees generated when other users trade with those pools. Market making, in general, is a complex activity. There is a risk of losing money during large and sustained movement in the underlying asset price compared to simply holding an asset.",
-              "source": "@site/docs/03-advanced-topics/03-understanding-returns.md",
-              "slug": "/03-advanced-topics/03-understanding-returns",
-              "permalink": "/docs/03-advanced-topics/03-understanding-returns",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/03-advanced-topics/03-understanding-returns.md",
+              "source": "@site/docs/concepts/03-advanced-topics/03-understanding-returns.md",
+              "slug": "/concepts/03-advanced-topics/03-understanding-returns",
+              "permalink": "/docs/concepts/03-advanced-topics/03-understanding-returns",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/03-understanding-returns.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Pricing",
-                "permalink": "/docs/03-advanced-topics/02-pricing"
+                "permalink": "/docs/concepts/03-advanced-topics/02-pricing"
               },
               "next": {
                 "title": "Security",
-                "permalink": "/docs/03-advanced-topics/04-security"
+                "permalink": "/docs/concepts/03-advanced-topics/04-security"
               }
             },
             {
-              "unversionedId": "03-advanced-topics/04-security",
-              "id": "03-advanced-topics/04-security",
+              "unversionedId": "concepts/03-advanced-topics/04-security",
+              "id": "concepts/03-advanced-topics/04-security",
               "isDocsHomePage": false,
               "title": "Security",
               "description": "Audit & Formal Verification",
-              "source": "@site/docs/03-advanced-topics/04-security.md",
-              "slug": "/03-advanced-topics/04-security",
-              "permalink": "/docs/03-advanced-topics/04-security",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/03-advanced-topics/04-security.md",
+              "source": "@site/docs/concepts/03-advanced-topics/04-security.md",
+              "slug": "/concepts/03-advanced-topics/04-security",
+              "permalink": "/docs/concepts/03-advanced-topics/04-security",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/04-security.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Understanding Returns",
-                "permalink": "/docs/03-advanced-topics/03-understanding-returns"
+                "permalink": "/docs/concepts/03-advanced-topics/03-understanding-returns"
               },
               "next": {
                 "title": "Math",
-                "permalink": "/docs/03-advanced-topics/05-math"
+                "permalink": "/docs/concepts/03-advanced-topics/05-math"
               }
             },
             {
-              "unversionedId": "03-advanced-topics/05-math",
-              "id": "03-advanced-topics/05-math",
+              "unversionedId": "concepts/03-advanced-topics/05-math",
+              "id": "concepts/03-advanced-topics/05-math",
               "isDocsHomePage": false,
               "title": "Math",
               "description": "This section will be expanded in the future. In the mean time, the Uniswap V2 whitepaper has most relevant math for Uniswap V2.",
-              "source": "@site/docs/03-advanced-topics/05-math.md",
-              "slug": "/03-advanced-topics/05-math",
-              "permalink": "/docs/03-advanced-topics/05-math",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/03-advanced-topics/05-math.md",
+              "source": "@site/docs/concepts/03-advanced-topics/05-math.md",
+              "slug": "/concepts/03-advanced-topics/05-math",
+              "permalink": "/docs/concepts/03-advanced-topics/05-math",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/05-math.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Security",
-                "permalink": "/docs/03-advanced-topics/04-security"
+                "permalink": "/docs/concepts/03-advanced-topics/04-security"
               },
               "next": {
                 "title": "Research",
-                "permalink": "/docs/03-advanced-topics/06-research"
+                "permalink": "/docs/concepts/03-advanced-topics/06-research"
               }
             },
             {
-              "unversionedId": "03-advanced-topics/06-research",
-              "id": "03-advanced-topics/06-research",
+              "unversionedId": "concepts/03-advanced-topics/06-research",
+              "id": "concepts/03-advanced-topics/06-research",
               "isDocsHomePage": false,
               "title": "Research",
               "description": "The automated market maker is a new concept, and as such, new research comes out frequently. We've selected some of the most thoughtful here.",
-              "source": "@site/docs/03-advanced-topics/06-research.md",
-              "slug": "/03-advanced-topics/06-research",
-              "permalink": "/docs/03-advanced-topics/06-research",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/03-advanced-topics/06-research.md",
+              "source": "@site/docs/concepts/03-advanced-topics/06-research.md",
+              "slug": "/concepts/03-advanced-topics/06-research",
+              "permalink": "/docs/concepts/03-advanced-topics/06-research",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/06-research.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Math",
-                "permalink": "/docs/03-advanced-topics/05-math"
+                "permalink": "/docs/concepts/03-advanced-topics/05-math"
               },
               "next": {
                 "title": "Overview",
-                "permalink": "/docs/11-governance/01-overview"
+                "permalink": "/docs/concepts/11-governance/01-overview"
               }
             },
             {
-              "unversionedId": "11-governance/01-overview",
-              "id": "11-governance/01-overview",
+              "unversionedId": "concepts/11-governance/01-overview",
+              "id": "concepts/11-governance/01-overview",
               "isDocsHomePage": false,
               "title": "Overview",
               "description": "Code",
-              "source": "@site/docs/11-governance/01-overview.md",
-              "slug": "/11-governance/01-overview",
-              "permalink": "/docs/11-governance/01-overview",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/01-overview.md",
+              "source": "@site/docs/concepts/11-governance/01-overview.md",
+              "slug": "/concepts/11-governance/01-overview",
+              "permalink": "/docs/concepts/11-governance/01-overview",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/01-overview.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Research",
-                "permalink": "/docs/03-advanced-topics/06-research"
+                "permalink": "/docs/concepts/03-advanced-topics/06-research"
               },
               "next": {
                 "title": "Process",
-                "permalink": "/docs/11-governance/02-process"
+                "permalink": "/docs/concepts/11-governance/02-process"
               }
             },
             {
-              "unversionedId": "11-governance/02-process",
-              "id": "11-governance/02-process",
+              "unversionedId": "concepts/11-governance/02-process",
+              "id": "concepts/11-governance/02-process",
               "isDocsHomePage": false,
               "title": "Process",
               "description": "This document is a living document which represents the current process guidelines for developing and advancing Uniswap Governance Proposals.",
-              "source": "@site/docs/11-governance/02-process.md",
-              "slug": "/11-governance/02-process",
-              "permalink": "/docs/11-governance/02-process",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/02-process.md",
+              "source": "@site/docs/concepts/11-governance/02-process.md",
+              "slug": "/concepts/11-governance/02-process",
+              "permalink": "/docs/concepts/11-governance/02-process",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/02-process.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Overview",
-                "permalink": "/docs/11-governance/01-overview"
+                "permalink": "/docs/concepts/11-governance/01-overview"
               },
               "next": {
                 "title": "Beginners Guide to Voting",
-                "permalink": "/docs/11-governance/03-guide-to-voting"
+                "permalink": "/docs/concepts/11-governance/03-guide-to-voting"
               }
             },
             {
-              "unversionedId": "11-governance/03-guide-to-voting",
-              "id": "11-governance/03-guide-to-voting",
+              "unversionedId": "concepts/11-governance/03-guide-to-voting",
+              "id": "concepts/11-governance/03-guide-to-voting",
               "isDocsHomePage": false,
               "title": "Beginners Guide to Voting",
               "description": "This guide contains everything you need to start voting in Uniswap Governance.",
-              "source": "@site/docs/11-governance/03-guide-to-voting.md",
-              "slug": "/11-governance/03-guide-to-voting",
-              "permalink": "/docs/11-governance/03-guide-to-voting",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/03-guide-to-voting.md",
+              "source": "@site/docs/concepts/11-governance/03-guide-to-voting.md",
+              "slug": "/concepts/11-governance/03-guide-to-voting",
+              "permalink": "/docs/concepts/11-governance/03-guide-to-voting",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/03-guide-to-voting.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Process",
-                "permalink": "/docs/11-governance/02-process"
+                "permalink": "/docs/concepts/11-governance/02-process"
               },
               "next": {
                 "title": "Glossary",
-                "permalink": "/docs/11-governance/04-glossary"
+                "permalink": "/docs/concepts/11-governance/04-glossary"
               }
             },
             {
-              "unversionedId": "11-governance/04-glossary",
-              "id": "11-governance/04-glossary",
+              "unversionedId": "concepts/11-governance/04-glossary",
+              "id": "concepts/11-governance/04-glossary",
               "isDocsHomePage": false,
               "title": "Glossary",
               "description": "- UNI: An ERC-20 token that designates the weight of a user&#39;s voting rights. The more UNI a user has in their wallet, the more weight their delegation or vote on a proposal holds.",
-              "source": "@site/docs/11-governance/04-glossary.md",
-              "slug": "/11-governance/04-glossary",
-              "permalink": "/docs/11-governance/04-glossary",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/04-glossary.md",
+              "source": "@site/docs/concepts/11-governance/04-glossary.md",
+              "slug": "/concepts/11-governance/04-glossary",
+              "permalink": "/docs/concepts/11-governance/04-glossary",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/04-glossary.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Beginners Guide to Voting",
-                "permalink": "/docs/11-governance/03-guide-to-voting"
+                "permalink": "/docs/concepts/11-governance/03-guide-to-voting"
               },
               "next": {
                 "title": "Adversarial Circumstances",
-                "permalink": "/docs/11-governance/05-adversarial-circumstances"
+                "permalink": "/docs/concepts/11-governance/05-adversarial-circumstances"
               }
             },
             {
-              "unversionedId": "11-governance/05-adversarial-circumstances",
-              "id": "11-governance/05-adversarial-circumstances",
+              "unversionedId": "concepts/11-governance/05-adversarial-circumstances",
+              "id": "concepts/11-governance/05-adversarial-circumstances",
               "isDocsHomePage": false,
               "title": "Adversarial Circumstances",
               "description": "This document explores some adversarial circumstances which Uniswap Governance may encounter in the future. Its goal is to help those interested in Uniswap Governance understand the reasoning behind some of its design, its limitations, and potential avenues for growth.",
-              "source": "@site/docs/11-governance/05-adversarial-circumstances.md",
-              "slug": "/11-governance/05-adversarial-circumstances",
-              "permalink": "/docs/11-governance/05-adversarial-circumstances",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/05-adversarial-circumstances.md",
+              "source": "@site/docs/concepts/11-governance/05-adversarial-circumstances.md",
+              "slug": "/concepts/11-governance/05-adversarial-circumstances",
+              "permalink": "/docs/concepts/11-governance/05-adversarial-circumstances",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/05-adversarial-circumstances.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Glossary",
-                "permalink": "/docs/11-governance/04-glossary"
+                "permalink": "/docs/concepts/11-governance/04-glossary"
               },
               "next": {
                 "title": "Governance Reference",
-                "permalink": "/docs/11-governance/06-governance-reference"
+                "permalink": "/docs/concepts/11-governance/06-governance-reference"
               }
             },
             {
-              "unversionedId": "11-governance/06-governance-reference",
-              "id": "11-governance/06-governance-reference",
+              "unversionedId": "concepts/11-governance/06-governance-reference",
+              "id": "concepts/11-governance/06-governance-reference",
               "isDocsHomePage": false,
               "title": "Governance Reference",
               "description": "Uniswap protocol is goverened and upgraded by UNI token holders, using three distinct components; the UNI token, governance module, and Timelock. Together, these contracts allow the community to propose, vote, and implement changes to the uniswap protocol.",
-              "source": "@site/docs/11-governance/06-governance-reference.md",
-              "slug": "/11-governance/06-governance-reference",
-              "permalink": "/docs/11-governance/06-governance-reference",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/06-governance-reference.md",
+              "source": "@site/docs/concepts/11-governance/06-governance-reference.md",
+              "slug": "/concepts/11-governance/06-governance-reference",
+              "permalink": "/docs/concepts/11-governance/06-governance-reference",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/06-governance-reference.md",
               "version": "current",
               "sidebar": "docs",
               "previous": {
                 "title": "Adversarial Circumstances",
-                "permalink": "/docs/11-governance/05-adversarial-circumstances"
+                "permalink": "/docs/concepts/11-governance/05-adversarial-circumstances"
               }
             },
             {
@@ -817,30 +817,6 @@
               "slug": "/doc3",
               "permalink": "/docs/doc3",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/doc3.md",
-              "version": "current"
-            },
-            {
-              "unversionedId": "guides/doc2",
-              "id": "guides/doc2",
-              "isDocsHomePage": false,
-              "title": "Document Number 2",
-              "description": "This is a link to another document. This is a link to an external page.",
-              "source": "@site/docs/guides/doc2.md",
-              "slug": "/guides/doc2",
-              "permalink": "/docs/guides/doc2",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/doc2.md",
-              "version": "current"
-            },
-            {
-              "unversionedId": "guides/doc3",
-              "id": "guides/doc3",
-              "isDocsHomePage": false,
-              "title": "This is Document Number 3",
-              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac euismod odio, eu consequat dui. Nullam molestie consectetur risus id imperdiet. Proin sodales ornare turpis, non mollis massa ultricies id. Nam at nibh scelerisque, feugiat ante non, dapibus tortor. Vivamus volutpat diam quis tellus elementum bibendum. Praesent semper gravida velit quis aliquam. Etiam in cursus neque. Nam lectus ligula, malesuada et mauris a, bibendum faucibus mi. Phasellus ut interdum felis. Phasellus in odio pulvinar, porttitor urna eget, fringilla lectus. Aliquam sollicitudin est eros. Mauris consectetur quam vitae mauris interdum hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-              "source": "@site/docs/guides/doc3.md",
-              "slug": "/guides/doc3",
-              "permalink": "/docs/guides/doc3",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/doc3.md",
               "version": "current"
             },
             {
@@ -1006,18 +982,6 @@
                 "title": "Trading",
                 "permalink": "/docs/guides/javascript-sdk/04-trading"
               }
-            },
-            {
-              "unversionedId": "guides/mdx",
-              "id": "guides/mdx",
-              "isDocsHomePage": false,
-              "title": "Powered by MDX",
-              "description": "You can write JSX and use React components within your Markdown thanks to MDX.",
-              "source": "@site/docs/guides/mdx.md",
-              "slug": "/guides/mdx",
-              "permalink": "/docs/guides/mdx",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/mdx.md",
-              "version": "current"
             },
             {
               "unversionedId": "guides/smart-contract-integration/01-quick-start",

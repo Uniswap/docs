@@ -8,106 +8,106 @@
           "label": "Next",
           "isLast": true,
           "path": "/docs",
-          "mainDocId": "01-protocol-overview/01-how-uniswap-works",
+          "mainDocId": "concepts/01-protocol-overview/01-how-uniswap-works",
           "docs": [
             {
-              "id": "01-protocol-overview/01-how-uniswap-works",
+              "id": "concepts/01-protocol-overview/01-how-uniswap-works",
               "path": "/docs/",
               "sidebar": "docs"
             },
             {
-              "id": "01-protocol-overview/02-ecosystem-participants",
-              "path": "/docs/01-protocol-overview/02-ecosystem-participants",
+              "id": "concepts/01-protocol-overview/02-ecosystem-participants",
+              "path": "/docs/concepts/01-protocol-overview/02-ecosystem-participants",
               "sidebar": "docs"
             },
             {
-              "id": "01-protocol-overview/03-smart-contracts",
-              "path": "/docs/01-protocol-overview/03-smart-contracts",
+              "id": "concepts/01-protocol-overview/03-smart-contracts",
+              "path": "/docs/concepts/01-protocol-overview/03-smart-contracts",
               "sidebar": "docs"
             },
             {
-              "id": "01-protocol-overview/04-glossary",
-              "path": "/docs/01-protocol-overview/04-glossary",
+              "id": "concepts/01-protocol-overview/04-glossary",
+              "path": "/docs/concepts/01-protocol-overview/04-glossary",
               "sidebar": "docs"
             },
             {
-              "id": "02-core-concepts/01-swaps",
-              "path": "/docs/02-core-concepts/01-swaps",
+              "id": "concepts/02-core-concepts/01-swaps",
+              "path": "/docs/concepts/02-core-concepts/01-swaps",
               "sidebar": "docs"
             },
             {
-              "id": "02-core-concepts/02-pools",
-              "path": "/docs/02-core-concepts/02-pools",
+              "id": "concepts/02-core-concepts/02-pools",
+              "path": "/docs/concepts/02-core-concepts/02-pools",
               "sidebar": "docs"
             },
             {
-              "id": "02-core-concepts/03-flash-swaps",
-              "path": "/docs/02-core-concepts/03-flash-swaps",
+              "id": "concepts/02-core-concepts/03-flash-swaps",
+              "path": "/docs/concepts/02-core-concepts/03-flash-swaps",
               "sidebar": "docs"
             },
             {
-              "id": "02-core-concepts/04-oracles",
-              "path": "/docs/02-core-concepts/04-oracles",
+              "id": "concepts/02-core-concepts/04-oracles",
+              "path": "/docs/concepts/02-core-concepts/04-oracles",
               "sidebar": "docs"
             },
             {
-              "id": "03-advanced-topics/01-fees",
-              "path": "/docs/03-advanced-topics/01-fees",
+              "id": "concepts/03-advanced-topics/01-fees",
+              "path": "/docs/concepts/03-advanced-topics/01-fees",
               "sidebar": "docs"
             },
             {
-              "id": "03-advanced-topics/02-pricing",
-              "path": "/docs/03-advanced-topics/02-pricing",
+              "id": "concepts/03-advanced-topics/02-pricing",
+              "path": "/docs/concepts/03-advanced-topics/02-pricing",
               "sidebar": "docs"
             },
             {
-              "id": "03-advanced-topics/03-understanding-returns",
-              "path": "/docs/03-advanced-topics/03-understanding-returns",
+              "id": "concepts/03-advanced-topics/03-understanding-returns",
+              "path": "/docs/concepts/03-advanced-topics/03-understanding-returns",
               "sidebar": "docs"
             },
             {
-              "id": "03-advanced-topics/04-security",
-              "path": "/docs/03-advanced-topics/04-security",
+              "id": "concepts/03-advanced-topics/04-security",
+              "path": "/docs/concepts/03-advanced-topics/04-security",
               "sidebar": "docs"
             },
             {
-              "id": "03-advanced-topics/05-math",
-              "path": "/docs/03-advanced-topics/05-math",
+              "id": "concepts/03-advanced-topics/05-math",
+              "path": "/docs/concepts/03-advanced-topics/05-math",
               "sidebar": "docs"
             },
             {
-              "id": "03-advanced-topics/06-research",
-              "path": "/docs/03-advanced-topics/06-research",
+              "id": "concepts/03-advanced-topics/06-research",
+              "path": "/docs/concepts/03-advanced-topics/06-research",
               "sidebar": "docs"
             },
             {
-              "id": "11-governance/01-overview",
-              "path": "/docs/11-governance/01-overview",
+              "id": "concepts/11-governance/01-overview",
+              "path": "/docs/concepts/11-governance/01-overview",
               "sidebar": "docs"
             },
             {
-              "id": "11-governance/02-process",
-              "path": "/docs/11-governance/02-process",
+              "id": "concepts/11-governance/02-process",
+              "path": "/docs/concepts/11-governance/02-process",
               "sidebar": "docs"
             },
             {
-              "id": "11-governance/03-guide-to-voting",
-              "path": "/docs/11-governance/03-guide-to-voting",
+              "id": "concepts/11-governance/03-guide-to-voting",
+              "path": "/docs/concepts/11-governance/03-guide-to-voting",
               "sidebar": "docs"
             },
             {
-              "id": "11-governance/04-glossary",
-              "path": "/docs/11-governance/04-glossary",
+              "id": "concepts/11-governance/04-glossary",
+              "path": "/docs/concepts/11-governance/04-glossary",
               "sidebar": "docs"
             },
             {
-              "id": "11-governance/05-adversarial-circumstances",
-              "path": "/docs/11-governance/05-adversarial-circumstances",
+              "id": "concepts/11-governance/05-adversarial-circumstances",
+              "path": "/docs/concepts/11-governance/05-adversarial-circumstances",
               "sidebar": "docs"
             },
             {
-              "id": "11-governance/06-governance-reference",
-              "path": "/docs/11-governance/06-governance-reference",
+              "id": "concepts/11-governance/06-governance-reference",
+              "path": "/docs/concepts/11-governance/06-governance-reference",
               "sidebar": "docs"
             },
             {
@@ -121,14 +121,6 @@
             {
               "id": "doc3",
               "path": "/docs/doc3"
-            },
-            {
-              "id": "guides/doc2",
-              "path": "/docs/guides/doc2"
-            },
-            {
-              "id": "guides/doc3",
-              "path": "/docs/guides/doc3"
             },
             {
               "id": "guides/interface-integration/01-using-the-api",
@@ -169,10 +161,6 @@
               "id": "guides/javascript-sdk/05-getting-pair-addresses",
               "path": "/docs/guides/javascript-sdk/05-getting-pair-addresses",
               "sidebar": "guides"
-            },
-            {
-              "id": "guides/mdx",
-              "path": "/docs/guides/mdx"
             },
             {
               "id": "guides/smart-contract-integration/01-quick-start",

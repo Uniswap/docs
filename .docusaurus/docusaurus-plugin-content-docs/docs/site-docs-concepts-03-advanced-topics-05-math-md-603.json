@@ -1,0 +1,21 @@
+{
+  "unversionedId": "concepts/03-advanced-topics/05-math",
+  "id": "concepts/03-advanced-topics/05-math",
+  "isDocsHomePage": false,
+  "title": "Math",
+  "description": "This section will be expanded in the future. In the mean time, the Uniswap V2 whitepaper has most relevant math for Uniswap V2.",
+  "source": "@site/docs/concepts/03-advanced-topics/05-math.md",
+  "slug": "/concepts/03-advanced-topics/05-math",
+  "permalink": "/docs/concepts/03-advanced-topics/05-math",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/05-math.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Security",
+    "permalink": "/docs/concepts/03-advanced-topics/04-security"
+  },
+  "next": {
+    "title": "Research",
+    "permalink": "/docs/concepts/03-advanced-topics/06-research"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "unversionedId": "formatting-examples/mdx",
+  "id": "formatting-examples/mdx",
+  "isDocsHomePage": false,
+  "title": "Powered by MDX",
+  "description": "You can write JSX and use React components within your Markdown thanks to MDX.",
+  "source": "@site/docs/formatting-examples/mdx.md",
+  "slug": "/formatting-examples/mdx",
+  "permalink": "/docs/formatting-examples/mdx",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/formatting-examples/mdx.md",
+  "version": "current"
+}

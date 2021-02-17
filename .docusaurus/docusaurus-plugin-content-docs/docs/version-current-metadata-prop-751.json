@@ -18,17 +18,17 @@
           {
             "type": "link",
             "label": "Ecosystem Participants",
-            "href": "/docs/01-protocol-overview/02-ecosystem-participants"
+            "href": "/docs/concepts/01-protocol-overview/02-ecosystem-participants"
           },
           {
             "type": "link",
             "label": "Smart contracts",
-            "href": "/docs/01-protocol-overview/03-smart-contracts"
+            "href": "/docs/concepts/01-protocol-overview/03-smart-contracts"
           },
           {
             "type": "link",
             "label": "Glossary",
-            "href": "/docs/01-protocol-overview/04-glossary"
+            "href": "/docs/concepts/01-protocol-overview/04-glossary"
           }
         ]
       },
@@ -40,22 +40,22 @@
           {
             "type": "link",
             "label": "Swaps",
-            "href": "/docs/02-core-concepts/01-swaps"
+            "href": "/docs/concepts/02-core-concepts/01-swaps"
           },
           {
             "type": "link",
             "label": "Pools",
-            "href": "/docs/02-core-concepts/02-pools"
+            "href": "/docs/concepts/02-core-concepts/02-pools"
           },
           {
             "type": "link",
             "label": "Flash Swaps",
-            "href": "/docs/02-core-concepts/03-flash-swaps"
+            "href": "/docs/concepts/02-core-concepts/03-flash-swaps"
           },
           {
             "type": "link",
             "label": "Oracles",
-            "href": "/docs/02-core-concepts/04-oracles"
+            "href": "/docs/concepts/02-core-concepts/04-oracles"
           }
         ]
       },
@@ -67,32 +67,32 @@
           {
             "type": "link",
             "label": "Fees",
-            "href": "/docs/03-advanced-topics/01-fees"
+            "href": "/docs/concepts/03-advanced-topics/01-fees"
           },
           {
             "type": "link",
             "label": "Pricing",
-            "href": "/docs/03-advanced-topics/02-pricing"
+            "href": "/docs/concepts/03-advanced-topics/02-pricing"
           },
           {
             "type": "link",
             "label": "Understanding Returns",
-            "href": "/docs/03-advanced-topics/03-understanding-returns"
+            "href": "/docs/concepts/03-advanced-topics/03-understanding-returns"
           },
           {
             "type": "link",
             "label": "Security",
-            "href": "/docs/03-advanced-topics/04-security"
+            "href": "/docs/concepts/03-advanced-topics/04-security"
           },
           {
             "type": "link",
             "label": "Math",
-            "href": "/docs/03-advanced-topics/05-math"
+            "href": "/docs/concepts/03-advanced-topics/05-math"
           },
           {
             "type": "link",
             "label": "Research",
-            "href": "/docs/03-advanced-topics/06-research"
+            "href": "/docs/concepts/03-advanced-topics/06-research"
           }
         ]
       },
@@ -104,32 +104,32 @@
           {
             "type": "link",
             "label": "Overview",
-            "href": "/docs/11-governance/01-overview"
+            "href": "/docs/concepts/11-governance/01-overview"
           },
           {
             "type": "link",
             "label": "Process",
-            "href": "/docs/11-governance/02-process"
+            "href": "/docs/concepts/11-governance/02-process"
           },
           {
             "type": "link",
             "label": "Beginners Guide to Voting",
-            "href": "/docs/11-governance/03-guide-to-voting"
+            "href": "/docs/concepts/11-governance/03-guide-to-voting"
           },
           {
             "type": "link",
             "label": "Glossary",
-            "href": "/docs/11-governance/04-glossary"
+            "href": "/docs/concepts/11-governance/04-glossary"
           },
           {
             "type": "link",
             "label": "Adversarial Circumstances",
-            "href": "/docs/11-governance/05-adversarial-circumstances"
+            "href": "/docs/concepts/11-governance/05-adversarial-circumstances"
           },
           {
             "type": "link",
             "label": "Governance Reference",
-            "href": "/docs/11-governance/06-governance-reference"
+            "href": "/docs/concepts/11-governance/06-governance-reference"
           }
         ]
       }
@@ -360,25 +360,25 @@
   },
   "permalinkToSidebar": {
     "/docs/": "docs",
-    "/docs/01-protocol-overview/02-ecosystem-participants": "docs",
-    "/docs/01-protocol-overview/03-smart-contracts": "docs",
-    "/docs/01-protocol-overview/04-glossary": "docs",
-    "/docs/02-core-concepts/01-swaps": "docs",
-    "/docs/02-core-concepts/02-pools": "docs",
-    "/docs/02-core-concepts/03-flash-swaps": "docs",
-    "/docs/02-core-concepts/04-oracles": "docs",
-    "/docs/03-advanced-topics/01-fees": "docs",
-    "/docs/03-advanced-topics/02-pricing": "docs",
-    "/docs/03-advanced-topics/03-understanding-returns": "docs",
-    "/docs/03-advanced-topics/04-security": "docs",
-    "/docs/03-advanced-topics/05-math": "docs",
-    "/docs/03-advanced-topics/06-research": "docs",
-    "/docs/11-governance/01-overview": "docs",
-    "/docs/11-governance/02-process": "docs",
-    "/docs/11-governance/03-guide-to-voting": "docs",
-    "/docs/11-governance/04-glossary": "docs",
-    "/docs/11-governance/05-adversarial-circumstances": "docs",
-    "/docs/11-governance/06-governance-reference": "docs",
+    "/docs/concepts/01-protocol-overview/02-ecosystem-participants": "docs",
+    "/docs/concepts/01-protocol-overview/03-smart-contracts": "docs",
+    "/docs/concepts/01-protocol-overview/04-glossary": "docs",
+    "/docs/concepts/02-core-concepts/01-swaps": "docs",
+    "/docs/concepts/02-core-concepts/02-pools": "docs",
+    "/docs/concepts/02-core-concepts/03-flash-swaps": "docs",
+    "/docs/concepts/02-core-concepts/04-oracles": "docs",
+    "/docs/concepts/03-advanced-topics/01-fees": "docs",
+    "/docs/concepts/03-advanced-topics/02-pricing": "docs",
+    "/docs/concepts/03-advanced-topics/03-understanding-returns": "docs",
+    "/docs/concepts/03-advanced-topics/04-security": "docs",
+    "/docs/concepts/03-advanced-topics/05-math": "docs",
+    "/docs/concepts/03-advanced-topics/06-research": "docs",
+    "/docs/concepts/11-governance/01-overview": "docs",
+    "/docs/concepts/11-governance/02-process": "docs",
+    "/docs/concepts/11-governance/03-guide-to-voting": "docs",
+    "/docs/concepts/11-governance/04-glossary": "docs",
+    "/docs/concepts/11-governance/05-adversarial-circumstances": "docs",
+    "/docs/concepts/11-governance/06-governance-reference": "docs",
     "/docs/guides/interface-integration/01-using-the-api": "guides",
     "/docs/guides/interface-integration/02-custom-interface-linking": "guides",
     "/docs/guides/interface-integration/03-iframe-integration": "guides",
