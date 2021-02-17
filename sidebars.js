@@ -37,7 +37,12 @@ module.exports = {
       type: 'category',
       label: 'Governance',
       items: [
-        'doc2',
+        '11-governance/01-overview',
+        '11-governance/02-process',
+        '11-governance/03-guide-to-voting',
+        '11-governance/04-glossary',
+        '11-governance/05-adversarial-circumstances',
+        '11-governance/06-governance-reference',
       ],
     },
   ],

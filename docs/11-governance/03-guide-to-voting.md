@@ -1,4 +1,5 @@
 ---
+id: 03-guide-to-voting
 title: Beginners Guide to Voting
 tags: goveranance, documentation
 ---
@@ -15,11 +16,11 @@ The governance [process](https://uniswap.org/docs/v2/governance/process/) begins
 
 Once a given proposal has made it through the proposal process and is ready for voting, it will appear in the Uniswap [voting dashboard](https://app.uniswap.org/#/vote) - where you can view all current and former Uniswap proposals.
 
-![](images/Proposals_Overview.png)
+![](./images/Proposals_Overview.png)
 
 If a proposal is currently live for voting, it will say `active` next to the title. Clicking the proposal will show all the necessary information, documentation, and discussion needed for a voter to make an informed decision.
 
-![](images/Proposal_Active.png)
+![](./images/Proposal_Active.png)
 
 Once a proposal has reached the voting stage it represents real, executable code which will alter the functionality of Uniswap Governance or anything under its jurisdiction - proper care should be taken to ensure that the code represented in the proposal has been audited and is found to be in good faith.
 
@@ -33,13 +34,13 @@ To delegate your UNI tokens and enact their voting power, visit the [Uniswap vot
 
 Once you click this button, you will see a screen that gives you the option to self delegate, or add a delegate address. If you wish to delegate your UNI voting power to your own address, click “Self Delegate”.
 
-![](images/Unlock_Voting.png)
+![](./images/Unlock_Voting.png)
 
 When you click “Self Delegate”, a transaction will pop up in Metamask. If this doesn’t happen, double check that metamask is connected to app.uniswap.org, turn off any popup blockers, and try again. Click confirm, and once the transaction has processed, you will see that the voting dashboard homepage has changed to show the number of votes you have, and “Delegated to: Self”.
 
 If you wish to delegate your voting power to another party, choose “Add Delegate” and enter the ethereum address of your chosen voting party.
 
-![](images/Delegate_To_Address.png)
+![](./images/Delegate_To_Address.png)
 
 An important note: much like voter registration in a larger democracy, for UNI to be used in a vote it must be delegated before both the voting period and the preceding proposal period. This means if you want your vote to count, you must delegate it in anticipation of any proposal you may be interested in.
 
@@ -51,18 +52,18 @@ If you have successfully self delegated and there is an active proposal, you are
 
 To cast your vote, navigate to the proposals page and click on an active proposal.
 
-![](images/Proposals_Overview.png)
+![](./images/Proposals_Overview.png)
 
 After reviewing the attached details and deciding your opinion, choose “Vote For”, or “Vote Against”.
 
-![](images/Proposal_Active.png)
+![](./images/Proposal_Active.png)
 
 Once you’ve chosen, a window will pop up allowing you to execute the vote.
 
-![](images/Voting.png)
+![](./images/Voting.png)
  
 When you click to cast your vote, metamask will pop up asking you to confirm your transaction. Click “submit”, wait a bit, and check that the transaction has been confirmed.
 
-![](images/Submitting_Vote.png)
+![](./images/Submitting_Vote.png)
 
 That’s it! Once your transaction has been confirmed, you will have cast your vote and participated in Uniswap Governance. 

@@ -84,7 +84,7 @@ export default [
 },
 {
   path: '/docs',
-  component: ComponentCreator('/docs','1b8'),
+  component: ComponentCreator('/docs','12e'),
   
   routes: [
 {
@@ -183,8 +183,8 @@ export default [
   exact: true,
 },
 {
-  path: '/docs/11-governance/05-governance-reference',
-  component: ComponentCreator('/docs/11-governance/05-governance-reference','e3d'),
+  path: '/docs/11-governance/06-governance-reference',
+  component: ComponentCreator('/docs/11-governance/06-governance-reference','bb8'),
   exact: true,
 },
 {

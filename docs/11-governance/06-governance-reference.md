@@ -1,4 +1,5 @@
 ---
+id: 06-governance-reference
 title: Governance Reference
 tags: governance, documentation
 ---
@@ -11,7 +12,7 @@ Any addresses with more than 10M UNI delegated to it may propose governance acti
 
 The Timelock contract can modify system parameters, logic, and contracts in a 'time-delayed, opt-out' upgrade pattern. Timelock has a hard-coded minimum delay of 2 days, which is the least amount of notice possible for a governance action. Each proposed action will be published at a minimum of 2 days in the future from the time of announcement. Major upgrades, such as changing the risk system, may have up to a 30 day delay. Timelock is controlled by the governance module; pending and completed governance actions can be monitored on the Timelock Dashboard.
 
-![](images/gov_diagram-1.png)
+![](./images/gov_diagram-1.png)
 
 
 

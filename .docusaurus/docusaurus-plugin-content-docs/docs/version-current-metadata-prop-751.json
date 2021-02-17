@@ -103,8 +103,33 @@
         "items": [
           {
             "type": "link",
-            "label": "Document Number 2",
-            "href": "/docs/doc2"
+            "label": "Overview",
+            "href": "/docs/11-governance/01-overview"
+          },
+          {
+            "type": "link",
+            "label": "Process",
+            "href": "/docs/11-governance/02-process"
+          },
+          {
+            "type": "link",
+            "label": "Beginners Guide to Voting",
+            "href": "/docs/11-governance/03-guide-to-voting"
+          },
+          {
+            "type": "link",
+            "label": "Glossary",
+            "href": "/docs/11-governance/04-glossary"
+          },
+          {
+            "type": "link",
+            "label": "Adversarial Circumstances",
+            "href": "/docs/11-governance/05-adversarial-circumstances"
+          },
+          {
+            "type": "link",
+            "label": "Governance Reference",
+            "href": "/docs/11-governance/06-governance-reference"
           }
         ]
       }
@@ -205,7 +230,12 @@
     "/docs/03-advanced-topics/04-security": "docs",
     "/docs/03-advanced-topics/05-math": "docs",
     "/docs/03-advanced-topics/06-research": "docs",
-    "/docs/doc2": "docs",
+    "/docs/11-governance/01-overview": "docs",
+    "/docs/11-governance/02-process": "docs",
+    "/docs/11-governance/03-guide-to-voting": "docs",
+    "/docs/11-governance/04-glossary": "docs",
+    "/docs/11-governance/05-adversarial-circumstances": "docs",
+    "/docs/11-governance/06-governance-reference": "docs",
     "/docs/guides/": "guides",
     "/docs/guides/02-trading-from-a-smart-contract": "guides",
     "/docs/reference/": "reference",

@@ -98,7 +98,27 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "doc2"
+                    "id": "11-governance/01-overview"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "11-governance/02-process"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "11-governance/03-guide-to-voting"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "11-governance/04-glossary"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "11-governance/05-adversarial-circumstances"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "11-governance/06-governance-reference"
                   }
                 ]
               }
@@ -188,7 +208,12 @@
             "/docs/03-advanced-topics/04-security": "docs",
             "/docs/03-advanced-topics/05-math": "docs",
             "/docs/03-advanced-topics/06-research": "docs",
-            "/docs/doc2": "docs",
+            "/docs/11-governance/01-overview": "docs",
+            "/docs/11-governance/02-process": "docs",
+            "/docs/11-governance/03-guide-to-voting": "docs",
+            "/docs/11-governance/04-glossary": "docs",
+            "/docs/11-governance/05-adversarial-circumstances": "docs",
+            "/docs/11-governance/06-governance-reference": "docs",
             "/docs/guides/": "guides",
             "/docs/guides/02-trading-from-a-smart-contract": "guides",
             "/docs/reference/": "reference",
@@ -486,8 +511,8 @@
                 "permalink": "/docs/03-advanced-topics/05-math"
               },
               "next": {
-                "title": "Document Number 2",
-                "permalink": "/docs/doc2"
+                "title": "Overview",
+                "permalink": "/docs/11-governance/01-overview"
               }
             },
             {
@@ -500,7 +525,16 @@
               "slug": "/11-governance/01-overview",
               "permalink": "/docs/11-governance/01-overview",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/01-overview.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Research",
+                "permalink": "/docs/03-advanced-topics/06-research"
+              },
+              "next": {
+                "title": "Process",
+                "permalink": "/docs/11-governance/02-process"
+              }
             },
             {
               "unversionedId": "11-governance/02-process",
@@ -512,7 +546,16 @@
               "slug": "/11-governance/02-process",
               "permalink": "/docs/11-governance/02-process",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/02-process.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Overview",
+                "permalink": "/docs/11-governance/01-overview"
+              },
+              "next": {
+                "title": "Beginners Guide to Voting",
+                "permalink": "/docs/11-governance/03-guide-to-voting"
+              }
             },
             {
               "unversionedId": "11-governance/03-guide-to-voting",
@@ -524,7 +567,16 @@
               "slug": "/11-governance/03-guide-to-voting",
               "permalink": "/docs/11-governance/03-guide-to-voting",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/03-guide-to-voting.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Process",
+                "permalink": "/docs/11-governance/02-process"
+              },
+              "next": {
+                "title": "Glossary",
+                "permalink": "/docs/11-governance/04-glossary"
+              }
             },
             {
               "unversionedId": "11-governance/04-glossary",
@@ -536,7 +588,16 @@
               "slug": "/11-governance/04-glossary",
               "permalink": "/docs/11-governance/04-glossary",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/04-glossary.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Beginners Guide to Voting",
+                "permalink": "/docs/11-governance/03-guide-to-voting"
+              },
+              "next": {
+                "title": "Adversarial Circumstances",
+                "permalink": "/docs/11-governance/05-adversarial-circumstances"
+              }
             },
             {
               "unversionedId": "11-governance/05-adversarial-circumstances",
@@ -548,19 +609,33 @@
               "slug": "/11-governance/05-adversarial-circumstances",
               "permalink": "/docs/11-governance/05-adversarial-circumstances",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/05-adversarial-circumstances.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Glossary",
+                "permalink": "/docs/11-governance/04-glossary"
+              },
+              "next": {
+                "title": "Governance Reference",
+                "permalink": "/docs/11-governance/06-governance-reference"
+              }
             },
             {
-              "unversionedId": "11-governance/05-governance-reference",
-              "id": "11-governance/05-governance-reference",
+              "unversionedId": "11-governance/06-governance-reference",
+              "id": "11-governance/06-governance-reference",
               "isDocsHomePage": false,
               "title": "Governance Reference",
               "description": "Uniswap protocol is goverened and upgraded by UNI token holders, using three distinct components; the UNI token, governance module, and Timelock. Together, these contracts allow the community to propose, vote, and implement changes to the uniswap protocol.",
-              "source": "@site/docs/11-governance/05-governance-reference.md",
-              "slug": "/11-governance/05-governance-reference",
-              "permalink": "/docs/11-governance/05-governance-reference",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/05-governance-reference.md",
-              "version": "current"
+              "source": "@site/docs/11-governance/06-governance-reference.md",
+              "slug": "/11-governance/06-governance-reference",
+              "permalink": "/docs/11-governance/06-governance-reference",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/06-governance-reference.md",
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Adversarial Circumstances",
+                "permalink": "/docs/11-governance/05-adversarial-circumstances"
+              }
             },
             {
               "unversionedId": "doc1",
@@ -585,12 +660,7 @@
               "slug": "/doc2",
               "permalink": "/docs/doc2",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/doc2.md",
-              "version": "current",
-              "sidebar": "docs",
-              "previous": {
-                "title": "Research",
-                "permalink": "/docs/03-advanced-topics/06-research"
-              }
+              "version": "current"
             },
             {
               "unversionedId": "doc3",

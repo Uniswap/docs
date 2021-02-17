@@ -8,5 +8,14 @@
   "slug": "/11-governance/01-overview",
   "permalink": "/docs/11-governance/01-overview",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/01-overview.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Research",
+    "permalink": "/docs/03-advanced-topics/06-research"
+  },
+  "next": {
+    "title": "Process",
+    "permalink": "/docs/11-governance/02-process"
+  }
 }

@@ -82,27 +82,33 @@
             },
             {
               "id": "11-governance/01-overview",
-              "path": "/docs/11-governance/01-overview"
+              "path": "/docs/11-governance/01-overview",
+              "sidebar": "docs"
             },
             {
               "id": "11-governance/02-process",
-              "path": "/docs/11-governance/02-process"
+              "path": "/docs/11-governance/02-process",
+              "sidebar": "docs"
             },
             {
               "id": "11-governance/03-guide-to-voting",
-              "path": "/docs/11-governance/03-guide-to-voting"
+              "path": "/docs/11-governance/03-guide-to-voting",
+              "sidebar": "docs"
             },
             {
               "id": "11-governance/04-glossary",
-              "path": "/docs/11-governance/04-glossary"
+              "path": "/docs/11-governance/04-glossary",
+              "sidebar": "docs"
             },
             {
               "id": "11-governance/05-adversarial-circumstances",
-              "path": "/docs/11-governance/05-adversarial-circumstances"
+              "path": "/docs/11-governance/05-adversarial-circumstances",
+              "sidebar": "docs"
             },
             {
-              "id": "11-governance/05-governance-reference",
-              "path": "/docs/11-governance/05-governance-reference"
+              "id": "11-governance/06-governance-reference",
+              "path": "/docs/11-governance/06-governance-reference",
+              "sidebar": "docs"
             },
             {
               "id": "doc1",
@@ -110,8 +116,7 @@
             },
             {
               "id": "doc2",
-              "path": "/docs/doc2",
-              "sidebar": "docs"
+              "path": "/docs/doc2"
             },
             {
               "id": "doc3",

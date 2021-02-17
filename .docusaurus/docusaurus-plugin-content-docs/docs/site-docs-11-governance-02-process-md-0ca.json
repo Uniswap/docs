@@ -8,5 +8,14 @@
   "slug": "/11-governance/02-process",
   "permalink": "/docs/11-governance/02-process",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/02-process.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Overview",
+    "permalink": "/docs/11-governance/01-overview"
+  },
+  "next": {
+    "title": "Beginners Guide to Voting",
+    "permalink": "/docs/11-governance/03-guide-to-voting"
+  }
 }

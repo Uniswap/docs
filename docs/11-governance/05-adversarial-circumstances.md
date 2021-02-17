@@ -1,4 +1,5 @@
 ---
+id: 05-adversarial-circumstances
 title: Adversarial Circumstances
 tags: goveranance, documentation
 ---

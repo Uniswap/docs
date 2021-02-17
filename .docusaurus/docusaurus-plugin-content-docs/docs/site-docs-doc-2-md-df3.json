@@ -8,10 +8,5 @@
   "slug": "/doc2",
   "permalink": "/docs/doc2",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/doc2.md",
-  "version": "current",
-  "sidebar": "docs",
-  "previous": {
-    "title": "Research",
-    "permalink": "/docs/03-advanced-topics/06-research"
-  }
+  "version": "current"
 }
