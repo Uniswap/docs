@@ -51,6 +51,60 @@
               "sidebar": "docs"
             },
             {
+              "id": "03-advanced-topics/01-fees",
+              "path": "/docs/03-advanced-topics/01-fees",
+              "sidebar": "docs"
+            },
+            {
+              "id": "03-advanced-topics/02-pricing",
+              "path": "/docs/03-advanced-topics/02-pricing",
+              "sidebar": "docs"
+            },
+            {
+              "id": "03-advanced-topics/03-understanding-returns",
+              "path": "/docs/03-advanced-topics/03-understanding-returns",
+              "sidebar": "docs"
+            },
+            {
+              "id": "03-advanced-topics/04-security",
+              "path": "/docs/03-advanced-topics/04-security",
+              "sidebar": "docs"
+            },
+            {
+              "id": "03-advanced-topics/05-math",
+              "path": "/docs/03-advanced-topics/05-math",
+              "sidebar": "docs"
+            },
+            {
+              "id": "03-advanced-topics/06-research",
+              "path": "/docs/03-advanced-topics/06-research",
+              "sidebar": "docs"
+            },
+            {
+              "id": "11-governance/01-overview",
+              "path": "/docs/11-governance/01-overview"
+            },
+            {
+              "id": "11-governance/02-process",
+              "path": "/docs/11-governance/02-process"
+            },
+            {
+              "id": "11-governance/03-guide-to-voting",
+              "path": "/docs/11-governance/03-guide-to-voting"
+            },
+            {
+              "id": "11-governance/04-glossary",
+              "path": "/docs/11-governance/04-glossary"
+            },
+            {
+              "id": "11-governance/05-adversarial-circumstances",
+              "path": "/docs/11-governance/05-adversarial-circumstances"
+            },
+            {
+              "id": "11-governance/05-governance-reference",
+              "path": "/docs/11-governance/05-governance-reference"
+            },
+            {
               "id": "doc1",
               "path": "/docs/doc1"
             },

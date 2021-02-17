@@ -84,7 +84,7 @@ export default [
 },
 {
   path: '/docs',
-  component: ComponentCreator('/docs','ef9'),
+  component: ComponentCreator('/docs','1b8'),
   
   routes: [
 {
@@ -125,6 +125,66 @@ export default [
 {
   path: '/docs/02-core-concepts/04-oracles',
   component: ComponentCreator('/docs/02-core-concepts/04-oracles','6fc'),
+  exact: true,
+},
+{
+  path: '/docs/03-advanced-topics/01-fees',
+  component: ComponentCreator('/docs/03-advanced-topics/01-fees','e14'),
+  exact: true,
+},
+{
+  path: '/docs/03-advanced-topics/02-pricing',
+  component: ComponentCreator('/docs/03-advanced-topics/02-pricing','648'),
+  exact: true,
+},
+{
+  path: '/docs/03-advanced-topics/03-understanding-returns',
+  component: ComponentCreator('/docs/03-advanced-topics/03-understanding-returns','9aa'),
+  exact: true,
+},
+{
+  path: '/docs/03-advanced-topics/04-security',
+  component: ComponentCreator('/docs/03-advanced-topics/04-security','323'),
+  exact: true,
+},
+{
+  path: '/docs/03-advanced-topics/05-math',
+  component: ComponentCreator('/docs/03-advanced-topics/05-math','347'),
+  exact: true,
+},
+{
+  path: '/docs/03-advanced-topics/06-research',
+  component: ComponentCreator('/docs/03-advanced-topics/06-research','c76'),
+  exact: true,
+},
+{
+  path: '/docs/11-governance/01-overview',
+  component: ComponentCreator('/docs/11-governance/01-overview','1ec'),
+  exact: true,
+},
+{
+  path: '/docs/11-governance/02-process',
+  component: ComponentCreator('/docs/11-governance/02-process','1bc'),
+  exact: true,
+},
+{
+  path: '/docs/11-governance/03-guide-to-voting',
+  component: ComponentCreator('/docs/11-governance/03-guide-to-voting','7af'),
+  exact: true,
+},
+{
+  path: '/docs/11-governance/04-glossary',
+  component: ComponentCreator('/docs/11-governance/04-glossary','5fc'),
+  exact: true,
+},
+{
+  path: '/docs/11-governance/05-adversarial-circumstances',
+  component: ComponentCreator('/docs/11-governance/05-adversarial-circumstances','4fe'),
+  exact: true,
+},
+{
+  path: '/docs/11-governance/05-governance-reference',
+  component: ComponentCreator('/docs/11-governance/05-governance-reference','e3d'),
   exact: true,
 },
 {

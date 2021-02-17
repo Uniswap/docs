@@ -1,0 +1,12 @@
+{
+  "unversionedId": "11-governance/01-overview",
+  "id": "11-governance/01-overview",
+  "isDocsHomePage": false,
+  "title": "Overview",
+  "description": "Code",
+  "source": "@site/docs/11-governance/01-overview.md",
+  "slug": "/11-governance/01-overview",
+  "permalink": "/docs/11-governance/01-overview",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/01-overview.md",
+  "version": "current"
+}

@@ -25,7 +25,12 @@ module.exports = {
       type: 'category',
       label: 'Advanced Topics',
       items: [
-        'doc2',
+        '03-advanced-topics/01-fees',
+        '03-advanced-topics/02-pricing',
+        '03-advanced-topics/03-understanding-returns',
+        '03-advanced-topics/04-security',
+        '03-advanced-topics/05-math',
+        '03-advanced-topics/06-research'
       ],
     },
     {

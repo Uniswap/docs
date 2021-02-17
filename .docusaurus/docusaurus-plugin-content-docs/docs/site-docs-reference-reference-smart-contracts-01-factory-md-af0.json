@@ -1,0 +1,12 @@
+{
+  "unversionedId": "reference/reference/smart-contracts/01-factory",
+  "id": "reference/reference/smart-contracts/01-factory",
+  "isDocsHomePage": false,
+  "title": "Factory",
+  "description": "Code",
+  "source": "@site/docs/reference/reference/smart-contracts/01-factory.md",
+  "slug": "/reference/",
+  "permalink": "/docs/reference/",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/reference/smart-contracts/01-factory.md",
+  "version": "current"
+}

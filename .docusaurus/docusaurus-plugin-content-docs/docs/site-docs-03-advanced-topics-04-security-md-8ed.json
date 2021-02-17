@@ -1,0 +1,21 @@
+{
+  "unversionedId": "03-advanced-topics/04-security",
+  "id": "03-advanced-topics/04-security",
+  "isDocsHomePage": false,
+  "title": "Security",
+  "description": "Audit & Formal Verification",
+  "source": "@site/docs/03-advanced-topics/04-security.md",
+  "slug": "/03-advanced-topics/04-security",
+  "permalink": "/docs/03-advanced-topics/04-security",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/03-advanced-topics/04-security.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Understanding Returns",
+    "permalink": "/docs/03-advanced-topics/03-understanding-returns"
+  },
+  "next": {
+    "title": "Math",
+    "permalink": "/docs/03-advanced-topics/05-math"
+  }
+}

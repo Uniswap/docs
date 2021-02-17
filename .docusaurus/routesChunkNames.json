@@ -106,7 +106,7 @@
     "sidebar": "sidebar---blogaf-9-d2e",
     "content": "content---blog-welcome-286-e55"
   },
-  "/docs-ef9": {
+  "/docs-1b8": {
     "component": "component---theme-doc-page-1-be-9be",
     "versionMetadata": "versionMetadata---docs-0-b-3-5c5"
   },
@@ -141,6 +141,54 @@
   "/docs/02-core-concepts/04-oracles-6fc": {
     "component": "component---theme-doc-item-178-a40",
     "content": "content---docs-02-core-concepts-04-oraclesf-34-9de"
+  },
+  "/docs/03-advanced-topics/01-fees-e14": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-03-advanced-topics-01-feesab-3-e11"
+  },
+  "/docs/03-advanced-topics/02-pricing-648": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-03-advanced-topics-02-pricingc-01-c9b"
+  },
+  "/docs/03-advanced-topics/03-understanding-returns-9aa": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-03-advanced-topics-03-understanding-returnsaca-72c"
+  },
+  "/docs/03-advanced-topics/04-security-323": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-03-advanced-topics-04-security-8-ed-6e4"
+  },
+  "/docs/03-advanced-topics/05-math-347": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-03-advanced-topics-05-math-701-7ef"
+  },
+  "/docs/03-advanced-topics/06-research-c76": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-03-advanced-topics-05-research-1-b-0-c5d"
+  },
+  "/docs/11-governance/01-overview-1ec": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-11-governance-01-overviewb-9-e-a47"
+  },
+  "/docs/11-governance/02-process-1bc": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-11-governance-02-process-0-ca-651"
+  },
+  "/docs/11-governance/03-guide-to-voting-7af": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-11-governance-03-guide-to-voting-531-688"
+  },
+  "/docs/11-governance/04-glossary-5fc": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-11-governance-04-glossaryacf-061"
+  },
+  "/docs/11-governance/05-adversarial-circumstances-4fe": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-11-governance-05-adversarial-circumstancesd-53-ecc"
+  },
+  "/docs/11-governance/05-governance-reference-e3d": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-11-governance-05-governance-referencea-51-f02"
   },
   "/docs/doc1-392": {
     "component": "component---theme-doc-item-178-a40",

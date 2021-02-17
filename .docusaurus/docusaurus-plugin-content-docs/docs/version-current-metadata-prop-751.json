@@ -66,8 +66,33 @@
         "items": [
           {
             "type": "link",
-            "label": "Document Number 2",
-            "href": "/docs/doc2"
+            "label": "Fees",
+            "href": "/docs/03-advanced-topics/01-fees"
+          },
+          {
+            "type": "link",
+            "label": "Pricing",
+            "href": "/docs/03-advanced-topics/02-pricing"
+          },
+          {
+            "type": "link",
+            "label": "Understanding Returns",
+            "href": "/docs/03-advanced-topics/03-understanding-returns"
+          },
+          {
+            "type": "link",
+            "label": "Security",
+            "href": "/docs/03-advanced-topics/04-security"
+          },
+          {
+            "type": "link",
+            "label": "Math",
+            "href": "/docs/03-advanced-topics/05-math"
+          },
+          {
+            "type": "link",
+            "label": "Research",
+            "href": "/docs/03-advanced-topics/06-research"
           }
         ]
       },
@@ -174,6 +199,12 @@
     "/docs/02-core-concepts/02-pools": "docs",
     "/docs/02-core-concepts/03-flash-swaps": "docs",
     "/docs/02-core-concepts/04-oracles": "docs",
+    "/docs/03-advanced-topics/01-fees": "docs",
+    "/docs/03-advanced-topics/02-pricing": "docs",
+    "/docs/03-advanced-topics/03-understanding-returns": "docs",
+    "/docs/03-advanced-topics/04-security": "docs",
+    "/docs/03-advanced-topics/05-math": "docs",
+    "/docs/03-advanced-topics/06-research": "docs",
     "/docs/doc2": "docs",
     "/docs/guides/": "guides",
     "/docs/guides/02-trading-from-a-smart-contract": "guides",

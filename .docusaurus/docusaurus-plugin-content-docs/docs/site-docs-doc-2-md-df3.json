@@ -11,11 +11,7 @@
   "version": "current",
   "sidebar": "docs",
   "previous": {
-    "title": "Oracles",
-    "permalink": "/docs/02-core-concepts/04-oracles"
-  },
-  "next": {
-    "title": "Document Number 2",
-    "permalink": "/docs/doc2"
+    "title": "Research",
+    "permalink": "/docs/03-advanced-topics/06-research"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "unversionedId": "11-governance/04-glossary",
+  "id": "11-governance/04-glossary",
+  "isDocsHomePage": false,
+  "title": "Glossary",
+  "description": "- UNI: An ERC-20 token that designates the weight of a user&#39;s voting rights. The more UNI a user has in their wallet, the more weight their delegation or vote on a proposal holds.",
+  "source": "@site/docs/11-governance/04-glossary.md",
+  "slug": "/11-governance/04-glossary",
+  "permalink": "/docs/11-governance/04-glossary",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/11-governance/04-glossary.md",
+  "version": "current"
+}
