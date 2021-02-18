@@ -1,0 +1,21 @@
+{
+  "unversionedId": "concepts/02-core-concepts/02-pools",
+  "id": "version-V2/concepts/02-core-concepts/02-pools",
+  "isDocsHomePage": false,
+  "title": "Pools",
+  "description": "Introduction",
+  "source": "@site/docs_versioned_docs/version-V2/concepts/02-core-concepts/02-pools.md",
+  "slug": "/concepts/02-core-concepts/02-pools",
+  "permalink": "/docs/V2/concepts/02-core-concepts/02-pools",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V2/concepts/02-core-concepts/02-pools.md",
+  "version": "V2",
+  "sidebar": "version-V2/docs",
+  "previous": {
+    "title": "Swaps",
+    "permalink": "/docs/V2/concepts/02-core-concepts/01-swaps"
+  },
+  "next": {
+    "title": "Flash Swaps",
+    "permalink": "/docs/V2/concepts/02-core-concepts/03-flash-swaps"
+  }
+}

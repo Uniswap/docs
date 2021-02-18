@@ -1,0 +1,12 @@
+{
+  "unversionedId": "guides/javascript-sdk/01-quick-start",
+  "id": "guides/javascript-sdk/01-quick-start",
+  "isDocsHomePage": false,
+  "title": "SDK Quick start",
+  "description": "The Uniswap SDK exists to help developers build on top of Uniswap. It's designed to run in any environment that can execute JavaScript (think websites, node scripts, etc.). While simple enough to use in a hackathon project, it's also robust enough to power production applications.",
+  "source": "@site/docs/guides/javascript-sdk/01-quick-start.md",
+  "slug": "/guides/javascript-sdk/01-quick-start",
+  "permalink": "/docs/next/guides/javascript-sdk/01-quick-start",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/01-quick-start.md",
+  "version": "current"
+}

@@ -1,0 +1,21 @@
+{
+  "unversionedId": "V1/02-SDK/03-computation",
+  "id": "V1/02-SDK/03-computation",
+  "isDocsHomePage": false,
+  "title": "Computation",
+  "description": "getMarketDetails",
+  "source": "@site/docs/V1/02-SDK/03-computation.md",
+  "slug": "/V1/02-SDK/03-computation",
+  "permalink": "/docs/next/V1/02-SDK/03-computation",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/V1/02-SDK/03-computation.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Data",
+    "permalink": "/docs/next/V1/02-SDK/02-data"
+  },
+  "next": {
+    "title": "Format",
+    "permalink": "/docs/next/V1/02-SDK/04-format"
+  }
+}

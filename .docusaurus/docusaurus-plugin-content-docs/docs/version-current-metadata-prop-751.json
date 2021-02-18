@@ -1,0 +1,135 @@
+{
+  "pluginId": "docs",
+  "version": "current",
+  "label": "Next",
+  "isLast": false,
+  "docsSidebars": {
+    "docs": [
+      {
+        "collapsed": true,
+        "type": "category",
+        "label": "Frontend Integration",
+        "items": [
+          {
+            "type": "link",
+            "label": "Connect to Uniswap",
+            "href": "/docs/next/V1/01-frontend-integration/01-connect-to-uniswap"
+          },
+          {
+            "type": "link",
+            "label": "Pool Liquidity",
+            "href": "/docs/next/V1/01-frontend-integration/02-pool-liquidity"
+          },
+          {
+            "type": "link",
+            "label": "Trade Tokens",
+            "href": "/docs/next/V1/01-frontend-integration/03-trade-tokens"
+          },
+          {
+            "type": "link",
+            "label": "Custom Linking",
+            "href": "/docs/next/V1/01-frontend-integration/04-custom-linking"
+          },
+          {
+            "type": "link",
+            "label": "Iframe Integration",
+            "href": "/docs/next/V1/01-frontend-integration/05-iframe-integration"
+          },
+          {
+            "type": "link",
+            "label": "Token Listing",
+            "href": "/docs/next/V1/01-frontend-integration/06-token-listing"
+          }
+        ]
+      },
+      {
+        "collapsed": true,
+        "type": "category",
+        "label": "SDK",
+        "items": [
+          {
+            "type": "link",
+            "label": "Getting Started",
+            "href": "/docs/next/V1/02-SDK/01-getting-started"
+          },
+          {
+            "type": "link",
+            "label": "Data",
+            "href": "/docs/next/V1/02-SDK/02-data"
+          },
+          {
+            "type": "link",
+            "label": "Computation",
+            "href": "/docs/next/V1/02-SDK/03-computation"
+          },
+          {
+            "type": "link",
+            "label": "Format",
+            "href": "/docs/next/V1/02-SDK/04-format"
+          },
+          {
+            "type": "link",
+            "label": "Orchestration",
+            "href": "/docs/next/V1/02-SDK/05-orchestration"
+          },
+          {
+            "type": "link",
+            "label": "Transact",
+            "href": "/docs/next/V1/02-SDK/06-transact"
+          },
+          {
+            "type": "link",
+            "label": "Constants",
+            "href": "/docs/next/V1/02-SDK/07-constants"
+          },
+          {
+            "type": "link",
+            "label": "Types",
+            "href": "/docs/next/V1/02-SDK/08-types"
+          }
+        ]
+      },
+      {
+        "collapsed": true,
+        "type": "category",
+        "label": "Smart Contracts",
+        "items": [
+          {
+            "type": "link",
+            "label": "Factory",
+            "href": "/docs/next/V1/03-smart-contracts/01-factory"
+          },
+          {
+            "type": "link",
+            "label": "Exchange",
+            "href": "/docs/next/V1/03-smart-contracts/02-exchange"
+          },
+          {
+            "type": "link",
+            "label": "Interfaces",
+            "href": "/docs/next/V1/03-smart-contracts/03-interfaces"
+          }
+        ]
+      }
+    ]
+  },
+  "permalinkToSidebar": {
+    "/docs/next/V1/01-frontend-integration/01-connect-to-uniswap": "docs",
+    "/docs/next/V1/01-frontend-integration/02-pool-liquidity": "docs",
+    "/docs/next/V1/01-frontend-integration/03-trade-tokens": "docs",
+    "/docs/next/V1/01-frontend-integration/04-custom-linking": "docs",
+    "/docs/next/V1/01-frontend-integration/05-iframe-integration": "docs",
+    "/docs/next/V1/01-frontend-integration/06-token-listing": "docs",
+    "/docs/next/V1/02-SDK/01-getting-started": "docs",
+    "/docs/next/V1/02-SDK/02-data": "docs",
+    "/docs/next/V1/02-SDK/03-computation": "docs",
+    "/docs/next/V1/02-SDK/04-format": "docs",
+    "/docs/next/V1/02-SDK/05-orchestration": "docs",
+    "/docs/next/V1/02-SDK/06-transact": "docs",
+    "/docs/next/V1/02-SDK/07-constants": "docs",
+    "/docs/next/V1/02-SDK/08-types": "docs",
+    "/docs/next/V1/03-smart-contracts/01-factory": "docs",
+    "/docs/next/V1/03-smart-contracts/02-exchange": "docs",
+    "/docs/next/V1/03-smart-contracts/03-interfaces": "docs"
+  }
+}

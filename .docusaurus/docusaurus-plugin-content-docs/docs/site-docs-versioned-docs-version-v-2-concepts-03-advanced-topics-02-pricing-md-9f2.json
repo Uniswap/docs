@@ -1,0 +1,21 @@
+{
+  "unversionedId": "concepts/03-advanced-topics/02-pricing",
+  "id": "version-V2/concepts/03-advanced-topics/02-pricing",
+  "isDocsHomePage": false,
+  "title": "Pricing",
+  "description": "How are prices determined?",
+  "source": "@site/docs_versioned_docs/version-V2/concepts/03-advanced-topics/02-pricing.md",
+  "slug": "/concepts/03-advanced-topics/02-pricing",
+  "permalink": "/docs/V2/concepts/03-advanced-topics/02-pricing",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V2/concepts/03-advanced-topics/02-pricing.md",
+  "version": "V2",
+  "sidebar": "version-V2/docs",
+  "previous": {
+    "title": "Fees",
+    "permalink": "/docs/V2/concepts/03-advanced-topics/01-fees"
+  },
+  "next": {
+    "title": "Understanding Returns",
+    "permalink": "/docs/V2/concepts/03-advanced-topics/03-understanding-returns"
+  }
+}

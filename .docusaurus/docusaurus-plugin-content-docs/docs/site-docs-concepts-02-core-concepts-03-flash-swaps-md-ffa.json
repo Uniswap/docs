@@ -1,0 +1,12 @@
+{
+  "unversionedId": "concepts/02-core-concepts/03-flash-swaps",
+  "id": "concepts/02-core-concepts/03-flash-swaps",
+  "isDocsHomePage": false,
+  "title": "Flash Swaps",
+  "description": "Uniswap flash swaps allow you to withdraw up to the full reserves of any ERC20 token on Uniswap and execute arbitrary logic at no upfront cost, provided that by the end of the transaction you either:",
+  "source": "@site/docs/concepts/02-core-concepts/03-flash-swaps.md",
+  "slug": "/concepts/02-core-concepts/03-flash-swaps",
+  "permalink": "/docs/next/concepts/02-core-concepts/03-flash-swaps",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/03-flash-swaps.md",
+  "version": "current"
+}

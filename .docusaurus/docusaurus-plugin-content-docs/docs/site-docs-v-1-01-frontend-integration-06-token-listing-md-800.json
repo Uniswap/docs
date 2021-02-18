@@ -1,0 +1,21 @@
+{
+  "unversionedId": "V1/01-frontend-integration/06-token-listing",
+  "id": "V1/01-frontend-integration/06-token-listing",
+  "isDocsHomePage": false,
+  "title": "Token Listing",
+  "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
+  "source": "@site/docs/V1/01-frontend-integration/06-token-listing.md",
+  "slug": "/V1/01-frontend-integration/06-token-listing",
+  "permalink": "/docs/next/V1/01-frontend-integration/06-token-listing",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/V1/01-frontend-integration/06-token-listing.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Iframe Integration",
+    "permalink": "/docs/next/V1/01-frontend-integration/05-iframe-integration"
+  },
+  "next": {
+    "title": "Getting Started",
+    "permalink": "/docs/next/V1/02-SDK/01-getting-started"
+  }
+}

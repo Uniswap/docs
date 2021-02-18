@@ -1,0 +1,12 @@
+{
+  "unversionedId": "guides/javascript-sdk/03-pricing",
+  "id": "guides/javascript-sdk/03-pricing",
+  "isDocsHomePage": false,
+  "title": "Pricing",
+  "description": "Looking for a quickstart?",
+  "source": "@site/docs/guides/javascript-sdk/03-pricing.md",
+  "slug": "/guides/javascript-sdk/03-pricing",
+  "permalink": "/docs/next/guides/javascript-sdk/03-pricing",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/03-pricing.md",
+  "version": "current"
+}

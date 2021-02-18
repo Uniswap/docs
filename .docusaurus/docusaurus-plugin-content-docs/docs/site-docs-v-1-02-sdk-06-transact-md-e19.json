@@ -1,0 +1,21 @@
+{
+  "unversionedId": "V1/02-SDK/06-transact",
+  "id": "V1/02-SDK/06-transact",
+  "isDocsHomePage": false,
+  "title": "Transact",
+  "description": "getExecutionDetails",
+  "source": "@site/docs/V1/02-SDK/06-transact.md",
+  "slug": "/V1/02-SDK/06-transact",
+  "permalink": "/docs/next/V1/02-SDK/06-transact",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/V1/02-SDK/06-transact.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Orchestration",
+    "permalink": "/docs/next/V1/02-SDK/05-orchestration"
+  },
+  "next": {
+    "title": "Constants",
+    "permalink": "/docs/next/V1/02-SDK/07-constants"
+  }
+}

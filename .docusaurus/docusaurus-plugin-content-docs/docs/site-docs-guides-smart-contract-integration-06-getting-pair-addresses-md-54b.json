@@ -1,0 +1,12 @@
+{
+  "unversionedId": "guides/smart-contract-integration/06-getting-pair-addresses",
+  "id": "guides/smart-contract-integration/06-getting-pair-addresses",
+  "isDocsHomePage": false,
+  "title": "Pair Addresses",
+  "description": "getPair",
+  "source": "@site/docs/guides/smart-contract-integration/06-getting-pair-addresses.md",
+  "slug": "/guides/smart-contract-integration/06-getting-pair-addresses",
+  "permalink": "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/06-getting-pair-addresses.md",
+  "version": "current"
+}

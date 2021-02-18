@@ -1,0 +1,21 @@
+{
+  "unversionedId": "concepts/01-protocol-overview/04-glossary",
+  "id": "version-V2/concepts/01-protocol-overview/04-glossary",
+  "isDocsHomePage": false,
+  "title": "Glossary",
+  "description": "Automated market maker",
+  "source": "@site/docs_versioned_docs/version-V2/concepts/01-protocol-overview/04-glossary.md",
+  "slug": "/concepts/01-protocol-overview/04-glossary",
+  "permalink": "/docs/V2/concepts/01-protocol-overview/04-glossary",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V2/concepts/01-protocol-overview/04-glossary.md",
+  "version": "V2",
+  "sidebar": "version-V2/docs",
+  "previous": {
+    "title": "Smart contracts",
+    "permalink": "/docs/V2/concepts/01-protocol-overview/03-smart-contracts"
+  },
+  "next": {
+    "title": "Swaps",
+    "permalink": "/docs/V2/concepts/02-core-concepts/01-swaps"
+  }
+}

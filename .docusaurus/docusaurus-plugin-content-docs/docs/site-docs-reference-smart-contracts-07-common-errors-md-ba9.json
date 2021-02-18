@@ -1,0 +1,12 @@
+{
+  "unversionedId": "reference/smart-contracts/07-common-errors",
+  "id": "reference/smart-contracts/07-common-errors",
+  "isDocsHomePage": false,
+  "title": "Common Errors",
+  "description": "This document covers a few error codes freqeuently encountered while building on Uniswap V2.",
+  "source": "@site/docs/reference/smart-contracts/07-common-errors.md",
+  "slug": "/reference/smart-contracts/07-common-errors",
+  "permalink": "/docs/next/reference/smart-contracts/07-common-errors",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/07-common-errors.md",
+  "version": "current"
+}
