@@ -111,18 +111,6 @@
               "sidebar": "docs"
             },
             {
-              "id": "doc1",
-              "path": "/docs/doc1"
-            },
-            {
-              "id": "doc2",
-              "path": "/docs/doc2"
-            },
-            {
-              "id": "doc3",
-              "path": "/docs/doc3"
-            },
-            {
               "id": "guides/interface-integration/01-using-the-api",
               "path": "/docs/guides/interface-integration/01-using-the-api",
               "sidebar": "guides"
@@ -196,10 +184,6 @@
               "id": "guides/smart-contract-integration/07-supporting-meta-transactions",
               "path": "/docs/guides/smart-contract-integration/07-supporting-meta-transactions",
               "sidebar": "guides"
-            },
-            {
-              "id": "mdx",
-              "path": "/docs/mdx"
             },
             {
               "id": "reference/API/01-overview",

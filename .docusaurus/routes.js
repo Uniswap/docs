@@ -38,53 +38,8 @@ export default [
   exact: true,
 },
 {
-  path: '/blog',
-  component: ComponentCreator('/blog','ec0'),
-  exact: true,
-},
-{
-  path: '/blog/hello-world',
-  component: ComponentCreator('/blog/hello-world','59a'),
-  exact: true,
-},
-{
-  path: '/blog/hola',
-  component: ComponentCreator('/blog/hola','5bd'),
-  exact: true,
-},
-{
-  path: '/blog/tags',
-  component: ComponentCreator('/blog/tags','73e'),
-  exact: true,
-},
-{
-  path: '/blog/tags/docusaurus',
-  component: ComponentCreator('/blog/tags/docusaurus','cc2'),
-  exact: true,
-},
-{
-  path: '/blog/tags/facebook',
-  component: ComponentCreator('/blog/tags/facebook','122'),
-  exact: true,
-},
-{
-  path: '/blog/tags/hello',
-  component: ComponentCreator('/blog/tags/hello','5b7'),
-  exact: true,
-},
-{
-  path: '/blog/tags/hola',
-  component: ComponentCreator('/blog/tags/hola','7ec'),
-  exact: true,
-},
-{
-  path: '/blog/welcome',
-  component: ComponentCreator('/blog/welcome','dba'),
-  exact: true,
-},
-{
   path: '/docs',
-  component: ComponentCreator('/docs','953'),
+  component: ComponentCreator('/docs','3b8'),
   
   routes: [
 {
@@ -188,21 +143,6 @@ export default [
   exact: true,
 },
 {
-  path: '/docs/doc1',
-  component: ComponentCreator('/docs/doc1','392'),
-  exact: true,
-},
-{
-  path: '/docs/doc2',
-  component: ComponentCreator('/docs/doc2','fd3'),
-  exact: true,
-},
-{
-  path: '/docs/doc3',
-  component: ComponentCreator('/docs/doc3','e02'),
-  exact: true,
-},
-{
   path: '/docs/guides/',
   component: ComponentCreator('/docs/guides/','a2a'),
   exact: true,
@@ -275,11 +215,6 @@ export default [
 {
   path: '/docs/guides/smart-contract-integration/07-supporting-meta-transactions',
   component: ComponentCreator('/docs/guides/smart-contract-integration/07-supporting-meta-transactions','129'),
-  exact: true,
-},
-{
-  path: '/docs/mdx',
-  component: ComponentCreator('/docs/mdx','955'),
   exact: true,
 },
 {

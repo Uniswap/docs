@@ -21,92 +21,7 @@
   "/__docusaurus/debug/routes-244": {
     "component": "component---theme-debug-routes-946-699"
   },
-  "/blog-ec0": {
-    "component": "component---theme-blog-list-pagea-6-a-7ba",
-    "sidebar": "sidebar---blogaf-9-d2e",
-    "items": [
-      {
-        "content": "content---blogaf-1-856"
-      },
-      {
-        "content": "content---blog-357-22b"
-      },
-      {
-        "content": "content---blog-8-e-9-35c"
-      }
-    ],
-    "metadata": "metadata---blogb-2-b-df1"
-  },
-  "/blog/hello-world-59a": {
-    "component": "component---theme-blog-post-pageccc-cab",
-    "sidebar": "sidebar---blogaf-9-d2e",
-    "content": "content---blog-hello-worldd-61-086"
-  },
-  "/blog/hola-5bd": {
-    "component": "component---theme-blog-post-pageccc-cab",
-    "sidebar": "sidebar---blogaf-9-d2e",
-    "content": "content---blog-holabdd-150"
-  },
-  "/blog/tags-73e": {
-    "component": "component---theme-blog-tags-list-page-01-a-d0b",
-    "sidebar": "sidebar---blogaf-9-d2e",
-    "tags": "tags---blog-tagsa-70-da2"
-  },
-  "/blog/tags/docusaurus-cc2": {
-    "component": "component---theme-blog-tags-posts-page-687-b6c",
-    "sidebar": "sidebar---blogaf-9-d2e",
-    "items": [
-      {
-        "content": "content---blogaf-1-856"
-      },
-      {
-        "content": "content---blog-357-22b"
-      },
-      {
-        "content": "content---blog-8-e-9-35c"
-      }
-    ],
-    "metadata": "metadata---blog-tags-docusaurusa-80-728"
-  },
-  "/blog/tags/facebook-122": {
-    "component": "component---theme-blog-tags-posts-page-687-b6c",
-    "sidebar": "sidebar---blogaf-9-d2e",
-    "items": [
-      {
-        "content": "content---blogaf-1-856"
-      }
-    ],
-    "metadata": "metadata---blog-tags-facebook-031-c52"
-  },
-  "/blog/tags/hello-5b7": {
-    "component": "component---theme-blog-tags-posts-page-687-b6c",
-    "sidebar": "sidebar---blogaf-9-d2e",
-    "items": [
-      {
-        "content": "content---blogaf-1-856"
-      },
-      {
-        "content": "content---blog-357-22b"
-      }
-    ],
-    "metadata": "metadata---blog-tags-hello-30-a-bed"
-  },
-  "/blog/tags/hola-7ec": {
-    "component": "component---theme-blog-tags-posts-page-687-b6c",
-    "sidebar": "sidebar---blogaf-9-d2e",
-    "items": [
-      {
-        "content": "content---blog-8-e-9-35c"
-      }
-    ],
-    "metadata": "metadata---blog-tags-holae-16-18a"
-  },
-  "/blog/welcome-dba": {
-    "component": "component---theme-blog-post-pageccc-cab",
-    "sidebar": "sidebar---blogaf-9-d2e",
-    "content": "content---blog-welcome-286-e55"
-  },
-  "/docs-953": {
+  "/docs-3b8": {
     "component": "component---theme-doc-page-1-be-9be",
     "versionMetadata": "versionMetadata---docs-0-b-3-5c5"
   },
@@ -190,18 +105,6 @@
     "component": "component---theme-doc-item-178-a40",
     "content": "content---docs-concepts-11-governance-06-governance-referencedab-2ca"
   },
-  "/docs/doc1-392": {
-    "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-doc-1-b-2-f-e80"
-  },
-  "/docs/doc2-fd3": {
-    "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-doc-2-df-3-eaa"
-  },
-  "/docs/doc3-e02": {
-    "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-doc-3616-40c"
-  },
   "/docs/guides/-a2a": {
     "component": "component---theme-doc-item-178-a40",
     "content": "content---docs-guides-023-081"
@@ -261,10 +164,6 @@
   "/docs/guides/smart-contract-integration/07-supporting-meta-transactions-129": {
     "component": "component---theme-doc-item-178-a40",
     "content": "content---docs-guides-smart-contract-integration-07-supporting-meta-transactions-890-5b7"
-  },
-  "/docs/mdx-955": {
-    "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-mdxce-3-7d1"
   },
   "/docs/reference/-553": {
     "component": "component---theme-doc-item-178-a40",
