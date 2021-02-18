@@ -16,6 +16,15 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
+        // {
+        //   type: 'docsVersionDropdown',
+        //   position: 'right',
+        //   dropdownItemsBefore: [],
+        //   dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
+
+        //   // Do not add the link active class when browsing docs.
+        //   dropdownActiveClassDisabled: true,
+        // },
         {
           to: 'docs',
           activeBasePath: 'docs',

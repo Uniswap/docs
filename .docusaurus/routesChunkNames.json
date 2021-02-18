@@ -23,222 +23,222 @@
   },
   "/docs-3b8": {
     "component": "component---theme-doc-page-1-be-9be",
-    "versionMetadata": "versionMetadata---docs-0-b-3-5c5"
+    "versionMetadata": "versionMetadata---docs-next-0-b-3-2ba"
   },
   "/docs/-f23": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-76-f-de3"
+    "content": "content---docs-next-76-f-f33"
   },
   "/docs/concepts/01-protocol-overview/02-ecosystem-participants-04b": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-01-protocol-overview-02-ecosystem-participantse-54-429"
+    "content": "content---docs-next-concepts-01-protocol-overview-02-ecosystem-participantse-54-c77"
   },
   "/docs/concepts/01-protocol-overview/03-smart-contracts-722": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-01-protocol-overview-03-smart-contracts-4-ac-e0a"
+    "content": "content---docs-next-concepts-01-protocol-overview-03-smart-contracts-4-ac-361"
   },
   "/docs/concepts/01-protocol-overview/04-glossary-b66": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-01-protocol-overview-04-glossary-9-dd-5f7"
+    "content": "content---docs-next-concepts-01-protocol-overview-04-glossary-9-dd-ef5"
   },
   "/docs/concepts/02-core-concepts/01-swaps-333": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-02-core-concepts-01-swapsf-00-470"
+    "content": "content---docs-next-concepts-02-core-concepts-01-swapsf-00-bbc"
   },
   "/docs/concepts/02-core-concepts/02-pools-10e": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-02-core-concepts-02-poolsa-9-c-a47"
+    "content": "content---docs-next-concepts-02-core-concepts-02-poolsa-9-c-4b6"
   },
   "/docs/concepts/02-core-concepts/03-flash-swaps-c20": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-02-core-concepts-03-flash-swapsffa-d0d"
+    "content": "content---docs-next-concepts-02-core-concepts-03-flash-swapsffa-2f1"
   },
   "/docs/concepts/02-core-concepts/04-oracles-dc6": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-02-core-concepts-04-oracles-783-40a"
+    "content": "content---docs-next-concepts-02-core-concepts-04-oracles-783-cae"
   },
   "/docs/concepts/03-advanced-topics/01-fees-60b": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-01-fees-3-e-6-f0e"
+    "content": "content---docs-next-concepts-03-advanced-topics-01-fees-3-e-6-163"
   },
   "/docs/concepts/03-advanced-topics/02-pricing-cc7": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-02-pricing-1-ab-f76"
+    "content": "content---docs-next-concepts-03-advanced-topics-02-pricing-1-ab-a68"
   },
   "/docs/concepts/03-advanced-topics/03-understanding-returns-363": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-03-understanding-returnsf-07-148"
+    "content": "content---docs-next-concepts-03-advanced-topics-03-understanding-returnsf-07-017"
   },
   "/docs/concepts/03-advanced-topics/04-security-959": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-04-security-76-f-410"
+    "content": "content---docs-next-concepts-03-advanced-topics-04-security-76-f-665"
   },
   "/docs/concepts/03-advanced-topics/05-math-be4": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-05-math-603-143"
+    "content": "content---docs-next-concepts-03-advanced-topics-05-math-603-f5b"
   },
   "/docs/concepts/03-advanced-topics/06-research-ca1": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-06-researchd-6-f-49e"
+    "content": "content---docs-next-concepts-03-advanced-topics-06-researchd-6-f-d41"
   },
   "/docs/concepts/11-governance/01-overview-c67": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-01-overviewbc-1-a59"
+    "content": "content---docs-next-concepts-11-governance-01-overviewbc-1-ab7"
   },
   "/docs/concepts/11-governance/02-process-6c4": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-02-processffd-c84"
+    "content": "content---docs-next-concepts-11-governance-02-processffd-fcd"
   },
   "/docs/concepts/11-governance/03-guide-to-voting-51a": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-03-guide-to-voting-779-ddd"
+    "content": "content---docs-next-concepts-11-governance-03-guide-to-voting-779-918"
   },
   "/docs/concepts/11-governance/04-glossary-48a": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-04-glossary-93-f-8dc"
+    "content": "content---docs-next-concepts-11-governance-04-glossary-93-f-40a"
   },
   "/docs/concepts/11-governance/05-adversarial-circumstances-68e": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-05-adversarial-circumstances-597-fe8"
+    "content": "content---docs-next-concepts-11-governance-05-adversarial-circumstances-597-6cf"
   },
   "/docs/concepts/11-governance/06-governance-reference-53e": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-06-governance-referencedab-2ca"
+    "content": "content---docs-next-concepts-11-governance-06-governance-referencedab-a8c"
   },
   "/docs/guides/-a2a": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-023-081"
+    "content": "content---docs-next-guides-023-f22"
   },
   "/docs/guides/interface-integration/01-using-the-api-141": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-interface-integration-01-using-the-apibc-2-991"
+    "content": "content---docs-next-guides-interface-integration-01-using-the-apibc-2-c46"
   },
   "/docs/guides/interface-integration/02-custom-interface-linking-648": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-interface-integration-02-custom-interface-linking-603-57a"
+    "content": "content---docs-next-guides-interface-integration-02-custom-interface-linking-603-5f1"
   },
   "/docs/guides/interface-integration/03-iframe-integration-b9e": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-interface-integration-03-iframe-integration-4-ea-111"
+    "content": "content---docs-next-guides-interface-integration-03-iframe-integration-4-ea-ce6"
   },
   "/docs/guides/javascript-sdk/01-quick-start-e55": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-01-quick-start-1-d-9-e7b"
+    "content": "content---docs-next-guides-javascript-sdk-01-quick-start-1-d-9-e03"
   },
   "/docs/guides/javascript-sdk/02-fetching-data-4d2": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-02-fetching-datacf-7-5af"
+    "content": "content---docs-next-guides-javascript-sdk-02-fetching-datacf-7-30e"
   },
   "/docs/guides/javascript-sdk/03-pricing-7e2": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-03-pricingd-8-c-76b"
+    "content": "content---docs-next-guides-javascript-sdk-03-pricingd-8-c-bdb"
   },
   "/docs/guides/javascript-sdk/04-trading-725": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-04-tradingf-7-d-f47"
+    "content": "content---docs-next-guides-javascript-sdk-04-tradingf-7-d-766"
   },
   "/docs/guides/javascript-sdk/05-getting-pair-addresses-799": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-05-getting-pair-addressesf-8-e-3c1"
+    "content": "content---docs-next-guides-javascript-sdk-05-getting-pair-addressesf-8-e-8d3"
   },
   "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract-6dd": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-02-trading-from-a-smart-contract-69-e-fc8"
+    "content": "content---docs-next-guides-smart-contract-integration-02-trading-from-a-smart-contract-69-e-426"
   },
   "/docs/guides/smart-contract-integration/03-providing-liquidity-457": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-03-providing-liquiditye-2-c-7e1"
+    "content": "content---docs-next-guides-smart-contract-integration-03-providing-liquiditye-2-c-36a"
   },
   "/docs/guides/smart-contract-integration/04-building-an-oracle-b69": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-04-building-an-oracle-833-998"
+    "content": "content---docs-next-guides-smart-contract-integration-04-building-an-oracle-833-5ae"
   },
   "/docs/guides/smart-contract-integration/05-using-flash-swaps-753": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-05-using-flash-swaps-5-dd-509"
+    "content": "content---docs-next-guides-smart-contract-integration-05-using-flash-swaps-5-dd-dee"
   },
   "/docs/guides/smart-contract-integration/06-getting-pair-addresses-5ca": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-06-getting-pair-addresses-54-b-9d2"
+    "content": "content---docs-next-guides-smart-contract-integration-06-getting-pair-addresses-54-b-2d7"
   },
   "/docs/guides/smart-contract-integration/07-supporting-meta-transactions-129": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-07-supporting-meta-transactions-890-5b7"
+    "content": "content---docs-next-guides-smart-contract-integration-07-supporting-meta-transactions-890-6a3"
   },
   "/docs/reference/-553": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-470-fda"
+    "content": "content---docs-next-reference-470-fb3"
   },
   "/docs/reference/API/01-overview-1f1": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-api-01-overview-61-c-d32"
+    "content": "content---docs-next-reference-api-01-overview-61-c-8e0"
   },
   "/docs/reference/API/02-entities-1ff": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-api-02-entities-52-a-d46"
+    "content": "content---docs-next-reference-api-02-entities-52-a-947"
   },
   "/docs/reference/API/03-queries-91d": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-api-03-queries-425-8f0"
+    "content": "content---docs-next-reference-api-03-queries-425-4da"
   },
   "/docs/reference/Governance/05-governance-reference-afa": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-governance-05-governance-referencec-0-e-d1e"
+    "content": "content---docs-next-reference-governance-05-governance-referencec-0-e-6a1"
   },
   "/docs/reference/SDK/01-getting-started-d5d": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-01-getting-started-7-a-0-c91"
+    "content": "content---docs-next-reference-sdk-01-getting-started-7-a-0-219"
   },
   "/docs/reference/SDK/02-token-d7e": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-02-tokend-70-fa6"
+    "content": "content---docs-next-reference-sdk-02-tokend-70-6c8"
   },
   "/docs/reference/SDK/03-pair-23f": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-03-pair-0-c-2-912"
+    "content": "content---docs-next-reference-sdk-03-pair-0-c-2-d88"
   },
   "/docs/reference/SDK/04-route-de5": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-04-routebb-3-440"
+    "content": "content---docs-next-reference-sdk-04-routebb-3-96e"
   },
   "/docs/reference/SDK/05-trade-26f": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-05-tradedea-6e3"
+    "content": "content---docs-next-reference-sdk-05-tradedea-8a0"
   },
   "/docs/reference/SDK/06-fractions-481": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-06-fractions-3-bf-88e"
+    "content": "content---docs-next-reference-sdk-06-fractions-3-bf-18f"
   },
   "/docs/reference/SDK/07-fetcher-3c4": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-07-fetcher-93-b-61f"
+    "content": "content---docs-next-reference-sdk-07-fetcher-93-b-36a"
   },
   "/docs/reference/SDK/08-other-exports-790": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-08-other-exportsf-50-978"
+    "content": "content---docs-next-reference-sdk-08-other-exportsf-50-747"
   },
   "/docs/reference/smart-contracts/02-pair-b03": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-02-pairdcd-34e"
+    "content": "content---docs-next-reference-smart-contracts-02-pairdcd-ac3"
   },
   "/docs/reference/smart-contracts/03-pair-erc-20-bd0": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-03-pair-erc-20-d-72-ee5"
+    "content": "content---docs-next-reference-smart-contracts-03-pair-erc-20-d-72-cf9"
   },
   "/docs/reference/smart-contracts/04-library-faf": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-04-library-017-daf"
+    "content": "content---docs-next-reference-smart-contracts-04-library-017-b9e"
   },
   "/docs/reference/smart-contracts/05-router01-3d8": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-05-router-01-ebb-1d7"
+    "content": "content---docs-next-reference-smart-contracts-05-router-01-ebb-56b"
   },
   "/docs/reference/smart-contracts/06-router02-d99": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-06-router-02632-f93"
+    "content": "content---docs-next-reference-smart-contracts-06-router-02632-489"
   },
   "/docs/reference/smart-contracts/07-common-errors-af0": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-07-common-errorsba-9-79c"
+    "content": "content---docs-next-reference-smart-contracts-07-common-errorsba-9-257"
   }
 }
