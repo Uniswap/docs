@@ -8,5 +8,14 @@
   "slug": "/concepts/11-governance/05-adversarial-circumstances",
   "permalink": "/docs/next/concepts/11-governance/05-adversarial-circumstances",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/05-adversarial-circumstances.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Glossary",
+    "permalink": "/docs/next/concepts/11-governance/04-glossary"
+  },
+  "next": {
+    "title": "Governance Reference",
+    "permalink": "/docs/next/concepts/11-governance/06-governance-reference"
+  }
 }

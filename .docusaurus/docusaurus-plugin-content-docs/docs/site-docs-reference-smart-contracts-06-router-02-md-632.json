@@ -8,5 +8,14 @@
   "slug": "/reference/smart-contracts/06-router02",
   "permalink": "/docs/next/reference/smart-contracts/06-router02",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/06-router02.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Router01",
+    "permalink": "/docs/next/reference/smart-contracts/05-router01"
+  },
+  "next": {
+    "title": "Common Errors",
+    "permalink": "/docs/next/reference/smart-contracts/07-common-errors"
+  }
 }

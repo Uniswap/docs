@@ -8,5 +8,14 @@
   "slug": "/guides/interface-integration/03-iframe-integration",
   "permalink": "/docs/next/guides/interface-integration/03-iframe-integration",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/interface-integration/03-iframe-integration.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Custom Linking",
+    "permalink": "/docs/next/guides/interface-integration/02-custom-interface-linking"
+  },
+  "next": {
+    "title": "SDK Quick start",
+    "permalink": "/docs/next/guides/javascript-sdk/01-quick-start"
+  }
 }

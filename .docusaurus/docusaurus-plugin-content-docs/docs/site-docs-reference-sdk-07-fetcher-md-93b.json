@@ -8,5 +8,14 @@
   "slug": "/reference/SDK/07-fetcher",
   "permalink": "/docs/next/reference/SDK/07-fetcher",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/07-fetcher.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Fractions",
+    "permalink": "/docs/next/reference/SDK/06-fractions"
+  },
+  "next": {
+    "title": "Other Exports",
+    "permalink": "/docs/next/reference/SDK/08-other-exports"
+  }
 }

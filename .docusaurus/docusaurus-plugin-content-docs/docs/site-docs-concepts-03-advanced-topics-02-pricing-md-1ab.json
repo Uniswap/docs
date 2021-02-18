@@ -8,5 +8,14 @@
   "slug": "/concepts/03-advanced-topics/02-pricing",
   "permalink": "/docs/next/concepts/03-advanced-topics/02-pricing",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/02-pricing.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Fees",
+    "permalink": "/docs/next/concepts/03-advanced-topics/01-fees"
+  },
+  "next": {
+    "title": "Understanding Returns",
+    "permalink": "/docs/next/concepts/03-advanced-topics/03-understanding-returns"
+  }
 }

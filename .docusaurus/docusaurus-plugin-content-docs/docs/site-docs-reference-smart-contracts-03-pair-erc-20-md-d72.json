@@ -8,5 +8,14 @@
   "slug": "/reference/smart-contracts/03-pair-erc-20",
   "permalink": "/docs/next/reference/smart-contracts/03-pair-erc-20",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/03-pair-erc-20.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Pair",
+    "permalink": "/docs/next/reference/smart-contracts/02-pair"
+  },
+  "next": {
+    "title": "Library",
+    "permalink": "/docs/next/reference/smart-contracts/04-library"
+  }
 }

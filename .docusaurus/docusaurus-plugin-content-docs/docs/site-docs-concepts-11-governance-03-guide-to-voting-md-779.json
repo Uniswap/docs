@@ -8,5 +8,14 @@
   "slug": "/concepts/11-governance/03-guide-to-voting",
   "permalink": "/docs/next/concepts/11-governance/03-guide-to-voting",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/03-guide-to-voting.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Process",
+    "permalink": "/docs/next/concepts/11-governance/02-process"
+  },
+  "next": {
+    "title": "Glossary",
+    "permalink": "/docs/next/concepts/11-governance/04-glossary"
+  }
 }

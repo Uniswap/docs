@@ -8,5 +8,14 @@
   "slug": "/guides/javascript-sdk/04-trading",
   "permalink": "/docs/next/guides/javascript-sdk/04-trading",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/04-trading.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Pricing",
+    "permalink": "/docs/next/guides/javascript-sdk/03-pricing"
+  },
+  "next": {
+    "title": "Pair Addresses",
+    "permalink": "/docs/next/guides/javascript-sdk/05-getting-pair-addresses"
+  }
 }

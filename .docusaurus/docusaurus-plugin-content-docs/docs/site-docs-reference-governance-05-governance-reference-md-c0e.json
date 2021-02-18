@@ -8,5 +8,14 @@
   "slug": "/reference/Governance/05-governance-reference",
   "permalink": "/docs/next/reference/Governance/05-governance-reference",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/Governance/05-governance-reference.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Queries",
+    "permalink": "/docs/next/reference/API/03-queries"
+  },
+  "next": {
+    "title": "Factory",
+    "permalink": "/docs/next/reference/"
+  }
 }

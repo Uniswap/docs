@@ -8,5 +8,14 @@
   "slug": "/reference/SDK/05-trade",
   "permalink": "/docs/next/reference/SDK/05-trade",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/05-trade.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Route",
+    "permalink": "/docs/next/reference/SDK/04-route"
+  },
+  "next": {
+    "title": "Fractions",
+    "permalink": "/docs/next/reference/SDK/06-fractions"
+  }
 }

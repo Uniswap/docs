@@ -1,0 +1,21 @@
+{
+  "unversionedId": "02-SDK/02-data",
+  "id": "version-v1/02-SDK/02-data",
+  "isDocsHomePage": false,
+  "title": "Data",
+  "description": "getTokenReserves",
+  "source": "@site/docs_versioned_docs/version-v1/02-SDK/02-data.md",
+  "slug": "/02-SDK/02-data",
+  "permalink": "/docs/02-SDK/02-data",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/02-data.md",
+  "version": "v1",
+  "sidebar": "version-v1/docs",
+  "previous": {
+    "title": "Getting Started",
+    "permalink": "/docs/02-SDK/01-getting-started"
+  },
+  "next": {
+    "title": "Computation",
+    "permalink": "/docs/02-SDK/03-computation"
+  }
+}

@@ -8,5 +8,14 @@
   "slug": "/reference/smart-contracts/04-library",
   "permalink": "/docs/next/reference/smart-contracts/04-library",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/04-library.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Pair (ERC-20)",
+    "permalink": "/docs/next/reference/smart-contracts/03-pair-erc-20"
+  },
+  "next": {
+    "title": "Router01",
+    "permalink": "/docs/next/reference/smart-contracts/05-router01"
+  }
 }

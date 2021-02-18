@@ -8,5 +8,14 @@
   "slug": "/reference/SDK/06-fractions",
   "permalink": "/docs/next/reference/SDK/06-fractions",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/06-fractions.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Trade",
+    "permalink": "/docs/next/reference/SDK/05-trade"
+  },
+  "next": {
+    "title": "Fetcher",
+    "permalink": "/docs/next/reference/SDK/07-fetcher"
+  }
 }

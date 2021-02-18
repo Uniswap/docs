@@ -8,5 +8,14 @@
   "slug": "/concepts/02-core-concepts/04-oracles",
   "permalink": "/docs/next/concepts/02-core-concepts/04-oracles",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/04-oracles.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Flash Swaps",
+    "permalink": "/docs/next/concepts/02-core-concepts/03-flash-swaps"
+  },
+  "next": {
+    "title": "Fees",
+    "permalink": "/docs/next/concepts/03-advanced-topics/01-fees"
+  }
 }

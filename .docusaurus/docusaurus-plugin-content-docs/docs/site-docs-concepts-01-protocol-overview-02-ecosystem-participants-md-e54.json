@@ -8,5 +8,14 @@
   "slug": "/concepts/01-protocol-overview/02-ecosystem-participants",
   "permalink": "/docs/next/concepts/01-protocol-overview/02-ecosystem-participants",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/02-ecosystem-participants.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "How Uniswap works",
+    "permalink": "/docs/next/"
+  },
+  "next": {
+    "title": "Smart contracts",
+    "permalink": "/docs/next/concepts/01-protocol-overview/03-smart-contracts"
+  }
 }

@@ -8,5 +8,14 @@
   "slug": "/reference/SDK/04-route",
   "permalink": "/docs/next/reference/SDK/04-route",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/04-route.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Pair",
+    "permalink": "/docs/next/reference/SDK/03-pair"
+  },
+  "next": {
+    "title": "Trade",
+    "permalink": "/docs/next/reference/SDK/05-trade"
+  }
 }

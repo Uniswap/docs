@@ -8,5 +8,14 @@
   "slug": "/guides/interface-integration/01-using-the-api",
   "permalink": "/docs/next/guides/interface-integration/01-using-the-api",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/interface-integration/01-using-the-api.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Supporting meta transactions",
+    "permalink": "/docs/next/guides/smart-contract-integration/07-supporting-meta-transactions"
+  },
+  "next": {
+    "title": "Custom Linking",
+    "permalink": "/docs/next/guides/interface-integration/02-custom-interface-linking"
+  }
 }

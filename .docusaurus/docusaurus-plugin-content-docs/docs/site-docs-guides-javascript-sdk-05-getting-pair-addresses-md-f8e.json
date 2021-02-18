@@ -8,5 +8,10 @@
   "slug": "/guides/javascript-sdk/05-getting-pair-addresses",
   "permalink": "/docs/next/guides/javascript-sdk/05-getting-pair-addresses",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/05-getting-pair-addresses.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Trading",
+    "permalink": "/docs/next/guides/javascript-sdk/04-trading"
+  }
 }

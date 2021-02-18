@@ -8,5 +8,14 @@
   "slug": "/concepts/02-core-concepts/03-flash-swaps",
   "permalink": "/docs/next/concepts/02-core-concepts/03-flash-swaps",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/03-flash-swaps.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Pools",
+    "permalink": "/docs/next/concepts/02-core-concepts/02-pools"
+  },
+  "next": {
+    "title": "Oracles",
+    "permalink": "/docs/next/concepts/02-core-concepts/04-oracles"
+  }
 }

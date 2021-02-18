@@ -8,5 +8,14 @@
   "slug": "/guides/smart-contract-integration/04-building-an-oracle",
   "permalink": "/docs/next/guides/smart-contract-integration/04-building-an-oracle",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/04-building-an-oracle.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Providing Liquidity",
+    "permalink": "/docs/next/guides/smart-contract-integration/03-providing-liquidity"
+  },
+  "next": {
+    "title": "Flash Swaps",
+    "permalink": "/docs/next/guides/smart-contract-integration/05-using-flash-swaps"
+  }
 }

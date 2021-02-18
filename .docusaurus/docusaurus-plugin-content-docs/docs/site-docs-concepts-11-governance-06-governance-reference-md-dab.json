@@ -8,5 +8,14 @@
   "slug": "/concepts/11-governance/06-governance-reference",
   "permalink": "/docs/next/concepts/11-governance/06-governance-reference",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/06-governance-reference.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Adversarial Circumstances",
+    "permalink": "/docs/next/concepts/11-governance/05-adversarial-circumstances"
+  },
+  "next": {
+    "title": "Connect to Uniswap",
+    "permalink": "/docs/next/V1/01-frontend-integration/01-connect-to-uniswap"
+  }
 }

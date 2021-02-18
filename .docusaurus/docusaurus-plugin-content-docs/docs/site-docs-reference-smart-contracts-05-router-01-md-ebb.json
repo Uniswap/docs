@@ -8,5 +8,14 @@
   "slug": "/reference/smart-contracts/05-router01",
   "permalink": "/docs/next/reference/smart-contracts/05-router01",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/05-router01.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Library",
+    "permalink": "/docs/next/reference/smart-contracts/04-library"
+  },
+  "next": {
+    "title": "Router02",
+    "permalink": "/docs/next/reference/smart-contracts/06-router02"
+  }
 }

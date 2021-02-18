@@ -1,0 +1,21 @@
+{
+  "unversionedId": "02-SDK/01-getting-started",
+  "id": "version-v1/02-SDK/01-getting-started",
+  "isDocsHomePage": false,
+  "title": "Getting Started",
+  "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
+  "source": "@site/docs_versioned_docs/version-v1/02-SDK/01-getting-started.md",
+  "slug": "/02-SDK/01-getting-started",
+  "permalink": "/docs/02-SDK/01-getting-started",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/01-getting-started.md",
+  "version": "v1",
+  "sidebar": "version-v1/docs",
+  "previous": {
+    "title": "Token Listing",
+    "permalink": "/docs/01-frontend-integration/06-token-listing"
+  },
+  "next": {
+    "title": "Data",
+    "permalink": "/docs/02-SDK/02-data"
+  }
+}

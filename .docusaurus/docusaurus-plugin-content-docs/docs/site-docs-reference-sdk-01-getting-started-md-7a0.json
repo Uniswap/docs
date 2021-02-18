@@ -8,5 +8,14 @@
   "slug": "/reference/SDK/01-getting-started",
   "permalink": "/docs/next/reference/SDK/01-getting-started",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/01-getting-started.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Common Errors",
+    "permalink": "/docs/next/reference/smart-contracts/07-common-errors"
+  },
+  "next": {
+    "title": "Token",
+    "permalink": "/docs/next/reference/SDK/02-token"
+  }
 }

@@ -8,5 +8,14 @@
   "slug": "/concepts/03-advanced-topics/03-understanding-returns",
   "permalink": "/docs/next/concepts/03-advanced-topics/03-understanding-returns",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/03-understanding-returns.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Pricing",
+    "permalink": "/docs/next/concepts/03-advanced-topics/02-pricing"
+  },
+  "next": {
+    "title": "Security",
+    "permalink": "/docs/next/concepts/03-advanced-topics/04-security"
+  }
 }

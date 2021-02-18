@@ -8,5 +8,14 @@
   "slug": "/concepts/01-protocol-overview/04-glossary",
   "permalink": "/docs/next/concepts/01-protocol-overview/04-glossary",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/04-glossary.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Smart contracts",
+    "permalink": "/docs/next/concepts/01-protocol-overview/03-smart-contracts"
+  },
+  "next": {
+    "title": "Swaps",
+    "permalink": "/docs/next/concepts/02-core-concepts/01-swaps"
+  }
 }

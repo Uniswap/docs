@@ -8,5 +8,10 @@
   "slug": "/reference/API/01-overview",
   "permalink": "/docs/next/reference/API/01-overview",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/API/01-overview.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "next": {
+    "title": "Entities",
+    "permalink": "/docs/next/reference/API/02-entities"
+  }
 }

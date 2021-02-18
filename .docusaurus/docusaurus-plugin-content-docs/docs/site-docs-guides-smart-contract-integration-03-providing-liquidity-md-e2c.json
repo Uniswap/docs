@@ -8,5 +8,14 @@
   "slug": "/guides/smart-contract-integration/03-providing-liquidity",
   "permalink": "/docs/next/guides/smart-contract-integration/03-providing-liquidity",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/03-providing-liquidity.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Implement a Swap",
+    "permalink": "/docs/next/guides/smart-contract-integration/02-trading-from-a-smart-contract"
+  },
+  "next": {
+    "title": "Building an Oracle",
+    "permalink": "/docs/next/guides/smart-contract-integration/04-building-an-oracle"
+  }
 }

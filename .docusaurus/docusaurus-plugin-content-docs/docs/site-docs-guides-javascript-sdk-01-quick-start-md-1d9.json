@@ -8,5 +8,14 @@
   "slug": "/guides/javascript-sdk/01-quick-start",
   "permalink": "/docs/next/guides/javascript-sdk/01-quick-start",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/01-quick-start.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Iframe Integration",
+    "permalink": "/docs/next/guides/interface-integration/03-iframe-integration"
+  },
+  "next": {
+    "title": "Fetching Data",
+    "permalink": "/docs/next/guides/javascript-sdk/02-fetching-data"
+  }
 }

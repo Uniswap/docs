@@ -8,5 +8,14 @@
   "slug": "/guides/smart-contract-integration/05-using-flash-swaps",
   "permalink": "/docs/next/guides/smart-contract-integration/05-using-flash-swaps",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/05-using-flash-swaps.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Building an Oracle",
+    "permalink": "/docs/next/guides/smart-contract-integration/04-building-an-oracle"
+  },
+  "next": {
+    "title": "Pair Addresses",
+    "permalink": "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses"
+  }
 }

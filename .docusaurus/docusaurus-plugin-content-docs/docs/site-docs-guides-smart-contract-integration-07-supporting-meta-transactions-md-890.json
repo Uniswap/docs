@@ -8,5 +8,14 @@
   "slug": "/guides/smart-contract-integration/07-supporting-meta-transactions",
   "permalink": "/docs/next/guides/smart-contract-integration/07-supporting-meta-transactions",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/07-supporting-meta-transactions.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Pair Addresses",
+    "permalink": "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses"
+  },
+  "next": {
+    "title": "Using the API",
+    "permalink": "/docs/next/guides/interface-integration/01-using-the-api"
+  }
 }

@@ -8,5 +8,14 @@
   "slug": "/concepts/02-core-concepts/02-pools",
   "permalink": "/docs/next/concepts/02-core-concepts/02-pools",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/02-pools.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Swaps",
+    "permalink": "/docs/next/concepts/02-core-concepts/01-swaps"
+  },
+  "next": {
+    "title": "Flash Swaps",
+    "permalink": "/docs/next/concepts/02-core-concepts/03-flash-swaps"
+  }
 }

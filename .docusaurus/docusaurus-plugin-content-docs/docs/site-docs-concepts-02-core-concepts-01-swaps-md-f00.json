@@ -8,5 +8,14 @@
   "slug": "/concepts/02-core-concepts/01-swaps",
   "permalink": "/docs/next/concepts/02-core-concepts/01-swaps",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/01-swaps.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Glossary",
+    "permalink": "/docs/next/concepts/01-protocol-overview/04-glossary"
+  },
+  "next": {
+    "title": "Pools",
+    "permalink": "/docs/next/concepts/02-core-concepts/02-pools"
+  }
 }

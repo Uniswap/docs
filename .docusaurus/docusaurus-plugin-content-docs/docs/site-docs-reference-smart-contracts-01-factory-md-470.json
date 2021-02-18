@@ -8,5 +8,14 @@
   "slug": "/reference/",
   "permalink": "/docs/next/reference/",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/01-factory.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Governance Reference",
+    "permalink": "/docs/next/reference/Governance/05-governance-reference"
+  },
+  "next": {
+    "title": "Pair",
+    "permalink": "/docs/next/reference/smart-contracts/02-pair"
+  }
 }

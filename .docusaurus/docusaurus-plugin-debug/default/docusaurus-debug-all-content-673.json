@@ -16,6 +16,114 @@
               {
                 "collapsed": true,
                 "type": "category",
+                "label": "Protocol Overview",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "concepts/01-protocol-overview/01-how-uniswap-works"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/01-protocol-overview/02-ecosystem-participants"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/01-protocol-overview/03-smart-contracts"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/01-protocol-overview/04-glossary"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Core Concepts",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "concepts/02-core-concepts/01-swaps"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/02-core-concepts/02-pools"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/02-core-concepts/03-flash-swaps"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/02-core-concepts/04-oracles"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Advanced Topics",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "concepts/03-advanced-topics/01-fees"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/03-advanced-topics/02-pricing"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/03-advanced-topics/03-understanding-returns"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/03-advanced-topics/04-security"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/03-advanced-topics/05-math"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/03-advanced-topics/06-research"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Governance",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "concepts/11-governance/01-overview"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/11-governance/02-process"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/11-governance/03-guide-to-voting"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/11-governance/04-glossary"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/11-governance/05-adversarial-circumstances"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "concepts/11-governance/06-governance-reference"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
                 "label": "Frontend Integration",
                 "items": [
                   {
@@ -102,9 +210,252 @@
                   }
                 ]
               }
+            ],
+            "guides": [
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Smart Contract Integration",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "guides/smart-contract-integration/01-quick-start"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/smart-contract-integration/02-trading-from-a-smart-contract"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/smart-contract-integration/03-providing-liquidity"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/smart-contract-integration/04-building-an-oracle"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/smart-contract-integration/05-using-flash-swaps"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/smart-contract-integration/06-getting-pair-addresses"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/smart-contract-integration/07-supporting-meta-transactions"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Interface Integration",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "guides/interface-integration/01-using-the-api"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/interface-integration/02-custom-interface-linking"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/interface-integration/03-iframe-integration"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Javascript SDK",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "guides/javascript-sdk/01-quick-start"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/javascript-sdk/02-fetching-data"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/javascript-sdk/03-pricing"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/javascript-sdk/04-trading"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/javascript-sdk/05-getting-pair-addresses"
+                  }
+                ]
+              }
+            ],
+            "reference": [
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "API",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "reference/API/01-overview"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/API/02-entities"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/API/03-queries"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Governance",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "reference/Governance/05-governance-reference"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Smart Contracts",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/01-factory"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/02-pair"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/03-pair-erc-20"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/04-library"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/05-router01"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/06-router02"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/smart-contracts/07-common-errors"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "SDK",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/01-getting-started"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/02-token"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/03-pair"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/04-route"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/05-trade"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/06-fractions"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/07-fetcher"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "reference/SDK/08-other-exports"
+                  }
+                ]
+              }
             ]
           },
           "permalinkToSidebar": {
+            "/docs/next/": "docs",
+            "/docs/next/concepts/01-protocol-overview/02-ecosystem-participants": "docs",
+            "/docs/next/concepts/01-protocol-overview/03-smart-contracts": "docs",
+            "/docs/next/concepts/01-protocol-overview/04-glossary": "docs",
+            "/docs/next/concepts/02-core-concepts/01-swaps": "docs",
+            "/docs/next/concepts/02-core-concepts/02-pools": "docs",
+            "/docs/next/concepts/02-core-concepts/03-flash-swaps": "docs",
+            "/docs/next/concepts/02-core-concepts/04-oracles": "docs",
+            "/docs/next/concepts/03-advanced-topics/01-fees": "docs",
+            "/docs/next/concepts/03-advanced-topics/02-pricing": "docs",
+            "/docs/next/concepts/03-advanced-topics/03-understanding-returns": "docs",
+            "/docs/next/concepts/03-advanced-topics/04-security": "docs",
+            "/docs/next/concepts/03-advanced-topics/05-math": "docs",
+            "/docs/next/concepts/03-advanced-topics/06-research": "docs",
+            "/docs/next/concepts/11-governance/01-overview": "docs",
+            "/docs/next/concepts/11-governance/02-process": "docs",
+            "/docs/next/concepts/11-governance/03-guide-to-voting": "docs",
+            "/docs/next/concepts/11-governance/04-glossary": "docs",
+            "/docs/next/concepts/11-governance/05-adversarial-circumstances": "docs",
+            "/docs/next/concepts/11-governance/06-governance-reference": "docs",
+            "/docs/next/guides/interface-integration/01-using-the-api": "guides",
+            "/docs/next/guides/interface-integration/02-custom-interface-linking": "guides",
+            "/docs/next/guides/interface-integration/03-iframe-integration": "guides",
+            "/docs/next/guides/javascript-sdk/01-quick-start": "guides",
+            "/docs/next/guides/javascript-sdk/02-fetching-data": "guides",
+            "/docs/next/guides/javascript-sdk/03-pricing": "guides",
+            "/docs/next/guides/javascript-sdk/04-trading": "guides",
+            "/docs/next/guides/javascript-sdk/05-getting-pair-addresses": "guides",
+            "/docs/next/guides/": "guides",
+            "/docs/next/guides/smart-contract-integration/02-trading-from-a-smart-contract": "guides",
+            "/docs/next/guides/smart-contract-integration/03-providing-liquidity": "guides",
+            "/docs/next/guides/smart-contract-integration/04-building-an-oracle": "guides",
+            "/docs/next/guides/smart-contract-integration/05-using-flash-swaps": "guides",
+            "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses": "guides",
+            "/docs/next/guides/smart-contract-integration/07-supporting-meta-transactions": "guides",
+            "/docs/next/reference/API/01-overview": "reference",
+            "/docs/next/reference/API/02-entities": "reference",
+            "/docs/next/reference/API/03-queries": "reference",
+            "/docs/next/reference/Governance/05-governance-reference": "reference",
+            "/docs/next/reference/SDK/01-getting-started": "reference",
+            "/docs/next/reference/SDK/02-token": "reference",
+            "/docs/next/reference/SDK/03-pair": "reference",
+            "/docs/next/reference/SDK/04-route": "reference",
+            "/docs/next/reference/SDK/05-trade": "reference",
+            "/docs/next/reference/SDK/06-fractions": "reference",
+            "/docs/next/reference/SDK/07-fetcher": "reference",
+            "/docs/next/reference/SDK/08-other-exports": "reference",
+            "/docs/next/reference/": "reference",
+            "/docs/next/reference/smart-contracts/02-pair": "reference",
+            "/docs/next/reference/smart-contracts/03-pair-erc-20": "reference",
+            "/docs/next/reference/smart-contracts/04-library": "reference",
+            "/docs/next/reference/smart-contracts/05-router01": "reference",
+            "/docs/next/reference/smart-contracts/06-router02": "reference",
+            "/docs/next/reference/smart-contracts/07-common-errors": "reference",
             "/docs/next/V1/01-frontend-integration/01-connect-to-uniswap": "docs",
             "/docs/next/V1/01-frontend-integration/02-pool-liquidity": "docs",
             "/docs/next/V1/01-frontend-integration/03-trade-tokens": "docs",
@@ -134,7 +485,12 @@
               "slug": "/",
               "permalink": "/docs/next/",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/01-how-uniswap-works.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "next": {
+                "title": "Ecosystem Participants",
+                "permalink": "/docs/next/concepts/01-protocol-overview/02-ecosystem-participants"
+              }
             },
             {
               "unversionedId": "concepts/01-protocol-overview/02-ecosystem-participants",
@@ -146,7 +502,16 @@
               "slug": "/concepts/01-protocol-overview/02-ecosystem-participants",
               "permalink": "/docs/next/concepts/01-protocol-overview/02-ecosystem-participants",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/02-ecosystem-participants.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "How Uniswap works",
+                "permalink": "/docs/next/"
+              },
+              "next": {
+                "title": "Smart contracts",
+                "permalink": "/docs/next/concepts/01-protocol-overview/03-smart-contracts"
+              }
             },
             {
               "unversionedId": "concepts/01-protocol-overview/03-smart-contracts",
@@ -158,7 +523,16 @@
               "slug": "/concepts/01-protocol-overview/03-smart-contracts",
               "permalink": "/docs/next/concepts/01-protocol-overview/03-smart-contracts",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/03-smart-contracts.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Ecosystem Participants",
+                "permalink": "/docs/next/concepts/01-protocol-overview/02-ecosystem-participants"
+              },
+              "next": {
+                "title": "Glossary",
+                "permalink": "/docs/next/concepts/01-protocol-overview/04-glossary"
+              }
             },
             {
               "unversionedId": "concepts/01-protocol-overview/04-glossary",
@@ -170,7 +544,16 @@
               "slug": "/concepts/01-protocol-overview/04-glossary",
               "permalink": "/docs/next/concepts/01-protocol-overview/04-glossary",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/04-glossary.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Smart contracts",
+                "permalink": "/docs/next/concepts/01-protocol-overview/03-smart-contracts"
+              },
+              "next": {
+                "title": "Swaps",
+                "permalink": "/docs/next/concepts/02-core-concepts/01-swaps"
+              }
             },
             {
               "unversionedId": "concepts/02-core-concepts/01-swaps",
@@ -182,7 +565,16 @@
               "slug": "/concepts/02-core-concepts/01-swaps",
               "permalink": "/docs/next/concepts/02-core-concepts/01-swaps",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/01-swaps.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Glossary",
+                "permalink": "/docs/next/concepts/01-protocol-overview/04-glossary"
+              },
+              "next": {
+                "title": "Pools",
+                "permalink": "/docs/next/concepts/02-core-concepts/02-pools"
+              }
             },
             {
               "unversionedId": "concepts/02-core-concepts/02-pools",
@@ -194,7 +586,16 @@
               "slug": "/concepts/02-core-concepts/02-pools",
               "permalink": "/docs/next/concepts/02-core-concepts/02-pools",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/02-pools.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Swaps",
+                "permalink": "/docs/next/concepts/02-core-concepts/01-swaps"
+              },
+              "next": {
+                "title": "Flash Swaps",
+                "permalink": "/docs/next/concepts/02-core-concepts/03-flash-swaps"
+              }
             },
             {
               "unversionedId": "concepts/02-core-concepts/03-flash-swaps",
@@ -206,7 +607,16 @@
               "slug": "/concepts/02-core-concepts/03-flash-swaps",
               "permalink": "/docs/next/concepts/02-core-concepts/03-flash-swaps",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/03-flash-swaps.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Pools",
+                "permalink": "/docs/next/concepts/02-core-concepts/02-pools"
+              },
+              "next": {
+                "title": "Oracles",
+                "permalink": "/docs/next/concepts/02-core-concepts/04-oracles"
+              }
             },
             {
               "unversionedId": "concepts/02-core-concepts/04-oracles",
@@ -218,7 +628,16 @@
               "slug": "/concepts/02-core-concepts/04-oracles",
               "permalink": "/docs/next/concepts/02-core-concepts/04-oracles",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/02-core-concepts/04-oracles.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Flash Swaps",
+                "permalink": "/docs/next/concepts/02-core-concepts/03-flash-swaps"
+              },
+              "next": {
+                "title": "Fees",
+                "permalink": "/docs/next/concepts/03-advanced-topics/01-fees"
+              }
             },
             {
               "unversionedId": "concepts/03-advanced-topics/01-fees",
@@ -230,7 +649,16 @@
               "slug": "/concepts/03-advanced-topics/01-fees",
               "permalink": "/docs/next/concepts/03-advanced-topics/01-fees",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/01-fees.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Oracles",
+                "permalink": "/docs/next/concepts/02-core-concepts/04-oracles"
+              },
+              "next": {
+                "title": "Pricing",
+                "permalink": "/docs/next/concepts/03-advanced-topics/02-pricing"
+              }
             },
             {
               "unversionedId": "concepts/03-advanced-topics/02-pricing",
@@ -242,7 +670,16 @@
               "slug": "/concepts/03-advanced-topics/02-pricing",
               "permalink": "/docs/next/concepts/03-advanced-topics/02-pricing",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/02-pricing.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Fees",
+                "permalink": "/docs/next/concepts/03-advanced-topics/01-fees"
+              },
+              "next": {
+                "title": "Understanding Returns",
+                "permalink": "/docs/next/concepts/03-advanced-topics/03-understanding-returns"
+              }
             },
             {
               "unversionedId": "concepts/03-advanced-topics/03-understanding-returns",
@@ -254,7 +691,16 @@
               "slug": "/concepts/03-advanced-topics/03-understanding-returns",
               "permalink": "/docs/next/concepts/03-advanced-topics/03-understanding-returns",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/03-understanding-returns.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Pricing",
+                "permalink": "/docs/next/concepts/03-advanced-topics/02-pricing"
+              },
+              "next": {
+                "title": "Security",
+                "permalink": "/docs/next/concepts/03-advanced-topics/04-security"
+              }
             },
             {
               "unversionedId": "concepts/03-advanced-topics/04-security",
@@ -266,7 +712,16 @@
               "slug": "/concepts/03-advanced-topics/04-security",
               "permalink": "/docs/next/concepts/03-advanced-topics/04-security",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/04-security.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Understanding Returns",
+                "permalink": "/docs/next/concepts/03-advanced-topics/03-understanding-returns"
+              },
+              "next": {
+                "title": "Math",
+                "permalink": "/docs/next/concepts/03-advanced-topics/05-math"
+              }
             },
             {
               "unversionedId": "concepts/03-advanced-topics/05-math",
@@ -278,7 +733,16 @@
               "slug": "/concepts/03-advanced-topics/05-math",
               "permalink": "/docs/next/concepts/03-advanced-topics/05-math",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/05-math.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Security",
+                "permalink": "/docs/next/concepts/03-advanced-topics/04-security"
+              },
+              "next": {
+                "title": "Research",
+                "permalink": "/docs/next/concepts/03-advanced-topics/06-research"
+              }
             },
             {
               "unversionedId": "concepts/03-advanced-topics/06-research",
@@ -290,7 +754,16 @@
               "slug": "/concepts/03-advanced-topics/06-research",
               "permalink": "/docs/next/concepts/03-advanced-topics/06-research",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/06-research.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Math",
+                "permalink": "/docs/next/concepts/03-advanced-topics/05-math"
+              },
+              "next": {
+                "title": "Overview",
+                "permalink": "/docs/next/concepts/11-governance/01-overview"
+              }
             },
             {
               "unversionedId": "concepts/11-governance/01-overview",
@@ -302,7 +775,16 @@
               "slug": "/concepts/11-governance/01-overview",
               "permalink": "/docs/next/concepts/11-governance/01-overview",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/01-overview.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Research",
+                "permalink": "/docs/next/concepts/03-advanced-topics/06-research"
+              },
+              "next": {
+                "title": "Process",
+                "permalink": "/docs/next/concepts/11-governance/02-process"
+              }
             },
             {
               "unversionedId": "concepts/11-governance/02-process",
@@ -314,7 +796,16 @@
               "slug": "/concepts/11-governance/02-process",
               "permalink": "/docs/next/concepts/11-governance/02-process",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/02-process.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Overview",
+                "permalink": "/docs/next/concepts/11-governance/01-overview"
+              },
+              "next": {
+                "title": "Beginners Guide to Voting",
+                "permalink": "/docs/next/concepts/11-governance/03-guide-to-voting"
+              }
             },
             {
               "unversionedId": "concepts/11-governance/03-guide-to-voting",
@@ -326,7 +817,16 @@
               "slug": "/concepts/11-governance/03-guide-to-voting",
               "permalink": "/docs/next/concepts/11-governance/03-guide-to-voting",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/03-guide-to-voting.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Process",
+                "permalink": "/docs/next/concepts/11-governance/02-process"
+              },
+              "next": {
+                "title": "Glossary",
+                "permalink": "/docs/next/concepts/11-governance/04-glossary"
+              }
             },
             {
               "unversionedId": "concepts/11-governance/04-glossary",
@@ -338,7 +838,16 @@
               "slug": "/concepts/11-governance/04-glossary",
               "permalink": "/docs/next/concepts/11-governance/04-glossary",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/04-glossary.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Beginners Guide to Voting",
+                "permalink": "/docs/next/concepts/11-governance/03-guide-to-voting"
+              },
+              "next": {
+                "title": "Adversarial Circumstances",
+                "permalink": "/docs/next/concepts/11-governance/05-adversarial-circumstances"
+              }
             },
             {
               "unversionedId": "concepts/11-governance/05-adversarial-circumstances",
@@ -350,7 +859,16 @@
               "slug": "/concepts/11-governance/05-adversarial-circumstances",
               "permalink": "/docs/next/concepts/11-governance/05-adversarial-circumstances",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/05-adversarial-circumstances.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Glossary",
+                "permalink": "/docs/next/concepts/11-governance/04-glossary"
+              },
+              "next": {
+                "title": "Governance Reference",
+                "permalink": "/docs/next/concepts/11-governance/06-governance-reference"
+              }
             },
             {
               "unversionedId": "concepts/11-governance/06-governance-reference",
@@ -362,7 +880,16 @@
               "slug": "/concepts/11-governance/06-governance-reference",
               "permalink": "/docs/next/concepts/11-governance/06-governance-reference",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/11-governance/06-governance-reference.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "docs",
+              "previous": {
+                "title": "Adversarial Circumstances",
+                "permalink": "/docs/next/concepts/11-governance/05-adversarial-circumstances"
+              },
+              "next": {
+                "title": "Connect to Uniswap",
+                "permalink": "/docs/next/V1/01-frontend-integration/01-connect-to-uniswap"
+              }
             },
             {
               "unversionedId": "guides/interface-integration/01-using-the-api",
@@ -374,7 +901,16 @@
               "slug": "/guides/interface-integration/01-using-the-api",
               "permalink": "/docs/next/guides/interface-integration/01-using-the-api",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/interface-integration/01-using-the-api.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Supporting meta transactions",
+                "permalink": "/docs/next/guides/smart-contract-integration/07-supporting-meta-transactions"
+              },
+              "next": {
+                "title": "Custom Linking",
+                "permalink": "/docs/next/guides/interface-integration/02-custom-interface-linking"
+              }
             },
             {
               "unversionedId": "guides/interface-integration/02-custom-interface-linking",
@@ -386,7 +922,16 @@
               "slug": "/guides/interface-integration/02-custom-interface-linking",
               "permalink": "/docs/next/guides/interface-integration/02-custom-interface-linking",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/interface-integration/02-custom-interface-linking.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Using the API",
+                "permalink": "/docs/next/guides/interface-integration/01-using-the-api"
+              },
+              "next": {
+                "title": "Iframe Integration",
+                "permalink": "/docs/next/guides/interface-integration/03-iframe-integration"
+              }
             },
             {
               "unversionedId": "guides/interface-integration/03-iframe-integration",
@@ -398,7 +943,16 @@
               "slug": "/guides/interface-integration/03-iframe-integration",
               "permalink": "/docs/next/guides/interface-integration/03-iframe-integration",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/interface-integration/03-iframe-integration.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Custom Linking",
+                "permalink": "/docs/next/guides/interface-integration/02-custom-interface-linking"
+              },
+              "next": {
+                "title": "SDK Quick start",
+                "permalink": "/docs/next/guides/javascript-sdk/01-quick-start"
+              }
             },
             {
               "unversionedId": "guides/javascript-sdk/01-quick-start",
@@ -410,7 +964,16 @@
               "slug": "/guides/javascript-sdk/01-quick-start",
               "permalink": "/docs/next/guides/javascript-sdk/01-quick-start",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/01-quick-start.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Iframe Integration",
+                "permalink": "/docs/next/guides/interface-integration/03-iframe-integration"
+              },
+              "next": {
+                "title": "Fetching Data",
+                "permalink": "/docs/next/guides/javascript-sdk/02-fetching-data"
+              }
             },
             {
               "unversionedId": "guides/javascript-sdk/02-fetching-data",
@@ -422,7 +985,16 @@
               "slug": "/guides/javascript-sdk/02-fetching-data",
               "permalink": "/docs/next/guides/javascript-sdk/02-fetching-data",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/02-fetching-data.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "SDK Quick start",
+                "permalink": "/docs/next/guides/javascript-sdk/01-quick-start"
+              },
+              "next": {
+                "title": "Pricing",
+                "permalink": "/docs/next/guides/javascript-sdk/03-pricing"
+              }
             },
             {
               "unversionedId": "guides/javascript-sdk/03-pricing",
@@ -434,7 +1006,16 @@
               "slug": "/guides/javascript-sdk/03-pricing",
               "permalink": "/docs/next/guides/javascript-sdk/03-pricing",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/03-pricing.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Fetching Data",
+                "permalink": "/docs/next/guides/javascript-sdk/02-fetching-data"
+              },
+              "next": {
+                "title": "Trading",
+                "permalink": "/docs/next/guides/javascript-sdk/04-trading"
+              }
             },
             {
               "unversionedId": "guides/javascript-sdk/04-trading",
@@ -446,7 +1027,16 @@
               "slug": "/guides/javascript-sdk/04-trading",
               "permalink": "/docs/next/guides/javascript-sdk/04-trading",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/04-trading.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Pricing",
+                "permalink": "/docs/next/guides/javascript-sdk/03-pricing"
+              },
+              "next": {
+                "title": "Pair Addresses",
+                "permalink": "/docs/next/guides/javascript-sdk/05-getting-pair-addresses"
+              }
             },
             {
               "unversionedId": "guides/javascript-sdk/05-getting-pair-addresses",
@@ -458,7 +1048,12 @@
               "slug": "/guides/javascript-sdk/05-getting-pair-addresses",
               "permalink": "/docs/next/guides/javascript-sdk/05-getting-pair-addresses",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/05-getting-pair-addresses.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Trading",
+                "permalink": "/docs/next/guides/javascript-sdk/04-trading"
+              }
             },
             {
               "unversionedId": "guides/smart-contract-integration/01-quick-start",
@@ -470,7 +1065,12 @@
               "slug": "/guides/",
               "permalink": "/docs/next/guides/",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/01-quick-start.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "next": {
+                "title": "Implement a Swap",
+                "permalink": "/docs/next/guides/smart-contract-integration/02-trading-from-a-smart-contract"
+              }
             },
             {
               "unversionedId": "guides/smart-contract-integration/02-trading-from-a-smart-contract",
@@ -482,7 +1082,16 @@
               "slug": "/guides/smart-contract-integration/02-trading-from-a-smart-contract",
               "permalink": "/docs/next/guides/smart-contract-integration/02-trading-from-a-smart-contract",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Smart Contract Quick start",
+                "permalink": "/docs/next/guides/"
+              },
+              "next": {
+                "title": "Providing Liquidity",
+                "permalink": "/docs/next/guides/smart-contract-integration/03-providing-liquidity"
+              }
             },
             {
               "unversionedId": "guides/smart-contract-integration/03-providing-liquidity",
@@ -494,7 +1103,16 @@
               "slug": "/guides/smart-contract-integration/03-providing-liquidity",
               "permalink": "/docs/next/guides/smart-contract-integration/03-providing-liquidity",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/03-providing-liquidity.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Implement a Swap",
+                "permalink": "/docs/next/guides/smart-contract-integration/02-trading-from-a-smart-contract"
+              },
+              "next": {
+                "title": "Building an Oracle",
+                "permalink": "/docs/next/guides/smart-contract-integration/04-building-an-oracle"
+              }
             },
             {
               "unversionedId": "guides/smart-contract-integration/04-building-an-oracle",
@@ -506,7 +1124,16 @@
               "slug": "/guides/smart-contract-integration/04-building-an-oracle",
               "permalink": "/docs/next/guides/smart-contract-integration/04-building-an-oracle",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/04-building-an-oracle.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Providing Liquidity",
+                "permalink": "/docs/next/guides/smart-contract-integration/03-providing-liquidity"
+              },
+              "next": {
+                "title": "Flash Swaps",
+                "permalink": "/docs/next/guides/smart-contract-integration/05-using-flash-swaps"
+              }
             },
             {
               "unversionedId": "guides/smart-contract-integration/05-using-flash-swaps",
@@ -518,7 +1145,16 @@
               "slug": "/guides/smart-contract-integration/05-using-flash-swaps",
               "permalink": "/docs/next/guides/smart-contract-integration/05-using-flash-swaps",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/05-using-flash-swaps.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Building an Oracle",
+                "permalink": "/docs/next/guides/smart-contract-integration/04-building-an-oracle"
+              },
+              "next": {
+                "title": "Pair Addresses",
+                "permalink": "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses"
+              }
             },
             {
               "unversionedId": "guides/smart-contract-integration/06-getting-pair-addresses",
@@ -530,7 +1166,16 @@
               "slug": "/guides/smart-contract-integration/06-getting-pair-addresses",
               "permalink": "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/06-getting-pair-addresses.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Flash Swaps",
+                "permalink": "/docs/next/guides/smart-contract-integration/05-using-flash-swaps"
+              },
+              "next": {
+                "title": "Supporting meta transactions",
+                "permalink": "/docs/next/guides/smart-contract-integration/07-supporting-meta-transactions"
+              }
             },
             {
               "unversionedId": "guides/smart-contract-integration/07-supporting-meta-transactions",
@@ -542,7 +1187,16 @@
               "slug": "/guides/smart-contract-integration/07-supporting-meta-transactions",
               "permalink": "/docs/next/guides/smart-contract-integration/07-supporting-meta-transactions",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/07-supporting-meta-transactions.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "guides",
+              "previous": {
+                "title": "Pair Addresses",
+                "permalink": "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses"
+              },
+              "next": {
+                "title": "Using the API",
+                "permalink": "/docs/next/guides/interface-integration/01-using-the-api"
+              }
             },
             {
               "unversionedId": "reference/API/01-overview",
@@ -554,7 +1208,12 @@
               "slug": "/reference/API/01-overview",
               "permalink": "/docs/next/reference/API/01-overview",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/API/01-overview.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "next": {
+                "title": "Entities",
+                "permalink": "/docs/next/reference/API/02-entities"
+              }
             },
             {
               "unversionedId": "reference/API/02-entities",
@@ -566,7 +1225,16 @@
               "slug": "/reference/API/02-entities",
               "permalink": "/docs/next/reference/API/02-entities",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/API/02-entities.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "API Overview",
+                "permalink": "/docs/next/reference/API/01-overview"
+              },
+              "next": {
+                "title": "Queries",
+                "permalink": "/docs/next/reference/API/03-queries"
+              }
             },
             {
               "unversionedId": "reference/API/03-queries",
@@ -578,7 +1246,16 @@
               "slug": "/reference/API/03-queries",
               "permalink": "/docs/next/reference/API/03-queries",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/API/03-queries.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Entities",
+                "permalink": "/docs/next/reference/API/02-entities"
+              },
+              "next": {
+                "title": "Governance Reference",
+                "permalink": "/docs/next/reference/Governance/05-governance-reference"
+              }
             },
             {
               "unversionedId": "reference/Governance/05-governance-reference",
@@ -590,7 +1267,16 @@
               "slug": "/reference/Governance/05-governance-reference",
               "permalink": "/docs/next/reference/Governance/05-governance-reference",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/Governance/05-governance-reference.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Queries",
+                "permalink": "/docs/next/reference/API/03-queries"
+              },
+              "next": {
+                "title": "Factory",
+                "permalink": "/docs/next/reference/"
+              }
             },
             {
               "unversionedId": "reference/SDK/01-getting-started",
@@ -602,7 +1288,16 @@
               "slug": "/reference/SDK/01-getting-started",
               "permalink": "/docs/next/reference/SDK/01-getting-started",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/01-getting-started.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Common Errors",
+                "permalink": "/docs/next/reference/smart-contracts/07-common-errors"
+              },
+              "next": {
+                "title": "Token",
+                "permalink": "/docs/next/reference/SDK/02-token"
+              }
             },
             {
               "unversionedId": "reference/SDK/02-token",
@@ -614,7 +1309,16 @@
               "slug": "/reference/SDK/02-token",
               "permalink": "/docs/next/reference/SDK/02-token",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/02-token.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Getting Started",
+                "permalink": "/docs/next/reference/SDK/01-getting-started"
+              },
+              "next": {
+                "title": "Pair",
+                "permalink": "/docs/next/reference/SDK/03-pair"
+              }
             },
             {
               "unversionedId": "reference/SDK/03-pair",
@@ -626,7 +1330,16 @@
               "slug": "/reference/SDK/03-pair",
               "permalink": "/docs/next/reference/SDK/03-pair",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/03-pair.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Token",
+                "permalink": "/docs/next/reference/SDK/02-token"
+              },
+              "next": {
+                "title": "Route",
+                "permalink": "/docs/next/reference/SDK/04-route"
+              }
             },
             {
               "unversionedId": "reference/SDK/04-route",
@@ -638,7 +1351,16 @@
               "slug": "/reference/SDK/04-route",
               "permalink": "/docs/next/reference/SDK/04-route",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/04-route.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Pair",
+                "permalink": "/docs/next/reference/SDK/03-pair"
+              },
+              "next": {
+                "title": "Trade",
+                "permalink": "/docs/next/reference/SDK/05-trade"
+              }
             },
             {
               "unversionedId": "reference/SDK/05-trade",
@@ -650,7 +1372,16 @@
               "slug": "/reference/SDK/05-trade",
               "permalink": "/docs/next/reference/SDK/05-trade",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/05-trade.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Route",
+                "permalink": "/docs/next/reference/SDK/04-route"
+              },
+              "next": {
+                "title": "Fractions",
+                "permalink": "/docs/next/reference/SDK/06-fractions"
+              }
             },
             {
               "unversionedId": "reference/SDK/06-fractions",
@@ -662,7 +1393,16 @@
               "slug": "/reference/SDK/06-fractions",
               "permalink": "/docs/next/reference/SDK/06-fractions",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/06-fractions.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Trade",
+                "permalink": "/docs/next/reference/SDK/05-trade"
+              },
+              "next": {
+                "title": "Fetcher",
+                "permalink": "/docs/next/reference/SDK/07-fetcher"
+              }
             },
             {
               "unversionedId": "reference/SDK/07-fetcher",
@@ -674,7 +1414,16 @@
               "slug": "/reference/SDK/07-fetcher",
               "permalink": "/docs/next/reference/SDK/07-fetcher",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/07-fetcher.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Fractions",
+                "permalink": "/docs/next/reference/SDK/06-fractions"
+              },
+              "next": {
+                "title": "Other Exports",
+                "permalink": "/docs/next/reference/SDK/08-other-exports"
+              }
             },
             {
               "unversionedId": "reference/SDK/08-other-exports",
@@ -686,7 +1435,12 @@
               "slug": "/reference/SDK/08-other-exports",
               "permalink": "/docs/next/reference/SDK/08-other-exports",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/08-other-exports.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Fetcher",
+                "permalink": "/docs/next/reference/SDK/07-fetcher"
+              }
             },
             {
               "unversionedId": "reference/smart-contracts/01-factory",
@@ -698,7 +1452,16 @@
               "slug": "/reference/",
               "permalink": "/docs/next/reference/",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/01-factory.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Governance Reference",
+                "permalink": "/docs/next/reference/Governance/05-governance-reference"
+              },
+              "next": {
+                "title": "Pair",
+                "permalink": "/docs/next/reference/smart-contracts/02-pair"
+              }
             },
             {
               "unversionedId": "reference/smart-contracts/02-pair",
@@ -710,7 +1473,16 @@
               "slug": "/reference/smart-contracts/02-pair",
               "permalink": "/docs/next/reference/smart-contracts/02-pair",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/02-pair.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Factory",
+                "permalink": "/docs/next/reference/"
+              },
+              "next": {
+                "title": "Pair (ERC-20)",
+                "permalink": "/docs/next/reference/smart-contracts/03-pair-erc-20"
+              }
             },
             {
               "unversionedId": "reference/smart-contracts/03-pair-erc-20",
@@ -722,7 +1494,16 @@
               "slug": "/reference/smart-contracts/03-pair-erc-20",
               "permalink": "/docs/next/reference/smart-contracts/03-pair-erc-20",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/03-pair-erc-20.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Pair",
+                "permalink": "/docs/next/reference/smart-contracts/02-pair"
+              },
+              "next": {
+                "title": "Library",
+                "permalink": "/docs/next/reference/smart-contracts/04-library"
+              }
             },
             {
               "unversionedId": "reference/smart-contracts/04-library",
@@ -734,7 +1515,16 @@
               "slug": "/reference/smart-contracts/04-library",
               "permalink": "/docs/next/reference/smart-contracts/04-library",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/04-library.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Pair (ERC-20)",
+                "permalink": "/docs/next/reference/smart-contracts/03-pair-erc-20"
+              },
+              "next": {
+                "title": "Router01",
+                "permalink": "/docs/next/reference/smart-contracts/05-router01"
+              }
             },
             {
               "unversionedId": "reference/smart-contracts/05-router01",
@@ -746,7 +1536,16 @@
               "slug": "/reference/smart-contracts/05-router01",
               "permalink": "/docs/next/reference/smart-contracts/05-router01",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/05-router01.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Library",
+                "permalink": "/docs/next/reference/smart-contracts/04-library"
+              },
+              "next": {
+                "title": "Router02",
+                "permalink": "/docs/next/reference/smart-contracts/06-router02"
+              }
             },
             {
               "unversionedId": "reference/smart-contracts/06-router02",
@@ -758,7 +1557,16 @@
               "slug": "/reference/smart-contracts/06-router02",
               "permalink": "/docs/next/reference/smart-contracts/06-router02",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/06-router02.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Router01",
+                "permalink": "/docs/next/reference/smart-contracts/05-router01"
+              },
+              "next": {
+                "title": "Common Errors",
+                "permalink": "/docs/next/reference/smart-contracts/07-common-errors"
+              }
             },
             {
               "unversionedId": "reference/smart-contracts/07-common-errors",
@@ -770,7 +1578,16 @@
               "slug": "/reference/smart-contracts/07-common-errors",
               "permalink": "/docs/next/reference/smart-contracts/07-common-errors",
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/07-common-errors.md",
-              "version": "current"
+              "version": "current",
+              "sidebar": "reference",
+              "previous": {
+                "title": "Router02",
+                "permalink": "/docs/next/reference/smart-contracts/06-router02"
+              },
+              "next": {
+                "title": "Getting Started",
+                "permalink": "/docs/next/reference/SDK/01-getting-started"
+              }
             },
             {
               "unversionedId": "V1/01-frontend-integration/01-connect-to-uniswap",
@@ -784,6 +1601,10 @@
               "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/V1/01-frontend-integration/01-connect-to-uniswap.md",
               "version": "current",
               "sidebar": "docs",
+              "previous": {
+                "title": "Governance Reference",
+                "permalink": "/docs/next/concepts/11-governance/06-governance-reference"
+              },
               "next": {
                 "title": "Pool Liquidity",
                 "permalink": "/docs/next/V1/01-frontend-integration/02-pool-liquidity"
@@ -1132,7 +1953,7 @@
           "sidebarFilePath": "/Users/Connor/Uniswap/uniswap-docs/docs_versioned_sidebars/version-v1-sidebars.json",
           "docsDirPath": "/Users/Connor/Uniswap/uniswap-docs/docs_versioned_docs/version-v1",
           "docsDirPathLocalized": "/Users/Connor/Uniswap/uniswap-docs/i18n/en/docusaurus-plugin-content-docs-docs/version-v1",
-          "mainDocId": "V1/01-frontend-integration/01-connect-to-uniswap",
+          "mainDocId": "01-frontend-integration/01-connect-to-uniswap",
           "sidebars": {
             "version-v1/docs": [
               {
@@ -1142,27 +1963,27 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/01-frontend-integration/01-connect-to-uniswap"
+                    "id": "version-v1/01-frontend-integration/01-connect-to-uniswap"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/01-frontend-integration/02-pool-liquidity"
+                    "id": "version-v1/01-frontend-integration/02-pool-liquidity"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/01-frontend-integration/03-trade-tokens"
+                    "id": "version-v1/01-frontend-integration/03-trade-tokens"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/01-frontend-integration/04-custom-linking"
+                    "id": "version-v1/01-frontend-integration/04-custom-linking"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/01-frontend-integration/05-iframe-integration"
+                    "id": "version-v1/01-frontend-integration/05-iframe-integration"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/01-frontend-integration/06-token-listing"
+                    "id": "version-v1/01-frontend-integration/06-token-listing"
                   }
                 ]
               },
@@ -1173,35 +1994,35 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/02-SDK/01-getting-started"
+                    "id": "version-v1/02-SDK/01-getting-started"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/02-SDK/02-data"
+                    "id": "version-v1/02-SDK/02-data"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/02-SDK/03-computation"
+                    "id": "version-v1/02-SDK/03-computation"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/02-SDK/04-format"
+                    "id": "version-v1/02-SDK/04-format"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/02-SDK/05-orchestration"
+                    "id": "version-v1/02-SDK/05-orchestration"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/02-SDK/06-transact"
+                    "id": "version-v1/02-SDK/06-transact"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/02-SDK/07-constants"
+                    "id": "version-v1/02-SDK/07-constants"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/02-SDK/08-types"
+                    "id": "version-v1/02-SDK/08-types"
                   }
                 ]
               },
@@ -1212,387 +2033,387 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/03-smart-contracts/01-factory"
+                    "id": "version-v1/03-smart-contracts/01-factory"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/03-smart-contracts/02-exchange"
+                    "id": "version-v1/03-smart-contracts/02-exchange"
                   },
                   {
                     "type": "doc",
-                    "id": "version-v1/V1/03-smart-contracts/03-interfaces"
+                    "id": "version-v1/03-smart-contracts/03-interfaces"
                   }
                 ]
               }
             ]
           },
           "permalinkToSidebar": {
-            "/docs/V1/01-frontend-integration/01-connect-to-uniswap": "version-v1/docs",
-            "/docs/V1/01-frontend-integration/02-pool-liquidity": "version-v1/docs",
-            "/docs/V1/01-frontend-integration/03-trade-tokens": "version-v1/docs",
-            "/docs/V1/01-frontend-integration/04-custom-linking": "version-v1/docs",
-            "/docs/V1/01-frontend-integration/05-iframe-integration": "version-v1/docs",
-            "/docs/V1/01-frontend-integration/06-token-listing": "version-v1/docs",
-            "/docs/V1/02-SDK/01-getting-started": "version-v1/docs",
-            "/docs/V1/02-SDK/02-data": "version-v1/docs",
-            "/docs/V1/02-SDK/03-computation": "version-v1/docs",
-            "/docs/V1/02-SDK/04-format": "version-v1/docs",
-            "/docs/V1/02-SDK/05-orchestration": "version-v1/docs",
-            "/docs/V1/02-SDK/06-transact": "version-v1/docs",
-            "/docs/V1/02-SDK/07-constants": "version-v1/docs",
-            "/docs/V1/02-SDK/08-types": "version-v1/docs",
-            "/docs/V1/03-smart-contracts/01-factory": "version-v1/docs",
-            "/docs/V1/03-smart-contracts/02-exchange": "version-v1/docs",
-            "/docs/V1/03-smart-contracts/03-interfaces": "version-v1/docs"
+            "/docs/01-frontend-integration/01-connect-to-uniswap": "version-v1/docs",
+            "/docs/01-frontend-integration/02-pool-liquidity": "version-v1/docs",
+            "/docs/01-frontend-integration/03-trade-tokens": "version-v1/docs",
+            "/docs/01-frontend-integration/04-custom-linking": "version-v1/docs",
+            "/docs/01-frontend-integration/05-iframe-integration": "version-v1/docs",
+            "/docs/01-frontend-integration/06-token-listing": "version-v1/docs",
+            "/docs/02-SDK/01-getting-started": "version-v1/docs",
+            "/docs/02-SDK/02-data": "version-v1/docs",
+            "/docs/02-SDK/03-computation": "version-v1/docs",
+            "/docs/02-SDK/04-format": "version-v1/docs",
+            "/docs/02-SDK/05-orchestration": "version-v1/docs",
+            "/docs/02-SDK/06-transact": "version-v1/docs",
+            "/docs/02-SDK/07-constants": "version-v1/docs",
+            "/docs/02-SDK/08-types": "version-v1/docs",
+            "/docs/03-smart-contracts/01-factory": "version-v1/docs",
+            "/docs/03-smart-contracts/02-exchange": "version-v1/docs",
+            "/docs/03-smart-contracts/03-interfaces": "version-v1/docs"
           },
           "docs": [
             {
-              "unversionedId": "V1/01-frontend-integration/01-connect-to-uniswap",
-              "id": "version-v1/V1/01-frontend-integration/01-connect-to-uniswap",
+              "unversionedId": "01-frontend-integration/01-connect-to-uniswap",
+              "id": "version-v1/01-frontend-integration/01-connect-to-uniswap",
               "isDocsHomePage": false,
               "title": "Connect to Uniswap",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/01-frontend-integration/01-connect-to-uniswap.md",
-              "slug": "/V1/01-frontend-integration/01-connect-to-uniswap",
-              "permalink": "/docs/V1/01-frontend-integration/01-connect-to-uniswap",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/01-frontend-integration/01-connect-to-uniswap.md",
+              "source": "@site/docs_versioned_docs/version-v1/01-frontend-integration/01-connect-to-uniswap.md",
+              "slug": "/01-frontend-integration/01-connect-to-uniswap",
+              "permalink": "/docs/01-frontend-integration/01-connect-to-uniswap",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/01-frontend-integration/01-connect-to-uniswap.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "next": {
                 "title": "Pool Liquidity",
-                "permalink": "/docs/V1/01-frontend-integration/02-pool-liquidity"
+                "permalink": "/docs/01-frontend-integration/02-pool-liquidity"
               }
             },
             {
-              "unversionedId": "V1/01-frontend-integration/02-pool-liquidity",
-              "id": "version-v1/V1/01-frontend-integration/02-pool-liquidity",
+              "unversionedId": "01-frontend-integration/02-pool-liquidity",
+              "id": "version-v1/01-frontend-integration/02-pool-liquidity",
               "isDocsHomePage": false,
               "title": "Pool Liquidity",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/01-frontend-integration/02-pool-liquidity.md",
-              "slug": "/V1/01-frontend-integration/02-pool-liquidity",
-              "permalink": "/docs/V1/01-frontend-integration/02-pool-liquidity",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/01-frontend-integration/02-pool-liquidity.md",
+              "source": "@site/docs_versioned_docs/version-v1/01-frontend-integration/02-pool-liquidity.md",
+              "slug": "/01-frontend-integration/02-pool-liquidity",
+              "permalink": "/docs/01-frontend-integration/02-pool-liquidity",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/01-frontend-integration/02-pool-liquidity.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Connect to Uniswap",
-                "permalink": "/docs/V1/01-frontend-integration/01-connect-to-uniswap"
+                "permalink": "/docs/01-frontend-integration/01-connect-to-uniswap"
               },
               "next": {
                 "title": "Trade Tokens",
-                "permalink": "/docs/V1/01-frontend-integration/03-trade-tokens"
+                "permalink": "/docs/01-frontend-integration/03-trade-tokens"
               }
             },
             {
-              "unversionedId": "V1/01-frontend-integration/03-trade-tokens",
-              "id": "version-v1/V1/01-frontend-integration/03-trade-tokens",
+              "unversionedId": "01-frontend-integration/03-trade-tokens",
+              "id": "version-v1/01-frontend-integration/03-trade-tokens",
               "isDocsHomePage": false,
               "title": "Trade Tokens",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/01-frontend-integration/03-trade-tokens.md",
-              "slug": "/V1/01-frontend-integration/03-trade-tokens",
-              "permalink": "/docs/V1/01-frontend-integration/03-trade-tokens",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/01-frontend-integration/03-trade-tokens.md",
+              "source": "@site/docs_versioned_docs/version-v1/01-frontend-integration/03-trade-tokens.md",
+              "slug": "/01-frontend-integration/03-trade-tokens",
+              "permalink": "/docs/01-frontend-integration/03-trade-tokens",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/01-frontend-integration/03-trade-tokens.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Pool Liquidity",
-                "permalink": "/docs/V1/01-frontend-integration/02-pool-liquidity"
+                "permalink": "/docs/01-frontend-integration/02-pool-liquidity"
               },
               "next": {
                 "title": "Custom Linking",
-                "permalink": "/docs/V1/01-frontend-integration/04-custom-linking"
+                "permalink": "/docs/01-frontend-integration/04-custom-linking"
               }
             },
             {
-              "unversionedId": "V1/01-frontend-integration/04-custom-linking",
-              "id": "version-v1/V1/01-frontend-integration/04-custom-linking",
+              "unversionedId": "01-frontend-integration/04-custom-linking",
+              "id": "version-v1/01-frontend-integration/04-custom-linking",
               "isDocsHomePage": false,
               "title": "Custom Linking",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/01-frontend-integration/04-custom-linking.md",
-              "slug": "/V1/01-frontend-integration/04-custom-linking",
-              "permalink": "/docs/V1/01-frontend-integration/04-custom-linking",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/01-frontend-integration/04-custom-linking.md",
+              "source": "@site/docs_versioned_docs/version-v1/01-frontend-integration/04-custom-linking.md",
+              "slug": "/01-frontend-integration/04-custom-linking",
+              "permalink": "/docs/01-frontend-integration/04-custom-linking",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/01-frontend-integration/04-custom-linking.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Trade Tokens",
-                "permalink": "/docs/V1/01-frontend-integration/03-trade-tokens"
+                "permalink": "/docs/01-frontend-integration/03-trade-tokens"
               },
               "next": {
                 "title": "Iframe Integration",
-                "permalink": "/docs/V1/01-frontend-integration/05-iframe-integration"
+                "permalink": "/docs/01-frontend-integration/05-iframe-integration"
               }
             },
             {
-              "unversionedId": "V1/01-frontend-integration/05-iframe-integration",
-              "id": "version-v1/V1/01-frontend-integration/05-iframe-integration",
+              "unversionedId": "01-frontend-integration/05-iframe-integration",
+              "id": "version-v1/01-frontend-integration/05-iframe-integration",
               "isDocsHomePage": false,
               "title": "Iframe Integration",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/01-frontend-integration/05-iframe-integration.md",
-              "slug": "/V1/01-frontend-integration/05-iframe-integration",
-              "permalink": "/docs/V1/01-frontend-integration/05-iframe-integration",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/01-frontend-integration/05-iframe-integration.md",
+              "source": "@site/docs_versioned_docs/version-v1/01-frontend-integration/05-iframe-integration.md",
+              "slug": "/01-frontend-integration/05-iframe-integration",
+              "permalink": "/docs/01-frontend-integration/05-iframe-integration",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/01-frontend-integration/05-iframe-integration.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Custom Linking",
-                "permalink": "/docs/V1/01-frontend-integration/04-custom-linking"
+                "permalink": "/docs/01-frontend-integration/04-custom-linking"
               },
               "next": {
                 "title": "Token Listing",
-                "permalink": "/docs/V1/01-frontend-integration/06-token-listing"
+                "permalink": "/docs/01-frontend-integration/06-token-listing"
               }
             },
             {
-              "unversionedId": "V1/01-frontend-integration/06-token-listing",
-              "id": "version-v1/V1/01-frontend-integration/06-token-listing",
+              "unversionedId": "01-frontend-integration/06-token-listing",
+              "id": "version-v1/01-frontend-integration/06-token-listing",
               "isDocsHomePage": false,
               "title": "Token Listing",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/01-frontend-integration/06-token-listing.md",
-              "slug": "/V1/01-frontend-integration/06-token-listing",
-              "permalink": "/docs/V1/01-frontend-integration/06-token-listing",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/01-frontend-integration/06-token-listing.md",
+              "source": "@site/docs_versioned_docs/version-v1/01-frontend-integration/06-token-listing.md",
+              "slug": "/01-frontend-integration/06-token-listing",
+              "permalink": "/docs/01-frontend-integration/06-token-listing",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/01-frontend-integration/06-token-listing.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Iframe Integration",
-                "permalink": "/docs/V1/01-frontend-integration/05-iframe-integration"
+                "permalink": "/docs/01-frontend-integration/05-iframe-integration"
               },
               "next": {
                 "title": "Getting Started",
-                "permalink": "/docs/V1/02-SDK/01-getting-started"
+                "permalink": "/docs/02-SDK/01-getting-started"
               }
             },
             {
-              "unversionedId": "V1/02-SDK/01-getting-started",
-              "id": "version-v1/V1/02-SDK/01-getting-started",
+              "unversionedId": "02-SDK/01-getting-started",
+              "id": "version-v1/02-SDK/01-getting-started",
               "isDocsHomePage": false,
               "title": "Getting Started",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/02-SDK/01-getting-started.md",
-              "slug": "/V1/02-SDK/01-getting-started",
-              "permalink": "/docs/V1/02-SDK/01-getting-started",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/02-SDK/01-getting-started.md",
+              "source": "@site/docs_versioned_docs/version-v1/02-SDK/01-getting-started.md",
+              "slug": "/02-SDK/01-getting-started",
+              "permalink": "/docs/02-SDK/01-getting-started",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/01-getting-started.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Token Listing",
-                "permalink": "/docs/V1/01-frontend-integration/06-token-listing"
+                "permalink": "/docs/01-frontend-integration/06-token-listing"
               },
               "next": {
                 "title": "Data",
-                "permalink": "/docs/V1/02-SDK/02-data"
+                "permalink": "/docs/02-SDK/02-data"
               }
             },
             {
-              "unversionedId": "V1/02-SDK/02-data",
-              "id": "version-v1/V1/02-SDK/02-data",
+              "unversionedId": "02-SDK/02-data",
+              "id": "version-v1/02-SDK/02-data",
               "isDocsHomePage": false,
               "title": "Data",
               "description": "getTokenReserves",
-              "source": "@site/docs_versioned_docs/version-v1/V1/02-SDK/02-data.md",
-              "slug": "/V1/02-SDK/02-data",
-              "permalink": "/docs/V1/02-SDK/02-data",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/02-SDK/02-data.md",
+              "source": "@site/docs_versioned_docs/version-v1/02-SDK/02-data.md",
+              "slug": "/02-SDK/02-data",
+              "permalink": "/docs/02-SDK/02-data",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/02-data.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Getting Started",
-                "permalink": "/docs/V1/02-SDK/01-getting-started"
+                "permalink": "/docs/02-SDK/01-getting-started"
               },
               "next": {
                 "title": "Computation",
-                "permalink": "/docs/V1/02-SDK/03-computation"
+                "permalink": "/docs/02-SDK/03-computation"
               }
             },
             {
-              "unversionedId": "V1/02-SDK/03-computation",
-              "id": "version-v1/V1/02-SDK/03-computation",
+              "unversionedId": "02-SDK/03-computation",
+              "id": "version-v1/02-SDK/03-computation",
               "isDocsHomePage": false,
               "title": "Computation",
               "description": "getMarketDetails",
-              "source": "@site/docs_versioned_docs/version-v1/V1/02-SDK/03-computation.md",
-              "slug": "/V1/02-SDK/03-computation",
-              "permalink": "/docs/V1/02-SDK/03-computation",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/02-SDK/03-computation.md",
+              "source": "@site/docs_versioned_docs/version-v1/02-SDK/03-computation.md",
+              "slug": "/02-SDK/03-computation",
+              "permalink": "/docs/02-SDK/03-computation",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/03-computation.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Data",
-                "permalink": "/docs/V1/02-SDK/02-data"
+                "permalink": "/docs/02-SDK/02-data"
               },
               "next": {
                 "title": "Format",
-                "permalink": "/docs/V1/02-SDK/04-format"
+                "permalink": "/docs/02-SDK/04-format"
               }
             },
             {
-              "unversionedId": "V1/02-SDK/04-format",
-              "id": "version-v1/V1/02-SDK/04-format",
+              "unversionedId": "02-SDK/04-format",
+              "id": "version-v1/02-SDK/04-format",
               "isDocsHomePage": false,
               "title": "Format",
               "description": "formatSignificant",
-              "source": "@site/docs_versioned_docs/version-v1/V1/02-SDK/04-format.md",
-              "slug": "/V1/02-SDK/04-format",
-              "permalink": "/docs/V1/02-SDK/04-format",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/02-SDK/04-format.md",
+              "source": "@site/docs_versioned_docs/version-v1/02-SDK/04-format.md",
+              "slug": "/02-SDK/04-format",
+              "permalink": "/docs/02-SDK/04-format",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/04-format.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Computation",
-                "permalink": "/docs/V1/02-SDK/03-computation"
+                "permalink": "/docs/02-SDK/03-computation"
               },
               "next": {
                 "title": "Orchestration",
-                "permalink": "/docs/V1/02-SDK/05-orchestration"
+                "permalink": "/docs/02-SDK/05-orchestration"
               }
             },
             {
-              "unversionedId": "V1/02-SDK/05-orchestration",
-              "id": "version-v1/V1/02-SDK/05-orchestration",
+              "unversionedId": "02-SDK/05-orchestration",
+              "id": "version-v1/02-SDK/05-orchestration",
               "isDocsHomePage": false,
               "title": "Orchestration",
               "description": "Orchestration functions are plain-english wrappers for the function defined in Data and Computation.",
-              "source": "@site/docs_versioned_docs/version-v1/V1/02-SDK/05-orchestration.md",
-              "slug": "/V1/02-SDK/05-orchestration",
-              "permalink": "/docs/V1/02-SDK/05-orchestration",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/02-SDK/05-orchestration.md",
+              "source": "@site/docs_versioned_docs/version-v1/02-SDK/05-orchestration.md",
+              "slug": "/02-SDK/05-orchestration",
+              "permalink": "/docs/02-SDK/05-orchestration",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/05-orchestration.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Format",
-                "permalink": "/docs/V1/02-SDK/04-format"
+                "permalink": "/docs/02-SDK/04-format"
               },
               "next": {
                 "title": "Transact",
-                "permalink": "/docs/V1/02-SDK/06-transact"
+                "permalink": "/docs/02-SDK/06-transact"
               }
             },
             {
-              "unversionedId": "V1/02-SDK/06-transact",
-              "id": "version-v1/V1/02-SDK/06-transact",
+              "unversionedId": "02-SDK/06-transact",
+              "id": "version-v1/02-SDK/06-transact",
               "isDocsHomePage": false,
               "title": "Transact",
               "description": "getExecutionDetails",
-              "source": "@site/docs_versioned_docs/version-v1/V1/02-SDK/06-transact.md",
-              "slug": "/V1/02-SDK/06-transact",
-              "permalink": "/docs/V1/02-SDK/06-transact",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/02-SDK/06-transact.md",
+              "source": "@site/docs_versioned_docs/version-v1/02-SDK/06-transact.md",
+              "slug": "/02-SDK/06-transact",
+              "permalink": "/docs/02-SDK/06-transact",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/06-transact.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Orchestration",
-                "permalink": "/docs/V1/02-SDK/05-orchestration"
+                "permalink": "/docs/02-SDK/05-orchestration"
               },
               "next": {
                 "title": "Constants",
-                "permalink": "/docs/V1/02-SDK/07-constants"
+                "permalink": "/docs/02-SDK/07-constants"
               }
             },
             {
-              "unversionedId": "V1/02-SDK/07-constants",
-              "id": "version-v1/V1/02-SDK/07-constants",
+              "unversionedId": "02-SDK/07-constants",
+              "id": "version-v1/02-SDK/07-constants",
               "isDocsHomePage": false,
               "title": "Constants",
               "description": "Below is an exhaustive list of all external constants used in the SDK.",
-              "source": "@site/docs_versioned_docs/version-v1/V1/02-SDK/07-constants.md",
-              "slug": "/V1/02-SDK/07-constants",
-              "permalink": "/docs/V1/02-SDK/07-constants",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/02-SDK/07-constants.md",
+              "source": "@site/docs_versioned_docs/version-v1/02-SDK/07-constants.md",
+              "slug": "/02-SDK/07-constants",
+              "permalink": "/docs/02-SDK/07-constants",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/07-constants.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Transact",
-                "permalink": "/docs/V1/02-SDK/06-transact"
+                "permalink": "/docs/02-SDK/06-transact"
               },
               "next": {
                 "title": "Types",
-                "permalink": "/docs/V1/02-SDK/08-types"
+                "permalink": "/docs/02-SDK/08-types"
               }
             },
             {
-              "unversionedId": "V1/02-SDK/08-types",
-              "id": "version-v1/V1/02-SDK/08-types",
+              "unversionedId": "02-SDK/08-types",
+              "id": "version-v1/02-SDK/08-types",
               "isDocsHomePage": false,
               "title": "Types",
               "description": "Below is an exhaustive list of all the external types used in the SDK.",
-              "source": "@site/docs_versioned_docs/version-v1/V1/02-SDK/08-types.md",
-              "slug": "/V1/02-SDK/08-types",
-              "permalink": "/docs/V1/02-SDK/08-types",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/02-SDK/08-types.md",
+              "source": "@site/docs_versioned_docs/version-v1/02-SDK/08-types.md",
+              "slug": "/02-SDK/08-types",
+              "permalink": "/docs/02-SDK/08-types",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/02-SDK/08-types.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Constants",
-                "permalink": "/docs/V1/02-SDK/07-constants"
+                "permalink": "/docs/02-SDK/07-constants"
               },
               "next": {
                 "title": "Factory",
-                "permalink": "/docs/V1/03-smart-contracts/01-factory"
+                "permalink": "/docs/03-smart-contracts/01-factory"
               }
             },
             {
-              "unversionedId": "V1/03-smart-contracts/01-factory",
-              "id": "version-v1/V1/03-smart-contracts/01-factory",
+              "unversionedId": "03-smart-contracts/01-factory",
+              "id": "version-v1/03-smart-contracts/01-factory",
               "isDocsHomePage": false,
               "title": "Factory",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/03-smart-contracts/01-factory.md",
-              "slug": "/V1/03-smart-contracts/01-factory",
-              "permalink": "/docs/V1/03-smart-contracts/01-factory",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/03-smart-contracts/01-factory.md",
+              "source": "@site/docs_versioned_docs/version-v1/03-smart-contracts/01-factory.md",
+              "slug": "/03-smart-contracts/01-factory",
+              "permalink": "/docs/03-smart-contracts/01-factory",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/03-smart-contracts/01-factory.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Types",
-                "permalink": "/docs/V1/02-SDK/08-types"
+                "permalink": "/docs/02-SDK/08-types"
               },
               "next": {
                 "title": "Exchange",
-                "permalink": "/docs/V1/03-smart-contracts/02-exchange"
+                "permalink": "/docs/03-smart-contracts/02-exchange"
               }
             },
             {
-              "unversionedId": "V1/03-smart-contracts/02-exchange",
-              "id": "version-v1/V1/03-smart-contracts/02-exchange",
+              "unversionedId": "03-smart-contracts/02-exchange",
+              "id": "version-v1/03-smart-contracts/02-exchange",
               "isDocsHomePage": false,
               "title": "Exchange",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/03-smart-contracts/02-exchange.md",
-              "slug": "/V1/03-smart-contracts/02-exchange",
-              "permalink": "/docs/V1/03-smart-contracts/02-exchange",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/03-smart-contracts/02-exchange.md",
+              "source": "@site/docs_versioned_docs/version-v1/03-smart-contracts/02-exchange.md",
+              "slug": "/03-smart-contracts/02-exchange",
+              "permalink": "/docs/03-smart-contracts/02-exchange",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/03-smart-contracts/02-exchange.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Factory",
-                "permalink": "/docs/V1/03-smart-contracts/01-factory"
+                "permalink": "/docs/03-smart-contracts/01-factory"
               },
               "next": {
                 "title": "Interfaces",
-                "permalink": "/docs/V1/03-smart-contracts/03-interfaces"
+                "permalink": "/docs/03-smart-contracts/03-interfaces"
               }
             },
             {
-              "unversionedId": "V1/03-smart-contracts/03-interfaces",
-              "id": "version-v1/V1/03-smart-contracts/03-interfaces",
+              "unversionedId": "03-smart-contracts/03-interfaces",
+              "id": "version-v1/03-smart-contracts/03-interfaces",
               "isDocsHomePage": false,
               "title": "Interfaces",
               "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
-              "source": "@site/docs_versioned_docs/version-v1/V1/03-smart-contracts/03-interfaces.md",
-              "slug": "/V1/03-smart-contracts/03-interfaces",
-              "permalink": "/docs/V1/03-smart-contracts/03-interfaces",
-              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/V1/03-smart-contracts/03-interfaces.md",
+              "source": "@site/docs_versioned_docs/version-v1/03-smart-contracts/03-interfaces.md",
+              "slug": "/03-smart-contracts/03-interfaces",
+              "permalink": "/docs/03-smart-contracts/03-interfaces",
+              "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v1/03-smart-contracts/03-interfaces.md",
               "version": "v1",
               "sidebar": "version-v1/docs",
               "previous": {
                 "title": "Exchange",
-                "permalink": "/docs/V1/03-smart-contracts/02-exchange"
+                "permalink": "/docs/03-smart-contracts/02-exchange"
               }
             }
           ]

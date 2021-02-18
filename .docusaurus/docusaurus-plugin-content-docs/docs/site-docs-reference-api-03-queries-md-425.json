@@ -8,5 +8,14 @@
   "slug": "/reference/API/03-queries",
   "permalink": "/docs/next/reference/API/03-queries",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/API/03-queries.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Entities",
+    "permalink": "/docs/next/reference/API/02-entities"
+  },
+  "next": {
+    "title": "Governance Reference",
+    "permalink": "/docs/next/reference/Governance/05-governance-reference"
+  }
 }

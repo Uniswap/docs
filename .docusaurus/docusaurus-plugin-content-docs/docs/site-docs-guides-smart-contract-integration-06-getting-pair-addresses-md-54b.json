@@ -8,5 +8,14 @@
   "slug": "/guides/smart-contract-integration/06-getting-pair-addresses",
   "permalink": "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/06-getting-pair-addresses.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Flash Swaps",
+    "permalink": "/docs/next/guides/smart-contract-integration/05-using-flash-swaps"
+  },
+  "next": {
+    "title": "Supporting meta transactions",
+    "permalink": "/docs/next/guides/smart-contract-integration/07-supporting-meta-transactions"
+  }
 }

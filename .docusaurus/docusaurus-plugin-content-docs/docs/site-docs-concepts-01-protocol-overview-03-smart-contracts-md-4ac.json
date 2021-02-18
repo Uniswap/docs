@@ -8,5 +8,14 @@
   "slug": "/concepts/01-protocol-overview/03-smart-contracts",
   "permalink": "/docs/next/concepts/01-protocol-overview/03-smart-contracts",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/03-smart-contracts.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Ecosystem Participants",
+    "permalink": "/docs/next/concepts/01-protocol-overview/02-ecosystem-participants"
+  },
+  "next": {
+    "title": "Glossary",
+    "permalink": "/docs/next/concepts/01-protocol-overview/04-glossary"
+  }
 }

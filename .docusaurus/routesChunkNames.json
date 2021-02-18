@@ -529,76 +529,76 @@
     "component": "component---theme-doc-item-178-a40",
     "content": "content---docs-v-2-reference-smart-contracts-07-common-errors-566-544"
   },
-  "/docs-255": {
+  "/docs-ddb": {
     "component": "component---theme-doc-page-1-be-9be",
     "versionMetadata": "versionMetadata---docsf-86-e6c"
   },
-  "/docs/V1/01-frontend-integration/01-connect-to-uniswap-364": {
+  "/docs/01-frontend-integration/01-connect-to-uniswap-66a": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-01-frontend-integration-01-connect-to-uniswapf-78-3d3"
+    "content": "content---docs-01-frontend-integration-01-connect-to-uniswap-072-e8e"
   },
-  "/docs/V1/01-frontend-integration/02-pool-liquidity-da1": {
+  "/docs/01-frontend-integration/02-pool-liquidity-794": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-01-frontend-integration-02-pool-liquidity-3-db-2d5"
+    "content": "content---docs-01-frontend-integration-02-pool-liquidityaee-426"
   },
-  "/docs/V1/01-frontend-integration/03-trade-tokens-fd4": {
+  "/docs/01-frontend-integration/03-trade-tokens-1e9": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-01-frontend-integration-03-trade-tokens-834-e71"
+    "content": "content---docs-01-frontend-integration-03-trade-tokensa-27-c8e"
   },
-  "/docs/V1/01-frontend-integration/04-custom-linking-08b": {
+  "/docs/01-frontend-integration/04-custom-linking-55f": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-01-frontend-integration-04-custom-linking-3-cb-5e1"
+    "content": "content---docs-01-frontend-integration-04-custom-linkingeda-d48"
   },
-  "/docs/V1/01-frontend-integration/05-iframe-integration-49b": {
+  "/docs/01-frontend-integration/05-iframe-integration-861": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-01-frontend-integration-05-iframe-integration-314-bae"
+    "content": "content---docs-01-frontend-integration-05-iframe-integrationfb-6-4ca"
   },
-  "/docs/V1/01-frontend-integration/06-token-listing-5d5": {
+  "/docs/01-frontend-integration/06-token-listing-0e5": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-01-frontend-integration-06-token-listing-187-bf5"
+    "content": "content---docs-01-frontend-integration-06-token-listing-891-945"
   },
-  "/docs/V1/02-SDK/01-getting-started-fc8": {
+  "/docs/02-SDK/01-getting-started-3c9": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-02-sdk-01-getting-startedecf-cdb"
+    "content": "content---docs-02-sdk-01-getting-startede-4-f-395"
   },
-  "/docs/V1/02-SDK/02-data-afd": {
+  "/docs/02-SDK/02-data-d21": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-02-sdk-02-dataa-3-f-0b9"
+    "content": "content---docs-02-sdk-02-data-7-a-5-9ac"
   },
-  "/docs/V1/02-SDK/03-computation-a28": {
+  "/docs/02-SDK/03-computation-132": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-02-sdk-03-computation-965-00c"
+    "content": "content---docs-02-sdk-03-computation-7-af-ba6"
   },
-  "/docs/V1/02-SDK/04-format-605": {
+  "/docs/02-SDK/04-format-0db": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-02-sdk-04-formatcad-426"
+    "content": "content---docs-02-sdk-04-formate-64-8fb"
   },
-  "/docs/V1/02-SDK/05-orchestration-ab7": {
+  "/docs/02-SDK/05-orchestration-c2d": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-02-sdk-05-orchestration-34-d-bc7"
+    "content": "content---docs-02-sdk-05-orchestrationb-79-4f8"
   },
-  "/docs/V1/02-SDK/06-transact-aa1": {
+  "/docs/02-SDK/06-transact-896": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-02-sdk-06-transact-70-f-e5e"
+    "content": "content---docs-02-sdk-06-transact-1-b-2-716"
   },
-  "/docs/V1/02-SDK/07-constants-fc3": {
+  "/docs/02-SDK/07-constants-db8": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-02-sdk-07-constantse-4-f-bab"
+    "content": "content---docs-02-sdk-07-constantsbba-d88"
   },
-  "/docs/V1/02-SDK/08-types-dad": {
+  "/docs/02-SDK/08-types-020": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-02-sdk-08-typesce-3-d6d"
+    "content": "content---docs-02-sdk-08-types-6-d-6-402"
   },
-  "/docs/V1/03-smart-contracts/01-factory-10a": {
+  "/docs/03-smart-contracts/01-factory-aa1": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-03-smart-contracts-01-factoryfb-6-333"
+    "content": "content---docs-03-smart-contracts-01-factorya-9-a-674"
   },
-  "/docs/V1/03-smart-contracts/02-exchange-e89": {
+  "/docs/03-smart-contracts/02-exchange-15c": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-03-smart-contracts-02-exchange-17-d-33f"
+    "content": "content---docs-03-smart-contracts-02-exchangebda-e40"
   },
-  "/docs/V1/03-smart-contracts/03-interfaces-39f": {
+  "/docs/03-smart-contracts/03-interfaces-cc2": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-v-1-03-smart-contracts-03-interfaces-984-615"
+    "content": "content---docs-03-smart-contracts-03-interfaces-0-b-9-0ed"
   }
 }

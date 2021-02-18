@@ -8,5 +8,10 @@
   "slug": "/guides/",
   "permalink": "/docs/next/guides/",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/01-quick-start.md",
-  "version": "current"
+  "version": "current",
+  "sidebar": "guides",
+  "next": {
+    "title": "Implement a Swap",
+    "permalink": "/docs/next/guides/smart-contract-integration/02-trading-from-a-smart-contract"
+  }
 }
