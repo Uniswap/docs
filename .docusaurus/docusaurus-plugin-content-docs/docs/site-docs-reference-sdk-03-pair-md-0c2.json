@@ -6,16 +6,16 @@
   "description": "`typescript",
   "source": "@site/docs/reference/SDK/03-pair.md",
   "slug": "/reference/SDK/03-pair",
-  "permalink": "/docs/reference/SDK/03-pair",
+  "permalink": "/docs/next/reference/SDK/03-pair",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/03-pair.md",
   "version": "current",
   "sidebar": "reference",
   "previous": {
     "title": "Token",
-    "permalink": "/docs/reference/SDK/02-token"
+    "permalink": "/docs/next/reference/SDK/02-token"
   },
   "next": {
     "title": "Route",
-    "permalink": "/docs/reference/SDK/04-route"
+    "permalink": "/docs/next/reference/SDK/04-route"
   }
 }

@@ -6,16 +6,16 @@
   "description": "Uniswap protocol is goverened and upgraded by UNI token holders, using three distinct components; the UNI token, governance module, and Timelock. Together, these contracts allow the community to propose, vote, and implement changes to the uniswap protocol.",
   "source": "@site/docs/reference/Governance/05-governance-reference.md",
   "slug": "/reference/Governance/05-governance-reference",
-  "permalink": "/docs/reference/Governance/05-governance-reference",
+  "permalink": "/docs/next/reference/Governance/05-governance-reference",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/Governance/05-governance-reference.md",
   "version": "current",
   "sidebar": "reference",
   "previous": {
     "title": "Queries",
-    "permalink": "/docs/reference/API/03-queries"
+    "permalink": "/docs/next/reference/API/03-queries"
   },
   "next": {
     "title": "Factory",
-    "permalink": "/docs/reference/"
+    "permalink": "/docs/next/reference/"
   }
 }

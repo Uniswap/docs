@@ -1,0 +1,21 @@
+{
+  "unversionedId": "reference/SDK/01-getting-started",
+  "id": "version-V1/reference/SDK/01-getting-started",
+  "isDocsHomePage": false,
+  "title": "Getting Started",
+  "description": "The pages that follow contain technical reference information on the Uniswap SDK.",
+  "source": "@site/docs_versioned_docs/version-V1/reference/SDK/01-getting-started.md",
+  "slug": "/reference/SDK/01-getting-started",
+  "permalink": "/docs/reference/SDK/01-getting-started",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V1/reference/SDK/01-getting-started.md",
+  "version": "V1",
+  "sidebar": "version-V1/reference",
+  "previous": {
+    "title": "Common Errors",
+    "permalink": "/docs/reference/smart-contracts/07-common-errors"
+  },
+  "next": {
+    "title": "Token",
+    "permalink": "/docs/reference/SDK/02-token"
+  }
+}

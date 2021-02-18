@@ -6,12 +6,12 @@
   "description": "Uniswap is an automated liquidity protocol powered by a constant product formula",
   "source": "@site/docs/concepts/01-protocol-overview/01-how-uniswap-works.md",
   "slug": "/",
-  "permalink": "/docs/",
+  "permalink": "/docs/next/",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/01-how-uniswap-works.md",
   "version": "current",
   "sidebar": "docs",
   "next": {
     "title": "Ecosystem Participants",
-    "permalink": "/docs/concepts/01-protocol-overview/02-ecosystem-participants"
+    "permalink": "/docs/next/concepts/01-protocol-overview/02-ecosystem-participants"
   }
 }

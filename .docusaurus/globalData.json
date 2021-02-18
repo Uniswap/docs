@@ -6,6 +6,370 @@
         {
           "name": "current",
           "label": "Next",
+          "isLast": false,
+          "path": "/docs/next",
+          "mainDocId": "concepts/01-protocol-overview/01-how-uniswap-works",
+          "docs": [
+            {
+              "id": "concepts/01-protocol-overview/01-how-uniswap-works",
+              "path": "/docs/next/",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/01-protocol-overview/02-ecosystem-participants",
+              "path": "/docs/next/concepts/01-protocol-overview/02-ecosystem-participants",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/01-protocol-overview/03-smart-contracts",
+              "path": "/docs/next/concepts/01-protocol-overview/03-smart-contracts",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/01-protocol-overview/04-glossary",
+              "path": "/docs/next/concepts/01-protocol-overview/04-glossary",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/02-core-concepts/01-swaps",
+              "path": "/docs/next/concepts/02-core-concepts/01-swaps",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/02-core-concepts/02-pools",
+              "path": "/docs/next/concepts/02-core-concepts/02-pools",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/02-core-concepts/03-flash-swaps",
+              "path": "/docs/next/concepts/02-core-concepts/03-flash-swaps",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/02-core-concepts/04-oracles",
+              "path": "/docs/next/concepts/02-core-concepts/04-oracles",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/01-fees",
+              "path": "/docs/next/concepts/03-advanced-topics/01-fees",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/02-pricing",
+              "path": "/docs/next/concepts/03-advanced-topics/02-pricing",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/03-understanding-returns",
+              "path": "/docs/next/concepts/03-advanced-topics/03-understanding-returns",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/04-security",
+              "path": "/docs/next/concepts/03-advanced-topics/04-security",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/05-math",
+              "path": "/docs/next/concepts/03-advanced-topics/05-math",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/06-research",
+              "path": "/docs/next/concepts/03-advanced-topics/06-research",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/11-governance/01-overview",
+              "path": "/docs/next/concepts/11-governance/01-overview",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/11-governance/02-process",
+              "path": "/docs/next/concepts/11-governance/02-process",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/11-governance/03-guide-to-voting",
+              "path": "/docs/next/concepts/11-governance/03-guide-to-voting",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/11-governance/04-glossary",
+              "path": "/docs/next/concepts/11-governance/04-glossary",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/11-governance/05-adversarial-circumstances",
+              "path": "/docs/next/concepts/11-governance/05-adversarial-circumstances",
+              "sidebar": "docs"
+            },
+            {
+              "id": "concepts/11-governance/06-governance-reference",
+              "path": "/docs/next/concepts/11-governance/06-governance-reference",
+              "sidebar": "docs"
+            },
+            {
+              "id": "guides/interface-integration/01-using-the-api",
+              "path": "/docs/next/guides/interface-integration/01-using-the-api",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/interface-integration/02-custom-interface-linking",
+              "path": "/docs/next/guides/interface-integration/02-custom-interface-linking",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/interface-integration/03-iframe-integration",
+              "path": "/docs/next/guides/interface-integration/03-iframe-integration",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/01-quick-start",
+              "path": "/docs/next/guides/javascript-sdk/01-quick-start",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/02-fetching-data",
+              "path": "/docs/next/guides/javascript-sdk/02-fetching-data",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/03-pricing",
+              "path": "/docs/next/guides/javascript-sdk/03-pricing",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/04-trading",
+              "path": "/docs/next/guides/javascript-sdk/04-trading",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/javascript-sdk/05-getting-pair-addresses",
+              "path": "/docs/next/guides/javascript-sdk/05-getting-pair-addresses",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/01-quick-start",
+              "path": "/docs/next/guides/",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/02-trading-from-a-smart-contract",
+              "path": "/docs/next/guides/smart-contract-integration/02-trading-from-a-smart-contract",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/03-providing-liquidity",
+              "path": "/docs/next/guides/smart-contract-integration/03-providing-liquidity",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/04-building-an-oracle",
+              "path": "/docs/next/guides/smart-contract-integration/04-building-an-oracle",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/05-using-flash-swaps",
+              "path": "/docs/next/guides/smart-contract-integration/05-using-flash-swaps",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/06-getting-pair-addresses",
+              "path": "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses",
+              "sidebar": "guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/07-supporting-meta-transactions",
+              "path": "/docs/next/guides/smart-contract-integration/07-supporting-meta-transactions",
+              "sidebar": "guides"
+            },
+            {
+              "id": "reference/API/01-overview",
+              "path": "/docs/next/reference/API/01-overview",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/API/02-entities",
+              "path": "/docs/next/reference/API/02-entities",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/API/03-queries",
+              "path": "/docs/next/reference/API/03-queries",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/Governance/05-governance-reference",
+              "path": "/docs/next/reference/Governance/05-governance-reference",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/01-getting-started",
+              "path": "/docs/next/reference/SDK/01-getting-started",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/02-token",
+              "path": "/docs/next/reference/SDK/02-token",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/03-pair",
+              "path": "/docs/next/reference/SDK/03-pair",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/04-route",
+              "path": "/docs/next/reference/SDK/04-route",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/05-trade",
+              "path": "/docs/next/reference/SDK/05-trade",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/06-fractions",
+              "path": "/docs/next/reference/SDK/06-fractions",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/07-fetcher",
+              "path": "/docs/next/reference/SDK/07-fetcher",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/SDK/08-other-exports",
+              "path": "/docs/next/reference/SDK/08-other-exports",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/01-factory",
+              "path": "/docs/next/reference/",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/02-pair",
+              "path": "/docs/next/reference/smart-contracts/02-pair",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/03-pair-erc-20",
+              "path": "/docs/next/reference/smart-contracts/03-pair-erc-20",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/04-library",
+              "path": "/docs/next/reference/smart-contracts/04-library",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/05-router01",
+              "path": "/docs/next/reference/smart-contracts/05-router01",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/06-router02",
+              "path": "/docs/next/reference/smart-contracts/06-router02",
+              "sidebar": "reference"
+            },
+            {
+              "id": "reference/smart-contracts/07-common-errors",
+              "path": "/docs/next/reference/smart-contracts/07-common-errors",
+              "sidebar": "reference"
+            },
+            {
+              "id": "V1/01-frontend-integration/01-connect-to-uniswap",
+              "path": "/docs/next/V1/01-frontend-integration/01-connect-to-uniswap",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/02-pool-liquidity",
+              "path": "/docs/next/V1/01-frontend-integration/02-pool-liquidity",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/03-trade-tokens",
+              "path": "/docs/next/V1/01-frontend-integration/03-trade-tokens",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/04-custom-linking",
+              "path": "/docs/next/V1/01-frontend-integration/04-custom-linking",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/05-iframe-integration",
+              "path": "/docs/next/V1/01-frontend-integration/05-iframe-integration",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/06-token-listing",
+              "path": "/docs/next/V1/01-frontend-integration/06-token-listing",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/02-SDK/01-getting-started",
+              "path": "/docs/next/V1/02-SDK/01-getting-started",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/02-SDK/02-data",
+              "path": "/docs/next/V1/02-SDK/02-data",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/02-SDK/03-computation",
+              "path": "/docs/next/V1/02-SDK/03-computation",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/02-SDK/04-format",
+              "path": "/docs/next/V1/02-SDK/04-format",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/02-SDK/05-orchestration",
+              "path": "/docs/next/V1/02-SDK/05-orchestration",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/02-SDK/06-transact",
+              "path": "/docs/next/V1/02-SDK/06-transact",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/02-SDK/07-constants",
+              "path": "/docs/next/V1/02-SDK/07-constants",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/02-SDK/08-types",
+              "path": "/docs/next/V1/02-SDK/08-types",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/03-smart-contracts/01-factory",
+              "path": "/docs/next/V1/03-smart-contracts/01-factory",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/03-smart-contracts/02-exchange",
+              "path": "/docs/next/V1/03-smart-contracts/02-exchange",
+              "sidebar": "docs"
+            },
+            {
+              "id": "V1/03-smart-contracts/03-interfaces",
+              "path": "/docs/next/V1/03-smart-contracts/03-interfaces",
+              "sidebar": "docs"
+            }
+          ]
+        },
+        {
+          "name": "V1",
+          "label": "V1",
           "isLast": true,
           "path": "/docs",
           "mainDocId": "concepts/01-protocol-overview/01-how-uniswap-works",
@@ -13,272 +377,636 @@
             {
               "id": "concepts/01-protocol-overview/01-how-uniswap-works",
               "path": "/docs/",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/01-protocol-overview/02-ecosystem-participants",
               "path": "/docs/concepts/01-protocol-overview/02-ecosystem-participants",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/01-protocol-overview/03-smart-contracts",
               "path": "/docs/concepts/01-protocol-overview/03-smart-contracts",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/01-protocol-overview/04-glossary",
               "path": "/docs/concepts/01-protocol-overview/04-glossary",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/02-core-concepts/01-swaps",
               "path": "/docs/concepts/02-core-concepts/01-swaps",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/02-core-concepts/02-pools",
               "path": "/docs/concepts/02-core-concepts/02-pools",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/02-core-concepts/03-flash-swaps",
               "path": "/docs/concepts/02-core-concepts/03-flash-swaps",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/02-core-concepts/04-oracles",
               "path": "/docs/concepts/02-core-concepts/04-oracles",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/03-advanced-topics/01-fees",
               "path": "/docs/concepts/03-advanced-topics/01-fees",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/03-advanced-topics/02-pricing",
               "path": "/docs/concepts/03-advanced-topics/02-pricing",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/03-advanced-topics/03-understanding-returns",
               "path": "/docs/concepts/03-advanced-topics/03-understanding-returns",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/03-advanced-topics/04-security",
               "path": "/docs/concepts/03-advanced-topics/04-security",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/03-advanced-topics/05-math",
               "path": "/docs/concepts/03-advanced-topics/05-math",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/03-advanced-topics/06-research",
               "path": "/docs/concepts/03-advanced-topics/06-research",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/11-governance/01-overview",
               "path": "/docs/concepts/11-governance/01-overview",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/11-governance/02-process",
               "path": "/docs/concepts/11-governance/02-process",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/11-governance/03-guide-to-voting",
               "path": "/docs/concepts/11-governance/03-guide-to-voting",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/11-governance/04-glossary",
               "path": "/docs/concepts/11-governance/04-glossary",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/11-governance/05-adversarial-circumstances",
               "path": "/docs/concepts/11-governance/05-adversarial-circumstances",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "concepts/11-governance/06-governance-reference",
               "path": "/docs/concepts/11-governance/06-governance-reference",
-              "sidebar": "docs"
+              "sidebar": "version-V1/docs"
             },
             {
               "id": "guides/interface-integration/01-using-the-api",
               "path": "/docs/guides/interface-integration/01-using-the-api",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/interface-integration/02-custom-interface-linking",
               "path": "/docs/guides/interface-integration/02-custom-interface-linking",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/interface-integration/03-iframe-integration",
               "path": "/docs/guides/interface-integration/03-iframe-integration",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/javascript-sdk/01-quick-start",
               "path": "/docs/guides/javascript-sdk/01-quick-start",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/javascript-sdk/02-fetching-data",
               "path": "/docs/guides/javascript-sdk/02-fetching-data",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/javascript-sdk/03-pricing",
               "path": "/docs/guides/javascript-sdk/03-pricing",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/javascript-sdk/04-trading",
               "path": "/docs/guides/javascript-sdk/04-trading",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/javascript-sdk/05-getting-pair-addresses",
               "path": "/docs/guides/javascript-sdk/05-getting-pair-addresses",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/smart-contract-integration/01-quick-start",
               "path": "/docs/guides/",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/smart-contract-integration/02-trading-from-a-smart-contract",
               "path": "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/smart-contract-integration/03-providing-liquidity",
               "path": "/docs/guides/smart-contract-integration/03-providing-liquidity",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/smart-contract-integration/04-building-an-oracle",
               "path": "/docs/guides/smart-contract-integration/04-building-an-oracle",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/smart-contract-integration/05-using-flash-swaps",
               "path": "/docs/guides/smart-contract-integration/05-using-flash-swaps",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/smart-contract-integration/06-getting-pair-addresses",
               "path": "/docs/guides/smart-contract-integration/06-getting-pair-addresses",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "guides/smart-contract-integration/07-supporting-meta-transactions",
               "path": "/docs/guides/smart-contract-integration/07-supporting-meta-transactions",
-              "sidebar": "guides"
+              "sidebar": "version-V1/guides"
             },
             {
               "id": "reference/API/01-overview",
               "path": "/docs/reference/API/01-overview",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/API/02-entities",
               "path": "/docs/reference/API/02-entities",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/API/03-queries",
               "path": "/docs/reference/API/03-queries",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/Governance/05-governance-reference",
               "path": "/docs/reference/Governance/05-governance-reference",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/SDK/01-getting-started",
               "path": "/docs/reference/SDK/01-getting-started",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/SDK/02-token",
               "path": "/docs/reference/SDK/02-token",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/SDK/03-pair",
               "path": "/docs/reference/SDK/03-pair",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/SDK/04-route",
               "path": "/docs/reference/SDK/04-route",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/SDK/05-trade",
               "path": "/docs/reference/SDK/05-trade",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/SDK/06-fractions",
               "path": "/docs/reference/SDK/06-fractions",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/SDK/07-fetcher",
               "path": "/docs/reference/SDK/07-fetcher",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/SDK/08-other-exports",
               "path": "/docs/reference/SDK/08-other-exports",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/smart-contracts/01-factory",
               "path": "/docs/reference/",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/smart-contracts/02-pair",
               "path": "/docs/reference/smart-contracts/02-pair",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/smart-contracts/03-pair-erc-20",
               "path": "/docs/reference/smart-contracts/03-pair-erc-20",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/smart-contracts/04-library",
               "path": "/docs/reference/smart-contracts/04-library",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/smart-contracts/05-router01",
               "path": "/docs/reference/smart-contracts/05-router01",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/smart-contracts/06-router02",
               "path": "/docs/reference/smart-contracts/06-router02",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
             },
             {
               "id": "reference/smart-contracts/07-common-errors",
               "path": "/docs/reference/smart-contracts/07-common-errors",
-              "sidebar": "reference"
+              "sidebar": "version-V1/reference"
+            },
+            {
+              "id": "V1/01-frontend-integration/01-connect-to-uniswap",
+              "path": "/docs/V1/01-frontend-integration/01-connect-to-uniswap",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/02-pool-liquidity",
+              "path": "/docs/V1/01-frontend-integration/02-pool-liquidity",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/03-trade-tokens",
+              "path": "/docs/V1/01-frontend-integration/03-trade-tokens",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/04-custom-linking",
+              "path": "/docs/V1/01-frontend-integration/04-custom-linking",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/05-iframe-integration",
+              "path": "/docs/V1/01-frontend-integration/05-iframe-integration",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/01-frontend-integration/06-token-listing",
+              "path": "/docs/V1/01-frontend-integration/06-token-listing",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/02-SDK/01-getting-started",
+              "path": "/docs/V1/02-SDK/01-getting-started",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/02-SDK/02-data",
+              "path": "/docs/V1/02-SDK/02-data",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/02-SDK/03-computation",
+              "path": "/docs/V1/02-SDK/03-computation",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/02-SDK/04-format",
+              "path": "/docs/V1/02-SDK/04-format",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/02-SDK/05-orchestration",
+              "path": "/docs/V1/02-SDK/05-orchestration",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/02-SDK/06-transact",
+              "path": "/docs/V1/02-SDK/06-transact",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/02-SDK/07-constants",
+              "path": "/docs/V1/02-SDK/07-constants",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/02-SDK/08-types",
+              "path": "/docs/V1/02-SDK/08-types",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/03-smart-contracts/01-factory",
+              "path": "/docs/V1/03-smart-contracts/01-factory",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/03-smart-contracts/02-exchange",
+              "path": "/docs/V1/03-smart-contracts/02-exchange",
+              "sidebar": "version-V1/docs"
+            },
+            {
+              "id": "V1/03-smart-contracts/03-interfaces",
+              "path": "/docs/V1/03-smart-contracts/03-interfaces",
+              "sidebar": "version-V1/docs"
+            }
+          ]
+        },
+        {
+          "name": "V2",
+          "label": "V2",
+          "isLast": false,
+          "path": "/docs/V2",
+          "mainDocId": "concepts/01-protocol-overview/01-how-uniswap-works",
+          "docs": [
+            {
+              "id": "concepts/01-protocol-overview/01-how-uniswap-works",
+              "path": "/docs/V2/",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/01-protocol-overview/02-ecosystem-participants",
+              "path": "/docs/V2/concepts/01-protocol-overview/02-ecosystem-participants",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/01-protocol-overview/03-smart-contracts",
+              "path": "/docs/V2/concepts/01-protocol-overview/03-smart-contracts",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/01-protocol-overview/04-glossary",
+              "path": "/docs/V2/concepts/01-protocol-overview/04-glossary",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/02-core-concepts/01-swaps",
+              "path": "/docs/V2/concepts/02-core-concepts/01-swaps",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/02-core-concepts/02-pools",
+              "path": "/docs/V2/concepts/02-core-concepts/02-pools",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/02-core-concepts/03-flash-swaps",
+              "path": "/docs/V2/concepts/02-core-concepts/03-flash-swaps",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/02-core-concepts/04-oracles",
+              "path": "/docs/V2/concepts/02-core-concepts/04-oracles",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/01-fees",
+              "path": "/docs/V2/concepts/03-advanced-topics/01-fees",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/02-pricing",
+              "path": "/docs/V2/concepts/03-advanced-topics/02-pricing",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/03-understanding-returns",
+              "path": "/docs/V2/concepts/03-advanced-topics/03-understanding-returns",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/04-security",
+              "path": "/docs/V2/concepts/03-advanced-topics/04-security",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/05-math",
+              "path": "/docs/V2/concepts/03-advanced-topics/05-math",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/03-advanced-topics/06-research",
+              "path": "/docs/V2/concepts/03-advanced-topics/06-research",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/11-governance/01-overview",
+              "path": "/docs/V2/concepts/11-governance/01-overview",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/11-governance/02-process",
+              "path": "/docs/V2/concepts/11-governance/02-process",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/11-governance/03-guide-to-voting",
+              "path": "/docs/V2/concepts/11-governance/03-guide-to-voting",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/11-governance/04-glossary",
+              "path": "/docs/V2/concepts/11-governance/04-glossary",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/11-governance/05-adversarial-circumstances",
+              "path": "/docs/V2/concepts/11-governance/05-adversarial-circumstances",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "concepts/11-governance/06-governance-reference",
+              "path": "/docs/V2/concepts/11-governance/06-governance-reference",
+              "sidebar": "version-V2/docs"
+            },
+            {
+              "id": "guides/interface-integration/01-using-the-api",
+              "path": "/docs/V2/guides/interface-integration/01-using-the-api",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/interface-integration/02-custom-interface-linking",
+              "path": "/docs/V2/guides/interface-integration/02-custom-interface-linking",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/interface-integration/03-iframe-integration",
+              "path": "/docs/V2/guides/interface-integration/03-iframe-integration",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/javascript-sdk/01-quick-start",
+              "path": "/docs/V2/guides/javascript-sdk/01-quick-start",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/javascript-sdk/02-fetching-data",
+              "path": "/docs/V2/guides/javascript-sdk/02-fetching-data",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/javascript-sdk/03-pricing",
+              "path": "/docs/V2/guides/javascript-sdk/03-pricing",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/javascript-sdk/04-trading",
+              "path": "/docs/V2/guides/javascript-sdk/04-trading",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/javascript-sdk/05-getting-pair-addresses",
+              "path": "/docs/V2/guides/javascript-sdk/05-getting-pair-addresses",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/01-quick-start",
+              "path": "/docs/V2/guides/",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/02-trading-from-a-smart-contract",
+              "path": "/docs/V2/guides/smart-contract-integration/02-trading-from-a-smart-contract",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/03-providing-liquidity",
+              "path": "/docs/V2/guides/smart-contract-integration/03-providing-liquidity",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/04-building-an-oracle",
+              "path": "/docs/V2/guides/smart-contract-integration/04-building-an-oracle",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/05-using-flash-swaps",
+              "path": "/docs/V2/guides/smart-contract-integration/05-using-flash-swaps",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/06-getting-pair-addresses",
+              "path": "/docs/V2/guides/smart-contract-integration/06-getting-pair-addresses",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "guides/smart-contract-integration/07-supporting-meta-transactions",
+              "path": "/docs/V2/guides/smart-contract-integration/07-supporting-meta-transactions",
+              "sidebar": "version-V2/guides"
+            },
+            {
+              "id": "reference/API/01-overview",
+              "path": "/docs/V2/reference/API/01-overview",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/API/02-entities",
+              "path": "/docs/V2/reference/API/02-entities",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/API/03-queries",
+              "path": "/docs/V2/reference/API/03-queries",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/Governance/05-governance-reference",
+              "path": "/docs/V2/reference/Governance/05-governance-reference",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/SDK/01-getting-started",
+              "path": "/docs/V2/reference/SDK/01-getting-started",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/SDK/02-token",
+              "path": "/docs/V2/reference/SDK/02-token",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/SDK/03-pair",
+              "path": "/docs/V2/reference/SDK/03-pair",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/SDK/04-route",
+              "path": "/docs/V2/reference/SDK/04-route",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/SDK/05-trade",
+              "path": "/docs/V2/reference/SDK/05-trade",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/SDK/06-fractions",
+              "path": "/docs/V2/reference/SDK/06-fractions",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/SDK/07-fetcher",
+              "path": "/docs/V2/reference/SDK/07-fetcher",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/SDK/08-other-exports",
+              "path": "/docs/V2/reference/SDK/08-other-exports",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/smart-contracts/01-factory",
+              "path": "/docs/V2/reference/",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/smart-contracts/02-pair",
+              "path": "/docs/V2/reference/smart-contracts/02-pair",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/smart-contracts/03-pair-erc-20",
+              "path": "/docs/V2/reference/smart-contracts/03-pair-erc-20",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/smart-contracts/04-library",
+              "path": "/docs/V2/reference/smart-contracts/04-library",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/smart-contracts/05-router01",
+              "path": "/docs/V2/reference/smart-contracts/05-router01",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/smart-contracts/06-router02",
+              "path": "/docs/V2/reference/smart-contracts/06-router02",
+              "sidebar": "version-V2/reference"
+            },
+            {
+              "id": "reference/smart-contracts/07-common-errors",
+              "path": "/docs/V2/reference/smart-contracts/07-common-errors",
+              "sidebar": "version-V2/reference"
             }
           ]
         }

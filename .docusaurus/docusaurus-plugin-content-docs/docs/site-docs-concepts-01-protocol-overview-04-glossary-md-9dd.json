@@ -6,16 +6,16 @@
   "description": "Automated market maker",
   "source": "@site/docs/concepts/01-protocol-overview/04-glossary.md",
   "slug": "/concepts/01-protocol-overview/04-glossary",
-  "permalink": "/docs/concepts/01-protocol-overview/04-glossary",
+  "permalink": "/docs/next/concepts/01-protocol-overview/04-glossary",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/01-protocol-overview/04-glossary.md",
   "version": "current",
   "sidebar": "docs",
   "previous": {
     "title": "Smart contracts",
-    "permalink": "/docs/concepts/01-protocol-overview/03-smart-contracts"
+    "permalink": "/docs/next/concepts/01-protocol-overview/03-smart-contracts"
   },
   "next": {
     "title": "Swaps",
-    "permalink": "/docs/concepts/02-core-concepts/01-swaps"
+    "permalink": "/docs/next/concepts/02-core-concepts/01-swaps"
   }
 }

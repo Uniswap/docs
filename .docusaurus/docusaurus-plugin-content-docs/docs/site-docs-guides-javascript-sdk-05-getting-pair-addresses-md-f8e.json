@@ -6,12 +6,12 @@
   "description": "getPair",
   "source": "@site/docs/guides/javascript-sdk/05-getting-pair-addresses.md",
   "slug": "/guides/javascript-sdk/05-getting-pair-addresses",
-  "permalink": "/docs/guides/javascript-sdk/05-getting-pair-addresses",
+  "permalink": "/docs/next/guides/javascript-sdk/05-getting-pair-addresses",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/05-getting-pair-addresses.md",
   "version": "current",
   "sidebar": "guides",
   "previous": {
     "title": "Trading",
-    "permalink": "/docs/guides/javascript-sdk/04-trading"
+    "permalink": "/docs/next/guides/javascript-sdk/04-trading"
   }
 }

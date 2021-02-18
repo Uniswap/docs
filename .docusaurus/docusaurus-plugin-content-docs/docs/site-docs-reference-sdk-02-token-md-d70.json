@@ -6,16 +6,16 @@
   "description": "`typescript",
   "source": "@site/docs/reference/SDK/02-token.md",
   "slug": "/reference/SDK/02-token",
-  "permalink": "/docs/reference/SDK/02-token",
+  "permalink": "/docs/next/reference/SDK/02-token",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/SDK/02-token.md",
   "version": "current",
   "sidebar": "reference",
   "previous": {
     "title": "Getting Started",
-    "permalink": "/docs/reference/SDK/01-getting-started"
+    "permalink": "/docs/next/reference/SDK/01-getting-started"
   },
   "next": {
     "title": "Pair",
-    "permalink": "/docs/reference/SDK/03-pair"
+    "permalink": "/docs/next/reference/SDK/03-pair"
   }
 }

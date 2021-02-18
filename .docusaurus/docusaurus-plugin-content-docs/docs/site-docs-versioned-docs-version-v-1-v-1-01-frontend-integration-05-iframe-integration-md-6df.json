@@ -1,0 +1,21 @@
+{
+  "unversionedId": "V1/01-frontend-integration/05-iframe-integration",
+  "id": "version-V1/V1/01-frontend-integration/05-iframe-integration",
+  "isDocsHomePage": false,
+  "title": "Iframe Integration",
+  "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
+  "source": "@site/docs_versioned_docs/version-V1/V1/01-frontend-integration/05-iframe-integration.md",
+  "slug": "/V1/01-frontend-integration/05-iframe-integration",
+  "permalink": "/docs/V1/01-frontend-integration/05-iframe-integration",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V1/V1/01-frontend-integration/05-iframe-integration.md",
+  "version": "V1",
+  "sidebar": "version-V1/docs",
+  "previous": {
+    "title": "Custom Linking",
+    "permalink": "/docs/V1/01-frontend-integration/04-custom-linking"
+  },
+  "next": {
+    "title": "Token Listing",
+    "permalink": "/docs/V1/01-frontend-integration/06-token-listing"
+  }
+}

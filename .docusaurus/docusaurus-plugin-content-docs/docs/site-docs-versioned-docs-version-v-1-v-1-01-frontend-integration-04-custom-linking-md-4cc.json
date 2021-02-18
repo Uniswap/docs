@@ -1,0 +1,21 @@
+{
+  "unversionedId": "V1/01-frontend-integration/04-custom-linking",
+  "id": "version-V1/V1/01-frontend-integration/04-custom-linking",
+  "isDocsHomePage": false,
+  "title": "Custom Linking",
+  "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
+  "source": "@site/docs_versioned_docs/version-V1/V1/01-frontend-integration/04-custom-linking.md",
+  "slug": "/V1/01-frontend-integration/04-custom-linking",
+  "permalink": "/docs/V1/01-frontend-integration/04-custom-linking",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V1/V1/01-frontend-integration/04-custom-linking.md",
+  "version": "V1",
+  "sidebar": "version-V1/docs",
+  "previous": {
+    "title": "Trade Tokens",
+    "permalink": "/docs/V1/01-frontend-integration/03-trade-tokens"
+  },
+  "next": {
+    "title": "Iframe Integration",
+    "permalink": "/docs/V1/01-frontend-integration/05-iframe-integration"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "unversionedId": "guides/smart-contract-integration/01-quick-start",
+  "id": "version-V1/guides/smart-contract-integration/01-quick-start",
+  "isDocsHomePage": false,
+  "title": "Smart Contract Quick start",
+  "description": "Developing smart contracts for Ethereum involves a bevy of off-chain tools used for producing and testing bytecode",
+  "source": "@site/docs_versioned_docs/version-V1/guides/smart-contract-integration/01-quick-start.md",
+  "slug": "/guides/",
+  "permalink": "/docs/guides/",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V1/guides/smart-contract-integration/01-quick-start.md",
+  "version": "V1",
+  "sidebar": "version-V1/guides",
+  "next": {
+    "title": "Implement a Swap",
+    "permalink": "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract"
+  }
+}

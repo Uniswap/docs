@@ -6,16 +6,16 @@
   "description": "Uniswap can be used within other sites as an iframe. An iframe shows an exact version of the uniswap frontend site and can have custom prefilled settings.",
   "source": "@site/docs/guides/interface-integration/03-iframe-integration.md",
   "slug": "/guides/interface-integration/03-iframe-integration",
-  "permalink": "/docs/guides/interface-integration/03-iframe-integration",
+  "permalink": "/docs/next/guides/interface-integration/03-iframe-integration",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/interface-integration/03-iframe-integration.md",
   "version": "current",
   "sidebar": "guides",
   "previous": {
     "title": "Custom Linking",
-    "permalink": "/docs/guides/interface-integration/02-custom-interface-linking"
+    "permalink": "/docs/next/guides/interface-integration/02-custom-interface-linking"
   },
   "next": {
     "title": "SDK Quick start",
-    "permalink": "/docs/guides/javascript-sdk/01-quick-start"
+    "permalink": "/docs/next/guides/javascript-sdk/01-quick-start"
   }
 }

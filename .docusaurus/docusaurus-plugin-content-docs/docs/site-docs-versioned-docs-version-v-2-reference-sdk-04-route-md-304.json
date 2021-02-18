@@ -1,0 +1,21 @@
+{
+  "unversionedId": "reference/SDK/04-route",
+  "id": "version-V2/reference/SDK/04-route",
+  "isDocsHomePage": false,
+  "title": "Route",
+  "description": "`typescript",
+  "source": "@site/docs_versioned_docs/version-V2/reference/SDK/04-route.md",
+  "slug": "/reference/SDK/04-route",
+  "permalink": "/docs/V2/reference/SDK/04-route",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V2/reference/SDK/04-route.md",
+  "version": "V2",
+  "sidebar": "version-V2/reference",
+  "previous": {
+    "title": "Pair",
+    "permalink": "/docs/V2/reference/SDK/03-pair"
+  },
+  "next": {
+    "title": "Trade",
+    "permalink": "/docs/V2/reference/SDK/05-trade"
+  }
+}

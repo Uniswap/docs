@@ -6,16 +6,16 @@
   "description": "Code",
   "source": "@site/docs/reference/smart-contracts/01-factory.md",
   "slug": "/reference/",
-  "permalink": "/docs/reference/",
+  "permalink": "/docs/next/reference/",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/reference/smart-contracts/01-factory.md",
   "version": "current",
   "sidebar": "reference",
   "previous": {
     "title": "Governance Reference",
-    "permalink": "/docs/reference/Governance/05-governance-reference"
+    "permalink": "/docs/next/reference/Governance/05-governance-reference"
   },
   "next": {
     "title": "Pair",
-    "permalink": "/docs/reference/smart-contracts/02-pair"
+    "permalink": "/docs/next/reference/smart-contracts/02-pair"
   }
 }

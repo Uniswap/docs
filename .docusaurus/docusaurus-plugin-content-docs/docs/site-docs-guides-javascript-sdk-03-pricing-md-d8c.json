@@ -6,16 +6,16 @@
   "description": "Looking for a quickstart?",
   "source": "@site/docs/guides/javascript-sdk/03-pricing.md",
   "slug": "/guides/javascript-sdk/03-pricing",
-  "permalink": "/docs/guides/javascript-sdk/03-pricing",
+  "permalink": "/docs/next/guides/javascript-sdk/03-pricing",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/javascript-sdk/03-pricing.md",
   "version": "current",
   "sidebar": "guides",
   "previous": {
     "title": "Fetching Data",
-    "permalink": "/docs/guides/javascript-sdk/02-fetching-data"
+    "permalink": "/docs/next/guides/javascript-sdk/02-fetching-data"
   },
   "next": {
     "title": "Trading",
-    "permalink": "/docs/guides/javascript-sdk/04-trading"
+    "permalink": "/docs/next/guides/javascript-sdk/04-trading"
   }
 }

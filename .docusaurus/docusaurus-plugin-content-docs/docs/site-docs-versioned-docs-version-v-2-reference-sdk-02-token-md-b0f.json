@@ -1,0 +1,21 @@
+{
+  "unversionedId": "reference/SDK/02-token",
+  "id": "version-V2/reference/SDK/02-token",
+  "isDocsHomePage": false,
+  "title": "Token",
+  "description": "`typescript",
+  "source": "@site/docs_versioned_docs/version-V2/reference/SDK/02-token.md",
+  "slug": "/reference/SDK/02-token",
+  "permalink": "/docs/V2/reference/SDK/02-token",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V2/reference/SDK/02-token.md",
+  "version": "V2",
+  "sidebar": "version-V2/reference",
+  "previous": {
+    "title": "Getting Started",
+    "permalink": "/docs/V2/reference/SDK/01-getting-started"
+  },
+  "next": {
+    "title": "Pair",
+    "permalink": "/docs/V2/reference/SDK/03-pair"
+  }
+}

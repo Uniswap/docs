@@ -1,0 +1,21 @@
+{
+  "unversionedId": "reference/SDK/03-pair",
+  "id": "version-V2/reference/SDK/03-pair",
+  "isDocsHomePage": false,
+  "title": "Pair",
+  "description": "`typescript",
+  "source": "@site/docs_versioned_docs/version-V2/reference/SDK/03-pair.md",
+  "slug": "/reference/SDK/03-pair",
+  "permalink": "/docs/V2/reference/SDK/03-pair",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V2/reference/SDK/03-pair.md",
+  "version": "V2",
+  "sidebar": "version-V2/reference",
+  "previous": {
+    "title": "Token",
+    "permalink": "/docs/V2/reference/SDK/02-token"
+  },
+  "next": {
+    "title": "Route",
+    "permalink": "/docs/V2/reference/SDK/04-route"
+  }
+}

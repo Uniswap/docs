@@ -6,16 +6,16 @@
   "description": "Uniswap incentivizes users to add liquidity to trading pools by rewarding providers with the fees generated when other users trade with those pools. Market making, in general, is a complex activity. There is a risk of losing money during large and sustained movement in the underlying asset price compared to simply holding an asset.",
   "source": "@site/docs/concepts/03-advanced-topics/03-understanding-returns.md",
   "slug": "/concepts/03-advanced-topics/03-understanding-returns",
-  "permalink": "/docs/concepts/03-advanced-topics/03-understanding-returns",
+  "permalink": "/docs/next/concepts/03-advanced-topics/03-understanding-returns",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/concepts/03-advanced-topics/03-understanding-returns.md",
   "version": "current",
   "sidebar": "docs",
   "previous": {
     "title": "Pricing",
-    "permalink": "/docs/concepts/03-advanced-topics/02-pricing"
+    "permalink": "/docs/next/concepts/03-advanced-topics/02-pricing"
   },
   "next": {
     "title": "Security",
-    "permalink": "/docs/concepts/03-advanced-topics/04-security"
+    "permalink": "/docs/next/concepts/03-advanced-topics/04-security"
   }
 }

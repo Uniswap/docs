@@ -1,0 +1,21 @@
+{
+  "unversionedId": "concepts/02-core-concepts/01-swaps",
+  "id": "version-V1/concepts/02-core-concepts/01-swaps",
+  "isDocsHomePage": false,
+  "title": "Swaps",
+  "description": "Introduction",
+  "source": "@site/docs_versioned_docs/version-V1/concepts/02-core-concepts/01-swaps.md",
+  "slug": "/concepts/02-core-concepts/01-swaps",
+  "permalink": "/docs/concepts/02-core-concepts/01-swaps",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-V1/concepts/02-core-concepts/01-swaps.md",
+  "version": "V1",
+  "sidebar": "version-V1/docs",
+  "previous": {
+    "title": "Glossary",
+    "permalink": "/docs/concepts/01-protocol-overview/04-glossary"
+  },
+  "next": {
+    "title": "Pools",
+    "permalink": "/docs/concepts/02-core-concepts/02-pools"
+  }
+}

@@ -6,12 +6,12 @@
   "description": "Developing smart contracts for Ethereum involves a bevy of off-chain tools used for producing and testing bytecode",
   "source": "@site/docs/guides/smart-contract-integration/01-quick-start.md",
   "slug": "/guides/",
-  "permalink": "/docs/guides/",
+  "permalink": "/docs/next/guides/",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/01-quick-start.md",
   "version": "current",
   "sidebar": "guides",
   "next": {
     "title": "Implement a Swap",
-    "permalink": "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract"
+    "permalink": "/docs/next/guides/smart-contract-integration/02-trading-from-a-smart-contract"
   }
 }

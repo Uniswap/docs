@@ -6,16 +6,16 @@
   "description": "Flash swaps are an integral feature of Uniswap V2. In fact, under the hood, all swaps are actually flash swaps! This simply means that pair contracts send output tokens to the recipient before enforcing that enough input tokens have been received. This is slightly atypical, as one might expect a pair to ensure it's received payment before delivery. However, because Ethereum transactions are atomic, we can roll back the entire swap if it turns out that the contract hasn't received enough tokens to make itself whole by the end of the transaction.",
   "source": "@site/docs/guides/smart-contract-integration/05-using-flash-swaps.md",
   "slug": "/guides/smart-contract-integration/05-using-flash-swaps",
-  "permalink": "/docs/guides/smart-contract-integration/05-using-flash-swaps",
+  "permalink": "/docs/next/guides/smart-contract-integration/05-using-flash-swaps",
   "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/guides/smart-contract-integration/05-using-flash-swaps.md",
   "version": "current",
   "sidebar": "guides",
   "previous": {
     "title": "Building an Oracle",
-    "permalink": "/docs/guides/smart-contract-integration/04-building-an-oracle"
+    "permalink": "/docs/next/guides/smart-contract-integration/04-building-an-oracle"
   },
   "next": {
     "title": "Pair Addresses",
-    "permalink": "/docs/guides/smart-contract-integration/06-getting-pair-addresses"
+    "permalink": "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses"
   }
 }

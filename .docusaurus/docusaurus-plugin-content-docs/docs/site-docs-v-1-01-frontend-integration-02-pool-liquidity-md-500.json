@@ -1,0 +1,21 @@
+{
+  "unversionedId": "V1/01-frontend-integration/02-pool-liquidity",
+  "id": "V1/01-frontend-integration/02-pool-liquidity",
+  "isDocsHomePage": false,
+  "title": "Pool Liquidity",
+  "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
+  "source": "@site/docs/V1/01-frontend-integration/02-pool-liquidity.md",
+  "slug": "/V1/01-frontend-integration/02-pool-liquidity",
+  "permalink": "/docs/next/V1/01-frontend-integration/02-pool-liquidity",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs/V1/01-frontend-integration/02-pool-liquidity.md",
+  "version": "current",
+  "sidebar": "docs",
+  "previous": {
+    "title": "Connect to Uniswap",
+    "permalink": "/docs/next/V1/01-frontend-integration/01-connect-to-uniswap"
+  },
+  "next": {
+    "title": "Trade Tokens",
+    "permalink": "/docs/next/V1/01-frontend-integration/03-trade-tokens"
+  }
+}

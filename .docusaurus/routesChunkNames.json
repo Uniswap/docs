@@ -21,224 +21,800 @@
   "/__docusaurus/debug/routes-244": {
     "component": "component---theme-debug-routes-946-699"
   },
-  "/docs-3b8": {
+  "/docs/next-b48": {
     "component": "component---theme-doc-page-1-be-9be",
-    "versionMetadata": "versionMetadata---docs-0-b-3-5c5"
+    "versionMetadata": "versionMetadata---docs-next-0-b-3-2ba"
   },
-  "/docs/-f23": {
+  "/docs/next/-156": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-76-f-de3"
+    "content": "content---docs-next-76-f-f33"
   },
-  "/docs/concepts/01-protocol-overview/02-ecosystem-participants-04b": {
+  "/docs/next/concepts/01-protocol-overview/02-ecosystem-participants-980": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-01-protocol-overview-02-ecosystem-participantse-54-429"
+    "content": "content---docs-next-concepts-01-protocol-overview-02-ecosystem-participantse-54-c77"
   },
-  "/docs/concepts/01-protocol-overview/03-smart-contracts-722": {
+  "/docs/next/concepts/01-protocol-overview/03-smart-contracts-a32": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-01-protocol-overview-03-smart-contracts-4-ac-e0a"
+    "content": "content---docs-next-concepts-01-protocol-overview-03-smart-contracts-4-ac-361"
   },
-  "/docs/concepts/01-protocol-overview/04-glossary-b66": {
+  "/docs/next/concepts/01-protocol-overview/04-glossary-50d": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-01-protocol-overview-04-glossary-9-dd-5f7"
+    "content": "content---docs-next-concepts-01-protocol-overview-04-glossary-9-dd-ef5"
   },
-  "/docs/concepts/02-core-concepts/01-swaps-333": {
+  "/docs/next/concepts/02-core-concepts/01-swaps-b62": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-02-core-concepts-01-swapsf-00-470"
+    "content": "content---docs-next-concepts-02-core-concepts-01-swapsf-00-bbc"
   },
-  "/docs/concepts/02-core-concepts/02-pools-10e": {
+  "/docs/next/concepts/02-core-concepts/02-pools-478": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-02-core-concepts-02-poolsa-9-c-a47"
+    "content": "content---docs-next-concepts-02-core-concepts-02-poolsa-9-c-4b6"
   },
-  "/docs/concepts/02-core-concepts/03-flash-swaps-c20": {
+  "/docs/next/concepts/02-core-concepts/03-flash-swaps-e92": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-02-core-concepts-03-flash-swapsffa-d0d"
+    "content": "content---docs-next-concepts-02-core-concepts-03-flash-swapsffa-2f1"
   },
-  "/docs/concepts/02-core-concepts/04-oracles-dc6": {
+  "/docs/next/concepts/02-core-concepts/04-oracles-96d": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-02-core-concepts-04-oracles-783-40a"
+    "content": "content---docs-next-concepts-02-core-concepts-04-oracles-783-cae"
   },
-  "/docs/concepts/03-advanced-topics/01-fees-60b": {
+  "/docs/next/concepts/03-advanced-topics/01-fees-881": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-01-fees-3-e-6-f0e"
+    "content": "content---docs-next-concepts-03-advanced-topics-01-fees-3-e-6-163"
   },
-  "/docs/concepts/03-advanced-topics/02-pricing-cc7": {
+  "/docs/next/concepts/03-advanced-topics/02-pricing-19c": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-02-pricing-1-ab-f76"
+    "content": "content---docs-next-concepts-03-advanced-topics-02-pricing-1-ab-a68"
   },
-  "/docs/concepts/03-advanced-topics/03-understanding-returns-363": {
+  "/docs/next/concepts/03-advanced-topics/03-understanding-returns-fef": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-03-understanding-returnsf-07-148"
+    "content": "content---docs-next-concepts-03-advanced-topics-03-understanding-returnsf-07-017"
   },
-  "/docs/concepts/03-advanced-topics/04-security-959": {
+  "/docs/next/concepts/03-advanced-topics/04-security-56f": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-04-security-76-f-410"
+    "content": "content---docs-next-concepts-03-advanced-topics-04-security-76-f-665"
   },
-  "/docs/concepts/03-advanced-topics/05-math-be4": {
+  "/docs/next/concepts/03-advanced-topics/05-math-bdf": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-05-math-603-143"
+    "content": "content---docs-next-concepts-03-advanced-topics-05-math-603-f5b"
   },
-  "/docs/concepts/03-advanced-topics/06-research-ca1": {
+  "/docs/next/concepts/03-advanced-topics/06-research-663": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-03-advanced-topics-06-researchd-6-f-49e"
+    "content": "content---docs-next-concepts-03-advanced-topics-06-researchd-6-f-d41"
   },
-  "/docs/concepts/11-governance/01-overview-c67": {
+  "/docs/next/concepts/11-governance/01-overview-38a": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-01-overviewbc-1-a59"
+    "content": "content---docs-next-concepts-11-governance-01-overviewbc-1-ab7"
   },
-  "/docs/concepts/11-governance/02-process-6c4": {
+  "/docs/next/concepts/11-governance/02-process-6c3": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-02-processffd-c84"
+    "content": "content---docs-next-concepts-11-governance-02-processffd-fcd"
   },
-  "/docs/concepts/11-governance/03-guide-to-voting-51a": {
+  "/docs/next/concepts/11-governance/03-guide-to-voting-c37": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-03-guide-to-voting-779-ddd"
+    "content": "content---docs-next-concepts-11-governance-03-guide-to-voting-779-918"
   },
-  "/docs/concepts/11-governance/04-glossary-48a": {
+  "/docs/next/concepts/11-governance/04-glossary-487": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-04-glossary-93-f-8dc"
+    "content": "content---docs-next-concepts-11-governance-04-glossary-93-f-40a"
   },
-  "/docs/concepts/11-governance/05-adversarial-circumstances-68e": {
+  "/docs/next/concepts/11-governance/05-adversarial-circumstances-6c8": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-05-adversarial-circumstances-597-fe8"
+    "content": "content---docs-next-concepts-11-governance-05-adversarial-circumstances-597-6cf"
   },
-  "/docs/concepts/11-governance/06-governance-reference-53e": {
+  "/docs/next/concepts/11-governance/06-governance-reference-390": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-concepts-11-governance-06-governance-referencedab-2ca"
+    "content": "content---docs-next-concepts-11-governance-06-governance-referencedab-a8c"
   },
-  "/docs/guides/-a2a": {
+  "/docs/next/guides/-aad": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-023-081"
+    "content": "content---docs-next-guides-023-f22"
   },
-  "/docs/guides/interface-integration/01-using-the-api-141": {
+  "/docs/next/guides/interface-integration/01-using-the-api-bcd": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-interface-integration-01-using-the-apibc-2-991"
+    "content": "content---docs-next-guides-interface-integration-01-using-the-apibc-2-c46"
   },
-  "/docs/guides/interface-integration/02-custom-interface-linking-648": {
+  "/docs/next/guides/interface-integration/02-custom-interface-linking-ee1": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-interface-integration-02-custom-interface-linking-603-57a"
+    "content": "content---docs-next-guides-interface-integration-02-custom-interface-linking-603-5f1"
   },
-  "/docs/guides/interface-integration/03-iframe-integration-b9e": {
+  "/docs/next/guides/interface-integration/03-iframe-integration-a1d": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-interface-integration-03-iframe-integration-4-ea-111"
+    "content": "content---docs-next-guides-interface-integration-03-iframe-integration-4-ea-ce6"
   },
-  "/docs/guides/javascript-sdk/01-quick-start-e55": {
+  "/docs/next/guides/javascript-sdk/01-quick-start-f72": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-01-quick-start-1-d-9-e7b"
+    "content": "content---docs-next-guides-javascript-sdk-01-quick-start-1-d-9-e03"
   },
-  "/docs/guides/javascript-sdk/02-fetching-data-4d2": {
+  "/docs/next/guides/javascript-sdk/02-fetching-data-766": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-02-fetching-datacf-7-5af"
+    "content": "content---docs-next-guides-javascript-sdk-02-fetching-datacf-7-30e"
   },
-  "/docs/guides/javascript-sdk/03-pricing-7e2": {
+  "/docs/next/guides/javascript-sdk/03-pricing-086": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-03-pricingd-8-c-76b"
+    "content": "content---docs-next-guides-javascript-sdk-03-pricingd-8-c-bdb"
   },
-  "/docs/guides/javascript-sdk/04-trading-725": {
+  "/docs/next/guides/javascript-sdk/04-trading-49e": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-04-tradingf-7-d-f47"
+    "content": "content---docs-next-guides-javascript-sdk-04-tradingf-7-d-766"
   },
-  "/docs/guides/javascript-sdk/05-getting-pair-addresses-799": {
+  "/docs/next/guides/javascript-sdk/05-getting-pair-addresses-932": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-javascript-sdk-05-getting-pair-addressesf-8-e-3c1"
+    "content": "content---docs-next-guides-javascript-sdk-05-getting-pair-addressesf-8-e-8d3"
   },
-  "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract-6dd": {
+  "/docs/next/guides/smart-contract-integration/02-trading-from-a-smart-contract-3e9": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-02-trading-from-a-smart-contract-69-e-fc8"
+    "content": "content---docs-next-guides-smart-contract-integration-02-trading-from-a-smart-contract-69-e-426"
   },
-  "/docs/guides/smart-contract-integration/03-providing-liquidity-457": {
+  "/docs/next/guides/smart-contract-integration/03-providing-liquidity-48e": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-03-providing-liquiditye-2-c-7e1"
+    "content": "content---docs-next-guides-smart-contract-integration-03-providing-liquiditye-2-c-36a"
   },
-  "/docs/guides/smart-contract-integration/04-building-an-oracle-b69": {
+  "/docs/next/guides/smart-contract-integration/04-building-an-oracle-469": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-04-building-an-oracle-833-998"
+    "content": "content---docs-next-guides-smart-contract-integration-04-building-an-oracle-833-5ae"
   },
-  "/docs/guides/smart-contract-integration/05-using-flash-swaps-753": {
+  "/docs/next/guides/smart-contract-integration/05-using-flash-swaps-7f3": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-05-using-flash-swaps-5-dd-509"
+    "content": "content---docs-next-guides-smart-contract-integration-05-using-flash-swaps-5-dd-dee"
   },
-  "/docs/guides/smart-contract-integration/06-getting-pair-addresses-5ca": {
+  "/docs/next/guides/smart-contract-integration/06-getting-pair-addresses-e4c": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-06-getting-pair-addresses-54-b-9d2"
+    "content": "content---docs-next-guides-smart-contract-integration-06-getting-pair-addresses-54-b-2d7"
   },
-  "/docs/guides/smart-contract-integration/07-supporting-meta-transactions-129": {
+  "/docs/next/guides/smart-contract-integration/07-supporting-meta-transactions-94b": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-guides-smart-contract-integration-07-supporting-meta-transactions-890-5b7"
+    "content": "content---docs-next-guides-smart-contract-integration-07-supporting-meta-transactions-890-6a3"
   },
-  "/docs/reference/-553": {
+  "/docs/next/reference/-8df": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-470-fda"
+    "content": "content---docs-next-reference-470-fb3"
   },
-  "/docs/reference/API/01-overview-1f1": {
+  "/docs/next/reference/API/01-overview-afc": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-api-01-overview-61-c-d32"
+    "content": "content---docs-next-reference-api-01-overview-61-c-8e0"
   },
-  "/docs/reference/API/02-entities-1ff": {
+  "/docs/next/reference/API/02-entities-a1d": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-api-02-entities-52-a-d46"
+    "content": "content---docs-next-reference-api-02-entities-52-a-947"
   },
-  "/docs/reference/API/03-queries-91d": {
+  "/docs/next/reference/API/03-queries-067": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-api-03-queries-425-8f0"
+    "content": "content---docs-next-reference-api-03-queries-425-4da"
   },
-  "/docs/reference/Governance/05-governance-reference-afa": {
+  "/docs/next/reference/Governance/05-governance-reference-640": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-governance-05-governance-referencec-0-e-d1e"
+    "content": "content---docs-next-reference-governance-05-governance-referencec-0-e-6a1"
   },
-  "/docs/reference/SDK/01-getting-started-d5d": {
+  "/docs/next/reference/SDK/01-getting-started-c7c": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-01-getting-started-7-a-0-c91"
+    "content": "content---docs-next-reference-sdk-01-getting-started-7-a-0-219"
   },
-  "/docs/reference/SDK/02-token-d7e": {
+  "/docs/next/reference/SDK/02-token-c1e": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-02-tokend-70-fa6"
+    "content": "content---docs-next-reference-sdk-02-tokend-70-6c8"
   },
-  "/docs/reference/SDK/03-pair-23f": {
+  "/docs/next/reference/SDK/03-pair-a26": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-03-pair-0-c-2-912"
+    "content": "content---docs-next-reference-sdk-03-pair-0-c-2-d88"
   },
-  "/docs/reference/SDK/04-route-de5": {
+  "/docs/next/reference/SDK/04-route-7a0": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-04-routebb-3-440"
+    "content": "content---docs-next-reference-sdk-04-routebb-3-96e"
   },
-  "/docs/reference/SDK/05-trade-26f": {
+  "/docs/next/reference/SDK/05-trade-649": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-05-tradedea-6e3"
+    "content": "content---docs-next-reference-sdk-05-tradedea-8a0"
   },
-  "/docs/reference/SDK/06-fractions-481": {
+  "/docs/next/reference/SDK/06-fractions-15e": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-06-fractions-3-bf-88e"
+    "content": "content---docs-next-reference-sdk-06-fractions-3-bf-18f"
   },
-  "/docs/reference/SDK/07-fetcher-3c4": {
+  "/docs/next/reference/SDK/07-fetcher-ecf": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-07-fetcher-93-b-61f"
+    "content": "content---docs-next-reference-sdk-07-fetcher-93-b-36a"
   },
-  "/docs/reference/SDK/08-other-exports-790": {
+  "/docs/next/reference/SDK/08-other-exports-108": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-sdk-08-other-exportsf-50-978"
+    "content": "content---docs-next-reference-sdk-08-other-exportsf-50-747"
   },
-  "/docs/reference/smart-contracts/02-pair-b03": {
+  "/docs/next/reference/smart-contracts/02-pair-ff4": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-02-pairdcd-34e"
+    "content": "content---docs-next-reference-smart-contracts-02-pairdcd-ac3"
   },
-  "/docs/reference/smart-contracts/03-pair-erc-20-bd0": {
+  "/docs/next/reference/smart-contracts/03-pair-erc-20-9b8": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-03-pair-erc-20-d-72-ee5"
+    "content": "content---docs-next-reference-smart-contracts-03-pair-erc-20-d-72-cf9"
   },
-  "/docs/reference/smart-contracts/04-library-faf": {
+  "/docs/next/reference/smart-contracts/04-library-666": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-04-library-017-daf"
+    "content": "content---docs-next-reference-smart-contracts-04-library-017-b9e"
   },
-  "/docs/reference/smart-contracts/05-router01-3d8": {
+  "/docs/next/reference/smart-contracts/05-router01-803": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-05-router-01-ebb-1d7"
+    "content": "content---docs-next-reference-smart-contracts-05-router-01-ebb-56b"
   },
-  "/docs/reference/smart-contracts/06-router02-d99": {
+  "/docs/next/reference/smart-contracts/06-router02-6dc": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-06-router-02632-f93"
+    "content": "content---docs-next-reference-smart-contracts-06-router-02632-489"
   },
-  "/docs/reference/smart-contracts/07-common-errors-af0": {
+  "/docs/next/reference/smart-contracts/07-common-errors-9eb": {
     "component": "component---theme-doc-item-178-a40",
-    "content": "content---docs-reference-smart-contracts-07-common-errorsba-9-79c"
+    "content": "content---docs-next-reference-smart-contracts-07-common-errorsba-9-257"
+  },
+  "/docs/next/V1/01-frontend-integration/01-connect-to-uniswap-0b8": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-01-frontend-integration-01-connect-to-uniswapeda-2fc"
+  },
+  "/docs/next/V1/01-frontend-integration/02-pool-liquidity-de6": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-01-frontend-integration-02-pool-liquidity-500-83b"
+  },
+  "/docs/next/V1/01-frontend-integration/03-trade-tokens-f94": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-01-frontend-integration-03-trade-tokens-471-448"
+  },
+  "/docs/next/V1/01-frontend-integration/04-custom-linking-501": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-01-frontend-integration-04-custom-linking-24-f-47f"
+  },
+  "/docs/next/V1/01-frontend-integration/05-iframe-integration-406": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-01-frontend-integration-05-iframe-integrationd-85-9e9"
+  },
+  "/docs/next/V1/01-frontend-integration/06-token-listing-bae": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-01-frontend-integration-06-token-listing-800-cd5"
+  },
+  "/docs/next/V1/02-SDK/01-getting-started-f2a": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-02-sdk-01-getting-startedbe-3-a71"
+  },
+  "/docs/next/V1/02-SDK/02-data-d30": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-02-sdk-02-data-8-a-0-214"
+  },
+  "/docs/next/V1/02-SDK/03-computation-c57": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-02-sdk-03-computationae-0-e55"
+  },
+  "/docs/next/V1/02-SDK/04-format-2cc": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-02-sdk-04-format-94-e-0b8"
+  },
+  "/docs/next/V1/02-SDK/05-orchestration-ad0": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-02-sdk-05-orchestration-343-655"
+  },
+  "/docs/next/V1/02-SDK/06-transact-f91": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-02-sdk-06-transacte-19-5a5"
+  },
+  "/docs/next/V1/02-SDK/07-constants-1c3": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-02-sdk-07-constantsce-2-c44"
+  },
+  "/docs/next/V1/02-SDK/08-types-371": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-02-sdk-08-types-5-a-7-af8"
+  },
+  "/docs/next/V1/03-smart-contracts/01-factory-836": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-03-smart-contracts-01-factory-456-5e1"
+  },
+  "/docs/next/V1/03-smart-contracts/02-exchange-633": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-03-smart-contracts-02-exchangeacc-2e0"
+  },
+  "/docs/next/V1/03-smart-contracts/03-interfaces-833": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-next-v-1-03-smart-contracts-03-interfacesdc-8-589"
+  },
+  "/docs/V2-245": {
+    "component": "component---theme-doc-page-1-be-9be",
+    "versionMetadata": "versionMetadata---docs-v-2424-035"
+  },
+  "/docs/V2/-7d6": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-f-7-a-3df"
+  },
+  "/docs/V2/concepts/01-protocol-overview/02-ecosystem-participants-582": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-01-protocol-overview-02-ecosystem-participantse-79-041"
+  },
+  "/docs/V2/concepts/01-protocol-overview/03-smart-contracts-abd": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-01-protocol-overview-03-smart-contractsba-6-b9d"
+  },
+  "/docs/V2/concepts/01-protocol-overview/04-glossary-9fc": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-01-protocol-overview-04-glossaryc-4-b-8f8"
+  },
+  "/docs/V2/concepts/02-core-concepts/01-swaps-ad7": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-02-core-concepts-01-swaps-5-d-0-dd0"
+  },
+  "/docs/V2/concepts/02-core-concepts/02-pools-fbd": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-02-core-concepts-02-poolsc-3-a-955"
+  },
+  "/docs/V2/concepts/02-core-concepts/03-flash-swaps-ed0": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-02-core-concepts-03-flash-swapsdf-0-8f3"
+  },
+  "/docs/V2/concepts/02-core-concepts/04-oracles-c17": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-02-core-concepts-04-oracles-875-014"
+  },
+  "/docs/V2/concepts/03-advanced-topics/01-fees-ce9": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-03-advanced-topics-01-fees-5-cd-b90"
+  },
+  "/docs/V2/concepts/03-advanced-topics/02-pricing-aac": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-03-advanced-topics-02-pricing-9-f-2-dae"
+  },
+  "/docs/V2/concepts/03-advanced-topics/03-understanding-returns-b97": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-03-advanced-topics-03-understanding-returns-561-327"
+  },
+  "/docs/V2/concepts/03-advanced-topics/04-security-f1e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-03-advanced-topics-04-security-40-e-55c"
+  },
+  "/docs/V2/concepts/03-advanced-topics/05-math-7b8": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-03-advanced-topics-05-mathf-10-77a"
+  },
+  "/docs/V2/concepts/03-advanced-topics/06-research-ccc": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-03-advanced-topics-06-research-2-f-6-a59"
+  },
+  "/docs/V2/concepts/11-governance/01-overview-18f": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-11-governance-01-overviewc-99-149"
+  },
+  "/docs/V2/concepts/11-governance/02-process-190": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-11-governance-02-process-1-f-2-dfc"
+  },
+  "/docs/V2/concepts/11-governance/03-guide-to-voting-47e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-11-governance-03-guide-to-votingd-21-98f"
+  },
+  "/docs/V2/concepts/11-governance/04-glossary-f4e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-11-governance-04-glossaryf-18-d7c"
+  },
+  "/docs/V2/concepts/11-governance/05-adversarial-circumstances-459": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-11-governance-05-adversarial-circumstances-1-f-8-df9"
+  },
+  "/docs/V2/concepts/11-governance/06-governance-reference-b95": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-concepts-11-governance-06-governance-referencee-31-320"
+  },
+  "/docs/V2/guides/-f8c": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-c-3-c-255"
+  },
+  "/docs/V2/guides/interface-integration/01-using-the-api-a8d": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-interface-integration-01-using-the-apie-44-7f9"
+  },
+  "/docs/V2/guides/interface-integration/02-custom-interface-linking-99c": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-interface-integration-02-custom-interface-linking-6-f-4-086"
+  },
+  "/docs/V2/guides/interface-integration/03-iframe-integration-08e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-interface-integration-03-iframe-integrationd-14-a55"
+  },
+  "/docs/V2/guides/javascript-sdk/01-quick-start-efb": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-javascript-sdk-01-quick-start-085-9f0"
+  },
+  "/docs/V2/guides/javascript-sdk/02-fetching-data-978": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-javascript-sdk-02-fetching-data-41-f-5c8"
+  },
+  "/docs/V2/guides/javascript-sdk/03-pricing-a7b": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-javascript-sdk-03-pricing-8-b-6-8b9"
+  },
+  "/docs/V2/guides/javascript-sdk/04-trading-b34": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-javascript-sdk-04-trading-7-b-0-436"
+  },
+  "/docs/V2/guides/javascript-sdk/05-getting-pair-addresses-b67": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-javascript-sdk-05-getting-pair-addresseseb-4-8b9"
+  },
+  "/docs/V2/guides/smart-contract-integration/02-trading-from-a-smart-contract-b5c": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-smart-contract-integration-02-trading-from-a-smart-contracte-9-a-6bf"
+  },
+  "/docs/V2/guides/smart-contract-integration/03-providing-liquidity-3e5": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-smart-contract-integration-03-providing-liquidity-8-f-2-433"
+  },
+  "/docs/V2/guides/smart-contract-integration/04-building-an-oracle-9f5": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-smart-contract-integration-04-building-an-oracledab-de8"
+  },
+  "/docs/V2/guides/smart-contract-integration/05-using-flash-swaps-d0d": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-smart-contract-integration-05-using-flash-swaps-866-30f"
+  },
+  "/docs/V2/guides/smart-contract-integration/06-getting-pair-addresses-73c": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-smart-contract-integration-06-getting-pair-addresses-9-e-7-378"
+  },
+  "/docs/V2/guides/smart-contract-integration/07-supporting-meta-transactions-dd0": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-guides-smart-contract-integration-07-supporting-meta-transactions-4-aa-0b0"
+  },
+  "/docs/V2/reference/-529": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-e-57-e43"
+  },
+  "/docs/V2/reference/API/01-overview-879": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-api-01-overviewcbe-7f2"
+  },
+  "/docs/V2/reference/API/02-entities-a4d": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-api-02-entitiescb-3-bc9"
+  },
+  "/docs/V2/reference/API/03-queries-4fc": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-api-03-queries-6-ca-d66"
+  },
+  "/docs/V2/reference/Governance/05-governance-reference-c03": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-governance-05-governance-reference-066-8a2"
+  },
+  "/docs/V2/reference/SDK/01-getting-started-e92": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-sdk-01-getting-startede-67-96a"
+  },
+  "/docs/V2/reference/SDK/02-token-c51": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-sdk-02-tokenb-0-f-ba1"
+  },
+  "/docs/V2/reference/SDK/03-pair-a47": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-sdk-03-pair-5-f-2-dfe"
+  },
+  "/docs/V2/reference/SDK/04-route-a1b": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-sdk-04-route-304-dac"
+  },
+  "/docs/V2/reference/SDK/05-trade-686": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-sdk-05-trade-301-18b"
+  },
+  "/docs/V2/reference/SDK/06-fractions-589": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-sdk-06-fractionse-3-c-eb0"
+  },
+  "/docs/V2/reference/SDK/07-fetcher-171": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-sdk-07-fetcher-0-d-3-099"
+  },
+  "/docs/V2/reference/SDK/08-other-exports-f20": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-sdk-08-other-exportsfc-2-0a2"
+  },
+  "/docs/V2/reference/smart-contracts/02-pair-867": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-smart-contracts-02-pair-0-cd-7ad"
+  },
+  "/docs/V2/reference/smart-contracts/03-pair-erc-20-684": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-smart-contracts-03-pair-erc-20318-ced"
+  },
+  "/docs/V2/reference/smart-contracts/04-library-434": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-smart-contracts-04-library-691-3c1"
+  },
+  "/docs/V2/reference/smart-contracts/05-router01-59c": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-smart-contracts-05-router-0193-f-048"
+  },
+  "/docs/V2/reference/smart-contracts/06-router02-c8d": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-smart-contracts-06-router-02-ecf-ebd"
+  },
+  "/docs/V2/reference/smart-contracts/07-common-errors-fb9": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-2-reference-smart-contracts-07-common-errors-566-544"
+  },
+  "/docs-ac8": {
+    "component": "component---theme-doc-page-1-be-9be",
+    "versionMetadata": "versionMetadata---docsd-64-efd"
+  },
+  "/docs/-c36": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-e-4-a-5ff"
+  },
+  "/docs/concepts/01-protocol-overview/02-ecosystem-participants-bdf": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-01-protocol-overview-02-ecosystem-participants-033-d00"
+  },
+  "/docs/concepts/01-protocol-overview/03-smart-contracts-3b8": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-01-protocol-overview-03-smart-contractsf-4-b-957"
+  },
+  "/docs/concepts/01-protocol-overview/04-glossary-9a5": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-01-protocol-overview-04-glossary-993-c1c"
+  },
+  "/docs/concepts/02-core-concepts/01-swaps-9fe": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-02-core-concepts-01-swaps-625-c37"
+  },
+  "/docs/concepts/02-core-concepts/02-pools-f2d": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-02-core-concepts-02-pools-7-b-6-ae5"
+  },
+  "/docs/concepts/02-core-concepts/03-flash-swaps-4b8": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-02-core-concepts-03-flash-swaps-3-ff-851"
+  },
+  "/docs/concepts/02-core-concepts/04-oracles-ca7": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-02-core-concepts-04-oraclesf-20-167"
+  },
+  "/docs/concepts/03-advanced-topics/01-fees-d21": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-03-advanced-topics-01-feese-0-f-ee5"
+  },
+  "/docs/concepts/03-advanced-topics/02-pricing-03b": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-03-advanced-topics-02-pricing-509-8bd"
+  },
+  "/docs/concepts/03-advanced-topics/03-understanding-returns-10b": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-03-advanced-topics-03-understanding-returns-634-931"
+  },
+  "/docs/concepts/03-advanced-topics/04-security-206": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-03-advanced-topics-04-security-472-d6e"
+  },
+  "/docs/concepts/03-advanced-topics/05-math-f32": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-03-advanced-topics-05-math-4-dc-73e"
+  },
+  "/docs/concepts/03-advanced-topics/06-research-81a": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-03-advanced-topics-06-research-48-c-509"
+  },
+  "/docs/concepts/11-governance/01-overview-9e9": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-11-governance-01-overview-044-8ab"
+  },
+  "/docs/concepts/11-governance/02-process-093": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-11-governance-02-processf-39-1e2"
+  },
+  "/docs/concepts/11-governance/03-guide-to-voting-0b0": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-11-governance-03-guide-to-voting-07-a-6bc"
+  },
+  "/docs/concepts/11-governance/04-glossary-a44": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-11-governance-04-glossaryb-7-b-b8e"
+  },
+  "/docs/concepts/11-governance/05-adversarial-circumstances-1c2": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-11-governance-05-adversarial-circumstances-359-1c9"
+  },
+  "/docs/concepts/11-governance/06-governance-reference-294": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-concepts-11-governance-06-governance-referenceba-9-20c"
+  },
+  "/docs/guides/-684": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-77-e-eaa"
+  },
+  "/docs/guides/interface-integration/01-using-the-api-bf0": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-interface-integration-01-using-the-apiaf-3-ba5"
+  },
+  "/docs/guides/interface-integration/02-custom-interface-linking-4de": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-interface-integration-02-custom-interface-linkingd-92-69a"
+  },
+  "/docs/guides/interface-integration/03-iframe-integration-d2f": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-interface-integration-03-iframe-integratione-2-c-43c"
+  },
+  "/docs/guides/javascript-sdk/01-quick-start-ed3": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-javascript-sdk-01-quick-startc-51-d4e"
+  },
+  "/docs/guides/javascript-sdk/02-fetching-data-a83": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-javascript-sdk-02-fetching-data-502-23d"
+  },
+  "/docs/guides/javascript-sdk/03-pricing-042": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-javascript-sdk-03-pricingf-58-858"
+  },
+  "/docs/guides/javascript-sdk/04-trading-487": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-javascript-sdk-04-tradingb-80-b87"
+  },
+  "/docs/guides/javascript-sdk/05-getting-pair-addresses-b2e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-javascript-sdk-05-getting-pair-addresses-354-68a"
+  },
+  "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract-df9": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-smart-contract-integration-02-trading-from-a-smart-contractd-51-bfd"
+  },
+  "/docs/guides/smart-contract-integration/03-providing-liquidity-415": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-smart-contract-integration-03-providing-liquidity-3-d-9-bf1"
+  },
+  "/docs/guides/smart-contract-integration/04-building-an-oracle-00b": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-smart-contract-integration-04-building-an-oracle-4-c-6-7d7"
+  },
+  "/docs/guides/smart-contract-integration/05-using-flash-swaps-01e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-smart-contract-integration-05-using-flash-swapsc-16-a4d"
+  },
+  "/docs/guides/smart-contract-integration/06-getting-pair-addresses-b82": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-smart-contract-integration-06-getting-pair-addresses-01-e-b5b"
+  },
+  "/docs/guides/smart-contract-integration/07-supporting-meta-transactions-d68": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-guides-smart-contract-integration-07-supporting-meta-transactions-254-2b5"
+  },
+  "/docs/reference/-987": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-053-612"
+  },
+  "/docs/reference/API/01-overview-f1f": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-api-01-overviewd-1-b-bb2"
+  },
+  "/docs/reference/API/02-entities-b00": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-api-02-entities-1-a-8-782"
+  },
+  "/docs/reference/API/03-queries-02a": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-api-03-queriesa-7-a-f28"
+  },
+  "/docs/reference/Governance/05-governance-reference-0f6": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-governance-05-governance-reference-38-e-8ce"
+  },
+  "/docs/reference/SDK/01-getting-started-45f": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-01-getting-started-601-250"
+  },
+  "/docs/reference/SDK/02-token-be7": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-02-tokend-37-0b7"
+  },
+  "/docs/reference/SDK/03-pair-e6f": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-03-pair-3-e-6-757"
+  },
+  "/docs/reference/SDK/04-route-690": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-04-route-417-c12"
+  },
+  "/docs/reference/SDK/05-trade-988": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-05-trade-9-c-1-cf8"
+  },
+  "/docs/reference/SDK/06-fractions-463": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-06-fractionsd-2-c-f10"
+  },
+  "/docs/reference/SDK/07-fetcher-c9e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-07-fetcher-3-b-0-46d"
+  },
+  "/docs/reference/SDK/08-other-exports-4d2": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-sdk-08-other-exports-48-b-655"
+  },
+  "/docs/reference/smart-contracts/02-pair-a94": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-smart-contracts-02-paircae-928"
+  },
+  "/docs/reference/smart-contracts/03-pair-erc-20-9f9": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-smart-contracts-03-pair-erc-2088-b-5de"
+  },
+  "/docs/reference/smart-contracts/04-library-9aa": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-smart-contracts-04-library-781-023"
+  },
+  "/docs/reference/smart-contracts/05-router01-44e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-smart-contracts-05-router-016-ae-952"
+  },
+  "/docs/reference/smart-contracts/06-router02-b95": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-smart-contracts-06-router-0274-e-5e8"
+  },
+  "/docs/reference/smart-contracts/07-common-errors-9f2": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-reference-smart-contracts-07-common-errorsd-8-c-10a"
+  },
+  "/docs/V1/01-frontend-integration/01-connect-to-uniswap-f95": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-01-frontend-integration-01-connect-to-uniswapdb-2-600"
+  },
+  "/docs/V1/01-frontend-integration/02-pool-liquidity-9d7": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-01-frontend-integration-02-pool-liquidityee-2-317"
+  },
+  "/docs/V1/01-frontend-integration/03-trade-tokens-5fa": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-01-frontend-integration-03-trade-tokens-1-b-1-48b"
+  },
+  "/docs/V1/01-frontend-integration/04-custom-linking-ec2": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-01-frontend-integration-04-custom-linking-4-cc-c99"
+  },
+  "/docs/V1/01-frontend-integration/05-iframe-integration-f9e": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-01-frontend-integration-05-iframe-integration-6-df-112"
+  },
+  "/docs/V1/01-frontend-integration/06-token-listing-203": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-01-frontend-integration-06-token-listingdd-8-958"
+  },
+  "/docs/V1/02-SDK/01-getting-started-eba": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-02-sdk-01-getting-startedc-62-02b"
+  },
+  "/docs/V1/02-SDK/02-data-ccf": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-02-sdk-02-data-547-23e"
+  },
+  "/docs/V1/02-SDK/03-computation-5fc": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-02-sdk-03-computation-579-788"
+  },
+  "/docs/V1/02-SDK/04-format-725": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-02-sdk-04-formatfc-8-9c4"
+  },
+  "/docs/V1/02-SDK/05-orchestration-855": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-02-sdk-05-orchestrationcae-fce"
+  },
+  "/docs/V1/02-SDK/06-transact-129": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-02-sdk-06-transact-1-b-6-19b"
+  },
+  "/docs/V1/02-SDK/07-constants-1b2": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-02-sdk-07-constants-606-6d6"
+  },
+  "/docs/V1/02-SDK/08-types-3a5": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-02-sdk-08-typesa-56-3ce"
+  },
+  "/docs/V1/03-smart-contracts/01-factory-c03": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-03-smart-contracts-01-factory-4-b-7-001"
+  },
+  "/docs/V1/03-smart-contracts/02-exchange-1f6": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-03-smart-contracts-02-exchangee-62-956"
+  },
+  "/docs/V1/03-smart-contracts/03-interfaces-e92": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---docs-v-1-03-smart-contracts-03-interfaces-60-d-73d"
   }
 }
