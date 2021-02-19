@@ -400,370 +400,363 @@ export default [
 ]
 },
 {
-  path: '/docs/V2',
-  component: ComponentCreator('/docs/V2','245'),
-  
-  routes: [
-{
-  path: '/docs/V2/',
-  component: ComponentCreator('/docs/V2/','7d6'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/01-protocol-overview/02-ecosystem-participants',
-  component: ComponentCreator('/docs/V2/concepts/01-protocol-overview/02-ecosystem-participants','582'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/01-protocol-overview/03-smart-contracts',
-  component: ComponentCreator('/docs/V2/concepts/01-protocol-overview/03-smart-contracts','abd'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/01-protocol-overview/04-glossary',
-  component: ComponentCreator('/docs/V2/concepts/01-protocol-overview/04-glossary','9fc'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/02-core-concepts/01-swaps',
-  component: ComponentCreator('/docs/V2/concepts/02-core-concepts/01-swaps','ad7'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/02-core-concepts/02-pools',
-  component: ComponentCreator('/docs/V2/concepts/02-core-concepts/02-pools','fbd'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/02-core-concepts/03-flash-swaps',
-  component: ComponentCreator('/docs/V2/concepts/02-core-concepts/03-flash-swaps','ed0'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/02-core-concepts/04-oracles',
-  component: ComponentCreator('/docs/V2/concepts/02-core-concepts/04-oracles','c17'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/03-advanced-topics/01-fees',
-  component: ComponentCreator('/docs/V2/concepts/03-advanced-topics/01-fees','ce9'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/03-advanced-topics/02-pricing',
-  component: ComponentCreator('/docs/V2/concepts/03-advanced-topics/02-pricing','aac'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/03-advanced-topics/03-understanding-returns',
-  component: ComponentCreator('/docs/V2/concepts/03-advanced-topics/03-understanding-returns','b97'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/03-advanced-topics/04-security',
-  component: ComponentCreator('/docs/V2/concepts/03-advanced-topics/04-security','f1e'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/03-advanced-topics/05-math',
-  component: ComponentCreator('/docs/V2/concepts/03-advanced-topics/05-math','7b8'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/03-advanced-topics/06-research',
-  component: ComponentCreator('/docs/V2/concepts/03-advanced-topics/06-research','ccc'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/11-governance/01-overview',
-  component: ComponentCreator('/docs/V2/concepts/11-governance/01-overview','18f'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/11-governance/02-process',
-  component: ComponentCreator('/docs/V2/concepts/11-governance/02-process','190'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/11-governance/03-guide-to-voting',
-  component: ComponentCreator('/docs/V2/concepts/11-governance/03-guide-to-voting','47e'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/11-governance/04-glossary',
-  component: ComponentCreator('/docs/V2/concepts/11-governance/04-glossary','f4e'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/11-governance/05-adversarial-circumstances',
-  component: ComponentCreator('/docs/V2/concepts/11-governance/05-adversarial-circumstances','459'),
-  exact: true,
-},
-{
-  path: '/docs/V2/concepts/11-governance/06-governance-reference',
-  component: ComponentCreator('/docs/V2/concepts/11-governance/06-governance-reference','b95'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/',
-  component: ComponentCreator('/docs/V2/guides/','f8c'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/interface-integration/01-using-the-api',
-  component: ComponentCreator('/docs/V2/guides/interface-integration/01-using-the-api','a8d'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/interface-integration/02-custom-interface-linking',
-  component: ComponentCreator('/docs/V2/guides/interface-integration/02-custom-interface-linking','99c'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/interface-integration/03-iframe-integration',
-  component: ComponentCreator('/docs/V2/guides/interface-integration/03-iframe-integration','08e'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/javascript-sdk/01-quick-start',
-  component: ComponentCreator('/docs/V2/guides/javascript-sdk/01-quick-start','efb'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/javascript-sdk/02-fetching-data',
-  component: ComponentCreator('/docs/V2/guides/javascript-sdk/02-fetching-data','978'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/javascript-sdk/03-pricing',
-  component: ComponentCreator('/docs/V2/guides/javascript-sdk/03-pricing','a7b'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/javascript-sdk/04-trading',
-  component: ComponentCreator('/docs/V2/guides/javascript-sdk/04-trading','b34'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/javascript-sdk/05-getting-pair-addresses',
-  component: ComponentCreator('/docs/V2/guides/javascript-sdk/05-getting-pair-addresses','b67'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/smart-contract-integration/02-trading-from-a-smart-contract',
-  component: ComponentCreator('/docs/V2/guides/smart-contract-integration/02-trading-from-a-smart-contract','b5c'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/smart-contract-integration/03-providing-liquidity',
-  component: ComponentCreator('/docs/V2/guides/smart-contract-integration/03-providing-liquidity','3e5'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/smart-contract-integration/04-building-an-oracle',
-  component: ComponentCreator('/docs/V2/guides/smart-contract-integration/04-building-an-oracle','9f5'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/smart-contract-integration/05-using-flash-swaps',
-  component: ComponentCreator('/docs/V2/guides/smart-contract-integration/05-using-flash-swaps','d0d'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/smart-contract-integration/06-getting-pair-addresses',
-  component: ComponentCreator('/docs/V2/guides/smart-contract-integration/06-getting-pair-addresses','73c'),
-  exact: true,
-},
-{
-  path: '/docs/V2/guides/smart-contract-integration/07-supporting-meta-transactions',
-  component: ComponentCreator('/docs/V2/guides/smart-contract-integration/07-supporting-meta-transactions','dd0'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/',
-  component: ComponentCreator('/docs/V2/reference/','529'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/API/01-overview',
-  component: ComponentCreator('/docs/V2/reference/API/01-overview','879'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/API/02-entities',
-  component: ComponentCreator('/docs/V2/reference/API/02-entities','a4d'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/API/03-queries',
-  component: ComponentCreator('/docs/V2/reference/API/03-queries','4fc'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/Governance/05-governance-reference',
-  component: ComponentCreator('/docs/V2/reference/Governance/05-governance-reference','c03'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/SDK/01-getting-started',
-  component: ComponentCreator('/docs/V2/reference/SDK/01-getting-started','e92'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/SDK/02-token',
-  component: ComponentCreator('/docs/V2/reference/SDK/02-token','c51'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/SDK/03-pair',
-  component: ComponentCreator('/docs/V2/reference/SDK/03-pair','a47'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/SDK/04-route',
-  component: ComponentCreator('/docs/V2/reference/SDK/04-route','a1b'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/SDK/05-trade',
-  component: ComponentCreator('/docs/V2/reference/SDK/05-trade','686'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/SDK/06-fractions',
-  component: ComponentCreator('/docs/V2/reference/SDK/06-fractions','589'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/SDK/07-fetcher',
-  component: ComponentCreator('/docs/V2/reference/SDK/07-fetcher','171'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/SDK/08-other-exports',
-  component: ComponentCreator('/docs/V2/reference/SDK/08-other-exports','f20'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/smart-contracts/02-pair',
-  component: ComponentCreator('/docs/V2/reference/smart-contracts/02-pair','867'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/smart-contracts/03-pair-erc-20',
-  component: ComponentCreator('/docs/V2/reference/smart-contracts/03-pair-erc-20','684'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/smart-contracts/04-library',
-  component: ComponentCreator('/docs/V2/reference/smart-contracts/04-library','434'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/smart-contracts/05-router01',
-  component: ComponentCreator('/docs/V2/reference/smart-contracts/05-router01','59c'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/smart-contracts/06-router02',
-  component: ComponentCreator('/docs/V2/reference/smart-contracts/06-router02','c8d'),
-  exact: true,
-},
-{
-  path: '/docs/V2/reference/smart-contracts/07-common-errors',
-  component: ComponentCreator('/docs/V2/reference/smart-contracts/07-common-errors','fb9'),
-  exact: true,
-},
-]
-},
-{
   path: '/docs',
-  component: ComponentCreator('/docs','ddb'),
+  component: ComponentCreator('/docs','517'),
   
   routes: [
 {
-  path: '/docs/01-frontend-integration/01-connect-to-uniswap',
-  component: ComponentCreator('/docs/01-frontend-integration/01-connect-to-uniswap','66a'),
+  path: '/docs/',
+  component: ComponentCreator('/docs/','c77'),
   exact: true,
 },
 {
-  path: '/docs/01-frontend-integration/02-pool-liquidity',
-  component: ComponentCreator('/docs/01-frontend-integration/02-pool-liquidity','794'),
+  path: '/docs/concepts/01-protocol-overview/02-ecosystem-participants',
+  component: ComponentCreator('/docs/concepts/01-protocol-overview/02-ecosystem-participants','e30'),
   exact: true,
 },
 {
-  path: '/docs/01-frontend-integration/03-trade-tokens',
-  component: ComponentCreator('/docs/01-frontend-integration/03-trade-tokens','1e9'),
+  path: '/docs/concepts/01-protocol-overview/03-smart-contracts',
+  component: ComponentCreator('/docs/concepts/01-protocol-overview/03-smart-contracts','b76'),
   exact: true,
 },
 {
-  path: '/docs/01-frontend-integration/04-custom-linking',
-  component: ComponentCreator('/docs/01-frontend-integration/04-custom-linking','55f'),
+  path: '/docs/concepts/01-protocol-overview/04-glossary',
+  component: ComponentCreator('/docs/concepts/01-protocol-overview/04-glossary','88b'),
   exact: true,
 },
 {
-  path: '/docs/01-frontend-integration/05-iframe-integration',
-  component: ComponentCreator('/docs/01-frontend-integration/05-iframe-integration','861'),
+  path: '/docs/concepts/02-core-concepts/01-swaps',
+  component: ComponentCreator('/docs/concepts/02-core-concepts/01-swaps','d95'),
   exact: true,
 },
 {
-  path: '/docs/01-frontend-integration/06-token-listing',
-  component: ComponentCreator('/docs/01-frontend-integration/06-token-listing','0e5'),
+  path: '/docs/concepts/02-core-concepts/02-pools',
+  component: ComponentCreator('/docs/concepts/02-core-concepts/02-pools','57b'),
   exact: true,
 },
 {
-  path: '/docs/02-SDK/01-getting-started',
-  component: ComponentCreator('/docs/02-SDK/01-getting-started','3c9'),
+  path: '/docs/concepts/02-core-concepts/03-flash-swaps',
+  component: ComponentCreator('/docs/concepts/02-core-concepts/03-flash-swaps','eb8'),
   exact: true,
 },
 {
-  path: '/docs/02-SDK/02-data',
-  component: ComponentCreator('/docs/02-SDK/02-data','d21'),
+  path: '/docs/concepts/02-core-concepts/04-oracles',
+  component: ComponentCreator('/docs/concepts/02-core-concepts/04-oracles','51b'),
   exact: true,
 },
 {
-  path: '/docs/02-SDK/03-computation',
-  component: ComponentCreator('/docs/02-SDK/03-computation','132'),
+  path: '/docs/concepts/03-advanced-topics/01-fees',
+  component: ComponentCreator('/docs/concepts/03-advanced-topics/01-fees','ed5'),
   exact: true,
 },
 {
-  path: '/docs/02-SDK/04-format',
-  component: ComponentCreator('/docs/02-SDK/04-format','0db'),
+  path: '/docs/concepts/03-advanced-topics/02-pricing',
+  component: ComponentCreator('/docs/concepts/03-advanced-topics/02-pricing','7a3'),
   exact: true,
 },
 {
-  path: '/docs/02-SDK/05-orchestration',
-  component: ComponentCreator('/docs/02-SDK/05-orchestration','c2d'),
+  path: '/docs/concepts/03-advanced-topics/03-understanding-returns',
+  component: ComponentCreator('/docs/concepts/03-advanced-topics/03-understanding-returns','fb6'),
   exact: true,
 },
 {
-  path: '/docs/02-SDK/06-transact',
-  component: ComponentCreator('/docs/02-SDK/06-transact','896'),
+  path: '/docs/concepts/03-advanced-topics/04-security',
+  component: ComponentCreator('/docs/concepts/03-advanced-topics/04-security','aa3'),
   exact: true,
 },
 {
-  path: '/docs/02-SDK/07-constants',
-  component: ComponentCreator('/docs/02-SDK/07-constants','db8'),
+  path: '/docs/concepts/03-advanced-topics/05-math',
+  component: ComponentCreator('/docs/concepts/03-advanced-topics/05-math','d68'),
   exact: true,
 },
 {
-  path: '/docs/02-SDK/08-types',
-  component: ComponentCreator('/docs/02-SDK/08-types','020'),
+  path: '/docs/concepts/03-advanced-topics/06-research',
+  component: ComponentCreator('/docs/concepts/03-advanced-topics/06-research','362'),
   exact: true,
 },
 {
-  path: '/docs/03-smart-contracts/01-factory',
-  component: ComponentCreator('/docs/03-smart-contracts/01-factory','aa1'),
+  path: '/docs/concepts/11-governance/01-overview',
+  component: ComponentCreator('/docs/concepts/11-governance/01-overview','508'),
   exact: true,
 },
 {
-  path: '/docs/03-smart-contracts/02-exchange',
-  component: ComponentCreator('/docs/03-smart-contracts/02-exchange','15c'),
+  path: '/docs/concepts/11-governance/02-process',
+  component: ComponentCreator('/docs/concepts/11-governance/02-process','71d'),
   exact: true,
 },
 {
-  path: '/docs/03-smart-contracts/03-interfaces',
-  component: ComponentCreator('/docs/03-smart-contracts/03-interfaces','cc2'),
+  path: '/docs/concepts/11-governance/03-guide-to-voting',
+  component: ComponentCreator('/docs/concepts/11-governance/03-guide-to-voting','634'),
+  exact: true,
+},
+{
+  path: '/docs/concepts/11-governance/04-glossary',
+  component: ComponentCreator('/docs/concepts/11-governance/04-glossary','636'),
+  exact: true,
+},
+{
+  path: '/docs/concepts/11-governance/05-adversarial-circumstances',
+  component: ComponentCreator('/docs/concepts/11-governance/05-adversarial-circumstances','5c3'),
+  exact: true,
+},
+{
+  path: '/docs/concepts/11-governance/06-governance-reference',
+  component: ComponentCreator('/docs/concepts/11-governance/06-governance-reference','986'),
+  exact: true,
+},
+{
+  path: '/docs/guides/',
+  component: ComponentCreator('/docs/guides/','1c1'),
+  exact: true,
+},
+{
+  path: '/docs/guides/interface-integration/01-using-the-api',
+  component: ComponentCreator('/docs/guides/interface-integration/01-using-the-api','a82'),
+  exact: true,
+},
+{
+  path: '/docs/guides/interface-integration/02-custom-interface-linking',
+  component: ComponentCreator('/docs/guides/interface-integration/02-custom-interface-linking','5d2'),
+  exact: true,
+},
+{
+  path: '/docs/guides/interface-integration/03-iframe-integration',
+  component: ComponentCreator('/docs/guides/interface-integration/03-iframe-integration','8ea'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/01-quick-start',
+  component: ComponentCreator('/docs/guides/javascript-sdk/01-quick-start','b52'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/02-fetching-data',
+  component: ComponentCreator('/docs/guides/javascript-sdk/02-fetching-data','e4c'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/03-pricing',
+  component: ComponentCreator('/docs/guides/javascript-sdk/03-pricing','7d7'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/04-trading',
+  component: ComponentCreator('/docs/guides/javascript-sdk/04-trading','3fe'),
+  exact: true,
+},
+{
+  path: '/docs/guides/javascript-sdk/05-getting-pair-addresses',
+  component: ComponentCreator('/docs/guides/javascript-sdk/05-getting-pair-addresses','e8a'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract','584'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/03-providing-liquidity',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/03-providing-liquidity','193'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/04-building-an-oracle',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/04-building-an-oracle','30c'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/05-using-flash-swaps',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/05-using-flash-swaps','a8d'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/06-getting-pair-addresses',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/06-getting-pair-addresses','a78'),
+  exact: true,
+},
+{
+  path: '/docs/guides/smart-contract-integration/07-supporting-meta-transactions',
+  component: ComponentCreator('/docs/guides/smart-contract-integration/07-supporting-meta-transactions','083'),
+  exact: true,
+},
+{
+  path: '/docs/reference/',
+  component: ComponentCreator('/docs/reference/','b75'),
+  exact: true,
+},
+{
+  path: '/docs/reference/API/01-overview',
+  component: ComponentCreator('/docs/reference/API/01-overview','0dd'),
+  exact: true,
+},
+{
+  path: '/docs/reference/API/02-entities',
+  component: ComponentCreator('/docs/reference/API/02-entities','d07'),
+  exact: true,
+},
+{
+  path: '/docs/reference/API/03-queries',
+  component: ComponentCreator('/docs/reference/API/03-queries','38e'),
+  exact: true,
+},
+{
+  path: '/docs/reference/Governance/05-governance-reference',
+  component: ComponentCreator('/docs/reference/Governance/05-governance-reference','9d5'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/01-getting-started',
+  component: ComponentCreator('/docs/reference/SDK/01-getting-started','f23'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/02-token',
+  component: ComponentCreator('/docs/reference/SDK/02-token','919'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/03-pair',
+  component: ComponentCreator('/docs/reference/SDK/03-pair','46e'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/04-route',
+  component: ComponentCreator('/docs/reference/SDK/04-route','df5'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/05-trade',
+  component: ComponentCreator('/docs/reference/SDK/05-trade','cc7'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/06-fractions',
+  component: ComponentCreator('/docs/reference/SDK/06-fractions','e43'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/07-fetcher',
+  component: ComponentCreator('/docs/reference/SDK/07-fetcher','190'),
+  exact: true,
+},
+{
+  path: '/docs/reference/SDK/08-other-exports',
+  component: ComponentCreator('/docs/reference/SDK/08-other-exports','940'),
+  exact: true,
+},
+{
+  path: '/docs/reference/smart-contracts/02-pair',
+  component: ComponentCreator('/docs/reference/smart-contracts/02-pair','670'),
+  exact: true,
+},
+{
+  path: '/docs/reference/smart-contracts/03-pair-erc-20',
+  component: ComponentCreator('/docs/reference/smart-contracts/03-pair-erc-20','3a9'),
+  exact: true,
+},
+{
+  path: '/docs/reference/smart-contracts/04-library',
+  component: ComponentCreator('/docs/reference/smart-contracts/04-library','e63'),
+  exact: true,
+},
+{
+  path: '/docs/reference/smart-contracts/05-router01',
+  component: ComponentCreator('/docs/reference/smart-contracts/05-router01','b85'),
+  exact: true,
+},
+{
+  path: '/docs/reference/smart-contracts/06-router02',
+  component: ComponentCreator('/docs/reference/smart-contracts/06-router02','12a'),
+  exact: true,
+},
+{
+  path: '/docs/reference/smart-contracts/07-common-errors',
+  component: ComponentCreator('/docs/reference/smart-contracts/07-common-errors','2d6'),
+  exact: true,
+},
+{
+  path: '/docs/V1/01-frontend-integration/01-connect-to-uniswap',
+  component: ComponentCreator('/docs/V1/01-frontend-integration/01-connect-to-uniswap','7fa'),
+  exact: true,
+},
+{
+  path: '/docs/V1/01-frontend-integration/02-pool-liquidity',
+  component: ComponentCreator('/docs/V1/01-frontend-integration/02-pool-liquidity','e9d'),
+  exact: true,
+},
+{
+  path: '/docs/V1/01-frontend-integration/03-trade-tokens',
+  component: ComponentCreator('/docs/V1/01-frontend-integration/03-trade-tokens','938'),
+  exact: true,
+},
+{
+  path: '/docs/V1/01-frontend-integration/04-custom-linking',
+  component: ComponentCreator('/docs/V1/01-frontend-integration/04-custom-linking','02a'),
+  exact: true,
+},
+{
+  path: '/docs/V1/01-frontend-integration/05-iframe-integration',
+  component: ComponentCreator('/docs/V1/01-frontend-integration/05-iframe-integration','bab'),
+  exact: true,
+},
+{
+  path: '/docs/V1/01-frontend-integration/06-token-listing',
+  component: ComponentCreator('/docs/V1/01-frontend-integration/06-token-listing','c34'),
+  exact: true,
+},
+{
+  path: '/docs/V1/02-SDK/01-getting-started',
+  component: ComponentCreator('/docs/V1/02-SDK/01-getting-started','939'),
+  exact: true,
+},
+{
+  path: '/docs/V1/02-SDK/02-data',
+  component: ComponentCreator('/docs/V1/02-SDK/02-data','960'),
+  exact: true,
+},
+{
+  path: '/docs/V1/02-SDK/03-computation',
+  component: ComponentCreator('/docs/V1/02-SDK/03-computation','637'),
+  exact: true,
+},
+{
+  path: '/docs/V1/02-SDK/04-format',
+  component: ComponentCreator('/docs/V1/02-SDK/04-format','424'),
+  exact: true,
+},
+{
+  path: '/docs/V1/02-SDK/05-orchestration',
+  component: ComponentCreator('/docs/V1/02-SDK/05-orchestration','bdf'),
+  exact: true,
+},
+{
+  path: '/docs/V1/02-SDK/06-transact',
+  component: ComponentCreator('/docs/V1/02-SDK/06-transact','866'),
+  exact: true,
+},
+{
+  path: '/docs/V1/02-SDK/07-constants',
+  component: ComponentCreator('/docs/V1/02-SDK/07-constants','2ac'),
+  exact: true,
+},
+{
+  path: '/docs/V1/02-SDK/08-types',
+  component: ComponentCreator('/docs/V1/02-SDK/08-types','f6e'),
+  exact: true,
+},
+{
+  path: '/docs/V1/03-smart-contracts/01-factory',
+  component: ComponentCreator('/docs/V1/03-smart-contracts/01-factory','c24'),
+  exact: true,
+},
+{
+  path: '/docs/V1/03-smart-contracts/02-exchange',
+  component: ComponentCreator('/docs/V1/03-smart-contracts/02-exchange','7ad'),
+  exact: true,
+},
+{
+  path: '/docs/V1/03-smart-contracts/03-interfaces',
+  component: ComponentCreator('/docs/V1/03-smart-contracts/03-interfaces','461'),
   exact: true,
 },
 ]

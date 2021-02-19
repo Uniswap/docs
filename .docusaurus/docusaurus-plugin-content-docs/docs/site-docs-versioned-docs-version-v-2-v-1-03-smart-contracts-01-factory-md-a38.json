@@ -1,0 +1,21 @@
+{
+  "unversionedId": "V1/03-smart-contracts/01-factory",
+  "id": "version-v2/V1/03-smart-contracts/01-factory",
+  "isDocsHomePage": false,
+  "title": "Factory",
+  "description": "Uniswap V1, while still fully functional, is no longer under active development. Looking for V2 documentation?",
+  "source": "@site/docs_versioned_docs/version-v2/V1/03-smart-contracts/01-factory.md",
+  "slug": "/V1/03-smart-contracts/01-factory",
+  "permalink": "/docs/V1/03-smart-contracts/01-factory",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v2/V1/03-smart-contracts/01-factory.md",
+  "version": "v2",
+  "sidebar": "version-v2/docs",
+  "previous": {
+    "title": "Types",
+    "permalink": "/docs/V1/02-SDK/08-types"
+  },
+  "next": {
+    "title": "Exchange",
+    "permalink": "/docs/V1/03-smart-contracts/02-exchange"
+  }
+}

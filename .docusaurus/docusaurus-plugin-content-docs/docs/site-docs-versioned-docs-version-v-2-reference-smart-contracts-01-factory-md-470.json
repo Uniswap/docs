@@ -1,0 +1,21 @@
+{
+  "unversionedId": "reference/smart-contracts/01-factory",
+  "id": "version-v2/reference/smart-contracts/01-factory",
+  "isDocsHomePage": false,
+  "title": "Factory",
+  "description": "Code",
+  "source": "@site/docs_versioned_docs/version-v2/reference/smart-contracts/01-factory.md",
+  "slug": "/reference/",
+  "permalink": "/docs/reference/",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v2/reference/smart-contracts/01-factory.md",
+  "version": "v2",
+  "sidebar": "version-v2/reference",
+  "previous": {
+    "title": "Governance Reference",
+    "permalink": "/docs/reference/Governance/05-governance-reference"
+  },
+  "next": {
+    "title": "Pair",
+    "permalink": "/docs/reference/smart-contracts/02-pair"
+  }
+}

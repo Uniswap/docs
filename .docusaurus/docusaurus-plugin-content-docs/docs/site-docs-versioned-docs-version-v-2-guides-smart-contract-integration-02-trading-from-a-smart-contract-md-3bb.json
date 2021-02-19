@@ -1,0 +1,21 @@
+{
+  "unversionedId": "guides/smart-contract-integration/02-trading-from-a-smart-contract",
+  "id": "version-v2/guides/smart-contract-integration/02-trading-from-a-smart-contract",
+  "isDocsHomePage": false,
+  "title": "Implement a Swap",
+  "description": "When trading from a smart contract, the most important thing to keep in mind is that access to an external price source is required. Without this, trades can be frontrun for considerable loss.",
+  "source": "@site/docs_versioned_docs/version-v2/guides/smart-contract-integration/02-trading-from-a-smart-contract.md",
+  "slug": "/guides/smart-contract-integration/02-trading-from-a-smart-contract",
+  "permalink": "/docs/guides/smart-contract-integration/02-trading-from-a-smart-contract",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v2/guides/smart-contract-integration/02-trading-from-a-smart-contract.md",
+  "version": "v2",
+  "sidebar": "version-v2/guides",
+  "previous": {
+    "title": "Smart Contract Quick start",
+    "permalink": "/docs/guides/"
+  },
+  "next": {
+    "title": "Providing Liquidity",
+    "permalink": "/docs/guides/smart-contract-integration/03-providing-liquidity"
+  }
+}

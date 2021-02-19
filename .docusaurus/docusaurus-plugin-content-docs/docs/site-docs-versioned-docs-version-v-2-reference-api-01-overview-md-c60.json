@@ -1,0 +1,17 @@
+{
+  "unversionedId": "reference/API/01-overview",
+  "id": "version-v2/reference/API/01-overview",
+  "isDocsHomePage": false,
+  "title": "API Overview",
+  "description": "This section explains the Uniswap Subgraph and how to interact with it. The Uniswap subgraph indexes data from the Uniswap contracts over time. It organizes data about pairs, tokens, Uniswap as a whole, and more. The subgraph updates any time a transaction is made on Uniswap. The subgraph runs on The Graph protocol's hosted service and can be openly queried.",
+  "source": "@site/docs_versioned_docs/version-v2/reference/API/01-overview.md",
+  "slug": "/reference/API/01-overview",
+  "permalink": "/docs/reference/API/01-overview",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v2/reference/API/01-overview.md",
+  "version": "v2",
+  "sidebar": "version-v2/reference",
+  "next": {
+    "title": "Entities",
+    "permalink": "/docs/reference/API/02-entities"
+  }
+}

@@ -122,10 +122,6 @@ export default {
           "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/",
           "routeBasePath": "/docs"
         },
-        "blog": {
-          "showReadingTime": true,
-          "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/blog/"
-        },
         "theme": {
           "customCss": "/Users/Connor/Uniswap/uniswap-docs/src/css/custom.css"
         }

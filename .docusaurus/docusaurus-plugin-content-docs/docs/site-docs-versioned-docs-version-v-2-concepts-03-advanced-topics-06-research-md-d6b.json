@@ -1,0 +1,21 @@
+{
+  "unversionedId": "concepts/03-advanced-topics/06-research",
+  "id": "version-v2/concepts/03-advanced-topics/06-research",
+  "isDocsHomePage": false,
+  "title": "Research",
+  "description": "The automated market maker is a new concept, and as such, new research comes out frequently. We've selected some of the most thoughtful here.",
+  "source": "@site/docs_versioned_docs/version-v2/concepts/03-advanced-topics/06-research.md",
+  "slug": "/concepts/03-advanced-topics/06-research",
+  "permalink": "/docs/concepts/03-advanced-topics/06-research",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v2/concepts/03-advanced-topics/06-research.md",
+  "version": "v2",
+  "sidebar": "version-v2/docs",
+  "previous": {
+    "title": "Math",
+    "permalink": "/docs/concepts/03-advanced-topics/05-math"
+  },
+  "next": {
+    "title": "Overview",
+    "permalink": "/docs/concepts/11-governance/01-overview"
+  }
+}

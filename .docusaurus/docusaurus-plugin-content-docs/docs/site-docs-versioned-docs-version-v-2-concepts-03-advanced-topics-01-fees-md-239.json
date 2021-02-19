@@ -1,0 +1,21 @@
+{
+  "unversionedId": "concepts/03-advanced-topics/01-fees",
+  "id": "version-v2/concepts/03-advanced-topics/01-fees",
+  "isDocsHomePage": false,
+  "title": "Fees",
+  "description": "Liquidity provider fees",
+  "source": "@site/docs_versioned_docs/version-v2/concepts/03-advanced-topics/01-fees.md",
+  "slug": "/concepts/03-advanced-topics/01-fees",
+  "permalink": "/docs/concepts/03-advanced-topics/01-fees",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v2/concepts/03-advanced-topics/01-fees.md",
+  "version": "v2",
+  "sidebar": "version-v2/docs",
+  "previous": {
+    "title": "Oracles",
+    "permalink": "/docs/concepts/02-core-concepts/04-oracles"
+  },
+  "next": {
+    "title": "Pricing",
+    "permalink": "/docs/concepts/03-advanced-topics/02-pricing"
+  }
+}

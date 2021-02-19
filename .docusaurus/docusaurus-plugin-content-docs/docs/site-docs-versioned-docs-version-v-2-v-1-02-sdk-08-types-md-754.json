@@ -1,0 +1,21 @@
+{
+  "unversionedId": "V1/02-SDK/08-types",
+  "id": "version-v2/V1/02-SDK/08-types",
+  "isDocsHomePage": false,
+  "title": "Types",
+  "description": "Below is an exhaustive list of all the external types used in the SDK.",
+  "source": "@site/docs_versioned_docs/version-v2/V1/02-SDK/08-types.md",
+  "slug": "/V1/02-SDK/08-types",
+  "permalink": "/docs/V1/02-SDK/08-types",
+  "editUrl": "https://github.com/facebook/docusaurus/edit/master/website/docs_versioned_docs/version-v2/V1/02-SDK/08-types.md",
+  "version": "v2",
+  "sidebar": "version-v2/docs",
+  "previous": {
+    "title": "Constants",
+    "permalink": "/docs/V1/02-SDK/07-constants"
+  },
+  "next": {
+    "title": "Factory",
+    "permalink": "/docs/V1/03-smart-contracts/01-factory"
+  }
+}

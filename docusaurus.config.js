@@ -16,6 +16,18 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
+        // {
+        //   type: 'docsVersion',
+        //   position: 'left',
+        //   // to: "/path // by default, link to active/latest version
+        //   // label: "label" // by default, show active/latest version label
+        // },
+        // {
+        //   type: 'docsVersionDropdown',
+        //   position: 'left',
+
+    
+        // },
         {
           to: 'docs',
           activeBasePath: 'docs',
@@ -102,20 +114,23 @@ module.exports = {
           // Please change this to your repo.
           editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
           routeBasePath: '/docs',
+          //Version: 'v2',
+          
+          // versions: {
+            
+          //   Example configuration: 
+          //   'v2': {
+          //     label: 'Android SDK v2.0.0 (WIP)',
+          //     path: 'android-2.0.0',
+          //   },
+          //   'v1': {
+          //     label: 'Android SDK v1.0.0',
+          //     path: 'android-1.0.0',
+          //   },
+            
+          // },
         },
-        // docs: {
-        //   id: 'guides',
-        //   path: 'guides',
-        //   sidebarPath: require.resolve('./sidebars.js'),
-        //   routeBasePath: '/docs/guides',
-        // },
 
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
-        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -123,23 +138,5 @@ module.exports = {
     ],
   ],
   plugins: [
-  //   [
-  //     '@docusaurus/plugin-content-docs',
-  //   {
-  //     id: 'guides',
-  //     path: 'guides',
-  //     routeBasePath: '/guides',
-  //     sidebarPath: require.resolve('./sidebars.js'),
-  //   },
-  // ],
-  //   [
-  //     '@docusaurus/plugin-content-docs',
-  //   {
-  //     id: 'docs',
-  //     path: 'docs',
-  //     sidebarPath: require.resolve('./sidebars.js'),
-  //     routeBasePath: '/docs',
-  //   },
-  // ],
  ],
 };
