@@ -19,11 +19,9 @@ module.exports = {
         // {
         //   type: 'docsVersionDropdown',
         //   position: 'right',
-        //   dropdownItemsBefore: [],
-        //   dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
-
+         
         //   // Do not add the link active class when browsing docs.
-        //   dropdownActiveClassDisabled: true,
+        //   dropdownActiveClassDisabled: false,
         // },
         // {
         //   type: 'docsVersion',
@@ -54,6 +52,7 @@ module.exports = {
           label: 'Reference',
           position: 'left'
         },
+        
       ],
     },
     footer: {
@@ -119,12 +118,6 @@ module.exports = {
           routeBasePath: '/docs',
         },
 
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
-        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
