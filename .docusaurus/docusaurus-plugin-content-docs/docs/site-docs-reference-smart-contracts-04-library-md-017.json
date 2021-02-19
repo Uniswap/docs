@@ -1,0 +1,21 @@
+{
+  "unversionedId": "reference/smart-contracts/04-library",
+  "id": "reference/smart-contracts/04-library",
+  "isDocsHomePage": false,
+  "title": "Library",
+  "description": "Code",
+  "source": "@site/docs/reference/smart-contracts/04-library.md",
+  "slug": "/reference/smart-contracts/04-library",
+  "permalink": "/docs/reference/smart-contracts/04-library",
+  "editUrl": "https://github.com/docs/reference/smart-contracts/04-library.md",
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Pair (ERC-20)",
+    "permalink": "/docs/reference/smart-contracts/03-pair-erc-20"
+  },
+  "next": {
+    "title": "Router01",
+    "permalink": "/docs/reference/smart-contracts/05-router01"
+  }
+}

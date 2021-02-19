@@ -25,6 +25,12 @@ module.exports = {
         //   // Do not add the link active class when browsing docs.
         //   dropdownActiveClassDisabled: true,
         // },
+        // {
+        //   type: 'docsVersion',
+        //   position: 'left',
+        //   // to: "/path // by default, link to active/latest version
+        //   // label: "label" // by default, show active/latest version label
+        // },
         {
           to: 'docs',
           activeBasePath: 'docs',
@@ -109,15 +115,9 @@ module.exports = {
           path: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
+          editUrl: 'https://github.com/',
           routeBasePath: '/docs',
         },
-        // docs: {
-        //   id: 'guides',
-        //   path: 'guides',
-        //   sidebarPath: require.resolve('./sidebars.js'),
-        //   routeBasePath: '/docs/guides',
-        // },
 
         blog: {
           showReadingTime: true,

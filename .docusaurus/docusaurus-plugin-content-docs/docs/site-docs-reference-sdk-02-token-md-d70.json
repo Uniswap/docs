@@ -1,0 +1,21 @@
+{
+  "unversionedId": "reference/SDK/02-token",
+  "id": "reference/SDK/02-token",
+  "isDocsHomePage": false,
+  "title": "Token",
+  "description": "`typescript",
+  "source": "@site/docs/reference/SDK/02-token.md",
+  "slug": "/reference/SDK/02-token",
+  "permalink": "/docs/reference/SDK/02-token",
+  "editUrl": "https://github.com/docs/reference/SDK/02-token.md",
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Getting Started",
+    "permalink": "/docs/reference/SDK/01-getting-started"
+  },
+  "next": {
+    "title": "Pair",
+    "permalink": "/docs/reference/SDK/03-pair"
+  }
+}

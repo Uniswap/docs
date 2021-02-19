@@ -1,0 +1,21 @@
+{
+  "unversionedId": "guides/interface-integration/02-custom-interface-linking",
+  "id": "guides/interface-integration/02-custom-interface-linking",
+  "isDocsHomePage": false,
+  "title": "Custom Linking",
+  "description": "Query Parameters",
+  "source": "@site/docs/guides/interface-integration/02-custom-interface-linking.md",
+  "slug": "/guides/interface-integration/02-custom-interface-linking",
+  "permalink": "/docs/guides/interface-integration/02-custom-interface-linking",
+  "editUrl": "https://github.com/docs/guides/interface-integration/02-custom-interface-linking.md",
+  "version": "current",
+  "sidebar": "guides",
+  "previous": {
+    "title": "Using the API",
+    "permalink": "/docs/guides/interface-integration/01-using-the-api"
+  },
+  "next": {
+    "title": "Iframe Integration",
+    "permalink": "/docs/guides/interface-integration/03-iframe-integration"
+  }
+}

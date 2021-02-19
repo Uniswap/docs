@@ -1,0 +1,17 @@
+{
+  "unversionedId": "reference/SDK/08-other-exports",
+  "id": "reference/SDK/08-other-exports",
+  "isDocsHomePage": false,
+  "title": "Other Exports",
+  "description": "JSBI",
+  "source": "@site/docs/reference/SDK/08-other-exports.md",
+  "slug": "/reference/SDK/08-other-exports",
+  "permalink": "/docs/reference/SDK/08-other-exports",
+  "editUrl": "https://github.com/docs/reference/SDK/08-other-exports.md",
+  "version": "current",
+  "sidebar": "reference",
+  "previous": {
+    "title": "Fetcher",
+    "permalink": "/docs/reference/SDK/07-fetcher"
+  }
+}
