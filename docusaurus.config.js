@@ -6,7 +6,7 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
+  organizationName: 'Uniswap', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
@@ -25,8 +25,6 @@ module.exports = {
         // {
         //   type: 'docsVersionDropdown',
         //   position: 'left',
-
-    
         // },
         {
           to: 'docs',
@@ -51,6 +49,16 @@ module.exports = {
           label: 'Reference',
           position: 'left'
         },
+        // {
+        //   type: 'docsVersionDropdown',
+        //   position: 'right',
+        //   dropdownActiveClassDisabled: true,
+        //   dropdownItemsAfter: [
+        //     {
+        //       to: '/docs_versions',
+        //     },
+        //   ],
+        // },
       ],
     },
     footer: {

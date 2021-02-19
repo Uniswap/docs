@@ -1,6 +1,7 @@
 ---
 id: 01-connect-to-uniswap
 title: Connect to Uniswap
+slug: /
 ---
 
 <Info>
