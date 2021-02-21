@@ -39,7 +39,7 @@ export default [
 },
 {
   path: '/docs',
-  component: ComponentCreator('/docs','3b8'),
+  component: ComponentCreator('/docs','096'),
   
   routes: [
 {

@@ -17,6 +17,12 @@ export default {
       },
       "items": [
         {
+          "type": "docsVersionDropdown",
+          "position": "right",
+          "dropdownItemsBefore": [],
+          "dropdownItemsAfter": []
+        },
+        {
           "to": "docs",
           "activeBasePath": "docs",
           "label": "Docs",
@@ -116,7 +122,6 @@ export default {
       "@docusaurus/preset-classic",
       {
         "docs": {
-          "id": "docs",
           "path": "docs",
           "sidebarPath": "/Users/Connor/Uniswap/uniswap-docs/sidebars.js",
           "editUrl": "https://github.com/",

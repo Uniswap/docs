@@ -1,6 +1,6 @@
 {
   "docusaurus-plugin-content-docs": {
-    "docs": {
+    "default": {
       "loadedVersions": [
         {
           "versionName": "current",
@@ -10,7 +10,7 @@
           "routePriority": -1,
           "sidebarFilePath": "/Users/Connor/Uniswap/uniswap-docs/sidebars.js",
           "docsDirPath": "/Users/Connor/Uniswap/uniswap-docs/docs",
-          "docsDirPathLocalized": "/Users/Connor/Uniswap/uniswap-docs/i18n/en/docusaurus-plugin-content-docs-docs/current",
+          "docsDirPathLocalized": "/Users/Connor/Uniswap/uniswap-docs/i18n/en/docusaurus-plugin-content-docs/current",
           "mainDocId": "concepts/01-protocol-overview/01-how-uniswap-works",
           "sidebars": {
             "docs": [

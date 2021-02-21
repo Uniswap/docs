@@ -16,13 +16,13 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
-        // {
-        //   type: 'docsVersionDropdown',
-        //   position: 'right',
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
          
-        //   // Do not add the link active class when browsing docs.
-        //   dropdownActiveClassDisabled: false,
-        // },
+          // Do not add the link active class when browsing docs.
+          // dropdownActiveClassDisabled: false,
+        },
         // {
         //   type: 'docsVersion',
         //   position: 'left',
@@ -110,7 +110,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          id: 'docs',
+          //id: 'docs',
           path: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
