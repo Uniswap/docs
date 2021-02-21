@@ -49,16 +49,16 @@ module.exports = {
           label: 'Reference',
           position: 'left'
         },
-        // {
-        //   type: 'docsVersionDropdown',
-        //   position: 'right',
-        //   dropdownActiveClassDisabled: true,
-        //   dropdownItemsAfter: [
-        //     {
-        //       to: '/docs_versions',
-        //     },
-        //   ],
-        // },
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+          dropdownItemsAfter: [
+            {
+              to: '/docs_versions',
+            },
+          ],
+        },
       ],
     },
     footer: {
@@ -116,7 +116,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          id: 'docs',
+         // id: 'docs',
           path: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
