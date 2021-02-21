@@ -1,10 +1,12 @@
-# dependencies
-node_modules/
+.DS_Store
 
-#misc
-**/.DS_Store
-.now
-.nvmrc
-yarn-error.log
-.vercel
-.env
+node_modules
+
+lib/core/metadata.js
+lib/core/MetadataBlog.js
+translated_docs
+build/
+yarn.lock
+node_modules
+i18n/*
+.docusaurus/*
