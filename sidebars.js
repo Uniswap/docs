@@ -57,6 +57,10 @@ module.exports = {
         'V1/01-frontend-integration/06-token-listing',
       ],
     },
+  ],
+
+
+  guides: [
     {
       type: 'category',
       label: 'SDK',
@@ -71,19 +75,6 @@ module.exports = {
         'V1/02-SDK/08-types',
       ],
     },
-    {
-      type: 'category',
-      label: 'Smart Contracts',
-      items: [
-        'V1/03-smart-contracts/01-factory',
-        'V1/03-smart-contracts/02-exchange',
-        'V1/03-smart-contracts/03-interfaces',
-      ],
-    },
-  ],
-
-
-  guides: [
     {
       type: 'category',
       label: 'Smart Contract Integration',
@@ -121,6 +112,15 @@ module.exports = {
   ],
 
   reference: [
+    {
+      type: 'category',
+      label: 'Smart Contracts',
+      items: [
+        'V1/03-smart-contracts/01-factory',
+        'V1/03-smart-contracts/02-exchange',
+        'V1/03-smart-contracts/03-interfaces',
+      ],
+    },
     {
       type: 'category',
       label: 'API',

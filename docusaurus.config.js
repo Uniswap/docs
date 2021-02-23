@@ -16,36 +16,18 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
-        // {
-        //   type: 'docsVersion',
-        //   position: 'left',
-        //   // to: "/path // by default, link to active/latest version
-        //   // label: "label" // by default, show active/latest version label
-        // },
-        // {
-        //   type: 'docsVersionDropdown',
-        //   position: 'left',
-        // },
         {
           to: 'docs',
-          activeBasePath: 'docs',
           label: 'Docs',
           position: 'left'
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right'
-        },
-        {
           to: 'docs/guides', 
-          activeBasePath: 'docs/guides',
           label: 'Guides', 
           position: 'left'
         },
         {
           to: 'docs/reference',
-          activeBasePath: 'docs/reference',
           label: 'Reference',
           position: 'left'
         },
@@ -58,6 +40,11 @@ module.exports = {
               to: '/docs_versions',
             },
           ],
+        },
+        {
+          href: 'https://github.com/facebook/docusaurus',
+          label: 'GitHub',
+          position: 'right'
         },
       ],
     },
@@ -116,12 +103,11 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-         // id: 'docs',
           path: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
-          routeBasePath: '/docs',
+          //routeBasePath: '/docs',
           //Version: 'v2',
           
           // versions: {
