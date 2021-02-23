@@ -6,7 +6,7 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
+  organizationName: 'Uniswap', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
@@ -17,42 +17,35 @@ module.exports = {
       },
       items: [
         {
-          type: 'docsVersionDropdown',
-          position: 'right',
-         
-          // Do not add the link active class when browsing docs.
-          // dropdownActiveClassDisabled: false,
-        },
-        // {
-        //   type: 'docsVersion',
-        //   position: 'left',
-        //   // to: "/path // by default, link to active/latest version
-        //   // label: "label" // by default, show active/latest version label
-        // },
-        {
           to: 'docs',
-          activeBasePath: 'docs',
           label: 'Docs',
           position: 'left'
+        },
+        {
+          to: 'docs/guides', 
+          label: 'Guides', 
+          position: 'left'
+        },
+        {
+          to: 'docs/reference',
+          label: 'Reference',
+          position: 'left'
+        },
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+          dropdownItemsAfter: [
+            {
+              to: '/docs_versions',
+            },
+          ],
         },
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
           position: 'right'
         },
-        {
-          to: 'docs/guides', 
-          activeBasePath: 'docs/guides',
-          label: 'Guides', 
-          position: 'left'
-        },
-        {
-          to: 'docs/reference',
-          activeBasePath: 'docs/reference',
-          label: 'Reference',
-          position: 'left'
-        },
-        
       ],
     },
     footer: {
@@ -110,12 +103,26 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          //id: 'docs',
           path: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/',
-          routeBasePath: '/docs',
+          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
+          //routeBasePath: '/docs',
+          //Version: 'v2',
+          
+          // versions: {
+            
+          //   Example configuration: 
+          //   'v2': {
+          //     label: 'Android SDK v2.0.0 (WIP)',
+          //     path: 'android-2.0.0',
+          //   },
+          //   'v1': {
+          //     label: 'Android SDK v1.0.0',
+          //     path: 'android-1.0.0',
+          //   },
+            
+          // },
         },
 
         theme: {
@@ -125,23 +132,5 @@ module.exports = {
     ],
   ],
   plugins: [
-  //   [
-  //     '@docusaurus/plugin-content-docs',
-  //   {
-  //     id: 'guides',
-  //     path: 'guides',
-  //     routeBasePath: '/guides',
-  //     sidebarPath: require.resolve('./sidebars.js'),
-  //   },
-  // ],
-  //   [
-  //     '@docusaurus/plugin-content-docs',
-  //   {
-  //     id: 'docs',
-  //     path: 'docs',
-  //     sidebarPath: require.resolve('./sidebars.js'),
-  //     routeBasePath: '/docs',
-  //   },
-  // ],
  ],
 };
