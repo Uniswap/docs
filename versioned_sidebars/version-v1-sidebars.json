@@ -1,0 +1,93 @@
+{
+  "version-v1/docs": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Frontend Integration",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v1/01-frontend-integration/01-connect-to-uniswap"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/01-frontend-integration/02-pool-liquidity"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/01-frontend-integration/03-trade-tokens"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/01-frontend-integration/04-custom-linking"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/01-frontend-integration/05-iframe-integration"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/01-frontend-integration/06-token-listing"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "SDK",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v1/02-SDK/01-getting-started"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/02-SDK/02-data"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/02-SDK/03-computation"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/02-SDK/04-format"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/02-SDK/05-orchestration"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/02-SDK/06-transact"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/02-SDK/07-constants"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/02-SDK/08-types"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Smart Contracts",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v1/03-smart-contracts/01-factory"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/03-smart-contracts/02-exchange"
+        },
+        {
+          "type": "doc",
+          "id": "version-v1/03-smart-contracts/03-interfaces"
+        }
+      ]
+    }
+  ]
+}
