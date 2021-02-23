@@ -105,7 +105,7 @@ module.exports = {
         docs: {
           path: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
-          excludeNextVersionDocs: true,
+          includeCurrentVersion: false,
           // Please change this to your repo.
           editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
           //routeBasePath: '/docs',
