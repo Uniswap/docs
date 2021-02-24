@@ -24,10 +24,8 @@ To retrieve the underlying liquidity, plus any fees accrued, liquidity providers
 
 As liquidity tokens are themselves tradable assets, liquidity providers may sell, transfer, or otherwise use their liquidity tokens in any way they see fit.
 
-Learn more with advanced topics:
+Learn more with advanced topics [Understanding Returns](../03-advanced-topics/03-understanding-returns.md) and [Fees](../03-advanced-topics/01-fees.md).
 
-<InlineBoxLink title="Understanding Returns" to="docs/v2/advanced-topics/understanding-returns" />
-<InlineBoxLink title="Fees" to="docs/v2/advanced-topics/fees" />
 
 # Why pools?
 
@@ -59,4 +57,4 @@ Just how end-users can interact with the Uniswap protocol through the Interface 
 
 # Developer resources
 
-- To see how to pool tokens in a smart contract read [Providing Liquidity](/docs/v2/smart-contract-integration/providing-liquidity/).
+- To see how to pool tokens in a smart contract read [Providing Liquidity](../../guides/smart-contract-integration/03-providing-liquidity.md).
