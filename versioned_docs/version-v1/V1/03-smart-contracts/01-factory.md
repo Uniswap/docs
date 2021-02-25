@@ -1,6 +1,7 @@
 ---
 id: 01-factory
 title: Factory
+slug: /reference/
 ---
 
 <Info>

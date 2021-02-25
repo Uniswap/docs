@@ -17,7 +17,7 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs',
+          to: 'docs/',
           label: 'Docs',
           position: 'left'
         },
@@ -108,7 +108,7 @@ module.exports = {
           includeCurrentVersion: false,
           // Please change this to your repo.
           editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
-          //routeBasePath: '/docs',
+          routeBasePath: '/docs',
           //Version: 'v2',
           
           // versions: {

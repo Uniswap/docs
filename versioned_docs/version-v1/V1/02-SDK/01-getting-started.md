@@ -1,6 +1,7 @@
 ---
 id: 01-getting-started
 title: Getting Started
+slug: /guides/
 ---
 
 <Info>
