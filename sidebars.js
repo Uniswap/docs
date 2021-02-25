@@ -5,6 +5,13 @@ module.exports = {
       type: 'category',
       label:'Protocol Overview',
       items: [
+        'V3/concepts/01-how-uniswap-works',
+      ],
+    },
+    {
+      type: 'category',
+      label:'Protocol Overview',
+      items: [
         'V2/concepts/01-protocol-overview/01-how-uniswap-works',
         'V2/concepts/01-protocol-overview/02-ecosystem-participants',
         'V2/concepts/01-protocol-overview/03-smart-contracts',
@@ -63,16 +70,9 @@ module.exports = {
   guides: [
     {
       type: 'category',
-      label: 'SDK',
+      label:'Protocol Overview',
       items: [
-        'V1/02-SDK/01-getting-started',
-        'V1/02-SDK/02-data',
-        'V1/02-SDK/03-computation',
-        'V1/02-SDK/04-format',
-        'V1/02-SDK/05-orchestration',
-        'V1/02-SDK/06-transact',
-        'V1/02-SDK/07-constants',
-        'V1/02-SDK/08-types',
+        'V3/guides/01-how-uniswap-works',
       ],
     },
     {
@@ -109,9 +109,30 @@ module.exports = {
         'V2/guides/javascript-sdk/05-getting-pair-addresses',
       ],
     },
+    {
+      type: 'category',
+      label: 'SDK',
+      items: [
+        'V1/02-SDK/01-getting-started',
+        'V1/02-SDK/02-data',
+        'V1/02-SDK/03-computation',
+        'V1/02-SDK/04-format',
+        'V1/02-SDK/05-orchestration',
+        'V1/02-SDK/06-transact',
+        'V1/02-SDK/07-constants',
+        'V1/02-SDK/08-types',
+      ],
+    },
   ],
 
   reference: [
+    {
+      type: 'category',
+      label:'Protocol Overview',
+      items: [
+        'V3/reference/01-how-uniswap-works',
+      ],
+    },
     {
       type: 'category',
       label: 'Smart Contracts',

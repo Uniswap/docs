@@ -1,0 +1,43 @@
+{
+  "version-v3/docs": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Protocol Overview",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v3/V3/concepts/01-placeholder-concepts"
+        }
+      ]
+    }
+  ],
+
+  "version-v3/guides": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Protocol Overview",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v3/V3/guides/01-placeholder-guides"
+        }
+      ]
+    }
+  ],
+
+  "version-v3/reference": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Protocol Overview",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/01-placeholder-reference"
+        }
+      ]
+    }
+  ]
+}
