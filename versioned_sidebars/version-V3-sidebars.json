@@ -1,5 +1,5 @@
 {
-  "version-v3/docs": [
+  "version-v3/V3/docs": [
     {
       "collapsed": true,
       "type": "category",
@@ -13,7 +13,7 @@
     }
   ],
 
-  "version-v3/guides": [
+  "version-v3/V3/guides": [
     {
       "collapsed": true,
       "type": "category",
@@ -27,7 +27,7 @@
     }
   ],
 
-  "version-v3/reference": [
+  "version-v3/V3/reference": [
     {
       "collapsed": true,
       "type": "category",
