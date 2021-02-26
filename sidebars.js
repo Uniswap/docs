@@ -5,7 +5,21 @@ module.exports = {
       type: 'category',
       label:'Protocol Overview',
       items: [
+        'V3/concepts/landing',
+      ],
+    },
+    {
+      type: 'category',
+      label:'Protocol Overview',
+      items: [
         'V3/concepts/01-how-uniswap-works',
+      ],
+    },
+    {
+      type: 'category',
+      label:'Protocol Overview',
+      items: [
+        'V2/concepts/landing',
       ],
     },
     {
@@ -56,7 +70,7 @@ module.exports = {
       type: 'category',
       label: 'Frontend Integration',
       items: [
-        'V1/01-frontend-integration/01-connect-to-uniswap',
+        'V1/01-frontend-integration/01-how-uniswap-works',
         'V1/01-frontend-integration/02-pool-liquidity',
         'V1/01-frontend-integration/03-trade-tokens',
         'V1/01-frontend-integration/04-custom-linking',
@@ -70,9 +84,32 @@ module.exports = {
   guides: [
     {
       type: 'category',
+      label:'Landing',
+      items: [
+        'V3/guides/landing',
+      ],
+    },
+    {
+      type: 'category',
       label:'Protocol Overview',
       items: [
-        'V3/guides/01-how-uniswap-works',
+        'V3/guides/01-using-the-api',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Interface Integration',
+      items: [
+        'V2/guides/landing',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Interface Integration',
+      items: [
+        'V2/guides/interface-integration/01-using-the-api',
+        'V2/guides/interface-integration/02-custom-interface-linking',
+        'V2/guides/interface-integration/03-iframe-integration',
       ],
     },
     {
@@ -87,15 +124,6 @@ module.exports = {
         'V2/guides/smart-contract-integration/06-getting-pair-addresses',
         'V2/guides/smart-contract-integration/07-supporting-meta-transactions',
         
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Interface Integration',
-      items: [
-        'V2/guides/interface-integration/01-using-the-api',
-        'V2/guides/interface-integration/02-custom-interface-linking',
-        'V2/guides/interface-integration/03-iframe-integration',
       ],
     },
     {
@@ -128,6 +156,13 @@ module.exports = {
   reference: [
     {
       type: 'category',
+      label:'Landing',
+      items: [
+        'V3/reference/landing',
+      ],
+    },
+    {
+      type: 'category',
       label:'Protocol Overview',
       items: [
         'V3/reference/01-how-uniswap-works',
@@ -135,11 +170,9 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Smart Contracts',
+      label: 'Landing',
       items: [
-        'V1/03-smart-contracts/01-factory',
-        'V1/03-smart-contracts/02-exchange',
-        'V1/03-smart-contracts/03-interfaces',
+        'V2/reference/landing',
       ],
     },
     {
@@ -185,6 +218,15 @@ module.exports = {
         'V2/reference/SDK/07-fetcher',
         'V2/reference/SDK/08-other-exports',
         
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Smart Contracts',
+      items: [
+        'V1/03-smart-contracts/01-factory',
+        'V1/03-smart-contracts/02-exchange',
+        'V1/03-smart-contracts/03-interfaces',
       ],
     },
   ],

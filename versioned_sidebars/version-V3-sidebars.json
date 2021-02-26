@@ -7,7 +7,11 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-v3/V3/concepts/01-placeholder-concepts"
+          "id": "version-v3/V3/concepts/landing"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/concepts/01-how-uniswap-works"
         }
       ]
     }
@@ -21,7 +25,11 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-v3/V3/guides/01-placeholder-guides"
+          "id": "version-v3/V3/guides/landing"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/guides/01-using-the-api"
         }
       ]
     }
@@ -33,6 +41,10 @@
       "type": "category",
       "label": "Protocol Overview",
       "items": [
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/landing"
+        },
         {
           "type": "doc",
           "id": "version-v3/V3/reference/01-placeholder-reference"

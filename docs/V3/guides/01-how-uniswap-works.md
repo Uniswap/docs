@@ -1,7 +1,6 @@
 ---
-id: 01-placeholder-guides
+id: 01-using-the-api
 title: How Uniswap works
-slug: /
 ---
 
 Placeholder for V3 guides

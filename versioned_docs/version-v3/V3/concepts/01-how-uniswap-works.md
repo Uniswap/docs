@@ -1,5 +1,5 @@
 ---
-id: 01-placeholder-concepts
+id: 01-how-uniswap-works
 title: How Uniswap works
 slug: /
 ---

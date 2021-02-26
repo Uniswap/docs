@@ -110,10 +110,14 @@ module.exports = {
           editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
           routeBasePath: '/docs',
           //Version: 'v2',
-          
+          // lastVersion: 'current',
           // versions: {
             
           //   Example configuration: 
+          //   'v3': {
+          //     label: 'Android SDK v2.0.0 (WIP)',
+          //     path: 'android-2.0.0',
+          //   },
           //   'v2': {
           //     label: 'Android SDK v2.0.0 (WIP)',
           //     path: 'android-2.0.0',
