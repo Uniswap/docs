@@ -1,6 +1,7 @@
 ---
-id: 01-connect-to-uniswap
+id: 01-how-uniswap-works
 title: Connect to Uniswap
+slug: /
 
 ---
 
