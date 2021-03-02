@@ -1,6 +1,6 @@
 ---
 id: landing
-title: How Uniswap works
+title: Concepts V2 Landing
 ---
 
 Concepts Landing Page

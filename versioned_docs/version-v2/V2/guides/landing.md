@@ -1,6 +1,6 @@
 ---
 id: landing
-title: How Uniswap works
+title: Guides V2 Landing
 ---
 
 Guides Landing Page

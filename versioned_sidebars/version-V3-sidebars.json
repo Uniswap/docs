@@ -11,7 +11,7 @@
         },
         {
           "type": "doc",
-          "id": "version-v3/V3/concepts/01-how-uniswap-works"
+          "id": "version-v3/V3/concepts/concepts-holder"
         }
       ]
     }
@@ -29,7 +29,7 @@
         },
         {
           "type": "doc",
-          "id": "version-v3/V3/guides/01-using-the-api"
+          "id": "version-v3/V3/guides/guides-holder"
         }
       ]
     }
@@ -47,7 +47,7 @@
         },
         {
           "type": "doc",
-          "id": "version-v3/V3/reference/01-placeholder-reference"
+          "id": "version-v3/V3/reference/reference-holder"
         }
       ]
     }
