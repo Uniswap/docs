@@ -2,6 +2,16 @@
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
+# How to add a new page
+
+Create a markdown file in its respective version directory within the main /docs/ folder
+
+Copy that file in its respecctive directory within the /versioned_docs/ folder
+
+Add the new file to the sidebars file
+
+copy the new sidebar file addition to its respective place in the versioned_sidebar folder
+
 ## Installation
 
 ```console
