@@ -12,7 +12,7 @@ module.exports = {
       type: 'category',
       label:'Protocol Overview',
       items: [
-        'V3/concepts/01-how-uniswap-works',
+        'V3/concepts/concepts-holder',
       ],
     },
     {
@@ -93,7 +93,7 @@ module.exports = {
       type: 'category',
       label:'Protocol Overview',
       items: [
-        'V3/guides/01-using-the-api',
+        'V3/guides/guides-holder',
       ],
     },
     {
@@ -165,7 +165,7 @@ module.exports = {
       type: 'category',
       label:'Protocol Overview',
       items: [
-        'V3/reference/01-how-uniswap-works',
+        'V3/reference/reference-holder',
       ],
     },
     {

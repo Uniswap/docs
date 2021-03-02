@@ -1,6 +1,6 @@
 ---
 id: landing
-title: How Uniswap works
+title: Reference V2 Landing
 slug: /reference/
 ---
 
