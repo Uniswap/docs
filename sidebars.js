@@ -91,7 +91,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label:'Protocol Overview',
+      label:'Guides Overview',
       items: [
         'V3/guides/guides-holder',
       ],
@@ -163,7 +163,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label:'Protocol Overview',
+      label:'Reference Overview',
       items: [
         'V3/reference/reference-holder',
       ],
