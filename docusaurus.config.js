@@ -19,17 +19,59 @@ module.exports = {
         {
           to: 'docs/concepts',
           label: 'Concepts',
-          position: 'left'
+          position: 'left',
+          items: [
+            {
+              label: 'V3',
+              href: '/docs/concepts'
+            },
+            {
+              label: 'V2',
+              href: '/docs/V2/concepts'
+            },
+            {
+              label: 'V1',
+              href: '/docs/V1/concepts'
+            }
+          ]
         },
         {
           to: 'docs/guides', 
           label: 'Guides', 
-          position: 'left'
+          position: 'left',
+          items: [
+            {
+              label: 'V3',
+              href: '/docs/guides'
+            },
+            {
+              label: 'V2',
+              href: '/docs/V2/guides'
+            },
+            {
+              label: 'V1',
+              href: '/docs/V1/guides'
+            }
+          ]
         },
         {
           to: 'docs/reference',
           label: 'Reference',
-          position: 'left'
+          position: 'left',
+          items: [
+            {
+              label: 'V3',
+              href: '/docs/reference'
+            },
+            {
+              label: 'V2',
+              href: '/docs/V2/reference'
+            },
+            {
+              label: 'V1',
+              href: '/docs/V1/reference'
+            }
+          ]
         },
         {
           type: 'docsVersionDropdown',
@@ -42,7 +84,7 @@ module.exports = {
           ],
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/uniswap/uniswap-docs',
           label: 'GitHub',
           position: 'right'
         },
