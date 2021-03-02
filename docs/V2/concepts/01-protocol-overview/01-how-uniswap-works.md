@@ -2,7 +2,7 @@
 id: 01-how-uniswap-works
 title: How Uniswap works
 tags: protocol-overview, documentation
-slug: /
+slug: /concepts/
 ---
 
 ![](./images/anatomy.jpg)
