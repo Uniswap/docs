@@ -17,19 +17,61 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs',
-          label: 'Docs',
-          position: 'left'
+          to: 'docs/concepts',
+          label: 'Concepts',
+          position: 'left',
+          items: [
+            {
+              label: 'V3',
+              href: '/docs/concepts'
+            },
+            {
+              label: 'V2',
+              href: '/docs/V2/concepts'
+            },
+            {
+              label: 'V1',
+              href: '/docs/V1/concepts'
+            }
+          ]
         },
         {
           to: 'docs/guides', 
           label: 'Guides', 
-          position: 'left'
+          position: 'left',
+          items: [
+            {
+              label: 'V3',
+              href: '/docs/guides'
+            },
+            {
+              label: 'V2',
+              href: '/docs/V2/guides'
+            },
+            {
+              label: 'V1',
+              href: '/docs/V1/guides'
+            }
+          ]
         },
         {
           to: 'docs/reference',
           label: 'Reference',
-          position: 'left'
+          position: 'left',
+          items: [
+            {
+              label: 'V3',
+              href: '/docs/reference'
+            },
+            {
+              label: 'V2',
+              href: '/docs/V2/reference'
+            },
+            {
+              label: 'V1',
+              href: '/docs/V1/reference'
+            }
+          ]
         },
         {
           type: 'docsVersionDropdown',
@@ -42,7 +84,7 @@ module.exports = {
           ],
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/uniswap/uniswap-docs',
           label: 'GitHub',
           position: 'right'
         },
@@ -108,12 +150,16 @@ module.exports = {
           includeCurrentVersion: false,
           // Please change this to your repo.
           editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
-          //routeBasePath: '/docs',
+          routeBasePath: '/docs',
           //Version: 'v2',
-          
+          // lastVersion: 'current',
           // versions: {
             
           //   Example configuration: 
+          //   'v3': {
+          //     label: 'Android SDK v2.0.0 (WIP)',
+          //     path: 'android-2.0.0',
+          //   },
           //   'v2': {
           //     label: 'Android SDK v2.0.0 (WIP)',
           //     path: 'android-2.0.0',
