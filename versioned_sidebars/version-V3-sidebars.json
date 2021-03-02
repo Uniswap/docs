@@ -21,7 +21,7 @@
     {
       "collapsed": true,
       "type": "category",
-      "label": "Protocol Overview",
+      "label": "Guides Overview",
       "items": [
         {
           "type": "doc",
@@ -39,7 +39,7 @@
     {
       "collapsed": true,
       "type": "category",
-      "label": "Protocol Overview",
+      "label": "Reference Overview",
       "items": [
         {
           "type": "doc",
