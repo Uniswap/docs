@@ -5,6 +5,27 @@ module.exports = {
       type: 'category',
       label:'Protocol Overview',
       items: [
+        'V3/concepts/landing',
+      ],
+    },
+    {
+      type: 'category',
+      label:'Protocol Overview',
+      items: [
+        'V3/concepts/concepts-holder',
+      ],
+    },
+    {
+      type: 'category',
+      label:'Protocol Overview',
+      items: [
+        'V2/concepts/landing',
+      ],
+    },
+    {
+      type: 'category',
+      label:'Protocol Overview',
+      items: [
         'V2/concepts/01-protocol-overview/01-how-uniswap-works',
         'V2/concepts/01-protocol-overview/02-ecosystem-participants',
         'V2/concepts/01-protocol-overview/03-smart-contracts',
@@ -49,12 +70,12 @@ module.exports = {
       type: 'category',
       label: 'Frontend Integration',
       items: [
-        'V1/01-frontend-integration/01-connect-to-uniswap',
-        'V1/01-frontend-integration/02-pool-liquidity',
-        'V1/01-frontend-integration/03-trade-tokens',
-        'V1/01-frontend-integration/04-custom-linking',
-        'V1/01-frontend-integration/05-iframe-integration',
-        'V1/01-frontend-integration/06-token-listing',
+        'V1/concepts/01-frontend-integration/01-how-uniswap-works',
+        'V1/concepts/01-frontend-integration/02-pool-liquidity',
+        'V1/concepts/01-frontend-integration/03-trade-tokens',
+        'V1/concepts/01-frontend-integration/04-custom-linking',
+        'V1/concepts/01-frontend-integration/05-iframe-integration',
+        'V1/concepts/01-frontend-integration/06-token-listing',
       ],
     },
   ],
@@ -63,16 +84,32 @@ module.exports = {
   guides: [
     {
       type: 'category',
-      label: 'SDK',
+      label:'Landing',
       items: [
-        'V1/02-SDK/01-getting-started',
-        'V1/02-SDK/02-data',
-        'V1/02-SDK/03-computation',
-        'V1/02-SDK/04-format',
-        'V1/02-SDK/05-orchestration',
-        'V1/02-SDK/06-transact',
-        'V1/02-SDK/07-constants',
-        'V1/02-SDK/08-types',
+        'V3/guides/landing',
+      ],
+    },
+    {
+      type: 'category',
+      label:'Guides Overview',
+      items: [
+        'V3/guides/guides-holder',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Interface Integration',
+      items: [
+        'V2/guides/landing',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Interface Integration',
+      items: [
+        'V2/guides/interface-integration/01-using-the-api',
+        'V2/guides/interface-integration/02-custom-interface-linking',
+        'V2/guides/interface-integration/03-iframe-integration',
       ],
     },
     {
@@ -91,15 +128,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Interface Integration',
-      items: [
-        'V2/guides/interface-integration/01-using-the-api',
-        'V2/guides/interface-integration/02-custom-interface-linking',
-        'V2/guides/interface-integration/03-iframe-integration',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Javascript SDK',
       items: [
         'V2/guides/javascript-sdk/01-quick-start',
@@ -109,16 +137,35 @@ module.exports = {
         'V2/guides/javascript-sdk/05-getting-pair-addresses',
       ],
     },
+    {
+      type: 'category',
+      label: 'SDK',
+      items: [
+        'V1/guides/02-SDK/01-getting-started',
+        'V1/guides/02-SDK/02-data',
+        'V1/guides/02-SDK/03-computation',
+        'V1/guides/02-SDK/04-format',
+        'V1/guides/02-SDK/05-orchestration',
+        'V1/guides/02-SDK/06-transact',
+        'V1/guides/02-SDK/07-constants',
+        'V1/guides/02-SDK/08-types',
+      ],
+    },
   ],
 
   reference: [
     {
       type: 'category',
-      label: 'Smart Contracts',
+      label:'Reference Overview',
       items: [
-        'V1/03-smart-contracts/01-factory',
-        'V1/03-smart-contracts/02-exchange',
-        'V1/03-smart-contracts/03-interfaces',
+        'V3/reference/reference-holder',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Landing',
+      items: [
+        'V2/reference/landing',
       ],
     },
     {
@@ -164,6 +211,15 @@ module.exports = {
         'V2/reference/SDK/07-fetcher',
         'V2/reference/SDK/08-other-exports',
         
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Smart Contracts',
+      items: [
+        'V1/reference/03-smart-contracts/01-factory',
+        'V1/reference/03-smart-contracts/02-exchange',
+        'V1/reference/03-smart-contracts/03-interfaces',
       ],
     },
   ],

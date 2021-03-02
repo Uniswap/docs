@@ -1,0 +1,51 @@
+{
+  "version-v3/V3/docs": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Protocol Overview",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v3/V3/concepts/landing"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/concepts/concepts-holder"
+        }
+      ]
+    }
+  ],
+
+  "version-v3/V3/guides": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Guides Overview",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v3/V3/guides/landing"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/guides/guides-holder"
+        }
+      ]
+    }
+  ],
+
+  "version-v3/V3/reference": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Reference Overview",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/reference-holder"
+        }
+      ]
+    }
+  ]
+}

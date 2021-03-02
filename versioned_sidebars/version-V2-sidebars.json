@@ -3,6 +3,17 @@
     {
       "collapsed": true,
       "type": "category",
+      "label": "Landing",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v2/V2/concepts/landing"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
       "label": "Protocol Overview",
       "items": [
         {
@@ -113,6 +124,36 @@
     {
       "collapsed": true,
       "type": "category",
+      "label": "Interface Integration",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v2/V2/guides/landing"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Interface Integration",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v2/V2/guides/interface-integration/01-using-the-api"
+        },
+        {
+          "type": "doc",
+          "id": "version-v2/V2/guides/interface-integration/02-custom-interface-linking"
+        },
+        {
+          "type": "doc",
+          "id": "version-v2/V2/guides/interface-integration/03-iframe-integration"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
       "label": "Smart Contract Integration",
       "items": [
         {
@@ -148,25 +189,6 @@
     {
       "collapsed": true,
       "type": "category",
-      "label": "Interface Integration",
-      "items": [
-        {
-          "type": "doc",
-          "id": "version-v2/V2/guides/interface-integration/01-using-the-api"
-        },
-        {
-          "type": "doc",
-          "id": "version-v2/V2/guides/interface-integration/02-custom-interface-linking"
-        },
-        {
-          "type": "doc",
-          "id": "version-v2/V2/guides/interface-integration/03-iframe-integration"
-        }
-      ]
-    },
-    {
-      "collapsed": true,
-      "type": "category",
       "label": "Javascript SDK",
       "items": [
         {
@@ -193,6 +215,17 @@
     }
   ],
   "version-v2/V2/reference": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "API",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v2/V2/reference/landing"
+        }
+      ]
+    },
     {
       "collapsed": true,
       "type": "category",
