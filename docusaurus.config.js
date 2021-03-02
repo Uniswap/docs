@@ -17,8 +17,8 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/',
-          label: 'Docs',
+          to: 'docs/concepts',
+          label: 'Concepts',
           position: 'left'
         },
         {
