@@ -43,6 +43,10 @@
       "items": [
         {
           "type": "doc",
+          "id": "version-v3/V3/reference/landing"
+        },
+        {
+          "type": "doc",
           "id": "version-v3/V3/reference/reference-holder"
         }
       ]
