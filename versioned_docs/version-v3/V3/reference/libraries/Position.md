@@ -1,19 +1,18 @@
 
 ## `Position`
 
-Position
-
-
 Positions represent an owner address' liquidity between a lower and upper tick boundary
-
 
 Positions store additional state for tracking fees owed to the position
 
 
-### `get(mapping(bytes32 => struct Position.Info) self, address owner, int24 tickLower, int24 tickUpper) → struct Position.Info position` (internal)
+ ```solidity 
+ function get(
+     mapping(bytes32 => struct Position.Info) self, address owner, int24 tickLower, int24 tickUpper<br/>
+   )(internal) returns (struct Position.Info position)
+ ``` 
 
 Returns the Info struct of a position, given an owner and position boundaries
-
 
 
 
@@ -28,10 +27,13 @@ tickUpper: The upper tick boundary of the position
 
 position: The position info struct of the given owners' position
 
-### `update(struct Position.Info self, int128 liquidityDelta, uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128)` (internal)
+ ```solidity 
+ function update(
+     struct Position.Info self, int128 liquidityDelta, uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128<br/>
+   )(internal)
+ ``` 
 
 Credits accumulated fees to a user's position
-
 
 
 

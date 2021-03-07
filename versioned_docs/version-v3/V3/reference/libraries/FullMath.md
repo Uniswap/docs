@@ -1,19 +1,18 @@
 
 ## `FullMath`
 
-Contains 512-bit math functions
-
-
 Facilitates multiplication and division that can have overflow of an intermediate value without any loss of precision
-
 
 Handles "phantom overflow" i.e., allows multiplication and division where an intermediate value overflows 256 bits
 
 
-### `mulDiv(uint256 a, uint256 b, uint256 denominator) → uint256 result` (internal)
+ ```solidity 
+ function mulDiv(
+     uint256 a, uint256 b, uint256 denominator<br/>
+   )(internal) returns (uint256 result)
+ ``` 
 
 Calculates floor(a×b÷denominator) with full precision. Throws if result overflows a uint256 or denominator == 0
-
 
 Credit to Remco Bloemen under MIT license https://xn--2-umb.com/21/muldiv
 
@@ -27,10 +26,13 @@ denominator: The divisor
 result: The 256-bit result
 
 
-### `mulDivRoundingUp(uint256 a, uint256 b, uint256 denominator) → uint256 result` (internal)
+ ```solidity 
+ function mulDivRoundingUp(
+     uint256 a, uint256 b, uint256 denominator<br/>
+   )(internal) returns (uint256 result)
+ ``` 
 
 / @notice Calculates ceil(a×b÷denominator) with full precision. Throws if result overflows a uint256 or denominator == 0
-
 
 
 
