@@ -1,19 +1,18 @@
 
 ## `TickBitmap`
 
-Packed tick initialized state library
-
-
 Stores a packed mapping of tick index to its initialized state
-
 
 The mapping uses int16 for keys since ticks are represented as int24 and there are 256 (2^8) values per word.
 
 
-### `flipTick(mapping(int16 => uint256) self, int24 tick, int24 tickSpacing)` (internal)
+ ```solidity 
+ function flipTick(
+     mapping(int16 => uint256) self, int24 tick, int24 tickSpacing<br/>
+   )(internal)
+ ``` 
 
 Flips the initialized state for a given tick from false to true, or vice versa
-
 
 
 
@@ -24,11 +23,14 @@ tick: The tick to flip
 tickSpacing: The spacing between usable ticks
 
 
-### `nextInitializedTickWithinOneWord(mapping(int16 => uint256) self, int24 tick, int24 tickSpacing, bool lte) → int24 next, bool initialized` (internal)
+ ```solidity 
+ function nextInitializedTickWithinOneWord(
+     mapping(int16 => uint256) self, int24 tick, int24 tickSpacing, bool lte<br/>
+   )(internal) returns (int24 next, bool initialized)
+ ``` 
 
 Returns the next initialized tick contained in the same word (or adjacent word) as the tick that is either
 to the left (less than or equal to) or right (greater than) of the given tick
-
 
 
 

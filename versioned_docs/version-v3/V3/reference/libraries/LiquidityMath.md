@@ -1,17 +1,17 @@
 
 ## `LiquidityMath`
 
-Math library for liquidity
 
 
 
 
-
-
-### `addDelta(uint128 x, int128 y) → uint128 z` (internal)
+ ```solidity 
+ function addDelta(
+     uint128 x, int128 y<br/>
+   )(internal) returns (uint128 z)
+ ``` 
 
 Add a signed liquidity delta to liquidity and revert if it overflows or underflows
-
 
 
 

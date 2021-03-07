@@ -1,21 +1,20 @@
 
 ## `SecondsOutside`
 
-Stores packed 32 bit timestamp values
-
-
 Contains methods for working with a mapping from tick to 32 bit timestamp values, specifically seconds
 spent outside the tick.
-
 
 The mapping uses int24 for keys since ticks are represented as int24 and there are 8 (2^3) values per word.
 
 
-### `initialize(mapping(int24 => uint256) self, int24 tick, int24 tickCurrent, int24 tickSpacing, uint32 time)` (internal)
+ ```solidity 
+ function initialize(
+     mapping(int24 => uint256) self, int24 tick, int24 tickCurrent, int24 tickSpacing, uint32 time<br/>
+   )(internal)
+ ``` 
 
 Called the first time a tick is used to set the seconds outside value. Assumes the tick is not
 initialized.
-
 
 
 
@@ -30,10 +29,13 @@ tickSpacing: the spacing between usable ticks
 time: the current timestamp
 
 
-### `clear(mapping(int24 => uint256) self, int24 tick, int24 tickSpacing)` (internal)
+ ```solidity 
+ function clear(
+     mapping(int24 => uint256) self, int24 tick, int24 tickSpacing<br/>
+   )(internal)
+ ``` 
 
 Called when a tick is no longer used, to clear the seconds outside value of the tick
-
 
 
 
@@ -44,11 +46,14 @@ tick: the tick to be cleared
 tickSpacing: the spacing between usable ticks
 
 
-### `cross(mapping(int24 => uint256) self, int24 tick, int24 tickSpacing, uint32 time)` (internal)
+ ```solidity 
+ function cross(
+     mapping(int24 => uint256) self, int24 tick, int24 tickSpacing, uint32 time<br/>
+   )(internal)
+ ``` 
 
 Called when an initialized tick is crossed to update the seconds outside for that tick. Must be called
 every time an initialized tick is crossed
-
 
 
 
@@ -61,10 +66,13 @@ tickSpacing: the spacing between usable ticks
 time: the current block timestamp truncated to 32 bits
 
 
-### `get(mapping(int24 => uint256) self, int24 tick, int24 tickSpacing) → uint32` (internal)
+ ```solidity 
+ function get(
+     mapping(int24 => uint256) self, int24 tick, int24 tickSpacing<br/>
+   )(internal) returns (uint32)
+ ``` 
 
 Get the seconds outside for an initialized tick. Should be called only on initialized ticks.
-
 
 
 
@@ -77,10 +85,13 @@ tickSpacing: the spacing between usable ticks
 
 the: seconds outside value for that tick
 
-### `secondsInside(mapping(int24 => uint256) self, int24 tickLower, int24 tickUpper, int24 tickCurrent, int24 tickSpacing, uint32 time) → uint32` (internal)
+ ```solidity 
+ function secondsInside(
+     mapping(int24 => uint256) self, int24 tickLower, int24 tickUpper, int24 tickCurrent, int24 tickSpacing, uint32 time<br/>
+   )(internal) returns (uint32)
+ ``` 
 
 Get the seconds inside a tick range, assuming both tickLower and tickUpper are initialized
-
 
 
 
