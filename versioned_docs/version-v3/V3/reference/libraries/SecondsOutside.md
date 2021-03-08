@@ -10,7 +10,7 @@ The mapping uses int24 for keys since ticks are represented as int24 and there a
   ) internal
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`self` |  | the packed mapping of tick to seconds outside
@@ -26,7 +26,7 @@ No description
   ) internal
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`self` |  | the packed mapping of tick to seconds outside
@@ -40,7 +40,7 @@ No description
   ) internal
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`self` |  | the packed mapping of tick to seconds outside
@@ -55,14 +55,14 @@ No description
   ) internal returns (uint32)
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`self` |  | the packed mapping of tick to seconds outside
 |`tick` |  | the tick to get the seconds outside value for
 |`tickSpacing` |  | the spacing between usable ticks
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`the`|  | seconds outside value for that tick
@@ -73,7 +73,7 @@ No description
   ) internal returns (uint32)
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`self` |  | the packed mapping of tick to seconds outside
@@ -82,7 +82,7 @@ No description
 |`tickCurrent` |  | the current tick
 |`tickSpacing` |  | the spacing between usable ticks
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`a`|  | relative seconds inside value that can be snapshotted and compared to a later snapshot to compute

@@ -9,7 +9,7 @@ Contains methods for doing math operations that revert on overflow or underflow 
 ```
 No description
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The sum of x and y
@@ -21,7 +21,7 @@ No description
 ```
 No description
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The difference of x and y
@@ -33,7 +33,7 @@ No description
 ```
 No description
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The product of x and y
@@ -45,7 +45,7 @@ No description
 ```
 No description
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The sum of x and y
@@ -57,7 +57,7 @@ No description
 ```
 No description
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The difference of x and y

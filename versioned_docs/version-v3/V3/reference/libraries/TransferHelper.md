@@ -9,7 +9,7 @@ Contains helper methods for interacting with ERC20 tokens that do not consistent
 ```
 Calls transfer on token contract, errors with TF if transfer fails
 
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`token` |  | The contract address of the token which will be transferred

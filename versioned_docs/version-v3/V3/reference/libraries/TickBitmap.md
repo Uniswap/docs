@@ -9,7 +9,7 @@ The mapping uses int16 for keys since ticks are represented as int24 and there a
   ) internal
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`self` |  | The mapping in which to flip the tick
@@ -23,7 +23,7 @@ No description
   ) internal returns (int24 next, bool initialized)
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`self` |  | The mapping in which to compute the next initialized tick
@@ -31,7 +31,7 @@ No description
 |`tickSpacing` |  | The spacing between usable ticks
 |`lte` |  | Whether to search for the next initialized tick to the left (less than or equal to the starting tick)
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`next`|  | The next initialized or uninitialized tick up to 256 ticks away from the current tick

@@ -13,7 +13,7 @@ price less in order to not send too much output.
 The most precise formula for this is liquidity * sqrtPX96 / (liquidity +- amount * sqrtPX96),
 if this is impossible because of overflow, we calculate liquidity / (liquidity / sqrtPX96 +- amount).
 
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtPX96` |  | The starting price, i.e. before accounting for the token0 delta
@@ -21,7 +21,7 @@ if this is impossible because of overflow, we calculate liquidity / (liquidity /
 |`amount` |  | How much of token0 to add or remove from virtual reserves
 |`add` |  | Whether to add or remove the amount of token0
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`The`|  | price after adding or removing amount, depending on add
@@ -36,7 +36,7 @@ far enough to get the desired output amount, and in the exact input case (increa
 price less in order to not send too much output.
 The formula we compute is lossless: sqrtPX96 +- amount / liquidity
 
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtPX96` |  | The starting price, i.e., before accounting for the token1 delta
@@ -44,7 +44,7 @@ The formula we compute is lossless: sqrtPX96 +- amount / liquidity
 |`amount` |  | How much of token1 to add, or remove, from virtual reserves
 |`add` |  | Whether to add, or remove, the amount of token1
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`The`|  | price after adding or removing `amount`
@@ -56,7 +56,7 @@ The formula we compute is lossless: sqrtPX96 +- amount / liquidity
 ```
 Throws if price or liquidity are 0, or if the next price is out of bounds
 
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtPX96` |  | The starting price, i.e., before accounting for the input amount
@@ -64,7 +64,7 @@ Throws if price or liquidity are 0, or if the next price is out of bounds
 |`amountIn` |  | How much of token0, or token1, is being swapped in
 |`zeroForOne` |  | Whether the amount in is token0 or token1
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`sqrtQX96`|  | The price after adding the input amount to token0 or token1
@@ -76,7 +76,7 @@ Throws if price or liquidity are 0, or if the next price is out of bounds
 ```
 Throws if price or liquidity are 0 or the next price is out of bounds
 
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtPX96` |  | The starting price before accounting for the output amount
@@ -84,7 +84,7 @@ Throws if price or liquidity are 0 or the next price is out of bounds
 |`amountOut` |  | How much of token0, or token1, is being swapped out
 |`zeroForOne` |  | Whether the amount out is token0 or token1
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`sqrtQX96`|  | The price after removing the output amount of token0 or token1
@@ -97,7 +97,7 @@ Throws if price or liquidity are 0 or the next price is out of bounds
 Calculates liquidity / sqrt(lower) - liquidity / sqrt(upper),
 i.e. liquidity * (sqrt(upper) - sqrt(lower)) / (sqrt(upper) * sqrt(lower))
 
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtRatioAX96` |  | A sqrt price
@@ -105,7 +105,7 @@ i.e. liquidity * (sqrt(upper) - sqrt(lower)) / (sqrt(upper) * sqrt(lower))
 |`liquidity` |  | The amount of usable liquidity
 |`roundUp` |  | Whether to round the amount up or down
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | Amount of token0 required to cover a position of size liquidity between the two passed prices
@@ -117,7 +117,7 @@ i.e. liquidity * (sqrt(upper) - sqrt(lower)) / (sqrt(upper) * sqrt(lower))
 ```
 Calculates liquidity * (sqrt(upper) - sqrt(lower))
 
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtRatioAX96` |  | A sqrt price
@@ -125,7 +125,7 @@ Calculates liquidity * (sqrt(upper) - sqrt(lower))
 |`liquidity` |  | The amount of usable liquidity
 |`roundUp` |  | Whether to round the amount up, or down
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount1`|  | Amount of token1 required to cover a position of size liquidity between the two passed prices
@@ -136,14 +136,14 @@ Calculates liquidity * (sqrt(upper) - sqrt(lower))
   ) internal returns (int256 amount0)
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtRatioAX96` |  | A sqrt price
 |`sqrtRatioBX96` |  | Another sqrt price
 |`liquidity` |  | The change in liquidity
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | Amount of token0 corresponding to the passed liquidityDelta between the two prices
@@ -154,14 +154,14 @@ No description
   ) internal returns (int256 amount1)
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtRatioAX96` |  | A sqrt price
 |`sqrtRatioBX96` |  | Another sqrt price
 |`liquidity` |  | The change in liquidity
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount1`|  | Amount of token1 corresponding to the passed liquidityDelta between the two prices
