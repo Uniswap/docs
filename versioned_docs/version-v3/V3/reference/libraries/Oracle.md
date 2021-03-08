@@ -9,7 +9,8 @@ The most recent observation is available, independent of the length of the oracl
 ## initialize
 ```solidity
   function initialize(
-    struct Oracle.Observation[65535] self, uint32 time
+    struct Oracle.Observation[65535] self, 
+    uint32 time
   ) internal returns (uint16 cardinality, uint16 cardinalityNext)
 ```
 No description
@@ -27,7 +28,13 @@ No description
 ## write
 ```solidity
   function write(
-    struct Oracle.Observation[65535] self, uint16 index, uint32 blockTimestamp, int24 tick, uint128 liquidity, uint16 cardinality, uint16 cardinalityNext
+    struct Oracle.Observation[65535] self, 
+    uint16 index, 
+    uint32 blockTimestamp, 
+    int24 tick, 
+    uint128 liquidity, 
+    uint16 cardinality, 
+    uint16 cardinalityNext
   ) internal returns (uint16 indexUpdated, uint16 cardinalityUpdated)
 ```
 Writable at most once per block. Index represents the most recently written element, and must be tracked externally.
@@ -53,7 +60,9 @@ is greater than the current one, cardinality may be increased. This restriction 
 ## grow
 ```solidity
   function grow(
-    struct Oracle.Observation[65535] self, uint16 current, uint16 next
+    struct Oracle.Observation[65535] self, 
+    uint16 current, 
+    uint16 next
   ) internal returns (uint16)
 ```
 No description
@@ -71,7 +80,13 @@ No description
 ## observe
 ```solidity
   function observe(
-    struct Oracle.Observation[65535] self, uint32 time, uint32[] secondsAgos, int24 tick, uint16 index, uint128 liquidity, uint16 cardinality
+    struct Oracle.Observation[65535] self, 
+    uint32 time, 
+    uint32[] secondsAgos, 
+    int24 tick, 
+    uint16 index, 
+    uint128 liquidity, 
+    uint16 cardinality
   ) internal returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
 ```
 No description
