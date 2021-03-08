@@ -6,6 +6,7 @@
     
   ) internal returns (uint32)
 ```
+
 Returns the block timestamp truncated to 32 bits, i.e. mod 2**32. This method is overridden in tests.
 
 
@@ -15,6 +16,9 @@ Returns the block timestamp truncated to 32 bits, i.e. mod 2**32. This method is
     int24 tickLower, int24 tickUpper
   ) external returns (uint32)
 ```
+Returns a relative timestamp value representing how long, in seconds, the pool has spent between
+tickLower and tickUpper
+
 This timestamp is strictly relative. To get a useful elapsed time (i.e., duration) value, the value returned
 by this method should be checkpointed externally after a position is minted, and again before a position is
 burned. Thus the external contract must control the lifecycle of the position.
@@ -35,6 +39,8 @@ burned. Thus the external contract must control the lifecycle of the position.
     uint32[] secondsAgos
   ) external returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
 ```
+Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp
+
 To get a time weighted average tick or liquidity-in-range, you must call this with two values, one representing
 the beginning of the period and another for the end of the period. E.g., to get the last hour time-weighted average tick,
 you must call it with secondsAgos = [3600, 0].
@@ -58,6 +64,8 @@ timestamp
     uint16 observationCardinalityNext
   ) external
 ```
+Increase the maximum number of price and liquidity observations that this pool will store
+
 This method is no-op if the pool already has an observationCardinalityNext greater than or equal to
 the input observationCardinalityNext.
 
@@ -72,6 +80,8 @@ the input observationCardinalityNext.
     uint160 sqrtPriceX96
   ) external
 ```
+Sets the initial price for the pool
+
 not locked because it initializes unlocked
 #### Parameters:
 | Name | Type | Description                                                          |
@@ -84,6 +94,8 @@ not locked because it initializes unlocked
     address recipient, int24 tickLower, int24 tickUpper, uint128 amount, bytes data
   ) external returns (uint256 amount0, uint256 amount1)
 ```
+Adds liquidity for the given recipient/tickLower/tickUpper position
+
 noDelegateCall is applied indirectly via _modifyPosition
 #### Parameters:
 | Name | Type | Description                                                          |
@@ -105,6 +117,8 @@ noDelegateCall is applied indirectly via _modifyPosition
     address recipient, int24 tickLower, int24 tickUpper, uint128 amount0Requested, uint128 amount1Requested
   ) external returns (uint128 amount0, uint128 amount1)
 ```
+Collects fees owed to a position
+
 Does not recompute fees, which must be done either via mint, burn or poke. Must be called by the position
 owner. To withdraw no fees for a token, amount0Requested or amount1Request may be set to zero. To withdraw all fees owed, caller may
 pass any value greater than the fees owed.
@@ -129,6 +143,8 @@ pass any value greater than the fees owed.
     int24 tickLower, int24 tickUpper, uint128 amount
   ) external returns (uint256 amount0, uint256 amount1)
 ```
+Burn liquidity from the sender and account tokens owed for the liquidity to the position
+
 noDelegateCall is applied indirectly via _modifyPosition
 #### Parameters:
 | Name | Type | Description                                                          |
@@ -148,6 +164,8 @@ noDelegateCall is applied indirectly via _modifyPosition
     address recipient, bool zeroForOne, int256 amountSpecified, uint160 sqrtPriceLimitX96, bytes data
   ) external returns (int256 amount0, int256 amount1)
 ```
+Swap token0 for token1, or token1 for token0
+
 The caller of this method receives a callback in the form of IUniswapV3SwapCallback#uniswapV3SwapCallback
 
 #### Parameters:
@@ -171,6 +189,8 @@ value after the swap. If one for zero, the price cannot be greater than this val
     address recipient, uint256 amount0, uint256 amount1, bytes data
   ) external
 ```
+Receive token0 and/or token1 and pay it back, plus a fee, in the callback
+
 The caller of this method receives a callback in the form of IUniswapV3FlashCallback#uniswapV3FlashCallback
 Can be used to donate underlying tokens pro-rata to currently in-range liquidity providers by calling
 with 0 amount{0,1} and sending the donation amount(s) from the callback
@@ -189,7 +209,9 @@ with 0 amount{0,1} and sending the donation amount(s) from the callback
     uint8 feeProtocol0, uint8 feeProtocol1
   ) external
 ```
-No description
+Set the denominator of the protocol's % share of the fees
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -202,7 +224,9 @@ No description
     address recipient, uint128 amount0Requested, uint128 amount1Requested
   ) external returns (uint128 amount0, uint128 amount1)
 ```
-No description
+Collect the protocol fee accrued to the pool
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |

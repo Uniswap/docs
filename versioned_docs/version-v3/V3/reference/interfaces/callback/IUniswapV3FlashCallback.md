@@ -6,6 +6,9 @@ Any contract that calls IUniswapV3PoolActions#flash must implement this interfac
     uint256 fee0, uint256 fee1, bytes data
   ) external
 ```
+Called after transferring tokens to the `msg.sender`, allows the sender to perform any actions and then
+repay the flash transaction.
+
 The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical factory
 
 #### Parameters:

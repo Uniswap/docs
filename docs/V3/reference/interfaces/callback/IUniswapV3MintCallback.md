@@ -6,6 +6,9 @@ Any contract that calls IUniswapV3PoolActions#mint must implement this interface
     uint256 amount0Owed, uint256 amount1Owed, bytes data
   ) external
 ```
+Called on `msg.sender` after making updates to a position. Allows the sender to pay the tokens
+due for the minted liquidity.
+
 The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical factory
 
 #### Parameters:

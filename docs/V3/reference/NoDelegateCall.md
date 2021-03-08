@@ -6,6 +6,7 @@ Base contract that provides a modifier for preventing delegatecall to methods in
     
   ) internal
 ```
-No description
+
+
 
 

@@ -6,6 +6,8 @@ Contains pool methods that can be called by anyone
     uint160 sqrtPriceX96
   ) external
 ```
+Sets the initial price for the pool
+
 Price is represented as a sqrt(token1/token0) Q64.96 value
 
 #### Parameters:
@@ -19,6 +21,8 @@ Price is represented as a sqrt(token1/token0) Q64.96 value
     address recipient, int24 tickLower, int24 tickUpper, uint128 amount, bytes data
   ) external returns (uint256 amount0, uint256 amount1)
 ```
+Adds liquidity for the given recipient/tickLower/tickUpper position
+
 The caller of this method receives a callback in the form of IUniswapV3MintCallback#uniswapV3MintCallback
 in which they must pay any token0 or token1 owed for the liquidity. The amount of token0/token1 due depends
 on tickLower, tickUpper, the amount of liquidity, and the current price.
@@ -43,6 +47,8 @@ on tickLower, tickUpper, the amount of liquidity, and the current price.
     address recipient, int24 tickLower, int24 tickUpper, uint128 amount0Requested, uint128 amount1Requested
   ) external returns (uint128 amount0, uint128 amount1)
 ```
+Collects fees owed to a position
+
 Does not recompute fees, which must be done either via mint, burn or poke. Must be called by the position
 owner. To withdraw no fees for a token, amount0Requested or amount1Request may be set to zero. To withdraw all fees owed, caller may
 pass any value greater than the fees owed.
@@ -67,6 +73,8 @@ pass any value greater than the fees owed.
     int24 tickLower, int24 tickUpper, uint128 amount
   ) external returns (uint256 amount0, uint256 amount1)
 ```
+Burn liquidity from the sender and account tokens owed for the liquidity to the position
+
 Can be used to trigger a recalculation of fees owed to a position by calling with an amount of 0
 Fees must be collected separately via a call to #collect
 
@@ -88,6 +96,8 @@ Fees must be collected separately via a call to #collect
     address recipient, bool zeroForOne, int256 amountSpecified, uint160 sqrtPriceLimitX96, bytes data
   ) external returns (int256 amount0, int256 amount1)
 ```
+Swap token0 for token1, or token1 for token0
+
 The caller of this method receives a callback in the form of IUniswapV3SwapCallback#uniswapV3SwapCallback
 
 #### Parameters:
@@ -111,6 +121,8 @@ value after the swap. If one for zero, the price cannot be greater than this val
     address recipient, uint256 amount0, uint256 amount1, bytes data
   ) external
 ```
+Receive token0 and/or token1 and pay it back, plus a fee, in the callback
+
 The caller of this method receives a callback in the form of IUniswapV3FlashCallback#uniswapV3FlashCallback
 Can be used to donate underlying tokens pro-rata to currently in-range liquidity providers by calling
 with 0 amount{0,1} and sending the donation amount(s) from the callback
@@ -129,6 +141,8 @@ with 0 amount{0,1} and sending the donation amount(s) from the callback
     uint16 observationCardinalityNext
   ) external
 ```
+Increase the maximum number of price and liquidity observations that this pool will store
+
 This method is no-op if the pool already has an observationCardinalityNext greater than or equal to
 the input observationCardinalityNext.
 

@@ -7,7 +7,10 @@ per transaction
     
   ) external returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, uint8 feeProtocol, bool unlocked)
 ```
-No description
+The 0th storage slot in the pool stores many values, and is exposed as a single method to save gas
+when accessed externally.
+
+
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
@@ -28,6 +31,8 @@ unlocked Whether the pool is currently locked to reentrancy
     
   ) external returns (uint256)
 ```
+The fee growth as a Q128.128 fees of token0 collected per unit of liquidity for the entire life of the pool
+
 This value can overflow the uint256
 
 
@@ -37,6 +42,8 @@ This value can overflow the uint256
     
   ) external returns (uint256)
 ```
+The fee growth as a Q128.128 fees of token1 collected per unit of liquidity for the entire life of the pool
+
 This value can overflow the uint256
 
 
@@ -46,6 +53,8 @@ This value can overflow the uint256
     
   ) external returns (uint128 token0, uint128 token1)
 ```
+The amounts of token0 and token1 that are owed to the protocol
+
 Protocol fees will never exceed uint128 max in either token
 
 
@@ -55,6 +64,8 @@ Protocol fees will never exceed uint128 max in either token
     
   ) external returns (uint128)
 ```
+The currently in range liquidity available to the pool
+
 This value has no relationship to the total liquidity across all ticks
 
 
@@ -64,7 +75,9 @@ This value has no relationship to the total liquidity across all ticks
     int24 tick
   ) external returns (uint128 liquidityGross, int128 liquidityNet, uint256 feeGrowthOutside0X128, uint256 feeGrowthOutside1X128)
 ```
-No description
+Look up information about a specific tick in the pool
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -87,7 +100,9 @@ compute snapshots.
     int16 wordPosition
   ) external returns (uint256)
 ```
-No description
+Returns 256 packed tick initialized boolean values
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -100,7 +115,9 @@ based on the tick and the pool's tick spacing
     int24 wordPosition
   ) external returns (uint256)
 ```
-No description
+Returns 8 packed tick seconds outside values
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -113,7 +130,9 @@ words based on the tick and the pool's tick spacing
     bytes32 key
   ) external returns (uint128 _liquidity, uint256 feeGrowthInside0LastX128, uint256 feeGrowthInside1LastX128, uint128 tokensOwed0, uint128 tokensOwed1)
 ```
-No description
+Returns the information about a position by the position's key
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -133,6 +152,8 @@ Returns tokensOwed1 the computed amount of token1 owed to the position as of the
     uint256 index
   ) external returns (uint32 blockTimestamp, int56 tickCumulative, uint160 liquidityCumulative, bool initialized)
 ```
+Returns data about a specific observation index
+
 You most likely want to use #observe() instead of this method to get an observation as of some amount of time
 ago, rather than at a specific index in the array.
 

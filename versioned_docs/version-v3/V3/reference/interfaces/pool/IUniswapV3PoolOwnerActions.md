@@ -6,7 +6,9 @@ Contains pool methods that may only be called by the factory owner
     uint8 feeProtocol0, uint8 feeProtocol1
   ) external
 ```
-No description
+Set the denominator of the protocol's % share of the fees
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -19,7 +21,9 @@ No description
     address recipient, uint128 amount0Requested, uint128 amount1Requested
   ) external returns (uint128 amount0, uint128 amount1)
 ```
-No description
+Collect the protocol fee accrued to the pool
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |

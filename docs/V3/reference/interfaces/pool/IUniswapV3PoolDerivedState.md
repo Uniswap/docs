@@ -7,6 +7,9 @@ blockchain. The functions here may have variable gas costs.
     int24 tickLower, int24 tickUpper
   ) external returns (uint32)
 ```
+Returns a relative timestamp value representing how long, in seconds, the pool has spent between
+tickLower and tickUpper
+
 This timestamp is strictly relative. To get a useful elapsed time (i.e., duration) value, the value returned
 by this method should be checkpointed externally after a position is minted, and again before a position is
 burned. Thus the external contract must control the lifecycle of the position.
@@ -27,6 +30,8 @@ burned. Thus the external contract must control the lifecycle of the position.
     uint32[] secondsAgos
   ) external returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
 ```
+Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp
+
 To get a time weighted average tick or liquidity-in-range, you must call this with two values, one representing
 the beginning of the period and another for the end of the period. E.g., to get the last hour time-weighted average tick,
 you must call it with secondsAgos = [3600, 0].

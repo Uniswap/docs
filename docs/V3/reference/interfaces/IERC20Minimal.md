@@ -9,7 +9,9 @@ Contains a subset of the full ERC20 interface that is used in Uniswap V3
     address account
   ) external returns (uint256)
 ```
-No description
+Returns the balance of a token
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -25,7 +27,9 @@ No description
     address recipient, uint256 amount
   ) external returns (bool)
 ```
-No description
+Transfers the amount of token from the `msg.sender` to the recipient
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -42,7 +46,9 @@ No description
     address owner, address spender
   ) external returns (uint256)
 ```
-No description
+Returns the current allowance given to a spender by an owner
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -59,7 +65,9 @@ No description
     address spender, uint256 amount
   ) external returns (bool)
 ```
-No description
+Sets the allowance of a spender from the `msg.sender` to the value `amount`
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -76,7 +84,9 @@ No description
     address sender, address recipient, uint256 amount
   ) external returns (bool)
 ```
-No description
+Transfers `amount` tokens from `sender` to `recipient` up to the allowance given to the `msg.sender`
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -88,21 +98,23 @@ No description
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`Returns`|  | true for a successful transfer, false for unsuccessful
-## Event 
-[`Transfer(address from, address to, uint256 value)`](#IERC20Minimal-Transfer-address-address-uint256-)
-No Description
+## Event `Transfer(address from, address to, uint256 value)`
+Event emitted when tokens are transferred from one address to another, either via `#transfer` or `#transferFrom`.
+
+
 ## Parameters:
 | Name                           | Type          | Description                                    |
 | :----------------------------- | :------------ | :--------------------------------------------- |
-|`from` |  | The account from which the tokens were sent, i.e. the balance decreased
-|`to` |  | The account to which the tokens were sent, i.e. the balance increased
-|`value` |  | The amount of tokens that were transferred
-## Event 
-[`Approval(address owner, address spender, uint256 value)`](#IERC20Minimal-Approval-address-address-uint256-)
-No Description
+|`from`|  | The account from which the tokens were sent, i.e. the balance decreased
+|`to`|  | The account to which the tokens were sent, i.e. the balance increased
+|`value`|  | The amount of tokens that were transferred
+## Event `Approval(address owner, address spender, uint256 value)`
+Event emitted when the approval amount for the spender of a given owner's tokens changes.
+
+
 ## Parameters:
 | Name                           | Type          | Description                                    |
 | :----------------------------- | :------------ | :--------------------------------------------- |
-|`owner` |  | The account that approved spending of its tokens
-|`spender` |  | The account for which the spending allowance was modified
-|`value` |  | The new allowance from the owner to the spender
+|`owner`|  | The account that approved spending of its tokens
+|`spender`|  | The account for which the spending allowance was modified
+|`value`|  | The new allowance from the owner to the spender
