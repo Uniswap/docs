@@ -50,6 +50,77 @@
           "id": "version-v3/V3/reference/reference-holder"
         }
       ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Libraries",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/BitMath"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/FixedPoint96"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/FixedPoint128"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/FullMath"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/LiquidityMath"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/LowGasSafeMath"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/Oracle"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/Position"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/SafeCast"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/SecondsOutside"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/SqrtPriceMath"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/SwapMath"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/Tick"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/TickBitmap"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/TransferHelper"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/libraries/UnsafeMath"
+        }
+      ]
     }
   ]
 }
