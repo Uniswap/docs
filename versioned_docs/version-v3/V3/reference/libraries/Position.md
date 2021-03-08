@@ -9,7 +9,7 @@ Positions store additional state for tracking fees owed to the position
   ) internal returns (struct Position.Info position)
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`self` |  | The mapping containing all user positions
@@ -17,7 +17,7 @@ No description
 |`tickLower` |  | The lower tick boundary of the position
 |`tickUpper` |  | The upper tick boundary of the position
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`position`|  | The position info struct of the given owners' position
@@ -28,7 +28,7 @@ No description
   ) internal
 ```
 No description
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`self` |  | The mapping containing all user positions

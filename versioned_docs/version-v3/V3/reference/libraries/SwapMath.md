@@ -9,7 +9,7 @@ Contains methods for computing the result of a swap within a single tick price r
 ```
 The fee, plus the amount in, will never exceed the amount remaining if the swap's `amountSpecified` is positive
 
-### Parameters:
+#### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtRatioCurrentX96` |  | The current sqrt price of the pool
@@ -18,7 +18,7 @@ The fee, plus the amount in, will never exceed the amount remaining if the swap'
 |`amountRemaining` |  | How much input or output amount is remaining to be swapped in/out
 |`feePips` |  | The fee taken from the input amount, expressed in hundredths of a bip
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`sqrtRatioNextX96`|  | The price after swapping the amount in/out, not to exceed the price target

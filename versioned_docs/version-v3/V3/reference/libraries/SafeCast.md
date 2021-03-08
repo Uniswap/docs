@@ -9,7 +9,7 @@ Contains methods for safely downcasting to smaller types
 ```
 No description
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The downcasted integer, now type uint160
@@ -21,7 +21,7 @@ No description
 ```
 No description
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The downcasted integer, now type int128
@@ -33,7 +33,7 @@ No description
 ```
 No description
 
-### Return Values:
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The downcasted integer, now type int256
