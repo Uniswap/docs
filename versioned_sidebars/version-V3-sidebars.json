@@ -16,7 +16,6 @@
       ]
     }
   ],
-
   "version-v3/V3/guides": [
     {
       "collapsed": true,
@@ -121,6 +120,95 @@
           "id": "version-v3/V3/reference/libraries/UnsafeMath"
         }
       ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Interfaces",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Callback",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-v3/V3/reference/interfaces/callback/IUniswapV3FlashCallback"
+            },
+            {
+              "type": "doc",
+              "id": "version-v3/V3/reference/interfaces/callback/IUniswapV3MintCallback"
+            },
+            {
+              "type": "doc",
+              "id": "version-v3/V3/reference/interfaces/callback/IUniswapV3SwapCallback"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Pool",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-v3/V3/reference/interfaces/pool/IUniswapV3PoolActions"
+            },
+            {
+              "type": "doc",
+              "id": "version-v3/V3/reference/interfaces/pool/IUniswapV3PoolDerivedState"
+            },
+            {
+              "type": "doc",
+              "id": "version-v3/V3/reference/interfaces/pool/IUniswapV3PoolEvents"
+            },
+            {
+              "type": "doc",
+              "id": "version-v3/V3/reference/interfaces/pool/IUniswapV3PoolImmutables"
+            },
+            {
+              "type": "doc",
+              "id": "version-v3/V3/reference/interfaces/pool/IUniswapV3PoolOwnerActions"
+            },
+            {
+              "type": "doc",
+              "id": "version-v3/V3/reference/interfaces/pool/IUniswapV3PoolState"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/interfaces/IERC20Minimal"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/interfaces/IUniswapV3Factory"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/interfaces/IUniswapV3Pool"
+        },
+        {
+          "type": "doc",
+          "id": "version-v3/V3/reference/interfaces/IUniswapV3PoolDeployer"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "version-v3/V3/reference/NoDelegateCall"
+    },
+    {
+      "type": "doc",
+      "id": "version-v3/V3/reference/UniswapV3Factory"
+    },
+    {
+      "type": "doc",
+      "id": "version-v3/V3/reference/UniswapV3Pool"
+    },
+    {
+      "type": "doc",
+      "id": "version-v3/V3/reference/UniswapV3PoolDeployer"
     }
   ]
 }
