@@ -162,6 +162,14 @@ module.exports = {
       ],
     },
     {
+      type: category,
+      label: "Libraries",
+      items: [
+        'V3/reference/libraries/BitMath',
+        'V3/reference/libraries/FixedPoint96',
+      ]
+    },
+    {
       type: 'category',
       label: 'Landing',
       items: [
