@@ -6,6 +6,8 @@ Any contract that calls IUniswapV3PoolActions#swap must implement this interface
     int256 amount0Delta, int256 amount1Delta, bytes data
   ) external
 ```
+Called on `msg.sender` after performing a swap and transferring any output tokens to the recipient
+
 The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical factory.
 Both amount0 and amount1 can be 0.
 
