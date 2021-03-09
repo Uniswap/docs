@@ -3,13 +3,17 @@ spent outside the tick.
 
 The mapping uses int24 for keys since ticks are represented as int24 and there are 8 (2^3) values per word.
 
-## initialize
+## Functions
+### initialize
 ```solidity
   function initialize(
     mapping(int24 => uint256) self, int24 tick, int24 tickCurrent, int24 tickSpacing, uint32 time
   ) internal
 ```
-No description
+Called the first time a tick is used to set the seconds outside value. Assumes the tick is not
+initialized.
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -19,13 +23,15 @@ No description
 |`tickSpacing` |  | the spacing between usable ticks
 |`time` |  | the current timestamp
 
-## clear
+### clear
 ```solidity
   function clear(
     mapping(int24 => uint256) self, int24 tick, int24 tickSpacing
   ) internal
 ```
-No description
+Called when a tick is no longer used, to clear the seconds outside value of the tick
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -33,13 +39,16 @@ No description
 |`tick` |  | the tick to be cleared
 |`tickSpacing` |  | the spacing between usable ticks
 
-## cross
+### cross
 ```solidity
   function cross(
     mapping(int24 => uint256) self, int24 tick, int24 tickSpacing, uint32 time
   ) internal
 ```
-No description
+Called when an initialized tick is crossed to update the seconds outside for that tick. Must be called
+every time an initialized tick is crossed
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -48,13 +57,15 @@ No description
 |`tickSpacing` |  | the spacing between usable ticks
 |`time` |  | the current block timestamp truncated to 32 bits
 
-## get
+### get
 ```solidity
   function get(
     mapping(int24 => uint256) self, int24 tick, int24 tickSpacing
   ) internal returns (uint32)
 ```
-No description
+Get the seconds outside for an initialized tick. Should be called only on initialized ticks.
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -66,13 +77,15 @@ No description
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`the`|  | seconds outside value for that tick
-## secondsInside
+### secondsInside
 ```solidity
   function secondsInside(
     mapping(int24 => uint256) self, int24 tickLower, int24 tickUpper, int24 tickCurrent, int24 tickSpacing, uint32 time
   ) internal returns (uint32)
 ```
-No description
+Get the seconds inside a tick range, assuming both tickLower and tickUpper are initialized
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |

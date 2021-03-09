@@ -2,6 +2,18 @@
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
+# How to generate markdown from template
+
+Install solidity doc gen
+`npm install solidity-docgen`
+
+Get the correct compiler version
+`npm install -D solc-0.7@npm:solc@0.7.6`
+
+Put the updated template `contract.hbs` in same directory as /contracts that you want to generate
+
+Run `npx solidity-docgen --solc-module solc-0.7`
+
 # How to add a new page
 
 Create a markdown file in its respective version directory within the main /docs/ folder

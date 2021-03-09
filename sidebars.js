@@ -171,6 +171,41 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Interfaces',
+      items: [
+        {
+          type: 'category',
+          label: 'Callback',
+          items: [
+              'V3/reference/interfaces/callback/IUniswapV3FlashCallback',
+              'V3/reference/interfaces/callback/IUniswapV3MintCallback',
+              'V3/reference/interfaces/callback/IUniswapV3SwapCallback'
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Pool',
+          items: [
+            'V3/reference/interfaces/pool/IUniswapV3PoolActions',
+            'V3/reference/interfaces/pool/IUniswapV3PoolDerivedState',
+            'V3/reference/interfaces/pool/IUniswapV3PoolEvents',
+            'V3/reference/interfaces/pool/IUniswapV3PoolImmutables',
+            'V3/reference/interfaces/pool/IUniswapV3PoolOwnerActions',
+            'V3/reference/interfaces/pool/IUniswapV3PoolState',
+          ]
+        },
+        'version-v3/V3/reference/interfaces/IERC20Minimal',
+        'V3/reference/interfaces/IUniswapV3Factory',
+        'V3/reference/interfaces/IUniswapV3Pool',
+        'V3/reference/interfaces/IUniswapV3PoolDeployer',
+      ]
+    },
+    'version-v3/V3/reference/NoDelegateCall',
+    'version-v3/V3/reference/UniswapV3Factory',
+    'V3/reference/UniswapV3Pool',
+    'V3/reference/UniswapV3PoolDeployer',
+    {
+      type: 'category',
       label: 'Landing',
       items: [
         'V2/reference/landing',
