@@ -1,6 +1,8 @@
 Contains pool methods that may only be called by the factory owner
 
-## setFeeProtocol
+
+## Functions
+### setFeeProtocol
 ```solidity
   function setFeeProtocol(
     uint8 feeProtocol0, uint8 feeProtocol1
@@ -15,7 +17,7 @@ Set the denominator of the protocol's % share of the fees
 |`feeProtocol0` |  | new protocol fee for token0 of the pool
 |`feeProtocol1` |  | new protocol fee for token1 of the pool
 
-## collectProtocol
+### collectProtocol
 ```solidity
   function collectProtocol(
     address recipient, uint128 amount0Requested, uint128 amount1Requested

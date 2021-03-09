@@ -1,6 +1,8 @@
 These parameters are fixed for a pool forever, i.e., the methods will always return the same values
 
-## factory
+
+## Functions
+### factory
 ```solidity
   function factory(
     
@@ -14,7 +16,7 @@ The contract that deployed the pool, which must adhere to the IUniswapV3Factory 
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`The`|  | contract address
-## token0
+### token0
 ```solidity
   function token0(
     
@@ -28,7 +30,7 @@ The first of the two tokens of the pool, sorted by address
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`The`|  | token contract address
-## token1
+### token1
 ```solidity
   function token1(
     
@@ -42,7 +44,7 @@ The second of the two tokens of the pool, sorted by address
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`The`|  | token contract address
-## fee
+### fee
 ```solidity
   function fee(
     
@@ -56,7 +58,7 @@ The pool's fee in hundredths of a bip, i.e. 1e-6
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`The`|  | fee
-## tickSpacing
+### tickSpacing
 ```solidity
   function tickSpacing(
     
@@ -73,7 +75,7 @@ This value is an int24 to avoid casting even though it is always positive.
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`The`|  | tick spacing
-## maxLiquidityPerTick
+### maxLiquidityPerTick
 ```solidity
   function maxLiquidityPerTick(
     

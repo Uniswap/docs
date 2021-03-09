@@ -1,7 +1,9 @@
 These methods compose the pool's state, and can change with any frequency including multiple times
 per transaction
 
-## slot0
+
+## Functions
+### slot0
 ```solidity
   function slot0(
     
@@ -25,7 +27,7 @@ observationCardinalityNext The next maximum number of observations, to be update
 index The last element of the observation array,
 feeProtocol The fees collected by the protocol for the pool,
 unlocked Whether the pool is currently locked to reentrancy
-## feeGrowthGlobal0X128
+### feeGrowthGlobal0X128
 ```solidity
   function feeGrowthGlobal0X128(
     
@@ -36,7 +38,7 @@ The fee growth as a Q128.128 fees of token0 collected per unit of liquidity for 
 This value can overflow the uint256
 
 
-## feeGrowthGlobal1X128
+### feeGrowthGlobal1X128
 ```solidity
   function feeGrowthGlobal1X128(
     
@@ -47,7 +49,7 @@ The fee growth as a Q128.128 fees of token1 collected per unit of liquidity for 
 This value can overflow the uint256
 
 
-## protocolFees
+### protocolFees
 ```solidity
   function protocolFees(
     
@@ -58,7 +60,7 @@ The amounts of token0 and token1 that are owed to the protocol
 Protocol fees will never exceed uint128 max in either token
 
 
-## liquidity
+### liquidity
 ```solidity
   function liquidity(
     
@@ -69,7 +71,7 @@ The currently in range liquidity available to the pool
 This value has no relationship to the total liquidity across all ticks
 
 
-## ticks
+### ticks
 ```solidity
   function ticks(
     int24 tick
@@ -94,7 +96,7 @@ feeGrowthOutside1X128 the fee growth on the other side of the tick from the curr
 feeGrowthOutsideX128 values can only be used if the tick is initialized,
 i.e. if liquidityGross is greater than 0. In addition, these values are only relative and are used to
 compute snapshots.
-## tickBitmap
+### tickBitmap
 ```solidity
   function tickBitmap(
     int16 wordPosition
@@ -109,7 +111,7 @@ Returns 256 packed tick initialized boolean values
 |`wordPosition` |  | the index of the word in the bitmap to fetch. The initialized booleans are packed into words
 based on the tick and the pool's tick spacing
 
-## secondsOutside
+### secondsOutside
 ```solidity
   function secondsOutside(
     int24 wordPosition
@@ -124,7 +126,7 @@ Returns 8 packed tick seconds outside values
 |`wordPosition` |  | The index of the word in the map to fetch. The seconds outside 32 bit values are packed into
 words based on the tick and the pool's tick spacing
 
-## positions
+### positions
 ```solidity
   function positions(
     bytes32 key
@@ -146,7 +148,7 @@ Returns feeGrowthInside0LastX128 fee growth of token0 inside the tick range as o
 Returns feeGrowthInside1LastX128 fee growth of token1 inside the tick range as of the last mint/burn/poke,
 Returns tokensOwed0 the computed amount of token0 owed to the position as of the last mint/burn/poke,
 Returns tokensOwed1 the computed amount of token1 owed to the position as of the last mint/burn/poke
-## observations
+### observations
 ```solidity
   function observations(
     uint256 index

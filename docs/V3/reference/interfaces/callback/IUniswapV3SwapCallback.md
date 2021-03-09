@@ -1,6 +1,8 @@
 Any contract that calls IUniswapV3PoolActions#swap must implement this interface
 
-## uniswapV3SwapCallback
+
+## Functions
+### uniswapV3SwapCallback
 ```solidity
   function uniswapV3SwapCallback(
     int256 amount0Delta, int256 amount1Delta, bytes data

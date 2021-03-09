@@ -1,6 +1,8 @@
 Any contract that calls IUniswapV3PoolActions#flash must implement this interface
 
-## uniswapV3FlashCallback
+
+## Functions
+### uniswapV3FlashCallback
 ```solidity
   function uniswapV3FlashCallback(
     uint256 fee0, uint256 fee1, bytes data
