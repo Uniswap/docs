@@ -1,63 +1,74 @@
 Contains methods for doing math operations that revert on overflow or underflow for minimal gas cost
 
 
-## add
+## Functions
+### add
 ```solidity
   function add(
     uint256 x, uint256 y
   ) internal returns (uint256 z)
 ```
-No description
+Returns x + y, reverts if sum overflows uint256
 
-### Return Values:
+
+
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The sum of x and y
-## sub
+### sub
 ```solidity
   function sub(
     uint256 x, uint256 y
   ) internal returns (uint256 z)
 ```
-No description
+Returns x - y, reverts if underflows
 
-### Return Values:
+
+
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The difference of x and y
-## mul
+### mul
 ```solidity
   function mul(
     uint256 x, uint256 y
   ) internal returns (uint256 z)
 ```
-No description
+Returns x * y, reverts if overflows
 
-### Return Values:
+
+
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The product of x and y
-## add
+### add
 ```solidity
   function add(
     int256 x, int256 y
   ) internal returns (int256 z)
 ```
-No description
+Returns x + y, reverts if overflows or underflows
 
-### Return Values:
+
+
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The sum of x and y
-## sub
+### sub
 ```solidity
   function sub(
     int256 x, int256 y
   ) internal returns (int256 z)
 ```
-No description
+Returns x - y, reverts if overflows or underflows
 
-### Return Values:
+
+
+#### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`z`|  | The difference of x and y
