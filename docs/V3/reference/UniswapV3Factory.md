@@ -1,6 +1,8 @@
 Deploys Uniswap V3 pools and manages ownership and control over pool protocol fees
 
-## createPool
+
+## Functions
+### createPool
 ```solidity
   function createPool(
     address tokenA, address tokenB, uint24 fee
@@ -23,7 +25,7 @@ are invalid.
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`pool`|  | The address of the newly created pool
-## setOwner
+### setOwner
 ```solidity
   function setOwner(
     address _owner
@@ -38,7 +40,7 @@ Must be called by the current owner
 | :--- | :--- | :------------------------------------------------------------------- |
 |`_owner` |  | The new owner of the factory
 
-## enableFeeAmount
+### enableFeeAmount
 ```solidity
   function enableFeeAmount(
     uint24 fee, int24 tickSpacing

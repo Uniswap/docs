@@ -1,6 +1,8 @@
 Contains pool methods that can be called by anyone
 
-## initialize
+
+## Functions
+### initialize
 ```solidity
   function initialize(
     uint160 sqrtPriceX96
@@ -15,7 +17,7 @@ Price is represented as a sqrt(token1/token0) Q64.96 value
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtPriceX96` |  | the initial sqrt price of the pool as a Q64.96
 
-## mint
+### mint
 ```solidity
   function mint(
     address recipient, int24 tickLower, int24 tickUpper, uint128 amount, bytes data
@@ -41,7 +43,7 @@ on tickLower, tickUpper, the amount of liquidity, and the current price.
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | The amount of token0 that was paid to mint the given amount of liquidity. Matches the value in the callback
 |`amount1`|  | The amount of token1 that was paid to mint the given amount of liquidity. Matches the value in the callback
-## collect
+### collect
 ```solidity
   function collect(
     address recipient, int24 tickLower, int24 tickUpper, uint128 amount0Requested, uint128 amount1Requested
@@ -67,7 +69,7 @@ pass any value greater than the fees owed.
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | The amount of fees collected in token0
 |`amount1`|  | The amount of fees collected in token1
-## burn
+### burn
 ```solidity
   function burn(
     int24 tickLower, int24 tickUpper, uint128 amount
@@ -90,7 +92,7 @@ Fees must be collected separately via a call to #collect
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | The amount of token0 sent to the recipient
 |`amount1`|  | The amount of token1 sent to the recipient
-## swap
+### swap
 ```solidity
   function swap(
     address recipient, bool zeroForOne, int256 amountSpecified, uint160 sqrtPriceLimitX96, bytes data
@@ -115,7 +117,7 @@ value after the swap. If one for zero, the price cannot be greater than this val
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | The delta of the balance of token0 of the pool, exact when negative, minimum when positive
 |`amount1`|  | The delta of the balance of token1 of the pool, exact when negative, minimum when positive
-## flash
+### flash
 ```solidity
   function flash(
     address recipient, uint256 amount0, uint256 amount1, bytes data
@@ -135,7 +137,7 @@ with 0 amount{0,1} and sending the donation amount(s) from the callback
 |`amount1` |  | The amount of token1 to send
 |`data` |  | Any data to be passed through to the callback
 
-## increaseObservationCardinalityNext
+### increaseObservationCardinalityNext
 ```solidity
   function increaseObservationCardinalityNext(
     uint16 observationCardinalityNext

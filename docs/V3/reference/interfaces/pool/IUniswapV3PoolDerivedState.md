@@ -1,7 +1,9 @@
 Contains view functions to provide information about the pool that is computed rather than stored on the
 blockchain. The functions here may have variable gas costs.
 
-## secondsInside
+
+## Functions
+### secondsInside
 ```solidity
   function secondsInside(
     int24 tickLower, int24 tickUpper
@@ -24,7 +26,7 @@ burned. Thus the external contract must control the lifecycle of the position.
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`A`|  | relative timestamp for how long the pool spent in the tick range
-## observe
+### observe
 ```solidity
   function observe(
     uint32[] secondsAgos

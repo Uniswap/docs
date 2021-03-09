@@ -1,6 +1,8 @@
 Base contract that provides a modifier for preventing delegatecall to methods in a child contract
 
-## constructor
+
+## Functions
+### constructor
 ```solidity
   function constructor(
     

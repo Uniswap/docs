@@ -2,7 +2,9 @@ A contract that constructs a pool must implement this to pass arguments to the p
 
 This is used to remove all constructor arguments from the pool enabling pool addresses to be computed cheaply
 without storing the entire init code of the pool.
-## parameters
+
+## Functions
+### parameters
 ```solidity
   function parameters(
     

@@ -1,6 +1,8 @@
 
 
-## _blockTimestamp
+
+## Functions
+### _blockTimestamp
 ```solidity
   function _blockTimestamp(
     
@@ -10,7 +12,7 @@
 Returns the block timestamp truncated to 32 bits, i.e. mod 2**32. This method is overridden in tests.
 
 
-## secondsInside
+### secondsInside
 ```solidity
   function secondsInside(
     int24 tickLower, int24 tickUpper
@@ -33,7 +35,7 @@ burned. Thus the external contract must control the lifecycle of the position.
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`A`|  | relative timestamp for how long the pool spent in the tick range
-## observe
+### observe
 ```solidity
   function observe(
     uint32[] secondsAgos
@@ -58,7 +60,7 @@ log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go
 |`tickCumulatives`|  | Cumulative tick values as of each `secondsAgos` from the current block timestamp
 |`liquidityCumulatives`|  | Cumulative liquidity-in-range value as of each `secondsAgos` from the current block
 timestamp
-## increaseObservationCardinalityNext
+### increaseObservationCardinalityNext
 ```solidity
   function increaseObservationCardinalityNext(
     uint16 observationCardinalityNext
@@ -74,7 +76,7 @@ the input observationCardinalityNext.
 | :--- | :--- | :------------------------------------------------------------------- |
 |`observationCardinalityNext` |  | The desired minimum number of observations for the pool to store
 
-## initialize
+### initialize
 ```solidity
   function initialize(
     uint160 sqrtPriceX96
@@ -88,7 +90,7 @@ not locked because it initializes unlocked
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtPriceX96` |  | the initial sqrt price of the pool as a Q64.96
 
-## mint
+### mint
 ```solidity
   function mint(
     address recipient, int24 tickLower, int24 tickUpper, uint128 amount, bytes data
@@ -111,7 +113,7 @@ noDelegateCall is applied indirectly via _modifyPosition
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | The amount of token0 that was paid to mint the given amount of liquidity. Matches the value in the callback
 |`amount1`|  | The amount of token1 that was paid to mint the given amount of liquidity. Matches the value in the callback
-## collect
+### collect
 ```solidity
   function collect(
     address recipient, int24 tickLower, int24 tickUpper, uint128 amount0Requested, uint128 amount1Requested
@@ -137,7 +139,7 @@ pass any value greater than the fees owed.
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | The amount of fees collected in token0
 |`amount1`|  | The amount of fees collected in token1
-## burn
+### burn
 ```solidity
   function burn(
     int24 tickLower, int24 tickUpper, uint128 amount
@@ -158,7 +160,7 @@ noDelegateCall is applied indirectly via _modifyPosition
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | The amount of token0 sent to the recipient
 |`amount1`|  | The amount of token1 sent to the recipient
-## swap
+### swap
 ```solidity
   function swap(
     address recipient, bool zeroForOne, int256 amountSpecified, uint160 sqrtPriceLimitX96, bytes data
@@ -183,7 +185,7 @@ value after the swap. If one for zero, the price cannot be greater than this val
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | The delta of the balance of token0 of the pool, exact when negative, minimum when positive
 |`amount1`|  | The delta of the balance of token1 of the pool, exact when negative, minimum when positive
-## flash
+### flash
 ```solidity
   function flash(
     address recipient, uint256 amount0, uint256 amount1, bytes data
@@ -203,7 +205,7 @@ with 0 amount{0,1} and sending the donation amount(s) from the callback
 |`amount1` |  | The amount of token1 to send
 |`data` |  | Any data to be passed through to the callback
 
-## setFeeProtocol
+### setFeeProtocol
 ```solidity
   function setFeeProtocol(
     uint8 feeProtocol0, uint8 feeProtocol1
@@ -218,7 +220,7 @@ Set the denominator of the protocol's % share of the fees
 |`feeProtocol0` |  | new protocol fee for token0 of the pool
 |`feeProtocol1` |  | new protocol fee for token1 of the pool
 
-## collectProtocol
+### collectProtocol
 ```solidity
   function collectProtocol(
     address recipient, uint128 amount0Requested, uint128 amount1Requested

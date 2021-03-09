@@ -1,6 +1,8 @@
 Any contract that calls IUniswapV3PoolActions#mint must implement this interface
 
-## uniswapV3MintCallback
+
+## Functions
+### uniswapV3MintCallback
 ```solidity
   function uniswapV3MintCallback(
     uint256 amount0Owed, uint256 amount1Owed, bytes data
