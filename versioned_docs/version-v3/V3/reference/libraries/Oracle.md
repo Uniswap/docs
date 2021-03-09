@@ -9,10 +9,13 @@ The most recent observation is available, independent of the length of the oracl
 ## initialize
 ```solidity
   function initialize(
-    struct Oracle.Observation[65535] self, uint32 time
+    struct Oracle.Observation[65535] self, 
+    uint32 time
   ) internal returns (uint16 cardinality, uint16 cardinalityNext)
 ```
-No description
+Initialize the oracle array by writing the first slot. Called once for the lifecycle of the observations array
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -27,9 +30,17 @@ No description
 ## write
 ```solidity
   function write(
-    struct Oracle.Observation[65535] self, uint16 index, uint32 blockTimestamp, int24 tick, uint128 liquidity, uint16 cardinality, uint16 cardinalityNext
+    struct Oracle.Observation[65535] self, 
+    uint16 index, 
+    uint32 blockTimestamp, 
+    int24 tick, 
+    uint128 liquidity, 
+    uint16 cardinality, 
+    uint16 cardinalityNext
   ) internal returns (uint16 indexUpdated, uint16 cardinalityUpdated)
 ```
+Writes an oracle observation to the array
+
 Writable at most once per block. Index represents the most recently written element, and must be tracked externally.
 If the index is at the end of the allowable array length (according to cardinality), and the next cardinality
 is greater than the current one, cardinality may be increased. This restriction is created to preserve ordering.
@@ -53,10 +64,14 @@ is greater than the current one, cardinality may be increased. This restriction 
 ## grow
 ```solidity
   function grow(
-    struct Oracle.Observation[65535] self, uint16 current, uint16 next
+    struct Oracle.Observation[65535] self, 
+    uint16 current, 
+    uint16 next
   ) internal returns (uint16)
 ```
-No description
+Prepares the oracle array to store up to `next` observations
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -71,10 +86,18 @@ No description
 ## observe
 ```solidity
   function observe(
-    struct Oracle.Observation[65535] self, uint32 time, uint32[] secondsAgos, int24 tick, uint16 index, uint128 liquidity, uint16 cardinality
+    struct Oracle.Observation[65535] self, 
+    uint32 time, 
+    uint32[] secondsAgos, 
+    int24 tick, 
+    uint16 index, 
+    uint128 liquidity, 
+    uint16 cardinality
   ) internal returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
 ```
-No description
+Returns the accumulator values as of each time seconds ago from the given time in the array of `secondsAgos`
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
