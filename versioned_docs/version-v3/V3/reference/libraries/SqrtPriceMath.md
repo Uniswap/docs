@@ -1,12 +1,15 @@
 Contains the math that uses square root of price as a Q64.96 and liquidity to compute deltas
 
 
-## getNextSqrtPriceFromAmount0RoundingUp
+## Functions
+### getNextSqrtPriceFromAmount0RoundingUp
 ```solidity
   function getNextSqrtPriceFromAmount0RoundingUp(
     uint160 sqrtPX96, uint128 liquidity, uint256 amount, bool add
   ) internal returns (uint160)
 ```
+Gets the next sqrt price given a delta of token0
+
 Always rounds up, because in the exact output case (increasing price) we need to move the price at least
 far enough to get the desired output amount, and in the exact input case (decreasing price) we need to move the
 price less in order to not send too much output.
@@ -25,12 +28,14 @@ if this is impossible because of overflow, we calculate liquidity / (liquidity /
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`The`|  | price after adding or removing amount, depending on add
-## getNextSqrtPriceFromAmount1RoundingDown
+### getNextSqrtPriceFromAmount1RoundingDown
 ```solidity
   function getNextSqrtPriceFromAmount1RoundingDown(
     uint160 sqrtPX96, uint128 liquidity, uint256 amount, bool add
   ) internal returns (uint160)
 ```
+Gets the next sqrt price given a delta of token1
+
 Always rounds down, because in the exact output case (decreasing price) we need to move the price at least
 far enough to get the desired output amount, and in the exact input case (increasing price) we need to move the
 price less in order to not send too much output.
@@ -48,12 +53,14 @@ The formula we compute is lossless: sqrtPX96 +- amount / liquidity
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`The`|  | price after adding or removing `amount`
-## getNextSqrtPriceFromInput
+### getNextSqrtPriceFromInput
 ```solidity
   function getNextSqrtPriceFromInput(
     uint160 sqrtPX96, uint128 liquidity, uint256 amountIn, bool zeroForOne
   ) internal returns (uint160 sqrtQX96)
 ```
+Gets the next sqrt price given an input amount of token0 or token1
+
 Throws if price or liquidity are 0, or if the next price is out of bounds
 
 #### Parameters:
@@ -68,12 +75,14 @@ Throws if price or liquidity are 0, or if the next price is out of bounds
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`sqrtQX96`|  | The price after adding the input amount to token0 or token1
-## getNextSqrtPriceFromOutput
+### getNextSqrtPriceFromOutput
 ```solidity
   function getNextSqrtPriceFromOutput(
     uint160 sqrtPX96, uint128 liquidity, uint256 amountOut, bool zeroForOne
   ) internal returns (uint160 sqrtQX96)
 ```
+Gets the next sqrt price given an output amount of token0 or token1
+
 Throws if price or liquidity are 0 or the next price is out of bounds
 
 #### Parameters:
@@ -88,12 +97,14 @@ Throws if price or liquidity are 0 or the next price is out of bounds
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`sqrtQX96`|  | The price after removing the output amount of token0 or token1
-## getAmount0Delta
+### getAmount0Delta
 ```solidity
   function getAmount0Delta(
     uint160 sqrtRatioAX96, uint160 sqrtRatioBX96, uint128 liquidity, bool roundUp
   ) internal returns (uint256 amount0)
 ```
+Gets the amount0 delta between two prices
+
 Calculates liquidity / sqrt(lower) - liquidity / sqrt(upper),
 i.e. liquidity * (sqrt(upper) - sqrt(lower)) / (sqrt(upper) * sqrt(lower))
 
@@ -109,12 +120,14 @@ i.e. liquidity * (sqrt(upper) - sqrt(lower)) / (sqrt(upper) * sqrt(lower))
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | Amount of token0 required to cover a position of size liquidity between the two passed prices
-## getAmount1Delta
+### getAmount1Delta
 ```solidity
   function getAmount1Delta(
     uint160 sqrtRatioAX96, uint160 sqrtRatioBX96, uint128 liquidity, bool roundUp
   ) internal returns (uint256 amount1)
 ```
+Gets the amount1 delta between two prices
+
 Calculates liquidity * (sqrt(upper) - sqrt(lower))
 
 #### Parameters:
@@ -129,13 +142,15 @@ Calculates liquidity * (sqrt(upper) - sqrt(lower))
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount1`|  | Amount of token1 required to cover a position of size liquidity between the two passed prices
-## getAmount0Delta
+### getAmount0Delta
 ```solidity
   function getAmount0Delta(
     uint160 sqrtRatioAX96, uint160 sqrtRatioBX96, int128 liquidity
   ) internal returns (int256 amount0)
 ```
-No description
+Helper that gets signed token0 delta
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
@@ -147,13 +162,15 @@ No description
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amount0`|  | Amount of token0 corresponding to the passed liquidityDelta between the two prices
-## getAmount1Delta
+### getAmount1Delta
 ```solidity
   function getAmount1Delta(
     uint160 sqrtRatioAX96, uint160 sqrtRatioBX96, int128 liquidity
   ) internal returns (int256 amount1)
 ```
-No description
+Helper that gets signed token1 delta
+
+
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |

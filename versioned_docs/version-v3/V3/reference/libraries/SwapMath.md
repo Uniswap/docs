@@ -1,12 +1,15 @@
 Contains methods for computing the result of a swap within a single tick price range, i.e., a single tick.
 
 
-## computeSwapStep
+## Functions
+### computeSwapStep
 ```solidity
   function computeSwapStep(
     uint160 sqrtRatioCurrentX96, uint160 sqrtRatioTargetX96, uint128 liquidity, int256 amountRemaining, uint24 feePips
   ) internal returns (uint160 sqrtRatioNextX96, uint256 amountIn, uint256 amountOut, uint256 feeAmount)
 ```
+Computes the result of swapping some amount in, or amount out, given the parameters of the swap
+
 The fee, plus the amount in, will never exceed the amount remaining if the swap's `amountSpecified` is positive
 
 #### Parameters:

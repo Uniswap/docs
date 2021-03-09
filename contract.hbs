@@ -1,13 +1,11 @@
 {{{natspec.userdoc}}}
 {{{natspec.devdoc}}}
-{{#if ownEvents}}
-### Events:
-{{#ownEvents}}
-- {{name}}({{args}})
-{{/ownEvents}}
+
+{{#if ownFunctions}}
+## Functions
 {{/if}}
 {{#ownFunctions}}
-## {{name}}
+### {{name}}
 ```solidity
   function {{name}}(
     {{args}}
@@ -28,12 +26,18 @@
 {{#natspec.returns}}
 |`{{param}}`|  | {{{description}}}{{/natspec.returns}}{{/if}}
 {{/ownFunctions}}
+{{#if ownEvents}}
+## Events
+{{/if}}
 {{#ownEvents}}
-### Event {{name}}({{args}})
+### {{name}}
+```solidity
+  event {{name}}({{args}})
+```
 {{#if natspec.userdoc}}{{natspec.userdoc}}{{/if}}
 {{#if natspec.devdoc}}{{natspec.devdoc}}{{/if}}
 {{#if natspec.params}}
-## Parameters:
+#### Parameters:
 | Name                           | Type          | Description                                    |
 | :----------------------------- | :------------ | :--------------------------------------------- |
 {{#natspec.params}}
