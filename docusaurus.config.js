@@ -178,6 +178,14 @@ module.exports = {
       },
     ],
   ],
-  plugins: [
+  plugins: [[
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'version',
+      path: 'docs/V2',
+      routeBasePath: 'docs/V2',
+      sidebarPath: require.resolve('./V2sidebars.js'),
+    },
+  ],
  ],
 };
