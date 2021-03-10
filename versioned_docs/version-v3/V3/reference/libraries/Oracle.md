@@ -19,14 +19,14 @@ Initialize the oracle array by writing the first slot. Called once for the lifec
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | The stored oracle array
-|`time` |  | The time of the oracle initialization, via block.timestamp truncated to uint32
+|`self` | struct Oracle.Observation[65535] | The stored oracle array
+|`time` | uint32 | The time of the oracle initialization, via block.timestamp truncated to uint32
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`cardinality`|  | The number of populated elements in the oracle array
-|`cardinalityNext`|  | The new length of the oracle array, independent of population
+|`cardinality`| struct Oracle.Observation[65535] | The number of populated elements in the oracle array
+|`cardinalityNext`| uint32 | The new length of the oracle array, independent of population
 ### write
 ```solidity
   function write(
@@ -42,19 +42,19 @@ is greater than the current one, cardinality may be increased. This restriction 
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | The stored oracle array
-|`index` |  | The location of the most recently updated observation
-|`blockTimestamp` |  | The timestamp of the new observation
-|`tick` |  | The active tick at the time of the new observation
-|`liquidity` |  | The total in-range liquidity at the time of the new observation
-|`cardinality` |  | The number of populated elements in the oracle array
-|`cardinalityNext` |  | The new length of the oracle array, independent of population
+|`self` | struct Oracle.Observation[65535] | The stored oracle array
+|`index` | uint16 | The location of the most recently updated observation
+|`blockTimestamp` | uint32 | The timestamp of the new observation
+|`tick` | int24 | The active tick at the time of the new observation
+|`liquidity` | uint128 | The total in-range liquidity at the time of the new observation
+|`cardinality` | uint16 | The number of populated elements in the oracle array
+|`cardinalityNext` | uint16 | The new length of the oracle array, independent of population
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`indexUpdated`|  | The new index of the most recently written element in the oracle array
-|`cardinalityUpdated`|  | The new cardinality of the oracle array
+|`indexUpdated`| struct Oracle.Observation[65535] | The new index of the most recently written element in the oracle array
+|`cardinalityUpdated`| uint16 | The new cardinality of the oracle array
 ### grow
 ```solidity
   function grow(
@@ -67,14 +67,14 @@ Prepares the oracle array to store up to `next` observations
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | The stored oracle array
-|`current` |  | The current next cardinality of the oracle array
-|`next` |  | The proposed next cardinality which will be populated in the oracle array
+|`self` | struct Oracle.Observation[65535] | The stored oracle array
+|`current` | uint16 | The current next cardinality of the oracle array
+|`next` | uint16 | The proposed next cardinality which will be populated in the oracle array
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`next`|  | The next cardinality which will be populated in the oracle array
+|`next`| struct Oracle.Observation[65535] | The next cardinality which will be populated in the oracle array
 ### observe
 ```solidity
   function observe(
@@ -87,16 +87,16 @@ Returns the accumulator values as of each time seconds ago from the given time i
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | The stored oracle array
-|`time` |  | The current block.timestamp
-|`secondsAgos` |  | Each amount of time to look back, in seconds, at which point to return an observation
-|`tick` |  | The current tick
-|`index` |  | The location of a given observation within the oracle array
-|`liquidity` |  | The current in-range pool liquidity
-|`cardinality` |  | The number of populated elements in the oracle array
+|`self` | struct Oracle.Observation[65535] | The stored oracle array
+|`time` | uint32 | The current block.timestamp
+|`secondsAgos` | uint32[] | Each amount of time to look back, in seconds, at which point to return an observation
+|`tick` | int24 | The current tick
+|`index` | uint16 | The location of a given observation within the oracle array
+|`liquidity` | uint128 | The current in-range pool liquidity
+|`cardinality` | uint16 | The number of populated elements in the oracle array
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tickCumulatives`|  | The tick * time elapsed since the pool was first initialized, as of each `secondsAgo`
-|`liquidityCumulatives`|  | The liquidity * time elapsed since the pool was first initialized, as of each `secondsAgo`
+|`tickCumulatives`| struct Oracle.Observation[65535] | The tick * time elapsed since the pool was first initialized, as of each `secondsAgo`
+|`liquidityCumulatives`| uint32 | The liquidity * time elapsed since the pool was first initialized, as of each `secondsAgo`

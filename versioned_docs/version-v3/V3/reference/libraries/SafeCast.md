@@ -15,7 +15,7 @@ Cast a uint256 to a uint160, revert on overflow
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`|  | The downcasted integer, now type uint160
+|`z`| uint256 | The downcasted integer, now type uint160
 ### toInt128
 ```solidity
   function toInt128(
@@ -29,7 +29,7 @@ Cast a int256 to a int128, revert on overflow or underflow
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`|  | The downcasted integer, now type int128
+|`z`| int256 | The downcasted integer, now type int128
 ### toInt256
 ```solidity
   function toInt256(
@@ -43,4 +43,4 @@ Cast a uint256 to a int256, revert on overflow
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`|  | The downcasted integer, now type int256
+|`z`| uint256 | The downcasted integer, now type int256

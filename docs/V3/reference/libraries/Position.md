@@ -15,15 +15,15 @@ Returns the Info struct of a position, given an owner and position boundaries
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | The mapping containing all user positions
-|`owner` |  | The address of the position owner
-|`tickLower` |  | The lower tick boundary of the position
-|`tickUpper` |  | The upper tick boundary of the position
+|`self` | mapping(bytes32 => struct Position.Info) | The mapping containing all user positions
+|`owner` | address | The address of the position owner
+|`tickLower` | int24 | The lower tick boundary of the position
+|`tickUpper` | int24 | The upper tick boundary of the position
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`position`|  | The position info struct of the given owners' position
+|`position`| mapping(bytes32 => struct Position.Info) | The position info struct of the given owners' position
 ### update
 ```solidity
   function update(
@@ -36,8 +36,8 @@ Credits accumulated fees to a user's position
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | The mapping containing all user positions
-|`liquidityDelta` |  | The change in pool liquidity as a result of the position update
-|`feeGrowthInside0X128` |  | The all-time fee growth in token0, per unit of liquidity, inside the position's tick boundaries
-|`feeGrowthInside1X128` |  | The all-time fee growth in token1, per unit of liquidity, inside the position's tick boundaries
+|`self` | struct Position.Info | The mapping containing all user positions
+|`liquidityDelta` | int128 | The change in pool liquidity as a result of the position update
+|`feeGrowthInside0X128` | uint256 | The all-time fee growth in token0, per unit of liquidity, inside the position's tick boundaries
+|`feeGrowthInside1X128` | uint256 | The all-time fee growth in token1, per unit of liquidity, inside the position's tick boundaries
 

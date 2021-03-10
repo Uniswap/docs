@@ -17,12 +17,12 @@ The function satisfies the property:
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`x` |  | the value for which to compute the most significant bit, must be greater than 0
+|`x` | uint256 | the value for which to compute the most significant bit, must be greater than 0
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`r`|  | the index of the most significant bit
+|`r`| uint256 | the index of the most significant bit
 ### leastSignificantBit
 ```solidity
   function leastSignificantBit(
@@ -38,9 +38,9 @@ The function satisfies the property:
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`x` |  | the value for which to compute the least significant bit, must be greater than 0
+|`x` | uint256 | the value for which to compute the least significant bit, must be greater than 0
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`r`|  | the index of the least significant bit
+|`r`| uint256 | the index of the least significant bit

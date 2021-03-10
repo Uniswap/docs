@@ -31,7 +31,7 @@ A fee amount can never bee removed, so this value should be hard coded or cached
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`|  | tick spacing
+|`The`| uint24 | tick spacing
 ### getPool
 ```solidity
   function getPool(
@@ -46,7 +46,7 @@ tokenA and tokenB may be passed in either token0/token1 or token1/token0 order
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`pool`|  | The pool address
+|`pool`| address | The pool address
 ### createPool
 ```solidity
   function createPool(
@@ -62,14 +62,14 @@ are invalid.
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`tokenA` |  | One of the two tokens in the desired pool
-|`tokenB` |  | The other of the two tokens in the desired pool
-|`fee` |  | The desired fee for the pool
+|`tokenA` | address | One of the two tokens in the desired pool
+|`tokenB` | address | The other of the two tokens in the desired pool
+|`fee` | uint24 | The desired fee for the pool
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`pool`|  | The address of the newly created pool
+|`pool`| address | The address of the newly created pool
 ### setOwner
 ```solidity
   function setOwner(
@@ -83,7 +83,7 @@ Must be called by the current owner
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`_owner` |  | The new owner of the factory
+|`_owner` | address | The new owner of the factory
 
 ### enableFeeAmount
 ```solidity
@@ -98,8 +98,8 @@ Fee amounts may never be removed once enabled
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`fee` |  | The fee amount to enable, denominated in hundredths of a bip (i.e. 1e-6)
-|`tickSpacing` |  | The spacing between ticks to be enforced for all pools created with the given fee amount
+|`fee` | uint24 | The fee amount to enable, denominated in hundredths of a bip (i.e. 1e-6)
+|`tickSpacing` | int24 | The spacing between ticks to be enforced for all pools created with the given fee amount
 
 ## Events
 ### OwnerChanged
@@ -112,8 +112,8 @@ Emitted when the owner of the factory is changed
 #### Parameters:
 | Name                           | Type          | Description                                    |
 | :----------------------------- | :------------ | :--------------------------------------------- |
-|`oldOwner`|  | The owner before the owner was changed
-|`newOwner`|  | The owner after the owner was changed
+|`oldOwner`| address | The owner before the owner was changed
+|`newOwner`| address | The owner after the owner was changed
 ### PoolCreated
 ```solidity
   event PoolCreated(address token0, address token1, uint24 fee, int24 tickSpacing, address pool)
@@ -124,11 +124,11 @@ Emitted when a pool is created
 #### Parameters:
 | Name                           | Type          | Description                                    |
 | :----------------------------- | :------------ | :--------------------------------------------- |
-|`token0`|  | The first token of the pool by address sort order
-|`token1`|  | The second token of the pool by address sort order
-|`fee`|  | The fee collected upon every swap in the pool, denominated in hundredths of a bip
-|`tickSpacing`|  | The minimum number of ticks between initialized ticks
-|`pool`|  | The address of the created pool
+|`token0`| address | The first token of the pool by address sort order
+|`token1`| address | The second token of the pool by address sort order
+|`fee`| uint24 | The fee collected upon every swap in the pool, denominated in hundredths of a bip
+|`tickSpacing`| int24 | The minimum number of ticks between initialized ticks
+|`pool`| address | The address of the created pool
 ### FeeAmountEnabled
 ```solidity
   event FeeAmountEnabled(uint24 fee, int24 tickSpacing)
@@ -139,5 +139,5 @@ Emitted when a new fee amount is enabled for pool creation via the factory
 #### Parameters:
 | Name                           | Type          | Description                                    |
 | :----------------------------- | :------------ | :--------------------------------------------- |
-|`fee`|  | The enabled fee, denominated in hundredths of a bip
-|`tickSpacing`|  | The minimum number of ticks between initialized ticks for pools created with the given fee
+|`fee`| uint24 | The enabled fee, denominated in hundredths of a bip
+|`tickSpacing`| int24 | The minimum number of ticks between initialized ticks for pools created with the given fee

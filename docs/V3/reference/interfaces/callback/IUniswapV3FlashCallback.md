@@ -16,7 +16,7 @@ The caller of this method must be checked to be a UniswapV3Pool deployed by the 
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`fee0` |  | The fee amount in token0 due to the pool by the end of the flash
-|`fee1` |  | The fee amount in token1 due to the pool by the end of the flash
-|`data` |  | Any data passed through by the caller via the IUniswapV3PoolActions#flash call
+|`fee0` | uint256 | The fee amount in token0 due to the pool by the end of the flash
+|`fee1` | uint256 | The fee amount in token1 due to the pool by the end of the flash
+|`data` | bytes | Any data passed through by the caller via the IUniswapV3PoolActions#flash call
 
