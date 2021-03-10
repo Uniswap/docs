@@ -18,13 +18,13 @@
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 {{#natspec.params}}
-|`{{param}}` |  | {{ description }}{{/natspec.params}}{{/if}}
+|`{{param}}` | {{#lookup ../args.types @index}}{{/lookup}} | {{ description }}{{/natspec.params}}{{/if}}
 {{#if natspec.returns}}
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 {{#natspec.returns}}
-|`{{param}}`|  | {{{description}}}{{/natspec.returns}}{{/if}}
+|`{{param}}`| {{#lookup ../args.types @index}}{{/lookup}} | {{{description}}}{{/natspec.returns}}{{/if}}
 {{/ownFunctions}}
 {{#if ownEvents}}
 ## Events
@@ -41,5 +41,5 @@
 | Name                           | Type          | Description                                    |
 | :----------------------------- | :------------ | :--------------------------------------------- |
 {{#natspec.params}}
-|`{{param}}`|  | {{{description}}}{{/natspec.params}}{{/if}}
+|`{{param}}`| {{#lookup ../args.types @index}}{{/lookup}} | {{{description}}}{{/natspec.params}}{{/if}}
 {{/ownEvents}}

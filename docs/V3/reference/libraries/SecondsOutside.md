@@ -17,11 +17,11 @@ initialized.
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | the packed mapping of tick to seconds outside
-|`tick` |  | the tick to be initialized
-|`tickCurrent` |  | the current tick
-|`tickSpacing` |  | the spacing between usable ticks
-|`time` |  | the current timestamp
+|`self` | mapping(int24 => uint256) | the packed mapping of tick to seconds outside
+|`tick` | int24 | the tick to be initialized
+|`tickCurrent` | int24 | the current tick
+|`tickSpacing` | int24 | the spacing between usable ticks
+|`time` | uint32 | the current timestamp
 
 ### clear
 ```solidity
@@ -35,9 +35,9 @@ Called when a tick is no longer used, to clear the seconds outside value of the 
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | the packed mapping of tick to seconds outside
-|`tick` |  | the tick to be cleared
-|`tickSpacing` |  | the spacing between usable ticks
+|`self` | mapping(int24 => uint256) | the packed mapping of tick to seconds outside
+|`tick` | int24 | the tick to be cleared
+|`tickSpacing` | int24 | the spacing between usable ticks
 
 ### cross
 ```solidity
@@ -52,10 +52,10 @@ every time an initialized tick is crossed
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | the packed mapping of tick to seconds outside
-|`tick` |  | the tick to be crossed
-|`tickSpacing` |  | the spacing between usable ticks
-|`time` |  | the current block timestamp truncated to 32 bits
+|`self` | mapping(int24 => uint256) | the packed mapping of tick to seconds outside
+|`tick` | int24 | the tick to be crossed
+|`tickSpacing` | int24 | the spacing between usable ticks
+|`time` | uint32 | the current block timestamp truncated to 32 bits
 
 ### get
 ```solidity
@@ -69,14 +69,14 @@ Get the seconds outside for an initialized tick. Should be called only on initia
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | the packed mapping of tick to seconds outside
-|`tick` |  | the tick to get the seconds outside value for
-|`tickSpacing` |  | the spacing between usable ticks
+|`self` | mapping(int24 => uint256) | the packed mapping of tick to seconds outside
+|`tick` | int24 | the tick to get the seconds outside value for
+|`tickSpacing` | int24 | the spacing between usable ticks
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`the`|  | seconds outside value for that tick
+|`the`| mapping(int24 => uint256) | seconds outside value for that tick
 ### secondsInside
 ```solidity
   function secondsInside(
@@ -89,14 +89,14 @@ Get the seconds inside a tick range, assuming both tickLower and tickUpper are i
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | the packed mapping of tick to seconds outside
-|`tickLower` |  | the lower tick for which to get seconds inside
-|`tickUpper` |  | the upper tick for which to get seconds inside
-|`tickCurrent` |  | the current tick
-|`tickSpacing` |  | the spacing between usable ticks
+|`self` | mapping(int24 => uint256) | the packed mapping of tick to seconds outside
+|`tickLower` | int24 | the lower tick for which to get seconds inside
+|`tickUpper` | int24 | the upper tick for which to get seconds inside
+|`tickCurrent` | int24 | the current tick
+|`tickSpacing` | int24 | the spacing between usable ticks
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`a`|  | relative seconds inside value that can be snapshotted and compared to a later snapshot to compute
+|`a`| mapping(int24 => uint256) | relative seconds inside value that can be snapshotted and compared to a later snapshot to compute
 time spent between tickLower and tickUpper, i.e. time that a position's liquidity was in use.

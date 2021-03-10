@@ -15,9 +15,9 @@ Flips the initialized state for a given tick from false to true, or vice versa
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | The mapping in which to flip the tick
-|`tick` |  | The tick to flip
-|`tickSpacing` |  | The spacing between usable ticks
+|`self` | mapping(int16 => uint256) | The mapping in which to flip the tick
+|`tick` | int24 | The tick to flip
+|`tickSpacing` | int24 | The spacing between usable ticks
 
 ### nextInitializedTickWithinOneWord
 ```solidity
@@ -32,13 +32,13 @@ to the left (less than or equal to) or right (greater than) of the given tick
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`self` |  | The mapping in which to compute the next initialized tick
-|`tick` |  | The starting tick
-|`tickSpacing` |  | The spacing between usable ticks
-|`lte` |  | Whether to search for the next initialized tick to the left (less than or equal to the starting tick)
+|`self` | mapping(int16 => uint256) | The mapping in which to compute the next initialized tick
+|`tick` | int24 | The starting tick
+|`tickSpacing` | int24 | The spacing between usable ticks
+|`lte` | bool | Whether to search for the next initialized tick to the left (less than or equal to the starting tick)
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`next`|  | The next initialized or uninitialized tick up to 256 ticks away from the current tick
-|`initialized`|  | Whether the next tick is initialized, as the function only searches within up to 256 ticks
+|`next`| mapping(int16 => uint256) | The next initialized or uninitialized tick up to 256 ticks away from the current tick
+|`initialized`| int24 | Whether the next tick is initialized, as the function only searches within up to 256 ticks

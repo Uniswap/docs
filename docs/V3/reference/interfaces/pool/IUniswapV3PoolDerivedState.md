@@ -19,13 +19,13 @@ burned. Thus the external contract must control the lifecycle of the position.
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`tickLower` |  | The lower tick of the range for which to get the seconds inside
-|`tickUpper` |  | The upper tick of the range for which to get the seconds inside
+|`tickLower` | int24 | The lower tick of the range for which to get the seconds inside
+|`tickUpper` | int24 | The upper tick of the range for which to get the seconds inside
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`A`|  | relative timestamp for how long the pool spent in the tick range
+|`A`| int24 | relative timestamp for how long the pool spent in the tick range
 ### observe
 ```solidity
   function observe(
@@ -43,11 +43,11 @@ log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`secondsAgos` |  | From how long ago each cumulative tick and liquidity value should be returned
+|`secondsAgos` | uint32[] | From how long ago each cumulative tick and liquidity value should be returned
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tickCumulatives`|  | Cumulative tick values as of each `secondsAgos` from the current block timestamp
+|`tickCumulatives`| uint32[] | Cumulative tick values as of each `secondsAgos` from the current block timestamp
 |`liquidityCumulatives`|  | Cumulative liquidity-in-range value as of each `secondsAgos` from the current block
 timestamp
