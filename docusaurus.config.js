@@ -20,68 +20,16 @@ module.exports = {
           to: 'docs/concepts',
           label: 'Concepts',
           position: 'left',
-          items: [
-            {
-              label: 'V3',
-              href: '/docs/concepts'
-            },
-            {
-              label: 'V2',
-              href: '/docs/V2/concepts'
-            },
-            {
-              label: 'V1',
-              href: '/docs/V1/concepts'
-            }
-          ]
         },
         {
           to: 'docs/guides', 
           label: 'Guides', 
           position: 'left',
-          items: [
-            {
-              label: 'V3',
-              href: '/docs/guides'
-            },
-            {
-              label: 'V2',
-              href: '/docs/V2/guides'
-            },
-            {
-              label: 'V1',
-              href: '/docs/V1/guides'
-            }
-          ]
         },
         {
           to: 'docs/reference',
           label: 'Reference',
           position: 'left',
-          items: [
-            {
-              label: 'V3',
-              href: '/docs/reference'
-            },
-            {
-              label: 'V2',
-              href: '/docs/V2/reference'
-            },
-            {
-              label: 'V1',
-              href: '/docs/V1/reference'
-            }
-          ]
-        },
-        {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownActiveClassDisabled: true,
-          dropdownItemsAfter: [
-            {
-              to: '/docs_versions',
-            },
-          ],
         },
         {
           href: 'https://github.com/uniswap/uniswap-docs',
@@ -137,7 +85,6 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
   },
   presets: [
@@ -147,29 +94,9 @@ module.exports = {
         docs: {
           path: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
-          includeCurrentVersion: false,
           // Please change this to your repo.
           editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
           routeBasePath: '/docs',
-          //Version: 'v2',
-          // lastVersion: 'current',
-          // versions: {
-            
-          //   Example configuration: 
-          //   'v3': {
-          //     label: 'Android SDK v2.0.0 (WIP)',
-          //     path: 'android-2.0.0',
-          //   },
-          //   'v2': {
-          //     label: 'Android SDK v2.0.0 (WIP)',
-          //     path: 'android-2.0.0',
-          //   },
-          //   'v1': {
-          //     label: 'Android SDK v1.0.0',
-          //     path: 'android-1.0.0',
-          //   },
-            
-          // },
         },
 
         theme: {
