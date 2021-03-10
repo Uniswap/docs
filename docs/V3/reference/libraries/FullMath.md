@@ -15,14 +15,14 @@ Credit to Remco Bloemen under MIT license https://xn--2-umb.com/21/muldiv
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`a` |  | The multiplicand
-|`b` |  | The multiplier
-|`denominator` |  | The divisor
+|`a` | uint256 | The multiplicand
+|`b` | uint256 | The multiplier
+|`denominator` | uint256 | The divisor
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`result`|  | The 256-bit result
+|`result`| uint256 | The 256-bit result
 
 ### mulDivRoundingUp
 ```solidity
@@ -36,11 +36,11 @@ Credit to Remco Bloemen under MIT license https://xn--2-umb.com/21/muldiv
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`a` |  | The multiplicand
-|`b` |  | The multiplier
-|`denominator` |  | The divisor
+|`a` | uint256 | The multiplicand
+|`b` | uint256 | The multiplier
+|`denominator` | uint256 | The divisor
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`result`|  | The 256-bit result
+|`result`| uint256 | The 256-bit result

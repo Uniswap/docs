@@ -15,7 +15,7 @@ Returns x + y, reverts if sum overflows uint256
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`|  | The sum of x and y
+|`z`| uint256 | The sum of x and y
 ### sub
 ```solidity
   function sub(
@@ -29,7 +29,7 @@ Returns x - y, reverts if underflows
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`|  | The difference of x and y
+|`z`| uint256 | The difference of x and y
 ### mul
 ```solidity
   function mul(
@@ -43,7 +43,7 @@ Returns x * y, reverts if overflows
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`|  | The product of x and y
+|`z`| uint256 | The product of x and y
 ### add
 ```solidity
   function add(
@@ -57,7 +57,7 @@ Returns x + y, reverts if overflows or underflows
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`|  | The sum of x and y
+|`z`| int256 | The sum of x and y
 ### sub
 ```solidity
   function sub(
@@ -71,4 +71,4 @@ Returns x - y, reverts if overflows or underflows
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`|  | The difference of x and y
+|`z`| int256 | The difference of x and y

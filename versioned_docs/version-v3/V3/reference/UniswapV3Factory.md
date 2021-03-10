@@ -17,14 +17,14 @@ are invalid.
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`tokenA` |  | One of the two tokens in the desired pool
-|`tokenB` |  | The other of the two tokens in the desired pool
-|`fee` |  | The desired fee for the pool
+|`tokenA` | address | One of the two tokens in the desired pool
+|`tokenB` | address | The other of the two tokens in the desired pool
+|`fee` | uint24 | The desired fee for the pool
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`pool`|  | The address of the newly created pool
+|`pool`| address | The address of the newly created pool
 ### setOwner
 ```solidity
   function setOwner(
@@ -38,7 +38,7 @@ Must be called by the current owner
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`_owner` |  | The new owner of the factory
+|`_owner` | address | The new owner of the factory
 
 ### enableFeeAmount
 ```solidity
@@ -53,6 +53,6 @@ Fee amounts may never be removed once enabled
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`fee` |  | The fee amount to enable, denominated in hundredths of a bip (i.e. 1e-6)
-|`tickSpacing` |  | The spacing between ticks to be enforced for all pools created with the given fee amount
+|`fee` | uint24 | The fee amount to enable, denominated in hundredths of a bip (i.e. 1e-6)
+|`tickSpacing` | int24 | The spacing between ticks to be enforced for all pools created with the given fee amount
 
