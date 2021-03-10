@@ -15,4 +15,4 @@ Add a signed liquidity delta to liquidity and revert if it overflows or underflo
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`|  | The liquidity delta
+|`z`| uint128 | The liquidity delta

@@ -15,16 +15,16 @@ The fee, plus the amount in, will never exceed the amount remaining if the swap'
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`sqrtRatioCurrentX96` |  | The current sqrt price of the pool
-|`sqrtRatioTargetX96` |  | The price that cannot be exceeded, from which the direction of the swap is inferred
-|`liquidity` |  | The usable liquidity
-|`amountRemaining` |  | How much input or output amount is remaining to be swapped in/out
-|`feePips` |  | The fee taken from the input amount, expressed in hundredths of a bip
+|`sqrtRatioCurrentX96` | uint160 | The current sqrt price of the pool
+|`sqrtRatioTargetX96` | uint160 | The price that cannot be exceeded, from which the direction of the swap is inferred
+|`liquidity` | uint128 | The usable liquidity
+|`amountRemaining` | int256 | How much input or output amount is remaining to be swapped in/out
+|`feePips` | uint24 | The fee taken from the input amount, expressed in hundredths of a bip
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`sqrtRatioNextX96`|  | The price after swapping the amount in/out, not to exceed the price target
-|`amountIn`|  | The amount to be swapped in, of either token0 or token1, based on the direction of the swap
-|`amountOut`|  | The amount to be swapped in, of either token0 or token1, based on the direction of the swap
-|`feeAmount`|  | The amount of input that will be taken as a fee
+|`sqrtRatioNextX96`| uint160 | The price after swapping the amount in/out, not to exceed the price target
+|`amountIn`| uint160 | The amount to be swapped in, of either token0 or token1, based on the direction of the swap
+|`amountOut`| uint128 | The amount to be swapped in, of either token0 or token1, based on the direction of the swap
+|`feeAmount`| int256 | The amount of input that will be taken as a fee

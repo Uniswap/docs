@@ -83,12 +83,12 @@ Look up information about a specific tick in the pool
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`tick` |  | The tick to look up
+|`tick` | int24 | The tick to look up
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`liquidityGross`|  | the total amount of position liquidity that uses the pool either as tick lower or
+|`liquidityGross`| int24 | the total amount of position liquidity that uses the pool either as tick lower or
 tick upper,
 liquidityNet how much liquidity changes when the pool price crosses the tick,
 feeGrowthOutside0X128 the fee growth on the other side of the tick from the current tick in token0,
@@ -108,7 +108,7 @@ Returns 256 packed tick initialized boolean values
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`wordPosition` |  | the index of the word in the bitmap to fetch. The initialized booleans are packed into words
+|`wordPosition` | int16 | the index of the word in the bitmap to fetch. The initialized booleans are packed into words
 based on the tick and the pool's tick spacing
 
 ### secondsOutside
@@ -123,7 +123,7 @@ Returns 8 packed tick seconds outside values
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`wordPosition` |  | The index of the word in the map to fetch. The seconds outside 32 bit values are packed into
+|`wordPosition` | int24 | The index of the word in the map to fetch. The seconds outside 32 bit values are packed into
 words based on the tick and the pool's tick spacing
 
 ### positions
@@ -138,12 +138,12 @@ Returns the information about a position by the position's key
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`key` |  | The position's key is a hash of a preimage composed by the owner, tickLower and tickUpper
+|`key` | bytes32 | The position's key is a hash of a preimage composed by the owner, tickLower and tickUpper
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`_liquidity`|  | The amount of liquidity in the position,
+|`_liquidity`| bytes32 | The amount of liquidity in the position,
 Returns feeGrowthInside0LastX128 fee growth of token0 inside the tick range as of the last mint/burn/poke,
 Returns feeGrowthInside1LastX128 fee growth of token1 inside the tick range as of the last mint/burn/poke,
 Returns tokensOwed0 the computed amount of token0 owed to the position as of the last mint/burn/poke,
@@ -162,12 +162,12 @@ ago, rather than at a specific index in the array.
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`index` |  | The element of the observations array to fetch
+|`index` | uint256 | The element of the observations array to fetch
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`blockTimestamp`|  | The timestamp of the observation,
+|`blockTimestamp`| uint256 | The timestamp of the observation,
 Returns tickCumulative the current tick multiplied by seconds elapsed for the life of the pool as of the
 observation,
 Returns liquidityCumulative the current liquidity multiplied by seconds elapsed for the life of the pool as of

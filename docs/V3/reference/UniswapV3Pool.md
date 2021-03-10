@@ -28,13 +28,13 @@ burned. Thus the external contract must control the lifecycle of the position.
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`tickLower` |  | The lower tick of the range for which to get the seconds inside
-|`tickUpper` |  | The upper tick of the range for which to get the seconds inside
+|`tickLower` | int24 | The lower tick of the range for which to get the seconds inside
+|`tickUpper` | int24 | The upper tick of the range for which to get the seconds inside
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`A`|  | relative timestamp for how long the pool spent in the tick range
+|`A`| int24 | relative timestamp for how long the pool spent in the tick range
 ### observe
 ```solidity
   function observe(
@@ -52,12 +52,12 @@ log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`secondsAgos` |  | From how long ago each cumulative tick and liquidity value should be returned
+|`secondsAgos` | uint32[] | From how long ago each cumulative tick and liquidity value should be returned
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tickCumulatives`|  | Cumulative tick values as of each `secondsAgos` from the current block timestamp
+|`tickCumulatives`| uint32[] | Cumulative tick values as of each `secondsAgos` from the current block timestamp
 |`liquidityCumulatives`|  | Cumulative liquidity-in-range value as of each `secondsAgos` from the current block
 timestamp
 ### increaseObservationCardinalityNext
@@ -74,7 +74,7 @@ the input observationCardinalityNext.
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`observationCardinalityNext` |  | The desired minimum number of observations for the pool to store
+|`observationCardinalityNext` | uint16 | The desired minimum number of observations for the pool to store
 
 ### initialize
 ```solidity
@@ -88,7 +88,7 @@ not locked because it initializes unlocked
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`sqrtPriceX96` |  | the initial sqrt price of the pool as a Q64.96
+|`sqrtPriceX96` | uint160 | the initial sqrt price of the pool as a Q64.96
 
 ### mint
 ```solidity
@@ -102,17 +102,17 @@ noDelegateCall is applied indirectly via _modifyPosition
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`recipient` |  | The address for which the liquidity will be created
-|`tickLower` |  | The lower tick of the position in which to add liquidity
-|`tickUpper` |  | The upper tick of the position in which to add liquidity
-|`amount` |  | The amount of liquidity to mint
-|`data` |  | Any data that should be passed through to the callback
+|`recipient` | address | The address for which the liquidity will be created
+|`tickLower` | int24 | The lower tick of the position in which to add liquidity
+|`tickUpper` | int24 | The upper tick of the position in which to add liquidity
+|`amount` | uint128 | The amount of liquidity to mint
+|`data` | bytes | Any data that should be passed through to the callback
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`|  | The amount of token0 that was paid to mint the given amount of liquidity. Matches the value in the callback
-|`amount1`|  | The amount of token1 that was paid to mint the given amount of liquidity. Matches the value in the callback
+|`amount0`| address | The amount of token0 that was paid to mint the given amount of liquidity. Matches the value in the callback
+|`amount1`| int24 | The amount of token1 that was paid to mint the given amount of liquidity. Matches the value in the callback
 ### collect
 ```solidity
   function collect(
@@ -128,17 +128,17 @@ pass any value greater than the fees owed.
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`recipient` |  | The address which should receive the fees collected
-|`tickLower` |  | The lower tick of the position for which to collect fees
-|`tickUpper` |  | The upper tick of the position for which to collect fees
-|`amount0Requested` |  | How much token0 should be withdrawn from the fees owed
-|`amount1Requested` |  | How much token1 should be withdrawn from the fees owed
+|`recipient` | address | The address which should receive the fees collected
+|`tickLower` | int24 | The lower tick of the position for which to collect fees
+|`tickUpper` | int24 | The upper tick of the position for which to collect fees
+|`amount0Requested` | uint128 | How much token0 should be withdrawn from the fees owed
+|`amount1Requested` | uint128 | How much token1 should be withdrawn from the fees owed
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`|  | The amount of fees collected in token0
-|`amount1`|  | The amount of fees collected in token1
+|`amount0`| address | The amount of fees collected in token0
+|`amount1`| int24 | The amount of fees collected in token1
 ### burn
 ```solidity
   function burn(
@@ -151,15 +151,15 @@ noDelegateCall is applied indirectly via _modifyPosition
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`tickLower` |  | The lower tick of the position for which to burn liquidity
-|`tickUpper` |  | The upper tick of the position for which to burn liquidity
-|`amount` |  | How much liquidity to burn
+|`tickLower` | int24 | The lower tick of the position for which to burn liquidity
+|`tickUpper` | int24 | The upper tick of the position for which to burn liquidity
+|`amount` | uint128 | How much liquidity to burn
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`|  | The amount of token0 sent to the recipient
-|`amount1`|  | The amount of token1 sent to the recipient
+|`amount0`| int24 | The amount of token0 sent to the recipient
+|`amount1`| int24 | The amount of token1 sent to the recipient
 ### swap
 ```solidity
   function swap(
@@ -173,18 +173,18 @@ The caller of this method receives a callback in the form of IUniswapV3SwapCallb
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`recipient` |  | The address to receive the output of the swap
-|`zeroForOne` |  | The direction of the swap, true for token0 to token1, false for token1 to token0
-|`amountSpecified` |  | The amount of the swap, which implicitly configures the swap as exact input (positive), or exact output (negative)
-|`sqrtPriceLimitX96` |  | The Q64.96 sqrt price limit. If zero for one, the price cannot be less than this
+|`recipient` | address | The address to receive the output of the swap
+|`zeroForOne` | bool | The direction of the swap, true for token0 to token1, false for token1 to token0
+|`amountSpecified` | int256 | The amount of the swap, which implicitly configures the swap as exact input (positive), or exact output (negative)
+|`sqrtPriceLimitX96` | uint160 | The Q64.96 sqrt price limit. If zero for one, the price cannot be less than this
 value after the swap. If one for zero, the price cannot be greater than this value after the swap
-|`data` |  | Any data to be passed through to the callback
+|`data` | bytes | Any data to be passed through to the callback
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`|  | The delta of the balance of token0 of the pool, exact when negative, minimum when positive
-|`amount1`|  | The delta of the balance of token1 of the pool, exact when negative, minimum when positive
+|`amount0`| address | The delta of the balance of token0 of the pool, exact when negative, minimum when positive
+|`amount1`| bool | The delta of the balance of token1 of the pool, exact when negative, minimum when positive
 ### flash
 ```solidity
   function flash(
@@ -200,10 +200,10 @@ with 0 amount{0,1} and sending the donation amount(s) from the callback
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`recipient` |  | The address which will receive the token0 and token1 amounts
-|`amount0` |  | The amount of token0 to send
-|`amount1` |  | The amount of token1 to send
-|`data` |  | Any data to be passed through to the callback
+|`recipient` | address | The address which will receive the token0 and token1 amounts
+|`amount0` | uint256 | The amount of token0 to send
+|`amount1` | uint256 | The amount of token1 to send
+|`data` | bytes | Any data to be passed through to the callback
 
 ### setFeeProtocol
 ```solidity
@@ -217,8 +217,8 @@ Set the denominator of the protocol's % share of the fees
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`feeProtocol0` |  | new protocol fee for token0 of the pool
-|`feeProtocol1` |  | new protocol fee for token1 of the pool
+|`feeProtocol0` | uint8 | new protocol fee for token0 of the pool
+|`feeProtocol1` | uint8 | new protocol fee for token1 of the pool
 
 ### collectProtocol
 ```solidity
@@ -232,12 +232,12 @@ Collect the protocol fee accrued to the pool
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`recipient` |  | The address to which collected protocol fees should be sent
-|`amount0Requested` |  | The maximum amount of token0 to send, can be 0 to collect fees in only token1
-|`amount1Requested` |  | The maximum amount of token1 to send, can be 0 to collect fees in only token0
+|`recipient` | address | The address to which collected protocol fees should be sent
+|`amount0Requested` | uint128 | The maximum amount of token0 to send, can be 0 to collect fees in only token1
+|`amount1Requested` | uint128 | The maximum amount of token1 to send, can be 0 to collect fees in only token0
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`|  | The protocol fee collected in token0
-|`amount1`|  | The protocol fee collected in token1
+|`amount0`| address | The protocol fee collected in token0
+|`amount1`| uint128 | The protocol fee collected in token1

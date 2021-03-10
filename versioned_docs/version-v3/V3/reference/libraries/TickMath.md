@@ -15,12 +15,12 @@ Calculates sqrt(1.0001^tick) * 2^96.  Throws in case |tick| > max tick
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`tick` |  | The input tick for the above formula
+|`tick` | int24 | The input tick for the above formula
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`sqrtPriceX96`|  | A Fixed point Q64.96 number representing the sqrt of the ratio of the two assets (token1/token0)
+|`sqrtPriceX96`| int24 | A Fixed point Q64.96 number representing the sqrt of the ratio of the two assets (token1/token0)
 at the given tick
 ### getTickAtSqrtRatio
 ```solidity
@@ -36,9 +36,9 @@ ever return.
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`sqrtPriceX96` |  | The sqrt ratio for which to compute the tick as a Q64.96
+|`sqrtPriceX96` | uint160 | The sqrt ratio for which to compute the tick as a Q64.96
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tick`|  | The greatest tick for which the ratio is less than or equal to the input ratio
+|`tick`| uint160 | The greatest tick for which the ratio is less than or equal to the input ratio
