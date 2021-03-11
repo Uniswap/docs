@@ -1,7 +1,6 @@
 ---
 id: landing
 title: Concepts Landing
-slug: /concepts/
  
 ---
 

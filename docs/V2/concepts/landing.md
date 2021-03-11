@@ -1,6 +1,6 @@
 ---
 id: landing
-title: Reference Landing
+title: concepts V2 Landing
 ---
 
 Reference Landing Page
