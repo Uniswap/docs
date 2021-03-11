@@ -14,6 +14,29 @@ module.exports = {
         'concepts/01-frontend-integration/06-token-listing',
       ],
     },
+    {
+      type: 'category',
+      label: 'Guides',
+      items: [
+        'guides/02-SDK/01-getting-started',
+        'guides/02-SDK/02-data',
+        'guides/02-SDK/03-computation',
+        'guides/02-SDK/04-format',
+        'guides/02-SDK/05-orchestration',
+        'guides/02-SDK/06-transact',
+        'guides/02-SDK/07-constants',
+        'guides/02-SDK/08-types',
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+        'reference/03-smart-contracts/01-factory',
+        'reference/03-smart-contracts/02-exchange',
+        'reference/03-smart-contracts/03-interfaces',
+      ]
+    }
   ],
 
 
