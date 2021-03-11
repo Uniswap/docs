@@ -16,99 +16,27 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
-        // {
-        //   type: 'doc',
-        //   docId: 'landing',
-
-        //   //// Optional
-        //   position: 'left',
-        //   label: 'Guides',
-        //   activeSidebarClassName: 'navbar__link--active',
-        //   docsPluginId: 'default',
-        // },
-
+        
         {
-          to: 'docs/V3/concepts',
-          label: 'Concepts',
-          position: 'left',
+          label: 'Version',
+          position: 'right',
           items: [
             {
               label: 'V3',
-              href: '/docs/V3/concepts'
+              to: 'docs/V3/concepts/landing'
             },
             {
               label: 'V2',
-              href: '/docs/V2/concepts'
+              to: 'docs/V2/concepts'
             },
             {
               label: 'V1',
-              href: '/docs/V1/concepts'
+              to: 'docs/V1/concepts'
             }
-          ]
-        },
-        {
-          to: 'docs/V3/guides', 
-          label: 'Guides', 
-          position: 'left',
-          items: [
-            {
-              label: 'V3',
-              href: '/docs/V3/guides'
-            },
-            {
-              label: 'V2',
-              href: '/docs/V2/guides'
-            },
-            {
-              label: 'V1',
-              href: '/docs/V1/guides'
-            }
-          ]
-        },
-        {
-          to: './reference',
-          label: 'Reference',
-          position: 'left',
-          activeBasePath: 'docs',
-          items: [
-            {
-              label: 'V3',
-              href: '/docs/reference'
-            },
-            {
-              label: 'V2',
-              href: '/docs/V2/reference'
-            },
-            {
-              label: 'V1',
-              href: '/docs/V1/reference'
-            }
-          ]
-        },
-        {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownActiveClassDisabled: true,
-          docsPluginId: 'versionthree',
-          // dropdownItemsAfter: [
-          //   {
-          //     to: '/docs_versions',
-          //   },
-          // ],
-        },
-        {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownActiveClassDisabled: true,
-          docsPluginId: 'versiontwo',
-        },
-        {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownActiveClassDisabled: true,
-          docsPluginId: 'versionone',
 
+          ]
         },
+        
         {
           href: 'https://github.com/uniswap/uniswap-docs',
           label: 'GitHub',
@@ -120,25 +48,8 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'docs/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
-            },
-          ],
-        },
-        {
           title: 'Community',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
             {
               label: 'Discord',
               href: 'https://discordapp.com/invite/docusaurus',
@@ -153,12 +64,8 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/uniswap',
             },
           ],
         },
@@ -176,27 +83,8 @@ module.exports = {
           routeBasePath: 'docs/V3',
           sidebarPath: require.resolve('./V3sidebars.js'),
           includeCurrentVersion: true,
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
-          //Version: 'v2',
-          // lastVersion: 'current',
-          // versions: {
-            
-          //   Example configuration: 
-          //   'v3': {
-          //     label: 'V3',
-          //     path: '/',
-          //   },
-          //   'v2': {
-          //     label: 'V2',
-          //     path: '/',
-          //   },
-          //   'v1': {
-          //     label: 'V1',
-          //     path: '/',
-          //   },
-            
-          // },
+          editUrl: 'https://github.com/uniswap/uniswap-docs',
+
         },
 
         theme: {
