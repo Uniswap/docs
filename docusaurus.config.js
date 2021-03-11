@@ -16,14 +16,25 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
+        // {
+        //   type: 'doc',
+        //   docId: 'landing',
+
+        //   //// Optional
+        //   position: 'left',
+        //   label: 'Guides',
+        //   activeSidebarClassName: 'navbar__link--active',
+        //   docsPluginId: 'default',
+        // },
+
         {
-          to: 'docs/concepts',
+          to: 'docs/V3/concepts',
           label: 'Concepts',
           position: 'left',
           items: [
             {
               label: 'V3',
-              href: '/docs/concepts'
+              href: '/docs/V3/concepts'
             },
             {
               label: 'V2',
@@ -36,13 +47,13 @@ module.exports = {
           ]
         },
         {
-          to: 'docs/guides', 
+          to: 'docs/V3/guides', 
           label: 'Guides', 
           position: 'left',
           items: [
             {
               label: 'V3',
-              href: '/docs/guides'
+              href: '/docs/V3/guides'
             },
             {
               label: 'V2',
@@ -55,9 +66,10 @@ module.exports = {
           ]
         },
         {
-          to: 'docs/reference',
+          to: './reference',
           label: 'Reference',
           position: 'left',
+          activeBasePath: 'docs',
           items: [
             {
               label: 'V3',
@@ -77,11 +89,25 @@ module.exports = {
           type: 'docsVersionDropdown',
           position: 'right',
           dropdownActiveClassDisabled: true,
-          dropdownItemsAfter: [
-            {
-              to: '/docs_versions',
-            },
-          ],
+          docsPluginId: 'versionthree',
+          // dropdownItemsAfter: [
+          //   {
+          //     to: '/docs_versions',
+          //   },
+          // ],
+        },
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+          docsPluginId: 'versiontwo',
+        },
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+          docsPluginId: 'versionone',
+
         },
         {
           href: 'https://github.com/uniswap/uniswap-docs',
@@ -137,7 +163,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `unlicensed`,
     },
   },
   presets: [
@@ -145,28 +171,29 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          path: 'docs',
-          sidebarPath: require.resolve('./sidebars.js'),
-          includeCurrentVersion: false,
+          id: 'versionthree',
+          path: 'docs/V3',
+          routeBasePath: 'docs/V3',
+          sidebarPath: require.resolve('./V3sidebars.js'),
+          includeCurrentVersion: true,
           // Please change this to your repo.
           editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
-          routeBasePath: '/docs',
           //Version: 'v2',
           // lastVersion: 'current',
           // versions: {
             
           //   Example configuration: 
           //   'v3': {
-          //     label: 'Android SDK v2.0.0 (WIP)',
-          //     path: 'android-2.0.0',
+          //     label: 'V3',
+          //     path: '/',
           //   },
           //   'v2': {
-          //     label: 'Android SDK v2.0.0 (WIP)',
-          //     path: 'android-2.0.0',
+          //     label: 'V2',
+          //     path: '/',
           //   },
           //   'v1': {
-          //     label: 'Android SDK v1.0.0',
-          //     path: 'android-1.0.0',
+          //     label: 'V1',
+          //     path: '/',
           //   },
             
           // },
@@ -178,13 +205,24 @@ module.exports = {
       },
     ],
   ],
-  plugins: [[
+  plugins: [
+    
+    [
     '@docusaurus/plugin-content-docs',
     {
-      id: 'version',
+      id: 'versiontwo',
       path: 'docs/V2',
       routeBasePath: 'docs/V2',
       sidebarPath: require.resolve('./V2sidebars.js'),
+    },
+  ],
+    [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'versionone',
+      path: 'docs/V1',
+      routeBasePath: 'docs/V1',
+      sidebarPath: require.resolve('./V1sidebars.js'),
     },
   ],
  ],

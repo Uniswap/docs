@@ -100,9 +100,6 @@ declare const getStream: {
 	): Promise<string[]>;
 
 	MaxBufferError: typeof MaxBufferErrorClass;
-
-	// TODO: Remove this for the next major release
-	default: typeof getStream;
 };
 
 export = getStream;
