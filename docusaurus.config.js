@@ -16,21 +16,27 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
+        
         {
-          to: 'docs/concepts',
-          label: 'Concepts',
-          position: 'left',
+          label: 'Version',
+          position: 'right',
+          items: [
+            {
+              label: 'V3',
+              to: 'docs/V3/concepts/landing'
+            },
+            {
+              label: 'V2',
+              to: 'docs/V2/concepts'
+            },
+            {
+              label: 'V1',
+              to: 'docs/V1/concepts'
+            }
+
+          ]
         },
-        {
-          to: 'docs/guides', 
-          label: 'Guides', 
-          position: 'left',
-        },
-        {
-          to: 'docs/reference',
-          label: 'Reference',
-          position: 'left',
-        },
+        
         {
           href: 'https://github.com/uniswap/uniswap-docs',
           label: 'GitHub',
@@ -42,25 +48,8 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'docs/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
-            },
-          ],
-        },
-        {
           title: 'Community',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
             {
               label: 'Discord',
               href: 'https://discordapp.com/invite/docusaurus',
@@ -75,16 +64,13 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/uniswap',
             },
           ],
         },
       ],
+      copyright: `unlicensed`,
     },
   },
   presets: [
@@ -92,11 +78,13 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          path: 'docs',
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
-          routeBasePath: '/docs',
+          id: 'versionthree',
+          path: 'docs/V3',
+          routeBasePath: 'docs/V3',
+          sidebarPath: require.resolve('./V3sidebars.js'),
+          includeCurrentVersion: true,
+          editUrl: 'https://github.com/uniswap/uniswap-docs',
+
         },
 
         theme: {
@@ -106,5 +94,24 @@ module.exports = {
     ],
   ],
   plugins: [
+    
+    [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'versiontwo',
+      path: 'docs/V2',
+      routeBasePath: 'docs/V2',
+      sidebarPath: require.resolve('./V2sidebars.js'),
+    },
+  ],
+    [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'versionone',
+      path: 'docs/V1',
+      routeBasePath: 'docs/V1',
+      sidebarPath: require.resolve('./V1sidebars.js'),
+    },
+  ],
  ],
 };
