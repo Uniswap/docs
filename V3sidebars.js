@@ -52,6 +52,21 @@ module.exports = {
           items: [
             'reference/libraries/BitMath',
             'reference/libraries/FixedPoint96',
+            'reference/libraries/FixedPoint96',
+            'reference/libraries/FixedPoint128',
+            'reference/libraries/FullMath',
+            'reference/libraries/LiquidityMath',
+            'reference/libraries/LowGasSafeMath',
+            'reference/libraries/Oracle',
+            'reference/libraries/Position',
+            'reference/libraries/SafeCast',
+            'reference/libraries/SecondsOutside',
+            'reference/libraries/SqrtPriceMath',
+            'reference/libraries/SwapMath',
+            'reference/libraries/Tick',
+            'reference/libraries/TickBitmap',
+            'reference/libraries/TransferHelper',
+            'reference/libraries/UnsafeMath',
           ]
         },
         {

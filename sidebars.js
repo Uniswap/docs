@@ -167,6 +167,20 @@ module.exports = {
       items: [
         'V3/reference/libraries/BitMath',
         'V3/reference/libraries/FixedPoint96',
+        'V3/reference/libraries/FixedPoint128',
+        'V3/reference/libraries/FullMath',
+        'V3/reference/libraries/LiqiudityMath',
+        'V3/reference/libraries/LowGasSafeMath',
+        'V3/reference/libraries/Oracle',
+        'V3/reference/libraries/Position',
+        'V3/reference/libraries/SafeCast',
+        'V3/reference/libraries/SecondsOutside',
+        'V3/reference/libraries/SqrtPriceMath',
+        'V3/reference/libraries/SwapMath',
+        'V3/reference/libraries/Tick',
+        'V3/reference/libraries/TickBitmap',
+        'V3/reference/libraries/TransferHelper',
+        'V3/reference/libraries/UnsafeMath',
       ]
     },
     {
