@@ -4,11 +4,6 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
- 
-@font-face {
-  font-family: "GT Haptik Regular";
-  src: local("/fonts/GT-Haptik-Regular.ttf") format("ttf")
-}
 
 /* You can override the default Infima variables here. */
 
