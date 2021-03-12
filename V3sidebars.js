@@ -10,9 +10,9 @@ module.exports = {
     },
     {
       type: 'category',
-      label:'Protocol Overview',
+      label:'Core Concepts',
       items: [
-        'concepts/concepts-holder',
+        'concepts/oracle',
       ],
     },
     {
