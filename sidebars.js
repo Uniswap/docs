@@ -12,7 +12,6 @@ module.exports = {
       type: 'category',
       label:'Protocol Overview',
       items: [
-        'V3/concepts/concepts-holder',
       ],
     },
     {
