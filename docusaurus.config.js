@@ -10,10 +10,10 @@ module.exports = {
   projectName: 'Uniswap-docs', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'Uniswap Documentation',
+      title: '/ Docs',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/union.svg',
       },
       items: [
         

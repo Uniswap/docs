@@ -1,4 +1,5 @@
 /* stylelint-disable docusaurus/copyright-header */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 /**
  * CSS files with the .module.css suffix will be treated as CSS modules
@@ -15,6 +16,14 @@
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
+  }
+}
+@media screen and (min-width: 997px) {
+  :root {
+    --ifm-font-size-base: 17px;
+  }
+  article header h1 {
+    font-size: 2rem !important;
   }
 }
 
