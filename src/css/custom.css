@@ -4,13 +4,18 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+ 
+@font-face {
+  font-family: "GT Haptik Regular";
+  src: local("/fonts/GT-Haptik-Regular.ttf") format("ttf")
+}
 
 /* You can override the default Infima variables here. */
 
 
 :root {
   
-  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary:rgba(255, 0, 122, 1);
   --ifm-color-primary-dark: rgb(33, 175, 144);
   --ifm-color-primary-darker: rgb(31, 165, 136);
   --ifm-color-primary-darkest: rgb(26, 136, 112);
@@ -25,4 +30,8 @@
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+.navbar__title {
+  color:rgba(255, 0, 122, 0.6);
 }
