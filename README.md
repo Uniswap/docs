@@ -18,7 +18,7 @@ Run `npx solidity-docgen --solc-module solc-0.7`
 
 Create a markdown file in its respective version directory within the main /docs/ folder
 
-Add the new file to its respective sidebar file i.e., 'Version3' or 'Version2'
+Add the new file to its respective sidebar file i.e., 'V2sidebars.js' or 'V3sidebars.js'
 
 
 ## Installation
