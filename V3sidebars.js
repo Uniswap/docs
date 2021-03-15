@@ -18,33 +18,14 @@ module.exports = {
       type: 'category',
       label: 'Guides',
       items: [
-        {
-          type: 'category',
-          label:'Landing',
-          items: [
             'guides/landing',
-          ],
-        },
-        {
-          type: 'category',
-          label:'Guides Overview',
-          items: [
-            'guides/guides-holder',
-          ],
-        },
+          
       ]
     },
     {
       type: 'category',
       label: 'Reference',
       items: [
-        {
-          type: 'category',
-          label:'Reference Overview',
-          items: [
-            'reference/reference-holder',
-          ],
-        },
         {
           type: 'category',
           label: 'Libraries',

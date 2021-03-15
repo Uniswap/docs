@@ -1,6 +1,6 @@
 ---
 id: landing
-title: Guides Landing
+title: Guides
 ---
 
-Guides Landing Page
+Uniswap V3 guides including swapping, oracle, and position management integrations will be coming soon, check back in later!
