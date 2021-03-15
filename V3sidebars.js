@@ -1,18 +1,17 @@
 module.exports = {
   
   docs: [
+
     {
       type: 'category',
-      label:'Protocol Overview',
+      label:'Core Concepts',
       items: [
         'concepts/landing',
-      ],
-    },
-    {
-      type: 'category',
-      label:'Protocol Overview',
-      items: [
-        'concepts/concepts-holder',
+        'concepts/oracle',
+        'concepts/fee-pools',
+        'concepts/bounded-liquidity',
+        'concepts/non-fungible-liquidity',
+        'concepts/limit-orders',
       ],
     },
     {
