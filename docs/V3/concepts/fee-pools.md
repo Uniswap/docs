@@ -1,3 +1,8 @@
+---
+id: fee-pools
+title: Pool Fees
+---
+
 As more tokens are designed and released, it has become apparent that one fee structure does not fit all in the arena of market-making.
 
 To accommodate this, we've broken up each trading pair into three distinct pairs, each with a unique swap fee rewarded to the liquidity providers. Breaking pools into separate partitions was previously an untenable option due to the liquidity fragmentation. Any incentive refinements achieved by more fee optionality invariably resulted in a net loss due to lower pairwise liquidity and the increased swapping price impact users would suffer as a result.
