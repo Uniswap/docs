@@ -13,6 +13,7 @@ module.exports = {
       label:'Core Concepts',
       items: [
         'concepts/oracle',
+        'concepts/fee-pools',
       ],
     },
     {
