@@ -9,6 +9,9 @@ module.exports = {
   organizationName: 'Uniswap', // Usually your GitHub org/user name.
   projectName: 'Uniswap-docs', // Usually your repo name.
   themeConfig: {
+    prism: {
+      additionalLanguages: ['solidity'],
+    },
     navbar: {
       title: 'Uniswap Documentation',
       logo: {
