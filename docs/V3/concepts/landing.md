@@ -8,8 +8,8 @@ Uniswap V3 Introduces bounded liquidity allocation, flexible fee structures, and
 
 The V3 docs are seperated into three categories:
 
-()[Concepts], where the designs and implimentations of V3 are broken down,
+(Concepts)[Concepts], where the designs and implimentations of V3 are broken down,
 
-()[Guides], where we provide example integrations
+(Guides)[Guides], where we provide example integrations
 
-()[Reference], for referencing the SDK and all externally available smart contract functions.
+(Reference)[Reference], for referencing the SDK and all externally available smart contract functions.
