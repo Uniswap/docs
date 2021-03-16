@@ -12,6 +12,9 @@ module.exports = {
         'concepts/bounded-liquidity',
         'concepts/non-fungible-liquidity',
         'concepts/limit-orders',
+        'concepts/alternative-uses',
+        'concepts/how-to',
+        'concepts/single-sided-liquidity-allocation',
       ],
     },
     {

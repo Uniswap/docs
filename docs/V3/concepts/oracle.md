@@ -16,7 +16,26 @@ For a deeper look, see [Observations], [Geometric mean TWAPs], and [Liquidity Ac
 
 ## Observations
 
+Oracle data is returned in the form of an `observation`, a struct in the following configuration:
 
+```solidity
+struct Observation {
+        // the block timestamp of the observation
+        uint32 blockTimestamp;
+        // the tick accumulator, i.e. tick * time elapsed since the pool was first initialized
+        int56 tickCumulative;
+        // the liquidity accumulator, i.e. liquidity * time elapsed since the pool was first initialized
+        uint160 liquidityCumulative;
+        // whether or not the observation is initialized
+        bool initialized;
+   ```
+
+
+Each time `Observe` is called, the caller must specify from how long ago to return the observation. If the given time matches a block in which an observation was written, the stored observation is returned.
+
+If an observation was not stored in the given block, the oracle returns a **counterfactual** observation: an observation as it would have appeared if a block were mined at the exact time specificed by the call.
+
+A counterfactual observation is calculated by ...
 
 ## Liquidity Accumulator
 
