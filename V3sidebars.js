@@ -9,7 +9,7 @@ module.exports = {
         'concepts/landing',
         'concepts/oracle',
         'concepts/fee-pools',
-        'concepts/bounded-liquidity',
+        'concepts/concentrated-liquidity',
         'concepts/non-fungible-liquidity',
         'concepts/limit-orders',
         'concepts/alternative-uses',
