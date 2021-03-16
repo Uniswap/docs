@@ -9,6 +9,9 @@ module.exports = {
   organizationName: 'Uniswap', // Usually your GitHub org/user name.
   projectName: 'Uniswap-docs', // Usually your repo name.
   themeConfig: {
+    prism: {
+      additionalLanguages: ['solidity'],
+    },
     navbar: {
       title: '/ Docs',
       logo: {
@@ -17,25 +20,25 @@ module.exports = {
       },
       items: [
         
-        {
-          label: 'Version',
-          position: 'right',
-          items: [
-            {
-              label: 'V3',
-              to: 'docs/V3/concepts/landing'
-            },
-            {
-              label: 'V2',
-              to: 'docs/V2/concepts'
-            },
-            {
-              label: 'V1',
-              to: 'docs/V1/concepts'
-            }
+        // {
+        //   label: 'Version',
+        //   position: 'right',
+        //   items: [
+        //     {
+        //       label: 'V3',
+        //       to: 'docs/V3/concepts/landing'
+        //     },
+        //     {
+        //       label: 'V2',
+        //       to: 'docs/V2/concepts'
+        //     },
+        //     {
+        //       label: 'V1',
+        //       to: 'docs/V1/concepts'
+        //     }
 
-          ]
-        },
+        //   ]
+        // },
         
         {
           href: 'https://github.com/uniswap/uniswap-docs',
@@ -80,7 +83,7 @@ module.exports = {
         docs: {
           id: 'versionthree',
           path: 'docs/V3',
-          routeBasePath: 'docs/V3',
+          routeBasePath: '/',
           sidebarPath: require.resolve('./V3sidebars.js'),
           includeCurrentVersion: true,
           editUrl: 'https://github.com/uniswap/uniswap-docs',
