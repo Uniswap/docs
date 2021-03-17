@@ -7,22 +7,185 @@
 
 /* You can override the default Infima variables here. */
 
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;1,400&family=Inter:wght@400;500;600&display=swap');
 
 :root {
   
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-color-primary: #3578e5;
+  --ifm-color-primary-dark: #1d68e1;
+  --ifm-color-primary-darker: #1b62d4;
+  --ifm-color-primary-darkest: #1751af;
+  --ifm-color-primary-light: #4e89e8;
+  --ifm-color-primary-lighter: #5a91ea;
+  --ifm-color-primary-lightest: #80aaef;
+
+  --collapse-button-bg-color-dark: #2e333a;
+
   --ifm-code-font-size: 95%;
+
+  --ifm-h1-font-size: 1.75rem;
+  --ifm-h2-font-size: 1.5rem;
+  --ifm-h3-font-size: 1.25rem;
+  --ifm-h4-font-size: 1rem;
+  --ifm-h5-font-size: 0.875rem;
+  --ifm-h6-font-size: 0.85rem;
+
+  --ifm-table-border-color: var(--ifm-color-emphasis-100);
+  /* --ifm-toc-border-color: none; */
+    --ifm-toc-border-width: 1px;
+
+  --ifm-global-shadow-lw: 0 1px 10px 0 rgba(0, 0, 0, 0);
+  --ifm-global-shadow-md: 0 5px 40px rgba(0, 0, 0, 0);
+  --ifm-global-shadow-tl: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+
+  --ifm-global-spacing: 1.5rem;
+  /* --ifm-navbar-background-color: rgba(255, 0.2); */
+
 }
+
+html[data-theme='dark'] {
+  --ifm-color-primary: white;
+  --ifm-color-primary-dark: #5a91ea;
+
+  --ifm-background-color: #191B1F;
+  --ifm-navbar-background-color:#191b1f;
+  --ifm-global-shadow-md: 0 5px 40px rgba(255, 255, 255, 0.448);
+
+  background-position: 0px -30vh;
+  background-repeat: no-repeat;
+  background-image: radial-gradient(50% 50% at 50% 50%, rgba(33, 114, 229, 0.1) 0%, rgba(33, 36, 41, 0) 100%);
+
+
+  /* any other colors you wish to overwrite */
+}
+
+html[data-theme='light'] {
+  --ifm-color-primary: black;
+  /* --ifm-background-color: #F1F1F2; */
+
+  background-position: 0px -30vh;
+    background-repeat: no-repeat;
+    background-image: radial-gradient(50% 50% at 50% 50%, rgba(255, 0, 122, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+
+  /* any other colors you wish to overwrite */
+}
+
+
+
+.html{
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 14px;
+  font-variant: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-feature-settings: 'ss01' on, 'ss02' on, 'cv01' on, 'cv03' on;
+}
+
+p{
+  line-height: 1.5rem;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 500;
+}
+
+h1{
+  font-size: 32px !important;
+}
+h2{
+  font-size: 28px !important;
+}
+h3{
+  font-size: 20px !important;
+}
+h4{
+  font-size: 20px !important;
+}
+h4{
+  font-size: 16px !important;
+}
+
+.menu__link--sublist:after{
+  background:  var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
+  /* color: var(  --ifm-color-primary); */
+}
+
+html[data-theme='dark'] .navbar{
+  /* background-color: none; */
+  border-bottom: var(--ifm-toc-border-color) 1px solid;
+}
+
+html[data-theme='light'] .navbar{
+  /* background-color: none; */
+  border-bottom: var(--ifm-toc-border-color) 1px solid;
+}
+
+.react-toggle-track{
+ background-color: var(--ifm-color-emphasis-100) !important; 
+}
+
+.react-toggle-thumb{
+  background-color: var(--ifm-color-emphasis-200) !important; 
+}
+
+.react-toggle-thumb:hover{
+  box-shadow: none !important;
+}
+
+.navbar__title{
+  font-family: 'Archivo', sans-serif;
+  color: var(  --ifm-color-primary);
+  font-weight: 500;
+}
+
+.navbar__link{
+  font-family: 'Archivo', sans-serif;
+  color: var(  --ifm-color-primary);
+  font-weight: 500;
+}
+
+.navbar__logo{
+  height: 20px;
+  width: 20px; 
+}
+
+.menu__link{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+html[data-theme='dark'] .navbar__logo{
+ filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(337deg) brightness(112%) contrast(104%);
+}
+
+.navbar__title::after{
+  content: "V3";
+  padding: 0.25rem 0.3rem 0.25rem 0.25rem ;
+  background-color: var(--ifm-color-emphasis-100);
+  margin-left: .5rem;
+  border-radius: var(--ifm-code-border-radius);
+  color: var(--ifm-color-secondary-darkest);
+  font-size: 12px;
+}
+
 
 .docusaurus-highlight-code-line {
   background-color: rgb(72, 77, 91);
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+  color: var(--ifm-color-secondary-darker);
 }
+
+
+
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
