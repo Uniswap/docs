@@ -12,16 +12,16 @@ module.exports = {
     prism: {
       additionalLanguages: ["solidity"],
     },
+    algolia: {
+      apiKey: "32465e2ab6f7554ff014e64c0d92171c",
+      indexName: "v3-docs",
+      appId: "S0IDD0YGLZ"
+    },
     navbar: {
       title: "Uniswap Documentation",
       logo: {
         alt: "Uniswap Unicorn",
         src: "img/uni_dark_icon.svg",
-      },
-      algolia: {
-        apiKey: "32465e2ab6f7554ff014e64c0d92171c",
-        indexName: "v3-docs",
-        appId: "S0IDD0YGLZ"
       },
       items: [
         // {
