@@ -33,11 +33,26 @@ struct Observation {
 
 Each time `Observe` is called, the caller must specify from how long ago to return the observation. If the given time matches a block in which an observation was written, the stored observation is returned.
 
+## Counterfactual Observations
+
 If an observation was not stored in the given block, the oracle returns a **counterfactual** observation: an observation as it would have appeared if a block were mined at the exact time specificed by the call.
 
 A counterfactual observation is calculated by ...
 
+## Tick Accumulator
+
+
+
+
 ## Liquidity Accumulator
+
+The liquidity accumulator stores how much in-range liquidity is available at the time of an observation. The amount is append only and continuously grows for the life of the pair.
+
+When called, it returns how much in range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the in range liquidity at the desired time.
+
+An important note: the in range liquidity accumulator should be used with care. 
+
+ 
 
 
 
