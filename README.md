@@ -14,6 +14,15 @@ Put the updated template `contract.hbs` in same directory as /contracts that you
 
 Run `npx solidity-docgen --solc-module solc-0.7`
 
+# How to Update search indices with algolia
+
+create .env file with `APPLICATION_ID` and the `API_KEY` (write access)
+Edit config.json file with 
+- start url from updated website
+- sitemap url from updated website
+- "v3-docs" index name
+run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
+
 # How to add a new page
 
 Create a markdown file in its respective version directory within the main /docs/ folder
