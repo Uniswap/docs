@@ -46,14 +46,15 @@ A counterfactual observation is calculated by ...
 
 ## Liquidity Accumulator
 
-The liquidity accumulator stores how much in-range liquidity is available at the time of an observation. The amount is append only and continuously grows for the life of the pair.
+The liquidity accumulator stores how much in-range liquidity is available at the time of the observation, it data is append only and continuously grows for the life of the pair.
 
-When called, it returns how much in range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the in range liquidity at the desired time.
+When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the in range liquidity at the desired time.
 
-An important note: the in range liquidity accumulator should be used with care. 
+An important note: the in range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrolated, and there are many scenarios in which weighting price data and liquidity together may create innacurate representations of the pair.
 
  
 
 
 
 ## Geometric Mean TWAPs
+
