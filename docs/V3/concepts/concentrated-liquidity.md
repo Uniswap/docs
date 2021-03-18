@@ -19,4 +19,12 @@ Importantly, LPs are free to create as many positions as they see fit, each with
 
  ## Ticks
 
- 
+To achieve custom liquidity allocation, the once continuous spectrum of relative price space has been partitioned with *ticks*.
+
+Ticks are the boundaries between discreet areas in price space, each equivalently spaced in a given pair, as the spot price changes during swapping, a new tick will become active as the current one is depleted. As the 
+
+## Cells
+
+The space between two nearest ticks, **Cells**, contain the total liquidity provided to it by every liquidity provider, including those who created a position exclusively within a single cell, or those with a much broader position that happened to include it. A single cell can contain a significant[^1] amount of liquidity, to the degree that reaching the upper limit of liquidity is unlikely.
+
+[^1]: The maximum anount of liquidity in a cell is a matter of in range liquidity, rather than the specific cell at hand. The general requirement is that in range liquidity cannot exceed 2^128
