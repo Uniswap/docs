@@ -5,6 +5,8 @@ Contains methods for doing math operations that revert on overflow or underflow 
 ### add
 ```solidity
   function add(
+    uint256 x, 
+    uint256 y
   ) internal returns (uint256 z)
 ```
 Returns x + y, reverts if sum overflows uint256
@@ -18,6 +20,8 @@ Returns x + y, reverts if sum overflows uint256
 ### sub
 ```solidity
   function sub(
+    uint256 x, 
+    uint256 y
   ) internal returns (uint256 z)
 ```
 Returns x - y, reverts if underflows
@@ -31,6 +35,8 @@ Returns x - y, reverts if underflows
 ### mul
 ```solidity
   function mul(
+    uint256 x, 
+    uint256 y
   ) internal returns (uint256 z)
 ```
 Returns x * y, reverts if overflows
@@ -44,6 +50,8 @@ Returns x * y, reverts if overflows
 ### add
 ```solidity
   function add(
+    int256 x, 
+    int256 y
   ) internal returns (int256 z)
 ```
 Returns x + y, reverts if overflows or underflows
@@ -57,6 +65,8 @@ Returns x + y, reverts if overflows or underflows
 ### sub
 ```solidity
   function sub(
+    int256 x, 
+    int256 y
   ) internal returns (int256 z)
 ```
 Returns x - y, reverts if overflows or underflows
