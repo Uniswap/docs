@@ -12,8 +12,6 @@ The number of instances of historical price data begins at `1`, and may be lengt
 Storing price history directly in the pair contract substantially reduces the potential for logic errors on the part of the calling contract, and reduces integration costs by eliminating the need for storage in the integrating contract. Additionally, the v3 oracle observation array's considerable length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over the full duration of the oracle array length.
 
 
-For a deeper look, see [Observations], [Geometric mean TWAPs], and [Liquidity Accumulator]
-
 ## Observations
 
 Oracle data is returned in the form of an `observation`, a struct in the following configuration:
@@ -35,19 +33,24 @@ Each time `Observe` is called, the caller must specify from how long ago to retu
 
 ## Counterfactual Observations
 
-In some situations, the v3 oracle will return a **counterfactual** observation: an observation as it would have appeared if a block were mined at the exact time specificed by the call.
+In some situations, the v3 oracle will return a **counterfactual** observation: an observation as it would have appeared if a block were mined at the exact time specificed by the call. 
 
-Counterfactual observations are determined in two circumstances:
+Counterfactual observations are returned in two circumstances:
 
-* When a price is desired in the near future (at the termination of the current block, during which the call was executed)
+* When a price is desired in the near future (at the termination of the current block, during which the call was executed). If 1 or more seconds have gone by since the last block in which an observation was recorded, no observation will exist.
 
-* At a time in the past, providing it is located between two already instantiated observations.
+* At a time in the past, providing it is located between two previously written observations. This primarily concerns observations returned from a time inside a single block.
 
-A counterfactual observation is calculated by ??
+A counterfactual observation is constructed by taking the first observation prior to the given timestamp, and adding the seconds elapsed since that observation, multiplied by the value of tick/liquidity at the end of the block following the initally queried observation.
+
+A counterfactual observation is as effective as a written observation, and should make no difference in terms of safety or to the user of an integrating entity.
 
 ## Tick Accumulator
 
 The tick accumulator stores the cumulative sum of the in range tick at the time of the observation, the data is append only and continuously grows for the life of the pair.
+
+When called, it returns how much in-range ticks is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the in range liquidity at the desired time.
+
 
 
 
