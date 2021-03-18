@@ -6,7 +6,6 @@ per transaction
 ### slot0
 ```solidity
   function slot0(
-    
   ) external returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, uint8 feeProtocol, bool unlocked)
 ```
 The 0th storage slot in the pool stores many values, and is exposed as a single method to save gas
@@ -30,7 +29,6 @@ unlocked Whether the pool is currently locked to reentrancy
 ### feeGrowthGlobal0X128
 ```solidity
   function feeGrowthGlobal0X128(
-    
   ) external returns (uint256)
 ```
 The fee growth as a Q128.128 fees of token0 collected per unit of liquidity for the entire life of the pool
@@ -41,7 +39,6 @@ This value can overflow the uint256
 ### feeGrowthGlobal1X128
 ```solidity
   function feeGrowthGlobal1X128(
-    
   ) external returns (uint256)
 ```
 The fee growth as a Q128.128 fees of token1 collected per unit of liquidity for the entire life of the pool
@@ -52,7 +49,6 @@ This value can overflow the uint256
 ### protocolFees
 ```solidity
   function protocolFees(
-    
   ) external returns (uint128 token0, uint128 token1)
 ```
 The amounts of token0 and token1 that are owed to the protocol
@@ -63,7 +59,6 @@ Protocol fees will never exceed uint128 max in either token
 ### liquidity
 ```solidity
   function liquidity(
-    
   ) external returns (uint128)
 ```
 The currently in range liquidity available to the pool

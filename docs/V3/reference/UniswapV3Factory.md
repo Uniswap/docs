@@ -5,7 +5,9 @@ Deploys Uniswap V3 pools and manages ownership and control over pool protocol fe
 ### createPool
 ```solidity
   function createPool(
-    address tokenA, address tokenB, uint24 fee
+    address tokenA,
+    address tokenB,
+    uint24 fee
   ) external returns (address pool)
 ```
 Creates a pool for the given two tokens and fee
@@ -43,7 +45,8 @@ Must be called by the current owner
 ### enableFeeAmount
 ```solidity
   function enableFeeAmount(
-    uint24 fee, int24 tickSpacing
+    uint24 fee,
+    int24 tickSpacing
   ) public
 ```
 Enables a fee amount with the given tickSpacing

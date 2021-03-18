@@ -7,7 +7,6 @@ without storing the entire init code of the pool.
 ### parameters
 ```solidity
   function parameters(
-    
   ) external returns (address factory, address token0, address token1, uint24 fee, int24 tickSpacing)
 ```
 Get the parameters to be used in constructing the pool, set transiently during pool creation.

@@ -5,7 +5,6 @@
 ### _blockTimestamp
 ```solidity
   function _blockTimestamp(
-    
   ) internal returns (uint32)
 ```
 
@@ -15,7 +14,8 @@ Returns the block timestamp truncated to 32 bits, i.e. mod 2**32. This method is
 ### secondsInside
 ```solidity
   function secondsInside(
-    int24 tickLower, int24 tickUpper
+    int24 tickLower,
+    int24 tickUpper
   ) external returns (uint32)
 ```
 Returns a relative timestamp value representing how long, in seconds, the pool has spent between
@@ -93,7 +93,11 @@ not locked because it initializes unlocked
 ### mint
 ```solidity
   function mint(
-    address recipient, int24 tickLower, int24 tickUpper, uint128 amount, bytes data
+    address recipient,
+    int24 tickLower,
+    int24 tickUpper,
+    uint128 amount,
+    bytes data
   ) external returns (uint256 amount0, uint256 amount1)
 ```
 Adds liquidity for the given recipient/tickLower/tickUpper position
@@ -116,7 +120,11 @@ noDelegateCall is applied indirectly via _modifyPosition
 ### collect
 ```solidity
   function collect(
-    address recipient, int24 tickLower, int24 tickUpper, uint128 amount0Requested, uint128 amount1Requested
+    address recipient,
+    int24 tickLower,
+    int24 tickUpper,
+    uint128 amount0Requested,
+    uint128 amount1Requested
   ) external returns (uint128 amount0, uint128 amount1)
 ```
 Collects fees owed to a position
@@ -142,7 +150,9 @@ pass any value greater than the fees owed.
 ### burn
 ```solidity
   function burn(
-    int24 tickLower, int24 tickUpper, uint128 amount
+    int24 tickLower,
+    int24 tickUpper,
+    uint128 amount
   ) external returns (uint256 amount0, uint256 amount1)
 ```
 Burn liquidity from the sender and account tokens owed for the liquidity to the position
@@ -163,7 +173,11 @@ noDelegateCall is applied indirectly via _modifyPosition
 ### swap
 ```solidity
   function swap(
-    address recipient, bool zeroForOne, int256 amountSpecified, uint160 sqrtPriceLimitX96, bytes data
+    address recipient,
+    bool zeroForOne,
+    int256 amountSpecified,
+    uint160 sqrtPriceLimitX96,
+    bytes data
   ) external returns (int256 amount0, int256 amount1)
 ```
 Swap token0 for token1, or token1 for token0
@@ -188,7 +202,10 @@ value after the swap. If one for zero, the price cannot be greater than this val
 ### flash
 ```solidity
   function flash(
-    address recipient, uint256 amount0, uint256 amount1, bytes data
+    address recipient,
+    uint256 amount0,
+    uint256 amount1,
+    bytes data
   ) external
 ```
 Receive token0 and/or token1 and pay it back, plus a fee, in the callback
@@ -208,7 +225,8 @@ with 0 amount{0,1} and sending the donation amount(s) from the callback
 ### setFeeProtocol
 ```solidity
   function setFeeProtocol(
-    uint8 feeProtocol0, uint8 feeProtocol1
+    uint8 feeProtocol0,
+    uint8 feeProtocol1
   ) external
 ```
 Set the denominator of the protocol's % share of the fees
@@ -223,7 +241,9 @@ Set the denominator of the protocol's % share of the fees
 ### collectProtocol
 ```solidity
   function collectProtocol(
-    address recipient, uint128 amount0Requested, uint128 amount1Requested
+    address recipient,
+    uint128 amount0Requested,
+    uint128 amount1Requested
   ) external returns (uint128 amount0, uint128 amount1)
 ```
 Collect the protocol fee accrued to the pool

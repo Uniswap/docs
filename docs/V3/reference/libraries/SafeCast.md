@@ -5,7 +5,6 @@ Contains methods for safely downcasting to smaller types
 ### toUint160
 ```solidity
   function toUint160(
-    uint256 y
   ) internal returns (uint160 z)
 ```
 Cast a uint256 to a uint160, revert on overflow
@@ -19,7 +18,6 @@ Cast a uint256 to a uint160, revert on overflow
 ### toInt128
 ```solidity
   function toInt128(
-    int256 y
   ) internal returns (int128 z)
 ```
 Cast a int256 to a int128, revert on overflow or underflow
@@ -33,7 +31,6 @@ Cast a int256 to a int128, revert on overflow or underflow
 ### toInt256
 ```solidity
   function toInt256(
-    uint256 y
   ) internal returns (int256 z)
 ```
 Cast a uint256 to a int256, revert on overflow
