@@ -11,7 +11,6 @@ module.exports = {
         'concepts/fee-pools',
         'concepts/limit-orders',
         'concepts/oracle',
-        'concepts/single-sided-liquidity-allocation',
       ],
     },
     {
