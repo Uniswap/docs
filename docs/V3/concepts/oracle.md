@@ -47,20 +47,13 @@ A counterfactual observation is calculated by ??
 
 ## Tick Accumulator
 
-<<<<<<< Updated upstream
-=======
 The tick accumulator stores the cumulative sum of the in range tick at the time of the observation, the data is append only and continuously grows for the life of the pair.
->>>>>>> Stashed changes
 
 
 
 ## Liquidity Accumulator
 
-<<<<<<< Updated upstream
-The liquidity accumulator stores how much in-range liquidity is available at the time of the observation, it data is append only and continuously grows for the life of the pair.
-=======
 The liquidity accumulator stores how much in-range liquidity is available at the time of the observation, the data is append only and continuously grows for the life of the pair.
->>>>>>> Stashed changes
 
 When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the in range liquidity at the desired time.
 
