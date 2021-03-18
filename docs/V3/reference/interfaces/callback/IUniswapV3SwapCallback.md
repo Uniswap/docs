@@ -5,7 +5,9 @@ Any contract that calls IUniswapV3PoolActions#swap must implement this interface
 ### uniswapV3SwapCallback
 ```solidity
   function uniswapV3SwapCallback(
-    int256 amount0Delta, int256 amount1Delta, bytes data
+    int256 amount0Delta,
+    int256 amount1Delta,
+    bytes data
   ) external
 ```
 Called on `msg.sender` after performing a swap and transferring any output tokens to the recipient

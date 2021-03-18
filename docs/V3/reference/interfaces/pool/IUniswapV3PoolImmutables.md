@@ -5,7 +5,6 @@ These parameters are fixed for a pool forever, i.e., the methods will always ret
 ### factory
 ```solidity
   function factory(
-    
   ) external returns (address)
 ```
 The contract that deployed the pool, which must adhere to the IUniswapV3Factory interface
@@ -19,7 +18,6 @@ The contract that deployed the pool, which must adhere to the IUniswapV3Factory 
 ### token0
 ```solidity
   function token0(
-    
   ) external returns (address)
 ```
 The first of the two tokens of the pool, sorted by address
@@ -33,7 +31,6 @@ The first of the two tokens of the pool, sorted by address
 ### token1
 ```solidity
   function token1(
-    
   ) external returns (address)
 ```
 The second of the two tokens of the pool, sorted by address
@@ -47,7 +44,6 @@ The second of the two tokens of the pool, sorted by address
 ### fee
 ```solidity
   function fee(
-    
   ) external returns (uint24)
 ```
 The pool's fee in hundredths of a bip, i.e. 1e-6
@@ -61,7 +57,6 @@ The pool's fee in hundredths of a bip, i.e. 1e-6
 ### tickSpacing
 ```solidity
   function tickSpacing(
-    
   ) external returns (int24)
 ```
 The pool tick spacing
@@ -78,7 +73,6 @@ This value is an int24 to avoid casting even though it is always positive.
 ### maxLiquidityPerTick
 ```solidity
   function maxLiquidityPerTick(
-    
   ) external returns (uint128)
 ```
 The maximum amount of position liquidity that can use any tick in the range

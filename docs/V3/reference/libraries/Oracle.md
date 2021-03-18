@@ -10,7 +10,8 @@ The most recent observation is available, independent of the length of the oracl
 ### initialize
 ```solidity
   function initialize(
-    struct Oracle.Observation[65535] self, uint32 time
+    struct Oracle.Observation[65535] self,
+    uint32 time
   ) internal returns (uint16 cardinality, uint16 cardinalityNext)
 ```
 Initialize the oracle array by writing the first slot. Called once for the lifecycle of the observations array
@@ -30,7 +31,13 @@ Initialize the oracle array by writing the first slot. Called once for the lifec
 ### write
 ```solidity
   function write(
-    struct Oracle.Observation[65535] self, uint16 index, uint32 blockTimestamp, int24 tick, uint128 liquidity, uint16 cardinality, uint16 cardinalityNext
+    struct Oracle.Observation[65535] self,
+    uint16 index,
+    uint32 blockTimestamp,
+    int24 tick,
+    uint128 liquidity,
+    uint16 cardinality,
+    uint16 cardinalityNext
   ) internal returns (uint16 indexUpdated, uint16 cardinalityUpdated)
 ```
 Writes an oracle observation to the array
@@ -58,7 +65,9 @@ is greater than the current one, cardinality may be increased. This restriction 
 ### grow
 ```solidity
   function grow(
-    struct Oracle.Observation[65535] self, uint16 current, uint16 next
+    struct Oracle.Observation[65535] self,
+    uint16 current,
+    uint16 next
   ) internal returns (uint16)
 ```
 Prepares the oracle array to store up to `next` observations
@@ -78,7 +87,13 @@ Prepares the oracle array to store up to `next` observations
 ### observe
 ```solidity
   function observe(
-    struct Oracle.Observation[65535] self, uint32 time, uint32[] secondsAgos, int24 tick, uint16 index, uint128 liquidity, uint16 cardinality
+    struct Oracle.Observation[65535] self,
+    uint32 time,
+    uint32[] secondsAgos,
+    int24 tick,
+    uint16 index,
+    uint128 liquidity,
+    uint16 cardinality
   ) internal returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
 ```
 Returns the accumulator values as of each time seconds ago from the given time in the array of `secondsAgos`

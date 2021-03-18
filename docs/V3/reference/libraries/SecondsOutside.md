@@ -7,7 +7,11 @@ The mapping uses int24 for keys since ticks are represented as int24 and there a
 ### initialize
 ```solidity
   function initialize(
-    mapping(int24 => uint256) self, int24 tick, int24 tickCurrent, int24 tickSpacing, uint32 time
+    mapping(int24 => uint256) self,
+    int24 tick,
+    int24 tickCurrent,
+    int24 tickSpacing,
+    uint32 time
   ) internal
 ```
 Called the first time a tick is used to set the seconds outside value. Assumes the tick is not
@@ -26,7 +30,9 @@ initialized.
 ### clear
 ```solidity
   function clear(
-    mapping(int24 => uint256) self, int24 tick, int24 tickSpacing
+    mapping(int24 => uint256) self,
+    int24 tick,
+    int24 tickSpacing
   ) internal
 ```
 Called when a tick is no longer used, to clear the seconds outside value of the tick
@@ -42,7 +48,10 @@ Called when a tick is no longer used, to clear the seconds outside value of the 
 ### cross
 ```solidity
   function cross(
-    mapping(int24 => uint256) self, int24 tick, int24 tickSpacing, uint32 time
+    mapping(int24 => uint256) self,
+    int24 tick,
+    int24 tickSpacing,
+    uint32 time
   ) internal
 ```
 Called when an initialized tick is crossed to update the seconds outside for that tick. Must be called
@@ -60,7 +69,9 @@ every time an initialized tick is crossed
 ### get
 ```solidity
   function get(
-    mapping(int24 => uint256) self, int24 tick, int24 tickSpacing
+    mapping(int24 => uint256) self,
+    int24 tick,
+    int24 tickSpacing
   ) internal returns (uint32)
 ```
 Get the seconds outside for an initialized tick. Should be called only on initialized ticks.
@@ -80,7 +91,11 @@ Get the seconds outside for an initialized tick. Should be called only on initia
 ### secondsInside
 ```solidity
   function secondsInside(
-    mapping(int24 => uint256) self, int24 tickLower, int24 tickUpper, int24 tickCurrent, int24 tickSpacing, uint32 time
+    mapping(int24 => uint256) self,
+    int24 tickLower,
+    int24 tickUpper,
+    int24 tickCurrent,
+    int24 tickSpacing
   ) internal returns (uint32)
 ```
 Get the seconds inside a tick range, assuming both tickLower and tickUpper are initialized
