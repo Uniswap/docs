@@ -7,11 +7,11 @@ module.exports = {
       label:'Core Concepts',
       items: [
         'concepts/landing',
-        'concepts/oracle',
+        'concepts/concentrated-liquidity',
         'concepts/fee-pools',
-        'concepts/bounded-liquidity',
-        'concepts/non-fungible-liquidity',
         'concepts/limit-orders',
+        'concepts/oracle',
+        'concepts/single-sided-liquidity-allocation',
       ],
     },
     {

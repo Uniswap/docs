@@ -16,10 +16,52 @@ For a deeper look, see [Observations], [Geometric mean TWAPs], and [Liquidity Ac
 
 ## Observations
 
+Oracle data is returned in the form of an `observation`, a struct in the following configuration:
+
+```solidity
+struct Observation {
+        // the block timestamp of the observation
+        uint32 blockTimestamp;
+        // the tick accumulator, i.e. tick * time elapsed since the pool was first initialized
+        int56 tickCumulative;
+        // the liquidity accumulator, i.e. liquidity * time elapsed since the pool was first initialized
+        uint160 liquidityCumulative;
+        // whether or not the observation is initialized
+        bool initialized;
+   ```
+
+
+Each time `Observe` is called, the caller must specify from how long ago to return the observation. If the given time matches a block in which an observation was written, the stored observation is returned.
+
+## Counterfactual Observations
+
+In some situations, the v3 oracle will return a **counterfactual** observation: an observation as it would have appeared if a block were mined at the exact time specificed by the call.
+
+Counterfactual observations are determined in two circumstances:
+
+* When a price is desired in the near future (at the termination of the current block, during which the call was executed)
+
+* At a time in the past, providing it is located between two already instantiated observations.
+
+A counterfactual observation is calculated by ??
+
+## Tick Accumulator
+
+The tick accumulator stores the cumulative sum of the in range tick at the time of the observation, the data is append only and continuously grows for the life of the pair.
+
 
 
 ## Liquidity Accumulator
 
+The liquidity accumulator stores how much in-range liquidity is available at the time of the observation, the data is append only and continuously grows for the life of the pair.
+
+When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the in range liquidity at the desired time.
+
+An important note: the in range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrolated, and there are  scenarios in which weighing price data and liquidity together may create innacurate representations of the pair.
+
+ 
+
 
 
 ## Geometric Mean TWAPs
+
