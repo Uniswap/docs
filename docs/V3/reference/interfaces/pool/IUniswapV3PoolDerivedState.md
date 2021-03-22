@@ -6,7 +6,8 @@ blockchain. The functions here may have variable gas costs.
 ### secondsInside
 ```solidity
   function secondsInside(
-    int24 tickLower, int24 tickUpper
+    int24 tickLower,
+    int24 tickUpper
   ) external returns (uint32)
 ```
 Returns a relative timestamp value representing how long, in seconds, the pool has spent between

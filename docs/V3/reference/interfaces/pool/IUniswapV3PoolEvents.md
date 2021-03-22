@@ -4,7 +4,10 @@ Contains all events emitted by the pool
 ## Events
 ### Initialize
 ```solidity
-  event Initialize(uint160 sqrtPriceX96, int24 tick)
+  event Initialize(
+    uint160 sqrtPriceX96,
+    int24 tick
+  )
 ```
 Emitted exactly once by a pool when #initialize is first called on the pool
 
@@ -17,7 +20,15 @@ Mint/Burn/Swap cannot be emitted by the pool before Initialize
 |`tick`| int24 | The initial tick of the pool, i.e. log base 1.0001 of the starting price of the pool
 ### Mint
 ```solidity
-  event Mint(address sender, address owner, int24 tickLower, int24 tickUpper, uint128 amount, uint256 amount0, uint256 amount1)
+  event Mint(
+    address sender,
+    address owner,
+    int24 tickLower,
+    int24 tickUpper,
+    uint128 amount,
+    uint256 amount0,
+    uint256 amount1
+  )
 ```
 Emitted when liquidity is minted for a given position
 
@@ -34,7 +45,13 @@ Emitted when liquidity is minted for a given position
 |`amount1`| uint256 | How much token1 was required for the minted liquidity
 ### Collect
 ```solidity
-  event Collect(address owner, address recipient, int24 tickLower, int24 tickUpper, uint128 amount0, uint128 amount1)
+  event Collect(
+    address owner,
+    address tickLower,
+    int24 tickUpper,
+    int24 amount0,
+    uint128 amount1
+  )
 ```
 Emitted when fees are collected by the owner of a position
 
@@ -50,7 +67,14 @@ Collect events may be emitted with zero amount0 and amount1 when the caller choo
 |`amount1`| uint128 | The amount of token1 fees collected
 ### Burn
 ```solidity
-  event Burn(address owner, int24 tickLower, int24 tickUpper, uint128 amount, uint256 amount0, uint256 amount1)
+  event Burn(
+    address owner,
+    int24 tickLower,
+    int24 tickUpper,
+    uint128 amount,
+    uint256 amount0,
+    uint256 amount1
+  )
 ```
 Emitted when a position's liquidity is removed
 
@@ -67,7 +91,14 @@ Does not withdraw any fees earned by the liquidity position, which must be withd
 |`amount1`| uint256 | The amount of token1 withdrawn
 ### Swap
 ```solidity
-  event Swap(address sender, address recipient, int256 amount0, int256 amount1, uint160 sqrtPriceX96, int24 tick)
+  event Swap(
+    address sender,
+    address recipient,
+    int256 amount0,
+    int256 amount1,
+    uint160 sqrtPriceX96,
+    int24 tick
+  )
 ```
 Emitted by the pool for any swaps between token0 and token1
 
@@ -78,12 +109,19 @@ Emitted by the pool for any swaps between token0 and token1
 |`sender`| address | The address that initiated the swap call, and that received the callback
 |`recipient`| address | The address that received the output of the swap
 |`amount0`| int256 | The delta of the token0 balance of the pool
-|`amount1`| int256 | The Delta of the token1 balance of the pool
+|`amount1`| int256 | The delta of the token1 balance of the pool
 |`sqrtPriceX96`| uint160 | The sqrt(price) of the pool after the swap, as a Q64.96
 |`tick`| int24 | The log base 1.0001 of price of the pool after the swap
 ### Flash
 ```solidity
-  event Flash(address sender, address recipient, uint256 amount0, uint256 amount1, uint256 paid0, uint256 paid1)
+  event Flash(
+    address sender,
+    address recipient,
+    uint256 amount0,
+    uint256 amount1,
+    uint256 paid0,
+    uint256 paid1
+  )
 ```
 Emitted by the pool for any flashes of token0/token1
 
@@ -99,7 +137,10 @@ Emitted by the pool for any flashes of token0/token1
 |`paid1`| uint256 | The amount of token1 paid for the flash, which can exceed the amount1 plus the fee
 ### IncreaseObservationCardinalityNext
 ```solidity
-  event IncreaseObservationCardinalityNext(uint16 observationCardinalityNextOld, uint16 observationCardinalityNextNew)
+  event IncreaseObservationCardinalityNext(
+    uint16 observationCardinalityNextOld,
+    uint16 observationCardinalityNextNew
+  )
 ```
 Emitted by the pool for increases to the number of observations that can be stored
 
@@ -113,7 +154,12 @@ just before a mint/swap/burn.
 |`observationCardinalityNextNew`| uint16 | The updated value of the next observation cardinality
 ### SetFeeProtocol
 ```solidity
-  event SetFeeProtocol(uint8 feeProtocol0Old, uint8 feeProtocol1Old, uint8 feeProtocol0New, uint8 feeProtocol1New)
+  event SetFeeProtocol(
+    uint8 feeProtocol0Old,
+    uint8 feeProtocol1Old,
+    uint8 feeProtocol0New,
+    uint8 feeProtocol1New
+  )
 ```
 Emitted when the protocol fee is changed by the pool
 
@@ -127,7 +173,12 @@ Emitted when the protocol fee is changed by the pool
 |`feeProtocol1New`| uint8 | The updated value of the token1 protocol fee
 ### CollectProtocol
 ```solidity
-  event CollectProtocol(address sender, address recipient, uint128 amount0, uint128 amount1)
+  event CollectProtocol(
+    address sender,
+    address recipient,
+    uint128 amount0,
+    uint128 amount0
+  )
 ```
 Emitted when the collected protocol fees are withdrawn by the factory owner
 
