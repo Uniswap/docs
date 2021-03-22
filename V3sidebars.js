@@ -2,29 +2,30 @@ module.exports = {
   
   docs: [
 
-    {
-      type: 'category',
-      label:'Core Concepts',
-      items: [
-        'concepts/landing',
-        'concepts/concentrated-liquidity',
-        'concepts/fee-pools',
-        'concepts/limit-orders',
-        'concepts/oracle',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Guides',
-      items: [
-            'guides/landing',
+    // {
+    //   type: 'category',
+    //   label:'Core Concepts',
+    //   items: [
+    //     'concepts/landing',
+    //     'concepts/concentrated-liquidity',
+    //     'concepts/fee-pools',
+    //     'concepts/limit-orders',
+    //     'concepts/oracle',
+    //   ],
+    // },
+    // {
+    //   type: 'category',
+    //   label: 'Guides',
+    //   items: [
+    //         'guides/landing',
           
-      ]
-    },
+    //   ]
+    // },
     {
       type: 'category',
       label: 'Reference',
       items: [
+        'reference/landing',
         {
           type: 'category',
           label: 'Libraries',
@@ -79,7 +80,6 @@ module.exports = {
             'reference/interfaces/IUniswapV3PoolDeployer',
           ]
         },
-        'reference/NoDelegateCall',
         'reference/UniswapV3Factory',
         'reference/UniswapV3Pool',
         'reference/UniswapV3PoolDeployer',

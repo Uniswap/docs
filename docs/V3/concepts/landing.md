@@ -1,7 +1,6 @@
 ---
 id: landing
 title: Protocol Overview
-slug: /
 ---
 
 Uniswap V3 Introduces bounded liquidity allocation, flexible fee structures, and highly accurate oracles. The implications of these new mechanics are powerful and not always obvious.
