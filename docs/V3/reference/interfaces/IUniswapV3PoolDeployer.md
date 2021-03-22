@@ -1,13 +1,12 @@
 A contract that constructs a pool must implement this to pass arguments to the pool
 
-This is used to remove all constructor arguments from the pool enabling pool addresses to be computed cheaply
-without storing the entire init code of the pool.
+This is used to avoid having constructor arguments in the pool contract, which results in the init code hash
+of the pool being constant allowing the CREATE2 address of the pool to be cheaply computed on-chain
 
 ## Functions
 ### parameters
 ```solidity
   function parameters(
-    
   ) external returns (address factory, address token0, address token1, uint24 fee, int24 tickSpacing)
 ```
 Get the parameters to be used in constructing the pool, set transiently during pool creation.

@@ -6,7 +6,9 @@ The mapping uses int16 for keys since ticks are represented as int24 and there a
 ### flipTick
 ```solidity
   function flipTick(
-    mapping(int16 => uint256) self, int24 tick, int24 tickSpacing
+    mapping(int16 => uint256) self,
+    int24 tick,
+    int24 tickSpacing
   ) internal
 ```
 Flips the initialized state for a given tick from false to true, or vice versa
@@ -22,7 +24,10 @@ Flips the initialized state for a given tick from false to true, or vice versa
 ### nextInitializedTickWithinOneWord
 ```solidity
   function nextInitializedTickWithinOneWord(
-    mapping(int16 => uint256) self, int24 tick, int24 tickSpacing, bool lte
+    mapping(int16 => uint256) self,
+    int24 tick,
+    int24 tickSpacing,
+    bool lte
   ) internal returns (int24 next, bool initialized)
 ```
 Returns the next initialized tick contained in the same word (or adjacent word) as the tick that is either

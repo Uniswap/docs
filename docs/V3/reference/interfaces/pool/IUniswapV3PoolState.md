@@ -6,7 +6,6 @@ per transaction
 ### slot0
 ```solidity
   function slot0(
-    
   ) external returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, uint8 feeProtocol, bool unlocked)
 ```
 The 0th storage slot in the pool stores many values, and is exposed as a single method to save gas
@@ -23,14 +22,15 @@ This value may not always be equal to SqrtTickMath.getTickAtSqrtRatio(sqrtPriceX
 boundary.
 observationIndex The index of the last oracle observation that was written,
 observationCardinality The current maximum number of observations stored in the pool,
-observationCardinalityNext The next maximum number of observations, to be updated when the observation,
-index The last element of the observation array,
-feeProtocol The fees collected by the protocol for the pool,
+observationCardinalityNext The next maximum number of observations, to be updated when the observation.
+index The index of the last element written to the observation array.
+feeProtocol The protocol fee for both tokens of the pool.
+Encoded as two 4 bit values, where the protocol fee of token1 is shifted 4 bits and the protocol fee of token0
+is the lower 4 bits. Used as the denominator of a fraction of the swap fee, e.g. 4 means 1/4th of the swap fee.
 unlocked Whether the pool is currently locked to reentrancy
 ### feeGrowthGlobal0X128
 ```solidity
   function feeGrowthGlobal0X128(
-    
   ) external returns (uint256)
 ```
 The fee growth as a Q128.128 fees of token0 collected per unit of liquidity for the entire life of the pool
@@ -41,7 +41,6 @@ This value can overflow the uint256
 ### feeGrowthGlobal1X128
 ```solidity
   function feeGrowthGlobal1X128(
-    
   ) external returns (uint256)
 ```
 The fee growth as a Q128.128 fees of token1 collected per unit of liquidity for the entire life of the pool
@@ -52,7 +51,6 @@ This value can overflow the uint256
 ### protocolFees
 ```solidity
   function protocolFees(
-    
   ) external returns (uint128 token0, uint128 token1)
 ```
 The amounts of token0 and token1 that are owed to the protocol
@@ -63,7 +61,6 @@ Protocol fees will never exceed uint128 max in either token
 ### liquidity
 ```solidity
   function liquidity(
-    
   ) external returns (uint128)
 ```
 The currently in range liquidity available to the pool
@@ -99,32 +96,20 @@ compute snapshots.
 ### tickBitmap
 ```solidity
   function tickBitmap(
-    int16 wordPosition
   ) external returns (uint256)
 ```
-Returns 256 packed tick initialized boolean values
+Returns 256 packed tick initialized boolean values. See TickBitmap for more information
 
 
-#### Parameters:
-| Name | Type | Description                                                          |
-| :--- | :--- | :------------------------------------------------------------------- |
-|`wordPosition` | int16 | the index of the word in the bitmap to fetch. The initialized booleans are packed into words
-based on the tick and the pool's tick spacing
 
 ### secondsOutside
 ```solidity
   function secondsOutside(
-    int24 wordPosition
   ) external returns (uint256)
 ```
-Returns 8 packed tick seconds outside values
+Returns 8 packed tick seconds outside values. See SecondsOutside for more information
 
 
-#### Parameters:
-| Name | Type | Description                                                          |
-| :--- | :--- | :------------------------------------------------------------------- |
-|`wordPosition` | int24 | The index of the word in the map to fetch. The seconds outside 32 bit values are packed into
-words based on the tick and the pool's tick spacing
 
 ### positions
 ```solidity

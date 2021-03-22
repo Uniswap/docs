@@ -9,8 +9,9 @@ prices between 2**-128 and 2**128
     int24 tick
   ) internal returns (uint160 sqrtPriceX96)
 ```
-Calculates sqrt(1.0001^tick) * 2^96.  Throws in case |tick| > max tick
+Calculates sqrt(1.0001^tick) * 2^96
 
+Throws if |tick| > max tick
 
 #### Parameters:
 | Name | Type | Description                                                          |

@@ -5,7 +5,6 @@ Base contract that provides a modifier for preventing delegatecall to methods in
 ### constructor
 ```solidity
   function constructor(
-    
   ) internal
 ```
 

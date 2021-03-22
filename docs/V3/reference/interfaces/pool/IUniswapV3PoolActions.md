@@ -10,7 +10,7 @@ Contains pool methods that can be called by anyone
 ```
 Sets the initial price for the pool
 
-Price is represented as a sqrt(token1/token0) Q64.96 value
+Price is represented as a sqrt(amountToken1/amountToken0) Q64.96 value
 
 #### Parameters:
 | Name | Type | Description                                                          |
@@ -20,7 +20,11 @@ Price is represented as a sqrt(token1/token0) Q64.96 value
 ### mint
 ```solidity
   function mint(
-    address recipient, int24 tickLower, int24 tickUpper, uint128 amount, bytes data
+    address recipient,
+    int24 tickLower,
+    int24 tickUpper,
+    uint128 amount,
+    bytes data
   ) external returns (uint256 amount0, uint256 amount1)
 ```
 Adds liquidity for the given recipient/tickLower/tickUpper position
@@ -46,14 +50,19 @@ on tickLower, tickUpper, the amount of liquidity, and the current price.
 ### collect
 ```solidity
   function collect(
-    address recipient, int24 tickLower, int24 tickUpper, uint128 amount0Requested, uint128 amount1Requested
+    address recipient,
+    int24 tickLower,
+    int24 tickUpper,
+    uint128 amount0Requested,
+    uint128 amount1Requested
   ) external returns (uint128 amount0, uint128 amount1)
 ```
-Collects fees owed to a position
+Collects tokens owed to a position
 
-Does not recompute fees, which must be done either via mint, burn or poke. Must be called by the position
-owner. To withdraw no fees for a token, amount0Requested or amount1Request may be set to zero. To withdraw all fees owed, caller may
-pass any value greater than the fees owed.
+Does not recompute fees earned, which must be done either via mint or burn of any amount of liquidity.
+Collect must be called by the position owner. To withdraw only token0 or only token1, amount0Requested or
+amount1Requested may be set to zero. To withdraw all tokens owed, caller may pass any value greater than the
+actual tokens owed, e.g. type(uint128).max. Tokens owed may be from accumulated swap fees or burned liquidity.
 
 #### Parameters:
 | Name | Type | Description                                                          |
@@ -72,7 +81,9 @@ pass any value greater than the fees owed.
 ### burn
 ```solidity
   function burn(
-    int24 tickLower, int24 tickUpper, uint128 amount
+    int24 tickLower,
+    int24 tickUpper,
+    uint128 amount
   ) external returns (uint256 amount0, uint256 amount1)
 ```
 Burn liquidity from the sender and account tokens owed for the liquidity to the position
@@ -95,7 +106,11 @@ Fees must be collected separately via a call to #collect
 ### swap
 ```solidity
   function swap(
-    address recipient, bool zeroForOne, int256 amountSpecified, uint160 sqrtPriceLimitX96, bytes data
+    address recipient,
+    bool zeroForOne,
+    int256 amountSpecified,
+    uint160 sqrtPriceLimitX96,
+    bytes data
   ) external returns (int256 amount0, int256 amount1)
 ```
 Swap token0 for token1, or token1 for token0
@@ -120,7 +135,10 @@ value after the swap. If one for zero, the price cannot be greater than this val
 ### flash
 ```solidity
   function flash(
-    address recipient, uint256 amount0, uint256 amount1, bytes data
+    address recipient,
+    uint256 amount0,
+    uint256 amount1,
+    bytes data
   ) external
 ```
 Receive token0 and/or token1 and pay it back, plus a fee, in the callback
