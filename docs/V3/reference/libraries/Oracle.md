@@ -26,8 +26,8 @@ Initialize the oracle array by writing the first slot. Called once for the lifec
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`cardinality`| struct Oracle.Observation[65535] | The number of populated elements in the oracle array
-|`cardinalityNext`| uint32 | The new length of the oracle array, independent of population
+|`cardinality`| uint16 | The number of populated elements in the oracle array
+|`cardinalityNext`| uint16 | The new length of the oracle array, independent of population
 ### write
 ```solidity
   function write(
@@ -60,7 +60,7 @@ is greater than the current one, cardinality may be increased. This restriction 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`indexUpdated`| struct Oracle.Observation[65535] | The new index of the most recently written element in the oracle array
+|`indexUpdated`| uint16 | The new index of the most recently written element in the oracle array
 |`cardinalityUpdated`| uint16 | The new cardinality of the oracle array
 ### grow
 ```solidity
@@ -83,7 +83,7 @@ Prepares the oracle array to store up to `next` observations
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`next`| struct Oracle.Observation[65535] | The next cardinality which will be populated in the oracle array
+|`next`| uint16 | The next cardinality which will be populated in the oracle array
 ### observe
 ```solidity
   function observe(
@@ -114,5 +114,5 @@ Reverts if `secondsAgos` > oldest observation
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tickCumulatives`| struct Oracle.Observation[65535] | The tick * time elapsed since the pool was first initialized, as of each `secondsAgo`
-|`liquidityCumulatives`| uint32 | The liquidity * time elapsed since the pool was first initialized, as of each `secondsAgo`
+|`tickCumulatives`| int56[] | The tick * time elapsed since the pool was first initialized, as of each `secondsAgo`
+|`liquidityCumulatives`| uint160[] | The liquidity * time elapsed since the pool was first initialized, as of each `secondsAgo`

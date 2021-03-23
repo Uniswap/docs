@@ -19,7 +19,7 @@ Returns the balance of a token
 #### Return Values:
  Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-| address | number of tokens held by the account
+| uint256 | number of tokens held by the account
 ### transfer
 ```solidity
   function transfer(
@@ -39,7 +39,7 @@ Transfers the amount of token from the `msg.sender` to the recipient
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-| address | true for a successful transfer, false for an unsuccessful transfer
+| bool | true for a successful transfer, false for an unsuccessful transfer
 ### allowance
 ```solidity
   function allowance(
@@ -59,7 +59,7 @@ Returns the current allowance given to a spender by an owner
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-| address | current allowance granted by `owner` to `spender`
+| uint256 | current allowance granted by `owner` to `spender`
 ### approve
 ```solidity
   function approve(
@@ -79,7 +79,7 @@ Sets the allowance of a spender from the `msg.sender` to the value `amount`
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-| address | true for a successful approval, false for unsuccessful
+| bool | true for a successful approval, false for unsuccessful
 ### transferFrom
 ```solidity
   function transferFrom(
@@ -101,7 +101,7 @@ Transfers `amount` tokens from `sender` to `recipient` up to the allowance given
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-| address | true for a successful transfer, false for unsuccessful
+| bool | true for a successful transfer, false for unsuccessful
 ## Events
 ### Transfer
 ```solidity

@@ -22,7 +22,7 @@ The function satisfies the property:
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`r`| uint256 | the index of the most significant bit
+|`r`| unit8 | the index of the most significant bit
 ### leastSignificantBit
 ```solidity
   function leastSignificantBit(
@@ -43,4 +43,4 @@ The function satisfies the property:
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`r`| uint256 | the index of the least significant bit
+|`r`| unit8 | the index of the least significant bit

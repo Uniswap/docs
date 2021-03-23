@@ -20,7 +20,7 @@ Executed within the pool constructor
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-| int24 | max liquidity per tick
+| uint128 | max liquidity per tick
 ### getFeeGrowthInside
 ```solidity
   function getFeeGrowthInside(
@@ -48,8 +48,8 @@ Retrieves fee growth data
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`feeGrowthInside0X128`| mapping(int24 => struct Tick.Info) | The all-time fee growth in token0, per unit of liquidity, inside the position's tick boundaries
-|`feeGrowthInside1X128`| int24 | The all-time fee growth in token1, per unit of liquidity, inside the position's tick boundaries
+|`feeGrowthInside0X128`| uint256 | The all-time fee growth in token0, per unit of liquidity, inside the position's tick boundaries
+|`feeGrowthInside1X128`| uint256 | The all-time fee growth in token1, per unit of liquidity, inside the position's tick boundaries
 ### update
 ```solidity
   function update(
@@ -81,7 +81,7 @@ Updates a tick and returns true if the tick was flipped from initialized to unin
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`flipped`| mapping(int24 => struct Tick.Info) | Whether the tick was flipped from initialized to uninitialized, or vice versa
+|`flipped`| bool | Whether the tick was flipped from initialized to uninitialized, or vice versa
 ### clear
 ```solidity
   function clear(
@@ -121,4 +121,4 @@ Transitions to next tick as needed by price movement
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`liquidityNet`| mapping(int24 => struct Tick.Info) | The amount of liquidity added (subtracted) when tick is crossed from left to right (right to left)
+|`liquidityNet`| int128 | The amount of liquidity added (subtracted) when tick is crossed from left to right (right to left)

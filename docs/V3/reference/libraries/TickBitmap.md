@@ -45,5 +45,5 @@ to the left (less than or equal to) or right (greater than) of the given tick
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`next`| mapping(int16 => uint256) | The next initialized or uninitialized tick up to 256 ticks away from the current tick
-|`initialized`| int24 | Whether the next tick is initialized, as the function only searches within up to 256 ticks
+|`next`| int24 | The next initialized or uninitialized tick up to 256 ticks away from the current tick
+|`initialized`| bool | Whether the next tick is initialized, as the function only searches within up to 256 ticks
