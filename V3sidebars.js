@@ -91,20 +91,20 @@ module.exports = {
 
 
   guides: [
-    {
-      type: 'category',
-      label:'Landing',
-      items: [
-        'guides/landing',
-      ],
-    },
-    {
-      type: 'category',
-      label:'Guides Overview',
-      items: [
-        'guides/guides-holder',
-      ],
-    },
+    // {
+    //   type: 'category',
+    //   label:'Landing',
+    //   items: [
+    //     'guides/landing',
+    //   ],
+    // },
+    // {
+    //   type: 'category',
+    //   label:'Guides Overview',
+    //   items: [
+    //     'guides/guides-holder',
+    //   ],
+    // },
   ],
 
   reference: [
