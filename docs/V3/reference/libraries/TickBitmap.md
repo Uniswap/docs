@@ -28,7 +28,7 @@ Flips the initialized state for a given tick from false to true, or vice versa
     int24 tick,
     int24 tickSpacing,
     bool lte
-  ) internal returns (int24 next, bool initialized)
+  ) internal view returns (int24 next, bool initialized)
 ```
 Returns the next initialized tick contained in the same word (or adjacent word) as the tick that is either
 to the left (less than or equal to) or right (greater than) of the given tick

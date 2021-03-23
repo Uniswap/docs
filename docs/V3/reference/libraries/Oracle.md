@@ -94,7 +94,7 @@ Prepares the oracle array to store up to `next` observations
     uint16 index,
     uint128 liquidity,
     uint16 cardinality
-  ) internal returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
+  ) internal view returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
 ```
 Returns the accumulator values as of each time seconds ago from the given time in the array of `secondsAgos`
 

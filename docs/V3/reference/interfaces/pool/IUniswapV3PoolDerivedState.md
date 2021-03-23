@@ -8,7 +8,7 @@ blockchain. The functions here may have variable gas costs.
   function secondsInside(
     int24 tickLower,
     int24 tickUpper
-  ) external returns (uint32)
+  ) external view returns (uint32)
 ```
 Returns a relative timestamp value representing how long, in seconds, the pool has spent between
 tickLower and tickUpper
@@ -31,7 +31,7 @@ burned. Thus the external contract must control the lifecycle of the position.
 ```solidity
   function observe(
     uint32[] secondsAgos
-  ) external returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
+  ) external view returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
 ```
 Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp
 
