@@ -7,7 +7,7 @@ Contains methods that perform common math functions but do not do any overflow o
   function divRoundingUp(
     uint256 x,
     uint256 y
-  ) internal returns (uint256 z)
+  ) internal pure returns (uint256 z)
 ```
 Returns ceil(x / y)
 

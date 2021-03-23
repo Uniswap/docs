@@ -44,18 +44,8 @@ module.exports = {
         //   ]
         // },
         {
-          label: "Concepts",
-          to: "docs/v3/concepts",
-          position: "right",
-        },
-        {
-          label: "Guides",
-          to: "docs/v3/concepts",
-          position: "right",
-        },
-        {
           label: "References",
-          to: "docs/v3/concepts",
+          to: "/",
           position: "right",
         },
         {

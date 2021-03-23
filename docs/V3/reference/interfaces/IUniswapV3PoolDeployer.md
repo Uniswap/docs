@@ -7,7 +7,7 @@ of the pool being constant allowing the CREATE2 address of the pool to be cheapl
 ### parameters
 ```solidity
   function parameters(
-  ) external returns (address factory, address token0, address token1, uint24 fee, int24 tickSpacing)
+  ) external view returns (address factory, address token0, address token1, uint24 fee, int24 tickSpacing)
 ```
 Get the parameters to be used in constructing the pool, set transiently during pool creation.
 

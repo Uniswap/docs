@@ -6,22 +6,21 @@ Contains functions for managing tick processes and relevant calculations
 ```solidity
   function tickSpacingToMaxLiquidityPerTick(
     int24 tickSpacing
-  ) internal returns (uint128)
+  ) internal pure returns (uint128)
 ```
-/ @notice Derives max liquidity per tick from given tick spacing
+Derives max liquidity per tick from given tick spacing
 
 Executed within the pool constructor
 
 #### Parameters:
-| Name | Type | Description                                                          |
-| :--- | :--- | :------------------------------------------------------------------- |
-|`tickSpacing` | int24 | The amount of required tick separation, realized in multiples of `tickSpacing`
-    e.g., a tickSpacing of 3 requires ticks to be initialized every 3rd tick i.e., ..., -6, -3, 0, 3, 6, ...
+| Name | Type | Description                                                                                            |
+| :--- | :--- | :-------------------------------------------------------------------                                   |
+|`tickSpacing` | int24 | The amount of required tick separation, realized in multiples of `tickSpacing` e.g., a tickSpacing of 3 requires ticks to be initialized every 3rd tick i.e., ..., -6, -3, 0, 3, 6, ... |
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`| int24 | max liquidity per tick
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| int24 | max liquidity per tick
 ### getFeeGrowthInside
 ```solidity
   function getFeeGrowthInside(
@@ -31,9 +30,9 @@ Executed within the pool constructor
     int24 tickCurrent,
     uint256 feeGrowthGlobal0X128,
     uint256 feeGrowthGlobal1X128
-  ) internal returns (uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128)
+  ) internal view returns (uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128)
 ```
-/ @notice Retrieves fee growth data
+Retrieves fee growth data
 
 
 #### Parameters:
@@ -64,7 +63,7 @@ Executed within the pool constructor
     uint128 maxLiquidity
   ) internal returns (bool flipped)
 ```
-/ @notice Updates a tick and returns true if the tick was flipped from initialized to uninitialized, or vice versa
+Updates a tick and returns true if the tick was flipped from initialized to uninitialized, or vice versa
 
 
 #### Parameters:
@@ -90,7 +89,7 @@ Executed within the pool constructor
     int24 tick
   ) internal
 ```
-/ @notice Clears tick data
+Clears tick data
 
 
 #### Parameters:
@@ -108,7 +107,7 @@ Executed within the pool constructor
     uint256 feeGrowthGlobal1X128
   ) internal returns (int128 liquidityNet)
 ```
-/ @notice Transitions to next tick as needed by price movement
+Transitions to next tick as needed by price movement
 
 
 #### Parameters:

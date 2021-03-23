@@ -6,7 +6,7 @@ Contains methods for safely casting between types
 ```solidity
   function toUint160(
     uint256 y
-  ) internal returns (uint160 z)
+  ) internal pure returns (uint160 z)
 ```
 Cast a uint256 to a uint160, revert on overflow
 
@@ -24,7 +24,7 @@ Cast a uint256 to a uint160, revert on overflow
 ```solidity
   function toInt128(
     int256 y
-  ) internal returns (int128 z)
+  ) internal pure returns (int128 z)
 ```
 Cast a int256 to a int128, revert on overflow or underflow
 
@@ -42,7 +42,7 @@ Cast a int256 to a int128, revert on overflow or underflow
 ```solidity
   function toInt256(
     uint256 y
-  ) internal returns (int256 z)
+  ) internal pure returns (int256 z)
 ```
 Cast a uint256 to a int256, revert on overflow
 

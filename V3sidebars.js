@@ -32,7 +32,6 @@ module.exports = {
           items: [
             'reference/libraries/BitMath',
             'reference/libraries/FixedPoint96',
-            'reference/libraries/FixedPoint96',
             'reference/libraries/FixedPoint128',
             'reference/libraries/FullMath',
             'reference/libraries/LiquidityMath',

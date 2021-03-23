@@ -74,7 +74,7 @@ every time an initialized tick is crossed
     mapping(int24 => uint256) self,
     int24 tick,
     int24 tickSpacing
-  ) internal returns (uint32)
+  ) internal view returns (uint32)
 ```
 Get the seconds outside for an initialized tick. Should be called only on initialized ticks.
 
@@ -98,7 +98,7 @@ Get the seconds outside for an initialized tick. Should be called only on initia
     int24 tickUpper,
     int24 tickCurrent,
     int24 tickSpacing
-  ) internal returns (uint32)
+  ) internal view returns (uint32)
 ```
 Get the seconds inside a tick range, assuming both tickLower and tickUpper are initialized
 
