@@ -14,7 +14,7 @@ The contract that deployed the pool, which must adhere to the IUniswapV3Factory 
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-|  | contract address
+| address | contract address
 ### token0
 ```solidity
   function token0(
@@ -27,7 +27,7 @@ The first of the two tokens of the pool, sorted by address
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-|  | token contract address
+| address | token contract address
 ### token1
 ```solidity
   function token1(
@@ -40,7 +40,7 @@ The second of the two tokens of the pool, sorted by address
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-|  | token contract address
+| address | token contract address
 ### fee
 ```solidity
   function fee(
@@ -53,7 +53,7 @@ The pool's fee in hundredths of a bip, i.e. 1e-6
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-|  | fee
+| uint24 | fee
 ### tickSpacing
 ```solidity
   function tickSpacing(
@@ -69,7 +69,7 @@ This value is an int24 to avoid casting even though it is always positive.
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-|  | tick spacing
+| int24 | tick spacing
 ### maxLiquidityPerTick
 ```solidity
   function maxLiquidityPerTick(
@@ -84,4 +84,4 @@ also prevents out-of-range liquidity from being used to prevent adding in-range 
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-|  | max amount of liquidity per tick
+| uint128 | max amount of liquidity per tick

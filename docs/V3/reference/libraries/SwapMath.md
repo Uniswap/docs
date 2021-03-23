@@ -29,6 +29,6 @@ The fee, plus the amount in, will never exceed the amount remaining if the swap'
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`sqrtRatioNextX96`| uint160 | The price after swapping the amount in/out, not to exceed the price target
-|`amountIn`| uint160 | The amount to be swapped in, of either token0 or token1, based on the direction of the swap
-|`amountOut`| uint128 | The amount to be received, of either token0 or token1, based on the direction of the swap
-|`feeAmount`| int256 | The amount of input that will be taken as a fee
+|`amountIn`| uint256 | The amount to be swapped in, of either token0 or token1, based on the direction of the swap
+|`amountOut`| uint256 | The amount to be received, of either token0 or token1, based on the direction of the swap
+|`feeAmount`| uint256 | The amount of input that will be taken as a fee

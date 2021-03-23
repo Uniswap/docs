@@ -34,7 +34,7 @@ A fee amount can never bee removed, so this value should be hard coded or cached
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-| uint24 | tick spacing
+| int24 | tick spacing
 ### getPool
 ```solidity
   function getPool(

@@ -134,7 +134,7 @@ i.e. liquidity * (sqrt(upper) - sqrt(lower)) / (sqrt(upper) * sqrt(lower))
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| uint160 | Amount of token0 required to cover a position of size liquidity between the two passed prices
+|`amount0`| uint256 | Amount of token0 required to cover a position of size liquidity between the two passed prices
 ### getAmount1Delta
 ```solidity
   function getAmount1Delta(
@@ -159,7 +159,7 @@ Calculates liquidity * (sqrt(upper) - sqrt(lower))
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount1`| uint160 | Amount of token1 required to cover a position of size liquidity between the two passed prices
+|`amount1`| uint256 | Amount of token1 required to cover a position of size liquidity between the two passed prices
 ### getAmount0Delta
 ```solidity
   function getAmount0Delta(
@@ -181,7 +181,7 @@ Helper that gets signed token0 delta
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| uint160 | Amount of token0 corresponding to the passed liquidityDelta between the two prices
+|`amount0`| int256 | Amount of token0 corresponding to the passed liquidityDelta between the two prices
 ### getAmount1Delta
 ```solidity
   function getAmount1Delta(
@@ -203,4 +203,4 @@ Helper that gets signed token1 delta
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount1`| uint160 | Amount of token1 corresponding to the passed liquidityDelta between the two prices
+|`amount1`| int256 | Amount of token1 corresponding to the passed liquidityDelta between the two prices

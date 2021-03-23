@@ -42,4 +42,4 @@ ever return.
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tick`| uint160 | The greatest tick for which the ratio is less than or equal to the input ratio
+|`tick`| int24 | The greatest tick for which the ratio is less than or equal to the input ratio

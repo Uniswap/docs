@@ -26,7 +26,7 @@ Returns the Info struct of a position, given an owner and position boundaries
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`position`| mapping(bytes32 => struct Position.Info) | The position info struct of the given owners' position
+|`position`| struct Position.Info | The position info struct of the given owners' position
 ### update
 ```solidity
   function update(

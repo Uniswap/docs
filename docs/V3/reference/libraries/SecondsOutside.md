@@ -87,9 +87,9 @@ Get the seconds outside for an initialized tick. Should be called only on initia
 |`tickSpacing` | int24 | the spacing between usable ticks
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`the`| mapping(int24 => uint256) | seconds outside value for that tick
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| uint32 | seconds outside value for that tick
 ### secondsInside
 ```solidity
   function secondsInside(
@@ -115,5 +115,5 @@ Get the seconds inside a tick range, assuming both tickLower and tickUpper are i
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`a`| mapping(int24 => uint256) | relative seconds inside value that can be snapshotted and compared to a later snapshot to compute
+|`a`| uint32 | relative seconds inside value that can be snapshotted and compared to a later snapshot to compute
 time spent between tickLower and tickUpper, i.e. time that a position's liquidity was in use.
