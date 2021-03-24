@@ -5,7 +5,9 @@ Contains helper methods for interacting with ERC20 tokens that do not consistent
 ### safeTransfer
 ```solidity
   function safeTransfer(
-    address token, address to, uint256 value
+    address token,
+    address to,
+    uint256 value
   ) internal
 ```
 Transfers tokens from msg.sender to a recipient
