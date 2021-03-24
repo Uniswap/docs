@@ -33,7 +33,7 @@ Each time `Observe` is called, the caller must specify from how long ago to retu
 
 ## Counterfactual Observations
 
-In some situations, the v3 oracle will return a **counterfactual** observation: an observation as it would have appeared if a block were mined at the exact time specificed by the call. 
+In some situations, the v3 oracle will return a counterfactual observation: an observation as it would have appeared if a block were mined at the exact time specificed by the call. 
 
 Counterfactual observations are returned in two circumstances:
 
@@ -58,11 +58,9 @@ The liquidity accumulator stores how much in-range liquidity is available at the
 
 When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the in range liquidity at the desired time.
 
-An important note: the in range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrolated, and there are  scenarios in which weighing price data and liquidity together may create innacurate representations of the pair.
-
- 
-
+An important note: the in range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrolated, and there are scenarios in which weighing price data and liquidity together may create innacurate representations of the pair.
 
 
 ## Geometric Mean TWAPs
 
+Both the 
