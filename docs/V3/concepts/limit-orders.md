@@ -2,7 +2,7 @@
 id: limit-orders
 title: Range Orders
 ---
-Customizable liquidity positions, along with single-sided asset provisioning, allows for a new style of swapping with automated market makers: the range order.
+Customizable liquidity positions, along with single-sided asset provisioning, allows for a new style of swapping with automated market makers: the **range order**.
 
 In typical order book markets, anyone can easily set a limit order: to buy or sell an asset at a specific pre-determined price, allowing the order to be filled at an indeterminate time in the future. 
 
@@ -17,6 +17,6 @@ An example:
 
 Notes: 
 
-* Because fees are generated in both tokens when swapping, the fees due to your liquidity will be denominated in both tokens of the given pair. So, in the above example, 1,500 DAI will be redeemable along with the commensurate fees in both DAI and ETH.
+* Because fees are generated in both tokens when swapping, the fees due to your liquidity position will be denominated in both tokens of the given pair. So, in the above example, 1,500 DAI will be redeemable along with the commensurate fees due in both DAI and ETH.
 
-* Approaches to concentration when setting range orders are up to the user. Selecting a wider range may generate more fees if there is price churn within your range, at the cost of potentially having your unfilled if the spot price reverses before fulling completing your range.
+* Approaches to concentration when setting range orders are up to the user. Selecting a wider range may generate more fees if there is price churn within your range, at the cost of potentially having your order unfilled if the spot price reverses before fulling completing your range.
