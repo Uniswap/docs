@@ -5,13 +5,15 @@ Any contract that calls IUniswapV3PoolActions#flash must implement this interfac
 ### uniswapV3FlashCallback
 ```solidity
   function uniswapV3FlashCallback(
-    uint256 fee0, uint256 fee1, bytes data
+    uint256 fee0,
+    uint256 fee1,
+    bytes data
   ) external
 ```
-Called after transferring tokens to the `msg.sender`, allows the sender to perform any actions and then
-repay the flash transaction.
+Called to `msg.sender` after transferring to the recipient from IUniswapV3Pool#flash.
 
-The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical factory
+In the implementation you must repay the pool the tokens sent by flash plus the computed fee amounts.
+The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical UniswapV3Factory.
 
 #### Parameters:
 | Name | Type | Description                                                          |

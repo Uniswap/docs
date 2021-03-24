@@ -1,4 +1,4 @@
-Contains methods for safely downcasting to smaller types
+Contains methods for safely casting between types
 
 
 ## Functions
@@ -11,6 +11,10 @@ Contains methods for safely downcasting to smaller types
 Cast a uint256 to a uint160, revert on overflow
 
 
+#### Parameters:
+| Name | Type | Description                                                          |
+| :--- | :--- | :------------------------------------------------------------------- |
+|`y` | uint256 | The uint256 to be downcasted
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
@@ -25,6 +29,10 @@ Cast a uint256 to a uint160, revert on overflow
 Cast a int256 to a int128, revert on overflow or underflow
 
 
+#### Parameters:
+| Name | Type | Description                                                          |
+| :--- | :--- | :------------------------------------------------------------------- |
+|`y` | int256 | The int256 to be downcasted
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
@@ -39,8 +47,12 @@ Cast a int256 to a int128, revert on overflow or underflow
 Cast a uint256 to a int256, revert on overflow
 
 
+#### Parameters:
+| Name | Type | Description                                                          |
+| :--- | :--- | :------------------------------------------------------------------- |
+|`y` | uint256 | The uint256 to be casted
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`z`| uint256 | The downcasted integer, now type int256
+|`z`| uint256 | The casted integer, now type int256

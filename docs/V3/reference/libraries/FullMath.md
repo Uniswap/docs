@@ -6,7 +6,9 @@ Handles "phantom overflow" i.e., allows multiplication and division where an int
 ### mulDiv
 ```solidity
   function mulDiv(
-    uint256 a, uint256 b, uint256 denominator
+    uint256 a,
+    uint256 b,
+    uint256 denominator
   ) internal returns (uint256 result)
 ```
 Calculates floor(a×b÷denominator) with full precision. Throws if result overflows a uint256 or denominator == 0
@@ -27,7 +29,9 @@ Credit to Remco Bloemen under MIT license https://xn--2-umb.com/21/muldiv
 ### mulDivRoundingUp
 ```solidity
   function mulDivRoundingUp(
-    uint256 a, uint256 b, uint256 denominator
+    uint256 a,
+    uint256 b,
+    uint256 denominator
   ) internal returns (uint256 result)
 ```
 / @notice Calculates ceil(a×b÷denominator) with full precision. Throws if result overflows a uint256 or denominator == 0

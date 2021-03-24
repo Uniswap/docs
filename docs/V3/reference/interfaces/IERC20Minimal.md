@@ -23,7 +23,8 @@ Returns the balance of a token
 ### transfer
 ```solidity
   function transfer(
-    address recipient, uint256 amount
+    address recipient,
+    uint256 amount
   ) external returns (bool)
 ```
 Transfers the amount of token from the `msg.sender` to the recipient
@@ -42,7 +43,8 @@ Transfers the amount of token from the `msg.sender` to the recipient
 ### allowance
 ```solidity
   function allowance(
-    address owner, address spender
+    address owner,
+    address spender
   ) external returns (uint256)
 ```
 Returns the current allowance given to a spender by an owner
@@ -61,7 +63,8 @@ Returns the current allowance given to a spender by an owner
 ### approve
 ```solidity
   function approve(
-    address spender, uint256 amount
+    address spender,
+    uint256 amount
   ) external returns (bool)
 ```
 Sets the allowance of a spender from the `msg.sender` to the value `amount`
@@ -80,7 +83,9 @@ Sets the allowance of a spender from the `msg.sender` to the value `amount`
 ### transferFrom
 ```solidity
   function transferFrom(
-    address sender, address recipient, uint256 amount
+    address sender,
+    address recipient,
+    uint256 amount
   ) external returns (bool)
 ```
 Transfers `amount` tokens from `sender` to `recipient` up to the allowance given to the `msg.sender`
@@ -100,7 +105,11 @@ Transfers `amount` tokens from `sender` to `recipient` up to the allowance given
 ## Events
 ### Transfer
 ```solidity
-  event Transfer(address from, address to, uint256 value)
+  event Transfer(
+    address from,
+    address to,
+    uint256 value
+  )
 ```
 Event emitted when tokens are transferred from one address to another, either via `#transfer` or `#transferFrom`.
 
@@ -113,7 +122,11 @@ Event emitted when tokens are transferred from one address to another, either vi
 |`value`| uint256 | The amount of tokens that were transferred
 ### Approval
 ```solidity
-  event Approval(address owner, address spender, uint256 value)
+  event Approval(
+    address owner,
+    address spender,
+    uint256 value
+  )
 ```
 Event emitted when the approval amount for the spender of a given owner's tokens changes.
 

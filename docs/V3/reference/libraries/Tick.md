@@ -25,7 +25,12 @@ Executed within the pool constructor
 ### getFeeGrowthInside
 ```solidity
   function getFeeGrowthInside(
-    mapping(int24 => struct Tick.Info) self, int24 tickLower, int24 tickUpper, int24 tickCurrent, uint256 feeGrowthGlobal0X128, uint256 feeGrowthGlobal1X128
+    mapping(int24 => struct Tick.Info) self,
+    int24 tickLower,
+    int24 tickUpper,
+    int24 tickCurrent,
+    uint256 feeGrowthGlobal0X128,
+    uint256 feeGrowthGlobal1X128
   ) internal returns (uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128)
 ```
 / @notice Retrieves fee growth data
@@ -49,7 +54,14 @@ Executed within the pool constructor
 ### update
 ```solidity
   function update(
-    mapping(int24 => struct Tick.Info) self, int24 tick, int24 tickCurrent, int128 liquidityDelta, uint256 feeGrowthGlobal0X128, uint256 feeGrowthGlobal1X128, bool upper, uint128 maxLiquidity
+    mapping(int24 => struct Tick.Info) self,
+    int24 tick,
+    int24 tickCurrent,
+    int128 liquidityDelta,
+    uint256 feeGrowthGlobal0X128,
+    uint256 feeGrowthGlobal1X128,
+    bool upper,
+    uint128 maxLiquidity
   ) internal returns (bool flipped)
 ```
 / @notice Updates a tick and returns true if the tick was flipped from initialized to uninitialized, or vice versa
@@ -64,7 +76,7 @@ Executed within the pool constructor
 |`liquidityDelta` | int128 | A new amount of liquidity to be added (subtracted) when tick is crossed from left to right (right to left)
 |`feeGrowthGlobal0X128` | uint256 | The all-time global fee growth, per unit of liquidity, in token0
 |`feeGrowthGlobal1X128` | uint256 | The all-time global fee growth, per unit of liquidity, in token1
-|`upper` | bool | A bool representing whether or not the call represents the upper, or lower tick
+|`upper` | bool | true for updating a position's upper tick, or false for updating a position's lower tick
 |`maxLiquidity` | uint128 | The maximum liquidity allocation for a single tick
 
 #### Return Values:
@@ -74,7 +86,8 @@ Executed within the pool constructor
 ### clear
 ```solidity
   function clear(
-    mapping(int24 => struct Tick.Info) self, int24 tick
+    mapping(int24 => struct Tick.Info) self,
+    int24 tick
   ) internal
 ```
 / @notice Clears tick data
@@ -89,7 +102,10 @@ Executed within the pool constructor
 ### cross
 ```solidity
   function cross(
-    mapping(int24 => struct Tick.Info) self, int24 tick, uint256 feeGrowthGlobal0X128, uint256 feeGrowthGlobal1X128
+    mapping(int24 => struct Tick.Info) self,
+    int24 tick,
+    uint256 feeGrowthGlobal0X128,
+    uint256 feeGrowthGlobal1X128
   ) internal returns (int128 liquidityNet)
 ```
 / @notice Transitions to next tick as needed by price movement
