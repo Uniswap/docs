@@ -3,32 +3,59 @@ id: glossary
 title: Glossary
 ---
 
-## Ticks
+## Automated Market Maker
 
-- The boundaries between discreet areas in price space
-
-## Price space
-
-## Tick Interval 
-
-## Liquidity
-
-## Reserves
-
-## Position
-
-## Concentrated Liquidity
-
-## Spot Price
-
-## Range Order
+An automated market maker is a smart contract on Ethereum that holds on-chain liquidity reserves. Users can trade against these reserves at prices set by an automated market making formula.
 
 ## Asset
 
-## Range
+## Concentrated Liquidity
+
+## Core
+
+## ERC20
+
+## Factory
 
 ## Fees
 
-## Protocol Fees
+## Flash Swap
+
+## Invariant
+
+## Liquidity Provider
+
+## Liquidity
+
+## Observation
 
 ## Pair
+
+## Periphery
+
+## Pool
+
+## Position
+
+## Price Impact
+
+## Price Space
+
+## Protocol Fees
+
+## Range 
+
+## Range Order
+
+## Reserves
+
+## Slippage
+
+## Spot Price
+
+## Tick Interval
+
+## Tick
+
+The boundaries between discreet areas in price space.
+
