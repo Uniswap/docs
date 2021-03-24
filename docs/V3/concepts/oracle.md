@@ -3,7 +3,7 @@ id: oracle
 title: Oracle
 ---
 
-The Uniswap v3 oracle is a subset of functions integrated into every pair contract which store historical price data directly in the pair. The historical price data can be easily queried on-chain by anyone wishing to integrate Uniswap v3 price data into their logic.
+The Uniswap v3 oracle is a subset of functions integrated into every pair contract which store historical price and liquidity data directly in the pair. The historical price data can be  queried on-chain by anyone wishing to integrate Uniswap v3 price data into their logic.
 
 Historical price data is stored in the form of an `Observation`. A call to the v3 oracle returns an `Observation` as of the call's specified time in the past. Multiple observation instances may be returned at once, allowing the execution of custom logic based on a given price history without any data stored in the calling contract.
 
@@ -49,9 +49,7 @@ A counterfactual observation is as effective as a written observation, and shoul
 
 The tick accumulator stores the cumulative sum of the in range tick at the time of the observation, the data is append only and continuously grows for the life of the pair.
 
-When called, it returns how much in-range ticks is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the in range liquidity at the desired time.
-
-
+When called, it returns the in-range tick available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the active tick at the time of the observation.
 
 
 ## Liquidity Accumulator
