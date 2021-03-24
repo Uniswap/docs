@@ -127,11 +127,12 @@ noDelegateCall is applied indirectly via _modifyPosition
     uint128 amount1Requested
   ) external returns (uint128 amount0, uint128 amount1)
 ```
-Collects fees owed to a position
+Collects tokens owed to a position
 
-Does not recompute fees, which must be done either via mint, burn or poke. Must be called by the position
-owner. To withdraw no fees for a token, amount0Requested or amount1Request may be set to zero. To withdraw all fees owed, caller may
-pass any value greater than the fees owed.
+Does not recompute fees earned, which must be done either via mint or burn of any amount of liquidity.
+Collect must be called by the position owner. To withdraw only token0 or only token1, amount0Requested or
+amount1Requested may be set to zero. To withdraw all tokens owed, caller may pass any value greater than the
+actual tokens owed, e.g. type(uint128).max. Tokens owed may be from accumulated swap fees or burned liquidity.
 
 #### Parameters:
 | Name | Type | Description                                                          |

@@ -42,7 +42,7 @@ Initialize the oracle array by writing the first slot. Called once for the lifec
 ```
 Writes an oracle observation to the array
 
-Writable at most once per block. Index represents the most recently written element, and must be tracked externally.
+Writable at most once per block. Index represents the most recently written element. cardinality and index must be tracked externally.
 If the index is at the end of the allowable array length (according to cardinality), and the next cardinality
 is greater than the current one, cardinality may be increased. This restriction is created to preserve ordering.
 
@@ -98,6 +98,7 @@ Prepares the oracle array to store up to `next` observations
 ```
 Returns the accumulator values as of each time seconds ago from the given time in the array of `secondsAgos`
 
+Reverts if `secondsAgos` > oldest observation
 
 #### Parameters:
 | Name | Type | Description                                                          |

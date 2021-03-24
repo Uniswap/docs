@@ -45,7 +45,7 @@ Gets the next sqrt price given a delta of token1
 Always rounds down, because in the exact output case (decreasing price) we need to move the price at least
 far enough to get the desired output amount, and in the exact input case (increasing price) we need to move the
 price less in order to not send too much output.
-The formula we compute is lossless: sqrtPX96 +- amount / liquidity
+The formula we compute is within <1 wei of the lossless version: sqrtPX96 +- amount / liquidity
 
 #### Parameters:
 | Name | Type | Description                                                          |
@@ -176,7 +176,7 @@ Helper that gets signed token0 delta
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtRatioAX96` | uint160 | A sqrt price
 |`sqrtRatioBX96` | uint160 | Another sqrt price
-|`liquidity` | int128 | The change in liquidity
+|`liquidity` | int128 | The change in liquidity for which to compute the amount0 delta
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
@@ -198,7 +198,7 @@ Helper that gets signed token1 delta
 | :--- | :--- | :------------------------------------------------------------------- |
 |`sqrtRatioAX96` | uint160 | A sqrt price
 |`sqrtRatioBX96` | uint160 | Another sqrt price
-|`liquidity` | int128 | The change in liquidity
+|`liquidity` | int128 | The change in liquidity for which to compute the amount1 delta
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |

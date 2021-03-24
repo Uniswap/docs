@@ -76,7 +76,7 @@ Executed within the pool constructor
 |`liquidityDelta` | int128 | A new amount of liquidity to be added (subtracted) when tick is crossed from left to right (right to left)
 |`feeGrowthGlobal0X128` | uint256 | The all-time global fee growth, per unit of liquidity, in token0
 |`feeGrowthGlobal1X128` | uint256 | The all-time global fee growth, per unit of liquidity, in token1
-|`upper` | bool | A bool representing whether or not the call represents the upper, or lower tick
+|`upper` | bool | true for updating a position's upper tick, or false for updating a position's lower tick
 |`maxLiquidity` | uint128 | The maximum liquidity allocation for a single tick
 
 #### Return Values:
