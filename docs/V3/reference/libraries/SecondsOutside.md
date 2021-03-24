@@ -2,6 +2,8 @@ Contains methods for working with a mapping from tick to 32 bit timestamp values
 spent outside the tick.
 
 The mapping uses int24 for keys since ticks are represented as int24 and there are 8 (2^3) values per word.
+Note "seconds outside" is always a relative measurement, only consistent for as long as a the lower tick and upper tick
+have gross liquidity greater than 0.
 
 ## Functions
 ### initialize

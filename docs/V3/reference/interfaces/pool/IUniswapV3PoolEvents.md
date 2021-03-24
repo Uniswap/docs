@@ -109,7 +109,7 @@ Emitted by the pool for any swaps between token0 and token1
 |`sender`| address | The address that initiated the swap call, and that received the callback
 |`recipient`| address | The address that received the output of the swap
 |`amount0`| int256 | The delta of the token0 balance of the pool
-|`amount1`| int256 | The Delta of the token1 balance of the pool
+|`amount1`| int256 | The delta of the token1 balance of the pool
 |`sqrtPriceX96`| uint160 | The sqrt(price) of the pool after the swap, as a Q64.96
 |`tick`| int24 | The log base 1.0001 of price of the pool after the swap
 ### Flash

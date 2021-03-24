@@ -5,7 +5,6 @@ The Uniswap V3 Factory facilitates creation of Uniswap V3 pools and control over
 ### owner
 ```solidity
   function owner(
-    
   ) external returns (address)
 ```
 Returns the current owner of the factory
@@ -27,6 +26,10 @@ Returns the tick spacing for a given fee amount, if enabled, or 0 if not enabled
 
 A fee amount can never bee removed, so this value should be hard coded or cached in the calling context
 
+#### Parameters:
+| Name | Type | Description                                                          |
+| :--- | :--- | :------------------------------------------------------------------- |
+|`fee` | uint24 | The enabled fee, denominated in hundredths of a bip. Returns 0 in case of unenabled fee
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
@@ -35,8 +38,8 @@ A fee amount can never bee removed, so this value should be hard coded or cached
 ### getPool
 ```solidity
   function getPool(
-    address tokenA, 
-    address tokenB, 
+    address tokenA,
+    address tokenB,
     uint24 fee
   ) external returns (address pool)
 ```
@@ -44,6 +47,12 @@ Returns the pool address for a given pair of tokens and a fee, or address 0 if i
 
 tokenA and tokenB may be passed in either token0/token1 or token1/token0 order
 
+#### Parameters:
+| Name | Type | Description                                                          |
+| :--- | :--- | :------------------------------------------------------------------- |
+|`tokenA` | address | The contract address of either token0 or token1
+|`tokenB` | address | The contract address of the other token
+|`fee` | uint24 | The fee collected upon every swap in the pool, denominated in hundredths of a bip
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
@@ -52,8 +61,8 @@ tokenA and tokenB may be passed in either token0/token1 or token1/token0 order
 ### createPool
 ```solidity
   function createPool(
-    address tokenA, 
-    address tokenB, 
+    address tokenA,
+    address tokenB,
     uint24 fee
   ) external returns (address pool)
 ```
@@ -92,7 +101,7 @@ Must be called by the current owner
 ### enableFeeAmount
 ```solidity
   function enableFeeAmount(
-    uint24 fee, 
+    uint24 fee,
     int24 tickSpacing
   ) external
 ```
@@ -110,9 +119,9 @@ Fee amounts may never be removed once enabled
 ### OwnerChanged
 ```solidity
   event OwnerChanged(
-    address oldOwner, 
+    address oldOwner,
     address newOwner
-    )
+  )
 ```
 Emitted when the owner of the factory is changed
 
@@ -125,12 +134,12 @@ Emitted when the owner of the factory is changed
 ### PoolCreated
 ```solidity
   event PoolCreated(
-    address token0, 
-    address token1, 
-    uint24 fee, 
-    int24 tickSpacing, 
+    address token0,
+    address token1,
+    uint24 fee,
+    int24 tickSpacing,
     address pool
-    )
+  )
 ```
 Emitted when a pool is created
 
@@ -146,9 +155,9 @@ Emitted when a pool is created
 ### FeeAmountEnabled
 ```solidity
   event FeeAmountEnabled(
-    uint24 fee, 
+    uint24 fee,
     int24 tickSpacing
-    )
+  )
 ```
 Emitted when a new fee amount is enabled for pool creation via the factory
 

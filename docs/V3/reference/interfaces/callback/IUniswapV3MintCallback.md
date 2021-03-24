@@ -10,10 +10,10 @@ Any contract that calls IUniswapV3PoolActions#mint must implement this interface
     bytes data
   ) external
 ```
-Called on `msg.sender` after making updates to a position. Allows the sender to pay the tokens
-due for the minted liquidity.
+Called to `msg.sender` after minting liquidity to a position from IUniswapV3Pool#mint.
 
-The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical factory
+In the implementation you must pay the pool tokens owed for the minted liquidity.
+The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical UniswapV3Factory.
 
 #### Parameters:
 | Name | Type | Description                                                          |
