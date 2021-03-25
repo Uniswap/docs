@@ -33,7 +33,7 @@ Each time `Observe` is called, the caller must specify from how long ago to retu
 
 ## Counterfactual Observations
 
-In some situations, the v3 oracle will return a counterfactual observation: an observation as it would have appeared if a block were mined at the exact time specificed by the call. 
+In some situations, the v3 oracle will return a **counterfactual** observation: an observation as it would have appeared if a block were mined at the exact time specified by the call. 
 
 Counterfactual observations are returned in two circumstances:
 
@@ -47,20 +47,18 @@ A counterfactual observation is as effective as a written observation, and shoul
 
 ## Tick Accumulator
 
-The tick accumulator stores the cumulative sum of the in range tick at the time of the observation, the data is append only and continuously grows for the life of the pair.
+The tick accumulator stores the cumulative sum of the active tick at the time of the observation, the data is append only and continuously grows for the life of the pair.
 
-When called, it returns the in-range tick available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the active tick at the time of the observation.
+When called, it returns the in-range tick available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrieve the active tick at the time of the observation.
+
+- When we use “active tick” or otherwise refer to the current tick of a pair, we mean the lower tick boundary that is closest to the current price.
+
 
 
 ## Liquidity Accumulator
 
 The liquidity accumulator stores how much in-range liquidity is available at the time of the observation, the data is append only and continuously grows for the life of the pair.
 
-When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrive the in range liquidity at the desired time.
+When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrieve the in range liquidity at the desired time.
 
-An important note: the in range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrolated, and there are scenarios in which weighing price data and liquidity together may create innacurate representations of the pair.
-
-
-## Geometric Mean TWAPs
-
-Both the 
+- An important note: the in range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pair.
