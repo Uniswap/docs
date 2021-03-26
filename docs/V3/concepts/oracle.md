@@ -3,13 +3,13 @@ id: oracle
 title: Oracle
 ---
 
-The Uniswap v3 oracle is a subset of functions integrated into every pair contract which store historical price and liquidity data directly in the pair. The historical price data can be  queried on-chain by anyone wishing to integrate Uniswap v3 price data into their logic.
+The Uniswap v3 oracle is a subset of functions integrated into every pair contract which store historical price and liquidity data directly in the pair. The historical price data can be queried on chain by anyone wishing to integrate Uniswap v3 price data into their logic.
 
 Historical price data is stored in the form of an `Observation`. A call to the v3 oracle returns an `Observation` as of the call's specified time in the past. Multiple observation instances may be returned at once, allowing the execution of custom logic based on a given price history without any data stored in the calling contract.
 
 The number of instances of historical price data begins at `1`, and may be lengthened by any party willing to pay the transaction fees, with a maximum potential of `65535` instances of price data, roughly correlating to 9 days of price history given a 13 second block time.
 
-Storing price history directly in the pool contract substantially reduces the potential for logic errors on the part of the calling contract, and reduces integration costs by eliminating the need for storage in the integrating contract. Additionally, the v3 oracle observation array's considerable length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over the full duration of the oracle array length.
+Storing price history directly in the pool contract substantially reduces the potential for logic errors on the part of the calling contract and reduces integration costs by eliminating the need for storage in the integrating contract. Additionally, the v3 oracle observation array's considerable length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over an arbitrary postition inside of, or encompassing, the full length of the oracle array.
 
 
 ## Observations
@@ -41,7 +41,7 @@ Counterfactual observations are returned in two circumstances:
 
 * At a time in the past, providing it is located between two previously written observations. This primarily concerns observations returned from a time inside a single block.
 
-A counterfactual observation is constructed by taking the first observation prior to the given timestamp, and adding the seconds elapsed since that observation, multiplied by the value of tick/liquidity at the end of the block following the initally queried observation.
+A counterfactual observation is constructed by taking the first observation prior to the given timestamp, and adding the seconds elapsed since that observation, multiplied by the value of tick/liquidity at the end of the block following the initially queried observation.
 
 A counterfactual observation is as effective as a written observation, and should make no difference in terms of safety or to the user of an integrating entity.
 
@@ -58,14 +58,14 @@ When we use “active tick” or otherwise refer to the current tick of a pool, 
 
 The liquidity accumulator stores how much in-range liquidity is available at the time of the observation, the data is append only and continuously grows for the life of the pool.
 
-When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrieve the in range liquidity at the desired time.
+When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrieve the in-range liquidity at the desired time.
 
-- An important note: the in range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pool.
+- An important note: the in-range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pool.
 
 
 ## Deriving price from a tick
 
-When a pool is created, each token is assigned to either `token0` or `token1` based on the contract address of the tokens in the pair. Whether or not a token is `token0` or `token1` is meaningless, it is only used to maintain a fixed assignment for the purpose of relative valuation and general logic in the pool contract. 
+When a pool is created, each token is assigned to either `token0` or `token1` based on the contract address of the tokens in the pair. Whether or not a token is `token0` or `token1` is meaningless; it is only used to maintain a fixed assignment for the purpose of relative valuation and general logic in the pool contract. 
 
 Deriving an asset price from the current tick is achievable due to the fixed expression across the pool contract of token0 in terms of token1.
 
@@ -85,4 +85,4 @@ tick `70,000` gives us a price of WETH as 1096.25 in terms of USDC
 
 ----
 
-Ticks are signed integers, and can be expressed as a negative number, so for any circumstances where `token0` is of a lower value than `token1`, a negative tick value will be returned by `tickCumulative` and a relative value of `< 1` will be returned by a calculation of `token0` in terms of `token1`.
+Ticks are signed integers and can be expressed as a negative number, so for any circumstances where `token0` is of a lower value than `token1`, a negative tick value will be returned by `tickCumulative` and a relative value of `< 1` will be returned by a calculation of `token0` in terms of `token1`.
