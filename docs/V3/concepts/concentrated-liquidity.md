@@ -19,4 +19,7 @@ Concentrated liquidity serves as a mechanism to let the market decide what a sen
 
 To achieve concentrated liquidity allocation, the once continuous spectrum of relative price space has been partitioned with *ticks*.
 
-Ticks are the boundaries between discreet areas in price space, each equivalently spaced in a given pair. As the spot price changes during swapping, the pair contract will continuously exchange the outbound asset for the inbound, progressively utilizing all the liquidity available within the current tick interval, until the next tick is reached. At this point the contract switches to a new tick, activates the dormant liquidity available within that next tick interval, and leaves the previously crossed price space denominated in a single asset.       
+Ticks are the boundaries between discreet areas in price space, each equivalently spaced in a given pair. As the spot price changes during swapping, the pair contract will continuously exchange the outbound asset for the inbound, progressively utilizing all the liquidity available within the current tick interval, until the next tick is reached. At this point the contract switches to a new tick and activates any dormant liquidity that begins at the newly active tick.
+
+Ticks are spaced such that the distance between them represents a constant .01% increase in price at any point in price space.
+
