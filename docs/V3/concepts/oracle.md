@@ -9,7 +9,7 @@ Historical price data is stored in the form of an `Observation`. A call to the v
 
 The number of instances of historical price data begins at `1`, and may be lengthened by any party willing to pay the transaction fees, with a maximum potential of `65535` instances of price data, roughly correlating to 9 days of price history given a 13 second block time.
 
-Storing price history directly in the pair contract substantially reduces the potential for logic errors on the part of the calling contract, and reduces integration costs by eliminating the need for storage in the integrating contract. Additionally, the v3 oracle observation array's considerable length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over the full duration of the oracle array length.
+Storing price history directly in the pool contract substantially reduces the potential for logic errors on the part of the calling contract, and reduces integration costs by eliminating the need for storage in the integrating contract. Additionally, the v3 oracle observation array's considerable length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over the full duration of the oracle array length.
 
 
 ## Observations
@@ -47,18 +47,42 @@ A counterfactual observation is as effective as a written observation, and shoul
 
 ## Tick Accumulator
 
-The tick accumulator stores the cumulative sum of the active tick at the time of the observation, the data is append only and continuously grows for the life of the pair.
+The tick accumulator stores the cumulative sum of the active tick at the time of the observation, the data is append only and continuously grows for the life of the pool.
 
 When called, it returns the in-range tick available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrieve the active tick at the time of the observation.
 
-- When we use “active tick” or otherwise refer to the current tick of a pair, we mean the lower tick boundary that is closest to the current price.
-
+When we use “active tick” or otherwise refer to the current tick of a pool, we mean the lower tick boundary that is closest to the current price.
 
 
 ## Liquidity Accumulator
 
-The liquidity accumulator stores how much in-range liquidity is available at the time of the observation, the data is append only and continuously grows for the life of the pair.
+The liquidity accumulator stores how much in-range liquidity is available at the time of the observation, the data is append only and continuously grows for the life of the pool.
 
 When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrieve the in range liquidity at the desired time.
 
-- An important note: the in range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pair.
+- An important note: the in range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pool.
+
+
+## Deriving price from a tick
+
+When a pool is created, each token is assigned to either `token0` or `token1` based on the contract address of the tokens in the pair. Whether or not a token is `token0` or `token1` is meaningless, it is only used to maintain a fixed assignment for the purpose of relative valuation and general logic in the pool contract. 
+
+Deriving an asset price from the current tick is achievable due to the fixed expression across the pool contract of token0 in terms of token1.
+
+----
+
+An example of finding the price of WETH in a WETH / USDC pool, where WETH is `token0` and USDC is `token1`: 
+
+You have an oracle reading that shows a return of `tickCumulative` as [70000, 140000]
+
+The current tick is `70,000` as expressed by the delta between the most recent and second most recent value of `tickCumulative`
+
+With a tick reading of 70,000, we can find the value of `token0` relative to `token1` by using the current tick as `i` in `𝑝(𝑖) = 1.0001^𝑖`
+
+`1.0001^70000 = 1996.25` 
+
+tick `70,000` gives us a price of WETH as 1096.25 in terms of USDC
+
+----
+
+Ticks are signed integers, and can be expressed as a negative number, so for any circumstances where `token0` is of a lower value than `token1`, a negative tick value will be returned by `tickCumulative` and a relative value of `< 1` will be returned by a calculation of `token0` in terms of `token1`.

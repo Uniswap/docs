@@ -57,7 +57,7 @@ An instance of historical price and liquidity data of a given pair
 
 ## Pair
 
-A smart contract deployed from a Uniswap factory contract that enables trading between two ERC20 tokens.
+A smart contract deployed from a Uniswap V1 or V2 factory contract that enables trading between two ERC20 tokens. Pair contracts are now called Pools in V3.
 
 ## Periphery
 
@@ -65,7 +65,7 @@ External smart contracts that are useful, but not required for Uniswap to exist.
 
 ## Pool
 
-The liquidity available within a given pair contract.
+A contract deployed by the V3 factory that pairs two ERC-20 assets. A pool can have multiple feels, and thus multiple instances. Pools were previously called Pairs before the introduction of multiple fee options.
 
 ## Position
 
@@ -74,10 +74,6 @@ An instance of liquidity concentrated into a smaller price interval.
 ## Price Impact
 
 The difference between the mid-price and the execution price of a trade.
-
-## Price Space
-
-?
 
 ## Protocol Fees
 
