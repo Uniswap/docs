@@ -3,18 +3,17 @@ id: oracle
 title: Oracle
 ---
 
-The Uniswap v3 oracle is a subset of functions integrated into every pair contract which store historical price and liquidity data directly in the pair. The historical price data can be queried on chain by anyone wishing to integrate Uniswap v3 price data into their logic.
+All Uniswap v3 pools are capable of serving as _oracles_, offering access to historical price and liquidity data. This capability unlocks a wide range of on-chain use cases.
 
-Historical price data is stored in the form of an `Observation`. A call to the v3 oracle returns an `Observation` as of the call's specified time in the past. Multiple observation instances may be returned at once, allowing the execution of custom logic based on a given price history without any data stored in the calling contract.
+Historical data is stored as an array of observations. At first, each pool tracks only a single observation, overwriting it as blocks elapse. This limits how far into the past users may access data. However, any party willing to pay the transaction fees may increase the number of tracked observations (up to a maximum of `65535`), expanding the period of data availability to 9 days or more.
 
-The number of instances of historical price data begins at `1`, and may be lengthened by any party willing to pay the transaction fees, with a maximum potential of `65535` instances of price data, roughly correlating to 9 days of price history given a 13 second block time.
-
-Storing price history directly in the pool contract substantially reduces the potential for logic errors on the part of the calling contract and reduces integration costs by eliminating the need for storage in the integrating contract. Additionally, the v3 oracle observation array's considerable length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over an arbitrary postition inside of, or encompassing, the full length of the oracle array.
-
+Storing price history directly in the pool contract substantially reduces the potential for logical errors on the part of the calling contract, and reduces integration costs by eliminating the need to store historical values. Additionally, the v3 oracle's considerable minimum length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over an arbitrary postition inside of, or encompassing, the full length of the oracle array.
 
 ## Observations
 
-Oracle data is returned in the form of an `observation`, a struct in the following configuration:
+// TODO i would modify this section to include the function signature/return values of `observe`, not the `Observation`. `Observation`s are low-level, and if discussed, deserve a smaller section lower down with an emphasis on why you'd need access to a particular `Observation` (outlier filtering, or something like that), and how to get them (not via `observe`, but by `observations(i)` array access)
+
+`Observation`s take the following form:
 
 ```solidity
 struct Observation {
@@ -26,12 +25,13 @@ struct Observation {
         uint160 liquidityCumulative;
         // whether or not the observation is initialized
         bool initialized;
-   ```
+```
 
-
-Each time `Observe` is called, the caller must specify from how long ago to return the observation. If the given time matches a block in which an observation was written, the stored observation is returned.
+Each time `observe` is called, the caller must specify from how long ago to return the observation. If the given time matches a block in which an observation was written, the stored observation is returned.
 
 ## Counterfactual Observations
+
+// TODO i would not focus on counterfactual observations as a top-level section. i would instead recommend that you emphasize that observations can be fetched as of any second, corresponding to either an actual transaction or a linearly interpolated. the bit about times more recent than the most recent block is good though, and it should be worth mentioning that `secondsAgo` = 0 corresponds to either an interpolated observation _or_ the accumulator values as of the beginning of the block (if the call is happening within a block)
 
 In some situations, the v3 oracle will return a **counterfactual** observation: an observation as it would have appeared if a block were mined at the exact time specified by the call. 
 
@@ -46,6 +46,10 @@ A counterfactual observation is constructed by taking the first observation prio
 A counterfactual observation is as effective as a written observation, and should make no difference in terms of safety or to the user of an integrating entity.
 
 ## Tick Accumulator
+
+// TODO append-only isn't the right term here, that refers to an array whose length never goes down. accumulators are monotonically increasing (except in the case of overflow). same goes for liquidity acc section
+
+// TODO the phrasing of the second para is weird. accumulator values are valid for a particular timestamp. to get the tick/liquidity as of that timestamp, you need an observation before or after or both, which lets you take a delta and divide out by the time elapsed.
 
 The tick accumulator stores the cumulative sum of the active tick at the time of the observation, the data is append only and continuously grows for the life of the pool.
 
