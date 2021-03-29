@@ -9,11 +9,11 @@ An automated market maker is a smart contract on Ethereum that holds on-chain li
 
 ## Asset
 
-While a digital asset can take many forms, the Uniswap Protocol deals in ERC-20 asset pairs, and represents a position in the form of an NFT (ERC-721)
+While a digital asset can take many forms, the Uniswap Protocol deals in ERC-20 token pairs, and represents a position in the form of an NFT (ERC-721).
 
 ## Concentrated Liquidity
 
-Liquidity that is allocated within a determined price boundary
+Liquidity that is allocated within a determined price boundary.
 
 ## Constant Product Formula
 
@@ -33,11 +33,11 @@ A smart contract that deploys a unique smart contract for any ERC20/ERC20 tradin
 
 ## Flash Swap
 
-A trade that uses the tokens being purchased before paying for them.
+A trade that uses the tokens purchased before paying for them.
 
 ## Invariant
 
-The “k” value in the constant product formula
+The “k” value in the constant product formula X*Y=K
 
 ## Liquidity Provider / "LP"
 
