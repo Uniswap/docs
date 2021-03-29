@@ -3,7 +3,7 @@ module.exports = {
   tagline: "Documentation and Guides",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.png",
   organizationName: "Uniswap", // Usually your GitHub org/user name.
