@@ -3,67 +3,61 @@ id: oracle
 title: Oracle
 ---
 
-The Uniswap v3 oracle is a subset of functions integrated into every pair contract which store historical price and liquidity data directly in the pair. The historical price data can be queried on chain by anyone wishing to integrate Uniswap v3 price data into their logic.
+All Uniswap v3 pools can serve as _oracles_, offering access to historical price and liquidity data. This capability unlocks a wide range of on-chain use cases.
 
-Historical price data is stored in the form of an `Observation`. A call to the v3 oracle returns an `Observation` as of the call's specified time in the past. Multiple observation instances may be returned at once, allowing the execution of custom logic based on a given price history without any data stored in the calling contract.
+Historical data is stored as an array of observations. At first, each pool tracks only a single observation, overwriting it as blocks elapse. This limits how far into the past users may access data. However, any party willing to pay the transaction fees may increase the number of tracked observations (up to a maximum of `65535`), expanding the period of data availability to 9 days or more.
 
-The number of instances of historical price data begins at `1`, and may be lengthened by any party willing to pay the transaction fees, with a maximum potential of `65535` instances of price data, roughly correlating to 9 days of price history given a 13 second block time.
-
-Storing price history directly in the pool contract substantially reduces the potential for logic errors on the part of the calling contract and reduces integration costs by eliminating the need for storage in the integrating contract. Additionally, the v3 oracle observation array's considerable length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over an arbitrary postition inside of, or encompassing, the full length of the oracle array.
+Storing price history directly in the pool contract substantially reduces the potential for logical errors on the part of the calling contract, and reduces integration costs by eliminating the need to store historical values. Additionally, the v3 oracle's considerable maximum length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over an arbitrary position inside of, or encompassing, the full length of the oracle array.
 
 
 ## Observations
 
-Oracle data is returned in the form of an `observation`, a struct in the following configuration:
+`Observation`s take the following form:
 
 ```solidity
-struct Observation {
-        // the block timestamp of the observation
-        uint32 blockTimestamp;
-        // the tick accumulator, i.e. tick * time elapsed since the pool was first initialized
-        int56 tickCumulative;
-        // the liquidity accumulator, i.e. liquidity * time elapsed since the pool was first initialized
-        uint160 liquidityCumulative;
-        // whether or not the observation is initialized
-        bool initialized;
+function observe(
+        Observation[65535] storage self,
+        uint32 time,
+        uint32[] memory secondsAgos,
+        int24 tick,
+        uint16 index,
+        uint128 liquidity,
+        uint16 cardinality
+    ) internal view returns (int56[] memory tickCumulatives, uint160[] memory liquidityCumulatives) {
    ```
 
 
-Each time `Observe` is called, the caller must specify from how long ago to return the observation. If the given time matches a block in which an observation was written, the stored observation is returned.
+Each time `observe` is called, the caller must specify from how long ago to return the observation. If the given time matches a block in which an observation was written, the stored observation is returned.
 
-## Counterfactual Observations
+Observations can be fetched as of any second, corresponding to either an actual observation, if one exists in storage, or a linearly interpolated one.
 
-In some situations, the v3 oracle will return a **counterfactual** observation: an observation as it would have appeared if a block were mined at the exact time specified by the call. 
+if called mid-block with secondsAgo = 0, assuming that the pool has already been interacted within the given block, `observe` returns the most recently written observation, which will be the value as of the beginning of the block.
 
-Counterfactual observations are returned in two circumstances:
+When a price is desired in the near future (at the termination of the current block, during which the call was executed), or if 1 or more seconds have gone by since the last block in which an observation was recorded, no stored observation will exist, and a counterfactual observation will be returned.
 
-* When a price is desired in the near future (at the termination of the current block, during which the call was executed). If 1 or more seconds have gone by since the last block in which an observation was recorded, no observation will exist.
-
-* At a time in the past, providing it is located between two previously written observations. This primarily concerns observations returned from a time inside a single block.
-
-A counterfactual observation is constructed by taking the first observation prior to the given timestamp, and adding the seconds elapsed since that observation, multiplied by the value of tick/liquidity at the end of the block following the initially queried observation.
-
-A counterfactual observation is as effective as a written observation, and should make no difference in terms of safety or to the user of an integrating entity.
 
 ## Tick Accumulator
 
-The tick accumulator stores the cumulative sum of the active tick at the time of the observation, the data is append only and continuously grows for the life of the pool.
+The tick accumulator stores the cumulative sum of the active tick at the time of the observation. The tick accumulator value increases monotonically and grows by the value of the current tick - per second.
 
-When called, it returns the in-range tick available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrieve the active tick at the time of the observation.
-
-When we use “active tick” or otherwise refer to the current tick of a pool, we mean the lower tick boundary that is closest to the current price.
+> To derive the tick as of the given timestamp, the caller needs to retrieve an observation before the given timestamp, take the delta of the two values, and divide by the time elapsed between them.
 
 
 ## Liquidity Accumulator
 
-The liquidity accumulator stores how much in-range liquidity is available at the time of the observation, the data is append only and continuously grows for the life of the pool.
 
-When called, it returns how much in-range liquidity is available at the time of the observation, expressed by the delta between the most recent and second most recent observation. The caller must calculate the delta themselves in order to retrieve the in-range liquidity at the desired time.
-
-- An important note: the in-range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pool.
+The liquidity accumulator stores how much in-range liquidity is available at the time of the observation. The liquidity accumulator value increases monotonically and grows by the value of the in-range liquidity - per second.
 
 
-## Deriving price from a tick
+> To derive the tick as of the given timestamp, the caller needs to retrieve an observation before the given timestamp, take the delta of the two values, and divide by the time elapsed between them.
+
+> An important note: the in-range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pool.
+
+
+## Deriving Price From A Tick
+
+
+> When we use "active tick" or otherwise refer to the current tick of a pool, we mean the lower tick boundary that is closest to the current price.
 
 When a pool is created, each token is assigned to either `token0` or `token1` based on the contract address of the tokens in the pair. Whether or not a token is `token0` or `token1` is meaningless; it is only used to maintain a fixed assignment for the purpose of relative valuation and general logic in the pool contract. 
 
@@ -77,7 +71,7 @@ You have an oracle reading that shows a return of `tickCumulative` as [70000, 14
 
 The current tick is `70,000` as expressed by the delta between the most recent and second most recent value of `tickCumulative`
 
-With a tick reading of 70,000, we can find the value of `token0` relative to `token1` by using the current tick as `i` in `𝑝(𝑖) = 1.0001^𝑖`
+With a tick reading of 70,000, we can find the value of `token0` relative to `token1` by using the current tick as `i' in `𝑝(𝑖) = 1.0001^𝑖`
 
 `1.0001^70000 = 1996.25` 
 
