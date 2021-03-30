@@ -11,16 +11,17 @@ module.exports = {
         'concepts/fee-pools',
         'concepts/limit-orders',
         'concepts/oracle',
+        'concepts/glossary',
       ],
     },
-    {
-      type: 'category',
-      label: 'Guides',
-      items: [
-            'guides/landing',
+    // {
+    //   type: 'category',
+    //   label: 'Guides',
+    //   items: [
+    //         'guides/landing',
           
-      ]
-    },
+    //   ]
+    // },
     {
       type: 'category',
       label: 'Reference',
