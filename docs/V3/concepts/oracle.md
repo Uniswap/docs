@@ -40,8 +40,7 @@ When a price is desired in the near future (at the termination of the current bl
 
 The tick accumulator stores the cumulative sum of the active tick at the time of the observation. The tick accumulator value increases monotonically and grows by the value of the current tick - per second.
 
-> To derive the tick as of the given timestamp, the caller needs to retrieve an observation before the given timestamp, take the delta of the two values, and divide by the time elapsed between them.
-
+To derive the tick as of the given timestamp, the caller needs to retrieve an observation before the given timestamp, take the delta of the two values, and divide by the time elapsed between them. Calculating a TWAP from the price accumulator is also covered in the [**whitepaper**](https://uniswap.org/whitepaper-v3.pdf).
 
 ## Liquidity Accumulator
 
@@ -49,7 +48,7 @@ The tick accumulator stores the cumulative sum of the active tick at the time of
 The liquidity accumulator stores how much in-range liquidity is available at the time of the observation. The liquidity accumulator value increases monotonically and grows by the value of the in-range liquidity - per second.
 
 
-> To derive the tick as of the given timestamp, the caller needs to retrieve an observation before the given timestamp, take the delta of the two values, and divide by the time elapsed between them.
+To derive the tick as of the given timestamp, the caller needs to retrieve an observation before the given timestamp, take the delta of the two values, and divide by the time elapsed between them. Calculating a TWAPs are addressed in finer detail in the [**whitepaper**](https://uniswap.org/whitepaper-v3.pdf).
 
 > An important note: the in-range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pool.
 

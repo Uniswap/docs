@@ -44,8 +44,8 @@ module.exports = {
         //   ]
         // },
         {
-          label: "References",
-          to: "/",
+          label: "Whitepaper",
+          to: "https://uniswap.org/whitepaper-v3.pdf",
           position: "right",
         },
         {
