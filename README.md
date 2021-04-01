@@ -10,9 +10,9 @@ Install solidity doc gen
 Get the correct compiler version
 `npm install -D solc-0.7@npm:solc@0.7.6`
 
-Put the updated template `contract.hbs` in same directory as /contracts that you want to generate
+Put the updated template `contract.hbs` in a /templates folder under the same directory as /contracts that you want to generate
 
-Run `npx solidity-docgen --solc-module solc-0.7`
+Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
 
 # How to Update search indices with algolia
 

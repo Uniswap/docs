@@ -2,17 +2,18 @@ module.exports = {
   
   docs: [
 
-    // {
-    //   type: 'category',
-    //   label:'Core Concepts',
-    //   items: [
-    //     'concepts/landing',
-    //     'concepts/concentrated-liquidity',
-    //     'concepts/fee-pools',
-    //     'concepts/limit-orders',
-    //     'concepts/oracle',
-    //   ],
-    // },
+    {
+      type: 'category',
+      label:'Core Concepts',
+      items: [
+        'concepts/landing',
+        'concepts/concentrated-liquidity',
+        'concepts/fee-pools',
+        'concepts/limit-orders',
+        'concepts/oracle',
+        'concepts/glossary',
+      ],
+    },
     // {
     //   type: 'category',
     //   label: 'Guides',
@@ -25,12 +26,12 @@ module.exports = {
       type: 'category',
       label: 'Reference',
       items: [
-        'reference/landing',
         {
           type: 'category',
           label: 'Libraries',
           items: [
             'reference/libraries/BitMath',
+            'reference/libraries/FixedPoint96',
             'reference/libraries/FixedPoint96',
             'reference/libraries/FixedPoint128',
             'reference/libraries/FullMath',
@@ -79,6 +80,7 @@ module.exports = {
             'reference/interfaces/IUniswapV3PoolDeployer',
           ]
         },
+        'reference/NoDelegateCall',
         'reference/UniswapV3Factory',
         'reference/UniswapV3Pool',
         'reference/UniswapV3PoolDeployer',
@@ -91,20 +93,20 @@ module.exports = {
 
 
   guides: [
-    // {
-    //   type: 'category',
-    //   label:'Landing',
-    //   items: [
-    //     'guides/landing',
-    //   ],
-    // },
-    // {
-    //   type: 'category',
-    //   label:'Guides Overview',
-    //   items: [
-    //     'guides/guides-holder',
-    //   ],
-    // },
+    {
+      type: 'category',
+      label:'Landing',
+      items: [
+        'guides/landing',
+      ],
+    },
+    {
+      type: 'category',
+      label:'Guides Overview',
+      items: [
+        'guides/guides-holder',
+      ],
+    },
   ],
 
   reference: [
