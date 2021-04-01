@@ -73,7 +73,7 @@ The current tick is `70,000` as expressed by the delta between the most recent a
 
 With a tick reading of 70,000, we can find the value of `token0` relative to `token1` by using the current tick as `i' in `𝑝(𝑖) = 1.0001^𝑖`
 
-`1.0001^70000 = 1996.25` 
+`1.0001^70000 = 1096.25` 
 
 tick `70,000` gives us a price of WETH as 1096.25 in terms of USDC
 
