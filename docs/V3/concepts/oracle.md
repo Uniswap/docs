@@ -3,6 +3,12 @@ id: oracle
 title: Oracle
 ---
 
+:::note
+
+Unfamiliar with oracles? check out the Ethereum Foundation's [oracle overview](https://ethereum.org/en/developers/docs/oracles/) first.
+
+:::
+
 All Uniswap v3 pools can serve as _oracles_, offering access to historical price and liquidity data. This capability unlocks a wide range of on-chain use cases.
 
 Historical data is stored as an array of observations. At first, each pool tracks only a single observation, overwriting it as blocks elapse. This limits how far into the past users may access data. However, any party willing to pay the transaction fees may increase the number of tracked observations (up to a maximum of `65535`), expanding the period of data availability to 9 days or more.
