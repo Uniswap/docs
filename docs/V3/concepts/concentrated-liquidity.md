@@ -15,15 +15,15 @@ With v3, liquidity providers may concentrate their capital to smaller price inte
 
 ## Active Liquidity
 
-As the price of an asset rises or falls, it may exit the price bounds that LPs have set in a position. When the price exits a position's interval, the position's liquidity is no longer active and no longer earns fees. At this point, the LPs provided liquidity is composed entirely of a single asset because the reserves of the other asset have been entirely depleted. 
+As the price of an asset rises or falls, it may exit the price bounds that LPs have set in a position. When the price exits a position's interval, the position's liquidity is no longer active and no longer earns fees. At this point, the LPs provided liquidity is composed entirely of a single asset, as the reserves of the other asset have been entirely depleted through swapping. 
 
-As price moves in one direction, LPs gain more of the one asset as swappers demand the other, until their entire liquidity consists of only one asset. (In v2, we don't see this behavior because LPs never reach the upper or lower bound of the price of two assets, i.e., 0 and ∞). If the price ever reenters the interval, the liquidity becomes active again, and in-range LPs begin earning fees once more.
+As price moves in one direction, LPs gain more of the one asset as swappers demand the other, until their entire liquidity consists of only one asset. (In v2, we don't typically see this behavior because LPs rarely reach the upper or lower bound of the price of two assets, i.e., 0 and ∞). If the price ever reenters the interval, the liquidity becomes active again, and in-range LPs begin earning fees once more.
 
 Importantly, LPs are free to create as many positions as they see fit, each with its own price interval. Concentrated liquidity serves as a mechanism to let the market decide what a sensible distribution of liquidity is, as rational LPs are incentivized to concentrate their liquidity while ensuring that their liquidity remains active.
-Ticks
-To achieve concentrated liquidity, the once continuous spectrum of price space has been partitioned with ticks.
 
 ## Ticks
+
+To achieve concentrated liquidity, the once continuous spectrum of price space has been partitioned with ticks.
 
 Ticks are the boundaries between discrete areas in price space. Ticks are spaced such that an increase of 1 tick represents a .01% increase in price at any point along the curve.
 
