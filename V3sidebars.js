@@ -8,7 +8,7 @@ module.exports = {
       items: [
         'concepts/landing',
        // 'concepts/concentrated-liquidity',
-       // 'concepts/fee-pools',
+        'concepts/pool-fees',
         'concepts/limit-orders',
         'concepts/oracle',
         'concepts/glossary',
