@@ -66,15 +66,15 @@ Deriving an asset price from the current tick is achievable due to the fixed exp
 
 An example of finding the price of WETH in a WETH / USDC pool, where WETH is `token0` and USDC is `token1`: 
 
-You have an oracle reading that shows a return of `tickCumulative` as [70000, 140000]
+You have an oracle reading that shows a return of `tickCumulative` as [70,000, 1,000,000], with an elapsed time between the observations of 13 seconds.
 
-The current tick is `70,000` as expressed by the delta between the most recent and second most recent value of `tickCumulative`
+The current tick is `71,538.46` as expressed by the delta between the most recent and second most recent value of `tickCumulative`, divided by the elapsed seconds time between the readings. 
 
-With a tick reading of 70,000, we can find the value of `token0` relative to `token1` by using the current tick as `i' in `𝑝(𝑖) = 1.0001^𝑖`
+With a tick reading of `70,000`, we can find the value of `token0` relative to `token1` by using the current tick as `i' in `𝑝(𝑖) = 1.0001^𝑖`
 
-`1.0001^70000 = 1996.25` 
+`1.0001^71,538.46 = 1278.56` 
 
-tick `70,000` gives us a price of WETH as 1096.25 in terms of USDC
+tick `71,538.46` gives us a price of WETH as 1278.56 in terms of USDC
 
 ----
 
