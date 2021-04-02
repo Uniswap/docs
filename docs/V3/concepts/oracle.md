@@ -4,9 +4,7 @@ title: Oracle
 ---
 
 :::note
-
 Unfamiliar with oracles? check out the Ethereum Foundation's [oracle overview](https://ethereum.org/en/developers/docs/oracles/) first.
-
 :::
 
 All Uniswap v3 pools can serve as _oracles_, offering access to historical price and liquidity data. This capability unlocks a wide range of on-chain use cases.
@@ -56,8 +54,9 @@ The liquidity accumulator stores how much in-range liquidity is available at the
 
 To derive the tick as of the given timestamp, the caller needs to retrieve an observation before the given timestamp, take the delta of the two values, and divide by the time elapsed between them. Calculating a TWAPs are addressed in finer detail in the [**whitepaper**](https://uniswap.org/whitepaper-v3.pdf).
 
-> An important note: the in-range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pool.
-
+:::note
+The in-range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pool.
+:::
 
 ## Deriving Price From A Tick
 
