@@ -1,6 +1,6 @@
 ---
 id: landing
-title: Protocol Overview
+title: Overview
 slug: /
 ---
 
