@@ -3,6 +3,18 @@ id: concentrated-liquidity
 title: Concentrated Liquidity
 ---
 
+  <div>
+  <video width="100%" height="100%" playsInline controls loop>
+  <source src="https://gateway.pinata.cloud/ipfs/QmTf6EueKk5ZJ2KQwt1ZCHxRaogYVRci2U5uKRo8NeCmoB" />
+  Your browser does not support the video tag.
+  </video>
+  </div>
+
+
+---
+
+## Introduction
+
 The defining idea of Uniswap v3 is concentrated liquidity: liquidity that is allocated within a custom price boundary.
 
 In earlier versions, liquidity was distributed uniformly along the 𝑥 · 𝑦 = L<sup>2</sup> reserves curve, where 𝑥 and 𝑦 are the respective reserves of two assets X and Y, and L[^1] is a constant measure of liquidity. 
