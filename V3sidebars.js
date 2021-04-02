@@ -7,7 +7,7 @@ module.exports = {
       label:'Core Concepts',
       items: [
         'concepts/landing',
-       // 'concepts/concentrated-liquidity',
+        'concepts/concentrated-liquidity',
         'concepts/pool-fees',
         'concepts/limit-orders',
         'concepts/oracle',
