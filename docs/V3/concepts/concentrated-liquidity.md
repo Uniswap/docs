@@ -2,7 +2,6 @@
 id: concentrated-liquidity
 title: Concentrated Liquidity
 ---
-## Concentrated Liquidity
 
 The defining idea of Uniswap v3 is concentrated liquidity: liquidity that is allocated within a custom price boundary.
 
