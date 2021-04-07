@@ -7,7 +7,7 @@ prices between 2**-128 and 2**128
 ```solidity
   function getSqrtRatioAtTick(
     int24 tick
-  ) internal returns (uint160 sqrtPriceX96)
+  ) internal pure returns (uint160 sqrtPriceX96)
 ```
 Calculates sqrt(1.0001^tick) * 2^96
 
@@ -27,7 +27,7 @@ at the given tick
 ```solidity
   function getTickAtSqrtRatio(
     uint160 sqrtPriceX96
-  ) internal returns (int24 tick)
+  ) internal pure returns (int24 tick)
 ```
 Calculates the greatest tick value such that getRatioAtTick(tick) <= ratio
 
@@ -42,4 +42,4 @@ ever return.
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tick`| uint160 | The greatest tick for which the ratio is less than or equal to the input ratio
+|`tick`| int24 | The greatest tick for which the ratio is less than or equal to the input ratio

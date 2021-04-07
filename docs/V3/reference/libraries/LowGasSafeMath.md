@@ -7,7 +7,7 @@ Contains methods for doing math operations that revert on overflow or underflow 
   function add(
     uint256 x,
     uint256 y
-  ) internal returns (uint256 z)
+  ) internal pure returns (uint256 z)
 ```
 Returns x + y, reverts if sum overflows uint256
 
@@ -27,7 +27,7 @@ Returns x + y, reverts if sum overflows uint256
   function sub(
     uint256 x,
     uint256 y
-  ) internal returns (uint256 z)
+  ) internal pure returns (uint256 z)
 ```
 Returns x - y, reverts if underflows
 
@@ -47,7 +47,7 @@ Returns x - y, reverts if underflows
   function mul(
     uint256 x,
     uint256 y
-  ) internal returns (uint256 z)
+  ) internal pure returns (uint256 z)
 ```
 Returns x * y, reverts if overflows
 
@@ -67,7 +67,7 @@ Returns x * y, reverts if overflows
   function add(
     int256 x,
     int256 y
-  ) internal returns (int256 z)
+  ) internal pure returns (int256 z)
 ```
 Returns x + y, reverts if overflows or underflows
 
@@ -87,7 +87,7 @@ Returns x + y, reverts if overflows or underflows
   function sub(
     int256 x,
     int256 y
-  ) internal returns (int256 z)
+  ) internal pure returns (int256 z)
 ```
 Returns x - y, reverts if overflows or underflows
 

@@ -9,7 +9,7 @@ Contains the math that uses square root of price as a Q64.96 and liquidity to co
     uint128 liquidity,
     uint256 amount,
     bool add
-  ) internal returns (uint160)
+  ) internal pure returns (uint160)
 ```
 Gets the next sqrt price given a delta of token0
 
@@ -28,9 +28,9 @@ if this is impossible because of overflow, we calculate liquidity / (liquidity /
 |`add` | bool | Whether to add or remove the amount of token0
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`| uint160 | price after adding or removing amount, depending on add
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| uint160 | price after adding or removing amount, depending on add
 ### getNextSqrtPriceFromAmount1RoundingDown
 ```solidity
   function getNextSqrtPriceFromAmount1RoundingDown(
@@ -38,7 +38,7 @@ if this is impossible because of overflow, we calculate liquidity / (liquidity /
     uint128 liquidity,
     uint256 amount,
     bool add
-  ) internal returns (uint160)
+  ) internal pure returns (uint160)
 ```
 Gets the next sqrt price given a delta of token1
 
@@ -56,9 +56,9 @@ The formula we compute is within <1 wei of the lossless version: sqrtPX96 +- amo
 |`add` | bool | Whether to add, or remove, the amount of token1
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`| uint160 | price after adding or removing `amount`
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| uint160 | price after adding or removing `amount`
 ### getNextSqrtPriceFromInput
 ```solidity
   function getNextSqrtPriceFromInput(
@@ -66,7 +66,7 @@ The formula we compute is within <1 wei of the lossless version: sqrtPX96 +- amo
     uint128 liquidity,
     uint256 amountIn,
     bool zeroForOne
-  ) internal returns (uint160 sqrtQX96)
+  ) internal pure returns (uint160 sqrtQX96)
 ```
 Gets the next sqrt price given an input amount of token0 or token1
 
@@ -91,7 +91,7 @@ Throws if price or liquidity are 0, or if the next price is out of bounds
     uint128 liquidity,
     uint256 amountOut,
     bool zeroForOne
-  ) internal returns (uint160 sqrtQX96)
+  ) internal pure returns (uint160 sqrtQX96)
 ```
 Gets the next sqrt price given an output amount of token0 or token1
 
@@ -116,7 +116,7 @@ Throws if price or liquidity are 0 or the next price is out of bounds
     uint160 sqrtRatioBX96,
     uint128 liquidity,
     bool roundUp
-  ) internal returns (uint256 amount0)
+  ) internal pure returns (uint256 amount0)
 ```
 Gets the amount0 delta between two prices
 
@@ -134,7 +134,7 @@ i.e. liquidity * (sqrt(upper) - sqrt(lower)) / (sqrt(upper) * sqrt(lower))
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| uint160 | Amount of token0 required to cover a position of size liquidity between the two passed prices
+|`amount0`| uint256 | Amount of token0 required to cover a position of size liquidity between the two passed prices
 ### getAmount1Delta
 ```solidity
   function getAmount1Delta(
@@ -142,7 +142,7 @@ i.e. liquidity * (sqrt(upper) - sqrt(lower)) / (sqrt(upper) * sqrt(lower))
     uint160 sqrtRatioBX96,
     uint128 liquidity,
     bool roundUp
-  ) internal returns (uint256 amount1)
+  ) internal pure returns (uint256 amount1)
 ```
 Gets the amount1 delta between two prices
 
@@ -159,14 +159,14 @@ Calculates liquidity * (sqrt(upper) - sqrt(lower))
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount1`| uint160 | Amount of token1 required to cover a position of size liquidity between the two passed prices
+|`amount1`| uint256 | Amount of token1 required to cover a position of size liquidity between the two passed prices
 ### getAmount0Delta
 ```solidity
   function getAmount0Delta(
     uint160 sqrtRatioAX96,
     uint160 sqrtRatioBX96,
     int128 liquidity
-  ) internal returns (int256 amount0)
+  ) internal pure returns (int256 amount0)
 ```
 Helper that gets signed token0 delta
 
@@ -181,14 +181,14 @@ Helper that gets signed token0 delta
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| uint160 | Amount of token0 corresponding to the passed liquidityDelta between the two prices
+|`amount0`| int256 | Amount of token0 corresponding to the passed liquidityDelta between the two prices
 ### getAmount1Delta
 ```solidity
   function getAmount1Delta(
     uint160 sqrtRatioAX96,
     uint160 sqrtRatioBX96,
     int128 liquidity
-  ) internal returns (int256 amount1)
+  ) internal pure returns (int256 amount1)
 ```
 Helper that gets signed token1 delta
 
@@ -203,4 +203,4 @@ Helper that gets signed token1 delta
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount1`| uint160 | Amount of token1 corresponding to the passed liquidityDelta between the two prices
+|`amount1`| int256 | Amount of token1 corresponding to the passed liquidityDelta between the two prices
