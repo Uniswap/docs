@@ -9,7 +9,7 @@ module.exports = {
         'concepts/landing',
         'concepts/faq',
         'concepts/concentrated-liquidity',
-        'concepts/fee-pools',
+        'concepts/pool-fees',
         'concepts/limit-orders',
         'concepts/oracle',
         'concepts/glossary',
@@ -93,22 +93,22 @@ module.exports = {
   ],
 
 
-  guides: [
-    {
-      type: 'category',
-      label:'Landing',
-      items: [
-        'guides/landing',
-      ],
-    },
-    {
-      type: 'category',
-      label:'Guides Overview',
-      items: [
-        'guides/guides-holder',
-      ],
-    },
-  ],
+  // guides: [
+  //   {
+  //     type: 'category',
+  //     label:'Landing',
+  //     items: [
+  //       'guides/landing',
+  //     ],
+  //   },
+  //   {
+  //     type: 'category',
+  //     label:'Guides Overview',
+  //     items: [
+  //       'guides/guides-holder',
+  //     ],
+  //   },
+  // ],
 
   reference: [
     {

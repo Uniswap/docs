@@ -9,6 +9,7 @@ module.exports = {
   organizationName: "Uniswap", // Usually your GitHub org/user name.
   projectName: "Uniswap-docs", // Usually your repo name.
   themeConfig: {
+   // hideableSidebar: true,
     prism: {
       additionalLanguages: ["solidity"],
     },
@@ -44,18 +45,8 @@ module.exports = {
         //   ]
         // },
         {
-          label: "Concepts",
-          to: "docs/v3/concepts",
-          position: "right",
-        },
-        {
-          label: "Guides",
-          to: "docs/v3/concepts",
-          position: "right",
-        },
-        {
-          label: "References",
-          to: "docs/v3/concepts",
+          label: "Whitepaper",
+          to: "https://uniswap.org/whitepaper-v3.pdf",
           position: "right",
         },
         {

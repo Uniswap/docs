@@ -6,7 +6,7 @@ This library provides functionality for computing bit properties of an unsigned 
 ```solidity
   function mostSignificantBit(
     uint256 x
-  ) internal returns (uint8 r)
+  ) internal pure returns (uint8 r)
 ```
 Returns the index of the most significant bit of the number,
     where the least significant bit is at index 0 and the most significant bit is at index 255
@@ -22,12 +22,12 @@ The function satisfies the property:
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`r`| uint256 | the index of the most significant bit
+|`r`| unit8 | the index of the most significant bit
 ### leastSignificantBit
 ```solidity
   function leastSignificantBit(
     uint256 x
-  ) internal returns (uint8 r)
+  ) internal pure returns (uint8 r)
 ```
 Returns the index of the least significant bit of the number,
     where the least significant bit is at index 0 and the most significant bit is at index 255
@@ -43,4 +43,4 @@ The function satisfies the property:
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`r`| uint256 | the index of the least significant bit
+|`r`| unit8 | the index of the least significant bit

@@ -10,7 +10,7 @@ Positions store additional state for tracking fees owed to the position
     address owner,
     int24 tickLower,
     int24 tickUpper
-  ) internal returns (struct Position.Info position)
+  ) internal view returns (struct Position.Info position)
 ```
 Returns the Info struct of a position, given an owner and position boundaries
 
@@ -26,7 +26,7 @@ Returns the Info struct of a position, given an owner and position boundaries
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`position`| mapping(bytes32 => struct Position.Info) | The position info struct of the given owners' position
+|`position`| struct Position.Info | The position info struct of the given owners' position
 ### update
 ```solidity
   function update(

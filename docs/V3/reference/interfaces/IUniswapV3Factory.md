@@ -5,7 +5,7 @@ The Uniswap V3 Factory facilitates creation of Uniswap V3 pools and control over
 ### owner
 ```solidity
   function owner(
-  ) external returns (address)
+  ) external view returns (address)
 ```
 Returns the current owner of the factory
 
@@ -13,14 +13,14 @@ Can be changed by the current owner via setOwner
 
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`|  | address of the factory owner
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| address  | address of the factory owner
 ### feeAmountTickSpacing
 ```solidity
   function feeAmountTickSpacing(
     uint24 fee
-  ) external returns (int24)
+  ) external view returns (int24)
 ```
 Returns the tick spacing for a given fee amount, if enabled, or 0 if not enabled
 
@@ -32,16 +32,16 @@ A fee amount can never bee removed, so this value should be hard coded or cached
 |`fee` | uint24 | The enabled fee, denominated in hundredths of a bip. Returns 0 in case of unenabled fee
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`| uint24 | tick spacing
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| int24 | tick spacing
 ### getPool
 ```solidity
   function getPool(
     address tokenA,
     address tokenB,
     uint24 fee
-  ) external returns (address pool)
+  ) external view returns (address pool)
 ```
 Returns the pool address for a given pair of tokens and a fee, or address 0 if it does not exist
 

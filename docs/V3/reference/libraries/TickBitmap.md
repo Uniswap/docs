@@ -28,7 +28,7 @@ Flips the initialized state for a given tick from false to true, or vice versa
     int24 tick,
     int24 tickSpacing,
     bool lte
-  ) internal returns (int24 next, bool initialized)
+  ) internal view returns (int24 next, bool initialized)
 ```
 Returns the next initialized tick contained in the same word (or adjacent word) as the tick that is either
 to the left (less than or equal to) or right (greater than) of the given tick
@@ -45,5 +45,5 @@ to the left (less than or equal to) or right (greater than) of the given tick
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`next`| mapping(int16 => uint256) | The next initialized or uninitialized tick up to 256 ticks away from the current tick
-|`initialized`| int24 | Whether the next tick is initialized, as the function only searches within up to 256 ticks
+|`next`| int24 | The next initialized or uninitialized tick up to 256 ticks away from the current tick
+|`initialized`| bool | Whether the next tick is initialized, as the function only searches within up to 256 ticks

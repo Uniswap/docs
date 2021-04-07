@@ -5,7 +5,7 @@
 ### _blockTimestamp
 ```solidity
   function _blockTimestamp(
-  ) internal returns (uint32)
+  ) internal view virtual returns (uint32)
 ```
 
 Returns the block timestamp truncated to 32 bits, i.e. mod 2**32. This method is overridden in tests.
@@ -16,7 +16,7 @@ Returns the block timestamp truncated to 32 bits, i.e. mod 2**32. This method is
   function secondsInside(
     int24 tickLower,
     int24 tickUpper
-  ) external returns (uint32)
+  ) external view override noDelegateCall returns (uint32)
 ```
 Returns a relative timestamp value representing how long, in seconds, the pool has spent between
 tickLower and tickUpper
@@ -39,7 +39,7 @@ burned. Thus the external contract must control the lifecycle of the position.
 ```solidity
   function observe(
     uint32[] secondsAgos
-  ) external returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
+  ) external view override noDelegateCall returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
 ```
 Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp
 
@@ -98,7 +98,7 @@ not locked because it initializes unlocked
     int24 tickUpper,
     uint128 amount,
     bytes data
-  ) external returns (uint256 amount0, uint256 amount1)
+  ) external override lock returns (uint256 amount0, uint256 amount1)
 ```
 Adds liquidity for the given recipient/tickLower/tickUpper position
 
@@ -125,7 +125,7 @@ noDelegateCall is applied indirectly via _modifyPosition
     int24 tickUpper,
     uint128 amount0Requested,
     uint128 amount1Requested
-  ) external returns (uint128 amount0, uint128 amount1)
+  ) external override lock returns (uint128 amount0, uint128 amount1)
 ```
 Collects tokens owed to a position
 
@@ -154,7 +154,7 @@ actual tokens owed, e.g. type(uint128).max. Tokens owed may be from accumulated 
     int24 tickLower,
     int24 tickUpper,
     uint128 amount
-  ) external returns (uint256 amount0, uint256 amount1)
+  ) external override lock returns (uint256 amount0, uint256 amount1)
 ```
 Burn liquidity from the sender and account tokens owed for the liquidity to the position
 
@@ -179,7 +179,7 @@ noDelegateCall is applied indirectly via _modifyPosition
     int256 amountSpecified,
     uint160 sqrtPriceLimitX96,
     bytes data
-  ) external returns (int256 amount0, int256 amount1)
+  ) external override noDelegateCall returns (int256 amount0, int256 amount1)
 ```
 Swap token0 for token1, or token1 for token0
 
@@ -245,7 +245,7 @@ Set the denominator of the protocol's % share of the fees
     address recipient,
     uint128 amount0Requested,
     uint128 amount1Requested
-  ) external returns (uint128 amount0, uint128 amount1)
+  ) external override lock onlyFactoryOwner returns (uint128 amount0, uint128 amount1)
 ```
 Collect the protocol fee accrued to the pool
 
@@ -260,5 +260,5 @@ Collect the protocol fee accrued to the pool
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| address | The protocol fee collected in token0
+|`amount0`| uint128 | The protocol fee collected in token0
 |`amount1`| uint128 | The protocol fee collected in token1
