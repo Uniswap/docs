@@ -8,8 +8,8 @@ module.exports = {
       items: [
         'concepts/landing',
         'concepts/concentrated-liquidity',
-        'concepts/pool-fees',
-        'concepts/limit-orders',
+        'concepts/fees',
+        'concepts/range-orders',
         'concepts/oracle',
         'concepts/glossary',
       ],
