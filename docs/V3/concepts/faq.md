@@ -17,7 +17,7 @@ All things equal, the more narrow the range, the more impermanent loss. At the s
 #### Does Uniswap v3 offer single-sided liquidity?
 LPs can pursue single-sided liquidity allocation above the current spot price if they are provisioning the higher valued token or below the current spot price if they are provisioning the lesser valued token. In the former case, the LP would effectively be selling out of their position as the asset that they provided increases in value. In the latter case, an LP would effectively be scaling into a position of the other asset as it continues to fall in price. 
 
-#### As an LP, I’m worried about not knowing what range to provide liquidity. Is something like a hybrid approach to v2 and v3 possible?
+#### As an LP, I’m worried about not knowing what range to provide liquidity. Is a hybrid approach to v2 and v3 possible?
 The nice thing about v3 is that it can accommodate many different types of LP strategies, including the 0-to-infinity default strategy found in v2. A hybrid approach may involve setting a relatively wide range around the mid-price, or using a third party auto-LP service, which can manage rebalancings on the LP’s behalf. 
 
 #### What is the purpose of representing LP positions by an NFT?
