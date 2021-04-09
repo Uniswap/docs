@@ -66,12 +66,19 @@ var Toggle = function (_PureComponent) {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
       if (prevProps.checked !== this.props.checked) {
+        // Disable linting rule here since this usage of setState inside
+        // componentDidUpdate is OK; see
+        // https://reactjs.org/docs/react-component.html#componentdidupdate
+        // eslint-disable-next-line react/no-did-update-set-state
         this.setState({ checked: !!this.props.checked });
       }
     }
   }, {
     key: 'handleClick',
     value: function handleClick(event) {
+      if (this.props.disabled) {
+        return;
+      }
       var checkbox = this.input;
       if (event.target !== checkbox && !this.moved) {
         this.previouslyChecked = checkbox.checked;
@@ -88,6 +95,9 @@ var Toggle = function (_PureComponent) {
   }, {
     key: 'handleTouchStart',
     value: function handleTouchStart(event) {
+      if (this.props.disabled) {
+        return;
+      }
       this.startX = (0, _util.pointerCoord)(event).x;
       this.activated = true;
     }
