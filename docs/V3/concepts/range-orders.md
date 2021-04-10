@@ -19,8 +19,9 @@ The nature of AMM design makes some styles of limit orders possible, while other
 
 > The current price of a DAI / ETH pool is 1,500 DAI / ETH. You would like to sell your ETH for DAI when the price of ETH reaches 1,600 DAI / ETH. This is possible, as the price space above the spot price is denominated in the higher valued asset, ETH. You can provide ETH at a price of 1,600 DAI / ETH and have the order filled when the spot price crosses your position.
 
-<img src={require('./images/RangeOrder1.png').default} alt="RangeOrder1" width="45%" height="45%"/>
-<img src={require('./images/RangeOrder2.png').default} alt="RangeOrder1" width="45%" height="45%"/>
+<img src={require('./images/RangeOrder1.png').default} alt="RangeOrder1" width="45%" height="45%" />
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src={require('./images/RangeOrder2.png').default} alt="RangeOrder1" width="45%" height="45%" />
 
 ---
 
@@ -33,15 +34,21 @@ As the above examples show, In Uniswap V3, the two paired assets in a given pool
 
 The following examples show limit order styles that are unable to be replicated due to the separation of assets in price space.
 
+---
+
 ### Buy Stop Orders
 
 > The current price of a DAI / ETH pool is 1,500 DAI / ETH. You expect the price of ETH, once it hits 2,000, will rocket up to 3,000. So you would like to place a range order from DAI to ETH at a price of 2,000 DAI/ETH. This is not possible as the price space above 1,500 DAI / ETH is denominated in ETH - and thus, you cannot provide the DAI necessary at your desired price to be swapped into ETH.
+
+---
 
 ### Stop-Loss Orders
 
 > The current price of a DAI / ETH pool is 1,500 DAI / ETH. You expect once the price of ETH drops to below 1,000, it will tank to 200. So you would like to place a range order from ETH to DAI at a price of 1,000. This is not possible as the price space below the spot price is denominated in DAI, and so you cannot allocate the ETH necessary at 1,000 to be swapped into DAI. 
 
 One important distinction: range orders, unlike traditional limit orders, will be **unfilled** if the spot price crosses the given range and then reverses to recross in the opposite direction before the destination asset is withdrawn. While you will be earning LP fees during this time, if the goal is to exit fully in the desired destination asset, you will need to keep an eye on the order and manually remove your liquidity when the order has been filled.
+
+---
 
 ## Fees
  
