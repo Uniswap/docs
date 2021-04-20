@@ -27,6 +27,7 @@ module.exports = {
       type: 'category',
       label: 'Reference',
       items: [
+        'reference/Deployments',
         {
           type: 'category',
           label: 'Periphery',
