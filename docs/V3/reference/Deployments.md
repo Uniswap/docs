@@ -80,7 +80,7 @@ keys are mapped to their respective source code in the table below:
 }
 ```
 
-### Goerli
+## Goerli
 
 ```json
 {
