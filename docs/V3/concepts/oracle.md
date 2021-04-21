@@ -45,7 +45,7 @@ In v3, observations are stored in an array and keep multiple data structures in 
 
 Each array is initialized with just one slot, but new slots can be written with a one-time gas cost. With each new slot, price oracles increase the length of time they can measure, all the way up to a maximum of 65,536 indices. Oracles can only return data as far back as their arrays allow.
 
-<img src={require('./images/oracle-f1.png').default}/>
+![](./concepts/images/oracle-f1.png)
 Figure 1: v2 vs v3 Oracles
 
 Uniswap expects the users to provide a time interval using the `secondsAgo` variable and subtracting it from the current block timestamp to find the start of a range. To return the current accumulated values, pass `0`.
