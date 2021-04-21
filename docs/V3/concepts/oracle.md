@@ -7,80 +7,90 @@ title: Oracle
 Unfamiliar with oracles? check out the Ethereum Foundation's [oracle overview](https://ethereum.org/en/developers/docs/oracles/) first.
 :::
 
-All Uniswap v3 pools can serve as _oracles_, offering access to historical price and liquidity data. This capability unlocks a wide range of on-chain use cases.
+# Overview
+Oracles are smart contracts that communicate price feed information between assets traded on-chain. Their goal is to signal the trading price between a pair of assets and are often used as inputs to another contract’s execution. DeFi projects that move billions in value rely on price oracles to feed untampered data to their protocols.
 
-Historical data is stored as an array of observations. At first, each pool tracks only a single observation, overwriting it as blocks elapse. This limits how far into the past users may access data. However, any party willing to pay the transaction fees may increase the number of tracked observations (up to a maximum of `65535`), expanding the period of data availability to 9 days or more.
+Uniswap is an excellent data source for price oracles because of the sheer volume of trades. Exchanges with large volumes are likely to follow the “true” spot price of a trading pair and are more resistant to bad actors. (“True” refers to the hypothetical fair market value across all markets.)
 
-Storing price history directly in the pool contract substantially reduces the potential for logical errors on the part of the calling contract, and reduces integration costs by eliminating the need to store historical values. Additionally, the v3 oracle's considerable maximum length makes oracle price manipulation significantly more difficult, as the calling contract may cheaply construct a TWAP over an arbitrary position inside of, or encompassing, the full length of the oracle array.
+Uniswap v3 oracles return the average price and average liquidity (volume) of a traded pair within a given interval of seconds. All of this happens within a single call. The remainder of this page will explain how Uniswap oracles work at the protocol level and an exercise in using oracles.
 
+# How Uniswap’s Price Oracle Works
+Prices received from Uniswap’s oracles represent the average price of a trading pair over some time. Calculating the average price follows in a series of steps:
 
-## Observations
+1. At the beginning (or end) of each block, Uniswaps records price and time and aggregates them into a single cumulative value
+2. This value written to an array and stored in state
+3. The user calls a function and provides a time interval of n seconds from the current block timestamp
+4. The function returns an array with the cumulative value from the beginning and end of the time interval. From these numbers, users can calculate the average price of a trading pair.
 
-`Observation`s take the following form:
+## Observations, Ticks, and Arrays
+As with v2, Uniswap v3 uses an aggregate number that multiplies the two into an accumulated value. At the beginning of each block, Uniswap records the accumulated value of the first transaction that touches a token pool. Each observation contains:
 
 ```solidity
-function observe(
-        Observation[65535] storage self,
-        uint32 time,
-        uint32[] memory secondsAgos,
-        int24 tick,
-        uint16 index,
-        uint128 liquidity,
-        uint16 cardinality
-    ) internal view returns (int56[] memory tickCumulatives, uint160[] memory liquidityCumulatives) {
+[/core/contracts/libraries/Oracle.sol](https://github.com/Uniswap/uniswap-v3-core/blob/3e88af408132fc957e3e406f65a0ce2b1ca06c3d/contracts/libraries/Oracle.sol#L12)
+struct Observation {
+        // the block timestamp of the observation
+        uint32 blockTimestamp;
+        // the tick accumulator, i.e. tick * seconds-elapsed since the pool was first initialized
+        int56 tickCumulative;
+        // the liquidity accumulator, i.e. liquidity * seconds-elapsed since the pool was first initialized
+        uint160 liquidityCumulative;
+        // whether or not the observation is initialized
+        bool initialized;
+    }
    ```
 
+Of note is the integer, `tickCumulative` (we will get to `liquidityCumulative` in [#Liquidity Oracle](#Liquidity Oracle)). Recall from Concentrated-Liquidity, that a “tick” is a separation of space between prices, all the way down to 0.01%. In other words, a tick is a measurement of price positions up to 1 basis point apart, making `tickCumulative` a product of price and time.
 
-Each time `observe` is called, the caller must specify from how long ago to return the observation. If the given time matches a block in which an observation was written, the stored observation is returned.
+In v3, observations are stored in an array and keep multiple data structures in storage instead of just one. Arrays allow Uniswap to store the historical price data of each block. New `tickCumulative` values with each block fill the next slot, either overwriting the previous value or writing to a new slot. By introducing an array, v3 users only need to query Uniswap once to calculate an average price instead of querying and storing data at the beginning of the desired time interval.
 
-Observations can be fetched as of any second, corresponding to either an actual observation, if one exists in storage, or a linearly interpolated one.
+Each array is initialized with just one slot, but new slots can be written with a one-time gas cost. With each new slot, price oracles increase the length of time they can measure, all the way up to a maximum of 65,536 indices. Oracles can only return data as far back as their arrays allow.
 
-if called mid-block with secondsAgo = 0, assuming that the pool has already been interacted within the given block, `observe` returns the most recently written observation, which will be the value as of the beginning of the block.
+<img src="/docs/v3/concepts/images/oracle-f1" alt="figure1">
+Figure 1: v2 vs v3 Oracles
 
-When a price is desired in the near future (at the termination of the current block, during which the call was executed), or if 1 or more seconds have gone by since the last block in which an observation was recorded, no stored observation will exist, and a counterfactual observation will be returned.
+Uniswap expects the users to provide a time interval using the `secondsAgo` variable and subtracting it from the current block timestamp to find the start of a range. To return the current accumulated values, pass `0`.
 
+```solidity
+[/core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol](https://github.com/Uniswap/uniswap-v3-core/blob/3e88af408132fc957e3e406f65a0ce2b1ca06c3d/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol#L18)
+function observe(uint32[] calldata secondsAgo)
+        external
+        view
+        returns (int56[] memory tickCumulatives, uint160[] memory liquidityCumulatives);
+    }
+   ```
 
-## Tick Accumulator
+## Geometric Mean Time-Weighted Average Price
+With the introduction of multiple liquidity pools for the same trading pair, Uniswap v3 uses a weighted geometric mean formula to determine the average price across all pools that exist for a single pair. Understanding this concept is crucial to have a deep understanding of Uniswap’s oracles.
 
-The tick accumulator stores the cumulative sum of the active tick at the time of the observation. The tick accumulator value increases monotonically and grows by the value of the current tick - per second.
+The change from the arithmetic (v2) to geometric mean (v3) matters because of how price is denoted in automated market makers (AMM). Unlike order books, where both sides set buy/sell orders in some other currency (USD, Yuan, Euro), AMMs denote the price of one token in terms of the other - more of a ratio than a price. When calculating the average over a period of time, the two tokens’ ratios may not be reciprocal, presenting an arbitrage opportunity.
 
-To derive the tick as of the given timestamp, the caller needs to retrieve an observation before the given timestamp, take the delta of the two values, and divide by the time elapsed between them. Calculating a TWAP from the price accumulator is also covered in the [**whitepaper**](https://uniswap.org/whitepaper-v3.pdf).
+<img src="/docs/v3/concepts/images/oracle-f2" alt="figure2">
+Figure 2: UNI is represented in terms of ETH
 
-## Liquidity Accumulator
+In v2, this requirement was met by keeping track of both ratios, UNI:ETH and ETH:UNI. However, with multiple pools with different fee structures existing for the same trading pair, ratios must be reciprocal within the same pool and sister pools. Fortunately, the geometric mean has a helpful property that keeps prices reciprocal at all times, making it a better fit for v3. More on this in the #Deriving Price from Ticks below.
 
+<img src="/docs/v3/concepts/images/oracle-f3" alt="figure3">
+Figure 3: Weighted Geometric Average
 
-The liquidity accumulator stores how much in-range liquidity is available at the time of the observation. The liquidity accumulator value increases monotonically and grows by the value of the in-range liquidity - per second.
+## Liquidity Oracle
+In [#Observations, Ticks, and Arrays](#Observations, Ticks, and Arrays), the Observation struct declared a uint160 variable named `liquidityCumulative`. As with price oracles, Uniswap v3 introduces Liquidity Oracles. The only difference is that liquidity oracles track a measure of total volume and time. Otherwise, they operate similarly and provide a data point in assessing pools with different fee tiers. Try re-reading this entire section with `liquidityCumulative` instead.
 
+# Deriving Price from Ticks
+Oracle pricing data will return two variables, as described in [#Observations, Ticks, and Arrays](#Observations, Ticks, and Arrays): `int56[] memory tickCumulatives, uint160[] memory liquidityCumulatives`. Both these values are a combination of price/liquidity and time. 
 
-To derive the tick as of the given timestamp, the caller needs to retrieve an observation before the given timestamp, take the delta of the two values, and divide by the time elapsed between them. Calculating a TWAPs are addressed in finer detail in the [**whitepaper**](https://uniswap.org/whitepaper-v3.pdf).
+To derive price from them, calling contracts must complete the math Uniswap started when calculating its tick values (as with `liquidityCumulative`). Let us go through an example to understand better.
 
-:::note
-The in-range liquidity accumulator should be used with care. Liquidity and tick data are entirely uncorrelated, and there are scenarios in which weighing price data and liquidity together may create inaccurate representations of the pool.
-:::
+In this hypothetical scenario, we want to get the average trading price of UNI/ETH twice per minute. To do so, we call the Observe function at block 125 and set `30` as our `secondsAgo` value. Some other parameters: (1) At the end of block 122, 70 UNI can buy 1 ETH, and (2) Average blocktime is 10 seconds.
 
-## Deriving Price From A Tick
+<img src="/docs/v3/concepts/images/oracle-f4" alt="figure4">
+Figure 4: tickCumulative calculated as a time-weighted geometric average of price. 
 
+A value of `1,399,447` is far from a price reading. What we return from our call is an interval of `[123456, 1399447]`. This interval represents the `tickCumulative` value of the current block (block 125) and the `tickCumulative` value of the block 30 seconds ago (block 122). In truth, the numbers used to bookend the range do not matter. The difference between them is the fixed variable - in this case, `1,275,990`. Furthermore, log base 1.0001 is significant because it measures up to 1 basis point in price movement between ticks.
 
-> When we use "active tick" or otherwise refer to the current tick of a pool, we mean the lower tick boundary that is closest to the current price.
+The calling contract must complete the calculation using the [TickMath.sol](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/TickMath.sol) library to find the average price. The `tickCumulative` equation in Figure 3 is equivalent to the dividend on the right-hand side of Figure 2. Meaning, all that’s left is dividing `tickCumulative` by the sum of time passed (wi) and raising it to the power of base 1.0001 and end up with 70.32 as our geometric mean price of UNI in terms of ETH.
 
-When a pool is created, each token is assigned to either `token0` or `token1` based on the contract address of the tokens in the pair. Whether or not a token is `token0` or `token1` is meaningless; it is only used to maintain a fixed assignment for the purpose of relative valuation and general logic in the pool contract. 
+<img src="/docs/v3/concepts/images/oracle-f5" alt="">
 
-Deriving an asset price from the current tick is achievable due to the fixed expression across the pool contract of token0 in terms of token1.
-
-----
-
-An example of finding the price of WETH in a WETH / USDC pool, where WETH is `token0` and USDC is `token1`: 
-
-You have an oracle reading that shows a return of `tickCumulative` as [70,000, 1,000,000], with an elapsed time between the observations of 13 seconds.
-
-The current tick is `71,538.46` as expressed by the delta between the most recent and second most recent value of `tickCumulative`, divided by the elapsed seconds time between the readings. 
-
-With a tick reading of `70,000`, we can find the value of `token0` relative to `token1` by using the current tick as `i' in `𝑝(𝑖) = 1.0001^𝑖`
-
-`1.0001^71,538.46 = 1278.56` 
-
-tick `71,538.46` gives us a price of WETH as 1278.56 in terms of USDC
-
-----
-
-Ticks are signed integers and can be expressed as a negative number, so for any circumstances where `token0` is of a lower value than `token1`, a negative tick value will be returned by `tickCumulative` and a relative value of `< 1` will be returned by a calculation of `token0` in terms of `token1`.
+# FAQs
+##### Why are observations made at the beginning of a block?
+Prices at the end/beginning of a block are more difficult to manipulate than transactions further in the ordering. If an attacker submits a transaction to manipulate the price to buy tokens for cheap, some other opportunistic arbitrageur may be able to submit a transaction in the next block before the attacker could recover the trade.
