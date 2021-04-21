@@ -26,7 +26,6 @@ Prices received from Uniswap’s oracles represent the average price of a tradin
 As with v2, Uniswap v3 uses an aggregate number that multiplies the two into an accumulated value. At the beginning of each block, Uniswap records the accumulated value of the first transaction that touches a token pool. Each observation contains:
 
 ```solidity
-[/core/contracts/libraries/Oracle.sol](https://github.com/Uniswap/uniswap-v3-core/blob/3e88af408132fc957e3e406f65a0ce2b1ca06c3d/contracts/libraries/Oracle.sol#L12)
 struct Observation {
         // the block timestamp of the observation
         uint32 blockTimestamp;
@@ -38,6 +37,7 @@ struct Observation {
         bool initialized;
     }
    ```
+[/core/contracts/libraries/Oracle.sol](https://github.com/Uniswap/uniswap-v3-core/blob/3e88af408132fc957e3e406f65a0ce2b1ca06c3d/contracts/libraries/Oracle.sol#L12)
 
 Of note is the integer, `tickCumulative` (we will get to `liquidityCumulative` in [#Liquidity Oracle](#Liquidity Oracle)). Recall from Concentrated-Liquidity, that a “tick” is a separation of space between prices, all the way down to 0.01%. In other words, a tick is a measurement of price positions up to 1 basis point apart, making `tickCumulative` a product of price and time.
 
@@ -45,31 +45,31 @@ In v3, observations are stored in an array and keep multiple data structures in 
 
 Each array is initialized with just one slot, but new slots can be written with a one-time gas cost. With each new slot, price oracles increase the length of time they can measure, all the way up to a maximum of 65,536 indices. Oracles can only return data as far back as their arrays allow.
 
-<img src="/docs/v3/concepts/images/oracle-f1" alt="figure1">
+<img src="/docs/v3/concepts/images/oracle-f1.png" alt="figure1">
 Figure 1: v2 vs v3 Oracles
 
 Uniswap expects the users to provide a time interval using the `secondsAgo` variable and subtracting it from the current block timestamp to find the start of a range. To return the current accumulated values, pass `0`.
 
 ```solidity
-[/core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol](https://github.com/Uniswap/uniswap-v3-core/blob/3e88af408132fc957e3e406f65a0ce2b1ca06c3d/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol#L18)
 function observe(uint32[] calldata secondsAgo)
         external
         view
         returns (int56[] memory tickCumulatives, uint160[] memory liquidityCumulatives);
     }
    ```
+[/core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol](https://github.com/Uniswap/uniswap-v3-core/blob/3e88af408132fc957e3e406f65a0ce2b1ca06c3d/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol#L18)
 
 ## Geometric Mean Time-Weighted Average Price
 With the introduction of multiple liquidity pools for the same trading pair, Uniswap v3 uses a weighted geometric mean formula to determine the average price across all pools that exist for a single pair. Understanding this concept is crucial to have a deep understanding of Uniswap’s oracles.
 
 The change from the arithmetic (v2) to geometric mean (v3) matters because of how price is denoted in automated market makers (AMM). Unlike order books, where both sides set buy/sell orders in some other currency (USD, Yuan, Euro), AMMs denote the price of one token in terms of the other - more of a ratio than a price. When calculating the average over a period of time, the two tokens’ ratios may not be reciprocal, presenting an arbitrage opportunity.
 
-<img src="/docs/v3/concepts/images/oracle-f2" alt="figure2">
+<img src="/docs/v3/concepts/images/oracle-f2.png" alt="figure2">
 Figure 2: UNI is represented in terms of ETH
 
 In v2, this requirement was met by keeping track of both ratios, UNI:ETH and ETH:UNI. However, with multiple pools with different fee structures existing for the same trading pair, ratios must be reciprocal within the same pool and sister pools. Fortunately, the geometric mean has a helpful property that keeps prices reciprocal at all times, making it a better fit for v3. More on this in the #Deriving Price from Ticks below.
 
-<img src="/docs/v3/concepts/images/oracle-f3" alt="figure3">
+<img src="/docs/v3/concepts/images/oracle-f3.png" alt="figure3">
 Figure 3: Weighted Geometric Average
 
 ## Liquidity Oracle
@@ -82,14 +82,14 @@ To derive price from them, calling contracts must complete the math Uniswap star
 
 In this hypothetical scenario, we want to get the average trading price of UNI/ETH twice per minute. To do so, we call the Observe function at block 125 and set `30` as our `secondsAgo` value. Some other parameters: (1) At the end of block 122, 70 UNI can buy 1 ETH, and (2) Average blocktime is 10 seconds.
 
-<img src="/docs/v3/concepts/images/oracle-f4" alt="figure4">
+<img src="/docs/v3/concepts/images/oracle-f4.png" alt="figure4">
 Figure 4: tickCumulative calculated as a time-weighted geometric average of price. 
 
 A value of `1,399,447` is far from a price reading. What we return from our call is an interval of `[123456, 1399447]`. This interval represents the `tickCumulative` value of the current block (block 125) and the `tickCumulative` value of the block 30 seconds ago (block 122). In truth, the numbers used to bookend the range do not matter. The difference between them is the fixed variable - in this case, `1,275,990`. Furthermore, log base 1.0001 is significant because it measures up to 1 basis point in price movement between ticks.
 
 The calling contract must complete the calculation using the [TickMath.sol](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/TickMath.sol) library to find the average price. The `tickCumulative` equation in Figure 3 is equivalent to the dividend on the right-hand side of Figure 2. Meaning, all that’s left is dividing `tickCumulative` by the sum of time passed (wi) and raising it to the power of base 1.0001 and end up with 70.32 as our geometric mean price of UNI in terms of ETH.
 
-<img src="/docs/v3/concepts/images/oracle-f5" alt="">
+<img src="/docs/v3/concepts/images/oracle-f5.png" alt="">
 
 # FAQs
 ##### Why are observations made at the beginning of a block?
