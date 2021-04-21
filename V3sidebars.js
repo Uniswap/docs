@@ -4,15 +4,29 @@ module.exports = {
 
     {
       type: 'category',
-      label:'Core Concepts',
+      label: 'Core Concepts',
       items: [
-        'concepts/landing',
-        'concepts/faq',
-        'concepts/concentrated-liquidity',
-        'concepts/fees',
-        'concepts/range-orders',
-        'concepts/oracle',
-        'concepts/glossary',
+        {
+        type: 'category',
+        label: 'Introduction',
+        items: [
+          'concepts/introduction/landing',
+          'concepts/introduction/what-is-uniswap',
+          'concepts/introduction/understanding-permissionless',
+          ]
+        },        
+        {
+        type: 'category',
+        label: 'V3 Overview',
+        items: [
+          'concepts/V3-overview/faq',
+          'concepts/V3-overview/concentrated-liquidity',
+          'concepts/V3-overview/fees',
+          'concepts/V3-overview/range-orders',
+          'concepts/V3-overview/oracle',
+          'concepts/V3-overview/glossary',
+          ]
+        },
       ],
     },
     // {
