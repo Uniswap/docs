@@ -30,7 +30,8 @@ module.exports = {
         type: 'category',
         label: 'Advanced Topics',
         items: [
-          'concepts/advanced-topics/research',
+          'concepts/advanced/research',
+          'concepts/advanced/resources',
           ]
         },
       ],
