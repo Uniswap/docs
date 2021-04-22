@@ -3,8 +3,6 @@ id: what-is-uniswap
 title: What Is Uniswap
 ---
 
-## What is the Uniswap Protocol
-
 The Uniswap protocol is a peer-to-peer system designed for exchanging cryptocurrencies [(**ERC-20 Tokens**)](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) on the [**Ethereum**](https://ethereum.org/) blockchain. The protocol is implemented as a set of persistent, non-upgradable smart contracts democratically governed by [**Uniswap Governance**](https://gov.uniswap.org/).
 
 The Uniswap protocol is built to prioritize censorship resistance, security, self-custody and to function without any trusted intermediaries who may seek to collect fees or selectively restrict access. 
@@ -31,8 +29,6 @@ Permissionless systems are a little tricky to intuitively understand at first, s
 
 ## Where can I find more information
 
-For a deeper look into how an AMM works, look at our AMM overview and concepts.
+For research into the economics of AMMs, game theory, or optimization research, check out our [**research**](https://docs.uniswap.org/concepts/advanced-topics/research) page. 
 
-For research into the economics of AMMs, game theory, or optimization research, check out our research page. 
-
-For new features implemented in V3 that expand and refine AMM design, see the V3 Concepts page.
+For new features implemented in V3 that expand and refine AMM design, see the [**V3 Concepts**](https://docs.uniswap.org/concepts/concentrated-liquidity) page.
