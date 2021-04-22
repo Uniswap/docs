@@ -39,7 +39,7 @@ struct Observation {
    ```
 [/core/contracts/libraries/Oracle.sol](https://github.com/Uniswap/uniswap-v3-core/blob/3e88af408132fc957e3e406f65a0ce2b1ca06c3d/contracts/libraries/Oracle.sol#L12)
 
-Of note is the integer, `tickCumulative` (we will get to `liquidityCumulative` in [#Liquidity Oracle](#Liquidity Oracle)). Recall from Concentrated-Liquidity, that a “tick” is a separation of space between prices, all the way down to 0.01%. In other words, a tick is a measurement of price positions up to 1 basis point apart, making `tickCumulative` a product of price and time.
+Of note is the integer, `tickCumulative` (we will get to `liquidityCumulative` in #Liquidity Oracle). Recall from Concentrated-Liquidity, that a “tick” is a separation of space between prices, all the way down to 0.01%. In other words, a tick is a measurement of price positions up to 1 basis point apart, making `tickCumulative` a product of price and time.
 
 In v3, observations are stored in an array and keep multiple data structures in storage instead of just one. Arrays allow Uniswap to store the historical price data of each block. New `tickCumulative` values with each block fill the next slot, either overwriting the previous value or writing to a new slot. By introducing an array, v3 users only need to query Uniswap once to calculate an average price instead of querying and storing data at the beginning of the desired time interval.
 
@@ -76,10 +76,10 @@ In v2, this requirement was met by keeping track of both ratios, UNI:ETH and ETH
 Figure 3: Weighted Geometric Average
 
 ## Liquidity Oracle
-In [#Observations, Ticks, and Arrays](#Observations, Ticks, and Arrays), the Observation struct declared a uint160 variable named `liquidityCumulative`. As with price oracles, Uniswap v3 introduces Liquidity Oracles. The only difference is that liquidity oracles track a measure of total volume and time. Otherwise, they operate similarly and provide a data point in assessing pools with different fee tiers. Try re-reading this entire section with `liquidityCumulative` instead.
+In #Observations, Ticks, and Arrays, the Observation struct declared a uint160 variable named `liquidityCumulative`. As with price oracles, Uniswap v3 introduces Liquidity Oracles. The only difference is that liquidity oracles track a measure of total volume and time. Otherwise, they operate similarly and provide a data point in assessing pools with different fee tiers. Try re-reading this entire section with `liquidityCumulative` instead.
 
 # Deriving Price from Ticks
-Oracle pricing data will return two variables, as described in [#Observations, Ticks, and Arrays](#Observations, Ticks, and Arrays): `int56[] memory tickCumulatives, uint160[] memory liquidityCumulatives`. Both these values are a combination of price/liquidity and time. 
+Oracle pricing data will return two variables, as described in #Observations, Ticks, and Arrays: `int56[] memory tickCumulatives, uint160[] memory liquidityCumulatives`. Both these values are a combination of price/liquidity and time. 
 
 To derive price from them, calling contracts must complete the math Uniswap started when calculating its tick values (as with `liquidityCumulative`). Let us go through an example to understand better.
 
