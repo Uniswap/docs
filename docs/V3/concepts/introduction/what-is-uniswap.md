@@ -27,7 +27,7 @@ At a very high level, an AMM replaces the buy and sell orders in an order book m
 
 The second primary departure from traditional markets is the permissionless design of the Uniswap protocol. Permissionless design means there are fundamental mechanisms within the protocol that are entirely open for public use, with no selective restriction on who can or cannot use them.
 
-Permissionless systems are a little tricky to intuitively understand at first, to get a little deeper into what permissionless means, you can read our [**Understanding Permissionless**](./understanding-permissionless) overview.
+Permissionless systems are a little tricky to intuitively understand at first, some light research will give plenty of examples of permissionless systems that will help build context. We will be exploring the details of permissionless functionality within the Uniswap Protocol in future docs.
 
 ## Where can I find more information
 
