@@ -12,7 +12,6 @@ module.exports = {
         items: [
           'concepts/introduction/landing',
           'concepts/introduction/what-is-uniswap',
-          'concepts/introduction/understanding-permissionless',
           ]
         },        
         {
@@ -25,6 +24,13 @@ module.exports = {
           'concepts/V3-overview/range-orders',
           'concepts/V3-overview/oracle',
           'concepts/V3-overview/glossary',
+          ]
+        },
+        {
+        type: 'category',
+        label: 'Advanced Topics',
+        items: [
+          'concepts/advanced-topics/research',
           ]
         },
       ],
