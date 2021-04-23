@@ -1,7 +1,7 @@
 module.exports = {
   title: "Uniswap",
   tagline: "Documentation and Guides",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://docs.uniswap.org/",
   baseUrl: "/",
   onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
@@ -132,7 +132,7 @@ module.exports = {
           routeBasePath: "/",
           sidebarPath: require.resolve("./V3sidebars.js"),
           includeCurrentVersion: true,
-          editUrl: "https://github.com/uniswap/uniswap-docs",
+          editUrl: "https://github.com/uniswap/uniswap-docs/tree/main/",
         },
 
         theme: {
