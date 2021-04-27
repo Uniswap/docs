@@ -14,6 +14,8 @@ To begin, we should make clear the distinctions between the different areas of "
 
 The following is a brief overview of the *Uniswap protocol*
 
+## Introduction
+
 The Uniswap protocol is a peer-to-peer system designed for exchanging cryptocurrencies [(**ERC-20 Tokens**)](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) on the [**Ethereum**](https://ethereum.org/) blockchain. The protocol is implemented as a set of persistent, non-upgradable smart contracts democratically governed by [**Uniswap Governance**](https://gov.uniswap.org/).
 
 The Uniswap protocol is built to prioritize censorship resistance, security, self-custody and to function without any trusted intermediaries who may seek to collect fees or selectively restrict access. 
