@@ -3,6 +3,17 @@ id: what-is-uniswap
 title: What Is Uniswap
 ---
 
+## Protocol, Interface, Labs
+
+To begin, we should make clear the distinctions between the different areas of "Uniswap", some of which may confuse new users.
+
+* **Uniswap Labs**: The company which developed the Uniswap protocol, along with the web interface.
+* **The Uniswap Protocol**: A suite of persistent, non-upgradable smart contracts that together create an automated market maker, a protocol that facilitates peer-to-peer market making and swapping of ERC-20 tokens on the Ethereum blockchain. 
+* **The Uniswap Interface**: A web interface that allows for easy interaction with the Uniswap protocol. The interface is only one of many ways one may interact with the Uniswap protocol. 
+* **Uniswap Governance**: A democratic governance system for governing the Uniswap Protocol.
+
+The following is a brief overview of the *Uniswap protocol*
+
 The Uniswap protocol is a peer-to-peer system designed for exchanging cryptocurrencies [(**ERC-20 Tokens**)](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) on the [**Ethereum**](https://ethereum.org/) blockchain. The protocol is implemented as a set of persistent, non-upgradable smart contracts democratically governed by [**Uniswap Governance**](https://gov.uniswap.org/).
 
 The Uniswap protocol is built to prioritize censorship resistance, security, self-custody and to function without any trusted intermediaries who may seek to collect fees or selectively restrict access. 
@@ -25,15 +36,6 @@ At a very high level, an AMM replaces the buy and sell orders in an order book m
 
 The second primary departure from traditional markets is the permissionless design of the Uniswap protocol. Permissionless design means there are fundamental mechanisms within the protocol that are entirely open for public use, with no selective restriction on who can or cannot use them.
 Permissionless systems are a little tricky to intuitively understand at first. In general, some light research will give plenty of examples of permissionless systems to help build context. We will be exploring the details of permissionless functionality within the Uniswap Protocol in future docs.
-
-## Protocol, Interface, Labs
-
-Some distinctions which may be helpful for new users:
-
-* **Uniswap Labs**: The company which developed the Uniswap protocol, along with the web interface.
-* **The Uniswap Protocol**: A suite of persistent, non-upgradable smart contracts that together create an automated market maker - facilitating peer-to-peer market making and swapping of ERC-20 tokens on the Ethereum blockchain. 
-* **The Uniswap Interface**: A web interface that allows for easy interaction with the Uniswap protocol. The interface is only one of many ways one may interact with the Uniswap protocol. 
-* **Uniswap Governance**: A democratic governance system for governing the Uniswap Protocol.
 
 ## Where can I find more information
 
