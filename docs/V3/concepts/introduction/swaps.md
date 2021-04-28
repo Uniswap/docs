@@ -3,12 +3,52 @@ id: swaps
 title: Swaps
 ---
 
-Swaps are the most common way of interacting with the Uniswap protocol. For end users, swapping is straightforward: a user selects an ERC-20 token that they own, and a token they would like to trade for. Executing a swap will trade the currently owned tokens for the commensurate amount of the other token desired, less the swap fee rewarded to liquidity providers.
+## Introduction 
 
-Swapping via the protocol is an on-chain, peer-to-peer process that is entirely available to the public.
+Swaps are the most common way of interacting with the Uniswap protocol. For end-users, swapping is straightforward: a user selects an ERC-20 token that they own and a token they would like to trade it for. Executing a swap sells the currently owned tokens for the proportional amount of the tokens desired, minus the swap fee rewarded to liquidity providers[^1]. Swapping with the Uniswap protocol is a permissionless, peer-to-peer process and is entirely open to the public.
 
-> note: Using web interfaces to swap via the Uniswap protocol can introduce additional permission structures, or entirely separate protocols that sit on top of the Uniswap protocol. To learn more about the differences between the protocol and a web interface, see Protocol, Interface, Labs.
+> note: Using web interfaces (websites) to swap via the Uniswap protocol can introduce additional permission structures or even entirely separate protocols that sit on top of the Uniswap protocol. To learn more about the differences between the protocol and a web interface, see What is Uniswap.
 
-Swapping using the Uniswap protocol is different from traditional order book trades, in that it is not executed against previously created orders, but against a liquidity pool directly. Swapping is a process executed via a smart contract 
+Swaps using the Uniswap protocol are different from traditional order book trades in that they are not executed against previously created orders - but rather against an automated liquidity pool directly. 
 
-that continuously values one asset relative to the other. Because the two assets in a given pool are valued relative to each other, the price of one in terms of the other is constantly shifting as a trade is executed. This dynamic, where the price of one token relative to the other changes during the execution of a swap, is called price impact.
+Swapping is a process executed via smart contracts that continuously value one asset relative to the other. As the two assets in a given pool are continuously valued relative to each other, the price of one asset in terms of the other continually shifts as a trade executes. This dynamic, where the price of one token relative to the other changes during the execution of a swap, we call price impact.
+
+## Price Impact
+
+In a traditional order-book market, a sizeable market-buy order may deplete the available liquidity of a prior limit-sell and continue to execute against a subsequent limit-sell order at a higher price. The result is the final execution price of the order is somewhere in between the two limit-sell prices from which the order was filled. 
+
+Price impact affects the execution price of a swap similarly but is a result of a different dynamic. When using an automated market maker, the relative value of one asset in terms of the other continuously shifts during the execution of a swap, leaving the final execution price somewhere between where the relative value started - and ended. 
+
+This dynamic affects every swap using the Uniswap protocol, as it is an inextricable part of AMM design.
+
+Compared to previous versions of the Uniswap protocol, calculating price impact in V3 is somewhat more complicated, as the amount of liquidity available can change at different price points. Changes in active liquidity directly correlate to a reduction in price impact (in the case of more liquidity), or an increase in price impact (in areas of lower liquidity). 
+
+For end-users, this isn't a problem. Approximate[^2] price impact is anticipated in real-time via the Uniswap interface, and warnings appear if unusually high price impact will occur during a swap. Anyone executing a swap will have the ability to assess the circumstances of price impact when needed. 
+
+## Slippage
+
+The other relevant detail to consider when approaching swaps with the Uniswap protocol is slippage. Slippage is the term we use to describe alterations to a given price environment that could occur while an executed transaction is pending. 
+
+When transactions are sent to Ethereum, their order of execution is sorted by the amount of "gas" offered as a fee for executing each transaction. The higher the fee offered, the faster the transaction is executed. 
+
+This creates a dynamic where, for as long as a transaction is pending, the price environment in which it will be executed will undergo continual change.
+
+A comparable situation in a traditional market would be a market-buy order executed after a delay. One can know the expected price of a market-buy order when submitted, but much can change in the time between submission and execution. In traditional markets, execution delay typically results in the growth of cottage industries that profit from information asymmetries, one example being payment for order flow.
+
+The Uniswap protocol exists on the Ethereum blockchain, which means swaps are executed in an open and adversarial environment. This includes publicly visible pending transactions. As the Ethereum ecosystem grows, increasingly sophisticated trading strategies are seen, informed by the public visibility of pending transactions.[^3]
+
+## Safety Checks
+
+Price impact and slippage can both change while a transaction is pending, which is why we have built numerous safety checks into the Unsiwap protocol to protect end-users from drastic changes in the execution environment of their swap. 
+
+Some of the most commonly encountered safety checks: 
+
+   * **Expired** : A transaction error that occurs if a swap is pending longer than a predetermined deadline. The deadline is a point in time after which the swap will be canceled to protect against unusually long pending periods and the increase in environmental change that comes along with it.
+
+   * **INSUFFICIENT_OUTPUT_AMOUNT** : When the anticipated output amount of a swap at the time of submission does not match, within a certain margin of change, the actual output at the time of execution. This anticipates any environmental shifts during the pending period of a transaction that changes the swap in an unfavorable way and cancels the swap if the output doesn't meet expectations.
+
+[^1] For information about liquidity provision, see liquidity provision
+
+[^2] The Uniswap interface informs the user about the circumstances of their swap, but it is not guaranteed.
+
+[^3] Further reading on this subject can be seen on our research page
