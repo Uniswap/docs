@@ -42,7 +42,7 @@ Some of the most commonly encountered safety checks:
 
    * **Expired** : A transaction error that occurs if a swap is pending longer than a predetermined deadline. The deadline is a point in time after which the swap will be canceled to protect against unusually long pending periods and the increase in environmental change that comes along with it.
 
-   * **INSUFFICIENT_OUTPUT_AMOUNT** : When the anticipated output amount of a swap at the time of submission does not match, within a certain margin of change, the actual output at the time of execution. This anticipates any environmental shifts during the pending period of a transaction that changes the swap in an unfavorable way and cancels the swap if the output doesn't meet expectations.
+   * **INSUFFICIENT_OUTPUT_AMOUNT** : When a user submits a swap, the Uniswap interface will send an estimate of how much of the purchased token to expect out. If the anticipated output amount of a swap does not match, within a certain margin of change, the swap will be cancelled. This attempts to protect the user from any drastic and unfavorable price changes while their transaction is pending.
 
 [^1] For information about liquidity provision, see liquidity provision
 
