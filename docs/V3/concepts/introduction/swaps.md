@@ -27,20 +27,17 @@ For end-users, this isn't a problem. Approximate[^2] price impact is anticipated
 
 ## Slippage
 
-The other relevant detail to consider when approaching swaps with the Uniswap protocol is slippage. Slippage is the term we use to describe alterations to a given price environment that could occur while an executed transaction is pending. 
+The other relevant detail to consider when approaching swaps with the Uniswap protocol is slippage. Slippage is the term we use to describe alterations to a given price environment that could occur while a submitted transaction is pending. 
 
-When transactions are sent to Ethereum, their order of execution is sorted by the amount of "gas" offered as a fee for executing each transaction. The higher the fee offered, the faster the transaction is executed. 
+When transactions are submitted to Ethereum, their order of execution is established by the amount of "gas" offered as a fee for executing each transaction. The higher the fee offered, the faster the transaction is executed. The transactions with a lower gas fee will remain pending for an indeterminate amount of time. During this time, the price environment in which the transaction will eventually be executed will change, as other swaps will be taking place.
 
-This creates a dynamic where, for as long as a transaction is pending, the price environment in which it will be executed will undergo continual change.
+Slippage tolerances establish a margin of change acceptable to the user. As long as the execution price is within the slippage range, e.g., %1, the transaction will be executed. If the execution price ends up outside of the accepted slippage range, the transaction will fail, and the swap will not occur.
 
-A comparable situation in a traditional market would be a market-buy order executed after a delay. One can know the expected price of a market-buy order when submitted, but much can change in the time between submission and execution. In traditional markets, execution delay typically results in the growth of cottage industries that profit from information asymmetries, one example being payment for order flow.
-
-The Uniswap protocol exists on the Ethereum blockchain, which means swaps are executed in an open and adversarial environment. This includes publicly visible pending transactions. As the Ethereum ecosystem grows, increasingly sophisticated trading strategies are seen, informed by the public visibility of pending transactions.[^3]
+A comparable situation in a traditional market would be a market-buy order executed after a delay. One can know the expected price of a market-buy order when submitted, but much can change in the time between submission and execution. 
 
 ## Safety Checks
 
 Price impact and slippage can both change while a transaction is pending, which is why we have built numerous safety checks into the Unsiwap protocol to protect end-users from drastic changes in the execution environment of their swap. 
-
 Some of the most commonly encountered safety checks: 
 
    * **Expired** : A transaction error that occurs if a swap is pending longer than a predetermined deadline. The deadline is a point in time after which the swap will be canceled to protect against unusually long pending periods and the increase in environmental change that comes along with it.
@@ -50,5 +47,3 @@ Some of the most commonly encountered safety checks:
 [^1] For information about liquidity provision, see liquidity provision
 
 [^2] The Uniswap interface informs the user about the circumstances of their swap, but it is not guaranteed.
-
-[^3] Further reading on this subject can be seen on our research page
