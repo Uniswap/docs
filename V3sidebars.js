@@ -48,6 +48,7 @@ module.exports = {
       type: 'category',
       label: 'Reference',
       items: [
+        'reference/smart-contracts',
         'reference/Deployments',
         {
           type: 'category',

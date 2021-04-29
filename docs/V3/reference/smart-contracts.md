@@ -1,6 +1,7 @@
 ---
 id: smart-contracts
-title: v3 Smart Contracts Overview
+title: Smart Contracts Overview
+skug: /reference
 ---
 
 Similar to Uniswap v2, Uniswap v3 is a binary smart contract system comprised of Core contracts and Periphery contracts. Core contracts provide fundamental safety guarantees for all parties interacting with Uniswap. For this reason, core contracts are intentional in scope - they define the logic around pools and assets. This design is intentional as it isolates the most sensitive contracts thus reducing the surface area for attack. Periphery contracts interact with one or more Core contracts but themselves are not part of the core.
