@@ -51,3 +51,12 @@ Authors: Joseph Clark
 > We derive the replicating portfolio of a constant product market. This is structurally short volatility (selling options) which explains why positive transaction costs are needed to induce liquidity providers to participate. Where futures and options markets do not exist, this payoff can be used to create them.
 
 - [https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3550601](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3550601)
+
+# Uniswap v3 And Capital Efficiency For Liquidity Providers
+
+Authors: Zainab Hasan, Shakeib Shaida
+
+> The problem that lies in constant function market makers is capital inefficiency.
+Uniswap v3 mitigates this by allowing liquidity providers to concentrate their liquidity. By doing so, they can provide the same liquidity depth as Uniswap v2 within specified price ranges while putting far less capital at risk.
+
+- [https://xord.com/publications/uniswap-v3-power-to-liquidity-providers]
