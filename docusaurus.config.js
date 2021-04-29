@@ -54,73 +54,70 @@ module.exports = {
           label: "GitHub",
           position: "right",
         },
+        {
+          href: "https://github.com/Uniswap/uniswap-v3-sdk",
+          label: "SDK",
+          position: "right",
+        },
       ],
     },
-    // footer: {
-    //   style: "dark",
-    //   links: [
-    //     {
-    //       title: "Ecosystem",
-    //       items: [
-    //         {
-    //           label: "Home",
-    //           href: "https://discordapp.com/invite/docusaurus",
-    //         },
-    //         {
-    //           label: "App",
-    //           href: "https://discordapp.com/invite/docusaurus",
-    //         },
-    //         {
-    //           label: "Analytics",
-    //           href: "https://discordapp.com/invite/docusaurus",
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       title: "Developers",
-    //       items: [
-    //         {
-    //           label: "Whitepaper",
-    //           href: "https://discordapp.com/invite/docusaurus",
-    //         },
-    //         {
-    //           label: "Audit",
-    //           href: "https://twitter.com/docusaurus",
-    //         },
-    //         {
-    //           label: "Bug Bounty",
-    //           href: "https://twitter.com/docusaurus",
-    //         },
-    //         {
-    //           label: "GitHub",
-    //           href: "https://github.com/uniswap",
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       title: "Community",
-    //       items: [
-    //         {
-    //           label: "Discord",
-    //           href: "https://discordapp.com/invite/docusaurus",
-    //         },
-    //         {
-    //           label: "Twitter",
-    //           href: "https://twitter.com/docusaurus",
-    //         },
-    //         {
-    //           label: "Reddit",
-    //           href: "https://twitter.com/docusaurus",
-    //         },
-    //         {
-    //           label: "Blog",
-    //           href: "https://discordapp.com/invite/docusaurus",
-    //         },
-    //       ],
-    //     },
-    //   ],
-    //   // copyright: `unlicensed`,
-    // },
+    footer: {
+      style: "dark",
+      links: [
+        {
+          title: "Ecosystem",
+          items: [
+            {
+              label: "Home",
+              href: "https://uniswap.org/",
+            },
+            {
+              label: "App",
+              href: "https://app.uniswap.org/",
+            },
+            {
+              label: "Analytics",
+              href: "https://info.uniswap.org/home",
+            },
+          ],
+        },
+        {
+          title: "Developers",
+          items: [
+            {
+              label: "Bug Bounty",
+              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md",
+            },
+            {
+              label: "GitHub",
+              href: "https://github.com/uniswap",
+            },
+          ],
+        },
+        {
+          title: "Community",
+          items: [
+            {
+              label: "Governance",
+              href: "https://gov.uniswap.org/",
+            },
+            {
+              label: "Discord",
+              href: "https://discord.gg/FCfyBSbCU5",
+            },
+            {
+              label: "Twitter",
+              href: "https://twitter.com/Uniswap",
+            },
+            {
+              label: "Blog",
+              href: "https://uniswap.org/blog/",
+            },
+          ],
+        },
+      ],
+      // copyright: `unlicensed`,
+    },
   },
   presets: [
     [
