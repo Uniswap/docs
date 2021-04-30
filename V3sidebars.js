@@ -12,6 +12,7 @@ module.exports = {
         items: [
           'concepts/introduction/landing',
           'concepts/introduction/what-is-uniswap',
+          'concepts/introduction/swaps',
           ]
         },        
         {
