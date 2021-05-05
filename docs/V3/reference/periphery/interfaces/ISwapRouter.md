@@ -1,5 +1,53 @@
 Functions for swapping tokens via Uniswap V3
 
+## Parameter Structs
+
+### ExactInputSingleParams
+```solidity
+    struct ExactInputSingleParams {
+        address tokenIn;
+        address tokenOut;
+        uint24 fee;
+        address recipient;
+        uint256 deadline;
+        uint256 amountIn;
+        uint256 amountOutMinimum;
+        uint160 sqrtPriceLimitX96;
+    }
+```
+### ExactInputParams
+```solidity
+   struct ExactInputParams {
+        bytes path;
+        address recipient;
+        uint256 deadline;
+        uint256 amountIn;
+        uint256 amountOutMinimum;
+    }
+```
+### ExactInputSingleParams
+```solidity
+    struct ExactOutputSingleParams {
+        address tokenIn;
+        address tokenOut;
+        uint24 fee;
+        address recipient;
+        uint256 deadline;
+        uint256 amountOut;
+        uint256 amountInMaximum;
+        uint160 sqrtPriceLimitX96;
+    }
+```
+### ExactOutputParams
+```solidity
+    struct ExactOutputParams {
+        bytes path;
+        address recipient;
+        uint256 deadline;
+        uint256 amountOut;
+        uint256 amountInMaximum;
+    }
+```
 
 ## Functions
 ### exactInputSingle
@@ -20,6 +68,7 @@ Swaps `amountIn` of one token for as much as possible of another token
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amountOut`| struct ISwapRouter.ExactInputSingleParams | The amount of the received token
+
 ### exactInput
 ```solidity
   function exactInput(
@@ -38,6 +87,7 @@ Swaps `amountIn` of one token for as much as possible of another along the speci
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amountOut`| struct ISwapRouter.ExactInputParams | The amount of the received token
+
 ### exactOutputSingle
 ```solidity
   function exactOutputSingle(
@@ -56,6 +106,7 @@ Swaps as little as possible of one token for `amountOut` of another token
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`amountIn`| struct ISwapRouter.ExactOutputSingleParams | The amount of the input token
+
 ### exactOutput
 ```solidity
   function exactOutput(
