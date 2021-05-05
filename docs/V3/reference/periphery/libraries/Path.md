@@ -17,9 +17,9 @@ Returns true iff the path contains two or more pools
 |`path` | bytes | The encoded swap path
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`True`| bytes | if path contains two or more pools, otherwise false
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| bool | if path contains two or more pools, otherwise false
 ### decodeFirstPool
 ```solidity
   function decodeFirstPool(
@@ -37,9 +37,9 @@ Decodes the first pool in path
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tokenA`| bytes | The first token of the given pool
-|`tokenB`|  | The second token of the given pool
-|`fee`|  | The fee level of the pool
+|`tokenA`| address | The first token of the given pool
+|`tokenB`| address | The second token of the given pool
+|`fee`| uint24 | The fee level of the pool
 ### getFirstPool
 ```solidity
   function getFirstPool(
@@ -55,9 +55,9 @@ Gets the segment corresponding to the first pool in the path
 |`path` | bytes | The bytes encoded swap path
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`| bytes | segment containing all data necessary to target the first pool in the path
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| bytes | segment containing all data necessary to target the first pool in the path
 ### skipToken
 ```solidity
   function skipToken(
@@ -73,6 +73,6 @@ Skips a token + fee element from the buffer and returns the remainder
 |`path` | bytes | The swap path
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`| bytes | remaining token + fee elements in the path
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| bytes | remaining token + fee elements in the path

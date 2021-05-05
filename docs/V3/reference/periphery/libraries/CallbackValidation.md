@@ -25,7 +25,7 @@ Returns the address of a valid Uniswap V3 Pool
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`pool`| address | The V3 pool contract address
+|`pool`| IUniswapV3Pool | The V3 pool contract address
 ### verifyCallback
 ```solidity
   function verifyCallback(
@@ -45,4 +45,4 @@ Returns the address of a valid Uniswap V3 Pool
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`pool`| address | The V3 pool contract address
+|`pool`| IUniswapV3Pool | The V3 pool contract address

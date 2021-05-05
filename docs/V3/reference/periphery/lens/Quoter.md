@@ -11,8 +11,6 @@ the swap and check the amounts in the callback.
 ```
 
 
-
-
 ### uniswapV3SwapCallback
 ```solidity
   function uniswapV3SwapCallback(
@@ -61,7 +59,7 @@ Returns the amount out received for a given exact input but for a swap of a sing
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amountOut`| address | The amount of `tokenOut` that would be received
+|`amountOut`| uint256 | The amount of `tokenOut` that would be received
 ### quoteExactInput
 ```solidity
   function quoteExactInput(
@@ -81,7 +79,7 @@ Returns the amount out received for a given exact input swap without executing t
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amountOut`| bytes | The amount of the last token that would be received
+|`amountOut`| uint256 | The amount of the last token that would be received
 ### quoteExactOutputSingle
 ```solidity
   function quoteExactOutputSingle(
@@ -107,7 +105,7 @@ Returns the amount in required to receive the given exact output amount but for 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amountIn`| address | The amount required as the input for the swap in order to receive `amountOut`
+|`amountIn`| uint256 | The amount required as the input for the swap in order to receive `amountOut`
 ### quoteExactOutput
 ```solidity
   function quoteExactOutput(
@@ -127,4 +125,4 @@ Returns the amount in required for a given exact output swap without executing t
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amountIn`| bytes | The amount of first token required to be paid
+|`amountIn`| uint256 | The amount of first token required to be paid
