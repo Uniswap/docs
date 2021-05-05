@@ -19,6 +19,17 @@ The amountMinimum parameter prevents malicious contracts from stealing WETH9 fro
 |`amountMinimum` | uint256 | The minimum amount of WETH9 to unwrap
 |`recipient` | address | The address receiving ETH
 
+### refundETH
+```solidity
+  function refundETH(
+  ) external
+```
+Refunds any ETH balance held by this contract to the `msg.sender`
+
+Useful for bundling with mint or increase liquidity that uses ether, or exact output swaps
+that use ether for the input amount
+
+
 ### sweepToken
 ```solidity
   function sweepToken(
@@ -27,7 +38,7 @@ The amountMinimum parameter prevents malicious contracts from stealing WETH9 fro
     address recipient
   ) external
 ```
-Sends the full amount of a token held by this contract to the given recipient
+Transfers the full amount of a token held by this contract to recipient
 
 The amountMinimum parameter prevents malicious contracts from stealing the token from users
 

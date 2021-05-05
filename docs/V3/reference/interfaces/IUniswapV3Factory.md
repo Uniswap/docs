@@ -15,7 +15,7 @@ Can be changed by the current owner via setOwner
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-| address  | address of the factory owner
+| address | address of the factory owner
 ### feeAmountTickSpacing
 ```solidity
   function feeAmountTickSpacing(
@@ -24,7 +24,7 @@ Can be changed by the current owner via setOwner
 ```
 Returns the tick spacing for a given fee amount, if enabled, or 0 if not enabled
 
-A fee amount can never bee removed, so this value should be hard coded or cached in the calling context
+A fee amount can never be removed, so this value should be hard coded or cached in the calling context
 
 #### Parameters:
 | Name | Type | Description                                                          |

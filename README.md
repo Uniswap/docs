@@ -19,8 +19,9 @@ Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
 create .env file with `APPLICATION_ID` and the `API_KEY` (write access)
 Edit config.json file with 
 - start url from updated website
-- sitemap url from updated website
+- sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
 - "v3-docs" index name
+- install jq : `brew install jq`
 run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
 
 # How to add a new page

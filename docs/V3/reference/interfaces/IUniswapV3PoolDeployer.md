@@ -11,8 +11,6 @@ of the pool being constant allowing the CREATE2 address of the pool to be cheapl
 ```
 Get the parameters to be used in constructing the pool, set transiently during pool creation.
 
-Called by the pool constructor to fetch the parameters of the pool
-
 #### Return Values :
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |

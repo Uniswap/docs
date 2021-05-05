@@ -1,5 +1,54 @@
 Wraps Uniswap V3 positions in a non-fungible token interface which allows for them to be transferred
 and authorized.
+## Parameter Structs
+
+### MintParams
+```solidity
+  struct MintParams {
+        address token0;
+        address token1;
+        uint24 fee;
+        int24 tickLower;
+        int24 tickUpper;
+        uint256 amount0Desired;
+        uint256 amount1Desired;
+        uint256 amount0Min;
+        uint256 amount1Min;
+        address recipient;
+        uint256 deadline;
+    }
+```
+
+### IncreaseLiquidityParams
+```solidity
+   struct IncreaseLiquidityParams {
+        uint256 tokenId;
+        uint256 amount0Desired;
+        uint256 amount1Desired;
+        uint256 amount0Min;
+        uint256 amount1Min;
+        uint256 deadline;
+    }
+```
+### DecreaseLiquidityParams
+```solidity
+    struct DecreaseLiquidityParams {
+        uint256 tokenId;
+        uint128 liquidity;
+        uint256 amount0Min;
+        uint256 amount1Min;
+        uint256 deadline;
+    }
+```
+### CollectParams
+```solidity
+    struct CollectParams {
+        uint256 tokenId;
+        address recipient;
+        uint128 amount0Max;
+        uint128 amount1Max;
+    }
+```
 
 ## Functions
 ### positions
@@ -58,6 +107,13 @@ We use tokenA and tokenB when we are referring to unsorted, or unordered tokens
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`pool`| address | Returns the pool address based on the pair of tokens and fee, will return the newly created pool address if necessary
+|`tickLower`|  | The lower end of the tick range for the position
+|`tickUpper`|  | The higher end of the tick range for the position
+|`liquidity`|  | The liquidity of the position
+|`feeGrowthInside0LastX128`|  | The fee growth of token0 as of the last action on the individual position
+|`feeGrowthInside1LastX128`|  | The fee growth of token1 as of the last action on the individual position
+|`tokensOwed0`|  | The uncollected amount of token0 owed to the position as of the last computation
+|`tokensOwed1`|  | The uncollected amount of token1 owed to the position as of the last computation
 ### mint
 ```solidity
   function mint(
