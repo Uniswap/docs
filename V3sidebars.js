@@ -66,7 +66,6 @@ module.exports = {
                 'reference/periphery/base/Multicall',
                 'reference/periphery/base/PeripheryImmutableState',
                 'reference/periphery/base/PeripheryPayments',
-                'reference/periphery/base/PeripheryValidation',
                 'reference/periphery/base/SelfPermit',
               ]
             },
