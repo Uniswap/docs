@@ -97,6 +97,7 @@ Does not withdraw any fees earned by the liquidity position, which must be withd
     int256 amount0,
     int256 amount1,
     uint160 sqrtPriceX96,
+    uint128 liquidity,
     int24 tick
   )
 ```
@@ -111,6 +112,7 @@ Emitted by the pool for any swaps between token0 and token1
 |`amount0`| int256 | The delta of the token0 balance of the pool
 |`amount1`| int256 | The delta of the token1 balance of the pool
 |`sqrtPriceX96`| uint160 | The sqrt(price) of the pool after the swap, as a Q64.96
+|`liquidity`| uint128 | The liquidity of the pool after the swap
 |`tick`| int24 | The log base 1.0001 of price of the pool after the swap
 ### Flash
 ```solidity
