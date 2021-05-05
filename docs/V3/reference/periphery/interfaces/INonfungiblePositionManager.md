@@ -1,6 +1,54 @@
 Wraps Uniswap V3 positions in a non-fungible token interface which allows for them to be transferred
 and authorized.
+## Parameter Structs
 
+### MintParams
+```solidity
+  struct MintParams {
+        address token0;
+        address token1;
+        uint24 fee;
+        int24 tickLower;
+        int24 tickUpper;
+        uint256 amount0Desired;
+        uint256 amount1Desired;
+        uint256 amount0Min;
+        uint256 amount1Min;
+        address recipient;
+        uint256 deadline;
+    }
+```
+
+### IncreaseLiquidityParams
+```solidity
+   struct IncreaseLiquidityParams {
+        uint256 tokenId;
+        uint256 amount0Desired;
+        uint256 amount1Desired;
+        uint256 amount0Min;
+        uint256 amount1Min;
+        uint256 deadline;
+    }
+```
+### DecreaseLiquidityParams
+```solidity
+    struct DecreaseLiquidityParams {
+        uint256 tokenId;
+        uint128 liquidity;
+        uint256 amount0Min;
+        uint256 amount1Min;
+        uint256 deadline;
+    }
+```
+### CollectParams
+```solidity
+    struct CollectParams {
+        uint256 tokenId;
+        address recipient;
+        uint128 amount0Max;
+        uint128 amount1Max;
+    }
+```
 
 ## Functions
 ### positions
