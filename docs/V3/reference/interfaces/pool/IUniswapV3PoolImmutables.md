@@ -69,7 +69,7 @@ This value is an int24 to avoid casting even though it is always positive.
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-| uint24 | tick spacing
+| int24 | tick spacing
 ### maxLiquidityPerTick
 ```solidity
   function maxLiquidityPerTick(

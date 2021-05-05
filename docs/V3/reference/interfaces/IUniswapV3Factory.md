@@ -20,7 +20,7 @@ Can be changed by the current owner via setOwner
 ```solidity
   function feeAmountTickSpacing(
     uint24 fee
-  ) external returns (int24)
+  ) external view returns (int24)
 ```
 Returns the tick spacing for a given fee amount, if enabled, or 0 if not enabled
 
@@ -41,7 +41,7 @@ A fee amount can never be removed, so this value should be hard coded or cached 
     address tokenA,
     address tokenB,
     uint24 fee
-  ) external returns (address pool)
+  ) external view returns (address pool)
 ```
 Returns the pool address for a given pair of tokens and a fee, or address 0 if it does not exist
 
@@ -82,7 +82,7 @@ are invalid.
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`pool`|  | The address of the newly created pool
+|`pool`| address | The address of the newly created pool
 ### setOwner
 ```solidity
   function setOwner(
