@@ -17,9 +17,10 @@ Returns the balance of a token
 |`account` | address | The account for which to look up the number of tokens it has, i.e. its balance
 
 #### Return Values:
- Type          | Description                                                                  |
+| Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
 | uint256 | number of tokens held by the account
+
 ### transfer
 ```solidity
   function transfer(

@@ -41,32 +41,6 @@ Throws if the token ID is not valid.
 |`feeGrowthInside1LastX128`|  | The fee growth of token1 as of the last action on the individual position
 |`tokensOwed0`|  | The uncollected amount of token0 owed to the position as of the last computation
 |`tokensOwed1`|  | The uncollected amount of token1 owed to the position as of the last computation
-### createAndInitializePoolIfNecessary
-```solidity
-  function createAndInitializePoolIfNecessary(
-    address tokenA,
-    address tokenB,
-    uint24 fee,
-    uint160 sqrtPriceX96
-  ) external returns (address pool)
-```
-Creates a new pool if it does not exist, then initializes if not initialized
-
-This method can be bundled with mint for the first mint of a pool to create, initialize a pool and mint at the same time
-
-#### Parameters:
-| Name | Type | Description                                                          |
-| :--- | :--- | :------------------------------------------------------------------- |
-|`tokenA` | address | The contract address of either token0 or token1
-We use tokenA and tokenB when we are referring to unsorted, or unordered tokens
-|`tokenB` | address | The contract address of the other token, unsorted
-|`fee` | uint24 | The fee amount of the v3 pool for the specified token pair
-|`sqrtPriceX96` | uint160 | The initial square root price of the pool as a Q64.96 value
-
-#### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`pool`| address | Returns the pool address based on the pair of tokens and fee, will return the newly created pool address if necessary
 ### mint
 ```solidity
   function mint(
@@ -147,15 +121,15 @@ Decreases the amount of liquidity in a position and accounts it to the position
 | :--- | :--- | :------------------------------------------------------------------- |
 |`params` | struct INonfungiblePositionManager.DecreaseLiquidityParams | tokenId The ID of the token for which liquidity is being decreased,
 amount The amount by which liquidity will be decreased,
-amount0Min The minimum amount of token0 that should be received in the burn,
-amount1Min The minimum amount of token1 that should be received in the burn,
+amount0Min The minimum amount of token0 that should be accounted for the burned liquidity,
+amount1Min The minimum amount of token1 that should be accounted for the burned liquidity,
 deadline The time by which the transaction must be included to effect the change
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| struct INonfungiblePositionManager.DecreaseLiquidityParams | The amount of token0 sent to recipient
-|`amount1`|  | The amount of token1 sent to recipient
+|`amount0`| struct INonfungiblePositionManager.DecreaseLiquidityParams | The amount of token0 accounted to the position's tokens owed
+|`amount1`|  | The amount of token1 accounted to the position's tokens owed
 ### collect
 ```solidity
   function collect(
