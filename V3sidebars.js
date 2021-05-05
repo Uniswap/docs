@@ -13,6 +13,7 @@ module.exports = {
           'concepts/introduction/landing',
           'concepts/introduction/what-is-uniswap',
           'concepts/introduction/swaps',
+          'concepts/introduction/liquidity-user-guide',
           ]
         },        
         {
