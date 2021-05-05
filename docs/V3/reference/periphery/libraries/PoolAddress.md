@@ -23,7 +23,7 @@ Returns PoolKey: the ordered tokens with the matched fee levels
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`Poolkey`| address | The pool details with ordered token0 and token1 assignments
+|`Poolkey`| PoolAddress.PoolKey | The pool details with ordered token0 and token1 assignments
 ### computeAddress
 ```solidity
   function computeAddress(

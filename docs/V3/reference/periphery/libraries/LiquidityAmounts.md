@@ -24,7 +24,7 @@ Calculates amount0 * (sqrt(upper) * sqrt(lower)) / (sqrt(upper) - sqrt(lower))
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`liquidity`| uint160 | The amount of returned liquidity
+|`liquidity`| uint128 | The amount of returned liquidity
 ### getLiquidityForAmount1
 ```solidity
   function getLiquidityForAmount1(
@@ -47,7 +47,7 @@ Calculates amount1 / (sqrt(upper) - sqrt(lower)).
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`liquidity`| uint160 | The amount of returned liquidity
+|`liquidity`| uint128 | The amount of returned liquidity
 ### getLiquidityForAmounts
 ```solidity
   function getLiquidityForAmounts(
@@ -74,7 +74,7 @@ pool prices and the prices at the tick boundaries
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`liquidity`| uint160 | The maximum amount of liquidity received
+|`liquidity`| uint128 | The maximum amount of liquidity received
 ### getAmount0ForLiquidity
 ```solidity
   function getAmount0ForLiquidity(
@@ -96,7 +96,7 @@ Computes the amount of token0 for a given amount of liquidity and a price range
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| uint160 | The amount of token0
+|`amount0`| uint256 | The amount of token0
 ### getAmount1ForLiquidity
 ```solidity
   function getAmount1ForLiquidity(
@@ -118,7 +118,7 @@ Computes the amount of token1 for a given amount of liquidity and a price range
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount1`| uint160 | The amount of token1
+|`amount1`| uint256 | The amount of token1
 ### getAmountsForLiquidity
 ```solidity
   function getAmountsForLiquidity(
@@ -143,5 +143,5 @@ pool prices and the prices at the tick boundaries
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| uint160 | The amount of token0
-|`amount1`| uint160 | The amount of token1
+|`amount0`| uint256 | The amount of token0
+|`amount1`| uint256 | The amount of token1

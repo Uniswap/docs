@@ -5,7 +5,7 @@ Nonfungible tokens that support an approve via signature, i.e. permit
 ### _getAndIncrementNonce
 ```solidity
   function _getAndIncrementNonce(
-  ) internal returns (uint256)
+  ) internal virtual returns (uint256)
 ```
 
 Gets the current nonce for a token ID and then increments it, returning the original value
@@ -23,16 +23,16 @@ Computes the nameHash and versionHash
 ### DOMAIN_SEPARATOR
 ```solidity
   function DOMAIN_SEPARATOR(
-  ) public returns (bytes32)
+  ) public view override returns (bytes32)
 ```
 The domain separator used in the permit signature
 
 
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`|  | domain seperator used in encoding of permit signature
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| bytes32 | domain seperator used in encoding of permit signature
 ### permit
 ```solidity
   function permit(
