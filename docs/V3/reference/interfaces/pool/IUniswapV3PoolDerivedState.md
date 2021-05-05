@@ -3,35 +3,11 @@ blockchain. The functions here may have variable gas costs.
 
 
 ## Functions
-### secondsInside
-```solidity
-  function secondsInside(
-    int24 tickLower,
-    int24 tickUpper
-  ) external view returns (uint32)
-```
-Returns a relative timestamp value representing how long, in seconds, the pool has spent between
-tickLower and tickUpper
-
-This timestamp is strictly relative. To get a useful elapsed time (i.e., duration) value, the value returned
-by this method should be checkpointed externally after a position is minted, and again before a position is
-burned. Thus the external contract must control the lifecycle of the position.
-
-#### Parameters:
-| Name | Type | Description                                                          |
-| :--- | :--- | :------------------------------------------------------------------- |
-|`tickLower` | int24 | The lower tick of the range for which to get the seconds inside
-|`tickUpper` | int24 | The upper tick of the range for which to get the seconds inside
-
-#### Return Values:
-| Type          | Description                                                                  |
-| :------------ | :--------------------------------------------------------------------------- |
-| uint32 | relative timestamp for how long the pool spent in the tick range
 ### observe
 ```solidity
   function observe(
     uint32[] secondsAgos
-  ) external view returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
+  ) external returns (int56[] tickCumulatives, uint160[] secondsPerLiquidityCumulativeX128s)
 ```
 Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp
 
@@ -49,6 +25,31 @@ log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tickCumulatives`| int56[] | Cumulative tick values as of each `secondsAgos` from the current block timestamp
-|`liquidityCumulatives`| uint160[] | Cumulative liquidity-in-range value as of each `secondsAgos` from the current block
+|`tickCumulatives`|  | Cumulative tick values as of each `secondsAgos` from the current block timestamp
+|`secondsPerLiquidityCumulativeX128s`|  | Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block
 timestamp
+### snapshotCumulativesInside
+```solidity
+  function snapshotCumulativesInside(
+    int24 tickLower,
+    int24 tickUpper
+  ) external returns (int56 tickCumulativeInside, uint160 secondsPerLiquidityInsideX128, uint32 secondsInside)
+```
+Returns a snapshot of the tick cumulative, seconds per liquidity and seconds inside a tick range
+
+Snapshots must only be compared to other snapshots, taken over a period for which a position existed.
+I.e., snapshots cannot be compared if a position is not held for the entire period between when the first
+snapshot is taken and the second snapshot is taken.
+
+#### Parameters:
+| Name | Type | Description                                                          |
+| :--- | :--- | :------------------------------------------------------------------- |
+|`tickLower` | int24 | The lower tick of the range
+|`tickUpper` | int24 | The upper tick of the range
+
+#### Return Values:
+| Name                           | Type          | Description                                                                  |
+| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
+|`tickCumulativeInside`|  | The snapshot of the tick accumulator for the range
+|`secondsPerLiquidityInsideX128`|  | The snapshot of seconds per liquidity for the range
+|`secondsInside`|  | The snapshot of seconds per liquidity for the range

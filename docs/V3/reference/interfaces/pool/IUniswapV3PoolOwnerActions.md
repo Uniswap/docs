@@ -39,5 +39,5 @@ Collect the protocol fee accrued to the pool
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| uint128 | The protocol fee collected in token0
-|`amount1`| uint128 | The protocol fee collected in token1
+|`amount0`|  | The protocol fee collected in token0
+|`amount1`|  | The protocol fee collected in token1
