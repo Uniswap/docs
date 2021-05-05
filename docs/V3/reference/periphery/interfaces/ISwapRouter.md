@@ -1,6 +1,56 @@
 Functions for swapping tokens via Uniswap V3
+## Paramater Structs
 
+### ISwapRouter.ExactInputSingleParams
 
+```solidity
+    struct ExactInputSingleParams {
+        address tokenIn;
+        address tokenOut;
+        uint24 fee;
+        address recipient;
+        uint256 deadline;
+        uint256 amountIn;
+        uint256 amountOutMinimum;
+        uint160 sqrtPriceLimitX96;
+    }
+  ```
+### ISwapRouter.ExactInputParams
+```solidity
+      struct ExactInputParams {
+        bytes path;
+        address recipient;
+        uint256 deadline;
+        uint256 amountIn;
+        uint256 amountOutMinimum;
+    }
+  ```
+
+### ISwapRouter.ExacrOutputSingleParams
+
+```solidity
+    struct ExactOutputSingleParams {
+        address tokenIn;
+        address tokenOut;
+        uint24 fee;
+        address recipient;
+        uint256 deadline;
+        uint256 amountOut;
+        uint256 amountInMaximum;
+        uint160 sqrtPriceLimitX96;
+    }
+```
+### ISwapRouter.ExactOutputParams
+
+```solidity
+    struct ExactOutputParams {
+        bytes path;
+        address recipient;
+        uint256 deadline;
+        uint256 amountOut;
+        uint256 amountInMaximum;
+    }
+```
 ## Functions
 ### exactInputSingle
 ```solidity
