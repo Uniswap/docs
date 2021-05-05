@@ -1,6 +1,6 @@
 ---
 id: liquidity-user-guide
-title: Liquidity & Migration User Guide
+title: Liquidity Provider & Migration User Guide
 ---
 
 # **Uniswap v3: Liquidity Provider & Migration Guide**
@@ -11,8 +11,8 @@ Rather than being required to allocate liquidity across the entire price curve f
 
 The additional flexibility of liquidity provision in v3 requires LPs to make more decisions when depositing capital. This is a simple guide to the v3 LP interface. For a more in-depth discussion of concentrated liquidity, please refer to the v[3 announcement post](https://uniswap.org/blog/uniswap-v3/).
 
-- Migrate an existing Uniswap v2 or Sushiswap LP position to Uniswap v3
-- Create a new Uniswap v3 LP position
+- [**Migrate an existing Uniswap v2 or Sushiswap LP position to Uniswap v3**](https://docs.uniswap.org//concepts/introduction/liquidity-user-guide#lp-v2-to-v3-migration-guide)
+- [**Create a new Uniswap v3 LP position**](https://docs.uniswap.org/concepts/introduction/liquidity-user-guide#v3-lp-guide)
 
 ## **LP v2 to v3 migration guide:**
 
