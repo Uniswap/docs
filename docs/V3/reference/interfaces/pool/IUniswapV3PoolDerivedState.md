@@ -7,7 +7,7 @@ blockchain. The functions here may have variable gas costs.
 ```solidity
   function observe(
     uint32[] secondsAgos
-  ) external returns (int56[] tickCumulatives, uint160[] secondsPerLiquidityCumulativeX128s)
+  ) external view returns (int56[] tickCumulatives, uint160[] secondsPerLiquidityCumulativeX128s)
 ```
 Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp
 
@@ -25,8 +25,8 @@ log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tickCumulatives`|  | Cumulative tick values as of each `secondsAgos` from the current block timestamp
-|`secondsPerLiquidityCumulativeX128s`|  | Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block
+|`tickCumulatives`| int56[] | Cumulative tick values as of each `secondsAgos` from the current block timestamp
+|`secondsPerLiquidityCumulativeX128s`| uint160[] | Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block
 timestamp
 ### snapshotCumulativesInside
 ```solidity
@@ -50,6 +50,6 @@ snapshot is taken and the second snapshot is taken.
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tickCumulativeInside`|  | The snapshot of the tick accumulator for the range
-|`secondsPerLiquidityInsideX128`|  | The snapshot of seconds per liquidity for the range
-|`secondsInside`|  | The snapshot of seconds per liquidity for the range
+|`tickCumulativeInside`| int56 | The snapshot of the tick accumulator for the range
+|`secondsPerLiquidityInsideX128`| uint160 | The snapshot of seconds per liquidity for the range
+|`secondsInside`| uint32 | The snapshot of seconds per liquidity for the range
