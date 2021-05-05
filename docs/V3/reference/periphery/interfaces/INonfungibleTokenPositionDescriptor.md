@@ -20,9 +20,9 @@ Note this URI may be a data: URI with the JSON contents directly inlined
 |`tokenId` | uint256 | The ID of the token for which to produce a description, which may not be valid
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`| contract INonfungiblePositionManager | URI of the ERC721-compliant metadata
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| string | URI of the ERC721-compliant metadata
 ## Events
 ### UpdateTokenRatioPriority
 ```solidity
