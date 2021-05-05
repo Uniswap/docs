@@ -107,13 +107,7 @@ We use tokenA and tokenB when we are referring to unsorted, or unordered tokens
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`pool`| address | Returns the pool address based on the pair of tokens and fee, will return the newly created pool address if necessary
-|`tickLower`|  | The lower end of the tick range for the position
-|`tickUpper`|  | The higher end of the tick range for the position
-|`liquidity`|  | The liquidity of the position
-|`feeGrowthInside0LastX128`|  | The fee growth of token0 as of the last action on the individual position
-|`feeGrowthInside1LastX128`|  | The fee growth of token1 as of the last action on the individual position
-|`tokensOwed0`|  | The uncollected amount of token0 owed to the position as of the last computation
-|`tokensOwed1`|  | The uncollected amount of token1 owed to the position as of the last computation
+
 ### mint
 ```solidity
   function mint(

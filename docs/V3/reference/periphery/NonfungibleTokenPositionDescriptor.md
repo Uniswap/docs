@@ -8,9 +8,6 @@ Produces a string containing the data URI for a JSON metadata string
   ) public
 ```
 
-
-
-
 ### tokenURI
 ```solidity
   function tokenURI(
@@ -37,9 +34,6 @@ Note this URI may be a data: URI with the JSON contents directly inlined
   function flipRatio(
   ) public returns (bool)
 ```
-
-
-
 
 ### tokenRatioPriority
 ```solidity

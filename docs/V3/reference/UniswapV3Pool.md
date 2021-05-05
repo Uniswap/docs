@@ -32,9 +32,9 @@ burned. Thus the external contract must control the lifecycle of the position.
 |`tickUpper` | int24 | The upper tick of the range for which to get the seconds inside
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`A`| int24 | relative timestamp for how long the pool spent in the tick range
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| uint32 | relative timestamp for how long the pool spent in the tick range
 ### observe
 ```solidity
   function observe(
@@ -57,8 +57,8 @@ log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tickCumulatives`| uint32[] | Cumulative tick values as of each `secondsAgos` from the current block timestamp
-|`liquidityCumulatives`|  | Cumulative liquidity-in-range value as of each `secondsAgos` from the current block
+|`tickCumulatives`| int56[] | Cumulative tick values as of each `secondsAgos` from the current block timestamp
+|`liquidityCumulatives`| uint160[] | Cumulative liquidity-in-range value as of each `secondsAgos` from the current block
 timestamp
 ### increaseObservationCardinalityNext
 ```solidity
@@ -115,8 +115,8 @@ noDelegateCall is applied indirectly via _modifyPosition
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| address | The amount of token0 that was paid to mint the given amount of liquidity. Matches the value in the callback
-|`amount1`| int24 | The amount of token1 that was paid to mint the given amount of liquidity. Matches the value in the callback
+|`amount0`| uint256 | The amount of token0 that was paid to mint the given amount of liquidity. Matches the value in the callback
+|`amount1`| uint256 | The amount of token1 that was paid to mint the given amount of liquidity. Matches the value in the callback
 ### collect
 ```solidity
   function collect(
@@ -146,8 +146,8 @@ actual tokens owed, e.g. type(uint128).max. Tokens owed may be from accumulated 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| address | The amount of fees collected in token0
-|`amount1`| int24 | The amount of fees collected in token1
+|`amount0`| uint128 | The amount of fees collected in token0
+|`amount1`| uint128 | The amount of fees collected in token1
 ### burn
 ```solidity
   function burn(
@@ -169,8 +169,8 @@ noDelegateCall is applied indirectly via _modifyPosition
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| int24 | The amount of token0 sent to the recipient
-|`amount1`| int24 | The amount of token1 sent to the recipient
+|`amount0`| uint256 | The amount of token0 sent to the recipient
+|`amount1`| uint256 | The amount of token1 sent to the recipient
 ### swap
 ```solidity
   function swap(
@@ -198,8 +198,8 @@ value after the swap. If one for zero, the price cannot be greater than this val
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| address | The delta of the balance of token0 of the pool, exact when negative, minimum when positive
-|`amount1`| bool | The delta of the balance of token1 of the pool, exact when negative, minimum when positive
+|`amount0`| int256 | The delta of the balance of token0 of the pool, exact when negative, minimum when positive
+|`amount1`| int256 | The delta of the balance of token1 of the pool, exact when negative, minimum when positive
 ### flash
 ```solidity
   function flash(
