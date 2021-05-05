@@ -50,7 +50,7 @@ module.exports = {
       label: 'Reference',
       items: [
         'reference/smart-contracts',
-        'reference/Deployments',
+        'reference/deployments',
         {
           type: 'category',
           label: 'Periphery',
@@ -185,7 +185,6 @@ module.exports = {
             'reference/interfaces/IUniswapV3PoolDeployer',
           ]
         },
-        'reference/NoDelegateCall',
         'reference/UniswapV3Factory',
         'reference/UniswapV3Pool',
         'reference/UniswapV3PoolDeployer',
@@ -214,57 +213,56 @@ module.exports = {
   //   },
   // ],
 
-  reference: [
-    {
-      type: 'category',
-      label:'Reference Overview',
-      items: [
-        'reference/reference-holder',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Libraries',
-      items: [
-        'reference/libraries/BitMath',
-        'reference/libraries/FixedPoint96',
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Interfaces',
-      items: [
-        {
-          type: 'category',
-          label: 'Callback',
-          items: [
-              'reference/interfaces/callback/IUniswapV3FlashCallback',
-              'reference/interfaces/callback/IUniswapV3MintCallback',
-              'reference/interfaces/callback/IUniswapV3SwapCallback'
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Pool',
-          items: [
-            'reference/interfaces/pool/IUniswapV3PoolActions',
-            'reference/interfaces/pool/IUniswapV3PoolDerivedState',
-            'reference/interfaces/pool/IUniswapV3PoolEvents',
-            'reference/interfaces/pool/IUniswapV3PoolImmutables',
-            'reference/interfaces/pool/IUniswapV3PoolOwnerActions',
-            'reference/interfaces/pool/IUniswapV3PoolState',
-          ]
-        },
-        'reference/interfaces/IERC20Minimal',
-        'reference/interfaces/IUniswapV3Factory',
-        'reference/interfaces/IUniswapV3Pool',
-        'reference/interfaces/IUniswapV3PoolDeployer',
-      ]
-    },
-    'reference/NoDelegateCall',
-    'reference/UniswapV3Factory',
-    'reference/UniswapV3Pool',
-    'reference/UniswapV3PoolDeployer',
+  // reference: [
+  //   {
+  //     type: 'category',
+  //     label:'Reference Overview',
+  //     items: [
+  //     ],
+  //   },
+  //   {
+  //     type: 'category',
+  //     label: 'Libraries',
+  //     items: [
+  //       'reference/libraries/BitMath',
+  //       'reference/libraries/FixedPoint96',
+  //     ]
+  //   },
+  //   {
+  //     type: 'category',
+  //     label: 'Interfaces',
+  //     items: [
+  //       {
+  //         type: 'category',
+  //         label: 'Callback',
+  //         items: [
+  //             'reference/interfaces/callback/IUniswapV3FlashCallback',
+  //             'reference/interfaces/callback/IUniswapV3MintCallback',
+  //             'reference/interfaces/callback/IUniswapV3SwapCallback'
+  //         ]
+  //       },
+  //       {
+  //         type: 'category',
+  //         label: 'Pool',
+  //         items: [
+  //           'reference/interfaces/pool/IUniswapV3PoolActions',
+  //           'reference/interfaces/pool/IUniswapV3PoolDerivedState',
+  //           'reference/interfaces/pool/IUniswapV3PoolEvents',
+  //           'reference/interfaces/pool/IUniswapV3PoolImmutables',
+  //           'reference/interfaces/pool/IUniswapV3PoolOwnerActions',
+  //           'reference/interfaces/pool/IUniswapV3PoolState',
+  //         ]
+  //       },
+  //       'reference/interfaces/IERC20Minimal',
+  //       'reference/interfaces/IUniswapV3Factory',
+  //       'reference/interfaces/IUniswapV3Pool',
+  //       'reference/interfaces/IUniswapV3PoolDeployer',
+  //     ]
+  //   },
+  //   'reference/NoDelegateCall',
+  //   'reference/UniswapV3Factory',
+  //   'reference/UniswapV3Pool',
+  //   'reference/UniswapV3PoolDeployer',
     
-  ],
+  // ],
 };
