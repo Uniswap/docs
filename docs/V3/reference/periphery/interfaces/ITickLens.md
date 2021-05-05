@@ -24,4 +24,4 @@ fetch all the populated ticks
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`populatedTicks`| address | An array of tick data for the given word in the tick bitmap
+|`populatedTicks`| ITickLens.PopulatedTick[] | An array of tick data for the given word in the tick bitmap

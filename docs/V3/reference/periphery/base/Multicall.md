@@ -6,7 +6,7 @@ Enables calling multiple methods in a single call to the contract
 ```solidity
   function multicall(
     bytes[] data
-  ) external returns (bytes[] results)
+  ) external payable override returns (bytes[] results)
 ```
 Call multiple functions in the current contract and return the data from all of them if they all succeed
 
