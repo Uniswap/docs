@@ -5,6 +5,15 @@
 ### constructTokenURI
 ```solidity
   function constructTokenURI(
+  ) public returns (string)
+```
+
+
+
+
+### escapeQuotes
+```solidity
+  function escapeQuotes(
   ) internal returns (string)
 ```
 
@@ -47,6 +56,15 @@
 
 
 
+### generateSVGImage
+```solidity
+  function generateSVGImage(
+  ) internal returns (string svg)
+```
+
+
+
+
 ### tokenToColorHex
 ```solidity
   function tokenToColorHex(
@@ -56,10 +74,19 @@
 
 
 
-### svgImage
+### getCircleCoord
 ```solidity
-  function svgImage(
-  ) internal returns (string svg)
+  function getCircleCoord(
+  ) internal returns (uint256)
+```
+
+
+
+
+### sliceTokenHex
+```solidity
+  function sliceTokenHex(
+  ) internal returns (uint256)
 ```
 
 

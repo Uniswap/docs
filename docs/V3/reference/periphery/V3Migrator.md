@@ -20,15 +20,6 @@
 
 
 
-### createAndInitializePoolIfNecessary
-```solidity
-  function createAndInitializePoolIfNecessary(
-  ) external
-```
-
-
-
-
 ### migrate
 ```solidity
   function migrate(
