@@ -5,7 +5,7 @@ The Uniswap V3 Factory facilitates creation of Uniswap V3 pools and control over
 ### owner
 ```solidity
   function owner(
-  ) external returns (address)
+  ) external view returns (address)
 ```
 Returns the current owner of the factory
 
@@ -13,9 +13,9 @@ Can be changed by the current owner via setOwner
 
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`|  | address of the factory owner
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| address | address of the factory owner
 ### feeAmountTickSpacing
 ```solidity
   function feeAmountTickSpacing(
@@ -32,9 +32,9 @@ A fee amount can never be removed, so this value should be hard coded or cached 
 |`fee` | uint24 | The enabled fee, denominated in hundredths of a bip. Returns 0 in case of unenabled fee
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`|  | tick spacing
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| int24 | tick spacing
 ### getPool
 ```solidity
   function getPool(
@@ -57,7 +57,7 @@ tokenA and tokenB may be passed in either token0/token1 or token1/token0 order
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`pool`|  | The pool address
+|`pool`| address | The pool address
 ### createPool
 ```solidity
   function createPool(

@@ -45,8 +45,8 @@ on tickLower, tickUpper, the amount of liquidity, and the current price.
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`|  | The amount of token0 that was paid to mint the given amount of liquidity. Matches the value in the callback
-|`amount1`|  | The amount of token1 that was paid to mint the given amount of liquidity. Matches the value in the callback
+|`amount0`| uint256 | The amount of token0 that was paid to mint the given amount of liquidity. Matches the value in the callback
+|`amount1`| uint256 | The amount of token1 that was paid to mint the given amount of liquidity. Matches the value in the callback
 ### collect
 ```solidity
   function collect(
@@ -76,8 +76,8 @@ actual tokens owed, e.g. type(uint128).max. Tokens owed may be from accumulated 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`|  | The amount of fees collected in token0
-|`amount1`|  | The amount of fees collected in token1
+|`amount0`| uint128 | The amount of fees collected in token0
+|`amount1`| uint128 | The amount of fees collected in token1
 ### burn
 ```solidity
   function burn(
@@ -101,8 +101,8 @@ Fees must be collected separately via a call to #collect
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`|  | The amount of token0 sent to the recipient
-|`amount1`|  | The amount of token1 sent to the recipient
+|`amount0`| uint256 | The amount of token0 sent to the recipient
+|`amount1`| uint256 | The amount of token1 sent to the recipient
 ### swap
 ```solidity
   function swap(
@@ -130,8 +130,8 @@ value after the swap. If one for zero, the price cannot be greater than this val
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`|  | The delta of the balance of token0 of the pool, exact when negative, minimum when positive
-|`amount1`|  | The delta of the balance of token1 of the pool, exact when negative, minimum when positive
+|`amount0`| int256 | The delta of the balance of token0 of the pool, exact when negative, minimum when positive
+|`amount1`| int256 | The delta of the balance of token1 of the pool, exact when negative, minimum when positive
 ### flash
 ```solidity
   function flash(

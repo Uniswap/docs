@@ -6,7 +6,7 @@ Contains a subset of the full ERC20 interface that is used in Uniswap V3
 ```solidity
   function balanceOf(
     address account
-  ) external returns (uint256)
+  ) external view returns (uint256)
 ```
 Returns the balance of a token
 
@@ -17,9 +17,10 @@ Returns the balance of a token
 |`account` | address | The account for which to look up the number of tokens it has, i.e. its balance
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`|  | number of tokens held by the account
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| uint256 | number of tokens held by the account
+
 ### transfer
 ```solidity
   function transfer(
@@ -37,15 +38,15 @@ Transfers the amount of token from the `msg.sender` to the recipient
 |`amount` | uint256 | The number of tokens to send from the sender to the recipient
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`Returns`|  | true for a successful transfer, false for an unsuccessful transfer
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| bool | true for a successful transfer, false for an unsuccessful transfer
 ### allowance
 ```solidity
   function allowance(
     address owner,
     address spender
-  ) external returns (uint256)
+  ) external view returns (uint256)
 ```
 Returns the current allowance given to a spender by an owner
 
@@ -57,9 +58,9 @@ Returns the current allowance given to a spender by an owner
 |`spender` | address | The account of the token spender
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`|  | current allowance granted by `owner` to `spender`
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+|uint256 | current allowance granted by `owner` to `spender`
 ### approve
 ```solidity
   function approve(
@@ -77,9 +78,9 @@ Sets the allowance of a spender from the `msg.sender` to the value `amount`
 |`amount` | uint256 | The amount of tokens allowed to be used by `spender`
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`Returns`|  | true for a successful approval, false for unsuccessful
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| bool | true for a successful approval, false for unsuccessful
 ### transferFrom
 ```solidity
   function transferFrom(
@@ -99,9 +100,9 @@ Transfers `amount` tokens from `sender` to `recipient` up to the allowance given
 |`amount` | uint256 | The amount of the transfer
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`Returns`|  | true for a successful transfer, false for unsuccessful
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| bool | true for a successful transfer, false for unsuccessful
 ## Events
 ### Transfer
 ```solidity
