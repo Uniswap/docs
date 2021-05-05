@@ -2,28 +2,6 @@ Enables migration of liqudity from Uniswap v2-compatible pairs into Uniswap v3 p
 
 
 ## Functions
-### createAndInitializePoolIfNecessary
-```solidity
-  function createAndInitializePoolIfNecessary(
-    address tokenA,
-    address tokenB,
-    uint24 fee,
-    uint160 sqrtPriceX96
-  ) external
-```
-Creates a new pool if it does not exist, then initializes if not initialized
-
-This method can wrapped for use in multicall
-
-#### Parameters:
-| Name | Type | Description                                                          |
-| :--- | :--- | :------------------------------------------------------------------- |
-|`tokenA` | address | The contract address of either token0 or token1 in the v2 pair
-We use tokenA and tokenB when we are referring to unsorted, or unordered tokens
-|`tokenB` | address | The contract address of the other token, unsorted
-|`fee` | uint24 | The fee amount of the v3 pool for the specified token pair
-|`sqrtPriceX96` | uint160 | The initial square root price of the pool as a Q64.96 value
-
 ### migrate
 ```solidity
   function migrate(

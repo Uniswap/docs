@@ -56,9 +56,9 @@
 
 
 
-### svgImage
+### generateSVGImage
 ```solidity
-  function svgImage(
+  function generateSVGImage(
   ) public returns (string)
 ```
 
@@ -69,6 +69,33 @@
 ```solidity
   function tokenToColorHex(
   ) public returns (string)
+```
+
+
+
+
+### sliceTokenHex
+```solidity
+  function sliceTokenHex(
+  ) public returns (uint256)
+```
+
+
+
+
+### rangeLocation
+```solidity
+  function rangeLocation(
+  ) public returns (string, string)
+```
+
+
+
+
+### isRare
+```solidity
+  function isRare(
+  ) public returns (bool)
 ```
 
 

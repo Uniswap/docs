@@ -1,6 +1,22 @@
 Internal functions for safely managing liquidity in Uniswap V3
 
+## Parameter Structs
 
+### AddLiquidityParams
+```solidity
+    struct AddLiquidityParams {
+        address token0;
+        address token1;
+        uint24 fee;
+        address recipient;
+        int24 tickLower;
+        int24 tickUpper;
+        uint256 amount0Desired;
+        uint256 amount1Desired;
+        uint256 amount0Min;
+        uint256 amount1Min;
+    }
+```
 ## Functions
 ### uniswapV3MintCallback
 ```solidity
