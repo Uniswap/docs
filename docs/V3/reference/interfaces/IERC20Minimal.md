@@ -60,7 +60,7 @@ Returns the current allowance given to a spender by an owner
 #### Return Values:
 | Type          | Description                                                                  |
 | :------------ | :--------------------------------------------------------------------------- |
-|uint256 | current allowance granted by `owner` to `spender`
+| uint256 | current allowance granted by `owner` to `spender`
 ### approve
 ```solidity
   function approve(

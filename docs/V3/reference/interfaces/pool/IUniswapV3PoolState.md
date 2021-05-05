@@ -36,7 +36,7 @@ This value can overflow the uint256
 ### feeGrowthGlobal1X128
 ```solidity
   function feeGrowthGlobal1X128(
-  ) external returns (uint256)
+  ) external view returns (uint256)
 ```
 The fee growth as a Q128.128 fees of token1 collected per unit of liquidity for the entire life of the pool
 
