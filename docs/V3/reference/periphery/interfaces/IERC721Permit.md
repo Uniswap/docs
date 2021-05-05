@@ -12,9 +12,9 @@ The permit typehash used in the permit signature
 
 
 #### Return Values:
-| Name                           | Type          | Description                                                                  |
-| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`The`|  | typehash for the permit
+| Type          | Description                                                                  |
+| :------------ | :--------------------------------------------------------------------------- |
+| bytes32 | typehash for the permit
 ### DOMAIN_SEPARATOR
 ```solidity
   function DOMAIN_SEPARATOR(

@@ -1,7 +1,6 @@
 Wraps Uniswap V3 positions in a non-fungible token interface which allows for them to be transferred
 and authorized.
 
-
 ## Functions
 ### positions
 ```solidity
@@ -21,18 +20,18 @@ Throws if the token ID is not valid.
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`nonce`| uint256 | The nonce for permits
-|`operator`|  | The address that is approved for spending
-|`token0`|  | The address of the token0 for a specific pool
-|`token1`|  | The address of the token1 for a specific pool
+|`nonce`| uint96 | The nonce for permits
+|`operator`| address | The address that is approved for spending
+|`token0`| address | The address of the token0 for a specific pool
+|`token1`| address | The address of the token1 for a specific pool
 |`fee`|  | The fee associated with the pool
-|`tickLower`|  | The lower end of the tick range for the position
-|`tickUpper`|  | The higher end of the tick range for the position
-|`liquidity`|  | The liquidity of the position
-|`feeGrowthInside0LastX128`|  | The fee growth of token0 as of the last action on the individual position
-|`feeGrowthInside1LastX128`|  | The fee growth of token1 as of the last action on the individual position
-|`tokensOwed0`|  | The uncollected amount of token0 owed to the position as of the last computation
-|`tokensOwed1`|  | The uncollected amount of token1 owed to the position as of the last computation
+|`tickLower`| uint24 | The lower end of the tick range for the position
+|`tickUpper`| int24 | The higher end of the tick range for the position
+|`liquidity`| uint128  | The liquidity of the position
+|`feeGrowthInside0LastX128`| uint256 | The fee growth of token0 as of the last action on the individual position
+|`feeGrowthInside1LastX128`| uint256 | The fee growth of token1 as of the last action on the individual position
+|`tokensOwed0`| uint128 | The uncollected amount of token0 owed to the position as of the last computation
+|`tokensOwed1`| uint128 | The uncollected amount of token1 owed to the position as of the last computation
 ### createAndInitializePoolIfNecessary
 ```solidity
   function createAndInitializePoolIfNecessary(
@@ -78,10 +77,10 @@ a method does not exist, i.e. the pool is assumed to be initialized.
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`tokenId`| struct INonfungiblePositionManager.MintParams | The ID of the token that represents the minted position
-|`liquidity`|  | The amount of liquidity for this position
-|`amount0`|  | The amount of token0
-|`amount1`|  | The amount of token1
+|`tokenId`| uint256 | The ID of the token that represents the minted position
+|`liquidity`| uint128 | The amount of liquidity for this position
+|`amount0`| uint256 | The amount of token0
+|`amount1`| uint256 | The amount of token1
 ### increaseLiquidity
 ```solidity
   function increaseLiquidity(
@@ -95,18 +94,13 @@ Increases the amount of liquidity in a position, with tokens paid by the `msg.se
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`params` | struct INonfungiblePositionManager.IncreaseLiquidityParams | tokenId The ID of the token for which liquidity is being increased,
-amount0Desired The desired amount of token0 to be spent,
-amount1Desired The desired amount of token1 to be spent,
-amount0Min The minimum amount of token0 to spend, which serves as a slippage check,
-amount1Min The minimum amount of token1 to spend, which serves as a slippage check,
-deadline The time by which the transaction must be included to effect the change
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`liquidity`| struct INonfungiblePositionManager.IncreaseLiquidityParams | The new liquidity amount as a result of the increase
-|`amount0`|  | The amount of token0 to acheive resulting liquidity
-|`amount1`|  | The amount of token1 to acheive resulting liquidity
+|`liquidity`| uint128 | The new liquidity amount as a result of the increase
+|`amount0`| uint256 | The amount of token0 to acheive resulting liquidity
+|`amount1`| uint256 | The amount of token1 to acheive resulting liquidity
 ### decreaseLiquidity
 ```solidity
   function decreaseLiquidity(
@@ -119,17 +113,13 @@ Decreases the amount of liquidity in a position and accounts it to the position
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`params` | struct INonfungiblePositionManager.DecreaseLiquidityParams | tokenId The ID of the token for which liquidity is being decreased,
-amount The amount by which liquidity will be decreased,
-amount0Min The minimum amount of token0 that should be received in the burn,
-amount1Min The minimum amount of token1 that should be received in the burn,
-deadline The time by which the transaction must be included to effect the change
+|`params` | struct INonfungiblePositionManager.DecreaseLiquidityParams | tokenId The ID of the token for which liquidity is being decreased
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| struct INonfungiblePositionManager.DecreaseLiquidityParams | The amount of token0 sent to recipient
-|`amount1`|  | The amount of token1 sent to recipient
+|`amount0`| uint256 | The amount of token0 sent to recipient
+|`amount1`| uint256 | The amount of token1 sent to recipient
 ### collect
 ```solidity
   function collect(
@@ -143,15 +133,12 @@ Collects up to a maximum amount of fees owed to a specific position to the recip
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
 |`params` | struct INonfungiblePositionManager.CollectParams | tokenId The ID of the NFT for which tokens are being collected,
-recipient The account that should receive the tokens,
-amount0Max The maximum amount of token0 to collect,
-amount1Max The maximum amount of token1 to collect
 
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`amount0`| struct INonfungiblePositionManager.CollectParams | The amount of fees collected in token0
-|`amount1`|  | The amount of fees collected in token1
+|`amount0`| uint256 | The amount of fees collected in token0
+|`amount1`| uint256 | The amount of fees collected in token1
 ### burn
 ```solidity
   function burn(
