@@ -54,7 +54,7 @@ The following community tools simulate Uniswap v3 positions and may be useful fo
 
 ### 4. Approve and Add
 
-The final step in the liquidity provision process requires LPs to approve the Uniswap v3 router contract to spend LP tokens on their behalf. Due to the use of permit, these approval transactions do not require
+The final step in the liquidity provision process requires LPs to approve the Uniswap v3 router contract to spend LP tokens on their behalf. Due to the use of permit, these approval transactions do not require gas.
 
 Once the approve transaction has been confirmed, an LP can proceed to add their capital. LPs will be presented with a confirmation pop up with an overview of their specified parameters.
 
