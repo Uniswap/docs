@@ -34,6 +34,7 @@ module.exports = {
         items: [
           'concepts/advanced/research',
           'concepts/advanced/resources',
+          'concepts/advanced/integration-issues',
           ]
         },
       ],
