@@ -108,7 +108,7 @@ After the 'add' transaction has been confirmed, LPs can find and manage their ne
 <br />
 <br />
 
-Once an LP has connected their wallet and navigated to the Pool page, the Uniswap v3 interface will recognize existing Uniswap v2 and Sushiswap LP positions and offer a seamless migration process. The migration process is entirely trustless — at no point does the LP relinquish custody of their assets. The migration contract may be viewed here.
+Once an LP has connected their wallet and navigated to the Pool page, the Uniswap v3 interface will recognize existing Uniswap v2 and Sushiswap LP positions and offer a seamless migration process. The migration process is entirely trustless — at no point does the LP relinquish custody of their assets. The migration contract may be [viewed here](https://github.com/Uniswap/uniswap-v3-periphery/blob/79c708f357df69f7b3a494467e0f501810a11146/contracts/V3Migrator.sol).
 
 LPs must select which position to manage, and then click through to 'migrate'.
 
