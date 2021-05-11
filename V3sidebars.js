@@ -5,6 +5,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Core Concepts',
+      collapsed: false,
       items: [
         {
         type: 'category',
@@ -134,25 +135,29 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Core',
+          items: [
+        {
+          type: 'category',
           label: 'Libraries',
           items: [
-            'reference/libraries/BitMath',
-            'reference/libraries/FixedPoint96',
-            'reference/libraries/FixedPoint96',
-            'reference/libraries/FixedPoint128',
-            'reference/libraries/FullMath',
-            'reference/libraries/LiquidityMath',
-            'reference/libraries/LowGasSafeMath',
-            'reference/libraries/Oracle',
-            'reference/libraries/Position',
-            'reference/libraries/SafeCast',
-            'reference/libraries/SecondsOutside',
-            'reference/libraries/SqrtPriceMath',
-            'reference/libraries/SwapMath',
-            'reference/libraries/Tick',
-            'reference/libraries/TickBitmap',
-            'reference/libraries/TransferHelper',
-            'reference/libraries/UnsafeMath',
+            'reference/core/libraries/BitMath',
+            'reference/core/libraries/FixedPoint96',
+            'reference/core/libraries/FixedPoint96',
+            'reference/core/libraries/FixedPoint128',
+            'reference/core/libraries/FullMath',
+            'reference/core/libraries/LiquidityMath',
+            'reference/core/libraries/LowGasSafeMath',
+            'reference/core/libraries/Oracle',
+            'reference/core/libraries/Position',
+            'reference/core/libraries/SafeCast',
+            'reference/core/libraries/SecondsOutside',
+            'reference/core/libraries/SqrtPriceMath',
+            'reference/core/libraries/SwapMath',
+            'reference/core/libraries/Tick',
+            'reference/core/libraries/TickBitmap',
+            'reference/core/libraries/TransferHelper',
+            'reference/core/libraries/UnsafeMath',
           ]
         },
         {
@@ -163,36 +168,35 @@ module.exports = {
               type: 'category',
               label: 'Callback',
               items: [
-                  'reference/interfaces/callback/IUniswapV3FlashCallback',
-                  'reference/interfaces/callback/IUniswapV3MintCallback',
-                  'reference/interfaces/callback/IUniswapV3SwapCallback'
+                  'reference/core/interfaces/callback/IUniswapV3FlashCallback',
+                  'reference/core/interfaces/callback/IUniswapV3MintCallback',
+                  'reference/core/interfaces/callback/IUniswapV3SwapCallback'
               ]
             },
             {
               type: 'category',
               label: 'Pool',
               items: [
-                'reference/interfaces/pool/IUniswapV3PoolActions',
-                'reference/interfaces/pool/IUniswapV3PoolDerivedState',
-                'reference/interfaces/pool/IUniswapV3PoolEvents',
-                'reference/interfaces/pool/IUniswapV3PoolImmutables',
-                'reference/interfaces/pool/IUniswapV3PoolOwnerActions',
-                'reference/interfaces/pool/IUniswapV3PoolState',
+                'reference/core/interfaces/pool/IUniswapV3PoolActions',
+                'reference/core/interfaces/pool/IUniswapV3PoolDerivedState',
+                'reference/core/interfaces/pool/IUniswapV3PoolEvents',
+                'reference/core/interfaces/pool/IUniswapV3PoolImmutables',
+                'reference/core/interfaces/pool/IUniswapV3PoolOwnerActions',
+                'reference/core/interfaces/pool/IUniswapV3PoolState',
               ]
             },
-            'reference/interfaces/IERC20Minimal',
-            'reference/interfaces/IUniswapV3Factory',
-            'reference/interfaces/IUniswapV3Pool',
-            'reference/interfaces/IUniswapV3PoolDeployer',
+            'reference/core/interfaces/IERC20Minimal',
+            'reference/core/interfaces/IUniswapV3Factory',
+            'reference/core/interfaces/IUniswapV3Pool',
+            'reference/core/interfaces/IUniswapV3PoolDeployer',
           ]
         },
-        'reference/UniswapV3Factory',
-        'reference/UniswapV3Pool',
-        'reference/UniswapV3PoolDeployer',
-        
+        'reference/core/UniswapV3Factory',
+        'reference/core/UniswapV3Pool',
+        'reference/core/UniswapV3PoolDeployer',
+        ]
+       },
       ],
-
-      
     }
   ],
 
@@ -225,8 +229,8 @@ module.exports = {
   //     type: 'category',
   //     label: 'Libraries',
   //     items: [
-  //       'reference/libraries/BitMath',
-  //       'reference/libraries/FixedPoint96',
+  //       'reference/core/libraries/BitMath',
+  //       'reference/core/libraries/FixedPoint96',
   //     ]
   //   },
   //   {
@@ -237,27 +241,27 @@ module.exports = {
   //         type: 'category',
   //         label: 'Callback',
   //         items: [
-  //             'reference/interfaces/callback/IUniswapV3FlashCallback',
-  //             'reference/interfaces/callback/IUniswapV3MintCallback',
-  //             'reference/interfaces/callback/IUniswapV3SwapCallback'
+  //             'reference/core/interfaces/callback/IUniswapV3FlashCallback',
+  //             'reference/core/interfaces/callback/IUniswapV3MintCallback',
+  //             'reference/core/interfaces/callback/IUniswapV3SwapCallback'
   //         ]
   //       },
   //       {
   //         type: 'category',
   //         label: 'Pool',
   //         items: [
-  //           'reference/interfaces/pool/IUniswapV3PoolActions',
-  //           'reference/interfaces/pool/IUniswapV3PoolDerivedState',
-  //           'reference/interfaces/pool/IUniswapV3PoolEvents',
-  //           'reference/interfaces/pool/IUniswapV3PoolImmutables',
-  //           'reference/interfaces/pool/IUniswapV3PoolOwnerActions',
-  //           'reference/interfaces/pool/IUniswapV3PoolState',
+  //           'reference/core/interfaces/pool/IUniswapV3PoolActions',
+  //           'reference/core/interfaces/pool/IUniswapV3PoolDerivedState',
+  //           'reference/core/interfaces/pool/IUniswapV3PoolEvents',
+  //           'reference/core/interfaces/pool/IUniswapV3PoolImmutables',
+  //           'reference/core/interfaces/pool/IUniswapV3PoolOwnerActions',
+  //           'reference/core/interfaces/pool/IUniswapV3PoolState',
   //         ]
   //       },
-  //       'reference/interfaces/IERC20Minimal',
-  //       'reference/interfaces/IUniswapV3Factory',
-  //       'reference/interfaces/IUniswapV3Pool',
-  //       'reference/interfaces/IUniswapV3PoolDeployer',
+  //       'reference/core/interfaces/IERC20Minimal',
+  //       'reference/core/interfaces/IUniswapV3Factory',
+  //       'reference/core/interfaces/IUniswapV3Pool',
+  //       'reference/core/interfaces/IUniswapV3PoolDeployer',
   //     ]
   //   },
   //   'reference/NoDelegateCall',
