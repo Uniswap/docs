@@ -11,35 +11,36 @@
 Returns the block timestamp truncated to 32 bits, i.e. mod 2**32. This method is overridden in tests.
 
 
-### secondsInside
+### snapshotCumulativesInside
 ```solidity
-  function secondsInside(
+  function snapshotCumulativesInside(
     int24 tickLower,
     int24 tickUpper
-  ) external view override noDelegateCall returns (uint32)
+  ) external view override noDelegateCall returns (int56 tickCumulativeInside, uint160 secondsPerLiquidityInsideX128, uint32 secondsInside)
 ```
-Returns a relative timestamp value representing how long, in seconds, the pool has spent between
-tickLower and tickUpper
+Returns a snapshot of the tick cumulative, seconds per liquidity and seconds inside a tick range
 
-This timestamp is strictly relative. To get a useful elapsed time (i.e., duration) value, the value returned
-by this method should be checkpointed externally after a position is minted, and again before a position is
-burned. Thus the external contract must control the lifecycle of the position.
+Snapshots must only be compared to other snapshots, taken over a period for which a position existed.
+I.e., snapshots cannot be compared if a position is not held for the entire period between when the first
+snapshot is taken and the second snapshot is taken.
 
 #### Parameters:
 | Name | Type | Description                                                          |
 | :--- | :--- | :------------------------------------------------------------------- |
-|`tickLower` | int24 | The lower tick of the range for which to get the seconds inside
-|`tickUpper` | int24 | The upper tick of the range for which to get the seconds inside
+|`tickLower` | int24 | The lower tick of the range
+|`tickUpper` | int24 | The upper tick of the range
 
 #### Return Values:
-| Type          | Description                                                                  |
-| :------------ | :--------------------------------------------------------------------------- |
-| uint32 | relative timestamp for how long the pool spent in the tick range
+| Name                           | Type          | Description                                                                  |
+| :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
+|`tickCumulativeInside`| int56 | The snapshot of the tick accumulator for the range
+|`secondsPerLiquidityInsideX128`| uint160 | The snapshot of seconds per liquidity for the range
+|`secondsInside`| uint32 | The snapshot of seconds per liquidity for the range
 ### observe
 ```solidity
   function observe(
     uint32[] secondsAgos
-  ) external view override noDelegateCall returns (int56[] tickCumulatives, uint160[] liquidityCumulatives)
+  ) external view override noDelegateCall returns (int56[] tickCumulatives, uint160[] secondsPerLiquidityCumulativeX128s)
 ```
 Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp
 
@@ -58,13 +59,13 @@ log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`tickCumulatives`| int56[] | Cumulative tick values as of each `secondsAgos` from the current block timestamp
-|`liquidityCumulatives`| uint160[] | Cumulative liquidity-in-range value as of each `secondsAgos` from the current block
+|`secondsPerLiquidityCumulativeX128s`| uint160[] | Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block
 timestamp
 ### increaseObservationCardinalityNext
 ```solidity
   function increaseObservationCardinalityNext(
     uint16 observationCardinalityNext
-  ) external
+  ) external override lock noDelegateCall
 ```
 Increase the maximum number of price and liquidity observations that this pool will store
 
@@ -80,7 +81,7 @@ the input observationCardinalityNext.
 ```solidity
   function initialize(
     uint160 sqrtPriceX96
-  ) external
+  ) external override
 ```
 Sets the initial price for the pool
 
@@ -207,7 +208,7 @@ value after the swap. If one for zero, the price cannot be greater than this val
     uint256 amount0,
     uint256 amount1,
     bytes data
-  ) external
+  ) external override lock noDelegateCall
 ```
 Receive token0 and/or token1 and pay it back, plus a fee, in the callback
 
@@ -228,7 +229,7 @@ with 0 amount{0,1} and sending the donation amount(s) from the callback
   function setFeeProtocol(
     uint8 feeProtocol0,
     uint8 feeProtocol1
-  ) external
+  ) external override lock onlyFactoryOwner
 ```
 Set the denominator of the protocol's % share of the fees
 
