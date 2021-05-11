@@ -6,8 +6,8 @@ title: Error Codes
 
 LiquidityMath.sol
 
-* `LS` 
-* `LA`
+* `LS` : Liquidity Sub
+* `LA`: Liquidity Add
 
 Oracle.sol
 
