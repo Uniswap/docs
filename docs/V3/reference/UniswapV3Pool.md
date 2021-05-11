@@ -229,7 +229,7 @@ with 0 amount{0,1} and sending the donation amount(s) from the callback
   function setFeeProtocol(
     uint8 feeProtocol0,
     uint8 feeProtocol1
-  ) external override lock OnlyFactoryOwner
+  ) external override lock onlyFactoryOwner
 ```
 Set the denominator of the protocol's % share of the fees
 
@@ -246,7 +246,7 @@ Set the denominator of the protocol's % share of the fees
     address recipient,
     uint128 amount0Requested,
     uint128 amount1Requested
-  ) external override lock OnlyFactoryOwner returns (uint128 amount0, uint128 amount1)
+  ) external override lock onlyFactoryOwner returns (uint128 amount0, uint128 amount1)
 ```
 Collect the protocol fee accrued to the pool
 
