@@ -21,13 +21,13 @@ A significant amount of care and attention has been given to gas optimization in
 
 ### Factory
 
->[**Factory Reference**](https://docs.uniswap.org/reference/UniswapV3Factory) 
+>[**Factory Reference**](https://docs.uniswap.org/reference/core/UniswapV3Factory) 
 
 The factory defines the logic for generating pools. A pool is defined by two tokens, which make up the asset pair, and a fee. There can be multiple pools of the same asset pair, distinguished only by their swap fee. 
 
 ### Pools
 
->[**Pool Reference**](https://docs.uniswap.org/reference/UniswapV3Pool).
+>[**Pool Reference**](https://docs.uniswap.org/reference/core/UniswapV3Pool).
 
 Pools primarily serve as automated market makers for the paired assets. Additionally, they expose price oracle data and may be used as an asset source for flash transactions. 
 
@@ -51,7 +51,7 @@ The position manager handles the logic transactions involving the creation, adju
 
 ### Oracle 
 
->[**Oracle Reference**](https://docs.uniswap.org/reference/libraries/Oracle)
+>[**Oracle Reference**](https://docs.uniswap.org/reference/core/libraries/Oracle)
 
 The oracle provides price and liquidity data useful for a wide variety of system desgins, and is available in every deployed pool.
 
