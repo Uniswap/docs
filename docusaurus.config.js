@@ -28,12 +28,12 @@ module.exports = {
         {
           label: 'Protocol',
           position: 'left',
-          to: '/concepts/introduction/what-is-uniswap'
+          to: '/'
         },
         {
           label: 'SDK',
           position: 'left',
-          to: 'SDK/readme'
+          to: 'SDK/classes/pool'
         },
         {
           label: "Whitepaper",
