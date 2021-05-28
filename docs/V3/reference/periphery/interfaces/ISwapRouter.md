@@ -25,7 +25,7 @@ Functions for swapping tokens via Uniswap V3
         uint256 amountOutMinimum;
     }
 ```
-### ExactInputSingleParams
+### ExactOutputSingleParams
 ```solidity
     struct ExactOutputSingleParams {
         address tokenIn;
