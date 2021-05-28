@@ -33,7 +33,7 @@ module.exports = {
         {
           label: 'SDK',
           position: 'left',
-          to: 'SDK/readme'
+          to: 'SDK/'
         },
         {
           label: "Whitepaper",

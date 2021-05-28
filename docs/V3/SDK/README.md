@@ -1,5 +1,6 @@
 ---
 id: readme
+slug: /SDK/
 ---
 # The Uniswap V3 SDK
 
