@@ -28,7 +28,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'enums',
+          label: 'Enums',
           items: [
             'SDK/enums/FeeAmount',
           ]
