@@ -75,7 +75,7 @@ You have an oracle reading that shows a return of `tickCumulative` as [70,000, 1
 
 The current tick is `71,538.46` as expressed by the delta between the most recent and second most recent value of `tickCumulative`, divided by the elapsed seconds time between the readings. 
 
-With a tick reading of `70,000`, we can find the value of `token0` relative to `token1` by using the current tick as `i' in `𝑝(𝑖) = 1.0001^𝑖`
+With a tick reading of `71,538.46,`, we can find the value of `token0` relative to `token1` by using the current tick as `i' in `𝑝(𝑖) = 1.0001^𝑖`
 
 `1.0001^71,538.46 = 1278.56` 
 

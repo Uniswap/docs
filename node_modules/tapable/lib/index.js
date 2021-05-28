@@ -5,7 +5,6 @@
 "use strict";
 
 exports.__esModule = true;
-exports.Tapable = require("./Tapable");
 exports.SyncHook = require("./SyncHook");
 exports.SyncBailHook = require("./SyncBailHook");
 exports.SyncWaterfallHook = require("./SyncWaterfallHook");
@@ -14,6 +13,7 @@ exports.AsyncParallelHook = require("./AsyncParallelHook");
 exports.AsyncParallelBailHook = require("./AsyncParallelBailHook");
 exports.AsyncSeriesHook = require("./AsyncSeriesHook");
 exports.AsyncSeriesBailHook = require("./AsyncSeriesBailHook");
+exports.AsyncSeriesLoopHook = require("./AsyncSeriesLoopHook");
 exports.AsyncSeriesWaterfallHook = require("./AsyncSeriesWaterfallHook");
 exports.HookMap = require("./HookMap");
 exports.MultiHook = require("./MultiHook");
