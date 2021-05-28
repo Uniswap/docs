@@ -14,7 +14,7 @@ class AsyncSeriesBailHookCodeFactory extends HookCodeFactory {
 			onResult: (i, result, next) =>
 				`if(${result} !== undefined) {\n${onResult(
 					result
-				)};\n} else {\n${next()}}\n`,
+				)}\n} else {\n${next()}}\n`,
 			resultReturns,
 			onDone
 		});
@@ -23,15 +23,20 @@ class AsyncSeriesBailHookCodeFactory extends HookCodeFactory {
 
 const factory = new AsyncSeriesBailHookCodeFactory();
 
-class AsyncSeriesBailHook extends Hook {
-	compile(options) {
-		factory.setup(this, options);
-		return factory.create(options);
-	}
+const COMPILE = function(options) {
+	factory.setup(this, options);
+	return factory.create(options);
+};
+
+function AsyncSeriesBailHook(args = [], name = undefined) {
+	const hook = new Hook(args, name);
+	hook.constructor = AsyncSeriesBailHook;
+	hook.compile = COMPILE;
+	hook._call = undefined;
+	hook.call = undefined;
+	return hook;
 }
 
-Object.defineProperties(AsyncSeriesBailHook.prototype, {
-	_call: { value: undefined, configurable: true, writable: true }
-});
+AsyncSeriesBailHook.prototype = null;
 
 module.exports = AsyncSeriesBailHook;

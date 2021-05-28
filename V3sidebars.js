@@ -1,7 +1,112 @@
 module.exports = {
-  
+  SDKsidebar: [
+    'SDK/readme',
+    {
+      type: 'category',
+      label: 'Reference', // generate sidebar slice from the docs folder (or versioned_docs/<version>)
+      items: [
+          {
+          type: 'category',
+          label: 'Classes',
+          items: [
+            'SDK/classes/Pool',
+            'SDK/classes/Position',
+            'SDK/classes/Route',
+            'SDK/classes/Tick',
+            'SDK/classes/NoTickDataProvider',
+            'SDK/classes/Trade',
+            'SDK/classes/NonfungiblePositionManager',
+            'SDK/classes/SelfPermit',
+            'SDK/classes/SwapRouter',
+            'SDK/classes/FullMath',
+            'SDK/classes/LiquidityMath',
+            'SDK/classes/SqrtPriceMath',
+            'SDK/classes/SwapMath',
+            'SDK/classes/TickList',
+            'SDK/classes/TickMath',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Enums',
+          items: [
+            'SDK/enums/FeeAmount',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Functions',
+          items: [
+            'SDK/functions/tradeComparator',
+            'SDK/functions/toHex',
+            'SDK/functions/computePoolAddress',
+            'SDK/functions/encodeRouteToPath',
+            'SDK/functions/encodeSqrtRatioX96',
+            'SDK/functions/isSorted',
+            'SDK/functions/maxLiquidityForAmounts',
+            'SDK/functions/mostSignificantBit',
+            'SDK/functions/nearestUsableTick',
+            'SDK/functions/priceToClosestTick',
+            'SDK/functions/tickToPrice',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Interfaces',
+          items: [
+            'SDK/interfaces/AllowedPermitArguments',
+            'SDK/interfaces/BestTradeOptions',
+            'SDK/interfaces/CollectOptions',
+            'SDK/interfaces/CommonAddLiquidityOptions',
+            'SDK/interfaces/FeeOptions',
+            'SDK/interfaces/IncreaseSpecificOptions',
+            'SDK/interfaces/MethodParameters',
+            'SDK/interfaces/MintSpecificOptions',
+            'SDK/interfaces/NFTPermitOptions',
+            'SDK/interfaces/RemoveLiquidityOptions',
+            'SDK/interfaces/StandardPermitArguments',
+            'SDK/interfaces/SwapOptions',
+            'SDK/interfaces/TickConstructorArgs',
+           'SDK/interfaces/TickDataProvider',
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Modules',
+          items: [
+              'SDK/modules/constants',
+              'SDK/modules/utils',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Types',
+          items: [
+              'SDK/types/nonfungiblepositionmanager.addliquidityoptions',
+              'SDK/types/nonfungiblepositionmanager.increaseoptions',
+              'SDK/types/nonfungiblepositionmanager.mintoptions',
+              'SDK/types/selfpermit.permitoptions'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Variables',
+          items: [
+            'SDK/variables/constants.address_zero',
+            'SDK/variables/constants.factory_address',
+            'SDK/variables/constants.pool_init_code_hash',
+            'SDK/variables/constants.tick_spacings',
+            'SDK/variables/internalconstants.negative_one',
+            'SDK/variables/internalconstants.one',
+            'SDK/variables/internalconstants.q192',
+            'SDK/variables/internalconstants.q96',
+            'SDK/variables/internalconstants.zero',
+          ]
+        },
+      ],
+    },
+  ],
   docs: [
-
     {
       type: 'category',
       label: 'Core Concepts',
@@ -11,7 +116,6 @@ module.exports = {
         type: 'category',
         label: 'Introduction',
         items: [
-          'concepts/introduction/landing',
           'concepts/introduction/what-is-uniswap',
           'concepts/introduction/swaps',
           'concepts/introduction/liquidity-user-guide',
