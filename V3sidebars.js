@@ -4,6 +4,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Reference', // generate sidebar slice from the docs folder (or versioned_docs/<version>)
+      collapsed: false,
       items: [
           {
           type: 'category',

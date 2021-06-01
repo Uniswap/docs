@@ -5,10 +5,11 @@ skug: /reference
 ---
 Uniswap V3 is a binary smart contract system comprised of many libraries, which together make the Core and Periphery 
 
-
 Core contracts provide fundamental safety guarantees for all parties interacting with Uniswap. They define the logic of pool generation, the pools themselves, and the interactions involving the respective assets therein.
 
-Periphery contracts interact with one or more Core contracts but are not part of the core. They are designed to provide methods of interacting with the core that increase clarity and user safety. 
+Periphery contracts interact with one or more Core contracts but are not part of the core. They are designed to provide methods of interacting with the core that increase clarity and user safety.
+
+External calls will primarily call the periphery interfaces. Externally available functions are all viewable in the reference documentation. Internal functions are viewable on the Uniswap V3 Github repo.
 
 ## Core
 
@@ -40,12 +41,16 @@ The periphery is a constellation of smart contracts designed to support domain-s
 
 >[**Swap Router Reference**](https://docs.uniswap.org/reference/periphery/SwapRouter)
 
+>[**Swap Router Interface**](https://docs.uniswap.org/reference/periphery/interfaces/ISwapRouter)
+
 The swap router supports all the basic requirements of a front-end offering trading. It natively supports single trades (x to y) and multihop trades (e.g. x to y to z).
 
 
 ### Nonfungible Position Manager
 
 >[**Nonfungible Position Manager Reference**](https://docs.uniswap.org/reference/periphery/NonfungiblePositionManager)
+
+>[**Nonfungible Position Manager Interface**](https://docs.uniswap.org/reference/periphery/interfaces/INonfungiblePositionManager)
 
 The position manager handles the logic transactions involving the creation, adjustment, or exiting of positions.
 
