@@ -120,6 +120,7 @@ module.exports = {
           'concepts/introduction/what-is-uniswap',
           'concepts/introduction/swaps',
           'concepts/introduction/liquidity-user-guide',
+          'concepts/introduction/arbitrium-user-guide',
           ]
         },        
         {
