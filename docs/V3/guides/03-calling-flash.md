@@ -3,6 +3,8 @@ id: calling-flash
 title: Calling Flash
 ---
 
+## Parameter Structs
+
 In order to call `flash`, we will need the flash parameters for the initial call, as well as any parameters we want to pass through to the callback.
 
 The `FlashParams` struct will contain the token addresses and amounts we wish to pull out of the pool, as well as the three fee tiers used to determine which pool we are withdrawing from, and which we will be swapping with.
@@ -71,6 +73,29 @@ finally we call `flash` on our previously declared `pool`. In the last parameter
 The full function:
 
 ```solidity
+    //fee1 is the fee of the pool from the initial borrow
+    //fee2 is the fee of the first pool to arb from
+    //fee3 is the fee of the second pool to arb from
+    struct FlashParams {
+        address token0;
+        address token1;
+        uint24 fee1;
+        uint256 amount0;
+        uint256 amount1;
+        uint24 fee2;
+        uint24 fee3;
+    }
+
+    // fee2 and fee3 are the two other fees associated with the two other pools of token0 and token1
+    struct FlashCallbackData {
+        uint256 amount0;
+        uint256 amount1;
+        address payer;
+        PoolAddress.PoolKey poolKey;
+        uint24 poolFee2;
+        uint24 poolFee3;
+    }
+    
 function initFlash(FlashParams memory params) external {
         PoolAddress.PoolKey memory poolKey =
             PoolAddress.PoolKey({token0: params.token0, token1: params.token1, fee: params.fee1});
