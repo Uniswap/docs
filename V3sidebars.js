@@ -145,14 +145,22 @@ module.exports = {
         },
       ],
     },
-    // {
-    //   type: 'category',
-    //   label: 'Guides',
-    //   items: [
-    //         'guides/landing',
-          
-    //   ]
-    // },
+    {
+      type: 'category',
+      label: 'Guides',
+      items: [
+        {
+          type: 'category',
+          label: 'Flash Transactions',
+          items: [
+            'guides/inheritance-constructors',
+            'guides/calling-flash',
+            'guides/flash-callback',
+            'guides/final-contract',
+          ]
+        },
+      ]
+    },
     {
       type: 'category',
       label: 'Reference',
