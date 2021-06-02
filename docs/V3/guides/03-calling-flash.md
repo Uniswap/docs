@@ -33,6 +33,7 @@ The `FlashCallbackData` struct will contain the data we want to send to the call
         uint24 poolFee3;
     }
 ```
+## Pool Key
 
 Now we'll start our function by assigning the relevant parameters from the `Flashparams` (which we have declared in memory as `params`) to our variable `poolKey`
 
@@ -47,6 +48,7 @@ Next we will declare `pool` as type [**IUniswapV3Pool**], which allows us to cal
 ```solidity
         IUniswapV3Pool pool = IUniswapV3Pool(PoolAddress.computeAddress(factory, poolKey));
 ```
+## Calling Flash
 
 finally we call `flash` on our previously declared `pool`. In the last parameter we abi.encode the `FlashCallbackData`, which will be decoded in the callback and used to inform the next steps of the transaction.
 
