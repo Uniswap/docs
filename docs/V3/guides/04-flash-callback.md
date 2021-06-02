@@ -7,7 +7,7 @@ title: The Flash Callback
 
 Here we will override the flash callback with our own custom logic to execute our swaps and pay the profits to the original `msg.sender`.
 
-first we declare the `uniswapV3FlashCallback` function and override it
+first, we declare the `uniswapV3FlashCallback` function and override it
 
 ```solidity
     function uniswapV3FlashCallback(
@@ -17,7 +17,7 @@ first we declare the `uniswapV3FlashCallback` function and override it
     ) external override {
 ```
 
-Next we declare a variable `decoded` in memory, and assign it to the [**decoded data**](https://docs.soliditylang.org/en/v0.7.6/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions) that we previously encoded into the calldata.
+Next, we declare a variable `decoded` in memory and assign it to the [**decoded data**](https://docs.soliditylang.org/en/v0.7.6/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions) that we previously encoded into the calldata.
 
 ```solidity
         FlashCallbackData memory decoded = abi.decode(data, (FlashCallbackData));
@@ -30,7 +30,7 @@ Each callback must be validated to verify that the call originated from a genuin
 ```
 
 
-now we will assign local variables of type `address` as `token0` and `token1` so that we can approve the router to interact with the tokens from the flash.
+Now we will assign local variables of type `address` as `token0` and `token1` so that we can approve the router to interact with the tokens from the flash.
 
 ```solidity
         address token0 = decoded.poolKey.token0;
@@ -55,7 +55,7 @@ Most of These function arguments have already been discussed, except for two new
 
 `sqrtPriceLimitX96`: This value limits the price that the swap can change the pool to. Remember that price is always expressed in the pool contract as `token1` in terms of `token0`. This is useful for circumstances where the user wants to swap *up until* a certain price. For this example, we will set it to 0 to effectively make the argument inactive.
 
-`deadline`: this is the timestamp after which the transaction will revert, to protect the transaction from dramatic changes in price environment that can happen if the transaction is pending for too long. For this example we will set it far in the future for the sake of simplicity.
+`deadline`: this is the timestamp after which the transaction will revert, to protect the transaction from dramatic changes in price environment that can happen if the transaction is pending for too long. For this example, we will set it far in the future for the sake of simplicity.
 
 The first swap takes the `amount1` that we withdrew from the original pool, and passes that amount as the input amount for a single swap that trades a fixed input for the maximum amount of possible output. It calls this function on the pool determined by our previous token pair, but with the next fee tier in our list of three.
 
@@ -74,7 +74,7 @@ uint256 amountOut0 =
                 })
             );
 ```
-Following that we have the second of two swaps, this time with the last fee tier, and with the `amount0` that we withdrew from the original pool.
+Following that, we have the second of two swaps, this time with the last fee tier and with the `amount0` that we withdrew from the original pool.
 
 ```solidity
 uint256 amountOut1 =
@@ -94,7 +94,7 @@ uint256 amountOut1 =
 
 ## Paying back the pool
 
-In order to pay the original pool back for the flash transaction, we need to first calculate the balance due to it, and approve the router to use transfer the tokens in our contract back to the pool.
+In order to pay the original pool back for the flash transaction, we need to first calculate the balance due to it and approve the router to transfer the tokens in our contract back to the pool.
 
 ```solidity
 uint256 amount0Owed = LowGasSafeMath.add(decoded.amount0, fee0);
@@ -112,7 +112,7 @@ if (amount0Owed > 0) pay(token0, address(this), msg.sender, amount0Owed);
 if (amount1Owed > 0) pay(token1, address(this), msg.sender, amount1Owed);
 ```
 
-finally, we send the profits to the `payer`, which is the original `msg.sender` of the `initFlash` function, which executed the flash transaction and in turn triggered the callback.
+Finally, we send the profits to the `payer`, which is the original `msg.sender` of the `initFlash` function, which executed the flash transaction and in turn triggered the callback.
 
 ```solidity
     if (amountOut0 > amount0Owed) {
@@ -128,7 +128,6 @@ finally, we send the profits to the `payer`, which is the original `msg.sender` 
             pay(token1, address(this), decoded.payer, profit1);
         }
 ```
-
 
 # The full function
 

@@ -3,6 +3,7 @@ id: calling-flash
 title: Calling Flash
 ---
 
+
 ## Parameter Structs
 
 In order to call `flash`, we will need the flash parameters for the initial call, as well as any parameters we want to pass through to the callback.
@@ -50,7 +51,7 @@ Next we will declare `pool` as type [**IUniswapV3Pool**], which allows us to cal
 ```
 ## Calling Flash
 
-finally we call `flash` on our previously declared `pool`. In the last parameter we abi.encode the `FlashCallbackData`, which will be decoded in the callback and used to inform the next steps of the transaction.
+Finally, we call `flash` on our previously declared `pool`. In the last parameter, we abi.encode the `FlashCallbackData`, which will be decoded in the callback and used to inform the next steps of the transaction.
 
 ```solidity
         pool.flash(
@@ -70,7 +71,6 @@ finally we call `flash` on our previously declared `pool`. In the last parameter
         );
     }
 ```
-
 
 The full function:
 
