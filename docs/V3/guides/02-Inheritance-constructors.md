@@ -3,13 +3,13 @@ id: inheritance-constructors
 title: Getting Started
 ---
 
-In this guide, we will write a smart contract that calls `flash` on a V3 pool, and swaps the full amount withdrawn of `token0` and `token1` in the corresponding pools with the same token pair, but different fee tiers. After the swap, the contract will pay back the original pool and transfer profits to the original calling address.
+In this guide, we will write a smart contract that calls `flash` on a V3 pool and swaps the full amount withdrawn of `token0` and `token1` in the corresponding pools with the same token pair - but different fee tiers. After the swap, the contract will pay back the first pool and transfer profits to the original calling address.
 
 ## Flash Transactions Overview
 
 Flash transactions are an approach to transferring tokens on Ethereum that transfer token balances *before* the necessary conditions are met for those balances to be transferred. In the context of a swap, this would mean the output is sent from the swap before the input is received. 
 
-Uniswap V3 introduces a new function `flash` within the Pool contract. `Flash` withdraws a specified amount of both `token0` and `token1` to the `recipient` address. The withdrawn amount, plus the swap fees, will be due to the pool at the end of the transaction. `flash` includes a fourth parameter, `data`, which allows the called to abi.encode any necessary data to be passed through the function and decoded later.
+Uniswap V3 introduces a new function, `flash`, within the Pool contract. `Flash` withdraws a specified amount of both `token0` and `token1` to the `recipient` address. The withdrawn amount, plus the swap fees, will be due to the pool at the end of the transaction. `flash` includes a fourth parameter, `data`, which allows the caller to abi.encode any necessary data to be passed through the function and decoded later.
   
 ```solidity
     function flash(
@@ -22,7 +22,7 @@ Uniswap V3 introduces a new function `flash` within the Pool contract. `Flash` w
 
 ## The Flash Callback
 
-`flash` will withdraw the tokens, but how are they payed back? To understand this we must look inside the flash function code. midway through the [**flash**](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/UniswapV3Pool.sol#L791) function, we see this:
+`flash` will withdraw the tokens, but how are they paid back? To understand this, we must look inside the flash function code. midway through the [**flash**](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/UniswapV3Pool.sol#L791) function, we see this:
 
 ```solidity
 IUniswapV3FlashCallback(msg.sender).uniswapV3FlashCallback(fee0, fee1, data);
@@ -43,7 +43,7 @@ contract PairFlash is IUniswapV3FlashCallback, PeripheryPayments {
     using LowGasSafeMath for int256;
 ```
 
-Next we declare an immutable public variable `swapRouter` of type `ISwapRouter`:
+Next, we declare an immutable public variable `swapRouter` of type `ISwapRouter`:
 
 ```solidity
     ISwapRouter public Immutable swapRouter;
