@@ -3,7 +3,6 @@ id: calling-flash
 title: Calling Flash
 ---
 
-
 ## Parameter Structs
 
 In order to call `flash`, we will need the flash parameters for the initial call, as well as any parameters we want to pass through to the callback.
@@ -34,6 +33,7 @@ The `FlashCallbackData` struct will contain the data we want to send to the call
         uint24 poolFee3;
     }
 ```
+
 ## Pool Key
 
 Now we'll start our function by assigning the relevant parameters from the `Flashparams` (which we have declared in memory as `params`) to our variable `poolKey`
@@ -44,11 +44,13 @@ Now we'll start our function by assigning the relevant parameters from the `Flas
             PoolAddress.PoolKey({token0: params.token0, token1: params.token1, fee: params.fee1});
     }
 ```
+
 Next we will declare `pool` as type [**IUniswapV3Pool**], which allows us to call `flash` on our desired pool contract.
 
 ```solidity
         IUniswapV3Pool pool = IUniswapV3Pool(PoolAddress.computeAddress(factory, poolKey));
 ```
+
 ## Calling Flash
 
 Finally, we call `flash` on our previously declared `pool`. In the last parameter, we abi.encode the `FlashCallbackData`, which will be decoded in the callback and used to inform the next steps of the transaction.
@@ -97,7 +99,7 @@ The full function:
         uint24 poolFee2;
         uint24 poolFee3;
     }
-    
+
 function initFlash(FlashParams memory params) external {
         PoolAddress.PoolKey memory poolKey =
             PoolAddress.PoolKey({token0: params.token0, token1: params.token1, fee: params.fee1});
