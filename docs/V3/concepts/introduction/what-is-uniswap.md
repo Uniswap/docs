@@ -8,12 +8,12 @@ slug: /
 
 To begin, we should make clear the distinctions between the different areas of "Uniswap", some of which may confuse new users.
 
-* **Uniswap Labs**: The company which developed the Uniswap protocol, along with the web interface.
-* **The Uniswap Protocol**: A suite of persistent, non-upgradable smart contracts that together create an automated market maker, a protocol that facilitates peer-to-peer market making and swapping of ERC-20 tokens on the Ethereum blockchain. 
-* **The Uniswap Interface**: A web interface that allows for easy interaction with the Uniswap protocol. The interface is only one of many ways one may interact with the Uniswap protocol. 
-* **Uniswap Governance**: A governance system for governing the Uniswap Protocol, enabled by the UNI token.
+- **Uniswap Labs**: The company which developed the Uniswap protocol, along with the web interface.
+- **The Uniswap Protocol**: A suite of persistent, non-upgradable smart contracts that together create an automated market maker, a protocol that facilitates peer-to-peer market making and swapping of ERC-20 tokens on the Ethereum blockchain.
+- **The Uniswap Interface**: A web interface that allows for easy interaction with the Uniswap protocol. The interface is only one of many ways one may interact with the Uniswap protocol.
+- **Uniswap Governance**: A governance system for governing the Uniswap Protocol, enabled by the UNI token.
 
-The following is a brief overview of the *Uniswap protocol*
+The following is a brief overview of the _Uniswap protocol_
 
 ## Introduction
 
@@ -33,14 +33,13 @@ The Uniswap protocol takes a different approach, using an Automated Market Maker
 
 At a very high level, an AMM replaces the buy and sell orders in an order book market with a liquidity pool of two assets, both valued relative to each other. As one asset is traded for the other, the relative price of the two assets shift, and a new market rate for both is determined. In this dynamic, a buyer or seller trades directly with the pool, rather than with specific orders left by other parties. The advantages and disadvantages of automated market makers versus their traditional order book counterparts are under active research by a growing number of parties. We have collected some notable examples on our research page.
 
-
 ### Permissionless Systems
 
-The second departure from traditional markets is the permissionless design of the Uniswap protocol. Permissionless design means that the protocol’s services  are entirely open for public use, with no ability to selectively restrict who can or cannot use them: anyone can swap, provide liquidity, or create new markets at will. This is a departure from traditional financial services, which typically restrict access based on geography, wealth status, and age.
+The second departure from traditional markets is the permissionless design of the Uniswap protocol. Permissionless design means that the protocol’s services are entirely open for public use, with no ability to selectively restrict who can or cannot use them: anyone can swap, provide liquidity, or create new markets at will. This is a departure from traditional financial services, which typically restrict access based on geography, wealth status, and age.
 
 ## Where can I find more information
 
-For research into the economics of AMMs, game theory, or optimization research, check out our [**research**](https://docs.uniswap.org/concepts/advanced/research) page. 
+For research into the economics of AMMs, game theory, or optimization research, check out our [**research**](https://docs.uniswap.org/concepts/advanced/research) page.
 
 For new features implemented in V3 that expand and refine AMM design, see the [**V3 Concepts**](https://docs.uniswap.org/concepts/V3-overview/concentrated-liquidity) page.
 
