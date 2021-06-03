@@ -10,13 +10,12 @@ title: Concentrated Liquidity
   </video>
   </div>
 
-
 ---
 
 ## Introduction
 
 The defining idea of Uniswap v3 is concentrated liquidity: liquidity that is allocated within a custom price range.
-In earlier versions, liquidity was distributed uniformly along the price curve between 0 and infinity. 
+In earlier versions, liquidity was distributed uniformly along the price curve between 0 and infinity.
 
 The previously uniform distribution allowed trading across the entire price interval (0, ∞) without any loss of liquidity. However, in many pools, the majority of the liquidity was never used.
 
@@ -26,7 +25,7 @@ With v3, liquidity providers may concentrate their capital to smaller price inte
 
 ## Active Liquidity
 
-As the price of an asset rises or falls, it may exit the price bounds that LPs have set in a position. When the price exits a position's interval, the position's liquidity is no longer active and no longer earns fees. 
+As the price of an asset rises or falls, it may exit the price bounds that LPs have set in a position. When the price exits a position's interval, the position's liquidity is no longer active and no longer earns fees.
 
 As price moves in one direction, LPs gain more of the one asset as swappers demand the other, until their entire liquidity consists of only one asset. (In v2, we don't typically see this behavior because LPs rarely reach the upper or lower bound of the price of two assets, i.e., 0 and ∞). If the price ever reenters the interval, the liquidity becomes active again, and in-range LPs begin earning fees once more.
 
@@ -36,7 +35,7 @@ Importantly, LPs are free to create as many positions as they see fit, each with
 
 To achieve concentrated liquidity, the once continuous spectrum of price space has been partitioned with ticks.
 
-Ticks are the boundaries between discrete areas in price space. Ticks are spaced such that an increase or decrease of 1 tick represents a 0.0001% increase or decrease in price at any point in price space. 
+Ticks are the boundaries between discrete areas in price space. Ticks are spaced such that an increase or decrease of 1 tick represents a 0.0001% increase or decrease in price at any point in price space.
 
 Ticks function as boundaries for liquidity positions. When a position is created, the provider must choose the lower and upper tick that will represent their position's borders.
 
@@ -49,6 +48,5 @@ While inactive ticks have no impact on transaction cost during swaps, crossing a
 In areas where capital efficiency is paramount, such as stable coin pairs, narrower tick spacing increases the granularity of liquidity provisioning and will likely lower price impact when swapping - the result being significantly improved prices for stable coin swaps
 
 For more information on fee levels and their correlation to tick spacing, see the [**whitepaper.**](https://uniswap.org/whitepaper-v3.pdf)
-
 
 [^1]: Tick interval refers to the area of price space between two nearest active ticks

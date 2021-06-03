@@ -9,14 +9,14 @@ module.exports = {
   organizationName: "Uniswap", // Usually your GitHub org/user name.
   projectName: "Uniswap-docs", // Usually your repo name.
   themeConfig: {
-   // hideableSidebar: true,
+    // hideableSidebar: true,
     prism: {
       additionalLanguages: ["solidity"],
     },
     algolia: {
       apiKey: "32465e2ab6f7554ff014e64c0d92171c",
       indexName: "v3-docs",
-      appId: "S0IDD0YGLZ"
+      appId: "S0IDD0YGLZ",
     },
     navbar: {
       title: "Uniswap Documentation",
@@ -26,14 +26,14 @@ module.exports = {
       },
       items: [
         {
-          label: 'Protocol',
-          position: 'left',
-          to: '/'
+          label: "Protocol",
+          position: "left",
+          to: "/",
         },
         {
-          label: 'SDK',
-          position: 'left',
-          to: 'SDK/'
+          label: "SDK",
+          position: "left",
+          to: "SDK/",
         },
         {
           label: "Whitepaper",
@@ -140,7 +140,7 @@ module.exports = {
     //     sidebarPath: require.resolve("./sdkSidebar.js"),
     //   },
     // ],
-  ], 
+  ],
   //   ],
   //   [
   //     "@docusaurus/plugin-content-docs",

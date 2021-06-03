@@ -5,7 +5,7 @@ title: Glossary
 
 ## Automated Market Maker
 
-An automated market maker is a smart contract on Ethereum that holds liquidity reserves. Users can trade against these reserves at prices determined by a fixed formula.  Anyone may contribute liquidity to these smart contracts, earning pro-rata trading fees in return.
+An automated market maker is a smart contract on Ethereum that holds liquidity reserves. Users can trade against these reserves at prices determined by a fixed formula. Anyone may contribute liquidity to these smart contracts, earning pro-rata trading fees in return.
 
 ## Asset
 
@@ -17,7 +17,7 @@ Liquidity that is allocated within a determined price range.
 
 ## Constant Product Formula
 
-The automated market making algorithm used by Uniswap. In v1 and v2, this was x*y=k.
+The automated market making algorithm used by Uniswap. In v1 and v2, this was x\*y=k.
 
 ## Core
 
@@ -37,7 +37,7 @@ A trade that uses the tokens purchased before paying for them.
 
 ## Invariant
 
-The “k” value in the constant product formula X*Y=K
+The “k” value in the constant product formula X\*Y=K
 
 ## Liquidity Provider / "LP"
 
@@ -79,7 +79,7 @@ The difference between the mid-price and the execution price of a trade.
 
 Fees that are rewarded to the protocol itself, rather than to liquidity providers.
 
-## Range 
+## Range
 
 Any interval between two ticks of any disance.
 
@@ -97,7 +97,7 @@ The amount the price moves in a trading pair between when a transaction is submi
 
 ## Spot Price
 
-The current price of a token relative to another within a given pair. 
+The current price of a token relative to another within a given pair.
 
 ## Swap Fees
 
@@ -110,4 +110,3 @@ The price space between two nearest ticks.
 ## Tick
 
 The boundaries between discreet areas in price space.
-

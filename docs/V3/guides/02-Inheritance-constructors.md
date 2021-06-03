@@ -7,10 +7,10 @@ In this guide, we will write a smart contract that calls `flash` on a V3 pool an
 
 ## Flash Transactions Overview
 
-Flash transactions are an approach to transferring tokens on Ethereum that transfer token balances *before* the necessary conditions are met for those balances to be transferred. In the context of a swap, this would mean the output is sent from the swap before the input is received. 
+Flash transactions are an approach to transferring tokens on Ethereum that transfer token balances _before_ the necessary conditions are met for those balances to be transferred. In the context of a swap, this would mean the output is sent from the swap before the input is received.
 
 Uniswap V3 introduces a new function, `flash`, within the Pool contract. `Flash` withdraws a specified amount of both `token0` and `token1` to the `recipient` address. The withdrawn amount, plus the swap fees, will be due to the pool at the end of the transaction. `flash` includes a fourth parameter, `data`, which allows the caller to abi.encode any necessary data to be passed through the function and decoded later.
-  
+
 ```solidity
     function flash(
         address recipient,
@@ -34,7 +34,6 @@ In V3 there are three separate callback functions, `uniswapV3SwapCallback`, `uni
 
 ## Inheriting The V3 Contracts
 
-
 Our first step is to inherit `IUniswapV3FlashCallback` and `PeripheryPayments`, as we will use each in our logic. Note these two inherited contracts already extend many other contracts that we will be using, such as [LowGasSafeMath](https://docs.uniswap.org/reference/core/libraries/LowGasSafeMath) which we [attach](https://docs.soliditylang.org/en/v0.7.6/contracts.html?highlight=using#using-for), to types `uint256` and `int256`.
 
 ```solidity
@@ -48,7 +47,6 @@ Next, we declare an immutable public variable `swapRouter` of type `ISwapRouter`
 ```solidity
     ISwapRouter public Immutable swapRouter;
 ```
-
 
 We'll declare the constructor here, which is executed once when the contract is deployed. Our constructor hard codes the address of the V3 router, factory, and the address of weth9, the [ERC-20 wrapper](https://weth.io/) for ether.
 

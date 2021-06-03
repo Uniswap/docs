@@ -29,7 +29,6 @@ Each callback must be validated to verify that the call originated from a genuin
         CallbackValidation.verifyCallback(factory, decoded.poolKey);
 ```
 
-
 Now we will assign local variables of type `address` as `token0` and `token1` so that we can approve the router to interact with the tokens from the flash.
 
 ```solidity
@@ -53,7 +52,7 @@ Now we call the first of two swaps, calling `exactInputSingle` on the [**router 
 
 Most of These function arguments have already been discussed, except for two new introductions:
 
-`sqrtPriceLimitX96`: This value limits the price that the swap can change the pool to. Remember that price is always expressed in the pool contract as `token1` in terms of `token0`. This is useful for circumstances where the user wants to swap *up until* a certain price. For this example, we will set it to 0 to effectively make the argument inactive.
+`sqrtPriceLimitX96`: This value limits the price that the swap can change the pool to. Remember that price is always expressed in the pool contract as `token1` in terms of `token0`. This is useful for circumstances where the user wants to swap _up until_ a certain price. For this example, we will set it to 0 to effectively make the argument inactive.
 
 `deadline`: this is the timestamp after which the transaction will revert, to protect the transaction from dramatic changes in price environment that can happen if the transaction is pending for too long. For this example, we will set it far in the future for the sake of simplicity.
 
@@ -74,6 +73,7 @@ uint256 amountOut0 =
                 })
             );
 ```
+
 Following that, we have the second of two swaps, this time with the last fee tier and with the `amount0` that we withdrew from the original pool.
 
 ```solidity
@@ -106,7 +106,6 @@ TransferHelper.safeApprove(token1, address(this), amount1Owed);
 
 Now we use some simple logic to call [pay](https://docs.uniswap.org/reference/periphery/base/PeripheryPayments#pay) if there is any balance due to the token. Remember that the callback function is being called by the pool itself, which is why we can call `pay` despite the function being marked `internal`.
 
-
 ```solidity
 if (amount0Owed > 0) pay(token0, address(this), msg.sender, amount0Owed);
 if (amount1Owed > 0) pay(token1, address(this), msg.sender, amount1Owed);
@@ -130,7 +129,6 @@ Finally, we send the profits to the `payer`, which is the original `msg.sender` 
 ```
 
 # The full function
-
 
 ```solidity
     function uniswapV3FlashCallback(
