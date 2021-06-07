@@ -109,8 +109,6 @@ now we're ready to query the EVM using `ethers.js`, and assign the returned valu
 
 ```typescript
 async function getPoolImmutables() {
-    // let token0 = await poolContract.token0();
-    // return token0;
     const PoolImmutables: Immutables = {
         factory: await poolContract.factory(),
         token0: await poolContract.token0(),
@@ -187,8 +185,6 @@ interface Immutables {
 }
 
 async function getPoolImmutables() {
-    // let token0 = await poolContract.token0();
-    // return token0;
     const PoolImmutables: Immutables = {
         factory: await poolContract.factory(),
         token0: await poolContract.token0(),
