@@ -22,8 +22,7 @@ To follow this guide, you must have the following installed:
 The easiest way to follow this tutorial, is to bootstrap the boilerplate with [hardhat](https://hardhat.org/getting-started/).
 
 ```shell script
-mkdir demo
-cd demo
+mkdir demo && cd "$_"
 npx hardhat
 ```
 
