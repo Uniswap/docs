@@ -100,6 +100,8 @@ async function getPoolState() {
 
 Finally, we will create a function called `main` which calls are previously written functions, and uses the returned data to construct two `Ethers.js` `Token` instances a V3 SDK `Pool` instance. 
 
+> The final constructor argument when creating a Pool, `ticks`, is optional. Ticks takes all tick data, including the liquidity within, which can be used to model the result of a swap. Because this can add up to a lot of data fetched from the EVM, it is optional and may be left out when not needed. In this example, we have left it out.
+
 ```typescript
 async function main() {
   const immutables = await getPoolImmutables();
@@ -119,6 +121,35 @@ async function main() {
 }
 
 main();
+```
+
+If everything is working, the script should return something like this: 
+```typescript
+Pool {
+  token0: Token {
+    chainId: 1,
+    decimals: 8,
+    symbol: 'USDC',
+    name: 'USD Coin',
+    isNative: false,
+    isToken: true,
+    address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+  },
+  token1: Token {
+    chainId: 1,
+    decimals: 8,
+    symbol: 'WETH',
+    name: 'Wrapped Ether',
+    isNative: false,
+    isToken: true,
+    address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
+  },
+  fee: 3000,
+  sqrtRatioX96: JSBI(4) [ 1389262056, -1079304777, -1721588872, 19633, sign: false ],
+  liquidity: JSBI(3) [ 988036789, -62655684, 1, sign: false ],
+  tickCurrent: 197709,
+  tickDataProvider: NoTickDataProvider {}
+}
 ```
 
 
