@@ -21,7 +21,7 @@ To follow this guide, you must have the following installed:
 
 The easiest way to follow this tutorial, is to bootstrap the boilerplate with [hardhat](https://hardhat.org/getting-started/).
 
-```shell script
+```shell-script
 mkdir demo && cd "$_"
 npx hardhat
 ```
@@ -53,14 +53,14 @@ Let's add both the
 [`@uniswap/v2-core`](https://www.npmjs.com/package/@uniswap/v2-core) and
 [`@uniswap/v2-periphery`](https://www.npmjs.com/package/@uniswap/v2-periphery) packages.
 
-```shell script
+```shell-script
 npm i --save @uniswap/v2-core
 npm i --save @uniswap/v2-periphery
 ```
 
 If you check the `node_modules/@uniswap` directory, you can now find the Uniswap V2 contracts.
 
-```shell script
+```shell-script
 >ls node_modules/@uniswap/v2-core/contracts
 UniswapV2ERC20.sol    UniswapV2Pair.sol     libraries/
 UniswapV2Factory.sol  interfaces/           test/
@@ -81,7 +81,7 @@ For writing Solidity, we recommend IntelliJ or VSCode with a solidity plugin, bu
 Let's write a contract that returns the value of some amount of liquidity shares for a given token pair.
 First create a couple of files:
 
-```shell script
+```shell-script
 mkdir contracts/interfaces
 touch contracts/interfaces/ILiquidityValueCalculator.sol
 touch contracts/LiquidityValueCalculator.sol
@@ -242,7 +242,7 @@ main()
 
 To deploy the contracts to the local chain, simply run
 
-```shell script
+```shell-script
 npm run deploy
 ```
 
