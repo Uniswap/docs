@@ -7,6 +7,7 @@ module.exports = {
       collapsed: false,
       items: [
         "SDK-guides/getting-started",
+        "SDK-guides/creating-a-pool",
       ]
     },
     {
