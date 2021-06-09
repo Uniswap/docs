@@ -31,6 +31,7 @@ const poolContract = new ethers.Contract(
   provider
 );
 ```
+
 ## Creating The Interfaces
 
 Here we will create two interfaces, with types that are appropriate for the data we need. We won't be using all of this data, but some extra data is fetched for context.
@@ -56,6 +57,7 @@ interface State {
   unlocked: boolean;
 }
 ```
+
 ## Fetching Immutable Data
 
 Now we're going to fetch the immutable data from the deployed V3 pool contract, and return it so we can use it to create our own model of the pool. Note that this style of fetching is not recommended for production, as each `await` call is executed sequentially. In your own program, you will likely want to use `Promise.all` to fetch the immutable data concurrently.
@@ -73,10 +75,10 @@ async function getPoolImmutables() {
   return immutables;
 }
 ```
+
 Next we need to fetch the state data. Again - this example fetches state data sequentially, which is vulnerable to creating inaccurate pool readings. In production, developers should fetch state data in a way that avoids the potential for returning state between blocks, which would create an inaccurate pool representation.
 
 > `sqrtPriceX96` and `sqrtRatioX96`, despite being named differently, are interchangeable values.
-
 
 ## Fetching State Data
 
@@ -96,9 +98,10 @@ async function getPoolState() {
   return PoolState;
 }
 ```
+
 ## Creating the Pool Instance
 
-Finally, we will create a function called `main` which calls are previously written functions, and uses the returned data to construct two `Ethers.js` `Token` instances a V3 SDK `Pool` instance. 
+Finally, we will create a function called `main` which calls are previously written functions, and uses the returned data to construct two `Ethers.js` `Token` instances a V3 SDK `Pool` instance.
 
 > The final constructor argument when creating a Pool, `ticks`, is optional. Ticks takes all tick data, including the liquidity within, which can be used to model the result of a swap. Because this can add up to a lot of data fetched from the EVM, it is optional and may be left out when not needed. In this example, we have left it out.
 
@@ -123,7 +126,8 @@ async function main() {
 main();
 ```
 
-If everything is working, the script should return something like this: 
+If everything is working, the script should return something like this:
+
 ```typescript
 Pool {
   token0: Token {
@@ -152,8 +156,7 @@ Pool {
 }
 ```
 
-
-## The Final Script 
+## The Final Script
 
 ```typescript
 import { ethers } from "ethers";
