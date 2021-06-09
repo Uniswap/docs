@@ -19,30 +19,38 @@ To follow this guide, you must have the following installed:
 
 ## Bootstrapping a project
 
-You can start from scratch, but it's easier to use a tool like `truffle` to bootstrap an empty project.
-Create an empty directory and run `npx truffle init` inside that directory to unbox the default
-[Truffle box](https://www.trufflesuite.com/boxes).
+The easiest way to follow this tutorial, is to bootstrap the boilerplate with [hardhat](https://hardhat.org/getting-started/).
 
 ```shell script
 mkdir demo
 cd demo
-npx truffle init
+npx hardhat
 ```
 
-## Setting up npm
+Follow the steps in the console to create a non-empty project.
 
-In order to reference the Uniswap V2 contracts, you should use the npm artifacts we deploy containing the core and
-periphery smart contracts and interfaces. To add npm dependencies, we first initialize the npm package.
-We can run `npm init` in the same directory to create a `package.json` file. You can accept all the defaults and
-change it later.
+In your `hardhat.config.js` set the solidity version to `0.6.6`
 
-```shell script
-npm init
+```javascript
+module.exports = {
+  solidity: "0.6.6",
+};
+```
+
+In your `package.json` create the following script that will be responsible for deploying our contracts
+
+```json
+"scripts": {
+  "deploy": "hardhat run scripts/deploy.js"
+}
 ```
 
 ## Adding dependencies
 
-Now that we have an npm package, we can add our dependencies. Let's add both the
+In order to reference the Uniswap V2 contracts, you should use the npm artifacts we deployed that contain the core and
+periphery smart contracts and interfaces.
+
+Let's add both the
 [`@uniswap/v2-core`](https://www.npmjs.com/package/@uniswap/v2-core) and
 [`@uniswap/v2-periphery`](https://www.npmjs.com/package/@uniswap/v2-periphery) packages.
 
@@ -54,10 +62,12 @@ npm i --save @uniswap/v2-periphery
 If you check the `node_modules/@uniswap` directory, you can now find the Uniswap V2 contracts.
 
 ```shell script
-moody@MacBook-Pro ~/I/u/demo> ls node_modules/@uniswap/v2-core/contracts
+>ls node_modules/@uniswap/v2-core/contracts
 UniswapV2ERC20.sol    UniswapV2Pair.sol     libraries/
 UniswapV2Factory.sol  interfaces/           test/
-moody@MacBook-Pro ~/I/u/demo> ls node_modules/@uniswap/v2-periphery/contracts/
+
+
+>ls node_modules/@uniswap/v2-periphery/contracts/
 UniswapV2Migrator.sol  examples/              test/
 UniswapV2Router01.sol  interfaces/
 UniswapV2Router02.sol  libraries/
@@ -103,6 +113,7 @@ import './interfaces/ILiquidityValueCalculator.sol';
 
 contract LiquidityValueCalculator is ILiquidityValueCalculator {
     address public factory;
+
     constructor(address factory_) public {
         factory = factory_;
     }
@@ -127,6 +138,12 @@ import '@uniswap/v2-periphery/contracts/libraries/UniswapV2Library.sol';
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
 
 contract LiquidityValueCalculator is ILiquidityValueCalculator {
+    address public factory;
+
+    constructor(address factory_) public {
+        factory = factory_;
+    }
+
     function pairInfo(address tokenA, address tokenB) internal view returns (uint reserveA, uint reserveB, uint totalSupply) {
         IUniswapV2Pair pair = IUniswapV2Pair(UniswapV2Library.pairFor(factory, tokenA, tokenB));
         totalSupply = pair.totalSupply();
@@ -147,6 +164,7 @@ import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
 
 contract LiquidityValueCalculator is ILiquidityValueCalculator {
     address public factory;
+  
     constructor(address factory_) public {
         factory = factory_;
     }
@@ -164,7 +182,7 @@ contract LiquidityValueCalculator is ILiquidityValueCalculator {
 }
 ```
 
-## Writing tests
+## Deploying and writing tests
 
 In order to test your contract, you need to:
 
@@ -176,7 +194,7 @@ In order to test your contract, you need to:
 6. Call `LiquidityValueCalculator#computeLiquidityShareValue`
 7. Verify the result with an assertion
 
-\#1 is handled for you automatically by the `truffle test` command.
+\#1 is automatically handled by hardhat.
 
 Note you should only deploy the precompiled Uniswap contracts in the `build` directories for unit tests.
 This is because solidity appends a metadata hash to compiled contract artifacts which includes the hash of the contract
@@ -193,14 +211,52 @@ const UniswapV2FactoryBytecode = require('@uniswap/v2-core/build/UniswapV2Factor
 
 We recommend using a standard ERC20 from `@openzeppelin/contracts` for deploying an ERC20.
 
-You can read more about deploying contracts and writing tests using Truffle
-[here](https://www.trufflesuite.com/docs/truffle/testing/writing-tests-in-javascript).
+Your `scripts/deploy.js` to deploy `UniswapV2Library` can look like this
+
+```javascript
+const hre = require("hardhat");
+const { ethers } = hre;
+const UniswapV2FactoryBytecode = require('@uniswap/v2-core/build/UniswapV2Factory.json').bytecode
+
+
+async function main() {
+  const UniswapV2Library = await ethers.getContractFactory(
+    [
+      "constructor(address _feeToSetter)",
+      "function createPair(address tokenA, address tokenB) external returns (address pair)",
+    ],
+    UniswapV2FactoryBytecode
+  );
+  const [owner] = await ethers.getSigners();
+  const uniswapV2Library = await UniswapV2Library.deploy(owner.address);
+
+  console.log("deployed uniswapV2Library to", uniswapV2Library.address);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+To deploy the contracts to the local chain, simply run
+
+```shell script
+npm run deploy
+```
+
+**NOTE**: you need to implement *computeLiquidityShareValue* to be able to deploy, otherwise you will get compilation errors.
+
+You can read more about writing tests with hardhat
+[here](https://hardhat.org/guides/waffle-testing.html).
 
 ## Compiling and deploying the contract
 
-Learn more about compiling and deploying contracts using Truffle
-[here](https://www.trufflesuite.com/docs/truffle/getting-started/compiling-contracts) and
-[here](https://www.trufflesuite.com/docs/truffle/getting-started/running-migrations) respectively.
+Learn more about compiling and deploying contracts with hardhat
+[here](https://hardhat.org/guides/compile-contracts.html) and
+[here](https://hardhat.org/guides/deploying.html) respectively.
 
 ## WIP
 
