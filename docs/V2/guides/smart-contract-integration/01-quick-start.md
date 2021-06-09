@@ -81,7 +81,7 @@ touch contracts/LiquidityValueCalculator.sol
 This will be the interface of the contract we implement. Put it in `contracts/interfaces/ILiquidityValueCalculator.sol`.
 
 ```solidity
-pragma solidity ^0.6.6;
+pragma solidity =0.6.6;
 
 interface ILiquidityValueCalculator {
     function computeLiquidityShareValue(uint liquidity, address tokenA, address tokenB) external returns (uint tokenAAmount, uint tokenBAmount);
@@ -97,7 +97,7 @@ but since we need to unit test the contract it should be an argument. You can us
 when accessing this variable.
 
 ```solidity
-pragma solidity ^0.6.6;
+pragma solidity =0.6.6;
 
 import './interfaces/ILiquidityValueCalculator.sol';
 
@@ -120,7 +120,7 @@ Let's put this in a separate function. To implement it, we must:
 The [`UniswapV2Library`](/docs/v2/smart-contracts/library/) has some helpful methods for this.
 
 ```solidity
-pragma solidity ^0.6.6;
+pragma solidity =0.6.6;
 
 import './interfaces/ILiquidityValueCalculator.sol';
 import '@uniswap/v2-periphery/contracts/libraries/UniswapV2Library.sol';
@@ -139,7 +139,7 @@ contract LiquidityValueCalculator is ILiquidityValueCalculator {
 Finally we just need to compute the share value. We will leave that as an exercise to the reader.
 
 ```solidity
-pragma solidity ^0.6.6;
+pragma solidity =0.6.6;
 
 import './interfaces/ILiquidityValueCalculator.sol';
 import '@uniswap/v2-periphery/contracts/libraries/UniswapV2Library.sol';
