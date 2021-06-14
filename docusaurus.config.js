@@ -28,12 +28,12 @@ module.exports = {
         {
           label: "Protocol",
           position: "left",
-          to: "/",
+          to: "docs/what-is-uniswap",
         },
         {
           label: "SDK",
           position: "left",
-          to: "SDK/",
+          to: "docs/SDK/",
         },
         {
           label: "Whitepaper",
@@ -117,7 +117,6 @@ module.exports = {
         docs: {
           id: "versionthree",
           path: "docs/V3",
-          routeBasePath: "/",
           sidebarPath: require.resolve("./V3sidebars.js"),
           includeCurrentVersion: true,
           editUrl: "https://github.com/uniswap/uniswap-docs/tree/main/",

@@ -112,6 +112,7 @@ module.exports = {
     },
   ],
   docs: [
+    "what-is-uniswap",
     {
       type: "category",
       label: "Core Concepts",
@@ -121,7 +122,6 @@ module.exports = {
           type: "category",
           label: "Introduction",
           items: [
-            "concepts/introduction/what-is-uniswap",
             "concepts/introduction/swaps",
             "concepts/introduction/liquidity-user-guide",
           ],
