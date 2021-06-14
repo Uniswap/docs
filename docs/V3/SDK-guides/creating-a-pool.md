@@ -9,7 +9,7 @@ This guide extends the previous [getting started](./getting-started.md) guide by
 
 First we will replace the abi that we previously wrote out manually with a library that contains the total V3 pool abi for us to easily interact with. Note the abi is imported from the `v3-core` npm package, rather than the `v3-sdk` npm package, as it is a part of the protocol rather than the SDK.
 
-Depending on your local configuration, you may need to update your ts.config to allow importing of `josn` files with `"resolveJsonModule": true,`.
+Depending on your local configuration, you may need to update your ts.config to allow importing of `json` files with `"resolveJsonModule": true,`.
 
 ```typescript
 import { ethers } from "ethers";
