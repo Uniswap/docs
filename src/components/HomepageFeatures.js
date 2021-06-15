@@ -5,7 +5,7 @@ import styles from './HomepageFeatures.module.css';
 const FeatureList = [
   {
     title: 'Introductory Concepts',
-    Svg: require('../../static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('../../static/img/void.svg').default,
     description: (
       <>
         The Uniswap protocol is a significant departure from historical forms of exchange.
@@ -15,7 +15,7 @@ const FeatureList = [
   },
   {
     title: 'The Javascript SDK',
-    Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('../../static/img/code.svg').default,
     description: (
       <>
        To interact with, or retrieve information from, the Uniswap protocol from inside of Javascript environment.
@@ -24,7 +24,7 @@ const FeatureList = [
   },
   {
     title: 'Technical Reference',
-    Svg: require('../../static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('../../static/img/reference.svg').default,
     description: (
       <>
         To view the Uniswap protocol smart contracts deployed on Ethereum.
@@ -51,6 +51,7 @@ function Feature({Svg, title, description}) {
 export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
+      
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
