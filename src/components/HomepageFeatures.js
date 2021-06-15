@@ -8,28 +8,26 @@ const FeatureList = [
     Svg: require('../../static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        The Uniswap protocol is a significant departure from historical forms of exchange.
+        To get some foundational understanding, this is a great place to start.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'The Javascript SDK',
     Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+       To interact with, or retrieve information from, the Uniswap protocol from inside of Javascript environment.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Technical Reference',
     Svg: require('../../static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        To view the Uniswap protocol smart contracts deployed on Ethereum.
       </>
     ),
   },
