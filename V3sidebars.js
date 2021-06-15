@@ -3,7 +3,7 @@ module.exports = {
     "SDK/readme",
     {
       type: "category",
-      label: "Guides",
+      label: "Developer Guides",
       collapsed: false,
       items: [
         "SDK-guides/getting-started",
@@ -12,7 +12,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Reference", // generate sidebar slice from the docs folder (or versioned_docs/<version>)
+      label: "Technical Reference", // generate sidebar slice from the docs folder (or versioned_docs/<version>)
       collapsed: false,
       items: [
         {
@@ -151,7 +151,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Guides",
+      label: "Developer Guides",
       items: [
         {
           type: "category",
@@ -167,7 +167,7 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Reference",
+      label: "Smart Contract Reference",
       items: [
         "reference/smart-contracts",
         "reference/deployments",
