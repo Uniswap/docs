@@ -15,8 +15,9 @@ const Row = styled.div`
 
 const Card = styled.div`
   display: flex;
-  height: 460px;
-  width: 300px;
+  min-height: 600px;
+  min-width: 300px;
+  width: 25%;
   flex-flow: column;
   cursor: pointer;
   background-color: ${({ color }) => color || `#fff`};
@@ -46,13 +47,14 @@ export default function Home() {
     >
       <div>
         <Row>
-          <Card color="#F5E7DD">
+          <Card color="#F5E7DD" href="../V3/what-is-uniswap">
             <Bottom>
               <CardText>Concepts</CardText>
               <CardText></CardText>
             </Bottom>
           </Card>
           <Card color="#EDDBF7">
+            <onclick></onclick>
             <Bottom>
               <CardText>Javascript SDK</CardText>
             </Bottom>
@@ -62,7 +64,7 @@ export default function Home() {
               <CardText>Smart Contract Reference</CardText>
             </Bottom>
           </Card>
-          <Card color="#FFFFFF">
+          <Card color="#9C9990">
             <Bottom>
               <CardText>Governance</CardText>
             </Bottom>
