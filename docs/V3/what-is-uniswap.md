@@ -16,7 +16,7 @@ The following is a brief overview of the _Uniswap protocol_
 
 ## Introduction
 
-The Uniswap protocol is a peer-to-contract[1] system designed for exchanging cryptocurrencies [(**ERC-20 Tokens**)](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) on the [**Ethereum**](https://ethereum.org/) blockchain. The protocol is implemented as a set of persistent, non-upgradable smart contracts; designed to prioritize censorship resistance, security, self-custody, and to function without any trusted intermediaries who may selectively restrict access.
+The Uniswap protocol is a peer-to-peer[^1] system designed for exchanging cryptocurrencies [(**ERC-20 Tokens**)](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) on the [**Ethereum**](https://ethereum.org/) blockchain. The protocol is implemented as a set of persistent, non-upgradable smart contracts; designed to prioritize censorship resistance, security, self-custody, and to function without any trusted intermediaries who may selectively restrict access.
 
 There are currently three versions of the Uniswap protocol. V1 and V2 are open source and licensed under GPL. V3 is open source with slight modifications, which are viewable [**here**](https://github.com/Uniswap/uniswap-v3-core/blob/main/LICENSE). Each version of Uniswap, once deployed, will function with in perpetuity, with 100% uptime, providing the continued existence of the Ethereum blockchain.
 
@@ -42,6 +42,6 @@ For research into the economics of AMMs, game theory, or optimization research, 
 
 For new features implemented in V3 that expand and refine AMM design, see the [**V3 Concepts**](https://docs.uniswap.org/concepts/V3-overview/concentrated-liquidity) page.
 
-[1] Similar to a peer-to-peer system, but with immutable, persistent programs known as smart contracts taking the place of a peer.
+[^1] Ethereum protocols are sometimes referred to as peer-to-contract sustems as well. These are similar to a peer-to-peer systems, but with immutable, persistent programs known as smart contracts taking the place of a peer.
 
 A peer-to-contract system facilitates peer-to-peer functionality, but uses immutable, persistent programs known as smart contracts to automate some processes.
