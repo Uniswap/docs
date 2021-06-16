@@ -80,7 +80,7 @@ Look up information about a specific tick in the pool
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`liquidityGross`| int24 | the total amount of position liquidity that uses the pool either as tick lower or tick upper,
+|`liquidityGross`| uint128 | the total amount of position liquidity that uses the pool either as tick lower or tick upper,
 | `liquidityNet` | int128 |  how much liquidity changes when the pool price crosses the tick,
 | `feeGrowthOutside0X128` | uint256 | the fee growth on the other side of the tick from the current tick in token0,
 | `feeGrowthOutside1X128` | uint256 | the fee growth on the other side of the tick from the current tick in token1, feeGrowthOutsideX128 values can only be used if the tick is initialized, i.e. if liquidityGross is greater than 0. In addition, these values are only relative and are used to compute snapshots.|
