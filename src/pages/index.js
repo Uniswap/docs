@@ -14,7 +14,7 @@ export default function Home() {
       title={`Uniswap Docs`}
       description="Technical Documentation For The Uniswap Protocol">
       <main>
-        <HomepageFeatures />
+      <App />
       </main>
     </Layout>
   );
