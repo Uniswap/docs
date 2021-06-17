@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@algolia/autocomplete-preset-algolia": "^1.1.0",
+    "@algolia/client-search": "^4.9.1",
     "@docusaurus/core": "2.0.0-beta.0",
     "@docusaurus/plugin-content-docs": "^2.0.0-beta.0",
     "@docusaurus/preset-classic": "^2.0.0-beta.0",
     "@docusaurus/theme-search-algolia": "^2.0.0-beta.0",
     "@mdx-js/react": "^1.6.21",
+    "algoliasearch": "^4.9.1",
     "clsx": "^1.1.1",
     "intl-locales-supported": "^1.8.12",
     "react": "^16.8.4",
