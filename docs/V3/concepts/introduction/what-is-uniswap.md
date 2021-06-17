@@ -43,6 +43,6 @@ For research into the economics of AMMs, game theory, or optimization research, 
 
 For new features implemented in V3 that expand and refine AMM design, see the [**V3 Concepts**](https://docs.uniswap.org/concepts/V3-overview/concentrated-liquidity) page.
 
-[^1] Ethereum protocols are sometimes referred to as peer-to-contract sustems as well. These are similar to a peer-to-peer systems, but with immutable, persistent programs known as smart contracts taking the place of a peer.
+[^1] Ethereum protocols are sometimes referred to as peer-to-contract systems as well. These are similar to a peer-to-peer systems, but with immutable, persistent programs known as smart contracts taking the place of a peer.
 
 A peer-to-contract system facilitates peer-to-peer functionality, but uses immutable, persistent programs known as smart contracts to automate some processes.
