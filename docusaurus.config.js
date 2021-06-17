@@ -50,6 +50,11 @@ module.exports = {
           label: "SDK",
           position: "right",
         },
+        {
+          href: "https://uniswap.org/docs/v2/",
+          label: "V2",
+          position: "right",
+        },
       ],
     },
     footer: {
