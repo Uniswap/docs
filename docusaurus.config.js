@@ -4,19 +4,19 @@ module.exports = {
   url: "https://docs.uniswap.org/",
   baseUrl: "/",
   onBrokenLinks: "ignore",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenMarkdownLinks: "ignore",
   favicon: "img/favicon.png",
   organizationName: "Uniswap", // Usually your GitHub org/user name.
   projectName: "Uniswap-docs", // Usually your repo name.
   themeConfig: {
-   // hideableSidebar: true,
+    // hideableSidebar: true,
     prism: {
       additionalLanguages: ["solidity"],
     },
     algolia: {
       apiKey: "32465e2ab6f7554ff014e64c0d92171c",
       indexName: "v3-docs",
-      appId: "S0IDD0YGLZ"
+      appId: "S0IDD0YGLZ",
     },
     navbar: {
       title: "Uniswap Documentation",
@@ -25,25 +25,16 @@ module.exports = {
         src: "img/uni_dark_icon.svg",
       },
       items: [
-        // {
-        //   label: 'Version',
-        //   position: 'right',
-        //   items: [
-        //     {
-        //       label: 'V3',
-        //       to: 'docs/V3/concepts/landing'
-        //     },
-        //     {
-        //       label: 'V2',
-        //       to: 'docs/V2/concepts'
-        //     },
-        //     {
-        //       label: 'V1',
-        //       to: 'docs/V1/concepts'
-        //     }
-
-        //   ]
-        // },
+        {
+          label: "Protocol",
+          position: "left",
+          to: "/",
+        },
+        {
+          label: "SDK",
+          position: "left",
+          to: "SDK/",
+        },
         {
           label: "Whitepaper",
           to: "https://uniswap.org/whitepaper-v3.pdf",
@@ -140,23 +131,25 @@ module.exports = {
     ],
   ],
   plugins: [
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "versiontwo",
-        path: "docs/V2",
-        routeBasePath: "docs/V2",
-        sidebarPath: require.resolve("./V2sidebars.js"),
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "versionone",
-        path: "docs/V1",
-        routeBasePath: "docs/V1",
-        sidebarPath: require.resolve("./V1sidebars.js"),
-      },
-    ],
+    // [
+    //   "@docusaurus/plugin-content-docs",
+    //   {
+    //     id: "SDK",
+    //     path: "SDK",
+    //     routeBasePath: "/",
+    //     sidebarPath: require.resolve("./sdkSidebar.js"),
+    //   },
+    // ],
   ],
+  //   ],
+  //   [
+  //     "@docusaurus/plugin-content-docs",
+  //     {
+  //       id: "versionone",
+  //       path: "docs/V1",
+  //       routeBasePath: "docs/V1",
+  //       sidebarPath: require.resolve("./V1sidebars.js"),
+  //     },
+  //   ],
+  // ],
 };

@@ -4,9 +4,14 @@
 */
 "use strict";
 
+const util = require("util");
+
+const defaultFactory = (key, hook) => hook;
+
 class HookMap {
-	constructor(factory) {
+	constructor(factory, name = undefined) {
 		this._map = new Map();
+		this.name = name;
 		this._factory = factory;
 		this._interceptors = [];
 	}
@@ -33,24 +38,24 @@ class HookMap {
 		this._interceptors.push(
 			Object.assign(
 				{
-					factory: (key, hook) => hook
+					factory: defaultFactory
 				},
 				interceptor
 			)
 		);
 	}
-
-	tap(key, options, fn) {
-		return this.for(key).tap(options, fn);
-	}
-
-	tapAsync(key, options, fn) {
-		return this.for(key).tapAsync(options, fn);
-	}
-
-	tapPromise(key, options, fn) {
-		return this.for(key).tapPromise(options, fn);
-	}
 }
+
+HookMap.prototype.tap = util.deprecate(function(key, options, fn) {
+	return this.for(key).tap(options, fn);
+}, "HookMap#tap(key,…) is deprecated. Use HookMap#for(key).tap(…) instead.");
+
+HookMap.prototype.tapAsync = util.deprecate(function(key, options, fn) {
+	return this.for(key).tapAsync(options, fn);
+}, "HookMap#tapAsync(key,…) is deprecated. Use HookMap#for(key).tapAsync(…) instead.");
+
+HookMap.prototype.tapPromise = util.deprecate(function(key, options, fn) {
+	return this.for(key).tapPromise(options, fn);
+}, "HookMap#tapPromise(key,…) is deprecated. Use HookMap#for(key).tapPromise(…) instead.");
 
 module.exports = HookMap;

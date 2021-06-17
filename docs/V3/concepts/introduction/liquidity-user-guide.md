@@ -70,7 +70,7 @@ However, a narrower price range requires LPs to manage their liquidity on a more
 The following community tools simulate Uniswap v3 positions and may be useful for prospective LPs. Please note that they have not been audited by Uniswap Labs and may be subject to inaccuracies.
 
 1. [V3.unbound.finance](https://v3.unbound.finance/)
-2. [Defi-lab.xyz](https://defi-lab.xyz/)
+2. [Defi-lab.xyz](https://defi-lab.xyz/uniswapv3simulator)
 3. [Chainvault.io](https://app.chainvault.io/#/tools/ilcalc)
 
 ### 5. Deposit Amounts

@@ -20,7 +20,7 @@ class HookCodeFactory {
 					this.args(),
 					'"use strict";\n' +
 						this.header() +
-						this.content({
+						this.contentWithInterceptors({
 							onError: err => `throw ${err};\n`,
 							onResult: result => `return ${result};\n`,
 							resultReturns: true,
@@ -36,7 +36,7 @@ class HookCodeFactory {
 					}),
 					'"use strict";\n' +
 						this.header() +
-						this.content({
+						this.contentWithInterceptors({
 							onError: err => `_callback(${err});\n`,
 							onResult: result => `_callback(null, ${result});\n`,
 							onDone: () => "_callback();\n"
@@ -45,7 +45,7 @@ class HookCodeFactory {
 				break;
 			case "promise":
 				let errorHelperUsed = false;
-				const content = this.content({
+				const content = this.contentWithInterceptors({
 					onError: err => {
 						errorHelperUsed = true;
 						return `_error(${err});\n`;
@@ -55,22 +55,23 @@ class HookCodeFactory {
 				});
 				let code = "";
 				code += '"use strict";\n';
-				code += "return new Promise((_resolve, _reject) => {\n";
+				code += this.header();
+				code += "return new Promise((function(_resolve, _reject) {\n";
 				if (errorHelperUsed) {
 					code += "var _sync = true;\n";
 					code += "function _error(_err) {\n";
 					code += "if(_sync)\n";
-					code += "_resolve(Promise.resolve().then(() => { throw _err; }));\n";
+					code +=
+						"_resolve(Promise.resolve().then((function() { throw _err; })));\n";
 					code += "else\n";
 					code += "_reject(_err);\n";
 					code += "};\n";
 				}
-				code += this.header();
 				code += content;
 				if (errorHelperUsed) {
 					code += "_sync = false;\n";
 				}
-				code += "});\n";
+				code += "}));\n";
 				fn = new Function(this.args(), code);
 				break;
 		}
@@ -95,6 +96,69 @@ class HookCodeFactory {
 		this._args = undefined;
 	}
 
+	contentWithInterceptors(options) {
+		if (this.options.interceptors.length > 0) {
+			const onError = options.onError;
+			const onResult = options.onResult;
+			const onDone = options.onDone;
+			let code = "";
+			for (let i = 0; i < this.options.interceptors.length; i++) {
+				const interceptor = this.options.interceptors[i];
+				if (interceptor.call) {
+					code += `${this.getInterceptor(i)}.call(${this.args({
+						before: interceptor.context ? "_context" : undefined
+					})});\n`;
+				}
+			}
+			code += this.content(
+				Object.assign(options, {
+					onError:
+						onError &&
+						(err => {
+							let code = "";
+							for (let i = 0; i < this.options.interceptors.length; i++) {
+								const interceptor = this.options.interceptors[i];
+								if (interceptor.error) {
+									code += `${this.getInterceptor(i)}.error(${err});\n`;
+								}
+							}
+							code += onError(err);
+							return code;
+						}),
+					onResult:
+						onResult &&
+						(result => {
+							let code = "";
+							for (let i = 0; i < this.options.interceptors.length; i++) {
+								const interceptor = this.options.interceptors[i];
+								if (interceptor.result) {
+									code += `${this.getInterceptor(i)}.result(${result});\n`;
+								}
+							}
+							code += onResult(result);
+							return code;
+						}),
+					onDone:
+						onDone &&
+						(() => {
+							let code = "";
+							for (let i = 0; i < this.options.interceptors.length; i++) {
+								const interceptor = this.options.interceptors[i];
+								if (interceptor.done) {
+									code += `${this.getInterceptor(i)}.done();\n`;
+								}
+							}
+							code += onDone();
+							return code;
+						})
+				})
+			);
+			return code;
+		} else {
+			return this.content(options);
+		}
+	}
+
 	header() {
 		let code = "";
 		if (this.needContext()) {
@@ -106,14 +170,6 @@ class HookCodeFactory {
 		if (this.options.interceptors.length > 0) {
 			code += "var _taps = this.taps;\n";
 			code += "var _interceptors = this.interceptors;\n";
-		}
-		for (let i = 0; i < this.options.interceptors.length; i++) {
-			const interceptor = this.options.interceptors[i];
-			if (interceptor.call) {
-				code += `${this.getInterceptor(i)}.call(${this.args({
-					before: interceptor.context ? "_context" : undefined
-				})});\n`;
-			}
 		}
 		return code;
 	}
@@ -174,8 +230,9 @@ class HookCodeFactory {
 				break;
 			case "async":
 				let cbCode = "";
-				if (onResult) cbCode += `(_err${tapIndex}, _result${tapIndex}) => {\n`;
-				else cbCode += `_err${tapIndex} => {\n`;
+				if (onResult)
+					cbCode += `(function(_err${tapIndex}, _result${tapIndex}) {\n`;
+				else cbCode += `(function(_err${tapIndex}) {\n`;
 				cbCode += `if(_err${tapIndex}) {\n`;
 				cbCode += onError(`_err${tapIndex}`);
 				cbCode += "} else {\n";
@@ -186,7 +243,7 @@ class HookCodeFactory {
 					cbCode += onDone();
 				}
 				cbCode += "}\n";
-				cbCode += "}";
+				cbCode += "})";
 				code += `_fn${tapIndex}(${this.args({
 					before: tap.context ? "_context" : undefined,
 					after: cbCode
@@ -199,7 +256,7 @@ class HookCodeFactory {
 				})});\n`;
 				code += `if (!_promise${tapIndex} || !_promise${tapIndex}.then)\n`;
 				code += `  throw new Error('Tap function (tapPromise) did not return promise (returned ' + _promise${tapIndex} + ')');\n`;
-				code += `_promise${tapIndex}.then(_result${tapIndex} => {\n`;
+				code += `_promise${tapIndex}.then((function(_result${tapIndex}) {\n`;
 				code += `_hasResult${tapIndex} = true;\n`;
 				if (onResult) {
 					code += onResult(`_result${tapIndex}`);
@@ -207,7 +264,7 @@ class HookCodeFactory {
 				if (onDone) {
 					code += onDone();
 				}
-				code += `}, _err${tapIndex} => {\n`;
+				code += `}), function(_err${tapIndex}) {\n`;
 				code += `if(_hasResult${tapIndex}) throw _err${tapIndex};\n`;
 				code += onError(`_err${tapIndex}`);
 				code += "});\n";
@@ -226,13 +283,17 @@ class HookCodeFactory {
 	}) {
 		if (this.options.taps.length === 0) return onDone();
 		const firstAsync = this.options.taps.findIndex(t => t.type !== "sync");
-		const somethingReturns = resultReturns || doneReturns || false;
+		const somethingReturns = resultReturns || doneReturns;
 		let code = "";
 		let current = onDone;
+		let unrollCounter = 0;
 		for (let j = this.options.taps.length - 1; j >= 0; j--) {
 			const i = j;
-			const unroll = current !== onDone && this.options.taps[i].type !== "sync";
+			const unroll =
+				current !== onDone &&
+				(this.options.taps[i].type !== "sync" || unrollCounter++ > 20);
 			if (unroll) {
+				unrollCounter = 0;
 				code += `function _next${i}() {\n`;
 				code += current();
 				code += `}\n`;
@@ -265,7 +326,7 @@ class HookCodeFactory {
 		const syncOnly = this.options.taps.every(t => t.type === "sync");
 		let code = "";
 		if (!syncOnly) {
-			code += "var _looper = () => {\n";
+			code += "var _looper = (function() {\n";
 			code += "var _loopAsync = false;\n";
 		}
 		code += "var _loop;\n";
@@ -306,7 +367,7 @@ class HookCodeFactory {
 		code += "} while(_loop);\n";
 		if (!syncOnly) {
 			code += "_loopAsync = true;\n";
-			code += "};\n";
+			code += "});\n";
 			code += "_looper();\n";
 		}
 		return code;
@@ -331,9 +392,9 @@ class HookCodeFactory {
 		code += "do {\n";
 		code += `var _counter = ${this.options.taps.length};\n`;
 		if (onDone) {
-			code += "var _done = () => {\n";
+			code += "var _done = (function() {\n";
 			code += onDone();
-			code += "};\n";
+			code += "});\n";
 		}
 		for (let i = 0; i < this.options.taps.length; i++) {
 			const done = () => {
