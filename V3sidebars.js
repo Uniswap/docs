@@ -5,10 +5,7 @@ module.exports = {
       type: "category",
       label: "Guides",
       collapsed: false,
-      items: [
-        "SDK-guides/getting-started",
-        "SDK-guides/creating-a-pool",
-      ]
+      items: ["SDK-guides/getting-started", "SDK-guides/creating-a-pool"],
     },
     {
       type: "category",
@@ -314,74 +311,4 @@ module.exports = {
       ],
     },
   ],
-
-  // guides: [
-  //   {
-  //     type: 'category',
-  //     label:'Landing',
-  //     items: [
-  //       'guides/landing',
-  //     ],
-  //   },
-  //   {
-  //     type: 'category',
-  //     label:'Guides Overview',
-  //     items: [
-  //       'guides/guides-holder',
-  //     ],
-  //   },
-  // ],
-
-  // reference: [
-  //   {
-  //     type: 'category',
-  //     label:'Reference Overview',
-  //     items: [
-  //     ],
-  //   },
-  //   {
-  //     type: 'category',
-  //     label: 'Libraries',
-  //     items: [
-  //       'reference/core/libraries/BitMath',
-  //       'reference/core/libraries/FixedPoint96',
-  //     ]
-  //   },
-  //   {
-  //     type: 'category',
-  //     label: 'Interfaces',
-  //     items: [
-  //       {
-  //         type: 'category',
-  //         label: 'Callback',
-  //         items: [
-  //             'reference/core/interfaces/callback/IUniswapV3FlashCallback',
-  //             'reference/core/interfaces/callback/IUniswapV3MintCallback',
-  //             'reference/core/interfaces/callback/IUniswapV3SwapCallback'
-  //         ]
-  //       },
-  //       {
-  //         type: 'category',
-  //         label: 'Pool',
-  //         items: [
-  //           'reference/core/interfaces/pool/IUniswapV3PoolActions',
-  //           'reference/core/interfaces/pool/IUniswapV3PoolDerivedState',
-  //           'reference/core/interfaces/pool/IUniswapV3PoolEvents',
-  //           'reference/core/interfaces/pool/IUniswapV3PoolImmutables',
-  //           'reference/core/interfaces/pool/IUniswapV3PoolOwnerActions',
-  //           'reference/core/interfaces/pool/IUniswapV3PoolState',
-  //         ]
-  //       },
-  //       'reference/core/interfaces/IERC20Minimal',
-  //       'reference/core/interfaces/IUniswapV3Factory',
-  //       'reference/core/interfaces/IUniswapV3Pool',
-  //       'reference/core/interfaces/IUniswapV3PoolDeployer',
-  //     ]
-  //   },
-  //   'reference/NoDelegateCall',
-  //   'reference/UniswapV3Factory',
-  //   'reference/UniswapV3Pool',
-  //   'reference/UniswapV3PoolDeployer',
-
-  // ],
 };
