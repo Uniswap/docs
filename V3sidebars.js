@@ -171,6 +171,7 @@ module.exports = {
       items: [
         "reference/smart-contracts",
         "reference/deployments",
+        "reference/error-codes",
         {
           type: "category",
           label: "Periphery",
