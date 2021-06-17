@@ -88,6 +88,10 @@ html[data-theme="light"] {
   font-feature-settings: "ss01" on, "ss02" on, "cv01" on, "cv03" on;
 }
 
+.markdown a {
+  color: #3578e5;
+}
+
 p {
   line-height: 1.5rem;
 }
