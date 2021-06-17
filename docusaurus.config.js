@@ -85,8 +85,12 @@ module.exports = {
               href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md",
             },
             {
-              label: "GitHub",
+              label: "GitHub | Protocol",
               href: "https://github.com/uniswap",
+            },
+            {
+              label: "GitHub | SDK",
+              href: "https://github.com/Uniswap/uniswap-v3-sdk",
             },
           ],
         },
