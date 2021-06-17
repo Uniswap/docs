@@ -5,13 +5,18 @@ module.exports = {
       type: "category",
       label: "Guides",
       collapsed: false,
-      items: ["SDK-guides/getting-started", "SDK-guides/creating-a-pool"],
+      items: [
+        "SDK-guides/quick-start", 
+        "SDK-guides/using-ethers",
+        "SDK-guides/creating-a-pool"
+      ],
     },
     {
       type: "category",
       label: "Reference", // generate sidebar slice from the docs folder (or versioned_docs/<version>)
       collapsed: false,
       items: [
+        "SDK/reference-info",
         {
           type: "category",
           label: "Classes",

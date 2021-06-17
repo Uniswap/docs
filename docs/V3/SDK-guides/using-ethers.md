@@ -1,27 +1,9 @@
 ---
-id: getting-started
-title: Getting Started
+id: using-ethers
+title: Using Ethers.js
 ---
 
-The Uniswap SDK is separate from the Uniswap protocol. It is designed to assist developers when interacting with the protocol in any environment that can execute JavaScript, such as websites or node scripts. With the SDK, you can manipulate data that has been queried from the EVM using libraries that assist with several needs, such as data modeling and protection from rounding errors.
-
-This guide will help you install the V3 SDK and [ethers.js](https://docs.ethers.io/v5/) to query state date and from a V3 Pool. While this tutorial doesn't use the V3 SDK - it will set us up to use it after we get the chain data we need.
-
-# Installation
-
-To interact with the V3 SDK - we recommend installing though the npm package
-
-```javascript
-npm i --save-dev @uniswap/v3-sdk
-npm i --save-dev @uniswap/sdk-core
-```
-
-# Usage
-
-```javascript
-import { Pool } from '@uniswap/v3-sdk'
-```
-
+This guide will help you install the V3 SDK and [ethers.js](https://docs.ethers.io/v5/) to query state data from Ethereum. While this tutorial doesn't use the V3 SDK - it will set us up to use it after we get the on-chain data we need.
 
 ## First Steps 
 
