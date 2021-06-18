@@ -2,7 +2,6 @@
 id: 01-factory
 title: Factory
 tags: smart-contracts, documentation
-slug: /reference/
 ---
 
 # Code
