@@ -18,9 +18,10 @@ It can also be useful if your application requires users to acquire some token i
 
 One benefit of an iframe integration is that the your site will automatically keep up with any improvements/additions to the site. After the initital integration is setup no further work is needed to pull in updates as the exchange site is updated over time.
 
-# Live Example
+# Example
 
-<iframe src="https://app.uniswap.org/#/swap?exactField=input&exactAmount=10&inputCurrency=0x6b175474e89094c44da98b954eedeac495271d0f"  height="660px"   width="100%"
+```
+iframe src="https://app.uniswap.org/#/swap?exactField=input&exactAmount=10&inputCurrency=0x6b175474e89094c44da98b954eedeac495271d0f"  height="660px"   width="100%"
   style="
     border: 0;
     margin: 0 auto;
@@ -29,7 +30,8 @@ One benefit of an iframe integration is that the your site will automatically ke
     border-radius: 10px;
     max-width: 960px;
     min-width: 300px;
-  "/>
+  "
+```
 
 An example of an Iframe integration can be found on the FOAM site [https://map.foam.space/](https://map.foam.space/#/at/?lng=-74.0045300&lat=40.6771800&zoom=5.00)
 
