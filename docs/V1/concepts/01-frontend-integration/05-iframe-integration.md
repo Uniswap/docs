@@ -3,10 +3,6 @@ id: 05-iframe-integration
 title: Iframe Integration
 ---
 
-<Info>
-Uniswap V1, while still fully functional, is no longer under active development. Looking for <Link to='/docs/v2/'>V2 documentation</Link>?
-</Info>
-
 Uniswap can be used within other sites as an iframe. An iframe shows an exact version of the app.uniswap.org site and can have custom prefilled settings.
 
 # Why You May Want This
