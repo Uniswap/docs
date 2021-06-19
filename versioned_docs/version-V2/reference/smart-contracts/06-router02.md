@@ -21,7 +21,7 @@ Because routers are stateless and do not hold token balances, they can be replac
 function factory() external pure returns (address);
 ```
 
-Returns <Link to='/docs/v2/smart-contracts/factory/#address'>factory address</Link>.
+Returns [factory address](../smart-contracts/01-factory.md#address).
 
 ## WETH
 
@@ -33,15 +33,15 @@ Returns the [canonical WETH address](https://blog.0xproject.com/canonical-weth-a
 
 ## quote
 
-See <Link to='/docs/v2/smart-contracts/library#quote'>quote</Link>.
+See [quote](../smart-contracts/04-library.md#quote).
 
 ## getAmountOut
 
-See <Link to='/docs/v2/smart-contracts/library#getamountout'>getAmountOut</Link>.
+See [getAmountOut](../smart-contracts/04-library.md#getamountout).
 
 ## getAmountIn
 
-See <Link to='/docs/v2/smart-contracts/library#getamountin'>getAmountIn</Link>.
+See [getAmountIn](../smart-contracts/04-library.md#getamountin).
 
 ## getAmountsOut
 
@@ -49,7 +49,7 @@ See <Link to='/docs/v2/smart-contracts/library#getamountin'>getAmountIn</Link>.
 function getAmountsOut(uint amountIn, address[] memory path) public view returns (uint[] memory amounts);
 ```
 
-See <Link to='/docs/v2/smart-contracts/library#getamountsout'>getAmountsOut</Link>.
+See [getAmountsOut](../smart-contracts/04-library.md#getamountsout).
 
 ## getAmountsIn
 
@@ -57,7 +57,7 @@ See <Link to='/docs/v2/smart-contracts/library#getamountsout'>getAmountsOut</Lin
 function getAmountsIn(uint amountOut, address[] memory path) public view returns (uint[] memory amounts);
 ```
 
-See <Link to='/docs/v2/smart-contracts/library#getamountsin'>getAmountsIn</Link>.
+See [getAmountsIn](../smart-contracts/04-library.md#getamountsin).
 
 # State-Changing Functions
 

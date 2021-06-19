@@ -3,8 +3,9 @@ id: 01-factory
 title: Factory
 tags: smart-contracts, documentation
 ---
+# Factory
 
-# Code
+## Code
 
 [`UniswapV2Factory.sol`](https://github.com/Uniswap/uniswap-v2-core/blob/master/contracts/UniswapV2Factory.sol)
 

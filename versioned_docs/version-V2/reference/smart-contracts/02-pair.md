@@ -3,7 +3,7 @@ title: Pair
 tags: smart-contracts, documentation
 ---
 
-This documentation covers Uniswap-specific functionality. For ERC-20 functionality, see <Link to='/docs/v2/smart-contracts/pair-erc-20'>Pair (ERC-20)</Link>.
+This documentation covers Uniswap-specific functionality. For ERC-20 functionality, see [Pair (ERC-20)](../smart-contracts/03-pair-erc-20.md).
 
 # Code
 
@@ -11,7 +11,7 @@ This documentation covers Uniswap-specific functionality. For ERC-20 functionali
 
 # Address
 
-See <Link to='/docs/v2/smart-contract-integration/getting-pair-addresses/'>Pair Addresses</Link>.
+See [Pair Addresses](../../guides/smart-contract-integration/06-getting-pair-addresses.md).
 
 # Events
 
@@ -62,7 +62,7 @@ Emitted each time reserves are updated via [mint](#mint-1), [burn](#burn-1), [sw
 function MINIMUM_LIQUIDITY() external pure returns (uint);
 ```
 
-Returns `1000` for all pairs. See <Link to='/docs/v2/protocol-overview/smart-contracts/#minimum-liquidity'>Minimum Liquidity</Link>.
+Returns `1000` for all pairs. See [Minimum Liquidity](../../concepts/01-protocol-overview/03-smart-contracts.md#minimum-liquidity).
 
 ## factory
 
@@ -70,7 +70,7 @@ Returns `1000` for all pairs. See <Link to='/docs/v2/protocol-overview/smart-con
 function factory() external view returns (address);
 ```
 
-Returns the <Link to='/docs/v2/smart-contracts/factory/#address'>factory address</Link>.
+Returns the [factory address](../smart-contracts/01-factory.md#address).
 
 ## token0
 
@@ -94,7 +94,7 @@ Returns the address of the pair token with the higher sort order.
 function getReserves() external view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast);
 ```
 
-Returns the reserves of token0 and token1 used to price trades and distribute liquidity. See <Link to='/docs/v2/advanced-topics/pricing/'>Pricing</Link>. Also returns the `block.timestamp` (mod `2**32`) of the last block during which an interaction occured for the pair.
+Returns the reserves of token0 and token1 used to price trades and distribute liquidity. See [Pricing](../../concepts/03-advanced-topics/02-pricing.md). Also returns the `block.timestamp` (mod `2**32`) of the last block during which an interaction occured for the pair.
 
 ## price0CumulativeLast
 
@@ -102,7 +102,7 @@ Returns the reserves of token0 and token1 used to price trades and distribute li
 function price0CumulativeLast() external view returns (uint);
 ```
 
-See <Link to='/docs/v2/core-concepts/oracles/'>Oracles</Link>.
+See [Oracles](../../concepts/02-core-concepts/04-oracles.md).
 
 ## price1CumulativeLast
 
@@ -110,7 +110,7 @@ See <Link to='/docs/v2/core-concepts/oracles/'>Oracles</Link>.
 function price1CumulativeLast() external view returns (uint);
 ```
 
-See <Link to='/docs/v2/core-concepts/oracles/'>Oracles</Link>.
+See [Oracles](../../concepts/02-core-concepts/04-oracles.md).
 
 ## kLast
 
@@ -118,7 +118,7 @@ See <Link to='/docs/v2/core-concepts/oracles/'>Oracles</Link>.
 function kLast() external view returns (uint);
 ```
 
-Returns the product of the reserves as of the most recent liquidity event. See <Link to='/docs/v2/advanced-topics/fees/#protocol-charge-calculation'>Protocol Charge Calculation</Link>.
+Returns the product of the reserves as of the most recent liquidity event. See [Protocol Charge Calculation](../../concepts/03-advanced-topics/01-fees.md#protocol-charge-calculation).
 
 # State-Changing Functions
 
@@ -130,7 +130,7 @@ function mint(address to) external returns (uint liquidity);
 
 Creates pool tokens.
 
-- Emits [Mint](#mint), [Sync](#sync), <Link to='/docs/v2/smart-contracts/pair-erc-20#transfer'>Transfer</Link>.
+- Emits [Mint](#mint), [Sync](#sync), [Transfer](../smart-contracts/03-pair-erc-20.md#transfer).
 
 ## burn
 
@@ -140,7 +140,7 @@ function burn(address to) external returns (uint amount0, uint amount1);
 
 Destroys pool tokens.
 
-- Emits [Burn](#burn), [Sync](#sync), <Link to='/docs/v2/smart-contracts/pair-erc-20#transfer'>Transfer</Link>.
+- Emits [Burn](#burn), [Sync](#sync), [Transfer](../smart-contracts/03-pair-erc-20.md#transfer).
 
 ## swap
 
@@ -148,7 +148,7 @@ Destroys pool tokens.
 function swap(uint amount0Out, uint amount1Out, address to, bytes calldata data) external;
 ```
 
-Swaps tokens. For regular swaps, `data.length` must be `0`. Also see <Link to='/docs/v2/core-concepts/flash-swaps/'>Flash Swaps</Link>.
+Swaps tokens. For regular swaps, `data.length` must be `0`. Also see [Flash Swaps](../../concepts/02-core-concepts/03-flash-swaps.md).
 
 - Emits [Swap](#swap), [Sync](#sync).
 
