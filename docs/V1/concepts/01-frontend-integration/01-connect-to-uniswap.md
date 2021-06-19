@@ -1,12 +1,7 @@
 ---
 id: 01-connect-to-uniswap
 title: Connect to Uniswap
-slug: /concepts/
 ---
-
-<Info>
-  Uniswap V1, while still fully functional, is no longer under active development. Looking for <Link style={{ display: "contents" }} to='/docs/v2/'>V2 documentation</Link>?
-</Info>
 
 The Uniswap smart contracts exist on the Ethereum blockchain. Use [ethers.js](https://github.com/ethers-io/ethers.js/) or [web3.js](https://github.com/ethereum/web3.js) to connect your website to Ethereum. Users will need a web3-enabled browser. On desktop this means using the [MetaMask](https://metamask.io/) extension or something similar. On mobile, web3-compatible browsers include [Trust Wallet](https://trustwalletapp.com/) and [Coinbase Wallet](https://wallet.coinbase.com/). See [ethereum.org](https://ethereum.org/use/#_3-what-is-a-wallet-and-which-one-should-i-use) to learn more.
 

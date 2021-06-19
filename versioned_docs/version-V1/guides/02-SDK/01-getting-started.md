@@ -3,10 +3,6 @@ id: 01-getting-started
 title: Getting Started
 ---
 
-<Info>
-  Uniswap V1, while still fully functional, is no longer under active development. Looking for <Link style={{ display: "contents" }} to='/docs/v2/'>V2 documentation</Link>?
-</Info>
-
 The [Uniswap SDK](https://github.com/Uniswap/uniswap-sdk/tree/v1) is meant to simplify every aspect of integrating Uniswap into your project. It's written in [TypeScript](https://www.typescriptlang.org), has a [robust test suite](https://github.com/Uniswap/uniswap-sdk/tree/v1/src/__tests__), uses [bignumber.js](https://github.com/MikeMcl/bignumber.js) for math, and includes an optional data-fetching module which relies on [ethers.js](https://github.com/ethers-io/ethers.js/).
 
 The SDK was built to be extremely easy to use, but also feature-rich. It offers various levels of abstraction that make it suitable for use nearly anywhere, from hackathon projects to production applications.
