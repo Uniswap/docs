@@ -4,13 +4,15 @@ title: Providing Liquidity
 tags: smart contract integration, developer-guides, documentation
 ---
 
-# Introduction
+# Providing Liquidity
+
+## Introduction
 
 When providing liquidity from a smart contract, the most important thing to keep in mind is that tokens deposited into a pool at any rate other than the current reserve ratio _are vulnerable to being arbitraged_. As an example, if the ratio of x:y in a pair is 10:2 (i.e. the price is 5), and someone naively adds liquidity at 5:2 (a price of 2.5), the contract will simply accept all tokens (changing the price to 3.75 and opening up the market to arbitrage), but only issue pool tokens entitling the sender to the amount of assets sent at the proper ratio, in this case 5:1. To avoid donating to arbitrageurs, it is imperative to add liquidity at the current price. Luckily, it's easy to ensure that this condition is met!
 
-# Using the Router
+## Using the Router
 
-The easiest way to safely add liquidity to a pool is to use the <Link to='/docs/v2/smart-contracts/router02'>router</Link>, which provides simple methods to safely add liquidity to a pool. If the liquidity is to be added to an ERC-20/ERC-20 pair, use <Link to='/docs/v2/smart-contracts/router02/#addliquidity'>addLiquidity</Link>. If WETH is involved, use <Link to='/docs/v2/smart-contracts/router02/#addliquidityeth'>addLiquidityETH</Link>.
+The easiest way to safely add liquidity to a pool is to use the [router](../../reference/smart-contracts/06-router02.md), which provides simple methods to safely add liquidity to a pool. If the liquidity is to be added to an ERC-20/ERC-20 pair, use [addLiquidity](../../reference/smart-contracts/06-router02.md#addliquidity). If WETH is involved, use [addLiquidityETH](../../reference/smart-contracts/06-router02.md#addliquidityeth).
 
 These methods both require the caller to commit to a _belief about the current price_, which is encoded in the `amount*Desired` parameters. Typically, it's fairly safe to assume that the current fair market price is around what the current reserve ratio is for a pair (because of arbitrage). So, if a user wants to add 1 ETH to a pool, and the current DAI/WETH ratio of the pool is 200/1, it's reasonable to calculate that 200 DAI must be sent along with the ETH, which is an implicit commitment to the price of 200 DAI/1 WETH. However, it's important to note that this must be calculated _before the transaction is submitted_. It is _not safe_ to look up the reserve ratio from within a transaction and rely on it as a price belief, as this ratio can be cheaply manipulated to your detriment.
 

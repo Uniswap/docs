@@ -5,7 +5,7 @@ title: Pair Addresses
 
 # getPair
 
-The most obvious way to get the address for a pair is to call <Link to='/docs/v2/smart-contracts/factory/#getpair'>getPair</Link> on the factory. If the pair exists, this function will return its address, else `address(0)` (`0x0000000000000000000000000000000000000000`).
+The most obvious way to get the address for a pair is to call [getPair](../../reference/smart-contracts/01-factory.md#getpair) on the factory. If the pair exists, this function will return its address, else `address(0)` (`0x0000000000000000000000000000000000000000`).
 
 - The "canonical" way to determine whether or not a pair exists.
 - Requires an on-chain lookup.
@@ -16,7 +16,7 @@ Thanks to some [fancy footwork in the factory](https://github.com/Uniswap/uniswa
 
 |                        |                                                                                 |
 | :--------------------- | :------------------------------------------------------------------------------ |
-| `address`              | The <Link to='/docs/v2/smart-contracts/factory/#address'>factory address</Link> |
+| `address`              | The [factory address](../../reference/smart-contracts/01-factory.md)            |
 | `salt`                 | `keccak256(abi.encodePacked(token0, token1))`                                   |
 | `keccak256(init_code)` | `0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f`            |
 
@@ -29,7 +29,7 @@ Thanks to some [fancy footwork in the factory](https://github.com/Uniswap/uniswa
 
 ### TypeScript
 
-This example makes use of the <Link to='docs/v2/SDK/getting-started'>Uniswap SDK</Link>. In reality, the SDK computes pair addresses behind the scenes, obviating the need to compute them manually like this.
+This example makes use of the [Uniswap SDK](../../reference/SDK/01-getting-started.md). In reality, the SDK computes pair addresses behind the scenes, obviating the need to compute them manually like this.
 
 ```typescript
 import { FACTORY_ADDRESS, INIT_CODE_HASH } from '@uniswap/sdk'

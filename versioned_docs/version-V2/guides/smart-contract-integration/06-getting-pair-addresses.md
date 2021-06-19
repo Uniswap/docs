@@ -5,7 +5,7 @@ title: Pair Addresses
 
 # getPair
 
-The most obvious way to get the address for a pair is to call <Link to='/docs/v2/smart-contracts/factory/#getpair'>getPair</Link> on the factory. If the pair exists, this function will return its address, else `address(0)` (`0x0000000000000000000000000000000000000000`).
+The most obvious way to get the address for a pair is to call [getPair](../../reference/smart-contracts/01-factory.md#getpair) on the factory. If the pair exists, this function will return its address, else `address(0)` (`0x0000000000000000000000000000000000000000`).
 
 - The "canonical" way to determine whether or not a pair exists.
 - Requires an on-chain lookup.
