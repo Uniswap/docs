@@ -44,7 +44,7 @@ module.exports = {
           // dropdownItemsBefore: [],
           // dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
           // Do not add the link active class when browsing docs.
-          //dropdownActiveClassDisabled: false,
+          // dropdownActiveClassDisabled: false,
           docsPluginId: 'default',
         },
         {
@@ -60,11 +60,6 @@ module.exports = {
         {
           href: "https://github.com/Uniswap/uniswap-v3-sdk",
           label: "SDK",
-          position: "right",
-        },
-        {
-          href: "https://uniswap.org/docs/v2/",
-          label: "V2",
           position: "right",
         },
       ],

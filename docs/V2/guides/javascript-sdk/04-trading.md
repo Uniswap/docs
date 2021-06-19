@@ -4,11 +4,11 @@ title: Trading
 tags: SDK, developer-guides, documentation
 ---
 
-Looking for a <Link to='/docs/v2/javascript-SDK/quick-start'>quickstart</Link>?
+> Looking for a [quickstart](../javascript-sdk/01-quick-start.md)?
 
-The SDK _cannot execute trades or send transactions on your behalf_. Rather, it offers utility classes and functions which make it easy to calculate the data required to safely interact with Uniswap. Nearly everything you need to safely transact with Uniswap is provided by the <Link to='/docs/v2/SDK/trade'>Trade</Link> entity. However, it is your responsibility to use this data to send transactions in whatever context makes sense for your application.
+The SDK _cannot execute trades or send transactions on your behalf_. Rather, it offers utility classes and functions which make it easy to calculate the data required to safely interact with Uniswap. Nearly everything you need to safely transact with Uniswap is provided by the [Trade](../../reference/SDK/05-trade.md) entity. However, it is your responsibility to use this data to send transactions in whatever context makes sense for your application.
 
-This guide will focus exclusively on sending a transaction to the <Link to='/docs/v2/smart-contracts/router02'>currently recommended Uniswap router</Link>.
+This guide will focus exclusively on sending a transaction to the [currently recommended Uniswap router](../../reference/smart-contracts/06-router02.md)
 
 # Sending a Transaction to the Router
 
@@ -34,7 +34,7 @@ So, we've constructed a trade entity, but how do we use it to actually send a tr
 
 Before going on, we should explore how ETH works in the context of trading. Internally, the SDK uses WETH, as all Uniswap V2 pairs use WETH under the hood. However, it's perfectly possible for you as an end user to use ETH, and rely on the router to handle converting to/from WETH. So, let's use ETH.
 
-The first step is selecting the appropriate router function. The names of router functions are intended to be self-explanatory; in this case we want <Link to='/docs/v2/smart-contracts/router02/#swapexactethfortokens'>swapExactETHForTokens</Link>, because we're...swapping an exact amount of ETH for tokens.
+The first step is selecting the appropriate router function. The names of router functions are intended to be self-explanatory; in this case we want [swapExactETHForTokens](../../reference/smart-contracts/06-router02.md#swapexactethfortokens), because we're swapping an exact amount of ETH for tokens.
 
 That Solidity interface for this function is:
 
@@ -59,7 +59,7 @@ const deadline = Math.floor(Date.now() / 1000) + 60 * 20 // 20 minutes from the 
 const value = trade.inputAmount.raw // // needs to be converted to e.g. hex
 ```
 
-The slippage tolerance encodes _how large of a price movement we're willing to tolerate before our trade will fail to execute_. Since Ethereum transactions are broadcast and confirmed in an adversarial environment, this tolerance is the best we can do to protect ourselves against price movements. We use this slippage tolerance to calculate the _minumum_ amount of DAI we must receive before our trade reverts, thanks to <Link to='/docs/v2/SDK/trade/#minimumamountout-since-204'>minimumAmountOut</Link>. Note that this code calculates this worst-case outcome _assuming that the current price, i.e the route's mid price,_ is fair (usually a good assumption because of arbitrage).
+The slippage tolerance encodes _how large of a price movement we're willing to tolerate before our trade will fail to execute_. Since Ethereum transactions are broadcast and confirmed in an adversarial environment, this tolerance is the best we can do to protect ourselves against price movements. We use this slippage tolerance to calculate the _minumum_ amount of DAI we must receive before our trade reverts, thanks to [minimumAmountOut](../../reference/SDK/05-trade.md#minimumamountout-since-204). Note that this code calculates this worst-case outcome _assuming that the current price, i.e the route's mid price,_ is fair (usually a good assumption because of arbitrage).
 
 The path is simply the ordered list of token addresses we're trading through, in our case WETH and DAI (note that we use the WETH address, even though we're using ETH). 
 

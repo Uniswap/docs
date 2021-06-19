@@ -2,7 +2,6 @@
 id: 01-using-the-api
 title: 'Using the API'
 tags: user-guides, documentation
-slug: /guides/
 ---
 
 In this guide we will create a web interface that consumes and displays data from the Uniswap Subgraph. The goal is to provide a quick overview of a setup that you can extend to create your own UIs and analytics around Uniswap data.
