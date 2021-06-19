@@ -3,10 +3,6 @@ id: 04-custom-linking
 title: Custom Linking
 ---
 
-<Info>
-Uniswap V1, while still fully functional, is no longer under active development. Looking for <Link to='/docs/v2/'>V2 documentation</Link>?
-</Info>
-
 # Query Parameters
 
 The Uniswap front-end supports URL query parameters to allow for custom linking to the Uniswap exchange. Users and developers can use these query parameters to link to the Uniswap exchange with custom prefilled settings.
