@@ -59,4 +59,4 @@ Just how end-users can interact with the Uniswap protocol through the Interface 
 
 # Developer resources
 
-- To see how to pool tokens in a smart contract read [Providing Liquidity](/docs/v2/smart-contract-integration/providing-liquidity/).
+- To see how to pool tokens in a smart contract read [Providing Liquidity](../../guides/smart-contract-integration/03-providing-liquidity.md).
