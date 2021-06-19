@@ -3,7 +3,7 @@ title: Common Errors
 tags: smart-contracts, documentation
 ---
 
-This document covers a few error codes freqeuently encountered while building on Uniswap V2.
+This document covers a few error codes frequently encountered while building on Uniswap V2.
 
 # UniswapV2: K
 
@@ -23,7 +23,7 @@ The most common examples are caused by “fee on transfer” tokens.
 
 In most cases, a fee on transfer token burns or diverts a small portion of every transfer such that the recipient of the transfer ends up with slightly less than the sender gave. This is called an “inclusive” fee on transfer.
 
-In the case of inclusive fee on transfer tokens, you can use the corresponding swap functions in the router contract which end with [“SupportingFeeOnTransfer”](https://uniswap.org/docs/v2/smart-contracts/router02/#swapexacttokensfortokenssupportingfeeontransfertokens). These functions succeed by adjusting the “amountOutMin” parameter to check the recipient amount rather than the sending amount when calculating the invariant.
+In the case of inclusive fee on transfer tokens, you can use the corresponding swap functions in the router contract which end with [“SupportingFeeOnTransfer”](../smart-contracts/06-router02.md#swapexacttokensfortokenssupportingfeeontransfertokens). These functions succeed by adjusting the “amountOutMin” parameter to check the recipient amount rather than the sending amount when calculating the invariant.
 
 ### Exclusive Fee On Transfer Tokens
 
@@ -45,7 +45,7 @@ A negative rebasing token, the more common variant, deflates the balances of tok
 
 Needless to say, an unenviable position.
 
-Negative rebasing tokens have solved this error by altering their token contract to call [sync](https://uniswap.org/docs/v2/smart-contracts/pair/#sync) on the trading pair at the end of every transaction involving the Uniswap router contract. Those interested in forking the router contract should anticipate that negative rebasing tokens will break the pair until the token contracts are updated to accommodate your new router. 
+Negative rebasing tokens have solved this error by altering their token contract to call [sync](../smart-contracts/02-pair.md#sync) on the trading pair at the end of every transaction involving the Uniswap router contract. Those interested in forking the router contract should anticipate that negative rebasing tokens will break the pair until the token contracts are updated to accommodate your new router. 
 
 ### Positive Rebasing Tokens 
 

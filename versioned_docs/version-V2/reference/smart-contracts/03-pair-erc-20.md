@@ -25,7 +25,7 @@ Emitted each time an approval occurs via [approve](#approve) or [permit](#permit
 event Transfer(address indexed from, address indexed to, uint value);
 ```
 
-Emitted each time a transfer occurs via [transfer](#transfer-1), [transferFrom](#transferfrom), <Link to='/docs/v2/smart-contracts/pair/#mint-1'>mint</Link>, or <Link to='/docs/v2/smart-contracts/pair/#burn-1'>burn</Link>.
+Emitted each time a transfer occurs via [transfer](#transfer-1), [transferFrom](#transferfrom), [mint](../smart-contracts/02-pair.md#mint-1), or [burn](../smart-contracts/02-pair.md#burn-1).
 
 # Read-Only Functions
 
@@ -142,7 +142,7 @@ function permit(address owner, address spender, uint value, uint deadline, uint8
 
 Sets the allowance for a spender where approval is granted via a signature.
 
-- See <Link to='/docs/v2/smart-contract-integration/supporting-meta-transactions/'>Using Permit</Link>.
+- See [Using Permit](../../guides/smart-contract-integration/07-supporting-meta-transactions.md).
 - Emits [Approval](#approval).
 
 # Interface
