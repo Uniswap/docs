@@ -36,18 +36,6 @@ module.exports = {
           to: "SDK/",
         },
         {
-          type: 'docsVersionDropdown',
-
-          //// Optional
-          position: 'right',
-          // Add additional dropdown items at the beginning/end of the dropdown.
-          // dropdownItemsBefore: [],
-          // dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
-          // Do not add the link active class when browsing docs.
-          // dropdownActiveClassDisabled: false,
-          docsPluginId: 'default',
-        },
-        {
           label: "Whitepaper",
           to: "https://uniswap.org/whitepaper-v3.pdf",
           position: "right",
@@ -61,6 +49,18 @@ module.exports = {
           href: "https://github.com/Uniswap/uniswap-v3-sdk",
           label: "SDK",
           position: "right",
+        },
+        {
+          type: 'docsVersionDropdown',
+
+          //// Optional
+          position: 'right',
+          // Add additional dropdown items at the beginning/end of the dropdown.
+          // dropdownItemsBefore: [],
+          // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
+          // Do not add the link active class when browsing docs.
+          // dropdownActiveClassDisabled: false,
+          docsPluginId: 'default',
         },
       ],
     },
@@ -131,7 +131,7 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          path: "docs/V3",
+          path: "versioned_docs/version-V3",
           routeBasePath: "/",
           sidebarPath: require.resolve("./V3sidebars.js"),
           includeCurrentVersion: true,
