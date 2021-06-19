@@ -3,10 +3,6 @@ id: 06-token-listing
 title: Token Listing
 ---
 
-<Info>
-Uniswap V1, while still fully functional, is no longer under active development. Looking for <Link to='/docs/v2/'>V2 documentation</Link>?
-</Info>
-
 It is possible that a token you are interested in is not included in the token dropdown on [https://app.uniswap.org/#/swap?use=v1](https://app.uniswap.org/#/swap?use=v1), however, all tokens that have a deployed uniswap exchange are supported on the front-end.
 
 There are three ways to interact with tokens that are not yet included on the default list.
