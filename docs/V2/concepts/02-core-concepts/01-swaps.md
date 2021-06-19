@@ -17,9 +17,9 @@ In this guide, we’ll look at what happens during a swap at the protocol level 
 
 Swaps in Uniswap are different from trades on traditional platforms. Uniswap does not use an order book to represent liquidity or determine prices. Uniswap uses an automated market maker mechanism to provide instant feedback on rates and slippage.
 
-As we learned in [Protocol Overview](/docs/v2/protocol-overview), each pair on Uniswap is actually underpinned by a liquidity pool. Liquidity pools are smart contracts that hold balances of two unique tokens and enforces rules around depositing and withdrawing them.
+As we learned in [Protocol Overview](../01-protocol-overview/01-how-uniswap-works.md), each pair on Uniswap is actually underpinned by a liquidity pool. Liquidity pools are smart contracts that hold balances of two unique tokens and enforces rules around depositing and withdrawing them.
 
-This rule is the [constant product formula](/docs/v2/protocol-overview/glossary#constant-product-formula). When either token is withdrawn (purchased), a proportional amount of the other must be deposited (sold), in order to maintain the constant.
+This rule is the [constant product formula](../01-protocol-overview/04-glossary.md#constant-product-formula). When either token is withdrawn (purchased), a proportional amount of the other must be deposited (sold), in order to maintain the constant.
 
 ## Anatomy of a swap
 
@@ -41,5 +41,5 @@ The takeaway is that **tokens must be transferred to pairs before swap is called
 
 # Developer resources
 
-- To see how to implement token swaps in a smart contract read [Trading from a smart contract](/docs/v2/smart-contract-integration/trading-from-a-smart-contract/).
-- To see how to execute a swap from an interface read [Trading (SDK)](/docs/v2/javascript-SDK/trading/)
+- To see how to implement token swaps in a smart contract read [Trading from a smart contract](../../guides/smart-contract-integration/02-trading-from-a-smart-contract.md).
+- To see how to execute a swap from an interface read [Trading (SDK)](../../guides/javascript-sdk/04-trading.md)

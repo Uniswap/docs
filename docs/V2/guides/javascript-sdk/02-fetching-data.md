@@ -4,7 +4,7 @@ title: Fetching Data
 tags: SDK, developer-guides, documentation
 ---
 
-Looking for a <Link to='/docs/v2/javascript-SDK/quick-start'>quickstart</Link>?
+> Looking for a [quickstart](../javascript-sdk/01-quick-start.md)?
 
 While the SDK is fully self-contained, there are two cases where it needs _on-chain data_ to function.
 This guide will detail both of these cases, and offer some strategies that you can use to fetch this data.
@@ -27,7 +27,7 @@ The next piece of data we need is **decimals**.
 
 ### Provided by the User
 
-One option here is to simply pass in the correct value, which we may know is `18`. At this point, we're ready to represent DAI as a <Link to='/docs/v2/SDK/token'>Token</Link>:
+One option here is to simply pass in the correct value, which we may know is `18`. At this point, we're ready to represent DAI as a [Token](../../reference/SDK/02-token.md):
 
 ```typescript
 import { ChainId, Token } from '@uniswap/sdk'
@@ -51,7 +51,7 @@ async function getDecimals(chainId: ChainId, tokenAddress: string): Promise<numb
 
 ### Fetched by the SDK
 
-If we don't want to provide or look up the value ourselves, we can ask the SDK to look it up for us with <Link to='/docs/v2/SDK/fetcher#fetchtokendata'>Fetcher.fetchTokenData</Link>:
+If we don't want to provide or look up the value ourselves, we can ask the SDK to look it up for us with [Fetcher.fetchTokenData](../../reference/SDK/07-fetcher.md#fetchtokendata)
 
 ```typescript
 import { ChainId, Token, Fetcher } from '@uniswap/sdk'
@@ -102,21 +102,21 @@ const DAI = await Fetcher.fetchTokenData(
 
 # Case 2: Pairs
 
-Now that we've explored how to define a token, let's talk about pairs. To read more about what Uniswap pairs are, see <Link to='/docs/v2/smart-contracts/pair'>Pair</Link>.
+Now that we've explored how to define a token, let's talk about pairs. To read more about what Uniswap pairs are, see [Pair](../../reference/smart-contracts/02-pair.md)
 
 As an example, let's try to represent the DAI-WETH pair.
 
 ## Identifying Data
 
-Each pair consists of two tokens (see previous section). Note that WETH used by the router is <Link to='/docs/v2/SDK/other-exports/#weth'>exported by the SDK</Link>.
+Each pair consists of two tokens (see previous section). Note that WETH used by the router is [exported by the SDK](../../reference/SDK/08-other-exports.md).
 
 ## Required Data
 
-The data we need is the _reserves_ of the pair. To read more about reserves, see <Link to='/docs/v2/smart-contracts/pair#getreserves'>getReserves</Link>.
+The data we need is the _reserves_ of the pair. To read more about reserves, see [getReserves](../../reference/smart-contracts/02-pair.md#getreserves).
 
 ### Provided by the User
 
-One option here is to simply pass in values which we've fetched ourselves to create a <Link to='/docs/v2/SDK/pair'>Pair</Link>:
+One option here is to simply pass in values which we've fetched ourselves to create a [Pair](../../reference/SDK/03-pair.md):
 
 ```typescript
 import { ChainId, Token, WETH, Pair, TokenAmount } from '@uniswap/sdk'
@@ -141,7 +141,7 @@ Note that these values can change as frequently as every block, and should be ke
 
 ### Fetched by the SDK
 
-If we don't want to look up the value ourselves, we can ask the SDK to look them up for us with <Link to='/docs/v2/SDK/fetcher#fetchpairdata'>Fetcher.fetchPairData</Link>:
+If we don't want to look up the value ourselves, we can ask the SDK to look them up for us with [Fetcher.fetchTokenData](../../reference/SDK/07-fetcher.md#fetchtokendata):
 
 ```typescript
 import { ChainId, Token, WETH, Fetcher } from '@uniswap/sdk'
