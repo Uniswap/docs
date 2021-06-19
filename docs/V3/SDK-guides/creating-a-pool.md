@@ -109,8 +109,8 @@ Finally, we will create a function called `main` which calls are previously writ
 async function main() {
   const immutables = await getPoolImmutables();
   const state = await getPoolState();
-  const TokenA = new Token(1, immutables.token0, 8, "USDC", "USD Coin");
-  const TokenB = new Token(1, immutables.token1, 8, "WETH", "Wrapped Ether");
+  const TokenA = new Token(1, immutables.token0.address, 8, "USDC", "USD Coin");
+  const TokenB = new Token(1, immutables.token1.address, 8, "WETH", "Wrapped Ether");
 
   const poolExample = new Pool(
     TokenA,
