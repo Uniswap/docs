@@ -30,4 +30,4 @@ console.log(`The chainId of mainnet is ${UNISWAP.ChainId.MAINNET}.`)
 
 # Reference
 
-Comprehensive reference material for the SDK is available <Link to='/docs/v2/SDK'>here</Link>.
+Comprehensive reference material for the SDK is publicly available on the [Uniswap Labs github](https://github.com/Uniswap).
