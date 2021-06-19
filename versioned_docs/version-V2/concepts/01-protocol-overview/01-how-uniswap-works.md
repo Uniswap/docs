@@ -7,8 +7,8 @@ tags: protocol-overview, documentation
 ![](./images/anatomy.jpg)
 
 Uniswap is an _automated liquidity protocol_ powered by a <Link to="/docs/v2/protocol-overview/glossary/#constant-product-formula">constant product formula</Link>
-and implemented in a system of non-upgradeable smart contracts on the [Ethereum](https://ethereum.org/) blockchain. 
-It obviates the need for trusted intermediaries, prioritizing **decentralization**, **censorship resistance**, 
+and implemented in a system of non-upgradeable smart contracts on the [Ethereum](https://ethereum.org/) blockchain.
+It obviates the need for trusted intermediaries, prioritizing **decentralization**, **censorship resistance**,
 and **security**. Uniswap is **open-source software** licensed under the
 [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License).
 
@@ -28,6 +28,6 @@ Because the relative price of the two pair assets can only be changed through tr
 
 # Further reading
 
-To see how token swaps work in practice, and to walk through the lifecycle of a swap, check out <Link to="/docs/v2/core-concepts/swaps">Swaps</Link>. Or, to see how liquidity pools work, see <Link to="/docs/v2/core-concepts/pools">Pools</Link>.
+To see how token swaps work in practice, and to walk through the lifecycle of a swap, check out [Swaps](../02-core-concepts/01-swaps.md). Or, to see how liquidity pools work, see [Pools](../02-core-concepts/02-pools.md).
 
-Ultimately, of course, the Uniswap protocol is just smart contract code running on Ethereum. To understand how they work, head over to <Link to="/docs/v2/protocol-overview/smart-contracts/">Smart Contracts</Link>.
+Ultimately, of course, the Uniswap protocol is just smart contract code running on Ethereum. To understand how they work, head over to [Smart Contracts](../../reference/smart-contracts/01-factory.md)

@@ -23,16 +23,16 @@ Say a smart contract naively wants to send 10 DAI to the DAI/WETH pair and recei
 
 To prevent these types of attacks, it's vital to submit swaps _that have access to knowledge about the "fair" price their swap should execute at_. In other words, swaps need access to an _oracle_, to be sure that the best execution they can get from Uniswap is close enough to what the oracle considers the "true" price. While this may sound complicated, the oracle can be as simple as an _off-chain observation of the current market price of a pair_. Because of arbitrage, it's typically the case that the ratio of the intra-block reserves of a pair is close to the "true" market price. So, if a user submits a trade with this knowledge in mind, they can ensure that the losses due to front-running are tightly bounded. This is how, for example, the Uniswap frontend ensure trade safety. It calculates the optimal input/output amounts given observed intra-block prices, and uses the router to perform the swap, which guarantees the swap will execute at a rate no less that `x`% worse than the observed intra-block rate, where `x` is a user-specified slippage tolerance (0.5% by default).
 
-There are, of course, other options for oracles, including <Link to='/docs/v2/core-concepts/oracles'>native Uniswap V2 oracles</Link>.
+There are, of course, other options for oracles, including [native V2 oracles](../02-core-concepts/04-oracles.md).
 
 
 ## Exact Input
 
-If you'd like to send an exact amount of input tokens in exchange for as many output tokens as possible, you'll want to use <Link to='/docs/v2/smart-contracts/router02/#getamountsout'>getAmountsOut</Link>. The equivalent SDK function is <Link to='/docs/v2/SDK/pair/#getoutputamount'>getOutputAmount</Link>, or <Link to='/docs/v2/SDK/trade/#minimumamountout-since-204'>minimumAmountOut</Link> for slippage calculations.
+If you'd like to send an exact amount of input tokens in exchange for as many output tokens as possible, you'll want to use [getAmountsOut](../../reference/smart-contracts/06-router02.md#getamountout). The equivalent SDK function is [getOutputAmount](../../reference/SDK/03-pair.md#getoutputamount), or [minimumAmountOut](../../reference/SDK/05-trade.md#minimumamountout-since-204) for slippage calculations.
 
 ## Exact Output
 
-If you'd like to receive an exact amount of output tokens for as few input tokens as possible, you'll want to use <Link to='/docs/v2/smart-contracts/router02/#getamountsin'>getAmountsIn</Link>. The equivalent SDK function is <Link to='/docs/v2/SDK/pair/#getinputamount'>getInputAmount</Link>, or <Link to='/docs/v2/SDK/trade/#maximumamountin-since-204'>maximumAmountIn</Link> for slippage calculations.
+If you'd like to receive an exact amount of output tokens for as few input tokens as possible, you'll want to use [getAmountsIn](../../reference/smart-contracts/06-router02.md#getamountsin). The equivalent SDK function is [getInputAmount](../../reference/SDK/03-pair.md#getinputamount), or [maximumAmountIn](../../reference/SDK/05-trade.md#maximumamountin-since-204) for slippage calculations.
 
 ## Swap to Price
 

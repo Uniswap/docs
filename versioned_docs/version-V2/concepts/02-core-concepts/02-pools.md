@@ -24,10 +24,9 @@ To retrieve the underlying liquidity, plus any fees accrued, liquidity providers
 
 As liquidity tokens are themselves tradable assets, liquidity providers may sell, transfer, or otherwise use their liquidity tokens in any way they see fit.
 
-Learn more with advanced topics:
-
-<InlineBoxLink title="Understanding Returns" to="docs/v2/advanced-topics/understanding-returns" />
-<InlineBoxLink title="Fees" to="docs/v2/advanced-topics/fees" />
+> Learn more with advanced topics:
+ * [Understanding Returns](../../concepts/03-advanced-topics/03-understanding-returns.md) 
+ * [Fees](../../concepts/03-advanced-topics/01-fees.md)
 
 # Why pools?
 
@@ -40,18 +39,6 @@ While order books are foundational to finance and work great for certain usecase
 Uniswap focuses on the strengths of Ethereum to reimagine token swaps from first principles.
 
 A blockchain-native liquidity protocol should take advantage of the trusted code execution environment, the autonomous and perpetually running virtual machine, and an open, permissionless, and inclusive access model that produces an exponentially growing ecosystem of virtual assets.
-
-<!-- Enter Uniswap and its underlying core mechanism of Liquidity Pools.
-
-The goal of a liquidity provider is to earn fees from making markets (enabling the trading) for some asset. Instead of requiring liquidity providers to place discrete orders onto an order book, Uniswap combines (or pools) all available liquidity between two tokens in an Ethereum smart contract called a Liquidity Pool.
-
-A liquidity pool is an autonomous program (smart contract) that holds a supply of two different tokens and enforces a novel set of rules about how those tokens can be added or removed.
-
-These rules enable functionality one might expect from a token liquidity protocol.
-
-Users can swap one token for another by depositing a token into one side of the pool and withdrawing tokens from the other side. The price is determined automatically by the pool based on a predetermined formula.
-
-Liquidity providers can earn fees by supplying an equal proportion of tokens to the pool. -->
 
 It is important to reiterate that a Pool is just a smart contract, operated by users calling functions on it. Swapping tokens is calling `swap` on a Pool contract instance, while providing liquidity is calling `deposit`.
 
