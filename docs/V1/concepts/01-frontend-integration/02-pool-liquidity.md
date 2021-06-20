@@ -3,10 +3,6 @@ id: 02-pool-liquidity
 title: Pool Liquidity
 ---
 
-<Info>
-Uniswap V1, while still fully functional, is no longer under active development. Looking for <Link to='/docs/v2/'>V2 documentation</Link>?
-</Info>
-
 # Formalized Model
 
 Uniswap liquidity pools are autonomous and use the Constant Product Market Maker \(`x * y = k`\). This model was formalized and the smart contract implementation passed a lightweight formal verification.
@@ -19,7 +15,7 @@ Uniswap liquidity pools are autonomous and use the Constant Product Market Maker
 The `createExchange` function is used to deploy exchange contracts for ERC20 tokens that do not yet have one.
 
 ```javascript
-factory.methods.createExchange(tokenAddress).send()
+factory.methods.createExchange(tokenAddress).send();
 ```
 
 Once an exchange is created the address can be retrieved with [`getExchange`](../connect-to-uniswap/#get-exchange-address).
@@ -33,7 +29,7 @@ Each exchange contract holds a liquidity reserve of ETH and its associated ERC20
 The ETH reserve associated with an ERC20 token exchange is the ETH balance of the exchange smart contract.
 
 ```javascript
-const ethReserve = web3.eth.getBalance(exchangeAddress)
+const ethReserve = web3.eth.getBalance(exchangeAddress);
 ```
 
 ### ERC20 Reserve
@@ -41,7 +37,7 @@ const ethReserve = web3.eth.getBalance(exchangeAddress)
 The ERC20 reserve associated with an ERC20 token exchange is the ERC20 balance of the exchange smart contract.
 
 ```javascript
-const tokenReserve = tokenContract.methods.balanceOf(exchangeAddress)
+const tokenReserve = tokenContract.methods.balanceOf(exchangeAddress);
 ```
 
 ## Add Liquidity
@@ -49,7 +45,9 @@ const tokenReserve = tokenContract.methods.balanceOf(exchangeAddress)
 Anyone who wants can join a Uniswap liquidity pool by calling the `addLiquidity` function.
 
 ```javascript
-exchange.methods.addLiquidity(min_liquidity, max_tokens, deadline).send({ value: ethAmount })
+exchange.methods
+  .addLiquidity(min_liquidity, max_tokens, deadline)
+  .send({ value: ethAmount });
 ```
 
 Adding liquidity requires depositing an equivalent **value** of ETH and ERC20 tokens into the ERC20 token's associated exchange contract.
@@ -73,7 +71,7 @@ Transaction `deadline` is used to set a time after which a transaction can no lo
 Liquidity providers use the `removeLiquidity` function to withdraw their portion of the reserves.
 
 ```javascript
-exchange.methods.removeLiquidity(amount, min_eth, min_tokens, deadline).send()
+exchange.methods.removeLiquidity(amount, min_eth, min_tokens, deadline).send();
 ```
 
 Liquidity is withdrawn at the same ratio as the reserves at the time of withdrawal. If the exchange rate is bad there is a profitable arbitrage opportunity that will correct the price.
