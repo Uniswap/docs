@@ -15,21 +15,21 @@ import {
 } from '@theme/hooks/useDocs';
 import {useDocsPreferredVersion} from '@docusaurus/theme-common';
 
-// function UnreleasedVersionLabel({siteTitle, versionLabel}) {
-//   return (
-//     <Translate
-//       id="theme.docs.versions.unreleasedVersionLabel"
-//       description="The label used to tell the user that he's browsing an unreleased doc version"
-//       values={{
-//         siteTitle,
-//         versionLabel: <strong>{versionLabel}</strong>,
-//       }}>
-//       {
-//         'This is unreleased documentation for {siteTitle} {versionLabel} version.'
-//       }
-//     </Translate>
-//   );
-// }
+function UnreleasedVersionLabel({siteTitle, versionLabel}) {
+  return (
+    <Translate
+      id="theme.docs.versions.unreleasedVersionLabel"
+      description="The label used to tell the user that he's browsing an unreleased doc version"
+      values={{
+        siteTitle,
+        versionLabel: <strong>{versionLabel}</strong>,
+      }}>
+      {
+        'This is unreleased documentation for {siteTitle} {versionLabel} version.'
+      }
+    </Translate>
+  );
+}
 
 function UnmaintainedVersionLabel({siteTitle, versionLabel}) {
   return (
