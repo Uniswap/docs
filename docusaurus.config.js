@@ -131,7 +131,7 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          path: "versioned_docs/version-V3",
+          path: "docs/V3",
           routeBasePath: "/",
           sidebarPath: require.resolve("./V3sidebars.js"),
           includeCurrentVersion: true,
