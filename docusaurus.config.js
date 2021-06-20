@@ -51,9 +51,16 @@ module.exports = {
           position: "right",
         },
         {
-          href: "https://uniswap.org/docs/v2/",
-          label: "V2",
-          position: "right",
+          type: 'docsVersionDropdown',
+
+          //// Optional
+          position: 'right',
+          // Add additional dropdown items at the beginning/end of the dropdown.
+          // dropdownItemsBefore: [],
+          // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
+          // Do not add the link active class when browsing docs.
+          // dropdownActiveClassDisabled: false,
+          docsPluginId: 'default',
         },
       ],
     },
@@ -124,7 +131,6 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          id: "versionthree",
           path: "docs/V3",
           routeBasePath: "/",
           sidebarPath: require.resolve("./V3sidebars.js"),
