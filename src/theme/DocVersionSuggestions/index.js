@@ -25,7 +25,7 @@ function UnreleasedVersionLabel({siteTitle, versionLabel}) {
         versionLabel: <strong>{versionLabel}</strong>,
       }}>
       {
-        'This is unreleased documentation for {siteTitle} {versionLabel} version.'
+        'This is unreleased documentation for the Uniswap Protocol.' 
       }
     </Translate>
   );
