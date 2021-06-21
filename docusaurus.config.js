@@ -28,12 +28,12 @@ module.exports = {
         {
           label: "Protocol",
           position: "left",
-          to: "/",
+          to: "protocol/",
         },
         {
           label: "SDK",
           position: "left",
-          to: "SDK/",
+          to: "sdk/",
         },
         {
           label: "Whitepaper",
@@ -43,11 +43,6 @@ module.exports = {
         {
           href: "https://github.com/uniswap/uniswap-docs",
           label: "GitHub",
-          position: "right",
-        },
-        {
-          href: "https://github.com/Uniswap/uniswap-v3-sdk",
-          label: "SDK",
           position: "right",
         },
         {
@@ -61,6 +56,18 @@ module.exports = {
           // Do not add the link active class when browsing docs.
           // dropdownActiveClassDisabled: false,
           docsPluginId: 'default',
+        },
+        {
+          type: 'docsVersionDropdown',
+
+          //// Optional
+          position: 'right',
+          // Add additional dropdown items at the beginning/end of the dropdown.
+          // dropdownItemsBefore: [],
+          // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
+          // Do not add the link active class when browsing docs.
+          // dropdownActiveClassDisabled: false,
+          docsPluginId: 'SDK',
         },
       ],
     },
@@ -131,11 +138,12 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          path: "docs/V3",
+          path: "protocol",
           routeBasePath: "/",
-          sidebarPath: require.resolve("./V3sidebars.js"),
-          includeCurrentVersion: true,
+          sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/uniswap/uniswap-docs/tree/main/",
+          includeCurrentVersion: false,
+
         },
 
         theme: {
@@ -146,15 +154,17 @@ module.exports = {
     ],
   ],
   plugins: [
-    // [
-    //   "@docusaurus/plugin-content-docs",
-    //   {
-    //     id: "SDK",
-    //     path: "SDK",
-    //     routeBasePath: "/",
-    //     sidebarPath: require.resolve("./sdkSidebar.js"),
-    //   },
-    // ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "SDK",
+        path: "sdk",
+        routeBasePath: "/",
+        sidebarPath: require.resolve("./sdkSidebar.js"),
+        includeCurrentVersion: false,
+
+      },
+    ],
   ],
   //   ],
   //   [
