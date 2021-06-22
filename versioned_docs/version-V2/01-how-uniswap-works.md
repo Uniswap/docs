@@ -1,6 +1,6 @@
 ---
 id: 01-how-uniswap-works
-title: How Uniswap works
+title: The Uniswap V2 Protocol
 sidebar_position: 1
 
 ---
