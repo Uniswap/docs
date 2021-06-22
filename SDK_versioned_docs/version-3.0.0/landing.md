@@ -1,5 +1,6 @@
 ---
-id: readme
+id: landing
+sidebar_position: 1
 ---
 # The Uniswap V3 SDK
 

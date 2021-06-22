@@ -56,7 +56,7 @@ module.exports = {
           // dropdownItemsBefore: [],
           // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
           // Do not add the link active class when browsing docs.
-          // dropdownActiveClassDisabled: false,
+           dropdownActiveClassDisabled: false,
           docsPluginId: "SDK",
         },
       ],
@@ -129,7 +129,7 @@ module.exports = {
       {
         docs: {
           path: "protocol",
-          routeBasePath: "/",
+          routeBasePath: "protocol/",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/uniswap/uniswap-docs/tree/main/",
           includeCurrentVersion: false,
@@ -148,7 +148,7 @@ module.exports = {
       {
         id: "SDK",
         path: "sdk",
-        routeBasePath: "/",
+        routeBasePath: "sdk/",
         sidebarPath: require.resolve("./sdkSidebars.js"),
         includeCurrentVersion: false,
       },

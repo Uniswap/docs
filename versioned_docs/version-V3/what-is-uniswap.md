@@ -1,6 +1,7 @@
 ---
 id: what-is-uniswap
 title: What Is Uniswap?
+sidebar_position: 1
 ---
 
 ## Protocol, Interface, Labs
