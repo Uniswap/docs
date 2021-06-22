@@ -1,5 +1,6 @@
 ---
 id: readme
+sidebar_position: 1
 ---
 # The Uniswap V2 SDK
 
