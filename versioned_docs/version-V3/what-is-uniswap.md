@@ -1,7 +1,6 @@
 ---
 id: what-is-uniswap
 title: What Is Uniswap?
-slug: /
 ---
 
 ## Protocol, Interface, Labs

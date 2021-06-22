@@ -26,16 +26,6 @@ module.exports = {
       },
       items: [
         {
-          label: "Protocol",
-          position: "left",
-          to: "protocol/",
-        },
-        {
-          label: "SDK",
-          position: "left",
-          to: "sdk/",
-        },
-        {
           label: "Whitepaper",
           to: "https://uniswap.org/whitepaper-v3.pdf",
           position: "right",
@@ -46,28 +36,28 @@ module.exports = {
           position: "right",
         },
         {
-          type: 'docsVersionDropdown',
+          type: "docsVersionDropdown",
 
           //// Optional
-          position: 'right',
+          position: "right",
           // Add additional dropdown items at the beginning/end of the dropdown.
           // dropdownItemsBefore: [],
           // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
           // Do not add the link active class when browsing docs.
           // dropdownActiveClassDisabled: false,
-          docsPluginId: 'default',
+          docsPluginId: "default",
         },
         {
-          type: 'docsVersionDropdown',
+          type: "docsVersionDropdown",
 
           //// Optional
-          position: 'right',
+          position: "right",
           // Add additional dropdown items at the beginning/end of the dropdown.
           // dropdownItemsBefore: [],
           // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
           // Do not add the link active class when browsing docs.
           // dropdownActiveClassDisabled: false,
-          docsPluginId: 'SDK',
+          docsPluginId: "SDK",
         },
       ],
     },
@@ -143,7 +133,6 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/uniswap/uniswap-docs/tree/main/",
           includeCurrentVersion: false,
-
         },
 
         theme: {
@@ -160,21 +149,9 @@ module.exports = {
         id: "SDK",
         path: "sdk",
         routeBasePath: "/",
-        sidebarPath: require.resolve("./sdkSidebar.js"),
+        sidebarPath: require.resolve("./sdkSidebars.js"),
         includeCurrentVersion: false,
-
       },
     ],
   ],
-  //   ],
-  //   [
-  //     "@docusaurus/plugin-content-docs",
-  //     {
-  //       id: "versionone",
-  //       path: "docs/V1",
-  //       routeBasePath: "docs/V1",
-  //       sidebarPath: require.resolve("./V1sidebars.js"),
-  //     },
-  //   ],
-  // ],
 };
