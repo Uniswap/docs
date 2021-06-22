@@ -3,7 +3,7 @@ module.exports = {
   tagline: "Documentation and Guides",
   url: "https://docs.uniswap.org/",
   baseUrl: "/",
-  onBrokenLinks: "ignore",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "ignore",
   favicon: "img/favicon.png",
   organizationName: "Uniswap", // Usually your GitHub org/user name.
@@ -39,7 +39,7 @@ module.exports = {
           type: "docsVersionDropdown",
 
           //// Optional
-          position: "right",
+          position: "left",
           // Add additional dropdown items at the beginning/end of the dropdown.
           // dropdownItemsBefore: [],
           // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
@@ -51,7 +51,7 @@ module.exports = {
           type: "docsVersionDropdown",
 
           //// Optional
-          position: "right",
+          position: "left",
           // Add additional dropdown items at the beginning/end of the dropdown.
           // dropdownItemsBefore: [],
           // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
