@@ -13,6 +13,11 @@ module.exports = {
     prism: {
       additionalLanguages: ["solidity"],
     },
+    googleAnalytics: {
+      trackingID: "UA-128182339-7",
+      // Optional fields.
+      anonymizeIP: true,
+    },
     algolia: {
       apiKey: "32465e2ab6f7554ff014e64c0d92171c",
       indexName: "v3-docs",
@@ -51,16 +56,16 @@ module.exports = {
           position: "right",
         },
         {
-          type: 'docsVersionDropdown',
+          type: "docsVersionDropdown",
 
           //// Optional
-          position: 'right',
+          position: "right",
           // Add additional dropdown items at the beginning/end of the dropdown.
           // dropdownItemsBefore: [],
           // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
           // Do not add the link active class when browsing docs.
           // dropdownActiveClassDisabled: false,
-          docsPluginId: 'default',
+          docsPluginId: "default",
         },
       ],
     },
@@ -89,7 +94,8 @@ module.exports = {
           items: [
             {
               label: "Bug Bounty",
-              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md",
+              href:
+                "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md",
             },
             {
               label: "GitHub | Protocol",
