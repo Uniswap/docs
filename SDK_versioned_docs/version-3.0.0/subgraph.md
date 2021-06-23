@@ -1,3 +1,8 @@
+---
+id: Subgraph data
+sidebar_position: 2
+---
+
 # Uniswap Subgraph Data
 
 Uniswap uses multiple [subgraphs](https://thegraph.com/docs/introduction#what-the-graph-is) for indexing and organizing data from the Uniswap smart contracts. 
