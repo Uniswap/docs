@@ -141,7 +141,7 @@ module.exports = {
           path: "docs/V3",
           routeBasePath: "/",
           sidebarPath: require.resolve("./V3sidebars.js"),
-          includeCurrentVersion: true,
+          includeCurrentVersion: false,
           editUrl: "https://github.com/uniswap/uniswap-docs/tree/main/",
         },
 
