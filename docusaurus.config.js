@@ -22,6 +22,7 @@ module.exports = {
       contextualSearch: true,
       apiKey: "e28cad535783c3926438aab4ea40678d",
       indexName: "uniswap",
+      contextualSearch: true,
     },
     navbar: {
       title: "Uniswap Documentation",
