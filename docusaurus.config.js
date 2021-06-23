@@ -19,9 +19,9 @@ module.exports = {
       anonymizeIP: true,
     },
     algolia: {
-      apiKey: "32465e2ab6f7554ff014e64c0d92171c",
-      indexName: "v3-docs",
-      appId: "S0IDD0YGLZ",
+      contextualSearch: true,
+      apiKey: "e28cad535783c3926438aab4ea40678d",
+      indexName: "uniswap",
     },
     navbar: {
       title: "Uniswap Documentation",
