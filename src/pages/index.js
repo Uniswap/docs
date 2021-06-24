@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import styles from './index.module.css';
+import styles from './styles.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 
 function HomepageHeader() {
@@ -16,7 +16,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
+            to="../docs/what-is-uniswap">
             Docusaurus Tutorial - 5min ⏱️
           </Link>
         </div>
@@ -35,6 +35,7 @@ export default function Home() {
       <main>
         <HomepageFeatures />
       </main>
+    
     </Layout>
   );
 }

@@ -36,8 +36,10 @@ module.exports = {
           position: "right",
         },
         {
+          label: 'Protocol:',
+        },
+        {
           type: "docsVersionDropdown",
-
           //// Optional
           position: "left",
           // Add additional dropdown items at the beginning/end of the dropdown.
@@ -46,6 +48,9 @@ module.exports = {
           // Do not add the link active class when browsing docs.
           // dropdownActiveClassDisabled: false,
           docsPluginId: "default",
+        },
+        {
+          label: 'SDK:',
         },
         {
           type: "docsVersionDropdown",
