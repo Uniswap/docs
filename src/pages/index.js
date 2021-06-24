@@ -11,13 +11,15 @@ import styled from "@emotion/styled";
 const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
+  height: auto;
+  width: auto;
 `;
 
 const Card = styled.div`
   display: flex;
   min-height: 600px;
-  min-width: 300px;
-  width: 25%;
+  flex-wrap: wrap;
+  min-width: 350px;
   flex-flow: column;
   cursor: pointer;
   background-color: ${({ color }) => color || `#fff`};
@@ -47,28 +49,34 @@ export default function Home() {
     >
       <div>
         <Row>
-          <Card color="#F5E7DD" href="../V3/what-is-uniswap">
-            <Bottom>
-              <CardText>Concepts</CardText>
-              <CardText></CardText>
-            </Bottom>
-          </Card>
-          <Card color="#EDDBF7">
-            <onclick></onclick>
-            <Bottom>
-              <CardText>Javascript SDK</CardText>
-            </Bottom>
-          </Card>
-          <Card color="#F1F1F2">
-            <Bottom>
-              <CardText>Smart Contract Reference</CardText>
-            </Bottom>
-          </Card>
-          <Card color="#9C9990">
-            <Bottom>
-              <CardText>Governance</CardText>
-            </Bottom>
-          </Card>
+          <Link to="/docs">
+            <Card color="#F5E7DD">
+              <Bottom>
+                <CardText>Concepts</CardText>
+              </Bottom>
+            </Card>
+          </Link>
+          <Link to="/docs">
+            <Card color="#EDDBF7">
+              <Bottom>
+                <CardText>Javascript SDK</CardText>
+              </Bottom>
+            </Card>
+          </Link>
+          <Link to="/docs">
+            <Card color="#F1F1F2">
+              <Bottom>
+                <CardText>Smart Contract Reference</CardText>
+              </Bottom>
+            </Card>
+          </Link>
+          <Link to="/docs">
+            <Card color="#9C9990">
+              <Bottom>
+                <CardText>Governance</CardText>
+              </Bottom>
+            </Card>
+          </Link>
         </Row>
       </div>
     </Layout>
