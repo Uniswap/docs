@@ -8,8 +8,9 @@ const Row = styled.div`
 `;
 const Card = styled.div`
   display: flex;
-  height: 460px;
-  width: 300px;
+  min-height: 500px;
+  min-width: 300px;
+  flex: 1 1 25%;
   flex-flow: column;
   cursor: pointer;
   background-color: ${({ color }) => color || `#fff`};
