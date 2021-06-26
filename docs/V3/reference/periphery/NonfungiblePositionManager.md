@@ -15,7 +15,7 @@ Wraps Uniswap V3 positions in the ERC721 non-fungible token interface
 ```solidity
   function positions(
     uint256 tokenId
-  ) external returns (uint96 nonce, address operator, address token0, address token1, uint24 fee, int24 tickLower, int24 tickUpper, uint128 liquidity, uint256 feeGrowthInside0LastX128, uint256 feeGrowthInside1LastX128, uint128 tokensOwed0, uint128 tokensOwed1)
+  ) external view returns (uint96 nonce, address operator, address token0, address token1, uint24 fee, int24 tickLower, int24 tickUpper, uint128 liquidity, uint256 feeGrowthInside0LastX128, uint256 feeGrowthInside1LastX128, uint128 tokensOwed0, uint128 tokensOwed1)
 ```
 Returns the position information associated with a given token ID.
 
@@ -67,7 +67,7 @@ a method does not exist, i.e. the pool is assumed to be initialized.
 ### tokenURI
 ```solidity
   function tokenURI(
-  ) public returns (string)
+  ) public view returns (string)
 ```
 
 
@@ -171,7 +171,7 @@ must be collected first.
 ### getApproved
 ```solidity
   function getApproved(
-  ) public returns (address)
+  ) public view returns (address)
 ```
 
 Returns the account approved for `tokenId` token.
