@@ -16,12 +16,12 @@ Each subgraph has a dedicated endpoint for querying data, as well as a page on [
 
 ##### V3
 - Explorer Page: https://thegraph.com/explorer/subgraph/uniswap/uniswap-v3
-- Graphql Endpoint: https://api.thegraph.com/subgraphs/name/ianlapham/governance-tracking
+- Graphql Endpoint: https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3
 - Code: https://github.com/Uniswap/uniswap-v3-subgraph
 
 ##### Governance 
 - Explorer Page: https://thegraph.com/explorer/subgraph/ianlapham/governance-tracking
-- Graphql Endpoint: https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3
+- Graphql Endpoint: https://api.thegraph.com/subgraphs/name/ianlapham/governance-tracking
 - Code: https://github.com/ianlapham/uniswap-governance-subgraph
 
 ##### V2
