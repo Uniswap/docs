@@ -143,7 +143,7 @@
   --ifm-table-background: transparent;
   --ifm-table-stripe-background: var(--ifm-color-emphasis-100);
   --ifm-table-border-width: 1px;
-  --ifm-table-border-color: var(--ifm-color-emphasis-300);
+  --ifm-table-border-color: var(--ifm-color-emphasis-200);
   --ifm-table-head-background: inherit;
   --ifm-table-head-color: inherit;
   --ifm-table-head-font-weight: var(--ifm-font-weight-bold);

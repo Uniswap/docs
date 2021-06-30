@@ -46,6 +46,8 @@ html[data-theme="dark"] {
   --ifm-color-primary: white;
   --ifm-color-primary-dark: #5a91ea;
 
+  /* --ifm-color-secondary: black; */
+
   --ifm-background-color: #191b1f;
   --ifm-navbar-background-color: #191b1f;
   --ifm-global-shadow-md: 0 5px 40px rgba(255, 255, 255, 0.448);
@@ -63,6 +65,7 @@ html[data-theme="dark"] {
 
 html[data-theme="light"] {
   --ifm-color-primary: black;
+  /* --ifm-color-secondary: white; */
   /* --ifm-background-color: #F1F1F2; */
 
   background-position: 0px -30vh;
@@ -96,12 +99,18 @@ p {
   line-height: 1.5rem;
 }
 
+hr {
+  border-bottom-width: 0px;
+  border-top-width: 1px;
+  border-color: var(--ifm-color-emphasis-200);
+}
+
 h1,
 h2,
 h3,
 h4,
 h5 {
-  font-family: "Archivo", sans-serif;
+  /* font-family: "Archivo", sans-serif; */
   font-weight: 500;
 }
 
