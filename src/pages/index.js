@@ -29,23 +29,27 @@ import {
 
 export const actions = [
   {
-    title: "Core Concepts",
-    href: "#",
-    icon: BookOpenIcon,
-    // color: "blue",
-    to: "./protocol/reference/smart-contracts",
-  },
-  {
     title: "What is Uniswap",
     href: "#",
     icon: InformationCircleIcon,
-    to: "./protocol/reference/smart-contracts",
+    to: "./protocol/what-is-uniswap",
+    text: `Learn about the core concepts of the Uniswap protocol. Swaps, Pools, Concentrated Liquidity and more.`,
   },
   {
-    title: "FAQ",
+    title: "Smart contract overview",
+    href: "#",
+    icon: BookOpenIcon,
+    to: "./protocol/reference/smart-contracts",
+    text: `Learn about the architecture of the Uniswap protocol smart contracts made up of the Core and Periphary libraries.`,
+  },
+  {
+    title: "V3 FAQ",
     href: "#",
     icon: QuestionMarkCircleIcon,
-    to: "./protocol/reference/smart-contracts",
+    to: "./protocol/concepts/V3-overview/faq",
+    text: `Doloribus dolores nostrum quia qui natus officia quod et
+    dolorem. Sit repellendus qui ut at blanditiis et quo et
+    molestiae.`,
   },
 ];
 
@@ -128,11 +132,33 @@ const Row = styled.div`
   margin: 1rem auto;
   padding: 1rem 0;
   max-width: 1200px;
+
+  @media (max-width: 960px) {
+    /* margin: 0 0.5rem 0 0.5rem; */
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+  }
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const TwoRow = styled(Row)`
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 48px;
+
+  @media (max-width: 960px) {
+    /* margin: 0 0.5rem 0 0.5rem; */
+    grid-template-columns: 1fr;
+  }
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Card = styled.div`
   display: flex;
-  max-height: 200px;
+  max-height: 250px;
   min-width: 350px;
   padding: 1rem;
   flex-direction: column;
@@ -143,13 +169,16 @@ const Card = styled.div`
   border-radius: 20px;
   border: 1px solid var(--ifm-color-emphasis-200);
   &:hover {
-    background-color: var(--ifm-color-emphasis-0);
-    border: 1px solid var(--ifm-color-emphasis-300);
+    /* background-color: var(--ifm-color-emphasis-0); */
+    border: 1px solid var(--ifm-color-emphasis-400);
   }
 `;
 
 const ShadowCard = styled(Card)`
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff10;
+  backdrop-filter: blur(10px);
+  /* background-color: var(--ifm-color-emphasis-0); */
 `;
 
 const IconWrapper = styled.div`
@@ -186,11 +215,9 @@ const DocsHeader = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
-  /* border-radius: 20px; */
-  /* margin: 2rem 0 0 0; */
   width: 100%;
-  max-height: 400px;
   position: relative;
 `;
 
@@ -206,6 +233,7 @@ const StyledImage = styled(ThemedImage)`
   z-index: -1;
   width: 100%;
   object-fit: cover;
+  /* object-position: top; */
 `;
 
 const StyledTitleImage = styled(StyledImage)`
@@ -226,16 +254,9 @@ export default function Home() {
     >
       <Container>
         <DocsHeader>
-          <StyledTitleImage
-            alt="Docusaurus themed image"
-            sources={{
-              light: useBaseUrl("/img/grow.png"),
-              dark: useBaseUrl("/img/grow.png"),
-            }}
-          />
-          <div style={{ padding: "4rem" }}>
+          <div style={{ padding: "4rem 0 0 0 ", textAlign: "center" }}>
             <h1 style={{ fontWeight: "600" }}> Welcome to the Uniswap Docs</h1>
-            <p style={{ maxWidth: "640px", marginBottom: 0, fontWeight: 600 }}>
+            <p style={{ maxWidth: "640px", marginBottom: 0, fontWeight: 500 }}>
               The pages that follow contain comprehensive documentation of the
               Uniswap ecosystem. If you are new to Uniswap, you might want to
               check out the{" "}
@@ -255,44 +276,47 @@ export default function Home() {
               first.
             </p>
           </div>
-        </DocsHeader>
-        <Row>
-          {actions.map((action) => (
-            <Link style={{ textDecoration: "none" }} to={action.to}>
-              <ShadowCard key={action.title}>
-                <TopSection>
-                  <IconWrapper>
-                    <action.icon
-                      style={{ width: "24px" }}
-                      color={action.color}
-                    />
-                  </IconWrapper>
+          <StyledTitleImage
+            alt="Docusaurus themed image"
+            sources={{
+              light: useBaseUrl("/img/grow.png"),
+              dark: useBaseUrl("/img/grow2.png"),
+            }}
+          />
+          <Row>
+            {actions.map((action) => (
+              <Link style={{ textDecoration: "none" }} to={action.to}>
+                <ShadowCard key={action.title}>
+                  <TopSection>
+                    <IconWrapper>
+                      <action.icon
+                        style={{ width: "24px" }}
+                        color={action.color}
+                      />
+                    </IconWrapper>
 
-                  <svg
-                    style={{ width: "24px", opacity: 0.2 }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-                  </svg>
-                </TopSection>
-                <h3 style={{ marginBottom: ".25rem", color: action.color }}>
-                  {action.title}
-                </h3>
-                <p>
-                  Doloribus dolores nostrum quia qui natus officia quod et
-                  dolorem. Sit repellendus qui ut at blanditiis et quo et
-                  molestiae.
-                </p>
-              </ShadowCard>
-            </Link>
-          ))}
-        </Row>
-        <Row
+                    <svg
+                      style={{ width: "24px", opacity: 0.2 }}
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
+                    </svg>
+                  </TopSection>
+                  <h3 style={{ marginBottom: ".75rem", color: action.color }}>
+                    {action.title}
+                  </h3>
+                  <p style={{ marginBottom: "0.5rem" }}>{action.text}</p>
+                </ShadowCard>
+              </Link>
+            ))}
+          </Row>
+        </DocsHeader>
+        <TwoRow
           style={{
-            gridTemplateColumns: "1fr 1fr",
             gap: "56px",
+            marginTop: "4rem",
           }}
         >
           <div>
@@ -401,37 +425,31 @@ export default function Home() {
               </Link>
             ))}
           </div>
-        </Row>
+        </TwoRow>
         <hr />
-        <Row
+        <TwoRow
           style={{
-            gridTemplateColumns: "1fr 1fr",
             gap: "48px",
-            alignItems: "end",
+            alignItems: "center",
           }}
         >
+          <StyledImage
+            style={{ maxHeight: "400px" }}
+            sources={{
+              light: useBaseUrl("/img/use.png"),
+              dark: useBaseUrl("/img/use2.png"),
+            }}
+          />
           <div>
             <h2>Quick Links</h2>
-            <p>
-              Doloribus dolores nostrum quia qui natus officia quod et dolorem.
-              Sit repellendus qui ut at blanditiis et quo et molestiae.
-            </p>
-            <StyledImage
-              sources={{
-                light: useBaseUrl("/img/use.png"),
-                dark: useBaseUrl("/img/use.png"),
-              }}
-            />
-          </div>
-          <div>
+            <p></p>
             {quick.map((action) => (
               <Link style={{ textDecoration: "none" }} to={"./"}>
-                <Card
+                <div
                   style={{
-                    flexDirection: "row",
-                    width: "100%",
+                    display: "flex",
                     justifyContent: "space-between",
-                    marginBottom: "1rem",
+                    marginBottom: "0.5rem",
                   }}
                 >
                   <h3 style={{ marginBottom: "0rem" }}>{action.title}</h3>
@@ -444,14 +462,12 @@ export default function Home() {
                   >
                     <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                   </svg>
-                </Card>
+                </div>
               </Link>
             ))}
           </div>
-        </Row>
-
-        <hr />
-
+          <div></div>
+        </TwoRow>
         <Row>
           <Link
             style={{ textDecoration: "none" }}
