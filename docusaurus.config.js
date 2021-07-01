@@ -9,7 +9,6 @@ module.exports = {
   organizationName: "Uniswap", // Usually your GitHub org/user name.
   projectName: "Uniswap-docs", // Usually your repo name.
   themeConfig: {
-    // hideableSidebar: true,
     prism: {
       additionalLanguages: ["solidity"],
     },
@@ -19,7 +18,7 @@ module.exports = {
       appId: "S0IDD0YGLZ",
     },
     navbar: {
-      title: "Uniswap Documentation",
+      title: "Documentation",
       logo: {
         alt: "Uniswap Unicorn",
         src: "img/uni_dark_icon.svg",
@@ -36,7 +35,12 @@ module.exports = {
           position: "right",
         },
         {
-          label: 'Protocol:',
+          href: "https://unigrants.org/",
+          label: "Grants",
+          position: "right",
+        },
+        {
+          label: "Protocol:",
         },
         {
           type: "docsVersionDropdown",
@@ -50,7 +54,7 @@ module.exports = {
           docsPluginId: "default",
         },
         {
-          label: 'SDK:',
+          label: "SDK:",
         },
         {
           type: "docsVersionDropdown",
@@ -61,7 +65,7 @@ module.exports = {
           // dropdownItemsBefore: [],
           // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
           // Do not add the link active class when browsing docs.
-           dropdownActiveClassDisabled: false,
+          dropdownActiveClassDisabled: false,
           docsPluginId: "SDK",
         },
       ],
@@ -126,6 +130,39 @@ module.exports = {
         },
       ],
       // copyright: `unlicensed`,
+    },
+    colorMode: {
+      // "light" | "dark"
+      defaultMode: "dark",
+
+      // Hides the switch in the navbar
+      // Useful if you want to support a single color mode
+      disableSwitch: false,
+
+      // Should we use the prefers-color-scheme media-query,
+      // using user system preferences, instead of the hardcoded defaultMode
+      respectPrefersColorScheme: true,
+
+      // Dark/light switch icon options
+      switchConfig: {
+        // Icon for the switch while in dark mode
+        darkIcon: "\u{263D}",
+
+        // CSS to apply to dark icon,
+        // React inline style object
+        // see https://reactjs.org/docs/dom-elements.html#style
+        darkIconStyle: {
+          marginLeft: "2px",
+        },
+
+        // Unicode icons such as '\u2600' will work
+        // Unicode with 5 chars require brackets: '\u{1F602}'
+        lightIcon: "\u{263C}",
+
+        lightIconStyle: {
+          marginLeft: "1px",
+        },
+      },
     },
   },
   presets: [
