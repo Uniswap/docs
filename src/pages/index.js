@@ -1,29 +1,18 @@
 import React from "react";
-import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import styles from "./styles.module.css";
-import HomepageFeatures from "../components/HomepageFeatures";
+
 import "./styles.module.css";
 import styled from "@emotion/styled";
 
-import Use from "@site/static/img/use.png";
-import Grow from "@site/static/img/grow.png";
 import Discord from "@site/static/img/discord.svg";
 import UGP from "@site/static/img/UGP.png";
-
-import Github from "@site/static/img/Github.svg";
 
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import {
-  AcademicCapIcon,
-  BadgeCheckIcon,
-  CashIcon,
-  ClockIcon,
-  ReceiptRefundIcon,
   InformationCircleIcon,
   QuestionMarkCircleIcon,
   BookOpenIcon,
@@ -182,7 +171,6 @@ const Card = styled.div`
 
   @media (max-width: 960px) {
     width: 100%;
-    /* margin: 0 1rem; */
   }
 `;
 
@@ -214,7 +202,6 @@ const ShadowCard = styled(Card)`
 
 const WideCard = styled(ShadowCard)`
   max-height: auto;
-  width: fit-content;
 
   @media (max-width: 960px) {
     margin: 0 2rem;
@@ -230,7 +217,6 @@ const IconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  /* margin-bottom: 0.5rem; */
 `;
 
 const TopSection = styled.div`
@@ -287,7 +273,6 @@ const StyledGithubIcon = styled.div`
 `;
 
 export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Uniswap Docs`}
@@ -470,7 +455,6 @@ export default function Home() {
                       <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                     </svg>
                   </LinkRow>
-                  {/* <p>{action.text}</p> */}
                 </Card>
               </Link>
             ))}
