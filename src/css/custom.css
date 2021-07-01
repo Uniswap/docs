@@ -29,9 +29,13 @@
   --ifm-h5-font-size: 0.875rem;
   --ifm-h6-font-size: 0.85rem;
 
-  --ifm-table-border-color: var(--ifm-color-emphasis-100);
+  /* --ifm-table-border-color: var(--ifm-color-emphasis-100); */
   /* --ifm-toc-border-color: none; */
   --ifm-toc-border-width: 1px;
+
+  /* --ifm-menu-color: var(--ifm-color-emphasis-900); */
+  --ifm-menu-color-background-active: transparent;
+  --ifm-menu-color-background-hover: transparent;
 
   --ifm-global-shadow-lw: 0 1px 10px 0 rgba(0, 0, 0, 0);
   --ifm-global-shadow-md: 0 5px 40px rgba(0, 0, 0, 0);
@@ -48,8 +52,8 @@ html[data-theme="dark"] {
 
   /* --ifm-color-secondary: black; */
 
-  --ifm-background-color: #191b1f;
-  --ifm-navbar-background-color: #191b1f;
+  /* --ifm-background-color: #191b1f; */
+  /* --ifm-navbar-background-color: #191b1f; */
   --ifm-global-shadow-md: 0 5px 40px rgba(255, 255, 255, 0.448);
 
   background-position: 0px -30vh;
@@ -83,12 +87,13 @@ html[data-theme="light"] {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
     Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 14px;
+  font-size: 16px;
   font-variant: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-feature-settings: "ss01" on, "ss02" on, "cv01" on, "cv03" on;
+  font-weight: 400;
 }
 
 .markdown a {
@@ -97,6 +102,7 @@ html[data-theme="light"] {
 
 p {
   line-height: 1.5rem;
+  font-weight: 400;
 }
 
 hr {
@@ -145,6 +151,17 @@ html[data-theme="light"] .navbar {
   border-bottom: var(--ifm-toc-border-color) 1px solid;
 }
 
+.container {
+  min-width: 550px;
+  padding: 0px;
+  /* margin: 4rem auto 0px; */
+  max-width: 90% !important;
+}
+
+.container.padding-top--md {
+  padding-top: 2rem !important;
+}
+
 .react-toggle-track {
   background-color: var(--ifm-color-emphasis-100) !important;
 }
@@ -158,15 +175,15 @@ html[data-theme="light"] .navbar {
 }
 
 .navbar__title {
-  font-family: "Archivo", sans-serif;
+  /* font-family: "Archivo", sans-serif; */
   color: var(--ifm-color-primary);
   font-weight: 500;
 }
 
 .navbar__link {
-  font-family: "Archivo", sans-serif;
+  /* font-family: "Archivo", sans-serif; */
   color: var(--ifm-color-primary);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .navbar__logo {
@@ -176,7 +193,7 @@ html[data-theme="light"] .navbar {
 
 .menu__link {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 html[data-theme="dark"] .navbar__logo {
@@ -194,6 +211,150 @@ html[data-theme="dark"] .navbar__logo {
 
 .badge {
   margin-bottom: 16px;
+}
+
+.badge--secondary {
+  --ifm-badge-background-color: var(--ifm-color-emphasis-0);
+  --ifm-badge-border-color: var(--ifm-badge-background-color);
+  color: var(--ifm-color-base);
+}
+
+html[data-theme="light"] .DocSearch {
+  /* --docsearch-primary-color: var(--ifm-color-primary); */
+  /* --docsearch-text-color: var(--ifm-font-color-base); */
+  --docsearch-muted-color: var(--ifm-color-secondary-darkest);
+  --docsearch-container-background: rgba(94, 100, 112, 0.7);
+  /* Modal */
+  --docsearch-modal-background: var(--ifm-color-secondary-lighter);
+  /* Search box */
+  --docsearch-searchbox-background: var(--ifm-color-secondary);
+  --docsearch-searchbox-focus-background: var(--ifm-color-white);
+  /* Hit */
+  --docsearch-hit-color: var(--ifm-font-color-base);
+  --docsearch-hit-active-color: var(--ifm-color-emphasis-700);
+  --docsearch-hit-background: var(--ifm-color-white);
+  /* Footer */
+  --docsearch-footer-background: var(--ifm-color-white);
+  --docsearch-searchbox-shadow: none;
+}
+
+html[data-theme="dark"] .DocSearch {
+  --docsearch-text-color: var(--ifm-font-color-100);
+  --docsearch-muted-color: var(--ifm-color-secondary-darkest);
+  --docsearch-container-background: rgba(47, 55, 69, 0.7);
+  /* Modal */
+  --docsearch-modal-background: var(--ifm-background-color);
+  /* Search box */
+  --docsearch-searchbox-background: var(--ifm-background-color);
+  --docsearch-searchbox-focus-background: var(--ifm-color-black);
+  /* Hit */
+  --docsearch-hit-color: var(--ifm-font-color-base);
+  --docsearch-hit-active-color: var(--ifm-color-emphasis-700);
+  --docsearch-hit-background: var(--ifm-color-emphasis-100);
+  /* Footer */
+  --docsearch-footer-background: var(--ifm-background-surface-color);
+  --docsearch-key-gradient: linear-gradient(
+    -26.5deg,
+    var(--ifm-color-emphasis-200) 0%,
+    var(--ifm-color-emphasis-100) 100%
+  );
+
+  --docsearch-searchbox-shadow: inset 0 0 0 2px var(--ifm-color-emphasis-200);
+}
+
+html[data-theme="light"] .DocSearch-Hit {
+  background-color: transparent;
+}
+
+html[data-theme="light"] .DocSearch-Hit :focus {
+  background-color: var(--ifm-color-emphasis-100);
+}
+html[data-theme="light"] .DocSearch-Hit :hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+html[data-theme="light"] .DocSearch-Hit a {
+  background-color: var(--ifm-color-emphasis-0);
+}
+
+html[data-theme="dark"] .DocSearch-Hit {
+  background-color: transparent;
+}
+
+html[data-theme="dark"] .DocSearch-Hit :focus {
+  background-color: var(--ifm-color-emphasis-100);
+}
+html[data-theme="dark"] .DocSearch-Hit a :hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+html[data-theme="dark"] .DocSearch-Hit a {
+  background-color: var(--ifm-color-emphasis-0);
+}
+
+.DocSearch {
+  width: 240px;
+}
+
+.react-toggle-thumb :hover {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+.react-toggle-thumb :focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+.react-toggle-thumb :active {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.menu {
+  /* background-color: var(--ifm-color-emphasis-0); */
+  padding: 2rem !important;
+}
+
+.dropdown__menu {
+  box-shadow: none;
+}
+
+.menu__link:hover {
+  text-decoration: underline;
+}
+
+.menu__link--active {
+  font-weight: 600;
+}
+
+.table-of-contents {
+  opacity: 0.4;
+}
+
+.table-of-contents:hover {
+  opacity: 1;
+}
+
+.table-of-contents__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 960px) {
+  .menu {
+    /* background-color: var(--ifm-color-emphasis-0); */
+    padding: initial !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding: 1rem;
+  }
+
+  .container.padding-top--md {
+    padding-top: initial;
+  }
 }
 
 /**

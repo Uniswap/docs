@@ -1,17 +1,19 @@
 ---
 id: using-ethers
 title: Using Ethers.js
+sidebar_position: 2
 ---
 
 This guide will help you install the V3 SDK and [ethers.js](https://docs.ethers.io/v5/) to query state data from Ethereum. While this tutorial doesn't use the V3 SDK - it will set us up to use it after we get the on-chain data we need.
 
-## First Steps 
+## First Steps
 
-For our first step, we're going to use `ethers.js` return immutable variables from a Uniswap V3 pool contract, and assign them to an interface in our script that can be repeatedly referenced without continually reading state data directly from the EVM. 
+For our first step, we're going to use `ethers.js` return immutable variables from a Uniswap V3 pool contract, and assign them to an interface in our script that can be repeatedly referenced without continually reading state data directly from the EVM.
 
 We'll need to make a new directory called `example`
+
 ```typescript
-mkdir example 
+mkdir example
 cd example
 ```
 
@@ -28,7 +30,8 @@ npm i @uniswap/v3-sdk --save
 npm i @uniswap/sdk-core i --save
 npm i ethers  --save
 ```
-Depending on your machine configuration, you may also need this: 
+
+Depending on your machine configuration, you may also need this:
 
 ```typescript
 npm install -D tslib @types/node
@@ -43,24 +46,25 @@ import { ethers } from "ethers";
 import { Pool } from "@uniswap/v3-sdk";
 import { Address } from "cluster";
 
-const provider = new ethers.providers.JsonRpcProvider("<YOUR-ENDPOINT-HERE>")
+const provider = new ethers.providers.JsonRpcProvider("<YOUR-ENDPOINT-HERE>");
 ```
 
-The first thing we'll need to do is to tell ethers where to look for our chain data. To do this we'll create a local variable with the contract address of the V3 pool we're trying to query. 
+The first thing we'll need to do is to tell ethers where to look for our chain data. To do this we'll create a local variable with the contract address of the V3 pool we're trying to query.
 
 ```typescript
-const poolAddress = "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8"
+const poolAddress = "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8";
 ```
 
 Now we'll need the interface for the functions of the pool contract that we'll be calling
+
 ```typescript
 const poolImmutablesAbi = [
-"function factory() external view returns (address)",
-"function token0() external view returns (address)",
-"function token1() external view returns (address)",
-"function fee() external view returns (uint24)",
-"function tickSpacing() external view returns (int24)",
-"function maxLiquidityPerTick() external view returns (uint128)",
+  "function factory() external view returns (address)",
+  "function token0() external view returns (address)",
+  "function token1() external view returns (address)",
+  "function fee() external view returns (uint24)",
+  "function tickSpacing() external view returns (int24)",
+  "function maxLiquidityPerTick() external view returns (uint128)",
 ];
 ```
 
@@ -69,19 +73,23 @@ const poolImmutablesAbi = [
 Once that is setup, we create a new instance of a "Contract" using `ethers.js`. This isn't a smart contract itself, but rather a local model of one that helps us move data around off chain.
 
 ```typescript
-const poolContract = new ethers.Contract(poolAddress, poolImmutablesAbi, provider)
+const poolContract = new ethers.Contract(
+  poolAddress,
+  poolImmutablesAbi,
+  provider
+);
 ```
 
 Now we'll create an interface with all the data we're going to return, each assigned to its appropriate type
 
 ```typescript
 interface Immutables {
-    factory: Address;
-    token0: Address;
-    token1: Address;
-    fee: number;
-    tickSpacing: number;
-    maxLiquidityPerTick: number;
+  factory: Address;
+  token0: Address;
+  token1: Address;
+  fee: number;
+  tickSpacing: number;
+  maxLiquidityPerTick: number;
 }
 ```
 
@@ -91,24 +99,25 @@ now we're ready to query the EVM using `ethers.js`, and assign the returned valu
 
 ```typescript
 async function getPoolImmutables() {
-    const PoolImmutables: Immutables = {
-        factory: await poolContract.factory(),
-        token0: await poolContract.token0(),
-        token1: await poolContract.token1(),
-        fee: await poolContract.fee(),
-        tickSpacing: await poolContract.tickSpacing(),
-        maxLiquidityPerTick: await poolContract.maxLiquidityPerTick(),
-    }
-    return PoolImmutables;
+  const PoolImmutables: Immutables = {
+    factory: await poolContract.factory(),
+    token0: await poolContract.token0(),
+    token1: await poolContract.token1(),
+    fee: await poolContract.fee(),
+    tickSpacing: await poolContract.tickSpacing(),
+    maxLiquidityPerTick: await poolContract.maxLiquidityPerTick(),
+  };
+  return PoolImmutables;
 }
 ```
+
 finally, we can call our function, and print out the returned data in our console:
 
 ## Calling Our Function
 
 ```typescript
-getPoolImmutables().then((result)=>{
-    console.log(result);
+getPoolImmutables().then((result) => {
+  console.log(result);
 });
 ```
 
@@ -142,43 +151,47 @@ import { ethers } from "ethers";
 import { Pool } from "@uniswap/v3-sdk";
 import { Address } from "cluster";
 
-const provider = new ethers.providers.JsonRpcProvider("<YOUR_ENDPOINT_HERE>")
+const provider = new ethers.providers.JsonRpcProvider("<YOUR_ENDPOINT_HERE>");
 
-const poolAddress = "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8"
+const poolAddress = "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8";
 
 const poolImmutablesAbi = [
-"function factory() external view returns (address)",
-"function token0() external view returns (address)",
-"function token1() external view returns (address)",
-"function fee() external view returns (uint24)",
-"function tickSpacing() external view returns (int24)",
-"function maxLiquidityPerTick() external view returns (uint128)",
+  "function factory() external view returns (address)",
+  "function token0() external view returns (address)",
+  "function token1() external view returns (address)",
+  "function fee() external view returns (uint24)",
+  "function tickSpacing() external view returns (int24)",
+  "function maxLiquidityPerTick() external view returns (uint128)",
 ];
 
-const poolContract = new ethers.Contract(poolAddress, poolImmutablesAbi, provider)
+const poolContract = new ethers.Contract(
+  poolAddress,
+  poolImmutablesAbi,
+  provider
+);
 
 interface Immutables {
-    factory: Address;
-    token0: Address;
-    token1: Address;
-    fee: number;
-    tickSpacing: number;
-    maxLiquidityPerTick: number;
+  factory: Address;
+  token0: Address;
+  token1: Address;
+  fee: number;
+  tickSpacing: number;
+  maxLiquidityPerTick: number;
 }
 
 async function getPoolImmutables() {
-    const PoolImmutables: Immutables = {
-        factory: await poolContract.factory(),
-        token0: await poolContract.token0(),
-        token1: await poolContract.token1(),
-        fee: await poolContract.fee(),
-        tickSpacing: await poolContract.tickSpacing(),
-        maxLiquidityPerTick: await poolContract.maxLiquidityPerTick(),
-    }
-    return PoolImmutables;
+  const PoolImmutables: Immutables = {
+    factory: await poolContract.factory(),
+    token0: await poolContract.token0(),
+    token1: await poolContract.token1(),
+    fee: await poolContract.fee(),
+    tickSpacing: await poolContract.tickSpacing(),
+    maxLiquidityPerTick: await poolContract.maxLiquidityPerTick(),
+  };
+  return PoolImmutables;
 }
 
-getPoolImmutables().then((result)=>{
-    console.log(result);
+getPoolImmutables().then((result) => {
+  console.log(result);
 });
 ```

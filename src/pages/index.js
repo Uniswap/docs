@@ -11,6 +11,8 @@ import styled from "@emotion/styled";
 import Use from "@site/static/img/use.png";
 import Grow from "@site/static/img/grow.png";
 import Discord from "@site/static/img/discord.svg";
+import UGP from "@site/static/img/UGP.png";
+
 import Github from "@site/static/img/Github.svg";
 
 import ThemedImage from "@theme/ThemedImage";
@@ -58,22 +60,31 @@ export const actions = [
 export const github = [
   {
     title: "uniswap-v3-core",
-    href: "https://github.com/Uniswap",
+    href: "https://github.com/Uniswap/uniswap-v3-core",
     icon: CodeIcon,
   },
   {
     title: "uniswap-v3-sdk",
-    href: "https://github.com/Uniswap",
+    href: "https://github.com/Uniswap/uniswap-v3-sdk",
     icon: CodeIcon,
   },
   {
     title: "uniswap-v3-periphery",
-    href: "https://github.com/Uniswap",
+    href: "https://github.com/Uniswap/uniswap-v3-periphery",
     icon: CodeIcon,
+  },
+  {
+    title: "Deployment addresses",
+    href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md",
   },
 ];
 
 export const Guides = [
+  {
+    title: "SDK Quick start",
+    text: "Get started on web integrations with the Javascript SDK",
+    to: "./sdk/guides/quick-start",
+  },
   {
     title: "Implement a Swap",
     text: "Start swapping from a smart contract",
@@ -81,18 +92,13 @@ export const Guides = [
   },
   {
     title: "Providing Liquidity",
-    text: "Start swapping from a smart contract",
+    text: "Provide liquidity from a smart contract",
     to: "./protocol/V2/guides/smart-contract-integration/03-providing-liquidity",
   },
   {
     title: "Building an Oracle",
-    text: "Start swapping from a smart contract",
+    text: "Get the down low on building oracles safely",
     to: "./protocol/concepts/V3-overview/oracle",
-  },
-  {
-    title: "SDK Quick start",
-    text: "Start swapping from a smart contract",
-    to: "./sdk/guides/quick-start",
   },
 ];
 
@@ -100,45 +106,45 @@ export const quick = [
   {
     title: "Smart Contracts",
     text: "Start swapping from a smart contract",
-    to: "./",
+    to: "./protocol/reference/smart-contracts",
   },
   {
     title: "SDK",
     text: "Start swapping from a smart contract",
-    to: "./",
+    to: "./sdk/landing",
   },
   {
     title: "API (Subgraph)",
     text: "Start swapping from a smart contract",
-    to: "./",
+    to: "./sdk/Subgraph%20data",
   },
   {
     title: "Whitepaper",
     text: "Start swapping from a smart contract",
-    to: "./",
+    to: "https://uniswap.org/whitepaper-v3.pdf",
   },
 ];
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  /* max-width: 1200px; */
   margin: 0 auto;
-  /* padding: 2rem; */
 `;
 
 const Row = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
-  margin: 1rem auto;
+  justify-content: center;
+  margin: 0 auto;
   padding: 1rem 0;
-  max-width: 1200px;
+  max-width: 960px;
 
   @media (max-width: 960px) {
-    /* margin: 0 0.5rem 0 0.5rem; */
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     padding: 1rem;
+    max-width: 100%;
+    margin: 0 1rem;
   }
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
@@ -150,7 +156,6 @@ const TwoRow = styled(Row)`
   grid-gap: 48px;
 
   @media (max-width: 960px) {
-    /* margin: 0 0.5rem 0 0.5rem; */
     grid-template-columns: 1fr;
   }
   @media (max-width: 640px) {
@@ -167,12 +172,36 @@ const Card = styled.div`
   justify-content: center;
   cursor: pointer;
   border: 1px solid transparent;
-
   border-radius: 20px;
   border: 1px solid var(--ifm-color-emphasis-200);
+
   &:hover {
-    /* background-color: var(--ifm-color-emphasis-0); */
     border: 1px solid var(--ifm-color-emphasis-400);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  @media (max-width: 960px) {
+    width: 100%;
+    /* margin: 0 1rem; */
+  }
+`;
+
+const CenterCard = styled(Card)`
+  min-width: 250px;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 24px;
+
+  h3 {
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    margin-bottom: 0px;
   }
 `;
 
@@ -181,6 +210,17 @@ const ShadowCard = styled(Card)`
   background-color: #ffffff10;
   backdrop-filter: blur(10px);
   /* background-color: var(--ifm-color-emphasis-0); */
+`;
+
+const WideCard = styled(ShadowCard)`
+  max-height: auto;
+  width: fit-content;
+
+  @media (max-width: 960px) {
+    margin: 0 2rem;
+    max-height: fit-content;
+    width: fit-content;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -223,19 +263,11 @@ const DocsHeader = styled.div`
   position: relative;
 `;
 
-const GettingStartedSection = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
-`;
-
 const StyledImage = styled(ThemedImage)`
-  /* border-radius: 20px; */
   position: relative;
   z-index: -1;
   width: 100%;
   object-fit: cover;
-  /* object-position: top; */
 `;
 
 const StyledTitleImage = styled(StyledImage)`
@@ -245,10 +277,10 @@ const StyledTitleImage = styled(StyledImage)`
   z-index: -1;
   position: absolute;
   opacity: 0.2;
+  mask-image: linear-gradient(rgba(0, 0, 0, 1), transparent);
 `;
 
 const StyledGithubIcon = styled.div`
-  /* display: block; */
   svg {
     fill: var(--ifm-font-color-base);
   }
@@ -263,9 +295,15 @@ export default function Home() {
     >
       <Container>
         <DocsHeader>
-          <div style={{ padding: "4rem 0 0 0 ", textAlign: "center" }}>
+          <div style={{ padding: "4rem 0  ", textAlign: "center" }}>
             <h1 style={{ fontWeight: "600" }}> Welcome to the Uniswap Docs</h1>
-            <p style={{ maxWidth: "640px", marginBottom: 0, fontWeight: 500 }}>
+            <p
+              style={{
+                maxWidth: "640px",
+                margin: "0 1rem ",
+                fontWeight: 500,
+              }}
+            >
               The pages that follow contain comprehensive documentation of the
               Uniswap ecosystem. If you are new to Uniswap, you might want to
               check out the{" "}
@@ -322,6 +360,7 @@ export default function Home() {
             ))}
           </Row>
         </DocsHeader>
+
         <TwoRow
           style={{
             gap: "56px",
@@ -331,8 +370,8 @@ export default function Home() {
           <div>
             <h2>Getting Started</h2>
             <p>
-              Doloribus dolores nostrum quia qui natus officia quod et dolorem.
-              Sit repellendus qui ut at blanditiis et quo et molestiae.
+              Explore these docs to get started integrating the Uniswap Protocol
+              in your dApp, smart contract or project.
             </p>
             <div>
               {Guides.map((action) => (
@@ -368,7 +407,7 @@ export default function Home() {
               components.
             </p>
             {github.map((action) => (
-              <Link style={{ textDecoration: "none" }} href={action.to}>
+              <Link style={{ textDecoration: "none" }} href={action.href}>
                 <Card key={action.title} style={{ marginBottom: "1rem" }}>
                   <LinkRow>
                     <StyledGithubIcon
@@ -423,7 +462,7 @@ export default function Home() {
                       </h3>
                     </StyledGithubIcon>
                     <svg
-                      style={{ width: "24px", opacity: 0.2 }}
+                      style={{ width: "24px", height: "24px", opacity: 0.2 }}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
                       viewBox="0 0 24 24"
@@ -437,6 +476,7 @@ export default function Home() {
             ))}
           </div>
         </TwoRow>
+
         <hr />
         <TwoRow
           style={{
@@ -455,7 +495,7 @@ export default function Home() {
             <h2>Quick Links</h2>
             <p></p>
             {quick.map((action) => (
-              <Link style={{ textDecoration: "none" }} to={"./"}>
+              <Link style={{}} to={action.to || action.href}>
                 <div
                   style={{
                     display: "flex",
@@ -477,37 +517,46 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <div></div>
         </TwoRow>
+
+        <hr />
+
         <Row>
           <Link
             style={{ textDecoration: "none" }}
             href={"https://app.uniswap.org"}
           >
-            <Card>
-              <Discord />
-              Discord
-            </Card>
+            <CenterCard>
+              <Discord style={{ width: "48px", height: "48px" }} />
+              <div>
+                <h3>Discord</h3>
+                <p>Hop in to the #dev-chat to get realtime help.</p>
+              </div>
+            </CenterCard>
           </Link>
           <Link
             style={{ textDecoration: "none" }}
             href={"https://app.uniswap.org"}
           >
-            <Card>
-              <ChatIcon style={{ width: "24px" }} />
-              Forum
-            </Card>
+            <CenterCard>
+              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <div>
+                <h3>Forum</h3>
+                <p>Dicsuss governance and more.</p>
+              </div>
+            </CenterCard>
           </Link>
+
           <Link
             style={{ textDecoration: "none" }}
             href={"https://app.uniswap.org"}
           >
-            <Card>
+            <CenterCard>
               <StyledGithubIcon>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 120.78 117.79"
-                  style={{ width: "24px" }}
+                  style={{ width: "48px" }}
                 >
                   <defs></defs>
                   <g id="Layer_2" data-name="Layer 2">
@@ -548,10 +597,44 @@ export default function Home() {
                   </g>
                 </svg>{" "}
               </StyledGithubIcon>
-              Github
-            </Card>
+              <div>
+                <h3>Github</h3>
+                <p>View all Uniswap repositories.</p>
+              </div>
+            </CenterCard>
           </Link>
         </Row>
+        <Link
+          style={{
+            textDecoration: "none",
+            maxWidth: "960px",
+            margin: "0 auto 4rem auto",
+            width: "100%",
+          }}
+          href={"https://unigrants.org/"}
+        >
+          <WideCard
+            style={{
+              alignItems: "center",
+              flexDirection: "row",
+              justifyContent: "center",
+              gap: "24px",
+            }}
+          >
+            <img src={UGP} width={"120px"} />
+            <div>
+              <h2 style={{ marginBottom: "0.5rem" }}>
+                Apply for the Uniswap Developer Grants Program
+              </h2>
+              <p style={{ margin: "0rem" }}>
+                Our mission will always be to empower the community with the
+                resources needed to support enriching activities and advance
+                tooling and solutions to improve the experience for all UNI
+                users, builders, and overall community members.{" "}
+              </p>
+            </div>
+          </WideCard>
+        </Link>
       </Container>
     </Layout>
   );
