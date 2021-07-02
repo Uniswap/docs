@@ -2,7 +2,7 @@
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
-# How to generate markdown from template
+# How to generate markdown files from solidity Natspec comments
 
 Install solidity doc gen
 `npm install solidity-docgen`
@@ -14,6 +14,14 @@ Put the updated template `contract.hbs` in a /templates folder under the same di
 
 Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
 
+# How to gernerate markdown files from typescript commments
+
+`npm install --save-dev typedoc typedoc-plugin-markdown`
+
+`typedoc --out <docs> src/index.ts`
+
+see https://www.npmjs.com/package/typedoc-plugin-markdown for details
+
 # How to Update search indices with algolia
 
 create .env file with `APPLICATION_ID` and the `API_KEY` (write access)
@@ -22,14 +30,13 @@ Edit config.json file with
 - start url from updated website
 - sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
 - "v3-docs" index name
-- install jq : `brew install jq`. If installing jq gives error run `brew doctor` then `git -C $(brew --repo homebrew/core) checkout master` and try intsalling jq one more time.
+- install jq : `brew install jq`
   run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
 
 # How to add a new page
 
-Create a markdown file in its respective version directory within the main /docs/ folder
+Create a markdown file in its respective versioned docs, or versioned SDK, directory.
 
-Add the new file to its respective sidebar file i.e., 'V2sidebars.js' or 'V3sidebars.js'
 
 ## Installation
 
