@@ -9,6 +9,7 @@ module.exports = {
   organizationName: "Uniswap", // Usually your GitHub org/user name.
   projectName: "Uniswap-docs", // Usually your repo name.
   themeConfig: {
+    image: "img/twitter_card_bg.jpg",
     prism: {
       additionalLanguages: ["solidity"],
     },
