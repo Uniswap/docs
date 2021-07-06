@@ -357,6 +357,30 @@ html[data-theme="dark"] .DocSearch-Hit a {
   }
 }
 
+.navbar__item {
+  display: none;
+}
+
+.navbar__item.dropdown {
+  display: block;
+}
+
+.navbar__item.persistent {
+  display: block;
+}
+
+.navbar__item.V3_active.V3 {
+  display: block;
+}
+
+.navbar__item.V2_active.V2 {
+  display: block;
+}
+
+.navbar__item.V1_active.V1 {
+  display: block;
+}
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
