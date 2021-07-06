@@ -19,61 +19,149 @@ module.exports = {
       appId: "S0IDD0YGLZ",
     },
     navbar: {
-      title: "Documentation",
+      title: "Uniswap Docs",
       logo: {
         alt: "Uniswap Unicorn",
         src: "img/uni_dark_icon.svg",
       },
       items: [
         {
+          type: "docsVersionDropdown",
+          //// Optional
+          position: "left",
+          dropdownActiveClassDisabled: true,
+          docsPluginId: "default",
+          className: "persistent",
+        },
+        {
+          to: "/protocol/reference/smart-contracts",
+          label: "Contracts",
+          position: "left",
+          className: "V3_active",
+        },
+        {
+          to: "/sdk/landing",
+          label: "SDK",
+          position: "left",
+          className: "V3_active",
+        },
+        {
+          to: "/sdk/Subgraph%20data",
+          label: "Subgraph (API)",
+          position: "left",
+          className: "V3_active",
+        },
+        {
+          to: "/protocol/V2/guides/smart-contract-integration/01-quick-start",
+          label: "Contracts",
+          position: "left",
+          className: "V2_active",
+        },
+        {
+          to: "/sdk/2.0.0/readme",
+          label: "SDK",
+          position: "left",
+          className: "V2_active",
+        },
+        {
+          to: "/protocol/V2/reference/API/01-overview",
+          label: "Subgraph (API)",
+          position: "left",
+          className: "V2_active",
+        },
+        {
+          to: "/protocol/V2/reference/Governance/05-governance-reference",
+          label: "Governance",
+          position: "left",
+          className: "V2_active",
+        },
+        {
+          to: "/protocol/V1/guides/01-connect-to-uniswap",
+          label: "Contracts",
+          position: "left",
+          className: "V1_active",
+        },
+        {
+          to: "/sdk/1.0.0/readme",
+          label: "SDK",
+          position: "left",
+          className: "V1_active",
+        },
+        {
           label: "Whitepaper",
           to: "https://uniswap.org/whitepaper-v3.pdf",
           position: "right",
+          className: "persistent",
         },
         {
           href: "https://github.com/uniswap/uniswap-docs",
           label: "GitHub",
           position: "right",
+          className: "persistent",
         },
         {
           href: "https://unigrants.org/",
           label: "Grants",
           position: "right",
+          className: "persistent",
         },
         {
-          label: "Protocol:",
-        },
-        {
-          type: "docsVersionDropdown",
-          //// Optional
-          position: "left",
-          // Add additional dropdown items at the beginning/end of the dropdown.
-          // dropdownItemsBefore: [],
-          // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
-          // Do not add the link active class when browsing docs.
-          // dropdownActiveClassDisabled: false,
-          docsPluginId: "default",
-        },
-        {
-          label: "SDK:",
-        },
-        {
-          type: "docsVersionDropdown",
+          type: "localeDropdown",
 
           //// Optional
-          position: "left",
+          position: "right",
           // Add additional dropdown items at the beginning/end of the dropdown.
-          // dropdownItemsBefore: [],
-          // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
-          // Do not add the link active class when browsing docs.
-          dropdownActiveClassDisabled: false,
-          docsPluginId: "SDK",
+          dropdownItemsBefore: [],
+          dropdownItemsAfter: [
+            {
+              to: "https://my-site.com/help-us-translate",
+              label: "Help us translate",
+            },
+          ],
         },
       ],
     },
     footer: {
-      style: "dark",
+      // style: "dark",
       links: [
+        {
+          title: "Developers",
+          items: [
+            {
+              label: "Bug Bounty",
+              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md",
+            },
+            {
+              label: "#dev-chat",
+              href: "https://discord.gg/ybKVQUWb4s",
+            },
+            {
+              label: "Whitepaper",
+              href: "https://uniswap.org/whitepaper-v3.pdf",
+            },
+          ],
+        },
+        {
+          title: "Github",
+          items: [
+            {
+              label: "uniswap-v3-core",
+              href: "https://github.com/Uniswap/uniswap-v3-core",
+            },
+            {
+              label: "uniswap-v3-sdk",
+              href: "https://github.com/Uniswap/uniswap-v3-sdk",
+            },
+            {
+              label: "uniswap-v3-periphery",
+              href: "https://github.com/Uniswap/uniswap-v3-periphery",
+            },
+            {
+              label: "Deployment addresses",
+              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md",
+            },
+          ],
+        },
         {
           title: "Ecosystem",
           items: [
@@ -89,22 +177,13 @@ module.exports = {
               label: "Analytics",
               href: "https://info.uniswap.org/home",
             },
-          ],
-        },
-        {
-          title: "Developers",
-          items: [
             {
-              label: "Bug Bounty",
-              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md",
+              label: "Token Lists",
+              href: "https://tokenlists.org/",
             },
             {
-              label: "GitHub | Protocol",
-              href: "https://github.com/uniswap",
-            },
-            {
-              label: "GitHub | SDK",
-              href: "https://github.com/Uniswap/uniswap-v3-sdk",
+              label: "Brand Assets",
+              href: "https://uniswap.org/Uniswap_brand_assets.zip",
             },
           ],
         },
@@ -117,7 +196,7 @@ module.exports = {
             },
             {
               label: "Discord",
-              href: "https://discord.gg/FCfyBSbCU5",
+              href: "https://discord.gg/ybKVQUWb4s",
             },
             {
               label: "Twitter",
@@ -149,20 +228,9 @@ module.exports = {
         // Icon for the switch while in dark mode
         darkIcon: "\u{263D}",
 
-        // CSS to apply to dark icon,
-        // React inline style object
-        // see https://reactjs.org/docs/dom-elements.html#style
-        darkIconStyle: {
-          marginLeft: "2px",
-        },
-
         // Unicode icons such as '\u2600' will work
         // Unicode with 5 chars require brackets: '\u{1F602}'
         lightIcon: "\u{263C}",
-
-        lightIconStyle: {
-          marginLeft: "1px",
-        },
       },
     },
   },

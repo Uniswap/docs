@@ -12,6 +12,8 @@ import UGP from "@site/static/img/UGP.png";
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
+import SearchBar from "@theme-original/SearchBar";
+
 import {
   InformationCircleIcon,
   QuestionMarkCircleIcon,
@@ -270,6 +272,12 @@ const StyledGithubIcon = styled.div`
   }
 `;
 
+const HideMedium = styled.div`
+  @media (max-width: 960px) {
+    display: none;
+  }
+`;
+
 export default function Home() {
   return (
     <Layout
@@ -278,12 +286,23 @@ export default function Home() {
     >
       <Container>
         <DocsHeader>
-          <div style={{ padding: "4rem 0  ", textAlign: "center" }}>
+          <div
+            style={{
+              padding: "4rem 0  ",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <h1 style={{ fontWeight: "600" }}> Welcome to the Uniswap Docs</h1>
+            <HideMedium>
+              <SearchBar />{" "}
+            </HideMedium>
             <p
               style={{
                 maxWidth: "640px",
-                margin: "0 1rem ",
+                margin: "1rem ",
                 fontWeight: 500,
               }}
             >
@@ -506,7 +525,7 @@ export default function Home() {
         <Row>
           <Link
             style={{ textDecoration: "none" }}
-            href={"https://app.uniswap.org"}
+            href={"https://discord.gg/ybKVQUWb4s"}
           >
             <CenterCard>
               <Discord style={{ width: "48px", height: "48px" }} />
@@ -518,7 +537,7 @@ export default function Home() {
           </Link>
           <Link
             style={{ textDecoration: "none" }}
-            href={"https://app.uniswap.org"}
+            href={"https://gov.uniswap.org/"}
           >
             <CenterCard>
               <ChatIcon style={{ width: "48px", height: "48px" }} />
@@ -531,7 +550,7 @@ export default function Home() {
 
           <Link
             style={{ textDecoration: "none" }}
-            href={"https://app.uniswap.org"}
+            href={"https://github.com/Uniswap"}
           >
             <CenterCard>
               <StyledGithubIcon>
