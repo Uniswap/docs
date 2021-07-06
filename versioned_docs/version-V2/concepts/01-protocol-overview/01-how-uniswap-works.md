@@ -6,7 +6,7 @@ tags: protocol-overview, documentation
 
 ![](./images/anatomy.jpg)
 
-Uniswap is an _automated liquidity protocol_ powered by a <Link to="/docs/v2/protocol-overview/glossary/#constant-product-formula">constant product formula</Link>
+Uniswap is an _automated liquidity protocol_ powered by a [constant product formula](../01-protocol-overview/04-glossary.md#constant-product-formula)
 and implemented in a system of non-upgradeable smart contracts on the [Ethereum](https://ethereum.org/) blockchain.
 It obviates the need for trusted intermediaries, prioritizing **decentralization**, **censorship resistance**,
 and **security**. Uniswap is **open-source software** licensed under the
