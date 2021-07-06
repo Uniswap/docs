@@ -36,13 +36,11 @@ export const actions = [
     text: `Learn about the architecture of the Uniswap protocol smart contracts made up of the Core and Periphary libraries.`,
   },
   {
-    title: "V3 FAQ",
+    title: "V3 SDK",
     href: "#",
     icon: QuestionMarkCircleIcon,
-    to: "./protocol/concepts/V3-overview/faq",
-    text: `Doloribus dolores nostrum quia qui natus officia quod et
-    dolorem. Sit repellendus qui ut at blanditiis et quo et
-    molestiae.`,
+    to: "./sdk/landing",
+    text: `The SDK is designed to assist developers when interacting with the protocol in any environment that can execute JavaScript.`,
   },
 ];
 
