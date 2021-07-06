@@ -109,8 +109,8 @@ Finally, we will create a function called `main` which calls are previously writ
 async function main() {
   const immutables = await getPoolImmutables();
   const state = await getPoolState();
-  const TokenA = new Token(1, immutables.token0, 8, "USDC", "USD Coin");
-  const TokenB = new Token(1, immutables.token1, 8, "WETH", "Wrapped Ether");
+  const TokenA = new Token(1, immutables.token0, 6, "USDC", "USD Coin");
+  const TokenB = new Token(1, immutables.token1, 18, "WETH", "Wrapped Ether");
 
   const poolExample = new Pool(
     TokenA,
@@ -132,7 +132,7 @@ If everything is working, the script should return something like this:
 Pool {
   token0: Token {
     chainId: 1,
-    decimals: 8,
+    decimals: 6,
     symbol: 'USDC',
     name: 'USD Coin',
     isNative: false,
@@ -141,7 +141,7 @@ Pool {
   },
   token1: Token {
     chainId: 1,
-    decimals: 8,
+    decimals: 18,
     symbol: 'WETH',
     name: 'Wrapped Ether',
     isNative: false,
@@ -226,8 +226,8 @@ async function getPoolState() {
 async function main() {
   const immutables = await getPoolImmutables();
   const state = await getPoolState();
-  const TokenA = new Token(1, immutables.token0, 8, "USDC", "USD Coin");
-  const TokenB = new Token(1, immutables.token1, 8, "WETH", "Wrapped Ether");
+  const TokenA = new Token(1, immutables.token0, 6, "USDC", "USD Coin");
+  const TokenB = new Token(1, immutables.token1, 18, "WETH", "Wrapped Ether");
 
   const poolExample = new Pool(
     TokenA,
