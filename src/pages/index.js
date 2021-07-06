@@ -12,6 +12,8 @@ import UGP from "@site/static/img/UGP.png";
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
+import SearchBar from "@theme-original/SearchBar";
+
 import {
   InformationCircleIcon,
   QuestionMarkCircleIcon,
@@ -278,12 +280,21 @@ export default function Home() {
     >
       <Container>
         <DocsHeader>
-          <div style={{ padding: "4rem 0  ", textAlign: "center" }}>
+          <div
+            style={{
+              padding: "4rem 0  ",
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <h1 style={{ fontWeight: "600" }}> Welcome to the Uniswap Docs</h1>
+            <SearchBar />
             <p
               style={{
                 maxWidth: "640px",
-                margin: "0 1rem ",
+                margin: "1rem ",
                 fontWeight: 500,
               }}
             >
