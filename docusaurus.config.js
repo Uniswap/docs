@@ -26,6 +26,15 @@ module.exports = {
       },
       items: [
         {
+          type: "doc",
+          docId: "introduction",
+
+          //// Optional
+          position: "left",
+          label: "Docs",
+          activeSidebarClassName: "navbar__link--active",
+        },
+        {
           label: "Whitepaper",
           to: "https://uniswap.org/whitepaper-v3.pdf",
           position: "right",
