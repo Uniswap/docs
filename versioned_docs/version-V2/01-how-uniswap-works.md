@@ -10,11 +10,9 @@ Welcome to the Uniswap protocol V2 docs.
 
 The pages here contain conceptual and technical documentation of the Uniswap V2 protocol. 
 
-If you are new to Uniswap, you might want to check out the <Link to="/docs/v2/protocol-overview">Protocol Overview</Link> or <Link to="/faq">FAQ</Link> first.
+If you are new to Uniswap, you might want to check out the [Protocol overview](../version-V2/concepts/01-protocol-overview/01-how-uniswap-works.md) first.
 
-For a high-level overview of V2, see the <Link to='/blog/uniswap-v2'>introductory blog post</Link>.
-
-For the most recent documentation on V3
+For the most recent documentation on V3, see [V3](../version-V3/concepts/V3-overview/concentrated-liquidity.md).
 
 ## Developer links
 
