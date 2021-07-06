@@ -272,6 +272,12 @@ const StyledGithubIcon = styled.div`
   }
 `;
 
+const HideMedium = styled.div`
+  @media (max-width: 960px) {
+    display: none;
+  }
+`;
+
 export default function Home() {
   return (
     <Layout
@@ -290,7 +296,9 @@ export default function Home() {
             }}
           >
             <h1 style={{ fontWeight: "600" }}> Welcome to the Uniswap Docs</h1>
-            <SearchBar />
+            <HideMedium>
+              <SearchBar />{" "}
+            </HideMedium>
             <p
               style={{
                 maxWidth: "640px",
@@ -517,7 +525,7 @@ export default function Home() {
         <Row>
           <Link
             style={{ textDecoration: "none" }}
-            href={"https://app.uniswap.org"}
+            href={"https://discord.gg/ybKVQUWb4s"}
           >
             <CenterCard>
               <Discord style={{ width: "48px", height: "48px" }} />
@@ -529,7 +537,7 @@ export default function Home() {
           </Link>
           <Link
             style={{ textDecoration: "none" }}
-            href={"https://app.uniswap.org"}
+            href={"https://gov.uniswap.org/"}
           >
             <CenterCard>
               <ChatIcon style={{ width: "48px", height: "48px" }} />
@@ -542,7 +550,7 @@ export default function Home() {
 
           <Link
             style={{ textDecoration: "none" }}
-            href={"https://app.uniswap.org"}
+            href={"https://github.com/Uniswap"}
           >
             <CenterCard>
               <StyledGithubIcon>
