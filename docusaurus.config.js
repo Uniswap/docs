@@ -44,14 +44,8 @@ module.exports = {
           className: "V3_active",
         },
         {
-          to: "/sdk/3.0.0/readme",
+          to: "/sdk/landing",
           label: "SDK",
-          position: "left",
-          className: "V3_active",
-        },
-        {
-          to: "/protocol/governance",
-          label: "Governance",
           position: "left",
           className: "V3_active",
         },
@@ -68,16 +62,28 @@ module.exports = {
           className: "V2_active",
         },
         {
-          to: "/api",
+          to: "/protocol/V2/reference/API/01-overview",
           label: "Subgraph (API)",
           position: "left",
           className: "V2_active",
         },
         {
-          to: "/governance",
+          to: "/protocol/V2/reference/Governance/05-governance-reference",
           label: "Governance",
           position: "left",
           className: "V2_active",
+        },
+        {
+          to: "/protocol/V1/guides/01-connect-to-uniswap",
+          label: "Contracts",
+          position: "left",
+          className: "V1_active",
+        },
+        {
+          to: "/sdk/1.0.0/readme",
+          label: "SDK",
+          position: "left",
+          className: "V1_active",
         },
         {
           label: "Whitepaper",
