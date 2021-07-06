@@ -3,22 +3,25 @@ import OriginalNavBarItem from "@theme-original/NavbarItem";
 import { useLocation } from "@docusaurus/router";
 
 export default function NavbarItem(props) {
-  const { docsPluginId, type } = props;
   const { pathname } = useLocation();
 
-  if (
-    type === "docsVersionDropdown" &&
-    pathname.search(new RegExp(`^/${docsPluginId}/`, "g")) === -1
-  ) {
-    return null;
-  }
+  let versionDoc = pathname.split("/");
+  let activeNav = null;
 
-  console.log(pathname);
-  console.log(docsPluginId);
+  if (versionDoc[2] === "V2" || versionDoc[2] === "2.0.0") {
+    activeNav = "V2";
+  } else if (versionDoc[2] === "V1" || versionDoc[2] === "1.0.0") {
+    activeNav = "V1";
+  } else {
+    activeNav = "V3";
+  }
 
   return (
     <>
-      <OriginalNavBarItem {...props} />
+      <OriginalNavBarItem
+        {...props}
+        className={props.className + " " + activeNav}
+      />
     </>
   );
 }

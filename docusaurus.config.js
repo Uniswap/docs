@@ -19,56 +19,14 @@ module.exports = {
       appId: "S0IDD0YGLZ",
     },
     navbar: {
-      title: "Documentation",
+      title: "Uniswap Docs",
       logo: {
         alt: "Uniswap Unicorn",
         src: "img/uni_dark_icon.svg",
       },
       items: [
         {
-          type: "doc",
-          docId: "introduction",
-
-          //// Optional
-          position: "left",
-          label: "Docs",
-          activeSidebarClassName: "navbar__link--active",
-        },
-        {
-          label: "Whitepaper",
-          to: "https://uniswap.org/whitepaper-v3.pdf",
-          position: "right",
-        },
-        {
-          href: "https://github.com/uniswap/uniswap-docs",
-          label: "GitHub",
-          position: "right",
-        },
-        {
-          href: "https://unigrants.org/",
-          label: "Grants",
-          position: "right",
-        },
-        {
-          label: "Protocol:",
-        },
-        {
           type: "docsVersionDropdown",
-          //// Optional
-          position: "left",
-          // Add additional dropdown items at the beginning/end of the dropdown.
-          // dropdownItemsBefore: [],
-          // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
-          // Do not add the link active class when browsing docs.
-          // dropdownActiveClassDisabled: false,
-          docsPluginId: "default",
-        },
-        {
-          label: "SDK:",
-        },
-        {
-          type: "docsVersionDropdown",
-
           //// Optional
           position: "left",
           // Add additional dropdown items at the beginning/end of the dropdown.
@@ -76,7 +34,68 @@ module.exports = {
           // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
           // Do not add the link active class when browsing docs.
           dropdownActiveClassDisabled: false,
-          docsPluginId: "SDK",
+          docsPluginId: "default",
+          className: "persistent",
+        },
+        {
+          to: "/protocol/reference/smart-contracts",
+          label: "Contracts",
+          position: "left",
+          className: "V3_active",
+        },
+        {
+          to: "/sdk/3.0.0/readme",
+          label: "SDK",
+          position: "left",
+          className: "V3_active",
+        },
+        {
+          to: "/protocol/governance",
+          label: "Governance",
+          position: "left",
+          className: "V3_active",
+        },
+        {
+          to: "/protocol/V2/guides/smart-contract-integration/01-quick-start",
+          label: "Contracts",
+          position: "left",
+          className: "V2_active",
+        },
+        {
+          to: "/sdk/2.0.0/readme",
+          label: "SDK",
+          position: "left",
+          className: "V2_active",
+        },
+        {
+          to: "/api",
+          label: "Subgraph (API)",
+          position: "left",
+          className: "V2_active",
+        },
+        {
+          to: "/governance",
+          label: "Governance",
+          position: "left",
+          className: "V2_active",
+        },
+        {
+          label: "Whitepaper",
+          to: "https://uniswap.org/whitepaper-v3.pdf",
+          position: "right",
+          className: "persistent",
+        },
+        {
+          href: "https://github.com/uniswap/uniswap-docs",
+          label: "GitHub",
+          position: "right",
+          className: "persistent",
+        },
+        {
+          href: "https://unigrants.org/",
+          label: "Grants",
+          position: "right",
+          className: "persistent",
         },
       ],
     },
