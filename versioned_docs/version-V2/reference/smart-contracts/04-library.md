@@ -25,7 +25,7 @@ Sorts token addresses.
 function pairFor(address factory, address tokenA, address tokenB) internal pure returns (address pair);
 ```
 
-Calculates the address for a pair without making any external calls (see [Pair Addresses](../../guides/javascript-sdk/05-getting-pair-addresses.md).
+Calculates the address for a pair without making any external calls via the v2 SDK.
 
 ## getReserves
 
