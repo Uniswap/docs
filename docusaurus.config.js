@@ -29,11 +29,7 @@ module.exports = {
           type: "docsVersionDropdown",
           //// Optional
           position: "left",
-          // Add additional dropdown items at the beginning/end of the dropdown.
-          // dropdownItemsBefore: [],
-          // dropdownItemsAfter: [{to: '/versions', label: 'V1'}],
-          // Do not add the link active class when browsing docs.
-          dropdownActiveClassDisabled: false,
+          dropdownActiveClassDisabled: true,
           docsPluginId: "default",
           className: "persistent",
         },
@@ -46,6 +42,12 @@ module.exports = {
         {
           to: "/sdk/landing",
           label: "SDK",
+          position: "left",
+          className: "V3_active",
+        },
+        {
+          to: "/sdk/Subgraph%20data",
+          label: "Subgraph (API)",
           position: "left",
           className: "V3_active",
         },
@@ -103,11 +105,63 @@ module.exports = {
           position: "right",
           className: "persistent",
         },
+        {
+          type: "localeDropdown",
+
+          //// Optional
+          position: "right",
+          // Add additional dropdown items at the beginning/end of the dropdown.
+          dropdownItemsBefore: [],
+          dropdownItemsAfter: [
+            {
+              to: "https://my-site.com/help-us-translate",
+              label: "Help us translate",
+            },
+          ],
+        },
       ],
     },
     footer: {
-      style: "dark",
+      // style: "dark",
       links: [
+        {
+          title: "Developers",
+          items: [
+            {
+              label: "Bug Bounty",
+              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md",
+            },
+            {
+              label: "#dev-chat",
+              href: "https://discord.gg/ybKVQUWb4s",
+            },
+            {
+              label: "Whitepaper",
+              href: "https://uniswap.org/whitepaper-v3.pdf",
+            },
+          ],
+        },
+        {
+          title: "Github",
+          items: [
+            {
+              label: "uniswap-v3-core",
+              href: "https://github.com/Uniswap/uniswap-v3-core",
+            },
+            {
+              label: "uniswap-v3-sdk",
+              href: "https://github.com/Uniswap/uniswap-v3-sdk",
+            },
+            {
+              label: "uniswap-v3-periphery",
+              href: "https://github.com/Uniswap/uniswap-v3-periphery",
+            },
+            {
+              label: "Deployment addresses",
+              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md",
+            },
+          ],
+        },
         {
           title: "Ecosystem",
           items: [
@@ -123,22 +177,13 @@ module.exports = {
               label: "Analytics",
               href: "https://info.uniswap.org/home",
             },
-          ],
-        },
-        {
-          title: "Developers",
-          items: [
             {
-              label: "Bug Bounty",
-              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md",
+              label: "Token Lists",
+              href: "https://tokenlists.org/",
             },
             {
-              label: "GitHub | Protocol",
-              href: "https://github.com/uniswap",
-            },
-            {
-              label: "GitHub | SDK",
-              href: "https://github.com/Uniswap/uniswap-v3-sdk",
+              label: "Brand Assets",
+              href: "https://uniswap.org/Uniswap_brand_assets.zip",
             },
           ],
         },
@@ -151,7 +196,7 @@ module.exports = {
             },
             {
               label: "Discord",
-              href: "https://discord.gg/FCfyBSbCU5",
+              href: "https://discord.gg/ybKVQUWb4s",
             },
             {
               label: "Twitter",
@@ -183,20 +228,9 @@ module.exports = {
         // Icon for the switch while in dark mode
         darkIcon: "\u{263D}",
 
-        // CSS to apply to dark icon,
-        // React inline style object
-        // see https://reactjs.org/docs/dom-elements.html#style
-        darkIconStyle: {
-          marginLeft: "2px",
-        },
-
         // Unicode icons such as '\u2600' will work
         // Unicode with 5 chars require brackets: '\u{1F602}'
         lightIcon: "\u{263C}",
-
-        lightIconStyle: {
-          marginLeft: "1px",
-        },
       },
     },
   },
