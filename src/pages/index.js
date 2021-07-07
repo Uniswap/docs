@@ -155,7 +155,6 @@ const TwoRow = styled(Row)`
 const Card = styled.div`
   display: flex;
   max-height: 250px;
-  min-height: 225px;
   min-width: 350px;
   padding: 1rem;
   flex-direction: column;
@@ -164,6 +163,7 @@ const Card = styled.div`
   border: 1px solid transparent;
   border-radius: 20px;
   border: 1px solid var(--ifm-color-emphasis-200);
+  /* flex: 1 1 0px; */
 
   &:hover {
     border: 1px solid var(--ifm-color-emphasis-400);
@@ -198,6 +198,7 @@ const ShadowCard = styled(Card)`
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
   background-color: #ffffff10;
   backdrop-filter: blur(10px);
+  min-height: 200px;
   /* background-color: var(--ifm-color-emphasis-0); */
 `;
 
