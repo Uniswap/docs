@@ -52,6 +52,12 @@ module.exports = {
           className: "V3_active",
         },
         {
+          to: "/protocol/concepts/governance/governance-reference",
+          label: "Governance",
+          position: "left",
+          className: "V3_active",
+        },
+        {
           to: "/protocol/V2/guides/smart-contract-integration/quick-start",
           label: "Contracts",
           position: "left",
