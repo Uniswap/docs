@@ -1,5 +1,5 @@
 ---
-id: 06-token-listing
+id: token-listing
 title: Token Listing
 ---
 
@@ -13,15 +13,11 @@ If a token is not included in the list, try pasting the token address into the s
 
 ## 2. Custom Linking
 
-[https://app.uniswap.org/#/swap?use=v1](https://app.uniswap.org/#/swap?use=v1) supports custom linking to all tokens that have a Uniswap exchange. See <Link to='/docs/v1/frontend-integration/custom-linking'>Custom Linking</Link> for details on how to link.
+[https://app.uniswap.org/#/swap?use=v1](https://app.uniswap.org/#/swap?use=v1) supports custom linking to all tokens that have a Uniswap exchange. See [Custom Linking](custom-linking) for details on how to link.
 
 For example, to populate the output token field with an unlisted token, we can specify the outputCurrency in the URL and pass in the token's address like this:
 
 `https://app.uniswap.org/#/swap?use=v1?outputCurrency=0xfA3E941D1F6B7b10eD84A0C211bfA8aeE907965e`
-
-## 3. Make a request to get your token listed
-
-For tokens that have high market caps, high liquidity provision, or high trading volume, you can fill out a [request to be added to the dropdown menu](https://docs.google.com/forms/d/e/1FAIpQLSdQMI4KnQ1lCB0aiwzQ8xGTL59EX5FtkF6f2nT-JeQcxpW2Sw/formResponse)
 
 ## Token Details and Assets
 

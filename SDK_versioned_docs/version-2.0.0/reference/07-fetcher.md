@@ -1,14 +1,14 @@
 ---
-id: 07-fetcher
+id: fetcher
 title: Fetcher
 tags: sdk, documentation
 ---
 
-The data fetching logic is split from the rest of the code for better tree-shaking, 
+The data fetching logic is split from the rest of the code for better tree-shaking,
 i.e. so that it does not get packaged into your code unless it is used.
 The SDK is otherwise unconcerned with how you get data from the blockchain.
 
-This class contains static methods for constructing instances of pairs and tokens 
+This class contains static methods for constructing instances of pairs and tokens
 from on-chain data. It cannot be constructed.
 
 # Static Methods

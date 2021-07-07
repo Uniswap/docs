@@ -41,7 +41,7 @@ export const actions = [
     title: "V3 SDK",
     href: "#",
     icon: QuestionMarkCircleIcon,
-    to: "./sdk/landing",
+    to: "./sdk/introduction",
     text: `The SDK is designed to assist developers when interacting with the protocol in any environment that can execute JavaScript.`,
   },
 ];
@@ -77,12 +77,12 @@ export const Guides = [
   {
     title: "Implement a Swap",
     text: "Start swapping from a smart contract",
-    to: "./protocol/V2/guides/smart-contract-integration/02-trading-from-a-smart-contract",
+    to: "./protocol/V2/guides/smart-contract-integration/trading-from-a-smart-contract",
   },
   {
     title: "Providing Liquidity",
     text: "Provide liquidity from a smart contract",
-    to: "./protocol/V2/guides/smart-contract-integration/03-providing-liquidity",
+    to: "./protocol/V2/guides/smart-contract-integration/providing-liquidity",
   },
   {
     title: "Building an Oracle",
@@ -100,7 +100,7 @@ export const quick = [
   {
     title: "SDK",
     text: "Start swapping from a smart contract",
-    to: "./sdk/landing",
+    to: "./sdk/introduction",
   },
   {
     title: "API (Subgraph)",

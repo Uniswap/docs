@@ -1,8 +1,9 @@
 ---
-id: 01-factory
+id: factory
 title: Factory
 tags: smart-contracts, documentation
 ---
+
 # Factory
 
 ## Code
@@ -63,7 +64,7 @@ Returns the total number of pairs created through the factory so far.
 function feeTo() external view returns (address);
 ```
 
-See [Protocol Charge Calculation](../../concepts/03-advanced-topics/01-fees.md).
+See [Protocol Charge Calculation](../../concepts/advanced-topics/fees).
 
 ## feeToSetter
 
@@ -112,7 +113,7 @@ interface IUniswapV2Factory {
 # ABI
 
 ```typescript
-import IUniswapV2Factory from '@uniswap/v2-core/build/IUniswapV2Factory.json'
+import IUniswapV2Factory from "@uniswap/v2-core/build/IUniswapV2Factory.json";
 ```
 
 [https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Factory.json](https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Factory.json)

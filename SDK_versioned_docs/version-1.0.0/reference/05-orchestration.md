@@ -1,9 +1,9 @@
 ---
-id: 05-orchestration
+id: orchestration
 title: Orchestration
 ---
 
-Orchestration functions are plain-english wrappers for the function defined in <Link to='/docs/v1/SDK/data'>Data</Link> and <Link to='/docs/v1/SDK/computation'>Computation</Link>.
+Orchestration functions are plain-english wrappers for the function defined in [/sdk/1.0.0/reference/data](Data) and [Computation](/sdk/1.0.0/reference/computation).
 
 Functions suffixed with `WithData` are synchronous, and require token reserves to be passed in as arguments. Functions without the suffix are asychronous, and require token addresses to be passed in as arguments.
 
@@ -14,7 +14,10 @@ The function facilitates trading an exact amount of ETH for a specified token.
 ## Function Signature
 
 ```typescript
-export function tradeExactEthForTokensWithData(reserves: OptionalReserves, ethAmount: BigNumberish): TradeDetails
+export function tradeExactEthForTokensWithData(
+  reserves: OptionalReserves,
+  ethAmount: BigNumberish
+): TradeDetails;
 ```
 
 ## Input Parameters
@@ -27,7 +30,10 @@ export function tradeExactEthForTokensWithData(reserves: OptionalReserves, ethAm
 ## Example Usage
 
 ```typescript
-const tradeDetails: TradeDetails = tradeExactEthForTokensWithData(reserves, '1000000000000000000')
+const tradeDetails: TradeDetails = tradeExactEthForTokensWithData(
+  reserves,
+  "1000000000000000000"
+);
 ```
 
 # tradeExactEthForTokens
@@ -41,7 +47,7 @@ export async function tradeExactEthForTokens(
   tokenAddress: string,
   ethAmount: BigNumberish,
   chainIdOrProvider?: ChainIdOrProvider
-): Promise<TradeDetails>
+): Promise<TradeDetails>;
 ```
 
 ## Input Parameters
@@ -55,7 +61,10 @@ export async function tradeExactEthForTokens(
 ## Example Usage
 
 ```typescript
-const tradeDetails: TradeDetails = await tradeExactEthForTokens(tokenAddress, '1000000000000000000')
+const tradeDetails: TradeDetails = await tradeExactEthForTokens(
+  tokenAddress,
+  "1000000000000000000"
+);
 ```
 
 # tradeEthForExactTokensWithData
@@ -65,7 +74,10 @@ The function facilitates trading ETH for an exact amount of a specified token.
 ## Function Signature
 
 ```typescript
-export function tradeEthForExactTokensWithData(reserves: OptionalReserves, tokenAmount: BigNumberish): TradeDetails
+export function tradeEthForExactTokensWithData(
+  reserves: OptionalReserves,
+  tokenAmount: BigNumberish
+): TradeDetails;
 ```
 
 ## Input Parameters
@@ -78,7 +90,10 @@ export function tradeEthForExactTokensWithData(reserves: OptionalReserves, token
 ## Example Usage
 
 ```typescript
-const tradeDetails: TradeDetails = tradeEthForExactTokensWithData(reserves, '1000000000000000000')
+const tradeDetails: TradeDetails = tradeEthForExactTokensWithData(
+  reserves,
+  "1000000000000000000"
+);
 ```
 
 # tradeEthForExactTokens
@@ -92,7 +107,7 @@ export async function tradeEthForExactTokens(
   tokenAddress: string,
   tokenAmount: BigNumberish,
   chainIdOrProvider?: ChainIdOrProvider
-): Promise<TradeDetails>
+): Promise<TradeDetails>;
 ```
 
 ## Input Parameters
@@ -106,7 +121,10 @@ export async function tradeEthForExactTokens(
 ## Example Usage
 
 ```typescript
-const tradeDetails: TradeDetails = await tradeEthForExactTokens(tokenAddress, '1000000000000000000')
+const tradeDetails: TradeDetails = await tradeEthForExactTokens(
+  tokenAddress,
+  "1000000000000000000"
+);
 ```
 
 # tradeExactTokensForEthWithData
@@ -116,7 +134,10 @@ The function facilitates trading an exact amount of a specified token for ETH.
 ## Function Signature
 
 ```typescript
-export function tradeExactTokensForEthWithData(reserves: OptionalReserves, tokenAmount: BigNumberish): TradeDetails
+export function tradeExactTokensForEthWithData(
+  reserves: OptionalReserves,
+  tokenAmount: BigNumberish
+): TradeDetails;
 ```
 
 ## Input Parameters
@@ -129,7 +150,10 @@ export function tradeExactTokensForEthWithData(reserves: OptionalReserves, token
 ## Example Usage
 
 ```typescript
-const tradeDetails: TradeDetails = tradeExactTokensForEthWithData(reserves, '1000000000000000000')
+const tradeDetails: TradeDetails = tradeExactTokensForEthWithData(
+  reserves,
+  "1000000000000000000"
+);
 ```
 
 # tradeExactTokensForEth
@@ -143,7 +167,7 @@ export async function tradeExactTokensForEth(
   tokenAddress: string,
   tokenAmount: BigNumberish,
   chainIdOrProvider?: ChainIdOrProvider
-): Promise<TradeDetails>
+): Promise<TradeDetails>;
 ```
 
 ## Input Parameters
@@ -157,7 +181,10 @@ export async function tradeExactTokensForEth(
 ## Example Usage
 
 ```typescript
-const tradeDetails: TradeDetails = await tradeExactTokensForEth(tokenAddress, '1000000000000000000')
+const tradeDetails: TradeDetails = await tradeExactTokensForEth(
+  tokenAddress,
+  "1000000000000000000"
+);
 ```
 
 # tradeTokensForExactEthWithData
@@ -167,7 +194,10 @@ The function facilitates trading a specified token for an exact amount of ETH.
 ## Function Signature
 
 ```typescript
-export function tradeTokensForExactEthWithData(reserves: OptionalReserves, ethAmount: BigNumberish): TradeDetails
+export function tradeTokensForExactEthWithData(
+  reserves: OptionalReserves,
+  ethAmount: BigNumberish
+): TradeDetails;
 ```
 
 ## Input Parameters
@@ -180,7 +210,10 @@ export function tradeTokensForExactEthWithData(reserves: OptionalReserves, ethAm
 ## Example Usage
 
 ```typescript
-const tradeDetails: TradeDetails = tradeTokensForExactEthWithData(reserves, '1000000000000000000')
+const tradeDetails: TradeDetails = tradeTokensForExactEthWithData(
+  reserves,
+  "1000000000000000000"
+);
 ```
 
 # tradeTokensForExactEth
@@ -194,7 +227,7 @@ export async function tradeTokensForExactEth(
   tokenAddress: string,
   ethAmount: BigNumberish,
   chainIdOrProvider?: ChainIdOrProvider
-): Promise<TradeDetails>
+): Promise<TradeDetails>;
 ```
 
 ## Input Parameters
@@ -208,7 +241,10 @@ export async function tradeTokensForExactEth(
 ## Example Usage
 
 ```typescript
-const tradeDetails: TradeDetails = await tradeTokensForExactEth(tokenAddress, '1000000000000000000')
+const tradeDetails: TradeDetails = await tradeTokensForExactEth(
+  tokenAddress,
+  "1000000000000000000"
+);
 ```
 
 # tradeExactTokensForTokensWithData
@@ -222,7 +258,7 @@ export function tradeExactTokensForTokensWithData(
   reservesInput: OptionalReserves,
   reservesOutput: OptionalReserves,
   tokenAmount: BigNumberish
-): TradeDetails
+): TradeDetails;
 ```
 
 ## Input Parameters
@@ -239,8 +275,8 @@ export function tradeExactTokensForTokensWithData(
 const tradeDetails: TradeDetails = tradeExactTokensForTokensWithData(
   reservesInput,
   reservesOutput,
-  '1000000000000000000'
-)
+  "1000000000000000000"
+);
 ```
 
 # tradeExactTokensForTokens
@@ -255,7 +291,7 @@ export async function tradeExactTokensForTokens(
   tokenAddressOutput: string,
   tokenAmount: BigNumberish,
   chainIdOrProvider?: ChainIdOrProvider
-): Promise<TradeDetails>
+): Promise<TradeDetails>;
 ```
 
 ## Input Parameters
@@ -273,8 +309,8 @@ export async function tradeExactTokensForTokens(
 const tradeDetails: TradeDetails = await tradeExactTokensForTokens(
   tokenAddressInput,
   tokenAddressOutput,
-  '1000000000000000000'
-)
+  "1000000000000000000"
+);
 ```
 
 # tradeTokensForExactTokensWithData
@@ -288,7 +324,7 @@ export function tradeTokensForExactTokensWithData(
   reservesInput: OptionalReserves,
   reservesOutput: OptionalReserves,
   tokenAmount: BigNumberish
-): TradeDetails
+): TradeDetails;
 ```
 
 ## Input Parameters
@@ -305,8 +341,8 @@ export function tradeTokensForExactTokensWithData(
 const tradeDetails: TradeDetails = tradeTokensForExactTokensWithData(
   reservesInput,
   reservesOutput,
-  '1000000000000000000'
-)
+  "1000000000000000000"
+);
 ```
 
 # tradeTokensForExactTokens
@@ -321,7 +357,7 @@ export async function tradeTokensForExactTokens(
   tokenAddressOutput: string,
   tokenAmount: BigNumberish,
   chainIdOrProvider?: ChainIdOrProvider
-): Promise<TradeDetails>
+): Promise<TradeDetails>;
 ```
 
 ## Input Parameters
@@ -339,6 +375,6 @@ export async function tradeTokensForExactTokens(
 const tradeDetails: TradeDetails = await tradeTokensForExactTokens(
   tokenAddressInput,
   tokenAddressOutput,
-  '1000000000000000000'
-)
+  "1000000000000000000"
+);
 ```

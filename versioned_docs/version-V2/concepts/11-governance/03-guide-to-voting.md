@@ -1,5 +1,5 @@
 ---
-id: 03-guide-to-voting
+id: guide-to-voting
 title: Beginners Guide to Voting
 tags: goveranance, documentation
 ---
@@ -61,9 +61,9 @@ After reviewing the attached details and deciding your opinion, choose “Vote F
 Once you’ve chosen, a window will pop up allowing you to execute the vote.
 
 ![](./images/Voting.png)
- 
+
 When you click to cast your vote, metamask will pop up asking you to confirm your transaction. Click “submit”, wait a bit, and check that the transaction has been confirmed.
 
 ![](./images/Submitting_Vote.png)
 
-That’s it! Once your transaction has been confirmed, you will have cast your vote and participated in Uniswap Governance. 
+That’s it! Once your transaction has been confirmed, you will have cast your vote and participated in Uniswap Governance.
