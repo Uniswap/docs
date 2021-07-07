@@ -1,5 +1,5 @@
 ---
-id: 03-queries
+id: queries
 title: Queries
 tags: api, documentation
 ---

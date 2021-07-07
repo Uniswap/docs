@@ -1,9 +1,9 @@
 ---
-id: 07-supporting-meta-transactions
+id: supporting-meta-transactions
 title: Supporting meta transactions
 ---
 
-All Uniswap V2 pool tokens support meta-transaction approvals via the [permit](../../reference/smart-contracts/03-pair-erc-20.md#permit) function. This obviates the need for a blocking approve transaction before programmatic interactions with pool tokens can occur.
+All Uniswap V2 pool tokens support meta-transaction approvals via the [permit](../../reference/smart-contracts/pair-erc-20#permit) function. This obviates the need for a blocking approve transaction before programmatic interactions with pool tokens can occur.
 
 # ERC-712
 
@@ -23,9 +23,9 @@ keccak256(
 );
 ```
 
-- `name` is always `Uniswap V2`, see [name](../../reference/smart-contracts/03-pair-erc-20.md#name).
+- `name` is always `Uniswap V2`, see [name](../../reference/smart-contracts/pair-erc-20#name).
 - `chainId` is determined from the [ERC-1344](https://ethereum-magicians.org/t/eip-1344-add-chain-id-opcode/1131) `chainid` opcode.
-- `address(this)` is the address of the pair, see [Pair Addresses](../javascript-sdk/05-getting-pair-addresses.md).
+- `address(this)` is the address of the pair, see [Pair Addresses](../../../../sdk/2.0.0/guides/getting-pair-addresses).
 
 ## Permit Typehash
 
