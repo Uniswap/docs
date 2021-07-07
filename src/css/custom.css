@@ -329,7 +329,7 @@ html[data-theme="dark"] .DocSearch-Hit a {
 }
 
 .dropdown__menu {
-  box-shadow: 5px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.1);
 }
 
 .menu__link:hover {

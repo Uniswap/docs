@@ -155,6 +155,7 @@ const TwoRow = styled(Row)`
 const Card = styled.div`
   display: flex;
   max-height: 250px;
+  min-height: 225px;
   min-width: 350px;
   padding: 1rem;
   flex-direction: column;
