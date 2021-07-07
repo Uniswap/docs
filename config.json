@@ -1,10 +1,10 @@
 {
-  "index_name": " ",
+  "index_name": "v3-docs",
   "start_urls": [
-    " "
+    "https://docs.uniswap.org/"
   ],
   "sitemap_urls": [
-    " "
+    "https://docs.uniswap.org/sitemap.xml"
   ],
   "sitemap_alternate_links": true,
   "stop_urls": [],

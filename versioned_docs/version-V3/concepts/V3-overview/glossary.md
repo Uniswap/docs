@@ -53,7 +53,7 @@ The price between the available buy and sell prices. In Uniswap V1 and V2, this 
 
 ## Observation
 
-An instance of historical price and liquidity data of a given pair
+An instance of historical price and liquidity data of a given pair.
 
 ## Pair
 
@@ -81,11 +81,11 @@ Fees that are rewarded to the protocol itself, rather than to liquidity provider
 
 ## Range
 
-Any interval between two ticks of any disance.
+Any interval between two ticks of any distance.
 
 ## Range Order
 
-An approximation of a limit order, in which a single asset is provided as liquidity across a specified range, and is continuously swapped to the desination address as the spot price crosses the range.
+An approximation of a limit order, in which a single asset is provided as liquidity across a specified range, and is continuously swapped to the destination address as the spot price crosses the range.
 
 ## Reserves
 
