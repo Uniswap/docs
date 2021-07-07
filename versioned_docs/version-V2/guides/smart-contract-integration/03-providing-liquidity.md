@@ -1,5 +1,5 @@
 ---
-id: 03-providing-liquidity
+id: providing-liquidity
 title: Providing Liquidity
 tags: smart contract integration, developer-guides, documentation
 ---
@@ -12,7 +12,7 @@ When providing liquidity from a smart contract, the most important thing to keep
 
 ## Using the Router
 
-The easiest way to safely add liquidity to a pool is to use the [router](../../reference/smart-contracts/06-router02.md), which provides simple methods to safely add liquidity to a pool. If the liquidity is to be added to an ERC-20/ERC-20 pair, use [addLiquidity](../../reference/smart-contracts/06-router02.md#addliquidity). If WETH is involved, use [addLiquidityETH](../../reference/smart-contracts/06-router02.md#addliquidityeth).
+The easiest way to safely add liquidity to a pool is to use the [router](../../reference/smart-contracts/router-02), which provides simple methods to safely add liquidity to a pool. If the liquidity is to be added to an ERC-20/ERC-20 pair, use [addLiquidity](../../reference/smart-contracts/router-02#addliquidity). If WETH is involved, use [addLiquidityETH](../../reference/smart-contracts/router-02#addliquidityeth).
 
 These methods both require the caller to commit to a _belief about the current price_, which is encoded in the `amount*Desired` parameters. Typically, it's fairly safe to assume that the current fair market price is around what the current reserve ratio is for a pair (because of arbitrage). So, if a user wants to add 1 ETH to a pool, and the current DAI/WETH ratio of the pool is 200/1, it's reasonable to calculate that 200 DAI must be sent along with the ETH, which is an implicit commitment to the price of 200 DAI/1 WETH. However, it's important to note that this must be calculated _before the transaction is submitted_. It is _not safe_ to look up the reserve ratio from within a transaction and rely on it as a price belief, as this ratio can be cheaply manipulated to your detriment.
 

@@ -1,5 +1,5 @@
 ---
-id: 06-research
+id: research
 title: Research
 tags: advanced-topics, documentation
 ---

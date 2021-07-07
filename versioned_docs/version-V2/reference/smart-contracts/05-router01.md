@@ -1,11 +1,10 @@
 ---
+id: router-01
 title: Router01
 tags: smart-contracts, documentation
 ---
 
-
-> UniswapV2Router01 should not be used any longer, because of the discovery of a [low severity bug](../smart-contracts/05-router01.md#getamountin) and the fact that some methods do not work with tokens that take fees on transfer. The current recommendation is to use [UniswapV2Router02](../smart-contracts/06-router02.md).
-
+> UniswapV2Router01 should not be used any longer, because of the discovery of a [low severity bug](../smart-contracts/router-01#getamountin) and the fact that some methods do not work with tokens that take fees on transfer. The current recommendation is to use [UniswapV2Router02](../smart-contracts/router-02).
 
 # Code
 
@@ -23,7 +22,7 @@ tags: smart-contracts, documentation
 function factory() external pure returns (address);
 ```
 
-Returns [factory address](../smart-contracts/01-factory.md#address).
+Returns [factory address](../smart-contracts/factory#address).
 
 ## WETH
 
@@ -181,7 +180,7 @@ function removeLiquidityWithPermit(
 ) external returns (uint amountA, uint amountB);
 ```
 
-Removes liquidity from an ERC-20⇄ERC-20 pool without pre-approval, thanks to <Link to='/docs/v2/smart-contracts/pair-erc-20/#permit'>permit</Link>.
+Removes liquidity from an ERC-20⇄ERC-20 pool without pre-approval, thanks to [permit](pair-erc-20#permit).
 
 | Name       | Type      |                                                                                       |
 | :--------- | :-------- | :------------------------------------------------------------------------------------ |
@@ -214,7 +213,7 @@ function removeLiquidityETHWithPermit(
 ) external returns (uint amountToken, uint amountETH);
 ```
 
-Removes liquidity from an ERC-20⇄WETTH pool and receive ETH without pre-approval, thanks to <Link to='/docs/v2/smart-contracts/pair-erc-20/#permit'>permit</Link>.
+Removes liquidity from an ERC-20⇄WETTH pool and receive ETH without pre-approval, thanks to [permit](pair-erc-20#permit).
 
 | Name           | Type      |                                                                                      |
 | :------------- | :-------- | :----------------------------------------------------------------------------------- |
@@ -375,11 +374,11 @@ Receive an exact amount of tokens for as little ETH as possible, along the route
 
 ## quote
 
-See <Link to='/docs/v2/smart-contracts/library#quote'>quote</Link>.
+See [quote](library#quote).
 
 ## getAmountOut
 
-See <Link to='/docs/v2/smart-contracts/library#getamountout'>getAmountOut</Link>.
+See [getAmountOut](library#getamountout).
 
 ## getAmountIn
 
@@ -391,7 +390,7 @@ See <Link to='/docs/v2/smart-contracts/library#getamountout'>getAmountOut</Link>
 function getAmountsOut(uint amountIn, address[] memory path) public view returns (uint[] memory amounts);
 ```
 
-See <Link to='/docs/v2/smart-contracts/library#getamountsout'>getAmountsOut</Link>.
+See [getAmountsOut](library#getamountsout).
 
 ## getAmountsIn
 
@@ -399,7 +398,7 @@ See <Link to='/docs/v2/smart-contracts/library#getamountsout'>getAmountsOut</Lin
 function getAmountsIn(uint amountOut, address[] memory path) public view returns (uint[] memory amounts);
 ```
 
-See <Link to='/docs/v2/smart-contracts/library#getamountsin'>getAmountsIn</Link>.
+See[getAmountsIn](library#getamountsin).
 
 # Interface
 
@@ -508,7 +507,7 @@ interface IUniswapV2Router01 {
 # ABI
 
 ```typescript
-import IUniswapV2Router01 from '@uniswap/v2-periphery/build/IUniswapV2Router01.json'
+import IUniswapV2Router01 from "@uniswap/v2-periphery/build/IUniswapV2Router01.json";
 ```
 
 [https://unpkg.com/@uniswap/v2-periphery@1.0.0-beta.0/build/IUniswapV2Router01.json](https://unpkg.com/@uniswap/v2-periphery@1.0.0-beta.0/build/IUniswapV2Router01.json)

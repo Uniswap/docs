@@ -1,8 +1,9 @@
 ---
-id: 01-factory
+id: factory
 title: Factory
 tags: smart-contracts, documentation
 ---
+
 # Factory
 
 ## Code
@@ -37,7 +38,7 @@ function getPair(address tokenA, address tokenB) external view returns (address 
 Returns the address of the pair for `tokenA` and `tokenB`, if it has been created, else `address(0)` (`0x0000000000000000000000000000000000000000`).
 
 - `tokenA` and `tokenB` are interchangeable.
-- Pair addresses can also be calculated deterministically, see <Link to='/docs/v2/javascript-SDK/getting-pair-addresses/'>Pair Addresses</Link>.
+- Pair addresses can also be calculated deterministically via the SDK.
 
 ## allPairs
 
@@ -63,7 +64,7 @@ Returns the total number of pairs created through the factory so far.
 function feeTo() external view returns (address);
 ```
 
-See <Link to='/docs/v2/advanced-topics/fees/#protocol-charge-calculation'>Protocol Charge Calculation</Link>.
+See [Protocol Charge Calculation](../../concepts/advanced-topics/fees).
 
 ## feeToSetter
 
@@ -112,7 +113,7 @@ interface IUniswapV2Factory {
 # ABI
 
 ```typescript
-import IUniswapV2Factory from '@uniswap/v2-core/build/IUniswapV2Factory.json'
+import IUniswapV2Factory from "@uniswap/v2-core/build/IUniswapV2Factory.json";
 ```
 
 [https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Factory.json](https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Factory.json)
