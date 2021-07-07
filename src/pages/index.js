@@ -77,12 +77,12 @@ export const Guides = [
   {
     title: "Implement a Swap",
     text: "Start swapping from a smart contract",
-    to: "./protocol/V2/guides/smart-contract-integration/trading-from-a-smart-contract",
+    to: "./protocol/reference/periphery/SwapRouter",
   },
   {
     title: "Providing Liquidity",
     text: "Provide liquidity from a smart contract",
-    to: "./protocol/V2/guides/smart-contract-integration/providing-liquidity",
+    to: "./protocol/reference/periphery/NonfungiblePositionManager",
   },
   {
     title: "Building an Oracle",
