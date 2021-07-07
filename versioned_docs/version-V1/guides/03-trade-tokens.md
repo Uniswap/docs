@@ -1,5 +1,5 @@
 ---
-id: 03-trade-tokens
+id: trade-tokens
 title: Trade Tokens
 ---
 
@@ -21,19 +21,19 @@ For sell orders \(exact input\), the amount bought \(output\) is calculated:
 
 ```javascript
 // Sell ETH for ERC20
-const inputAmount = userInputEthValue
-const inputReserve = web3.eth.getBalance(exchangeAddress)
-const outputReserve = tokenContract.methods.balanceOf(exchangeAddress).call()
+const inputAmount = userInputEthValue;
+const inputReserve = web3.eth.getBalance(exchangeAddress);
+const outputReserve = tokenContract.methods.balanceOf(exchangeAddress).call();
 
 // Sell ERC20 for ETH
-const inputAmount = userInputTokenValue
-const inputReserve = tokenContract.methods.balanceOf(exchangeAddress).call()
-const outputReserve = web3.eth.getBalance(exchangeAddress)
+const inputAmount = userInputTokenValue;
+const inputReserve = tokenContract.methods.balanceOf(exchangeAddress).call();
+const outputReserve = web3.eth.getBalance(exchangeAddress);
 
 // Output amount bought
-const numerator = inputAmount * outputReserve * 997
-const denominator = inputReserve * 1000 + inputAmount * 997
-const outputAmount = numerator / denominator
+const numerator = inputAmount * outputReserve * 997;
+const denominator = inputReserve * 1000 + inputAmount * 997;
+const outputAmount = numerator / denominator;
 ```
 
 ### Amount Sold \(buy order\)
@@ -42,19 +42,19 @@ For buy orders \(exact output\), the cost \(input\) is calculated:
 
 ```javascript
 // Buy ERC20 with ETH
-const outputAmount = userInputTokenValue
-const inputReserve = web3.eth.getBalance(exchangeAddress)
-const outputReserve = tokenContract.methods.balanceOf(exchangeAddress).call()
+const outputAmount = userInputTokenValue;
+const inputReserve = web3.eth.getBalance(exchangeAddress);
+const outputReserve = tokenContract.methods.balanceOf(exchangeAddress).call();
 
 // Buy ETH with ERC20
-const outputAmount = userInputEthValue
-const inputReserve = tokenContract.methods.balanceOf(exchangeAddress).call()
-const outputReserve = web3.eth.getBalance(exchangeAddress)
+const outputAmount = userInputEthValue;
+const inputReserve = tokenContract.methods.balanceOf(exchangeAddress).call();
+const outputReserve = web3.eth.getBalance(exchangeAddress);
 
 // Cost
-const numerator = outputAmount * inputReserve * 1000
-const denominator = (outputReserve - outputAmount) * 997
-const inputAmount = numerator / denominator + 1
+const numerator = outputAmount * inputReserve * 1000;
+const denominator = (outputReserve - outputAmount) * 997;
+const inputAmount = numerator / denominator + 1;
 ```
 
 ### Liquidity Provider Fee
@@ -62,7 +62,7 @@ const inputAmount = numerator / denominator + 1
 There is a 0.3% liquidity provider fee built into the price formula. This can be calculated:
 
 ```javascript
-fee = inputAmount * 0.003
+fee = inputAmount * 0.003;
 ```
 
 ### Exchange Rate
@@ -70,7 +70,7 @@ fee = inputAmount * 0.003
 The exchange rate is simply the output amount divided by the input amount.
 
 ```javascript
-const rate = outputAmount / inputAmount
+const rate = outputAmount / inputAmount;
 ```
 
 ## ERC20 ⇄ ERC20 Calculations
@@ -89,22 +89,22 @@ For sell orders \(exact input\), the amount bought \(output\) is calculated:
 
 ```javascript
 // TokenA (ERC20) to ETH conversion
-const inputAmountA = userInputTokenAValue
-const inputReserveA = tokenContractA.methods.balanceOf(exchangeAddressA).call()
-const outputReserveA = web3.eth.getBalance(exchangeAddressA)
+const inputAmountA = userInputTokenAValue;
+const inputReserveA = tokenContractA.methods.balanceOf(exchangeAddressA).call();
+const outputReserveA = web3.eth.getBalance(exchangeAddressA);
 
-const numeratorA = inputAmountA * outputReserveA * 997
-const denominatorA = inputReserveA * 1000 + inputAmountA * 997
-const outputAmountA = numeratorA / denominatorA
+const numeratorA = inputAmountA * outputReserveA * 997;
+const denominatorA = inputReserveA * 1000 + inputAmountA * 997;
+const outputAmountA = numeratorA / denominatorA;
 
 // ETH to TokenB conversion
-const inputAmountB = outputAmountA
-const inputReserveB = web3.eth.getBalance(exchangeAddressB)
-const outputReserveB = tokenContract.methods.balanceOf(exchangeAddressB).call()
+const inputAmountB = outputAmountA;
+const inputReserveB = web3.eth.getBalance(exchangeAddressB);
+const outputReserveB = tokenContract.methods.balanceOf(exchangeAddressB).call();
 
-const numeratorB = inputAmountB * outputReserveB * 997
-const denominatorB = inputReserveB * 1000 + inputAmountB * 997
-const outputAmountB = numeratorB / denominatorB
+const numeratorB = inputAmountB * outputReserveB * 997;
+const denominatorB = inputReserveB * 1000 + inputAmountB * 997;
+const outputAmountB = numeratorB / denominatorB;
 ```
 
 ### Amount Sold \(buy order\)
@@ -113,24 +113,26 @@ For buy orders \(exact output\), the cost \(input\) is calculated:
 
 ```javascript
 // Buy TokenB with ETH
-const outputAmountB = userInputEthValue
-const inputReserveB = web3.eth.getBalance(exchangeAddressB)
-const outputReserveB = tokenContractB.methods.balanceOf(exchangeAddressB).call()
+const outputAmountB = userInputEthValue;
+const inputReserveB = web3.eth.getBalance(exchangeAddressB);
+const outputReserveB = tokenContractB.methods
+  .balanceOf(exchangeAddressB)
+  .call();
 
 // Cost
-const numeratorB = outputAmountB * inputReserveB * 1000
-const denominatorB = (outputReserveB - outputAmountB) * 997
-const inputAmountB = numeratorB / denominatorB + 1
+const numeratorB = outputAmountB * inputReserveB * 1000;
+const denominatorB = (outputReserveB - outputAmountB) * 997;
+const inputAmountB = numeratorB / denominatorB + 1;
 
 // Buy ETH with TokenA
-const outputAmountA = userInputEthValue
-const inputReserveA = tokenContractA.methods.balanceOf(exchangeAddressA).call()
-const outputReserveA = web3.eth.getBalance(exchangeAddressA)
+const outputAmountA = userInputEthValue;
+const inputReserveA = tokenContractA.methods.balanceOf(exchangeAddressA).call();
+const outputReserveA = web3.eth.getBalance(exchangeAddressA);
 
 // Cost
-const numeratorA = outputAmountA * inputReserveA * 1000
-const denominatorA = (outputReserveA - outputAmountA) * 997
-const inputAmountA = numeratorA / denominatorA + 1
+const numeratorA = outputAmountA * inputReserveA * 1000;
+const denominatorA = (outputReserveA - outputAmountA) * 997;
+const inputAmountA = numeratorA / denominatorA + 1;
 ```
 
 ### Liquidity Provider Fee
@@ -138,14 +140,14 @@ const inputAmountA = numeratorA / denominatorA + 1
 There is a 0.30% liquidity provider fee to swap from TokenA to ETH on the input exchange. There is another 0.3% liquidity provider fee to swap the remaining ETH to TokenB.
 
 ```javascript
-const exchangeAFee = inputAmountA * 0.003
-const exchangeBFee = inputAmountB * 0.003
+const exchangeAFee = inputAmountA * 0.003;
+const exchangeBFee = inputAmountB * 0.003;
 ```
 
 Since users only inputs Token A, it can be represented to them as:
 
 ```javascript
-const combinedFee = inputAmountA * 0.00591
+const combinedFee = inputAmountA * 0.00591;
 ```
 
 ### Exchange Rate
@@ -153,7 +155,7 @@ const combinedFee = inputAmountA * 0.00591
 The exchange rate is simply the output amount divided by the input amount.
 
 ```javascript
-const rate = outputAmountB / inputAmountA
+const rate = outputAmountB / inputAmountA;
 ```
 
 ## Deadlines
@@ -163,9 +165,9 @@ Many Uniswap functions include a transaction `deadline` that sets a time after w
 Deadlines are calculated by adding the desired amount of time \(in seconds\) to the latest Ethereum block timestamp.
 
 ```javascript
-web3.eth.getBlock('latest', (error, block) => {
-  deadline = block.timestamp + 300 // transaction expires in 300 seconds (5 minutes)
-})
+web3.eth.getBlock("latest", (error, block) => {
+  deadline = block.timestamp + 300; // transaction expires in 300 seconds (5 minutes)
+});
 ```
 
 ## Recipients

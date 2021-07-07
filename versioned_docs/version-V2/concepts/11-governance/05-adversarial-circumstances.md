@@ -1,5 +1,5 @@
 ---
-id: 05-adversarial-circumstances
+id: adversarial-circumstances
 title: Adversarial Circumstances
 tags: goveranance, documentation
 ---
@@ -38,14 +38,14 @@ The proposer must also maintain a minimum balance of 10 million UNI throughout t
 
 # Scenario 4
 
-A bad faith proposal is created, which will genuinely incentivize bad faith voting. 
+A bad faith proposal is created, which will genuinely incentivize bad faith voting.
 
 Exmaple: &quot;The treasury will be drained. Any votes in favor will be sent the balance of the treasury. Any votes opposed will be locked from the funds of the treasury.&quot;
 
 ## Circumvention
 
-No mechanism explicitly prevents this type of scenario, but market forces disincentivize it. 
+No mechanism explicitly prevents this type of scenario, but market forces disincentivize it.
 
-Because the treasury is comprised of UNI tokens exclusively, the market would react appropriately if a vote were to pass that would jeopardize the economic viability of Uniswap Governance and the UNI token. By the time the vote would pass, UNI's price would have fallen so low as to make the attack fruitless. 
+Because the treasury is comprised of UNI tokens exclusively, the market would react appropriately if a vote were to pass that would jeopardize the economic viability of Uniswap Governance and the UNI token. By the time the vote would pass, UNI's price would have fallen so low as to make the attack fruitless.
 
 UNI acting as the only asset of the governance treasury disincentivizes this form of bad faith voting. Uniswap Governance may choose in the future to diversify governance assets. While there are many benefits to this path, some fringe possibilities such as incentivized bad faith voting may appear.

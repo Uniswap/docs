@@ -1,5 +1,5 @@
 ---
-id: 04-custom-linking
+id: custom-linking
 title: Custom Linking
 ---
 

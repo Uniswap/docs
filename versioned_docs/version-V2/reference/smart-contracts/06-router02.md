@@ -1,4 +1,5 @@
 ---
+id: router-02
 title: Router02
 tags: smart-contracts, documentation
 ---
@@ -21,7 +22,7 @@ Because routers are stateless and do not hold token balances, they can be replac
 function factory() external pure returns (address);
 ```
 
-Returns [factory address](../smart-contracts/01-factory.md#address).
+Returns [factory address](../smart-contracts/factory#address).
 
 ## WETH
 
@@ -33,15 +34,15 @@ Returns the [canonical WETH address](https://blog.0xproject.com/canonical-weth-a
 
 ## quote
 
-See [quote](../smart-contracts/04-library.md#quote).
+See [quote](../smart-contracts/library#quote).
 
 ## getAmountOut
 
-See [getAmountOut](../smart-contracts/04-library.md#getamountout).
+See [getAmountOut](../smart-contracts/library#getamountout).
 
 ## getAmountIn
 
-See [getAmountIn](../smart-contracts/04-library.md#getamountin).
+See [getAmountIn](../smart-contracts/library#getamountin).
 
 ## getAmountsOut
 
@@ -49,7 +50,7 @@ See [getAmountIn](../smart-contracts/04-library.md#getamountin).
 function getAmountsOut(uint amountIn, address[] memory path) public view returns (uint[] memory amounts);
 ```
 
-See [getAmountsOut](../smart-contracts/04-library.md#getamountsout).
+See [getAmountsOut](../smart-contracts/library#getamountsout).
 
 ## getAmountsIn
 
@@ -57,7 +58,7 @@ See [getAmountsOut](../smart-contracts/04-library.md#getamountsout).
 function getAmountsIn(uint amountOut, address[] memory path) public view returns (uint[] memory amounts);
 ```
 
-See [getAmountsIn](../smart-contracts/04-library.md#getamountsin).
+See [getAmountsIn](../smart-contracts/library#getamountsin).
 
 # State-Changing Functions
 
@@ -207,7 +208,7 @@ function removeLiquidityWithPermit(
 ) external returns (uint amountA, uint amountB);
 ```
 
-Removes liquidity from an ERC-20⇄ERC-20 pool without pre-approval, thanks to <Link to='/docs/v2/smart-contracts/pair-erc-20/#permit'>permit</Link>.
+Removes liquidity from an ERC-20⇄ERC-20 pool without pre-approval, thanks to [permit](pair-erc-20#permit).
 
 | Name       | Type      |                                                                                       |
 | :--------- | :-------- | :------------------------------------------------------------------------------------ |
@@ -240,7 +241,7 @@ function removeLiquidityETHWithPermit(
 ) external returns (uint amountToken, uint amountETH);
 ```
 
-Removes liquidity from an ERC-20⇄WETTH pool and receive ETH without pre-approval, thanks to <Link to='/docs/v2/smart-contracts/pair-erc-20/#permit'>permit</Link>.
+Removes liquidity from an ERC-20⇄WETTH pool and receive ETH without pre-approval, thanks to [permit](pair-erc-20#permit).
 
 | Name           | Type      |                                                                                      |
 | :------------- | :-------- | :----------------------------------------------------------------------------------- |
@@ -675,7 +676,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
 # ABI
 
 ```typescript
-import IUniswapV2Router02 from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
+import IUniswapV2Router02 from "@uniswap/v2-periphery/build/IUniswapV2Router02.json";
 ```
 
 [https://unpkg.com/@uniswap/v2-periphery@1.1.0-beta.0/build/IUniswapV2Router02.json](https://unpkg.com/@uniswap/v2-periphery@1.1.0-beta.0/build/IUniswapV2Router02.json)

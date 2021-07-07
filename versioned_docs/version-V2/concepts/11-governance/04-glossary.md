@@ -1,5 +1,5 @@
 ---
-id: 04-glossary
+id: glossary
 title: Glossary
 tags: goveranance, documentation
 ---

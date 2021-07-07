@@ -1,5 +1,5 @@
 ---
-id: 05-math
+id: math
 title: Math
 tags: advanced-topics, documentation
 ---

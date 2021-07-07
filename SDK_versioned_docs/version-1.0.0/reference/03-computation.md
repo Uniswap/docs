@@ -1,5 +1,5 @@
 ---
-id: 03-computation
+id: computation
 title: Computation
 ---
 
@@ -7,7 +7,7 @@ title: Computation
 
 This function computes market details for the passed reserves data. Markets are defined as ETH&lt;&gt;ERC20, ERC20&lt;&gt;ETH, or ERC20&lt;&gt;ERC20 pairs, where the first currency is the input and the second is the output. Reserves must be specified for both the input and output currency.
 
-- In the case of ETH, `undefined` should be passed as the reserves data. <Link to='/docs/v1/SDK/data/#getttokenreserves'>`getTokenReserves`</Link>formatted ERC20 reserves, or the requisite data can be fetched manually and passed in.
+- In the case of ETH, `undefined` should be passed as the reserves data. [`getTokenReserves`](/sdk/1.0.0/reference/data/#getttokenreserves) formatted ERC20 reserves, or the requisite data can be fetched manually and passed in.
 
 - Rates are calculated to 18 decimal places of precision.
 
@@ -17,7 +17,7 @@ This function computes market details for the passed reserves data. Markets are 
 export function getMarketDetails(
   optionalReservesInput: OptionalReserves,
   optionalReservesOutput: OptionalReserves
-): MarketDetails
+): MarketDetails;
 ```
 
 ## Input Parameters
@@ -30,9 +30,9 @@ export function getMarketDetails(
 ## Example Usage
 
 ```typescript
-const reserves: ChainIdOrProvider = await getTokenReserves(tokenAddress)
+const reserves: ChainIdOrProvider = await getTokenReserves(tokenAddress);
 
-const marketDetails: MarketDetails = getMarketDetails(undefined, reserves) // ETH<>ERC20
+const marketDetails: MarketDetails = getMarketDetails(undefined, reserves); // ETH<>ERC20
 
 /*
 {
@@ -75,7 +75,7 @@ export function getTradeDetails(
   tradeExact: TRADE_EXACT,
   _tradeAmount: BigNumberish,
   marketDetails: MarketDetails
-): TradeDetails
+): TradeDetails;
 ```
 
 ## Input Parameters
@@ -89,13 +89,17 @@ export function getTradeDetails(
 ## Example Usage
 
 ```typescript
-const _purchaseAmount: BigNumber = new BigNumber('2.5')
-const _decimals: number = 18
-const tradeAmount: BigNumber = _purchaseAmount.multipliedBy(10 ** _decimals)
-const marketDetails: MarketDetails = getMarketDetails(undefined, reserves) // ETH<>ERC20
+const _purchaseAmount: BigNumber = new BigNumber("2.5");
+const _decimals: number = 18;
+const tradeAmount: BigNumber = _purchaseAmount.multipliedBy(10 ** _decimals);
+const marketDetails: MarketDetails = getMarketDetails(undefined, reserves); // ETH<>ERC20
 
 // buy exactly 2.5 of an 18 decimal ERC20 with ETH
-const tradeDetails: TradeDetails = getTradeDetails(TRADE_EXACT.OUTPUT, tradeAmount, marketDetails)
+const tradeDetails: TradeDetails = getTradeDetails(
+  TRADE_EXACT.OUTPUT,
+  tradeAmount,
+  marketDetails
+);
 
 /*
 {

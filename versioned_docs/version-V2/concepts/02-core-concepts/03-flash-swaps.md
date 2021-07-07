@@ -1,5 +1,5 @@
 ---
-id: 03-flash-swaps
+id: flash-swaps
 title: Flash Swaps
 tags: flash-swaps, documentation
 ---
@@ -28,8 +28,6 @@ The first step is to _optimistically_ withdraw 1 ETH from Uniswap via a flash sw
 
 It may be the case that we'd like to calculate the profit-maximizing trade on-chain at the moment of execution, which is robust to price movements. This can be somewhat complex, depending on the strategy being executed. However, one common strategy is trading as profitably as possible _against a fixed external price_. (This price may be e.g., the average execution price of one or more orders on Oasis.) If the Uniswap market price is far enough above or below this external price, the following example contains code that calculates the amount to trade over Uniswap for maximum profit: [`ExampleSwapToPrice.sol`](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleSwapToPrice.sol).
 
-<Github href="https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleSwapToPrice.sol">ExampleSwapToPrice.sol</Github>
-
 ### Trade at External Venue
 
 Once we've obtained our temporary capital of 1 ETH from Uniswap, we now can trade this for 220 DAI on Oasis. Once we've received the DAI, we need to pay Uniswap back. We've mentioned that the amount required to cover 1 ETH is 200 DAI, calculated via `getAmountIn`. So, after sending 200 of the DAI back to the Uniswap pair, you're left with 20 DAI of profit!
@@ -48,5 +46,4 @@ Luckily, flash swaps enable us to withdraw the _full_ ETH amount upfront. If we 
 
 # Developer resources
 
-- To see how to integrate a flash swap in your smart contract read [Using Flash Swaps](../../guides/smart-contract-integration/05-using-flash-swaps.md).
-
+- To see how to integrate a flash swap in your smart contract read [Using Flash Swaps](../../guides/smart-contract-integration/using-flash-swaps).

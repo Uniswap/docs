@@ -1,5 +1,5 @@
 ---
-id: 05-using-flash-swaps
+id: using-flash-swaps
 title: Flash Swaps
 tags: smart contract integration, developer-guides, documentation
 ---
@@ -72,8 +72,6 @@ For further exploration of flash swaps, see the <a href='/whitepaper.pdf' target
 # Example
 
 A fully functional example of flash swaps is available: [`ExampleFlashSwap.sol`](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleFlashSwap.sol).
-
-<Github href="https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleSwapToPrice.sol">ExampleSwapToPrice.sol</Github>
 
 # Interface
 

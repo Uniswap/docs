@@ -1,5 +1,5 @@
 ---
-id: 03-interfaces
+id: interfaces
 title: Interfaces
 ---
 

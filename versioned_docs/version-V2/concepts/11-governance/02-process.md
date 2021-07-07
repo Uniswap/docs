@@ -1,5 +1,5 @@
 ---
-id: 02-process
+id: process
 title: Process
 tags: goveranance, documentation
 ---

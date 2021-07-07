@@ -1,10 +1,10 @@
 ---
-id: 03-pricing
+id: pricing
 title: Pricing
 tags: SDK, developer-guides, documentation
 ---
 
-> Looking for a [quickstart](../javascript-sdk/01-quick-start.md)?
+> Looking for a [quickstart](quick-start)?
 
 Let's talk pricing. This guide will focus on the two most important Uniswap prices: the **mid price** and the **execution price**.
 
@@ -41,7 +41,7 @@ You may be wondering why we have to construct a _route_ to get the mid price, as
 
 Now we understand that the mid price is going to be defined in terms of DAI/WETH. Not to worry though, if we need the WETH/DAI price, we can easily invert.
 
-Finally, you may have noticed that we're formatting the price to 6 significant digits. This is because internally, prices are stored as exact-precision fractions, which can be converted to other representations on demand. For a full list of options, see [Price](../../reference/SDK/06-fractions.md#price).
+Finally, you may have noticed that we're formatting the price to 6 significant digits. This is because internally, prices are stored as exact-precision fractions, which can be converted to other representations on demand. For a full list of options, see [Price](../reference/fractions#price).
 
 ## Indirect
 

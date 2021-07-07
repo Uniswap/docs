@@ -40,7 +40,7 @@ module.exports = {
           className: "V3_active",
         },
         {
-          to: "/sdk/landing",
+          to: "/sdk/introduction",
           label: "SDK",
           position: "left",
           className: "V3_active",
@@ -52,7 +52,7 @@ module.exports = {
           className: "V3_active",
         },
         {
-          to: "/protocol/V2/guides/smart-contract-integration/01-quick-start",
+          to: "/protocol/V2/guides/smart-contract-integration/quick-start",
           label: "Contracts",
           position: "left",
           className: "V2_active",
@@ -64,19 +64,19 @@ module.exports = {
           className: "V2_active",
         },
         {
-          to: "/protocol/V2/reference/API/01-overview",
+          to: "/protocol/V2/reference/API/overview",
           label: "Subgraph (API)",
           position: "left",
           className: "V2_active",
         },
         {
-          to: "/protocol/V2/reference/Governance/05-governance-reference",
+          to: "/protocol/V2/reference/Governance/governance-reference",
           label: "Governance",
           position: "left",
           className: "V2_active",
         },
         {
-          to: "/protocol/V1/guides/01-connect-to-uniswap",
+          to: "/protocol/V1/guides/connect-to-uniswap",
           label: "Contracts",
           position: "left",
           className: "V1_active",

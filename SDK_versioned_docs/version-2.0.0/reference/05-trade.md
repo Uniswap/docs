@@ -1,5 +1,5 @@
 ---
-id: 05-trade
+id: trade
 title: Trade
 tags: sdk, documentation
 ---
@@ -13,14 +13,40 @@ The Trade entity represents a fully specified trade along a route. This entity s
 # Example
 
 ```typescript
-import { ChainId, Token, TokenAmount, Pair, TradeType, Route } from '@uniswap/sdk'
+import {
+  ChainId,
+  Token,
+  TokenAmount,
+  Pair,
+  TradeType,
+  Route,
+} from "@uniswap/sdk";
 
-const HOT = new Token(ChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
-const NOT = new Token(ChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
-const HOT_NOT = new Pair(new TokenAmount(HOT, '2000000000000000000'), new TokenAmount(NOT, '1000000000000000000'))
-const NOT_TO_HOT = new Route([HOT_NOT], NOT)
+const HOT = new Token(
+  ChainId.MAINNET,
+  "0xc0FFee0000000000000000000000000000000000",
+  18,
+  "HOT",
+  "Caffeine"
+);
+const NOT = new Token(
+  ChainId.MAINNET,
+  "0xDeCAf00000000000000000000000000000000000",
+  18,
+  "NOT",
+  "Caffeine"
+);
+const HOT_NOT = new Pair(
+  new TokenAmount(HOT, "2000000000000000000"),
+  new TokenAmount(NOT, "1000000000000000000")
+);
+const NOT_TO_HOT = new Route([HOT_NOT], NOT);
 
-const trade = new Trade(NOT_TO_HOT, new TokenAmount(NOT, '1000000000000000'), TradeType.EXACT_INPUT)
+const trade = new Trade(
+  NOT_TO_HOT,
+  new TokenAmount(NOT, "1000000000000000"),
+  TradeType.EXACT_INPUT
+);
 ```
 
 # Properties
@@ -28,15 +54,15 @@ const trade = new Trade(NOT_TO_HOT, new TokenAmount(NOT, '1000000000000000'), Tr
 ## route
 
 ```typescript
-route: Route
+route: Route;
 ```
 
-The <Link to='/docs/v2/SDK/route#path'>path</Link> property of the route should be passed as the path parameter to router functions.
+The [path](route#path) property of the route should be passed as the path parameter to router functions.
 
 ## tradeType
 
 ```typescript
-tradeType: TradeType
+tradeType: TradeType;
 ```
 
 `TradeType.EXACT_INPUT` corresponds to `swapExact*For*` router functions. `TradeType.EXACT_OUTPUT` corresponds to `swap*ForExact*` router functions.
@@ -44,7 +70,7 @@ tradeType: TradeType
 ## inputAmount
 
 ```typescript
-inputAmount: TokenAmount
+inputAmount: TokenAmount;
 ```
 
 For exact input trades, this value should be passed as amountIn to router functions. For exact output trades, this value should be multiplied by a factor >1, representing slippage tolerance, and passed as amountInMax to router functions.
@@ -52,7 +78,7 @@ For exact input trades, this value should be passed as amountIn to router functi
 ## outputAmount
 
 ```typescript
-outputAmount: TokenAmount
+outputAmount: TokenAmount;
 ```
 
 For exact output trades, this value should be passed as amountOut to router functions. For exact input trades, this value should be multiplied by a factor <1, representing slippage tolerance, and passed as amountOutMin to router functions.
@@ -60,7 +86,7 @@ For exact output trades, this value should be passed as amountOut to router func
 ## executionPrice
 
 ```typescript
-executionPrice: Price
+executionPrice: Price;
 ```
 
 The average price that the trade would execute at.
@@ -68,7 +94,7 @@ The average price that the trade would execute at.
 ## nextMidPrice
 
 ```typescript
-nextMidPrice: Price
+nextMidPrice: Price;
 ```
 
 What the new mid price would be if the trade were to execute.
@@ -76,7 +102,7 @@ What the new mid price would be if the trade were to execute.
 ## slippage
 
 ```typescript
-slippage: Percent
+slippage: Percent;
 ```
 
 The slippage incurred by the trade.

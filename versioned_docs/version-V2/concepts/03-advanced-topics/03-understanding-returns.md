@@ -1,5 +1,5 @@
 ---
-id: 03-understanding-returns
+id: understanding-returns
 title: Understanding Returns
 tags: pools, documentation
 ---

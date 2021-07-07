@@ -1,5 +1,5 @@
 ---
-id: 03-iframe-integration
+id: iframe-integration
 title: Iframe Integration
 tags: frontend integration, documentation
 ---
@@ -60,4 +60,4 @@ Linking to a ETH &lt;-&gt; DAI swap page would look something like this. To link
 />
 ```
 
-You can customize the selected page, selected custom tokens and more using URL query parameters. See <Link to='/docs/v2/interface-integration/custom-interface-linking'>Custom Linking</Link>.
+You can customize the selected page, selected custom tokens and more using URL query parameters. See [Custom Linking](custom-interface-linking).
