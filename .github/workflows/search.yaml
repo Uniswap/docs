@@ -13,7 +13,7 @@ jobs:
     - name: Run Scraper
       env:
         APPLICATION_ID: ${{secrets.APPLICATION_ID}}
-        API_KEY: ${{secrets.ALGOLIA_API}}
+        API_KEY: ${{secrets.API_KEY}}
       run: |
         brew install jq
         echo "$(pwd)"
