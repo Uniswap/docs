@@ -1,6 +1,7 @@
 ---
 id: flash-callback
 title: The Flash Callback
+sidebar_position: 3
 ---
 
 ## Setting Up The Callback
