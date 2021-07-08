@@ -9,14 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Run Scraper
       env:
         APPLICATION_ID: ${{secrets.APPLICATION_ID}}
         API_KEY: ${{secrets.ALGOLIA_API}}
-        working_directory: ./
-      run: 
-        working-directory:  ${{env.working-directory}}
-        |
+      run: |
         brew install jq
         echo "$(pwd)"
         docker run -it -e "APPLICATION_ID=${{secrets.APPLICATION_ID}}" "API_KEY=${{secrets.ALGOLIA_API}}" "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper
