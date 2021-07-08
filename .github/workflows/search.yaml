@@ -1,8 +1,7 @@
 name: Algolia Search
 
 on:
-  schedule:
-  - cron: "0 10 * * *"
+  push:
     branches:
     - 'testing-workflow'
 
