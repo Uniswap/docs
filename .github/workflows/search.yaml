@@ -14,6 +14,9 @@ jobs:
         APPLICATION_ID: ${{secrets.APPLICATION_ID}}
         API_KEY: ${{secrets.ALGOLIA_API}}
         working_directory: ./
-      run: |
+      run: 
+        working-directory:  ${{env.working-directory}}
+        |
         brew install jq
+        echo "$(pwd)"
         docker run -it -e "APPLICATION_ID=${{secrets.APPLICATION_ID}}" "API_KEY=${{secrets.ALGOLIA_API}}" "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper
