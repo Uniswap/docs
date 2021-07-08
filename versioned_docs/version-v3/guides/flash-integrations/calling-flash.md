@@ -1,6 +1,7 @@
 ---
 id: calling-flash
 title: Calling Flash
+sidebar_position: 2
 ---
 
 ## Parameter Structs

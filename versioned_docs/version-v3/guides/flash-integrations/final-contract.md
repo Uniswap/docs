@@ -1,6 +1,7 @@
 ---
 id: final-contract
 title: The Final Contract
+sidebar_position: 4
 ---
 
 ```solidity
