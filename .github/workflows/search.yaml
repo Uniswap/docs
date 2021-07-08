@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      name: Run Scraper
+    - name: Run Scraper
       env:
         APPLICATION_ID: ${{secrets.APPLICATION_ID}}
         API_KEY: ${{secrets.ALGOLIA_API}}
