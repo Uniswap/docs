@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run Scraper
       env:
-        APPLICATION_ID: ${{secrets.APPLICATION_ID}}
+        ALGOLIA_APP_ID: ${{secrets.ALGOLIA_APP_ID}}
         API_KEY: ${{secrets.API_KEY}}
       run: |
         brew install jq
