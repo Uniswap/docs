@@ -39,9 +39,9 @@ The second departure from traditional markets is the permissionless design of th
 
 ## Where can I find more information
 
-For research into the economics of AMMs, game theory, or optimization research, check out our [**research**](https://docs.uniswap.org/concepts/advanced/research) page.
+For research into the economics of AMMs, game theory, or optimization research, check out our [**research**](https://docs.uniswap.org/protocol/concepts/advanced/research) page.
 
-For new features implemented in V3 that expand and refine AMM design, see the [**V3 Concepts**](https://docs.uniswap.org/concepts/V3-overview/concentrated-liquidity) page.
+For new features implemented in V3 that expand and refine AMM design, see the [**V3 Concepts**](https://docs.uniswap.org/protocol/concepts/V3-overview/concentrated-liquidity) page.
 
 [^1] Ethereum protocols are sometimes referred to as peer-to-contract systems as well. These are similar to a peer-to-peer systems, but with immutable, persistent programs known as smart contracts taking the place of a peer.
 
