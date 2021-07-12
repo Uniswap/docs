@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Introduction
 
-Swaps are the most common interaction with the Uniswap protocol. The examples below are implementations of the two styles of single swapping available on v3. The examples below are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
+Swaps are the most common interaction with the Uniswap protocol. The examples below are implementations of the two styles of single swapping available on v3. Note the examples below are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
 # Setting up your contract
 
