@@ -2,7 +2,7 @@
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
-# How to generate markdown from template
+# How to generate markdown files from solidity Natspec comments
 
 Install solidity doc gen
 `npm install solidity-docgen`
@@ -13,6 +13,14 @@ Get the correct compiler version
 Put the updated template `contract.hbs` in a /templates folder under the same directory as /contracts that you want to generate
 
 Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
+
+# How to gernerate markdown files from typescript commments
+
+`npm install --save-dev typedoc typedoc-plugin-markdown`
+
+`typedoc --out <docs> src/index.ts`
+
+see https://www.npmjs.com/package/typedoc-plugin-markdown for details
 
 # How to Update search indices with algolia
 
@@ -27,9 +35,8 @@ Edit config.json file with
 
 # How to add a new page
 
-Create a markdown file in its respective version directory within the main /docs/ folder
+Create a markdown file in its respective versioned docs, or versioned SDK, directory.
 
-Add the new file to its respective sidebar file i.e., 'V2sidebars.js' or 'V3sidebars.js'
 
 ## Installation
 
