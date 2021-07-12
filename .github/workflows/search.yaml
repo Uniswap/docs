@@ -7,11 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    name: Run Scraper
-    env:
-      APPLICATION_ID: ${{secrets.APPLICATION_ID}}
-      API_KEY: ${{secrets.ALGOLIA_API}}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Scraper
       run: |
-      brew install jq
-      docker run -it -e "APPLICATION_ID=${{secrets.APPLICATION_ID}}"" "API_KEY=${{secrets.ALGOLIA_API}}"" "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper
+        brew install jq
+        docker run -e "APPLICATION_ID=${{ secrets.ALGOLIA_APP_ID }}" -e "API_KEY=${{ secrets.API_KEY }}" -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper
