@@ -4,11 +4,11 @@ title: Single Swaps
 sidebar_position: 1
 ---
 
-# Introduction
+## Introduction
 
 Swaps are the most common interaction with the Uniswap protocol. The examples below are implementations of the two styles of single swapping available on v3. Note the examples below are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
-# Setting up your environment
+## Setting up your environment
 
 ```
 mkdir swap-example
@@ -35,7 +35,8 @@ and create a hardhat config file in our environment
 ```
 npx hardhat
 ```
-# setting hardhat solidity version
+
+## setting hardhat solidity version
 
 Now we'll need to change ./hardhat.config.js to include the appropriate solidity version
 
@@ -82,7 +83,7 @@ contract SwapExamples {
     }
 ```
 
-# Exact Input Swaps
+## Exact Input Swaps
 
 ```solidity
     /// @notice swapExactInputSingle swaps a fixed amount of DAI for a maximum possible amount of WETH9
@@ -118,7 +119,7 @@ contract SwapExamples {
     }
 ```
 
-# Exact Output swaps
+## Exact Output swaps
 
 ```solidity
     /// @notice swapExactOutputSingle swaps a minimum possible amount of DAI for a fixed amount of WETH.
@@ -131,8 +132,8 @@ contract SwapExamples {
         // Transfer the specified amount of DAI to this contract.
         TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), amountInMaximum);
 
-        // Approve the router to spend the specifed `amountInMaximum` of DAI.
-        // In production, you should choose the maximum amount to spend based on oracles or other data sources to acheive a better swap.
+        // Approve the router to spend the specified `amountInMaximum` of DAI.
+        // In production, you should choose the maximum amount to spend based on oracles or other data sources to achieve a better swap.
         TransferHelper.safeApprove(DAI, address(swapRouter), amountInMaximum);
 
         ISwapRouter.ExactOutputSingleParams memory params =
