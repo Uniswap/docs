@@ -1,22 +1,67 @@
 ---
 id: single-swaps
 title: Single Swaps
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Introduction
 
 Swaps are the most common interaction with the Uniswap protocol. The examples below are implementations of the two styles of single swapping available on v3. Note the examples below are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
-# Setting up your contract
+# Setting up your environment
+
+```
+mkdir swap-example
+
+cd swap-example
+
+npm init
+```
+
+For this example, we'll use [Hardhat](https://hardhat.org/) to compile our contracts.
+
+```
+npm install --save-dev hardhat
+``
+
+and install the V3 Periphery contracts so that we can interact with the router
+
+```
+
+npm add @uniswap/v3-periphery
+
+```
+
+and create a hardhat config file in our environment
+
+```
+
+npx hardhat
+
+````
+# setting hardhat solidity version
+
+Now we'll need to change ./hardhat.config.js to include the appropriate solidity version
+
+```js
+/**
+ * @type import('hardhat/config').HardhatUserConfig
+ */
+module.exports = {
+  solidity: "0.7.6",
+};
+
+````
+
+then we can compile our contracts with `npx hardhat compile`
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.7.6;
 pragma abicoder v2;
 
-import '../libraries/TransferHelper.sol';
-import '../interfaces/ISwapRouter.sol';
+import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
+import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
 
 contract SwapExamples {
     // For the scope of these swap examples,
