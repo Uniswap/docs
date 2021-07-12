@@ -1,5 +1,5 @@
 ---
-id: 04-oracles
+id: oracles
 title: Oracles
 tags: oracles, documentation
 ---
@@ -53,4 +53,4 @@ Other factors, such as network congestion, can reduce the cost of attack. For a 
 
 # Building an oracle
 
-To learn more about building oracles check out [building an Oracle](../../guides/smart-contract-integration/04-building-an-oracle.md) in the developer guides.
+To learn more about building oracles check out [building an Oracle](../../guides/smart-contract-integration/building-an-oracle) in the developer guides.

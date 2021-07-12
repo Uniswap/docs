@@ -1,9 +1,10 @@
 ---
+id: Pair-ERC-20
 title: Pair (ERC-20)
 tags: smart-contracts, documentation
 ---
 
-This documentation covers ERC-20 functionality for denominating pool tokens. For Uniswap-specific functionality, see <Link to='/docs/v2/smart-contracts/pair'>Pair</Link>.
+This documentation covers ERC-20 functionality for denominating pool tokens. For Uniswap-specific functionality, see [Pair](../smart-contracts/pair).
 
 # Code
 
@@ -25,7 +26,7 @@ Emitted each time an approval occurs via [approve](#approve) or [permit](#permit
 event Transfer(address indexed from, address indexed to, uint value);
 ```
 
-Emitted each time a transfer occurs via [transfer](#transfer-1), [transferFrom](#transferfrom), [mint](../smart-contracts/02-pair.md#mint-1), or [burn](../smart-contracts/02-pair.md#burn-1).
+Emitted each time a transfer occurs via [transfer](#transfer-1), [transferFrom](#transferfrom), [mint](../smart-contracts/pair#mint-1), or [burn](../smart-contracts/pair#burn-1).
 
 # Read-Only Functions
 
@@ -142,7 +143,7 @@ function permit(address owner, address spender, uint value, uint deadline, uint8
 
 Sets the allowance for a spender where approval is granted via a signature.
 
-- See [Using Permit](../../guides/smart-contract-integration/07-supporting-meta-transactions.md).
+- See [Using Permit](../../guides/smart-contract-integration/supporting-meta-transactions).
 - Emits [Approval](#approval).
 
 # Interface
@@ -180,7 +181,7 @@ interface IUniswapV2ERC20 {
 # ABI
 
 ```typescript
-import IUniswapV2ERC20 from '@uniswap/v2-core/build/IUniswapV2ERC20.json'
+import IUniswapV2ERC20 from "@uniswap/v2-core/build/IUniswapV2ERC20.json";
 ```
 
 [https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2ERC20.json](https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2ERC20.json)

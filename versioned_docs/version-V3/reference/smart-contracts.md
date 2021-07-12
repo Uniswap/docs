@@ -2,6 +2,7 @@
 id: smart-contracts
 title: Smart Contracts Overview
 skug: /reference
+sidebar_position: 1
 ---
 
 Uniswap V3 is a binary smart contract system comprised of many libraries, which together make the Core and Periphery
