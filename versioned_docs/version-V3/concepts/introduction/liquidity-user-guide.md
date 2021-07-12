@@ -55,7 +55,7 @@ Please note that selecting a starting price that differs significantly from the 
 
 LPs must select a price range in which to provide liquidity.
 
-Depending on the fee tier selected (0.05% / 0.30% / 1.00% fee), the interface will offer the ability to adjust prices in either 0.10%, 0.60%, or 2.00% price tick increments. Manually entered prices will automatically adjust to the closest associated price tick.
+Depending on the fee tier selected (0.05% / 0.30% / 1.00% fee), the interface will offer the ability to adjust prices in either 0.10%, 0.60%, or 2.00% price increments. Manually entered prices will automatically adjust to the closest associated price tick.
 
 If the price moves outside of the LP's specified range, their position will be concentrated in one of the two assets (specifically, the asset that "became cheaper" in the price movement) and not earn trading fees until the price returns to their range.
 
