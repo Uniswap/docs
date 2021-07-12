@@ -22,7 +22,7 @@ For this example, we'll use [Hardhat](https://hardhat.org/) to compile our contr
 
 ```
 npm install --save-dev hardhat
-``
+```
 
 and install the V3 Periphery contracts so that we can interact with the router
 
@@ -38,7 +38,8 @@ and create a hardhat config file in our environment
 
 npx hardhat
 
-````
+```
+
 # setting hardhat solidity version
 
 Now we'll need to change ./hardhat.config.js to include the appropriate solidity version
@@ -50,10 +51,13 @@ Now we'll need to change ./hardhat.config.js to include the appropriate solidity
 module.exports = {
   solidity: "0.7.6",
 };
+```
 
-````
+## Compiling our contract
 
-then we can compile our contracts with `npx hardhat compile`
+We can compile our contracts with `npx hardhat compile`
+
+## Setting up the Contract
 
 ## The Multihop code
 

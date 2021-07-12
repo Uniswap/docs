@@ -49,7 +49,11 @@ module.exports = {
 };
 ```
 
-then we can compile our contracts with `npx hardhat compile`
+## Compiling our contract
+
+We can compile our contracts with `npx hardhat compile`
+
+## Setting up the Contract
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
