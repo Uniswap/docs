@@ -4,11 +4,11 @@ title: Multihop Swaps
 sidebar_position: 2
 ---
 
-# Introduction
+## Introduction
 
 The examples below are implementations of the two styles of multi hop swapping available on v3. The examples below are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
-# Setting up your environment
+## Setting up your environment
 
 ```
 mkdir swap-example
@@ -55,7 +55,7 @@ module.exports = {
 
 then we can compile our contracts with `npx hardhat compile`
 
-# The Multihop code
+## The Multihop code
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
@@ -89,7 +89,7 @@ contract SwapExamples {
     }
 ```
 
-# Exact Input Multi Hop Swaps
+## Exact Input Multi Hop Swaps
 
 ```solidity
 
@@ -122,7 +122,7 @@ contract SwapExamples {
     }
 ```
 
-# Exact Output Multihop Swap
+## Exact Output Multihop Swap
 
 ```solidity
     /// @notice swapExactOutputMultihop swaps a minimum possible amount of DAI for a fixed amount of WETH through an intermediary pool.
@@ -141,7 +141,7 @@ contract SwapExamples {
         // The parameter path is encoded as (tokenOut, fee, tokenIn/tokenOut, fee, tokenIn)
         // The tokenIn/tokenOut field is the shared token between the two pools used in the multiple pool swap. In this case USDC is the "shared" token.
         // For an exactOutput swap, the first swap that occurs is the swap which returns the eventual desired token.
-        // In this case, our desired output token is WETH9 so that swap happpens first, and is encoded in the path accordingly.
+        // In this case, our desired output token is WETH9 so that swap happens first, and is encoded in the path accordingly.
         ISwapRouter.ExactOutputParams memory params =
             ISwapRouter.ExactOutputParams({
                 path: abi.encodePacked(WETH9, poolFee, USDC, poolFee, DAI),
