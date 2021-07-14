@@ -3,78 +3,43 @@ id: single-swaps
 title: Single Swaps
 sidebar_position: 1
 ---
-
-## Introduction
-
-Swaps are the most common interaction with the Uniswap protocol. The examples below are implementations of the two styles of single swapping available on v3. Note the examples below are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
-
-## Setting up your environment
-
-```
-mkdir swap-example
-
-cd swap-example
-
-npm init
-```
-
-For this example, we'll use [Hardhat](https://hardhat.org/) to compile our contracts.
-
-```
-npm install --save-dev hardhat
-```
-
-and install the V3 Periphery contracts so that we can interact with the router
-
-```
-npm add @uniswap/v3-periphery
-```
-
-and create a hardhat config file in our environment
-
-```
-npx hardhat
-```
-
-## setting hardhat solidity version
-
-Now we'll need to change ./hardhat.config.js to include the appropriate solidity version
-
-```js
-/**
- * @type import('hardhat/config').HardhatUserConfig
- */
-module.exports = {
-  solidity: "0.7.6",
-};
-```
-
-## Compiling our contract
-
-We can compile our contracts with `npx hardhat compile`
-
 ## Setting up the Contract
+
+First we declare the solidity version that will be used to compile the contract, and the `abicoder v2` to allow arbitrary nested arrays and structs 
+to be encoded and decoded in calldata, a feature we use when executing a swap.
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.7.6;
 pragma abicoder v2;
+```
 
+Next, import the two contracts we'll be using from the npm package installation
+
+```solidity
 import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
 import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
+```
 
+Here we create our contract called `SwapExamples`, and declare an immutable public variable `swapRouter` of type `ISwapRouter`. 
+This allows us to call functions in the `ISwapRouter` interface.
+
+
+```solidity
 contract SwapExamples {
     // For the scope of these swap examples,
-    // we will detail the design considerations when using
-    // `exactInput`, `exactInputSingle`, `exactOutput`, and  `exactOutputSingle`.
-
-    // It should be noted that for the sake of these examples, we purposefully pass in the swap router instead of inherit the swap router for simplicity.
+    // we will detail the design considerations when using `exactInput`, `exactInputSingle`, `exactOutput`, and  `exactOutputSingle`.
+    // It should be noted that for the sake of these examples, we pass in the swap router as a constructor argument, instead of inheriting it.
     // More advanced example contracts will detail how to inherit the swap router safely.
+    // This example swaps DAI/WETH9 for single path swaps and DAI/USDC/WETH9 for multi path swaps.
 
     ISwapRouter public immutable swapRouter;
 
-    // This example swaps DAI/WETH9 for single path swaps and DAI/USDC/WETH9 for multi path swaps.
+```
 
+Here we hardcode the token contract addresses and pool fee tiers for our example. In production, you would likely use a memory variable for this, so you could change what the pools and tokens you are interacting with on a per transaction basis, but for conceptual simplicity we are hardcoding them here.
+
+```solidity
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;

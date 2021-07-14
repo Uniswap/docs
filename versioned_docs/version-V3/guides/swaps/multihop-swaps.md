@@ -8,57 +8,6 @@ sidebar_position: 2
 
 The examples below are implementations of the two styles of multi hop swapping available on v3. The examples below are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
-## Setting up your environment
-
-```
-mkdir swap-example
-
-cd swap-example
-
-npm init
-```
-
-For this example, we'll use [Hardhat](https://hardhat.org/) to compile our contracts.
-
-```
-npm install --save-dev hardhat
-```
-
-and install the V3 Periphery contracts so that we can interact with the router
-
-```
-
-npm add @uniswap/v3-periphery
-
-```
-
-and create a hardhat config file in our environment
-
-```
-
-npx hardhat
-
-```
-
-# setting hardhat solidity version
-
-Now we'll need to change ./hardhat.config.js to include the appropriate solidity version
-
-```js
-/**
- * @type import('hardhat/config').HardhatUserConfig
- */
-module.exports = {
-  solidity: "0.7.6",
-};
-```
-
-## Compiling our contract
-
-We can compile our contracts with `npx hardhat compile`
-
-## Setting up the Contract
-
 ## The Multihop code
 
 ```solidity
