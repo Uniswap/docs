@@ -77,7 +77,7 @@ export const Guides = [
   {
     title: "Implement a Swap",
     text: "Start swapping from a smart contract",
-    to: "./protocol/reference/periphery/SwapRouter",
+    to: "https://docs.uniswap.org/protocol/guides/swaps/single-swaps",
   },
   {
     title: "Providing Liquidity",
@@ -313,14 +313,14 @@ export default function Home() {
               check out the{" "}
               <Link
                 style={{ color: "#ff007a" }}
-                to="./protocol/concepts/V3-overview/faq"
+                to="https://docs.uniswap.org/protocol/what-is-uniswap"
               >
                 Protocol Overview
               </Link>{" "}
               or{" "}
               <Link
                 style={{ color: "#ff007a" }}
-                to="./protocol/concepts/V3-overview/faq"
+                to="https://help.uniswap.org/en/collections/3033722-faq"
               >
                 FAQ
               </Link>{" "}
