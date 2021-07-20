@@ -64,7 +64,7 @@ module.exports = {
           className: "V2_active",
         },
         {
-          to: "/sdk/2.0.0/readme",
+          to: "/sdk/2.0.0/introduction",
           label: "SDK",
           position: "left",
           className: "V2_active",
@@ -88,7 +88,7 @@ module.exports = {
           className: "V1_active",
         },
         {
-          to: "/sdk/1.0.0/readme",
+          to: "/sdk/1.0.0/introduction",
           label: "SDK",
           position: "left",
           className: "V1_active",
