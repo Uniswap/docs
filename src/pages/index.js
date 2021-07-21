@@ -27,7 +27,7 @@ export const actions = [
     title: "What is Uniswap",
     href: "#",
     icon: InformationCircleIcon,
-    to: "./protocol/what-is-uniswap",
+    to: "./protocol/introduction",
     text: `Learn about the core concepts of the Uniswap protocol. Swaps, Pools, Concentrated Liquidity and more.`,
   },
   {
@@ -313,7 +313,7 @@ export default function Home() {
               check out the{" "}
               <Link
                 style={{ color: "#ff007a" }}
-                to="https://docs.uniswap.org/protocol/what-is-uniswap"
+                to="https://docs.uniswap.org/protocol/introduction"
               >
                 Protocol Overview
               </Link>{" "}
