@@ -31,7 +31,7 @@ Most publicly accessible markets use a central limit [**order book**](https://ww
 
 The Uniswap protocol takes a different approach, using an Automated Market Maker (AMM), sometimes referred to as a Constant Function Market Maker, in place of an order book.
 
-At a very high level, an AMM replaces the buy and sell orders in an order book market with a liquidity pool of two assets, both valued relative to each other. As one asset is traded for the other, the relative price of the two assets shift, and a new market rate for both is determined. In this dynamic, a buyer or seller trades directly with the pool, rather than with specific orders left by other parties. The advantages and disadvantages of automated market makers versus their traditional order book counterparts are under active research by a growing number of parties. We have collected some notable examples on our research page.
+At a very high level, an AMM replaces the buy and sell orders in an order book market with a liquidity pool of two assets, both valued relative to each other. As one asset is traded for the other, the relative price of the two assets shift, and a new market rate for both is determined. In this dynamic market, a buyer or seller trades directly with the pool, rather than with specific orders left by other parties. The advantages and disadvantages of automated market makers versus their traditional order book counterparts are under active research by a growing number of parties. We have collected some notable examples on our research page.
 
 ### Permissionless Systems
 
