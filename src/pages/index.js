@@ -27,7 +27,7 @@ export const actions = [
     title: "What is Uniswap",
     href: "#",
     icon: InformationCircleIcon,
-    to: "./protocol/what-is-uniswap",
+    to: "./protocol/introduction",
     text: `Learn about the core concepts of the Uniswap protocol. Swaps, Pools, Concentrated Liquidity and more.`,
   },
   {
@@ -77,7 +77,7 @@ export const Guides = [
   {
     title: "Implement a Swap",
     text: "Start swapping from a smart contract",
-    to: "https://docs.uniswap.org/protocol/guides/swaps/single-swaps",
+    to: "./protocol/guides/swaps/single-swaps",
   },
   {
     title: "Providing Liquidity",
@@ -301,7 +301,7 @@ export default function Home() {
             <HideMedium>
               <SearchBar />{" "}
             </HideMedium>
-            <p
+            {/* <p
               style={{
                 maxWidth: "640px",
                 margin: "1rem ",
@@ -325,7 +325,7 @@ export default function Home() {
                 FAQ
               </Link>{" "}
               first.
-            </p>
+            </p> */}
           </div>
           <StyledTitleImage
             alt="Docusaurus themed image"
