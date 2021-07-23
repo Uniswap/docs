@@ -109,4 +109,4 @@ The price space between two nearest ticks.
 
 ## Tick
 
-The boundaries between discreet areas in price space.
+The boundaries between discrete areas in price space.
