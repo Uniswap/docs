@@ -88,7 +88,7 @@ A brief overview of the less obvious parameters:
 *  `fee` The fee tier of the pool, used to determine the correct pool contract in which to execute the swap
 *  `recipient` the destination address of the outbound token
 *  `deadline`: the unix time after which a swap will fail, to protect against long pending transactions and wild swings in prices
-*  `amountOutMinimum`: we are setting to zero, but this is a significant rick in production. For a real deployment, this value should be calculated using our SDK or an onchain price oracle - this helps protect against getting an unusually bad price for a trade due to a front running sandwich or another time of price manipulation
+*  `amountOutMinimum`: we are setting to zero, but this is a significant risk in production. For a real deployment, this value should be calculated using our SDK or an onchain price oracle - this helps protect against getting an unusually bad price for a trade due to a front running sandwich or another type of price manipulation
 *  `sqrtPriceLimitX96`: We set this to zero - which makes this paramater inactive. In production, this value can be used to set the pricing limit which the swap will push to pool to, which is helpful for protecting against price impact or setting up logic for a variety of price relevant mechanisms.
 
 ### Calling the function
