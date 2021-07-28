@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.7.6;
 pragma abicoder v2;
@@ -7,11 +6,10 @@ import '@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol';
 import '@uniswap/v3-core/contracts/libraries/TickMath.sol';
 import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
 import '../libraries/TransferHelper.sol';
-import '../interfaces/ISwapRouter.sol';
 import '../interfaces/INonfungiblePositionManager.sol';
 import '../base/LiquidityManagement.sol';
 
-contract LiquidityExamples is IERC721Receiver, LiquidityManagement {
+contract LiquidityExamples is IERC721Receiver {
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
 
@@ -31,10 +29,8 @@ contract LiquidityExamples is IERC721Receiver, LiquidityManagement {
     mapping(uint256 => Deposit) public deposits;
 
     constructor(
-        INonfungiblePositionManager _nonfungiblePositionManager,
-        address _factory,
-        address _WETH9
-    ) PeripheryImmutableState(_factory, _WETH9) {
+        INonfungiblePositionManager _nonfungiblePositionManager
+    ) {
         nonfungiblePositionManager = _nonfungiblePositionManager;
     }
 
@@ -61,7 +57,8 @@ contract LiquidityExamples is IERC721Receiver, LiquidityManagement {
         deposits[tokenId] = Deposit({owner: owner, liquidity: liquidity, token0: token0, token1: token1});
     }
 
-    /// @notice Calls the mint function defined in perphery, mints the same amount of each token. For this example we are providing 1000 DAI and 1000 USDC in liquidity
+    /// @notice Calls the mint function defined in perphery, mints the same amount of each token. 
+    /// For this example we are providing 1000 DAI and 1000 USDC in liquidity
     /// @return tokenId The id of the newly minted ERC721
     /// @return liquidity The amount of liquidity for the position
     /// @return amount0 The amount of token0
@@ -79,6 +76,10 @@ contract LiquidityExamples is IERC721Receiver, LiquidityManagement {
         // Providing liquidity in both assets means liquidity will be earning fees and is considered in-range.
         uint256 amount0ToMint = 1000;
         uint256 amount1ToMint = 1000;
+
+        // transfer tokens to contract
+        TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), amount0ToMint);
+        TransferHelper.safeTransferFrom(USDC, msg.sender, address(this), amount1ToMint);
 
         // Approve the position manager
         TransferHelper.safeApprove(DAI, address(nonfungiblePositionManager), amount0ToMint);
@@ -125,9 +126,7 @@ contract LiquidityExamples is IERC721Receiver, LiquidityManagement {
     /// @return amount0 The amount of fees collected in token0
     /// @return amount1 The amount of fees collected in token1
     function collectAllFees(uint256 tokenId) external returns (uint256 amount0, uint256 amount1) {
-        // Caller must own the ERC721 position
-        // Call to safeTransfer will trigger `onERC721Received` which must return the selector else transfer will fail
-        nonfungiblePositionManager.safeTransferFrom(msg.sender, address(this), tokenId);
+        // Caller must own the ERC721 position, meaning it must be a deposit
 
         // set amount0Max and amount1Max to uint256.max to collect all fees
         // alternatively can set recipient to msg.sender and avoid another transaction in `sendToOwner`
@@ -188,19 +187,25 @@ contract LiquidityExamples is IERC721Receiver, LiquidityManagement {
             uint128 liquidity,
             uint256 amount0,
             uint256 amount1
-        )
-    {
-        INonfungiblePositionManager.IncreaseLiquidityParams memory params =
-            INonfungiblePositionManager.IncreaseLiquidityParams({
-                tokenId: tokenId,
-                amount0Desired: amountAdd0,
-                amount1Desired: amountAdd1,
-                amount0Min: 0,
-                amount1Min: 0,
-                deadline: block.timestamp
-            });
+        ) {
+        
+        TransferHelper.safeTransferFrom(deposits[tokenId].token0, msg.sender, address(this), amountAdd0);
+        TransferHelper.safeTransferFrom(deposits[tokenId].token1, msg.sender, address(this), amountAdd1);
+
+        TransferHelper.safeApprove(deposits[tokenId].token0, address(nonfungiblePositionManager), amountAdd0);
+        TransferHelper.safeApprove(deposits[tokenId].token1, address(nonfungiblePositionManager), amountAdd1);
+
+        INonfungiblePositionManager.IncreaseLiquidityParams memory params = INonfungiblePositionManager.IncreaseLiquidityParams({
+            tokenId: tokenId,
+            amount0Desired: amountAdd0,
+            amount1Desired: amountAdd1,
+            amount0Min: 0,
+            amount1Min: 0,
+            deadline: block.timestamp
+        });
 
         (liquidity, amount0, amount1) = nonfungiblePositionManager.increaseLiquidity(params);
+
     }
 
     /// @notice Transfers funds to owner of NFT
