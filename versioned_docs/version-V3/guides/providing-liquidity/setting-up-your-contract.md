@@ -1,12 +1,14 @@
 ---
 id: setting-up
-title: Setting Up Your Contract
+title: Set Up Your Contract
 sidebar_position: 1
 ---
 
 ## Setting up the Contract
 
-First we declare the solidity version that will be used to compile the contract, and the `abicoder v2` to allow arbitrary nested arrays and structs to be encoded and decoded in calldata, a feature we use when transacting with a pool.
+This guide is an example of a custodial contract Uniswap V3 positions, which allows interaction with the Uniswap V3 Periphery in the form of minting a position, adding liquidity to a position, decreasing liquidity, and collecting fees.
+
+To begin, declare the solidity version that will be used to compile the contract, and the `abicoder v2` to allow arbitrary nested arrays and structs to be encoded and decoded in calldata, a feature we use when transacting with a pool.
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
@@ -14,7 +16,7 @@ pragma solidity =0.7.6;
 pragma abicoder v2;
 ```
 
-Next, import the two contracts we'll be using from the npm package installation
+Next, import the two contracts we'll be using from the npm package installation.
 
 ```solidity
 import '@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol';
@@ -28,10 +30,10 @@ import '@uniswap/v3-periphery/contracts//base/LiquidityManagement.sol';
 
 Here we create our contract called `LiquidityExamples`, and inherit both `IERC721Receiver` and `LiquidityManagement`.
 
-Here we hardcode the token contract addresses and pool fee tiers for our example. In production, you would likely use in input parameter for this and pass the input into a memory variable, allowing you to change what the pools and tokens you are interacting with on a per transaction basis, but for conceptual simplicity we are hardcoding them here.
+Here we hardcode the token contract addresses and pool fee tiers for our example. In production, you would likely use an input parameter for this and pass the input into a memory variable, allowing you to change what the pools and tokens you are interacting with on a per transaction basis, but for conceptual simplicity we are hardcoding them here.
 
 ```solidity
-contract LiquidityExamples is IERC721Receiver, LiquidityManagement {
+contract LiquidityExamples is IERC721Receiver {
 
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
@@ -47,7 +49,7 @@ We declare an immutable public variable `nonfungiblePositionManager` of type `IN
 
 ## Allowing ERC721 Interactions
 
-Every [NFT](https://eips.ethereum.org/EIPS/eip-721) is identified by a unique uint256 ID inside the ERC-721 smart contract, declared as the `tokenId`
+Every [NFT](https://ethereum.org/en/nft/) is identified by a unique uint256 ID inside the ERC-721 smart contract, declared as the `tokenId`
 
 To allow deposits of ERC721 expressions of liquidity, we'll need to create a struct called `Deposit`, a mapping of `uint256` to the `Deposit` struct, then declare that mapping as a public variable `deposits`.
 
@@ -61,23 +63,12 @@ To allow deposits of ERC721 expressions of liquidity, we'll need to create a str
 
     mapping(uint256 => Deposit) public deposits;
 ```
-
-```solidity
-    constructor(
-        INonfungiblePositionManager _nonfungiblePositionManager,
-        address _factory,
-        address _WETH9
-    ) PeripheryImmutableState(_factory, _WETH9) {
-        nonfungiblePositionManager = _nonfungiblePositionManager;
-    }
-```
-
 ## The Constructor
 
 We'll declare the constructor here, which is executed once when the contract is deployed. Our constructor hard codes the address of the non fungible position manager interface, V3 router, and the Periphery immutable state constructor, which requires the factory, the address of weth9 (the [ERC-20 wrapper](https://weth.io/) for ether).
 
 ```solidity
-   constructor(
+    constructor(
         INonfungiblePositionManager _nonfungiblePositionManager,
         address _factory,
         address _WETH9
@@ -90,7 +81,7 @@ We'll declare the constructor here, which is executed once when the contract is 
 
 To allow our contract to custody ERC721 tokens - we'll implement the `onERC721Received` function within our inherited `IERC721Receiver.sol` [contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/IERC721Receiver.sol).
 
-because we are not using the `from` identifier, we can omit it in our arguments.
+The `from` identifier may be omitted because it is not used.
 
 ```solidity
     function onERC721Received(
@@ -107,7 +98,7 @@ because we are not using the `from` identifier, we can omit it in our arguments.
 
 ## Creating a Deposit
 
-To add a `Deposit` instance to the `deposits` mapping, we'll create an internal function called `_createDeposit` that destructures the `positions` struct we have inherited from `nonfungiblePositionManager.sol`, and pass the relevant variables `token0` `token1` and `liquidity` to our `deposits` mapping.
+To add a `Deposit` instance to the `deposits` mapping, we'll create an internal function called `_createDeposit` that destructures the `positions` struct that is returned when `positions` is called within `nonfungiblePositionManager.sol`. The relevant variables `token0` `token1` and `liquidity` are then passed to our `deposits` mapping.
 
 ```solidity
     function _createDeposit(address owner, uint256 tokenId) internal {
