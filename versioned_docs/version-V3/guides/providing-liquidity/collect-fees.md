@@ -4,13 +4,13 @@ title: Collecting Fees
 sidebar_position: 3
 ---
 
-## Collecting Fees
+## Collect Fees
 
-Make sure to go through the [first guide](./setting-up-your-contract.md) before continuing to this section
+- Make sure to go through the [first guide](./setting-up-your-contract.md) before continuing to this section.
+
+- For each of these liquidity interaction examples, our contract must be in possession of the liquidity position NFT. Any example where depositing the NFT is not coded into the function, it is assumed to have already been transferred to our contract.
 
 To collect the fees of an owner position, we will need to transfer the NFT from the calling address, assign the relevant variables from the NFT to local variables within our function, and pass those variables to the `nonfungiblePositionManager` when we call `collect`.
-
-- Note the contract must have custody the NFT to be able to collect the fees
 
 This function specifically collects all fees and sends to original owner of the NFT while still custodying the NFT
 Set `amount0Max` and `amount1Max` to type(uint128).max to collect all fees
@@ -45,7 +45,9 @@ Set `amount0Max` and `amount1Max` to type(uint128).max to collect all fees
 
 ## Sending Fees To The Calling Address
 
-This internal function takes the fees due amounts, which were previously populated in the last function, as arguments to `safeTransfer` which sends the fees which were previously collected to our contract to `owner`.
+This internal helper function sends any tokens, in the form of fees or position tokens, to the owner of an NFT.
+
+in `_sendToOwner` we pass the amounts of fees due, previously populated in the last function, as arguments to `safeTransfer` which transfers the fees to `owner`.
 
 ```solidity
     /// @notice Transfers funds to owner of NFT

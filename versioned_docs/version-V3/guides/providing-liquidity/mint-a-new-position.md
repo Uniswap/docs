@@ -8,7 +8,7 @@ sidebar_position: 2
 
 To mint a new position, we use the `nonFungiblePositionManager` and call `mint`.
 
-For the sake of this example, were hard coding the token amounts to be minted, in production this would be a user configurable amount
+For the sake of this example, were hard coding the token amounts to be minted, in production this would be a user configurable function argument.
 
 ```solidity
     /// @notice Calls the mint function defined in periphery, mints the same amount of each token. For this example we are providing 1000 DAI and 1000 USDC in liquidity
@@ -37,7 +37,9 @@ Here we approve the `nonfungiblePositionManager` to use the contracts' tokens, t
 
 - By using `TickMath.MIN_TICK` and `TickMath.MAX_TICK`, we are providing liquidity across the whole range of the pool. In production you may want to specify a more concentrated position.
 
-- We set `amount0Min` and `amount1Min` to zero for the example - but this would be a vulnerability in production which could be exploited. For a more secure practice the developer would need to implement a slippage estimation process.
+- We set `amount0Min` and `amount1Min` to zero for the example - but this would be a vulnerability in production. A function calling `mint` with no slippage protection would be vulnerable to a frontrunning attack designed to execute the `mint` call at an inaccurate price.
+  
+- For a more secure practice the developer would need to implement a slippage estimation process.
 
 - Note that this function will fail if the pool has not already been created.
 
