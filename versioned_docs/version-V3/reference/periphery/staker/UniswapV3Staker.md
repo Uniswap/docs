@@ -1,4 +1,10 @@
-Below is the reference for the staker contract used in liquidity mining programs.
+---
+sidebar_label: Uniswap V3 Staker Contract
+sidebar_position: 2
+---
+# Uniswap V3 Staker Contract
+
+Below is the technical reference for the staker contract, [`UniswapV3Staker.sol`](https://github.com/Uniswap/uniswap-v3-staker/blob/main/contracts/UniswapV3Staker.sol). A technical guide for interacting with this staking contract will be released soon.
 
 ## Functions
 ### stakes
@@ -199,18 +205,3 @@ Calculates the reward amount that will be received for the given stake
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
 |`reward`| uint256 | The reward accrued to the NFT for the given incentive thus far
 |`secondsInsideX128` | uint160 | The seconds inside the tick range
-
-
-## Data Structures
-
-IncentiveKey
-
-```solidity
-    struct IncentiveKey {
-        IERC20Minimal rewardToken;
-        IUniswapV3Pool pool;
-        uint256 startTime;
-        uint256 endTime;
-        address refundee;
-    }
-```
