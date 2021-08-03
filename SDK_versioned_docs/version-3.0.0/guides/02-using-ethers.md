@@ -3,20 +3,21 @@ id: using-ethers
 title: Using Ethers.js
 ---
 
-This guide will help you install the V3 SDK and [ethers.js](https://docs.ethers.io/v5/) to query state data from Ethereum. While this tutorial doesn't use the V3 SDK - it will set us up to use it after we get the on-chain data we need.
+This guide will help you install the V3 SDK and [ethers.js](https://docs.ethers.io/v5/) to query state data from Ethereum.  
+While this tutorial doesn't use the V3 SDK - it will set us up to use it after we get the on-chain data we need.
 
 ## First Steps
 
-For our first step, we're going to use `ethers.js` return immutable variables from a Uniswap V3 pool contract, and assign them to an interface in our script that can be repeatedly referenced without continually reading state data directly from the EVM.
+For our first step, we're going to use `ethers.js` to return immutable variables from a Uniswap V3 pool contract, and assign those to an interface in our script that can be repeatedly referenced without continually reading state data directly from the EVM.
 
-We'll need to make a new directory called `example`
+We'll need to make a new directory called `example`:
 
 ```typescript
 mkdir example
 cd example
 ```
 
-then we'll make a new project using node
+Then we'll make a new project using Node's `npm`:
 
 ```typescript
 npm init
@@ -38,7 +39,8 @@ npm install -D tslib @types/node
 
 ## Importing Ethers and the V3 SDK
 
-We'll need to import ethers, and set up our environment variables so we can query chain data. For this example, we're using an infura endpoint. If you don't have access to an infura endpoint, you can setup a free account [here](https://infura.io/).
+We'll need to import ethers, and set up our environment variables so we can query chain data.
+For this example, we're using an infura endpoint. If you don't have access to an infura endpoint, you can setup a free account [here](https://infura.io/).
 
 ```typescript
 import { ethers } from "ethers";
@@ -48,13 +50,14 @@ import { Address } from "cluster";
 const provider = new ethers.providers.JsonRpcProvider("<YOUR-ENDPOINT-HERE>");
 ```
 
-The first thing we'll need to do is to tell ethers where to look for our chain data. To do this we'll create a local variable with the contract address of the V3 pool we're trying to query.
+The first thing we'll need to do is to tell Ethers where to look for our chain data.  
+To do this, we'll create a local variable with the contract address of the V3 pool we're trying to query:
 
 ```typescript
 const poolAddress = "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8";
 ```
 
-Now we'll need the interface for the functions of the pool contract that we'll be calling
+Now we'll need the interface for the functions of the pool contract that we'll be calling:
 
 ```typescript
 const poolImmutablesAbi = [
@@ -69,7 +72,7 @@ const poolImmutablesAbi = [
 
 ## Using ethers.js "Contract"
 
-Once that is setup, we create a new instance of a "Contract" using `ethers.js`. This isn't a smart contract itself, but rather a local model of one that helps us move data around off chain.
+Once that is setup, we'll create a new instance of a "Contract" using `ethers.js`. This isn't a smart contract itself, but rather a local model of one that helps us move data around off-chain:
 
 ```typescript
 const poolContract = new ethers.Contract(
@@ -79,7 +82,7 @@ const poolContract = new ethers.Contract(
 );
 ```
 
-Now we'll create an interface with all the data we're going to return, each assigned to its appropriate type
+Now we'll create an interface with all the data we're going to return, each assigned to its appropriate type:
 
 ```typescript
 interface Immutables {
@@ -94,7 +97,7 @@ interface Immutables {
 
 ## Returning Chain Data
 
-now we're ready to query the EVM using `ethers.js`, and assign the returned values to the variables inside of our `Immutables` interface.
+Now we're ready to query the EVM using `ethers.js` and assign the returned values to the variables inside of our `Immutables` interface.
 
 ```typescript
 async function getPoolImmutables() {
@@ -110,7 +113,7 @@ async function getPoolImmutables() {
 }
 ```
 
-finally, we can call our function, and print out the returned data in our console:
+Finally, we can call our function, and print out the returned data in our console:
 
 ## Calling Our Function
 
@@ -120,7 +123,7 @@ getPoolImmutables().then((result) => {
 });
 ```
 
-to call out function, we'll navigate to our project directory within our console, and use this command
+To call our function, we'll navigate to our project directory within our console, and use the following command:
 
 ```
 npx ts-node example.ts
