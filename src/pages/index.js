@@ -313,7 +313,7 @@ export default function Home() {
               check out the{" "}
               <Link
                 style={{ color: "#ff007a" }}
-                to="https://docs.uniswap.org/protocol/what-is-uniswap"
+                to="https://docs.uniswap.org/protocol/introduction"
               >
                 Protocol Overview
               </Link>{" "}
