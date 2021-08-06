@@ -8,12 +8,11 @@ sidebar_position: 3
 
 - Make sure to go through the [first guide](./setting-up-your-contract.md) before continuing to this section.
 
-- For each of these liquidity interaction examples, our contract must be in possession of the liquidity position NFT. Any example where depositing the NFT is not coded into the function, it is assumed to have already been transferred to our contract.
+- For each of these liquidity interaction examples, our contract must be in possession of the liquidity position NFT. Therefore, in any example where the NFT deposit is not coded into a function, the contract is assumed to already be in possession of it.
 
-To collect the fees of an owner position, we will need to transfer the NFT from the calling address, assign the relevant variables from the NFT to local variables within our function, and pass those variables to the `nonfungiblePositionManager` when we call `collect`.
+To collect the fees of an owner position, transfer the NFT from the calling address, assign the relevant variables from the NFT to local variables within our function, and pass those variables to the`nonfungiblePositionManager` to call `collect`.
 
-This function specifically collects all fees and sends to original owner of the NFT while still custodying the NFT
-Set `amount0Max` and `amount1Max` to type(uint128).max to collect all fees
+This function collects all fees, sending them to the original owner of the NFT, while maintaining custody of the position NFT.
 
 ```solidity
     /// @notice Collects the fees associated with provided liquidity
@@ -47,7 +46,7 @@ Set `amount0Max` and `amount1Max` to type(uint128).max to collect all fees
 
 This internal helper function sends any tokens, in the form of fees or position tokens, to the owner of an NFT.
 
-in `_sendToOwner` we pass the amounts of fees due, previously populated in the last function, as arguments to `safeTransfer` which transfers the fees to `owner`.
+In `_sendToOwner`, we pass the amount of fees due, previously populated in the last function, as arguments to `safeTransfer`, which transfers the fees to `owner`.
 
 ```solidity
     /// @notice Transfers funds to owner of NFT
