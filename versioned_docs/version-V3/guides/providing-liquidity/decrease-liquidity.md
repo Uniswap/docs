@@ -6,9 +6,9 @@ sidebar_position: 4
 
 Make sure to go through the [Setting Up Your Contract](./setting-up-your-contract.md) before continuing to this section
 
-Here we decrease the liquidity of our position, without withdrawing all of it.
+Here we decrease the liquidity of our position without withdrawing all of it.
   
--  This example assume the contract already has possession of the NFT, and requires the calling address to be the same address that deposited the position NFT to our contract.
+-  This example assumes the contract already has possession of the position NFT, and requires the calling address to be the same address that deposited the position NFT to our contract.
 
 - In production, `amount0Min` and `amount1Min` should be adjusted to create slippage protections.
 
@@ -48,7 +48,7 @@ Here we decrease the liquidity of our position, without withdrawing all of it.
 
 This internal helper function sends any tokens, in the form of fees or position tokens, to the owner of an NFT.
 
-in `_sendToOwner` we pass the amounts of fees due, previously populated in the last function, as arguments to `safeTransfer` which transfers the fees to `owner`.
+In `_sendToOwner`, we pass the amount of fees due, previously populated in the last function, as arguments to `safeTransfer`, which transfers the fees to `owner`.
 
 ```solidity
     /// @notice Transfers funds to owner of NFT

@@ -10,8 +10,8 @@ Make sure to go through the [first guide](./setting-up-your-contract.md) before 
 
 - This example assumes the contract already has custody of the NFT.
 
-- We can't change the boundaries of a given position, this function can only be used to increase liquidity without changing the boundaries of the given NFT.
-
+- We cannot change the boundaries of a given liquidity position using the Uniswap v3 protocol; `increaseLiquidity` can only increase the liquidity of a position.
+  
 - In production, `amount0Min` and `amount1Min` should be adjusted to create slippage protections.
 
 ```solidity
