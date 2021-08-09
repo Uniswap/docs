@@ -7,8 +7,8 @@ In this guide, we will go through the actions of setting up the calldata for min
 
 ## Overview
 
-An overview of the actions in the full guide are as follows:
-    1. Set up the pool instance. This follows the same structure as the previous guide, so we won't go into detail of this below. Refer to [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) for more or you can look at the full example [here](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx).
+An overview of the actions in the full guide is as follows:
+    1. Set up the pool instance. This follows the same structure as the previous guide. Refer to [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) for more. 
     2. Create a position.
     3. Construct the calldata for minting a position.
     4. Construct the calldata for adding to a position.
@@ -45,12 +45,12 @@ const position = new Position({
 ```
 Above, we call the Position constructor and input the parameters: pool, liquidity, tickLower, and tickUpper:
 - The pool parameter takes in our pool instance from step 1. 
-- The liquidity parameter specifies how much liquidity to add. In this example, we add a fraction of the current liquidity in the pool: 0.0002 times the amount of current liquidity. In production, this could be a parameter inputted into the function adjustable by the end user. 
-- The tickLower and tickUpper parameter specify the price range at which we will provide liquidity. In this example, we call `nearestUsableTick` to get the current useable tick and adjust the lower parameter to be below it by 2 * tickSpacing and the upper to be above it by 2 * tickSpacing. This guarantees that our liquidity is in-range, meaning it will be earning fees upon minting this position.
+- The liquidity parameter specifies how much liquidity to add. In this example, we add a fraction of the current liquidity in the pool: 0.0002 times the amount of current liquidity. In production, this could be a parameter inputted into the function adjustable by the end-user. 
+- The tickLower and tickUpper parameters specify the price range at which we will provide liquidity. In this example, we call `nearestUsableTick` to get the current useable tick and adjust the lower parameter to be below it by 2 * tickSpacing and the upper to be above it by 2 * tickSpacing. This guarantees that our liquidity is "in range", meaning it will be earning fees upon minting this position.
 
 ## Minting the Position
 
-To create the calldata for minting a position, we use the function defined in the SDK called `addCallParameters` which takes in a position (of type Position) and an option (of type `AddLiquidityOptions`). `AddLiquidityOptions` are either `MintOptions` or `IncreaseOptions`, and for this example we will pass in a valid `MintOptions` struct since we are minting a new position, not adding to an already existing position. The latter example we will see below.
+To create the calldata for minting a position, we use the function defined in the SDK called `addCallParameters` which takes in a position (of type Position) and an option (of type `AddLiquidityOptions`). `AddLiquidityOptions` are either `MintOptions` or `IncreaseOptions`. For this example we will pass in a valid `MintOptions` struct since we are minting a new position, not adding to an already existing position. The latter example we will see below.
 
 `MintOptions` are constructed from `CommonAddLiquidityOptions & MintSpecificOptions`. To see all potential parameters that can be inputted here is the reference for `CommonAddLiquidityOptions`:
 
@@ -124,7 +124,7 @@ export interface IncreaseSpecificOptions {
 }
 ```
 
-Thus, to construct the `IncreaseOptions` struct we just need to specify `slippageTolerance`, `deadline`, and `tokenId`. The `tokenId` is the unique identifier of the position (or more specifically, the ERC721 that represents a position) for which we want to add liquidity. In this example, our tokenId is just 1, but in production each tokenId is unique and can be monitored on chain.
+Thus, to construct the `IncreaseOptions` struct we just need to specify `slippageTolerance`, `deadline`, and `tokenId`. The `tokenId` is the unique identifier of the position (or more specifically, the ERC721 that represents a position) for which we want to add liquidity. In this example, our tokenId is just 1, but in production, each tokenId is unique and can be monitored on chain.
 
 ```typescript
 const {calldata ,value} = NonfungiblePositionManager.addCallParameters(position, {
@@ -180,7 +180,7 @@ export interface RemoveLiquidityOptions {
 }
 ```
 
-To remove liquidity from a position, we set the parameters for `tokenId`, `liquidityPercentage`, `slippageTolerance`, `deadline`, and `collectOptions`. `tokenId` is again set to 1 for this example, but refers to the unique id of the position. `liquidityPercentage` is set to the percent of liquidity to be removed. In this case, setting liquidity to `Percent(1)` removes all liquidity. `slipppageTolerance` and `deadline` are set to the same values as the previous examples. Finally. `collectOptions` defines the tokens to be collected and are passed onto `collect`. In this case we will be collecting DAI and USDC and we will be collecting the maximum amount of each, handled in the call to collect. 
+To remove liquidity from a position, we set the parameters for `tokenId`, `liquidityPercentage`, `slippageTolerance`, `deadline`, and `collectOptions`. `tokenId` is again set to 1 for this example, but refers to the unique id of the position. `liquidityPercentage` represents the amount of liquidity to remove. Set liquidity to `Percent(1)` to remove all liquidity. Set `slipppageTolerance` and `deadline` to the same values as the previous examples. Finally. `collectOptions` defines the tokens to be collected and are passed onto `collect`. In this case, we will be collecting DAI and USDC and we will be collecting the maximum amount of each, handled in the call to collect. 
 
 
 ```typescript
@@ -199,4 +199,4 @@ const {calldata, value} = NonfungiblePositionManager.removeCallParameters(positi
 
 ## The example code
 
-[Here](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx) is a link to the full file with all example snippets to give a wholistic picture of declaring varibales and interacting with the SDK with the functions `addCallParameters` and `removeCallParameters`. 
+[Here](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx) is a link to the full file with all example snippets to give a holistic picture of declaring variables and interacting with the SDK with the functions `addCallParameters` and `removeCallParameters`. 
