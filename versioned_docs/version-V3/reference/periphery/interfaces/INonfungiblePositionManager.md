@@ -85,8 +85,8 @@ Throws if the token ID is not valid.
 | `operator`                 | address | The address that is approved for spending                                        |
 | `token0`                   | address | The address of the token0 for a specific pool                                    |
 | `token1`                   | address | The address of the token1 for a specific pool                                    |
-| `fee`                      |         | The fee associated with the pool                                                 |
-| `tickLower`                | uint24  | The lower end of the tick range for the position                                 |
+| `fee`                      | uint24  | The fee associated with the pool                                                 |
+| `tickLower`                | int24   | The lower end of the tick range for the position                                 |
 | `tickUpper`                | int24   | The higher end of the tick range for the position                                |
 | `liquidity`                | uint128 | The liquidity of the position                                                    |
 | `feeGrowthInside0LastX128` | uint256 | The fee growth of token0 as of the last action on the individual position        |
