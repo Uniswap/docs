@@ -126,7 +126,7 @@ contract SwapExamples {
     }
 
     /// @notice swapExactOutputMultihop swaps a minimum possible amount of DAI for a fixed amount of WETH through an intermediary pool.
-    /// For this example, we want to swap DAI for WETH9 through a USDC pool but we specify the desired amountOut of WETH9. Notice how the path encoding is slightly different in for exact output swaps.
+    /// For this example, we want to swap DAI for WETH9 through a USDC pool but we specify the desired amountOut of WETH9. Notice how the path encoding is slightly different in exact output swaps.
     /// @dev The calling address must approve this contract to spend its DAI for this function to succeed. As the amount of input DAI is variable,
     /// the calling address will need to approve for a slightly higher amount, anticipating some variance.
     /// @param amountOut The desired amount of WETH9.
@@ -141,7 +141,7 @@ contract SwapExamples {
         // The parameter path is encoded as (tokenOut, fee, tokenIn/tokenOut, fee, tokenIn)
         // The tokenIn/tokenOut field is the shared token between the two pools used in the multiple pool swap. In this case, USDC is the "shared" token.
         // For an exactOutput swap, the first swap that occurs is the swap which returns the eventual desired token.
-        // In this case, our desired output token is WETH9 so that swap happpens first, and is encoded in the path accordingly.
+        // In this case, our desired output token is WETH9 so that swap happens first, and is encoded in the path accordingly.
         ISwapRouter.ExactOutputParams memory params =
             ISwapRouter.ExactOutputParams({
                 path: abi.encodePacked(WETH9, poolFee, USDC, poolFee, DAI),
