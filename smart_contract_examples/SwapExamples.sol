@@ -10,12 +10,12 @@ contract SwapExamples {
     // we will detail the design considerations when using
     // `exactInput`, `exactInputSingle`, `exactOutput`, and  `exactOutputSingle`.
 
-    // It should be noted that for the sake of these examples, we purposefully pass in the swap router instead of inherit the swap router for simplicity.
+    // It should be noted that for the sake of these examples, we purposefully pass in the swap router instead of inheriting the swap router for simplicity.
     // More advanced example contracts will detail how to inherit the swap router safely.
 
     ISwapRouter public immutable swapRouter;
 
-    // This example swaps DAI/WETH9 for single path swaps and DAI/USDC/WETH9 for multi path swaps.
+    // This example swaps DAI/WETH9 for single path swaps and DAI/USDC/WETH9 for multipath swaps.
 
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
@@ -70,8 +70,8 @@ contract SwapExamples {
         // Transfer the specified amount of DAI to this contract.
         TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), amountInMaximum);
 
-        // Approve the router to spend the specifed `amountInMaximum` of DAI.
-        // In production, you should choose the maximum amount to spend based on oracles or other data sources to acheive a better swap.
+        // Approve the router to spend the specified `amountInMaximum` of DAI.
+        // In production, you should choose the maximum amount to spend based on oracles or other data sources to achieve a better swap.
         TransferHelper.safeApprove(DAI, address(swapRouter), amountInMaximum);
 
         ISwapRouter.ExactOutputSingleParams memory params =
@@ -139,7 +139,7 @@ contract SwapExamples {
         TransferHelper.safeApprove(DAI, address(swapRouter), amountInMaximum);
 
         // The parameter path is encoded as (tokenOut, fee, tokenIn/tokenOut, fee, tokenIn)
-        // The tokenIn/tokenOut field is the shared token between the two pools used in the multiple pool swap. In this case USDC is the "shared" token.
+        // The tokenIn/tokenOut field is the shared token between the two pools used in the multiple pool swap. In this case, USDC is the "shared" token.
         // For an exactOutput swap, the first swap that occurs is the swap which returns the eventual desired token.
         // In this case, our desired output token is WETH9 so that swap happpens first, and is encoded in the path accordingly.
         ISwapRouter.ExactOutputParams memory params =
