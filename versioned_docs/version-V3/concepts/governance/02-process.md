@@ -62,7 +62,7 @@ To create a Governance Proposal:
 
 1. Write the code for your proposal, which will be voted on through the Governance Portal. More resources can be found [here](https://compound.finance/docs/governance#propose) **.** All proposed code should be audited by a professional auditor. This auditing process may be paid or reimbursed by the community treasury.
 
-1. Ensure that you have at least 10 million UNI delegated to your address in order to submit a proposal, or find someone who has enough UNI to meet the proposal threshold to propose on your behalf.
+1. Ensure that you have at least 2.5 million UNI delegated to your address in order to submit a proposal, or find someone who has enough UNI to meet the proposal threshold to propose on your behalf.
 
 1. Create a topic in the Proposal Discussion category on gov.uniswap.org titled &quot;Governance Proposal — [Your Title Here]&quot; and link to any relevant Snapshot polls/discussion threads as well as the code audit report. Topics that begin with &quot;Governance Proposal&quot; that have not successfully passed through the Temperature Check and Consensus Check stages will be removed by moderators.
 
@@ -84,7 +84,7 @@ The community may discuss new ideas and strategies for governance — including 
 
 - **Delegation:** UNI holders cannot vote or create proposals until they delegate their voting rights to an address. Delegation can be given to one address at a time, including the holder&#39;s own address. Note that delegation does not lock tokens; it simply adds votes to the chosen delegation address.
 
-- **Proposal:** A proposal is executable code that modifies the governance contract or treasury and how they work. In order to create a proposal, a user must have at least 1% (10M UNI) of all UNI delegated to their address. Proposals are stored in the &quot;proposals&quot; mapping of the Governor smart contract. All proposals are subject to a 7-day voting period. If the proposer does not maintain their vote weight balance throughout the voting period, the proposal may be canceled by anyone.
+- **Proposal:** A proposal is executable code that modifies the governance contract or treasury and how they work. In order to create a proposal, a user must have at least 0.25% (2.5M UNI) of all UNI delegated to their address. Proposals are stored in the &quot;proposals&quot; mapping of the Governor smart contract. All proposals are subject to a 7-day voting period. If the proposer does not maintain their vote weight balance throughout the voting period, the proposal may be canceled by anyone.
 
 - **Quorum:** In order for a vote to pass, it must achieve quorum of 4% of all UNI (40M) voting in the affirmative. The purpose of the quorum is to ensure that the only measures that pass have adequate voter participation.
 
