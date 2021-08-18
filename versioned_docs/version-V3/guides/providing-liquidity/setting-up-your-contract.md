@@ -174,13 +174,4 @@ contract LiquidityExamples is IERC721Receiver {
         // operator is msg.sender
         deposits[tokenId] = Deposit({owner: owner, liquidity: liquidity, token0: token0, token1: token1});
     }
-    
-    function _createDeposit(address owner, uint256 tokenId) internal {
-        (, , address token0, address token1, , , , uint128 liquidity, , , , ) =
-            nonfungiblePositionManager.positions(tokenId);
-
-        // set the owner and data for position
-        // operator is msg.sender
-        deposits[tokenId] = Deposit({owner: owner, liquidity: liquidity, token0: token0, token1: token1});
-    }
 ```
