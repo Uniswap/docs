@@ -67,7 +67,7 @@ contract LiquidityExamples is IERC721Receiver {
         deposits[tokenId] = Deposit({owner: owner, liquidity: liquidity, token0: token0, token1: token1});
     }
 
-    /// @notice Calls the mint function defined in perphery, mints the same amount of each token. 
+    /// @notice Calls the mint function defined in periphery, mints the same amount of each token. 
     /// For this example we are providing 1000 DAI and 1000 USDC in liquidity
     /// @return tokenId The id of the newly minted ERC721
     /// @return liquidity The amount of liquidity for the position

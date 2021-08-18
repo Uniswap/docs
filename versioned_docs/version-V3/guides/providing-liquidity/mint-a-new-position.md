@@ -93,7 +93,7 @@ Now we can call the internal function we previously wrote in [Setting Up Your Co
 ## The Full Example
 
 ```solidity
-    /// @notice Calls the mint function defined in perphery, mints the same amount of each token. For this example we are providing 1000 DAI and 1000 USDC in liquidity
+    /// @notice Calls the mint function defined in periphery, mints the same amount of each token. For this example we are providing 1000 DAI and 1000 USDC in liquidity
     /// @return tokenId The id of the newly minted ERC721
     /// @return liquidity The amount of liquidity for the position
     /// @return amount0 The amount of token0
