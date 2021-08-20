@@ -5,7 +5,7 @@ title: Removing Liquidity
 
 ## Removing Liquidity from a Position
 
-To retrieve the remove liquidity calldata, use the function `removeCallParameters`, which takes in a `Position`, which we defined earlier, and `RemoveLiquidityOptions`. The reference for `RemoveLiquidityOptions` is:
+Use the function `removeCallParameters` with the `position` instantiated earlier and a `RemoveLiquidityOptions` interface. The reference for [`RemoveLiquidityOptions`](https://docs.uniswap.org/sdk/reference/interfaces/RemoveLiquidityOptions) is:
 
 ```typescript
 /**
@@ -49,7 +49,7 @@ export interface RemoveLiquidityOptions {
 }
 ```
 
-To remove liquidity from a position, we set the parameters for `tokenId`, `liquidityPercentage`, `slippageTolerance`, `deadline`, and `collectOptions`. 
+To remove liquidity from a position, set the parameters for `tokenId`, `liquidityPercentage`, `slippageTolerance`, `deadline`, and `collectOptions`. 
 
 The reference for `CollectOptions` is 
 ```typescript
@@ -76,9 +76,13 @@ export interface CollectOptions {
 }
 ```
 
-For the `RemoveLiquidityOptions`, the`tokenId` is again set to 1 for this example, but refers to the unique id of the position nft. `liquidityPercentage` represents the amount of liquidity to remove. Adjust the `liquidity` parameter based on how much liquidity you want to remove. Set it to `Percent(1)` to remove all liquidity. This example sets `slipppageTolerance` and `deadline` to the same values as the previous examples. Finally. `collectOptions` defines the tokens to be collected and are passed onto `collect`. This example collects the maximum amount of DAI and USDC. `expectedCurrencyOwed0` and `expectedCurrencyOwed1` are the minimum amount of fees. 
+The parameter inputs are outlined below for `RemoveLiquidityOptions`:
+-  the`tokenId` is again set to 1 for this example, but refers to the unique id of the position nft. 
+- `liquidityPercentage` represents the amount of liquidity to remove. Adjust this parameter based on how much liquidity you want to remove. Set it to `Percent(1)` to remove all liquidity. 
+- This example sets `slipppageTolerance` and `deadline` to the same values as the previous examples. 
+- `collectOptions` defines the tokens to be collected and are passed onto `collect`. This example collects the maximum amount of DAI and USDC. 
 
-Collecting fees in ETH requires precomputing the fees owed to protect against reentrency attacks. The `expectedCurrencyOwed0` and `expectedCurrencyOwed1` parameters allow you to set this safety check which should be set to the mnimum fees owed. To calculate this, you can quote the collect function and store the amounts. The interface does similar behavior [here](https://github.com/Uniswap/uniswap-interface/blob/eff512deb8f0ab832eb8d1834f6d1a20219257d0/src/hooks/useV3PositionFees.ts#L32).
+When collecting fees in ETH, you must precompute the fees owed to protect against reentrancy attacks. In order to set a safety check, set the minimum fees owed in `expectedCurrencyOwed0` and `expectedCurrencyOwed1`. To calculate this, quote the `collect` function and store the amounts. The interface does similar behavior [here](https://github.com/Uniswap/uniswap-interface/blob/eff512deb8f0ab832eb8d1834f6d1a20219257d0/src/hooks/useV3PositionFees.ts#L32). For this example, it is not necessary to set a minimum amount of fees to collect because there is no concern with reentrancy for tokens (DAI/USDC).
 
 
 ```typescript
@@ -97,4 +101,4 @@ const {calldata, value} = NonfungiblePositionManager.removeCallParameters(positi
 
 ## The example code
 
-[Here](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx) is a link to the full file with all example snippets to give a holistic picture of declaring variables and interacting with the SDK with the functions `addCallParameters` and `removeCallParameters`. 
+You now know how to mint a liquidity position, add liquidity, and remove liquidity. Here's the [full example code](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx) for reference.
