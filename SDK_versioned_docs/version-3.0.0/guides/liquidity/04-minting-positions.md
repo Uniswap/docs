@@ -8,16 +8,17 @@ title: Minting a new Position
 In this guide, you will learn how to mint a new liquidity position, add liquidity, and then remove liquidity. You will learn how to invoke each function with the required parameters necessary in returning the calldata. Because any liquidity related action relies on setting up pool and position instances, you will also need to know [How to Create A Pool](https://docs.uniswap.org/sdk/guides/creating-a-pool) and how to set up a position instance.
 
 In summary, the following is what you will learn in this guide:
-    1. Set up the pool instance. This follows the same structure as the previous guide. Refer to [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) for more detail.
-    2. Create a position.
-    3. Construct the calldata for minting a position.
-    4. Construct the calldata for adding to a position.
-    5. Construct the calldata for removing from a position.
+
+1. Set up the pool instance. This follows the same structure as the previous guide. Refer to [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) for more detail.
+2. Create a position.
+3. Construct the calldata for minting a position.
+4. Construct the calldata for adding to a position.
+5. Construct the calldata for removing from a position.
 
 
 ## Setting up the pool
 
-For this example, we will use a Uniswap V3 DAI-USDC 0.05% pool.  The previous guide explains that to create a pool we call the constructor for the pool instance:
+First, call the constructor to create an instance of a Uniswap v3 pool. For example, the following code creates a DAI-USDC 0.05% pool.
 
 ```typescript
   const DAI_USDC_POOL = new Pool(
@@ -29,7 +30,7 @@ For this example, we will use a Uniswap V3 DAI-USDC 0.05% pool.  The previous gu
     state.tick
   );
 ```
-The input parameters are the two token addresses, the fee tier, the current pool price, the current liquidity, and the current tick. Reference the previous guide to understand to understand how to retrieve these necessary parameters for setting up instances of existing pools.
+The input parameters are the two token addresses, the fee tier (0.05%), the current pool price, the current liquidity, and the current tick. Reference [the previous guide](https://docs.uniswap.org/sdk/guides/creating-a-pool) to understand how to retrieve these necessary parameters for setting up instances of existing pools.
 
 ## Creating a Position Instance
 
@@ -47,15 +48,15 @@ const position = new Position({
 You can retrieve the variable inputs (like `state.liquidity` and `immutables.tickSpacing`) from fetching the state data as shown in the previous guide.
 
 After you fetch these variables, call the Position constructor and input the parameters: `pool`, `liquidity`, `tickLower`, and `tickUpper`:
-- The `pool` parameter takes in our pool instance from step 1. 
+- The `pool` parameter takes in the pool instance from step 1. 
 - The `liquidity` parameter specifies how much liquidity to add. This examples adds a fraction of the current liquidity in the pool: 0.0002 times the amount of current liquidity. In production, this could be a parameter inputted into the function adjustable by the end-user. 
-- The `tickLower` and `tickUpper` parameters specify the price range at which to provide liquidity. This example calls `nearestUsableTick` to get the current useable tick and adjust the lower parameter to be below it by 2 * `tickSpacing` and the upper to be above it by 2 * `tickSpacing`. This guarantees that our liquidity is "in range", meaning it will be earning fees upon minting this position.
+- The `tickLower` and `tickUpper` parameters specify the price range at which to provide liquidity. This example calls `nearestUsableTick` to get the current useable tick and adjust the lower parameter to be below it by 2 * `tickSpacing` and the upper to be above it by 2 * `tickSpacing`. This guarantees that the provided liquidity is "in range", meaning it will be earning fees upon minting this position.
 
 ## Minting the Position
 
-To create the calldata for minting a position, use the function defined in the SDK called `addCallParameters` which takes in a position (of type `Position`) and an option (of type `AddLiquidityOptions`). `AddLiquidityOptions` are either `MintOptions` or `IncreaseOptions`. For this example we will pass in a valid `MintOptions` struct since we are minting a new position, not adding to an already existing position. You will learn the latter example below.
+To create the calldata for minting a position, use the function defined in the SDK called `addCallParameters` which takes in a position (of type `Position`) and an option (of type `AddLiquidityOptions`). `AddLiquidityOptions` are either `MintOptions` for minting a new position or `IncreaseOptions` for adding liquidity to an existing position. Below, the example outlines the parameters needed to mint a new position and passes in a valid `MintOptions` struct to the SDK function `addCallParameters`. 
 
-`MintOptions` are constructed from `CommonAddLiquidityOptions & MintSpecificOptions`. To see all potential parameters that can be inputted here is the reference for `CommonAddLiquidityOptions`:
+`MintOptions` are constructed from `CommonAddLiquidityOptions & MintSpecificOptions`. To see all potential parameters that can be inputted here is the reference for [`CommonAddLiquidityOptions`](https://docs.uniswap.org/sdk/reference/interfaces/CommonAddLiquidityOptions):
 
 ```typescript
 export interface CommonAddLiquidityOptions {
@@ -85,7 +86,7 @@ export interface CommonAddLiquidityOptions {
   token1Permit?: PermitOptions
 }
 ```
-and here is the reference for `MintSpecificOptions`:
+and here is the reference for [`MintSpecificOptions`](https://docs.uniswap.org/sdk/reference/interfaces/MintSpecificOptions):
 
 ```typescript
 export interface MintSpecificOptions {
@@ -101,7 +102,7 @@ export interface MintSpecificOptions {
 }
 ```
 
-Omitting the parameters that are not required, we recognize that the only parameters we need to specify in order to create a valid `MintOptions` struct are `slippageTolerance`, `deadline`, and `recipient`. Hence we can construct our calldata with the following call to `addCallParameters`:
+You can omit the parameters that are not required. In order to create the most basic valid `MintOptions` struct just set the `slippageTolerance`, `deadline`, and `recipient` which is constructed below:
 
 ```typescript
     const deadline = block.timestamp + 200;
