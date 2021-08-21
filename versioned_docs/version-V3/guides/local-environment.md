@@ -33,7 +33,7 @@ now we can install the V3 Periphery contracts, so that we can inherit what we ne
 npm add @uniswap/v3-periphery
 ```
 
-now we cac create a new hardhat config file in our environment, which can help us configure the compilation and testing process for our contracts
+now we can create a new hardhat config file in our environment, which can help us configure the compilation and testing process for our contracts
 
 ```
 npx hardhat
