@@ -140,7 +140,7 @@ Add the following lines to your `App.js` file to parse the responses:
 ```javascript
 const daiPriceInEth = daiData && daiData.tokens[0].derivedETH;
 const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity;
-const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice;
+const ethPriceInUSD = ethPriceData && ethPriceData.bundle.ethPrice;
 ```
 
 ### Displaying in the UI
@@ -156,6 +156,13 @@ To do this add the following lines in the return function of your `App.js` file:
 ```javascript
 return (
   <div>
+    <div>
+      ETH Price:{' '}
+      {ethLoading
+        ? 'Loading token data...'
+        : // parse response as float and fix to 2 decimals
+          '$' + parseFloat(ethPriceInUSD).toFixed(2)}
+    </div>
     <div>
       Dai price:{' '}
       {ethLoading || daiLoading
