@@ -626,14 +626,11 @@ export default function Home() {
           >
             <img src={UGP} width={"120px"} />
             <div>
-              <h2 style={{ marginBottom: "0.5rem" }}>
-                Apply for the Uniswap Developer Grants Program
-              </h2>
+              <h2 style={{ marginBottom: "0.5rem" }}>Uniswap Grants Program</h2>
               <p style={{ margin: "0rem" }}>
-                Our mission will always be to empower the community with the
-                resources needed to support enriching activities and advance
-                tooling and solutions to improve the experience for all UNI
-                users, builders, and overall community members.{" "}
+                Uniswap Governance offers grant funding for people who are
+                building apps, tools, and activities for Uniswap Protocol users,
+                builders, and community members.{" "}
               </p>
             </div>
           </WideCard>
