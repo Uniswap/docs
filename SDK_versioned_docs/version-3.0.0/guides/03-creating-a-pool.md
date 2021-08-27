@@ -34,7 +34,7 @@ const poolContract = new ethers.Contract(
 
 ## Creating The Interfaces
 
-Here we will create two interfaces, with types that are appropriate for the data we need. We won't be using all of this data, but some extra data is fetched for context.
+Create two interfaces with types that are appropriate for the data we need. We won't be using all of this data, but some extra data is fetched for context.
 
 ```typescript
 interface Immutables {
@@ -116,9 +116,9 @@ async function getPoolState() {
 
 ## Creating the Pool Instance
 
-Create a function called `main` which calls previously written functions, and uses the returned data to construct two `Ethers.js` `Token` instances and a V3 SDK `Pool` instance.
+Create a function called `main`, which calls previously written functions, and uses the returned data to construct two `Ethers.js` `Token` instances and a V3 SDK `Pool` instance.
 
-> The final constructor argument when creating a Pool, `ticks`, is optional. Ticks takes all tick data, including the liquidity within, which can be used to model the result of a swap. Because this can add up to a lot of data fetched from the EVM, it is optional and may be left out when not needed. In this example, we have left it out.
+> The final constructor argument when creating a Pool, `ticks`, is optional. `ticks` takes all tick data, including the liquidity within, which can be used to model the result of a swap. Because this can add up to a lot of data fetched from the EVM, it is optional and may be left out when not needed. In this example, we have left it out.
 
 ```typescript
 async function main() {
