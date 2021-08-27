@@ -116,7 +116,7 @@ async function getPoolState() {
 
 ## Creating the Pool Instance
 
-Finally, we will create a function called `main` which calls previously written functions, and uses the returned data to construct two `Ethers.js` `Token` instances and a V3 SDK `Pool` instance.
+Create a function called `main` which calls previously written functions, and uses the returned data to construct two `Ethers.js` `Token` instances and a V3 SDK `Pool` instance.
 
 > The final constructor argument when creating a Pool, `ticks`, is optional. Ticks takes all tick data, including the liquidity within, which can be used to model the result of a swap. Because this can add up to a lot of data fetched from the EVM, it is optional and may be left out when not needed. In this example, we have left it out.
 
@@ -272,7 +272,7 @@ async function main() {
     TokenA,
     TokenB,
     immutables.fee,
-    state.sqrtPriceX96.toString(), //note the description discrepancy - sqrtPriceX96 and sqrtRatioX96 are interchangable values
+    state.sqrtPriceX96.toString(),
     state.liquidity.toString(),
     state.tick
   );
