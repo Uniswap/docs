@@ -6,11 +6,11 @@ sidebar_position: 2
 
 ## Introduction
 
-The examples below are implementations of the two styles of multi hop swapping available on v3. The examples below are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
+The examples below are implementations of the two styles of multi-hop swapping available on v3. The examples below are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
 ## Setting up the Contract
 
-First we declare the solidity version that will be used to compile the contract, and the `abicoder v2` to allow arbitrary nested arrays and structs
+Declare the solidity version that will be used to compile the contract, and the `abicoder v2` to allow arbitrary nested arrays and structs
 to be encoded and decoded in calldata, a feature we use when executing a swap.
 
 ```solidity
@@ -19,14 +19,14 @@ pragma solidity =0.7.6;
 pragma abicoder v2;
 ```
 
-Next, import the two contracts we'll be using from the npm package installation
+Import the two needed contracts from the npm package installation.
 
 ```solidity
 import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
 import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
 ```
 
-Here we create our contract called `SwapExamples`, and declare an immutable public variable `swapRouter` of type `ISwapRouter`.
+Create a contract called `SwapExamples`, and declare an immutable public variable `swapRouter` of type `ISwapRouter`.
 This allows us to call functions in the `ISwapRouter` interface.
 
 ```solidity
@@ -41,7 +41,8 @@ contract SwapExamples {
 
 ```
 
-Here we hardcode the token contract addresses and pool fee tiers for our example. In production, you would likely use in input parameter for this and pass the input into a memory variable, allowing you to change what the pools and tokens you are interacting with on a per transaction basis, but for conceptual simplicity we are hardcoding them here.
+Hardcode the token contract addresses and pool fee tiers for the example. In production, you would likely use an input parameter for this and pass the input into a memory variable, allowing the contract to change the pools and tokens it interacts with on a per transaction basis, but for conceptual simplicity, we are hardcoding them here.
+
 
 ```solidity
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
@@ -58,6 +59,7 @@ Here we hardcode the token contract addresses and pool fee tiers for our example
 ## Exact Input Multi Hop Swaps
 
 Exact input multi hop swaps will swap a fixed amount on a given input token for the maximum amount possible for a given output, and can include an arbitrary number of intermediary swaps.
+
 ### Input Parameters
 
 * `path`: The path is a sequence of `tokenAddress` `Fee` `tokenAddress`, which are the variables needed to compute each pool contract address in our sequence of swaps. The multihop swap router code will automatically find the correct pool with these variables, and execute the swap needed within each pool in our sequence.
@@ -100,7 +102,7 @@ Exact input multi hop swaps will swap a fixed amount on a given input token for 
 
 ## Exact Output Multihop Swap
 
-An exact output swap will swap a variable amount of the input token for a fixed amount of the outbound token. This is the less common technique for multihop swaps. The code for swapping is largely the same except for one notable difference, the `Path` is encoded backwards, as an exact output swap is actually executed in reverse order in order to pass down the necessary variables for the chain of transactions 
+An exact output swap will swap a variable amount of the input token for a fixed amount of the outbound token. This is the less common technique for multihop swaps. The code for swapping is largely the same except for one notable difference, the `Path` is encoded backwards, as an exact output swap is executed in reverse order to pass down the necessary variables for the chain of transactions 
 ### Input Parameters
 
 * `path`: The path is a sequence of `tokenAddress` `Fee` `tokenAddress`, *encoded in reverse order*, which are the variables needed to compute each pool contract address in our sequence of swaps. The multihop swap router code will automatically find the correct pool with these variables, and execute the swap needed within each pool in our sequence. 
