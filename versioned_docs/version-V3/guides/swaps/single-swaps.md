@@ -73,7 +73,7 @@ Then, transfer the `amount` of Dai from the calling address into our contract, a
 
 ```
 
-## Swap Input Parameters
+### Swap Input Parameters
 
 To execute the swap function, we need to populate the `ExactInputSingleParams` with the data necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed [here](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter).
 
@@ -87,7 +87,7 @@ A brief overview of the parameters:
 - `amountOutMinimum`: we are setting to zero, but this is a significant risk in production. For a real deployment, this value should be calculated using our SDK or an onchain price oracle - this helps protect against getting an unusually bad price for a trade due to a front running sandwich or another type of price manipulation
 - `sqrtPriceLimitX96`: We set this to zero - which makes this parameter inactive. In production, this value can be used to set the limit for the price the swap will push the pool to, which can help protect against price impact or for setting up logic in a variety of price-relevant mechanisms.
 
-## Calling the function
+### Calling the function
 
 ```solidity
         // Naively set amountOutMinimum to 0. In production, use an oracle or other data source to choose a safer value for amountOutMinimum.
@@ -115,7 +115,7 @@ Exact Output swaps a minimum possible amount of the input token for a fixed amou
 
 Because this example transfers in the inbound asset in anticipation of the swap - its possible that some of the inbound token will be left over after the swap is executed, which is why we pay it back to the calling address at the end of the swap.
 
-## Calling The Function
+### Calling The Function
 
 ```solidity
 /// @notice swapExactOutputSingle swaps a minimum possible amount of DAI for a fixed amount of WETH.
