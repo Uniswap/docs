@@ -49,7 +49,7 @@ Hardcode the token contract addresses and pool fee tiers for the example. In pro
     constructor(ISwapRouter _swapRouter) {
         swapRouter = _swapRouter;
     }
-````
+```
 
 ## Exact Input Swaps
 
@@ -81,7 +81,7 @@ To execute the swap function, we need to populate the `ExactInputSingleParams` w
 
 A brief overview of the parameters:
 
-- `tokenIn' The contract address of the inbound token
+- `tokenIn` The contract address of the inbound token
 - `tokenOut` The contract address of the outbound token
 - `fee` The fee tier of the pool, used to determine the correct pool contract in which to execute the swap
 - `recipient` the destination address of the outbound token
