@@ -55,7 +55,7 @@ The position manager handles the logic transactions involving the creation, adju
 
 ### Oracle
 
-> [**Oracle Reference**](https://docs.uniswap.org/protocol/reference/core/libraries/Oracle s)
+> [**Oracle Reference**](https://docs.uniswap.org/protocol/reference/core/libraries/Oracles)
 
 The oracle provides price and liquidity data useful for a wide variety of system designs, and is available in every deployed pool.
 
