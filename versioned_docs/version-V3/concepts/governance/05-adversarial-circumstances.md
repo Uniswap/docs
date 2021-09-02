@@ -40,7 +40,7 @@ The proposer must also maintain a minimum balance of 10 million UNI throughout t
 
 A bad faith proposal is created, which will genuinely incentivize bad faith voting.
 
-Exmaple: &quot;The treasury will be drained. Any votes in favor will be sent the balance of the treasury. Any votes opposed will be locked from the funds of the treasury.&quot;
+Example: &quot;The treasury will be drained. Any votes in favor will be sent the balance of the treasury. Any votes opposed will be locked from the funds of the treasury.&quot;
 
 ## Circumvention
 
