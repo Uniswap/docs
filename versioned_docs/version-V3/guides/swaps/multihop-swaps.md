@@ -33,12 +33,11 @@ This allows us to call functions in the `ISwapRouter` interface.
 contract SwapExamples {
     // For the scope of these swap examples,
     // we will detail the design considerations when using `exactInput`, `exactInputSingle`, `exactOutput`, and  `exactOutputSingle`.
-    // It should be noted that for the sake of these examples, we pass in the swap router as a constructor argument, instead of inheriting it.
+    // It should be noted that for the sake of these examples we pass in the swap router as a constructor argument instead of inheriting it.
     // More advanced example contracts will detail how to inherit the swap router safely.
     // This example swaps DAI/WETH9 for single path swaps and DAI/USDC/WETH9 for multi path swaps.
 
     ISwapRouter public immutable swapRouter;
-
 ```
 
 Hardcode the token contract addresses and pool fee tiers for the example. In production, you would likely use an input parameter for this and pass the input into a memory variable, allowing the contract to change the pools and tokens it interacts with on a per transaction basis, but for conceptual simplicity, we are hardcoding them here.
