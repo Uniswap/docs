@@ -11,7 +11,7 @@ Represents a V3 pool
 
 ### constructor
 
-\+ **new Pool**(`tokenA`: *Token*, `tokenB`: *Token*, `fee`: [*FeeAmount*](../enums/constants.feeamount.md), `sqrtRatioX96`: BigintIsh, `liquidity`: BigintIsh, `tickCurrent`: *number*, `ticks?`: [*TickDataProvider*](../interfaces/entities_tickdataprovider.tickdataprovider.md) \| ([*Tick*](entities_tick.tick.md) \| [*TickConstructorArgs*](../interfaces/entities_tick.tickconstructorargs.md))[]): [*Pool*](entities_pool.pool.md)
+\+ **new Pool**(`token0`: *Token*, `token1`: *Token*, `fee`: [*FeeAmount*](../enums/constants.feeamount.md), `sqrtRatioX96`: BigintIsh, `liquidity`: BigintIsh, `tickCurrent`: *number*, `ticks?`: [*TickDataProvider*](../interfaces/entities_tickdataprovider.tickdataprovider.md) \| ([*Tick*](entities_tick.tick.md) \| [*TickConstructorArgs*](../interfaces/entities_tick.tickconstructorargs.md))[]): [*Pool*](entities_pool.pool.md)
 
 Construct a pool
 
@@ -19,8 +19,8 @@ Construct a pool
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `tokenA` | *Token* | one of the tokens in the pool |
-| `tokenB` | *Token* | the other token in the pool |
+| `token0` | *Token* | one of the tokens in the pool |
+| `token1` | *Token* | the other token in the pool |
 | `fee` | [*FeeAmount*](../enums/constants.feeamount.md) | the fee in hundredths of a bips of the input amount of every swap that is collected by the pool |
 | `sqrtRatioX96` | BigintIsh | the sqrt of the current ratio of amounts of token1 to token0 |
 | `liquidity` | BigintIsh | the current value of in range liquidity |
