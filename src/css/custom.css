@@ -156,6 +156,7 @@ html[data-theme="light"] .navbar {
 }
 
 .container {
+  min-width: 550px;
   padding: 0px;
   /* margin: 4rem auto 0px; */
   max-width: 90% !important;
@@ -300,6 +301,10 @@ html[data-theme="dark"] .DocSearch-Hit a :hover {
 
 html[data-theme="dark"] .DocSearch-Hit a {
   background-color: var(--ifm-color-emphasis-0);
+}
+
+.DocSearch {
+  width: 240px;
 }
 
 .react-toggle-thumb :hover {
