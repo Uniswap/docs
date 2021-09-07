@@ -43,13 +43,13 @@ contract PairFlash is IUniswapV3FlashCallback, PeripheryPayments {
     using LowGasSafeMath for int256;
 ```
 
-Next, we declare an immutable public variable `swapRouter` of type `ISwapRouter`:
+Declare an immutable public variable `swapRouter` of type `ISwapRouter`:
 
 ```solidity
     ISwapRouter public Immutable swapRouter;
 ```
 
-We'll declare the constructor here, which is executed once when the contract is deployed. Our constructor hard codes the address of the V3 router, factory, and the address of weth9, the [ERC-20 wrapper](https://weth.io/) for ether.
+Declare the constructor here, which is executed once when the contract is deployed. Our constructor hardcodes the address of the V3 router, factory, and the address of weth9, the [ERC-20 wrapper](https://weth.io/) for ether.
 
 ```solidity
     constructor(
@@ -61,7 +61,7 @@ We'll declare the constructor here, which is executed once when the contract is 
     }
 ```
 
-the full import section and contract declaration:
+The full import section and contract declaration:
 
 ```solidity
 pragma solidity =0.7.6;
