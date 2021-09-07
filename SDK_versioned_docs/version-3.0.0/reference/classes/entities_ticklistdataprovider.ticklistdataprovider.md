@@ -1,38 +1,62 @@
----
-id: TickListDataProvider
-title: TickListDataProvider
----
+[@uniswap/v3-sdk](../README.md) / [Exports](../modules.md) / [entities/tickListDataProvider](../modules/entities_tickListDataProvider.md) / TickListDataProvider
 
-# TickListDataProvider
+# Class: TickListDataProvider
+
+[entities/tickListDataProvider](../modules/entities_tickListDataProvider.md).TickListDataProvider
 
 A data provider for ticks that is backed by an in-memory array of ticks.
 
 ## Implements
 
-- [*TickDataProvider*](../interfaces/entities_tickdataprovider.tickdataprovider.md)
+- [`TickDataProvider`](../interfaces/entities_tickDataProvider.TickDataProvider.md)
+
+## Table of contents
+
+### Constructors
+
+- [constructor](entities_tickListDataProvider.TickListDataProvider.md#constructor)
+
+### Properties
+
+- [ticks](entities_tickListDataProvider.TickListDataProvider.md#ticks)
+
+### Methods
+
+- [getTick](entities_tickListDataProvider.TickListDataProvider.md#gettick)
+- [nextInitializedTickWithinOneWord](entities_tickListDataProvider.TickListDataProvider.md#nextinitializedtickwithinoneword)
 
 ## Constructors
 
 ### constructor
 
-\+ **new TickListDataProvider**(`ticks`: ([*Tick*](entities_tick.tick.md) \| [*TickConstructorArgs*](../interfaces/entities_tick.tickconstructorargs.md))[], `tickSpacing`: *number*): [*TickListDataProvider*](entities_ticklistdataprovider.ticklistdataprovider.md)
+• **new TickListDataProvider**(`ticks`, `tickSpacing`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `ticks` | ([*Tick*](entities_tick.tick.md) \| [*TickConstructorArgs*](../interfaces/entities_tick.tickconstructorargs.md))[] |
-| `tickSpacing` | *number* |
+| `ticks` | ([`Tick`](entities_tick.Tick.md) \| [`TickConstructorArgs`](../interfaces/entities_tick.TickConstructorArgs.md))[] |
+| `tickSpacing` | `number` |
 
-**Returns:** [*TickListDataProvider*](entities_ticklistdataprovider.ticklistdataprovider.md)
+#### Defined in
 
-Defined in: [entities/tickListDataProvider.ts:10](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/tickListDataProvider.ts#L10)
+[entities/tickListDataProvider.ts:12](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/tickListDataProvider.ts#L12)
+
+## Properties
+
+### ticks
+
+• `Private` **ticks**: readonly [`Tick`](entities_tick.Tick.md)[]
+
+#### Defined in
+
+[entities/tickListDataProvider.ts:10](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/tickListDataProvider.ts#L10)
 
 ## Methods
 
 ### getTick
 
-▸ **getTick**(`tick`: *number*): *Promise*<{ `liquidityGross`: BigintIsh ; `liquidityNet`: BigintIsh  }\>
+▸ **getTick**(`tick`): `Promise`<`Object`\>
 
 Return information corresponding to a specific tick
 
@@ -40,19 +64,25 @@ Return information corresponding to a specific tick
 
 | Name | Type |
 | :------ | :------ |
-| `tick` | *number* |
+| `tick` | `number` |
 
-**Returns:** *Promise*<{ `liquidityGross`: BigintIsh ; `liquidityNet`: BigintIsh  }\>
+#### Returns
 
-Implementation of: [TickDataProvider](../interfaces/entities_tickdataprovider.tickdataprovider.md)
+`Promise`<`Object`\>
 
-Defined in: [entities/tickListDataProvider.ts:18](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/tickListDataProvider.ts#L18)
+#### Implementation of
+
+[TickDataProvider](../interfaces/entities_tickDataProvider.TickDataProvider.md).[getTick](../interfaces/entities_tickDataProvider.TickDataProvider.md#gettick)
+
+#### Defined in
+
+[entities/tickListDataProvider.ts:18](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/tickListDataProvider.ts#L18)
 
 ___
 
 ### nextInitializedTickWithinOneWord
 
-▸ **nextInitializedTickWithinOneWord**(`tick`: *number*, `lte`: *boolean*, `tickSpacing`: *number*): *Promise*<[*number*, *boolean*]\>
+▸ **nextInitializedTickWithinOneWord**(`tick`, `lte`, `tickSpacing`): `Promise`<[`number`, `boolean`]\>
 
 Return the next tick that is initialized within a single word
 
@@ -60,12 +90,18 @@ Return the next tick that is initialized within a single word
 
 | Name | Type |
 | :------ | :------ |
-| `tick` | *number* |
-| `lte` | *boolean* |
-| `tickSpacing` | *number* |
+| `tick` | `number` |
+| `lte` | `boolean` |
+| `tickSpacing` | `number` |
 
-**Returns:** *Promise*<[*number*, *boolean*]\>
+#### Returns
 
-Implementation of: [TickDataProvider](../interfaces/entities_tickdataprovider.tickdataprovider.md)
+`Promise`<[`number`, `boolean`]\>
 
-Defined in: [entities/tickListDataProvider.ts:22](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/tickListDataProvider.ts#L22)
+#### Implementation of
+
+[TickDataProvider](../interfaces/entities_tickDataProvider.TickDataProvider.md).[nextInitializedTickWithinOneWord](../interfaces/entities_tickDataProvider.TickDataProvider.md#nextinitializedtickwithinoneword)
+
+#### Defined in
+
+[entities/tickListDataProvider.ts:22](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/tickListDataProvider.ts#L22)

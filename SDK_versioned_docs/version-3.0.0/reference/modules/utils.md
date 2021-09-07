@@ -1,102 +1,120 @@
----
-id: utils
-title: utils
----
+[@uniswap/v3-sdk](../README.md) / [Exports](../modules.md) / utils
 
-# utils
+# Module: utils
+
+## Table of contents
+
+### References
+
+- [FullMath](utils.md#fullmath)
+- [LiquidityMath](utils.md#liquiditymath)
+- [MethodParameters](utils.md#methodparameters)
+- [SqrtPriceMath](utils.md#sqrtpricemath)
+- [TickList](utils.md#ticklist)
+- [TickMath](utils.md#tickmath)
+- [computePoolAddress](utils.md#computepooladdress)
+- [encodeRouteToPath](utils.md#encoderoutetopath)
+- [encodeSqrtRatioX96](utils.md#encodesqrtratiox96)
+- [isSorted](utils.md#issorted)
+- [maxLiquidityForAmounts](utils.md#maxliquidityforamounts)
+- [mostSignificantBit](utils.md#mostsignificantbit)
+- [nearestUsableTick](utils.md#nearestusabletick)
+- [priceToClosestTick](utils.md#pricetoclosesttick)
+- [tickToPrice](utils.md#ticktoprice)
+- [toHex](utils.md#tohex)
 
 ## References
 
 ### FullMath
 
-Re-exports: [FullMath](../classes/utils_fullmath.fullmath.md)
+Re-exports: [FullMath](../classes/utils_fullMath.FullMath.md)
 
 ___
 
 ### LiquidityMath
 
-Re-exports: [LiquidityMath](../classes/utils_liquiditymath.liquiditymath.md)
+Re-exports: [LiquidityMath](../classes/utils_liquidityMath.LiquidityMath.md)
 
 ___
 
 ### MethodParameters
 
-Re-exports: [MethodParameters](../interfaces/utils_calldata.methodparameters.md)
+Re-exports: [MethodParameters](../interfaces/utils_calldata.MethodParameters.md)
 
 ___
 
 ### SqrtPriceMath
 
-Re-exports: [SqrtPriceMath](../classes/utils_sqrtpricemath.sqrtpricemath.md)
+Re-exports: [SqrtPriceMath](../classes/utils_sqrtPriceMath.SqrtPriceMath.md)
 
 ___
 
 ### TickList
 
-Re-exports: [TickList](../classes/utils_ticklist.ticklist.md)
+Re-exports: [TickList](../classes/utils_tickList.TickList.md)
 
 ___
 
 ### TickMath
 
-Re-exports: [TickMath](../classes/utils_tickmath.tickmath.md)
+Re-exports: [TickMath](../classes/utils_tickMath.TickMath.md)
 
 ___
 
 ### computePoolAddress
 
-Re-exports: [computePoolAddress](../functions/utils_computepooladdress.computepooladdress.md)
+Re-exports: [computePoolAddress](utils_computePoolAddress.md#computepooladdress)
 
 ___
 
 ### encodeRouteToPath
 
-Re-exports: [encodeRouteToPath](../functions/utils_encoderoutetopath.encoderoutetopath.md)
+Re-exports: [encodeRouteToPath](utils_encodeRouteToPath.md#encoderoutetopath)
 
 ___
 
 ### encodeSqrtRatioX96
 
-Re-exports: [encodeSqrtRatioX96](../functions/utils_encodesqrtratiox96.encodesqrtratiox96.md)
+Re-exports: [encodeSqrtRatioX96](utils_encodeSqrtRatioX96.md#encodesqrtratiox96)
 
 ___
 
 ### isSorted
 
-Re-exports: [isSorted](../functions/utils_issorted.issorted.md)
+Re-exports: [isSorted](utils_isSorted.md#issorted)
 
 ___
 
 ### maxLiquidityForAmounts
 
-Re-exports: [maxLiquidityForAmounts](../functions/utils_maxliquidityforamounts.maxliquidityforamounts.md)
+Re-exports: [maxLiquidityForAmounts](utils_maxLiquidityForAmounts.md#maxliquidityforamounts)
 
 ___
 
 ### mostSignificantBit
 
-Re-exports: [mostSignificantBit](../functions/utils_mostsignificantbit.mostsignificantbit.md)
+Re-exports: [mostSignificantBit](utils_mostSignificantBit.md#mostsignificantbit)
 
 ___
 
 ### nearestUsableTick
 
-Re-exports: [nearestUsableTick](../functions/utils_nearestusabletick.nearestusabletick.md)
+Re-exports: [nearestUsableTick](utils_nearestUsableTick.md#nearestusabletick)
 
 ___
 
 ### priceToClosestTick
 
-Re-exports: [priceToClosestTick](../functions/utils_pricetickconversions.pricetoclosesttick.md)
+Re-exports: [priceToClosestTick](utils_priceTickConversions.md#pricetoclosesttick)
 
 ___
 
 ### tickToPrice
 
-Re-exports: [tickToPrice](../functions/utils_pricetickconversions.ticktoprice.md)
+Re-exports: [tickToPrice](utils_priceTickConversions.md#ticktoprice)
 
 ___
 
 ### toHex
 
-Re-exports: [toHex](../functions/utils_calldata.tohex.md)
+Re-exports: [toHex](utils_calldata.md#tohex)

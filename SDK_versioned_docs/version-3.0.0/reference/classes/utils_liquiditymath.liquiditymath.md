@@ -1,23 +1,48 @@
----
-id: LiquidityMath
-title: LiquidityMath
----
+[@uniswap/v3-sdk](../README.md) / [Exports](../modules.md) / [utils/liquidityMath](../modules/utils_liquidityMath.md) / LiquidityMath
 
-# LiquidityMath
+# Class: LiquidityMath
+
+[utils/liquidityMath](../modules/utils_liquidityMath.md).LiquidityMath
+
+## Table of contents
+
+### Constructors
+
+- [constructor](utils_liquidityMath.LiquidityMath.md#constructor)
+
+### Methods
+
+- [addDelta](utils_liquidityMath.LiquidityMath.md#adddelta)
+
+## Constructors
+
+### constructor
+
+• `Private` **new LiquidityMath**()
+
+Cannot be constructed.
+
+#### Defined in
+
+[utils/liquidityMath.ts:8](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/utils/liquidityMath.ts#L8)
 
 ## Methods
 
 ### addDelta
 
-▸ `Static` **addDelta**(`x`: *default*, `y`: *default*): *default*
+▸ `Static` **addDelta**(`x`, `y`): `default`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `x` | *default* |
-| `y` | *default* |
+| `x` | `default` |
+| `y` | `default` |
 
-**Returns:** *default*
+#### Returns
 
-Defined in: [utils/liquidityMath.ts:10](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/utils/liquidityMath.ts#L10)
+`default`
+
+#### Defined in
+
+[utils/liquidityMath.ts:10](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/utils/liquidityMath.ts#L10)

@@ -1,30 +1,52 @@
----
-id: NoTickDataProvider
-title: NoTickDataProvider
----
+[@uniswap/v3-sdk](../README.md) / [Exports](../modules.md) / [entities/tickDataProvider](../modules/entities_tickDataProvider.md) / NoTickDataProvider
 
-# NoTickDataProvider
+# Class: NoTickDataProvider
+
+[entities/tickDataProvider](../modules/entities_tickDataProvider.md).NoTickDataProvider
 
 This tick data provider does not know how to fetch any tick data. It throws whenever it is required. Useful if you
 do not need to load tick data for your use case.
 
 ## Implements
 
-- [*TickDataProvider*](../interfaces/entities_tickdataprovider.tickdataprovider.md)
+- [`TickDataProvider`](../interfaces/entities_tickDataProvider.TickDataProvider.md)
+
+## Table of contents
+
+### Constructors
+
+- [constructor](entities_tickDataProvider.NoTickDataProvider.md#constructor)
+
+### Properties
+
+- [ERROR\_MESSAGE](entities_tickDataProvider.NoTickDataProvider.md#error_message)
+
+### Methods
+
+- [getTick](entities_tickDataProvider.NoTickDataProvider.md#gettick)
+- [nextInitializedTickWithinOneWord](entities_tickDataProvider.NoTickDataProvider.md#nextinitializedtickwithinoneword)
 
 ## Constructors
 
 ### constructor
 
-\+ **new NoTickDataProvider**(): [*NoTickDataProvider*](entities_tickdataprovider.notickdataprovider.md)
+• **new NoTickDataProvider**()
 
-**Returns:** [*NoTickDataProvider*](entities_tickdataprovider.notickdataprovider.md)
+## Properties
+
+### ERROR\_MESSAGE
+
+▪ `Static` `Private` **ERROR\_MESSAGE**: `string` = `'No tick data provider was given'`
+
+#### Defined in
+
+[entities/tickDataProvider.ts:27](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/tickDataProvider.ts#L27)
 
 ## Methods
 
 ### getTick
 
-▸ **getTick**(`_tick`: *number*): *Promise*<{ `liquidityNet`: BigintIsh  }\>
+▸ **getTick**(`_tick`): `Promise`<`Object`\>
 
 Return information corresponding to a specific tick
 
@@ -32,19 +54,25 @@ Return information corresponding to a specific tick
 
 | Name | Type |
 | :------ | :------ |
-| `_tick` | *number* |
+| `_tick` | `number` |
 
-**Returns:** *Promise*<{ `liquidityNet`: BigintIsh  }\>
+#### Returns
 
-Implementation of: [TickDataProvider](../interfaces/entities_tickdataprovider.tickdataprovider.md)
+`Promise`<`Object`\>
 
-Defined in: [entities/tickDataProvider.ts:28](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/tickDataProvider.ts#L28)
+#### Implementation of
+
+[TickDataProvider](../interfaces/entities_tickDataProvider.TickDataProvider.md).[getTick](../interfaces/entities_tickDataProvider.TickDataProvider.md#gettick)
+
+#### Defined in
+
+[entities/tickDataProvider.ts:28](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/tickDataProvider.ts#L28)
 
 ___
 
 ### nextInitializedTickWithinOneWord
 
-▸ **nextInitializedTickWithinOneWord**(`_tick`: *number*, `_lte`: *boolean*, `_tickSpacing`: *number*): *Promise*<[*number*, *boolean*]\>
+▸ **nextInitializedTickWithinOneWord**(`_tick`, `_lte`, `_tickSpacing`): `Promise`<[`number`, `boolean`]\>
 
 Return the next tick that is initialized within a single word
 
@@ -52,12 +80,18 @@ Return the next tick that is initialized within a single word
 
 | Name | Type |
 | :------ | :------ |
-| `_tick` | *number* |
-| `_lte` | *boolean* |
-| `_tickSpacing` | *number* |
+| `_tick` | `number` |
+| `_lte` | `boolean` |
+| `_tickSpacing` | `number` |
 
-**Returns:** *Promise*<[*number*, *boolean*]\>
+#### Returns
 
-Implementation of: [TickDataProvider](../interfaces/entities_tickdataprovider.tickdataprovider.md)
+`Promise`<[`number`, `boolean`]\>
 
-Defined in: [entities/tickDataProvider.ts:32](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/tickDataProvider.ts#L32)
+#### Implementation of
+
+[TickDataProvider](../interfaces/entities_tickDataProvider.TickDataProvider.md).[nextInitializedTickWithinOneWord](../interfaces/entities_tickDataProvider.TickDataProvider.md#nextinitializedtickwithinoneword)
+
+#### Defined in
+
+[entities/tickDataProvider.ts:32](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/tickDataProvider.ts#L32)

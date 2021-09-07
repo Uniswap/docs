@@ -1,41 +1,58 @@
----
-id: StandardPermitArguments
-title: StandardPermitArguments
----
+[@uniswap/v3-sdk](../README.md) / [Exports](../modules.md) / [selfPermit](../modules/selfPermit.md) / StandardPermitArguments
 
-# StandardPermitArguments
+# Interface: StandardPermitArguments
+
+[selfPermit](../modules/selfPermit.md).StandardPermitArguments
+
+## Table of contents
+
+### Properties
+
+- [amount](selfPermit.StandardPermitArguments.md#amount)
+- [deadline](selfPermit.StandardPermitArguments.md#deadline)
+- [r](selfPermit.StandardPermitArguments.md#r)
+- [s](selfPermit.StandardPermitArguments.md#s)
+- [v](selfPermit.StandardPermitArguments.md#v)
 
 ## Properties
 
 ### amount
 
-• **amount**: BigintIsh
+• **amount**: `BigintIsh`
 
-Defined in: [selfPermit.ts:10](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/selfPermit.ts#L10)
+#### Defined in
+
+[selfPermit.ts:10](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/selfPermit.ts#L10)
 
 ___
 
 ### deadline
 
-• **deadline**: BigintIsh
+• **deadline**: `BigintIsh`
 
-Defined in: [selfPermit.ts:11](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/selfPermit.ts#L11)
+#### Defined in
+
+[selfPermit.ts:11](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/selfPermit.ts#L11)
 
 ___
 
 ### r
 
-• **r**: *string*
+• **r**: `string`
 
-Defined in: [selfPermit.ts:8](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/selfPermit.ts#L8)
+#### Defined in
+
+[selfPermit.ts:8](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/selfPermit.ts#L8)
 
 ___
 
 ### s
 
-• **s**: *string*
+• **s**: `string`
 
-Defined in: [selfPermit.ts:9](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/selfPermit.ts#L9)
+#### Defined in
+
+[selfPermit.ts:9](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/selfPermit.ts#L9)
 
 ___
 
@@ -43,4 +60,6 @@ ___
 
 • **v**: ``0`` \| ``1`` \| ``27`` \| ``28``
 
-Defined in: [selfPermit.ts:7](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/selfPermit.ts#L7)
+#### Defined in
+
+[selfPermit.ts:7](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/selfPermit.ts#L7)

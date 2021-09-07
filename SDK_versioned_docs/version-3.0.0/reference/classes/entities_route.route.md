@@ -1,118 +1,140 @@
----
-id: Route
-title: Route
----
+[@uniswap/v3-sdk](../README.md) / [Exports](../modules.md) / [entities/route](../modules/entities_route.md) / Route
 
-# Route
+# Class: Route<TInput, TOutput\>
+
+[entities/route](../modules/entities_route.md).Route
 
 Represents a list of pools through which a swap can occur
 
 ## Type parameters
 
-| Name | Type |
-| :------ | :------ |
-| `TInput` | Currency |
-| `TOutput` | Currency |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `TInput` | extends `Currency` | The input token |
+| `TOutput` | extends `Currency` | The output token |
+
+## Table of contents
+
+### Constructors
+
+- [constructor](entities_route.Route.md#constructor)
+
+### Properties
+
+- [\_midPrice](entities_route.Route.md#_midprice)
+- [input](entities_route.Route.md#input)
+- [output](entities_route.Route.md#output)
+- [pools](entities_route.Route.md#pools)
+- [tokenPath](entities_route.Route.md#tokenpath)
+
+### Accessors
+
+- [chainId](entities_route.Route.md#chainid)
+- [midPrice](entities_route.Route.md#midprice)
 
 ## Constructors
 
 ### constructor
 
-\+ **new Route**<TInput, TOutput\>(`pools`: [*Pool*](entities_pool.pool.md)[], `input`: TInput, `output`: TOutput): [*Route*](entities_route.route.md)<TInput, TOutput\>
+• **new Route**<`TInput`, `TOutput`\>(`pools`, `input`, `output`)
+
+Creates an instance of route.
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `TInput` | Currency |
-| `TOutput` | Currency |
+| `TInput` | extends `Currency` |
+| `TOutput` | extends `Currency` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `pools` | [*Pool*](entities_pool.pool.md)[] |
-| `input` | TInput |
-| `output` | TOutput |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `pools` | [`Pool`](entities_pool.Pool.md)[] | An array of `Pool` objects, ordered by the route the swap will take |
+| `input` | `TInput` | The input token |
+| `output` | `TOutput` | The output token |
 
-**Returns:** [*Route*](entities_route.route.md)<TInput, TOutput\>
+#### Defined in
 
-Defined in: [entities/route.ts:15](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/route.ts#L15)
+[entities/route.ts:25](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/route.ts#L25)
 
 ## Properties
 
+### \_midPrice
+
+• `Private` **\_midPrice**: ``null`` \| `Price`<`TInput`, `TOutput`\> = `null`
+
+#### Defined in
+
+[entities/route.ts:17](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/route.ts#L17)
+
+___
+
 ### input
 
-• `Readonly` **input**: TInput
+• `Readonly` **input**: `TInput`
 
-Defined in: [entities/route.ts:12](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/route.ts#L12)
+#### Defined in
+
+[entities/route.ts:14](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/route.ts#L14)
 
 ___
 
 ### output
 
-• `Readonly` **output**: TOutput
+• `Readonly` **output**: `TOutput`
 
-Defined in: [entities/route.ts:13](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/route.ts#L13)
+#### Defined in
+
+[entities/route.ts:15](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/route.ts#L15)
 
 ___
 
 ### pools
 
-• `Readonly` **pools**: [*Pool*](entities_pool.pool.md)[]
+• `Readonly` **pools**: [`Pool`](entities_pool.Pool.md)[]
 
-Defined in: [entities/route.ts:10](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/route.ts#L10)
+#### Defined in
+
+[entities/route.ts:12](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/route.ts#L12)
 
 ___
 
 ### tokenPath
 
-• `Readonly` **tokenPath**: *Token*[]
+• `Readonly` **tokenPath**: `Token`[]
 
-Defined in: [entities/route.ts:11](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/route.ts#L11)
+#### Defined in
+
+[entities/route.ts:13](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/route.ts#L13)
 
 ## Accessors
 
 ### chainId
 
-• get **chainId**(): *number*
+• `get` **chainId**(): `number`
 
-**Returns:** *number*
+#### Returns
 
-Defined in: [entities/route.ts:46](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/route.ts#L46)
+`number`
 
-___
+#### Defined in
 
-### inputToken
-
-• get **inputToken**(): *Token*
-
-Returns the token representation of the input currency. If the input currency is Ether, returns the wrapped ether token.
-
-**Returns:** *Token*
-
-Defined in: [entities/route.ts:53](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/route.ts#L53)
+[entities/route.ts:54](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/route.ts#L54)
 
 ___
 
 ### midPrice
 
-• get **midPrice**(): *Price*<TInput, TOutput\>
+• `get` **midPrice**(): `Price`<`TInput`, `TOutput`\>
 
 Returns the mid price of the route
 
-**Returns:** *Price*<TInput, TOutput\>
+#### Returns
 
-Defined in: [entities/route.ts:67](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/route.ts#L67)
+`Price`<`TInput`, `TOutput`\>
 
-___
+#### Defined in
 
-### outputToken
-
-• get **outputToken**(): *Token*
-
-Returns the token representation of the output currency. If the output currency is Ether, returns the wrapped ether token.
-
-**Returns:** *Token*
-
-Defined in: [entities/route.ts:60](https://github.com/Uniswap/uniswap-v3-sdk/blob/aeb1b09/src/entities/route.ts#L60)
+[entities/route.ts:61](https://github.com/Uniswap/uniswap-v3-sdk/blob/63d5c6d/src/entities/route.ts#L61)
