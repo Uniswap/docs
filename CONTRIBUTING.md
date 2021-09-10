@@ -54,7 +54,7 @@ The following procedure accomplishes these tasks. Then, after the changes are in
 
 3. [Sync your fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork#syncing-a-fork-from-the-command-line) with `upstream`.
 4. Create and checkout a new branch:<br>
-   `git checkout -b "my-new-branch"``
+   `git checkout -b "my-new-branch"`
 
 5. Add or edit source files locally in the uniswap-docs directory:
    * [Add or edit Markdown files](#add-or-edit-markdown-files)
