@@ -28,7 +28,7 @@ If you want to run builds locally, do the following:
 
 Other useful commands:
 
-`yarn docusaurus clear` (clears the cache)
+`yarn docusaurus clear` (clears the cache)<br>
 `yarn build`
 
 ### Deployment
