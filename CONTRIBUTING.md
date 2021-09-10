@@ -50,9 +50,8 @@ The following procedure accomplishes these tasks. Then, after the changes are in
 
 **Note:** There are a few workflow options. If you're unsure about any commands or want to use a different workflow, feel free. For help, checkout the [GitHub Docs](https://docs.github.com/en) and this [git cheatsheet](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet).
 
-1. On your local machine, make sure you're in the uniswap-docs directory.
- 
-        cd uniswap-docs
+1. On your local machine, make sure you're in the uniswap-docs directory.<br>
+   `cd uniswap-docs`
 
 2. Specify the Uniswap/uniswap-docs repo as the `upstream` remote repository for your local repo (the files that are now locally on your computer).
 
