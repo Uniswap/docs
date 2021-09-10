@@ -41,7 +41,7 @@ In an ideal world, these quoter functions would be `view` functions, which would
 
 To get around this difficulty, we can use the [callStatic](https://docs.ethers.io/v5/api/contract/contract/#contract-callStatic) method provided by `ethers.js`. `callStatic` is a useful method that submits a state-changing transaction to an Ethereum node, but asks the node to simulate the state change, rather than to execute it. Our script can then return the result of the simulated state change.
 
-To simulate a transaction without actually broadcasting it to the EVM, use the [callStatic] to call the `ExactInputSingle` function in the `Quoter` contract, which will tell us how much an of output token we will receive given a certain amount of input token when using a single hop trade.
+To simulate a transaction without actually broadcasting it to the EVM, use the `callStatic` to call the `ExactInputSingle` function in the `Quoter` contract, which will tell us how much an of output token we will receive given a certain amount of input token when using a single hop swap.
 
 Note this function uses the `Immutables` interface defined in the earlier guides.
 
@@ -67,16 +67,13 @@ Create a [Route](https://github.com/Uniswap/uniswap-v3-sdk/blob/7c3aedd0cf9441d0
 const swapRoute = new Route([poolExample], TokenA, TokenB);
 ```
 
-Create an [Unchecked Trade](https://github.com/Uniswap/uniswap-v3-sdk/blob/7c3aedd0cf9441d03607e258734eada44a73863d/src/entities/trade.ts#L346), a type of trade that is useful when we have retrieved a quote in the above way.
+Create an [Unchecked Trade](https://github.com/Uniswap/uniswap-v3-sdk/blob/7c3aedd0cf9441d03607e258734eada44a73863d/src/entities/trade.ts#L346), a type of trade that is useful when we have retrieved a quote prior to the construction of the trade object.
 
 ```ts
 const uncheckedTradeExample = await Trade.createUncheckedTrade({
   route: swapRoute,
   inputAmount: CurrencyAmount.fromRawAmount(TokenA, amountIn.toString()),
-  outputAmount: CurrencyAmount.fromRawAmount(
-    TokenB,
-    quotedAmountOut.toString()
-  ),
+  outputAmount: CurrencyAmount.fromRawAmount(TokenB, quotedAmountOut.toString()),
   tradeType: TradeType.EXACT_INPUT,
 });
 ```
@@ -117,8 +114,6 @@ import { Route } from "@uniswap/v3-sdk";
 import { Trade } from "@uniswap/v3-sdk";
 import { abi as QuoterABI } from "@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json";
 
-// run with npx ts-node hello.ts
-
 const provider = new ethers.providers.JsonRpcProvider("<YOUR-ENDPOINT-HERE>");
 
 const poolAddress = "0xee815cdc6322031952a095c6cc6fed036cb1f70d";
@@ -131,7 +126,11 @@ const poolContract = new ethers.Contract(
 
 const quoterAddress = "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6";
 
-const quoterContract = new ethers.Contract(quoterAddress, QuoterABI, provider);
+const quoterContract = new ethers.Contract(
+  quoterAddress, 
+  QuoterABI, 
+  provider
+);
 
 interface Immutables {
   factory: string;
@@ -197,7 +196,7 @@ async function getPoolState() {
 }
 
 async function main() {
-  // query the state of the pool
+  // query the state and immutable variables of the pool
   const [immutables, state] = await Promise.all([
     getPoolImmutables(),
     getPoolState(),
@@ -218,7 +217,7 @@ async function main() {
     state.tick
   );
 
-  // assign an input amount to determine the potential output amount for a swap
+  // assign an input amount for the swap
   const amountIn = 1500;
 
   // call the quoter contract to determine the amount out of a swap, given an amount in
@@ -237,10 +236,7 @@ async function main() {
   const uncheckedTradeExample = await Trade.createUncheckedTrade({
     route: swapRoute,
     inputAmount: CurrencyAmount.fromRawAmount(TokenA, amountIn.toString()),
-    outputAmount: CurrencyAmount.fromRawAmount(
-      TokenB,
-      quotedAmountOut.toString()
-    ),
+    outputAmount: CurrencyAmount.fromRawAmount(TokenB, quotedAmountOut.toString()),
     tradeType: TradeType.EXACT_INPUT,
   });
 
