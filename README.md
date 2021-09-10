@@ -1,78 +1,47 @@
-# Website
+# [Uniswap Docs](https://docs.uniswap.org/)
 
-This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+This repository contains the source code for the Uniswap Docs website at [https://docs.uniswap.org/](https://docs.uniswap.org/). The website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
-# Contributing to Uniswap Docs
-Contributing to the docs site is a great way to get involved in the dev community and help other devs along the way! Check out our guidelines [here](https://github.com/Uniswap/uniswap-docs/blob/main/CONTRIBUTING.md).
+## Contribute
 
-# How to generate markdown files from solidity Natspec comments
+See [CONTRIBUTING.md](https://github.com/Uniswap/uniswap-docs/blob/main/CONTRIBUTING.md).
 
-Install solidity doc gen
-`npm install solidity-docgen`
+## Build the site
 
-Get the correct compiler version
-`npm install -D solc-0.7@npm:solc@0.7.6`
+You can build the Uniswap Docs site on your local machine.
 
-Put the updated template `contract.hbs` in a /templates folder under the same directory as /contracts that you want to generate
+### Prerequisites
 
-Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
+Install the Node.js and Yarn [versions required by Docusaurus](https://docusaurus.io/docs/installation#requirements).
 
-# How to gernerate markdown files from typescript commments
+### Set up the project
 
-`npm install --save-dev typedoc typedoc-plugin-markdown`
+If you want to run builds locally, do the following:
 
-`typedoc --out <docs> src/index.ts`
+1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) the uniswap-docs repo.
+2. Clone your fork. For example:
+`git clone https://github.com/YOUR_USERNAME/uniswap-docs.git`
+3. Install your local version of docs.uniswap.org:
+`cd uniswap-docs`
+`yarn install`
+`yarn run start`
 
-see https://www.npmjs.com/package/typedoc-plugin-markdown for details
+Other useful commands:
 
-# How to Update search indices with algolia
+`yarn docusaurus clear` (clears the cache)
+`yarn build`
 
-create .env file with `APPLICATION_ID` and the `API_KEY` (write access)
-Edit config.json file with
+### Deployment
 
-- start url from updated website
-- sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
-- "v3-docs" index name
-- install jq : `brew install jq`
-  run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
-
-# How to add a new page
-
-Create a markdown file in its respective versioned docs, or versioned SDK, directory.
-
-
-## Installation
-
-```console
-yarn install
-```
-
-## Local Development
-
-```console
-yarn run start
-```
-
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
-
-## Clear cache
-
-```console
-yarn docusaurus clear
-```
-
-## Build
-
-```console
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-```console
+```sh
 GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+### Generate Markdown files from code comments
+
+For help with generating docs from code comments (for example, from NatSpec comments in Solidity files), see [Add or edit code comments and generate markdown files](https://docs.github.com/Uniswap/uniswap-docs/blob/main/CONTRIBUTING.md#add-or-edit-code-comments-and-generate-markdown).
+
+
+
