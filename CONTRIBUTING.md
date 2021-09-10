@@ -55,18 +55,25 @@ The following procedure accomplishes these tasks. Then, after the changes are in
         cd uniswap-docs
 
 2. Specify the Uniswap/uniswap-docs repo as the `upstream` remote repository for your local repo (the files that are now locally on your computer).
-`git remote add upstream https://github.com/Uniswap/uniswap-docs.git` 
+
+        git remote add upstream https://github.com/Uniswap/uniswap-docs.git 
+
 3. [Sync your fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork#syncing-a-fork-from-the-command-line) with `upstream`.
 4. Create and checkout a new branch:
-`git checkout -b "my-new-branch"`
+
+       git checkout -b "my-new-branch"
+
 5. Add or edit source files locally in the uniswap-docs directory:
-* [Add or edit Markdown files](#add-or-edit-markdown-files)
-* [Add or edit code comments and generate Markdown](#add-or-edit-code-comments-and-generate-Markdown)
+   * [Add or edit Markdown files](#add-or-edit-markdown-files)
+   * [Add or edit code comments and generate Markdown](#add-or-edit-code-comments-and-generate-Markdown)
 6. Use `git add` to stage your changes.
 7. Commit the changes and include a message with your commit:
-`git commit -m "Fixed abc."`
+
+        git commit -m "Fixed abc."
+
 8. Push the current branch to your fork and set the remote as upstream:
-`git push --set-upstream origin my-new-branch`
+
+        git push --set-upstream origin my-new-branch
 
 You can use steps 3-8 above any time you want to add or edit doc content, just remember:
 
@@ -83,19 +90,27 @@ Create a **.md** file in its respective versioned docs, or versioned SDK, direct
 #### How to generate Markdown files from Solidity Natspec comments
 
 1. Install Solidity doc gen:
-`npm install solidity-docgen`
+
+        npm install solidity-docgen
+
 2. Get the correct compiler version:
-`npm install -D solc-0.7@npm:solc@0.7.6`
-3. Put the updated template **contract.hbs** in a **/templates** folder under the same directory as **/contracts** that you want to generate:
+
+        npm install -D solc-0.7@npm:solc@0.7.6
+
+3. Put the updated template **contract.hbs** in a **/templates** folder under the same directory as **/contracts** that you want to generate.
 4. Run:
-`npx solidity-docgen --solc-module solc-0.7 -t ./templates`
+
+        npx solidity-docgen --solc-module solc-0.7 -t ./templates
 
 #### How to generate Markdown files from TypeScript comments
 
 1. Install TypeDoc:
-`npm install --save-dev typedoc typedoc-plugin-markdown`
+
+        npm install --save-dev typedoc typedoc-plugin-markdown
+
 2. Run:
-`typedoc --out <docs> src/index.ts`
+
+        typedoc --out <docs> src/index.ts
 
 For more info, see [the plugin doc](https://www.npmjs.com/package/typedoc-plugin-markdown).
 
@@ -103,11 +118,12 @@ For more info, see [the plugin doc](https://www.npmjs.com/package/typedoc-plugin
 
 1. Create an **.env** file with `APPLICATION_ID` and the `API_KEY` (write access).
 2. Edit **config.json** with:
-* start url from updated website
-* sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
-* *"v3-docs" index name
+   * start url from updated website
+   * sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
+   * *"v3-docs" index name
 3. Install jq:
-`brew install jq run docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
+
+        brew install jq run docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper
 
 ## Create a Pull Request
 
