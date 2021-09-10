@@ -12,7 +12,7 @@ Thanks for giving a little extra love to our docs site! :smile:
   * [Add or edit code comments and generate Markdown](#add-or-edit-code-comments-and-generate-Markdown)
     * [How to generate Markdown files from Solidity Natspec comments](#how-to-generate-markdown-files-from-solidity-natspec-comments)
     * [How to generate Markdown files from TypeScript comments](#how-to-generate-markdown-files-from-typescript-comments)
-    * [How to Update search indices with Algolia](#how-to-update-search-indices-with-angolia)
+    * [How to update search indices with Algolia](#how-to-update-search-indices-with-algolia)
 * [Create a pull request](#create-a-pull-request)
 
 ## Who can contribute?
@@ -105,7 +105,7 @@ Create a **.md** file in its respective versioned docs, or versioned SDK, direct
 
 For more info, see [the plugin doc](https://www.npmjs.com/package/typedoc-plugin-markdown).
 
-#### How to Update search indices with Algolia
+#### How to update search indices with Algolia
 
 1. Create an **.env** file with `APPLICATION_ID` and the `API_KEY` (write access).
 2. Edit **config.json** with:
