@@ -4,15 +4,11 @@ Thanks for giving a little extra love to our docs site! :smile:
 
 #### Table of Contents
 
-[Who can contribute?](#who-can-contribute)
-
-[Find a task](#find-a-task)
-
-[Set up the docs project](#set-up-the-docs-project)
-
-[Fix or improve content](#fix-or-improve-content)
-
-[Create a pull request](#create-a-pull-request)
+* [Who can contribute?](#who-can-contribute)
+* [Find a task](#find-a-task)
+* [Set up the docs project](#set-up-the-docs-project)
+* [Fix or improve content](#fix-or-improve-content)
+* [Create a pull request](#create-a-pull-request)
 
 ## Who can contribute?
 
