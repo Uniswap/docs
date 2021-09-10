@@ -42,7 +42,7 @@ To set up the project locally, see [Build the site](https://docs.github.com/Unis
 
 Ready to work with some doc content?
 
-###Get your flow, yo
+### Get your flow, yo
 
 Assuming you set up the project correctly, you can now:
 
