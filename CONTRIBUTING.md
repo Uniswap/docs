@@ -8,6 +8,7 @@ Thanks for giving a little extra love to our docs site! :smile:
 * [Find a task](#find-a-task)
 * [Set up the docs project](#set-up-the-docs-project)
 * [Fix or improve content](#fix-or-improve-content)
+  ** [Add or edit Markdown](#add-or-edit-markdown)
 * [Create a pull request](#create-a-pull-request)
 
 ## Who can contribute?
