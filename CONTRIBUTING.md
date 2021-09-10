@@ -10,8 +10,8 @@ Thanks for giving a little extra love to our docs site! :smile:
 * [Fix or improve content](#fix-or-improve-content)
   * [Add or edit Markdown](#add-or-edit-markdown)
   * [Add or edit code comments and generate Markdown](#add-or-edit-code-comments-and-generate-Markdown)
-    * [How to generate Markdown files from Solidity Natspec comments](#how-to-generate-markdown-files-from-solidity-natspec)
-    * [How to generate Markdown files from TypeScript comments](#how-to-generate-markdown-files-from-typescript)
+    * [How to generate Markdown files from Solidity Natspec comments](#how-to-generate-markdown-files-from-solidity-natspec-comments)
+    * [How to generate Markdown files from TypeScript comments](#how-to-generate-markdown-files-from-typescript-comments)
     * [How to Update search indices with Algolia](#how-to-update-search-indices-with-angolia)
 * [Create a pull request](#create-a-pull-request)
 
