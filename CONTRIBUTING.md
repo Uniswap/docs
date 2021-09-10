@@ -61,7 +61,7 @@ The following procedure accomplishes these tasks. Then, after the changes are in
    * [Add or edit code comments and generate Markdown](#add-or-edit-code-comments-and-generate-Markdown)
 6. Use `git add` to stage your changes.
 7. Commit the changes and include a message with your commit:<br>
-   `git commit -m "Fixed abc."``
+   `git commit -m "Fixed abc."`
 
 8. Push the current branch to your fork and set the remote as upstream:<br>
    `git push --set-upstream origin my-new-branch`
