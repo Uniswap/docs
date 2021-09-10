@@ -5,9 +5,13 @@ Thanks for giving a little extra love to our docs site! :smile:
 #### Table of Contents
 
 [Who can contribute?](#who-can-contribute)
+
 [Find a task](#find-a-task)
+
 [Set up the docs project](#set-up-the-docs-project)
+
 [Fix or improve content](#fix-or-improve-content)
+
 [Create a pull request](#create-a-pull-request)
 
 ## Find a task
@@ -37,6 +41,8 @@ Assuming you set up the project correctly, you can now:
 * Push your changes to your forked repository
 
 The following procedure accomplishes these tasks. Then, after the changes are in your forked repository, you can [create a pull request](#create-a-pull-request).
+
+
 
 **Note:** There are a few workflow options. If you're unsure about any commands or want to use a different workflow, feel free. For help, checkout the [GitHub Docs](https://docs.github.com/en) and this [git cheatsheet](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet).
 
