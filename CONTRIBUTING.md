@@ -51,7 +51,7 @@ The following procedure accomplishes these tasks. Then, after the changes are in
 **Note:** There are a few workflow options. If you're unsure about any commands or want to use a different workflow, feel free. For help, checkout the [GitHub Docs](https://docs.github.com/en) and this [git cheatsheet](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet).
 
 1. On your local machine, make sure you're in the uniswap-docs directory.
-  `cd uniswap-docs`
+   `cd uniswap-docs`
 2. Specify the Uniswap/uniswap-docs repo as the `upstream` remote repository for your local repo (the files that are now locally on your computer).
 `git remote add upstream https://github.com/Uniswap/uniswap-docs.git` 
 3. [Sync your fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork#syncing-a-fork-from-the-command-line) with `upstream`.
