@@ -1,8 +1,103 @@
-# Contribution Guidelines
+# Contribute to Uniswap Docs
 
-testThanks for giving a little extra love to our docs site! Below are some basic guidelines to follow to get your PR merged :)
+Thanks for giving a little extra love to our docs site! :smile:
 
-## Creating a Pull Request
+#### Table of Contents
+
+[Who can contribute?](#who-can-contribute)
+[Find a task](#find-a-task)
+[Set up the docs project](#set-up-the-docs-project)
+[Fix or improve content](#fix-or-improve-content)
+[Create a pull request](#create-a-pull-request)
+
+## Find a task
+
+Below are a few of ways anyone can start contributing:
+
+* Flag confusing copy, explanations, or workflows. An easy and effective way to contribute to docs is to flag pages, sections, and guides in the docs that you find confusing or misleading. You can submit a pull request to make changes to better explain the concepts you find confusing.
+* Update the written style of any of our docs guides to comply with [this style guide](https://developers.google.com/style/). Some easy changes are using [first person](https://developers.google.com/style/person) and an [active voice](https://developers.google.com/style/voice).
+* Create a guide! Some ideas for guides are:
+    * How to set up a local test environment. This can be specific to your testing suite! It would be great to get a collecting of different testing setups on the site.
+    * How to fetch on-chain data for liquidity volume, current prices, number of swaps, sizes of swaps, etc.
+    * A "Hello World" guide for solidity and Uniswap development.
+    * How to set up your first contract and deploy it on a testnet.
+
+## Set up the docs project
+
+You can add all of the source files to your local machine. Then you can build and run the docs site locally at any time. This can be helpful for viewing changes as you fix or improve content.
+
+To set up the project locally, see [Build the site](https://docs.github.com/Uniswap/uniswap-docs/blob/main/README.md#build-the-site).
+
+## Fix or improve content
+
+Assuming you set up the project correctly, you can now:
+
+* Complete your Git configuration
+* Add or edit files
+* Push your changes to your forked repository
+
+The following procedure accomplishes these tasks. Then, after the changes are in your forked repository, you can [create a pull request](#create-a-pull-request).
+
+**Note:** There are a few workflow options. If you're unsure about any commands or want to use a different workflow, feel free. For help, checkout the [GitHub Docs](https://docs.github.com/en) and this [git cheatsheet](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet).
+
+1. On your local machine, make sure you're in the uniswap-docs directory.
+`cd uniswap-docs`
+2.Specify the Uniswap/uniswap-docs repo as the `upstream` remote repository for your local repo (the files that are now locally on your computer).
+`git remote add upstream https://github.com/Uniswap/uniswap-docs.git` 
+3. [Sync your fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork#syncing-a-fork-from-the-command-line) with `upstream`.
+4. Create and checkout a new branch:
+`git checkout -b "my-new-branch"`
+5. Add or edit source files locally in the uniswap-docs directory:
+* [Add or edit Markdown files](#add-or-edit-markdown-files)
+* [Add or edit code comments and generate Markdown](#add-or-edit-code-comments-and-generate-Markdown)
+6. Use `git add` to stage your changes.
+7. Commit the changes and include a message with your commit:
+`git commit -m "Fixed abc."`
+8. Push the current branch to your fork and set the remote as upstream:
+`git push --set-upstream origin my-new-branch`
+
+You can use steps 3-8 above any time you want to add or edit doc content, just remember:
+
+* `upstream` is Uniswap/uniswap-docs
+* `origin` is your fork of Uniswap/uniswap-docs
+* the `uniswap-docs` directory on your local machine is where you create branches and work with files that you later push to `origin`
+
+### Add or edit Markdown files
+
+Create a **.md** file in its respective versioned docs, or versioned SDK, directory.
+
+### Add or edit code comments and generate Markdown
+
+#### How to generate Markdown files from Solidity Natspec comments
+
+1. Install Solidity doc gen:
+`npm install solidity-docgen`
+2. Get the correct compiler version:
+`npm install -D solc-0.7@npm:solc@0.7.6`
+3. Put the updated template **contract.hbs** in a **/templates** folder under the same directory as **/contracts** that you want to generate:
+4. Run:
+`npx solidity-docgen --solc-module solc-0.7 -t ./templates`
+
+#### How to generate Markdown files from TypeScript comments
+
+1. Install TypeDoc:
+`npm install --save-dev typedoc typedoc-plugin-markdown`
+2. Run:
+`typedoc --out <docs> src/index.ts`
+
+For more info, see [the plugin doc](https://www.npmjs.com/package/typedoc-plugin-markdown).
+
+#### How to Update search indices with Algolia
+
+1. Create an **.env** file with `APPLICATION_ID` and the `API_KEY` (write access).
+2. Edit **config.json** with:
+* start url from updated website
+* sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
+* *"v3-docs" index name
+3. Install jq:
+`brew install jq run docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
+
+## Create a Pull Request
 
 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the repository.
 2. On your copy of the repo, create a new branch. Be sure that your branch contains the most recent changes from the main branch.
@@ -11,29 +106,5 @@ testThanks for giving a little extra love to our docs site! Below are some basic
 5. Title the pull request to describe your contribution, and include a short summary of the changes. If an open issue is associated with your changes, tag the issue by referencing the issue number ( i.e., #123) in the pull request summary.
 6. If there is a relevant tag like "typo", "bug", or "enhancement", include the tag in the PR.
 
-## A standard flow to set up a fork
 
-Set up your fork with the following terminal commands, or an alteration of them to suit your enviornment:
 
-```
-cd uniswap-docs
-git remote add upstream https://github.com/Uniswap/uniswap-docs.git
-git fetch upstream
-git pull --rebase upstream main
-git checkout -b "my-contribution"
-```
-
-## Contribution Requests
-
-Below are a couple of ways anyone can start contributing:
-
-1. Flagging confusing copy, explanations, or workflows.
-   An easy and effective way to contribute to docs is to flag pages, sections, and guides in the docs that you find confusing or misleading. You can submit a pull request to make changes to better explain the concepts you find confusing.
-
-2. Updating the written style of any of our docs guides to comply with [this style guide](https://developers.google.com/style/). Some easy changes are using [first person](https://developers.google.com/style/person) and an [active voice](https://developers.google.com/style/voice).
-
-3. Create a guide! Some ideas for guides are:
-   - How to set up a local test environment. This can be specific to your testing suite! It would be great to get a collecting of different testing setups on the site.
-   - How to fetch on-chain data for liquidity volume, current prices, number of swaps, sizes of swaps, etc.
-   - A "Hello World" guide for solidity and Uniswap development.
-   - How to set up your first contract and deploy it on a testnet.

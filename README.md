@@ -38,10 +38,3 @@ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
-
-### Generate Markdown files from code comments
-
-For help with generating docs from code comments (for example, from NatSpec comments in Solidity files), see [Add or edit code comments and generate markdown files](https://docs.github.com/Uniswap/uniswap-docs/blob/main/CONTRIBUTING.md#add-or-edit-code-comments-and-generate-markdown).
-
-
-
