@@ -31,10 +31,20 @@ Other useful commands:
 `yarn docusaurus clear` (clears the cache)<br>
 `yarn build`
 
-### Deployment
+### Deploy
 
 ```sh
 GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+### Update search indices with Algolia
+
+1. Create an **.env** file with `APPLICATION_ID` and the `API_KEY` (write access).
+2. Edit **config.json** with:
+   * start url from updated website
+   * sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
+   * *"v3-docs" index name
+3. Install jq:<br>
+   `brew install jq run docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`

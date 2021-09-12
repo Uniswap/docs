@@ -8,7 +8,7 @@ Thanks for giving a little extra love to our docs site! :smile:
 * [Find a task](#find-a-task)
 * [Set up the docs project](#set-up-the-docs-project)
 * [Fix or improve content](#fix-or-improve-content)
-  * [Get your flow, yo](#get-your-flow-yo)
+  * [Use a forking workflow](#use-a-forking-workflow)
   * [Add or edit Markdown](#add-or-edit-markdown)
   * [Add or edit code comments and generate Markdown](#add-or-edit-code-comments-and-generate-Markdown)
     * [How to generate Markdown files from Solidity Natspec comments](#how-to-generate-markdown-files-from-solidity-natspec-comments)
@@ -27,7 +27,7 @@ Below are a few of ways anyone can start contributing:
 * Flag confusing copy, explanations, or workflows. An easy and effective way to contribute to docs is to flag pages, sections, and guides in the docs that you find confusing or misleading. You can submit a pull request to make changes to better explain the concepts you find confusing.
 * Update the written style of any of our docs guides to comply with [this style guide](https://developers.google.com/style/). Some easy changes are using [first person](https://developers.google.com/style/person) and an [active voice](https://developers.google.com/style/voice).
 * Create a guide! Some ideas for guides are:
-    * How to set up a local test environment. This can be specific to your testing suite! It would be great to get a collecting of different testing setups on the site.
+    * How to set up a local test environment. This can be specific to your testing suite! It would be great to get a collection of different testing setups on the site.
     * How to fetch on-chain data for liquidity volume, current prices, number of swaps, sizes of swaps, etc.
     * A "Hello World" guide for solidity and Uniswap development.
     * How to set up your first contract and deploy it on a testnet.
@@ -35,14 +35,13 @@ Below are a few of ways anyone can start contributing:
 ## Set up the docs project
 
 You can add all of the source files to your local machine. Then you can build and run the docs site locally at any time. This can be helpful for viewing changes as you fix or improve content.
-
 To set up the project locally, see [Build the site](https://docs.github.com/Uniswap/uniswap-docs/blob/main/README.md#build-the-site).
 
 ## Fix or improve content
 
 Ready to work with some doc content?
 
-### Get your flow, yo
+### Use a forking workflow
 
 Assuming you set up the project correctly, you can now:
 
@@ -60,7 +59,10 @@ The following procedure accomplishes these tasks. Then, after the changes are in
 2. Specify the Uniswap/uniswap-docs repo as the `upstream` remote repository for your local repo (the files that are now locally on your computer).<br>
    `git remote add upstream https://github.com/Uniswap/uniswap-docs.git`
 
-3. [Sync your fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork#syncing-a-fork-from-the-command-line) with `upstream`.
+3. Sync your fork with `upstream`.<br>
+   `git fetch upstream`
+   `git pull --rebase upstream main`
+
 4. Create and checkout a new branch:<br>
    `git checkout -b "my-new-branch"`
 
@@ -98,25 +100,19 @@ Create a **.md** file in its respective versioned docs, or versioned SDK, direct
 4. Run:<br>
    `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
 
+5. Move gererated output from the **/docs** directory to the uniswap-docs repository.
+
 #### How to generate Markdown files from TypeScript comments
 
 1. Install TypeDoc:<br>
    `npm install --save-dev typedoc typedoc-plugin-markdown`
 
-2. Run:<br>
+2. `cd` to the any source directory (for example: uniswap-v3-periphery/contracts/) and run the following command:<br>
    `typedoc --out <docs> src/index.ts`
+   
+3. Move the generated output from the **/docs** directory to the appropriate directory in the uniswap-docs repository (for example: uniswap-docs/versioned_docs/version-V3/reference/periphery/).
 
 For more info, see [the plugin doc](https://www.npmjs.com/package/typedoc-plugin-markdown).
-
-#### How to update search indices with Algolia
-
-1. Create an **.env** file with `APPLICATION_ID` and the `API_KEY` (write access).
-2. Edit **config.json** with:
-   * start url from updated website
-   * sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
-   * *"v3-docs" index name
-3. Install jq:<br>
-   `brew install jq run docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
 
 ## Create a Pull Request
 
@@ -126,6 +122,4 @@ For more info, see [the plugin doc](https://www.npmjs.com/package/typedoc-plugin
 4. Go to the main docs repo in your browser and open a new pull request.
 5. Title the pull request to describe your contribution, and include a short summary of the changes. If an open issue is associated with your changes, tag the issue by referencing the issue number ( i.e., #123) in the pull request summary.
 6. If there is a relevant tag like "typo", "bug", or "enhancement", include the tag in the PR.
-
-
 
