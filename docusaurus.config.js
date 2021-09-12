@@ -34,12 +34,6 @@ module.exports = {
           className: "persistent",
         },
         {
-          to: "/protocol/reference/smart-contracts",
-          label: "Contracts",
-          position: "left",
-          className: "V3_active",
-        },
-        {
           to: "/sdk/introduction",
           label: "SDK",
           position: "left",
@@ -58,12 +52,6 @@ module.exports = {
           className: "V3_active",
         },
         {
-          to: "/protocol/V2/guides/smart-contract-integration/quick-start",
-          label: "Contracts",
-          position: "left",
-          className: "V2_active",
-        },
-        {
           to: "/sdk/2.0.0/introduction",
           label: "SDK",
           position: "left",
@@ -80,12 +68,6 @@ module.exports = {
           label: "Governance",
           position: "left",
           className: "V2_active",
-        },
-        {
-          to: "/protocol/V1/guides/connect-to-uniswap",
-          label: "Contracts",
-          position: "left",
-          className: "V1_active",
         },
         {
           to: "/sdk/1.0.0/introduction",
