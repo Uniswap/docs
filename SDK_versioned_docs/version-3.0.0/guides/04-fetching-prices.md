@@ -31,30 +31,27 @@ After constructing the pool, you can save the token prices as constants:
 
 What is `sqrtPriceX96`?
 
-In Uniswap V3, prices of tokens are stored (rather than derived) to allow pools to perform higher precision operations. In the actual implementation, prices are stored as square roots, hence the variable name `sqrtPriceX96`. The price is stored as a square root because of the geometric nature of the core AMM algorithm, x*y=k. Essentially, the math works out well when working with the square root of the price. 
+In Uniswap V3, prices of tokens are stored (rather than derived) to allow pools to perform higher precision operations. In the actual implementation, prices are stored as square roots, hence the `sqrt` prefix. The price is stored as a square root because of the geometric nature of the core AMM algorithm, x*y=k. Essentially, the math works out well when working with the square root of the price. 
 
 In addition, you'll notice the `X96` suffix at the end of the variable name. This `X*` naming convention is used throughout the Uniswap V3 codebase to indicate values which are encoded as binary [fixed-point numbers](https://en.wikipedia.org/wiki/Fixed-point_arithmetic). Fixed-point is excellent at representing fractions while maintaining consistent fidelity and high precision in integer-only environments like the EVM, making it a perfect fit for representing prices, which of course are ultimately fractions. The number after `X` indicates the number of _fraction bits_ - 96 in this case - reserved for encoding the value after the decimal point. The number of integer bits can be trivially derived from the size of the variable and the number of fraction bits. In this case, `sqrtPriceX96` is stored as a `uint160`, meaning that there are `160 - 96 = 64` integer bits.
 
-An example of calculating a  `sqrtPriceX96` is :
+Consider the following derivation, which formalizes the definitions above:
 
 ```python
-price = 100
 sqrtPriceX96 = sqrt(price) * 2 ** 96
 ```
 
-Thus, to get the price from the sqrtPriceX96 variable, you can execute the following operations to arrive at a final expression:
+Thus, to get a `price` from a `sqrtPriceX96` value, you can execute the following operations:
 
 ```python
 sqrtPriceX96 = sqrt(price) * 2 ** 96
-# divide both sides
+# divide both sides by 2 ** 96
 sqrtPriceX96 / (2 ** 96) = sqrt(price)
 # square both sides
 (sqrtPriceX96 / (2 ** 96)) ** 2 = price
-# multiply out the square
-(sqrtPriceX96 / (2 ** 96)) * (sqrtPriceX96 / (2 ** 96))  = price
-# square the numerator and denominator
-(sqrtPriceX96 ** 2) / ((2 ** 96) * (2 ** 96)) = price
-# add the exponents in the denominator to get the final expression:
+# expand the squared fraction
+(sqrtPriceX96 ** 2) / ((2 ** 96) ** 2)  = price
+# multiply the exponents in the denominator to get the final expression
 sqrtRatioX96 ** 2 / 2 ** 192 = price
 ```
 You will see that the formula in the last step is how the SDK calculates the prices with the functions [`token0Price`](#token0price) and [`token1Price`](#token1price).
