@@ -33,7 +33,7 @@ What is `sqrtPriceX96`?
 
 In Uniswap V3, prices of tokens are stored (rather than derived) to allow pools to perform higher precision operations. In the actual implementation, prices are stored as square roots, hence the variable name `sqrtPriceX96`. The price is stored as a square root because of the geometric nature of the core AMM algorithm, x*y=k. Essentially, the math works out well when working with the square root of the price. 
 
-In addition, you'll notice the `X96` tacked onto the end of the variable name. This naming convention indicates that it is a [fixed point number](https://en.wikipedia.org/wiki/Fixed-point_arithmetic) with 96 bits of precision preceding the decimal point. Because prices are fractions, using fixed point numbers is a way to represent fractions in integer-only environments and still achieve high precision.
+In addition, you'll notice the `X96` suffix at the end of the variable name. This `X*` naming convention is used throughout the Uniswap V3 codebase to indicate values which are encoded as binary [fixed-point numbers](https://en.wikipedia.org/wiki/Fixed-point_arithmetic). Fixed-point is excellent at representing fractions while maintaining consistent fidelity and high precision in integer-only environments like the EVM, making it a perfect fit for representing prices, which of course are ultimately fractions. The number after `X` indicates the number of _fraction bits_ - 96 in this case - reserved for encoding the value after the decimal point. The number of integer bits can be trivially derived from the size of the variable and the number of fraction bits. In this case, `sqrtPriceX96` is stored as a `uint160`, meaning that there are `160 - 96 = 64` integer bits.
 
 An example of calculating a  `sqrtPriceX96` is :
 
