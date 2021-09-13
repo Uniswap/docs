@@ -9,7 +9,7 @@ To calculate the spot price of any pool, you can call trivially call `token0Pric
 
 ### Calling the functions
 
-Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a Pool instance see [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) or look at this typescript example[here](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx). The `Pool` class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
+Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a Pool instance see [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) or look at this typescript example [here](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx). The `Pool` class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
 
 After constructing the pool, you can save the token prices as constants:
 
@@ -27,7 +27,7 @@ After constructing the pool, you can save the token prices as constants:
   const token1Price = DAI_USDC_POOL.token1Price
 ```
 
-### Understanding the price variable
+### Understanding sqrtPrice
 
 What is `sqrtPriceX96`?
 
@@ -46,23 +46,23 @@ Thus, to get the price from the sqrtPriceX96 variable, you can execute the follo
 
 ```python
 sqrtPriceX96 = sqrt(price) * 2 ** 96
+# divide both sides
 sqrtPriceX96 / (2 ** 96) = sqrt(price)
+# square both sides
 (sqrtPriceX96 / (2 ** 96)) ** 2 = price
-# multiplying out the square
+# multiply out the square
 (sqrtPriceX96 / (2 ** 96)) * (sqrtPriceX96 / (2 ** 96))  = price
-# squaring the numerator and denominator
+# square the numerator and denominator
 (sqrtPriceX96 ** 2) / ((2 ** 96) * (2 ** 96)) = price
 # add the exponents in the denominator to get the final expression:
 sqrtRatioX96 ** 2 / 2 ** 192 = price
 ```
-You will see that the formula in the last step is how the SDK calculates the prices with the functions `token0Price` and `token1Price`.
+You will see that the formula in the last step is how the SDK calculates the prices with the functions [`token0Price`](#token0price) and [`token1Price`](#token1price).
 
 
-### Understanding the functions
+### token0Price
 
-#### token0Price
-
-Let's apply the math derived above to the functions `token0Price` and `token1Price`:
+Let's apply the math derived above to the functions `token0Price` and `token1Price`. Note that `sqrtRatioX96` is interchangeable with `sqrtPriceX96`. 
 
 ```typescript
   /**
@@ -91,17 +91,17 @@ constructor(
     numerator: BigintIsh)
 ```
 
-Let's break down the denominator and the numerator of the returned price and prove that it match matches the math derived above. Recall that the expression achieved above is 
+Let's break down the denominator and the numerator of the returned price and prove that it matches the math derived above. Recall that the expression achieved above is 
 
 ```python
 price = sqrtRatioX96 ** 2 / 2 ** 192
 ```
 
-##### The numerator
+#### The numerator
 
 It's worth noting that the numerator is misleadingly listed *below* the denominator in the constructor for a `Price`. In any case, you will see that the numerator of the fraction is `JSBI.multiply(this.sqrtRatioX96, this.sqrtRatioX96)` which nicely follows the math above: `sqrtPriceX96 ** 2`. 
 
-##### The denominator
+#### The denominator
 
 The denominator is `Q192`. To break this number down recall the following constants defined in the SDK :
 
@@ -111,7 +111,7 @@ export const Q192 = JSBI.exponentiate(Q96, JSBI.BigInt(2))
 ```
 Thus, the denominator for the `token0Price` also matches the math derived above where `Q192` is `(2 ** 96) * (2 ** 96)` which is the same as `(2 ** 192)`.
 
-#### token1Price
+### token1Price
 
 Recall that `token0Price` is the ratio of token1 over token0 and that `token1Price` is the ratio of token0 over token1. This means that the derivation for `token1Price` follows the same math except the numerator and denominator are flipped, implying the inverse. 
 
