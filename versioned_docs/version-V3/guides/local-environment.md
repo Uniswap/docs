@@ -1,15 +1,15 @@
 ---
 id: local-environment
-title: Setting Up Your Local Environment
+title: Set up your local environment
 sidebar_position: 0.5
 ---
 
-## Introduction
-
-Swaps are the most common interaction with the Uniswap protocol. The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
+To try out the example Uniswap V3 smart contracts in our guides, complete the steps in this article to set up your local environment.
 
 
-## Setting up your environment
+## Create a Node.js project
+
+Download and install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
 Create a new directory and navigate to it, and create a new node project with `npm init`
 
@@ -20,6 +20,8 @@ cd swap-example
 
 npm init
 ```
+
+## Install Hardhat and the Periphery contracts
 
 For this example, we'll use [Hardhat](https://hardhat.org/) to compile our contracts.
 
@@ -39,7 +41,7 @@ now we can create a new hardhat config file in our environment, which can help u
 npx hardhat
 ```
 
-## setting hardhat solidity version
+## Set the Solidity version for Hardhat
 
 For this example, we'll need to change ./hardhat.config.js to include the appropriate solidity version for compiling the Uniswap V3 contracts.
 
@@ -52,6 +54,6 @@ module.exports = {
 };
 ```
 
-## Compiling our contract
+## Compile a contract
 
 We can compile our contracts with `npx hardhat compile`
