@@ -9,9 +9,9 @@ To calculate the spot price of any pool, you can call trivially call `token0Pric
 
 ### Calling the functions
 
-Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a Pool instance see [Creating a Pool Instance](#creating-a-pool). The Pool class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
+Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a Pool instance see [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) or look at this typescript example[here](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx). The `Pool` class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
 
-After calling constructing the pool, you can save the token prices as constants:
+After constructing the pool, you can save the token prices as constants:
 
 ```typescript
   const DAI_USDC_POOL = new Pool(
@@ -84,14 +84,22 @@ Let's apply the math derived above to the functions `token0Price` and `token1Pri
 `token0Price` returns a new `Price` as the ratio of token1 over token0. Note that a `Price` is constructed by :
 
 ```typescript
-constructor(baseToken: Token, quoteToken: Token, denominator: BigintIsh, numerator: BigintIsh)
+constructor(
+    baseToken: Token, 
+    quoteToken: Token,
+    denominator: BigintIsh, 
+    numerator: BigintIsh)
 ```
 
-Let's break down the denominator and the numerator of the returned price and prove that this match matches the math derived above. Recall that the expression achieved above is `price = sqrtRatioX96 ** 2 / 2 ** 192. `
+Let's break down the denominator and the numerator of the returned price and prove that it match matches the math derived above. Recall that the expression achieved above is 
+
+```python
+price = sqrtRatioX96 ** 2 / 2 ** 192
+```
 
 ##### The numerator
 
-The numerator is confusingly is the parameter below the denominator in the constructor for a `Price`. In any case, you can see the numerator of the fraction is `JSBI.multiply(this.sqrtRatioX96, this.sqrtRatioX96)` which nicely mimics the math above `sqrtPriceX96 ** 2`. 
+It's worth noting that the numerator is misleadingly listed *below* the denominator in the constructor for a `Price`. In any case, you will see that the numerator of the fraction is `JSBI.multiply(this.sqrtRatioX96, this.sqrtRatioX96)` which nicely follows the math above: `sqrtPriceX96 ** 2`. 
 
 ##### The denominator
 
@@ -101,13 +109,22 @@ The denominator is `Q192`. To break this number down recall the following consta
 export const Q96 = JSBI.exponentiate(JSBI.BigInt(2), JSBI.BigInt(96))
 export const Q192 = JSBI.exponentiate(Q96, JSBI.BigInt(2))
 ```
-Thus, the denominator for the `token0Price` also matches the math derived above where Q192 is `(2 ** 96) * (2 ** 96)` which is the same as `(2 ** 192)`.
+Thus, the denominator for the `token0Price` also matches the math derived above where `Q192` is `(2 ** 96) * (2 ** 96)` which is the same as `(2 ** 192)`.
 
 #### token1Price
 
 Recall that `token0Price` is the ratio of token1 over token0 and that `token1Price` is the ratio of token0 over token1. This means that the derivation for `token1Price` follows the same math except the numerator and denominator are flipped, implying the inverse. 
 
-So instead of `price = sqrtRatioX96 ** 2 / 2 ** 192 `, you get `price =  2 ** 192 / sqrtRatioX96 ** 2`, which is simply shown below in the function definition of `token1Price` :
+So instead of 
+
+```python
+price = sqrtRatioX96 ** 2 / 2 ** 192
+```
+ you have
+```python
+ price =  2 ** 192 / sqrtRatioX96 ** 2
+ ```
+which is simply shown below in the function definition of `token1Price` :
 
 ```typescript
   /**
