@@ -52,7 +52,7 @@ module.exports = {
           className: "V3_active",
         },
         {
-          to: "/protocol/concepts/governance/governance-reference",
+          to: "/protocol/concepts/governance/overview",
           label: "Governance",
           position: "left",
           className: "V3_active",
@@ -64,7 +64,7 @@ module.exports = {
           className: "V2_active",
         },
         {
-          to: "/sdk/2.0.0/readme",
+          to: "/sdk/2.0.0/introduction",
           label: "SDK",
           position: "left",
           className: "V2_active",
@@ -76,7 +76,7 @@ module.exports = {
           className: "V2_active",
         },
         {
-          to: "/protocol/V2/reference/Governance/governance-reference",
+          to: "/protocol/V2/concepts/governance/overview",
           label: "Governance",
           position: "left",
           className: "V2_active",
@@ -88,7 +88,7 @@ module.exports = {
           className: "V1_active",
         },
         {
-          to: "/sdk/1.0.0/readme",
+          to: "/sdk/1.0.0/introduction",
           label: "SDK",
           position: "left",
           className: "V1_active",

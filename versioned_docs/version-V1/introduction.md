@@ -1,5 +1,5 @@
 ---
-id: 01-how-uniswap-works
+id: introduction
 title: The Uniswap V1 Protocol
 sidebar_position: 1
 

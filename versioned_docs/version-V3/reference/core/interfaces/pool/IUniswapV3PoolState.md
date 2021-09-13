@@ -92,6 +92,7 @@ a specific position.
 ### tickBitmap
 ```solidity
   function tickBitmap(
+      int16 wordPosition
   ) external view returns (uint256)
 ```
 Returns 256 packed tick initialized boolean values. See TickBitmap for more information

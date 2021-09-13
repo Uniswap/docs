@@ -35,7 +35,7 @@ In V3 there are three separate callback functions, `uniswapV3SwapCallback`, `uni
 
 ## Inheriting The V3 Contracts
 
-Our first step is to inherit `IUniswapV3FlashCallback` and `PeripheryPayments`, as we will use each in our logic. Note these two inherited contracts already extend many other contracts that we will be using, such as [LowGasSafeMath](https://docs.uniswap.org/reference/core/libraries/LowGasSafeMath) which we [attach](https://docs.soliditylang.org/en/v0.7.6/contracts.html?highlight=using#using-for), to types `uint256` and `int256`.
+Inherit `IUniswapV3FlashCallback` and `PeripheryPayments`, as we will use each in our program. Note these two inherited contracts already extend many other contracts that we will be using, such as [LowGasSafeMath](https://docs.uniswap.org/reference/core/libraries/LowGasSafeMath) which we [attach](https://docs.soliditylang.org/en/v0.7.6/contracts.html?highlight=using#using-for), to types `uint256` and `int256`.
 
 ```solidity
 contract PairFlash is IUniswapV3FlashCallback, PeripheryPayments {
@@ -43,13 +43,13 @@ contract PairFlash is IUniswapV3FlashCallback, PeripheryPayments {
     using LowGasSafeMath for int256;
 ```
 
-Next, we declare an immutable public variable `swapRouter` of type `ISwapRouter`:
+Declare an immutable public variable `swapRouter` of type `ISwapRouter`:
 
 ```solidity
     ISwapRouter public Immutable swapRouter;
 ```
 
-We'll declare the constructor here, which is executed once when the contract is deployed. Our constructor hard codes the address of the V3 router, factory, and the address of weth9, the [ERC-20 wrapper](https://weth.io/) for ether.
+Declare the constructor here, which is executed once when the contract is deployed. Our constructor hardcodes the address of the V3 router, factory, and the address of weth9, the [ERC-20 wrapper](https://weth.io/) for ether.
 
 ```solidity
     constructor(
@@ -61,7 +61,7 @@ We'll declare the constructor here, which is executed once when the contract is 
     }
 ```
 
-the full import section and contract declaration:
+The full import section and contract declaration:
 
 ```solidity
 pragma solidity =0.7.6;

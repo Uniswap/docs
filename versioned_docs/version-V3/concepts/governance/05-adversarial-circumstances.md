@@ -32,15 +32,15 @@ A single party uses a flash loan to push through a proposal, potentially creatin
 
 ## Circumvention
 
-A delegated balance of 10 million UNI is required to submit a vote, but the balance check is set exactly one block in the past. This prevents any flash loan proposals from being created, as flash loans cannot execute outside of a single block.
+A delegated balance of 2.5 million UNI is required to submit a vote, but the balance check is set exactly one block in the past. This prevents any flash loan proposals from being created, as flash loans cannot execute outside of a single block.
 
-The proposer must also maintain a minimum balance of 10 million UNI throughout the voting period, or anyone may cancel the proposal. This balance maintenance check prevents many highly leveraged proposal techniques that may span several blocks.
+The proposer must also maintain a minimum balance of 2.5 million UNI throughout the voting period, or anyone may cancel the proposal. This balance maintenance check prevents many highly leveraged proposal techniques that may span several blocks.
 
 # Scenario 4
 
 A bad faith proposal is created, which will genuinely incentivize bad faith voting.
 
-Exmaple: &quot;The treasury will be drained. Any votes in favor will be sent the balance of the treasury. Any votes opposed will be locked from the funds of the treasury.&quot;
+Example: &quot;The treasury will be drained. Any votes in favor will be sent the balance of the treasury. Any votes opposed will be locked from the funds of the treasury.&quot;
 
 ## Circumvention
 
