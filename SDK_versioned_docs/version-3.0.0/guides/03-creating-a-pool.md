@@ -9,7 +9,7 @@ This guide extends the previous [getting started](./using-ethers) guide by using
 
 First we will replace the abi that we previously wrote out manually with a library that contains the total V3 pool abi for us to easily interact with. Note the abi is imported from the `v3-core` npm package, rather than the `v3-sdk` npm package, as it is a part of the protocol rather than the SDK.
 
-Depending on your local configuration, you may need to update your ts.config to allow importing of `json` files with `"resolveJsonModule": true,`.
+Depending on your local configuration, you may need to update your tsconfig.json to allow importing of `json` files with `"resolveJsonModule": true,`.
 
 ```typescript
 import { ethers } from "ethers";
@@ -34,7 +34,7 @@ const poolContract = new ethers.Contract(
 
 ## Creating The Interfaces
 
-Here we will create two interfaces, with types that are appropriate for the data we need. We won't be using all of this data, but some extra data is fetched for context.
+Create two interfaces with types that are appropriate for the data we need. We won't be using all of this data, but some extra data is fetched for context.
 
 ```typescript
 interface Immutables {
@@ -60,23 +60,33 @@ interface State {
 
 ## Fetching Immutable Data
 
-Now we're going to fetch the immutable data from the deployed V3 pool contract, and return it so we can use it to create our own model of the pool. Note that this style of fetching is not recommended for production, as each `await` call is executed sequentially. In your own program, you will likely want to use `Promise.all` to fetch the immutable data concurrently.
+Fetch the immutable data from the deployed V3 pool contract and return it to create a model of the pool. 
 
 ```typescript
 async function getPoolImmutables() {
+  const [factory, token0, token1, fee, tickSpacing, maxLiquidityPerTick] =
+    await Promise.all([
+      poolContract.factory(),
+      poolContract.token0(),
+      poolContract.token1(),
+      poolContract.fee(),
+      poolContract.tickSpacing(),
+      poolContract.maxLiquidityPerTick(),
+    ]);
+
   const immutables: Immutables = {
-    factory: await poolContract.factory(),
-    token0: await poolContract.token0(),
-    token1: await poolContract.token1(),
-    fee: await poolContract.fee(),
-    tickSpacing: await poolContract.tickSpacing(),
-    maxLiquidityPerTick: await poolContract.maxLiquidityPerTick(),
+    factory,
+    token0,
+    token1,
+    fee,
+    tickSpacing,
+    maxLiquidityPerTick,
   };
   return immutables;
 }
 ```
 
-Next we need to fetch the state data. Again - this example fetches state data sequentially, which is vulnerable to creating inaccurate pool readings. In production, developers should fetch state data in a way that avoids the potential for returning state between blocks, which would create an inaccurate pool representation.
+Fetch the state data in with the same `Promise.all` style. This approach queries state data concurrently, rather than sequentially, to avoid out of sync data that may be returned if sequential queries are executed over the span of two blocks.
 
 > `sqrtPriceX96` and `sqrtRatioX96`, despite being named differently, are interchangeable values.
 
@@ -84,9 +94,13 @@ Next we need to fetch the state data. Again - this example fetches state data se
 
 ```typescript
 async function getPoolState() {
-  const slot = await poolContract.slot0();
+  const [liquidity, slot] = await Promise.all([
+    poolContract.liquidity(),
+    poolContract.slot0(),
+  ]);
+
   const PoolState: State = {
-    liquidity: await poolContract.liquidity(),
+    liquidity,
     sqrtPriceX96: slot[0],
     tick: slot[1],
     observationIndex: slot[2],
@@ -95,22 +109,27 @@ async function getPoolState() {
     feeProtocol: slot[5],
     unlocked: slot[6],
   };
+
   return PoolState;
 }
 ```
 
 ## Creating the Pool Instance
 
-Finally, we will create a function called `main` which calls are previously written functions, and uses the returned data to construct two `Ethers.js` `Token` instances a V3 SDK `Pool` instance.
+Create a function called `main`, which calls previously written functions, and uses the returned data to construct two `Ethers.js` `Token` instances and a V3 SDK `Pool` instance.
 
-> The final constructor argument when creating a Pool, `ticks`, is optional. Ticks takes all tick data, including the liquidity within, which can be used to model the result of a swap. Because this can add up to a lot of data fetched from the EVM, it is optional and may be left out when not needed. In this example, we have left it out.
+> The final constructor argument when creating a Pool, `ticks`, is optional. `ticks` takes all tick data, including the liquidity within, which can be used to model the result of a swap. Because this can add up to a lot of data fetched from the EVM, it is optional and may be left out when not needed. In this example, we have left it out.
 
 ```typescript
 async function main() {
-  const immutables = await getPoolImmutables();
-  const state = await getPoolState();
-  const TokenA = new Token(1, immutables.token0, 6, "USDC", "USD Coin");
-  const TokenB = new Token(1, immutables.token1, 18, "WETH", "Wrapped Ether");
+  const [immutables, state] = await Promise.all([
+    getPoolImmutables(),
+    getPoolState(),
+  ]);
+
+  const TokenA = new Token(3, immutables.token0, 6, "USDC", "USD Coin");
+
+  const TokenB = new Token(3, immutables.token1, 18, "WETH", "Wrapped Ether");
 
   const poolExample = new Pool(
     TokenA,
@@ -168,6 +187,7 @@ const provider = new ethers.providers.JsonRpcProvider(
   "https://mainnet.infura.io/v3/<YOUR-ENDPOINT-HERE>"
 );
 
+
 const poolAddress = "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8";
 
 const poolContract = new ethers.Contract(
@@ -197,21 +217,35 @@ interface State {
 }
 
 async function getPoolImmutables() {
+  const [factory, token0, token1, fee, tickSpacing, maxLiquidityPerTick] =
+    await Promise.all([
+      poolContract.factory(),
+      poolContract.token0(),
+      poolContract.token1(),
+      poolContract.fee(),
+      poolContract.tickSpacing(),
+      poolContract.maxLiquidityPerTick(),
+    ]);
+
   const immutables: Immutables = {
-    factory: await poolContract.factory(),
-    token0: await poolContract.token0(),
-    token1: await poolContract.token1(),
-    fee: await poolContract.fee(),
-    tickSpacing: await poolContract.tickSpacing(),
-    maxLiquidityPerTick: await poolContract.maxLiquidityPerTick(),
+    factory,
+    token0,
+    token1,
+    fee,
+    tickSpacing,
+    maxLiquidityPerTick,
   };
   return immutables;
 }
 
 async function getPoolState() {
-  const slot = await poolContract.slot0();
+  const [liquidity, slot] = await Promise.all([
+    poolContract.liquidity(),
+    poolContract.slot0(),
+  ]);
+
   const PoolState: State = {
-    liquidity: await poolContract.liquidity(),
+    liquidity,
     sqrtPriceX96: slot[0],
     tick: slot[1],
     observationIndex: slot[2],
@@ -220,14 +254,19 @@ async function getPoolState() {
     feeProtocol: slot[5],
     unlocked: slot[6],
   };
+
   return PoolState;
 }
 
 async function main() {
-  const immutables = await getPoolImmutables();
-  const state = await getPoolState();
-  const TokenA = new Token(1, immutables.token0, 6, "USDC", "USD Coin");
-  const TokenB = new Token(1, immutables.token1, 18, "WETH", "Wrapped Ether");
+  const [immutables, state] = await Promise.all([
+    getPoolImmutables(),
+    getPoolState(),
+  ]);
+
+  const TokenA = new Token(3, immutables.token0, 6, "USDC", "USD Coin");
+
+  const TokenB = new Token(3, immutables.token1, 18, "WETH", "Wrapped Ether");
 
   const poolExample = new Pool(
     TokenA,
@@ -241,4 +280,5 @@ async function main() {
 }
 
 main();
+
 ```

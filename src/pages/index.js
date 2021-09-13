@@ -27,7 +27,7 @@ export const actions = [
     title: "What is Uniswap",
     href: "#",
     icon: InformationCircleIcon,
-    to: "./protocol/what-is-uniswap",
+    to: "./protocol/introduction",
     text: `Learn about the core concepts of the Uniswap protocol. Swaps, Pools, Concentrated Liquidity and more.`,
   },
   {
@@ -77,7 +77,7 @@ export const Guides = [
   {
     title: "Implement a Swap",
     text: "Start swapping from a smart contract",
-    to: "https://docs.uniswap.org/protocol/guides/swaps/single-swaps",
+    to: "./protocol/guides/swaps/single-swaps",
   },
   {
     title: "Providing Liquidity",
@@ -301,7 +301,7 @@ export default function Home() {
             <HideMedium>
               <SearchBar />{" "}
             </HideMedium>
-            <p
+            {/* <p
               style={{
                 maxWidth: "640px",
                 margin: "1rem ",
@@ -313,7 +313,7 @@ export default function Home() {
               check out the{" "}
               <Link
                 style={{ color: "#ff007a" }}
-                to="https://docs.uniswap.org/protocol/what-is-uniswap"
+                to="https://docs.uniswap.org/protocol/introduction"
               >
                 Protocol Overview
               </Link>{" "}
@@ -325,7 +325,7 @@ export default function Home() {
                 FAQ
               </Link>{" "}
               first.
-            </p>
+            </p> */}
           </div>
           <StyledTitleImage
             alt="Docusaurus themed image"
@@ -626,14 +626,11 @@ export default function Home() {
           >
             <img src={UGP} width={"120px"} />
             <div>
-              <h2 style={{ marginBottom: "0.5rem" }}>
-                Apply for the Uniswap Developer Grants Program
-              </h2>
+              <h2 style={{ marginBottom: "0.5rem" }}>Uniswap Grants Program</h2>
               <p style={{ margin: "0rem" }}>
-                Our mission will always be to empower the community with the
-                resources needed to support enriching activities and advance
-                tooling and solutions to improve the experience for all UNI
-                users, builders, and overall community members.{" "}
+                Uniswap Governance offers grant funding for people who are
+                building apps, tools, and activities for Uniswap Protocol users,
+                builders, and community members.{" "}
               </p>
             </div>
           </WideCard>

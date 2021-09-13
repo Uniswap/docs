@@ -44,7 +44,7 @@ There are far too many ways Uniswap is used in the wider Ethereum ecosystem to c
 
 - Wallets often integrate swapping and liquidity provision functionality as a core offering of their product.
 
-- DEX (decentralized exchange) aggregators pull liquidity from many liquidity protocols to offer traders the best prices but splitting their trades. Uniswap is the biggest single decentralized liquidity source for these projects.
+- DEX (decentralized exchange) aggregators pull liquidity from many liquidity protocols to offer traders the best prices by splitting their trades. Uniswap is the biggest single decentralized liquidity source for these projects.
 
 - Smart contract developers use the suite of functions available to invent new DeFi tools and other various experimental ideas. See projects like [Unisocks](https://unisocks.exchange/) or [Zora](https://ourzora.com/), among many, many others.
 

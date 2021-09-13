@@ -85,8 +85,8 @@ Throws if the token ID is not valid.
 | `operator`                 | address | The address that is approved for spending                                        |
 | `token0`                   | address | The address of the token0 for a specific pool                                    |
 | `token1`                   | address | The address of the token1 for a specific pool                                    |
-| `fee`                      |         | The fee associated with the pool                                                 |
-| `tickLower`                | uint24  | The lower end of the tick range for the position                                 |
+| `fee`                      | uint24  | The fee associated with the pool                                                 |
+| `tickLower`                | int24   | The lower end of the tick range for the position                                 |
 | `tickUpper`                | int24   | The higher end of the tick range for the position                                |
 | `liquidity`                | uint128 | The liquidity of the position                                                    |
 | `feeGrowthInside0LastX128` | uint256 | The fee growth of token0 as of the last action on the individual position        |
@@ -114,11 +114,11 @@ This method can be bundled with mint for the first mint of a pool to create, ini
 | Name     | Type    | Description                                     |
 | :------- | :------ | :---------------------------------------------- |
 | `tokenA` | address | The contract address of either token0 or token1 |
+| `tokenB` | address | The contract address of the other token |
+| `fee` | uint24 | The fee amount of the v3 pool for the specified token pair |
+| `sqrtPriceX96` | uint160 | The initial square root price of the pool as a Q64.96 value |
 
 We use tokenA and tokenB when we are referring to unsorted, or unordered tokens
-|`tokenB` | address | The contract address of the other token, unsorted
-|`fee` | uint24 | The fee amount of the v3 pool for the specified token pair
-|`sqrtPriceX96` | uint160 | The initial square root price of the pool as a Q64.96 value
 
 #### Return Values:
 
