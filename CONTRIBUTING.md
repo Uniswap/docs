@@ -60,7 +60,7 @@ The following procedure accomplishes these tasks. Then, after the changes are in
    `git remote add upstream https://github.com/Uniswap/uniswap-docs.git`
 
 3. Sync your fork with `upstream`.<br>
-   `git fetch upstream`
+   `git fetch upstream`<br>
    `git pull --rebase upstream main`
 
 4. Create and checkout a new branch:<br>
