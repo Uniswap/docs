@@ -66,7 +66,7 @@ To create a Governance Proposal:
 
 1. Create a topic in the Proposal Discussion category on gov.uniswap.org titled &quot;Governance Proposal — [Your Title Here]&quot; and link to any relevant Snapshot polls/discussion threads as well as the code audit report. Topics that begin with &quot;Governance Proposal&quot; that have not successfully passed through the Temperature Check and Consensus Check stages will be removed by moderators.
 
-1. Call the propose() function of the Governor Alpha to deploy your proposal.
+1. Call the propose() function of the Governor contract to deploy your proposal.
 
 Once the propose() function has been called, a seven day voting period will start. Ongoing discussion can take place in the gov.uniswap.org forum. If the proposal passes successfully, a two day timelock will follow before the proposed code is executed.
 
