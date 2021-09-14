@@ -19,11 +19,11 @@ Install the Node.js and Yarn [versions required by Docusaurus](https://docusauru
 If you want to run builds locally, do the following:
 
 1. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) the uniswap-docs repo.
-2. Clone your fork. For example:
+2. Clone your fork. For example:<br>
 `git clone https://github.com/YOUR_USERNAME/uniswap-docs.git`
-3. Install your local version of docs.uniswap.org:
-`cd uniswap-docs`
-`yarn install`
+3. Install your local version of docs.uniswap.org:<br>
+`cd uniswap-docs`<br>
+`yarn install`<br>
 `yarn run start`
 
 Other useful commands:
