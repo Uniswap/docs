@@ -5,11 +5,11 @@ title: Fetching Spot Prices
 
 ## Fetching Token Prices with the SDK
 
-To calculate the spot price of any pool, you can call trivially call `token0Price` or `token1Price` on any Pool object (how nice!). However, in addition to learning a couple of simple steps needed to fetch token prices, you will also learn *how* the SDK calculates these quantities. Going through these calculations will hopefully provide the necessary context behind fixed point numbers, square roots, and difficult-to-understand variable names like `sqrtPriceX96`. :)
+This guide will teach you how to fetch the current market price of any token on Uniswap. First, you will learn how to call the getter methods `token0Price` and `token1Price` exposed on `Pool` instances. Then you will peek under the hood and learn how the SDK calculates these quantities from the `sqrtPriceX96` value. Going through these calculations will hopefully provide the necessary context behind fixed-point numbers, square roots, and difficult-to-understand variable names like `sqrtPriceX96`. :)
 
 ### Calling the functions
 
-Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a Pool instance see [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) or look at this typescript example [here](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx). The `Pool` class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
+Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a `Pool` instance see [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) or look at this typescript [example](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx). The `Pool` class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
 
 After constructing the pool, you can save the token prices as constants:
 
@@ -31,9 +31,9 @@ After constructing the pool, you can save the token prices as constants:
 
 What is `sqrtPriceX96`?
 
-In Uniswap V3, prices of tokens are stored (rather than derived) to allow pools to perform higher precision operations. In the actual implementation, prices are stored as square roots, hence the `sqrt` prefix. The price is stored as a square root because of the geometric nature of the core AMM algorithm, x*y=k. Essentially, the math works out well when working with the square root of the price. 
+In Uniswap V3, prices of tokens are stored in the [0th slot](https://docs.uniswap.org/protocol/reference/core/interfaces/pool/IUniswapV3PoolState#slot0) of the pool state. Storing the price values instead of deriving them allows pools to perform higher precision operations. In the actual implementation, prices are stored as square roots, hence the `sqrt` prefix. The price is stored as a square root because of the geometric nature of the core AMM algorithm, x*y=k. Essentially, the [math](https://uniswap.org/whitepaper-v3.pdf) works out well when working with the square root of the price. 
 
-In addition, you'll notice the `X96` suffix at the end of the variable name. This `X*` naming convention is used throughout the Uniswap V3 codebase to indicate values which are encoded as binary [fixed-point numbers](https://en.wikipedia.org/wiki/Fixed-point_arithmetic). Fixed-point is excellent at representing fractions while maintaining consistent fidelity and high precision in integer-only environments like the EVM, making it a perfect fit for representing prices, which of course are ultimately fractions. The number after `X` indicates the number of _fraction bits_ - 96 in this case - reserved for encoding the value after the decimal point. The number of integer bits can be trivially derived from the size of the variable and the number of fraction bits. In this case, `sqrtPriceX96` is stored as a `uint160`, meaning that there are `160 - 96 = 64` integer bits.
+In addition, you'll notice the `X96` suffix at the end of the variable name. This `X*` naming convention is used throughout the Uniswap V3 codebase to indicate values that are encoded as binary [fixed-point numbers](https://en.wikipedia.org/wiki/Fixed-point_arithmetic). Fixed-point is excellent at representing fractions while maintaining consistent fidelity and high precision in integer-only environments like the EVM, making it a perfect fit for representing prices, which of course are ultimately fractions. The number after `X` indicates the number of _fraction bits_ - 96 in this case - reserved for encoding the value after the decimal point. The number of integer bits can be trivially derived from the size of the variable and the number of fraction bits. In this case, `sqrtPriceX96` is stored as a `uint160`, meaning that there are `160 - 96 = 64` integer bits.
 
 Consider the following derivation, which formalizes the definitions above:
 
@@ -78,7 +78,7 @@ Let's apply the math derived above to the functions `token0Price` and `token1Pri
   }
 ```
 
-`token0Price` returns a new `Price` as the ratio of token1 over token0. Note that a `Price` is constructed by :
+`token0Price` returns a new `Price` as the ratio of token1 over token0. Note that a `Price` is constructed by:
 
 ```typescript
 constructor(
@@ -100,7 +100,7 @@ It's worth noting that the numerator is misleadingly listed *below* the denomina
 
 #### The denominator
 
-The denominator is `Q192`. To break this number down recall the following constants defined in the SDK :
+The denominator is `Q192`. To break this number down recall the following constants defined in the SDK:
 
 ```typescript
 export const Q96 = JSBI.exponentiate(JSBI.BigInt(2), JSBI.BigInt(96))
