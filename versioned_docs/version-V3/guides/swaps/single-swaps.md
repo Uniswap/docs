@@ -8,10 +8,10 @@ Swaps are the most common interaction with the Uniswap protocol. This example sh
 
 When trading from a smart contract, the most important thing to keep in mind is that access to an external price source is required. Without this, trades can be frontrun for considerable loss.
 
-Note:  The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
+**Note:**  The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
 
-## Setting up the contract
+## Set Up the Contract
 
 Declare the solidity version used to compile the contract, and `abicoder v2` to allow arbitrary nested arrays and structs
 to be encoded and decoded in calldata, a feature used when executing a swap.
@@ -58,7 +58,7 @@ Hardcode the token contract addresses and pool fee tiers for the example. In pro
     }
 ```
 
-## Exact Input swaps
+## Exact Input Swaps
 
 The caller must `approve` the contract to withdraw the tokens from the calling address's account to execute a swap. Remember that because
 our contract is a contract itself and not an extension of the caller (us); we must also approve the Uniswap protocol router contract to use the tokens that our contract will be in possession of after they have been withdrawn from the calling address (us).
@@ -82,7 +82,7 @@ Then, transfer the `amount` of Dai from the calling address into our contract, a
 
 ```
 
-### Swap input parameters
+### Swap Input Parameters
 
 To execute the swap function, we need to populate the `ExactInputSingleParams` with the data necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed [here](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter).
 
@@ -118,7 +118,7 @@ A brief overview of the parameters:
     }
 ```
 
-## Exact Output swaps
+## Exact Output Swaps
 
 Exact Output swaps a minimum possible amount of the input token for a fixed amount of the outbound token. This is the less common swap style - but useful in a variety of circumstances.
 
@@ -166,7 +166,7 @@ TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), amountInMaximum)
 
 ```
 
-## Complete single swap example contract
+## A Complete Single Swap Contract
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
@@ -267,5 +267,7 @@ contract SwapExamples {
             TransferHelper.safeTransfer(DAI, msg.sender, amountInMaximum - amountIn);
         }
     }
+}
+```
 }
 ```
