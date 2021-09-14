@@ -36,7 +36,7 @@ import Timelock from "@uniswap/governance/build/Timelock.json";
 
 [https://unpkg.com/@uniswap/governance@1.0.2/build/Timelock.json](https://unpkg.com/@uniswap/governance@1.0.2/build/Timelock.json)
 
-# GovernorAlpha
+# GovernorAlpha (Deprecated)
 
 `GovernorAlpha` is deployed at `0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F` on the Ethereum [mainnet](https://etherscan.io/address/0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F), and the [Ropsten](https://ropsten.etherscan.io/address/0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F), [Rinkeby](https://rinkeby.etherscan.io/address/0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F), [Görli](https://goerli.etherscan.io/address/0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F), and [Kovan](https://kovan.etherscan.io/address/0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F) testnets. It was built from commit [ab22c08](https://github.com/Uniswap/governance/commit/ab22c084bacb2636a1aebf9759890063eb6e4946).
 
@@ -47,6 +47,12 @@ import GovernorAlpha from "@uniswap/governance/build/GovernorAlpha.json";
 ```
 
 [https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json](https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json)
+
+# GovernorBravo (Current)
+
+`GovernorBravo` is deployed at `0x408ED6354d4973f66138C91495F2f2FCbd8724C3` on the Ethereum [mainnet](0x408ED6354d4973f66138C91495F2f2FCbd8724C3).
+
+** The new Governor Bravo ABI can be found via [etherscan](https://etherscan.io/address/0x408ED6354d4973f66138C91495F2f2FCbd8724C3).**
 
 # Miscellaneous Addresses
 
