@@ -4,10 +4,12 @@ title: Set up your local environment
 sidebar_position: 0.5
 ---
 
-This guide describes how to set up your environment using a specific toolset: `Node.js` + `npm` + `hardhat`. It also shows you how to install the Uniswap V3 Periphery contracts, which are required for the contract examples in the Uniswap Docs V3 guides. 
+This guide describes how to set up your environment using a specific toolset: `Node.js` + `npm` + `hardhat`. It also shows you how to install the Uniswap V3 Periphery contracts, which are required for the contract examples in the Uniswap Docs V3 guides.
+
+Once you have set up your environment, read the guides on liquidity mining, implementing swaps, and so on, which provide example contracts for those interactions.
 
 
-## Create a Node.js project
+## Create a Node.js Project
 
 1. Download and install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
@@ -19,7 +21,7 @@ This guide describes how to set up your environment using a specific toolset: `N
    $ npm init
    ```
 
-## Install Hardhat and the Periphery contracts
+## Install Hardhat and the Periphery Contracts
 
 1. Install [Hardhat](https://hardhat.org/), which you can use for compiling contracts.
 
@@ -39,7 +41,7 @@ This guide describes how to set up your environment using a specific toolset: `N
    $ npx hardhat
    ```
 
-## Set the Solidity version for Hardhat
+## Set the Solidity Version for Hardhat
 
 For this example, we'll need to change ./hardhat.config.js to include the appropriate solidity version for compiling the Uniswap V3 contracts.
 
@@ -52,6 +54,6 @@ module.exports = {
 };
 ```
 
-## Compile a contract
+## Compile a Contract
 
 To compile a contract, use `npx hardhat compile`.
