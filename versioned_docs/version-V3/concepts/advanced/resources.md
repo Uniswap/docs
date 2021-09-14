@@ -4,7 +4,6 @@ title: Resources
 
 This page will be periodically updated with helpful resources for calculations and software design as they are made available.
 
-
 - [**Uniswap V2 Visualization**](https://www.desmos.com/calculator/j8eppi5vvu)
 - [**Uniswap V3 Visualization**](https://www.desmos.com/calculator/q2kxfue441)
 - [**Uniswap V3 (Multiple Positions) Visualization**](https://www.desmos.com/calculator/oduetjzfp4)
