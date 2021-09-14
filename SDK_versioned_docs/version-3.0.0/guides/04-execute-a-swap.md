@@ -1,25 +1,31 @@
 ---
 id: execute-a-swap
-title: Executing A Swap
+title: Executing a Swap
 ---
 
-This guide extends the previous [creating a pool](03-creating-a-pool.md) and [getting started](./using-ethers) guides by using the pool object to quote an estimated amount out for a trade, then creates a trade that can be submitted to the EVM.
+This guide extends the previous [creating a pool](03-creating-a-pool.md) and [getting started](./using-ethers) guides by using the `pool` object to quote an estimated amount out for a trade, then creates a trade that can be submitted to the EVM.
 
-## Creating A Quoter Contract Object
+## Creating a Quoter Contract Object
 
-In order to retrieve a quote, we need to create a [Contract](https://docs.ethers.io/v5/api/contract/contract/) object using ethers.js
+In order to retrieve a quote, create a [Contract](https://docs.ethers.io/v5/api/contract/contract/) object using ethers.js
 
-The quoter is a smart contract that retrieves estimated output or input amounts for a given swap type. For our example, we will create an object that models the [quoter interface](https://github.com/Uniswap/uniswap-v3-periphery-optimism/blob/69e095f7c28a7e7fdaca94b5eaa644a8a25f86cc/contracts/interfaces/IQuoter.sol), so we may call it and return a swap quote.
+The quoter is a smart contract that retrieves estimated output or input amounts for a given swap type. This example creates an object in our javascript environment that models the [quoter interface](https://github.com/Uniswap/uniswap-v3-periphery-optimism/blob/69e095f7c28a7e7fdaca94b5eaa644a8a25f86cc/contracts/interfaces/IQuoter.sol), which can be called to return a swap quote.
 
-Create the quoter contract object by importing the [ABI](https://docs.soliditylang.org/en/v0.7.0/abi-spec.html) from the [uniswap-v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) npm package, assign your [ethereum endpoint provider](https://ethereum.org/en/developers/docs/nodes-and-clients/nodes-as-a-service/), in this case, Infura, and provide the [deployment address of the quoter contract](https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md).
+Create the quoter contract object by importing the [ABI](https://docs.soliditylang.org/en/v0.7.0/abi-spec.html) from the [uniswap-v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) npm package.
 
 ```ts
 import { abi as QuoterABI } from "@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json";
+```
 
+assign your [ethereum endpoint provider](https://ethereum.org/en/developers/docs/nodes-and-clients/nodes-as-a-service/), in this case, Infura.
+
+```ts
 const provider = new ethers.providers.JsonRpcProvider("<YOUR-ENDPOINT-HERE>");
+```
 
-const quoterAddress = "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6";
+Provide the [deployment address of the quoter contract](https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md).
 
+```ts
 const quoterContract = new ethers.Contract(quoterAddress, QuoterABI, provider);
 ```
 
@@ -59,7 +65,7 @@ async function main() {
 }
 ```
 
-## Construct A Trade
+## Construct a Trade
 
 Create a [Route](https://github.com/Uniswap/uniswap-v3-sdk/blob/7c3aedd0cf9441d03607e258734eada44a73863d/src/entities/route.ts) object and assign it to a variable `swapRoute`
 
@@ -73,7 +79,10 @@ Create an [Unchecked Trade](https://github.com/Uniswap/uniswap-v3-sdk/blob/7c3ae
 const uncheckedTradeExample = await Trade.createUncheckedTrade({
   route: swapRoute,
   inputAmount: CurrencyAmount.fromRawAmount(TokenA, amountIn.toString()),
-  outputAmount: CurrencyAmount.fromRawAmount(TokenB, quotedAmountOut.toString()),
+  outputAmount: CurrencyAmount.fromRawAmount(
+    TokenB,
+    quotedAmountOut.toString()
+  ),
   tradeType: TradeType.EXACT_INPUT,
 });
 ```
@@ -87,7 +96,7 @@ console.log("The quoted amount out is", quotedAmountOut.toString());
 console.log("The unchecked trade object is", uncheckedTradeExample);
 ```
 
-If everything is working, you should see something similar to this returned in your console
+If everything is working, you should see something similar to this returned in your console.
 
 ```console
 The quoted amount out is 661497830963
@@ -126,11 +135,7 @@ const poolContract = new ethers.Contract(
 
 const quoterAddress = "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6";
 
-const quoterContract = new ethers.Contract(
-  quoterAddress, 
-  QuoterABI, 
-  provider
-);
+const quoterContract = new ethers.Contract(quoterAddress, QuoterABI, provider);
 
 interface Immutables {
   factory: string;
@@ -236,7 +241,10 @@ async function main() {
   const uncheckedTradeExample = await Trade.createUncheckedTrade({
     route: swapRoute,
     inputAmount: CurrencyAmount.fromRawAmount(TokenA, amountIn.toString()),
-    outputAmount: CurrencyAmount.fromRawAmount(TokenB, quotedAmountOut.toString()),
+    outputAmount: CurrencyAmount.fromRawAmount(
+      TokenB,
+      quotedAmountOut.toString()
+    ),
     tradeType: TradeType.EXACT_INPUT,
   });
 
