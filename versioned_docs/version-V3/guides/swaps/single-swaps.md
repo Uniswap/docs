@@ -4,7 +4,7 @@ title: Single Swaps
 sidebar_position: 1
 ---
 
-Swaps are the most common interaction with the Uniswap protocol. This example shows how to implement single swaps (for example, DAI/WETH9) using either an Exact Input or Exact Output swap. For simplification, the example hardcodes the token contract addresses, but as explained further below the contract could be modified to change pools and tokens on a per transaction basis.
+Swaps are the most common interaction with the Uniswap protocol. The code examples in this guide show you how to implement single swaps (for example, DAI/WETH9) using either an _Exact Input_ or _Exact Output_ swap (these swap types are described below). For simplification, the example hardcodes the token contract addresses, but as explained further below the contract could be modified to change pools and tokens on a per transaction basis.
 
 When trading from a smart contract, the most important thing to keep in mind is that access to an external price source is required. Without this, trades can be frontrun for considerable loss.
 
