@@ -39,7 +39,7 @@ One benefit of an iframe integration is that the your site will automatically ke
 
 An example of an Iframe integration can be found on the FOAM site [https://map.foam.space/](https://map.foam.space/#/at/?lng=-74.0045300&lat=40.6771800&zoom=5.00)
 
-To see the Iframe click the dropdown in the top right and click "get foam".
+To see the iframe, click the dropdown in the top right and click `Get FOAM`.
 
 # Add To Your Site
 
