@@ -66,7 +66,7 @@ The Pool page is made up of 2 subroutes: `add`, `remove`.
 
 ### Example Usage
 
-`https://app.uniswap.org/#/add/0x6B175474E89094C44Da98b954EedeAC495271d0F/0xdAC17F958D2ee523a2206206994597C13D831ec7`
+`https://app.uniswap.org/#/add/v2/0x6B175474E89094C44Da98b954EedeAC495271d0F/0xdAC17F958D2ee523a2206206994597C13D831ec7`
 
 ## Remove Liquidity
 
