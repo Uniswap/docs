@@ -42,17 +42,30 @@ import Timelock from "@uniswap/governance/build/Timelock.json";
 
 ## ABI
 
+The `GovernorAlpha` ABI is viewable on [Etherscan](https://etherscan.io/address/0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F), as well as via an [npm package](https://www.npmjs.com/package/@uniswap/governance).
+
+[https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json](https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json)
+
 ```typescript
 import GovernorAlpha from "@uniswap/governance/build/GovernorAlpha.json";
 ```
 
-[https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json](https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json)
+# GovernorAlpha v2 (Deprecated)
+
+`GovernerAlpha v2` is deployed at `0xC4e172459f1E7939D522503B81AFAaC1014CE6F6` on the Ethereum [mainnet](https://etherscan.io/address/0xC4e172459f1E7939D522503B81AFAaC1014CE6F6).
+
+## ABI
+
+The `GovernerAlpha v2` ABI is viewable on [Etherscan](https://etherscan.io/address/0xC4e172459f1E7939D522503B81AFAaC1014CE6F6)
 
 # GovernorBravo (Current)
 
-`GovernorBravo` is deployed at `0x408ED6354d4973f66138C91495F2f2FCbd8724C3` on the Ethereum [mainnet](0x408ED6354d4973f66138C91495F2f2FCbd8724C3).
+`GovernorBravo` is deployed at `0x408ED6354d4973f66138C91495F2f2FCbd8724C3` on the Ethereum [mainnet](https://etherscan.io/address/0x408ED6354d4973f66138C91495F2f2FCbd8724C3#code).
 
-** The new Governor Bravo ABI can be found via [etherscan](https://etherscan.io/address/0x408ED6354d4973f66138C91495F2f2FCbd8724C3).**
+## ABI
+
+The Governor Bravo ABI can be found on [Etherscan](https://etherscan.io/address/0x408ED6354d4973f66138C91495F2f2FCbd8724C3#code).
+
 # Miscellaneous Addresses
 
 **The following addresses only exist on the Ethereum mainnet.**
