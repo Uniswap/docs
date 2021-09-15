@@ -52,7 +52,7 @@ import GovernorAlpha from "@uniswap/governance/build/GovernorAlpha.json";
 
 `GovernorBravo` is deployed at `0x408ED6354d4973f66138C91495F2f2FCbd8724C3` on the Ethereum [mainnet](0x408ED6354d4973f66138C91495F2f2FCbd8724C3).
 
-** The new Governor Bravo ABI can be found via [etherscan](https://etherscan.io/address/0x408ED6354d4973f66138C91495F2f2FCbd8724C3).**
+**The Governor Bravo ABI can be found on [Etherscan](https://etherscan.io/address/0x408ED6354d4973f66138C91495F2f2FCbd8724C3#code).**
 
 # Miscellaneous Addresses
 
