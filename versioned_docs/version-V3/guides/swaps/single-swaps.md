@@ -4,12 +4,20 @@ title: Single Swaps
 sidebar_position: 1
 ---
 
-Swaps are the most common interaction with the Uniswap protocol. The code examples in this guide show you how to implement single swaps (for example, DAI/WETH9) using either an _Exact Input_ or _Exact Output_ swap (these swap types are described below). For simplification, the example hardcodes the token contract addresses, but as explained further below the contract could be modified to change pools and tokens on a per transaction basis.
+Swaps are the most common interaction with the Uniswap protocol. The following example shows you how to implement a single-path swap contract that uses two functions that you create:
+
+- `swapExactInputSingle`
+- `swapExactOutputSingle`
+
+The `swapExactInputSingle` function is for performing _exact input_ swaps, which swap a fixed amount of one token for a maximum possible amount of another token. This function uses the `ExactInputSingleParams` struct and the `exactInputSingle` function from the [ISwapRouter](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter) interface.
+
+The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOuputSingleParams` struct and the `exactOuputSingle` function from the [ISwapRouter](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter) interface.
+
+For simplification, the example hardcodes the token contract addresses, but as explained further below the contract could be modified to change pools and tokens on a per transaction basis.
 
 When trading from a smart contract, the most important thing to keep in mind is that access to an external price source is required. Without this, trades can be frontrun for considerable loss.
 
 **Note:**  The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
-
 
 ## Set Up the Contract
 
