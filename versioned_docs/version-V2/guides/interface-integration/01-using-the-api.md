@@ -133,7 +133,7 @@ Notice we're using the Dai token address to fetch data about Dai.
 
 Now that we have our data we can format it and display it in the UI. First, we parse the return data to get the actual data that we want. Then we'll use it to get the USD price of Dai. Lastly we'll insert this data into the UI itself.
 
-These queries will return an response object for each query. Within each one we're interested in the root field we defined in the query definition. For the `daiData` response we defined this as `tokens`, and for the `ethPriceData` query we defined this as `ethPrice`. Within each one we'll get an array of results. Because we're only querying for single entities we'll reference the `0` index in the data array.
+These queries will return a response object for each query. Within each one we're interested in the root field we defined in the query definition. For the `daiData` response we defined this as `tokens`, and for the `ethPriceData` query we defined this as `ethPrice`. Within each one we'll get an array of results. Because we're only querying for single entities we'll reference the `0` index in the data array.
 
 Add the following lines to your `App.js` file to parse the responses:
 
