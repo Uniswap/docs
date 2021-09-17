@@ -4,7 +4,22 @@ title: Single Swaps
 sidebar_position: 1
 ---
 
-## Setting up the Contract
+Swaps are the most common interaction with the Uniswap protocol. The following example shows you how to implement a single-path swap contract that uses two functions that you create:
+
+- `swapExactInputSingle`
+- `swapExactOutputSingle`
+
+The `swapExactInputSingle` function is for performing _exact input_ swaps, which swap a fixed amount of one token for a maximum possible amount of another token. This function uses the `ExactInputSingleParams` struct and the `exactInputSingle` function from the [ISwapRouter](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter) interface.
+
+The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOuputSingleParams` struct and the `exactOuputSingle` function from the [ISwapRouter](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter) interface.
+
+For simplification, the example hardcodes the token contract addresses, but as explained further below the contract could be modified to change pools and tokens on a per transaction basis.
+
+When trading from a smart contract, the most important thing to keep in mind is that access to an external price source is required. Without this, trades can be frontrun for considerable loss.
+
+**Note:**  The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
+
+## Set Up the Contract
 
 Declare the solidity version used to compile the contract, and `abicoder v2` to allow arbitrary nested arrays and structs
 to be encoded and decoded in calldata, a feature used when executing a swap.
@@ -89,7 +104,7 @@ A brief overview of the parameters:
 - `amountOutMinimum`: we are setting to zero, but this is a significant risk in production. For a real deployment, this value should be calculated using our SDK or an onchain price oracle - this helps protect against getting an unusually bad price for a trade due to a front running sandwich or another type of price manipulation
 - `sqrtPriceLimitX96`: We set this to zero - which makes this parameter inactive. In production, this value can be used to set the limit for the price the swap will push the pool to, which can help protect against price impact or for setting up logic in a variety of price-relevant mechanisms.
 
-### Calling the function
+### Call the function
 
 ```solidity
         // Naively set amountOutMinimum to 0. In production, use an oracle or other data source to choose a safer value for amountOutMinimum.
@@ -111,13 +126,13 @@ A brief overview of the parameters:
     }
 ```
 
-## Exact Output swaps
+## Exact Output Swaps
 
 Exact Output swaps a minimum possible amount of the input token for a fixed amount of the outbound token. This is the less common swap style - but useful in a variety of circumstances.
 
 Because this example transfers in the inbound asset in anticipation of the swap - its possible that some of the inbound token will be left over after the swap is executed, which is why we pay it back to the calling address at the end of the swap.
 
-### Calling The Function
+### Call the function
 
 ```solidity
 /// @notice swapExactOutputSingle swaps a minimum possible amount of DAI for a fixed amount of WETH.
@@ -159,7 +174,7 @@ TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), amountInMaximum)
 
 ```
 
-## The Full Example Code
+## A Complete Single Swap Contract
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
@@ -260,5 +275,7 @@ contract SwapExamples {
             TransferHelper.safeTransfer(DAI, msg.sender, amountInMaximum - amountIn);
         }
     }
+}
+```
 }
 ```
