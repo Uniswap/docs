@@ -1,45 +1,47 @@
 ---
 id: local-environment
-title: Setting Up Your Local Environment
+title: Set Up Your Local Environment
 sidebar_position: 0.5
 ---
 
-## Introduction
+This guide describes how to set up your environment using a specific toolset: `Node.js` + `npm` + `hardhat`. It also shows you how to install the Uniswap V3 Periphery contracts, which are required for the contract examples in the Uniswap Docs V3 guides.
 
-Swaps are the most common interaction with the Uniswap protocol. The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
+Once you have set up your environment, read the guides on liquidity mining, implementing swaps, and so on, which provide example contracts for those interactions.
 
 
-## Setting up your environment
+## Create a Node.js Project
 
-Create a new directory and navigate to it, and create a new node project with `npm init`
+1. Download and install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
-```
-mkdir swap-example
+2. Create a new directory and navigate to it. Also, create a new node project with `npm init`.
 
-cd swap-example
+   ```
+   $ mkdir swap-example
+   $ cd swap-example
+   $ npm init
+   ```
 
-npm init
-```
+## Install Hardhat and the Periphery Contracts
 
-For this example, we'll use [Hardhat](https://hardhat.org/) to compile our contracts.
+1. Install [Hardhat](https://hardhat.org/), which you can use for compiling contracts.
 
-```
-npm add --save-dev hardhat
-```
+   ```
+   $ npm add --save-dev hardhat
+   ```
 
-now we can install the V3 Periphery contracts, so that we can inherit what we need from them to execute a swap.
+2. Install the V3 Periphery contracts so that you can inherit what you need from them to execute contracts.
 
-```
-npm add @uniswap/v3-periphery
-```
+   ```
+   $ npm add @uniswap/v3-periphery
+   ```
 
-now we can create a new hardhat config file in our environment, which can help us configure the compilation and testing process for our contracts
+3. Create a new hardhat config file, which you can use for compiling and testing contracts.
 
-```
-npx hardhat
-```
+   ```
+   $ npx hardhat
+   ```
 
-## setting hardhat solidity version
+## Set the Solidity Version for Hardhat
 
 For this example, we'll need to change ./hardhat.config.js to include the appropriate solidity version for compiling the Uniswap V3 contracts.
 
@@ -52,6 +54,6 @@ module.exports = {
 };
 ```
 
-## Compiling our contract
+## Compile a Contract
 
-We can compile our contracts with `npx hardhat compile`
+To compile a contract, use `npx hardhat compile`.
