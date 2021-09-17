@@ -1,6 +1,6 @@
 ---
 id: local-environment
-title: Set up your local environment
+title: Set Up Your Local Environment
 sidebar_position: 0.5
 ---
 
