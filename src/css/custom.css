@@ -54,7 +54,7 @@ html[data-theme="dark"] {
 
   /* --ifm-background-color: #191b1f; */
   --ifm-navbar-background-color: #191b1f;
-  --ifm-global-shadow-md: 0 5px 40px rgba(255, 255, 255, 0.448);
+  --ifm-global-shadow-md: 0 5px 4px rgba(255, 255, 255, 0.448);
 
   background-position: 0px -30vh;
   background-repeat: no-repeat;
