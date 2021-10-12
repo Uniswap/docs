@@ -44,7 +44,6 @@ For this example, we're using an infura endpoint. If you don't have access to an
 
 ```typescript
 import { ethers } from "ethers";
-import { Pool } from "@uniswap/v3-sdk";
 import { Address } from "cluster";
 
 const provider = new ethers.providers.JsonRpcProvider("<YOUR-ENDPOINT-HERE>");
@@ -150,7 +149,6 @@ If everything worked correctly, you should see something like this:
 
 ```typescript
 import { ethers } from "ethers";
-import { Pool } from "@uniswap/v3-sdk";
 import { Address } from "cluster";
 
 const provider = new ethers.providers.JsonRpcProvider("<YOUR_ENDPOINT_HERE>");
