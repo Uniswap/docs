@@ -239,6 +239,10 @@ module.exports = {
         lightIcon: "\u{263C}",
       },
     },
+    googleAnalytics: {
+      trackingID: 'UA-128182339-7',
+      anonymizeIP: true,
+    },
   },
   presets: [
     [
