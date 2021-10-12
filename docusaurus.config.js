@@ -256,6 +256,10 @@ module.exports = {
           customCss: require.resolve("./src/css/custom.css"),
           customCss2: require.resolve("./src/css/colors.css"),
         },
+        googleAnalytics: {
+          trackingID: 'UA-128182339-7',
+          anonymizeIP: true,
+        },
       },
     ],
   ],
