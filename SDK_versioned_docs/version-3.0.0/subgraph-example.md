@@ -4,10 +4,16 @@ sidebar_position: 3
 ---
 
 # Subgraph Query Examples
-You can use the subgraph to make GraphQL queries to fetch data about Uniswap V3. You can fetch data points like the spot price of a token, current liquidity of a pool, volume on a certain day, and much more. Below are some example queries. You can copy and paste them in the [v3 explorer](https://thegraph.com/hosted-service/subgraph/uniswap/uniswap-v3) to get fresh data.
+This doc will teach you how to query Uniswap V3 analytics by writing GraphQL queries on the subgraph. You can fetch data points like :
+
+- [collected fees for a position](#general-position-data)
+- [current liquidity](#pool-data) of a pool
+- [volume on a certain day](#historical-global-data)
+
+and much more. Below are some example queries. To run a query copy and paste it into the [v3 explorer](https://thegraph.com/hosted-service/subgraph/uniswap/uniswap-v3) to get fresh data.
 
 ## Global Data
-To query global data, pass in the Uniswap Factory address : `0x1F98431c8aD98523631AE4a59f267346ea31F984` and select the desired fields.  Reference the full [factory schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L1) to see all possible fields.
+Global data refers to data points about the Uniswap v3 protocol as a whole. Some examples of global data points are total value locked in the protocol, total pools deployed, or total transaction counts. Thus, to query global data you must pass in the Uniswap V3 Factory address `0x1F98431c8aD98523631AE4a59f267346ea31F984` and select the desired fields.  Reference the full [factory schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L1) to see all possible fields.
 
 ### Current Global Data
 An example querying total pool count, transaction count, and total volume in USD and ETH:
@@ -173,7 +179,7 @@ This query fetches data about the sender, receiver, amounts, transaction data, a
  ```
 
 ### Recent Swaps Within a Pool
-You can also filter swap data by a pool address by setting the `where` field. This example fetches data about multiple swaps for the USDC-USDT pool, ordered by timestamp.
+You can set the `where` field to filter swap data by pool address. This example fetches data about multiple swaps for the USDC-USDT pool, ordered by timestamp.
 
 ```
 {
@@ -199,7 +205,7 @@ swaps(orderBy: timestamp, orderDirection: desc, where:
 ```
 ## Token Data
 
-Fetch token data by inputting the token contract address. Any token that is apart of a Uniswap pool can be queried and the data that is returned is aggregated across all the pools the token is apart of.
+Input the the token contract address to fetch token data. Any token that exists in at least one Uniswap V3 pool can be queried. The output will aggregate data across all v3 pools that include the token.
 
 ### General Token Data
 
@@ -277,6 +283,6 @@ To get data about a specific position, input the NFT tokenId. This queries the c
 
 ## Contribute
 
-There are many more queries you can do with the Uniswap v3 subgraph including data related to ticks, mints, positions, and burns. Once again you can reference the full schema [here](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql). If you'd like to suggest more example queries to showcase, feel free to drop some suggestions in discord under #dev-chat or contribute your own queries by submitting a pull request to the docs repo.
+There are many more queries you can do with the Uniswap v3 subgraph including data related to ticks, mints, positions, and burns. Once again you can reference the full schema [here](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql). If you'd like to suggest more example queries to showcase, feel free to drop some suggestions in [discord](https://discord.gg/UZvfWwwvwa) under #dev-chat or [contribute](https://github.com/Uniswap/docs/blob/main/README.md) your own queries by submitting a pull request to the docs repo.
 
 
