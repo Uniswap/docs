@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # The Uniswap V3 SDK
 
-Welcome to the Uniswap Protocol V3 SDK. Here you can find easily searchable references for the SDK. For deeper dives, we recommend referencing the [**SDK Github**](https://github.com/Uniswap/uniswap-v3-sdk) repo directly.
+Welcome to the Uniswap Protocol V3 SDK. To being, we recommend looking at the [**Guides**](./guides/01-quick-start.md), for deeper reference see the [**SDK Github**](https://github.com/Uniswap/uniswap-v3-sdk) repo.
 
 # Alpha software
 
