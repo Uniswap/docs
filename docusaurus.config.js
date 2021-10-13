@@ -76,7 +76,7 @@ module.exports = {
           className: "V2_active",
         },
         {
-          to: "/protocol/V2/concepts/governance/overview",
+          to: "/protocol/concepts/governance/overview",
           label: "Governance",
           position: "left",
           className: "V2_active",
@@ -240,7 +240,7 @@ module.exports = {
       },
     },
     googleAnalytics: {
-      trackingID: 'UA-128182339-7',
+      trackingID: "UA-128182339-7",
       anonymizeIP: true,
     },
   },
