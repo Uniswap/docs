@@ -10,7 +10,7 @@ contract SwapExamples {
     // we will detail the design considerations when using
     // `exactInput`, `exactInputSingle`, `exactOutput`, and  `exactOutputSingle`.
 
-    // It should be noted that for the sake of these examples, we purposefully pass in the swap router instead of inheriting the swap router for simplicity.
+    // It should be noted that for the sake of simplicity, we purposefully pass in the swap router instead of inheriting the swap router in these examples.
     // More advanced example contracts will detail how to inherit the swap router safely.
 
     ISwapRouter public immutable swapRouter;
@@ -126,7 +126,7 @@ contract SwapExamples {
     }
 
     /// @notice swapExactOutputMultihop swaps a minimum possible amount of DAI for a fixed amount of WETH through an intermediary pool.
-    /// For this example, we want to swap DAI for WETH9 through a USDC pool but we specify the desired amountOut of WETH9. Notice how the path encoding is slightly different in exact output swaps.
+    /// For this example, we want to swap DAI for WETH9 through a USDC pool but we specify the desired amountOut of WETH9. Notice how the path encoding is slightly different for exact output swaps.
     /// @dev The calling address must approve this contract to spend its DAI for this function to succeed. As the amount of input DAI is variable,
     /// the calling address will need to approve for a slightly higher amount, anticipating some variance.
     /// @param amountOut The desired amount of WETH9.
@@ -140,7 +140,7 @@ contract SwapExamples {
 
         // The parameter path is encoded as (tokenOut, fee, tokenIn/tokenOut, fee, tokenIn)
         // The tokenIn/tokenOut field is the shared token between the two pools used in the multiple pool swap. In this case, USDC is the "shared" token.
-        // For an exactOutput swap, the first swap that occurs is the swap which returns the eventual desired token.
+        // For an exactOutput swap, the first swap that occurs is the swap that returns the eventually desired token.
         // In this case, our desired output token is WETH9 so that swap happens first, and is encoded in the path accordingly.
         ISwapRouter.ExactOutputParams memory params =
             ISwapRouter.ExactOutputParams({
