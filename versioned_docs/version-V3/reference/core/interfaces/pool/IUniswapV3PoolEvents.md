@@ -179,7 +179,7 @@ Emitted when the protocol fee is changed by the pool
     address sender,
     address recipient,
     uint128 amount0,
-    uint128 amount0
+    uint128 amount1
   )
 ```
 Emitted when the collected protocol fees are withdrawn by the factory owner
@@ -191,4 +191,4 @@ Emitted when the collected protocol fees are withdrawn by the factory owner
 |`sender`| address | The address that collects the protocol fees
 |`recipient`| address | The address that receives the collected protocol fees
 |`amount0`| uint128 | The amount of token0 protocol fees that is withdrawn
-|`amount0`| uint128 | The amount of token1 protocol fees that is withdrawn
+|`amount1`| uint128 | The amount of token1 protocol fees that is withdrawn
