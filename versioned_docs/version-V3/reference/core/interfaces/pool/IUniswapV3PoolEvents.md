@@ -47,9 +47,9 @@ Emitted when liquidity is minted for a given position
 ```solidity
   event Collect(
     address owner,
-    address tickLower,
+    int24 tickLower,
     int24 tickUpper,
-    int24 amount0,
+    uint128 amount0,
     uint128 amount1
   )
 ```
@@ -61,9 +61,9 @@ Collect events may be emitted with zero amount0 and amount1 when the caller choo
 | Name                           | Type          | Description                                    |
 | :----------------------------- | :------------ | :--------------------------------------------- |
 |`owner`| address | The owner of the position for which fees are collected
-|`tickLower`| address | The lower tick of the position
+|`tickLower`| int24 | The lower tick of the position
 |`tickUpper`| int24 | The upper tick of the position
-|`amount0`| int24 | The amount of token0 fees collected
+|`amount0`| uint128 | The amount of token0 fees collected
 |`amount1`| uint128 | The amount of token1 fees collected
 ### Burn
 ```solidity
@@ -179,7 +179,7 @@ Emitted when the protocol fee is changed by the pool
     address sender,
     address recipient,
     uint128 amount0,
-    uint128 amount0
+    uint128 amount1
   )
 ```
 Emitted when the collected protocol fees are withdrawn by the factory owner
@@ -191,4 +191,4 @@ Emitted when the collected protocol fees are withdrawn by the factory owner
 |`sender`| address | The address that collects the protocol fees
 |`recipient`| address | The address that receives the collected protocol fees
 |`amount0`| uint128 | The amount of token0 protocol fees that is withdrawn
-|`amount0`| uint128 | The amount of token1 protocol fees that is withdrawn
+|`amount1`| uint128 | The amount of token1 protocol fees that is withdrawn
