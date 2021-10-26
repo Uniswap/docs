@@ -94,7 +94,6 @@ CachingV3PoolProvider(
   ```typescript
   V2SubgraphProvider(chainId)
   ```
-- #todo how/why would someone customize this?
 
 `v2PoolProvider` [optional]
 - Defaults to:
@@ -176,7 +175,6 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 `swapConfig` [optional]
 - Configure to set a recipient, slippageTolerance, deadline, and inputTokenPermit
 `partialRoutingConfig` [required]
-- #todo there is a default but its a required param?
 -  Defaults to `DEFAULT_CONFIG`:
 ```typescript
   v3PoolSelection: {
@@ -204,13 +202,14 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 };
 ```
 
+## Example
 ```typescript
 const providerParams = AlphaRouterParams{chainId, provider, ...providers}
 router = AlphaRouter(providerParams)
 const swapParams = {
   amount,
   quoteCurrency,
-  'ExactIn',
+  TradeType.EXACT_INPUT,
   swapConfig,
   routingConfig
 }
