@@ -205,7 +205,7 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 ## Example
 ```typescript
 const providerParams = AlphaRouterParams{chainId, provider, ...providers}
-router = AlphaRouter(providerParams)
+const router = new AlphaRouter(providerParams)
 const swapParams = {
   amount,
   quoteCurrency,
