@@ -9,7 +9,7 @@ Thanks for giving a little extra love to our docs site! Below are some basic gui
 3. Make any necessary changes, then commit and push them to your fork.
 4. Go to the main docs repo in your browser and open a new pull request.
 5. Title the pull request to describe your contribution, and include a short summary of the changes. If an open issue is associated with your changes, tag the issue by referencing the issue number ( i.e., #123) in the pull request summary.
-6. If there is a relevant tag like "typo", "bug", or "enhancement", include the tag in the PR.
+6. If there is a relevant label like "typo", "bug", or "enhancement", include the label in the PR.
 
 ## A standard flow to set up a fork
 
