@@ -15,7 +15,7 @@ See [x\*y=k](#x--y--k).
 
 ### ERC20
 
-ERC20 tokens are fungibile tokens on Ethereum. Uniswap supports all standard ERC20 implementations.
+ERC20 tokens are fungible tokens on Ethereum. Uniswap supports all standard ERC20 implementations.
 
 ### Factory
 
