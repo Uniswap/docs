@@ -21,7 +21,7 @@ The introduction of concentrated liquidity decouples total liquidity from price 
 
 We anticipate that certain types of assets will gravitate towards specific fee tiers, based on where the incentives for both swappers and liquidity providers come nearest to alignment.
 
-We expect low volatility assets (stable coins) will likely congregate in the lowest fee tier, as the price risk for liquidity providers holding these assets is very low, and those swapping will be motivated to bear the lowest swappers will be motivated to pursue a execution price closest to 1:1 as they can get.
+We expect low volatility assets (stable coins) will likely congregate in the lowest fee tier, as the price risk for liquidity providers holding these assets is very low, and those swapping will be motivated to bear the lowest swappers will be motivated to pursue an execution price closest to 1:1 as they can get.
 
 Similarly, we anticipate more exotic assets, or those traded rarely, will naturally gravitate towards a higher fee - as liquidity providers will be motivated to offset the cost risk of holding these assets for the duration of their position.
 
