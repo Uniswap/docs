@@ -224,12 +224,3 @@ const swapParams = {
 }
 const swap = router.route(swapParams)
 ```
-
-
-
-
-
-
-
-
-
