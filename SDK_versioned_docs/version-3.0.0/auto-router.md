@@ -3,19 +3,24 @@ id: Smart Order Router Integration
 sidebar_position: 3
 ---
 
-# Integrating with the Smart Order Router
-The smart order router is a package that exposes a more optimized algorithm for swapping on Uniswap. To use the smart order router, you will create an `AlphaRouter` instance and use the method `route` to get quotes, gas information, and calldata for an optimized swap.
+# Integrating with the Auto Router
+You can use the auto router to fetch optimized trade routes for swapping on Uniswap. To use the auto router, you will create an `AlphaRouter` instance and use the method `route` to get quotes, gas information, and calldata for an optimized swap.
 
 ## The Package
-Import `AlphaRouter` from the [smart-order-router](https://www.npmjs.com/package/@uniswap/smart-order-router) package.
+To integrate with the auto router, you will use the [smart-order-router](https://www.npmjs.com/package/@uniswap/smart-order-router) package. The smart-order-router package allows you to integrate with the auto router feature through the `AlphaRouter` class. 
+
+Import `AlphaRouter` from the smart-order-router package to get started.
 
 ```typescript
 import { AlphaRouter } from '@uniswap/smart-order-router'
 ```
 
-## The Providers
+The `AlphaRouter` class handles the routing logic. Instantiate the `AlphaRouter` to call the `route` method which returns all the swap calldata and gas information needed for submitting an optimal swap to the chain. 
 
-To create an instance of the AlphaRouter, configure the following providers:
+## Initializing the AlphaRouter
+
+To create an instance of the AlphaRouter, configure the below parameters defined by `AlphaRouterParams`.
+**Note: Inputting custom providers for any of the optional parameters is for advanced use cases. Most use cases will just need to provide the `chainId` and the `provider`, an infura connection.**
 
 ```typescript 
 export type AlphaRouterParams = {
@@ -43,17 +48,18 @@ export type AlphaRouterParams = {
 - A JSON RPC endpoint, like Infura.
 
 `multicall2Provider` [optional]
+- Customize the multicall2Provider if you want to adjust the gas limit per call. 
 -  Defaults to: 
 ```typescript 
 UniswapMulticallProvider(chainId, provider, 375_000)
 ``` 
-- Customize the multicall2Provider if you want to adjust the gas limit per call. 
 
 `v3SubgraphProvider` [optional] 
-- Defaults to cached pools.
 - Customize the v3SubgraphProvider if you want to change the number of retries and the timeout set when making calls to the Uniswap v3 subgraph to get pool data.
+- Defaults to cached pools.
 
 `v3PoolProvider` [optional]
+- Customize this provider with a different cache for on chain pool data.
 - Defaults to:
 ```typescript
 CachingV3PoolProvider(
@@ -62,9 +68,9 @@ CachingV3PoolProvider(
         new NodeJSCache(new NodeCache({ stdTTL: 360, useClones: false }))
       );
 ```
-- Customize this provider with a different cache for on chain pool data.
 
 `v3QuoteProvider` [optional]
+ - Customize if you want to change any of the retries/timeouts/gas limits.
  - Defaults to:
 ```typescript
       new V3QuoteProvider(
@@ -87,21 +93,21 @@ CachingV3PoolProvider(
         }
       );
   ```
- - Customize if you want to change any of the retries/timeouts/gas limits.
 
 `v2SubgraphProvider` [optional]
+- Customize the v2SubgraphProvider if you want to change the number of retries and the timeout set when making calls to the Uniswap v2 subgraph to get pool data.
 - Defaults to:
   ```typescript
   V2SubgraphProvider(chainId)
   ```
 
 `v2PoolProvider` [optional]
+- Customize if you also want a custom multicall2Provider or if you want to set custom retries.
+gets v2 onchain pool data
 - Defaults to:
 ```typescript
 V2PoolProvider(chainId, this.multicall2Provider)
 ```
-- Customize if you also want a custom multicall2Provider or if you want to set custom retries.
-gets v2 onchain pool data
 
 `v2QuoteProvider` [optional] 
 - Defaults to:
@@ -109,6 +115,7 @@ gets v2 onchain pool data
 new V2QuoteProvider()
 ```
 `tokenProvider` [optional] 
+- Customize the token provider if you want to use your own token list. If you do not configure your own token provider, all swaps will be routed with the tokens included in `DEFAULT_TOKEN_LIST`.
 - Defaults to:
 ```typescript
 CachingTokenProviderWithFallback(
@@ -122,9 +129,9 @@ CachingTokenProviderWithFallback(
         new TokenProvider(chainId, this.multicall2Provider)
       );
 ```
-- Customize the token provider if you want to use your own token list. If you do not configure your own token provider, all swaps will be routed with the tokens included in `DEFAULT_TOKEN_LIST`.
 
 `gasPriceProvider` [optional]
+- Customize if you want to get gas estimations from a different api or if you want to set up your own cache.
 - Defaults to:
 ```typescript
 CachingGasStationProvider(
@@ -137,7 +144,7 @@ CachingGasStationProvider(
         )
       );
 ```
-- Customize if you want to get gas estimations from a different api or set up your own cache.
+
 `v3GasModelFactory` [optional]
 - Defaults to:
 ```typescript
@@ -149,9 +156,10 @@ V3HeuristicGasModelFactory()
 ```typescript
 V2HeuristicGasModelFactory()
 ```
+
 `blockedTokenListProvider` [optional]
-- Defaults to Uniswap's unsupported token list.
 - Customize if you want to not route swaps through pools with certain tokens.
+- Defaults to Uniswap's unsupported token list.
 
 
 ## Calling `route`
@@ -203,6 +211,7 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 ```
 
 ## Example
+
 ```typescript
 const providerParams: AlphaRouterParams = {chainId, provider, ...providers}
 const router = new AlphaRouter(providerParams)
