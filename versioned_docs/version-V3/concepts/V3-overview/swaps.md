@@ -19,7 +19,7 @@ Price impact affects the execution price of a swap similarly but is a result of 
 
 This dynamic affects every swap using the Uniswap protocol, as it is an inextricable part of AMM design.
 
-As the amount of liquidity available at different price points can vary, price impact for a given swap size will change relative to the amount of liquidity available at any given point in price space. The greater the liquidity available at a given price, the lower the price impact for a given swap size. The lesser the liquidity available, the higher the price impact.
+As the amount of liquidity available at different price points can vary, the price impact for a given swap size will change relative to the amount of liquidity available at any given point in price space. The greater the liquidity available at a given price, the lower the price impact for a given swap size. The lesser the liquidity available, the higher the price impact.
 
 Approximate[^3] price impact is anticipated in real-time via the Uniswap interface, and warnings appear if unusually high price impact will occur during a swap. Anyone executing a swap will have the ability to assess the circumstances of price impact when needed.
 
@@ -39,8 +39,8 @@ Price impact and slippage can both change while a transaction is pending, which 
 
 - **Expired** : A transaction error that occurs if a swap is pending longer than a predetermined deadline. The deadline is a point in time after which the swap will be canceled to protect against unusually long pending periods and the changes in price that typically accompany the passage of time.
 
-- **INSUFFICIENT_OUTPUT_AMOUNT** : When a user submits a swap, the Uniswap interface will send an estimate of how much of the purchased token the user should expect to receive. If the anticipated output amount of a swap does not match the estimate within a certain margin of error (the slippage tolerance), the swap will be cancelled. This attempts to protect the user from any drastic and unfavorable price changes while their transaction is pending.
+- **INSUFFICIENT_OUTPUT_AMOUNT** : When a user submits a swap, the Uniswap interface will send an estimate of how much of the purchased token the user should expect to receive. If the anticipated output amount of a swap does not match the estimate within a certain margin of error (the slippage tolerance), the swap will be canceled. This attempts to protect the user from any drastic and unfavorable price changes while their transaction is pending.
 
-[^1] Proportional in this instance takes into account many factors, including relative price of one token in terms of the other, slippage, price impact, and other factors related to the open and adversarial nature of Ethereum.
+[^1] Proportional in this instance takes into account many factors, including the relative price of one token in terms of the other, slippage, price impact, and other factors related to the open and adversarial nature of Ethereum.
 [^2] For information about liquidity provision, see the liquidity user guide
 [^3] The Uniswap interface informs the user about the circumstances of their swap, but it is not guaranteed.
