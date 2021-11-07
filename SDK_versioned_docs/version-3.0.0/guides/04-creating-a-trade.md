@@ -1,9 +1,9 @@
 ---
-id: execute-a-swap
-title: Executing a Swap
+id: creating-a-trade
+title: Creating a Trade
 ---
 
-This guide extends the previous [creating a pool](03-creating-a-pool.md) and [getting started](./using-ethers) guides by using the `pool` object to quote an estimated amount out for a trade, then creates a trade that can be submitted to the EVM.
+This guide extends the previous [creating a pool](03-creating-a-pool.md) and [getting started](./using-ethers) guides by using the `pool` object to quote an estimated amount out for a trade, then creates a trade object that can be used to execute a swap.
 
 ## Creating a Quoter Contract Object
 
