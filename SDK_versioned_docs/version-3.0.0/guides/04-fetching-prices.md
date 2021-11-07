@@ -14,26 +14,30 @@ Similar to other examples, you first must set up your pool. If you’re unsure h
 After constructing the pool, you can save the token prices as constants:
 
 ```typescript
-  const DAI_USDC_POOL = new Pool(
-    DAI,
-    USDC,
-    immutables.fee,
-    state.sqrtPriceX96.toString(),
-    state.liquidity.toString(),
-    state.tick
-  )
-  
-  const token0Price =  DAI_USDC_POOL.token0Price
-  const token1Price = DAI_USDC_POOL.token1Price
+const DAI_USDC_POOL = new Pool(
+  DAI,
+  USDC,
+  immutables.fee,
+  state.sqrtPriceX96.toString(),
+  state.liquidity.toString(),
+  state.tick
+);
+
+const token0Price = DAI_USDC_POOL.token0Price;
+const token1Price = DAI_USDC_POOL.token1Price;
 ```
 
 ### Understanding sqrtPrice
 
 What is `sqrtPriceX96`?
 
-In Uniswap V3, prices of tokens are stored in the [0th slot](https://docs.uniswap.org/protocol/reference/core/interfaces/pool/IUniswapV3PoolState#slot0) of the pool state. Storing the price values instead of deriving them allows pools to perform higher precision operations. In the actual implementation, prices are stored as square roots, hence the `sqrt` prefix. The price is stored as a square root because of the geometric nature of the core AMM algorithm, x*y=k. Essentially, the [math](https://uniswap.org/whitepaper-v3.pdf) works out well when working with the square root of the price. 
+In Uniswap V3, prices of tokens are stored in the [0th slot](https://docs.uniswap.org/protocol/reference/core/interfaces/pool/IUniswapV3PoolState#slot0) of the pool state. Storing the price values instead of deriving them allows pools to perform higher precision operations. In the actual implementation, prices are stored as square roots, hence the `sqrt` prefix. The price is stored as a square root because of the geometric nature of the core AMM algorithm, x\*y=k. Essentially, the [math](https://uniswap.org/whitepaper-v3.pdf) works out well when working with the square root of the price.
 
 In addition, you'll notice the `X96` suffix at the end of the variable name. This `X*` naming convention is used throughout the Uniswap V3 codebase to indicate values that are encoded as binary [fixed-point numbers](https://en.wikipedia.org/wiki/Fixed-point_arithmetic). Fixed-point is excellent at representing fractions while maintaining consistent fidelity and high precision in integer-only environments like the EVM, making it a perfect fit for representing prices, which of course are ultimately fractions. The number after `X` indicates the number of _fraction bits_ - 96 in this case - reserved for encoding the value after the decimal point. The number of integer bits can be trivially derived from the size of the variable and the number of fraction bits. In this case, `sqrtPriceX96` is stored as a `uint160`, meaning that there are `160 - 96 = 64` integer bits.
+
+:::note
+`sqrtPriceX96` and `sqrtRatioX96` represent the same value, and are interchangeable.
+:::
 
 Consider the following derivation, which formalizes the definitions above:
 
@@ -54,12 +58,12 @@ sqrtPriceX96 / (2 ** 96) = sqrt(price)
 # multiply the exponents in the denominator to get the final expression
 sqrtRatioX96 ** 2 / 2 ** 192 = price
 ```
-You will see that the formula in the last step is how the SDK calculates the prices with the functions [`token0Price`](#token0price) and [`token1Price`](#token1price).
 
+You will see that the formula in the last step is how the SDK calculates the prices with the functions [`token0Price`](#token0price) and [`token1Price`](#token1price).
 
 ### token0Price
 
-Let's apply the math derived above to the functions `token0Price` and `token1Price`. Note that `sqrtRatioX96` is interchangeable with `sqrtPriceX96`. 
+Let's apply the math derived above to the functions `token0Price` and `token1Price`. Note that `sqrtRatioX96` is interchangeable with `sqrtPriceX96`.
 
 ```typescript
   /**
@@ -82,13 +86,13 @@ Let's apply the math derived above to the functions `token0Price` and `token1Pri
 
 ```typescript
 constructor(
-    baseToken: Token, 
+    baseToken: Token,
     quoteToken: Token,
-    denominator: BigintIsh, 
+    denominator: BigintIsh,
     numerator: BigintIsh)
 ```
 
-Let's break down the denominator and the numerator of the returned price and prove that it matches the math derived above. Recall that the expression achieved above is 
+Let's break down the denominator and the numerator of the returned price and prove that it matches the math derived above. Recall that the expression achieved above is
 
 ```python
 price = sqrtRatioX96 ** 2 / 2 ** 192
@@ -96,31 +100,35 @@ price = sqrtRatioX96 ** 2 / 2 ** 192
 
 #### The numerator
 
-It's worth noting that the numerator is misleadingly listed *below* the denominator in the constructor for a `Price`. In any case, you will see that the numerator of the fraction is `JSBI.multiply(this.sqrtRatioX96, this.sqrtRatioX96)` which nicely follows the math above: `sqrtPriceX96 ** 2`. 
+It's worth noting that the numerator is misleadingly listed _below_ the denominator in the constructor for a `Price`. In any case, you will see that the numerator of the fraction is `JSBI.multiply(this.sqrtRatioX96, this.sqrtRatioX96)` which nicely follows the math above: `sqrtPriceX96 ** 2`.
 
 #### The denominator
 
 The denominator is `Q192`. To break this number down recall the following constants defined in the SDK:
 
 ```typescript
-export const Q96 = JSBI.exponentiate(JSBI.BigInt(2), JSBI.BigInt(96))
-export const Q192 = JSBI.exponentiate(Q96, JSBI.BigInt(2))
+export const Q96 = JSBI.exponentiate(JSBI.BigInt(2), JSBI.BigInt(96));
+export const Q192 = JSBI.exponentiate(Q96, JSBI.BigInt(2));
 ```
+
 Thus, the denominator for the `token0Price` also matches the math derived above where `Q192` is `(2 ** 96) * (2 ** 96)` which is the same as `(2 ** 192)`.
 
 ### token1Price
 
-Recall that `token0Price` is the ratio of token1 over token0 and that `token1Price` is the ratio of token0 over token1. This means that the derivation for `token1Price` follows the same math except the numerator and denominator are flipped, implying the inverse. 
+Recall that `token0Price` is the ratio of token1 over token0 and that `token1Price` is the ratio of token0 over token1. This means that the derivation for `token1Price` follows the same math except the numerator and denominator are flipped, implying the inverse.
 
-So instead of 
+So instead of
 
 ```python
 price = sqrtRatioX96 ** 2 / 2 ** 192
 ```
- you have
+
+you have
+
 ```python
  price =  2 ** 192 / sqrtRatioX96 ** 2
- ```
+```
+
 which is simply shown below in the function definition of `token1Price` :
 
 ```typescript
@@ -138,6 +146,6 @@ which is simply shown below in the function definition of `token1Price` :
       ))
     )
   }
-  ```
+```
 
- You can see that in the function definition the numerator is now `Q192` and the denominator is now `JSBI.multiply(this.sqrtRatioX96, this.sqrtRatioX96)`, matching the expression above.
+You can see that in the function definition the numerator is now `Q192` and the denominator is now `JSBI.multiply(this.sqrtRatioX96, this.sqrtRatioX96)`, matching the expression above.
