@@ -77,7 +77,7 @@ An example of finding the price of WETH in a WETH / USDC pool, where WETH is `to
 
 You have an oracle reading that shows a return of `tickCumulative` as [`70_000`, `1_070_000`], with an elapsed time between the observations of 10 seconds.
 
-We can derive the average tick over this interval by taking the difference in accumulator values (`1_070_000` - `70_000` = `1_000_000`), and diving by the time elapsed (`1_000_000` / `10` = `100_000`). 
+We can derive the average tick over this interval by taking the difference in accumulator values (`1_070_000` - `70_000` = `1_000_000`), and dividing by the time elapsed (`1_000_000` / `10` = `100_000`). 
 
 With a tick reading of `100_000`, we can find the value of `token1` (USDC) in terms of `token0` (WETH) by using the current tick as `i` in the formula `p(i) = 1.0001**i` (see 6.1 in the [whitepaper](https://uniswap.org/whitepaper-v3.pdf)).
 
