@@ -76,7 +76,7 @@ module.exports = {
           className: "V2_active",
         },
         {
-          to: "/protocol/V2/concepts/governance/overview",
+          to: "/protocol/concepts/governance/overview",
           label: "Governance",
           position: "left",
           className: "V2_active",
@@ -238,6 +238,10 @@ module.exports = {
         // Unicode with 5 chars require brackets: '\u{1F602}'
         lightIcon: "\u{263C}",
       },
+    },
+    googleAnalytics: {
+      trackingID: "UA-128182339-7",
+      anonymizeIP: true,
     },
   },
   presets: [
