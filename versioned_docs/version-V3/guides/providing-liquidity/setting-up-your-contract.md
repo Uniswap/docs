@@ -174,4 +174,5 @@ contract LiquidityExamples is IERC721Receiver {
         // operator is msg.sender
         deposits[tokenId] = Deposit({owner: owner, liquidity: liquidity, token0: token0, token1: token1});
     }
+}
 ```
