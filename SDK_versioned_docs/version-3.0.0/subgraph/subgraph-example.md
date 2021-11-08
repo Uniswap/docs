@@ -165,8 +165,8 @@ This query returns daily aggregated data for the first 10 days since the given t
 
 ### General Swap Data
 
-To query data about a particular swap, input the transaction hash + "#" + the index in the swaps the transaction array.
-Reference for the full [swap schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L353).
+To query data about a particular swap, input the transaction hash + "#" + the index in the swaps the transaction array.R
+This is the reference for the full [swap schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L353).
 
 This query fetches data about the sender, receiver, amounts, transaction data, and timestamp for a particular swap.
 
@@ -245,7 +245,7 @@ This queries the decimals, symbol, name, pool count, and volume in USD for the U
 
 ### Token Daily Aggregated
 
-You can fetch aggregate data about a specific token over a day. This query gets 10-day volume data for the UNI token ordered from oldest to newest.
+You can fetch aggregate data about a specific token over a 24-hour period. This query gets 10-days of the 24-hour volume data for the UNI token ordered from oldest to newest.
 
 ```
 {
