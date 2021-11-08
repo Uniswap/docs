@@ -46,7 +46,7 @@ module.exports = {
           className: "V3_active",
         },
         {
-          to: "/sdk/Subgraph%20data",
+          to: "/sdk/subgraph/subgraph-data",
           label: "Subgraph (API)",
           position: "left",
           className: "V3_active",
