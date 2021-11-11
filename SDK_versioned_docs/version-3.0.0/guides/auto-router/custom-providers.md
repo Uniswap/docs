@@ -1,26 +1,11 @@
 ---
-id: Smart Order Router Integration
-sidebar_position: 3
+id: custom-providers
+sidebar_position: 2
 ---
 
-# Integrating with the Auto Router
-You can use the auto router to fetch optimized trade routes for swapping on Uniswap. To use the auto router, you will create an `AlphaRouter` instance and use the method `route` to get quotes, gas information, and calldata for an optimized swap.
+# Optional: Custom Providers
 
-## The Package
-To integrate with the auto router, you will use the [smart-order-router](https://www.npmjs.com/package/@uniswap/smart-order-router) package. The smart-order-router package allows you to integrate with the auto router feature through the `AlphaRouter` class. 
-
-Import `AlphaRouter` from the smart-order-router package to get started.
-
-```typescript
-import { AlphaRouter } from '@uniswap/smart-order-router'
-```
-
-The `AlphaRouter` class handles the routing logic. Instantiate the `AlphaRouter` to call the `route` method which returns all the swap calldata and gas information needed for submitting an optimal swap to the chain. 
-
-## Initializing the AlphaRouter
-
-To create an instance of the AlphaRouter, configure the below parameters defined by `AlphaRouterParams`.
-**Note: Inputting custom providers for any of the optional parameters is for advanced use cases. Most use cases will just need to provide the `chainId` and the `provider`, an infura connection.**
+For advanced use cases, you can input custom providers when initializing the `AlphaRouter`. The `AlphaRouterParams` specifies all available providers you can input and are further outlined below.
 
 ```typescript 
 export type AlphaRouterParams = {
@@ -40,6 +25,7 @@ export type AlphaRouterParams = {
   blockedTokenListProvider?: ITokenListProvider;
 };
 ```
+## Parameters 
 
 `chainId` [required]
 - The id of the chain you want to route swaps on. Ex) The chainId for Ethereum mainnet is `1`.
@@ -160,67 +146,3 @@ V2HeuristicGasModelFactory()
 `blockedTokenListProvider` [optional]
 - Customize if you want to not route swaps through pools with certain tokens.
 - Defaults to Uniswap's unsupported token list.
-
-
-## Calling `route`
-
-Once you instantiate `AlphaRouter` call `route` with the following parameters:
-```typescript
-    {
-      amount: CurrencyAmount,
-      quoteCurrency: Currency,
-      swapType: TradeType,
-      swapConfig?: SwapConfig,
-      partialRoutingConfig: Partial<AlphaRouterConfig> = {}
-    }
-```
-`amount` [required]
-- The amount to be swapped as a `CurrencyAmount`
-`quoteCurrency` [required]
-- The token or native currency you are swapping for as a `Currency`
-`swapType` [required]
-- Either an exactInput swap or an exactOutput swap.
-`swapConfig` [optional]
-- Configure to set a recipient, slippageTolerance, deadline, and inputTokenPermit
-`partialRoutingConfig` [required]
--  Defaults to `DEFAULT_CONFIG`:
-```typescript
-  v3PoolSelection: {
-    topN: 4,
-    topNDirectSwaps: 2,
-    topNTokenInOut: 4,
-    topNSecondHop: 2,
-    topNWithEachBaseToken: 2,
-    topNWithBaseToken: 10,
-    topNWithBaseTokenInSet: false,
-  },
-  v2PoolSelection: {
-    topN: 10,
-    topNDirectSwaps: 1,
-    topNTokenInOut: 8,
-    topNSecondHop: 6,
-    topNWithEachBaseToken: 2,
-    topNWithBaseToken: 5,
-    topNWithBaseTokenInSet: false,
-  },
-  maxSwapsPerPath: 3,
-  minSplits: 1,
-  maxSplits: 5,
-  distributionPercent: 5,
-};
-```
-
-## Example
-
-```typescript
-const providerParams: AlphaRouterParams = {chainId, provider, ...providers}
-const router = new AlphaRouter(providerParams)
-const swapParams = {
-  amount,
-  quoteCurrency,
-  TradeType.EXACT_INPUT,
-  swapConfig,
-  routingConfig
-}
-const swap = router.route(swapParams)
-```
