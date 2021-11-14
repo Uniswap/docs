@@ -8,7 +8,7 @@ import '../libraries/TransferHelper.sol';
 import '../interfaces/INonfungiblePositionManager.sol';
 
 contract LiquidityExamples is IERC721Receiver {
-    INonfungiblePositionManager public immutable nonfungiblePositionManager;
+    address public constant nonfungiblePositionManager = 0xC36442b4a4522E871399CD717aBDD847Ab11FE88;
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     uint24 public constant poolFee = 3000;
@@ -23,10 +23,6 @@ contract LiquidityExamples is IERC721Receiver {
 
     /// @dev deposits[tokenId] => Deposit
     mapping(uint256 => Deposit) public deposits;
-
-    constructor(INonfungiblePositionManager _nonfungiblePositionManager) {
-        nonfungiblePositionManager = _nonfungiblePositionManager;
-    }
 
     // Implementing `onERC721Received` so this contract can receive custody of erc721 tokens
     // Note that the operator is recorded as the owner of the deposited NFT
