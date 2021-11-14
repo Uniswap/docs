@@ -8,7 +8,7 @@ tags: governance, documentation
 
 The Uniswap protocol is governed and upgraded by UNI token holders, using three distinct components; the UNI token, governance module, and Timelock. Together, these contracts allow the community to propose, vote, and implement changes to the uniswap protocol.
 
-Any addresses with more than 2.5M UNI delegated to it may propose governance actions, which contain finished, executable code. When a proposal is created, the community can cast their votes during a 3 day voting period. If a majority, and at least 4M votes are cast for the proposal, it is queued in the Timelock, and may be executed in a minimum of 2 days.
+Any addresses with more than 2.5M UNI (0.25% of total supply) delegated to it may propose governance actions, which contain finished, executable code. When a proposal is created, the community can cast their votes during a 7 day voting period. If there are more 'For' votes than 'Against' (i.e. a simple majority), and the number of 'For' votes >40M (meeting the quorum), it is queued in the Timelock, and may be executed in a minimum of 2 days.
 
 ## Timelock
 
