@@ -125,7 +125,8 @@ import { abi as QuoterABI } from "@uniswap/v3-periphery/artifacts/contracts/lens
 
 const provider = new ethers.providers.JsonRpcProvider("<YOUR-ENDPOINT-HERE>");
 
-const poolAddress = "0xee815cdc6322031952a095c6cc6fed036cb1f70d";
+// USDC-WETH pool address on mainnet for fee tier 0.05%
+const poolAddress = "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640";
 
 const poolContract = new ethers.Contract(
   poolAddress,
