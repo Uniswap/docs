@@ -545,7 +545,7 @@ export default function Home() {
               <ChatIcon style={{ width: "48px", height: "48px" }} />
               <div>
                 <h3>Forum</h3>
-                <p>Dicsuss governance and more.</p>
+                <p>Discuss governance and more.</p>
               </div>
             </CenterCard>
           </Link>
