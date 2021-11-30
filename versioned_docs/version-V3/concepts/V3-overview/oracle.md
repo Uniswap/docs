@@ -39,7 +39,7 @@ function observe(uint32[] calldata secondsAgos)
     returns (int56[] memory tickCumulatives, uint160[] memory secondsPerLiquidityCumulativeX128s);
 ```
 
-Each time `observe` is called, the caller must specify an array containing any number of seconds ago, denoting the times to return observations from. Note that each of the given times must be more recent (or as old as) the oldest stored observation. Note: if the times don't correspond exactly to a block in which an observation was written, a counterfactual observation will be constructed, removing the need for the caller to interpolate manually. This is one of the primary reasons to use `observe` over `observations`.
+Each time `observe` is called, the caller must specify an array containing any number of seconds ago, denoting the times to return observations from. Note that each of the given times must be more recent than (or as old as) the oldest stored observation. Note: if the times don't correspond exactly to a block in which an observation was written, a counterfactual observation will be constructed, removing the need for the caller to interpolate manually. This is one of the primary reasons to use `observe` over `observations`.
 
 Note that because the oracle is only updated at most once every block, calling `observe` with a `secondsAgo` value of `0` will return the most recently written observation, which can only be as recent as the beginning of the current block (or older).
 
