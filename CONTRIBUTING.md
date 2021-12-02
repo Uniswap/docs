@@ -13,7 +13,7 @@ Thanks for giving a little extra love to our docs site! Below are some basic gui
 
 ## A standard flow to set up a fork
 
-Set up your fork with the following terminal commands, or an alteration of them to suit your enviornment:
+Set up your fork with the following terminal commands, or an alteration of them to suit your environment:
 
 ```
 cd uniswap-docs
