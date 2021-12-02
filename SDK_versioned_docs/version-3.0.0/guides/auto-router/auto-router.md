@@ -156,7 +156,7 @@ This full example compiles all of the steps above and also prints the route quot
 import { AlphaRouter } from '@uniswap/smart-order-router'
 import { Token, CurrencyAmount } from '@uniswap/sdk-core'
 
-const V3_SWAP_ROUTER_ADDRESS = '0xE592427A0AEce92De3Edee1F18E0157C05861564';
+const V3_SWAP_ROUTER_ADDRESS = '0x075B36dE1Bd11cb361c5B3B1E80A9ab0e7aa8a60';
 const MY_ADDRESS = '0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B';
 const web3Provider = /*YOUR PROVIDER HERE*/
 
