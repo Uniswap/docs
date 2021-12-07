@@ -86,17 +86,17 @@ When collecting fees in ETH, you must precompute the fees owed to protect agains
 
 
 ```typescript
-const {calldata, value} = NonfungiblePositionManager.removeCallParameters(position, {
-        tokenId: 1,
-        liquidityPercentage: new Percent(1),
-        slippageTolerance: new Percent(50, 10_000),
-        deadline: deadline,
-        collectOptions: {
-          expectedCurrencyOwed0: CurrencyAmount.fromRawAmount(DAI, 0),
-          expectedCurrencyOwed1: CurrencyAmount.fromRawAmount(USDC, 0),
-          recipient: sender
-        }}
-    );
+const { calldata, value } = NonfungiblePositionManager.removeCallParameters(position, {
+  tokenId: 1,
+  liquidityPercentage: new Percent(1),
+  slippageTolerance: new Percent(50, 10_000),
+  deadline: deadline,
+  collectOptions: {
+    expectedCurrencyOwed0: CurrencyAmount.fromRawAmount(DAI, 0),
+    expectedCurrencyOwed1: CurrencyAmount.fromRawAmount(USDC, 0),
+    recipient: sender
+  }}
+);
 ```
 
 ## The example code
