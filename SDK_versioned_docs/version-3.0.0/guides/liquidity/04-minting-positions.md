@@ -37,7 +37,7 @@ The input parameters are the two token addresses, the fee tier (0.05%), the curr
 A position represents the price range for a specific pool that LPs choose to provide in. After constructing a pool, set up the position instance:
 
 ```typescript
-const position = new Position({
+  const position = new Position({
     pool: DAI_USDC_POOL,
     liquidity: state.liquidity * 0.0002,
     tickLower: nearestUsableTick(state.tick, immutables.tickSpacing) - immutables.tickSpacing  * 2,
@@ -108,10 +108,10 @@ You can omit the parameters that are not required. In order to create the most b
     const deadline = block.timestamp + 200;
 
     const { calldata, value } = NonfungiblePositionManager.addCallParameters(position, {
-        slippageTolerance: new Percent(50, 10_000),
-        recipient: sender,
-        deadline: deadline
-        });
+      slippageTolerance: new Percent(50, 10_000),
+      recipient: sender,
+      deadline: deadline
+    });
 ```
 
 where `slippageTolerance` is set to 0.005%, `recipient` is set to the sender address which is an input to this function, and `deadline` is set to the current `block.timestamp` plus some arbitrary amount, for this example. The parameter `slippageTolerance` refers to the percentage that the price can change for the transaction to still succeed. If a price slips beyond the percentage specified, the transaction will not go through. Set `recipient` to the address that will own the newly minted NFT position.  Set `deadline` to the timebound at which this transaction can still be submitted. 
