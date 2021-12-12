@@ -133,3 +133,6 @@ async function liquidityExamples(sender: string, exampleType: number) {
     );
   }
   }
+
+// call the example function by passing the sender, e.g.:
+// liquidityExamples("0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf", 0)
