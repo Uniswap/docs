@@ -1,6 +1,6 @@
 Router for stateless execution of swaps against Uniswap V3
 
-> Input parameters are viewable on the [**Swap Router Interface**](https://docs.uniswap.org/reference/periphery/interfaces/ISwapRouter)
+> Input parameters are viewable on the [**Swap Router Interface**](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter)
 
 ## Functions
 ### constructor
