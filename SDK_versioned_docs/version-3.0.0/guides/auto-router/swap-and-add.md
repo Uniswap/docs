@@ -114,18 +114,18 @@ The object returned from calling `routeToRatio` is a `SwapToRatioResponse`. If a
 
 ```typescript
 export type SwapRoute = {
-  quote: CurrencyAmount;
-  quoteGasAdjusted: CurrencyAmount;
+	quote: CurrencyAmount;
+	quoteGasAdjusted: CurrencyAmount;
 	optimalRatio: Fraction;
 	postSwapTargetPool: Pool;
-  estimatedGasUsed: BigNumber;
-  estimatedGasUsedQuoteToken: CurrencyAmount;
-  estimatedGasUsedUSD: CurrencyAmount;
-  gasPriceWei: BigNumber;
-  trade: Trade<Currency, Currency, TradeType>;
-  route: RouteWithValidQuote[];
-  blockNumber: BigNumber;
-  methodParameters?: MethodParameters;
+	estimatedGasUsed: BigNumber;
+	estimatedGasUsedQuoteToken: CurrencyAmount;
+	estimatedGasUsedUSD: CurrencyAmount;
+	gasPriceWei: BigNumber;
+	trade: Trade<Currency, Currency, TradeType>;
+	route: RouteWithValidQuote[];
+	blockNumber: BigNumber;
+	methodParameters?: MethodParameters;
 };
 ```
 
