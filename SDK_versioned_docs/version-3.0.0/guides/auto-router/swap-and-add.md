@@ -85,20 +85,20 @@ const pool = new Pool(
 
 
 const route = await router.route({
-  token0Balance,
-  token1Balance,
-  position: new Position({
-      pool,
-      tickLower: -60,
-      tickUpper: 60,
-      liquidity: 1, // arbitrary and unused
-  }),
-  swapAndAddConfig: {
+	token0Balance,
+	token1Balance,
+	position: new Position({
+		pool,
+		tickLower: -60,
+		tickUpper: 60,
+		liquidity: 1, // arbitrary and unused
+	}),
+	swapAndAddConfig: {
 		swapConfig: {
 			recipient: myAddress,
 			slippage: new Percent(5, 100),
 			deadline: 100
-	  },
+		},
 		addLiquidityOptions: {
 			tokenId: 10,
 			slippage: new Percent(5, 100),
