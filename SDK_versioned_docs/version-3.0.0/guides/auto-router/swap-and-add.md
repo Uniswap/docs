@@ -16,7 +16,7 @@ Follow the instructions to [import](https://docs.uniswap.org/sdk/guides/auto-rou
 
 The `routeToRatio` method returns all the swap and add calldata needed for submitting an atomic transaction to perform a swap and add liquidity to a position.
 
-Once you instantiate `AlphaRouter` call `route` with the following parameters:
+Once you instantiate `AlphaRouter` call `routeToRatio` with the following parameters:
 
 ```typescript
 {
@@ -33,27 +33,23 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 
 `token0Balance` [required]
 
-- The initial starting balance of the token0 of the pool for which to add liquidity
+- The initial starting balance of token0 of the pool for which to add liquidity
 
 `token1Balance` [required]
 
-- The initial starting balance of the token1 of the pool for which to add liquidity
+- The initial starting balance of token1 of the pool for which to add liquidity
 
 `position` [required]
 
-- A position object that contains the details of the position for which to add liquidity. The position liquidity can be set to 1, since liquidity is still unknown before performing `routeToRatio`
+- A position object that contains the details of the position for which to add liquidity. The position liquidity can be set to 1, since liquidity is still unknown and will be set inside the call to `routeToRatio`
 
 `swapAndAddConfig` [required]
 
-- Configurations for the routeToRatio algorithm. errorTolerance determines the margin of error the resulting ratio can have from the optimal ratio. maxIterations determines how many times the algorithm will iterate until it finds a ratio within error tolerance before it will error.
+- Configurations for the routeToRatio algorithm. `ratioErrorTolerance` determines the margin of error the resulting ratio can have from the optimal ratio. `maxIterations` determines the maximum times the algorithm will iterate to find a ratio within error tolerance. If max iterations is exceeded, an error is returned.
 
 `swapAndAddOptions` [optional]
 
-- If included, routeToRatio will return the calldata for executing the atomic swap-and-add. These options contain `swapConfig` and `addLiquidityOptions`. `swapCOnfig` configures to set a recipient of leftover dust from swap, slippageTolerance, deadline, and inputTokenPermit. `addLiquidityOptions` contains slippageTolerance and deadline for the swap. `addLiquidityOptions` must contain a `tokenId` to add to an existing position, or `recipient` to mint a new one. It also includes a slippage tolerance and deadline for adding liquidity.
-
-`swapAndAddConfig` [required]
-
-- Configurations for the routeToRatio algorithm. errorTolerance determines the margin of error the resulting ratio can have from the optimal ratio. maxIterations determines how many times the algorithm will iterate until it finds a ratio within error tolerance before it will error.
+- If included, routeToRatio will return the calldata for executing the atomic swap-and-add. These options contain `swapConfig` and `addLiquidityOptions`. `swapConfig` configures to set a recipient of leftover dust from swap, slippageTolerance, deadline, and inputTokenPermit. `addLiquidityOptions` contains slippageTolerance and deadline for the swap. `addLiquidityOptions` must contain a `tokenId` to add to an existing position, or `recipient` to mint a new one. It also includes a slippage tolerance and deadline for adding liquidity.
 
 `routingConfig` [optional]
 
@@ -114,12 +110,14 @@ const route = await router.route({
 
 ## Submitting a Transaction
 
-The object returned from calling `routeToRatio` is a `SwapToRatioRoute` object with the following fields:
+The object returned from calling `routeToRatio` is a `SwapToRatioResponse`. If a route was found successfully, `SwapToRatioResponse` will have to fields: `status` and `result`. `status` will be set to success and `result` contains the `SwapToRatioRoute` object.
 
 ```typescript
 export type SwapRoute = {
   quote: CurrencyAmount;
   quoteGasAdjusted: CurrencyAmount;
+	optimalRatio: Fraction;
+	postSwapTargetPool: Pool;
   estimatedGasUsed: BigNumber;
   estimatedGasUsedQuoteToken: CurrencyAmount;
   estimatedGasUsedUSD: CurrencyAmount;
