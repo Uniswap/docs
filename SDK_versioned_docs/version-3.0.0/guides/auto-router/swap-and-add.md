@@ -111,3 +111,39 @@ const route = await router.route({
 	}
 );
 ```
+
+## Submitting a Transaction
+
+The object returned from calling `routeToRatio` is a `SwapToRatioRoute` object with the following fields:
+
+```typescript
+export type SwapRoute = {
+  quote: CurrencyAmount;
+  quoteGasAdjusted: CurrencyAmount;
+  estimatedGasUsed: BigNumber;
+  estimatedGasUsedQuoteToken: CurrencyAmount;
+  estimatedGasUsedUSD: CurrencyAmount;
+  gasPriceWei: BigNumber;
+  trade: Trade<Currency, Currency, TradeType>;
+  route: RouteWithValidQuote[];
+  blockNumber: BigNumber;
+  methodParameters?: MethodParameters;
+};
+```
+
+Use the quoted gas price and generated call data as inputs for the transaction, as done below:
+
+```typescript
+const V3_SWAP_ROUTER_ADDRESS = "0xE592427A0AEce92De3Edee1F18E0157C05861564";
+const MY_ADDRESS = "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B";
+
+const transaction = {
+  data: route.methodParameters.calldata,
+  to: V3_SWAP_ROUTER_ADDRESS,
+  value: BigNumber.from(route.methodParameters.value),
+  from: MY_ADDRESS,
+  gasPrice: BigNumber.from(route.gasPriceWei),
+};
+
+await web3Provider.sendTransaction(transaction);
+```
