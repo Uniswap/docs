@@ -5,12 +5,15 @@ sidebar_position: 2
 ---
 
 # Swap and Add Liquidity Atomically
+
 You can use the Auto Router to fetch optimized trade routes that result in token balances proportional to the amount needed for adding optimal liquidity to a pool position. Use the method `routeToRatio` to get quotes, gas information, and calldata for atomically swapping tokens to a particular ratio and adding the new token balances to a pool position.
 
 ## Initializing the Alpha Router
+
 Follow the instructions to [import](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#importing-the-package) then [initialize](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#initializing-the-alpharouter) an instance of the Alpha Router
 
 ## Calling `routeToRatio`
+
 The `routeToRatio` method returns all the swap and add calldata needed for submitting an atomic transaction to perform a swap and add liquidity to a position.
 
 Once you instantiate `AlphaRouter` call `route` with the following parameters:
