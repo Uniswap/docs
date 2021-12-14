@@ -19,14 +19,14 @@ The `routeToRatio` method returns all the swap and add calldata needed for submi
 Once you instantiate `AlphaRouter` call `route` with the following parameters:
 
 ```typescript
-    {
-      token0Balance: CurrencyAmount,
-      token1Balance: CurrencyAmount,
-			position: Position,
-      swapAndAddConfig: SwapAndAddConfig,
-      swapAndAddOptions?: swapAndAddOptions,
-			partialRoutingConfig?: Partial<AlphaRouterConfig> = {}
-    }
+{
+	token0Balance: CurrencyAmount,
+	token1Balance: CurrencyAmount,
+	position: Position,
+	swapAndAddConfig: SwapAndAddConfig,
+	swapAndAddOptions?: swapAndAddOptions,
+	partialRoutingConfig?: Partial<AlphaRouterConfig> = {}
+}
 ```
 
 #### Parameters
@@ -91,7 +91,7 @@ const pool = new Pool(
 const route = await router.route({
   token0Balance,
   token1Balance,
-	position: new Position({
+  position: new Position({
       pool,
       tickLower: -60,
       tickUpper: 60,
@@ -99,9 +99,9 @@ const route = await router.route({
   }),
   swapAndAddConfig: {
 		swapConfig: {
-	    recipient: myAddress,
-	    slippage: new Percent(5, 100),
-	    deadline: 100
+			recipient: myAddress,
+			slippage: new Percent(5, 100),
+			deadline: 100
 	  },
 		addLiquidityOptions: {
 			tokenId: 10,
