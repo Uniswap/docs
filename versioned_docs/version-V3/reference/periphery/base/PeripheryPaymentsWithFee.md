@@ -5,6 +5,10 @@
 ### unwrapWETH9WithFee
 ```solidity
   function unwrapWETH9WithFee(
+        uint256 amountMinimum,
+        address recipient,
+        uint256 feeBips,
+        address feeRecipient
   ) public
 ```
 Unwraps the contract's WETH9 balance and sends it to recipient as ETH, with a percentage between
@@ -16,6 +20,11 @@ The amountMinimum parameter prevents malicious contracts from stealing WETH9 fro
 ### sweepTokenWithFee
 ```solidity
   function sweepTokenWithFee(
+        address token,
+        uint256 amountMinimum,
+        address recipient,
+        uint256 feeBips,
+        address feeRecipient
   ) public
 ```
 Transfers the full amount of a token held by this contract to recipient, with a percentage between

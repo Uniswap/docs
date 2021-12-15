@@ -5,6 +5,7 @@ Immutable state used by periphery contracts
 ### constructor
 ```solidity
   function constructor(
+    address _factory, address _WETH9
   ) internal
 ```
 

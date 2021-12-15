@@ -41,6 +41,7 @@ The caller of this method must be checked to be a UniswapV3Pool deployed by the 
 ### addLiquidity
 ```solidity
   function addLiquidity(
+    AddLiquidityParams memory params
   ) internal returns (uint128 liquidity, uint256 amount0, uint256 amount1, contract IUniswapV3Pool pool)
 ```
 Add liquidity to an initialized pool
