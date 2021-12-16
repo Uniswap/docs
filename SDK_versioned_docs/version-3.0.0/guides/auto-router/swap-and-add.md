@@ -44,7 +44,7 @@ Now call the `routeToRatio` method on the Auto Router. This function will return
 
 `swapAndAddOptions` [optional]
 
-- If included, routeToRatio will return the calldata for executing the atomic swap-and-add. These options contain `swapConfig` and `addLiquidityOptions`. `swapConfig` configures to set a recipient of leftover dust from swap, slippageTolerance, deadline, and inputTokenPermit. `addLiquidityOptions` contains slippageTolerance and deadline for the swap. `addLiquidityOptions` must contain a `tokenId` to add to an existing position, or `recipient` to mint a new one. It also includes a slippage tolerance and deadline for adding liquidity.
+- If [swapAndAddOptions](https://github.com/Uniswap/smart-order-router/blob/b26ffdc978ab1076c817392ab20ed2df325daf7a/src/routers/router.ts#L130) is included, routeToRatio will return the calldata for executing the atomic swap-and-add. These options contain `swapConfig` and `addLiquidityOptions`. `swapConfig` configures to set a recipient of leftover dust from swap, slippageTolerance, deadline, inputTokenPermit and outputTokenPermit. `addLiquidityOptions` must contain a `tokenId` to add to an existing position, or `recipient` to mint a new one. It also includes a slippage tolerance and deadline for adding liquidity.
 
 `routingConfig` [optional]
 
@@ -81,28 +81,28 @@ const pool = new Pool(
 
 
 const route = await router.routeToRatio({
-	token0Balance,
-	token1Balance,
-	position: new Position({
-		pool,
-		tickLower: -60,
-		tickUpper: 60,
-		liquidity: 1, // arbitrary and unused
-	}),
-	swapAndAddConfig: {
-        	ratioErrorTolerance: new Fraction(1, 100),
-        	maxIterations: 6,
-     	},
-	swapAndAddOptions: {
-		swapConfig: {
-			recipient: <myAddress>,
-			slippage: new Percent(5, 100),
-			deadline: 100
-		},
-		addLiquidityOptions: {
-			tokenId: 10,
-		}
-	}
+  token0Balance,
+  token1Balance,
+  position: new Position({
+    pool,
+    tickLower: -60,
+    tickUpper: 60,
+    liquidity: 1,
+   }),
+   swapAndAddConfig: {
+     ratioErrorTolerance: new Fraction(1, 100),
+     maxIterations: 6,
+   },
+   swapAndAddOptions: {
+     swapConfig: {
+       recipient: <myAddress>,
+       slippage: new Percent(5, 100),
+       deadline: 100
+     },
+     addLiquidityOptions: {
+       tokenId: 10,
+     }
+   }
 );
 ```
 
