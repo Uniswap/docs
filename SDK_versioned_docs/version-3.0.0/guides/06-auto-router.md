@@ -1,6 +1,6 @@
 ---
-id: quick-start
-sidebar_position: 1
+id: auto-router
+title: Integrating the Auto Router
 ---
 
 # Quick Start
