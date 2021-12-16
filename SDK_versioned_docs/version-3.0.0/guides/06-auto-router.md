@@ -31,10 +31,10 @@ The `AlphaRouter` class contains methods for generating optimized routes. To cre
 
 #### Parameters
 
-| Name     | Requirement| Description                                                                                    |
-|----------|------------|------------------------------------------------------------------------------------------------|
-| chainId  | [required] | The id of the chain you want to route swaps on. e.g., The chainId for Ethereum mainnet is `1`. |
-| provider | [required] | A JSON RPC endpoint, e.g., Infura.                                                             |
+| Name     | Requirement | Description                                                                                    |
+| -------- | ----------- | ---------------------------------------------------------------------------------------------- |
+| chainId  | [required]  | The id of the chain you want to route swaps on. e.g., The chainId for Ethereum mainnet is `1`. |
+| provider | [required]  | A JSON RPC endpoint, e.g., Infura.                                                             |
 
 ```typescript
 const router = new AlphaRouter({ chainId: 1, provider: web3Provider };
@@ -58,14 +58,13 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 
 #### Parameters
 
-| Name          | Requirement| Description                                                                                                                                          |
-|---------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| amount        | [required] | The amount specified by the user. For EXACT_IN swaps, this is the input token amount. For EXACT_OUT swaps, this is the output token.                 |
-| quoteCurrency | [required] | The currency of the token we are returning a quote for. For EXACT_IN swaps, this is the output token. For EXACT_OUT, this is the input tok           |
-| swapType      | [required] | Either an exactInput swap or an exactOutput swap.                                                                                                    |
-| swapConfig    | [optional] | Configure to set a recipient, slippageTolerance, deadline, and inputTokenPermit. If provided, calldata for executing the swap will also be returned. |
-| routingConfig | [optional] | Optional config for tuning the performance of the routing algorithm.                                                                                 |
-                                                                         
+| Name          | Requirement | Description                                                                                                                                          |
+| ------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| amount        | [required]  | The amount specified by the user. For EXACT_IN swaps, this is the input token amount. For EXACT_OUT swaps, this is the output token.                 |
+| quoteCurrency | [required]  | The currency of the token we are returning a quote for. For EXACT_IN swaps, this is the output token. For EXACT_OUT, this is the input tok           |
+| swapType      | [required]  | Either an exactInput swap or an exactOutput swap.                                                                                                    |
+| swapConfig    | [optional]  | Configure to set a recipient, slippageTolerance, deadline, and inputTokenPermit. If provided, calldata for executing the swap will also be returned. |
+| routingConfig | [optional]  | Optional config for tuning the performance of the routing algorithm.                                                                                 |
 
 This example gets a route for a WETH-USDC swap.
 
@@ -120,7 +119,7 @@ export type SwapRoute = {
 Use the quoted gas price and generated call data as inputs for the transaction, as done below:
 
 ```typescript
-const V3_SWAP_ROUTER_ADDRESS = "0xE592427A0AEce92De3Edee1F18E0157C05861564";
+const V3_SWAP_ROUTER_ADDRESS = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45";
 const MY_ADDRESS = "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B";
 
 const transaction = {
@@ -142,7 +141,7 @@ This full example compiles all of the steps above and also prints the route quot
 import { AlphaRouter } from '@uniswap/smart-order-router'
 import { Token, CurrencyAmount } from '@uniswap/sdk-core'
 
-const V3_SWAP_ROUTER_ADDRESS = '0x075B36dE1Bd11cb361c5B3B1E80A9ab0e7aa8a60';
+const V3_SWAP_ROUTER_ADDRESS = '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45';
 const MY_ADDRESS = '0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B';
 const web3Provider = /*YOUR PROVIDER HERE*/
 
