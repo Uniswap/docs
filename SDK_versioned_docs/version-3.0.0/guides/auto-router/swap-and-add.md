@@ -15,7 +15,7 @@ This guide will teach you how to execute this swap-and-add operation in a single
 First, [import](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#importing-the-package) and [initialize](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#initializing-the-alpharouter) an instance of the Alpha Router. If you are using a different network, be sure to specify the right `chainId` parameter.
 ```bash
 npm install @uniswap/smart-order-router
-```
+```typescript
 import { AlphaRouter } from "@uniswap/smart-order-router";
 const router = new AlphaRouter({ chainId: 1, provider: web3Provider });
 ```
