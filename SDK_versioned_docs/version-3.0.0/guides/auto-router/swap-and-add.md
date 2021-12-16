@@ -80,7 +80,7 @@ const pool = new Pool(
 );
 
 
-const route = await router.routeToRatio({
+const routeToRatioResponse = await router.routeToRatio({
   token0Balance,
   token1Balance,
   position: new Position({
@@ -135,16 +135,21 @@ type SwapToRatioRoute = {
 Use the quoted gas price defined as `gasPriceWei` in the above `SwapToRatioRoute` object above and generated call data as inputs for the transaction, as done below:
 
 ```typescript
-const V3_SWAP_ROUTER_ADDRESS = "0xE592427A0AEce92De3Edee1F18E0157C05861564";
+import { SwapToRatioStatus } from "@uniswap/smart-order-router";
+
+const V3_SWAP_ROUTER_ADDRESS = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45";
 const MY_ADDRESS = "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B";
 
-const transaction = {
-  data: route.methodParameters.calldata,
-  to: V3_SWAP_ROUTER_ADDRESS,
-  value: BigNumber.from(route.methodParameters.value),
-  from: MY_ADDRESS,
-  gasPrice: BigNumber.from(route.gasPriceWei),
-};
+if (routeToRatioResponse.status == SwapToRatioStatus.success) {
+  const route = routeToRatioResponse.result
+  const transaction = {
+    data: route.methodParameters.calldata,
+    to: V3_SWAP_ROUTER_ADDRESS,
+    value: BigNumber.from(route.methodParameters.value),
+    from: MY_ADDRESS,
+    gasPrice: BigNumber.from(route.gasPriceWei),
+  };
+)
 
 await web3Provider.sendTransaction(transaction);
 ```
