@@ -6,15 +6,23 @@ sidebar_position: 2
 
 # Swap and Add Liquidity Atomically
 
-You can use the Auto Router to fetch optimized trade routes that result in token balances proportional to the amount needed for adding optimal liquidity to a pool position. Use the method `routeToRatio` to get quotes, gas information, and calldata for atomically swapping tokens to a particular ratio and adding the new token balances to a pool position.
+When adding liquidity to a Uniswap v3 pool, you must provide two assets in a particular ratio. In many cases, your contract or the user's wallet hold a different ratio of those two assets. In order to deposit 100% of your assets, you must first **swap** your assets to the optimal ratio and then **add liquidity**. However, the swap will shift the balance of the pool and thus change the optimal ratio!
+
+This guide will teach you how to execute this swap-and-add operation in a single atomic transaction. First, you will use the Auto Router to fetch calldata to swap to the optimal ratio and add liquidity. Then you will submit the transaction to the on-chain router contract `SwapRouter02.sol`. 
 
 ## Initializing the Alpha Router
 
-Follow the instructions to [import](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#importing-the-package) then [initialize](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#initializing-the-alpharouter) an instance of the Alpha Router
+First, [import](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#importing-the-package) and [initialize](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#initializing-the-alpharouter) an instance of the Alpha Router. If you are using a different network, be sure to specify the right `chainId` parameter.
 
-## Calling `routeToRatio`
+<code>
+import { AlphaRouter } from "@uniswap/smart-order-router";
+const router = new AlphaRouter({ chainId: 1, provider: web3Provider };
+</code>
 
-The `routeToRatio` method returns all the swap and add calldata needed for submitting an atomic transaction to perform a swap and add liquidity to a position.
+
+## Fetching calldata from `routeToRatio`
+
+Now call the `routeToRatio` method on the Auto Router. This function will return all the calldata you need to submit an atomic swap-and-add transaction.
 
 Once you instantiate `AlphaRouter` call `routeToRatio` with the following parameters:
 
