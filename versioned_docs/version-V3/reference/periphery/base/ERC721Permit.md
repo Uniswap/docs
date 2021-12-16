@@ -5,6 +5,7 @@ Nonfungible tokens that support an approve via signature, i.e. permit
 ### _getAndIncrementNonce
 ```solidity
   function _getAndIncrementNonce(
+    uint256 tokenId
   ) internal virtual returns (uint256)
 ```
 
@@ -14,6 +15,9 @@ Gets the current nonce for a token ID and then increments it, returning the orig
 ### constructor
 ```solidity
   function constructor(
+    string memory name_,
+    string memory symbol_,
+    string memory version_
   ) internal
 ```
 Computes the nameHash and versionHash

@@ -31,13 +31,10 @@ The `AlphaRouter` class contains methods for generating optimized routes. To cre
 
 #### Parameters
 
-`chainId` [required]
-
-- The id of the chain you want to route swaps on. Ex) The chainId for Ethereum mainnet is `1`.
-
-`provider` [required]
-
-- A JSON RPC endpoint, like Infura.
+| Name     | Requirement| Description                                                                                    |
+|----------|------------|------------------------------------------------------------------------------------------------|
+| chainId  | [required] | The id of the chain you want to route swaps on. e.g., The chainId for Ethereum mainnet is `1`. |
+| provider | [required] | A JSON RPC endpoint, e.g., Infura.                                                             |
 
 ```typescript
 const router = new AlphaRouter({ chainId: 1, provider: web3Provider };
@@ -61,25 +58,14 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 
 #### Parameters
 
-`amount` [required]
-
-- The amount specified by the user. For EXACT_IN swaps, this is the input token amount. For EXACT_OUT swaps, this is the output token.
-
-`quoteCurrency` [required]
-
-- The currency of the token we are returning a quote for. For EXACT_IN swaps, this is the output token. For EXACT_OUT, this is the input token.
-
-`swapType` [required]
-
-- Either an exactInput swap or an exactOutput swap.
-
-`swapConfig` [optional]
-
-- Configure to set a recipient, slippageTolerance, deadline, and inputTokenPermit. If provided, calldata for executing the swap will also be returned.
-
-`routingConfig` [optional]
-
-- Optional config for tuning the performance of the routing algorithm.
+| Name          | Requirement| Description                                                                                                                                          |
+|---------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| amount        | [required] | The amount specified by the user. For EXACT_IN swaps, this is the input token amount. For EXACT_OUT swaps, this is the output token.                 |
+| quoteCurrency | [required] | The currency of the token we are returning a quote for. For EXACT_IN swaps, this is the output token. For EXACT_OUT, this is the input tok           |
+| swapType      | [required] | Either an exactInput swap or an exactOutput swap.                                                                                                    |
+| swapConfig    | [optional] | Configure to set a recipient, slippageTolerance, deadline, and inputTokenPermit. If provided, calldata for executing the swap will also be returned. |
+| routingConfig | [optional] | Optional config for tuning the performance of the routing algorithm.                                                                                 |
+                                                                         
 
 This example gets a route for a WETH-USDC swap.
 
