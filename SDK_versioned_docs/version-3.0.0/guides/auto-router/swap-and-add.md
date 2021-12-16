@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Swap and Add Liquidity Atomically
 
-When adding liquidity to a Uniswap v3 pool, you must provide two assets in a particular ratio. In many cases, your contract or the user's wallet hold a different ratio of those two assets. In order to deposit 100% of your assets, you must first **swap** your assets to the optimal ratio and then **add liquidity**. However, the swap will shift the balance of the pool and thus change the optimal ratio!
+When adding liquidity to a Uniswap v3 pool, you must provide two assets in a particular ratio. In many cases, your contract or the user's wallet hold a different ratio of those two assets. In order to deposit 100% of your assets, you must first **swap** your assets to the optimal ratio and then **add liquidity**. However, the swap may shift the balance of the pool and thus change the optimal ratio!
 
 This guide will teach you how to execute this swap-and-add operation in a single atomic transaction. First, you will use the Auto Router to fetch calldata to swap to the optimal ratio and add liquidity. Then you will submit the transaction to the on-chain router contract `SwapRouter02.sol`. 
 
@@ -14,46 +14,33 @@ This guide will teach you how to execute this swap-and-add operation in a single
 
 First, [import](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#importing-the-package) and [initialize](https://docs.uniswap.org/sdk/guides/auto-router/quick-start#initializing-the-alpharouter) an instance of the Alpha Router. If you are using a different network, be sure to specify the right `chainId` parameter.
 
-<code>
+```
 import { AlphaRouter } from "@uniswap/smart-order-router";
-const router = new AlphaRouter({ chainId: 1, provider: web3Provider };
-</code>
+const router = new AlphaRouter({ chainId: 1, provider: web3Provider });
+```
 
 
 ## Fetching calldata from `routeToRatio`
 
 Now call the `routeToRatio` method on the Auto Router. This function will return all the calldata you need to submit an atomic swap-and-add transaction.
 
-Once you instantiate `AlphaRouter` call `routeToRatio` with the following parameters:
-
-```typescript
-{
-	token0Balance: CurrencyAmount,
-	token1Balance: CurrencyAmount,
-	position: Position,
-	swapAndAddConfig: SwapAndAddConfig,
-	swapAndAddOptions?: swapAndAddOptions,
-	partialRoutingConfig?: Partial<AlphaRouterConfig> = {}
-}
-```
-
 #### Parameters
 
 `token0Balance` [required]
 
-- The initial starting balance of token0 of the pool for which to add liquidity
+- The initial balance of token0 that you wish to swap-and-add, where token0 is the token0 in your target liquidity pool.
 
 `token1Balance` [required]
 
-- The initial starting balance of token1 of the pool for which to add liquidity
+- The initial balance of token1 that you wish to swap-and-add, where token1 is the token1 in your target liquidity pool.
 
 `position` [required]
 
-- A position object that contains the details of the position for which to add liquidity. The position liquidity can be set to 1, since liquidity is still unknown and will be set inside the call to `routeToRatio`
+- A [position object](https://docs.uniswap.org/sdk/guides/liquidity/minting#creating-a-position-instance) that contains the details of the position for which to add liquidity. The position liquidity can be set to 1, since liquidity is still unknown and will be set inside the call to `routeToRatio`. 
 
 `swapAndAddConfig` [required]
 
-- Configurations for the routeToRatio algorithm. `ratioErrorTolerance` determines the margin of error the resulting ratio can have from the optimal ratio. `maxIterations` determines the maximum times the algorithm will iterate to find a ratio within error tolerance. If max iterations is exceeded, an error is returned.
+- A [swapAndAddConfig](https://github.com/Uniswap/smart-order-router/blob/b26ffdc978ab1076c817392ab20ed2df325daf7a/src/routers/router.ts#L123) sets configurations for the routeToRatio algorithm. `ratioErrorTolerance` determines the margin of error the resulting ratio can have from the optimal ratio. `maxIterations` determines the maximum times the algorithm will iterate to find a ratio within error tolerance. If max iterations is exceeded, an error is returned.
 
 `swapAndAddOptions` [optional]
 
@@ -61,8 +48,9 @@ Once you instantiate `AlphaRouter` call `routeToRatio` with the following parame
 
 `routingConfig` [optional]
 
-- Optional config for tuning the performance of the routing algorithm.
+- Optional config for tuning the performance of the routing algorithm. View the [AlphaRouterConfig object](https://github.com/Uniswap/smart-order-router/blob/b26ffdc978ab1076c817392ab20ed2df325daf7a/src/routers/alpha-router/alpha-router.ts#L222) for these optional configuration parameters.
 
+Here is a complete example that initializes these parameters and then calls `routeToRatio`
 ```typescript
 const USDC = new Token(
   ChainId.MAINNET,
@@ -92,7 +80,7 @@ const pool = new Pool(
 );
 
 
-const route = await router.route({
+const route = await router.routeToRatio({
 	token0Balance,
 	token1Balance,
 	position: new Position({
@@ -102,15 +90,17 @@ const route = await router.route({
 		liquidity: 1, // arbitrary and unused
 	}),
 	swapAndAddConfig: {
+        	ratioErrorTolerance: new Fraction(1, 100),
+        	maxIterations: 6,
+     	},
+	swapAndAddOptions: {
 		swapConfig: {
-			recipient: myAddress,
+			recipient: <myAddress>,
 			slippage: new Percent(5, 100),
 			deadline: 100
 		},
 		addLiquidityOptions: {
 			tokenId: 10,
-			slippage: new Percent(5, 100),
-			deadline: 100
 		}
 	}
 );
