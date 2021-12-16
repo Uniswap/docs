@@ -110,24 +110,25 @@ const route = await router.routeToRatio({
 
 The object returned from calling `routeToRatio` is a `SwapToRatioResponse`. If a route was found successfully, `SwapToRatioResponse` will have to fields: `status` and `result`. `status` will be set to success and `result` contains the `SwapToRatioRoute` object.
 
+The `SwapToRatioRoute` object will have the properties listed out in the type below:
 ```typescript
-export type SwapRoute = {
-	quote: CurrencyAmount;
-	quoteGasAdjusted: CurrencyAmount;
-	optimalRatio: Fraction;
-	postSwapTargetPool: Pool;
-	estimatedGasUsed: BigNumber;
-	estimatedGasUsedQuoteToken: CurrencyAmount;
-	estimatedGasUsedUSD: CurrencyAmount;
-	gasPriceWei: BigNumber;
-	trade: Trade<Currency, Currency, TradeType>;
-	route: RouteWithValidQuote[];
-	blockNumber: BigNumber;
-	methodParameters?: MethodParameters;
+type SwapToRatioRoute = {
+  quote: CurrencyAmount;
+  quoteGasAdjusted: CurrencyAmount;
+  optimalRatio: Fraction;
+  postSwapTargetPool: Pool;
+  estimatedGasUsed: BigNumber;
+  estimatedGasUsedQuoteToken: CurrencyAmount;
+  estimatedGasUsedUSD: CurrencyAmount;
+  gasPriceWei: BigNumber;
+  trade: Trade<Currency, Currency, TradeType>;
+  route: RouteWithValidQuote[];
+  blockNumber: BigNumber;
+  methodParameters?: MethodParameters;
 };
 ```
 
-Use the quoted gas price and generated call data as inputs for the transaction, as done below:
+Use the quoted gas price defined as `gasPriceWei` in the above `SwapToRatioRoute` object above and generated call data as inputs for the transaction, as done below:
 
 ```typescript
 const V3_SWAP_ROUTER_ADDRESS = "0xE592427A0AEce92De3Edee1F18E0157C05861564";
