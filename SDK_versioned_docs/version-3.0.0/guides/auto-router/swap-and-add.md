@@ -108,7 +108,11 @@ const route = await router.routeToRatio({
 
 ## Submitting a Transaction
 
-The object returned from calling `routeToRatio` is a `SwapToRatioResponse`. If a route was found successfully, `SwapToRatioResponse` will have to fields: `status` and `result`. `status` will be set to success and `result` contains the `SwapToRatioRoute` object.
+The `routeToRatio` function returns a `SwapToRatioResponse` object. If a route was found successfully, this object will have two fields:
+
+- `status` will be set to `success`
+- `result` will contain the `SwapToRatioRoute` object
+
 
 The `SwapToRatioRoute` object will have the properties listed out in the type below:
 ```typescript
