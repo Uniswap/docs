@@ -21,7 +21,7 @@ Throws if |tick| > max tick
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`sqrtPriceX96`| int24 | A Fixed point Q64.96 number representing the sqrt of the ratio of the two assets (token1/token0)
+|`sqrtPriceX96`| uint160 | A Fixed point Q64.96 number representing the sqrt of the ratio of the two assets (token1/token0)
 at the given tick
 ### getTickAtSqrtRatio
 ```solidity
