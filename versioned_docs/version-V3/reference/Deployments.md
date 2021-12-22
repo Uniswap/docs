@@ -14,7 +14,7 @@ These addresses are final and were deployed from these npm package versions:
 
 - [`@uniswap/v3-core@1.0.0`](https://github.com/Uniswap/uniswap-v3-core/tree/v1.0.0)
 - [`@uniswap/v3-periphery@1.0.0`](https://github.com/Uniswap/uniswap-v3-periphery/tree/v1.0.0)
-- `@uniswap/swap-router-contracts`
+- [`@uniswap/swap-router-contracts`](https://github.com/Uniswap/swap-router-contracts/tree/v1.1.0)
 - [`@uniswap/v3-staker@1.0.2`](https://github.com/Uniswap/v3-staker/tree/v1.0.2)
 
 | Contract                           | Address                                      | Source Code                                                                                                                   |
