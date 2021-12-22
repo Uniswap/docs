@@ -7,9 +7,6 @@ title: Deployments
 
 The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and other contracts are deployed at the addresses listed below. They are deployed at the same address on Ethereum mainnet, Optimism, Arbitrum, Polygon, and all testnets.
 
-The source code is verified with Etherscan on all networks, for all contracts except `UniswapV3Pool`.
-We are working on getting the `UniswapV3Pool` contract verified with Etherscan.
-
 These addresses are final and were deployed from these npm package versions:
 
 - [`@uniswap/v3-core@1.0.0`](https://github.com/Uniswap/uniswap-v3-core/tree/v1.0.0)
@@ -32,3 +29,27 @@ These addresses are final and were deployed from these npm package versions:
 | NonfungiblePositionManager         | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` | https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungiblePositionManager.sol                          |
 | V3Migrator                         | `0xA5644E29708357803b5A882D272c41cC0dF92B34` | https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/V3Migrator.sol                                          |
 | Staker (1.0.2)                     | `0xe34139463bA50bD61336E0c446Bd8C0867c6fE65` | https://github.com/Uniswap/v3-staker/blob/v1.0.2/contracts/UniswapV3Staker.sol                                          |
+
+# Uniswap Pool Deployments
+
+Thousands of Uniswap pools have been deployed by people all over the world. Each new pool is a unique instance of `UniswapV3Pool` contract and is deployed at its own unique address. The contract source code of the pool will be auto-verified on etherscan. For example, here is the [ETH/USDC 0.3% pool](https://etherscan.io/address/0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8) on Ethereum mainnet.
+
+# WETH9 Addresses
+
+The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native asset like ETH, the Ethereum protocol internally wraps it into an ERC20 representation called WETH9. The canoncial address of WETH9 used by the Uniswap Protocol on each network is listed below.
+
+On the Polygon networks, the native token is MATIC so the Uniswap Protocol wraps it into WMATIC.
+
+| Network          | ChainId   | Wrapped Native Token | Address                                      |
+|------------------|-----------|----------------------|----------------------------------------------|
+| Ethereum         | `1`       | WETH                 | `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2` |
+| Ropsten          | `3`       | WETH                 | `0xc778417E063141139Fce010982780140Aa0cD5Ab` |
+| Rinkeby          | `4`       | WETH                 | `0xc778417E063141139Fce010982780140Aa0cD5Ab` |
+| Goerli           | `5`       | WETH                 | `0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6` |
+| Kovan            | `42`      | WETH                 | `0xd0A1E359811322d97991E03f863a0C30C2cF029C` |
+| Optimism         | `10`      | WETH                 | `0x4200000000000000000000000000000000000006` |
+| Optimistic Kovan | `69`      | WETH                 | `0x4200000000000000000000000000000000000006` |
+| Arbitrum One     | `42161`   | WETH                 | `0x82aF49447D8a07e3bd95BD0d56f35241523fBab1` |
+| Arbitrum Rinkeby | `421611`  | WETH                 | `0xB47e6A5f8b33b3F17603C83a0535A9dcD7E32681` |
+| Polygon          | `137`     | WMATIC               | `0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270` |
+| Polygon Mumbai   | `80001`   | WMATIC               | `0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889` |
