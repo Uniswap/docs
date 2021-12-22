@@ -32,13 +32,17 @@ These addresses are final and were deployed from these npm package versions:
 
 # Uniswap Pool Deployments
 
-Thousands of Uniswap pools have been deployed by people all over the world. Each new pool is a unique instance of `UniswapV3Pool` contract and is deployed at its own unique address. The contract source code of the pool will be auto-verified on etherscan. For example, here is the [ETH/USDC 0.3% pool](https://etherscan.io/address/0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8) on Ethereum mainnet.
+Every Uniswap pool is a unique instance of the `UniswapV3Pool` contract and is deployed at its own unique address. The contract source code of the pool will be auto-verified on etherscan. For example, here is the [ETH/USDC 0.3% pool](https://etherscan.io/address/0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8) on Ethereum mainnet.
+
+You can look up the address of an existing pool on [Uniswap Info](https://info.uniswap.org/#/) or by calling the [`getPool`](https://docs.uniswap.org/protocol/reference/core/interfaces/IUniswapV3Factory#getpool) function on the `UniswapV3Factory` contract.
+
+```solidity
+getPool("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", 3000)
+```
 
 # Wrapped Native Token Addresses
 
-The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native asset like ETH, the Ethereum protocol internally wraps it into an ERC20 representation called WETH9. The canoncial address of WETH9 used by the Uniswap Protocol on each network is listed below.
-
-On the Polygon networks, the native token is MATIC so the Uniswap Protocol wraps it into WMATIC.
+The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native asset like ETH (or MATIC on Polygon), the Uniswap protocol wraps these assets in an ERC20 wrapped native token contract. The protocol uses the following WETH9 addresses on Ethereum and WMATIC addresses on Polygon.
 
 | Network          | ChainId   | Wrapped Native Token | Address                                      |
 |------------------|-----------|----------------------|----------------------------------------------|
