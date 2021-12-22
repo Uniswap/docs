@@ -1,17 +1,17 @@
 ---
 id: deployments
-title: Deployments
+title: Deployment Addresses
 ---
 
 # Uniswap Contract Deployments
 
-The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and other contracts are deployed at the addresses listed below. They are deployed at the same address on Ethereum mainnet, Optimism, Arbitrum, Polygon, and all testnets.
+The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, `@uniswap/swap-router-contracts`, and  `@uniswap/v3-staker` are deployed at the addresses listed below. They are deployed at the same address on Ethereum mainnet, Optimism, Arbitrum, Polygon, and all testnets.
 
 These addresses are final and were deployed from these npm package versions:
 
 - [`@uniswap/v3-core@1.0.0`](https://github.com/Uniswap/uniswap-v3-core/tree/v1.0.0)
 - [`@uniswap/v3-periphery@1.0.0`](https://github.com/Uniswap/uniswap-v3-periphery/tree/v1.0.0)
-- [`@uniswap/swap-router-contracts`](https://github.com/Uniswap/swap-router-contracts/tree/v1.1.0)
+- [`@uniswap/swap-router-contracts@1.1.0`](https://github.com/Uniswap/swap-router-contracts/tree/v1.1.0)
 - [`@uniswap/v3-staker@1.0.2`](https://github.com/Uniswap/v3-staker/tree/v1.0.2)
 
 | Contract                           | Address                                      | Source Code                                                                                                                   |
@@ -28,13 +28,13 @@ These addresses are final and were deployed from these npm package versions:
 | TransparentUpgradeableProxy        | `0xEe6A57eC80ea46401049E92587E52f5Ec1c24785` | https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.1-solc-0.7-2/contracts/proxy/TransparentUpgradeableProxy.sol |
 | NonfungiblePositionManager         | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88` | https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungiblePositionManager.sol                          |
 | V3Migrator                         | `0xA5644E29708357803b5A882D272c41cC0dF92B34` | https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/V3Migrator.sol                                          |
-| Staker (1.0.2)                     | `0xe34139463bA50bD61336E0c446Bd8C0867c6fE65` | https://github.com/Uniswap/v3-staker/blob/v1.0.2/contracts/UniswapV3Staker.sol                                          |
+| UniswapV3Staker (1.0.2)                     | `0xe34139463bA50bD61336E0c446Bd8C0867c6fE65` | https://github.com/Uniswap/v3-staker/blob/v1.0.2/contracts/UniswapV3Staker.sol                                          |
 
 # Uniswap Pool Deployments
 
 Thousands of Uniswap pools have been deployed by people all over the world. Each new pool is a unique instance of `UniswapV3Pool` contract and is deployed at its own unique address. The contract source code of the pool will be auto-verified on etherscan. For example, here is the [ETH/USDC 0.3% pool](https://etherscan.io/address/0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8) on Ethereum mainnet.
 
-# WETH9 Addresses
+# Wrapped Native Token Addresses
 
 The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native asset like ETH, the Ethereum protocol internally wraps it into an ERC20 representation called WETH9. The canoncial address of WETH9 used by the Uniswap Protocol on each network is listed below.
 
