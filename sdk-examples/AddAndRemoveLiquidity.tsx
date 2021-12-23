@@ -93,7 +93,7 @@ async function liquidityExamples(sender: string, exampleType: number) {
   // in this example, we will set the liquidity parameter to a small percentage of the current liquidity
   const position = new Position({
     pool: DAI_USDC_POOL,
-    liquidity: state.liquidity.mul(0.0002).toString(),
+    liquidity: state.liquidity.div(5000).toString(),
     tickLower: nearestUsableTick(state.tick, immutables.tickSpacing) - immutables.tickSpacing  * 2,
     tickUpper: nearestUsableTick(state.tick, immutables.tickSpacing) + immutables.tickSpacing * 2
   })
@@ -133,3 +133,6 @@ async function liquidityExamples(sender: string, exampleType: number) {
     );
   }
   }
+
+// call the example function by passing the sender, e.g.:
+// liquidityExamples("0xDA9dfA130Df4dE4673b89022EE50ff26f6EA73Cf", 0)

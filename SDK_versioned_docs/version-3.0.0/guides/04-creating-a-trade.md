@@ -9,7 +9,7 @@ This guide extends the previous [creating a pool](03-creating-a-pool.md) and [ge
 
 In order to retrieve a quote, create a [Contract](https://docs.ethers.io/v5/api/contract/contract/) object using ethers.js
 
-The quoter is a smart contract that retrieves estimated output or input amounts for a given swap type. This example creates an object in our javascript environment that models the [quoter interface](https://github.com/Uniswap/uniswap-v3-periphery-optimism/blob/69e095f7c28a7e7fdaca94b5eaa644a8a25f86cc/contracts/interfaces/IQuoter.sol), which can be called to return a swap quote.
+The quoter is a smart contract that retrieves estimated output or input amounts for a given swap type. This example creates an object in our javascript environment that models the [quoter interface](https://github.com/Uniswap/uniswap-v3-periphery/blob/main/contracts/interfaces/IQuoter.sol), which can be called to return a swap quote.
 
 Create the quoter contract object by importing the [ABI](https://docs.soliditylang.org/en/v0.7.0/abi-spec.html) from the [uniswap-v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) npm package.
 
