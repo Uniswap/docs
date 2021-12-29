@@ -21,7 +21,7 @@ Position.sol
 
 Tick.sol
 
-* `LO` LiquidityGrossAfter must be less than MaxLiquidity
+* `LO`: LiquidityGrossAfter must be less than MaxLiquidity
 
 TickMath.sol 
 
