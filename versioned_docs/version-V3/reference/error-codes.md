@@ -6,7 +6,7 @@ title: Error Codes
 
 LiquidityMath.sol
 
-* `LS` : Liquidity Sub
+* `LS`: Liquidity Sub
 * `LA`: Liquidity Add
 
 Oracle.sol
@@ -21,7 +21,7 @@ Position.sol
 
 Tick.sol
 
-* `LO` LiquidityGrossAfter must be less than MaxLiquidity
+* `LO`: LiquidityGrossAfter must be less than MaxLiquidity
 
 TickMath.sol 
 
@@ -35,7 +35,7 @@ TransferHelper.sol
 
 UniswapV3Pool.sol
 
-* `LOK`: The reentrancy guard. A transaction cannot re-enter the pool mid-swap.
+* `LOK`: The reentrancy guard. A transaction cannot re-enter the pool mid-swap
 
 * `TLU`: The lower tick must be below the upper tick
 * `TLM`: The lower tick must be greater, or equal to, the minimum tick
@@ -46,6 +46,6 @@ UniswapV3Pool.sol
 * `AS`: `amountSpecified` cannot be zero
 * `SPL`: Square root price limit
 * `IIA`: Insufficient input amount, an insufficient amount of input token was sent during the callback
-* `L`: Liquidity in the pool must be greater than zero for a flash to be executed.
+* `L`: Liquidity in the pool must be greater than zero for a flash to be executed
 * `F0`: The balance of token0 in the given pool before the flash transaction must be less than, or equal to, the balance of token0 after the flash plus the fee
 * `F1`: The balance of token1 in the given pool before the flash transaction must be less than, or equal to, the balance of token0 after the flash plus the fee
