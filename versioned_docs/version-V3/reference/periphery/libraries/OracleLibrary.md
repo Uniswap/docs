@@ -45,4 +45,4 @@ Given a tick and a token amount, calculates the amount of token received in exch
 #### Return Values:
 | Name                           | Type          | Description                                                                  |
 | :----------------------------- | :------------ | :--------------------------------------------------------------------------- |
-|`quoteAmount`| int24 | Amount of quoteToken received for baseAmount of baseToken
+|`quoteAmount`| uint256 | Amount of quoteToken received for baseAmount of baseToken
