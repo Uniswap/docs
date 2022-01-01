@@ -18,6 +18,17 @@ import { Token } from "@uniswap/sdk-core";
 import { abi as IUniswapV3PoolABI } from "@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json";
 ```
 
+Since we are importing from a json module, we need to create a tsconfig in the root of our project with the following config:
+
+```json
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "resolveJsonModule": true
+  }
+}
+```
+
 Now we'll update the `Contract` object with our imported ABI - and keep the pool address and provider the same as the previous example.
 
 ```typescript
