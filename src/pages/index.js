@@ -35,7 +35,7 @@ export const actions = [
     href: "#",
     icon: BookOpenIcon,
     to: "./protocol/reference/smart-contracts",
-    text: `Learn about the architecture of the Uniswap protocol smart contracts made up of the Core and Periphary libraries.`,
+    text: `Learn about the architecture of the Uniswap protocol smart contracts made up of the Core and Periphery libraries.`,
   },
   {
     title: "V3 SDK",
