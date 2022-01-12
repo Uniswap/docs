@@ -11,7 +11,7 @@ Swaps are the most common interaction with the Uniswap protocol. The following e
 
 The `swapExactInputSingle` function is for performing _exact input_ swaps, which swap a fixed amount of one token for a maximum possible amount of another token. This function uses the `ExactInputSingleParams` struct and the `exactInputSingle` function from the [ISwapRouter](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter) interface.
 
-The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOuputSingleParams` struct and the `exactOuputSingle` function from the [ISwapRouter](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter) interface.
+The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the [ISwapRouter](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter) interface.
 
 For simplification, the example hardcodes the token contract addresses, but as explained further below the contract could be modified to change pools and tokens on a per transaction basis.
 
