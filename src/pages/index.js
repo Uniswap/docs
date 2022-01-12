@@ -105,7 +105,7 @@ export const quick = [
   {
     title: "API (Subgraph)",
     text: "Start swapping from a smart contract",
-    to: "./sdk/Subgraph%20data",
+    to: "./sdk/subgraph/subgraph-data",
   },
   {
     title: "Whitepaper",
