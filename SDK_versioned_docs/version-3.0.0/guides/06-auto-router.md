@@ -91,7 +91,7 @@ const route = await router.route({
   swapType: TradeType.EXACT_IN,
   swapConfig: {
     recipient: myAddress,
-    slippage: new Percent(5, 100),
+    slippageTolerance: new Percent(5, 100),
     deadline: 100
   }
 );
@@ -171,7 +171,7 @@ const route = await router.route({
   tradeType: TradeType.EXACT_IN,
   {
     recipient: myAddress,
-    slippage: new Percent(5, 100),
+    slippageTolerance: new Percent(5, 100),
     deadline: 100
   }
 );
