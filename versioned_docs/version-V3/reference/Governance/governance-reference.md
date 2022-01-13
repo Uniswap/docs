@@ -284,7 +284,7 @@ This function is payable so the Timelock contract can invoke payable functions t
 ## Cancel
 
 ```solidity
-function queue(uint proposalId)
+function cancel(uint proposalId)
 ```
 
 Cancel a proposal that has not yet been executed. The Guardian is the only one who may execute this unless the proposer does not maintain the delegates required to create a proposal. If the proposer does not have more delegates than the proposal threshold, anyone can cancel the proposal.
