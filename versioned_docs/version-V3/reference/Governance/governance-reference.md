@@ -100,7 +100,6 @@ Returns the prior number of votes for an account at a specific block number. The
 | :---------- | :-------- | :--------------------------------------------------------------------- |
 | account     | `address` | Address of the account of which to retrieve the prior number of votes. |
 | blocknumber | `uint`    | The block number at which to retrieve the prior number of votes.       |
-|             |           |                                                                        |
 | unnamed     | `uint96`  | The number of prior votes                                              |
 
 # State-Changing Functions: UNI
@@ -207,7 +206,6 @@ Returns a proposal ballot receipt of a given voter.
 | :--------- | :-------- | :----------------------------------------------------------- |
 | proposalId | `uint`    | ID of the proposal in which to get a voter’s ballot receipt. |
 | voter      | `address` | Address of the account of a proposal voter.                  |
-|            |           |                                                              |
 | Receipt    | `struct`  | A Receipt struct for the ballot of the voter address.        |
 
 ## State
@@ -217,18 +215,14 @@ function state(uint proposalId) returns (ProposalState)
 ```
 
 Returns enum of type ProposalState, possible types are:
--Pending
--Active
--Canceled
--Defeated
--Succeeded
--Queued
--Expired
--andExecuted
-
-| Name       | Type   |                    |
-| :--------- | :----- | :----------------- |
-| proposalId | `uint` | ID of the proposal |
+- Pending
+- Active
+- Canceled
+- Defeated
+- Succeeded
+- Queued
+- Expired
+- Executed
 
 # State-Changing Functions: Governor Alpha
 
@@ -253,7 +247,6 @@ The proposer cannot create another proposal if they currently have a pending or 
 | signatures  | `string`  | The ordered list of function signatures to be passed during execution. This array must be the same length as all other array parameters in this function.                               |
 | calldatas   | `bytes`   | The ordered list of data to be passed to each individual function call during proposal execution. This array must be the same length as all other array parameters in this function.    |
 | description | `string`  | A human readable description of the proposal and the changes it will enact.                                                                                                             |
-|             |           |                                                                                                                                                                                         |
 | Unnamed     | `uint`    | Returns ID of the new proposal                                                                                                                                                          |
 
 ## Queue
