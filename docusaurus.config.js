@@ -34,19 +34,19 @@ module.exports = {
         //   className: 'persistent',
         // },
         {
-          to: '/protocol/reference/smart-contracts',
+          to: '/overview/intro',
           label: 'Overview',
           position: 'left',
           className: 'V1_active',
         },
         {
-          to: '/sdk/introduction',
+          to: '/guides/set-up',
           label: 'Guides',
           position: 'left',
           className: 'V1_active',
         },
         {
-          to: '/sdk/subgraph/subgraph-data',
+          to: '/faq/general',
           label: 'FAQ',
           position: 'left',
           className: 'V1_active',
@@ -225,8 +225,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          path: 'protocol',
-          routeBasePath: 'protocol/',
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/NiftyLeague/docs/tree/main/',
           includeCurrentVersion: false,

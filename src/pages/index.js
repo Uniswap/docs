@@ -27,21 +27,21 @@ export const actions = [
     title: 'What is Nifty League',
     href: '#',
     icon: FireIcon,
-    to: './protocol/introduction',
+    to: './overview/intro',
     text: `Learn about the vision for our gaming platform including core concepts, inception, and the team behind it.`,
   },
   {
     title: 'Play-2-Earn / Rental Overview',
     href: '#',
     icon: BookOpenIcon,
-    to: './protocol/reference/smart-contracts',
+    to: './overview/rentals',
     text: `Learn how you can play games on our platform to earn NFTL using rentals or purchasing a DEGEN NFT.`,
   },
   {
     title: 'NFTL',
     href: '#',
     icon: CurrencyDollarIcon,
-    to: './sdk/introduction',
+    to: './overview/nftl',
     text: `Learn about of ecosystem's native currency and governance token, NFTL. What is it's utility? What is governance?`,
   },
 ];
@@ -77,12 +77,12 @@ export const Guides = [
   {
     title: 'Implement a Swap',
     text: 'Start swapping from a smart contract',
-    to: './protocol/guides/swaps/single-swaps',
+    to: './guides/swaps/single-swaps',
   },
   {
     title: 'Providing Liquidity',
     text: 'Provide liquidity from a smart contract',
-    to: './protocol/reference/periphery/NonfungiblePositionManager',
+    to: './reference/periphery/NonfungiblePositionManager',
   },
 ];
 
@@ -90,7 +90,7 @@ export const quick = [
   {
     title: 'Smart Contracts',
     text: 'Start swapping from a smart contract',
-    to: './protocol/reference/smart-contracts',
+    to: './reference/smart-contracts',
   },
   {
     title: 'SDK',
