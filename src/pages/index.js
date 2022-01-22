@@ -105,7 +105,7 @@ export const quick = [
   {
     title: 'Whitepaper',
     text: 'Start swapping from a smart contract',
-    to: 'https://niftyleague.com/whitepaper-v3.pdf',
+    to: 'https://niftyleague.com/whitepaper.pdf',
   },
 ];
 
