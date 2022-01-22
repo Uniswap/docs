@@ -2,10 +2,9 @@
 id: introduction
 title: The Uniswap V1 Protocol
 sidebar_position: 1
-
 ---
 
-Uniswap V1 is the first version of the protocol, [launched in November 2018](https://twitter.com/haydenzadams/status/1058376395108376577) at Devcon 4. Because of its permissionless nature, it will exist for as long as Ethereum does. 
+Uniswap V1 is the first version of the protocol, [launched in November 2018](https://twitter.com/haydenzadams/status/1058376395108376577) at Devcon 4. Because of its permissionless nature, it will exist for as long as Ethereum does.
 
 Designed with simplicity in mind, the Uniswap protocol provides an interface for seamless exchange of ERC20 tokens on Ethereum. By eliminating unnecessary forms of rent extraction and middlemen it allows faster, more efficient exchange. Where it makes tradeoffs, decentralization, censorship resistance, and security are prioritized.
 
@@ -30,11 +29,11 @@ This site will serve as a project overview for Uniswap - explaining how it works
 
 # Resources
 
-- [Website](https://uniswap.org)
+- [Website](https://niftyleague.com)
 - [GitHub](https://github.com/Uniswap)
 - [Twitter](https://twitter.com/Uniswap)
 - [Reddit](https://www.reddit.com/r/Uniswap)
-- [Email](mailto:contact@uniswap.org)
+- [Email](mailto:contact@niftyleague.com)
 - [Whitepaper](https://hackmd.io/s/HJ9jLsfTz)
 
 # How it works
@@ -57,7 +56,7 @@ Upgrading censorship resistant, decentralized smart contracts is difficult. If s
 
 # How to use it
 
-[uniswap.org](https://uniswap.org) is the landing page for the Uniswap protocol. It describes the project and directs users where they need to go.
+[niftyleague.com](https://niftyleague.com) is the landing page for the Uniswap protocol. It describes the project and directs users where they need to go.
 
 The Uniswap smart contracts live on Ethereum. Anyone can interact with them directly.
 

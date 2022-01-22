@@ -19,11 +19,11 @@ The scope of work includes:
 
 The report also has a "Design Comments" section that we highly recommend for gaining a deep technical understanding of some one the choices made in Uniswap V2.
 
-> [Read the report](https://uniswap.org/audit.html)
+> [Read the report](https://niftyleague.com/audit.html)
 
 # Bug Bounty
 
-Uniswap has an open and ongoing bug [bounty program](https://uniswap.org/bug-bounty/).
+Uniswap has an open and ongoing bug [bounty program](https://niftyleague.com/bug-bounty/).
 
 # Considerations when building on Uniswap
 

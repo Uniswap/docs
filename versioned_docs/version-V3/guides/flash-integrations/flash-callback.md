@@ -49,7 +49,7 @@ Code in a minimum amount out for both of the upcoming swaps, such that the follo
 
 ## Initiating A Swap
 
-Call the first of two swaps, calling `exactInputSingle` on the [**router interface**](https://docs.uniswap.org/reference/periphery/interfaces/ISwapRouter) contract. In this call, we are using the previously declared `amount0In` as the minimum amount out, and assigning the returned balance of the swap to `amountOut0`.
+Call the first of two swaps, calling `exactInputSingle` on the [**router interface**](https://docs.niftyleague.com/reference/periphery/interfaces/ISwapRouter) contract. In this call, we are using the previously declared `amount0In` as the minimum amount out, and assigning the returned balance of the swap to `amountOut0`.
 
 Most of These function arguments have already been discussed, except for two new introductions:
 
@@ -105,7 +105,7 @@ TransferHelper.safeApprove(token0, address(this), amount0Owed);
 TransferHelper.safeApprove(token1, address(this), amount1Owed);
 ```
 
-If there is any balance due to the token, use simple logic to call [pay](https://docs.uniswap.org/reference/periphery/base/PeripheryPayments#pay). Remember that the callback function is being called by the pool itself, which is why we can call `pay` despite the function being marked `internal`.
+If there is any balance due to the token, use simple logic to call [pay](https://docs.niftyleague.com/reference/periphery/base/PeripheryPayments#pay). Remember that the callback function is being called by the pool itself, which is why we can call `pay` despite the function being marked `internal`.
 
 ```solidity
 if (amount0Owed > 0) pay(token0, address(this), msg.sender, amount0Owed);

@@ -1,127 +1,91 @@
 module.exports = {
-  title: "Uniswap",
-  tagline: "Documentation and Guides",
-  url: "https://docs.uniswap.org/",
-  baseUrl: "/",
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "ignore",
-  favicon: "img/favicon.png",
-  organizationName: "Uniswap", // Usually your GitHub org/user name.
-  projectName: "Uniswap-docs", // Usually your repo name.
+  title: 'Nifty League',
+  tagline: 'Documentation and Guides',
+  url: 'https://docs.niftyleague.com/',
+  baseUrl: '/',
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'ignore',
+  favicon: 'img/favicon.png',
+  organizationName: 'NiftyLeague', // Usually your GitHub org/user name.
+  projectName: 'docs', // Usually your repo name.
   themeConfig: {
-    image: "img/twitter_card_bg.jpg",
+    image: 'img/twitter_card_bg.jpg',
     prism: {
-      additionalLanguages: ["solidity"],
+      additionalLanguages: ['solidity'],
     },
     algolia: {
-      apiKey: "32465e2ab6f7554ff014e64c0d92171c",
-      indexName: "v3-docs",
-      appId: "S0IDD0YGLZ",
+      apiKey: '2c367ae53326c8a85e805323aee56a75',
+      indexName: 'docs',
+      appId: 'R1BEZXQES6',
     },
     navbar: {
-      title: "Uniswap Docs",
+      title: 'Nifty League Docs',
       logo: {
-        alt: "Uniswap Unicorn",
-        src: "img/uni_dark_icon.svg",
+        alt: 'Nifty League Logo',
+        src: 'img/nl_logo_black.svg',
       },
       items: [
+        // {
+        //   type: 'docsVersionDropdown',
+        //   //// Optional
+        //   position: 'left',
+        //   dropdownActiveClassDisabled: true,
+        //   docsPluginId: 'default',
+        //   className: 'persistent',
+        // },
         {
-          type: "docsVersionDropdown",
-          //// Optional
-          position: "left",
-          dropdownActiveClassDisabled: true,
-          docsPluginId: "default",
-          className: "persistent",
+          to: '/protocol/reference/smart-contracts',
+          label: 'Overview',
+          position: 'left',
+          className: 'V3_active',
         },
         {
-          to: "/protocol/reference/smart-contracts",
-          label: "Contracts",
-          position: "left",
-          className: "V3_active",
+          to: '/sdk/introduction',
+          label: 'Guides',
+          position: 'left',
+          className: 'V3_active',
         },
         {
-          to: "/sdk/introduction",
-          label: "SDK",
-          position: "left",
-          className: "V3_active",
+          to: '/sdk/subgraph/subgraph-data',
+          label: 'FAQ',
+          position: 'left',
+          className: 'V3_active',
         },
         {
-          to: "/sdk/subgraph/subgraph-data",
-          label: "Subgraph (API)",
-          position: "left",
-          className: "V3_active",
+          to: 'https://niftyleague.com/whitepaper-v3.pdf',
+          label: 'Whitepaper',
+          position: 'right',
+          className: 'persistent',
         },
         {
-          to: "/protocol/concepts/governance/overview",
-          label: "Governance",
-          position: "left",
-          className: "V3_active",
+          href: 'https://niftyleague.com/',
+          label: 'Website',
+          position: 'right',
+          className: 'persistent',
         },
         {
-          to: "/protocol/V2/guides/smart-contract-integration/quick-start",
-          label: "Contracts",
-          position: "left",
-          className: "V2_active",
+          href: 'https://github.com/NiftyLeague/docs',
+          label: 'GitHub',
+          position: 'right',
+          className: 'persistent',
         },
         {
-          to: "/sdk/2.0.0/introduction",
-          label: "SDK",
-          position: "left",
-          className: "V2_active",
+          href: 'https://discord.gg/niftyleague',
+          label: 'Discord',
+          position: 'right',
+          className: 'persistent',
         },
         {
-          to: "/protocol/V2/reference/API/overview",
-          label: "Subgraph (API)",
-          position: "left",
-          className: "V2_active",
-        },
-        {
-          to: "/protocol/concepts/governance/overview",
-          label: "Governance",
-          position: "left",
-          className: "V2_active",
-        },
-        {
-          to: "/protocol/V1/guides/connect-to-uniswap",
-          label: "Contracts",
-          position: "left",
-          className: "V1_active",
-        },
-        {
-          to: "/sdk/1.0.0/introduction",
-          label: "SDK",
-          position: "left",
-          className: "V1_active",
-        },
-        {
-          label: "Whitepaper",
-          to: "https://uniswap.org/whitepaper-v3.pdf",
-          position: "right",
-          className: "persistent",
-        },
-        {
-          href: "https://github.com/uniswap/uniswap-docs",
-          label: "GitHub",
-          position: "right",
-          className: "persistent",
-        },
-        {
-          href: "https://unigrants.org/",
-          label: "Grants",
-          position: "right",
-          className: "persistent",
-        },
-        {
-          type: "localeDropdown",
+          type: 'localeDropdown',
 
           //// Optional
-          position: "right",
+          position: 'right',
           // Add additional dropdown items at the beginning/end of the dropdown.
           dropdownItemsBefore: [],
           dropdownItemsAfter: [
             {
-              to: "https://my-site.com/help-us-translate",
-              label: "Help us translate",
+              to: 'https://my-site.com/help-us-translate',
+              label: 'Help us translate',
             },
           ],
         },
@@ -131,86 +95,98 @@ module.exports = {
       // style: "dark",
       links: [
         {
-          title: "Developers",
+          title: 'Official',
           items: [
             {
-              label: "Bug Bounty",
-              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md",
+              label: 'Website',
+              href: 'https://niftyleague.com',
             },
             {
-              label: "#dev-chat",
-              href: "https://discord.gg/ybKVQUWb4s",
+              label: 'Feedback',
+              href: 'https://feedback.nifty-league.com/',
             },
             {
-              label: "Whitepaper",
-              href: "https://uniswap.org/whitepaper-v3.pdf",
+              label: 'Subgraph',
+              href: 'https://thegraph.com/explorer/subgraph?id=0x87e1237074760f57b424121edca06f082700dbc2-0&view=Overview',
+            },
+            {
+              label: 'Nifty DAO Treasury',
+              href: 'https://etherscan.io/address/0xd06ae6fb7eade890f3e295d69a6679380c9456c1',
+            },
+            // {
+            //   label: 'Brand Assets',
+            //   href: 'https://niftyleague.com/Uniswap_brand_assets.zip',
+            // },
+          ],
+        },
+        {
+          title: 'NFTL',
+          items: [
+            {
+              label: 'SushiSwap NFTL/ETH LP',
+              href: 'https://analytics.sushi.com/pairs/0xf79321e80acd5fa590936f09acb90ec6471fcbc4',
+            },
+            {
+              label: 'CoinGecko',
+              href: 'https://www.coingecko.com/en/coins/nifty-league',
+            },
+            {
+              label: 'CoinMarketCap',
+              href: 'https://coinmarketcap.com/currencies/nifty-league',
+            },
+            {
+              label: 'Etherscan Token Contract',
+              href: 'https://etherscan.io/token/0x3c8D2FCE49906e11e71cB16Fa0fFeB2B16C29638',
+            },
+            {
+              label: 'Dextools',
+              href: 'https://www.dextools.io/app/ether/pair-explorer/0xf79321e80acd5fa590936f09acb90ec6471fcbc4',
             },
           ],
         },
         {
-          title: "Github",
+          title: 'NFTs',
           items: [
             {
-              label: "uniswap-v3-core",
-              href: "https://github.com/Uniswap/uniswap-v3-core",
+              label: 'OpenSea - DEGENS',
+              href: 'https://opensea.io/collection/niftydegen',
             },
             {
-              label: "uniswap-v3-sdk",
-              href: "https://github.com/Uniswap/uniswap-v3-sdk",
+              label: 'OpenSea - COMICS',
+              href: 'https://opensea.io/collection/nifty-league-launch-comics',
             },
             {
-              label: "uniswap-v3-periphery",
-              href: "https://github.com/Uniswap/uniswap-v3-periphery",
+              label: 'nft20 DEGEN20 Pool',
+              href: 'https://nft20.io/asset/0xe4b895820f163b957d166f5a8ccc444e1fac4ff3',
             },
             {
-              label: "Deployment addresses",
-              href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md",
+              label: 'NiftyDegen NFT Contract',
+              href: 'https://etherscan.io/token/0x986aea67C7d6A15036e18678065eb663Fc5BE883',
+            },
+            {
+              label: 'Nifty Launch Comics Contract',
+              href: 'https://etherscan.io/address/0xBc8542e65ab801f7c9e3edd23238d37a2e3972d6',
             },
           ],
         },
         {
-          title: "Ecosystem",
+          title: 'Community',
           items: [
             {
-              label: "Home",
-              href: "https://uniswap.org/",
+              label: 'Discord',
+              href: 'https://discord.gg/niftyleague',
             },
             {
-              label: "App",
-              href: "https://app.uniswap.org/",
+              label: 'Twitter',
+              href: 'https://twitter.com/NiftyLeague',
             },
             {
-              label: "Analytics",
-              href: "https://info.uniswap.org/home",
+              label: 'Twitch',
+              href: 'https://www.twitch.tv/NiftyLeagueOfficial',
             },
             {
-              label: "Token Lists",
-              href: "https://tokenlists.org/",
-            },
-            {
-              label: "Brand Assets",
-              href: "https://uniswap.org/Uniswap_brand_assets.zip",
-            },
-          ],
-        },
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Governance",
-              href: "https://gov.uniswap.org/",
-            },
-            {
-              label: "Discord",
-              href: "https://discord.gg/ybKVQUWb4s",
-            },
-            {
-              label: "Twitter",
-              href: "https://twitter.com/Uniswap",
-            },
-            {
-              label: "Blog",
-              href: "https://uniswap.org/blog/",
+              label: 'YouTube',
+              href: 'https://www.youtube.com/c/NiftyLeague',
             },
           ],
         },
@@ -219,7 +195,7 @@ module.exports = {
     },
     colorMode: {
       // "light" | "dark"
-      defaultMode: "dark",
+      defaultMode: 'dark',
 
       // Hides the switch in the navbar
       // Useful if you want to support a single color mode
@@ -232,45 +208,45 @@ module.exports = {
       // Dark/light switch icon options
       switchConfig: {
         // Icon for the switch while in dark mode
-        darkIcon: "\u{263D}",
+        darkIcon: '\u{263D}',
 
         // Unicode icons such as '\u2600' will work
         // Unicode with 5 chars require brackets: '\u{1F602}'
-        lightIcon: "\u{263C}",
+        lightIcon: '\u{263C}',
       },
     },
     googleAnalytics: {
-      trackingID: "UA-128182339-7",
+      trackingID: 'UA-128182339-7',
       anonymizeIP: true,
     },
   },
   presets: [
     [
-      "@docusaurus/preset-classic",
+      '@docusaurus/preset-classic',
       {
         docs: {
-          path: "protocol",
-          routeBasePath: "protocol/",
-          sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/uniswap/uniswap-docs/tree/main/",
+          path: 'protocol',
+          routeBasePath: 'protocol/',
+          sidebarPath: require.resolve('./sidebars.js'),
+          editUrl: 'https://github.com/NiftyLeague/docs/tree/main/',
           includeCurrentVersion: false,
         },
 
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-          customCss2: require.resolve("./src/css/colors.css"),
+          customCss: require.resolve('./src/css/custom.css'),
+          customCss2: require.resolve('./src/css/colors.css'),
         },
       },
     ],
   ],
   plugins: [
     [
-      "@docusaurus/plugin-content-docs",
+      '@docusaurus/plugin-content-docs',
       {
-        id: "SDK",
-        path: "sdk",
-        routeBasePath: "sdk/",
-        sidebarPath: require.resolve("./sdkSidebars.js"),
+        id: 'SDK',
+        path: 'sdk',
+        routeBasePath: 'sdk/',
+        sidebarPath: require.resolve('./sdkSidebars.js'),
         includeCurrentVersion: false,
       },
     ],

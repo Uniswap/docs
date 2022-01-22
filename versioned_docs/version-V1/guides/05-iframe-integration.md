@@ -3,19 +3,19 @@ id: iframe-integration
 title: Iframe Integration
 ---
 
-Uniswap can be used within other sites as an iframe. An iframe shows an exact version of the app.uniswap.org site and can have custom prefilled settings.
+Uniswap can be used within other sites as an iframe. An iframe shows an exact version of the app.niftyleague.com site and can have custom prefilled settings.
 
 # Why You May Want This
 
 Integrating the Uniswap site directly into your web application can be useful for a variety of reasons.
 
-v1.app.uniswap.org allows users to buy, sell, send, or provide liquidity for ERC20 tokens. An iframe integration may be useful if your application provides services around these ERC20 tokens. \(For example, users can buy DAI through a Uniswap iframe on your site, then allow users to lend that DAI on your site\).
+v1.app.niftyleague.com allows users to buy, sell, send, or provide liquidity for ERC20 tokens. An iframe integration may be useful if your application provides services around these ERC20 tokens. \(For example, users can buy DAI through a Uniswap iframe on your site, then allow users to lend that DAI on your site\).
 
 It can also be useful if your application requires users to acquire some token in order to use some service \(For example, allow users to buy "REP" token so they can engage in prediction markets on the Augur Dapp\).
 
 # iframe vs. custom UI
 
-One benefit of an iframe integration is that the your site will automatically keep up with any improvements/additions to the v1.app.uniswap.org site. After the initital integration is setup no further work is needed to pull in updates as the exchange site is updated over time.
+One benefit of an iframe integration is that the your site will automatically keep up with any improvements/additions to the v1.app.niftyleague.com site. After the initital integration is setup no further work is needed to pull in updates as the exchange site is updated over time.
 
 # Live Example
 
@@ -31,7 +31,7 @@ Linking to a ETH &lt;-&gt; DAI swap page would look something like this. To link
 
 ```text
 <iframe
-  src="https://app.uniswap.org/#/swap?use=v1?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
+  src="https://app.niftyleague.com/#/swap?use=v1?outputCurrency=0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359"
   height="660px"
   width="100%"
   style="

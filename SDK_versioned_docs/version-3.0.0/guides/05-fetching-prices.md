@@ -9,7 +9,7 @@ This guide will teach you how to fetch the current market price of any token on 
 
 ### Calling the functions
 
-Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a `Pool` instance see [Creating a Pool Instance](https://docs.uniswap.org/sdk/guides/creating-a-pool) or look at this typescript [example](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx). The `Pool` class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
+Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a `Pool` instance see [Creating a Pool Instance](https://docs.niftyleague.com/sdk/guides/creating-a-pool) or look at this typescript [example](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx). The `Pool` class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
 
 After constructing the pool, you can save the token prices as constants:
 
@@ -31,7 +31,7 @@ const token1Price = DAI_USDC_POOL.token1Price;
 
 What is `sqrtPriceX96`?
 
-In Uniswap V3, prices of tokens are stored in the [0th slot](https://docs.uniswap.org/protocol/reference/core/interfaces/pool/IUniswapV3PoolState#slot0) of the pool state. Storing the price values instead of deriving them allows pools to perform higher precision operations. In the actual implementation, prices are stored as square roots, hence the `sqrt` prefix. The price is stored as a square root because of the geometric nature of the core AMM algorithm, x\*y=k. Essentially, the [math](https://uniswap.org/whitepaper-v3.pdf) works out well when working with the square root of the price.
+In Uniswap V3, prices of tokens are stored in the [0th slot](https://docs.niftyleague.com/protocol/reference/core/interfaces/pool/IUniswapV3PoolState#slot0) of the pool state. Storing the price values instead of deriving them allows pools to perform higher precision operations. In the actual implementation, prices are stored as square roots, hence the `sqrt` prefix. The price is stored as a square root because of the geometric nature of the core AMM algorithm, x\*y=k. Essentially, the [math](https://niftyleague.com/whitepaper-v3.pdf) works out well when working with the square root of the price.
 
 In addition, you'll notice the `X96` suffix at the end of the variable name. This `X*` naming convention is used throughout the Uniswap V3 codebase to indicate values that are encoded as binary [fixed-point numbers](https://en.wikipedia.org/wiki/Fixed-point_arithmetic). Fixed-point is excellent at representing fractions while maintaining consistent fidelity and high precision in integer-only environments like the EVM, making it a perfect fit for representing prices, which of course are ultimately fractions. The number after `X` indicates the number of _fraction bits_ - 96 in this case - reserved for encoding the value after the decimal point. The number of integer bits can be trivially derived from the size of the variable and the number of fraction bits. In this case, `sqrtPriceX96` is stored as a `uint160`, meaning that there are `160 - 96 = 64` integer bits.
 
