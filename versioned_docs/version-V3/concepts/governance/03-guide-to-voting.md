@@ -8,13 +8,13 @@ This guide contains everything you need to start voting in Uniswap Governance.
 
 In order to participate you will need:
 
-- [UNI Tokens](https://uniswap.org/blog/uni/)
+- [UNI Tokens](https://niftyleague.com/blog/uni/)
 - ETH for transaction costs
 - A browser with [Metamask](https://metamask.io/) installed
 
-The governance [process](https://uniswap.org/docs/v2/governance/process/) begins in the [Governance Forum](https://gov.uniswap.org/), where you can find proposals under consideration, gather information about community sentiment, and engage with the community.
+The governance [process](https://niftyleague.com/docs/v2/governance/process/) begins in the [Governance Forum](https://gov.niftyleague.com/), where you can find proposals under consideration, gather information about community sentiment, and engage with the community.
 
-Once a given proposal has made it through the proposal process and is ready for voting, it will appear in the Uniswap [voting dashboard](https://app.uniswap.org/#/vote) - where you can view all current and former Uniswap proposals.
+Once a given proposal has made it through the proposal process and is ready for voting, it will appear in the Uniswap [voting dashboard](https://app.niftyleague.com/#/vote) - where you can view all current and former Uniswap proposals.
 
 ![](./images/Proposals_Overview.png)
 
@@ -30,13 +30,13 @@ UNI is a tradable asset and functions like most other standard ERC20 tokens, exc
 
 A democratic consensus, in our process called “quorum”, is determined by the percentage of UNI tokens in favor of, or against, a proposal. 1% of all UNI must be cast in favor to submit a proposal, and 4% in order to pass a vote.
 
-To delegate your UNI tokens and enact their voting power, visit the [Uniswap voting dashboard](https://app.uniswap.org/#/vote) and click the button that says “Unlock Voting”.
+To delegate your UNI tokens and enact their voting power, visit the [Uniswap voting dashboard](https://app.niftyleague.com/#/vote) and click the button that says “Unlock Voting”.
 
 Once you click this button, you will see a screen that gives you the option to self delegate, or add a delegate address. If you wish to delegate your UNI voting power to your own address, click “Self Delegate”.
 
 ![](./images/Unlock_Voting.png)
 
-When you click “Self Delegate”, a transaction will pop up in Metamask. If this doesn’t happen, double check that metamask is connected to app.uniswap.org, turn off any popup blockers, and try again. Click confirm, and once the transaction has processed, you will see that the voting dashboard homepage has changed to show the number of votes you have, and “Delegated to: Self”.
+When you click “Self Delegate”, a transaction will pop up in Metamask. If this doesn’t happen, double check that metamask is connected to app.niftyleague.com, turn off any popup blockers, and try again. Click confirm, and once the transaction has processed, you will see that the voting dashboard homepage has changed to show the number of votes you have, and “Delegated to: Self”.
 
 If you wish to delegate your voting power to another party, choose “Add Delegate” and enter the ethereum address of your chosen voting party.
 
@@ -44,7 +44,7 @@ If you wish to delegate your voting power to another party, choose “Add Delega
 
 An important note: much like voter registration in a larger democracy, for UNI to be used in a vote it must be delegated before both the voting period and the preceding proposal period. This means if you want your vote to count, you must delegate it in anticipation of any proposal you may be interested in.
 
-If you are unsure of how best to vote and are interested in delegating your UNI voting power to another party, you can visit the [Delegation Pitch](https://gov.uniswap.org/c/delegation-pitch/6) section of the governance forum. Here parties participating in Uniswap Governance pitch their platform and voting agenda for users to read and discuss.
+If you are unsure of how best to vote and are interested in delegating your UNI voting power to another party, you can visit the [Delegation Pitch](https://gov.niftyleague.com/c/delegation-pitch/6) section of the governance forum. Here parties participating in Uniswap Governance pitch their platform and voting agenda for users to read and discuss.
 
 ## Voting
 

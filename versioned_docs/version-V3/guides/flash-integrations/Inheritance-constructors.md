@@ -35,7 +35,7 @@ In V3 there are three separate callback functions, `uniswapV3SwapCallback`, `uni
 
 ## Inheriting The V3 Contracts
 
-Inherit `IUniswapV3FlashCallback` and `PeripheryPayments`, as we will use each in our program. Note these two inherited contracts already extend many other contracts that we will be using, such as [LowGasSafeMath](https://docs.uniswap.org/reference/core/libraries/LowGasSafeMath) which we [attach](https://docs.soliditylang.org/en/v0.7.6/contracts.html?highlight=using#using-for), to types `uint256` and `int256`.
+Inherit `IUniswapV3FlashCallback` and `PeripheryPayments`, as we will use each in our program. Note these two inherited contracts already extend many other contracts that we will be using, such as [LowGasSafeMath](https://docs.niftyleague.com/reference/core/libraries/LowGasSafeMath) which we [attach](https://docs.soliditylang.org/en/v0.7.6/contracts.html?highlight=using#using-for), to types `uint256` and `int256`.
 
 ```solidity
 contract PairFlash is IUniswapV3FlashCallback, PeripheryPayments {

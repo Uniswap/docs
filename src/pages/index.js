@@ -1,116 +1,111 @@
-import React from "react";
-import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import React from 'react';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
-import "./styles.module.css";
-import styled from "@emotion/styled";
+import './styles.module.css';
+import styled from '@emotion/styled';
 
-import Discord from "@site/static/img/discord.svg";
-import UGP from "@site/static/img/UGP.png";
+import Discord from '@site/static/img/discord.svg';
+import UGP from '@site/static/img/UGP.png';
 
-import ThemedImage from "@theme/ThemedImage";
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-import SearchBar from "@theme-original/SearchBar";
+import SearchBar from '@theme-original/SearchBar';
 
 import {
-  InformationCircleIcon,
-  QuestionMarkCircleIcon,
+  CurrencyDollarIcon,
   BookOpenIcon,
+  FireIcon,
   ChatIcon,
   CodeIcon,
-} from "@heroicons/react/outline";
+} from '@heroicons/react/outline';
 
 export const actions = [
   {
-    title: "What is Uniswap",
-    href: "#",
-    icon: InformationCircleIcon,
-    to: "./protocol/introduction",
-    text: `Learn about the core concepts of the Uniswap protocol. Swaps, Pools, Concentrated Liquidity and more.`,
+    title: 'What is Nifty League',
+    href: '#',
+    icon: FireIcon,
+    to: './protocol/introduction',
+    text: `Learn about the vision for our gaming platform including core concepts, inception, and the team behind it.`,
   },
   {
-    title: "Smart contract overview",
-    href: "#",
+    title: 'Play-2-Earn / Rental Overview',
+    href: '#',
     icon: BookOpenIcon,
-    to: "./protocol/reference/smart-contracts",
-    text: `Learn about the architecture of the Uniswap protocol smart contracts made up of the Core and Periphery libraries.`,
+    to: './protocol/reference/smart-contracts',
+    text: `Learn how you can play games on our platform to earn NFTL using rentals or purchasing a DEGEN NFT.`,
   },
   {
-    title: "V3 SDK",
-    href: "#",
-    icon: QuestionMarkCircleIcon,
-    to: "./sdk/introduction",
-    text: `The SDK is designed to assist developers when interacting with the protocol in any environment that can execute JavaScript.`,
+    title: 'NFTL',
+    href: '#',
+    icon: CurrencyDollarIcon,
+    to: './sdk/introduction',
+    text: `Learn about of ecosystem's native currency and governance token, NFTL. What is it's utility? What is governance?`,
   },
 ];
 
 export const github = [
   {
-    title: "uniswap-v3-core",
-    href: "https://github.com/Uniswap/uniswap-v3-core",
+    title: 'uniswap-v3-core',
+    href: 'https://github.com/Uniswap/uniswap-v3-core',
     icon: CodeIcon,
   },
   {
-    title: "uniswap-v3-sdk",
-    href: "https://github.com/Uniswap/uniswap-v3-sdk",
+    title: 'uniswap-v3-sdk',
+    href: 'https://github.com/Uniswap/uniswap-v3-sdk',
     icon: CodeIcon,
   },
   {
-    title: "uniswap-v3-periphery",
-    href: "https://github.com/Uniswap/uniswap-v3-periphery",
+    title: 'uniswap-v3-periphery',
+    href: 'https://github.com/Uniswap/uniswap-v3-periphery',
     icon: CodeIcon,
   },
   {
-    title: "Deployment addresses",
-    href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md",
+    title: 'Deployment addresses',
+    href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
   },
 ];
 
 export const Guides = [
   {
-    title: "SDK Quick start",
-    text: "Get started on web integrations with the Javascript SDK",
-    to: "./sdk/guides/quick-start",
+    title: 'SDK Quick start',
+    text: 'Get started on web integrations with the Javascript SDK',
+    to: './sdk/guides/quick-start',
   },
   {
-    title: "Implement a Swap",
-    text: "Start swapping from a smart contract",
-    to: "./protocol/guides/swaps/single-swaps",
+    title: 'Implement a Swap',
+    text: 'Start swapping from a smart contract',
+    to: './protocol/guides/swaps/single-swaps',
   },
   {
-    title: "Providing Liquidity",
-    text: "Provide liquidity from a smart contract",
-    to: "./protocol/reference/periphery/NonfungiblePositionManager",
-  },
-  {
-    title: "Building an Oracle",
-    text: "Get the down low on building oracles safely",
-    to: "./protocol/concepts/V3-overview/oracle",
+    title: 'Providing Liquidity',
+    text: 'Provide liquidity from a smart contract',
+    to: './protocol/reference/periphery/NonfungiblePositionManager',
   },
 ];
 
 export const quick = [
   {
-    title: "Smart Contracts",
-    text: "Start swapping from a smart contract",
-    to: "./protocol/reference/smart-contracts",
+    title: 'Smart Contracts',
+    text: 'Start swapping from a smart contract',
+    to: './protocol/reference/smart-contracts',
   },
   {
-    title: "SDK",
-    text: "Start swapping from a smart contract",
-    to: "./sdk/introduction",
+    title: 'SDK',
+    text: 'Start swapping from a smart contract',
+    to: './sdk/introduction',
   },
   {
-    title: "API (Subgraph)",
-    text: "Start swapping from a smart contract",
-    to: "./sdk/subgraph/subgraph-data",
+    title: 'API (Subgraph)',
+    text: 'Start swapping from a smart contract',
+    to: './sdk/subgraph/subgraph-data',
   },
   {
-    title: "Whitepaper",
-    text: "Start swapping from a smart contract",
-    to: "https://uniswap.org/whitepaper-v3.pdf",
+    title: 'Whitepaper',
+    text: 'Start swapping from a smart contract',
+    to: 'https://niftyleague.com/whitepaper-v3.pdf',
   },
 ];
 
@@ -283,71 +278,71 @@ const HideMedium = styled.div`
 export default function Home() {
   return (
     <Layout
-      title={`Uniswap Docs`}
-      description="Technical Documentation For The Uniswap Protocol"
+      title={`Nifty League Docs`}
+      description="Documentation For Nifty League"
     >
       <Container>
         <DocsHeader>
           <div
             style={{
-              padding: "4rem 0  ",
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              padding: '4rem 0  ',
+              textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
             }}
           >
-            <h1 style={{ fontWeight: "600" }}> Welcome to the Uniswap Docs</h1>
-            <HideMedium>
-              <SearchBar />{" "}
-            </HideMedium>
-            {/* <p
+            <h1 style={{ fontWeight: '800' }}> Nifty League Docs</h1>
+            <p
               style={{
-                maxWidth: "640px",
-                margin: "1rem ",
+                maxWidth: '640px',
+                marginTop: '1rem',
                 fontWeight: 500,
               }}
             >
               The pages that follow contain comprehensive documentation of the
-              Uniswap ecosystem. If you are new to Uniswap, you might want to
-              check out the{" "}
+              Nifty League ecosystem. If you are new to Nifty League, you might
+              want to check out the{' '}
               <Link
-                style={{ color: "#ff007a" }}
-                to="https://docs.uniswap.org/protocol/introduction"
+                style={{ color: '#ff007a' }}
+                to="https://docs.niftyleague.com/whitepaper"
               >
-                Protocol Overview
-              </Link>{" "}
-              or{" "}
+                Whitepaper
+              </Link>{' '}
+              or{' '}
               <Link
-                style={{ color: "#ff007a" }}
-                to="https://help.uniswap.org/en/collections/3033722-faq"
+                style={{ color: '#ff007a' }}
+                to="https://docs.niftyleague.com/faq"
               >
                 FAQ
-              </Link>{" "}
+              </Link>{' '}
               first.
-            </p> */}
+            </p>
+            <HideMedium>
+              <SearchBar />{' '}
+            </HideMedium>
           </div>
           <StyledTitleImage
             alt="Docusaurus themed image"
             sources={{
-              light: useBaseUrl("/img/grow.png"),
-              dark: useBaseUrl("/img/grow2.png"),
+              light: useBaseUrl('/img/mars.png'),
+              dark: useBaseUrl('/img/sushi.png'),
             }}
           />
           <Row>
-            {actions.map((action) => (
-              <Link style={{ textDecoration: "none" }} to={action.to}>
+            {actions.map(action => (
+              <Link style={{ textDecoration: 'none' }} to={action.to}>
                 <ShadowCard key={action.title}>
                   <TopSection>
                     <IconWrapper>
                       <action.icon
-                        style={{ width: "24px" }}
+                        style={{ width: '24px' }}
                         color={action.color}
                       />
                     </IconWrapper>
 
                     <svg
-                      style={{ width: "24px", opacity: 0.2 }}
+                      style={{ width: '24px', opacity: 0.2 }}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
                       viewBox="0 0 24 24"
@@ -355,10 +350,10 @@ export default function Home() {
                       <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                     </svg>
                   </TopSection>
-                  <h3 style={{ marginBottom: ".75rem", color: action.color }}>
+                  <h3 style={{ marginBottom: '.75rem', color: action.color }}>
                     {action.title}
                   </h3>
-                  <p style={{ marginBottom: "0.5rem" }}>{action.text}</p>
+                  <p style={{ marginBottom: '0.5rem' }}>{action.text}</p>
                 </ShadowCard>
               </Link>
             ))}
@@ -367,8 +362,8 @@ export default function Home() {
 
         <TwoRow
           style={{
-            gap: "56px",
-            marginTop: "4rem",
+            gap: '56px',
+            marginTop: '4rem',
           }}
         >
           <div>
@@ -378,19 +373,19 @@ export default function Home() {
               in your dApp, smart contract or project.
             </p>
             <div>
-              {Guides.map((action) => (
+              {Guides.map(action => (
                 <Link
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: 'none' }}
                   key={action.title}
                   to={action.to}
                 >
-                  <Card key={action.title} style={{ marginBottom: "1rem" }}>
+                  <Card key={action.title} style={{ marginBottom: '1rem' }}>
                     <LinkRow>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <h3 style={{ marginBottom: "0rem" }}>{action.title}</h3>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <h3 style={{ marginBottom: '0rem' }}>{action.title}</h3>
                       </div>
                       <svg
-                        style={{ width: "24px", opacity: 0.2 }}
+                        style={{ width: '24px', opacity: 0.2 }}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
                         viewBox="0 0 24 24"
@@ -398,7 +393,7 @@ export default function Home() {
                         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                       </svg>
                     </LinkRow>
-                    <p style={{ marginBottom: "0rem" }}>{action.text}</p>
+                    <p style={{ marginBottom: '0rem' }}>{action.text}</p>
                   </Card>
                 </Link>
               ))}
@@ -410,17 +405,17 @@ export default function Home() {
               The Uniswap codebase is comprised of an ecosystem of open source
               components.
             </p>
-            {github.map((action) => (
-              <Link style={{ textDecoration: "none" }} href={action.href}>
-                <Card key={action.title} style={{ marginBottom: "1rem" }}>
+            {github.map(action => (
+              <Link style={{ textDecoration: 'none' }} href={action.href}>
+                <Card key={action.title} style={{ marginBottom: '1rem' }}>
                   <LinkRow>
                     <StyledGithubIcon
-                      style={{ display: "flex", alignItems: "center" }}
+                      style={{ display: 'flex', alignItems: 'center' }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 120.78 117.79"
-                        style={{ width: "24px" }}
+                        style={{ width: '24px' }}
                       >
                         <defs></defs>
                         <title>testlogo</title>
@@ -461,12 +456,12 @@ export default function Home() {
                           </g>
                         </g>
                       </svg>
-                      <h3 style={{ marginBottom: "0rem", marginLeft: "16px" }}>
+                      <h3 style={{ marginBottom: '0rem', marginLeft: '16px' }}>
                         {action.title}
                       </h3>
                     </StyledGithubIcon>
                     <svg
-                      style={{ width: "24px", height: "24px", opacity: 0.2 }}
+                      style={{ width: '24px', height: '24px', opacity: 0.2 }}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
                       viewBox="0 0 24 24"
@@ -483,33 +478,33 @@ export default function Home() {
         <hr />
         <TwoRow
           style={{
-            gap: "48px",
-            alignItems: "center",
+            gap: '48px',
+            alignItems: 'center',
           }}
         >
           <StyledImage
-            style={{ maxHeight: "400px" }}
+            style={{ maxHeight: '400px' }}
             sources={{
-              light: useBaseUrl("/img/use.png"),
-              dark: useBaseUrl("/img/use2.png"),
+              light: useBaseUrl('/img/use.png'),
+              dark: useBaseUrl('/img/use2.png'),
             }}
           />
           <div>
             <h2>Quick Links</h2>
             <p></p>
-            {quick.map((action) => (
+            {quick.map(action => (
               <Link style={{}} to={action.to || action.href}>
                 <div
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "0.5rem",
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    marginBottom: '0.5rem',
                   }}
                 >
-                  <h3 style={{ marginBottom: "0rem" }}>{action.title}</h3>
+                  <h3 style={{ marginBottom: '0rem' }}>{action.title}</h3>
 
                   <svg
-                    style={{ width: "16px", opacity: 0.2 }}
+                    style={{ width: '16px', opacity: 0.2 }}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
                     viewBox="0 0 24 24"
@@ -526,40 +521,40 @@ export default function Home() {
 
         <Row>
           <Link
-            style={{ textDecoration: "none" }}
-            href={"https://discord.gg/ybKVQUWb4s"}
+            style={{ textDecoration: 'none' }}
+            href={'https://discord.gg/ybKVQUWb4s'}
           >
             <CenterCard>
-              <Discord style={{ width: "48px", height: "48px" }} />
+              <Discord style={{ width: '48px', height: '48px' }} />
               <div>
                 <h3>Discord</h3>
-                <p>Hop in to the #dev-chat to get realtime help.</p>
+                <p>Join our community for realtime Q&amp;A.</p>
               </div>
             </CenterCard>
           </Link>
           <Link
-            style={{ textDecoration: "none" }}
-            href={"https://gov.uniswap.org/"}
+            style={{ textDecoration: 'none' }}
+            href={'https://gov.niftyleague.com/'}
           >
             <CenterCard>
-              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <ChatIcon style={{ width: '48px', height: '48px' }} />
               <div>
-                <h3>Forum</h3>
-                <p>Discuss governance and more.</p>
+                <h3>Feedback Forum</h3>
+                <p>Discuss or propose new ideas to our team.</p>
               </div>
             </CenterCard>
           </Link>
 
           <Link
-            style={{ textDecoration: "none" }}
-            href={"https://github.com/Uniswap"}
+            style={{ textDecoration: 'none' }}
+            href={'https://github.com/NiftyLeague'}
           >
             <CenterCard>
               <StyledGithubIcon>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 120.78 117.79"
-                  style={{ width: "48px" }}
+                  style={{ width: '48px' }}
                 >
                   <defs></defs>
                   <g id="Layer_2" data-name="Layer 2">
@@ -598,39 +593,39 @@ export default function Home() {
                       />
                     </g>
                   </g>
-                </svg>{" "}
+                </svg>{' '}
               </StyledGithubIcon>
               <div>
                 <h3>Github</h3>
-                <p>View all Uniswap repositories.</p>
+                <p>View all public Nifty League repositories.</p>
               </div>
             </CenterCard>
           </Link>
         </Row>
         <Link
           style={{
-            textDecoration: "none",
-            maxWidth: "960px",
-            margin: "0 auto 4rem auto",
-            width: "100%",
+            textDecoration: 'none',
+            maxWidth: '960px',
+            margin: '0 auto 4rem auto',
+            width: '100%',
           }}
-          href={"https://unigrants.org/"}
+          href={'https://unigrants.org/'}
         >
           <WideCard
             style={{
-              alignItems: "center",
-              flexDirection: "row",
-              justifyContent: "center",
-              gap: "24px",
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              gap: '24px',
             }}
           >
-            <img src={UGP} width={"120px"} />
+            <img src={UGP} width={'120px'} />
             <div>
-              <h2 style={{ marginBottom: "0.5rem" }}>Uniswap Grants Program</h2>
-              <p style={{ margin: "0rem" }}>
+              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Grants Program</h2>
+              <p style={{ margin: '0rem' }}>
                 Uniswap Governance offers grant funding for people who are
                 building apps, tools, and activities for Uniswap Protocol users,
-                builders, and community members.{" "}
+                builders, and community members.{' '}
               </p>
             </div>
           </WideCard>

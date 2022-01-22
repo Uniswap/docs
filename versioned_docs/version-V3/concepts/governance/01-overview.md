@@ -10,7 +10,7 @@ tags: smart-contracts, documentation
 
 ## Documentation
 
-For reference material on the Uniswap Governance system please see [Governance Reference](https://docs.uniswap.org/protocol/reference/Governance/governance-reference).
+For reference material on the Uniswap Governance system please see [Governance Reference](https://docs.niftyleague.com/protocol/reference/Governance/governance-reference).
 
 ## UNI Address
 
@@ -19,7 +19,7 @@ For reference material on the Uniswap Governance system please see [Governance R
 ### ABI
 
 ```typescript
-import Uni from "@uniswap/governance/build/Uni.json";
+import Uni from '@uniswap/governance/build/Uni.json';
 ```
 
 [https://unpkg.com/@uniswap/governance@1.0.2/build/Uni.json](https://unpkg.com/@uniswap/governance@1.0.2/build/Uni.json)
@@ -31,7 +31,7 @@ import Uni from "@uniswap/governance/build/Uni.json";
 ### ABI
 
 ```typescript
-import Timelock from "@uniswap/governance/build/Timelock.json";
+import Timelock from '@uniswap/governance/build/Timelock.json';
 ```
 
 [https://unpkg.com/@uniswap/governance@1.0.2/build/Timelock.json](https://unpkg.com/@uniswap/governance@1.0.2/build/Timelock.json)
@@ -47,7 +47,7 @@ The `GovernorAlpha` ABI is viewable on [Etherscan](https://etherscan.io/address/
 [https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json](https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json)
 
 ```typescript
-import GovernorAlpha from "@uniswap/governance/build/GovernorAlpha.json";
+import GovernorAlpha from '@uniswap/governance/build/GovernorAlpha.json';
 ```
 
 ## GovernorAlpha v2 (Deprecated)

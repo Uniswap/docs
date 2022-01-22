@@ -9,15 +9,15 @@ Swaps are the most common interaction with the Uniswap protocol. The following e
 - `swapExactInputSingle`
 - `swapExactOutputSingle`
 
-The `swapExactInputSingle` function is for performing _exact input_ swaps, which swap a fixed amount of one token for a maximum possible amount of another token. This function uses the `ExactInputSingleParams` struct and the `exactInputSingle` function from the [ISwapRouter](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter) interface.
+The `swapExactInputSingle` function is for performing _exact input_ swaps, which swap a fixed amount of one token for a maximum possible amount of another token. This function uses the `ExactInputSingleParams` struct and the `exactInputSingle` function from the [ISwapRouter](https://docs.niftyleague.com/protocol/reference/periphery/interfaces/ISwapRouter) interface.
 
-The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the [ISwapRouter](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter) interface.
+The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the [ISwapRouter](https://docs.niftyleague.com/protocol/reference/periphery/interfaces/ISwapRouter) interface.
 
 For simplification, the example hardcodes the token contract addresses, but as explained further below the contract could be modified to change pools and tokens on a per transaction basis.
 
 When trading from a smart contract, the most important thing to keep in mind is that access to an external price source is required. Without this, trades can be frontrun for considerable loss.
 
-**Note:**  The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
+**Note:** The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
 ## Set Up the Contract
 
@@ -92,7 +92,7 @@ Then, transfer the `amount` of Dai from the calling address into our contract, a
 
 ### Swap Input Parameters
 
-To execute the swap function, we need to populate the `ExactInputSingleParams` with the data necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed [here](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter).
+To execute the swap function, we need to populate the `ExactInputSingleParams` with the data necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed [here](https://docs.niftyleague.com/protocol/reference/periphery/interfaces/ISwapRouter).
 
 A brief overview of the parameters:
 

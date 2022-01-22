@@ -11,7 +11,7 @@ Swap fees are not automatically reinvested as they were in previous versions of 
 
 ## Pool Fees Tiers
 
-Uniswap v3 introduces multiple pools for each token pair, each with a different swapping fee. Liquidity providers may initially create pools at three fee levels: 0.05%, 0.30%, and 1%. More fee levels may be added by UNI governance, e.g. the 0.01% fee level added by [this](https://app.uniswap.org/#/vote/2/9) governance proposal in November 2021, as executed [here](https://etherscan.io/tx/0x5c84f89a67237db7500538b81af61ebd827c081302dd73a1c20c8f6efaaf4f3c).
+Uniswap v3 introduces multiple pools for each token pair, each with a different swapping fee. Liquidity providers may initially create pools at three fee levels: 0.05%, 0.30%, and 1%. More fee levels may be added by UNI governance, e.g. the 0.01% fee level added by [this](https://app.niftyleague.com/#/vote/2/9) governance proposal in November 2021, as executed [here](https://etherscan.io/tx/0x5c84f89a67237db7500538b81af61ebd827c081302dd73a1c20c8f6efaaf4f3c).
 
 Breaking pairs into separate pools was previously untenable due to the issue of liquidity fragmentation. Any incentive alignments achieved by more fee optionality invariably resulted in a net loss to traders, due to lower pairwise liquidity and the resulting increase in price impact upon swapping.
 
@@ -27,6 +27,6 @@ Similarly, we anticipate more exotic assets, or those traded rarely, will natura
 
 ## Protocol Fees
 
-Uniswap v3 has a protocol fee that can be turned on by UNI governance. Compared to v2, UNI governance has more flexibility in choosing the fraction of swap fees that go to the protocol. For details regarding the protocol fee, see the [**whitepaper**](https://uniswap.org/whitepaper-v3.pdf).
+Uniswap v3 has a protocol fee that can be turned on by UNI governance. Compared to v2, UNI governance has more flexibility in choosing the fraction of swap fees that go to the protocol. For details regarding the protocol fee, see the [**whitepaper**](https://niftyleague.com/whitepaper-v3.pdf).
 
 [1] In-range liquidity refers to the liquidity contained in any positions which span both sides of the spot price.
