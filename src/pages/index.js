@@ -41,7 +41,7 @@ export const actions = [
     title: 'NFTL',
     href: '#',
     icon: CurrencyDollarIcon,
-    to: './overview/nftl',
+    to: './overview/nftl/overview',
     text: `Learn about of ecosystem's native currency and governance token, NFTL. What is it's utility? What is governance?`,
   },
 ];

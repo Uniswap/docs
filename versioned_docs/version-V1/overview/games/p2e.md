@@ -1,8 +1,10 @@
 ---
 id: p2e
 title: Play-2-Earn
-sidebar_position: 4
+sidebar_position: 0
 ---
+
+![](../images/twitch-stream.png)
 
 **Daily Rewards**
 
