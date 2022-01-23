@@ -43,6 +43,9 @@
     0 2px 4px 0 rgba(0, 0, 0, 0.1);
 
   --ifm-global-spacing: 1.5rem;
+  --ifm-menu-color-active: var(--ifm-color-primary);
+  --ifm-menu-color-background-active: var(--ifm-hover-overlay);
+  --ifm-menu-color-background-hover: var(--ifm-hover-overlay);
   /* --ifm-navbar-background-color: rgba(255, 0.2); */
 }
 
@@ -76,7 +79,7 @@ html[data-theme='light'] {
   background-repeat: no-repeat;
   background-image: radial-gradient(
     50% 50% at 50% 50%,
-    rgba(255, 0, 122, 0.1) 0%,
+    rgba(197, 71, 247, 0.1) 0%,
     rgba(255, 255, 255, 0) 100%
   );
 
@@ -399,6 +402,24 @@ html[data-theme='dark'] .DocSearch-Hit a {
 
 .menu__link.V1_active.V1 {
   display: flex;
+}
+
+.menu__caret:hover,
+.menu__link:hover,
+.menu__list-item-collapsible--active,
+.menu__list-item-collapsible:hover {
+  background: var(--ifm-menu-color-background-hover);
+}
+.menu__list-item-collapsible .menu__link--active,
+.menu__list-item-collapsible .menu__link:hover {
+  background: none !important;
+}
+.menu__link--active,
+.menu__link--active:hover {
+  color: var(--ifm-menu-color-active);
+}
+.menu__link--active:not(.menu__link--sublist) {
+  background: var(--ifm-menu-color-background-active);
 }
 @media (max-width: 960px) {
   .menu {
