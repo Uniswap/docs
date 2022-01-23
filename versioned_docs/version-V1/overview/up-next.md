@@ -1,7 +1,7 @@
 ---
 id: roadmap
 title: Up Next ➡️
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 Along with additional games, we have several ideas in store to continue to grow our platform. One of our main goals is to launch or partner with an NFT marketplace allowing you to collect reusable NFTs such as cars or special weapons for our games. These smart contracts would extend the ERC-1155 Ethereum multi-token standard to create non-fungible items with a set limit on availability for each. As a bonus for playing our games, we would like to award items purchasable here to players who can then sell them or use them in-game. Another option we are considering is awarding time-released NFTs such as treasure chests which can be burned, revealing the collectible inside.
