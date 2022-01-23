@@ -10,7 +10,7 @@ There is no max supply set for now but we expect around **1 Billion NFTL** to be
 
 **Community Giveaways**
 
-Every project needs quality memes! Join the **[Nifty League Discord](https://discord.gg/4bmTHYWjhe)** for access to free **NFTL** distributions to community members who make us all laugh or go above and beyond contributing to discussions. To facilitate this we’ll have a tip bot configured for our team and moderators to tip Discord users a combined total of **7M NFTL** over the **first two months**. As noted earlier, these tips will remain available for active Discord members going forward but the rate is expected to be much lower.
+Every project needs quality memes! Join the **[Nifty League Discord](https://discord.gg/niftyleague)** for access to free **NFTL** distributions to community members who make us all laugh or go above and beyond contributing to discussions. To facilitate this we’ll have a tip bot configured for our team and moderators to tip Discord users a combined total of **7M NFTL** over the **first two months**. As noted earlier, these tips will remain available for active Discord members going forward but the rate is expected to be much lower.
 
 **Initial Supply**
 

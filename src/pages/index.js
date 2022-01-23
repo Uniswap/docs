@@ -1,13 +1,12 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 import './styles.module.css';
 import styled from '@emotion/styled';
 
 import Discord from '@site/static/img/discord.svg';
-import UGP from '@site/static/img/UGP.png';
+import NLTwitch from '@site/static/img/twitch-stream.png';
 
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -34,7 +33,7 @@ export const actions = [
     title: 'Play-2-Earn / Rental Overview',
     href: '#',
     icon: BookOpenIcon,
-    to: './overview/rentals',
+    to: './overview/p2e/daily-rewards',
     text: `Learn how you can play games on our platform to earn NFTL using rentals or purchasing a DEGEN NFT.`,
   },
   {
@@ -70,41 +69,56 @@ export const github = [
 
 export const Guides = [
   {
-    title: 'SDK Quick start',
-    text: 'Get started on web integrations with the Javascript SDK',
-    to: './sdk/guides/quick-start',
+    title: 'Set Up',
+    text: 'Get started setting up your Ethereum wallet',
+    to: './guides/set-up',
   },
   {
-    title: 'Implement a Swap',
-    text: 'Start swapping from a smart contract',
-    to: './guides/swaps/single-swaps',
+    title: 'Playing For Free!',
+    text: 'Try out Nifty Smashers free-2-play version',
+    to: './guides/free2play/free-2-play-overview',
   },
   {
-    title: 'Providing Liquidity',
-    text: 'Provide liquidity from a smart contract',
-    to: './reference/periphery/NonfungiblePositionManager',
+    title: 'Renting DEGENs',
+    text: 'Learn about renting DEGENs to increase your earnings',
+    to: './guides/rentals/rental-overview',
+  },
+  {
+    title: 'Playing Nifty Smashers',
+    text: 'Learn how to smash in Nifty Smashers!',
+    to: './guides/nifty-smashers/general-info',
   },
 ];
 
 export const quick = [
   {
-    title: 'Smart Contracts',
-    text: 'Start swapping from a smart contract',
-    to: './reference/smart-contracts',
+    title: 'FAQ',
+    text: 'Get quick answers to your questions',
+    to: './faq/general',
   },
   {
-    title: 'SDK',
-    text: 'Start swapping from a smart contract',
-    to: './sdk/introduction',
+    title: 'Team',
+    text: 'Learn about the Nifty League core team',
+    to: './overview/team',
   },
   {
-    title: 'API (Subgraph)',
-    text: 'Start swapping from a smart contract',
-    to: './sdk/subgraph/subgraph-data',
+    title: 'Nifty DAO',
+    text: 'Community-owned protocol',
+    to: './overview/nifty-dao/overview',
+  },
+  {
+    title: 'DEGENs',
+    text: 'Learn about our NFTs',
+    to: './overview/degens/about',
+  },
+  {
+    title: 'NiftyVerse',
+    text: 'A metaverse bringing our games to life',
+    to: './overview/games/niftyverse',
   },
   {
     title: 'Whitepaper',
-    text: 'Start swapping from a smart contract',
+    text: "Detailed write-up on Nifty League's vision",
     to: 'https://niftyleague.com/whitepaper.pdf',
   },
 ];
@@ -369,8 +383,8 @@ export default function Home() {
           <div>
             <h2>Getting Started</h2>
             <p>
-              Explore these docs to get started integrating the Uniswap Protocol
-              in your dApp, smart contract or project.
+              Explore these docs to get started playing our popular play-2-earn
+              games.
             </p>
             <div>
               {Guides.map(action => (
@@ -399,7 +413,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div>
+          {/* <div>
             <h2>Developer Links</h2>
             <p>
               The Uniswap codebase is comprised of an ecosystem of open source
@@ -472,24 +486,15 @@ export default function Home() {
                 </Card>
               </Link>
             ))}
-          </div>
-        </TwoRow>
-
-        <hr />
-        <TwoRow
-          style={{
-            gap: '48px',
-            alignItems: 'center',
-          }}
-        >
-          <StyledImage
-            style={{ maxHeight: '400px' }}
-            sources={{
-              light: useBaseUrl('/img/use.png'),
-              dark: useBaseUrl('/img/use2.png'),
-            }}
-          />
+          </div> */}
           <div>
+            <StyledImage
+              style={{ maxHeight: '400px', marginBottom: 10 }}
+              sources={{
+                light: useBaseUrl('/img/frog_400.png'),
+                dark: useBaseUrl('/img/smash_400.png'),
+              }}
+            />
             <h2>Quick Links</h2>
             <p></p>
             {quick.map(action => (
@@ -522,7 +527,7 @@ export default function Home() {
         <Row>
           <Link
             style={{ textDecoration: 'none' }}
-            href={'https://discord.gg/ybKVQUWb4s'}
+            href={'https://discord.gg/niftyleague'}
           >
             <CenterCard>
               <Discord style={{ width: '48px', height: '48px' }} />
@@ -534,7 +539,7 @@ export default function Home() {
           </Link>
           <Link
             style={{ textDecoration: 'none' }}
-            href={'https://gov.niftyleague.com/'}
+            href={'https://feedback.nifty-league.com/'}
           >
             <CenterCard>
               <ChatIcon style={{ width: '48px', height: '48px' }} />
@@ -609,7 +614,7 @@ export default function Home() {
             margin: '0 auto 4rem auto',
             width: '100%',
           }}
-          href={'https://unigrants.org/'}
+          href={'https://www.twitch.tv/NiftyLeagueOfficial'}
         >
           <WideCard
             style={{
@@ -619,13 +624,16 @@ export default function Home() {
               gap: '24px',
             }}
           >
-            <img src={UGP} width={'120px'} />
+            <img src={NLTwitch} width={'120px'} />
             <div>
-              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Grants Program</h2>
+              <h2 style={{ marginBottom: '0.5rem' }}>
+                Nifty League Twitch Streamers
+              </h2>
               <p style={{ margin: '0rem' }}>
-                Uniswap Governance offers grant funding for people who are
-                building apps, tools, and activities for Uniswap Protocol users,
-                builders, and community members.{' '}
+                Checkout our official Twitch channel for latest gameplay footage
+                and live streams. If you are a streamer and want to help out
+                with the Nifty League Official Twitch channel please reach out
+                to our team on Discord!
               </p>
             </div>
           </WideCard>
