@@ -9,7 +9,7 @@ module.exports = {
   organizationName: 'NiftyLeague', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
   themeConfig: {
-    image: 'img/twitter_card_bg.jpg',
+    image: 'img/twitter_card_bg.png',
     prism: {
       additionalLanguages: ['solidity'],
     },
@@ -216,7 +216,7 @@ module.exports = {
       },
     },
     googleAnalytics: {
-      trackingID: 'UA-128182339-7',
+      trackingID: 'G-DKL8WWG236',
       anonymizeIP: true,
     },
   },
