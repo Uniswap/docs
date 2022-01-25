@@ -27,3 +27,5 @@ As simple as signing a message to verify the ownership of your DEGENs when you l
 
 ### How do I rent a DEGEN NFT?
 
+### How do I play Smashers?
+
