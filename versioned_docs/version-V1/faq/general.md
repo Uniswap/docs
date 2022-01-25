@@ -24,3 +24,6 @@ Games are playable on your favorite web browsers as long as it supports crypto w
 ### How do I import my DEGENs into the game?
 
 As simple as signing a message to verify the ownership of your DEGENs when you launch the game.
+
+### How do I rent a DEGEN NFT?
+
