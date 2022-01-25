@@ -1,17 +1,25 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
+pragma solidity 0.7.6;
 pragma abicoder v2;
 
-import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
-import '@uniswap/v3-core/contracts/libraries/TickMath.sol';
-import '../libraries/TransferHelper.sol';
-import '../interfaces/INonfungiblePositionManager.sol';
 
-contract LiquidityExamples is IERC721Receiver {
-    address public constant nonfungiblePositionManager = 0xC36442b4a4522E871399CD717aBDD847Ab11FE88;
+import '@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol';
+import '@uniswap/v3-core/contracts/libraries/TickMath.sol';
+import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
+import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
+import '@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol';
+import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
+import '@uniswap/v3-periphery/contracts/base/LiquidityManagement.sol';
+
+
+contract YewBow is IERC721Receiver, LiquidityManagement {
+
+    INonfungiblePositionManager public immutable nonfungiblePositionManager;
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     uint24 public constant poolFee = 3000;
+
+
 
     /// @notice Represents the deposit of an NFT
     struct Deposit {
@@ -24,11 +32,21 @@ contract LiquidityExamples is IERC721Receiver {
     /// @dev deposits[tokenId] => Deposit
     mapping(uint256 => Deposit) public deposits;
 
+
+    constructor(
+        INonfungiblePositionManager _nonfungiblePositionManager,
+        address _factory,
+        address _WETH9
+    ) PeripheryImmutableState(_factory, _WETH9) {
+        // address public constant nonfungiblePositionManager = 0xC36442b4a4522E871399CD717aBDD847Ab11FE88;
+        nonfungiblePositionManager = _nonfungiblePositionManager;
+    }
+
     // Implementing `onERC721Received` so this contract can receive custody of erc721 tokens
     // Note that the operator is recorded as the owner of the deposited NFT
     function onERC721Received(
         address operator,
-        address,
+        address from,
         uint256 tokenId,
         bytes calldata
     ) external override returns (bytes4) {
@@ -142,7 +160,7 @@ contract LiquidityExamples is IERC721Receiver {
         // get liquidity data for tokenId
         uint128 liquidity = deposits[tokenId].liquidity;
         uint128 halfLiquidity = liquidity / 2;
-        
+
         // update new liquidity left in the deposit
         deposits[tokenId].liquidity = liquidity - halfLiquidity;
 
@@ -180,8 +198,8 @@ contract LiquidityExamples is IERC721Receiver {
             uint256 amount1
         )
     {
-        uint256 token0 = deposits[tokenId].token0;
-        uint256 token1 = deposits[tokenId].token1;
+        address token0 = deposits[tokenId].token0;
+        address token1 = deposits[tokenId].token1;
         TransferHelper.safeTransferFrom(token0, msg.sender, address(this), amountAdd0);
         TransferHelper.safeTransferFrom(token1, msg.sender, address(this), amountAdd1);
 
@@ -207,9 +225,9 @@ contract LiquidityExamples is IERC721Receiver {
             TransferHelper.safeTransfer(token0, msg.sender, refund0);
         }
 
-        if (amount1 < amount1ToMint) {
+        if (amount1 < amountAdd1) {
             TransferHelper.safeApprove(token1, address(nonfungiblePositionManager), 0);
-            uint256 refund1 = amount1ToMint - amount1;
+            uint256 refund1 = amountAdd1 - amount1;
             TransferHelper.safeTransfer(token1, msg.sender, refund1);
         }
     }
