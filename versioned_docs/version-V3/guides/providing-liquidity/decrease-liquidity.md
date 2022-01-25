@@ -25,6 +25,9 @@ Here we decrease the liquidity of our position without withdrawing all of it.
         // get liquidity data for tokenId
         uint128 liquidity = deposits[tokenId].liquidity;
         uint128 halfLiquidity = liquidity / 2;
+        
+        // update new liquidity left in the deposit
+        deposits[tokenId].liquidity = liquidity - halfLiquidity;
 
         // amount0Min and amount1Min are price slippage checks
         // if the amount received after burning is not greater than these minimums, transaction will fail
