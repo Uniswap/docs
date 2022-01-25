@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity 0.7.6;
+pragma solidity =0.7.6;
 pragma abicoder v2;
 
 
@@ -12,7 +12,7 @@ import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
 import '@uniswap/v3-periphery/contracts/base/LiquidityManagement.sol';
 
 
-contract YewBow is IERC721Receiver, LiquidityManagement {
+contract LiquidityExamples is IERC721Receiver, LiquidityManagement {
 
     INonfungiblePositionManager public immutable nonfungiblePositionManager;
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
@@ -46,7 +46,7 @@ contract YewBow is IERC721Receiver, LiquidityManagement {
     // Note that the operator is recorded as the owner of the deposited NFT
     function onERC721Received(
         address operator,
-        address from,
+        address,
         uint256 tokenId,
         bytes calldata
     ) external override returns (bytes4) {
