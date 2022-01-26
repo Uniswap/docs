@@ -85,11 +85,11 @@ const USDC = new Token(
   'USD//C'
 );
 
-const route = await router.route({
-  amount: wethAmount,
-  tokenOut: USDC,
-  swapType: TradeType.EXACT_IN,
-  swapConfig: {
+const route = await router.route(
+  wethAmount,
+  USDC,
+  TradeType.EXACT_IN,
+  {
     recipient: myAddress,
     slippageTolerance: new Percent(5, 100),
     deadline: 100
@@ -163,12 +163,13 @@ const USDC = new Token(
   'USD//C'
 );
 
+const typedValueParsed = '100000000000000000000'
 const wethAmount = CurrencyAmount.fromRawAmount(currency, JSBI.BigInt(typedValueParsed));
 
-const route = await router.route({
-  amountIn: wethAmount,
-  tokenOut: USDC,
-  tradeType: TradeType.EXACT_IN,
+const route = await router.route(
+  wethAmount,
+  USDC,
+  TradeType.EXACT_IN,
   {
     recipient: myAddress,
     slippageTolerance: new Percent(5, 100),
