@@ -1,3 +1,5 @@
+[![Crowdin](https://badges.crowdin.net/niftyleague-docs/localized.svg)](https://crowdin.com/project/niftyleague-docs)
+
 # Website
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
@@ -83,16 +85,14 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 
 We use Crowdin to handle our translations https://crowdin.com/project/niftyleague-docs
 
-Follow docs provided by Docusaurus: https://docusaurus.io/docs/i18n/crowdin
+Follow docs provided by Docusaurus for initial setup: https://docusaurus.io/docs/i18n/crowdin
 
-Generate the JSON translation files for the default language in website/i18n/en:
+After changes generate the JSON translation files for the default language in website/i18n/en:
 
 ```console
 yarn write-translations
 ```
 
-Upload all the JSON and Markdown translation files:
+We use Github integration through Crowdin so please skip running `yarn crowdin upload` to upload all the JSON and Markdown translation files.
 
-```console
-yarn crowdin upload
-```
+As translations occcur in Crowdin it will automatically create pull requests from `l10n_staging` into `staging` so there is no need to downloading anything as well.
