@@ -19,7 +19,7 @@ Battle it out amongst the community and get in as many _bat bonks_ 🥖on your f
 
 **As noted, this is a beta release of our initial game so lag and issues with pesky bots are to be expected.** Our immediate plan is to continue development on **Nifty Smashers** and to introduce more features such as additional combo moves and a progression system. Hop in our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve **Nifty Smashers** and take it to the next level!
 
-<!-- ![](../images/highlights.gif) -->
+<!-- ![](/img/highlights.gif) -->
 
 **Online Multiplayer Lag ☁️**
 

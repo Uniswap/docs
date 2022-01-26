@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ### Under development for Q2 2022!
 
-![](../images/niftyverse-snarfy.gif)
+![](/img/niftyverse-snarfy.gif)
 
 Land in the Nifty Verse will go up for sale in 2022.
 

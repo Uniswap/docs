@@ -6,7 +6,7 @@ sidebar_position: 3
 
 ### Under development for 2022!
 
-![](../images/NiftyTennis.jpeg)
+![](/img/NiftyTennis.jpeg)
 
 - 1-4 players local and online multiplayer, singles or doubles!
 - Choose to be the line umpire and make important calls!

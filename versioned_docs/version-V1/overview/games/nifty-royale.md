@@ -6,4 +6,4 @@ sidebar_position: 5
 
 ### Under development for 2022!
 
-![](../images/niftyroyale_v01.png)
+![](/img/niftyroyale_v01.png)
