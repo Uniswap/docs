@@ -9,12 +9,15 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
-    "clear": "docusaurus clear"
+    "clear": "docusaurus clear",
+    "write-translations": "docusaurus write-translations",
+    "crowdin": "crowdin"
   },
   "dependencies": {
     "@algolia/autocomplete-preset-algolia": "^1.1.0",
     "@algolia/client-search": "^4.9.1",
     "@babel/core": "^7.14.6",
+    "@crowdin/cli": "3",
     "@docusaurus/core": "^2.0.0-beta.1",
     "@docusaurus/plugin-content-docs": "^2.0.0-beta.1",
     "@docusaurus/preset-classic": "^2.0.0-beta.1",

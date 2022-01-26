@@ -8,6 +8,39 @@ module.exports = {
   favicon: 'img/favicon.png',
   organizationName: 'NiftyLeague', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
+  i18n: {
+    defaultLocale: 'en',
+    locales: [
+      'af',
+      'ar',
+      'cs',
+      'da',
+      'nl',
+      'en',
+      'fi',
+      'fr',
+      'de',
+      'el',
+      'he',
+      'hu',
+      'id',
+      'it',
+      'ja',
+      'ko',
+      'no',
+      'pl',
+      'pt-BR',
+      'ro',
+      'ru',
+      'sr',
+      'es-ES',
+      'sv-SE',
+      'tr',
+      'uk',
+      'vi',
+      'zh-CN',
+    ],
+  },
   themeConfig: {
     image: 'img/twitter_card_bg.png',
     prism: {
@@ -75,24 +108,14 @@ module.exports = {
           position: 'right',
           className: 'persistent',
         },
-        {
-          type: 'localeDropdown',
-
-          //// Optional
-          position: 'right',
-          // Add additional dropdown items at the beginning/end of the dropdown.
-          dropdownItemsBefore: [],
-          dropdownItemsAfter: [
-            {
-              to: 'https://my-site.com/help-us-translate',
-              label: 'Help us translate',
-            },
-          ],
-        },
+        // {
+        //   type: 'localeDropdown',
+        //   position: 'right',
+        //   className: 'persistent',
+        // },
       ],
     },
     footer: {
-      // style: "dark",
       links: [
         {
           title: 'Official',
@@ -115,7 +138,7 @@ module.exports = {
             },
             // {
             //   label: 'Brand Assets',
-            //   href: 'https://niftyleague.com/Uniswap_brand_assets.zip',
+            //   href: 'https://niftyleague.com/brand_assets.zip',
             // },
           ],
         },

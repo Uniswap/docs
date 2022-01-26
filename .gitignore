@@ -7,7 +7,6 @@ lib/core/MetadataBlog.js
 translated_docs
 build/
 yarn.lock
-i18n/*
 .docusaurus/*
 
 artifacts/

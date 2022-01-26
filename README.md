@@ -29,13 +29,15 @@ see https://www.npmjs.com/package/typedoc-plugin-markdown for details
 # How to Update search indices with algolia
 
 create .env file with `APPLICATION_ID` and the `API_KEY` (write access)
-Edit config.json file with
+
+Edit config.json file with:
 
 - start url from updated website
 - sitemap url from updated website: ex) for docs: https://docs.niftyleague.com/sitemap.xml
-- "v3-docs" index name
-- install jq : `brew install jq`
-  run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
+- "docs" index name
+
+install jq : `brew install jq`
+run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
 
 # How to add a new page
 
@@ -44,13 +46,13 @@ Create a markdown file in its respective versioned docs, or versioned SDK, direc
 ## Installation
 
 ```console
-yarn install
+yarn
 ```
 
 ## Local Development
 
 ```console
-yarn run start
+yarn start
 ```
 
 This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
@@ -58,7 +60,7 @@ This command starts a local development server and open up a browser window. Mos
 ## Clear cache
 
 ```console
-yarn docusaurus clear
+yarn clear
 ```
 
 ## Build
@@ -76,3 +78,21 @@ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+## Translations
+
+We use Crowdin to handle our translations https://crowdin.com/project/niftyleague-docs
+
+Follow docs provided by Docusaurus: https://docusaurus.io/docs/i18n/crowdin
+
+Generate the JSON translation files for the default language in website/i18n/en:
+
+```console
+yarn write-translations
+```
+
+Upload all the JSON and Markdown translation files:
+
+```console
+yarn crowdin upload
+```
