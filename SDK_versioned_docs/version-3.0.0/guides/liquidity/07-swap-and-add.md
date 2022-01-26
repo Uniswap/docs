@@ -92,7 +92,7 @@ const pool = new Pool(
 );
 
 
-const routeToRatioResponse = await router.routeToRatio({
+const routeToRatioResponse = await router.routeToRatio(
   token0Balance,
   token1Balance,
   position: new Position({

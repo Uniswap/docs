@@ -163,6 +163,7 @@ const USDC = new Token(
   'USD//C'
 );
 
+const typedValueParsed = '100000000000000000000'
 const wethAmount = CurrencyAmount.fromRawAmount(currency, JSBI.BigInt(typedValueParsed));
 
 const route = await router.route(
