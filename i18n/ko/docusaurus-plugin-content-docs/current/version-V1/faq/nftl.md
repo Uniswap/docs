@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### NFTL에는 어떤 유틸리티가 있습니까?
 
-### What is a governance token?
+### 거버넌스 토큰이란 무엇입니까?

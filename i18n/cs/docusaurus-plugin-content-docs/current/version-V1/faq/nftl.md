@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Jakou utilitu má NFTL?
 
-### What is a governance token?
+### Co je to token řízení?

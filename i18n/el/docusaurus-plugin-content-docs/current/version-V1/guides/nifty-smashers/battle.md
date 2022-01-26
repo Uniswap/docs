@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: μάχη-βασικά
+title: Βασικά στοιχεία μάχης
 sidebar_position: 2
 ---
 
-### General advice
+### ΓΕΝΙΚΕΣ ΣΥΜΒΟΥΛΕΣ
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Συνιστάται ιδιαίτερα η αναπαραγωγή με χειριστήριο (PS, Xbox, …, αναγνωρισμένο από PC/Mac)
 
-### Bat swings
+### Κούνιες νυχτερίδων
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Η νυχτερίδα μπορεί να περιστραφεί προς όλες τις πιθανές κατευθύνσεις: αριστερά, δεξιά, πάνω, κάτω, διαγώνιες
+- Η νυχτερίδα μπορεί να κουνηθεί κάνοντας κλικ στο κουμπί επίθεσης. Το μεγαλύτερο πάτημα του κουμπιού κάνει το ρόπαλο να χτυπά πιο δυνατά
+- Η νυχτερίδα μπορεί να κουνηθεί κατά την ορθοστασία, το τρέξιμο, το άλμα
+- Το παρατεταμένο πάτημα του κουμπιού επίθεσης κατά τη διάρκεια άλματος είναι δυνατό (πιθανώς να εκπλήξει τους αντιπάλους)
 
-### Moving
+### Κίνηση
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Ως παιχνίδι 2D, οι κινούμενες οδηγίες είναι αριστερά/δεξιά
+- Οι οδηγίες μπορούν να αλλάξουν κατά τη διάρκεια άλματος/αναπήδησης
 
-### Jumping
+### Πηδώντας
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Το ύψος άλματος μπορεί να αλλάξει με το πάτημα της διάρκειας του κουμπιού άλματος
+- Οι οδηγίες μπορούν να αλλάξουν κατά τη διάρκεια άλματος/αναπήδησης
 
-### Flying Hamburger
+### Ιπτάμενο χάμπουργκερ
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Κάνει το ρόπαλο να χτυπά πολύ πιο δυνατό - έχει ως αποτέλεσμα τις περισσότερες φορές ένα άμεσο σκότωμα
+- Για ενημέρωση: περιορίστε τη διάρκεια του μπιφτέκι κατά χρόνο και/ή σκοτώστε

@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: stamme
+title: Stam spesiale vermoëns
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**Ons huidige speletjie, Nifty Smashers, en al die toekomstige speletjies het 'n spesiale vermoë (“SA”) vir elke karaktertipe.**
 
-### List of Special Abilities
+### Lys van spesiale vermoëns
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Ape** - Gooi boemerang piesangs ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Alien** - Teleporteer ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Kat** - Spring en kry tydelik kolfkrag en spoedverhoging ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Padda** - Die tonggryphaak ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doge** - Doge muntstuk rol ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Mens** - Gooi dinamiete wat op bevel ontplof ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### Vreemdeling
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- Deur die SA-knoppie te druk, kan Alien 'n kort afstand in die gerigte rigting teleporteer (links, regs, op, af, diagonale)
+- Daar is 'n energie-ontploffing by die teleporteerde plek, wat teenstanders tref wat naby staan
 
-### Ape
+### Aap
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- Deur die SA-knoppie te druk, gooi 'n piesang in die gerigte rigting (links, regs, op, af, diagonale) totdat dit **'n teenstander tref**, 'n kaartdeel tref of van die kaart af vlieg
+- Deur die SA-knoppie weer te druk, laat die piesang terugvlieg na die degen, wat dit moontlik maak om weer 'n opponent te slaan.
+- Piesangs kan met 'n kolf geslaan word en in die gerigte rigting vlieg
 
-### Cat
+### Kat
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- Deur die SA te druk laat die kat toeslaan. Nadat hy vir 'n kort tydjie gestamp het, word die kat bemagtig.
+- Empored kolfswaai: kolf slaan harder
+- Bemagtigde beweging: katte hardloop vinniger
+- Katte kan dubbelspring / in die lug spring
 
 ### Doge
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- Deur die SA-knoppie te druk en in te hou laat die doge rol.
+- Om 'n teenstander met doge roll te slaan, laat hulle 'n bietjie opwaarts vlieg in rolrigting
+- Doge sal vlieg-rol in die gerigte rigting
+- Tydens doge roll kan aanwysings drie keer verander word (miskien twee keer na opdatering) totdat doge roll eindig
+- Doge-rol eindig ook na 'n sekere tyd
 
-### Frog
+### Padda
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- Deur die SA-knoppie te druk laat die Padda sy tong skiet
+- Wanneer die tong 'n teenstander tref, word daardie teenstander na die paddas rigting getrek en vlieg 'n bietjie verder
+- Wanneer die tong 'n kaartstuk tref, trek die paddas homself na daardie voorwerp (bv. mure, plafonne,...)
+- Die tong kan in die gerigte rigting geskiet word (links, regs, op, af, diagonale)
 
-### Human
+### Mens
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- Deur die SA-knoppie te druk, gooi 'n bom in die gerigte rigting (links, regs, op, af, diagonale)
+- Die bom het 'n vlieënde kurwe en vlieg nie reguit soos piesangs nie. Indien dit nie voorheen ontplof het nie en op die grond bly
+- Die bom ontplof na 'n geruime tyd of nadat SA knoppie 'n tweede keer gedruk is
+- Tans kan die bom 'n teenstander tref deur dit te tref of deur ontploffing
+- Opgedateerde plan: bom ontplof onmiddellik na kontak met 'n teenstander. As geen teenstander getref word nie, bly dit op die grond totdat dit outomaties ontplof of nadat die SA knoppie tweede keer gedruk is
+- Bomme is die enigste SA wat die gooi-degen self met sy ontploffing kan tref
+- Bomme kan met 'n kolf getref word en in die gerigte rigting vlieg

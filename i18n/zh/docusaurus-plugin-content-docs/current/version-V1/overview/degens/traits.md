@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: 性状
+title: 性格特征
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+选择部落后一共有1023个特质和21个可选选项，组合几乎无限。 随着更多角色的创建，角色特征会从可用特征集中随机删除，因此很难知道哪些选项最终会成为最稀有的。 虽然背景类型具有特殊的好处，但特征是严格的装饰性的。 查看 [OpenSea](https://opensea.io/collection/niftydegen) 以了解我们社区提出的一些惊人创意！

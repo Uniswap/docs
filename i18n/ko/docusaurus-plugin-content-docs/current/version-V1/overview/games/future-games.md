@@ -1,10 +1,10 @@
 ---
-id: future-games
-title: Future Games
+id: 미래 게임
+title: 미래 게임
 sidebar_position: 7
 ---
 
-We have several ideas percolating and plan to expand on them once we have **[Nifty Smashers](https://nifty-league.com/games)** working as well as we'd like it to. Some upcoming titles have already been announced but stay tuned in our **[Discord](https://discord.gg/niftyleague)** for more details… 😈 The order of any upcoming games will be put up to a community vote.
+우리는 몇 가지 아이디어가 스며들어 있고 **[Nifty Smashers](https://nifty-league.com/games)** 원하는 대로 작동하게 되면 이를 확장할 계획입니다. 일부 출시 예정 타이틀은 이미 발표되었지만 자세한 내용은 **[Discord](https://discord.gg/niftyleague)**… 😈 다음 게임의 순서는 커뮤니티 투표에 따릅니다.
 
 ![https://nifty-league.com/static/media/smash-sketch.7d5f0061.png](https://nifty-league.com/static/media/smash-sketch.7d5f0061.png)
 

@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: 임대
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### DEGEN은 어디서 빌릴 수 있나요?

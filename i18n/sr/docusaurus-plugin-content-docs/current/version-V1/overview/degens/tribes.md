@@ -1,24 +1,24 @@
 ---
-id: tribes
-title: Tribes
+id: племена
+title: Племена
 sidebar_position: 2
 ---
 
-Our current game, Nifty Smashers, and all the future games will have a special move for each character type. This our the list of special moves on the first game:
+Наша тренутна игра, Нифти Смасхерс, и све будуће игре ће имати посебан потез за сваки тип карактера. Ово је наша листа специјалних потеза у првој утакмици:
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Мајмун** - Баци банане бумеранга ![хттпс://цдн.дисцордапп.цом/емојис/876605610165157968.пнг?сизе=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Алиен** - Телепорт ![хттпс://цдн.дисцордапп.цом/емојис/876655147634294794.пнг?сизе=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Цат** - Набијте и привремено повећајте снагу палице и брзину ![хттпс://цдн.дисцордапп.цом/емојис/876655087869644830.пнг?сизе=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Жаба** - Кука за хватање језика ![хттпс://цдн.дисцордапп.цом/емојис/876655119817670686.пнг?сизе=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Доге** - Доге ролл ![хттпс://цдн.дисцордапп.цом/емојис/876600985819164764.пнг?сизе=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Људски** - Баците динамите који експлодирају на команду ![хттпс://цдн.дисцордапп.цом/емојис/876604536784052274.пнг?сизе=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-Learn more about these movesets in our [Smashers Guide](/guides/nifty-smashers/tribes)
+Сазнајте више о овим сетовима покрета у нашем [Смасхерс водичу](/guides/nifty-smashers/tribes)
 
-In the future, we envision that new "special" tribes may be released / reserved for scalability, new games, tournament rewards, and more.
+У будућности, предвиђамо да би нова „специјална“ племена могла бити пуштена/резервисана за скалабилност, нове игре, награде за турнире и још много тога.
 
-![https://nifty-league.com/static/media/alien-sketch.791d3ef1.gif](https://nifty-league.com/static/media/alien-sketch.791d3ef1.gif)
+![хттпс://нифти-леагуе.цом/статиц/медиа/алиен-скетцх.791д3еф1.гиф](https://nifty-league.com/static/media/alien-sketch.791d3ef1.gif)
 
-![https://nifty-league.com/static/media/cat-sketch.ba685c4e.gif](https://nifty-league.com/static/media/cat-sketch.ba685c4e.gif)
+![хттпс://нифти-леагуе.цом/статиц/медиа/цат-скетцх.ба685ц4е.гиф](https://nifty-league.com/static/media/cat-sketch.ba685c4e.gif)
 
-![https://nifty-league.com/static/media/doge-sketch.1707bdfc.gif](https://nifty-league.com/static/media/doge-sketch.1707bdfc.gif)
+![хттпс://нифти-леагуе.цом/статиц/медиа/доге-скетцх.1707бдфц.гиф](https://nifty-league.com/static/media/doge-sketch.1707bdfc.gif)

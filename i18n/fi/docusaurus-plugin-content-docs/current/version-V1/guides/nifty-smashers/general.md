@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: yleistietoa
+title: Yleistä tietoa
 sidebar_position: 1
 ---
 
-### Scoring
+### Pisteytys
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- Jos degen osuu kerran ja kuolee (putoaa kartalta), saat yhden pisteen
+- Jos degeniin osuu useita kertoja ilman, että se voi toipua, saat pisteitä yhtä usein kuin degeniin osui. Sillä ei ole väliä, jos aiemmat osumat ovat jonkun toisen degenin tekemiä. Viimeinen osuma, joka tappaa degenin, saa kaikki yhdistelmäpisteet
+- **Tällä hetkellä ei ole ylärajaa sille, kuinka usein degeniin voidaan lyödä (yhdistelmä), mutta enimmäismäärälle, kuinka paljon pisteitä voit saada (3 pistettä: 2 pelaajan ottelu / 5 pistettä: 3&4 pelaajan ottelu)**
+- 2 pelaajan ottelu: 5 pistettä kierroksen voittoon / 3&4 pelaajan ottelu: 10 pistettä kierroksen voittoon
+- Ottelut ovat Bo5. Jos viidennen kierroksen jälkeen on tasapeli, tasatilanteessa oleva pelaaja siirtyy äkillisen kuoleman kierrokseen
 
-### Lag Indicator
+### Viiveen ilmaisin
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- yhteytesi viive (ping-nopeus).
+- lag tarkoittaa yleensä yli 100 ms
 
-### Custom Lobby
+### Mukautettu aula
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- Räätälöityä aulaa voidaan käyttää ottelun avaamiseen valitulla alueella. Aulan luoja näkee aulakartassa koodin, jonka voi jakaa muiden kanssa
+- Jos toinen degen haluaa liittyä tähän aulaan, hänen on ensin valittava oikea alue ja kirjoitettava sitten aulan koodi syöttöruutuun
+- Päivitystä varten: kun käytät mukautettua aulakoodia, alueen tulee vaihtaa automaattisesti
 
-### How and why to change regions?
+### Miten ja miksi aluetta vaihdetaan?
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher on nopeatempoinen peli, jossa hyvä latenssi/ping on ratkaisevan tärkeää. Mitä lähempänä pelaajan sijaintia valittu alue on, sitä pienempi ping on.
+- Kun alue on vaihdettu verkko-/työpöytäsovelluksessa, nykyinen ping näytetään

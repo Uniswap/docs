@@ -1,19 +1,19 @@
 ---
-id: niftyverse
+id: bacana
 title: NiftyVerse
 sidebar_position: 1
 ---
 
-### Under development for Q2 2022!
+### Em desenvolvimento para o segundo trimestre de 2022!
 
 ![](/img/niftyverse-snarfy.gif)
 
-Land in the Nifty Verse will go up for sale in 2022.
+Land in the Nifty Verse estará à venda em 2022.
 
-Anyone will be able to own land and build in the Nifty Verse.
+Qualquer um será capaz de possuir terras e construir no Nifty Verse.
 
-We plan to work with indie gaming studios to allow them to build Nifty games in the Nifty Verse.
+Planejamos trabalhar com estúdios de jogos independentes para permitir que eles construam jogos bacanas no Nifty Verse.
 
-The first iteration will be a top down, pixel art meta verse, with the urban Sushi art theme.
+A primeira iteração será um metaverso de pixel art de cima para baixo, com o tema urbano de arte Sushi.
 
-All land purchases in the Nifty Verse will be done using **NFTL**.
+Todas as compras de terrenos no Nifty Verse serão feitas usando **NFTL**.

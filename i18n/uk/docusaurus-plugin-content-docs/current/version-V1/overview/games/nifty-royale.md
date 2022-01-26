@@ -1,9 +1,9 @@
 ---
-id: nifty-royale
+id: чудовий королівський
 title: Nifty Royale
 sidebar_position: 5
 ---
 
-### Under development for 2022!
+### У розробці до 2022 року!
 
 ![](/img/niftyroyale_v01.png)

@@ -1,10 +1,10 @@
 ---
-id: future-games
-title: Future Games
+id: budoucí hry
+title: Budoucí hry
 sidebar_position: 7
 ---
 
-We have several ideas percolating and plan to expand on them once we have **[Nifty Smashers](https://nifty-league.com/games)** working as well as we'd like it to. Some upcoming titles have already been announced but stay tuned in our **[Discord](https://discord.gg/niftyleague)** for more details… 😈 The order of any upcoming games will be put up to a community vote.
+Máme několik nápadů a plánujeme je rozšířit, jakmile budeme **[Nifty Smashers](https://nifty-league.com/games)** fungovat tak dobře, jak bychom chtěli. Některé nadcházející tituly již byly oznámeny, ale sledujte náš **[Discord](https://discord.gg/niftyleague)** pro více podrobností… 😈 O pořadí všech nadcházejících her bude hlasovat komunita.
 
 ![https://nifty-league.com/static/media/smash-sketch.7d5f0061.png](https://nifty-league.com/static/media/smash-sketch.7d5f0061.png)
 

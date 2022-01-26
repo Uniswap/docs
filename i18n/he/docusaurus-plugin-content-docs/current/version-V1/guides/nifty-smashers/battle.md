@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: יסודות הקרב
+title: יסודות הקרב
 sidebar_position: 2
 ---
 
-### General advice
+### עצה כללית
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- משחק עם בקר מומלץ מאוד (PS, Xbox, …, מוכר על ידי PC/Mac)
 
-### Bat swings
+### נדנדות עטלפים
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- ניתן להניף את העטלף לכל הכיוונים האפשריים: שמאלה, ימינה, למעלה, למטה, באלכסונים
+- ניתן להניף את המחבט על ידי לחיצה על כפתור ההתקפה. לחיצה ארוכה יותר על הכפתור גורמת למחבט להכות חזק יותר
+- ניתן להניף את המחבט במהלך עמידה, ריצה, קפיצה
+- לחיצה ארוכה על כפתור התקפה במהלך קפיצות אפשרית (יתכן יריבים מפתיעים)
 
-### Moving
+### מעבר דירה
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- כמשחק דו-ממדי, כיווני תנועה הם שמאלה/ימינה
+- ניתן לשנות כיוונים במהלך קפיצות/נפילה
 
-### Jumping
+### קפיצה
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- ניתן לשנות את גובה הקפיצה על ידי לחיצה על כפתור הקפיצה
+- ניתן לשנות כיוונים במהלך קפיצות/נפילה
 
-### Flying Hamburger
+### המבורגר מעופף
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- הופך את המחבט להרבה יותר חזק - מביא לרוב להרג ישיר
+- לעדכון: הגבל את משך חובב ההמבורגרים לפי זמן ו/או הרג

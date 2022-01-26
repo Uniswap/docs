@@ -1,9 +1,9 @@
 ---
-id: emissions
-title: Emissions
+id: émissions
+title: Émissions
 sidebar_position: 3
 ---
 
-**250M NFTL** will be distributed annually over the first **3 years** to all genesis **DEGEN** NFT owners. There is no need to stake your NFT; just sit back and watch your **NFTL** accrue daily which you can claim on our website at any time on your [wallet page](https://nifty-league.com/wallet).
+**250M NFTL** seront distribués annuellement au cours des **3** à tous les propriétaires de **DEGEN** Il n'est pas nécessaire de jalonner votre NFT; asseyez-vous et regardez vos **NFTL** s'accumuler quotidiennement que vous pouvez réclamer sur notre site Web à tout moment sur votre page de [](https://nifty-league.com/wallet).
 
-Any remaining future emissions will either be for daily in-game rewards or funding for the **Nifty DAO**. We will grant the **Nifty DAO** the ability to mint up to **330M NFTL** over the first year after we get a minimum of **7 signers** controlling the multi-sig wallet. We foresee most of these tokens going to community contributors as well as being used for competition rewards, but ultimately the DAO will make that decision when the time comes.
+Toutes les émissions futures restantes serviront soit à des récompenses quotidiennes dans le jeu, soit au financement du **Nifty DAO**. Nous accorderons au **Nifty DAO** la possibilité de frapper jusqu'à **330 millions de NFTL** cours de la première année après avoir obtenu un minimum de **7 signataires** contrôlant le portefeuille multi-signatures. Nous prévoyons que la plupart de ces jetons iront aux contributeurs de la communauté et seront utilisés pour les récompenses de la compétition, mais en fin de compte, le DAO prendra cette décision le moment venu.

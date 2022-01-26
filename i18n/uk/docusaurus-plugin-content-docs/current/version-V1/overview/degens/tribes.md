@@ -1,21 +1,21 @@
 ---
-id: tribes
-title: Tribes
+id: племен
+title: Племена
 sidebar_position: 2
 ---
 
-Our current game, Nifty Smashers, and all the future games will have a special move for each character type. This our the list of special moves on the first game:
+Наша поточна гра, Nifty Smashers, і всі майбутні ігри будуть мати особливий хід для кожного типу персонажів. Ось наш список спеціальних ходів у першій грі:
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Ape** - Киньте банани-бумеранг ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Чужий** - Телепорт ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Cat** - Накинься й отримай тимчасове збільшення сили та швидкості біта ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Жаба** - Язиковий гачок ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doge** - Дож кидає монету ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Людина** - Кидайте динаміти, які вибухають за командою ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-Learn more about these movesets in our [Smashers Guide](/guides/nifty-smashers/tribes)
+Дізнайтеся більше про ці набори рухів у нашому посібнику [](/guides/nifty-smashers/tribes)
 
-In the future, we envision that new "special" tribes may be released / reserved for scalability, new games, tournament rewards, and more.
+У майбутньому ми передбачаємо, що нові «спеціальні» племена можуть бути випущені / зарезервовані для масштабованості, нових ігор, турнірних нагород тощо.
 
 ![https://nifty-league.com/static/media/alien-sketch.791d3ef1.gif](https://nifty-league.com/static/media/alien-sketch.791d3ef1.gif)
 

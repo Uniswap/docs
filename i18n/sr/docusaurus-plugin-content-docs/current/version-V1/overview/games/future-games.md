@@ -1,15 +1,15 @@
 ---
-id: future-games
-title: Future Games
+id: будуће-игре
+title: Футуре Гамес
 sidebar_position: 7
 ---
 
-We have several ideas percolating and plan to expand on them once we have **[Nifty Smashers](https://nifty-league.com/games)** working as well as we'd like it to. Some upcoming titles have already been announced but stay tuned in our **[Discord](https://discord.gg/niftyleague)** for more details… 😈 The order of any upcoming games will be put up to a community vote.
+Имамо неколико идеја које се прожимају и планирамо да их проширимо када **[Нифти Смасхерс](https://nifty-league.com/games)** радио онако како бисмо желели. Неки предстојећи наслови су већ најављени, али останите са нама у нашем **[Дисцорд](https://discord.gg/niftyleague)** за више детаља… 😈 Редослед свих предстојећих игара биће стављен на гласање заједнице.
 
-![https://nifty-league.com/static/media/smash-sketch.7d5f0061.png](https://nifty-league.com/static/media/smash-sketch.7d5f0061.png)
+![хттпс://нифти-леагуе.цом/статиц/медиа/смасх-скетцх.7д5ф0061.пнг](https://nifty-league.com/static/media/smash-sketch.7d5f0061.png)
 
-![https://nifty-league.com/static/media/tennis-sketch.c4f5e6cb.png](https://nifty-league.com/static/media/tennis-sketch.c4f5e6cb.png)
+![хттпс://нифти-леагуе.цом/статиц/медиа/теннис-скетцх.ц4ф5е6цб.пнг](https://nifty-league.com/static/media/tennis-sketch.c4f5e6cb.png)
 
-![https://nifty-league.com/static/media/nifty-racers-sketch.ffd10a4a.png](https://nifty-league.com/static/media/nifty-racers-sketch.ffd10a4a.png)
+![хттпс://нифти-леагуе.цом/статиц/медиа/нифти-рацерс-скетцх.ффд10а4а.пнг](https://nifty-league.com/static/media/nifty-racers-sketch.ffd10a4a.png)
 
-![https://nifty-league.com/static/media/games-sketch.4e6c7ead.png](https://nifty-league.com/static/media/games-sketch.4e6c7ead.png)
+![хттпс://нифти-леагуе.цом/статиц/медиа/гамес-скетцх.4е6ц7еад.пнг](https://nifty-league.com/static/media/games-sketch.4e6c7ead.png)

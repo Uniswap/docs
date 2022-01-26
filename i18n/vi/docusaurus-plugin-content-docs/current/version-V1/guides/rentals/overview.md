@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: tổng quan cho thuê
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Giới thiệu

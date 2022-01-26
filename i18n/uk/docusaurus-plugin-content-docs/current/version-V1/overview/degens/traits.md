@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: риси
+title: Риси характеру
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+Всього було 1023 риси та 21 варіант, який можна вибрати після вибору племені, створюючи майже нескінченну кількість комбінацій. Риси характеру були випадковим чином вилучені з набору доступних рис, оскільки створювалося все більше символів, що ускладнювало визначення того, які варіанти будуть найрідкіснішими. Хоча фонові типи мають особливі переваги, риси є суто косметичними. Перегляньте [OpenSea](https://opensea.io/collection/niftydegen) щоб побачити деякі з дивовижних творінь, які придумала наша спільнота!

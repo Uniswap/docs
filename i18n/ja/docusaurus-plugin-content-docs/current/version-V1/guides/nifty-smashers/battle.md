@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: バトルベーシック
+title: バトルの基本
 sidebar_position: 2
 ---
 
-### General advice
+### 一般的なアドバイス
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- 強く推奨されるコントローラーで遊ぶ（PS、Xbox、 …、PC / Macで認識）
 
-### Bat swings
+### コウモリのブランコ
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- バットは、左、右、上、下、対角線のすべての可能な方向に振ることができます
+- 攻撃ボタンをクリックすることでバットを振ることができます。 ボタンを長く押すと、バットが強く打たれます
+- バットは立っている、走っている、ジャンプしているときに振ることができます
+- ジャンプ中に攻撃ボタンを長押しすることが可能です（おそらく意外な敵）
 
-### Moving
+### 引っ越し
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- 2Dゲームとして、移動方向は左右です
+- ジャンプ/タンブル中に方向を変更できます
 
-### Jumping
+### ジャンピング
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- ジャンプボタンを押し続けると、ジャンプの高さを変更できます。
+- ジャンプ/タンブル中に方向を変更できます
 
-### Flying Hamburger
+### フライングハンブルガー
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- バットヒットをはるかに強くします-ほとんどの場合、直接キルになります
+- 更新の場合：ハンバーガーバフの持続時間を時間で制限するか、殺す

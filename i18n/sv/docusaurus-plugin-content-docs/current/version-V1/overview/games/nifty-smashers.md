@@ -1,34 +1,34 @@
 ---
-id: nifty-smashers
-title: Nifty Smashers
+id: fiffiga smashers
+title: Snygga smashers
 sidebar_position: 2
 ---
 
   <div>
   <video width="100%" height="100%" playsInline controls loop>
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
-  Your browser does not support the video tag.
+  Din webbläsare stöder inte videotaggen.
   </video>
   </div>
 
 ---
 
-Get ready to brawl! The local-multiplayer version of **[Nifty Smashers](https://nifty-league.com/games)** was made available immediately at launch followed by the online multiplayer! So grab a few controllers 🎮 and play with friends.
+Gör dig redo att bråka! Den lokala flerspelarversionen av **[Nifty Smashers](https://nifty-league.com/games)** gjordes tillgänglig omedelbart vid lanseringen följt av online multiplayer! Så ta några kontroller 🎮 och spela med vänner.
 
-Battle it out amongst the community and get in as many _bat bonks_ 🥖on your friends as you can! **Nifty Smashers** takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points. In order to play you'll need a **DEGEN** to select for battle, and then use your keyboard, Playstation or Xbox controller as input (couch multiplayer works too!). From the game lobby you'll be able to select from any of your previously minted **DEGENs** you own in your wallet to show off your cool creations! Each tribe has a unique special move so experiment with different tribes and find the moveset that suits your playstyle best. Hold down the attack button for a charged-up bat attack, some special moves can also be charged. When you bonk another player, they’re worth 1 point. The more they’re successively bonked, the faster they bounce around and the more points they’re worth. Land the final mega-bonk to hit them off the map and claim all the points!
+Kämpa ut bland samhället och få in så många _batbonks_ 🥖 på dina vänner som du kan! **Nifty Smashers** hämtar inspiration från det klassiska Super Smash Bros-spelet där målet är att slå dina motståndare från kartan för att få poäng. För att kunna spela behöver du en **DEGEN** att välja för strid, och sedan använda ditt tangentbord, Playstation eller Xbox-kontroll som ingång (soffa multiplayer fungerar också!). Från spellobbyn kommer du att kunna välja från någon av dina tidigare präglade **DEGENs** du äger i din plånbok för att visa upp dina coola skapelser! Varje stam har ett unikt specialdrag så experimentera med olika stammar och hitta det rörelseset som passar din spelstil bäst. Håll ned attackknappen för en laddad fladdermusattack, några speciella drag kan också laddas. När du bonkar en annan spelare är de värda 1 poäng. Ju mer de successivt bonkades, desto snabbare studsar de runt och desto fler poäng är de värda. Landa den sista megabonken för att slå dem från kartan och ta alla poäng!
 
-**As noted, this is a beta release of our initial game so lag and issues with pesky bots are to be expected.** Our immediate plan is to continue development on **Nifty Smashers** and to introduce more features such as additional combo moves and a progression system. Hop in our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve **Nifty Smashers** and take it to the next level!
+**Som nämnts är detta en betaversion av vårt första spel, så lagg och problem med irriterande bots kan förväntas.** Vår omedelbara plan är att fortsätta utvecklingen av **Nifty Smashers** och att introducera fler funktioner som ytterligare kombinationsrörelser och ett progressionssystem. Hoppa in i vår **[Discord](https://discord.gg/niftyleague)** att ge feedback och idéer om hur vi kan förbättra **Nifty Smashers** och ta det till nästa nivå!
 
 <!-- ![](/img/highlights.gif) -->
 
 **Online Multiplayer Lag ☁️**
 
-With the on-going alpha, let's talk about lag in fast-paced and snappy brawler games like **Nifty Smashers**.
+Med den pågående alfa, låt oss prata om eftersläpning i snabba och snabba brawler-spel som **Nifty Smashers**.
 
-Generally speaking, lag is always present whenever there is physical distance between the players on the internet. The greater the distance, the greater the lag. There are different techniques & tricks that developers use to compensate and hide the lag. We have implemented a number of these lag compensation techniques that veil the lag for the best experience possible. We have also incorporated solutions with servers all around the world so that we can match players closest to each other to minimize the lag as much as possible.
+Generellt sett är lagg alltid närvarande när det finns fysiskt avstånd mellan spelarna på internet. Ju större avstånd, desto större fördröjning. Det finns olika tekniker & knep som utvecklare använder för att kompensera och dölja eftersläpningen. Vi har implementerat ett antal av dessa fördröjningskompensationstekniker som döljer fördröjningen för bästa möjliga upplevelse. Vi har även införlivat lösningar med servrar över hela världen så att vi kan matcha spelare närmast varandra för att minimera eftersläpningen så mycket som möjligt.
 
-Nonetheless, considering the level of responsiveness fast-paced brawlers require ⚡, we are expecting some lag when we launch the online multiplayer.
+Icke desto mindre, med tanke på nivån av lyhördhet snabba brawlers kräver ⚡, förväntar vi oss en viss fördröjning när vi lanserar online multiplayer.
 
-We are excited to share our progress with you as soon as possible. Following the launch, with your feedback, we will do everything in our power to make the lag as unnoticeable as possible.
+Vi är glada att dela våra framsteg med dig så snart som möjligt. Efter lanseringen, med din feedback, kommer vi att göra allt i vår makt för att göra eftersläpningen så omärklig som möjligt.
 
-If you are interested in learning more about these techniques, here is a great read by Gabriel Gambetta about **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.
+Om du är intresserad av att lära dig mer om dessa tekniker, här är en bra läsning av Gabriel Gambetta om **[Lagkompensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.

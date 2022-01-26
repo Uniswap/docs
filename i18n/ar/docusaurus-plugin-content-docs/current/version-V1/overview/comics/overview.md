@@ -1,33 +1,33 @@
 ---
-id: overview
+id: نظرة عامة
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+كما لو أن عملية سك النقود لم تكن ممتعة بالفعل بما يكفي بالنسبة لكم يا رفاق ... لقد فاجأنا المجتمع بمجموعة كوميدية خاصة بإطلاق Nifty League! كان هذا لأقول شكراً لك على سك مجموعتنا ولأنك في وقت مبكر 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+تم أخذ لقطات للرسوم الهزلية خلال عملية سك أول أربع صفحات هزلية في المراحل التالية: الصفحة 1 - 2500 | صفحة 2 - 3500 | الصفحة 3 - 5000 | الصفحة 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+ربما تتساءل ، "ماذا أفعل بالكوميكس؟". حسنًا ، سيكون لديك بعض الخيارات لاتخاذها حيث سيكون لديهم العديد من المرافق. لذلك ، هناك لعبة داخل اللعبة هنا لتختار طريقك الخاص.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+تتكون مجموعة Nifty League Comic Collection من 6 صفحات بها رسوم هزلية 5 و 6 لم يتم إصدارها بعد. ستكون هناك لقطة في 1/31/2022 للكوميديا 5 الممنوحة لجميع حاملي DEGEN و Comic 6 سيتم منحها لجميع المحافظ التي تحتوي على جميع قبائل DEGEN الست. ستتلقى جميع خلفية Meta الخلفية DEGENS قصة فكاهية واحدة 6 وستتلقى جميع الخلفية الأسطورية DEGENS رسالتين فكاهيتين! سيتم توفير هذه عبر مطالبة على موقعنا.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+سيكون كل فيلم كوميدي قابلًا للنسخ في تاريخ مستقبلي لتلقي سلاح قابل للارتداء داخل اللعبة مقابل كل صفحة يتم حرقها. ومع ذلك ، لن تدوم نافذة الحرق هذه إلى الأبد وسيضطر كل حامل إلى اتخاذ بعض القرارات الصعبة بشأن مستقبل مجموعته.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+أخبرنا ساتوشي أنه يحب المجموعات الكاملة في كل شيء تقريبًا…لذا فكر مليًا قبل اتخاذ الكثير من القرارات هنا.
 
-**TL;DR**
+**TL ؛ DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- يمكن حرق كل فيلم كوميدي مقابل عنصر يمكن ارتداؤه داخل اللعبة
+- ستكون NFTs هذه ERC-1155
+- تقوم العناصر بتعديل مضاعف P2E الخاص بـ degen عند ارتدائه
+- بدلاً من ذلك ، يمكنك الاحتفاظ بالرسوم الهزلية من أجل منفعة مستقبلية لم نكشف عنها بعد
+- يمكن حرق جميع الرسوم الهزلية الستة معًا كمجموعة لعنصر غامض خاص
+- لن يقوم عنصر الغموض هذا بتعديل مضاعف P2E
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+يوجد أدناه تصوير لقوة المضاعف القابلة للارتداء لكل جهاز قابل للارتداء. المعدلات الدقيقة لم تحدد بعد.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+ما زلنا نحدد بالضبط عدد الفتحات التي يمكن ملؤها لكل DEGEN ، ولكن يمكن تخصيص واحدة فقط من كل فتحات قابلة للارتداء لكل DEGEN NFT. 

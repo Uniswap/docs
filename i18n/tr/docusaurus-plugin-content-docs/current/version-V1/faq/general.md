@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: Genel
+title: Genel
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **Nifty Smashers oynamanın maliyeti var mı?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+Bugün Nifty Smashers oynamak için bir DEGEN NFT'ye sahip olmalısınız. Yakında haftalık bir ücret karşılığında DEGEN NFT kiralayabileceğiniz bir kiralama sistemi başlatacağız.
 
-## Where can I play the game?
+## Oyunu nerede oynayabilirim?
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+Oyunlar, kripto cüzdan uzantılarını desteklediği sürece favori web tarayıcılarınızda oynanabilir. Ayrıca Windows kullanıcıları için şu anda MacOS ile yakında kullanıma sunulan bir masaüstü uygulamamız var!
 
-### **Do I need more than one DEGEN to play the game?**
+### **Oyunu oynamak için birden fazla DEGEN'e ihtiyacım var mı?**
 
-No, you only need one DEGEN to play.
+Hayır, oynamak için sadece bir DEGEN'e ihtiyacınız var.
 
-### How do I import my DEGENs into the game?
+### DEGEN'lerimi oyuna nasıl aktarırım?
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+Oyunu başlattığınızda kripto cüzdanınızdaki DEGEN'lerinizin sahipliğini doğrulamak için bir mesaj imzalamak kadar basit.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **Oyunu oynamak için kontrolcülere ihtiyacım var mı?**
+Hayır, her ne kadar bir kumandayla (PS, Xbox veya PC/Mac tarafından tanınan diğer herhangi biri) oynamanın klavyeden daha kolay olduğunu düşünmemize rağmen.
 
-### Why is the rename asking for multiple verifications?
+### Yeniden adlandırma neden birden çok doğrulama istiyor?
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+Bir karakterin yeniden adlandırılması **** akıllı sözleşmesi tarafından hemen yakılan **1000 NFTL** mal olur. Sözleşmenin NFTL'nizi harcamasını sağlamak için, başlangıçta harcama ödeneğini en az 1000 NFTL artırmanız gerekir. Varsayılan olarak, bu onay 1000'e ayarlanmıştır, ancak birden fazla karakteri yeniden adlandırmayı planlıyorsanız, gelecekte izni artırmak zorunda kalmamak için izni artırabilirsiniz.

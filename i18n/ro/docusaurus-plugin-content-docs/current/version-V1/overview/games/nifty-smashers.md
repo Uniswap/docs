@@ -7,28 +7,28 @@ sidebar_position: 2
   <div>
   <video width="100%" height="100%" playsInline controls loop>
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
-  Your browser does not support the video tag.
+  Browserul dvs. nu acceptă eticheta video.
   </video>
   </div>
 
 ---
 
-Get ready to brawl! The local-multiplayer version of **[Nifty Smashers](https://nifty-league.com/games)** was made available immediately at launch followed by the online multiplayer! So grab a few controllers 🎮 and play with friends.
+Pregătește-te de ceartă! Versiunea multiplayer local a **[Nifty Smashers](https://nifty-league.com/games)** fost disponibilă imediat la lansare, urmată de multiplayer online! Așa că ia câteva controlere 🎮 și joacă-te cu prietenii.
 
-Battle it out amongst the community and get in as many _bat bonks_ 🥖on your friends as you can! **Nifty Smashers** takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points. In order to play you'll need a **DEGEN** to select for battle, and then use your keyboard, Playstation or Xbox controller as input (couch multiplayer works too!). From the game lobby you'll be able to select from any of your previously minted **DEGENs** you own in your wallet to show off your cool creations! Each tribe has a unique special move so experiment with different tribes and find the moveset that suits your playstyle best. Hold down the attack button for a charged-up bat attack, some special moves can also be charged. When you bonk another player, they’re worth 1 point. The more they’re successively bonked, the faster they bounce around and the more points they’re worth. Land the final mega-bonk to hit them off the map and claim all the points!
+Luptă-te în rândul comunității și obține cât mai multe _bat_ 🥖pe prietenii tăi! **Nifty Smashers** se inspiră din jocul clasic Super Smash Bros, în care obiectivul este să-ți arunci adversarii de pe hartă pentru a câștiga puncte. Pentru a juca, veți avea nevoie de un **DEGEN** pentru a selecta pentru luptă, apoi utilizați tastatura, controlerul Playstation sau Xbox ca intrare (funcționează și multiplayerul pe canapea!). Din lobby-ul jocului, vei putea să selectezi din oricare dintre cele **DEGEN** le deții în portofel pentru a-ți arăta creațiile interesante! Fiecare trib are o mișcare specială unică, așa că experimentează cu diferite triburi și găsește setul de mișcări care se potrivește cel mai bine stilului tău de joc. Țineți apăsat butonul de atac pentru un atac de liliac încărcat, unele mișcări speciale pot fi, de asemenea, încărcate. Când strângi un alt jucător, acesta valorează 1 punct. Cu cât sunt mai mult succesive bonked, cu atât mai repede vor sări în jur și cu atât mai multe puncte valorează. Aterizează mega-bonk final pentru a-i lovi de pe hartă și a revendica toate punctele!
 
-**As noted, this is a beta release of our initial game so lag and issues with pesky bots are to be expected.** Our immediate plan is to continue development on **Nifty Smashers** and to introduce more features such as additional combo moves and a progression system. Hop in our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve **Nifty Smashers** and take it to the next level!
+**După cum am menționat, aceasta este o versiune beta a jocului nostru inițial, așa că sunt de așteptat întârzieri și probleme cu roboții deranjați.** Planul nostru imediat este să continuăm dezvoltarea pe **Nifty Smashers** și să introducem mai multe funcții, cum ar fi mișcări combo suplimentare și un sistem de progresie. Urcă-te în **[Discord](https://discord.gg/niftyleague)** pentru a oferi feedback și idei despre cum putem îmbunătăți **Nifty Smashers** și să-l ducem la nivelul următor!
 
 <!-- ![](/img/highlights.gif) -->
 
-**Online Multiplayer Lag ☁️**
+**Lag multiplayer online ☁️**
 
-With the on-going alpha, let's talk about lag in fast-paced and snappy brawler games like **Nifty Smashers**.
+Cu alpha în curs de desfășurare, să vorbim despre întârziere în jocurile de bătaie rapide și captivante, cum ar fi **Nifty Smashers**.
 
-Generally speaking, lag is always present whenever there is physical distance between the players on the internet. The greater the distance, the greater the lag. There are different techniques & tricks that developers use to compensate and hide the lag. We have implemented a number of these lag compensation techniques that veil the lag for the best experience possible. We have also incorporated solutions with servers all around the world so that we can match players closest to each other to minimize the lag as much as possible.
+În general, lag-ul este întotdeauna prezent ori de câte ori există distanță fizică între jucători de pe internet. Cu cât distanța este mai mare, cu atât este mai mare decalajul. Există diferite tehnici & trucuri pe care dezvoltatorii le folosesc pentru a compensa și a ascunde decalajul. Am implementat o serie de aceste tehnici de compensare a întârzierilor care ascund întârzierea pentru cea mai bună experiență posibilă. De asemenea, am încorporat soluții cu servere din întreaga lume, astfel încât să putem potrivi jucătorii cei mai apropiați unul de celălalt pentru a minimiza decalajul cât mai mult posibil.
 
-Nonetheless, considering the level of responsiveness fast-paced brawlers require ⚡, we are expecting some lag when we launch the online multiplayer.
+Cu toate acestea, ținând cont de nivelul de reacție pe care îl necesită ⚡ brawlerii cu ritm rapid, ne așteptăm la o anumită întârziere când lansăm multiplayerul online.
 
-We are excited to share our progress with you as soon as possible. Following the launch, with your feedback, we will do everything in our power to make the lag as unnoticeable as possible.
+Suntem încântați să vă împărtășim progresele noastre cât mai curând posibil. După lansare, cu feedback-ul dumneavoastră, vom face tot ce ne stă în putere pentru a face decalajul cât mai inobservabil.
 
-If you are interested in learning more about these techniques, here is a great read by Gabriel Gambetta about **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.
+Dacă sunteți interesat să aflați mai multe despre aceste tehnici, iată o lectură minunată a lui Gabriel Gambetta despre **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.

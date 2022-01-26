@@ -1,7 +1,7 @@
 ---
-id: free-2-play-overview
+id: ilmainen 2-toiston yleiskatsaus
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Johdanto

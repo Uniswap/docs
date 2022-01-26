@@ -1,9 +1,9 @@
 ---
-id: nifty-kart
+id: חמוד קארט
 title: Nifty Kart
 sidebar_position: 4
 ---
 
-### Under development for 2022!
+### בפיתוח לשנת 2022!
 
 ![](/img/niftykart_v01.png)

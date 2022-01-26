@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: umum
+title: Umum
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **Apakah biaya untuk memainkan Nifty Smashers?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+Hari ini, Anda harus memiliki DEGEN NFT untuk memainkan Nifty Smashers. Kami akan segera meluncurkan sistem sewa, di mana Anda dapat menyewa DEGEN NFT dengan biaya mingguan.
 
-## Where can I play the game?
+## Di mana saya bisa bermain game?
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+Game dapat dimainkan di browser web favorit Anda selama mendukung ekstensi dompet kripto. Kami juga memiliki aplikasi desktop yang tersedia untuk pengguna Window saat ini dengan MacOS segera hadir!
 
-### **Do I need more than one DEGEN to play the game?**
+### **Apakah saya memerlukan lebih dari satu DEGEN untuk memainkan game?**
 
-No, you only need one DEGEN to play.
+Tidak, Anda hanya perlu satu DEGEN untuk bermain.
 
-### How do I import my DEGENs into the game?
+### Bagaimana cara mengimpor DEGEN saya ke dalam game?
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+Sesederhana menandatangani pesan untuk memverifikasi kepemilikan DEGEN Anda di dompet crypto Anda saat Anda meluncurkan game.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **Apakah saya memerlukan pengontrol untuk memainkan game?**
+Tidak, meskipun menurut kami lebih mudah bermain dengan pengontrol (PS, Xbox, atau lainnya yang dikenali oleh PC/Mac) daripada keyboard.
 
-### Why is the rename asking for multiple verifications?
+### Mengapa penggantian nama meminta beberapa verifikasi?
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+Mengganti nama karakter memerlukan biaya **1000 NFTL** yang segera dibakar oleh kontrak pintar **NiftyDegen** Untuk mengaktifkan kontrak untuk membelanjakan NFTL Anda, pada awalnya Anda perlu meningkatkan tunjangan pengeluaran setidaknya 1000 NFTL. Secara default, persetujuan ini diatur ke 1000 tetapi jika Anda berencana mengganti nama beberapa karakter, Anda dapat meningkatkan tunjangan untuk menghindari keharusan meningkatkan tunjangan di masa mendatang.

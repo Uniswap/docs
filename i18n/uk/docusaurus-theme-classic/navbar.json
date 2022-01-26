@@ -1,6 +1,6 @@
 {
   "title": {
-    "message": "Nifty League Docs",
+    "message": "Документи Nifty League",
     "description": "The title in the navbar"
   },
   "item.label.Overview": {
@@ -16,7 +16,7 @@
     "description": "Navbar item with label FAQ"
   },
   "item.label.Whitepaper": {
-    "message": "Whitepaper",
+    "message": "Біла книга",
     "description": "Navbar item with label Whitepaper"
   },
   "item.label.Website": {

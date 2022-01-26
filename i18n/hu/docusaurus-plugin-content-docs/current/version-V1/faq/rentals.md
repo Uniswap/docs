@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: bérleti díjak
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### Hol tudok DEGEN-t bérelni?

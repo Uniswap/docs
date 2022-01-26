@@ -1,15 +1,15 @@
 ---
-id: backgrounds
-title: Backgrounds
+id: tła
+title: Tła
 sidebar_position: 3
 ---
 
 ![](/img/rngBackgrounds.gif)
 
-DEGEN backgrounds were randomly assigned upon minting which either resulted in a common background or one of three special options: **Rare**, **Meta**, or **Legendary**. Aside from looking cool, background come with special perks such as a distinguished look in game and exta earning multipliers.
+Tła DEGEN zostały losowo przydzielone podczas bicia, co skutkowało albo wspólnym tłem, albo jedną z trzech specjalnych opcji: **Rzadki**, **Meta**, lub **Legendarny**. Poza fajnym wyglądem, tło ma specjalne korzyści, takie jak wyróżniający się wygląd w grze i mnożniki dodatkowych zarobków.
 
-### Earnings Multipliers
+### Mnożniki zarobków
 
-- Rare: 1.5
+- Rzadko: 1,5
 - Meta: 3
-- Legendary: 6
+- Legendarne: 6

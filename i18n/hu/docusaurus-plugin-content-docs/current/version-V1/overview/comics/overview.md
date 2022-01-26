@@ -1,33 +1,33 @@
 ---
-id: overview
+id: áttekintés
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+Mintha a pénzverésünk még nem lenne elég szórakoztató számotokra... megleptük a közösséget egy különleges Nifty League-bemutató képregénykollekcióval! Ezzel szeretném megköszönni, hogy elkészítetted a kollekciónkat, és hogy korán voltál 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+A képregények pillanatfelvételei a verési folyamat során az első 4 képregényoldalon a következő mérföldköveknél készültek: 1. oldal - 2500 | 2. oldal - 3500 | 3. oldal - 5000 | 4. oldal - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+Valószínűleg azon tűnődsz: „Mit csináljak a képregényekkel?”. Nos, lesz néhány választása, mivel ezeknek több segédprogramjuk lesz. Tehát van egy játék a játékon belül, ahol kiválaszthatod a saját utadat.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+A Nifty League képregénygyűjtemény 6 oldalból áll, az 5. és 6. képregény pedig még kiadásra vár. 2022. 01. 31-én lesz egy pillanatkép az 5. képregényről, amelyet minden DEGEN-birtokos, a 6. képregényt pedig minden 6 DEGEN törzset tartalmazó pénztárcának ítélnek oda. Minden Meta háttérrel rendelkező DEGENS kap egy képregény 6-ot, és minden legendás háttérrel rendelkező DEGENS két képregény 6-ot! Ezeket a weboldalunkon található reklamáció útján tesszük elérhetővé.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+Minden képregény egy későbbi időpontban kiégethető lesz, és minden elégetett oldalért cserébe kap egy játékon belüli viseletet vagy fegyvert. Ez az égési ablak azonban nem lesz örökké, és minden tulajdonosnak nehéz döntéseket kell hoznia a gyűjtemény jövőjét illetően.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+Satoshi azt mondta nekünk, hogy szinte mindenben szereti a teljes kollekciót…ezért gondolja át kétszer, mielőtt túl sok döntést hoz.
 
 **TL;DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- Minden képregényt el lehet égetni egy játékon belüli hordható tárgyért
+- Ezek az NFT-k ERC-1155-ek lesznek
+- Az elemek kopáskor módosítják a degen P2E szorzóját
+- Alternatív megoldásként megtarthatja a képregényeket a jövőbeni használatra, amelyet még nem hoztunk nyilvánosságra
+- Mind a 6 képregény együtt égethető egy különleges rejtélyhez
+- Ez a rejtélyes elem NEM módosítja a P2E szorzót
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+Az alábbiakban látható a hordható szorzószilárdság ábrázolása minden megfelelő viselhető eszközhöz. A pontos díjak meghatározása még várat magára.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+Még mindig pontosan meghatározzuk, hogy DEGEN-enként hány rés tölthető be, de minden hordhatóból csak 1 rendelhető hozzá DEGEN NFT-nként. 

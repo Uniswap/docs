@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: persewaan
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### Dimana saya bisa menyewa DEGEN?

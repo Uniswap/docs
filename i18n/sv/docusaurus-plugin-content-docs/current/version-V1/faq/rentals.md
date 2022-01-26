@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: hyror
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### Var hyr jag en DEGEN?

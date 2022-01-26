@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: 部族
+title: 部族の特殊能力
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**現在のゲームであるNiftySmashersと今後のすべてのゲームには、キャラクタータイプごとに特殊能力（「SA」）があります。**
 
-### List of Special Abilities
+### 特殊能力のリスト
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **類人猿** ブーメランバナナを投げる ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **エイリアン** テレポート ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **猫** パウンドしてバットパワーとスピードブーストを一時的に取得 ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **カエル** タングラップルフック ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **ドージ** ドージコインロール ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **人間** コマンドで爆発するダイナマイトを投げる ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### エイリアン
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- SAボタンを押すと、エイリアンは目的の方向（左、右、上、下、対角線）に短い距離でテレポートできます。
+- テレポートされた場所でエネルギー爆発があり、近くに立っている敵を攻撃します
 
-### Ape
+### 類人猿
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- SAボタンを押すと、バナナが目的の方向（左、右、上、下、対角線）にスローされ、 **が対戦相手**に当たる、マップパーツに当たる、またはマップから飛び出すまで続きます。
+- SAボタンをもう一度押すと、バナナがデゲンに戻り、相手を再び攻撃できるようになります。
+- バナナはコウモリで殴られ、狙った方向に飛ぶことができます
 
-### Cat
+### ネコ
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- SAを押すと、猫が飛び跳ねます。 短時間パウンドした後、猫は力を与えられます。
+- 強化されたバットスイング：バットはより強く打つ
+- 権限を与えられた動き：猫はより速く走ります
+- 猫はダブルジャンプ/空中でジャンプすることができます
 
-### Doge
+### ドージ
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- SAボタンを押し続けると、ドージェが回転します。
+- ドージロールで相手を叩くと、ロール方向に少し上向きに飛ぶようになります
+- ドージは狙った方向にフライロールします
+- ドージロール中、ドージロールが終了するまで方向を3回（おそらく更新後2回）変更できます
+- ドージロールも一定時間後に終了します
 
-### Frog
+### カエル
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- SAボタンを押すと、カエルは舌を撃ちます
+- 舌が相手に当たると、その相手はカエルの方向に引っ張られ、少し遠くまで飛んでいきます
+- 舌が地図の一部に当たると、カエルは自分自身をそのオブジェクト（壁、天井など）に引き寄せます。
+- 舌は狙った方向（左、右、上、下、対角線）に発射できます
 
-### Human
+### 人間
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- SAボタンを押すと、目的の方向（左、右、上、下、対角線）に爆弾が投下されます。
+- 爆弾は飛行曲線を持っており、バナナのようにまっすぐ飛ぶことはありません。 前に爆発せず、地面にとどまる場合
+- 爆弾はしばらくしてから、またはSAボタンを2回押した後に爆発します
+- 現在、爆弾はそれを打つことによって、または爆発によって敵を打つことができます
+- 更新された計画：敵と接触した直後に爆弾が爆発します。 敵がヒットしなかった場合、自動的に爆発するまで、またはSAボタンを2回押した後、地面にとどまります。
+- 爆弾は、その爆発で投擲デゲン自体を打つことができる唯一のSAです
+- 爆弾はコウモリで攻撃され、狙った方向に飛ぶことができます

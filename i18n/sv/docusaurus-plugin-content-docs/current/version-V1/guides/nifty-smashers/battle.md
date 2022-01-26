@@ -1,31 +1,31 @@
 ---
-id: battle-basics
+id: stridens grunder
 title: Battle Basics
 sidebar_position: 2
 ---
 
-### General advice
+### Allmänna råd
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Att spela med en handkontroll rekommenderas starkt (PS, Xbox, …, igenkänd av PC/Mac)
 
-### Bat swings
+### Fladdermus gungor
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Fladdermus kan svängas i alla möjliga riktningar: vänster, höger, upp, ner, diagonaler
+- Fladdermus kan svängas genom att klicka på attackknappen. Längre knapptryckning gör att slagträet slår hårdare
+- Fladdermus kan svängas när man står, springer, hoppar
+- Långt tryck på attackknappen under hopp är möjligt (möjligen överraskande motståndare)
 
-### Moving
+### Rör på sig
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Som ett 2D-spel är rörliga riktningar vänster/höger
+- Riktningen kan ändras under hopp/tumling
 
-### Jumping
+### Hoppar
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Hopphöjden kan ändras genom att trycka på hoppknappens varaktighet
+- Riktningen kan ändras under hopp/tumling
 
-### Flying Hamburger
+### Flygande hamburgare
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Gör att slagträet slår mycket starkare - resulterar oftast i en direkt död
+- För uppdatering: begränsa burgerbuffens varaktighet med tid och/eller död

@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: chung
+title: Tổng quan
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **Có mất phí để chơi Nifty Smashers không?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+Hôm nay, bạn phải sở hữu một DEGEN NFT để chơi Nifty Smashers. Chúng tôi sẽ sớm ra mắt hệ thống cho thuê, nơi bạn có thể thuê DEGEN NFT với một khoản phí hàng tuần.
 
-## Where can I play the game?
+## Tôi có thể chơi trò chơi ở đâu?
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+Trò chơi có thể chơi được trên các trình duyệt web yêu thích của bạn miễn là nó hỗ trợ tiện ích mở rộng ví tiền điện tử. Chúng tôi cũng có sẵn một ứng dụng dành cho máy tính để bàn cho người dùng Window với hệ điều hành MacOS sắp ra mắt!
 
-### **Do I need more than one DEGEN to play the game?**
+### **Tôi có cần nhiều hơn một DEGEN để chơi trò chơi không?**
 
-No, you only need one DEGEN to play.
+Không, bạn chỉ cần một DEGEN để chơi.
 
-### How do I import my DEGENs into the game?
+### Làm cách nào để nhập DEGEN của tôi vào trò chơi?
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+Đơn giản như việc ký một tin nhắn để xác minh quyền sở hữu DEGENs của bạn trong ví tiền điện tử khi bạn khởi chạy trò chơi.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **Tôi có cần bộ điều khiển để chơi trò chơi không?**
+Không, mặc dù chúng tôi cho rằng chơi bằng bộ điều khiển (PS, Xbox hoặc bất kỳ thiết bị nào khác được PC / Mac nhận dạng) dễ hơn so với bàn phím.
 
-### Why is the rename asking for multiple verifications?
+### Tại sao việc đổi tên lại yêu cầu nhiều xác minh?
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+Đổi tên một nhân vật tốn **1000 NFTL** sẽ ngay lập tức bị đốt cháy bởi hợp đồng thông minh **NiftyDegen** Để cho phép hợp đồng chi tiêu NFTL của bạn, ban đầu bạn sẽ cần tăng phụ cấp chi tiêu lên ít nhất 1000 NFTL. Theo mặc định, phê duyệt này được đặt thành 1000 nhưng nếu bạn định đổi tên nhiều ký tự, bạn có thể tăng phụ cấp để tránh phải tăng phụ cấp trong tương lai.

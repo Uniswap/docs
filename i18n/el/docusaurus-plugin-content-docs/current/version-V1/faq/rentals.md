@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: ενοίκια
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### Πού νοικιάζω ένα DEGEN;

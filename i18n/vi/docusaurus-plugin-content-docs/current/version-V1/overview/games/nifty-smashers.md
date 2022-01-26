@@ -1,34 +1,34 @@
 ---
-id: nifty-smashers
-title: Nifty Smashers
+id: kẻ đập phá tiện lợi
+title: Những kẻ đập phá Nifty
 sidebar_position: 2
 ---
 
   <div>
   <video width="100%" height="100%" playsInline controls loop>
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
-  Your browser does not support the video tag.
+  Trình duyệt của bạn không hỗ trợ thẻ video.
   </video>
   </div>
 
 ---
 
-Get ready to brawl! The local-multiplayer version of **[Nifty Smashers](https://nifty-league.com/games)** was made available immediately at launch followed by the online multiplayer! So grab a few controllers 🎮 and play with friends.
+Hãy sẵn sàng để ẩu đả! Phiên bản nhiều người chơi cục bộ của **[Nifty Smashers](https://nifty-league.com/games)** đã được cung cấp ngay khi ra mắt, sau đó là phần nhiều người chơi trực tuyến! Vì vậy, hãy lấy một vài bộ điều khiển 🎮 và chơi với bạn bè.
 
-Battle it out amongst the community and get in as many _bat bonks_ 🥖on your friends as you can! **Nifty Smashers** takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points. In order to play you'll need a **DEGEN** to select for battle, and then use your keyboard, Playstation or Xbox controller as input (couch multiplayer works too!). From the game lobby you'll be able to select from any of your previously minted **DEGENs** you own in your wallet to show off your cool creations! Each tribe has a unique special move so experiment with different tribes and find the moveset that suits your playstyle best. Hold down the attack button for a charged-up bat attack, some special moves can also be charged. When you bonk another player, they’re worth 1 point. The more they’re successively bonked, the faster they bounce around and the more points they’re worth. Land the final mega-bonk to hit them off the map and claim all the points!
+Chiến đấu với nó giữa cộng đồng và nhận được càng nhiều _bat_ cho bạn bè của bạn như bạn có thể! **Nifty Smashers** lấy cảm hứng từ trò chơi Super Smash Bros cổ điển, trong đó mục tiêu là hạ gục đối thủ của bạn khỏi bản đồ để ghi điểm. Để chơi, bạn cần có **ĐỘ** để chọn cho trận chiến, sau đó sử dụng bàn phím, bộ điều khiển Playstation hoặc Xbox làm đầu vào (nhiều người chơi đi văng cũng hoạt động!). Từ sảnh trò chơi, bạn sẽ có thể chọn bất kỳ trong số **DEGEN** đã được đúc trước đó mà bạn sở hữu trong ví để thể hiện những sáng tạo thú vị của mình! Mỗi bộ tộc có một cách di chuyển đặc biệt duy nhất, vì vậy hãy thử nghiệm với các bộ lạc khác nhau và tìm ra bộ di chuyển phù hợp với lối chơi của bạn nhất. Nhấn và giữ nút tấn công để tấn công dơi tích điện, một số chiêu thức đặc biệt cũng có thể được tính phí. Khi bạn đánh lừa một người chơi khác, họ có giá trị 1 điểm. Chúng càng được bon chen liên tục, chúng càng bật lên nhanh hơn và chúng càng có nhiều điểm hơn. Hạ cánh mega-bonk cuối cùng để đánh chúng khỏi bản đồ và giành lấy tất cả các điểm!
 
-**As noted, this is a beta release of our initial game so lag and issues with pesky bots are to be expected.** Our immediate plan is to continue development on **Nifty Smashers** and to introduce more features such as additional combo moves and a progression system. Hop in our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve **Nifty Smashers** and take it to the next level!
+**Như đã lưu ý, đây là bản phát hành beta của trò chơi đầu tiên của chúng tôi, do đó có thể mong đợi độ trễ và các vấn đề với bot khó chịu.** Kế hoạch trước mắt của chúng tôi là tiếp tục phát triển **Nifty Smashers** và giới thiệu nhiều tính năng hơn như các đòn kết hợp bổ sung và hệ thống tiến triển. Hãy tham gia **[Discord](https://discord.gg/niftyleague)** của chúng tôi để cung cấp phản hồi và ý tưởng về cách chúng tôi có thể cải thiện **Nifty Smashers** và đưa nó lên cấp độ tiếp theo!
 
 <!-- ![](/img/highlights.gif) -->
 
-**Online Multiplayer Lag ☁️**
+**Trễ nhiều người chơi trực tuyến ☁️**
 
-With the on-going alpha, let's talk about lag in fast-paced and snappy brawler games like **Nifty Smashers**.
+Với bản alpha đang phát triển, hãy nói về độ trễ trong các trò chơi brawler có nhịp độ nhanh và linh hoạt như **Nifty Smashers**.
 
-Generally speaking, lag is always present whenever there is physical distance between the players on the internet. The greater the distance, the greater the lag. There are different techniques & tricks that developers use to compensate and hide the lag. We have implemented a number of these lag compensation techniques that veil the lag for the best experience possible. We have also incorporated solutions with servers all around the world so that we can match players closest to each other to minimize the lag as much as possible.
+Nói chung, độ trễ luôn xuất hiện bất cứ khi nào có khoảng cách vật lý giữa những người chơi trên internet. Khoảng cách càng lớn thì độ trễ càng lớn. Có nhiều kỹ thuật khác nhau & thủ thuật mà các nhà phát triển sử dụng để bù đắp và che giấu độ trễ. Chúng tôi đã triển khai một số kỹ thuật bù độ trễ này để che đi độ trễ để có trải nghiệm tốt nhất có thể. Chúng tôi cũng đã kết hợp các giải pháp với các máy chủ trên toàn thế giới để có thể kết hợp những người chơi gần nhau nhất để giảm thiểu độ trễ nhất có thể.
 
-Nonetheless, considering the level of responsiveness fast-paced brawlers require ⚡, we are expecting some lag when we launch the online multiplayer.
+Tuy nhiên, xét về mức độ phản hồi mà các tay đua nhịp độ nhanh yêu cầu ⚡, chúng tôi dự kiến sẽ có một số độ trễ khi chúng tôi khởi chạy nhiều người chơi trực tuyến.
 
-We are excited to share our progress with you as soon as possible. Following the launch, with your feedback, we will do everything in our power to make the lag as unnoticeable as possible.
+Chúng tôi rất vui được chia sẻ tiến trình của chúng tôi với bạn càng sớm càng tốt. Sau khi ra mắt, với phản hồi của bạn, chúng tôi sẽ làm mọi thứ trong khả năng của mình để làm cho độ trễ không đáng chú ý nhất có thể.
 
-If you are interested in learning more about these techniques, here is a great read by Gabriel Gambetta about **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.
+Nếu bạn quan tâm đến việc tìm hiểu thêm về các kỹ thuật này, đây là một bài đọc tuyệt vời của Gabriel Gambetta về **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.

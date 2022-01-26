@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: stryd-basiese beginsels
+title: Slag basiese beginsels
 sidebar_position: 2
 ---
 
-### General advice
+### Algemene advies
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Speel met 'n kontroleerder word sterk aanbeveel (PS, Xbox, …, herken deur PC/Mac)
 
-### Bat swings
+### Vlermuis swaai
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Vlermuis kan in alle moontlike rigtings geswaai word: links, regs, op, af, diagonale
+- Vlermuis kan geswaai word deur op die aanvalknoppie te klik. Langer knoppiedruk laat die kolf harder slaan
+- Vlermuis kan geswaai word tydens staan, hardloop, spring
+- Lang druk aanvalknoppie tydens spronge is moontlik (moontlik verrassende teenstanders)
 
-### Moving
+### Beweeg
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- As 'n 2D-speletjie is bewegende aanwysings links/regs
+- Aanwysings kan tydens spronge/tuimel verander word
 
-### Jumping
+### Spring
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Springhoogte kan verander word deur die tydsduur van die springknoppie te druk
+- Aanwysings kan tydens spronge/tuimel verander word
 
-### Flying Hamburger
+### Vliegende hamburger
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Maak die kolf baie sterker slaan - lei meeste kere in 'n direkte doodslag
+- Vir opdatering: beperk burgerbuff-duur volgens tyd en/of doodmaak

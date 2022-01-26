@@ -1,15 +1,15 @@
 ---
-id: backgrounds
-title: Backgrounds
+id: sfondi
+title: Sfondi
 sidebar_position: 3
 ---
 
 ![](/img/rngBackgrounds.gif)
 
-DEGEN backgrounds were randomly assigned upon minting which either resulted in a common background or one of three special options: **Rare**, **Meta**, or **Legendary**. Aside from looking cool, background come with special perks such as a distinguished look in game and exta earning multipliers.
+Gli sfondi DEGEN sono stati assegnati casualmente al momento del conio che ha portato a uno sfondo comune o a una delle tre opzioni speciali: **Raro**, **Meta**o **Leggendario**. Oltre a sembrare cool, lo sfondo include vantaggi speciali come un aspetto distinto nel gioco e moltiplicatori di guadagno extra.
 
-### Earnings Multipliers
+### Moltiplicatori di guadagni
 
-- Rare: 1.5
+- Raro: 1.5
 - Meta: 3
-- Legendary: 6
+- Leggendario: 6

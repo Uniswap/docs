@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: bataille-bases
+title: Bases de la bataille
 sidebar_position: 2
 ---
 
-### General advice
+### Conseils généraux
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Jouer avec une manette fortement recommandée (PS, Xbox, …, reconnue par PC/Mac)
 
-### Bat swings
+### Balançoires de chauve-souris
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- La chauve-souris peut être balancée dans toutes les directions possibles : gauche, droite, haut, bas, diagonales
+- Bat peut être balancé en cliquant sur le bouton d'attaque. Une pression plus longue sur le bouton rend la chauve-souris plus forte
+- La chauve-souris peut être balancée en position debout, en courant, en sautant
+- Il est possible d'appuyer longuement sur le bouton d'attaque pendant les sauts (éventuellement des adversaires surprenants)
 
-### Moving
+### En mouvement
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- En tant que jeu 2D, les directions de déplacement sont gauche/droite
+- Les directions peuvent être modifiées pendant les sauts/culbutes
 
-### Jumping
+### Sauter
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- La hauteur de saut peut être modifiée en appuyant sur la durée du bouton de saut
+- Les directions peuvent être modifiées pendant les sauts/culbutes
 
-### Flying Hamburger
+### Hamburger volant
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Rend la batte frappée beaucoup plus fort - entraîne la plupart du temps une mise à mort directe
+- Pour la mise à jour : limitez la durée du buff de burger par le temps et/ou tuez

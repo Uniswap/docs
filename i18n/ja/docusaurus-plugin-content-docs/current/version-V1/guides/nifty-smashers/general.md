@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: 一般的な情報
+title: 一般的な情報
 sidebar_position: 1
 ---
 
-### Scoring
+### スコアリング
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- デゲンが1回ヒットして死んだ場合（マップから外れた場合）、1ポイントを獲得します
+- デゲンが回復できずに複数回ヒットした場合、デゲンがヒットしたのと同じ頻度でポイントを獲得します。 以前のヒットが別のdegenによって行われたかどうかは関係ありません。 デゲンを殺している最後のヒットは、すべてのコンボポイントを取得します
+- **現在、デゲンをヒット（コンボ）できる頻度の上限はありませんが、最大獲得できるポイントの上限はありません（3ポイント：2プレイヤーマッチ/ 5ポイント：3&4プレイヤーマッチ）**
+- 2人対戦：ラウンドに勝つために5ポイント/ 3&4人対戦：ラウンドに勝つために10ポイント
+- 試合はBo5です。 第5ラウンド後に同点の場合、同点のプレイヤーは突然死のラウンドに移行します
 
-### Lag Indicator
+### ラグインジケーター
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- 接続のラグ（ping速度）
+- ラグは通常100ms以上を意味します
 
-### Custom Lobby
+### カスタムロビー
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- カスタムロビーを使用して、選択した地域で試合を開くことができます。 ロビーの作成者は、他の人と共有できるロビーマップのコードを見ることができます
+- 別のdegenがこのロビーに参加したい場合は、最初に正しい地域を選択してから、ロビーコードを入力ボックスに入力する必要があります。
+- 更新の場合：カスタムロビーコードを使用する場合、リージョンは自動的に切り替えられる必要があります
 
-### How and why to change regions?
+### 地域を変更する方法と理由は？
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasherはペースの速いゲームであり、適切な遅延/ pingが重要です。 選択した領域がプレーヤーの場所に近いほど、pingは低くなります。
+- web / desktop-Appでリージョンを変更すると、現在のpingが表示されます

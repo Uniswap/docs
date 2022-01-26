@@ -1,17 +1,17 @@
 ---
-id: nifty-tennis
-title: Nifty Tennis
+id: fajny-tenis
+title: Świetny tenis
 sidebar_position: 3
 ---
 
-### Under development for 2022!
+### W przygotowaniu na 2022 rok!
 
 ![](/img/NiftyTennis.jpeg)
 
-- 1-4 players local and online multiplayer, singles or doubles!
-- Choose to be the line umpire and make important calls!
-- Be an audience member and emote from the crowd!
-- Discord voice integration for both players and audience!
-- Play on a variety of court surfaces in unique stages!
-- Equip different racquets & items for a temporary tactical advantage!
-- Compete for the _Nifty League Grand Slam Cup_!
+- 1-4 graczy lokalny i online dla wielu graczy, single lub deble!
+- Wybierz bycie sędzią liniowym i wykonuj ważne rozmowy!
+- Bądź członkiem publiczności i emotką z tłumu!
+- Integracja głosu Discord dla graczy i publiczności!
+- Graj na różnych nawierzchniach kortów w wyjątkowych etapach!
+- Wyposaż różne rakiety & przedmiotów, aby uzyskać tymczasową przewagę taktyczną!
+- Rywalizuj o _Nifty League Grand Slam Cup_!

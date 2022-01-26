@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: bazele luptei
+title: Bazele bătăliei
 sidebar_position: 2
 ---
 
-### General advice
+### Sfat general
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Jucați cu un controler foarte recomandat (PS, Xbox, …, recunoscut de PC/Mac)
 
-### Bat swings
+### Leagăne de lilieci
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Liliacul poate fi balansat în toate direcțiile posibile: stânga, dreapta, sus, jos, diagonale
+- Liliacul poate fi aruncat făcând clic pe butonul de atac. Apăsarea mai lungă a butonului face ca bâta să lovească mai puternic
+- Liliacul poate fi legănat în timp ce stați în picioare, alergați, săriți
+- Este posibil să apăsați lung butonul de atac în timpul sărituri (posibil să-i surprindă pe adversari)
 
-### Moving
+### In miscare
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Ca un joc 2D, direcțiile de mișcare sunt stânga/dreapta
+- Direcțiile pot fi schimbate în timpul sărituri/tumble
 
 ### Jumping
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Înălțimea săriturii poate fi modificată prin apăsarea butonului de salt
+- Direcțiile pot fi schimbate în timpul sărituri/tumble
 
-### Flying Hamburger
+### Hamburger zburător
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Face lovitura mult mai puternică - rezultă de cele mai multe ori într-o ucidere directă
+- Pentru actualizare: limitați durata de utilizare a burgerului în funcție de timp și/sau ucidere

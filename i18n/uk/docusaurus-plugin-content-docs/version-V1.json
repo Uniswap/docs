@@ -4,7 +4,7 @@
     "description": "The label for version V1"
   },
   "sidebar.mySidebar.category.Overview": {
-    "message": "Overview",
+    "message": "Огляд",
     "description": "The label for category Overview in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.DEGENs 👾": {
@@ -16,35 +16,35 @@
     "description": "The label for category NFTL 🪙 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Play-2-Earn 💰": {
-    "message": "Play-2-Earn 💰",
+    "message": "Грай-2-Заробляй 💰",
     "description": "The label for category Play-2-Earn 💰 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Games 🎮": {
-    "message": "Games 🎮",
+    "message": "Ігри 🎮",
     "description": "The label for category Games 🎮 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Nifty DAO 🏛️": {
-    "message": "Nifty DAO 🏛️",
+    "message": "Чудовий DAO 🏛️",
     "description": "The label for category Nifty DAO 🏛️ in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Comics 📚": {
-    "message": "Comics 📚",
+    "message": "Комікси 📚",
     "description": "The label for category Comics 📚 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Guides": {
-    "message": "Guides",
+    "message": "Керівники",
     "description": "The label for category Guides in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Smashers Guide": {
-    "message": "Smashers Guide",
+    "message": "Посібник з Smashers",
     "description": "The label for category Smashers Guide in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Rentals": {
-    "message": "Rentals",
+    "message": "Оренда",
     "description": "The label for category Rentals in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Free 2 Play": {
-    "message": "Free 2 Play",
+    "message": "Безкоштовно 2 Грати",
     "description": "The label for category Free 2 Play in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.FAQ": {

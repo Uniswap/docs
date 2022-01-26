@@ -1,11 +1,11 @@
 ---
-id: about
-title: About
+id: ról ről
+title: Ról ről
 sidebar_position: 1
 ---
 
-The minting process for Nifty League was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using the Mint-O-Matic!
+A Nifty League pénzverési folyamata egyedülálló látványosság volt, amely lehetővé tette a pénzverők számára, hogy saját DEGEN-t tervezzenek a Mint-O-Matic segítségével!
 
 ![](/img/mintomatic.gif)
 
-There were 6 tribes which include: apes, humans, dogs, frogs, cats, and aliens. This decision not only affects available character traits and accessories, but determines certain in-game mechanics and special moves. During the sale you can check our DEGENS page to browse through minted DEGENS to determine which tribes are rarer than others. Players will naturally gravitate towards certain characters based on their personal preferences as gameplay and special moves may be quite different between them for certain games. You’ll be able to select which of your characters to use before each game (so no harm in having one of each tribe!) 😉
+6 törzs létezett, köztük a majmok, az emberek, a kutyák, a békák, a macskák és az idegenek. Ez a döntés nem csak az elérhető karaktertulajdonságokat és kiegészítőket érinti, hanem meghatároz bizonyos játékon belüli mechanikákat és speciális mozdulatokat is. Az akció során megtekintheti DEGENS oldalunkat, és böngészhet a vert DEGENS között, hogy megállapítsa, mely törzsek ritkábbak, mint mások. A játékosok természetesen személyes preferenciáik alapján bizonyos karakterek felé vonzódnak, mivel a játékmenet és a speciális lépések bizonyos játékok esetében meglehetősen eltérőek lehetnek. Minden játék előtt kiválaszthatod, hogy melyik karakteredet használd (így nem árt, ha mindegyik törzsből van egy!) 😉

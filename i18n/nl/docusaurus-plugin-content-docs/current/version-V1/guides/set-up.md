@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
-sidebar_position: 0.5
+id: opstelling
+title: Stel uw portemonnee in
+sidebar_position: 0,5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Tik op App starten in de bovenste navigatiebalk aan de rechterkant. Tik op Verbinden. Kies de crypto-portemonnee die uw DEGEN NFT bevat. Onderteken de transactie wanneer daarom wordt gevraagd. 

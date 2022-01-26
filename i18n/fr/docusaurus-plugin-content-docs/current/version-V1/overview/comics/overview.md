@@ -1,33 +1,33 @@
 ---
-id: overview
+id: Aperçu
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+Comme si notre processus de frappe n'était pas déjà assez amusant pour vous les gars... nous avons surpris la communauté avec une collection spéciale de bandes dessinées pour le lancement de Nifty League ! C'était pour vous dire merci d'avoir frappé notre collection et d'avoir été en avance 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+Des instantanés pour les bandes dessinées ont été pris tout au long du processus de frappe pour les 4 premières pages de bandes dessinées aux étapes suivantes : Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+Vous vous demandez probablement, "Qu'est-ce que je fais avec les bandes dessinées?". Eh bien, vous allez avoir des choix à faire car ils auront plusieurs utilitaires. Donc, il y a un jeu dans un jeu ici pour que vous choisissiez votre propre chemin.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+La collection de bandes dessinées Nifty League se compose de 6 pages avec les bandes dessinées 5 et 6 qui ne sont pas encore publiées. Il y aura un instantané le 31/01/2022 pour la bande dessinée 5 attribuée à tous les détenteurs de DEGEN et la bande dessinée 6 attribuée à tous les portefeuilles contenant les 6 tribus DEGEN. Tous les DEGENS d'arrière-plan méta recevront une bande dessinée 6 et tous les DEGENS d'arrière-plan légendaires recevront deux bandes dessinées 6 ! Ceux-ci seront mis à disposition via une réclamation sur notre site Web.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+Chaque bande dessinée pourra être gravée à une date ultérieure pour recevoir un accessoire portable ou une arme dans le jeu en échange de chaque page brûlée. Cependant, cette fenêtre de gravure ne sera pas éternelle et chaque détenteur sera obligé de prendre des décisions difficiles pour l'avenir de sa collection.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+Satoshi nous a dit qu'il aimait les collections complètes dans à peu près tout…alors réfléchissez-y à deux fois avant de prendre trop de décisions ici.
 
-**TL;DR**
+**TL; DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- Chaque bande dessinée peut être gravée pour un article portable dans le jeu
+- Ces NFT seront des ERC-1155
+- Les objets modifient le multiplicateur P2E d'un degen lorsqu'ils sont portés
+- Alternativement, vous pouvez conserver les bandes dessinées pour une future utilité que nous n'avons pas encore divulguée
+- Les 6 bandes dessinées peuvent être gravées ensemble comme un ensemble pour un objet mystère spécial.
+- Cet objet mystère ne modifiera PAS le multiplicateur P2E
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+Vous trouverez ci-dessous une représentation de la force multiplicatrice portable pour chaque portable correspondant. Les tarifs exacts restent à déterminer.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+Nous sommes toujours en train de déterminer exactement combien d'emplacements peuvent être remplis par DEGEN, mais seulement 1 de chaque accessoire portable est attribuable par DEGEN NFT. 

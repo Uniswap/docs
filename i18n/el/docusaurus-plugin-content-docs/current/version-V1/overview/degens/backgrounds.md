@@ -1,15 +1,15 @@
 ---
-id: backgrounds
-title: Backgrounds
+id: υπόβαθρα
+title: Φόντο
 sidebar_position: 3
 ---
 
 ![](/img/rngBackgrounds.gif)
 
-DEGEN backgrounds were randomly assigned upon minting which either resulted in a common background or one of three special options: **Rare**, **Meta**, or **Legendary**. Aside from looking cool, background come with special perks such as a distinguished look in game and exta earning multipliers.
+Τα υπόβαθρα DEGEN ανατέθηκαν τυχαία κατά την κοπή, τα οποία είτε οδήγησαν σε ένα κοινό υπόβαθρο είτε σε μία από τις τρεις ειδικές επιλογές: **Σπάνιο**, **Meta**ή **Θρυλικό**. Εκτός από το ότι φαίνεται ωραίο, το φόντο συνοδεύεται από ειδικά προνόμια, όπως μια ξεχωριστή εμφάνιση στο παιχνίδι και πολλαπλασιαστές έξτρα κερδών.
 
-### Earnings Multipliers
+### Πολλαπλασιαστές κερδών
 
-- Rare: 1.5
+- Σπάνιες: 1,5
 - Meta: 3
-- Legendary: 6
+- Θρυλικό: 6

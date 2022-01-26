@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: fundamentos de batalha
+title: Noções básicas de batalha
 sidebar_position: 2
 ---
 
-### General advice
+### Conselho Geral
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Jogando com um controle altamente recomendado (PS, Xbox, …, reconhecido por PC/Mac)
 
-### Bat swings
+### Balanços de morcegos
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- O bastão pode ser balançado em todas as direções possíveis: esquerda, direita, para cima, para baixo, diagonais
+- Bat pode ser balançado clicando no botão de ataque. Pressionar o botão por mais tempo faz com que o taco bata mais forte
+- O bastão pode ser balançado em pé, correndo, pulando
+- É possível pressionar o botão de ataque durante os saltos (possivelmente oponentes surpreendentes)
 
-### Moving
+### Mudança
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Como um jogo 2D, as direções de movimento são esquerda/direita
+- As direções podem ser alteradas durante saltos / tombos
 
-### Jumping
+### Saltando
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- A altura do salto pode ser alterada pressionando a duração do botão de salto
+- As direções podem ser alteradas durante saltos / tombos
 
-### Flying Hamburger
+### Hambúrguer Voador
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Faz o taco bater muito mais forte - resulta na maioria das vezes em uma morte direta
+- Para atualização: limite a duração do buff do hambúrguer por tempo e/ou morte

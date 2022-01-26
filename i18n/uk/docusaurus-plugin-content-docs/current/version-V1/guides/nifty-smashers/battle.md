@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: бойові основи
+title: Основи бою
 sidebar_position: 2
 ---
 
-### General advice
+### Загальні поради
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Настійно рекомендується грати з контролером (PS, Xbox, …, розпізнаний ПК/Mac)
 
-### Bat swings
+### Гойдалки кажана
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Биту можна качати в усіх можливих напрямках: вліво, вправо, вгору, вниз, по діагоналі
+- Биту можна махнути, натиснувши кнопку атаки. Більш тривале натискання кнопки робить удар битою сильніше
+- Катаною можна махати під час стояння, бігу, стрибків
+- Можливе довге натискання кнопки атаки під час стрибків (можливо, здивувати суперників)
 
-### Moving
+### Переміщення
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- У 2D-грі напрямки переміщення ліворуч/праворуч
+- Напрямки можна змінювати під час стрибків/падіння
 
-### Jumping
+### Стрибки
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Висоту стрибка можна змінити, натиснувши кнопку стрибка
+- Напрямки можна змінювати під час стрибків/падіння
 
-### Flying Hamburger
+### Літаючий гамбургер
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Робить удар битою набагато сильніше - найчастіше призводить до прямого вбивства
+- Для оновлення: обмежте тривалість баффа бургера за часом та/або вбийте

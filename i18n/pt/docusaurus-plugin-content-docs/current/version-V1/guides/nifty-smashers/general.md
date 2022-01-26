@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: informações gerais
+title: Informações gerais
 sidebar_position: 1
 ---
 
-### Scoring
+### Pontuação
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- Se um degen for atingido uma vez e morrer (cair do mapa), você ganha um ponto
+- Se um degen for atingido várias vezes sem poder se recuperar, você ganha pontos com a mesma frequência que o degen foi atingido. Não importa se os hits anteriores foram feitos por outro degen. Último golpe que está matando o degen, ganha todos os pontos de combo
+- **Atualmente, não há limite de quantas vezes um degen pode ser atingido (combinado), mas um limite de quantos pontos você pode obter no máximo (3 pontos: partida de 2 jogadores / 5 pontos: 3&partida de 4 jogadores)**
+- Partida de 2 jogadores: 5pts para vencer a rodada / 3&Partida de 4 jogadores: 10pts para vencer a rodada
+- As partidas são Bo5. Se houver empate após a quinta rodada, o jogador empatado passa para uma rodada de morte súbita
 
-### Lag Indicator
+### Indicador de atraso
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- seu atraso (velocidade de ping) da sua conexão
+- lag geralmente significa acima de 100ms
 
-### Custom Lobby
+### Lobby personalizado
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- Um lobby personalizado pode ser usado para abrir uma partida em uma região escolhida. O criador do lobby pode ver um código no mapa do lobby que pode ser compartilhado com outras pessoas
+- Se outro degen quiser entrar neste lobby, ele primeiro precisa selecionar a região correta e depois digitar o código do lobby em uma caixa de entrada
+- Para atualização: ao usar um código de lobby personalizado, a região deve ser trocada automaticamente
 
-### How and why to change regions?
+### Como e por que mudar de região?
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher é um jogo rápido onde uma boa latência/ping é crucial. Quanto mais próxima a região escolhida estiver da localização do jogador, menor será o ping.
+- Depois de alterar a região no aplicativo web/desktop, o ping atual é exibido

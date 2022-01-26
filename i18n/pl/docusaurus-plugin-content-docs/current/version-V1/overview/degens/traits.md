@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: cechy
+title: Cechy charakteru
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+Po wybraniu plemienia było w sumie 1023 cech i 21 opcji do wyboru, tworząc niemal nieskończoną liczbę kombinacji. Cechy postaci były losowo usuwane z zestawu dostępnych cech, gdy tworzono więcej postaci, co utrudniało określenie, które opcje będą najrzadsze. Podczas gdy typy tła mają szczególne zalety, cechy są czysto kosmetyczne. Sprawdź [OpenSea](https://opensea.io/collection/niftydegen) aby zobaczyć niesamowite kreacje, które wymyśliła nasza społeczność!

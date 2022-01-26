@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: verhurings
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### Waar huur ek 'n DEGEN?

@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: черты
+title: Черты характера
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+Всего было 1023 черты и 21 выбираемый вариант после выбора племени, что составляло почти бесконечное количество комбинаций. Черты характера были случайным образом удалены из набора доступных черт по мере создания большего количества персонажей, что затрудняло определение того, какие варианты окажутся самыми редкими. В то время как типы фона имеют особые преимущества, черты носят чисто косметический характер. Посетите [OpenSea](https://opensea.io/collection/niftydegen) чтобы увидеть некоторые из удивительных творений, которые придумало наше сообщество!

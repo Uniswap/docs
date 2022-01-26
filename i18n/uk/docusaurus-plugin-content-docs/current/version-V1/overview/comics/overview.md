@@ -1,33 +1,33 @@
 ---
-id: overview
+id: огляд
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+Неначе наш процес карбування був недостатньо цікавим для вас, хлопці... ми здивували спільноту спеціальною колекцією коміксів для запуску Nifty League! Це було для того, щоб подякувати вам за карбування нашої колекції та за те, що прийшли рано 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+Знімки для коміксів були зроблені протягом процесу карбування перших 4 сторінок коміксів на наступних етапах: Сторінка 1 - 2500 | Сторінка 2 - 3500 | Сторінка 3 - 5000 | Сторінка 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+Ви, напевно, задаєтеся питанням: «Що мені робити з коміксами?». Що ж, вам доведеться зробити вибір, оскільки вони будуть мати кілька утиліт. Отже, тут є гра в грі, щоб ви могли вибрати свій власний шлях.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+Колекція коміксів Nifty League складається з 6 сторінок з коміксами 5 і 6, які ще не вийшли. 31.01.2022 з’явиться знімок комікса 5, який буде надано всім власникам DEGEN, і комікса 6, наданого всім гаманцям, які містять усі 6 племен DEGEN. Усі метафони DEGENS отримають один комікс 6, а всі легендарні фонові DEGENS отримають два коміксних 6! Вони будуть доступні через претензію на нашому веб-сайті.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+Кожен комікс можна буде спалити в майбутньому, щоб отримати в грі пристрій для носіння або зброю в обмін на кожну спалену сторінку. Однак це вікно для випалювання не буде вічним, і кожен власник буде змушений прийняти важкі рішення щодо майбутнього своєї колекції.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+Сатоші сказав нам, що йому подобаються повні колекції майже у всьому…тому подумайте двічі, перш ніж приймати занадто багато рішень.
 
-**TL;DR**
+**TL; DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- Кожен комікс можна записати на предмет, який можна носити в грі
+- Ці NFT будуть ERC-1155
+- Під час носіння предмети змінюють множник P2E дегена
+- Крім того, ви можете тримати комікси для майбутньої корисності, яку ми ще не розкриваємо
+- Усі 6 коміксів можна спалити разом як набір для спеціального таємничого предмета
+- Цей загадковий елемент НЕ змінюватиме множник P2E
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+Нижче наведено зображення коефіцієнта мультиплікатора для кожного відповідного пристрою для носіння. Точні ставки ще уточнюються.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+Ми все ще визначаємо, скільки слотів можна заповнити на DEGEN, але лише 1 з кожного носового пристрою можна призначити на DEGEN NFT. 

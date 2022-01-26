@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Jakie narzędzie ma NFTL?
 
-### What is a governance token?
+### Co to jest token zarządzania?

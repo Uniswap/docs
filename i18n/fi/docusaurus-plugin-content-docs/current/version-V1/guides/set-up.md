@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
+id: perustaa
+title: Määritä lompakkosi
 sidebar_position: 0.5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Napauta Käynnistä sovellus oikeassa ylänavigointipalkissa. Napauta Yhdistä. Valitse kryptolompakko, johon DEGEN NFT mahtuu. Allekirjoita tapahtuma pyydettäessä. 

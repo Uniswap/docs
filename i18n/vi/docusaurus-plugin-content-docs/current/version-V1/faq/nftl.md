@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### NFTL có tiện ích gì?
 
-### What is a governance token?
+### Mã thông báo quản trị là gì?

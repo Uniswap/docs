@@ -1,34 +1,34 @@
 ---
-id: nifty-smashers
-title: Nifty Smashers
+id: bagus-smashers
+title: Smashers yang bagus
 sidebar_position: 2
 ---
 
   <div>
   <video width="100%" height="100%" playsInline controls loop>
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
-  Your browser does not support the video tag.
+  Browser Anda tidak mendukung tag video.
   </video>
   </div>
 
 ---
 
-Get ready to brawl! The local-multiplayer version of **[Nifty Smashers](https://nifty-league.com/games)** was made available immediately at launch followed by the online multiplayer! So grab a few controllers 🎮 and play with friends.
+Bersiaplah untuk berkelahi! Versi multipemain lokal **[Nifty Smashers](https://nifty-league.com/games)** segera tersedia saat peluncuran diikuti oleh multipemain daring! Jadi ambil beberapa pengontrol dan mainkan dengan teman-teman.
 
-Battle it out amongst the community and get in as many _bat bonks_ 🥖on your friends as you can! **Nifty Smashers** takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points. In order to play you'll need a **DEGEN** to select for battle, and then use your keyboard, Playstation or Xbox controller as input (couch multiplayer works too!). From the game lobby you'll be able to select from any of your previously minted **DEGENs** you own in your wallet to show off your cool creations! Each tribe has a unique special move so experiment with different tribes and find the moveset that suits your playstyle best. Hold down the attack button for a charged-up bat attack, some special moves can also be charged. When you bonk another player, they’re worth 1 point. The more they’re successively bonked, the faster they bounce around and the more points they’re worth. Land the final mega-bonk to hit them off the map and claim all the points!
+Bertarunglah di antara komunitas dan dapatkan __ pada teman Anda sebanyak mungkin! **Nifty Smashers** mengambil inspirasi dari game Super Smash Bros klasik di mana tujuannya adalah untuk menjatuhkan lawan Anda dari peta untuk mencetak poin. Untuk bermain, Anda memerlukan **DEGEN** untuk memilih pertempuran, dan kemudian menggunakan keyboard, pengontrol Playstation, atau Xbox sebagai input (multiplayer sofa juga berfungsi!). Dari lobi game, Anda dapat memilih salah satu dari **DEGEN** Anda miliki di dompet untuk memamerkan kreasi keren Anda! Setiap suku memiliki jurus khusus yang unik, jadi bereksperimenlah dengan suku yang berbeda dan temukan gerakan yang paling sesuai dengan gaya bermain Anda. Tahan tombol serangan untuk serangan kelelawar yang diisi, beberapa gerakan khusus juga dapat diisi. Saat Anda memukul pemain lain, mereka bernilai 1 poin. Semakin banyak mereka dibohongi secara berturut-turut, semakin cepat mereka terpental dan semakin banyak poin yang mereka dapatkan. Dapatkan mega-bonk terakhir untuk memukul mereka dari peta dan mengklaim semua poin!
 
-**As noted, this is a beta release of our initial game so lag and issues with pesky bots are to be expected.** Our immediate plan is to continue development on **Nifty Smashers** and to introduce more features such as additional combo moves and a progression system. Hop in our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve **Nifty Smashers** and take it to the next level!
+**Seperti yang disebutkan, ini adalah rilis beta dari game awal kami sehingga lag dan masalah dengan bot sial diharapkan terjadi.** Rencana langsung kami adalah melanjutkan pengembangan pada **Nifty Smashers** dan untuk memperkenalkan lebih banyak fitur seperti gerakan kombo tambahan dan sistem perkembangan. Masuk ke **[Discord](https://discord.gg/niftyleague)** untuk memberikan umpan balik dan ide tentang bagaimana kami dapat meningkatkan **Nifty Smashers** dan membawanya ke level berikutnya!
 
 <!-- ![](/img/highlights.gif) -->
 
-**Online Multiplayer Lag ☁️**
+**Keterlambatan Multiplayer Online ️**
 
-With the on-going alpha, let's talk about lag in fast-paced and snappy brawler games like **Nifty Smashers**.
+Dengan alfa yang sedang berjalan, mari kita bicara tentang kelambatan dalam game petarung yang serba cepat dan tajam seperti **Nifty Smashers**.
 
-Generally speaking, lag is always present whenever there is physical distance between the players on the internet. The greater the distance, the greater the lag. There are different techniques & tricks that developers use to compensate and hide the lag. We have implemented a number of these lag compensation techniques that veil the lag for the best experience possible. We have also incorporated solutions with servers all around the world so that we can match players closest to each other to minimize the lag as much as possible.
+Secara umum, lag selalu hadir setiap kali ada jarak fisik antara pemain di internet. Semakin jauh jaraknya, semakin besar lagnya. Ada berbagai teknik & trik yang digunakan pengembang untuk mengimbangi dan menyembunyikan lag. Kami telah menerapkan sejumlah teknik kompensasi lag yang menutupi lag untuk pengalaman terbaik. Kami juga telah menggabungkan solusi dengan server di seluruh dunia sehingga kami dapat mencocokkan pemain yang paling dekat satu sama lain untuk meminimalkan lag sebanyak mungkin.
 
-Nonetheless, considering the level of responsiveness fast-paced brawlers require ⚡, we are expecting some lag when we launch the online multiplayer.
+Meskipun demikian, mengingat tingkat respons yang dibutuhkan petarung cepat , kami mengharapkan beberapa lag ketika kami meluncurkan multiplayer online.
 
-We are excited to share our progress with you as soon as possible. Following the launch, with your feedback, we will do everything in our power to make the lag as unnoticeable as possible.
+Kami sangat senang untuk berbagi kemajuan kami dengan Anda sesegera mungkin. Setelah peluncuran, dengan umpan balik Anda, kami akan melakukan segala daya kami untuk membuat lag senyaman mungkin.
 
-If you are interested in learning more about these techniques, here is a great read by Gabriel Gambetta about **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.
+Jika Anda tertarik untuk mempelajari lebih lanjut tentang teknik ini, berikut ini adalah bacaan bagus oleh Gabriel Gambetta tentang **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.

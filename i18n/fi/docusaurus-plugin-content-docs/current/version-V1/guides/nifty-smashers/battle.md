@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: taistelun perusteet
+title: Taistelun perusteet
 sidebar_position: 2
 ---
 
-### General advice
+### Yleiset neuvot
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Pelaaminen ohjaimella erittäin suositeltavaa (PS, Xbox, …, PC/Mac tunnistaa)
 
-### Bat swings
+### Lepakon keinut
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Lepakkoa voidaan heiluta kaikkiin mahdollisiin suuntiin: vasemmalle, oikealle, ylös, alas, diagonaaleihin
+- Lepakko voidaan heilauttaa napsauttamalla hyökkäyspainiketta. Pidempi napin painallus tekee mailasta kovempaa
+- Lepakkoa voidaan heilauttaa seistessä, juoksussa, hyppääessä
+- Hyökkäyspainikkeen pitkä painallus hyppyjen aikana on mahdollista (mahdollisesti yllättää vastustajat)
 
-### Moving
+### Liikkuva
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- 2D-pelinä liikesuunnat ovat vasen/oikea
+- Suunta voidaan muuttaa hyppyjen/pysähdysten aikana
 
-### Jumping
+### Hyppääminen
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Hyppykorkeutta voidaan muuttaa painamalla hyppypainiketta
+- Suunta voidaan muuttaa hyppyjen/pysähdysten aikana
 
-### Flying Hamburger
+### Lentävä hampurilainen
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Tekee mailasta paljon vahvemman - johtaa useimmiten suoraan tappamiseen
+- Päivitystä varten: rajoita hampurilaisbuffin kestoa ajan ja/tai tappamisen mukaan

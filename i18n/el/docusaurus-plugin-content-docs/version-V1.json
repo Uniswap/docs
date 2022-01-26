@@ -4,7 +4,7 @@
     "description": "The label for version V1"
   },
   "sidebar.mySidebar.category.Overview": {
-    "message": "Overview",
+    "message": "ΣΦΑΙΡΙΚΗ ΕΙΚΟΝΑ",
     "description": "The label for category Overview in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.DEGENs 👾": {
@@ -16,11 +16,11 @@
     "description": "The label for category NFTL 🪙 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Play-2-Earn 💰": {
-    "message": "Play-2-Earn 💰",
+    "message": "Παίξτε-2-Κερδίστε 💰",
     "description": "The label for category Play-2-Earn 💰 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Games 🎮": {
-    "message": "Games 🎮",
+    "message": "Παιχνίδια 🎮",
     "description": "The label for category Games 🎮 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Nifty DAO 🏛️": {
@@ -28,23 +28,23 @@
     "description": "The label for category Nifty DAO 🏛️ in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Comics 📚": {
-    "message": "Comics 📚",
+    "message": "Κόμικς 📚",
     "description": "The label for category Comics 📚 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Guides": {
-    "message": "Guides",
+    "message": "Οδηγοί",
     "description": "The label for category Guides in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Smashers Guide": {
-    "message": "Smashers Guide",
+    "message": "Οδηγός Smashers",
     "description": "The label for category Smashers Guide in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Rentals": {
-    "message": "Rentals",
+    "message": "Ενοίκια",
     "description": "The label for category Rentals in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Free 2 Play": {
-    "message": "Free 2 Play",
+    "message": "Δωρεάν 2 Παίξτε",
     "description": "The label for category Free 2 Play in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.FAQ": {

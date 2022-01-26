@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: Züge
+title: Charaktereigenschaften
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+Es gab insgesamt 1023 Merkmale und 21 wählbare Optionen nach der Auswahl eines Stammes, wodurch eine nahezu unendliche Anzahl von Kombinationen möglich war. Charaktereigenschaften wurden nach dem Zufallsprinzip aus dem Satz verfügbarer Eigenschaften entfernt, als mehr Charaktere erstellt wurden, was es schwierig machte zu wissen, welche Optionen am Ende die seltensten sein würden. Während Hintergrundtypen besondere Vorteile bieten, sind Merkmale rein kosmetischer Natur. Schauen Sie sich [OpenSea](https://opensea.io/collection/niftydegen) an, um einige der erstaunlichen Kreationen zu sehen, die unsere Community entwickelt hat!

@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: informatii generale
+title: Informatii generale
 sidebar_position: 1
 ---
 
-### Scoring
+### Punctajul
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- Dacă un degen este lovit o dată și moare (cad de pe hartă), primești un punct
+- Dacă un degen este lovit de mai multe ori fără să se poată recupera, obțineți puncte la fel de des pe cât a fost lovit degenul. Nu contează dacă hit-urile anterioare au fost făcute de un alt degen. Ultima lovitură care ucide degenul primește toate punctele combo
+- **În prezent, nu există o limită pentru cât de des poate fi lovit un degen (combinat), ci un plafon pentru numărul maxim de puncte pe care le puteți obține (3 puncte: meci de 2 jucători / 5 puncte: 3&meci de 4 jucători)**
+- Meci cu 2 jucători: 5 puncte pentru runda câștigătoare / 3&Meci cu 4 jucători: 10 puncte pentru runda câștigătoare
+- Meciurile sunt Bo5. Dacă există o egalitate după runda a cincea, jucătorul aflat la egalitate trece într-o rundă de moarte subită
 
-### Lag Indicator
+### Indicator de întârziere
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- decalajul (viteza ping-ului) a conexiunii
+- lag înseamnă de obicei peste 100 ms
 
-### Custom Lobby
+### Lobby personalizat
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- Un lobby personalizat poate fi folosit pentru a deschide un meci într-o regiune aleasă. Creatorul lobby-ului poate vedea un cod pe harta lobby-ului care poate fi partajat altora
+- Dacă un alt degen dorește să se alăture acestui lobby, trebuie mai întâi să selecteze regiunea corectă și apoi să tastați codul lobby-ului într-o casetă de introducere.
+- Pentru actualizare: atunci când utilizați un cod personalizat de lobby, regiunea ar trebui să fie schimbată automat
 
-### How and why to change regions?
+### Cum și de ce să schimbi regiunile?
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher este un joc cu ritm rapid în care latența/ping-ul bun este crucial. Cu cât regiunea aleasă este mai aproape de locația jucătorului, cu atât ping-ul este mai mic.
+- După schimbarea regiunii în aplicația web/desktop, este afișat ping-ul curent

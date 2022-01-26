@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: plemiona
+title: Specjalne zdolności plemienia
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**Nasza obecna gra, Nifty Smashers, i wszystkie przyszłe gry mają specjalną zdolność („SA”) dla każdego typu postaci.**
 
-### List of Special Abilities
+### Lista zdolności specjalnych
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Małpa** – Rzuć bananami bumerang ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Obcy** - Teleportacja ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Cat** – Rzuć się i tymczasowo zwiększ moc i prędkość kija ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Żaba** - Chwytak z językiem ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doża** - Rzut monetą Doża ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Człowiek** – Rzucaj dynamitami, które wybuchają na polecenie ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### Obcy
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- Naciśnięcie przycisku SA powoduje, że Obcy może teleportować się na niewielką odległość w wybranym kierunku (w lewo, w prawo, w górę, w dół, po przekątnej)
+- W miejscu teleportacji następuje eksplozja energii, która uderza w przeciwników stojących w pobliżu
 
-### Ape
+### Małpa
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- Naciśnięcie przycisku SA powoduje wyrzucenie banana w wycelowanym kierunku (w lewo, prawo, w górę, w dół, po przekątnej), aż **trafi w przeciwnika**, uderzy w część mapy lub zleci z mapy
+- Ponowne naciśnięcie przycisku SA powoduje, że banan wraca do degenu, umożliwiając ponowne trafienie przeciwnika.
+- Banany można uderzyć kijem i lecieć w wybranym kierunku
 
-### Cat
+### Kot
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- Naciśnięcie SA powoduje, że kot rzuca się. Po krótkim skakaniu kot zyskuje moc.
+- Wzmocniony zamach nietoperza: nietoperz uderza mocniej
+- Wzmocniony ruch: koty biegają szybciej
+- Koty potrafią podwójnie skakać / skakać w powietrzu
 
-### Doge
+### pieseł
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- Naciśnięcie i przytrzymanie przycisku SA powoduje przetoczenie się doża.
+- Trafienie przeciwnika przewrotem doge sprawi, że poleci on nieco w górę w kierunku przechyłu
+- Doge potoczy się w wybranym kierunku
+- Podczas przewrotu doży kierunki można zmienić trzy razy (może dwa razy po aktualizacji) aż do zakończenia przewrotu doży
+- Doge roll również kończy się po pewnym czasie
 
-### Frog
+### Żaba
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- Naciśnięcie przycisku SA powoduje, że Żaba strzela językiem
+- Kiedy język uderza przeciwnika, ten przeciwnik jest przyciągany w kierunku żaby i leci trochę dalej
+- Kiedy język uderza w fragment mapy, żaby przyciągają się do tego obiektu (np. ścian, sufitów,...)
+- Językiem można strzelać w kierunku celu (w lewo, w prawo, w górę, w dół, po przekątnej)
 
-### Human
+### Człowiek
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- Naciśnięcie przycisku SA wyrzuca bombę w wycelowanym kierunku (w lewo, w prawo, w górę, w dół, po przekątnej)
+- Bomba ma krzywą latania i nie leci prosto jak banany. Jeśli nie zostanie zdetonowany wcześniej i pozostanie na ziemi
+- Bomba eksploduje po pewnym czasie lub po drugim naciśnięciu przycisku SA
+- Obecnie bomba może trafić przeciwnika trafiając w nią lub przez eksplozję
+- Zaktualizowany plan: bomba wybucha natychmiast po kontakcie z przeciwnikiem. Jeśli żaden przeciwnik nie zostanie trafiony, pozostaje on na ziemi do czasu, aż wybuchnie automatycznie lub po drugim naciśnięciu przycisku SA
+- Bomby są jedynym SA, który może uderzyć sam degen podczas rzucania swoim wybuchem
+- Bomby można trafić kijem i lecieć w wybranym kierunku

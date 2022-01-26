@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Vilken nytta har NFTL?
 
-### What is a governance token?
+### Vad är en förvaltningstoken?

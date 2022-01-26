@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
+id: configuración
+title: Configure su billetera
 sidebar_position: 0.5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Toque Iniciar aplicación en la barra de navegación superior a la derecha. Presiona Conectar. Elija la billetera criptográfica que contiene su DEGEN NFT. Firme la transacción cuando se le solicite. 

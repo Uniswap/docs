@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: bérleti áttekintés
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Bevezetés

@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
+id: подесити
+title: Подесите свој новчаник
 sidebar_position: 0.5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Додирните Покрени апликацију на горњој траци за навигацију са десне стране. Додирните Повежи. Изаберите крипто новчаник у којем се налази ваш ДЕГЕН НФТ. Потпишите трансакцију када се то од вас затражи. 

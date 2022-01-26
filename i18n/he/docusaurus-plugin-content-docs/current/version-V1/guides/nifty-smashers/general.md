@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: מידע כללי
+title: מידע כללי
 sidebar_position: 1
 ---
 
-### Scoring
+### מְנִיָה
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- אם דגן נפגע פעם אחת ומת (נופל מהמפה) אתה מקבל נקודה אחת
+- אם דגן נפגע מספר פעמים מבלי יכולת להתאושש, אתה מקבל נקודות באותה תדירות שבה הדג'ן נפגע. זה לא משנה אם להיטים קודמים נעשו על ידי דגן אחר. המכה האחרונה שהורגת את הדגן, מקבלת את כל נקודות המשולבות
+- **נכון לעכשיו אין מגבלה של התדירות שבה ניתן להכות דג'ן (משולב) אלא מגבלה של כמה נקודות אתה יכול לקבל מקסימום (3 נקודות: התאמה ל-2 שחקנים / 5 נקודות: 3&התאמה ל-4 שחקנים)**
+- משחק של 2 שחקנים: 5 נקודות לניצחון בסיבוב / 3&4 שחקנים: 10 נקודות לניצחון בסיבוב
+- הגפרורים הם Bo5. אם יש שוויון לאחר הסיבוב החמישי, השחקן בשוויון עובר לסיבוב מוות פתאומי
 
-### Lag Indicator
+### מחוון השהיה
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- השהיה שלך (מהירות הפינג) של החיבור שלך
+- פיגור פירושו בדרך כלל מעל 100ms
 
-### Custom Lobby
+### לובי מותאם אישית
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- ניתן להשתמש בלובי מותאם אישית לפתיחת משחק באזור נבחר. יוצר הלובי יכול לראות במפת הלובי קוד שניתן לחלוק עם אחרים
+- אם דגן אחר רוצה להצטרף ללובי זה, עליו לבחור תחילה את האזור הנכון ולאחר מכן להקליד את קוד הלובי בתיבת קלט
+- לעדכון: בעת שימוש בקוד לובי מותאם אישית, יש להחליף את האזור באופן אוטומטי
 
-### How and why to change regions?
+### איך ולמה לשנות אזורים?
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher הוא משחק בקצב מהיר שבו חביון/פינג טוב הוא חיוני. ככל שהאזור הנבחר קרוב יותר למיקום השחקן, כך הפינג נמוך יותר.
+- לאחר שינוי האזור באפליקציית האינטרנט/שולחן העבודה, הפינג הנוכחי מוצג

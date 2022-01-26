@@ -1,33 +1,33 @@
 ---
-id: overview
+id: oorsig
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+Asof ons muntproses nie reeds vir julle lekker genoeg was nie... ons het die gemeenskap verras met 'n spesiale Nifty League-bekendstelling-strokiesprentversameling! Dit was om dankie te sê dat jy ons versameling gemunt het en dat jy vroeg was 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+Foto's vir strokiesprente is regdeur die muntproses geneem vir die eerste 4 strokiesprentbladsye by die volgende mylpale: Bladsy 1 - 2500 | Bladsy 2 - 3500 | Bladsy 3 - 5000 | Bladsy 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+Jy wonder waarskynlik: "Wat doen ek met die Comics?". Wel, jy gaan 'n paar keuses hê om te maak, aangesien hulle verskeie nutsprogramme sal hê. So, daar is 'n speletjie binne 'n speletjie hier vir jou om jou eie pad te kies.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+Die Nifty League Comic Collection bestaan uit 6 bladsye met strokiesprente 5 en 6 wat nog vrygestel moet word. Daar sal 'n momentopname op 31/1/2022 wees vir strokiesprent 5 wat aan alle DEGEN-houers toegeken word en strokiesprent 6 toegeken aan alle beursies wat al 6 DEGEN-stamme bevat. Alle Meta-agtergrond DEGENS sal een strokiesprent 6 ontvang en alle legendariese agtergrond DEGENS sal twee strokiesprent 6'e ontvang! Dit sal beskikbaar gestel word deur 'n eis op ons webwerf.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+Elke strokiesprent sal op 'n toekomstige datum brandbaar wees om 'n in-game drabare of wapen te ontvang in ruil vir elke bladsy wat verbrand word. Hierdie brandvenster sal egter nie vir ewig wees nie en elke houer sal gedwing word om 'n paar moeilike besluite te neem vir die toekoms van hul versameling.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+Satoshi het vir ons gesê hy is lief vir volledige versamelings in omtrent alles…so dink twee keer voor jy te veel besluite hier neem.
 
-**TL;DR**
+**TL; DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- Elke strokiesprent kan verbrand word vir 'n draagbare item in die speletjie
+- Hierdie NFT's sal ERC-1155's wees
+- Items verander 'n degen se P2E-vermenigvuldiger wanneer dit gedra word
+- Alternatiewelik kan jy die strokiesprente hou vir toekomstige nut wat ons nog nie bekend gemaak het nie
+- Al 6 strokiesprente kan saam gebrand word as 'n stel vir 'n spesiale raaiselitem
+- Hierdie geheimsinnige item sal NIE die P2E-vermenigvuldiger verander nie
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+Hieronder is 'n uitbeelding van draagbare vermenigvuldigersterkte vir elke ooreenstemmende draagbare. Die presiese tariewe moet nog bepaal word.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+Ons is nog besig om te bepaal presies hoeveel gleuwe per DEGEN gevul kan word, maar slegs 1 van elke draagbare is toekenbaar per DEGEN NFT. 

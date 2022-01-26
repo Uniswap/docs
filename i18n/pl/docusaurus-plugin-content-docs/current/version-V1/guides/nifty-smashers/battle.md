@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: podstawy bitwy
+title: Podstawy walki
 sidebar_position: 2
 ---
 
-### General advice
+### Ogólna rada
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Bardzo zalecane granie z kontrolerem (PS, Xbox, …, rozpoznawany przez PC/Mac)
 
-### Bat swings
+### Huśtawki nietoperzy
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Nietoperzem można huśtać się we wszystkich możliwych kierunkach: w lewo, w prawo, w górę, w dół, po przekątnej
+- Nietoperzem można wymachiwać, klikając przycisk ataku. Dłuższe naciśnięcie przycisku sprawia, że kij uderza mocniej
+- Nietoperz może być kołysany podczas stania, biegania, skakania
+- Możliwe jest długie naciśnięcie przycisku ataku podczas skoków (możliwe zaskoczenie przeciwników)
 
-### Moving
+### Poruszający
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- W grze 2D kierunki poruszania się to lewo/prawo
+- Kierunki można zmieniać podczas skoków/przewracania
 
-### Jumping
+### Skoki
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Wysokość skoku można zmienić, naciskając przycisk skoku
+- Kierunki można zmieniać podczas skoków/przewracania
 
-### Flying Hamburger
+### Latający Hamburger
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Sprawia, że kij uderzony jest znacznie silniejszy - najczęściej skutkuje bezpośrednim zabiciem
+- Dla aktualizacji: ogranicz czas trwania wzmocnienia do burgerów według czasu i/lub zabicia

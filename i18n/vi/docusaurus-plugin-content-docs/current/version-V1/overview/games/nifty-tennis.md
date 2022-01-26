@@ -1,17 +1,17 @@
 ---
-id: nifty-tennis
-title: Nifty Tennis
+id: quần vợt tiện lợi
+title: Quần vợt Nifty
 sidebar_position: 3
 ---
 
-### Under development for 2022!
+### Đang được phát triển cho năm 2022!
 
 ![](/img/NiftyTennis.jpeg)
 
-- 1-4 players local and online multiplayer, singles or doubles!
-- Choose to be the line umpire and make important calls!
-- Be an audience member and emote from the crowd!
-- Discord voice integration for both players and audience!
-- Play on a variety of court surfaces in unique stages!
-- Equip different racquets & items for a temporary tactical advantage!
-- Compete for the _Nifty League Grand Slam Cup_!
+- 1-4 người chơi trực tuyến và nhiều người chơi, đơn hoặc đôi!
+- Hãy chọn làm trọng tài chính và thực hiện các cuộc gọi quan trọng!
+- Hãy trở thành một thành viên khán giả và biểu tượng cảm xúc từ đám đông!
+- Tích hợp giọng nói bất hòa cho cả người chơi và khán giả!
+- Chơi trên nhiều bề mặt sân khác nhau trong các màn chơi độc đáo!
+- Trang bị các cây vợt khác nhau & vật phẩm để có lợi thế chiến thuật tạm thời!
+- Cạnh tranh cho _Nifty League Grand Slam Cup_!

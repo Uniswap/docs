@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Ce utilitate are NFTL?
 
-### What is a governance token?
+### Ce este un simbol de guvernare?

@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: základy bitvy
+title: Základy bitvy
 sidebar_position: 2
 ---
 
-### General advice
+### Obecná rada
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Důrazně doporučujeme hrát s ovladačem (PS, Xbox, …, rozpoznáno PC/Mac)
 
-### Bat swings
+### Netopýr se houpe
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Pálku lze houpat všemi možnými směry: doleva, doprava, nahoru, dolů, úhlopříčky
+- Netopýrem lze houpat kliknutím na tlačítko útoku. Delší stisk tlačítka způsobí, že pálka zasáhne tvrději
+- Netopýrem lze houpat při stoji, běhu, skákání
+- Dlouhé stisknutí tlačítka útoku během skoků je možné (možná překvapivé soupeře)
 
-### Moving
+### Stěhování
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Ve 2D hře jsou směry pohybu vlevo/vpravo
+- Směry lze měnit během skoků/pádů
 
-### Jumping
+### Skákání
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Výšku skoku lze změnit stisknutím a trváním tlačítka skoku
+- Směry lze měnit během skoků/pádů
 
-### Flying Hamburger
+### Létající hamburger
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Učiní zásah netopýrem mnohem silnějším - většinou vede k přímému zabití
+- Pro aktualizaci: omezte dobu trvání burgeru podle času a/nebo zabití

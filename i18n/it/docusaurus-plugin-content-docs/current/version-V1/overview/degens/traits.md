@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: tratti
+title: Tratti caratteriali
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+C'erano un totale di 1023 tratti e 21 opzioni selezionabili dopo aver selezionato una tribù, creando un numero quasi infinito di combinazioni. I tratti dei personaggi sono stati rimossi casualmente dall'insieme di tratti disponibili man mano che venivano creati più personaggi, rendendo difficile sapere quali opzioni sarebbero diventate le più rare. Mentre i tipi di sfondo hanno vantaggi speciali, i tratti sono strettamente estetici. Dai un'occhiata a [](https://opensea.io/collection/niftydegen) per vedere alcune delle fantastiche creazioni che la nostra community ha inventato!

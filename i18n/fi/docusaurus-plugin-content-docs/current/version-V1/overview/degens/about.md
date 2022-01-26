@@ -1,11 +1,11 @@
 ---
-id: about
-title: About
+id: noin
+title: Noin
 sidebar_position: 1
 ---
 
-The minting process for Nifty League was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using the Mint-O-Matic!
+Nifty Leaguen lyöntiprosessi oli ainutlaatuinen spektaakkeli, jonka ansiosta rahapajat pystyivät suunnittelemaan oman DEGEN-laitteen Mint-O-Maticilla!
 
 ![](/img/mintomatic.gif)
 
-There were 6 tribes which include: apes, humans, dogs, frogs, cats, and aliens. This decision not only affects available character traits and accessories, but determines certain in-game mechanics and special moves. During the sale you can check our DEGENS page to browse through minted DEGENS to determine which tribes are rarer than others. Players will naturally gravitate towards certain characters based on their personal preferences as gameplay and special moves may be quite different between them for certain games. You’ll be able to select which of your characters to use before each game (so no harm in having one of each tribe!) 😉
+Siellä oli 6 heimoa, joihin kuuluvat: apinat, ihmiset, koirat, sammakot, kissat ja muukalaiset. Tämä päätös ei vaikuta vain saatavilla oleviin hahmon ominaisuuksiin ja lisävarusteisiin, vaan se määrittää tietyt pelin sisäiset mekaniikat ja erikoisliikkeet. Alennusmyynnin aikana voit tarkistaa DEGENS-sivumme ja selata lyötyjä DEGENS-malleja selvittääksesi, mitkä heimot ovat harvinaisempia kuin muut. Pelaajat vetoavat luonnollisesti tiettyihin hahmoihin henkilökohtaisten mieltymystensä perusteella, koska pelattavuus ja erikoisliikkeet voivat olla melko erilaisia tietyissä peleissä. Voit valita, mitä hahmoistasi käytät ennen jokaista peliä (joten ei ole haittaa, jos sinulla on yksi jokaisesta heimosta!) 😉

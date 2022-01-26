@@ -1,17 +1,17 @@
 ---
-id: nifty-tennis
-title: Nifty Tennis
+id: сјајан тенис
+title: Добар тенис
 sidebar_position: 3
 ---
 
-### Under development for 2022!
+### У изради за 2022!
 
 ![](/img/NiftyTennis.jpeg)
 
-- 1-4 players local and online multiplayer, singles or doubles!
-- Choose to be the line umpire and make important calls!
-- Be an audience member and emote from the crowd!
-- Discord voice integration for both players and audience!
-- Play on a variety of court surfaces in unique stages!
-- Equip different racquets & items for a temporary tactical advantage!
-- Compete for the _Nifty League Grand Slam Cup_!
+- Локални и онлајн мултиплаиер за 1-4 играча, сингл или дубл!
+- Изаберите да будете линијски судија и упутите важне позиве!
+- Будите члан публике и будите емотивни из гомиле!
+- Дисцорд гласовна интеграција за играче и публику!
+- Играјте на различитим теренима у јединственим фазама!
+- Опремите различите рекете & предмета за привремену тактичку предност!
+- Такмиче за _Диван Лига Гранд Слам Цуп_!

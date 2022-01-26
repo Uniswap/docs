@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: תכונות
+title: מאפייני אישיות
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+היו בסך הכל 1023 תכונות ו-21 אפשרויות לבחירה לאחר בחירת שבט, מה שיוצר כמעט אינסופי של שילובים. תכונות אופי הוסרו באופן אקראי ממכלול התכונות הזמינות ככל שנוצרו עוד דמויות, מה שמקשה לדעת אילו אפשרויות יסתיימו כנדירות ביותר. בעוד שסוגי הרקע מגיעים עם יתרונות מיוחדים, התכונות הן קוסמטיות למהדרין. בדוק את [OpenSea](https://opensea.io/collection/niftydegen) כדי לראות כמה מהיצירות המדהימות שהקהילה שלנו המציאה!

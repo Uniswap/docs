@@ -1,33 +1,33 @@
 ---
-id: overview
+id: Prezentare generală
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+De parcă procesul nostru de batere nu a fost deja suficient de distractiv pentru voi, băieți... am surprins comunitatea cu o colecție specială de benzi desenate de lansare a Nifty League! Aceasta era pentru a vă mulțumi pentru că ați creat colecția noastră și pentru că ați fost devreme 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+Instantanee pentru benzi desenate au fost realizate pe parcursul procesului de batere pentru primele 4 pagini de benzi desenate la următoarele etape: Pagina 1 - 2500 | Pagina 2 - 3500 | Pagina 3 - 5000 | Pagina 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+Probabil vă întrebați: „Ce fac cu benzile desenate?”. Ei bine, veți avea câteva alegeri de făcut, deoarece vor avea mai multe utilități. Deci, există un joc într-un joc aici pentru ca tu să-ți alegi propriul drum.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+Colecția de benzi desenate Nifty League constă din 6 pagini, cu benzile desenate 5 și 6 care nu au fost încă lansate. Pe 31.1.2022 va exista un instantaneu pentru benzi desenate 5 acordate tuturor deținătorilor DEGEN și benzi desenate 6 acordate tuturor portofelelor care conțin toate cele 6 triburi DEGEN. Toți fundalul meta DEGENS vor primi o benzi desenate 6 și toți fundalul legendar DEGENS vor primi două benzi desenate 6! Acestea vor fi disponibile printr-o revendicare pe site-ul nostru.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+Fiecare benzi desenate va putea fi inscripționată la o dată viitoare pentru a primi un purtabil sau o armă în joc în schimbul fiecărei pagini arse. Cu toate acestea, această fereastră de ardere nu va fi pentru totdeauna și fiecare deținător va fi obligat să ia niște decizii grele pentru viitorul colecției sale.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+Satoshi ne -a spus că iubește colecții complete în doar despre orice…, astfel cred că de două ori înainte de a face prea multe decizii aici.
 
 **TL;DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- Fiecare benzi desenate poate fi inscripționată pentru un articol care poate fi purtat în joc
+- Aceste NFT vor fi ERC-1155
+- Articolele modifică multiplicatorul P2E al unui degen atunci când sunt purtate
+- Alternativ, puteți păstra benzile desenate pentru utilitate viitoare pe care nu le-am dezvăluit încă
+- Toate cele 6 benzi desenate pot fi arse împreună ca un set pentru un articol mister special
+- Acest element misterios NU va modifica multiplicatorul P2E
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+Mai jos este o reprezentare a puterii multiplicatorului purtabile pentru fiecare purtabil corespunzător. Tarifele exacte sunt încă de stabilit.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+Încă determinăm exact câte spații pot fi ocupate pe DEGEN, dar numai 1 din fiecare purtabil poate fi atribuit pe DEGEN NFT. 

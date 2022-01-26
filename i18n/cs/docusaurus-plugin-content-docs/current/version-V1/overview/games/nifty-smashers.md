@@ -1,34 +1,34 @@
 ---
-id: nifty-smashers
-title: Nifty Smashers
+id: šikovní rozbíječi
+title: Šikovní Smashers
 sidebar_position: 2
 ---
 
   <div>
   <video width="100%" height="100%" playsInline controls loop>
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
-  Your browser does not support the video tag.
+  Váš prohlížeč nepodporuje značku videa.
   </video>
   </div>
 
 ---
 
-Get ready to brawl! The local-multiplayer version of **[Nifty Smashers](https://nifty-league.com/games)** was made available immediately at launch followed by the online multiplayer! So grab a few controllers 🎮 and play with friends.
+Připravte se na rvačku! Lokální multiplayerová verze **[Nifty Smashers](https://nifty-league.com/games)** byla zpřístupněna ihned po spuštění a následovala online hra pro více hráčů! Tak popadněte pár ovladačů 🎮 a hrajte s přáteli.
 
-Battle it out amongst the community and get in as many _bat bonks_ 🥖on your friends as you can! **Nifty Smashers** takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points. In order to play you'll need a **DEGEN** to select for battle, and then use your keyboard, Playstation or Xbox controller as input (couch multiplayer works too!). From the game lobby you'll be able to select from any of your previously minted **DEGENs** you own in your wallet to show off your cool creations! Each tribe has a unique special move so experiment with different tribes and find the moveset that suits your playstyle best. Hold down the attack button for a charged-up bat attack, some special moves can also be charged. When you bonk another player, they’re worth 1 point. The more they’re successively bonked, the faster they bounce around and the more points they’re worth. Land the final mega-bonk to hit them off the map and claim all the points!
+Vybojujte si to mezi komunitou a získejte co nejvíce _bat bonků_ 🥖 na své přátele, kolik můžete! **Nifty Smashers** se inspiruje klasickou hrou Super Smash Bros, kde je cílem srazit vaše protivníky z mapy a získat body. Abyste mohli hrát, budete potřebovat **DEGEN** pro výběr bitvy a poté jako vstup použijte klávesnici, Playstation nebo Xbox ovladač (funguje i gaučový multiplayer!). V herní lobby si budete moci vybrat ze svých dříve vyražených **DEGENů** které vlastníte ve své peněžence, abyste se mohli pochlubit svými skvělými výtvory! Každý kmen má jedinečný speciální pohyb, takže experimentujte s různými kmeny a najděte sadu pohybů, která nejlépe vyhovuje vašemu hernímu stylu. Podržte tlačítko útoku pro nabitý útok netopýrem, některé speciální pohyby lze také nabít. Když bonkujete jiného hráče, má hodnotu 1 bodu. Čím více jsou postupně bonked, tím rychleji se odrážejí a tím více bodů mají hodnotu. Vysaďte poslední mega-bonk, abyste je trefili z mapy a získali všechny body!
 
-**As noted, this is a beta release of our initial game so lag and issues with pesky bots are to be expected.** Our immediate plan is to continue development on **Nifty Smashers** and to introduce more features such as additional combo moves and a progression system. Hop in our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve **Nifty Smashers** and take it to the next level!
+**Jak již bylo uvedeno, jedná se o beta verzi naší původní hry, takže lze očekávat zpoždění a problémy s otravnými roboty.** Naším bezprostředním plánem je pokračovat ve vývoji hry **Nifty Smashers** a zavést další funkce, jako jsou další kombinované pohyby a systém progrese. Naskočte do našeho **[Discordu](https://discord.gg/niftyleague)** a poskytněte nám zpětnou vazbu a nápady, jak můžeme vylepšit **Nifty Smashers** a posunout je na další úroveň!
 
 <!-- ![](/img/highlights.gif) -->
 
-**Online Multiplayer Lag ☁️**
+**Online prodleva pro více hráčů ☁️**
 
-With the on-going alpha, let's talk about lag in fast-paced and snappy brawler games like **Nifty Smashers**.
+S probíhající alfou si pojďme promluvit o zpoždění v rychlých a svižných výtržnických hrách, jako je **Nifty Smashers**.
 
-Generally speaking, lag is always present whenever there is physical distance between the players on the internet. The greater the distance, the greater the lag. There are different techniques & tricks that developers use to compensate and hide the lag. We have implemented a number of these lag compensation techniques that veil the lag for the best experience possible. We have also incorporated solutions with servers all around the world so that we can match players closest to each other to minimize the lag as much as possible.
+Obecně řečeno, zpoždění je vždy přítomno, kdykoli existuje fyzická vzdálenost mezi hráči na internetu. Čím větší vzdálenost, tím větší zpoždění. Existují různé techniky & triků, které vývojáři používají ke kompenzaci a skrytí zpoždění. Implementovali jsme řadu těchto technik kompenzace zpoždění, které zakrývají zpoždění pro nejlepší možný zážitek. Začlenili jsme také řešení se servery po celém světě, abychom mohli porovnávat hráče, kteří jsou si nejblíže, abychom co nejvíce minimalizovali zpoždění.
 
-Nonetheless, considering the level of responsiveness fast-paced brawlers require ⚡, we are expecting some lag when we launch the online multiplayer.
+Nicméně s ohledem na úroveň odezvy, kterou vyžadují rychloběžní rváčci ⚡, očekáváme určité zpoždění, když spustíme online multiplayer.
 
-We are excited to share our progress with you as soon as possible. Following the launch, with your feedback, we will do everything in our power to make the lag as unnoticeable as possible.
+Jsme rádi, že se s vámi můžeme co nejdříve podělit o náš pokrok. Po spuštění s vaší zpětnou vazbou uděláme vše, co je v našich silách, aby zpoždění bylo co nejméně patrné.
 
-If you are interested in learning more about these techniques, here is a great read by Gabriel Gambetta about **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.
+Pokud máte zájem dozvědět se více o těchto technikách, zde je skvělé čtení od Gabriela Gambetty o **[kompenzaci zpoždění](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.

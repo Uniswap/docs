@@ -4,11 +4,11 @@
     "description": "The label for version V1"
   },
   "sidebar.mySidebar.category.Overview": {
-    "message": "Overview",
+    "message": "genel bakış",
     "description": "The label for category Overview in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.DEGENs 👾": {
-    "message": "DEGENs 👾",
+    "message": "DEGEN'ler 👾",
     "description": "The label for category DEGENs 👾 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.NFTL 🪙": {
@@ -16,39 +16,39 @@
     "description": "The label for category NFTL 🪙 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Play-2-Earn 💰": {
-    "message": "Play-2-Earn 💰",
+    "message": "Oyna-2-Kazan 💰",
     "description": "The label for category Play-2-Earn 💰 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Games 🎮": {
-    "message": "Games 🎮",
+    "message": "Oyunlar 🎮",
     "description": "The label for category Games 🎮 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Nifty DAO 🏛️": {
-    "message": "Nifty DAO 🏛️",
+    "message": "Şık DAO 🏛️",
     "description": "The label for category Nifty DAO 🏛️ in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Comics 📚": {
-    "message": "Comics 📚",
+    "message": "çizgi roman 📚",
     "description": "The label for category Comics 📚 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Guides": {
-    "message": "Guides",
+    "message": "Kılavuzlar",
     "description": "The label for category Guides in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Smashers Guide": {
-    "message": "Smashers Guide",
+    "message": "Parçalayıcı Kılavuzu",
     "description": "The label for category Smashers Guide in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Rentals": {
-    "message": "Rentals",
+    "message": "kiralama",
     "description": "The label for category Rentals in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Free 2 Play": {
-    "message": "Free 2 Play",
+    "message": "Ücretsiz 2 Oyun",
     "description": "The label for category Free 2 Play in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.FAQ": {
-    "message": "FAQ",
+    "message": "SSS",
     "description": "The label for category FAQ in sidebar mySidebar"
   }
 }

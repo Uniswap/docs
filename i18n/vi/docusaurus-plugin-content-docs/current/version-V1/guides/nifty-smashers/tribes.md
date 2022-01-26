@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: bộ lạc
+title: Khả năng đặc biệt của bộ lạc
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**Trò chơi hiện tại của chúng tôi, Nifty Smashers và tất cả các trò chơi trong tương lai đều có Khả năng Đặc biệt (“SA”) cho từng loại nhân vật.**
 
-### List of Special Abilities
+### Danh sách các khả năng đặc biệt
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Ape** - Ném chuối boomerang ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Người ngoài hành tinh** - Dịch chuyển ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Cat** - Đổ và nhận sức mạnh của dơi và tăng tốc độ tạm thời ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Ếch** - Cái móc vật lộn bằng lưỡi ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doge** - Cuộn xu Doge ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Con người** - Ném thuốc nổ theo lệnh ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### Người ngoài hành tinh
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- Nhấn nút SA làm cho Alien có thể dịch chuyển một khoảng cách ngắn theo hướng đã nhắm (trái, phải, lên, xuống, đường chéo)
+- Có một vụ nổ năng lượng tại vị trí được dịch chuyển, đánh trúng đối thủ đứng gần
 
 ### Ape
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- Nhấn nút SA ném một quả chuối theo hướng đã nhắm (trái, phải, lên, xuống, đường chéo) cho đến khi nó **trúng đối thủ**, trúng một phần bản đồ hoặc bay khỏi bản đồ
+- Nhấn nút SA một lần nữa, quả chuối sẽ bay trở lại độ sâu, giúp bạn có thể bắn trúng đối thủ một lần nữa.
+- Chuối có thể được đánh bằng gậy và bay theo hướng đã định
 
-### Cat
+### Con mèo
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- Nhấn SA làm cho con mèo vồ. Sau khi vồ trong một thời gian ngắn, mèo sẽ được trao quyền.
+- Đập gậy trống: Dơi đánh khó hơn
+- Chuyển động mạnh mẽ: mèo chạy nhanh hơn
+- Mèo có thể nhảy đôi / nhảy giữa không trung
 
 ### Doge
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- Nhấn và giữ nút SA làm cho doge lăn.
+- Đánh đối thủ bằng cuộn doge khiến chúng bay lên một chút theo hướng cuộn
+- Doge sẽ bay lăn theo hướng đã định
+- Trong quá trình cuộn doge, hướng của cuộn doge có thể được thay đổi ba lần (có thể hai lần sau khi cập nhật) cho đến khi cuộn doge kết thúc
+- Doge roll cũng kết thúc sau một thời gian nhất định
 
-### Frog
+### Con ếch
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- Nhấn nút SA khiến Ếch bắn lưỡi
+- Khi lưỡi chạm vào đối thủ, đối thủ đó bị kéo về hướng ếch và bay xa hơn một chút
+- Khi lưỡi chạm vào mảnh bản đồ, ếch sẽ tự kéo mình đến đối tượng đó (ví dụ: tường, trần nhà, ...)
+- Lưỡi có thể được bắn theo hướng nhắm (trái, phải, lên, xuống, đường chéo)
 
-### Human
+### Nhân loại
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- Nhấn nút SA ném bom theo hướng đã nhắm (trái, phải, lên, xuống, đường chéo)
+- Quả bom có đường bay cong chứ không bay thẳng như chuối. Nếu không được kích nổ trước và vẫn ở trên mặt đất
+- Bom sẽ nổ sau một thời gian hoặc sau khi nhấn nút SA lần thứ hai
+- Hiện tại bom có thể đánh trúng đối thủ bằng cách đánh trúng hoặc bằng cách nổ
+- Kế hoạch cập nhật: bom phát nổ ngay sau khi tiếp xúc với đối thủ. Nếu không có đối thủ nào bị bắn trúng, nó sẽ nằm trên mặt đất cho đến khi tự động phát nổ hoặc sau khi nhấn nút SA lần thứ hai
+- Bom là loại SA duy nhất có thể tự ném bom bằng vụ nổ của nó
+- Bom có thể được đánh bằng gậy và bay theo hướng đã định

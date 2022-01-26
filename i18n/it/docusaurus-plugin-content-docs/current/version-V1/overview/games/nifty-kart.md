@@ -1,9 +1,9 @@
 ---
-id: nifty-kart
-title: Nifty Kart
+id: elegante-kart
+title: Elegante kart
 sidebar_position: 4
 ---
 
-### Under development for 2022!
+### In sviluppo per il 2022!
 
 ![](/img/niftykart_v01.png)

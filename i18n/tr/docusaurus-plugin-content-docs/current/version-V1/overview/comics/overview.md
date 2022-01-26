@@ -1,33 +1,33 @@
 ---
-id: overview
+id: genel bakış
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+Darphane sürecimiz zaten sizin için yeterince eğlenceli değilmiş gibi... Özel bir Nifty League lansmanı çizgi roman koleksiyonuyla topluluğu şaşırttık! Bu, koleksiyonumuzu bastığınız ve erken davrandığınız için teşekkür etmek içindi 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+Aşağıdaki kilometre taşlarında ilk 4 çizgi roman sayfası için basım süreci boyunca çizgi romanlar için anlık görüntüler alındı: Sayfa 1 - 2500 | Sayfa 2 - 3500 | Sayfa 3 - 5000 | Sayfa 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+Muhtemelen merak ediyorsunuzdur, “Çizgi romanlarla ne yapacağım?”. Pekala, birden fazla yardımcı programa sahip olacakları için yapmanız gereken bazı seçimler olacak. Yani burada kendi yolunuzu seçmeniz için oyun içinde oyun var.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+Nifty League Çizgi Roman Koleksiyonu, henüz piyasaya sürülmemiş olan 5. ve 6. çizgi romanlarla birlikte 6 sayfadan oluşuyor. Tüm DEGEN sahiplerine verilen çizgi roman 5 ve 6 DEGEN kabilesinin tümünü içeren tüm cüzdanlara verilen çizgi roman 6 için 1/3/2022 tarihinde bir anlık görüntü olacaktır. Tüm Meta arka plan DEGENS'ler bir çizgi roman 6 alacak ve tüm Efsanevi arka plan DEGENS'ler iki çizgi roman 6 alacak! Bunlar, web sitemizdeki bir talep yoluyla sunulacaktır.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+Her çizgi roman, yakılan her sayfa karşılığında bir oyun içi giyilebilir cihaz veya silah almak için ileri bir tarihte yakılabilir olacaktır. Bununla birlikte, bu yanma penceresi sonsuza kadar sürmeyecek ve her bir sahip, koleksiyonlarının geleceği için bazı zor kararlar vermek zorunda kalacak.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+Satoshi bize hemen hemen her şeyde eksiksiz koleksiyonları sevdiğini söyledi…bu yüzden burada çok fazla karar vermeden önce iki kez düşünün.
 
-**TL;DR**
+**TL; DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- Her çizgi roman, oyun içi giyilebilir bir öğe için yakılabilir
+- Bu NFT'ler ERC-1155'ler olacak
+- Öğeler, giyildiğinde bir degen'in P2E çarpanını değiştirir
+- Alternatif olarak, henüz açıklamadığımız gelecekteki faydalar için çizgi romanları tutabilirsiniz.
+- 6 çizgi romanın tümü, özel bir gizemli öğe için bir set olarak birlikte yakılabilir
+- Bu gizemli öğe P2E çarpanını DEĞİŞTİRMEYECEK
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+Aşağıda, karşılık gelen her giyilebilir cihaz için giyilebilir çarpan gücünün bir tasviri bulunmaktadır. Kesin oranlar hala belirlenecek.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+Hâlâ DEGEN başına tam olarak kaç yuvanın doldurulabileceğini belirliyoruz, ancak DEGEN NFT başına her giyilebilir cihazdan yalnızca 1'i atanabilir. 

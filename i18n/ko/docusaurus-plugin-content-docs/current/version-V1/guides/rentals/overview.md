@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: 임대 개요
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## 소개

@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: kamp-grunnleggende
+title: Grunnleggende om kamp
 sidebar_position: 2
 ---
 
-### General advice
+### Generelle råd
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Å spille med en kontroller anbefales på det sterkeste (PS, Xbox, …, gjenkjent av PC/Mac)
 
-### Bat swings
+### Flaggermus svinger
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Flaggermus kan svinges i alle mulige retninger: venstre, høyre, opp, ned, diagonaler
+- Flaggermus kan svinges ved å klikke på angrepsknappen. Lengre knappetrykk gjør at flaggermusen slår hardere
+- Flaggermus kan svinges under stående, løping, hopping
+- Langt trykk på angrepsknappen under hopp er mulig (muligens overraskende motstandere)
 
-### Moving
+### Flytte
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Som et 2D-spill er bevegelige retninger venstre/høyre
+- Retninger kan endres under hopp/tumbling
 
-### Jumping
+### Hopping
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Hopphøyden kan endres ved å trykke på varigheten av hoppknappen
+- Retninger kan endres under hopp/tumbling
 
-### Flying Hamburger
+### Flyvende hamburger
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Gjør flaggermusen treffer mye sterkere - resulterer de fleste ganger i et direkte drap
+- For oppdatering: begrense burgerbuffets varighet etter tid og/eller drep

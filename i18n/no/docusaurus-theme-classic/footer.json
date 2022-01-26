@@ -1,6 +1,6 @@
 {
   "link.title.Official": {
-    "message": "Official",
+    "message": "Offisielt",
     "description": "The title of the footer links column with title=Official in the footer"
   },
   "link.title.NFTL": {
@@ -8,27 +8,27 @@
     "description": "The title of the footer links column with title=NFTL in the footer"
   },
   "link.title.NFTs": {
-    "message": "NFTs",
+    "message": "NFT-er",
     "description": "The title of the footer links column with title=NFTs in the footer"
   },
   "link.title.Community": {
-    "message": "Community",
+    "message": "Samfunnet",
     "description": "The title of the footer links column with title=Community in the footer"
   },
   "link.item.label.Website": {
-    "message": "Website",
+    "message": "Nettsted",
     "description": "The label of footer link with label=Website linking to https://niftyleague.com"
   },
   "link.item.label.Feedback": {
-    "message": "Feedback",
+    "message": "Tilbakemelding",
     "description": "The label of footer link with label=Feedback linking to https://feedback.nifty-league.com/"
   },
   "link.item.label.Subgraph": {
-    "message": "Subgraph",
+    "message": "Subgraf",
     "description": "The label of footer link with label=Subgraph linking to https://thegraph.com/explorer/subgraph?id=0x87e1237074760f57b424121edca06f082700dbc2-0&view=Overview"
   },
   "link.item.label.Nifty DAO Treasury": {
-    "message": "Nifty DAO Treasury",
+    "message": "Fiffig DAO Treasury",
     "description": "The label of footer link with label=Nifty DAO Treasury linking to https://etherscan.io/address/0xd06ae6fb7eade890f3e295d69a6679380c9456c1"
   },
   "link.item.label.SushiSwap NFTL/ETH LP": {
@@ -44,7 +44,7 @@
     "description": "The label of footer link with label=CoinMarketCap linking to https://coinmarketcap.com/currencies/nifty-league"
   },
   "link.item.label.Etherscan Token Contract": {
-    "message": "Etherscan Token Contract",
+    "message": "Etherscan Token-kontrakt",
     "description": "The label of footer link with label=Etherscan Token Contract linking to https://etherscan.io/token/0x3c8D2FCE49906e11e71cB16Fa0fFeB2B16C29638"
   },
   "link.item.label.Dextools": {
@@ -56,15 +56,15 @@
     "description": "The label of footer link with label=OpenSea - DEGENS linking to https://opensea.io/collection/niftydegen"
   },
   "link.item.label.OpenSea - COMICS": {
-    "message": "OpenSea - COMICS",
+    "message": "OpenSea - TEGNESERIE",
     "description": "The label of footer link with label=OpenSea - COMICS linking to https://opensea.io/collection/nifty-league-launch-comics"
   },
   "link.item.label.nft20 DEGEN20 Pool": {
-    "message": "nft20 DEGEN20 Pool",
+    "message": "nft20 DEGEN20 Basseng",
     "description": "The label of footer link with label=nft20 DEGEN20 Pool linking to https://nft20.io/asset/0xe4b895820f163b957d166f5a8ccc444e1fac4ff3"
   },
   "link.item.label.NiftyDegen NFT Contract": {
-    "message": "NiftyDegen NFT Contract",
+    "message": "NiftyDegen NFT-kontrakt",
     "description": "The label of footer link with label=NiftyDegen NFT Contract linking to https://etherscan.io/token/0x986aea67C7d6A15036e18678065eb663Fc5BE883"
   },
   "link.item.label.Nifty Launch Comics Contract": {
@@ -72,7 +72,7 @@
     "description": "The label of footer link with label=Nifty Launch Comics Contract linking to https://etherscan.io/address/0xBc8542e65ab801f7c9e3edd23238d37a2e3972d6"
   },
   "link.item.label.Discord": {
-    "message": "Discord",
+    "message": "Uenighet",
     "description": "The label of footer link with label=Discord linking to https://discord.gg/niftyleague"
   },
   "link.item.label.Twitter": {
@@ -80,7 +80,7 @@
     "description": "The label of footer link with label=Twitter linking to https://twitter.com/NiftyLeague"
   },
   "link.item.label.Twitch": {
-    "message": "Twitch",
+    "message": "Rykke",
     "description": "The label of footer link with label=Twitch linking to https://www.twitch.tv/NiftyLeagueOfficial"
   },
   "link.item.label.YouTube": {

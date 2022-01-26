@@ -1,34 +1,34 @@
 ---
-id: nifty-smashers
-title: Nifty Smashers
+id: מפציצים חמודים
+title: סמאשרים נחמדים
 sidebar_position: 2
 ---
 
   <div>
   <video width="100%" height="100%" playsInline controls loop>
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
-  Your browser does not support the video tag.
+  הדפדפן שלך אינו תומך בתג הווידאו.
   </video>
   </div>
 
 ---
 
-Get ready to brawl! The local-multiplayer version of **[Nifty Smashers](https://nifty-league.com/games)** was made available immediately at launch followed by the online multiplayer! So grab a few controllers 🎮 and play with friends.
+תתכונן לקטטה! גרסת מרובי המשתתפים המקומית של **[Nifty Smashers](https://nifty-league.com/games)** הפכה לזמינה מיד עם ההשקה ואחריה מרובה משתתפים מקוון! אז קחו כמה בקרים 🎮 ושחקו עם חברים.
 
-Battle it out amongst the community and get in as many _bat bonks_ 🥖on your friends as you can! **Nifty Smashers** takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points. In order to play you'll need a **DEGEN** to select for battle, and then use your keyboard, Playstation or Xbox controller as input (couch multiplayer works too!). From the game lobby you'll be able to select from any of your previously minted **DEGENs** you own in your wallet to show off your cool creations! Each tribe has a unique special move so experiment with different tribes and find the moveset that suits your playstyle best. Hold down the attack button for a charged-up bat attack, some special moves can also be charged. When you bonk another player, they’re worth 1 point. The more they’re successively bonked, the faster they bounce around and the more points they’re worth. Land the final mega-bonk to hit them off the map and claim all the points!
+קרב על זה בקרב הקהילה וקבל כמה שיותר __ 🥖על החברים שלך! **Nifty Smashers** לוקח השראה מהמשחק הקלאסי Super Smash Bros שבו המטרה היא להפיל את היריבים שלך מהמפה כדי לצבור נקודות. על מנת לשחק תזדקק ל **DEGEN** לבחירה לקרב, ולאחר מכן השתמש במקלדת, בבקר הפלייסטיישן או ב-Xbox שלך כקלט (מרובה משתתפים בספות עובד גם!). בלובי המשחק תוכל לבחור מכל אחד מה **DEGENs** שהוטבעו בעבר שלך בארנק כדי להשוויץ ביצירות המגניבות שלך! לכל שבט יש מהלך מיוחד ייחודי אז התנסו בשבטים שונים ומצאו את סט המהלכים המתאים ביותר לסגנון המשחק שלכם. החזק את כפתור ההתקפה לחוץ להתקפת מחבט טעון, ניתן להטעין גם כמה מהלכים מיוחדים. כשאתה מרביץ לשחקן אחר, הוא שווה נקודה אחת. ככל שהם יורדים ברציפות, כך הם מקפצים מהר יותר ויותר נקודות הם שווים. הנח את המגה-בונק האחרון כדי להכות אותם מהמפה ולדרוש את כל הנקודות!
 
-**As noted, this is a beta release of our initial game so lag and issues with pesky bots are to be expected.** Our immediate plan is to continue development on **Nifty Smashers** and to introduce more features such as additional combo moves and a progression system. Hop in our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve **Nifty Smashers** and take it to the next level!
+**כפי שצוין, זוהי גרסת בטא של המשחק הראשוני שלנו, כך שצפוי פיגור ובעיות עם בוטים מטרידים.** התוכנית המיידית שלנו היא להמשיך בפיתוח על **Nifty Smashers** ולהציג תכונות נוספות כגון מהלכים משולבים נוספים ומערכת התקדמות. היכנס ל **[Discord](https://discord.gg/niftyleague)** כדי לספק משוב ורעיונות כיצד נוכל לשפר את **Nifty Smashers** ולקחת אותו לשלב הבא!
 
 <!-- ![](/img/highlights.gif) -->
 
-**Online Multiplayer Lag ☁️**
+**השהיית מרובה משתתפים מקוונת ☁️**
 
-With the on-going alpha, let's talk about lag in fast-paced and snappy brawler games like **Nifty Smashers**.
+עם האלפא המתמשך, בואו נדבר על פיגור במשחקי קרב מהירים ומצחיקים כמו **Nifty Smashers**.
 
-Generally speaking, lag is always present whenever there is physical distance between the players on the internet. The greater the distance, the greater the lag. There are different techniques & tricks that developers use to compensate and hide the lag. We have implemented a number of these lag compensation techniques that veil the lag for the best experience possible. We have also incorporated solutions with servers all around the world so that we can match players closest to each other to minimize the lag as much as possible.
+באופן כללי, פיגור תמיד קיים בכל פעם שיש מרחק פיזי בין השחקנים באינטרנט. ככל שהמרחק גדול יותר, הפיגור גדול יותר. ישנן טכניקות שונות & טריקים שמפתחים משתמשים בהם כדי לפצות ולהסתיר את הפיגור. יישמנו מספר טכניקות פיצוי פיגור אלו שמכסות את הפיגור לחוויה הטובה ביותר האפשרית. שילבנו גם פתרונות עם שרתים בכל רחבי העולם כדי שנוכל להתאים את השחקנים הקרובים זה לזה כדי למזער את הפיגור ככל האפשר.
 
-Nonetheless, considering the level of responsiveness fast-paced brawlers require ⚡, we are expecting some lag when we launch the online multiplayer.
+אף על פי כן, בהתחשב ברמת ההיענות שברוקרים בקצב מהיר דורשים ⚡, אנו מצפים לאיחור מסוים כאשר נשיק את מרובה המשתתפים המקוון.
 
-We are excited to share our progress with you as soon as possible. Following the launch, with your feedback, we will do everything in our power to make the lag as unnoticeable as possible.
+אנו נרגשים לשתף אתכם בהתקדמות שלנו בהקדם האפשרי. לאחר ההשקה, עם המשוב שלך, נעשה כל שביכולתנו כדי שהפיגור יהיה בלתי מורגש ככל האפשר.
 
-If you are interested in learning more about these techniques, here is a great read by Gabriel Gambetta about **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.
+אם אתה מעוניין ללמוד עוד על טכניקות אלה, הנה קריאה נהדרת מאת גבריאל גמבטה על **[פיצויים בפיגור](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.

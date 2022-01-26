@@ -1,15 +1,15 @@
 ---
-id: backgrounds
-title: Backgrounds
+id: tầng lớp
+title: Tầng lớp
 sidebar_position: 3
 ---
 
 ![](/img/rngBackgrounds.gif)
 
-DEGEN backgrounds were randomly assigned upon minting which either resulted in a common background or one of three special options: **Rare**, **Meta**, or **Legendary**. Aside from looking cool, background come with special perks such as a distinguished look in game and exta earning multipliers.
+Nền DEGEN được chỉ định ngẫu nhiên khi đúc, dẫn đến nền chung hoặc một trong ba tùy chọn đặc biệt: **Hiếm**, **Meta**hoặc **Huyền thoại**. Ngoài vẻ ngoài bắt mắt, nền còn đi kèm với các đặc quyền như giao diện nổi bật trong trò chơi và hệ số thu nhập ngoại hối.
 
-### Earnings Multipliers
+### Hệ số thu nhập
 
-- Rare: 1.5
+- Hiếm: 1,5
 - Meta: 3
-- Legendary: 6
+- Huyền thoại: 6

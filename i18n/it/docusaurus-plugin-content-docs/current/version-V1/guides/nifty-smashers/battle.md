@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: basi della battaglia
+title: Nozioni di base sulla battaglia
 sidebar_position: 2
 ---
 
-### General advice
+### Consiglio generale
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Giocare con un controller altamente raccomandato (PS, Xbox, …, riconosciuto da PC/Mac)
 
-### Bat swings
+### Altalene di pipistrello
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- La mazza può essere oscillata in tutte le direzioni possibili: sinistra, destra, su, giù, diagonali
+- Il pipistrello può essere oscillato facendo clic sul pulsante di attacco. La pressione più lunga del pulsante rende la mazza più forte
+- Il pipistrello può essere oscillato mentre si sta in piedi, correndo, saltando
+- È possibile premere a lungo il pulsante di attacco durante i salti (possibilmente sorprendere gli avversari)
 
-### Moving
+### In movimento
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Come gioco 2D, le direzioni di movimento sono sinistra/destra
+- Le direzioni possono essere cambiate durante i salti o le cadute
 
-### Jumping
+### Saltando
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- L'altezza del salto può essere modificata premendo la durata del pulsante di salto
+- Le direzioni possono essere cambiate durante i salti o le cadute
 
-### Flying Hamburger
+### Hamburger volante
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Rende il pipistrello colpito molto più forte - il più delle volte si traduce in un'uccisione diretta
+- Per l'aggiornamento: limita la durata del buff degli hamburger in base al tempo e/o uccidi

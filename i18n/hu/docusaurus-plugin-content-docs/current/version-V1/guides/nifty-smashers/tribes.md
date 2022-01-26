@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: törzsek
+title: A törzs különleges képességei
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**Jelenlegi játékunk, a Nifty Smashers és a jövőbeli játékok mindegyike rendelkezik egy speciális képességgel ("SA") minden karaktertípushoz.**
 
-### List of Special Abilities
+### Különleges képességek listája
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Ape** – Dobj bumeráng banánt ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Alien** - Teleportál ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Cat** – Ugrálj, és ideiglenesen növeld az ütőerőt és a sebességet ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Béka** - A nyelvmarkoló horog ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doge** - Doge érme tekercs ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Ember** - Dobj dinamitokat, amelyek parancsra felrobbannak ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### Idegen
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- Az SA gomb megnyomásával az Alien kis távolságra teleportálhat a megcélzott irányba (balra, jobbra, fel, le, átlók)
+- Energiarobbanás történik a teleportált helyen, ami eltalálja a közelben álló ellenfeleket
 
-### Ape
+### Emberszabású majom
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- Az SA gomb megnyomása a banánt a megcélzott irányba dobja (balra, jobbra, fel, le, átlók), amíg **el nem talál egy ellenfelet**, el nem talál egy térképrészt vagy le nem repül a térképről
+- Az SA gomb újbóli megnyomásával a banán visszarepül a degenbe, ami lehetővé teszi, hogy ismét eltaláljon egy ellenfelet.
+- A banánt ütővel lehet ütni és a megcélzott irányba repülni
 
-### Cat
+### Macska
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- Az SA megnyomására a macska felpattan. Rövid ütés után a macska megerősödik.
+- Empored denevér lendítés: denevér erősebben üt
+- Erőteljes mozgás: a macskák gyorsabban futnak
+- A macskák képesek duplán ugrani / ugrálni a levegőben
 
-### Doge
+### Dózse
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- Az SA gomb lenyomásával és nyomva tartásával a doge felgurul.
+- Ha dózsadobással ütik meg az ellenfelet, az egy kicsit felfelé repül a dobás irányába
+- Doge repülni fog a megcélzott irányba
+- Doge dobás közben az irány háromszor változtatható (frissítés után akár kétszer is), amíg a dobás be nem fejeződik
+- A Doge tekercs egy bizonyos idő után véget is ér
 
-### Frog
+### Béka
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- Az SA gomb megnyomásával a béka kilövi a nyelvét
+- Amikor a nyelv eltalálja az ellenfelet, az ellenfél a békák irányába húzódik, és egy kicsit tovább repül
+- Amikor a nyelv eltalál egy térképdarabot, a béka odahúzza magát ahhoz a tárgyhoz (pl. falak, mennyezetek,...)
+- A nyelv a célirányba lőhető (balra, jobbra, fel, le, átlósan)
 
-### Human
+### Emberi
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- Az SA gomb megnyomása bombát dob a célirányba (balra, jobbra, fel, le, átlósan)
+- A bombának van egy repülő íve, és nem repül egyenesen, mint a banán. Ha nem robbantják fel korábban, és a földön marad
+- A bomba egy idő után vagy az SA gomb másodszori megnyomása után felrobban
+- Jelenleg a bomba eltalálhatja az ellenfelet ütéssel vagy robbanással
+- Frissített terv: a bomba az ellenféllel való érintkezés után azonnal felrobban. Ha egyetlen ellenfelet sem talál el, akkor a földön marad, amíg automatikusan fel nem robban, vagy az SA gomb másodszori megnyomása után
+- A bombák az egyetlen SA, amely magát a dobódegént tudja eltalálni a robbanásával
+- A bombákat ütővel lehet eltalálni, és a megcélzott irányba repülni

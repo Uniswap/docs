@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: 全般的
+title: 全般的
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **ニフティスマッシャーをプレイするのに費用はかかりますか？**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+今日、Nifty Smashersをプレイするには、DEGENNFTを所有している必要があります。 間もなくレンタルシステムを開始します。このシステムでは、DEGENNFTを週額料金でレンタルできます。
 
-## Where can I play the game?
+## どこでゲームをプレイできますか？
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+ゲームは、暗号ウォレット拡張機能をサポートしている限り、お気に入りのWebブラウザーでプレイできます。 現在、Windowsユーザーが利用できるデスクトップアプリもあり、MacOSも間もなく登場します。
 
-### **Do I need more than one DEGEN to play the game?**
+### **ゲームをプレイするには複数のDEGENが必要ですか？**
 
-No, you only need one DEGEN to play.
+いいえ、プレイするのに必要なのは1つのDEGENだけです。
 
-### How do I import my DEGENs into the game?
+### 自分のDEGENをゲームにインポートするにはどうすればよいですか？
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+ゲームを起動するときに、暗号ウォレット内のDEGENの所有権を確認するためのメッセージに署名するのと同じくらい簡単です。
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **ゲームをプレイするにはコントローラーが必要ですか？**
+いいえ、キーボードよりもコントローラー（PS、Xbox、またはPC / Macで認識されるその他のもの）でプレイする方が簡単だと思いますが。
 
-### Why is the rename asking for multiple verifications?
+### 名前の変更で複数の検証が要求されるのはなぜですか？
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+キャラクターの名前を変更するとコスト **千NFTL** ただちにによって焼かれる **NiftyDegen** スマート契約を。 契約でNFTLを使用できるようにするには、最初に、支出許容量を少なくとも1000NFTL増やす必要があります。 デフォルトでは、この承認は1000に設定されていますが、複数の文字の名前を変更する場合は、将来的に許容量を増やす必要がないように、許容量を増やすことができます。

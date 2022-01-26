@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: бој-основе
+title: Баттле Басицс
 sidebar_position: 2
 ---
 
-### General advice
+### Општи савет
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Топло се препоручује играње са контролером (ПС, Ксбок, …, које препознаје ПЦ/Мац)
 
-### Bat swings
+### Слепи миш замахује
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Палица се може замахнути у свим могућим смеровима: лево, десно, горе, доле, дијагонала
+- Палица се може замахнути кликом на дугме за напад. Дужи притисак на дугме чини палицу јачим ударцем
+- Шишмиш се може замахнути током стајања, трчања, скакања
+- Дуг притисак на дугме за напад током скокова је могућ (могуће изненадити противнике)
 
-### Moving
+### Кретање
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Као 2Д-игра, правци кретања су лево/десно
+- Правци се могу мењати током скокова/превртања
 
-### Jumping
+### Скакање
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Висина скока се може променити притиском на дугме за скок
+- Правци се могу мењати током скокова/превртања
 
-### Flying Hamburger
+### Летећи хамбургер
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Чини палицу много јачим ударцем - најчешће доводи до директног убијања
+- За ажурирање: ограничите трајање буфф-а за хамбургере временом и/или убијте

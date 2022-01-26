@@ -1,6 +1,6 @@
 {
   "title": {
-    "message": "Nifty League Docs",
+    "message": "Documentos da liga bacana",
     "description": "The title in the navbar"
   },
   "item.label.Overview": {
@@ -16,7 +16,7 @@
     "description": "Navbar item with label FAQ"
   },
   "item.label.Whitepaper": {
-    "message": "Whitepaper",
+    "message": "Papel branco",
     "description": "Navbar item with label Whitepaper"
   },
   "item.label.Website": {
@@ -24,7 +24,7 @@
     "description": "Navbar item with label Website"
   },
   "item.label.GitHub": {
-    "message": "GitHub",
+    "message": "GitHubGenericName",
     "description": "Navbar item with label GitHub"
   },
   "item.label.Discord": {

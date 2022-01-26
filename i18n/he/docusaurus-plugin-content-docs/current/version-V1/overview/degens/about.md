@@ -1,11 +1,11 @@
 ---
-id: about
-title: About
+id: על אודות
+title: על אודות
 sidebar_position: 1
 ---
 
-The minting process for Nifty League was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using the Mint-O-Matic!
+תהליך ההטבעה של Nifty League היה מחזה יחיד במינו שאיפשר לטבעות את היכולת לעצב DEGEN משלהם באמצעות Mint-O-Matic!
 
 ![](/img/mintomatic.gif)
 
-There were 6 tribes which include: apes, humans, dogs, frogs, cats, and aliens. This decision not only affects available character traits and accessories, but determines certain in-game mechanics and special moves. During the sale you can check our DEGENS page to browse through minted DEGENS to determine which tribes are rarer than others. Players will naturally gravitate towards certain characters based on their personal preferences as gameplay and special moves may be quite different between them for certain games. You’ll be able to select which of your characters to use before each game (so no harm in having one of each tribe!) 😉
+היו 6 שבטים הכוללים: קופי אדם, בני אדם, כלבים, צפרדעים, חתולים וחייזרים. החלטה זו לא רק משפיעה על תכונות אופי זמינות ואביזרים, אלא קובעת מכניקה מסוימת במשחק ומהלכים מיוחדים. במהלך המכירה תוכלו לבדוק את דף ה-DEGENS שלנו כדי לדפדף ב-DEGENS המוטבעים כדי לקבוע אילו שבטים נדירים יותר מאחרים. שחקנים ימשכו באופן טבעי לדמויות מסוימות בהתבסס על ההעדפות האישיות שלהם שכן משחק ומהלכים מיוחדים עשויים להיות שונים למדי ביניהם עבור משחקים מסוימים. תוכל לבחור באילו מהדמויות שלך להשתמש לפני כל משחק (לכן לא יזיק אם תהיה אחת מכל שבט!) 😉

@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: племена
+title: Особые способности племени
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**Наша текущая игра, Nifty Smashers, и все будущие игры имеют особую способность («SA») для каждого типа персонажа.**
 
-### List of Special Abilities
+### Список особых способностей
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Обезьяна** - Бросить бананы-бумеранги ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Чужой** - Телепорт ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Кат.** — набрасывайтесь и временно увеличивайте силу и скорость летучей мыши. ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Лягушка** - Крюк с язычком ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **дож** - бросок монет дожа ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Человек** - Бросать динамит, который взрывается по команде ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### Пришелец
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- Нажатие кнопки SA позволяет Чужому телепортироваться на небольшое расстояние в указанном направлении (влево, вправо, вверх, вниз, по диагонали).
+- В месте телепортации происходит энергетический взрыв, поражающий стоящих рядом противников.
 
-### Ape
+### Обезьяна
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- Нажатие кнопки SA бросает банан в указанном направлении (влево, вправо, вверх, вниз, по диагонали) до тех пор, пока он **попадет в противника**, не попадет в часть карты или не улетит с карты
+- Повторное нажатие на кнопку SA заставляет банан лететь обратно в деген, позволяя снова поразить противника.
+- Бананы можно бить битой и лететь в указанном направлении
 
-### Cat
+### Кот
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- Нажатие SA заставляет кошку прыгать. После короткого прыжка кошка получает силу.
+- Empored качели летучей мыши: летучая мышь бьет сильнее
+- Усиленное движение: кошки бегают быстрее
+- Кошки могут делать двойной прыжок / прыгать в воздухе
 
-### Doge
+### Дож
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- Нажатие и удерживание кнопки SA приводит к броску дожа.
+- Попадание в противника кувырком дожа заставляет его немного взлететь вверх в направлении кувырка.
+- Doge будет летать-кувыркаться в указанном направлении
+- Во время броска дожа направления можно изменить три раза (может быть, два раза после обновления), пока бросок дожа не закончится.
+- Бросок дожа также заканчивается через определенное время.
 
-### Frog
+### Лягушка
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- Нажатие кнопки SA заставляет Лягушку стрелять языком
+- Когда язык попадает в противника, этот противник притягивается в направлении лягушки и летит немного дальше.
+- Когда язык касается фрагмента карты, лягушка притягивается к этому объекту (например, к стенам, потолку и т. д.).
+- Язык можно стрелять в указанном направлении (влево, вправо, вверх, вниз, по диагонали)
 
-### Human
+### Человек
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- Нажатие кнопки SA бросает бомбу в указанном направлении (влево, вправо, вверх, вниз, по диагонали)
+- Бомба имеет кривую полета и не летит прямо, как бананы. Если не взорвался ранее и остается на земле
+- Бомба взрывается через некоторое время или после второго нажатия кнопки SA
+- В настоящее время бомба может поразить противника ударом или взрывом.
+- Обновленный план: бомба детонирует сразу после контакта с противником. Если ни один противник не поражен, он остается на земле, пока не взорвется автоматически или после второго нажатия кнопки SA.
+- Бомбы - единственная СА, которая своим взрывом может поразить сам метательный деген
+- Бомбы можно бить битой и лететь в указанном направлении

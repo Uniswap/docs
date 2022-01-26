@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: Kampfgrundlagen
+title: Kampfgrundlagen
 sidebar_position: 2
 ---
 
-### General advice
+### Allgemeine Beratung
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Spielen mit einem Controller dringend empfohlen (PS, Xbox, …, von PC/Mac erkannt)
 
-### Bat swings
+### Fledermaus schwingt
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Der Schläger kann in alle möglichen Richtungen geschwenkt werden: links, rechts, oben, unten, diagonal
+- Die Fledermaus kann durch Klicken auf die Angriffstaste geschwungen werden. Längerer Tastendruck macht den Schlag härter
+- Schläger kann im Stehen, Laufen, Springen geschwungen werden
+- Langes Drücken der Angriffstaste bei Sprüngen möglich (ggf. überraschende Gegner)
 
-### Moving
+### Ziehen um
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Als 2D-Spiel sind die Bewegungsrichtungen links/rechts
+- Die Richtung kann während Sprüngen/Stürzen geändert werden
 
-### Jumping
+### Springen
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Die Sprunghöhe kann durch die Druckdauer der Sprungtaste verändert werden
+- Die Richtung kann während Sprüngen/Stürzen geändert werden
 
-### Flying Hamburger
+### Fliegender Hamburger
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Macht den Schlägerschlag viel stärker - führt meistens zu einem direkten Kill
+- Für Update: Burger-Buff-Dauer durch Zeit und/oder Kill begrenzen

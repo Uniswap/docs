@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: algemeen
+title: Algemeen
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **Kost dit om Nifty Smashers te speel?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+Vandag moet jy 'n DEGEN NFT besit om Nifty Smashers te speel. Ons sal binnekort 'n huurstelsel bekendstel, waar u 'n DEGEN NFT teen 'n weeklikse fooi kan huur.
 
-## Where can I play the game?
+## Waar kan ek die speletjie speel?
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+Speletjies is speelbaar op jou gunsteling webblaaiers solank dit kripto-beursie-uitbreidings ondersteun. Ons het ook 'n rekenaartoepassing beskikbaar vir Window-gebruikers op die oomblik met MacOS wat binnekort kom!
 
-### **Do I need more than one DEGEN to play the game?**
+### **Het ek meer as een DEGEN nodig om die speletjie te speel?**
 
-No, you only need one DEGEN to play.
+Nee, jy het net een DEGEN nodig om te speel.
 
-### How do I import my DEGENs into the game?
+### Hoe voer ek my DEGENs in die speletjie in?
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+So eenvoudig soos om 'n boodskap te onderteken om die eienaarskap van jou DEGENs in jou kripto-beursie te verifieer wanneer jy die speletjie begin.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **Het ek beheerders nodig om die speletjie te speel?**
+Nee, hoewel ons dink dit is makliker om met 'n kontroleerder (PS, Xbox, of enige ander wat deur PC/Mac herken word) te speel as 'n sleutelbord.
 
-### Why is the rename asking for multiple verifications?
+### Waarom vra die hernoeming vir veelvuldige verifikasies?
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+Om 'n karakter te hernoem kos **1000 NFTL** wat onmiddellik verbrand word deur die **NiftyDegen** slim kontrak. Om die kontrak in staat te stel om jou NFTL te spandeer, sal jy aanvanklik die bestedingstoelaag met ten minste 1000 NFTL moet verhoog. By verstek is hierdie goedkeuring op 1000 gestel, maar as jy van plan is om verskeie karakters te hernoem, kan jy die toelaag verhoog om te verhoed dat jy die toelaag in die toekoms hoef te verhoog.

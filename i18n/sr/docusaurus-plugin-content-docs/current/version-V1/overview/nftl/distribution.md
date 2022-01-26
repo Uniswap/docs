@@ -1,19 +1,19 @@
 ---
-id: distribution
-title: Distribution (First Year)
+id: дистрибуција
+title: Дистрибуција (прва година)
 sidebar_position: 2
 ---
 
-There is no max supply set for now but we expect around **1 Billion NFTL** to be distributed over the next year according to the allocations set below:
+За сада не постоји одређена максимална понуда, али очекујемо да ће око **1 милијарди НФТЛ** бити дистрибуирано током следеће године према доле наведеним алокацијама:
 
-![https://nifty-league.com/static/media/new-nftl-distribution-dark.eb3e89af.png](https://nifty-league.com/static/media/new-nftl-distribution-dark.eb3e89af.png)
+![хттпс://нифти-леагуе.цом/статиц/медиа/нев-нфтл-дистрибутион-дарк.еб3е89аф.пнг](https://nifty-league.com/static/media/new-nftl-distribution-dark.eb3e89af.png)
 
-**Community Giveaways**
+**Цоммунити Гивеаваис**
 
-Every project needs quality memes! Join the **[Nifty League Discord](https://discord.gg/niftyleague)** for access to free **NFTL** distributions to community members who make us all laugh or go above and beyond contributing to discussions. To facilitate this we’ll have a tip bot configured for our team and moderators to tip Discord users a combined total of **7M NFTL** over the **first two months**. As noted earlier, these tips will remain available for active Discord members going forward but the rate is expected to be much lower.
+Сваки пројекат треба квалитетне меме! Придружите се **[Нифти Леагуе Дисцорд](https://discord.gg/niftyleague)** за приступ бесплатним **НФТЛ** дистрибуција члановима заједнице који нас све засмејавају или доприносе дискусијама. Да би се то олакшало ћемо имати дојаву бот конфигурисан за наш тим и модераторе да спречи раздор корисницима укупним бројем од **7М НФТЛ** над **прва два месеца**. Као што је раније поменуто, ови савети ће остати доступни активним члановима Дисцорд-а убудуће, али се очекује да ће стопа бити много нижа.
 
-**Initial Supply**
+**Инитиал Суппли**
 
-We have decided to close our AXS holders airdrop early to reward our **DEGEN** holders instead with **212.85M NFTL** tokens in total; a portion being claimable along with the purchase of **DEGEN** NFTs and the rest airdropped to holders prior to the sale based on a snapshot taken at **[Block #13360120](https://etherscan.io/block/13360120)**. While the AXS airdrop contract was open, a total of **256K NFTL** was claimed.
+Одлучили смо да раније затворимо испуштање наших АКСС држача да бисмо уместо тога **ДЕГЕН** **** токена; део који се може потраживати заједно са куповином **ДЕГЕН** НФТ-а, а остатак је испуштен власницима пре продаје на основу снимка направљеног у **[Блок #13360120](https://etherscan.io/block/13360120)**. Док је АКСС аирдроп уговор био отворен, ****.
 
-**100M NFTL** was allocated for a team development fund which is time-locked for **6 months** from **[Block #13228502](https://etherscan.io/tx/0x3649b00464903b78608f8de9308aec339ecd7446f1dc2de26a9913d2d5468ecf)**. Another **100M NFTL** was provided to the **[Nifty DAO treasury](https://etherscan.io/address/0xd06ae6fb7eade890f3e295d69a6679380c9456c1)** to support early community plans such as liquidity incentives, tournament rewards, or giveaways. This brings the initial supply to around **420M** with daily emissions for all genesis NFT owners starting immediately after each character sale.
+**100 милиона НФТЛ** је додељено за фонд за развој тима који је временски закључан на **6 месеци** од **[Блок #13228502](https://etherscan.io/tx/0x3649b00464903b78608f8de9308aec339ecd7446f1dc2de26a9913d2d5468ecf)**. Још **100 милиона НФТЛ** је обезбеђено у **[Нифти ДАО трезор](https://etherscan.io/address/0xd06ae6fb7eade890f3e295d69a6679380c9456c1)** за подршку раним плановима заједнице као што су подстицаји ликвидности, награде за турнире или поклони. Ово доводи почетно снабдевање на око **420М** са дневним емисијама за све генесис власнике НФТ-а почевши одмах након сваке продаје ликова.

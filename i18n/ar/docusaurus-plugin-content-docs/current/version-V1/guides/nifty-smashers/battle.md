@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: أساسيات المعركة
+title: أساسيات المعركة
 sidebar_position: 2
 ---
 
-### General advice
+### نصيحة عامة
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- يوصى بشدة باللعب باستخدام وحدة تحكم (PS ، Xbox ، …، معترف بها بواسطة الكمبيوتر / جهاز Mac)
 
-### Bat swings
+### يتأرجح الخفافيش
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- يمكن أن يتأرجح الخفاش في كل الاتجاهات الممكنة: يسار ، يمين ، أعلى ، أسفل ، قطري
+- يمكن تأرجح الخفاش بالضغط على زر الهجوم. الضغط على الزر لفترة أطول يجعل ضرب الخفاش أصعب
+- يمكن أن يتأرجح الخفاش أثناء الوقوف والجري والقفز
+- من الممكن الضغط لفترة طويلة على زر الهجوم أثناء القفزات (ربما يفاجئ الخصوم)
 
-### Moving
+### متحرك
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- باعتبارها لعبة ثنائية الأبعاد ، تكون الاتجاهات المتحركة يسارًا / يمينًا
+- يمكن تغيير الاتجاهات أثناء القفزات / التعثر
 
-### Jumping
+### القفز
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- يمكن تغيير ارتفاع القفزة عن طريق الضغط على زر القفز
+- يمكن تغيير الاتجاهات أثناء القفزات / التعثر
 
-### Flying Hamburger
+### تحلق همبرغر
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- يجعل الخفاش يضرب بقوة - ينتج عنه قتل مباشر في معظم الأوقات
+- للتحديث: حد من مدة تقوية البرجر حسب الوقت و / أو القتل

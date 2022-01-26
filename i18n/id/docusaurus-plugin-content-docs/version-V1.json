@@ -4,47 +4,47 @@
     "description": "The label for version V1"
   },
   "sidebar.mySidebar.category.Overview": {
-    "message": "Overview",
+    "message": "Ringkasan",
     "description": "The label for category Overview in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.DEGENs 👾": {
-    "message": "DEGENs 👾",
+    "message": "DEGEN",
     "description": "The label for category DEGENs 👾 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.NFTL 🪙": {
-    "message": "NFTL 🪙",
+    "message": "NFTL",
     "description": "The label for category NFTL 🪙 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Play-2-Earn 💰": {
-    "message": "Play-2-Earn 💰",
+    "message": "Mainkan-2-Hasilkan",
     "description": "The label for category Play-2-Earn 💰 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Games 🎮": {
-    "message": "Games 🎮",
+    "message": "Game",
     "description": "The label for category Games 🎮 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Nifty DAO 🏛️": {
-    "message": "Nifty DAO 🏛️",
+    "message": "DAO yang bagus ️",
     "description": "The label for category Nifty DAO 🏛️ in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Comics 📚": {
-    "message": "Comics 📚",
+    "message": "komik",
     "description": "The label for category Comics 📚 in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Guides": {
-    "message": "Guides",
+    "message": "Panduan",
     "description": "The label for category Guides in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Smashers Guide": {
-    "message": "Smashers Guide",
+    "message": "Panduan Smasher",
     "description": "The label for category Smashers Guide in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Rentals": {
-    "message": "Rentals",
+    "message": "Penyewaan",
     "description": "The label for category Rentals in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.Free 2 Play": {
-    "message": "Free 2 Play",
+    "message": "Gratis 2 Bermain",
     "description": "The label for category Free 2 Play in sidebar mySidebar"
   },
   "sidebar.mySidebar.category.FAQ": {

@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Utilitas apa yang dimiliki NFTL?
 
-### What is a governance token?
+### Apa itu token pemerintahan?

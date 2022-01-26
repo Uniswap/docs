@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Mikä apuohjelma NFTL:llä on?
 
-### What is a governance token?
+### Mikä on hallintotunnus?

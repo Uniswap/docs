@@ -1,17 +1,17 @@
 ---
-id: nifty-tennis
-title: Nifty Tennis
+id: snygg tennis
+title: Snygg tennis
 sidebar_position: 3
 ---
 
-### Under development for 2022!
+### Under utveckling för 2022!
 
 ![](/img/NiftyTennis.jpeg)
 
-- 1-4 players local and online multiplayer, singles or doubles!
-- Choose to be the line umpire and make important calls!
-- Be an audience member and emote from the crowd!
-- Discord voice integration for both players and audience!
-- Play on a variety of court surfaces in unique stages!
-- Equip different racquets & items for a temporary tactical advantage!
-- Compete for the _Nifty League Grand Slam Cup_!
+- 1-4 spelare lokal och online multiplayer, singel eller dubbel!
+- Välj att vara linjedomare och ring viktiga samtal!
+- Bli en publik och känn från mängden!
+- Discord röstintegration för både spelare och publik!
+- Spela på en mängd olika banytor i unika steg!
+- Utrusta olika racketar & föremål för en tillfällig taktisk fördel!
+- Tävla om _Nifty League Grand Slam Cup_!

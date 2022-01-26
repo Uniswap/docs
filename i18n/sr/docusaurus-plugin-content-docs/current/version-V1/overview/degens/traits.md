@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: особине
+title: Карактерне особине
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+Било је укупно 1023 особина и 21 опција за одабир након одабира племена, чинећи скоро бесконачан број комбинација. Особине карактера су насумично уклоњене из скупа доступних особина како је створено више карактера, што је отежавало сазнање које опције ће завршити као најређе. Док типови позадине имају посебне предности, особине су строго козметичке. Погледајте [ОпенСеа](https://opensea.io/collection/niftydegen) да бисте видели неке од невероватних креација које је наша заједница смислила!

@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: загальна інформація
+title: Загальна інформація
 sidebar_position: 1
 ---
 
-### Scoring
+### Підрахунок балів
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- Якщо деген потрапив один раз і загине (впаде з карти), ви отримаєте одне очко
+- Якщо деген вдарили кілька разів без можливості відновлення, ви отримаєте очки так само часто, як і деген. Не має значення, чи були попередні звернення іншим degen. Останній удар, який вбиває дегена, отримує всі комбо-очки
+- **Наразі немає обмеження на те, як часто можна вдарити деген (комбо), але обмеження щодо максимальної кількості очок, які ви можете отримати (3 бали: матч для 2 гравців / 5 балів: 3&матч для 4 гравців)**
+- Матч для двох гравців: 5 очок для перемоги в раунді / 3&Матч для 4 гравців: 10 очок для перемоги в раунді
+- Матчі Bo5. Якщо після п’ятого раунду є нічия, гравець із нічиєю переходить у раунд раптової смерті
 
-### Lag Indicator
+### Індикатор відставання
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- ваше відставання (швидкість ping) вашого з’єднання
+- затримка зазвичай означає понад 100 мс
 
-### Custom Lobby
+### Індивідуальне лобі
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- Для відкриття матчу у вибраному регіоні можна використовувати спеціальне лобі. Творець вестибюля може побачити код на карті лобі, яким можна поділитися з іншими
+- Якщо інший деген хоче приєднатися до цього лобі, йому спочатку потрібно вибрати правильний регіон, а потім ввести код лобі в поле введення
+- Для оновлення: при використанні спеціального коду лобі регіон має перемикатися автоматично
 
-### How and why to change regions?
+### Як і чому змінювати регіони?
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher – це гра зі швидким темпом, де хороша затримка/пінг має вирішальне значення. Чим ближче обраний регіон до розташування гравця, тим нижчий пінг.
+- Після зміни регіону у веб-додатку/додатку для робочого столу відображається поточний ping

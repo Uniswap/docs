@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Watter nut het NFTL?
 
-### What is a governance token?
+### Wat is 'n bestuursbewys?

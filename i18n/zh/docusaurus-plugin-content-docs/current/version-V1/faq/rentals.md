@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: 租金
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### 我在哪里租用 DEGEN？

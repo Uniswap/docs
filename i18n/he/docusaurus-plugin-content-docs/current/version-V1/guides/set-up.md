@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
+id: להכין
+title: הגדר את הארנק שלך
 sidebar_position: 0.5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+הקש על הפעל אפליקציה בסרגל הניווט העליון בצד ימין. הקש על התחבר. בחר את ארנק הקריפטו שמכיל את DEGEN NFT שלך. חתום על העסקה כאשר תתבקש. 

@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: suku
+title: Kemampuan Khusus Suku
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**Game kami saat ini, Nifty Smashers, dan semua game masa depan memiliki Kemampuan Khusus ("SA") untuk setiap tipe karakter.**
 
-### List of Special Abilities
+### Daftar Kemampuan Khusus
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Kera** - Lempar pisang bumerang ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Alien** - Teleportasi ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Cat** - Menerkam dan mendapatkan kekuatan kelelawar dan meningkatkan kecepatan untuk sementara ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Katak** - Pengait lidah ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doge** - gulungan koin Doge ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Manusia** - Lempar dinamit yang meledak sesuai perintah ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### Asing
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- Menekan tombol SA membuat Alien dapat melakukan teleportasi jarak pendek ke arah yang dituju (kiri, kanan, atas, bawah, diagonal)
+- Ada ledakan energi di lokasi teleportasi, mengenai lawan yang berdiri di dekat
 
-### Ape
+### Kera
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- Menekan tombol SA melempar pisang ke arah yang dituju (kiri, kanan, atas, bawah, diagonal) hingga **lawan**, mengenai bagian peta atau terbang keluar dari peta
+- Menekan tombol SA lagi, membuat pisang terbang kembali ke degen, memungkinkan untuk memukul lawan lagi.
+- Pisang bisa dipukul dengan tongkat pemukul dan terbang ke arah yang dituju
 
-### Cat
+### Kucing
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- Menekan SA membuat kucing menerkam. Setelah menerkam untuk waktu yang singkat, kucing diberdayakan.
+- Ayunan kelelawar Empored: pukulan kelelawar lebih keras
+- Gerakan yang diberdayakan: kucing berlari lebih cepat
+- Kucing dapat melompat ganda / melompat di udara
 
-### Doge
+### anjing
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- Menekan dan menahan tombol SA membuat doge berguling.
+- Memukul lawan dengan doge roll membuat mereka terbang sedikit ke atas dalam arah roll
+- Doge akan terbang-berguling ke arah yang dituju
+- Selama doge roll arah dapat diubah tiga kali (mungkin dua kali setelah update) sampai doge roll berakhir
+- Gulungan Doge juga berakhir setelah waktu tertentu
 
-### Frog
+### Katak
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- Menekan tombol SA membuat Katak menembak lidahnya
+- Ketika lidah mengenai lawan, lawan itu ditarik ke arah katak dan terbang sedikit lebih jauh
+- Ketika lidah menyentuh petak, katak menarik dirinya ke objek itu (misalnya dinding, langit-langit,...)
+- Lidah dapat menembak ke arah yang dituju (kiri, kanan, atas, bawah, diagonal)
 
-### Human
+### Manusia
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- Menekan tombol SA melempar bom ke arah yang dituju (kiri, kanan, atas, bawah, diagonal)
+- Bom itu memiliki kurva terbang dan tidak terbang lurus seperti pisang. Jika tidak diledakkan sebelumnya dan tetap di tanah
+- Bom meledak setelah beberapa waktu atau setelah tombol SA ditekan untuk kedua kalinya
+- Saat ini bom dapat mengenai lawan dengan memukulnya atau dengan ledakan
+- Rencana yang diperbarui: bom meledak segera setelah kontak dengan lawan. Jika tidak ada lawan yang terkena, ia tetap di tanah sampai meledak secara otomatis atau setelah menekan tombol SA untuk kedua kalinya
+- Bom adalah satu-satunya SA yang dapat mengenai degen pelempar itu sendiri dengan ledakannya
+- Bom dapat dipukul dengan tongkat pemukul dan terbang ke arah yang dituju

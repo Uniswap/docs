@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
+id: 설정
+title: 지갑 설정
 sidebar_position: 0.5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+오른쪽 상단 탐색 모음에서 앱 시작을 탭합니다. 연결을 탭합니다. DEGEN NFT를 보유하고 있는 암호화폐 지갑을 선택하십시오. 메시지가 표시되면 트랜잭션에 서명합니다. 

@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: γενικός
+title: Γενικός
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **Κοστίζει να παίξεις το Nifty Smashers;**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+Σήμερα, πρέπει να έχετε ένα DEGEN NFT για να παίξετε το Nifty Smashers. Σύντομα θα λανσάρουμε ένα σύστημα ενοικίασης, όπου μπορείτε να νοικιάσετε ένα DEGEN NFT με εβδομαδιαία χρέωση.
 
-## Where can I play the game?
+## Πού μπορώ να παίξω το παιχνίδι;
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+Τα παιχνίδια μπορούν να παιχτούν στα αγαπημένα σας προγράμματα περιήγησης ιστού, αρκεί να υποστηρίζουν επεκτάσεις κρυπτογραφικού πορτοφολιού. Διαθέτουμε επίσης μια εφαρμογή για επιτραπέζιους υπολογιστές διαθέσιμη για τους χρήστες του Window αυτή τη στιγμή με το MacOS σύντομα!
 
-### **Do I need more than one DEGEN to play the game?**
+### **Χρειάζομαι περισσότερα από ένα DEGEN για να παίξω το παιχνίδι;**
 
-No, you only need one DEGEN to play.
+Όχι, χρειάζεστε μόνο ένα DEGEN για να παίξετε.
 
-### How do I import my DEGENs into the game?
+### Πώς εισάγω τα DEGEN μου στο παιχνίδι;
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+Τόσο απλό όσο η υπογραφή ενός μηνύματος για να επαληθεύσετε την ιδιοκτησία των DEGEN στο κρυπτοπορτοφόλι σας όταν ξεκινάτε το παιχνίδι.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **Χρειάζομαι χειριστήρια για να παίξω το παιχνίδι;**
+Όχι, αν και πιστεύουμε ότι είναι πιο εύκολο να παίζετε με χειριστήριο (PS, Xbox ή οποιοδήποτε άλλο αναγνωρισμένο από PC/Mac) παρά με πληκτρολόγιο.
 
-### Why is the rename asking for multiple verifications?
+### Γιατί η μετονομασία απαιτεί πολλαπλές επαληθεύσεις;
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+Η μετονομασία ενός χαρακτήρα κοστίζει **1000 NFTL** οποίο καίγεται αμέσως από το έξυπνο συμβόλαιο **NiftyDegen** Για να επιτρέψετε στη σύμβαση να δαπανήσει το NFTL σας, θα χρειαστεί αρχικά να αυξήσετε το επίδομα δαπανών κατά τουλάχιστον 1000 NFTL. Από προεπιλογή, αυτή η έγκριση έχει οριστεί σε 1000, αλλά εάν σκοπεύετε να μετονομάσετε πολλούς χαρακτήρες, μπορείτε να αυξήσετε το όριο για να αποφύγετε να αυξήσετε το όριο στο μέλλον.

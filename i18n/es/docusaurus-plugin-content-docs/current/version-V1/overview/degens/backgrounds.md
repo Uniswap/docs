@@ -1,15 +1,15 @@
 ---
-id: backgrounds
-title: Backgrounds
+id: antecedentes
+title: Antecedentes
 sidebar_position: 3
 ---
 
 ![](/img/rngBackgrounds.gif)
 
-DEGEN backgrounds were randomly assigned upon minting which either resulted in a common background or one of three special options: **Rare**, **Meta**, or **Legendary**. Aside from looking cool, background come with special perks such as a distinguished look in game and exta earning multipliers.
+Los fondos DEGEN se asignaron aleatoriamente al acuñar, lo que resultó en un fondo común o una de las tres opciones especiales: **Raro**, **Meta**o **Legendario**. Además de verse genial, el fondo viene con ventajas especiales, como una apariencia distinguida en el juego y multiplicadores de ganancias adicionales.
 
-### Earnings Multipliers
+### Multiplicadores de ganancias
 
-- Rare: 1.5
+- Raro: 1.5
 - Meta: 3
-- Legendary: 6
+- Legendario: 6

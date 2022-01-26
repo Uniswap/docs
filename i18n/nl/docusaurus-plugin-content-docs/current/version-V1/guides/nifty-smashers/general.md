@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: algemene informatie
+title: Algemene informatie
 sidebar_position: 1
 ---
 
-### Scoring
+### Scoren
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- Als een degen één keer wordt geraakt en sterft (van de kaart vallen) krijg je één punt
+- Als een degen meerdere keren wordt geraakt zonder te kunnen herstellen, krijg je net zo vaak punten als de degen is geraakt. Het maakt niet uit of eerdere treffers door een andere degen zijn gedaan. Laatste treffer die de degen doodt, krijgt alle combopunten
+- **Momenteel is er geen limiet voor hoe vaak een degen kan worden geraakt (gecombineerd), maar een limiet voor hoeveel punten je maximaal kunt krijgen (3 punten: wedstrijd met 2 spelers / 5 punten: 3&wedstrijd met 4 spelers)**
+- 2-speler-wedstrijd: 5 punten om ronde te winnen / 3&4-speler-wedstrijd: 10 punten om ronde te winnen
+- Wedstrijden zijn Bo5. Als er een gelijkspel is na de vijfde ronde, gaat de gelijkspelde speler naar een “sudden death”-ronde
 
-### Lag Indicator
+### Lag-indicator
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- uw vertraging (ping-snelheid) van uw verbinding
+- lag betekent meestal meer dan 100 ms
 
-### Custom Lobby
+### Aangepaste lobby
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- Een aangepaste lobby kan worden gebruikt om een wedstrijd in een gekozen regio te openen. De maker van de lobby kan een code in de lobbykaart zien die met anderen kan worden gedeeld
+- Als een andere degen zich bij deze lobby wil aansluiten, moet hij eerst de juiste regio selecteren en vervolgens de lobbycode in een invoervak typen
+- Voor update: bij gebruik van een aangepaste lobbycode moet de regio automatisch worden gewijzigd
 
-### How and why to change regions?
+### Hoe en waarom van regio veranderen?
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher is een snel spel waarbij een goede latentie/ping cruciaal is. Hoe dichter de gekozen regio bij de locatie van de speler ligt, hoe lager de ping.
+- Na het wijzigen van de regio in de web/desktop-app, wordt de huidige ping weergegeven

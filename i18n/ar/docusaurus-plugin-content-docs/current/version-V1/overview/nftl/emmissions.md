@@ -1,9 +1,9 @@
 ---
-id: emissions
-title: Emissions
+id: الانبعاثات
+title: الانبعاثات
 sidebar_position: 3
 ---
 
-**250M NFTL** will be distributed annually over the first **3 years** to all genesis **DEGEN** NFT owners. There is no need to stake your NFT; just sit back and watch your **NFTL** accrue daily which you can claim on our website at any time on your [wallet page](https://nifty-league.com/wallet).
+**250M NFTL** سيتم توزيعها سنويا على مدى الأولى **3 سنوات** لجميع نشأة **DEGEN** أصحاب NFT. ليست هناك حاجة لرهان NFT الخاص بك ؛ ما عليك سوى الاسترخاء ومشاهدة **** يوميًا والذي يمكنك المطالبة به على موقعنا في أي وقت على صفحتك [المحفظة](https://nifty-league.com/wallet).
 
-Any remaining future emissions will either be for daily in-game rewards or funding for the **Nifty DAO**. We will grant the **Nifty DAO** the ability to mint up to **330M NFTL** over the first year after we get a minimum of **7 signers** controlling the multi-sig wallet. We foresee most of these tokens going to community contributors as well as being used for competition rewards, but ultimately the DAO will make that decision when the time comes.
+أي انبعاثات مستقبلية متبقية ستكون إما للمكافآت اليومية داخل اللعبة أو التمويل لـ **Nifty DAO**. وسوف تمنح **أنيق DAO** القدرة على النعناع تصل إلى **330M NFTL** خلال العام الأول بعد أن تحصل على ما لا يقل عن **7 الموقعين** السيطرة على محفظة متعددة سيج. نتوقع أن تذهب معظم هذه الرموز إلى المساهمين في المجتمع بالإضافة إلى استخدامها في مكافآت المنافسة ، ولكن في النهاية ستتخذ DAO هذا القرار عندما يحين الوقت.

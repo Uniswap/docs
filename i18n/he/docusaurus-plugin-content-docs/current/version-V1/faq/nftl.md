@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### איזה כלי שירות יש ל-NFTL?
 
-### What is a governance token?
+### מהו אסימון ממשל?

@@ -1,10 +1,10 @@
 ---
-id: future-games
-title: Future Games
+id: juegos del futuro
+title: Juegos futuros
 sidebar_position: 7
 ---
 
-We have several ideas percolating and plan to expand on them once we have **[Nifty Smashers](https://nifty-league.com/games)** working as well as we'd like it to. Some upcoming titles have already been announced but stay tuned in our **[Discord](https://discord.gg/niftyleague)** for more details… 😈 The order of any upcoming games will be put up to a community vote.
+Tenemos varias ideas filtrándose y planeamos expandirlas una vez que tengamos **[Nifty Smashers](https://nifty-league.com/games)** funcionando tan bien como nos gustaría. Ya se han anunciado algunos títulos próximos, pero estén atentos a nuestro **[Discord](https://discord.gg/niftyleague)** para obtener más detalles… 😈 El orden de los próximos juegos se someterá a votación de la comunidad.
 
 ![https://nifty-league.com/static/media/smash-sketch.7d5f0061.png](https://nifty-league.com/static/media/smash-sketch.7d5f0061.png)
 

@@ -1,33 +1,33 @@
 ---
-id: overview
+id: סקירה כללית
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+כאילו תהליך ההטבעה שלנו לא היה מספיק מהנה עבורכם... הפתענו את הקהילה עם קולקציית קומיקס מיוחדת להשקת Nifty League! זה היה כדי לומר תודה על שטבעת את הקולקציה שלנו ועל שהקדמתם 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+צילומי מצב לקומיקס צולמו לאורך תהליך ההטבעה עבור 4 עמודי הקומיקס הראשונים באבני הדרך הבאות: עמוד 1 - 2500 | עמוד 2 - 3500 | עמוד 3 - 5000 | עמוד 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+אתה בוודאי תוהה, "מה אני עושה עם הקומיקס?". ובכן, יהיו לך כמה בחירות לעשות מכיוון שיהיו להם מספר כלי עזר. אז, יש כאן משחק בתוך משחק כדי שתוכל לבחור את הדרך שלך.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+אוסף הקומיקס Nifty League מורכב מ-6 עמודים עם קומיקס 5 ו-6 שטרם שוחררו. תהיה תמונת מצב ב-31/1/2022 עבור קומיקס 5 שיוענק לכל מחזיקי DEGEN וקומיקס 6 שיוענק לכל הארנקים המכילים את כל 6 שבטי DEGEN. כל DEGENS ברקע המטא יקבלו קומיקס 6 אחד וכל DEGENS ברקע האגדי יקבלו שני קומיקס 6! אלה יהיו זמינים באמצעות תביעה באתר האינטרנט שלנו.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+כל קומיקס יהיה בר שריפה בתאריך עתידי כדי לקבל פריט לביש או נשק במשחק בתמורה לכל עמוד שנשרף. עם זאת, חלון הצריבה הזה לא יהיה לנצח וכל בעל ייאלץ לקבל כמה החלטות קשות לעתיד האוסף שלו.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+סאטושי אמר לנו שהוא אוהב אוספים מלאים כמעט בכל דבר…אז תחשוב פעמיים לפני שאתה מקבל יותר מדי החלטות כאן.
 
 **TL;DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- ניתן לצרוב כל קומיקס עבור פריט לביש במשחק
+- NFTs אלה יהיו של ERC-1155
+- פריטים משנים את מכפיל ה-P2E של degen כאשר הם לובשים
+- לחלופין, אתה יכול להחזיק את הקומיקס לשימוש עתידי שעדיין לא חשפנו
+- ניתן לצרוב את כל 6 הקומיקס יחד כסט לפריט מסתורי מיוחד
+- פריט מסתורי זה לא ישנה את מכפיל ה-P2E
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+להלן תיאור של חוזק מכפיל לביש עבור כל רכיב לביש מתאים. התעריפים המדויקים עדיין לא נקבעים.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+אנחנו עדיין קובעים בדיוק כמה משבצות ניתן למלא לכל DEGEN, אבל רק 1 מכל לביש ניתן להקצאה לכל DEGEN NFT. 

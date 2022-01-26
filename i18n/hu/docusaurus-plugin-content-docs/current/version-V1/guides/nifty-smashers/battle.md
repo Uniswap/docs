@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: harci alapok
+title: Harc alapjai
 sidebar_position: 2
 ---
 
-### General advice
+### Általános Tanács
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- A kontrollerrel való játék erősen ajánlott (PS, Xbox, …, PC/Mac által felismert)
 
-### Bat swings
+### Denevérhinták
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Az ütő minden lehetséges irányba forgatható: balra, jobbra, fel, le, átlósan
+- Az ütő a támadás gombra kattintva lendíthető. A gomb hosszabb lenyomása erősebbé teszi az ütőt
+- A denevér lendíthető állás, futás, ugrás közben
+- Lehetséges ugrások közben a támadás gomb hosszú megnyomása (esetleg meglepheti az ellenfelet)
 
-### Moving
+### Mozgó
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- 2D-játékként a mozgási irányok balra/jobbra vonatkoznak
+- Az irány megváltoztatható ugrások/buktatás közben
 
-### Jumping
+### Ugrás
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Az ugrás magassága az ugrás gomb megnyomásával módosítható
+- Az irány megváltoztatható ugrások/buktatás közben
 
-### Flying Hamburger
+### Repülő Hamburger
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Sokkal erősebbé teszi az ütőcsapást – legtöbbször közvetlen ölést eredményez
+- Frissítéshez: korlátozza a burger buff időtartamát idővel és/vagy öléssel

@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: pronájem-přehled
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Úvod

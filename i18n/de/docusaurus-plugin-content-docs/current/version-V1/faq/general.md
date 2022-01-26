@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: Allgemeines
+title: Allgemein
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **Kostet es, Nifty Smashers zu spielen?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+Heute müssen Sie ein DEGEN NFT besitzen, um Nifty Smashers spielen zu können. In Kürze starten wir ein Mietsystem, bei dem Sie gegen eine Wochenpauschale einen DEGEN NFT mieten können.
 
-## Where can I play the game?
+## Wo kann ich das Spiel spielen?
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+Spiele können auf Ihren bevorzugten Webbrowsern gespielt werden, solange sie Krypto-Wallet-Erweiterungen unterstützen. Wir haben im Moment auch eine Desktop-App für Windows-Benutzer verfügbar, MacOS kommt bald!
 
-### **Do I need more than one DEGEN to play the game?**
+### **Benötige ich mehr als einen DEGEN, um das Spiel zu spielen?**
 
-No, you only need one DEGEN to play.
+Nein, Sie brauchen nur einen DEGEN zum Spielen.
 
-### How do I import my DEGENs into the game?
+### Wie importiere ich meine DEGENs in das Spiel?
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+So einfach wie das Signieren einer Nachricht, um den Besitz Ihrer DEGENs in Ihrer Krypto-Brieftasche zu überprüfen, wenn Sie das Spiel starten.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **Benötige ich Controller, um das Spiel zu spielen?**
+Nein, obwohl wir der Meinung sind, dass es einfacher ist, mit einem Controller (PS, Xbox oder anderen von PC/Mac erkannten) zu spielen als mit einer Tastatur.
 
-### Why is the rename asking for multiple verifications?
+### Warum verlangt die Umbenennung nach mehreren Bestätigungen?
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+Das Umbenennen eines Charakters kostet **1000 NFTL** das sofort durch den **NiftyDegen** Smart Contract verbrannt wird. Damit der Vertrag Ihre NFTL ausgeben kann, müssen Sie zunächst die Ausgabenpauschale um mindestens 1000 NFTL erhöhen. Standardmäßig ist diese Genehmigung auf 1000 eingestellt, aber wenn Sie vorhaben, mehrere Charaktere umzubenennen, können Sie die Erlaubnis erhöhen, um die Erlaubnis in Zukunft nicht erhöhen zu müssen.

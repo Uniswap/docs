@@ -1,33 +1,33 @@
 ---
-id: overview
+id: gambaran
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+Seolah-olah proses pencetakan kami belum cukup menyenangkan untuk kalian... kami mengejutkan komunitas dengan koleksi komik peluncuran khusus Nifty League! Ini untuk mengucapkan terima kasih telah mencetak koleksi kami dan datang lebih awal 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+Cuplikan untuk komik diambil selama proses pencetakan untuk 4 halaman komik pertama dengan pencapaian berikut: Halaman 1 - 2500 | Halaman 2 - 3500 | Halaman 3 - 5000 | Halaman 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+Anda mungkin bertanya-tanya, "Apa yang harus saya lakukan dengan Komik?". Nah, Anda akan memiliki beberapa pilihan untuk dibuat karena mereka akan memiliki banyak utilitas. Jadi, ada permainan dalam permainan di sini bagi Anda untuk memilih jalan Anda sendiri.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+Koleksi Komik Liga Nifty terdiri dari 6 halaman dengan komik 5 dan 6 belum dirilis. Akan ada snapshot pada 1/31/2022 untuk komik 5 yang diberikan kepada semua pemegang DEGEN dan komik 6 diberikan kepada semua dompet yang berisi semua 6 suku DEGEN. Semua DEGEN latar belakang Meta akan menerima satu komik 6 dan semua DEGEN latar belakang Legendaris akan menerima dua komik 6! Ini akan tersedia melalui klaim di situs web kami.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+Setiap komik akan dapat dibakar di masa mendatang untuk menerima perangkat yang dapat dikenakan dalam game atau senjata sebagai ganti setiap halaman yang dibakar. Namun, jendela pembakaran ini tidak akan selamanya dan setiap pemegang akan dipaksa untuk membuat beberapa keputusan sulit untuk masa depan koleksi mereka.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+Satoshi memberi tahu kami bahwa dia menyukai koleksi lengkap di hampir semua hal…jadi pikirkan dua kali sebelum Anda membuat terlalu banyak keputusan di sini.
 
 **TL;DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- Setiap komik dapat dibakar untuk item yang dapat dipakai dalam game
+- NFT ini akan menjadi milik ERC-1155
+- Item memodifikasi pengganda P2E degen saat dipakai
+- Atau, Anda dapat menyimpan komik untuk utilitas masa depan yang belum kami ungkapkan
+- Semua 6 komik dapat dibakar bersama sebagai satu set untuk item misteri khusus
+- Item misteri ini TIDAK akan mengubah pengganda P2E
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+Di bawah ini adalah penggambaran kekuatan pengganda yang dapat dikenakan untuk setiap perangkat yang dapat dikenakan terkait. Tarif pastinya masih harus ditentukan.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+Kami masih menentukan dengan tepat berapa banyak slot yang dapat diisi per DEGEN, tetapi hanya 1 dari setiap perangkat yang dapat dikenakan yang dapat ditetapkan per DEGEN NFT. 

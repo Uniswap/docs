@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: những điều cơ bản về trận chiến
+title: Khái niệm cơ bản về trận chiến
 sidebar_position: 2
 ---
 
-### General advice
+### Lời khuyên chung
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Chơi với bộ điều khiển rất được khuyến khích (PS, Xbox, …, được PC / Mac công nhận)
 
-### Bat swings
+### Đu quay con dơi
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Bat có thể được xoay theo tất cả các hướng có thể: trái, phải, lên, xuống, đường chéo
+- Bat có thể được vung bằng cách nhấp vào nút tấn công. Nhấn nút lâu hơn làm cho con dơi đánh mạnh hơn
+- Con dơi có thể đu đưa khi đứng, chạy, nhảy
+- Có thể nhấn và giữ nút tấn công trong khi nhảy (có thể gây bất ngờ cho đối thủ)
 
-### Moving
+### Động
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Là một trò chơi 2D, hướng di chuyển là trái / phải
+- Hướng có thể được thay đổi trong khi nhảy / nhào lộn
 
-### Jumping
+### Nhảy
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Chiều cao bước nhảy có thể được thay đổi bằng thời lượng nhấn của nút nhảy
+- Hướng có thể được thay đổi trong khi nhảy / nhào lộn
 
-### Flying Hamburger
+### Bánh hamburger bay
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Làm cho con dơi đánh mạnh hơn nhiều - dẫn đến giết trực tiếp hầu hết các lần
+- Đối với bản cập nhật: giới hạn thời gian buff burger theo thời gian và / hoặc giết

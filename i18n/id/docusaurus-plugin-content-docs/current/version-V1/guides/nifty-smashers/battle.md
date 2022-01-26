@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: dasar-dasar pertempuran
+title: Dasar-dasar Pertempuran
 sidebar_position: 2
 ---
 
-### General advice
+### Saran umum
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Bermain dengan pengontrol sangat disarankan (PS, Xbox, …, dikenali oleh PC/Mac)
 
-### Bat swings
+### Ayunan kelelawar
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Kelelawar dapat diayunkan ke segala arah yang memungkinkan: kiri, kanan, atas, bawah, diagonal
+- Kelelawar dapat diayunkan dengan mengklik tombol serangan. Menekan tombol lebih lama membuat pukulan lebih keras
+- Kelelawar dapat diayunkan saat berdiri, berlari, melompat
+- Tekan lama tombol serangan selama lompatan dimungkinkan (mungkin mengejutkan lawan)
 
-### Moving
+### Bergerak
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Sebagai Game 2D, arah bergerak ke kiri/kanan
+- Arah dapat diubah saat melompat/jatuh
 
-### Jumping
+### Melompat
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Tinggi lompatan dapat diubah dengan menekan-durasi tombol lompat
+- Arah dapat diubah saat melompat/jatuh
 
-### Flying Hamburger
+### Hamburger Terbang
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Membuat pukulan kelelawar lebih kuat - sering kali menghasilkan pembunuhan langsung
+- Untuk pembaruan: batasi durasi penggemar burger berdasarkan waktu dan/atau bunuh

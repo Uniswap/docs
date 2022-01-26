@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: verhuur-overzicht
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Invoering

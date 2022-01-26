@@ -1,17 +1,17 @@
 ---
-id: nifty-tennis
-title: Nifty Tennis
+id: tênis bacana
+title: Tênis bacana
 sidebar_position: 3
 ---
 
-### Under development for 2022!
+### Em desenvolvimento para 2022!
 
 ![](/img/NiftyTennis.jpeg)
 
-- 1-4 players local and online multiplayer, singles or doubles!
-- Choose to be the line umpire and make important calls!
-- Be an audience member and emote from the crowd!
-- Discord voice integration for both players and audience!
-- Play on a variety of court surfaces in unique stages!
-- Equip different racquets & items for a temporary tactical advantage!
-- Compete for the _Nifty League Grand Slam Cup_!
+- 1-4 jogadores multijogador local e online, simples ou duplos!
+- Escolha ser o árbitro de linha e faça chamadas importantes!
+- Seja um membro da platéia e emocione-se da multidão!
+- Integração de voz no Discord para jogadores e público!
+- Jogue em uma variedade de superfícies de quadra em estágios únicos!
+- Equipe diferentes raquetes & itens para uma vantagem tática temporária!
+- Competir pela _Nifty League Grand Slam Cup_!

@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: ominaisuuksia
+title: Hahmon luonteenpiirteet
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+Heimovalinnan jälkeen oli yhteensä 1023 ominaisuutta ja 21 valittavissa olevaa vaihtoehtoa, mikä teki lähes äärettömän määrän yhdistelmiä. Hahmon ominaisuudet poistettiin satunnaisesti saatavilla olevien ominaisuuksien joukosta, kun hahmoja luotiin lisää, joten oli vaikea tietää, mitkä vaihtoehdot olisivat harvinaisimpia. Vaikka taustatyypeillä on erityisetuja, piirteet ovat puhtaasti kosmeettisia. Tutustu [OpenSea](https://opensea.io/collection/niftydegen) :een nähdäksesi joitain uskomattomia luomuksia, joita yhteisömme on keksinyt!

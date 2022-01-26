@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: 전투의 기본
+title: 전투 기본
 sidebar_position: 2
 ---
 
-### General advice
+### 일반 조언
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- 컨트롤러 사용 권장(PS, Xbox, …, PC/Mac에서 인식)
 
-### Bat swings
+### 박쥐 스윙
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- 박쥐는 가능한 모든 방향으로 휘두를 수 있습니다: 왼쪽, 오른쪽, 위, 아래, 대각선
+- 공격 버튼을 클릭하면 배트를 휘두를 수 있습니다. 버튼을 길게 누르면 배트가 더 세게 치게 됩니다.
+- 서서 뛰고 점프하는 동안 박쥐를 휘두를 수 있습니다.
+- 점프 중 공격 버튼 길게 누름 가능(상대를 놀라게 할 수 있음)
 
-### Moving
+### 움직이는
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- 2D 게임으로 이동 방향은 왼쪽/오른쪽입니다.
+- 점프/텀블 중 방향 변경 가능
 
-### Jumping
+### 점프
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- 점프 버튼을 누르고 있는 동안 점프 높이를 변경할 수 있습니다.
+- 점프/텀블 중 방향 변경 가능
 
-### Flying Hamburger
+### 플라잉 햄버거
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- 방망이 타격을 훨씬 더 강하게 만듭니다 - 대부분의 경우 직접 사살로 이어집니다.
+- 업데이트: 시간 및/또는 킬로 버거 버프 지속 시간 제한

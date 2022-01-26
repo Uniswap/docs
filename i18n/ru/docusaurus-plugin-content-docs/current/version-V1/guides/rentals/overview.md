@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: обзор аренды
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Введение

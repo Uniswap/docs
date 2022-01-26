@@ -1,8 +1,8 @@
 ---
-id: nftl
+id: нфтл
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Коју помоћ има НФТЛ?
 
-### What is a governance token?
+### Шта је токен управљања?

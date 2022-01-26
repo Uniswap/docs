@@ -1,11 +1,11 @@
 ---
-id: about
-title: About
+id: o
+title: O
 sidebar_position: 1
 ---
 
-The minting process for Nifty League was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using the Mint-O-Matic!
+Proces bicia monet w Nifty League był jedynym w swoim rodzaju spektaklem, który pozwolił minterom zaprojektować własny DEGEN za pomocą Mint-O-Matic!
 
 ![](/img/mintomatic.gif)
 
-There were 6 tribes which include: apes, humans, dogs, frogs, cats, and aliens. This decision not only affects available character traits and accessories, but determines certain in-game mechanics and special moves. During the sale you can check our DEGENS page to browse through minted DEGENS to determine which tribes are rarer than others. Players will naturally gravitate towards certain characters based on their personal preferences as gameplay and special moves may be quite different between them for certain games. You’ll be able to select which of your characters to use before each game (so no harm in having one of each tribe!) 😉
+Było 6 plemion, które obejmowały: małpy, ludzi, psy, żaby, koty i kosmici. Ta decyzja nie tylko wpływa na dostępne cechy postaci i akcesoria, ale także determinuje pewne mechaniki w grze i ruchy specjalne. Podczas wyprzedaży możesz sprawdzić naszą stronę DEGENS, aby przeglądać wybite DEGENS, aby określić, które plemiona są rzadsze niż inne. Gracze będą naturalnie skłaniać się ku pewnym postaciom w oparciu o ich osobiste preferencje, ponieważ rozgrywka i specjalne ruchy mogą się między nimi różnić w niektórych grach. Będziesz mógł wybrać, której postaci chcesz użyć przed każdą grą (więc nie ma nic złego w posiadaniu jednej postaci z każdego plemienia!) 😉.

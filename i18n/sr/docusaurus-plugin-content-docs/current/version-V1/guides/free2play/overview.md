@@ -1,7 +1,7 @@
 ---
-id: free-2-play-overview
+id: фрее-2-плаи-превиев
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Увод

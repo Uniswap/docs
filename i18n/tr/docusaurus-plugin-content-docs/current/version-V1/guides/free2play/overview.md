@@ -1,7 +1,7 @@
 ---
-id: free-2-play-overview
+id: ücretsiz-2-oynat-genel bakış
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Tanıtım

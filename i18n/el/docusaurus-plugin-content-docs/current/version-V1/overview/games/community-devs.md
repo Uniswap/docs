@@ -1,7 +1,7 @@
 ---
-id: community-devs
-title: Community Devs
+id: κοινότητα-devs
+title: Προγραμματιστές κοινότητας
 sidebar_position: 6
 ---
 
-Our goal is to expand this platform with as many fun and exciting games as possible and that is only possible with the help of our community. We encourage developers to create games utilizing our characters which - if selected - will go live on our platform, and in return developers will be rewarded from the Nifty DAO for their contributions. Get creative and send us your ideas! If your game shows promise and viability we’d love to share it with the community.
+Στόχος μας είναι να επεκτείνουμε αυτήν την πλατφόρμα με όσο το δυνατόν περισσότερα διασκεδαστικά και συναρπαστικά παιχνίδια και αυτό είναι δυνατό μόνο με τη βοήθεια της κοινότητάς μας. Ενθαρρύνουμε τους προγραμματιστές να δημιουργήσουν παιχνίδια χρησιμοποιώντας τους χαρακτήρες μας, τα οποία - εάν επιλεγούν - θα κυκλοφορήσουν στην πλατφόρμα μας και σε αντάλλαγμα οι προγραμματιστές θα ανταμειφθούν από το Nifty DAO για τη συνεισφορά τους. Γίνετε δημιουργικοί και στείλτε μας τις ιδέες σας! Εάν το παιχνίδι σας δείχνει υπόσχεση και βιωσιμότητα, θα θέλαμε να το μοιραστούμε με την κοινότητα.

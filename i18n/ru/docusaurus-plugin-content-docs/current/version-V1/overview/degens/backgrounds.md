@@ -1,15 +1,15 @@
 ---
-id: backgrounds
-title: Backgrounds
+id: фоны
+title: Фоны
 sidebar_position: 3
 ---
 
 ![](/img/rngBackgrounds.gif)
 
-DEGEN backgrounds were randomly assigned upon minting which either resulted in a common background or one of three special options: **Rare**, **Meta**, or **Legendary**. Aside from looking cool, background come with special perks such as a distinguished look in game and exta earning multipliers.
+Фоны DEGEN назначались случайным образом при чеканке, что приводило либо к общему фону, либо к одному из трех специальных вариантов: **Редкий**, **Мета**или **Легендарный**. Помимо того, что фон выглядит круто, у него есть особые привилегии, такие как выдающийся внешний вид в игре и дополнительные множители заработка.
 
-### Earnings Multipliers
+### Мультипликаторы прибыли
 
-- Rare: 1.5
-- Meta: 3
-- Legendary: 6
+- Редкий: 1,5
+- Мета: 3
+- Легендарный: 6

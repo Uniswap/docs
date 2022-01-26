@@ -1,33 +1,33 @@
 ---
-id: overview
+id: Overzicht
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+Alsof ons muntproces nog niet leuk genoeg was voor jullie... hebben we de community verrast met een speciale Nifty League lanceringsstripcollectie! Dit was om je te bedanken voor het slaan van onze collectie en voor je vroege
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+Tijdens het hele proces van het maken van strips werden er snapshots gemaakt voor de eerste 4 strippagina's op de volgende mijlpalen: Pagina 1 - 2500 | Pagina 2 - 3500 | Pagina 3 - 5000 | Pagina 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+Je vraagt je waarschijnlijk af: "Wat moet ik doen met de strips?". Welnu, u zult enkele keuzes moeten maken, omdat ze meerdere hulpprogramma's zullen hebben. Er is dus een spel in een spel waar je je eigen pad kunt kiezen.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+De Nifty League Comic Collection bestaat uit 6 pagina's met strips 5 en 6 die nog moeten worden uitgebracht. Er zal een momentopname zijn op 01/01/2022 voor strip 5 die wordt toegekend aan alle DEGEN-houders en strip 6 wordt toegekend aan alle portemonnees die alle 6 DEGEN-stammen bevatten. Alle Meta-achtergrond DEGENS ontvangen één strip 6 en alle legendarische achtergrond DEGENS ontvangen twee strip 6's! Deze worden via een claim op onze website beschikbaar gesteld.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+Elke strip kan op een toekomstige datum worden verbrand om een in-game wearable of wapen te ontvangen in ruil voor elke verbrande pagina. Dit brandvenster zal echter niet voor altijd zijn en elke houder zal enkele moeilijke beslissingen moeten nemen voor de toekomst van hun collectie.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+Satoshi vertelde ons dat hij dol is op volledige collecties in zowat alles…dus denk twee keer na voordat je hier te veel beslissingen neemt.
 
 **TL;DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- Elke strip kan worden gebrand voor een in-game draagbaar item
+- Deze NFT's zullen ERC-1155's zijn
+- Items wijzigen de P2E-multiplier van een degen wanneer ze worden gedragen
+- Als alternatief kunt u de strips vasthouden voor toekomstig gebruik dat we nog niet hebben bekendgemaakt
+- Alle 6 strips kunnen samen worden gebrand als een set voor een speciaal mysterie-item
+- Dit mysterie-item zal de P2E-multiplier NIET wijzigen
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+Hieronder vindt u een weergave van de draagbare multipliersterkte voor elke overeenkomstige wearable. De exacte tarieven moeten nog worden vastgesteld.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+We zijn nog aan het bepalen hoeveel slots er per DEGEN precies kunnen worden gevuld, maar slechts 1 van elke wearable is toewijsbaar per DEGEN NFT. 

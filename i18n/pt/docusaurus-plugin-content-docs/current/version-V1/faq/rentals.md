@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: aluguéis
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### Onde alugo um DEGEN?

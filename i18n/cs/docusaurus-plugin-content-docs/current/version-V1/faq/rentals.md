@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: pronájmy
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### Kde si půjčím DEGEN?

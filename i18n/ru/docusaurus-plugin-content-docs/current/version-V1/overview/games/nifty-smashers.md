@@ -1,34 +1,34 @@
 ---
-id: nifty-smashers
-title: Nifty Smashers
+id: отличные сокрушители
+title: Отличные Крушители
 sidebar_position: 2
 ---
 
   <div>
   <video width="100%" height="100%" playsInline controls loop>
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
-  Your browser does not support the video tag.
+  Ваш браузер не поддерживает видео тег.
   </video>
   </div>
 
 ---
 
-Get ready to brawl! The local-multiplayer version of **[Nifty Smashers](https://nifty-league.com/games)** was made available immediately at launch followed by the online multiplayer! So grab a few controllers 🎮 and play with friends.
+Приготовьтесь к драке! Локальная многопользовательская версия **[Nifty Smashers](https://nifty-league.com/games)** стала доступной сразу после запуска, а затем появилась сетевая многопользовательская игра! Так что берите несколько контроллеров 🎮 и играйте с друзьями.
 
-Battle it out amongst the community and get in as many _bat bonks_ 🥖on your friends as you can! **Nifty Smashers** takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points. In order to play you'll need a **DEGEN** to select for battle, and then use your keyboard, Playstation or Xbox controller as input (couch multiplayer works too!). From the game lobby you'll be able to select from any of your previously minted **DEGENs** you own in your wallet to show off your cool creations! Each tribe has a unique special move so experiment with different tribes and find the moveset that suits your playstyle best. Hold down the attack button for a charged-up bat attack, some special moves can also be charged. When you bonk another player, they’re worth 1 point. The more they’re successively bonked, the faster they bounce around and the more points they’re worth. Land the final mega-bonk to hit them off the map and claim all the points!
+Сражайтесь в сообществе и получите как можно больше _бат-бонков_ 🥖на своих друзей! **Nifty Smashers** черпает вдохновение из классической игры Super Smash Bros, где цель состоит в том, чтобы сбить ваших противников с карты и набрать очки. Чтобы играть, вам понадобится **DEGEN** чтобы выбрать битву, а затем использовать клавиатуру, контроллер Playstation или Xbox в качестве ввода (мультиплеер на диване тоже работает!). В игровом лобби вы сможете выбрать любой из ранее отчеканенных **DEGEN** в своем кошельке, чтобы продемонстрировать свои крутые творения! У каждого племени есть уникальный особый прием, так что поэкспериментируйте с разными племенами и найдите набор приемов, который лучше всего подходит вашему стилю игры. Удерживайте кнопку атаки для заряженной атаки летучей мыши, некоторые специальные движения также могут быть заряжены. Когда вы бьете другого игрока, он приносит 1 очко. Чем больше их последовательно бьют, тем быстрее они прыгают и тем больше очков они приносят. Совершите последний мегабонк, чтобы сбить их с карты и получить все очки!
 
-**As noted, this is a beta release of our initial game so lag and issues with pesky bots are to be expected.** Our immediate plan is to continue development on **Nifty Smashers** and to introduce more features such as additional combo moves and a progression system. Hop in our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve **Nifty Smashers** and take it to the next level!
+**Как уже отмечалось, это бета-версия нашей первоначальной игры, поэтому следует ожидать задержки и проблемы с надоедливыми ботами.** В наших ближайших планах продолжить развитие на **Nifty Smashers** и ввести более функции , такие как дополнительные комбо - движения и системы прогрессии. Присоединяйтесь к нашему **[Discord](https://discord.gg/niftyleague)** чтобы поделиться отзывами и идеями о том, как мы можем улучшить **Nifty Smashers** и вывести его на новый уровень!
 
 <!-- ![](/img/highlights.gif) -->
 
-**Online Multiplayer Lag ☁️**
+**Задержка многопользовательской игры в сети ☁️**
 
-With the on-going alpha, let's talk about lag in fast-paced and snappy brawler games like **Nifty Smashers**.
+Пока продолжается альфа-тестирование, давайте поговорим о задержках в динамичных и динамичных играх-драках, таких как **Nifty Smashers**.
 
-Generally speaking, lag is always present whenever there is physical distance between the players on the internet. The greater the distance, the greater the lag. There are different techniques & tricks that developers use to compensate and hide the lag. We have implemented a number of these lag compensation techniques that veil the lag for the best experience possible. We have also incorporated solutions with servers all around the world so that we can match players closest to each other to minimize the lag as much as possible.
+Вообще говоря, задержка всегда присутствует, когда между игроками в Интернете есть физическое расстояние. Чем больше расстояние, тем больше отставание. Существуют различные приемы & трюков, которые разработчики используют, чтобы компенсировать и скрыть отставание. Мы внедрили ряд этих методов компенсации задержки, которые скрывают задержку для достижения наилучших результатов. Мы также внедрили решения с серверами по всему миру, чтобы мы могли подбирать игроков ближе всего друг к другу, чтобы максимально минимизировать отставание.
 
-Nonetheless, considering the level of responsiveness fast-paced brawlers require ⚡, we are expecting some lag when we launch the online multiplayer.
+Тем не менее, учитывая уровень отклика, который требуется быстро развивающимся дракам ⚡, мы ожидаем некоторого отставания при запуске сетевой многопользовательской игры.
 
-We are excited to share our progress with you as soon as possible. Following the launch, with your feedback, we will do everything in our power to make the lag as unnoticeable as possible.
+Мы рады поделиться с вами нашим прогрессом как можно скорее. После запуска, с вашими отзывами, мы сделаем все, что в наших силах, чтобы сделать отставание как можно незаметнее.
 
-If you are interested in learning more about these techniques, here is a great read by Gabriel Gambetta about **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.
+Если вам интересно узнать больше об этих методах, вот отличное чтение Габриэля Гамбетты о **[Компенсация отставания](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.

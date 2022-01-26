@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: location-aperçu
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## introduction

@@ -1,7 +1,7 @@
 ---
-id: free-2-play-overview
+id: סקירה חופשית של שני משחקים
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## מבוא

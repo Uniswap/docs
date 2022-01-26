@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
+id: beállít
+title: Állítsa be pénztárcáját
 sidebar_position: 0.5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Érintse meg az Alkalmazás indítása lehetőséget a jobb felső navigációs sávban. Koppintson a Csatlakozás elemre. Válassza ki a DEGEN NFT-jét tartalmazó kriptotárcát. Amikor a rendszer kéri, írja alá a tranzakciót. 

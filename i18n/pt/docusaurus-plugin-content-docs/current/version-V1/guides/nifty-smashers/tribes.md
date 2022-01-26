@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: tribos
+title: Habilidades Especiais da Tribo
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**Nosso jogo atual, Nifty Smashers, e todos os jogos futuros têm uma habilidade especial (“SA”) para cada tipo de personagem.**
 
-### List of Special Abilities
+### Lista de Habilidades Especiais
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Ape** - Jogue bananas bumerangue ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Alien** - Teletransporte ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Cat** - Ataque e ganhe força de morcego e aumento de velocidade temporariamente ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Frog** - O gancho da língua ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doge** - Rolo de moeda Doge ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Humano** - Jogue dinamites que explodem ao comando ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### Estrangeiro
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- Pressionar o botão SA faz com que Alien possa se teletransportar a uma curta distância na direção desejada (esquerda, direita, cima, baixo, diagonais)
+- Há uma explosão de energia no local do teletransporte, atingindo oponentes que estão próximos
 
-### Ape
+### Macaco
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- Pressionar o botão SA joga uma banana na direção desejada (esquerda, direita, cima, baixo, diagonais) até que **atinja um oponente**, atinja uma parte do mapa ou voe para fora do mapa
+- Pressionar o botão SA novamente, faz a banana voar de volta para o degen, tornando possível acertar um oponente novamente.
+- As bananas podem ser atingidas com um bastão e voar na direção pretendida
 
-### Cat
+### Gato
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- Pressionar o SA faz o gato atacar. Depois de atacar por um curto período, o gato fica empoderado.
+- Balanço de morcego empored: o taco bate mais forte
+- Movimento empoderado: os gatos correm mais rápido
+- Gatos podem pular duas vezes / pular no ar
 
 ### Doge
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- Pressionar e segurar o botão SA faz o doge rolar.
+- Acertar um oponente com o doge roll faz com que ele voe um pouco para cima na direção do roll
+- Doge voará na direção desejada
+- Durante o doge roll, as direções podem ser alteradas três vezes (talvez duas vezes após a atualização) até que o doge roll termine
+- A rolagem de Doge também termina após um certo tempo
 
-### Frog
+### Sapo
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- Pressionar o botão SA faz o Sapo atirar sua língua
+- Quando a língua atinge um oponente, esse oponente é puxado na direção do sapo e voa um pouco mais longe
+- Quando a língua atinge um pedaço do mapa, o sapo se puxa para aquele objeto (por exemplo, paredes, tetos,...)
+- A língua pode ser disparada na direção pretendida (esquerda, direita, para cima, para baixo, diagonais)
 
-### Human
+### Humano
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- Pressionar o botão SA lança uma bomba na direção apontada (esquerda, direita, cima, baixo, diagonais)
+- A bomba tem uma curva voadora e não voa reta como bananas. Se não for detonado antes e ficar no chão
+- A bomba explode depois de algum tempo ou depois que o botão SA é pressionado uma segunda vez
+- Atualmente a bomba pode atingir um oponente batendo nele ou por explosão
+- Plano atualizado: bomba detona imediatamente após contato com um oponente. Se nenhum oponente for atingido, ele permanece no chão até explodir automaticamente ou após pressionar o botão SA pela segunda vez
+- As bombas são o único SA que pode atingir o próprio degen de arremesso com sua explosão
+- As bombas podem ser atingidas com um bastão e voar na direção pretendida

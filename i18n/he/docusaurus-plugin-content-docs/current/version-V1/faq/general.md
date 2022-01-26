@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: כללי
+title: כללי
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **האם זה עולה לשחק ב-Nifty Smashers?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+היום, אתה חייב להיות בעל DEGEN NFT כדי לשחק ב-Nifty Smashers. בקרוב נשיק מערכת השכרה, בה תוכלו לשכור DEGEN NFT בתשלום שבועי.
 
-## Where can I play the game?
+## איפה אני יכול לשחק במשחק?
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+ניתן לשחק במשחקים בדפדפני האינטרנט המועדפים עליך כל עוד הם תומכים בהרחבות ארנק קריפטו. יש לנו גם אפליקציית שולחן עבודה זמינה עבור משתמשי Windows כרגע עם MacOS בקרוב!
 
-### **Do I need more than one DEGEN to play the game?**
+### **האם אני צריך יותר מ-DEGEN אחד כדי לשחק במשחק?**
 
-No, you only need one DEGEN to play.
+לא, אתה צריך רק DEGEN אחד כדי לשחק.
 
-### How do I import my DEGENs into the game?
+### איך אני מייבא את ה-DEGENs שלי למשחק?
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+פשוט כמו חתימה על הודעה כדי לאמת את הבעלות על ה-DEGENs שלך בארנק הקריפטו שלך כשאתה מפעיל את המשחק.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **האם אני צריך בקרים כדי לשחק את המשחק?**
+לא, למרות שלדעתנו קל יותר לשחק עם בקר (PS, Xbox, או כל אחר המוכר על ידי PC/Mac) מאשר מקלדת.
 
-### Why is the rename asking for multiple verifications?
+### מדוע שינוי השם מבקש אימותים מרובים?
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+שינוי שם של דמות עולה **1000 NFTL** אשר נשרף מיד על ידי החוזה החכם **NiftyDegen** כדי לאפשר לחוזה להוציא את ה-NFTL שלך, תחילה יהיה עליך להגדיל את קצבת ההוצאה ב-1000 NFTL לפחות. כברירת מחדל, אישור זה מוגדר ל-1000, אך אם אתם מתכננים לשנות את שמות התווים מרובים, תוכלו להגדיל את הקצבה כדי למנוע צורך להגדיל את הקצבה בעתיד.

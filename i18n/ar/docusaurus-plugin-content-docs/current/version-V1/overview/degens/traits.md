@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: الصفات
+title: الصفات الشخصية
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+كان هناك ما مجموعه 1023 سمة و 21 خيارًا قابلاً للتحديد بعد اختيار قبيلة ، مما يجعل عددًا لا نهائيًا من المجموعات. تمت إزالة سمات الشخصية بشكل عشوائي من مجموعة السمات المتاحة حيث تم إنشاء المزيد من الأحرف ، مما يجعل من الصعب معرفة الخيارات التي ستنتهي على أنها أندر. بينما تأتي أنواع الخلفية بمزايا خاصة ، فإن السمات تكون تجميلية تمامًا. قم بإلقاء نظرة على [](https://opensea.io/collection/niftydegen) لترى بعض الإبداعات المذهلة التي توصل إليها مجتمعنا!

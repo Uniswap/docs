@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: sifat-sifat
+title: Sifat karakter
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+Ada total 1023 sifat dan 21 opsi yang dapat dipilih setelah memilih suku, membuat jumlah kombinasi yang hampir tak terbatas. Ciri-ciri karakter dihapus secara acak dari kumpulan sifat yang tersedia karena semakin banyak karakter yang dibuat, sehingga sulit untuk mengetahui opsi mana yang akan berakhir sebagai yang paling langka. Sementara jenis latar belakang datang dengan manfaat khusus, ciri-cirinya sangat kosmetik. Lihat [OpenSea](https://opensea.io/collection/niftydegen) untuk melihat beberapa kreasi menakjubkan yang dibuat oleh komunitas kami!

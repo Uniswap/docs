@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
-sidebar_position: 0.5
+id: настраивать
+title: Настройте свой кошелек
+sidebar_position: 0,5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Нажмите «Запустить приложение» на верхней панели навигации справа. Коснитесь Подключиться. Выберите крипто-кошелек, в котором хранится ваш DEGEN NFT. Подпишите транзакцию при появлении запроса. 

@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Milyen segédprogramokkal rendelkezik az NFTL?
 
-### What is a governance token?
+### Mi az a kormányzási token?

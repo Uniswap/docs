@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: γενικές πληροφορίες
+title: Γενικές πληροφορίες
 sidebar_position: 1
 ---
 
-### Scoring
+### Σκοράρισμα
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- Εάν ένα degen χτυπηθεί μία φορά και πεθάνει (πέσει από τον χάρτη) παίρνετε έναν πόντο
+- Εάν ένα degen χτυπηθεί πολλές φορές χωρίς να μπορέσετε να ανακτήσετε, λαμβάνετε πόντους τόσο συχνά όσο χτυπήθηκε το degen. Δεν έχει σημασία αν οι προηγούμενες επιτυχίες έγιναν από άλλο degen. Το τελευταίο χτύπημα που σκοτώνει το degen, παίρνει όλους τους συνδυαστικούς πόντους
+- **Προς το παρόν δεν υπάρχει ανώτατο όριο για το πόσο συχνά μπορεί να χτυπηθεί ένα degen (συνδυασμός), αλλά ένα ανώτατο όριο για το πόσους πόντους μπορείτε να κερδίσετε το μέγιστο (3 πόντους: αγώνας για 2 παίκτες / 5 πόντους: 3&αγώνας 4 παικτών)**
+- Αγώνας 2 παικτών: 5 πόντους για να κερδίσεις γύρο / 3&4 παίκτες: 10 πόντους για να κερδίσεις τον γύρο
+- Οι αγώνες είναι Bo5. Εάν υπάρξει ισοπαλία μετά τον πέμπτο γύρο, ο ισόπαλος παίκτης μεταβαίνει σε γύρο ξαφνικού θανάτου
 
-### Lag Indicator
+### Δείκτης υστέρησης
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- υστέρηση (ταχύτητα ping) της σύνδεσής σας
+- Η καθυστέρηση συνήθως σημαίνει πάνω από 100 ms
 
-### Custom Lobby
+### Προσαρμοσμένο Λόμπι
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- Ένα προσαρμοσμένο λόμπι μπορεί να χρησιμοποιηθεί για το άνοιγμα ενός αγώνα σε μια επιλεγμένη περιοχή. Ο δημιουργός του λόμπι μπορεί να δει έναν κωδικό στον χάρτη του λόμπι που μπορεί να μοιραστεί με άλλους
+- Εάν κάποιος άλλος επισκέπτης θέλει να συμμετάσχει σε αυτό το λόμπι, πρέπει πρώτα να επιλέξει τη σωστή περιοχή και στη συνέχεια να πληκτρολογήσει τον κωδικό του λόμπι σε ένα πλαίσιο εισαγωγής
+- Για ενημέρωση: όταν χρησιμοποιείτε προσαρμοσμένο κωδικό λόμπι, η περιοχή θα πρέπει να αλλάζει αυτόματα
 
-### How and why to change regions?
+### Πώς και γιατί να αλλάξουμε περιφέρειες;
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Το Smasher είναι ένα παιχνίδι με γρήγορο ρυθμό όπου ο καλός λανθάνοντας χρόνος/ping είναι ζωτικής σημασίας. Όσο πιο κοντά βρίσκεται η επιλεγμένη περιοχή στη θέση του παίκτη, τόσο χαμηλότερο είναι το ping.
+- Μετά την αλλαγή της περιοχής στο web/desktop-app, εμφανίζεται το τρέχον ping

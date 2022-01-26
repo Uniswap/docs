@@ -1,7 +1,7 @@
 ---
-id: community-devs
-title: Community Devs
+id: מפתחי קהילה
+title: מפתחי קהילה
 sidebar_position: 6
 ---
 
-Our goal is to expand this platform with as many fun and exciting games as possible and that is only possible with the help of our community. We encourage developers to create games utilizing our characters which - if selected - will go live on our platform, and in return developers will be rewarded from the Nifty DAO for their contributions. Get creative and send us your ideas! If your game shows promise and viability we’d love to share it with the community.
+המטרה שלנו היא להרחיב את הפלטפורמה הזו עם כמה שיותר משחקים מהנים ומרגשים וזה אפשרי רק בעזרת הקהילה שלנו. אנו מעודדים מפתחים ליצור משחקים תוך שימוש בדמויות שלנו, אשר - אם נבחר - יעלו לאוויר בפלטפורמה שלנו, ובתמורה מפתחים יתוגמלו מה- Nifty DAO על תרומתם. תהיו יצירתיים ושלחו לנו את הרעיונות שלכם! אם המשחק שלך מראה הבטחה וכדאיות, נשמח לחלוק אותו עם הקהילה.

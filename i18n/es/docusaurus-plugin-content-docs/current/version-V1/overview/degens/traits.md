@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: rasgos
+title: Rasgos de personaje
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+Hubo un total de 1023 rasgos y 21 opciones seleccionables después de seleccionar una tribu, haciendo un número casi infinito de combinaciones. Los rasgos de los personajes se eliminaron aleatoriamente del conjunto de rasgos disponibles a medida que se creaban más personajes, lo que dificultaba saber qué opciones terminarían como las más raras. Mientras que los tipos de trasfondo vienen con beneficios especiales, los rasgos son estrictamente cosméticos. Echa un vistazo a [OpenSea](https://opensea.io/collection/niftydegen) para ver algunas de las increíbles creaciones que se le ocurrieron a nuestra comunidad.

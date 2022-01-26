@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
-sidebar_position: 0.5
+id: kurmak
+title: Cüzdanınızı Ayarlayın
+sidebar_position: 0,5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Sağdaki üst gezinme çubuğunda Uygulamayı Başlat'a dokunun. Bağlan'a dokunun. DEGEN NFT'nizi tutan kripto cüzdanını seçin. İstendiğinde işlemi imzalayın. 

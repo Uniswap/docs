@@ -1,33 +1,33 @@
 ---
-id: overview
+id: преглед
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+Као да наш процес ковања није већ био довољно забаван за вас... изненадили смо заједницу специјалном колекцијом стрипова за лансирање Нифти Леагуе! Ово је било да вам се захвалим што сте ковали нашу колекцију и што сте поранили 😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+Снимци за стрипове су направљени током процеса ковања за прве 4 странице стрипа на следећим прекретницама: Страна 1 - 2500 | Паге 2 - 3500 | Паге 3 - 5000 | Паге 4 - 7500.
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+Вероватно се питате: „Шта да радим са стриповима?“. Па, имаћете неке изборе јер ће они имати вишеструке услужне програме. Дакле, овде постоји игра у игри за вас да изаберете свој пут.
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+Збирка стрипова Нифти Леагуе састоји се од 6 страница са стриповима 5 и 6 који тек треба да буду објављени. Биће снимак 31.1.2022. за стрип 5 који се додељује свим власницима ДЕГЕН-а и стрип 6 који се додељује свим новчаницима који садрже свих 6 ДЕГЕН племена. Сва мета позадина ДЕГЕНС ће добити један стрип 6, а сви легендарни ДЕГЕНС ће добити два стрипа 6! Они ће бити доступни путем захтева на нашој веб страници.
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+Сваки стрип ће се моћи спаљивати у будућности како би добио носиво или оружје у игри у замену за сваку спаљену страницу. Међутим, овај прозор за спаљивање неће бити заувек и сваки власник ће бити приморан да донесе неке тешке одлуке за будућност своје колекције.
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+Сатоши нам је рекао да воли пуне колекције у скоро свему…па размислите двапут пре него што овде донесете превише одлука.
 
-**TL;DR**
+**ТЛ;ДР**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- Сваки стрип може да се спали за предмет који се може носити у игри
+- Ови НФТ-ови ће бити ЕРЦ-1155
+- Предмети мењају дегенов П2Е множитељ када се носе
+- Алтернативно, можете држати стрипове за будућу употребу коју још нисмо открили
+- Свих 6 стрипова могу се спалити заједно као сет за посебан мистериозни предмет
+- Ова мистериозна ставка НЕЋЕ модификовати П2Е множилац
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+Испод је приказ јачине носивог множитеља за сваки одговарајући носиви уређај. Тачне стопе тек треба да се утврде.
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+Још увек утврђујемо колико тачно места може да се попуни по ДЕГЕН-у, али само 1 од сваког носивог уређаја се може доделити по ДЕГЕН НФТ-у. 

@@ -1,15 +1,15 @@
 ---
-id: backgrounds
-title: Backgrounds
+id: الخلفيات
+title: الخلفيات
 sidebar_position: 3
 ---
 
 ![](/img/rngBackgrounds.gif)
 
-DEGEN backgrounds were randomly assigned upon minting which either resulted in a common background or one of three special options: **Rare**, **Meta**, or **Legendary**. Aside from looking cool, background come with special perks such as a distinguished look in game and exta earning multipliers.
+تم تعيين خلفيات DEGEN بشكل عشوائي عند سكها مما أدى إما إلى خلفية مشتركة أو واحد من ثلاثة خيارات خاصة: **نادر**أو **ميتا**أو **أسطوري**. بصرف النظر عن المظهر الرائع ، تأتي الخلفية مع امتيازات خاصة مثل المظهر المميز في اللعبة ومضاعفات الأرباح الإضافية.
 
-### Earnings Multipliers
+### مضاعفات الأرباح
 
-- Rare: 1.5
-- Meta: 3
-- Legendary: 6
+- نادر: 1.5
+- ميتا: 3
+- أسطوري: 6

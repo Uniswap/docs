@@ -1,10 +1,10 @@
 ---
-id: future-games
-title: Future Games
+id: フューチャーゲーム
+title: フューチャーゲーム
 sidebar_position: 7
 ---
 
-We have several ideas percolating and plan to expand on them once we have **[Nifty Smashers](https://nifty-league.com/games)** working as well as we'd like it to. Some upcoming titles have already been announced but stay tuned in our **[Discord](https://discord.gg/niftyleague)** for more details… 😈 The order of any upcoming games will be put up to a community vote.
+いくつかのアイデアが浸透しており、 **[Nifty Smashers](https://nifty-league.com/games)** が正常に機能するようになったら、それらを拡張する予定です。 いくつかの今後のタイトルがすでに発表されているが、滞在は、私たちにチューニング **[確執](https://discord.gg/niftyleague)** 詳細… 😈今後のゲームの順序は、コミュニティの投票にかけられます。
 
 ![https://nifty-league.com/static/media/smash-sketch.7d5f0061.png](https://nifty-league.com/static/media/smash-sketch.7d5f0061.png)
 

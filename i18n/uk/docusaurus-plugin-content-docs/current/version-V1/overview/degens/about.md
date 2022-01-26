@@ -1,11 +1,11 @@
 ---
-id: about
-title: About
+id: про
+title: Про
 sidebar_position: 1
 ---
 
-The minting process for Nifty League was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using the Mint-O-Matic!
+Процес карбування для Nifty League був єдиним у своєму роді видовищем, яке дозволило карбувальникам створити власний DEGEN за допомогою Mint-O-Matic!
 
 ![](/img/mintomatic.gif)
 
-There were 6 tribes which include: apes, humans, dogs, frogs, cats, and aliens. This decision not only affects available character traits and accessories, but determines certain in-game mechanics and special moves. During the sale you can check our DEGENS page to browse through minted DEGENS to determine which tribes are rarer than others. Players will naturally gravitate towards certain characters based on their personal preferences as gameplay and special moves may be quite different between them for certain games. You’ll be able to select which of your characters to use before each game (so no harm in having one of each tribe!) 😉
+Існувало 6 племен, до яких входять: мавпи, люди, собаки, жаби, кішки та прибульці. Це рішення не тільки впливає на доступні риси характеру та аксесуари, але й визначає певну ігрову механіку та спеціальні ходи. Під час розпродажу ви можете перевірити нашу сторінку DEGENS, щоб переглянути карбовані DEGENS, щоб визначити, які племена є рідкішими за інші. Гравці, природно, будуть тяжіти до певних персонажів, виходячи з їхніх особистих уподобань, оскільки ігровий процес і спеціальні ходи можуть сильно відрізнятися між ними для певних ігор. Ви зможете вибрати, якого з ваших персонажів використовувати перед кожною грою (тому не зашкодить мати по одному з кожного племені!) 😉

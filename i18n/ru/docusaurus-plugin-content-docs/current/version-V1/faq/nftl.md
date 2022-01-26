@@ -1,8 +1,8 @@
 ---
-id: nftl
+id: НФТЛ
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### Какая польза от NFTL?
 
-### What is a governance token?
+### Что такое токен управления?

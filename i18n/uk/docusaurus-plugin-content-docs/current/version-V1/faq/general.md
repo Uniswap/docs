@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: загальний
+title: Генеральний
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **Чи коштує грати в Nifty Smashers?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+Сьогодні ви повинні мати DEGEN NFT, щоб грати в Nifty Smashers. Незабаром ми запустимо систему прокату, де ви зможете орендувати DEGEN NFT за щотижневу плату.
 
-## Where can I play the game?
+## Де я можу грати в гру?
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+Ігри можна грати у ваших улюблених веб-браузерах, якщо вони підтримують розширення крипто-гаманця. На даний момент у нас також є настільна програма для користувачів Windows, а невдовзі з’явиться MacOS!
 
-### **Do I need more than one DEGEN to play the game?**
+### **Чи потрібно мені більше одного DEGEN, щоб грати в гру?**
 
-No, you only need one DEGEN to play.
+Ні, для гри потрібен лише один DEGEN.
 
-### How do I import my DEGENs into the game?
+### Як імпортувати свої DEGEN у гру?
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+Так само просто, як підписати повідомлення, щоб підтвердити право власності на ваші DEGEN у вашому крипто-гаманці, коли ви запускаєте гру.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **Чи потрібні мені контролери, щоб грати в гру?**
+Ні, хоча ми вважаємо, що легше грати з контролером (PS, Xbox або будь-яким іншим, розпізнаним ПК/Mac), ніж клавіатурою.
 
-### Why is the rename asking for multiple verifications?
+### Чому перейменування вимагає кількох перевірок?
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+Перейменування персонажа коштує **1000 NFTL** який негайно спалюється смарт-контрактом **NiftyDegen** Щоб дозволити контракт витрачати ваш NFTL, вам спочатку потрібно буде збільшити надбавку на витрати щонайменше на 1000 NFTL. За замовчуванням це схвалення встановлено на 1000, але якщо ви плануєте перейменувати кілька символів, ви можете збільшити дозвіл, щоб уникнути збільшення дозволу в майбутньому.

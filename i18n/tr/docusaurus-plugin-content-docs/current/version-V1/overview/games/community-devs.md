@@ -1,7 +1,7 @@
 ---
-id: community-devs
-title: Community Devs
+id: topluluk geliştiricileri
+title: Topluluk Geliştiricileri
 sidebar_position: 6
 ---
 
-Our goal is to expand this platform with as many fun and exciting games as possible and that is only possible with the help of our community. We encourage developers to create games utilizing our characters which - if selected - will go live on our platform, and in return developers will be rewarded from the Nifty DAO for their contributions. Get creative and send us your ideas! If your game shows promise and viability we’d love to share it with the community.
+Amacımız, bu platformu olabildiğince eğlenceli ve heyecan verici oyunlarla genişletmektir ve bu ancak topluluğumuzun yardımıyla mümkündür. Geliştiricileri, seçilirlerse platformumuzda yayınlanacak ve karşılığında geliştiriciler katkılarından dolayı Nifty DAO'dan ödüllendirilecek olan karakterlerimizi kullanarak oyunlar yaratmaya teşvik ediyoruz. Yaratıcı olun ve fikirlerinizi bize gönderin! Oyununuz umut vaat ediyor ve uygulanabilirlik gösteriyorsa, bunu toplulukla paylaşmayı çok isteriz.

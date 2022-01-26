@@ -1,21 +1,21 @@
 ---
-id: tribes
-title: Tribes
+id: φυλές
+title: Φυλές
 sidebar_position: 2
 ---
 
-Our current game, Nifty Smashers, and all the future games will have a special move for each character type. This our the list of special moves on the first game:
+Το τρέχον παιχνίδι μας, Nifty Smashers, και όλα τα μελλοντικά παιχνίδια θα έχουν μια ειδική κίνηση για κάθε τύπο χαρακτήρα. Αυτή είναι η λίστα με τις ειδικές κινήσεις στο πρώτο παιχνίδι:
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Πίθηκος** - Πέτα μπανάνες μπούμερανγκ ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
 - **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Cat** - Περάστε και αποκτήστε προσωρινή ισχύ και ώθηση ταχύτητας ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Frog** - Το άγκιστρο αγκίστρωσης της γλώσσας ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doge** - Ρολό κέρματος Doge ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Human** - Ρίξτε δυναμίτες που εκρήγνυνται κατόπιν εντολής ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-Learn more about these movesets in our [Smashers Guide](/guides/nifty-smashers/tribes)
+Μάθετε περισσότερα για αυτά τα σετ κίνησης στον Οδηγό [](/guides/nifty-smashers/tribes)
 
-In the future, we envision that new "special" tribes may be released / reserved for scalability, new games, tournament rewards, and more.
+Στο μέλλον, οραματιζόμαστε ότι νέες «ειδικές» φυλές ενδέχεται να κυκλοφορήσουν / να δεσμευτούν για επεκτασιμότητα, νέα παιχνίδια, ανταμοιβές τουρνουά και πολλά άλλα.
 
 ![https://nifty-league.com/static/media/alien-sketch.791d3ef1.gif](https://nifty-league.com/static/media/alien-sketch.791d3ef1.gif)
 

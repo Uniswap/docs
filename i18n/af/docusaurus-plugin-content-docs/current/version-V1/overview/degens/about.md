@@ -1,11 +1,11 @@
 ---
-id: about
-title: About
+id: oor
+title: Oor
 sidebar_position: 1
 ---
 
-The minting process for Nifty League was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using the Mint-O-Matic!
+Die muntproses vir Nifty League was 'n unieke skouspel wat munters die vermoë gegee het om hul eie DEGEN te ontwerp met die Mint-O-Matic!
 
 ![](/img/mintomatic.gif)
 
-There were 6 tribes which include: apes, humans, dogs, frogs, cats, and aliens. This decision not only affects available character traits and accessories, but determines certain in-game mechanics and special moves. During the sale you can check our DEGENS page to browse through minted DEGENS to determine which tribes are rarer than others. Players will naturally gravitate towards certain characters based on their personal preferences as gameplay and special moves may be quite different between them for certain games. You’ll be able to select which of your characters to use before each game (so no harm in having one of each tribe!) 😉
+Daar was 6 stamme wat insluit: ape, mense, honde, paddas, katte en aliens. Hierdie besluit beïnvloed nie net beskikbare karaktereienskappe en bykomstighede nie, maar bepaal sekere meganika en spesiale bewegings in die spel. Tydens die uitverkoping kan u ons DEGENS-bladsy nagaan om deur geslagte DEGENS te blaai om te bepaal watter stamme skaarser is as ander. Spelers sal natuurlik aangryp na sekere karakters op grond van hul persoonlike voorkeure, aangesien spel en spesiale bewegings heelwat verskil tussen hulle vir sekere speletjies. Jy sal in staat wees om te kies watter van jou karakters om voor elke wedstryd te gebruik (dus geen kwaad om een van elke stam te hê nie!) 😉

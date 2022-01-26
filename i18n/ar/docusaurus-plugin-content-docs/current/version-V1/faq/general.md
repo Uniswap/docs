@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: جنرال لواء
+title: عام
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **هل يكلف لعب Nifty Smashers؟**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+اليوم ، يجب أن تمتلك DEGEN NFT لتلعب Nifty Smashers. سنطلق قريبًا نظام إيجار ، حيث يمكنك استئجار DEGEN NFT مقابل رسوم أسبوعية.
 
-## Where can I play the game?
+## أين يمكنني أن ألعب اللعبة؟
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+يمكن تشغيل الألعاب على متصفحات الويب المفضلة لديك طالما أنها تدعم ملحقات محفظة التشفير. لدينا أيضًا تطبيق سطح مكتب متاح لمستخدمي Window في الوقت الحالي مع MacOS قريبًا!
 
-### **Do I need more than one DEGEN to play the game?**
+### **هل أحتاج إلى أكثر من DEGEN للعب اللعبة؟**
 
-No, you only need one DEGEN to play.
+لا ، ما عليك سوى DEGEN واحد للعب.
 
-### How do I import my DEGENs into the game?
+### كيف يمكنني استيراد DEGENs الخاصة بي إلى اللعبة؟
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+بسيطة مثل توقيع رسالة للتحقق من ملكية DEGENs الخاصة بك في محفظتك المشفرة عند بدء اللعبة.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **هل أحتاج إلى وحدات تحكم لتشغيل اللعبة؟**
+لا ، على الرغم من أننا نعتقد أنه من الأسهل اللعب باستخدام وحدة تحكم (PS أو Xbox أو أي أجهزة أخرى يتعرف عليها الكمبيوتر / جهاز Mac) من لوحة المفاتيح.
 
-### Why is the rename asking for multiple verifications?
+### لماذا تطلب إعادة التسمية عمليات تحقق متعددة؟
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+إعادة تسمية شخصية تكلف **1000 NFTL** والتي يتم حرقها على الفور بواسطة العقد الذكي **NiftyDegen** من أجل تمكين العقد من إنفاق NFTL الخاص بك ، ستحتاج في البداية إلى زيادة بدل الإنفاق بما لا يقل عن 1000 NFTL. بشكل افتراضي ، يتم تعيين هذه الموافقة على 1000 ولكن إذا كنت تخطط لإعادة تسمية أحرف متعددة ، يمكنك زيادة المخصص لتجنب الاضطرار إلى زيادة المخصص في المستقبل.

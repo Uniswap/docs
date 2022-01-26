@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: savaş temelleri
+title: Savaş Temelleri
 sidebar_position: 2
 ---
 
-### General advice
+### Genel tavsiye
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Şiddetle tavsiye edilen bir oyun kumandası ile oynama (PS, Xbox, …, PC/Mac tarafından tanınır)
 
-### Bat swings
+### Yarasa salıncakları
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- Yarasa olası tüm yönlerde sallanabilir: sol, sağ, yukarı, aşağı, köşegenler
+- Yarasa, saldırı düğmesine tıklayarak sallanabilir. Düğmeye daha uzun süre basmak, yarasanın daha sert vurmasını sağlar
+- Yarasa ayakta dururken, koşarken, zıplarken sallanabilir
+- Atlamalar sırasında uzun süreli saldırı düğmesine basmak mümkündür (muhtemelen rakipleri şaşırtmak)
 
-### Moving
+### Hareketli
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- 2D-Oyun olarak, hareket yönleri sol/sağ
+- Atlamalar/takla sırasında yönler değiştirilebilir
 
-### Jumping
+### Atlama
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- Atlama yüksekliği, atlama düğmesine basma süresi ile değiştirilebilir
+- Atlamalar/takla sırasında yönler değiştirilebilir
 
-### Flying Hamburger
+### uçan hamburger
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Sopayı çok daha güçlü vurur - çoğu zaman doğrudan öldürmeyle sonuçlanır
+- Güncelleme için: burger buff süresini zamana göre sınırlayın ve/veya öldürün

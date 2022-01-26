@@ -1,8 +1,8 @@
 ---
-id: nftl
+id: NFL
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### ¿Qué utilidad tiene NFTL?
 
-### What is a governance token?
+### ¿Qué es un token de gobernanza?

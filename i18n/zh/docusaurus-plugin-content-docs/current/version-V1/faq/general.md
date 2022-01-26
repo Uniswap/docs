@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: 一般的
+title: 一般的
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **玩 Nifty Smashers 需要付费吗？**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+今天，您必须拥有 DEGEN NFT 才能玩 Nifty Smashers。 我们将很快推出一个租赁系统，您可以在其中以每周费用租用 DEGEN NFT。
 
-## Where can I play the game?
+## 我在哪里可以玩游戏？
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+只要支持加密钱包扩展，游戏就可以在您最喜欢的网络浏览器上玩。 我们目前还为 Window 用户提供桌面应用程序，MacOS 即将推出！
 
-### **Do I need more than one DEGEN to play the game?**
+### **我需要多个 DEGEN 才能玩游戏吗？**
 
-No, you only need one DEGEN to play.
+不，您只需要一个 DEGEN 即可玩。
 
-### How do I import my DEGENs into the game?
+### 如何将我的 DEGEN 导入游戏？
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+就像在启动游戏时签署消息以验证您的加密钱包中 DEGEN 的所有权一样简单。
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **我需要控制器来玩游戏吗？**
+不，尽管我们认为使用控制器（PS、Xbox 或 PC/Mac 识别的任何其他设备）比使用键盘更容易。
 
-### Why is the rename asking for multiple verifications?
+### 为什么重命名要求多次验证？
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+重命名一个角色需要花费 **1000 NFTL** 立即被 **NiftyDegen** 智能合约烧毁。 为了使合同能够花费您的 NFTL，您最初需要将支出津贴至少增加 1000 NFTL。 默认情况下，此批准设置为 1000，但如果您计划重命名多个字符，则可以增加允许，以避免将来不得不增加允许。

@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: egenskaper
+title: Karaktertrekk
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+Det var totalt 1023 egenskaper og 21 valgbare alternativer etter å ha valgt en stamme, noe som gir et nesten uendelig antall kombinasjoner. Karaktertrekk ble tilfeldig fjernet fra settet med tilgjengelige egenskaper etter hvert som flere karakterer ble opprettet, noe som gjorde det vanskelig å vite hvilke alternativer som ville ende opp som de sjeldneste. Mens bakgrunnstyper har spesielle fordeler, er egenskaper strengt tatt kosmetiske. Sjekk ut [OpenSea](https://opensea.io/collection/niftydegen) å se noen av de fantastiske kreasjonene vårt fellesskap kom opp med!

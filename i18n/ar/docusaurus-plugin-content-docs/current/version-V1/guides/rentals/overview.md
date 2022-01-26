@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: نظرة عامة على الإيجار
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## مقدمة

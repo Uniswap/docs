@@ -1,19 +1,19 @@
 ---
-id: distribution
-title: Distribution (First Year)
+id: توزيع
+title: التوزيع (السنة الأولى)
 sidebar_position: 2
 ---
 
-There is no max supply set for now but we expect around **1 Billion NFTL** to be distributed over the next year according to the allocations set below:
+لا يوجد حد أقصى للعرض محدد حاليًا ولكننا نتوقع **1 مليار NFTL** على مدار العام المقبل وفقًا للتخصيصات المحددة أدناه:
 
 ![https://nifty-league.com/static/media/new-nftl-distribution-dark.eb3e89af.png](https://nifty-league.com/static/media/new-nftl-distribution-dark.eb3e89af.png)
 
-**Community Giveaways**
+**هبات المجتمع**
 
-Every project needs quality memes! Join the **[Nifty League Discord](https://discord.gg/niftyleague)** for access to free **NFTL** distributions to community members who make us all laugh or go above and beyond contributing to discussions. To facilitate this we’ll have a tip bot configured for our team and moderators to tip Discord users a combined total of **7M NFTL** over the **first two months**. As noted earlier, these tips will remain available for active Discord members going forward but the rate is expected to be much lower.
+كل مشروع يحتاج ميمات عالية الجودة! انضم إلى **[Nifty League Discord](https://discord.gg/niftyleague)** للوصول إلى **توزيعات** لأفراد المجتمع الذين يجعلوننا جميعًا نضحك أو يذهبون إلى أبعد الحدود للمساهمة في المناقشات. لتسهيل هذا سيكون لدينا بوت طرف تكوين لفريقنا والمشرفين لطرف مستخدمين الخلاف بين إجمالي **7M NFTL** على **الشهرين الأولين**. كما ذكرنا سابقًا ، ستظل هذه النصائح متاحة لأعضاء Discord النشطين من الآن فصاعدًا ولكن من المتوقع أن يكون المعدل أقل بكثير.
 
-**Initial Supply**
+**التوريد الأولي**
 
-We have decided to close our AXS holders airdrop early to reward our **DEGEN** holders instead with **212.85M NFTL** tokens in total; a portion being claimable along with the purchase of **DEGEN** NFTs and the rest airdropped to holders prior to the sale based on a snapshot taken at **[Block #13360120](https://etherscan.io/block/13360120)**. While the AXS airdrop contract was open, a total of **256K NFTL** was claimed.
+لقد قررنا إغلاق Airdrop لحامل AXS مبكرًا لمكافأة **حاملي DEGEN** بدلاً من **212.85M NFTL** في المجموع ؛ جزء يمكن المطالبة به جنبًا إلى جنب مع شراء **DEGEN** NFTs والباقي يتم إنزاله إلى أصحابها قبل البيع بناءً على لقطة مأخوذة في **[Block # 13360120](https://etherscan.io/block/13360120)**. في حين كان العقد AXS انزال مفتوحة، أي ما مجموعه **256K NFTL** وقد ادعى.
 
-**100M NFTL** was allocated for a team development fund which is time-locked for **6 months** from **[Block #13228502](https://etherscan.io/tx/0x3649b00464903b78608f8de9308aec339ecd7446f1dc2de26a9913d2d5468ecf)**. Another **100M NFTL** was provided to the **[Nifty DAO treasury](https://etherscan.io/address/0xd06ae6fb7eade890f3e295d69a6679380c9456c1)** to support early community plans such as liquidity incentives, tournament rewards, or giveaways. This brings the initial supply to around **420M** with daily emissions for all genesis NFT owners starting immediately after each character sale.
+**100M NFTL** تم تخصيصها لصندوق تطوير الفريق وهو لغير الساحلية الساعة **6 أشهر** من **[بلوك # 13228502](https://etherscan.io/tx/0x3649b00464903b78608f8de9308aec339ecd7446f1dc2de26a9913d2d5468ecf)**. تم تقديم **100M NFTL** **[Nifty DAO Treasury](https://etherscan.io/address/0xd06ae6fb7eade890f3e295d69a6679380c9456c1)** لدعم خطط المجتمع المبكرة مثل حوافز السيولة أو مكافآت البطولة أو الهبات. وبذلك يرتفع العرض الأولي إلى حوالي **420M** مع انبعاثات اليومية لجميع أصحاب نشأة NFT تبدأ مباشرة بعد كل عملية بيع الحرف.

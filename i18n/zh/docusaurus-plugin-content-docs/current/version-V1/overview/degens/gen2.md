@@ -1,9 +1,9 @@
 ---
-id: gen2
-title: Future Characters
+id: 第二代
+title: 未来角色
 sidebar_position: 5
 ---
 
-As our platform continues to grow, we'll aim for partnerships with other popular NFT projects to increase the player capacity for our games which are only available to **DEGEN** holders (...if you're reading this BAYC 💜). Another option is to monitor demand and make a decision whether to expand to another EVM-compatible blockchain to onboard new users and enable cross-chain gaming. This may also become a requirement if we introduce games which require frequent user transactions. If so, **60%** of all proceeds from future character sales will be sent to the **Nifty DAO** with the remainder going to our team for putting the infrastructure in place and preparing new contracts and characters for the new blockchain(s). and current Ethereum **DEGEN** holders should expect a free NFT on the new blockchain(s).
+随着我们平台的不断发展，我们将致力于与其他流行的 NFT 项目建立合作伙伴关系，以增加我们游戏的玩家容量，这些游戏仅适用于 **DEGEN** 持有者（...如果您正在阅读此 BAYC 💜）。 另一种选择是监控需求并决定是否扩展到另一个与 EVM 兼容的区块链以吸引新用户并启用跨链游戏。 如果我们引入需要频繁用户交易的游戏，这也可能成为一项要求。 如果是这样，未来角色销售的所有收益的 **60%** **Nifty DAO** ，其余的将交给我们的团队，用于安装基础设施并为新的区块链准备新的合同和角色。 目前的 Ethereum **DEGEN** 持有者应该期望在新的区块链上获得免费的 NFT。
 
-It is important to note that the unique trait combinations from our genesis **DEGENS** will **_never_** be mintable again and any new generation of characters will either be designed with a unique twist on the original tribes, or completely new tribes and traits altogether. While all Nifty League NFTs will have the chance to earn daily rewards by playing our games and contributing to the community, only Ethereum **DEGEN** holders will earn daily **NFTL** tokens for the **first 3 years** as described in our token emissions.
+重要的是要注意，我们创世纪 **** 中的独特特征组合将 **_永远不会_** 再铸造，任何新一代角色都将设计为对原始部落进行独特的扭曲，或者全新的部落和特征共。 虽然所有 Nifty League NFT 都将有机会通过玩我们的游戏和为社区做出贡献来赚取每日奖励，但只有 Ethereum **DEGEN** 持有者将在前 3 年</strong> ****NFTL** 代币，如我们的代币排放中所述。</p>

@@ -1,11 +1,11 @@
 ---
-id: about
-title: About
+id: etwa
+title: Etwa
 sidebar_position: 1
 ---
 
-The minting process for Nifty League was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using the Mint-O-Matic!
+Der Prägeprozess für Nifty League war ein einzigartiges Spektakel, das es den Münzern ermöglichte, ihre eigene DEGEN mit dem Mint-O-Matic zu entwerfen!
 
 ![](/img/mintomatic.gif)
 
-There were 6 tribes which include: apes, humans, dogs, frogs, cats, and aliens. This decision not only affects available character traits and accessories, but determines certain in-game mechanics and special moves. During the sale you can check our DEGENS page to browse through minted DEGENS to determine which tribes are rarer than others. Players will naturally gravitate towards certain characters based on their personal preferences as gameplay and special moves may be quite different between them for certain games. You’ll be able to select which of your characters to use before each game (so no harm in having one of each tribe!) 😉
+Es gab 6 Stämme, darunter: Affen, Menschen, Hunde, Frösche, Katzen und Außerirdische. Diese Entscheidung wirkt sich nicht nur auf verfügbare Charaktereigenschaften und Accessoires aus, sondern bestimmt auch bestimmte Mechaniken und Spezialbewegungen im Spiel. Während des Verkaufs können Sie auf unserer DEGENS-Seite durch die geprägten DEGENS stöbern, um festzustellen, welche Stämme seltener sind als andere. Spieler werden sich aufgrund ihrer persönlichen Vorlieben natürlich zu bestimmten Charakteren hingezogen fühlen, da das Gameplay und die Spezialbewegungen für bestimmte Spiele zwischen ihnen sehr unterschiedlich sein können. Sie können vor jedem Spiel auswählen, welchen Ihrer Charaktere Sie verwenden möchten (es schadet also nicht, einen von jedem Stamm zu haben!) 😉

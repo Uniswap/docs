@@ -1,7 +1,7 @@
 ---
-id: free-2-play-overview
+id: gratis-2-play-overzicht
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Invoering

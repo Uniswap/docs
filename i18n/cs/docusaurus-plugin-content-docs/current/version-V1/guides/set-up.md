@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
-sidebar_position: 0.5
+id: založit
+title: Nastavte si peněženku
+sidebar_position: 0,5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Klepněte na Spustit aplikaci v horním navigačním panelu vpravo. Klepněte na Připojit. Vyberte si kryptopeněženku, ve které je uložen váš DEGEN NFT. Po zobrazení výzvy transakci podepište. 

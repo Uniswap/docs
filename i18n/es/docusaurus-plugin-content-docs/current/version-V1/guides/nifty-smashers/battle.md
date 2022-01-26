@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: fundamentos de batalla
+title: Conceptos básicos de batalla
 sidebar_position: 2
 ---
 
-### General advice
+### Consejos generales
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- Muy recomendable jugar con un controlador (PS, Xbox, …, reconocido por PC/Mac)
 
-### Bat swings
+### Columpios de bate
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- El bate se puede girar en todas las direcciones posibles: izquierda, derecha, arriba, abajo, diagonales.
+- El bate se puede balancear haciendo clic en el botón de ataque. Pulsar el botón durante más tiempo hace que el bate golpee más fuerte.
+- El bate se puede balancear mientras está de pie, corriendo, saltando
+- Es posible presionar prolongadamente el botón de ataque durante los saltos (posiblemente sorprender a los oponentes)
 
-### Moving
+### Moviente
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- Como juego 2D, las direcciones de movimiento son izquierda/derecha
+- Las direcciones se pueden cambiar durante los saltos/caídas
 
-### Jumping
+### saltando
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- La altura del salto se puede modificar presionando la duración del botón de salto
+- Las direcciones se pueden cambiar durante los saltos/caídas
 
-### Flying Hamburger
+### Hamburguesa voladora
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- Hace que el golpe del bate sea mucho más fuerte: la mayoría de las veces resulta en una muerte directa
+- Para actualizar: limitar la duración de la mejora de hamburguesas por tiempo y/o matar

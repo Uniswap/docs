@@ -1,9 +1,9 @@
 ---
-id: nifty-royale
-title: Nifty Royale
+id: chouette-royale
+title: Chouette Royale
 sidebar_position: 5
 ---
 
-### Under development for 2022!
+### En développement pour 2022 !
 
 ![](/img/niftyroyale_v01.png)

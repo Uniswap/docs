@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: allmän
+title: Allmän
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **Kostar det att spela Nifty Smashers?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+Idag måste du äga en DEGEN NFT för att spela Nifty Smashers. Vi kommer snart att lansera ett uthyrningssystem, där du kan hyra en DEGEN NFT mot en veckoavgift.
 
-## Where can I play the game?
+## Var kan jag spela spelet?
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+Spel kan spelas på dina favoritwebbläsare så länge de stöder kryptoplånbokstillägg. Vi har också en skrivbordsapp tillgänglig för Windows-användare för tillfället med MacOS som kommer snart!
 
-### **Do I need more than one DEGEN to play the game?**
+### **Behöver jag mer än en DEGEN för att spela spelet?**
 
-No, you only need one DEGEN to play.
+Nej, du behöver bara en DEGEN för att spela.
 
-### How do I import my DEGENs into the game?
+### Hur importerar jag mina DEGENs till spelet?
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+Så enkelt som att signera ett meddelande för att verifiera ägandet av dina DEGENs i din kryptoplånbok när du startar spelet.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **Behöver jag handkontroller för att spela spelet?**
+Nej, även om vi tror att det är lättare att spela med en kontroller (PS, Xbox eller någon annan som känns igen av PC/Mac) än ett tangentbord.
 
-### Why is the rename asking for multiple verifications?
+### Varför kräver det nya namnet flera verifieringar?
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+Att byta namn på en karaktär kostar **1000 NFTL** som omedelbart bränns av det smarta kontraktet **NiftyDegen** För att avtalet ska kunna spendera din NFTL måste du initialt öka utgiftsbidraget med minst 1000 NFTL. Som standard är detta godkännande satt till 1000 men om du planerar att byta namn på flera tecken kan du öka tillägget för att undvika att behöva öka tillägget i framtiden.

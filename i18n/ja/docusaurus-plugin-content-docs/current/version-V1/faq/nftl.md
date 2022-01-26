@@ -3,6 +3,6 @@ id: nftl
 title: NFTL
 ---
 
-### What utility does NFTL have?
+### NFTLにはどのようなユーティリティがありますか？
 
-### What is a governance token?
+### ガバナンストークンとは何ですか？

@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: معلومات عامة
+title: معلومات عامة
 sidebar_position: 1
 ---
 
-### Scoring
+### التهديف
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- إذا تم ضرب الانحراف مرة واحدة ومات (يسقط من الخريطة) تحصل على نقطة واحدة
+- إذا تم ضرب الانحطاط عدة مرات دون أن تكون قادرًا على التعافي ، فستحصل على نقاط كلما تم ضرب الانحطاط. لا يهم ما إذا كانت الضربات السابقة قد تم إجراؤها بواسطة انحراف آخر. الضربة الأخيرة التي تقتل الانحطاط ، تحصل على جميع نقاط التحرير والسرد
+- **لا يوجد حاليًا حد أقصى لعدد المرات التي يمكن فيها الوصول إلى الانحراف (التحرير والسرد) ولكن هناك حد أقصى لعدد النقاط التي يمكنك الحصول عليها بحد أقصى (3 نقاط: مباراة ثنائية اللاعبين / 5 نقاط: 3&مباراة لأربعة لاعبين)**
+- مباراة ثنائية اللاعبين: 5 نقاط للفوز بالجولة / 3&مباراة بين لاعبين: 10 نقاط للفوز بالجولة
+- المباريات هي Bo5. إذا كان هناك تعادل بعد الجولة الخامسة ، ينتقل اللاعب المتعادل إلى جولة الموت المفاجئ
 
-### Lag Indicator
+### مؤشر التأخر
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- تأخر اتصالك (سرعة اختبار الاتصال)
+- التأخر يعني عادة أكثر من 100 مللي ثانية
 
-### Custom Lobby
+### ردهة مخصصة
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- يمكن استخدام ردهة مخصصة لفتح مباراة في المنطقة المختارة. يمكن لمنشئ الردهة رؤية رمز في خريطة الردهة يمكن مشاركته مع الآخرين
+- إذا أراد أحد الانحرافات الانضمام إلى هذه الردهة ، فعليه أولاً تحديد المنطقة الصحيحة ثم كتابة رمز الردهة في مربع الإدخال
+- للتحديث: عند استخدام رمز ردهة مخصص ، يجب تبديل المنطقة تلقائيًا
 
-### How and why to change regions?
+### كيف ولماذا لتغيير المناطق؟
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher هي لعبة سريعة الخطى حيث يكون زمن الوصول الجيد / ping أمرًا بالغ الأهمية. كلما كانت المنطقة المختارة أقرب إلى موقع اللاعب ، انخفض اختبار الاتصال.
+- بعد تغيير المنطقة في تطبيق الويب / سطح المكتب ، يتم عرض الأمر ping الحالي

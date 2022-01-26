@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: generell information
+title: Generell information
 sidebar_position: 1
 ---
 
-### Scoring
+### Poängsättning
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- Om en degen träffas en gång och dör (faller av kartan) får du en poäng
+- Om en degen träffas flera gånger utan att kunna återhämta sig får du poäng lika ofta som degenen träffades. Det spelar ingen roll om tidigare träffar gjordes av en annan degen. Sista träffen som dödar degenen, får alla kombinationspoäng
+- **För närvarande finns det inget tak för hur ofta en degen kan träffas (combo'ed) utan ett tak för hur många poäng du kan få max (3 poäng: 2-spelares match / 5 poäng: 3&4-spelares match)**
+- 2-spelare-match: 5 poäng för att vinna omgången / 3&4-spelare-match: 10 poäng för att vinna omgången
+- Matcher är Bo5. Om det är oavgjort efter den femte omgången, går den oavgjorda spelaren till en sudden death-runda
 
-### Lag Indicator
+### Fördröjningsindikator
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- din fördröjning (pinghastighet) för din anslutning
+- fördröjning betyder vanligtvis över 100 ms
 
-### Custom Lobby
+### Anpassad lobby
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- En anpassad lobby kan användas för att öppna en match i en vald region. Skaparen av lobbyn kan se en kod i lobbykartan som kan delas med andra
+- Om en annan degen vill gå med i denna lobby måste han först välja rätt region och sedan skriva in lobbykoden i en inmatningsruta
+- För uppdatering: när du använder en anpassad lobbykod bör regionen bytas automatiskt
 
-### How and why to change regions?
+### Hur och varför byter man region?
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher är ett snabbt spel där bra latens/ping är avgörande. Ju närmare den valda regionen är spelarens plats, desto lägre är ping.
+- Efter att ha ändrat region i webb-/skrivbordsappen visas den aktuella pingen

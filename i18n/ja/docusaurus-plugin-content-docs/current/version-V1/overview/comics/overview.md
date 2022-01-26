@@ -1,33 +1,33 @@
 ---
-id: overview
+id: 概要
 title: Overview
 sidebar_position: 1
 ---
 
-As if our minting process wasn’t already fun enough for you guys... we surprised the community with a special Nifty League launch comic collection! This was to say thank you for minting our collection and for being early 😁
+まるで私たちの鋳造プロセスがあなたたちにとってまだ十分に楽しくなかったかのように...私たちは特別なニフティリーグのローンチコミックコレクションでコミュニティを驚かせました！ これは、私たちのコレクションを作成してくれて、早くしてくれてありがとうと言っていました😁
 
-Snapshots for comics were taken throughout the minting process for the first 4 comic pages at the following milestones: Page 1 - 2500 | Page 2 - 3500 | Page 3 - 5000 | Page 4 - 7500.
+コミックのスナップショットは、次のマイルストーンで最初の4つのコミックページの作成プロセス全体で取得されました。ページ2-3500 |ページ3-5000 |ページ4-7500。
 
-You are probably wondering, “What do I do with the Comics?”. Well, you are going to have some choices to make as they will have multiple utilities. So, there is a game within a game here for you to choose your own path.
+あなたはおそらく「コミックで何をするのか」と疑問に思っているでしょう。 ええと、彼らは複数のユーティリティを持っているので、あなたはいくつかの選択をするつもりです。 だから、あなたがあなた自身の道を選ぶためにここのゲームの中にゲームがあります。
 
-The Nifty League Comic Collection consists of 6 pages with comics 5 and 6 yet to be released. There will be a snapshot on 1/31/2022 for comic 5 awarded to all DEGEN holders and comic 6 awarded to all wallets containing all 6 DEGEN tribes. All Meta background DEGENS will receive one comic 6 and all Legendary background DEGENS will receive two comic 6s! These will be made available via a claim on our website.
+ニフティリーグコミックコレクションは6ページで構成されており、コミック5と6はまだリリースされていません。 2022年1月31日に、すべてのDEGEN保有者に授与されるコミック5と、6つのDEGEN部族すべてを含むすべてのウォレットに授与されるコミック6のスナップショットがあります。 すべてのメタ背景DEGENSは1つのコミック6を受け取り、すべての伝説的な背景DEGENSは2つのコミック6を受け取ります！ これらは、当社のWebサイトの請求を通じて利用可能になります。
 
-Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. However, this burn window won’t be forever and each holder will be forced to make some tough decisions for the future of their collection.
+各コミックは、燃やされた各ページと引き換えにゲーム内のウェアラブルまたは武器を受け取るために、将来的に燃やされる予定です。 ただし、この書き込みウィンドウは永遠ではなく、各所有者はコレクションの将来のためにいくつかの難しい決定を行うことを余儀なくされます。
 
-Satoshi told us he loves full collections in just about everything…so think twice before you make too many decisions here.
+聡は、彼がちょうど約すべてにフルコレクションを愛している私たちに語った…ですから、ここであまりにも多くの決定を下す前に二度考えます。
 
-**TL;DR**
+**TL; DR**
 
-- Each comic can be burned for a in-game wearable item
-- These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
-- Alternatively, you can hold the comics for future utility we have not yet disclosed
-- All 6 comics can be burned together as a set for a special mystery item
-- This mystery item will NOT modify the P2E multiplier
+- 各コミックは、ゲーム内のウェアラブルアイテムに書き込むことができます
+- これらのNFTはERC-1155になります
+- アイテムは着用時にdegenのP2E乗数を変更します
+- または、まだ公開していない将来のユーティリティのためにコミックを保持することもできます
+- 6つのコミックすべてを特別なミステリーアイテムのセットとして一緒に燃やすことができます
+- このミステリーアイテムはP2E乗数を変更しません
 
-Below is a depiction of wearable multiplier strength for each corresponding wearable. The exact rates are still to be determined.
+以下は、対応する各ウェアラブルのウェアラブル乗数の強さの描写です。 正確なレートはまだ決定されていません。
 
 Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
 
 
-We are still determining exactly how many slots can be filled per DEGEN, but only 1 of each wearable is assignable per DEGEN NFT. 
+現在、DEGENごとに埋めることができるスロットの正確な数を決定していますが、DEGENNFTごとに割り当て可能なウェアラブルは1つだけです。 

@@ -1,6 +1,6 @@
 ---
-id: rentals
+id: оренда
 title: Rentals
 ---
 
-### Where do I rent a DEGEN?
+### Де орендувати DEGEN?

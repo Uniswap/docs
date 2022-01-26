@@ -1,11 +1,11 @@
 ---
-id: about
-title: About
+id: Về
+title: Về
 sidebar_position: 1
 ---
 
-The minting process for Nifty League was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using the Mint-O-Matic!
+Quá trình đúc tiền cho Nifty League là một cảnh tượng có một không hai cho phép những người thợ đúc có khả năng thiết kế DEGEN của riêng họ bằng cách sử dụng Mint-O-Matic!
 
 ![](/img/mintomatic.gif)
 
-There were 6 tribes which include: apes, humans, dogs, frogs, cats, and aliens. This decision not only affects available character traits and accessories, but determines certain in-game mechanics and special moves. During the sale you can check our DEGENS page to browse through minted DEGENS to determine which tribes are rarer than others. Players will naturally gravitate towards certain characters based on their personal preferences as gameplay and special moves may be quite different between them for certain games. You’ll be able to select which of your characters to use before each game (so no harm in having one of each tribe!) 😉
+Có 6 bộ tộc bao gồm: vượn, người, chó, ếch, mèo và người ngoài hành tinh. Quyết định này không chỉ ảnh hưởng đến các đặc điểm nhân vật và phụ kiện có sẵn, mà còn xác định một số cơ chế trong trò chơi và các bước di chuyển đặc biệt. Trong thời gian bán hàng, bạn có thể kiểm tra trang DEGENS của chúng tôi để duyệt qua DEGENS được đúc để xác định bộ lạc nào hiếm hơn những bộ lạc khác. Người chơi sẽ tự nhiên bị thu hút bởi một số nhân vật nhất định dựa trên sở thích cá nhân của họ vì lối chơi và các bước di chuyển đặc biệt có thể khá khác nhau giữa họ đối với một số trò chơi nhất định. Bạn sẽ có thể chọn nhân vật nào của mình để sử dụng trước mỗi trận đấu (vì vậy, không có hại gì khi có một trong mỗi bộ tộc!) 😉

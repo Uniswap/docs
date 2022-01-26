@@ -1,28 +1,28 @@
 ---
-id: general
-title: General
+id: Tábornok
+title: Tábornok
 sidebar_position: 1
 ---
 
-### **Does it cost to play Nifty Smashers?**
+### **A Nifty Smashers játékba kerül?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
+Ma már rendelkezned kell egy DEGEN NFT-vel a Nifty Smashers játékhoz. Hamarosan beindítjuk a bérleti rendszert, ahol heti díj ellenében bérelhetsz DEGEN NFT-t.
 
-## Where can I play the game?
+## Hol játszhatom a játékot?
 
-Games are playable on your favorite web browsers as long as it supports crypto wallet extensions. We also have a desktop app available for Window users at the moment with MacOS coming soon!
+A játékok játszhatók kedvenc webböngészõin, feltéve, hogy támogatják a kriptotárca-bõvítményeket. Jelenleg egy asztali alkalmazásunk is elérhető a Windows-felhasználók számára, hamarosan elérhető lesz a MacOS!
 
-### **Do I need more than one DEGEN to play the game?**
+### **Egynél több DEGEN-re van szükségem a játékhoz?**
 
-No, you only need one DEGEN to play.
+Nem, csak egy DEGEN kell a játékhoz.
 
-### How do I import my DEGENs into the game?
+### Hogyan importálhatom a DEGEN-eimet a játékba?
 
-As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
+Olyan egyszerű, mint egy üzenet aláírása a kriptopénztárcájában lévő DEGEN-ek tulajdonjogának igazolására a játék elindításakor.
 
-### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
+### **Szükségem van kontrollerekre a játékhoz?**
+Nem, bár úgy gondoljuk, hogy egyszerűbb kontrollerrel (PS, Xbox vagy bármely más, a PC/Mac által felismert) játszani, mint egy billentyűzettel.
 
-### Why is the rename asking for multiple verifications?
+### Miért kér több ellenőrzést az átnevezés?
 
-Renaming a character costs **1000 NFTL** which is immediately burned by the **NiftyDegen** smart contract. In order to enable the contract to spend your NFTL, you will initially need to increase the spending allowance by at least 1000 NFTL. By default, this approval is set to 1000 but if you plan on renaming multiple characters you can increase the allowance to avoid having to increase the allowance in the future.
+Egy karakter átnevezése **1000 NFTL** kerül, amit a **NiftyDegen** intelligens szerződés azonnal el is éget. Annak érdekében, hogy a szerződés elköltse az NFTL-jét, kezdetben legalább 1000 NFTL-lel kell növelnie a kiadási támogatást. Alapértelmezés szerint ez a jóváhagyás 1000-re van állítva, de ha több karakter átnevezését tervezi, növelheti a ráhagyást, hogy ne kelljen a jövőben növelni a ráhagyást.

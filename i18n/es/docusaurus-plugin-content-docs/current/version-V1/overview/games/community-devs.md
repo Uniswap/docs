@@ -1,7 +1,7 @@
 ---
-id: community-devs
-title: Community Devs
+id: desarrolladores comunitarios
+title: Desarrolladores de la comunidad
 sidebar_position: 6
 ---
 
-Our goal is to expand this platform with as many fun and exciting games as possible and that is only possible with the help of our community. We encourage developers to create games utilizing our characters which - if selected - will go live on our platform, and in return developers will be rewarded from the Nifty DAO for their contributions. Get creative and send us your ideas! If your game shows promise and viability we’d love to share it with the community.
+Nuestro objetivo es expandir esta plataforma con tantos juegos divertidos y emocionantes como sea posible y eso solo es posible con la ayuda de nuestra comunidad. Alentamos a los desarrolladores a crear juegos utilizando nuestros personajes que, si se seleccionan, se publicarán en nuestra plataforma y, a cambio, los desarrolladores serán recompensados por Nifty DAO por sus contribuciones. ¡Sé creativo y envíanos tus ideas! Si su juego se muestra prometedor y viable, nos encantaría compartirlo con la comunidad.

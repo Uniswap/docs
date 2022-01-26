@@ -1,34 +1,34 @@
 ---
-id: nifty-smashers
-title: Nifty Smashers
+id: 멋진 스매셔
+title: 멋진 스매셔
 sidebar_position: 2
 ---
 
   <div>
   <video width="100%" height="100%" playsInline controls loop>
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
-  Your browser does not support the video tag.
+  귀하의 브라우저는 비디오 태그를 지원하지 않습니다.
   </video>
   </div>
 
 ---
 
-Get ready to brawl! The local-multiplayer version of **[Nifty Smashers](https://nifty-league.com/games)** was made available immediately at launch followed by the online multiplayer! So grab a few controllers 🎮 and play with friends.
+싸울 준비를 하세요! **[Nifty Smashers](https://nifty-league.com/games)** 의 로컬 멀티플레이어 버전은 출시와 동시에 온라인 멀티플레이어로 출시되었습니다! 컨트롤러 🎮 몇 개를 들고 친구들과 플레이하세요.
 
-Battle it out amongst the community and get in as many _bat bonks_ 🥖on your friends as you can! **Nifty Smashers** takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points. In order to play you'll need a **DEGEN** to select for battle, and then use your keyboard, Playstation or Xbox controller as input (couch multiplayer works too!). From the game lobby you'll be able to select from any of your previously minted **DEGENs** you own in your wallet to show off your cool creations! Each tribe has a unique special move so experiment with different tribes and find the moveset that suits your playstyle best. Hold down the attack button for a charged-up bat attack, some special moves can also be charged. When you bonk another player, they’re worth 1 point. The more they’re successively bonked, the faster they bounce around and the more points they’re worth. Land the final mega-bonk to hit them off the map and claim all the points!
+커뮤니티에서 겨루고 가능한 한 친구에게 _배트 멍크_ **Nifty Smashers** 은 고전 Super Smash Bros 게임에서 영감을 얻었습니다. 이 게임은 목표가 지도에서 상대를 쓰러뜨리고 점수를 얻는 것입니다. **DEGEN** 이 필요하고 키보드, Playstation 또는 Xbox 컨트롤러를 입력으로 사용합니다(카우치 멀티플레이어도 작동합니다!). 게임 로비에서 지갑에 있는 이전 발행된 **DEGEN** 각 부족마다 고유한 특수 기술이 있으므로 다양한 부족을 실험하고 자신의 플레이 스타일에 가장 적합한 기술을 찾으십시오. 차지업 배트 공격을 위해 공격 버튼을 누르고 있으면 일부 필살기도 차지할 수 있습니다. 다른 플레이어를 bonk하면 1점의 가치가 있습니다. 그들이 연속적으로 더 많이 부딪힐수록 더 빨리 튀고 더 많은 점수를 얻을 수 있습니다. 마지막 메가봉을 착륙시켜 지도에서 그들을 공격하고 모든 포인트를 차지하세요!
 
-**As noted, this is a beta release of our initial game so lag and issues with pesky bots are to be expected.** Our immediate plan is to continue development on **Nifty Smashers** and to introduce more features such as additional combo moves and a progression system. Hop in our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve **Nifty Smashers** and take it to the next level!
+**언급한 바와 같이 이것은 초기 게임의 베타 릴리스이므로 성가신 봇과 관련된 지연 및 문제가 예상됩니다.** 우리의 즉각적인 계획은 **Nifty Smashers** 에 대한 개발을 계속하고 추가 콤보 이동 및 진행 시스템과 같은 더 많은 기능을 도입하는 것입니다. **[Discord](https://discord.gg/niftyleague)** **Nifty Smashers** 개선하고 다음 단계로 끌어올리는 방법에 대한 피드백과 아이디어를 제공하세요!
 
 <!-- ![](/img/highlights.gif) -->
 
-**Online Multiplayer Lag ☁️**
+**온라인 멀티플레이어 지연 ☁️**
 
-With the on-going alpha, let's talk about lag in fast-paced and snappy brawler games like **Nifty Smashers**.
+**Nifty Smashers**과 같이 빠르게 진행되는 빠른 싸움꾼 게임의 지연에 대해 이야기해 보겠습니다.
 
-Generally speaking, lag is always present whenever there is physical distance between the players on the internet. The greater the distance, the greater the lag. There are different techniques & tricks that developers use to compensate and hide the lag. We have implemented a number of these lag compensation techniques that veil the lag for the best experience possible. We have also incorporated solutions with servers all around the world so that we can match players closest to each other to minimize the lag as much as possible.
+일반적으로 인터넷에서 플레이어 사이에 물리적 거리가 있을 때마다 지연이 항상 존재합니다. 거리가 멀수록 지연이 커집니다. 다른 기술에게 있습니다 & 트릭은 개발자가 보상하기 위해 사용하고 지연을 숨길 수있다. 우리는 가능한 최고의 경험을 위해 지연을 숨기는 이러한 지연 보상 기술을 구현했습니다. 우리는 또한 가능한 한 지연을 최소화하기 위해 서로 가장 가까운 플레이어를 일치시킬 수 있도록 전 세계의 서버와 솔루션을 통합했습니다.
 
-Nonetheless, considering the level of responsiveness fast-paced brawlers require ⚡, we are expecting some lag when we launch the online multiplayer.
+그럼에도 불구하고 빠르게 진행되는 브롤러가 ⚡에 필요한 응답 수준을 고려할 때 온라인 멀티 플레이를 시작할 때 약간의 지연이 예상됩니다.
 
-We are excited to share our progress with you as soon as possible. Following the launch, with your feedback, we will do everything in our power to make the lag as unnoticeable as possible.
+가능한 한 빨리 진행 상황을 공유하게 되어 기쁩니다. 출시 후 여러분의 피드백과 함께 지연을 최대한 눈에 띄지 않도록 최선을 다할 것입니다.
 
-If you are interested in learning more about these techniques, here is a great read by Gabriel Gambetta about **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**.
+이러한 기술에 대해 더 자세히 알고 싶다면 Gabriel Gambetta가 쓴 **[Lag Compensation](https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html)**대한 훌륭한 글을 참조하십시오.

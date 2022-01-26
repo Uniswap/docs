@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: algemene inligting
+title: Algemene inligting
 sidebar_position: 1
 ---
 
-### Scoring
+### Puntetelling
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- As 'n degen een keer getref word en sterf (val van kaart af) kry jy een punt
+- As 'n degen verskeie kere getref word sonder om te kan herstel, kry jy punte so dikwels as wat die degen getref is. Dit maak nie saak of vorige treffers deur 'n ander degen gedoen is nie. Laaste treffer wat die degen doodmaak, kry alle kombinasiepunte
+- **Tans is daar geen limiet van hoe gereeld 'n degen geslaan (gekombineerd) kan word nie, maar 'n limiet op hoeveel punte jy maksimum kan kry (3 punte: 2-speler-wedstryd / 5 punte: 3&4-speler-wedstryd)**
+- 2-speler-wedstryd: 5 punte om rondte te wen / 3&4-speler-wedstryd: 10 punte om rondte te wen
+- Wedstryde is Bo5. As daar na die vyfde ronde gelykop is, skuif die gelykopspeler na 'n sudden death-rondte
 
-### Lag Indicator
+### Lag aanwyser
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- jou vertraging (pingspoed) van jou verbinding
+- lag beteken gewoonlik bo 100ms
 
-### Custom Lobby
+### Pasgemaakte voorportaal
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- 'n Pasgemaakte voorportaal kan gebruik word om 'n wedstryd in 'n gekose streek oop te maak. Die skepper van die voorportaal kan 'n kode in die voorportaalkaart sien wat met ander gedeel kan word
+- As 'n ander degen by hierdie lobby wil aansluit, moet hy eers die korrekte streek kies en dan die lobby-kode in 'n invoerkassie tik
+- Vir opdatering: wanneer 'n pasgemaakte lobbykode gebruik word, moet die streek outomaties verander word
 
-### How and why to change regions?
+### Hoe en hoekom om streke te verander?
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher is 'n vinnige speletjie waar goeie latency/ping deurslaggewend is. Hoe nader die gekose streek aan die speler se ligging is, hoe laer is die ping.
+- Nadat die streek in die web-/lessenaartoepassing verander is, word die huidige ping vertoon

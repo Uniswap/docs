@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
-sidebar_position: 0.5
+id: Opsætning
+title: Konfigurer din tegnebog
+sidebar_position: 0,5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Tryk på Start app i den øverste navigationslinje til højre. Tryk på Opret forbindelse. Vælg den krypto-pung, der holder din DEGEN NFT. Underskriv transaktionen, når du bliver bedt om det. 

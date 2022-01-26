@@ -1,10 +1,10 @@
 ---
-id: future-games
-title: Future Games
+id: viitoare-jocuri
+title: Jocuri viitoare
 sidebar_position: 7
 ---
 
-We have several ideas percolating and plan to expand on them once we have **[Nifty Smashers](https://nifty-league.com/games)** working as well as we'd like it to. Some upcoming titles have already been announced but stay tuned in our **[Discord](https://discord.gg/niftyleague)** for more details… 😈 The order of any upcoming games will be put up to a community vote.
+Avem mai multe idei în curs de desfășurare și intenționăm să le extindem după ce **[Nifty Smashers](https://nifty-league.com/games)** funcționează așa de bine pe cât ne-am dori. Câteva titluri viitoare au fost deja anunțate, dar rămâneți pe fază în **[Discord](https://discord.gg/niftyleague)** pentru mai multe detalii… 😈 Ordinea oricăror jocuri viitoare va fi supusă votului comunității.
 
 ![https://nifty-league.com/static/media/smash-sketch.7d5f0061.png](https://nifty-league.com/static/media/smash-sketch.7d5f0061.png)
 

@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: utleie-oversikt
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Introduksjon

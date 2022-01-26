@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: hyra-översikt
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## Introduktion

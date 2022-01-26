@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: 부족
+title: 부족 특수 능력
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**우리의 현재 게임인 Nifty Smashers와 앞으로 나올 모든 게임에는 각 캐릭터 유형에 대한 특수 능력("SA")이 있습니다.**
 
-### List of Special Abilities
+### 특수 능력 목록
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
-- **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **원숭이** - 부메랑 바나나 던지기 ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **외계인** - 순간이동 ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
+- **Cat** - 뛰어올라 일시적으로 배트 파워와 속도 부스트를 얻습니다. ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Frog** - 텅 그래플 훅 ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doge** - Doge 동전 롤 ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **인간** - 명령에 따라 폭발하는 다이너마이트 던지기 ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### 외계인
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- SA 버튼을 누르면 Alien이 목표 방향(왼쪽, 오른쪽, 위, 아래, 대각선)으로 짧은 거리를 순간이동할 수 있습니다.
+- 순간이동한 위치에 에너지 폭발이 일어나 근처에 있는 적에게 타격을 줍니다.
 
-### Ape
+### 원숭이
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- SA 버튼을 누르면 바나나가 목표 방향(왼쪽, 오른쪽, 위, 아래, 대각선)으로 **될 때까지 상대방**을 명중하거나 지도 부분을 명중하거나 지도에서 날아갈 때까지 던집니다.
+- 다시 SA 버튼을 누르면 바나나가 데젠으로 날아가 다시 적을 때릴 수 있다.
+- 바나나는 방망이로 맞고 목표 방향으로 날아갈 수 있습니다.
 
-### Cat
+### 고양이
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- SA를 누르면 고양이가 뛰어옵니다. 짧은 시간 동안 공격한 후 고양이는 힘을 얻습니다.
+- 임포어드 배트 스윙: 배트가 더 세게 친다
+- 강화된 움직임: 고양이가 더 빨리 달린다
+- 고양이는 이중 점프/공중 점프를 할 수 있습니다.
 
-### Doge
+### 총독
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- SA 버튼을 길게 누르면 도지 롤이 수행됩니다.
+- 도지 롤로 상대를 때리면 롤 방향으로 약간 위쪽으로 날아갑니다.
+- Doge는 목표 방향으로 플라이 롤합니다.
+- 도지 롤 도중 도지 롤이 끝날 때까지 방향을 세 번(업데이트 후 두 번) 변경할 수 있습니다.
+- 도지롤도 일정시간이 지나면 종료
 
-### Frog
+### 개구리
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- SA 버튼을 누르면 개구리가 혀를 쏩니다.
+- 혀가 상대를 때리면 그 상대는 개구리 방향으로 당겨져 조금 더 날아간다.
+- 혀가 지도 조각을 치면 개구리가 그 물체(예: 벽, 천장 등)로 몸을 당깁니다.
+- 혀는 조준 방향(좌,우,상,하,대각선)으로 발사 가능
 
-### Human
+### 인간
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- SA 버튼을 누르면 조준 방향(좌, 우, 상, 하, 대각선)으로 폭탄을 던집니다.
+- 폭탄은 비행 곡선을 가지고 있으며 바나나처럼 똑바로 날지 않습니다. 사전에 폭발하지 않고 지상에 머무르는 경우
+- 폭탄은 일정 시간 후 또는 SA 버튼을 두 번 누른 후 폭발합니다.
+- 현재 폭탄은 적중하거나 폭발하여 적을 공격할 수 있습니다.
+- 업데이트된 계획: 폭탄은 적과 접촉한 직후에 폭발합니다. 적에게 맞지 않으면 자동으로 폭발하거나 SA 버튼을 두 번째로 누른 후 바닥에 유지됩니다.
+- 폭탄은 폭발로 던지는 데젠 자체를 공격할 수 있는 유일한 SA입니다.
+- 폭탄은 방망이로 맞고 목표 방향으로 날아갈 수 있습니다.

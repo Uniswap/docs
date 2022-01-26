@@ -1,17 +1,17 @@
 ---
-id: nifty-tennis
-title: Nifty Tennis
+id: ingenioso-tenis
+title: Tenis ingenioso
 sidebar_position: 3
 ---
 
-### Under development for 2022!
+### ¡En desarrollo para 2022!
 
 ![](/img/NiftyTennis.jpeg)
 
-- 1-4 players local and online multiplayer, singles or doubles!
-- Choose to be the line umpire and make important calls!
-- Be an audience member and emote from the crowd!
-- Discord voice integration for both players and audience!
-- Play on a variety of court surfaces in unique stages!
-- Equip different racquets & items for a temporary tactical advantage!
-- Compete for the _Nifty League Grand Slam Cup_!
+- 1-4 jugadores multijugador local y en línea, individual o dobles!
+- ¡Elige ser el árbitro de línea y toma decisiones importantes!
+- ¡Sé un miembro de la audiencia y emociona de la multitud!
+- ¡Integración de voz de Discord para jugadores y audiencia!
+- ¡Juega en una variedad de superficies de canchas en escenarios únicos!
+- ¡Equipa diferentes raquetas & elementos para obtener una ventaja táctica temporal!
+- ¡Compite por la _Nifty League Grand Slam Cup_!

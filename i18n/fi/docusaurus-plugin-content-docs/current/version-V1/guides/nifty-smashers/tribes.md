@@ -1,59 +1,59 @@
 ---
-id: tribes
-title: Tribe Special Abilities
+id: heimot
+title: Heimo erityiskyvyt
 sidebar_position: 3
 ---
 
-**Our current game, Nifty Smashers, and all of the future games has a Special Ability (”SA”) for each character type.**
+**Nykyisessä pelissämme, Nifty Smashersissa, ja kaikissa tulevissa peleissämme on Special Ability ("SA") jokaiselle hahmotyypille.**
 
-### List of Special Abilities
+### Luettelo erityiskyvyistä
 
-- **Ape** - Throw boomerang bananas ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
+- **Ape** - Heitä bumerangibanaanit ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
 - **Alien** - Teleport ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
-- **Cat** - Pounce and get bat power and speed boost temporarily ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
-- **Frog** - The tongue grapple hook ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
-- **Doge** - Doge coin roll ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
-- **Human** - Throw dynamites that explode on command ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
+- **Cat** - Hyppää ja saat mailan tehoa ja nopeutta väliaikaisesti ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
+- **Sammakko** - kielikoukku ![https://cdn.discordapp.com/emojis/876655119817670686.png?size=44](https://cdn.discordapp.com/emojis/876655119817670686.png?size=44)
+- **Doge** - Doge-kolikkorulla ![https://cdn.discordapp.com/emojis/876600985819164764.png?size=44](https://cdn.discordapp.com/emojis/876600985819164764.png?size=44)
+- **Ihminen** - Heitä dynamiittia, joka räjähtää käskystä ![https://cdn.discordapp.com/emojis/876604536784052274.png?size=44](https://cdn.discordapp.com/emojis/876604536784052274.png?size=44)
 
-### Alien
+### Ulkomaalainen
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- SA-painikkeen painaminen saa Alienin teleportaamaan lyhyen matkan haluttuun suuntaan (vasemmalle, oikealle, ylös, alas, diagonaalit)
+- Teleportoidussa paikassa tapahtuu energiaräjähdys, joka osuu lähellä seisoviin vastustajiin
 
-### Ape
+### Apina
 
-- Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it **hits an opponent**, hits a map part or flies off the map
-- Pressing the SA button again, makes the banana fly back to the degen, making it possible to hit an opponent again.
-- Bananas can be hit with a bat and fly in the aimed direction
+- SA-painikkeen painaminen heittää banaania kohdistettuun suuntaan (vasemmalle, oikealle, ylös, alas, diagonaalit), kunnes se **osuu vastustajaan**, osuu karttaosaan tai lentää pois kartalta
+- Painamalla SA-painiketta uudelleen, banaani lentää takaisin degeniin, jolloin vastustajaan on mahdollista lyödä uudelleen.
+- Banaaneja voi lyödä mailalla ja lentää haluttuun suuntaan
 
-### Cat
+### Kissa
 
-- Pressing the SA makes the cat pounce. After pouncing for a short duration, cat get empowered.
-- Empored bat swing: bat hits harder
-- Empowered movement: cats run faster
-- Cats can double jump / jumping mid-air
+- SA:n painaminen saa kissan pomppimaan. Lyhyen pommituksen jälkeen kissa saa voimaa.
+- Empored lepakon keinu: lepakko iskee kovemmin
+- Voimakas liike: kissat juoksevat nopeammin
+- Kissat voivat kaksinkertaisesti hypätä / hypätä ilmassa
 
 ### Doge
 
-- Pressing and holding the SA button makes the doge roll.
-- Hitting an opponent with doge roll make them fly a bit upwards in roll direction
-- Doge will fly-roll in the aimed direction
-- During doge roll directions can be changed three times (maybe two times after update) until doge roll ends
-- Doge roll also ends after a certain time
+- Painamalla ja pitämällä SA-painiketta painettuna, doge rullaa.
+- Vastustajaa lyöminen doge-rullalla saa heidät lentämään hieman ylöspäin heiton suuntaan
+- Doge lennättää suunnattuun suuntaan
+- Doge-rullan aikana suuntaa voidaan muuttaa kolme kertaa (ehkä kaksi kertaa päivityksen jälkeen), kunnes doge-rulla päättyy
+- Doge roll myös loppuu tietyn ajan kuluttua
 
-### Frog
+### Sammakko
 
-- Pressing the SA button makes the Frog shoot his tongue
-- When the tongue hits an opponent, that opponent is pulled to the frogs direction and flies a bit further
-- When the tongue hits a map piece, the frogs pulls himself to that object (e.g. walls, ceilings,...)
-- The tongue can be shoot in the aimed direction (left, right, up, down, diagonals)
+- SA-painikkeen painaminen saa sammakon ampumaan kielensä
+- Kun kieli osuu vastustajaan, vastustaja vedetään sammakon suuntaan ja lentää hieman pidemmälle
+- Kun kieli osuu karttapalaan, sammakot vetäytyvät kyseiseen kohteeseen (esim. seinät, katto,...)
+- Kielellä voidaan ampua suunnattuun suuntaan (vasen, oikea, ylös, alas, diagonaalit)
 
-### Human
+### Ihmisen
 
-- Pressing the SA button throws a bomb in the aimed direction (left, right, up, down, diagonals)
-- The bomb has a flying curve and doesn't fly straight like bananas. If not detonated prior and stays on the ground
-- The bomb explodes after some time or after SA button is pressed a second time
-- Currently the bomb can hit an opponent by hitting it or by explosion
-- Updated plan: bomb detonates immediately after contact with an opponent. If no opponent is hit, it stays on the ground until it explodes automatically or after pressing SA button second time
-- Bombs are the only SA that can hit the throwing degen itself with its explosion
-- Bombs can be hit with a bat and fly in the aimed direction
+- SA-painikkeen painaminen heittää pommin kohdistettuun suuntaan (vasemmalle, oikealle, ylös, alas, diagonaalit)
+- Pommilla on lentävä kaarre, eikä se lennä suoraan kuin banaanit. Jos sitä ei räjäytä ennen ja pysyy maassa
+- Pommi räjähtää jonkin ajan kuluttua tai sen jälkeen, kun SA-painiketta painetaan toisen kerran
+- Tällä hetkellä pommi voi osua vastustajaan osumalla siihen tai räjähtämällä
+- Päivitetty suunnitelma: pommi räjähtää heti kontaktin jälkeen vastustajaan. Jos vastustajaa ei lyödä, se pysyy maassa, kunnes se räjähtää automaattisesti tai kun SA-painiketta on painettu toisen kerran
+- Pommit ovat ainoa SA, joka voi osua itse heittodegeniin räjähdyksellään
+- Pommeihin voidaan lyödä mailalla ja lentää kohdistettuun suuntaan

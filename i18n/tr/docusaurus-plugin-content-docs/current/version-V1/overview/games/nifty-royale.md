@@ -1,9 +1,9 @@
 ---
-id: nifty-royale
-title: Nifty Royale
+id: şık kraliyet
+title: Şık Royale
 sidebar_position: 5
 ---
 
-### Under development for 2022!
+### 2022 için geliştirme aşamasında!
 
 ![](/img/niftyroyale_v01.png)

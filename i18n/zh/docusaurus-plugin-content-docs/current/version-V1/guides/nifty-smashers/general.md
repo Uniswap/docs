@@ -1,29 +1,29 @@
 ---
-id: general-info
-title: General Info
+id: 基本信息
+title: 基本信息
 sidebar_position: 1
 ---
 
-### Scoring
+### 计分
 
-- If a degen is hit once and dies (fall off map) you get one point
-- If a degen is hit multiple times without being able recover, you get points as often as the degen was hit. It doesn’t matter if previous hits were done by another degen. Last hit that is killing the degen, gets all combo points
-- **Currently there is no cap of how often a degen can be hit (combo’ed) but a cap on how much points you can get max (3pts: 2-player match / 5pts: 3&4-player match)**
-- 2-player-match: 5pts to win round / 3&4-player-match: 10pts to win round
-- Matches are Bo5. If there is a tie after the fifth round, the tied player move into a sudden death round
+- 如果一个退化者被击中一次并死亡（从地图上掉下来）你会得到一分
+- 如果一个退化被多次击中而无法恢复，那么你获得的分数与击中退化的次数一样多。 之前的命中是否由另一个退化者完成并不重要。 杀死退化的最后一击，获得所有连击点数
+- **目前没有限制可以击中（组合）一个退化的频率，但有一个上限，您可以获得最大的点数（3 分：2 人比赛 / 5 分：3&4 人比赛）**
+- 2人比赛：5分获胜/ 3&4人比赛：10分获胜
+- 比赛是Bo5。 如果在第五轮之后出现平局，则平局的玩家进入突然死亡轮
 
-### Lag Indicator
+### 滞后指标
 
-- your lag (ping speed) of your connection
-- lag usually means above 100ms
+- 您的连接延迟（ping 速度）
+- 滞后通常意味着高于 100 毫秒
 
-### Custom Lobby
+### 自定义大厅
 
-- A custom lobby can be used to open a match in a chosen region. The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another degen want to join this lobby, he first needs to select the correct region and then type the lobby code into a input box
-- For update: when using a custom lobby code, the region should be switched automatically
+- 自定义大厅可用于在选定区域中打开比赛。 大厅的创建者可以在大厅地图中看到可以与他人共享的代码
+- 如果另一个degen想加入这个大厅，他首先需要选择正确的区域，然后在输入框中输入大厅代码
+- 更新：使用自定义大厅代码时，应自动切换区域
 
-### How and why to change regions?
+### 如何以及为什么要更改区域？
 
-- Smasher is a fast paced game where good latency/ping is crucial. The nearer the chosen region is to the player’s location, the lower the ping is.
-- After changing the region in the web/desktop-App, the current ping is displayed
+- Smasher 是一款快节奏的游戏，良好的延迟/ping 至关重要。 所选区域离玩家位置越近，ping 越低。
+- 在 web/desktop-App 中更改区域后，显示当前 ping

@@ -1,31 +1,31 @@
 ---
-id: battle-basics
-title: Battle Basics
+id: 战斗基础
+title: 战斗基础
 sidebar_position: 2
 ---
 
-### General advice
+### 一般建议
 
-- Playing with a controller highly recommended (PS, Xbox, …, recognized by PC/Mac)
+- 强烈推荐使用控制器（PS、Xbox、 …、PC/Mac 识别）
 
-### Bat swings
+### 蝙蝠摆动
 
-- Bat can be swung in all possible direction: left, right, up, down, diagonals
-- Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
-- Long press attack button during jumps is possible (possibly surprising opponents)
+- 蝙蝠可以向所有可能的方向摆动：左、右、上、下、对角线
+- 蝙蝠可以通过点击攻击按钮摆动。 更长的按钮按下使球拍更难击球
+- 蝙蝠可以在站立、跑步、跳跃时摆动
+- 可以在跳跃期间长按攻击按钮（可能让对手感到惊讶）
 
-### Moving
+### 移动
 
-- As a 2D-Game, moving directions are left/right
-- Directions can be changed during jumps/tumble
+- 作为 2D 游戏，移动方向是左/右
+- 在跳跃/翻滚过程中可以改变方向
 
-### Jumping
+### 跳跃
 
-- Jump height can be altered by press-duration of jump button
-- Directions can be changed during jumps/tumble
+- 跳跃高度可以通过跳跃按钮的持续时间来改变
+- 在跳跃/翻滚过程中可以改变方向
 
-### Flying Hamburger
+### 飞行汉堡
 
-- Makes the bat hit much stronger - results most times in a direct kill
-- For update: limit burger buff duration by time and/or kill
+- 使蝙蝠击打得更猛烈——大多数情况下都是直接击杀
+- 更新：按时间限制汉堡buff持续时间和/或杀死

@@ -1,17 +1,17 @@
 ---
-id: nifty-tennis
-title: Nifty Tennis
+id: remek tenisz
+title: Szuper tenisz
 sidebar_position: 3
 ---
 
-### Under development for 2022!
+### 2022-re fejlesztés alatt!
 
 ![](/img/NiftyTennis.jpeg)
 
-- 1-4 players local and online multiplayer, singles or doubles!
-- Choose to be the line umpire and make important calls!
-- Be an audience member and emote from the crowd!
-- Discord voice integration for both players and audience!
-- Play on a variety of court surfaces in unique stages!
-- Equip different racquets & items for a temporary tactical advantage!
-- Compete for the _Nifty League Grand Slam Cup_!
+- 1-4 játékos helyi és online többjátékos, egyesben vagy párosban!
+- Válassza ki, hogy legyen vonalbíró, és kezdeményezzen fontos hívásokat!
+- Legyen a közönség tagja, és érezze magát a tömegből!
+- Discord hangintegráció a játékosok és a közönség számára egyaránt!
+- Játssz a különböző pályafelületeken egyedi szakaszokban!
+- Szerelj fel különböző ütőket & elemmel az ideiglenes taktikai előnyért!
+- Versenyezz a _Nifty League Grand Slam Cup_!

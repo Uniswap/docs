@@ -1,9 +1,9 @@
 ---
-id: traits
-title: Character Traits
+id: 특성
+title: 캐릭터 특성
 sidebar_position: 4
 ---
 
 ![](/img/creation.png)
 
-There were a total of 1023 traits and 21 selectable options after selecting a tribe, making an almost infinite number of combinations. Character traits were randomly removed from the set of available traits as more charcters were created, making it difficult to know which options would end up as the rarest. While background types come with special benefits, traits are strictly cosmetic. Check out [OpenSea](https://opensea.io/collection/niftydegen) to see some of the amazing creations our community came up with!
+종족 선택 후 총 1023개의 특성과 21개의 선택 옵션이 있어 거의 무한에 가까운 조합을 만들었습니다. 더 많은 캐릭터가 생성됨에 따라 캐릭터 특성은 사용 가능한 특성 세트에서 무작위로 제거되어 어떤 옵션이 가장 희귀한 것인지 알기가 어려웠습니다. 배경 유형에는 특별한 이점이 있지만 특성은 엄밀히 말하면 외형적입니다. [OpenSea](https://opensea.io/collection/niftydegen) 을 확인하여 커뮤니티가 만든 놀라운 작품을 확인하십시오!

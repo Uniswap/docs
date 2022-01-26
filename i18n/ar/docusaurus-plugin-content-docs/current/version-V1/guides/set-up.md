@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
+id: يثبت
+title: قم بإعداد محفظتك
 sidebar_position: 0.5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+انقر فوق تشغيل التطبيق في شريط التنقل العلوي على اليمين. اضغط على اتصال. اختر المحفظة المشفرة التي تحمل DEGEN NFT الخاص بك. وقّع على المعاملة عندما يُطلب منك ذلك. 

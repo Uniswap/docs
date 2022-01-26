@@ -1,9 +1,9 @@
 ---
-id: nifty-kart
+id: ικανό καρτ
 title: Nifty Kart
 sidebar_position: 4
 ---
 
-### Under development for 2022!
+### Υπό ανάπτυξη για το 2022!
 
 ![](/img/niftykart_v01.png)

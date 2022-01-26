@@ -1,15 +1,15 @@
 ---
-id: backgrounds
-title: Backgrounds
+id: bakgrunder
+title: Bakgrunder
 sidebar_position: 3
 ---
 
 ![](/img/rngBackgrounds.gif)
 
-DEGEN backgrounds were randomly assigned upon minting which either resulted in a common background or one of three special options: **Rare**, **Meta**, or **Legendary**. Aside from looking cool, background come with special perks such as a distinguished look in game and exta earning multipliers.
+DEGEN-bakgrunder tilldelades slumpmässigt vid prägling, vilket antingen resulterade i en gemensam bakgrund eller ett av tre specialalternativ: **Rare**, **Meta**, eller **Legendary**. Förutom att se cool ut, kommer bakgrunden med speciella förmåner som ett framstående utseende i spelet och multiplikatorer för extrainkomster.
 
-### Earnings Multipliers
+### Resultatmultiplikatorer
 
-- Rare: 1.5
+- Sällsynt: 1,5
 - Meta: 3
-- Legendary: 6
+- Legendarisk: 6

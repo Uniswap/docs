@@ -1,7 +1,7 @@
 ---
-id: rental-overview
+id: panoramica del noleggio
 title: Overview
 sidebar_position: 1
 ---
 
-## Introduction
+## introduzione

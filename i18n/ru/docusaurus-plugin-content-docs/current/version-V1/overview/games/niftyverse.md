@@ -1,19 +1,19 @@
 ---
-id: niftyverse
+id: изящная вселенная
 title: NiftyVerse
 sidebar_position: 1
 ---
 
-### Under development for Q2 2022!
+### В разработке на второй квартал 2022 года!
 
 ![](/img/niftyverse-snarfy.gif)
 
-Land in the Nifty Verse will go up for sale in 2022.
+Земля в Nifty Verse будет выставлена на продажу в 2022 году.
 
-Anyone will be able to own land and build in the Nifty Verse.
+Любой сможет владеть землей и строить в Nifty Verse.
 
-We plan to work with indie gaming studios to allow them to build Nifty games in the Nifty Verse.
+Мы планируем работать с независимыми игровыми студиями, чтобы позволить им создавать игры Nifty в Nifty Verse.
 
-The first iteration will be a top down, pixel art meta verse, with the urban Sushi art theme.
+Первая итерация будет представлять собой пиксельный мета-стих сверху вниз с городской темой суши-арта.
 
-All land purchases in the Nifty Verse will be done using **NFTL**.
+Все покупки земли в Nifty Verse будут осуществляться за **NFTL**.

@@ -1,7 +1,7 @@
 ---
-id: set-up
-title: Set Up Your Wallet
-sidebar_position: 0.5
+id: thành lập
+title: Thiết lập Ví của bạn
+sidebar_position: 0,5
 ---
 
-Tap Launch App in the top navigation bar on the right. Tap Connect. Choose the crypto wallet which holds your DEGEN NFT. Sign the transaction when prompted. 
+Nhấn vào Khởi chạy ứng dụng trong thanh điều hướng trên cùng bên phải. Nhấn vào Kết nối. Chọn ví tiền điện tử chứa DEGEN NFT của bạn. Ký giao dịch khi được nhắc. 
