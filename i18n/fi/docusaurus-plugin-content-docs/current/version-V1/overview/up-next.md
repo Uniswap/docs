@@ -57,7 +57,7 @@ Tiedämme, että yhteisömme ei malta odottaa, että pääsemme esittelemään u
 
 Tiimimme on hiljalleen vihjannut tulevista sarjakuvien apuohjelmista - kuten ehkä jo tiedätkin, että voit polttaa jokaiselta sivulta erityisiä pelin sisäisiä kohteita, jotka lisäävät DEGENin NFTL-kerrointa... mutta hauskuus ei lopu tähän. !
 
-Lähetimme aiemmin neljä ensimmäistä sarjakuvasivuamme rahapajalle, ja vuoden 2022 alussa Word Satoshi - turvata täydellinen kokoelma tai 2 on _erittäin_ suositeltavaa.
+Lähetimme aiemmin neljä ensimmäistä sarjakuvasivuamme rahapajalle, ja DEGEN-haltijoille on vielä kaksi sivua jäljellä vuoden 2022 alussa. Word Satoshi - turvata täydellinen kokoelma tai 2 on _erittäin_ suositeltavaa.
 
 ## Tuotteet Marketplace
 

@@ -1,6 +1,6 @@
 ---
 id: ΣΦΑΙΡΙΚΗ ΕΙΚΟΝΑ
-title: Overview
+title: ΣΦΑΙΡΙΚΗ ΕΙΚΟΝΑ
 sidebar_position: 1
 ---
 

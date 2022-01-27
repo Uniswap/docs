@@ -1,6 +1,6 @@
 ---
 id: Información general
-title: Overview
+title: Descripción general
 sidebar_position: 1
 ---
 

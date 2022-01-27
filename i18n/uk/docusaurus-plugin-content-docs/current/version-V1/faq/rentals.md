@@ -1,6 +1,6 @@
 ---
 id: оренда
-title: Rentals
+title: Оренда
 ---
 
 ### Де орендувати DEGEN?

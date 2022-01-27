@@ -1,6 +1,6 @@
 ---
 id: locations
-title: Rentals
+title: Locations
 ---
 
 ### Où louer un DEGEN ?

@@ -1,6 +1,6 @@
 ---
 id: 概要
-title: Overview
+title: 概要
 sidebar_position: 1
 ---
 

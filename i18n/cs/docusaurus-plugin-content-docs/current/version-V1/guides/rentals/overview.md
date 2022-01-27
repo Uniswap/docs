@@ -1,6 +1,6 @@
 ---
 id: pronájem-přehled
-title: Overview
+title: Přehled
 sidebar_position: 1
 ---
 

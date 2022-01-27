@@ -1,6 +1,6 @@
 ---
 id: обзор аренды
-title: Overview
+title: Обзор
 sidebar_position: 1
 ---
 

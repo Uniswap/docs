@@ -1,6 +1,6 @@
 ---
 id: ikhtisar sewa
-title: Overview
+title: Ringkasan
 sidebar_position: 1
 ---
 

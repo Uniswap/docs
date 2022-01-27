@@ -57,7 +57,7 @@ Wiemy, że nasza społeczność nie może się doczekać, aby zaprezentować swo
 
 Nasz zespół powoli sugerował nadchodzące narzędzia do komiksów — jak być może już wiesz, będziesz mógł nagrać każdą stronę w celu uzyskania specjalnych przedmiotów w grze, które zwiększą mnożnik NFTL DEGEN… ale zabawa się nie kończy !
 
-Wcześniej zrzuciliśmy nasze pierwsze 4 strony komiksów minerkom i nadal mamy 2 strony dla posiadaczy DEGEN na początku 2022 roku. Słowo od Satoshi - zabezpieczenie pełnej kolekcji lub 2 to _wysoce_ zalecane.
+Wcześniej zrzuciliśmy pierwsze 4 strony komiksów mincerzom i nadal mamy 2 strony dla posiadaczy DEGEN na początku 2022 roku. Słowo od Satoshi - zabezpieczenie pełnej kolekcji lub 2 to _wysoce_ zalecane.
 
 ## Rynek przedmiotów
 

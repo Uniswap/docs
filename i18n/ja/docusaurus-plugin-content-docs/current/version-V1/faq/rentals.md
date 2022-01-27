@@ -1,6 +1,6 @@
 ---
 id: レンタル
-title: Rentals
+title: レンタル
 ---
 
 ### どこでDEGENを借りることができますか？

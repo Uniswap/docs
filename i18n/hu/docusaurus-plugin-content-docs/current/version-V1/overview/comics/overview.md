@@ -1,6 +1,6 @@
 ---
 id: áttekintés
-title: Overview
+title: Áttekintés
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi azt mondta nekünk, hogy szinte mindenben szereti a teljes kollekciót�
 
 Az alábbiakban látható a hordható szorzószilárdság ábrázolása minden megfelelő viselhető eszközhöz. A pontos díjak meghatározása még várat magára.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+1. képregény 💪💪💪💪💪\ Képregény 2 💪💪💪💪\ Képregény 3 💪💪💪\ Képregény 4 💪💪\ Képregény 5
 
 
 Még mindig pontosan meghatározzuk, hogy DEGEN-enként hány rés tölthető be, de minden hordhatóból csak 1 rendelhető hozzá DEGEN NFT-nként. 

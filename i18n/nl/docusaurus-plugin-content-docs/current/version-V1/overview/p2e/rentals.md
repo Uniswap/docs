@@ -1,7 +1,7 @@
 ---
 id: verhuur
-title: Rentals
+title: Verhuur
 sidebar_position: 4
 ---
 
-### Rentals
+### Verhuur

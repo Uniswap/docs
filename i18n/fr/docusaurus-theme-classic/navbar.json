@@ -4,7 +4,7 @@
     "description": "The title in the navbar"
   },
   "item.label.Overview": {
-    "message": "Overview",
+    "message": "Aperçu",
     "description": "Navbar item with label Overview"
   },
   "item.label.Guides": {
@@ -20,7 +20,7 @@
     "description": "Navbar item with label Whitepaper"
   },
   "item.label.Website": {
-    "message": "Website",
+    "message": "Site Internet",
     "description": "Navbar item with label Website"
   },
   "item.label.GitHub": {
@@ -28,7 +28,7 @@
     "description": "Navbar item with label GitHub"
   },
   "item.label.Discord": {
-    "message": "Discord",
+    "message": "Discorde",
     "description": "Navbar item with label Discord"
   }
 }

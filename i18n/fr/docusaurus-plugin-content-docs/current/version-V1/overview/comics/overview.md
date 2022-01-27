@@ -1,6 +1,6 @@
 ---
 id: Aperçu
-title: Overview
+title: Aperçu
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi nous a dit qu'il aimait les collections complètes dans à peu près tou
 
 Vous trouverez ci-dessous une représentation de la force multiplicatrice portable pour chaque portable correspondant. Les tarifs exacts restent à déterminer.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Bande dessinée 1 💪💪💪💪💪\ Bande dessinée 2 💪💪💪💪\ Bande dessinée 3 💪💪💪\ Bande dessinée 4 💪💪\ Bande dessinée 5 💪\ Bande dessinée 6 💪💪💪💪💪💪
 
 
 Nous sommes toujours en train de déterminer exactement combien d'emplacements peuvent être remplis par DEGEN, mais seulement 1 de chaque accessoire portable est attribuable par DEGEN NFT. 

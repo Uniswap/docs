@@ -1,6 +1,6 @@
 ---
 id: vuokrat
-title: Rentals
+title: Vuokrat
 ---
 
 ### Mistä voin vuokrata DEGENin?

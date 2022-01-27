@@ -57,7 +57,7 @@ Sappiamo che la nostra community non vede l'ora di mostrare i suoi fantastici DE
 
 Il nostro team ha lentamente accennato alle imminenti utilità per i fumetti - come forse già saprai, sarai in grado di masterizzare ogni pagina per oggetti di gioco speciali che aumenteranno il tuo moltiplicatore NFTL di DEGEN... ma il divertimento non finisce qui !
 
-In precedenza abbiamo trasferito le nostre 4 pagine di fumetti iniziali ai minatori e abbiamo ancora 2 pagine rimanenti per detentori di DEGEN all'inizio del 2022. Parola di Satoshi: garantire una raccolta completa o 2 è _altamente_ consigliato.
+In precedenza abbiamo inviato le nostre 4 pagine di fumetti iniziali ai minatori e abbiamo ancora 2 pagine rimanenti per i titolari di DEGEN all'inizio del 2022. Parola di Satoshi: garantire una raccolta completa o 2 è _altamente_ consigliato.
 
 ## Mercato degli articoli
 

@@ -1,6 +1,6 @@
 ---
 id: přehled
-title: Overview
+title: Přehled
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi nám řekl, že má rád plné sbírek v téměř vše, co…, takže si
 
 Níže je vyobrazení nositelné síly multiplikátoru pro každé odpovídající nositelné zařízení. Přesné sazby budou teprve stanoveny.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Komiks 1 💪💪💪💪💪\ Komiks 2 💪💪💪💪\ Komiks 3 💪💪💪\ Komiks 4 💪💪\ Komiks 5 💪💪💪\ Komiks 6 💪💪💪
 
 
 Stále přesně určujeme, kolik slotů lze zaplnit na DEGEN, ale pouze 1 z každého nositelného zařízení lze přiřadit na DEGEN NFT. 

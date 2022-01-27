@@ -57,7 +57,7 @@ Sabemos que nossa comunidade mal pode esperar para mostrar seus DEGENS legais na
 
 Nossa equipe tem sugerido aos poucos os próximos utilitários para quadrinhos - como você já deve saber, poderá gravar cada página para obter itens especiais no jogo que aumentam o multiplicador de NFTL do DEGEN... mas a diversão não para por aí !
 
-Anteriormente, lançamos nossas 4 páginas iniciais de quadrinhos para minters e ainda temos 2 páginas restantes para DEGEN no início de 2022. Palavra de Satoshi - garantir uma coleção completa ou 2 é _altamente_ recomendado.
+Anteriormente, lançamos nossas 4 páginas de quadrinhos iniciais para minters e ainda temos 2 páginas restantes para os detentores de DEGEN no início de 2022. Palavra de Satoshi - garantir uma coleção completa ou 2 é _altamente_ recomendado.
 
 ## Mercado de itens
 

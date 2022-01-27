@@ -1,7 +1,7 @@
 ---
 id: verhurings
-title: Rentals
+title: Verhurings
 sidebar_position: 4
 ---
 
-### Rentals
+### Verhurings

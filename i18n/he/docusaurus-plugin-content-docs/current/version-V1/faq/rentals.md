@@ -1,6 +1,6 @@
 ---
 id: השכרות
-title: Rentals
+title: השכרות
 ---
 
 ### איפה אני שוכר DEGEN?

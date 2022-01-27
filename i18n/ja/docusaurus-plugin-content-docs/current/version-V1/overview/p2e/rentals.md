@@ -1,7 +1,7 @@
 ---
 id: レンタル
-title: Rentals
+title: レンタル
 sidebar_position: 4
 ---
 
-### Rentals
+### レンタル

@@ -1,6 +1,6 @@
 ---
 id: Prezentare generală
-title: Overview
+title: Prezentare generală
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi ne -a spus că iubește colecții complete în doar despre orice…, ast
 
 Mai jos este o reprezentare a puterii multiplicatorului purtabile pentru fiecare purtabil corespunzător. Tarifele exacte sunt încă de stabilit.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Benzi desenate 1 💪💪💪💪💪\ Benzi desenate 2 💪💪💪💪\ Benzi desenate 3 💪💪💪\ Benzi desenate 4 💪💪\ Benzi desenate 5 💪\ Benzi desenate 6 💪💪💪💪💪💪💪💪
 
 
 Încă determinăm exact câte spații pot fi ocupate pe DEGEN, dar numai 1 din fiecare purtabil poate fi atribuit pe DEGEN NFT. 

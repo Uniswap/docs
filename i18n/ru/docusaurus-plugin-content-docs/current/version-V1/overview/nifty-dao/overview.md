@@ -1,6 +1,6 @@
 ---
 id: обзор
-title: Overview
+title: Обзор
 sidebar_position: 1
 ---
 

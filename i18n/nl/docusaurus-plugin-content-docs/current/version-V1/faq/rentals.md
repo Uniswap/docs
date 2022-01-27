@@ -1,6 +1,6 @@
 ---
 id: verhuur
-title: Rentals
+title: Verhuur
 ---
 
 ### Waar huur ik een DEGEN?

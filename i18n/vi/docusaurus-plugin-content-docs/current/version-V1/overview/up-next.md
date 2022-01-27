@@ -57,7 +57,7 @@ Chúng tôi biết cộng đồng của chúng tôi rất nóng lòng muốn gi�
 
 Nhóm của chúng tôi đã và đang từ từ gợi ý về các tiện ích sắp tới dành cho truyện tranh - vì bạn có thể đã biết rằng bạn sẽ có thể ghi từng trang để lấy các vật phẩm đặc biệt trong trò chơi giúp tăng hệ số DEGEN'S NFTL của bạn ... nhưng niềm vui không dừng lại ở đó !
 
-Trước đây, chúng tôi đã phát hành 4 trang truyện tranh đầu tiên của mình cho những người đúc và vẫn còn 2 trang cho nắm giữ DEGEN vào đầu năm 2022. Word từ Satoshi - bảo vệ một bộ sưu tập đầy đủ hoặc 2 là _đánh giá cao_ khuyến khích.
+Trước đây, chúng tôi đã phát hành 4 trang truyện tranh đầu tiên của mình cho những người đúc và vẫn còn 2 trang cho những người nắm giữ DEGEN vào đầu năm 2022. Word từ Satoshi - bảo vệ một bộ sưu tập đầy đủ hoặc 2 là _đánh giá cao_ khuyến khích.
 
 ## Thị trường mặt hàng
 

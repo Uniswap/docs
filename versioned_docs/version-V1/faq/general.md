@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ### **Does it cost to play Nifty Smashers?**
 
-Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee. 
+Today, you must own a DEGEN NFT to play Nifty Smashers. We will soon be launching a rental system, where you can rent a DEGEN NFT for a weekly fee.
 
 ## Where can I play the game?
 
@@ -21,7 +21,8 @@ No, you only need one DEGEN to play.
 As simple as signing a message to verify the ownership of your DEGENs in your crypto wallet when you launch the game.
 
 ### **Do I need controllers to play the game?**
-No, although we think it's easier to play with a controller(PS, Xbox, or any others recognized by PC/Mac) than a keyboard. 
+
+No, although we think it's easier to play with a controller (PS, Xbox, or any others recognized by PC/Mac) than a keyboard.
 
 ### Why is the rename asking for multiple verifications?
 

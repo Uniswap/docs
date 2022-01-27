@@ -1,7 +1,7 @@
 ---
 id: hyror
-title: Rentals
+title: Uthyrning
 sidebar_position: 4
 ---
 
-### Rentals
+### Uthyrning

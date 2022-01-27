@@ -1,7 +1,7 @@
 ---
 id: 배경
 title: 배경
-sidebar_position: 3
+sidebar_position: 삼
 ---
 
 ![](/img/rngBackgrounds.gif)

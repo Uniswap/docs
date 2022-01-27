@@ -1,6 +1,6 @@
 ---
 id: gambaran
-title: Overview
+title: Ringkasan
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi memberi tahu kami bahwa dia menyukai koleksi lengkap di hampir semua hal
 
 Di bawah ini adalah penggambaran kekuatan pengganda yang dapat dikenakan untuk setiap perangkat yang dapat dikenakan terkait. Tarif pastinya masih harus ditentukan.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Komik 1 💪💪💪💪💪\ Komik 2 \ Komik 3 \ Komik 4 \ Komik 5 \ Komik 6
 
 
 Kami masih menentukan dengan tepat berapa banyak slot yang dapat diisi per DEGEN, tetapi hanya 1 dari setiap perangkat yang dapat dikenakan yang dapat ditetapkan per DEGEN NFT. 

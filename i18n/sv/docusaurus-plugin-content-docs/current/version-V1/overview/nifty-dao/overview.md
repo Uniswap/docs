@@ -1,6 +1,6 @@
 ---
 id: Översikt
-title: Overview
+title: Översikt
 sidebar_position: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: genel bakış
-title: Overview
+title: genel bakış
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi bize hemen hemen her şeyde eksiksiz koleksiyonları sevdiğini söyledi
 
 Aşağıda, karşılık gelen her giyilebilir cihaz için giyilebilir çarpan gücünün bir tasviri bulunmaktadır. Kesin oranlar hala belirlenecek.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Çizgi Roman 1 💪💪💪💪💪\ Çizgi Roman 2 💪💪💪💪\ Çizgi Roman 3 💪💪💪\ Çizgi Roman 4 💪💪\ Çizgi Roman 5 💪\ Çizgi Roman 6 💪💪💪💪💪💪
 
 
 Hâlâ DEGEN başına tam olarak kaç yuvanın doldurulabileceğini belirliyoruz, ancak DEGEN NFT başına her giyilebilir cihazdan yalnızca 1'i atanabilir. 

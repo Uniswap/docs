@@ -1,6 +1,6 @@
 ---
 id: yleiskatsaus
-title: Overview
+title: Yleiskatsaus
 sidebar_position: 1
 ---
 

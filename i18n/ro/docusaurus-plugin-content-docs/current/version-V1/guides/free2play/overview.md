@@ -1,6 +1,6 @@
 ---
 id: free-2-play-overview
-title: Overview
+title: Prezentare generală
 sidebar_position: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: free-2-play-overview
-title: Overview
+title: 概要
 sidebar_position: 1
 ---
 

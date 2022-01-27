@@ -1,7 +1,7 @@
 ---
 id: 租金
-title: Rentals
+title: 租金
 sidebar_position: 4
 ---
 
-### Rentals
+### 租金

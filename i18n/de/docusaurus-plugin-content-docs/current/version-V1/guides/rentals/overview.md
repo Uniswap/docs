@@ -1,6 +1,6 @@
 ---
 id: Mietübersicht
-title: Overview
+title: Überblick
 sidebar_position: 1
 ---
 

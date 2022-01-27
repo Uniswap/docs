@@ -1,6 +1,6 @@
 ---
 id: verhuur-overzicht
-title: Overview
+title: Overzicht
 sidebar_position: 1
 ---
 

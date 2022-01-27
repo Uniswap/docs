@@ -1,6 +1,6 @@
 ---
 id: utleie
-title: Rentals
+title: Utleie
 ---
 
 ### Hvor leier jeg en DEGEN?

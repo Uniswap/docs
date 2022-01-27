@@ -1,6 +1,6 @@
 ---
 id: verhurings
-title: Rentals
+title: Verhurings
 ---
 
 ### Waar huur ek 'n DEGEN?

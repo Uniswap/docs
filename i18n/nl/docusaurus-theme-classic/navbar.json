@@ -4,11 +4,11 @@
     "description": "The title in the navbar"
   },
   "item.label.Overview": {
-    "message": "Overview",
+    "message": "Overzicht",
     "description": "Navbar item with label Overview"
   },
   "item.label.Guides": {
-    "message": "Guides",
+    "message": "Gidsen",
     "description": "Navbar item with label Guides"
   },
   "item.label.FAQ": {
@@ -28,7 +28,7 @@
     "description": "Navbar item with label GitHub"
   },
   "item.label.Discord": {
-    "message": "Discord",
+    "message": "Meningsverschil",
     "description": "Navbar item with label Discord"
   }
 }

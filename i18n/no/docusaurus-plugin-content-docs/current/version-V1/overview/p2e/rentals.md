@@ -1,7 +1,7 @@
 ---
 id: utleie
-title: Rentals
+title: Utleie
 sidebar_position: 4
 ---
 
-### Rentals
+### Utleie

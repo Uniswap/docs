@@ -1,7 +1,7 @@
 ---
 id: persewaan
-title: Rentals
+title: Penyewaan
 sidebar_position: 4
 ---
 
-### Rentals
+### Penyewaan

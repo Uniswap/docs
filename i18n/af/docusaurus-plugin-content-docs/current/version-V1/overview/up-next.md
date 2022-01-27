@@ -57,7 +57,7 @@ Ons weet ons gemeenskap kan nie wag om hul cool DEGENS op straat ten toon te ste
 
 Ons span het stadigaan gedui op die komende nutsprogramme vir strokiesprente - soos jy dalk reeds bewus is, sal jy elke bladsy kan verbrand vir spesiale in-speletjie-items wat jou DEGEN'S NFTL-vermenigvuldiger verhoog ... maar die pret stop nie daar nie !
 
-Ons het voorheen ons aanvanklike 4 strokiesprentbladsye na die mynwerkers laat vaar en het DEGEN-houers. Woord van Satoshi - die verkryging van 'n volledige versameling of 2 is _sterk_ aanbeveel.
+Ons het voorheen ons aanvanklike 4 strokiesprentbladsye na die mynwerkers laat vaar en het vroeg in 2022 nog 2 bladsye oor vir DEGEN-houers. Woord van Satoshi - die verkryging van 'n volledige versameling of 2 is _sterk_ aanbeveel.
 
 ## Items Marketplace
 

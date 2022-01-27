@@ -1,6 +1,6 @@
 ---
 id: închiriere-vedere de ansamblu
-title: Overview
+title: Prezentare generală
 sidebar_position: 1
 ---
 

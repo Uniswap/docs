@@ -1,6 +1,6 @@
 ---
 id: Overzicht
-title: Overview
+title: Overzicht
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi vertelde ons dat hij dol is op volledige collecties in zowat alles…dus
 
 Hieronder vindt u een weergave van de draagbare multipliersterkte voor elke overeenkomstige wearable. De exacte tarieven moeten nog worden vastgesteld.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Strip 1 💪💪💪💪💪\ Strip 2 💪💪💪💪\ Strip 3 💪💪💪\ Strip 4 💪💪\ Strip 5 💪\ Strip 6 💪💪💪💪💪💪
 
 
 We zijn nog aan het bepalen hoeveel slots er per DEGEN precies kunnen worden gevuld, maar slechts 1 van elke wearable is toewijsbaar per DEGEN NFT. 

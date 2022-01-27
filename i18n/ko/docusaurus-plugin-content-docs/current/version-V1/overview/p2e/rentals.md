@@ -1,7 +1,7 @@
 ---
 id: 임대
-title: Rentals
+title: 렌탈
 sidebar_position: 4
 ---
 
-### Rentals
+### 렌탈

@@ -1,6 +1,6 @@
 ---
 id: kiralama
-title: Rentals
+title: kiralama
 ---
 
 ### DEGEN'i nereden kiralayabilirim?

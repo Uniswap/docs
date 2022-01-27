@@ -1,6 +1,6 @@
 ---
 id: descripción general del alquiler
-title: Overview
+title: Descripción general
 sidebar_position: 1
 ---
 

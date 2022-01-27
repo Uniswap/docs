@@ -1,7 +1,7 @@
 ---
 id: kiralama
-title: Rentals
+title: kiralama
 sidebar_position: 4
 ---
 
-### Rentals
+### kiralama

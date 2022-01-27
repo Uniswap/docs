@@ -1,6 +1,6 @@
 ---
 id: free-2-play-översikt
-title: Overview
+title: Översikt
 sidebar_position: 1
 ---
 

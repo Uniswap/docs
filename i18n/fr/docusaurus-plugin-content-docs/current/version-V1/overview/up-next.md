@@ -57,7 +57,7 @@ Nous savons que notre communauté a hâte de présenter ses cool DEGENS dans les
 
 Notre équipe a lentement fait allusion aux utilitaires à venir pour les bandes dessinées - comme vous le savez peut-être déjà, vous pourrez graver chaque page pour des objets spéciaux dans le jeu qui augmentent votre multiplicateur DEGEN'S NFTL... mais le plaisir ne s'arrête pas là !
 
-Nous avons précédemment largué nos 4 premières pages de bandes dessinées aux monnayeurs et il reste encore 2 pages pour les DEGEN au début de 2022. Mot de Satoshi - sécuriser une collection complète ou 2 est _fortement_ recommandé.
+Nous avons précédemment largué nos 4 premières pages de bandes dessinées aux monnayeurs et il reste encore 2 pages pour les détenteurs de DEGEN au début de 2022. Mot de Satoshi - sécuriser une collection complète ou 2 est _fortement_ recommandé.
 
 ## Marché aux objets
 

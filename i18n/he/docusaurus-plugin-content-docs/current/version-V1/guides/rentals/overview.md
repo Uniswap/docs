@@ -1,6 +1,6 @@
 ---
 id: שכירות-סקירה
-title: Overview
+title: סקירה כללית
 sidebar_position: 1
 ---
 

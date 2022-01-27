@@ -1,6 +1,6 @@
 ---
 id: huur-oorsig
-title: Overview
+title: Oorsig
 sidebar_position: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: oversigt
-title: Overview
+title: Oversigt
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi fortalte os, at han elsker fulde samlinger i næsten alt…så tænk dig
 
 Nedenfor er en afbildning af wearable multiplikatorstyrke for hver tilsvarende wearable. De nøjagtige takster skal stadig fastlægges.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪
 
 
 Vi er stadig ved at bestemme præcis, hvor mange pladser der kan udfyldes pr. DEGEN, men kun 1 af hver wearable kan tildeles pr. DEGEN NFT. 

@@ -57,7 +57,7 @@ Tudjuk, hogy közösségünk alig várja, hogy bemutassa a menő DEGENS-üket az
 
 Csapatunk lassan utal a képregények hamarosan megjelenő segédprogramjaira – mint azt már biztosan tudod, hogy minden oldalt el lehet majd égetni olyan különleges játékon belüli elemekért, amelyek növelik a DEGEN NFTL szorzóját... de a szórakozás nem áll meg itt. !
 
-Korábban első 4 képregényoldalunkat leadtuk a pénzverőknek, és DEGEN-tulajdonos számára. Szava a Satoshitól – a teljes gyűjtemény vagy 2 biztosítása _erősen_ ajánlott.
+Korábban első 4 képregényoldalunkat leadtuk a pénzverőknek, és 2022 elején még maradt 2 oldal a DEGEN-tulajdonosok számára. Szava a Satoshitól – a teljes gyűjtemény vagy 2 biztosítása _erősen_ ajánlott.
 
 ## Tételek piactér
 

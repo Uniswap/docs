@@ -1,7 +1,7 @@
 ---
 id: Mieten
-title: Rentals
+title: Mieten
 sidebar_position: 4
 ---
 
-### Rentals
+### Mieten

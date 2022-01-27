@@ -1,6 +1,6 @@
 ---
 id: free-2-play-огляд
-title: Overview
+title: Огляд
 sidebar_position: 1
 ---
 

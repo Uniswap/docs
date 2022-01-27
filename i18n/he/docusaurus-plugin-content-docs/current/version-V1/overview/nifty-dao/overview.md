@@ -1,6 +1,6 @@
 ---
 id: סקירה כללית
-title: Overview
+title: סקירה כללית
 sidebar_position: 1
 ---
 

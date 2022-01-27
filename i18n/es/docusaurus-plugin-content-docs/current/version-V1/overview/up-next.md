@@ -57,7 +57,7 @@ Si lees el último punto, sabrás que escalar nuestra plataforma es una alta pri
 
 Nuestro equipo ha estado insinuando lentamente las próximas utilidades para cómics: como ya sabrá, podrá grabar cada página para obtener elementos especiales en el juego que aumentan su multiplicador DEGEN'S NFTL ... pero la diversión no termina ahí. !
 
-Anteriormente lanzamos nuestras 4 páginas de cómic iniciales a los minters y todavía nos quedan 2 páginas para los DEGEN a principios de 2022. Palabras Satoshi - asegurando una colección completa o 2 es _altamente_ recomendado.
+Anteriormente lanzamos nuestras 4 páginas de cómic iniciales a los minters y todavía nos quedan 2 páginas para los titulares de DEGEN a principios de 2022. Palabras Satoshi - asegurando una colección completa o 2 es _altamente_ recomendado.
 
 ## Mercado de artículos
 

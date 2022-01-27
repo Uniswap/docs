@@ -1,7 +1,7 @@
 ---
 id: השכרות
-title: Rentals
+title: השכרות
 sidebar_position: 4
 ---
 
-### Rentals
+### השכרות

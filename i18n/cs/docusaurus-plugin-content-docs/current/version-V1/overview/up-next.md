@@ -57,7 +57,7 @@ Víme, že naše komunita se nemůže dočkat, až předvede své skvělé DEGEN
 
 Náš tým pomalu naznačoval připravované nástroje pro komiksy - jak už možná víte, budete moci vypálit každou stránku pro speciální herní předměty, které zvýší váš DEGEN'S NFTL multiplikátor... ale zábava tím nekončí !
 
-Již dříve jsme předali naše první 4 stránky komiksu těžařům a stále zbývají 2 stránky pro DEGEN na začátku roku 2022. Slovo od Satoshi - zajištění úplného sběru nebo 2 _vysoce_ doporučeno.
+Již dříve jsme předali naše první 4 stránky komiksu těžařům a stále zbývají 2 stránky pro držitele DEGEN na začátku roku 2022. Slovo od Satoshi - zajištění úplného sběru nebo 2 _vysoce_ doporučeno.
 
 ## Tržiště zboží
 

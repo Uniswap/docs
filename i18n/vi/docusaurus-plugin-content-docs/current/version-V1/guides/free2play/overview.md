@@ -1,6 +1,6 @@
 ---
 id: miễn phí-2-chơi-tổng quan
-title: Overview
+title: Tổng quat
 sidebar_position: 1
 ---
 

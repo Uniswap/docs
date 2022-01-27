@@ -4,11 +4,11 @@
     "description": "The title in the navbar"
   },
   "item.label.Overview": {
-    "message": "Overview",
+    "message": "Přehled",
     "description": "Navbar item with label Overview"
   },
   "item.label.Guides": {
-    "message": "Guides",
+    "message": "Průvodci",
     "description": "Navbar item with label Guides"
   },
   "item.label.FAQ": {
@@ -20,7 +20,7 @@
     "description": "Navbar item with label Whitepaper"
   },
   "item.label.Website": {
-    "message": "Website",
+    "message": "webová stránka",
     "description": "Navbar item with label Website"
   },
   "item.label.GitHub": {
@@ -28,7 +28,7 @@
     "description": "Navbar item with label GitHub"
   },
   "item.label.Discord": {
-    "message": "Discord",
+    "message": "Svár",
     "description": "Navbar item with label Discord"
   }
 }

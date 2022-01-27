@@ -1,6 +1,6 @@
 ---
 id: nftl
-title: NFTL
+title: 美国国家橄榄球联盟
 ---
 
 ### NFTL 有什么用途？

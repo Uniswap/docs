@@ -1,7 +1,7 @@
 ---
 id: locations
-title: Rentals
+title: Locations
 sidebar_position: 4
 ---
 
-### Rentals
+### Locations
