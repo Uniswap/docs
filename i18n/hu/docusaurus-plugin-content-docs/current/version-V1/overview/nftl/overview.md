@@ -1,6 +1,6 @@
 ---
 id: áttekintés
-title: Overview
+title: Áttekintés
 sidebar_position: 1
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: 부족
 title: 부족 특수 능력
-sidebar_position: 3
+sidebar_position: 삼
 ---
 
 **우리의 현재 게임인 Nifty Smashers와 앞으로 나올 모든 게임에는 각 캐릭터 유형에 대한 특수 능력("SA")이 있습니다.**

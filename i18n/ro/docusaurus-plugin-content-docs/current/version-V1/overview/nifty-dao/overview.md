@@ -1,6 +1,6 @@
 ---
 id: Prezentare generală
-title: Overview
+title: Prezentare generală
 sidebar_position: 1
 ---
 

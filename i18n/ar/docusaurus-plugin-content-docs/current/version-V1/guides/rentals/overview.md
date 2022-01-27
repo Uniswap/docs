@@ -1,6 +1,6 @@
 ---
 id: نظرة عامة على الإيجار
-title: Overview
+title: ملخص
 sidebar_position: 1
 ---
 

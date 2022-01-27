@@ -1,6 +1,6 @@
 ---
 id: 租金
-title: Rentals
+title: 租金
 ---
 
 ### 我在哪里租用 DEGEN？

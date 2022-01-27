@@ -1,6 +1,6 @@
 ---
 id: leje-oversigt
-title: Overview
+title: Oversigt
 sidebar_position: 1
 ---
 

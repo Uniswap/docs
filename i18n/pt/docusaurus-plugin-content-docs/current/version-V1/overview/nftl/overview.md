@@ -1,6 +1,6 @@
 ---
 id: visão global
-title: Overview
+title: Visão geral
 sidebar_position: 1
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: bérleti díjak
-title: Rentals
+title: Kölcsönzések
 sidebar_position: 4
 ---
 
-### Rentals
+### Kölcsönzések

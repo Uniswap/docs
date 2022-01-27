@@ -1,6 +1,6 @@
 ---
 id: 개요
-title: Overview
+title: 개요
 sidebar_position: 1
 ---
 

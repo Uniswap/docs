@@ -1,7 +1,7 @@
 ---
 id: cho thuê
-title: Rentals
+title: Cho thuê
 sidebar_position: 4
 ---
 
-### Rentals
+### Cho thuê

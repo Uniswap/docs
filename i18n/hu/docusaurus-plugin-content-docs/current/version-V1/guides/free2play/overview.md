@@ -1,6 +1,6 @@
 ---
 id: ingyenes-2-play-áttekintés
-title: Overview
+title: Áttekintés
 sidebar_position: 1
 ---
 

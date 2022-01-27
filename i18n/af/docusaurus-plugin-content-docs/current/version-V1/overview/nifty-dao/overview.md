@@ -1,6 +1,6 @@
 ---
 id: oorsig
-title: Overview
+title: Oorsig
 sidebar_position: 1
 ---
 

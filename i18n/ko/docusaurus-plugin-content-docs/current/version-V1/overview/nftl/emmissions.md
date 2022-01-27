@@ -1,7 +1,7 @@
 ---
 id: 배출
 title: 배출량
-sidebar_position: 3
+sidebar_position: 삼
 ---
 
 **억 5천만 NFTL** **3년 동안** 모든 제네시스 **DEGEN** NFT 소유자에게 매년 배포됩니다. NFT를 스테이킹할 필요가 없습니다. **NFTL** 매일 발생하는 것을 지켜보십시오. 이 [지갑 페이지](https://nifty-league.com/wallet)에서 언제든지 저희 웹사이트에서 청구할 수 있습니다.

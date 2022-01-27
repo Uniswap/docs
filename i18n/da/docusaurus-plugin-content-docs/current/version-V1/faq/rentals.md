@@ -1,6 +1,6 @@
 ---
 id: lejemål
-title: Rentals
+title: Udlejning
 ---
 
 ### Hvor lejer jeg en DEGEN?

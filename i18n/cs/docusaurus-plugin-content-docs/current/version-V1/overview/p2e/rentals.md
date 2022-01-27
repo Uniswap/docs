@@ -1,7 +1,7 @@
 ---
 id: pronájmy
-title: Rentals
+title: Pronájmy
 sidebar_position: 4
 ---
 
-### Rentals
+### Pronájmy

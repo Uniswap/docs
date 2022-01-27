@@ -1,7 +1,7 @@
 ---
 id: ενοίκια
-title: Rentals
+title: Ενοίκια
 sidebar_position: 4
 ---
 
-### Rentals
+### Ενοίκια

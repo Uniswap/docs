@@ -1,6 +1,6 @@
 ---
 id: alquileres
-title: Rentals
+title: Alquileres
 ---
 
 ### ¿Dónde alquilo un DEGEN?

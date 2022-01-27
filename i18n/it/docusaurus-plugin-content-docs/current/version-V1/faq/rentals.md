@@ -1,6 +1,6 @@
 ---
 id: affitti
-title: Rentals
+title: Affitti
 ---
 
 ### Dove noleggio un DEGEN?

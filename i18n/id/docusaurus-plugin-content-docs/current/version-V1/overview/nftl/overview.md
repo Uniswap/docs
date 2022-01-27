@@ -1,6 +1,6 @@
 ---
 id: gambaran
-title: Overview
+title: Ringkasan
 sidebar_position: 1
 ---
 

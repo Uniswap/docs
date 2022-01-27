@@ -1,6 +1,6 @@
 ---
 id: descripción general de free-2-play
-title: Overview
+title: Descripción general
 sidebar_position: 1
 ---
 

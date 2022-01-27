@@ -1,6 +1,6 @@
 ---
 id: изнајмљивање-преглед
-title: Overview
+title: Преглед
 sidebar_position: 1
 ---
 

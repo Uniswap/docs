@@ -1,6 +1,6 @@
 ---
 id: оренда-огляд
-title: Overview
+title: Огляд
 sidebar_position: 1
 ---
 

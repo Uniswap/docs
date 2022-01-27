@@ -1,6 +1,6 @@
 ---
 id: Översikt
-title: Overview
+title: Översikt
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi berättade för oss att han älskar fullständiga samlingar i nästan al
 
 Nedan är en skildring av bärbar multiplikatorstyrka för varje motsvarande bärbar enhet. De exakta priserna återstår fortfarande att fastställa.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Serie 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪
 
 
 Vi bestämmer fortfarande exakt hur många platser som kan fyllas per DEGEN, men endast 1 av varje bärbar enhet kan tilldelas per DEGEN NFT. 

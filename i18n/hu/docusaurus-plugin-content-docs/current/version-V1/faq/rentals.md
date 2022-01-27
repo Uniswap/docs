@@ -1,6 +1,6 @@
 ---
 id: bérleti díjak
-title: Rentals
+title: Kölcsönzések
 ---
 
 ### Hol tudok DEGEN-t bérelni?

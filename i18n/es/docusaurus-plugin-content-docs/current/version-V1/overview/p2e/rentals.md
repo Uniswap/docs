@@ -1,7 +1,7 @@
 ---
 id: alquileres
-title: Rentals
+title: Alquileres
 sidebar_position: 4
 ---
 
-### Rentals
+### Alquileres

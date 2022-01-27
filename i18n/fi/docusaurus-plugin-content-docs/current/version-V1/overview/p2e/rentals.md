@@ -1,7 +1,7 @@
 ---
 id: vuokrat
-title: Rentals
+title: Vuokrat
 sidebar_position: 4
 ---
 
-### Rentals
+### Vuokrat

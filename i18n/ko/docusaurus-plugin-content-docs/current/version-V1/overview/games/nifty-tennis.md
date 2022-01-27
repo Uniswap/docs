@@ -1,7 +1,7 @@
 ---
 id: 멋진 테니스
 title: 멋진 테니스
-sidebar_position: 3
+sidebar_position: 삼
 ---
 
 ### 2022년 개발중!

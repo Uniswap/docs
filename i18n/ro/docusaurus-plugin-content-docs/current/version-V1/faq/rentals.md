@@ -1,6 +1,6 @@
 ---
 id: închirieri
-title: Rentals
+title: Închirieri
 ---
 
 ### Unde închiriez un DEGEN?

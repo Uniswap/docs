@@ -1,6 +1,6 @@
 ---
 id: wynajem
-title: Rentals
+title: Wynajem
 ---
 
 ### Gdzie mogę wypożyczyć DEGEN?

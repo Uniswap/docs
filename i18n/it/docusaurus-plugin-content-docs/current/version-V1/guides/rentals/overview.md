@@ -1,6 +1,6 @@
 ---
 id: panoramica del noleggio
-title: Overview
+title: Panoramica
 sidebar_position: 1
 ---
 

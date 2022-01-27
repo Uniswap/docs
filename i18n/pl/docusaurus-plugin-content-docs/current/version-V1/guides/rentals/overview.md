@@ -1,6 +1,6 @@
 ---
 id: wynajem-przegląd
-title: Overview
+title: Przegląd
 sidebar_position: 1
 ---
 

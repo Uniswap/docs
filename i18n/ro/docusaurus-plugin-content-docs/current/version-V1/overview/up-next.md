@@ -57,7 +57,7 @@ Dacă citiți ultimul punct, veți ști că scalarea platformei noastre este o p
 
 Echipa noastră a sugerat treptat viitoarele utilități pentru benzi desenate - așa cum probabil știți deja, veți putea arde fiecare pagină pentru articole speciale din joc care vă măresc multiplicatorul NFTL DEGEN... dar distracția nu se oprește aici. !
 
-Am trimis anterior cele 4 pagini de benzi desenate inițiale către monitoare și mai avem 2 pagini rămase pentru DEGEN la începutul anului 2022. Cuvânt de la Satoshi - asigurarea unei colecții complete sau 2 este __ foarte recomandat.
+Am trimis anterior cele 4 pagini de benzi desenate inițiale pentru monet și încă mai au 2 pagini rămase pentru posesorii DEGEN la începutul anului 2022. Cuvânt de la Satoshi - asigurarea unei colecții complete sau 2 este __ foarte recomandat.
 
 ## Piața de articole
 

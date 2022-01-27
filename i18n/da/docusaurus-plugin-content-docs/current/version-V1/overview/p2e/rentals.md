@@ -1,7 +1,7 @@
 ---
 id: lejemål
-title: Rentals
+title: Udlejning
 sidebar_position: 4
 ---
 
-### Rentals
+### Udlejning

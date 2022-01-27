@@ -1,6 +1,6 @@
 ---
 id: Free-2-Play-Übersicht
-title: Overview
+title: Überblick
 sidebar_position: 1
 ---
 

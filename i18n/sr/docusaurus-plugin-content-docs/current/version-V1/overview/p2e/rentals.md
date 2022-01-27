@@ -1,7 +1,7 @@
 ---
 id: изнајмљивање
-title: Rentals
+title: Изнајмљивање
 sidebar_position: 4
 ---
 
-### Rentals
+### Изнајмљивање

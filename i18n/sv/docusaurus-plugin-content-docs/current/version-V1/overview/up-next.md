@@ -57,7 +57,7 @@ Vi vet att vårt community inte kan vänta med att visa upp sina coola DEGENS p�
 
 Vårt team har sakta tipsat om de kommande verktygen för serier - som du kanske redan är medveten om kommer du att kunna bränna varje sida för speciella föremål i spelet som ökar din DEGEN'S NFTL-multiplikator... men det roliga slutar inte där !
 
-Vi har tidigare släppt våra första 4 seriesidor till myntverk och har fortfarande 2 sidor kvar för DEGEN-innehavare i början av 2022. Ord från Satoshi - att säkra en hel samling eller 2 är _starkt_ rekommenderas.
+Vi har tidigare släppt våra första fyra seriesidor till myntverk och har fortfarande två sidor kvar för DEGEN-innehavare i början av 2022. Ord från Satoshi - att säkra en hel samling eller 2 är _starkt_ rekommenderas.
 
 ## Item Marketplace
 

@@ -1,6 +1,6 @@
 ---
 id: نظرة عامة
-title: Overview
+title: ملخص
 sidebar_position: 1
 ---
 

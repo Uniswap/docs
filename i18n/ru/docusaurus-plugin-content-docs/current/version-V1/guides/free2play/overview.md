@@ -1,6 +1,6 @@
 ---
 id: free-2-play-обзор
-title: Overview
+title: Обзор
 sidebar_position: 1
 ---
 

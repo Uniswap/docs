@@ -1,7 +1,7 @@
 ---
 id: închirieri
-title: Rentals
+title: Închirieri
 sidebar_position: 4
 ---
 
-### Rentals
+### Închirieri

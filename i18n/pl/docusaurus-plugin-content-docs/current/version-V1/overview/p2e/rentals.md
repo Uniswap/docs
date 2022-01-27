@@ -1,7 +1,7 @@
 ---
 id: wynajem
-title: Rentals
+title: Wynajem
 sidebar_position: 4
 ---
 
-### Rentals
+### Wynajem

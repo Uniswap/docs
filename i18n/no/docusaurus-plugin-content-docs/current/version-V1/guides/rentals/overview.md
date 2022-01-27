@@ -1,6 +1,6 @@
 ---
 id: utleie-oversikt
-title: Overview
+title: Oversikt
 sidebar_position: 1
 ---
 

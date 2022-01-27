@@ -1,6 +1,6 @@
 ---
 id: Przegląd
-title: Overview
+title: Przegląd
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi powiedział nam, że uwielbia pełne zbiory w prawie wszystko…więc po
 
 Poniżej znajduje się opis siły mnożnika do noszenia dla każdego odpowiedniego elementu do noszenia. Dokładne stawki nie zostały jeszcze ustalone.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Komiks 1 💪💪💪💪💪\ Komiks 2 💪💪💪💪\ Komiks 3 💪💪💪\ Komiks 4 💪💪\ Komiks 5 💪\ Komiks 6 💪💪💪💪💪💪
 
 
 Wciąż ustalamy dokładnie, ile miejsc można zapełnić na DEGEN, ale tylko 1 z każdego elementu do noszenia można przypisać do DEGEN NFT. 

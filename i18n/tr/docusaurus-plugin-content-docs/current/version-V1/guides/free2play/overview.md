@@ -1,6 +1,6 @@
 ---
 id: ücretsiz-2-oynat-genel bakış
-title: Overview
+title: genel bakış
 sidebar_position: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: genel bakış
-title: Overview
+title: genel bakış
 sidebar_position: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: pronájmy
-title: Rentals
+title: Pronájmy
 ---
 
 ### Kde si půjčím DEGEN?

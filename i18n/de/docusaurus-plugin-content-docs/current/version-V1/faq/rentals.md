@@ -1,6 +1,6 @@
 ---
 id: Mieten
-title: Rentals
+title: Mieten
 ---
 
 ### Wo miete ich einen DEGEN?

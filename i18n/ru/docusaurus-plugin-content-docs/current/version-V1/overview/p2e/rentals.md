@@ -1,7 +1,7 @@
 ---
 id: аренда
-title: Rentals
+title: Аренда
 sidebar_position: 4
 ---
 
-### Rentals
+### Аренда

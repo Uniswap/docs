@@ -1,6 +1,6 @@
 ---
 id: yleiskatsaus
-title: Overview
+title: Yleiskatsaus
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi kertoi meille, että hän rakastaa täydellisiä kokoelmia melkein kaike
 
 Alla on kuvaus puettavan kerrannaisvoimakkuudesta jokaiselle vastaavalle puettavalle. Tarkat hinnat ovat vielä määrittämättä.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Sarjakuva 1 💪💪💪💪💪\ Sarjakuva 2 💪💪💪💪\ Sarjakuva 3 💪💪💪\ Sarjakuva 4 💪💪\ Sarjakuva 5 💪💪💪💪💪💪💪💪💪💪💪💪💪💪
 
 
 Määritämme edelleen, kuinka monta paikkaa voidaan täyttää DEGEN-laitetta kohden, mutta vain yksi jokaisesta puettavasta on osoitettavissa DEGEN NFT:tä kohden. 

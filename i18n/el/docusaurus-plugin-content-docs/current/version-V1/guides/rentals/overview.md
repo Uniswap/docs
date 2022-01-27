@@ -1,6 +1,6 @@
 ---
 id: ενοικίαση-επισκόπηση
-title: Overview
+title: ΣΦΑΙΡΙΚΗ ΕΙΚΟΝΑ
 sidebar_position: 1
 ---
 

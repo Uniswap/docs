@@ -1,6 +1,6 @@
 ---
 id: hyror
-title: Rentals
+title: Uthyrning
 ---
 
 ### Var hyr jag en DEGEN?

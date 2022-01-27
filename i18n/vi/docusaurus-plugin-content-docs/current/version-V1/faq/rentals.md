@@ -1,6 +1,6 @@
 ---
 id: cho thuê
-title: Rentals
+title: Cho thuê
 ---
 
 ### Tôi thuê DEGEN ở đâu?

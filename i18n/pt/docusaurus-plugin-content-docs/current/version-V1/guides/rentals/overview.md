@@ -1,6 +1,6 @@
 ---
 id: visão geral do aluguel
-title: Overview
+title: Visão geral
 sidebar_position: 1
 ---
 

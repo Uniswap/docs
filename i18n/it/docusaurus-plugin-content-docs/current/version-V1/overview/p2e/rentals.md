@@ -1,7 +1,7 @@
 ---
 id: affitti
-title: Rentals
+title: Affitti
 sidebar_position: 4
 ---
 
-### Rentals
+### Affitti

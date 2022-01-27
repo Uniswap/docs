@@ -1,6 +1,6 @@
 ---
 id: Überblick
-title: Overview
+title: Überblick
 sidebar_position: 1
 ---
 

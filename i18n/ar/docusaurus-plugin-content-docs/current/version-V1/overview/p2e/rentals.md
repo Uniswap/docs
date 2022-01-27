@@ -1,7 +1,7 @@
 ---
 id: الايجارات
-title: Rentals
+title: الإيجارات
 sidebar_position: 4
 ---
 
-### Rentals
+### الإيجارات

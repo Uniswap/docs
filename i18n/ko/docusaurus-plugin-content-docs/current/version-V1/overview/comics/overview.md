@@ -1,6 +1,6 @@
 ---
 id: 개요
-title: Overview
+title: 개요
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Nifty League Comic Collection은 6페이지로 구성되어 있으며 코믹스 
 
 아래는 각 해당 웨어러블에 대한 웨어러블 승수 강도에 대한 설명입니다. 정확한 요금은 아직 미정입니다.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+만화 1 💪💪💪💪💪\ 만화 2 💪💪💪💪\ 만화 3 💪💪💪\ 만화 4 💪💪\ 만화 5 💪\ 만화 6 💪💪
 
 
 우리는 여전히 DEGEN당 채울 수 있는 슬롯 수를 정확히 결정하고 있지만 DEGEN NFT당 각 웨어러블 중 1개만 할당할 수 있습니다. 

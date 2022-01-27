@@ -1,6 +1,6 @@
 ---
 id: Tổng quat
-title: Overview
+title: Tổng quat
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ Satoshi nói với chúng tôi rằng anh ấy thích các bộ sưu tập đầ
 
 Dưới đây là mô tả sức mạnh của hệ số nhân có thể đeo cho từng thiết bị đeo tương ứng. Tỷ lệ chính xác vẫn còn được xác định.
 
-Comic 1 💪💪💪💪💪\ Comic 2 💪💪💪💪\ Comic 3 💪💪💪\ Comic 4 💪💪\ Comic 5 💪\ Comic 6 💪💪💪💪💪💪
+Truyện tranh 1 💪💪💪💪💪 \ Truyện tranh 2 💪💪💪💪 \ Truyện tranh 3 💪💪💪 \ Truyện tranh 4 💪💪 \ Truyện tranh 5 💪 \ Truyện tranh 6 💪💪💪💪💪💪
 
 
 Chúng tôi vẫn đang xác định chính xác có bao nhiêu vị trí có thể được lấp đầy trên mỗi DEGEN, nhưng chỉ có thể chỉ định 1 trong số mỗi thiết bị đeo được trên mỗi DEGEN NFT. 

@@ -1,6 +1,6 @@
 ---
 id: persewaan
-title: Rentals
+title: Penyewaan
 ---
 
 ### Dimana saya bisa menyewa DEGEN?

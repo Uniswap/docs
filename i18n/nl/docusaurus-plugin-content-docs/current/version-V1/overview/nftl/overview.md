@@ -1,6 +1,6 @@
 ---
 id: Overzicht
-title: Overview
+title: Overzicht
 sidebar_position: 1
 ---
 
