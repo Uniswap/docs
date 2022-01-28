@@ -1,6 +1,6 @@
 ---
 id: intro
-title: What Is Nifty League?
+title: About Nifty League
 sidebar_position: 1
 ---
 
@@ -18,4 +18,4 @@ Our team strives to make our games highly competitive and packed full of nostalg
 
 The Nifty League DEGEN community has and will continue to play a key role in shaping our roadmap and games. We hope to see the platform expand into a fully decentralized DAO, with the support of developers in the community and indie gaming studios globally.
 
-Finally, we are excited to partner with some of the largest Web3 gaming guilds in the world to expand our player community, drive our content growth loops and fuel awareness and engagement across the Nifty League ecosystem.
+Finally, we are excited to partner with some of the largest Web3 gaming guilds in the world to expand our player community, drive our content growth loops, and fuel awareness and engagement across the Nifty League ecosystem.
