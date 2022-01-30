@@ -152,7 +152,7 @@ import { SwapToRatioStatus } from "@uniswap/smart-order-router";
 const V3_SWAP_ROUTER_ADDRESS = "0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45";
 const MY_ADDRESS = "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B";
 
-if (routeToRatioResponse.status == SwapToRatioStatus.success) {
+if (routeToRatioResponse.status == SwapToRatioStatus.SUCCESS) {
   const route = routeToRatioResponse.result
   const transaction = {
     data: route.methodParameters.calldata,
@@ -161,7 +161,7 @@ if (routeToRatioResponse.status == SwapToRatioStatus.success) {
     from: MY_ADDRESS,
     gasPrice: BigNumber.from(route.gasPriceWei),
   };
-)
+}
 
 await web3Provider.sendTransaction(transaction);
 ```
