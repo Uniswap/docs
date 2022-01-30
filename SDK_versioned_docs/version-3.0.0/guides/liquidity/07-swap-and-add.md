@@ -161,7 +161,7 @@ if (routeToRatioResponse.status == SwapToRatioStatus.SUCCESS) {
     from: MY_ADDRESS,
     gasPrice: BigNumber.from(route.gasPriceWei),
   };
+  await web3Provider.sendTransaction(transaction);
 }
 
-await web3Provider.sendTransaction(transaction);
 ```
