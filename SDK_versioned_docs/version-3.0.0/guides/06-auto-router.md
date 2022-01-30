@@ -171,7 +171,7 @@ const route = await router.route(
   USDC,
   TradeType.EXACT_IN,
   {
-    recipient: myAddress,
+    recipient: MY_ADDRESS,
     slippageTolerance: new Percent(5, 100),
     deadline: 100
   }
