@@ -88,11 +88,11 @@ const USDC = new Token(
 const route = await router.route(
   wethAmount,
   USDC,
-  TradeType.EXACT_IN,
+  TradeType.EXACT_INPUT,
   {
     recipient: myAddress,
     slippageTolerance: new Percent(5, 100),
-    deadline: 100
+    deadline: Date.now() + 1800
   }
 );
 ```
