@@ -60,8 +60,8 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 
 | Name          | Requirement | Description                                                                                                                                          |
 | ------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| amount        | [required]  | The amount specified by the user. For EXACT_IN swaps, this is the input token amount. For EXACT_OUT swaps, this is the output token.                 |
-| quoteCurrency | [required]  | The currency of the token we are returning a quote for. For EXACT_IN swaps, this is the output token. For EXACT_OUT, this is the input tok           |
+| amount        | [required]  | The amount specified by the user. For EXACT_INPUT swaps, this is the input token amount. For EXACT_OUTPUT swaps, this is the output token.                 |
+| quoteCurrency | [required]  | The currency of the token we are returning a quote for. For EXACT_INPUT swaps, this is the output token. For EXACT_OUTPUT, this is the input tok           |
 | swapType      | [required]  | Either an exactInput swap or an exactOutput swap.                                                                                                    |
 | swapConfig    | [optional]  | Configure to set a recipient, slippageTolerance, deadline, and inputTokenPermit. If provided, calldata for executing the swap will also be returned. |
 | routingConfig | [optional]  | Optional config for tuning the performance of the routing algorithm.                                                                                 |
@@ -88,7 +88,7 @@ const USDC = new Token(
 const route = await router.route(
   wethAmount,
   USDC,
-  TradeType.EXACT_IN,
+  TradeType.EXACT_INPUT,
   {
     recipient: myAddress,
     slippageTolerance: new Percent(5, 100),
@@ -169,7 +169,7 @@ const wethAmount = CurrencyAmount.fromRawAmount(currency, JSBI.BigInt(typedValue
 const route = await router.route(
   wethAmount,
   USDC,
-  TradeType.EXACT_IN,
+  TradeType.EXACT_INPUT,
   {
     recipient: myAddress,
     slippageTolerance: new Percent(5, 100),
