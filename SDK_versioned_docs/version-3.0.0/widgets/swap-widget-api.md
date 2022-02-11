@@ -12,7 +12,7 @@ sidebar_position: 2
 
 | Prop Name | Prop Type | Default Value | Description |
 | --- | --- | --- | --- |
-| `provider` | `any` | `undefined` | An [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider. |
+| `provider` | `any` | `undefined` | An [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider. This is required to swap. |
 
 ## Optional Parameters {#optional-parameters}
 
