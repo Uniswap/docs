@@ -5,16 +5,15 @@ title: Swap Widget API Reference
 sidebar_label: API Reference
 sidebar_position: 2
 ---
-
 # Swap Widget API Reference
 
-## Required Parameters {#required-parameters}
+# Required Parameters {#required-parameters}
 
 | Prop Name | Prop Type | Default Value | Description |
 | --- | --- | --- | --- |
 | `provider` | `any` | `undefined` | An [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider. This is required to swap. |
 
-## Optional Parameters {#optional-parameters}
+# Optional Parameters {#optional-parameters}
 
 | Prop Name | Prop Type | Default Value | Description |
 | --- | --- | --- | --- |
@@ -29,7 +28,7 @@ sidebar_position: 2
 | `convenienceFee` | `number` | `undefined` | Optionally, you may charge a convenience fee on top of swaps executed through your web app. The allowed range is 1 to 100 basis points (inclusive of 100) consistent with the Uniswap v3 Periphery contract. |
 | `convenienceFeeRecipient` | `{[chainId: number]: string}` | `undefined` | The address to receive the convenience fee on each network. Required if convenienceFee is provided. |
 
-## Subscribing to Events
+# Subscribing to Events
 
 During the lifecycle of the swap widget, most of the events you will need are available on the web3 provider. For example, the below snippet shows how to listen for events when the wallet account changes or a new wallet connects. You can see more event examples in the [MetaMask](https://docs.metamask.io/guide/ethereum-provider.html) docs.
 
