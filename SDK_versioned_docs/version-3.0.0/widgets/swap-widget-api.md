@@ -32,16 +32,17 @@ sidebar_position: 2
 
 During the lifecycle of the swap widget, most of the events you will need are available on the web3 provider. For example, the below snippet shows how to listen for events when the wallet account changes or a new wallet connects. You can see more event examples in the [MetaMask](https://docs.metamask.io/guide/ethereum-provider.html) docs.
 
-```jsx
-// Subscribe to wallet account change events
-provider.on('accountsChanged', (accounts) => {
-  console.log(accounts)
-})
+```js
+// Subscribe to messages
+interface ProviderMessage {
+  type: string;
+  data: unknown;
+}
 
-// Subscribe to wallet connect events
-provider.on('connect', (info) => {
-  console.log(info)
-})
+ethereum.on(
+  'message',
+  handler: (message: ProviderMessage) => void
+);
 ```
 
 :::note Questions?

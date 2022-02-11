@@ -11,20 +11,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Getting Started with the Swap Widget
 
-This guide walks you through the steps to embed the Uniswap Labs swap widget in your web3 decentralized application (dApp). The swap widget lets your users trade tokens directly with the Uniswap Protocol without leaving your dApp.
+This guide walks you through the steps to embed the swap widget in your web3 decentralized application (dApp). With the swap widget, your users can trade tokens on the Uniswap Protocol without leaving your dApp!
 
-Here’s a live preview of the swap widget. Please note that wallet connect is not supported here in the documentation. Your app is responsible for providing a method to connect a wallet.
+Here’s a live preview of the swap widget. Please note that wallet connect is not supported here in the documentation. Your app will be responsible for providing a method to connect a wallet.
 
 <iframe width="360" height="360" scrolling="no" src="https://widgets-uniswap.vercel.app/_renderer.html?_fixtureId=%7B%22path%22%3A%22src%2Flib%2Fcomponents%2FSwap%2FSwap.fixture.tsx%22%2C%22name%22%3Anull%7D"></iframe>
 
-The swap widget can help users acquire the right tokens for your dApp or community. Example use cases include:
+With the swap widget, your users can trade for any ERC-20 token without leaving your app! Example use cases include:
 
 - Building a custom frontend for the Uniswap Protocol
 - Swapping assets in a DeFi application
 - Acquiring a token to participate in your web3 community (e.g. FWB or a gaming token)
 - Converting to the required currency for an NFT purchase (e.g. WETH)
 
-You can drive more engagement in your dApp by embedding the swap experience in your app. You can even customize the default selected tokens, the available token list, and the widget appearance to perfectly fit your use case.
+You can make the widget feel like a native part of your app by customizing the colors, font, and token list to match your app theme. This guide will teach you how.
 
 ## Requirements {#requirements}
 
@@ -171,9 +171,9 @@ function App() {
 
 ### Enabling Token Color Extraction {#enabling-color-extraction}
 
-By default, the background color of the output module will be set by the `module` attribute. You can optionally enable the color extraction to to flood the output module with the color of the selected output token. In the above example, DAI is the output token so the output module is flooded with DAI yellow.
+By default, the background color of the output module will be set by the `module` attribute. You can optionally enable color extraction to flood the output module with the color of the selected output token. In the above example, DAI is the output token so the output module is flooded with DAI yellow.
 
-You can enable color extraction by setting the `tokenColorExtraction` property to `true` in your `Theme` object.
+To enable color extraction, set the `tokenColorExtraction` property to `true` in your `Theme` object.
 
 ```tsx
 import { Theme, SwapWidget } from '@uniswap/widgets'
@@ -194,7 +194,7 @@ function App() {
 
 ### Toggling Light and Dark Mode {#toggling-light-dark-mode}
 
-The swap widget provides a light and a dark mode variant that you can import as a starting point to create your own themes. If you would like to support both light and dark mode, you can change the value of the `theme` prop to toggle light/dark modes like in the example below.
+The swap widget provides a default light theme and dark theme as a starting point. You can import each one and extend it to create your own theme. If your app can toggle between light and dark mode, you can propagate that state down to the widget by following the example below.
 
 ```tsx
 import { darkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
