@@ -121,7 +121,7 @@ minimumAmountOut(slippageTolerance: Percent): TokenAmount
 
 Returns the minimum amount of the output token that should be received from a trade, given the slippage tolerance.
 
-Useful when constructing a transaction for a trade of type `EXACT_IN`.
+Useful when constructing a transaction for a trade of type `EXACT_INPUT`.
 
 ## maximumAmountIn (since 2.0.4)
 
@@ -131,7 +131,7 @@ maximumAmountIn(slippageTolerance: Percent): TokenAmount
 
 Returns the maximum amount of the input token that should be spent on the trade, given the slippage tolerance.
 
-Useful when constructing a transaction for a trade of type `EXACT_OUT`.
+Useful when constructing a transaction for a trade of type `EXACT_OUTPUT`.
 
 # Static methods
 
