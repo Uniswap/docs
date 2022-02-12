@@ -46,6 +46,12 @@ module.exports = {
           className: "V3_active",
         },
         {
+          to: "/sdk/widgets/swap-widget",
+          label: "Widgets",
+          position: "left",
+          className: "V3_active",
+        },
+        {
           to: "/sdk/subgraph/subgraph-data",
           label: "Subgraph (API)",
           position: "left",

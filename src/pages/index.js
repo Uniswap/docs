@@ -28,14 +28,14 @@ export const actions = [
     href: "#",
     icon: InformationCircleIcon,
     to: "./protocol/introduction",
-    text: `Learn about the core concepts of the Uniswap protocol. Swaps, Pools, Concentrated Liquidity and more.`,
+    text: `Learn about the core concepts of the Uniswap Protocol. Swaps, Pools, Concentrated Liquidity and more.`,
   },
   {
     title: "Smart contract overview",
     href: "#",
     icon: BookOpenIcon,
     to: "./protocol/reference/smart-contracts",
-    text: `Learn about the architecture of the Uniswap protocol smart contracts made up of the Core and Periphery libraries.`,
+    text: `Learn about the architecture of the Uniswap Protocol smart contracts made up of the Core and Periphery libraries.`,
   },
   {
     title: "V3 SDK",
@@ -66,27 +66,37 @@ export const github = [
     title: "Deployment addresses",
     href: "https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md",
   },
+  {
+    title: "@uniswap/widgets",
+    href: "https://www.npmjs.com/package/@uniswap/widgets",
+    icon: CodeIcon,
+  },
 ];
 
 export const Guides = [
   {
-    title: "SDK Quick start",
-    text: "Get started on web integrations with the Javascript SDK",
+    title: "SDK Quick Start",
+    text: "Integrate with the Uniswap Protocol using JavaScript",
     to: "./sdk/guides/quick-start",
   },
   {
-    title: "Implement a Swap",
-    text: "Start swapping from a smart contract",
+    title: "Embedding a Swap Widget",
+    text: "Let your users trade tokens without leaving your dApp",
+    to: "./sdk/widgets/swap-widget",
+  },
+  {
+    title: "Implementing a Swap",
+    text: "Start swapping from a smart contract in Solidity",
     to: "./protocol/guides/swaps/single-swaps",
   },
   {
     title: "Providing Liquidity",
-    text: "Provide liquidity from a smart contract",
-    to: "./protocol/reference/periphery/NonfungiblePositionManager",
+    text: "Provide liquidity from a smart contract in Solidity",
+    to: "./protocol/guides/providing-liquidity/setting-up",
   },
   {
     title: "Building an Oracle",
-    text: "Get the down low on building oracles safely",
+    text: "Learn how Uniswap v3 pools can serve as oracles",
     to: "./protocol/concepts/V3-overview/oracle",
   },
 ];
@@ -103,13 +113,13 @@ export const quick = [
     to: "./sdk/introduction",
   },
   {
-    title: "API (Subgraph)",
-    text: "Start swapping from a smart contract",
-    to: "./sdk/subgraph/subgraph-data",
+    title: "Widgets",
+    text: "Get started with the swap widget",
+    to: "./sdk/widgets/swap-widget",
   },
   {
     title: "Whitepaper",
-    text: "Start swapping from a smart contract",
+    text: "Read the Uniswap V3 whitepaper",
     to: "https://uniswap.org/whitepaper-v3.pdf",
   },
 ];
@@ -601,7 +611,7 @@ export default function Home() {
                 </svg>{" "}
               </StyledGithubIcon>
               <div>
-                <h3>Github</h3>
+                <h3>GitHub</h3>
                 <p>View all Uniswap repositories.</p>
               </div>
             </CenterCard>

@@ -46,6 +46,10 @@
   /* --ifm-navbar-background-color: rgba(255, 0.2); */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html[data-theme="dark"] {
   --ifm-color-primary: white;
   --ifm-color-primary-dark: #5a91ea;
@@ -220,6 +224,37 @@ html[data-theme="dark"] .navbar__logo {
   --ifm-badge-background-color: var(--ifm-color-emphasis-0);
   --ifm-badge-border-color: var(--ifm-badge-background-color);
   color: var(--ifm-color-base);
+}
+
+.illustration {
+  border-radius: var(--ifm-pre-border-radius);
+}
+
+iframe {
+  display: block;
+  padding: 0;
+  margin: 1rem auto;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+}
+
+.admonition-note {
+  margin-top: 3rem;
+}
+
+html[data-theme="light"] .admonition-note {
+  background: #e8e8e8;
+}
+
+html[data-theme="dark"] .admonition-note {
+  background: none;
+  color: var(--ifm-color-white);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+html[data-theme="dark"] .admonition-icon svg {
+  fill: var(--ifm-color-white);
 }
 
 html[data-theme="light"] .DocSearch {
