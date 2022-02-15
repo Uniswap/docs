@@ -13,10 +13,10 @@ sidebar_position: 2
 
 ## Team
 
-| Meghan Vita (Nifty Morgan) | Koa               | Bolo Dave                   | Zoiby                    | Michael             | Jeppe               |
-| -------------------------- | ----------------- | --------------------------- | ------------------------ | ------------------- | ------------------- |
-| ![](/img/NiftyMorgan.png)  | ![](/img/koa.png) | ![](/img/bolo.png)          | ![](/img/zoiby.png)      | ![](/img/jeppe.png) | ![](/img/jeppe.png) |
-| VP of Ops                  | DAO Director      | Program & Community Manager | Senior Software Engineer | Web3 Developer      | Marketing           |
+| Meghan Vita               | Koa               | Bolo Dave                   | Zoiby                    | Michael                    | Jeppe               |
+| ------------------------- | ----------------- | --------------------------- | ------------------------ | -------------------------- | ------------------- |
+| ![](/img/NiftyMorgan.png) | ![](/img/koa.png) | ![](/img/bolo.png)          | ![](/img/zoiby.png)      | ![](/img/NiftyMichael.png) | ![](/img/jeppe.png) |
+| VP of Ops                 | DAO Director      | Program & Community Manager | Senior Software Engineer | Web3 Developer             | Marketing           |
 
 ## Mods
 
