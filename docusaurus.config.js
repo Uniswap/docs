@@ -238,10 +238,6 @@ module.exports = {
         lightIcon: '\u{263C}',
       },
     },
-    googleAnalytics: {
-      trackingID: 'G-DKL8WWG236',
-      anonymizeIP: true,
-    },
   },
   presets: [
     [
@@ -252,6 +248,11 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/NiftyLeague/docs/tree/main/',
           includeCurrentVersion: false,
+        },
+
+        googleAnalytics: {
+          trackingID: 'G-DKL8WWG236',
+          anonymizeIP: true,
         },
 
         theme: {
