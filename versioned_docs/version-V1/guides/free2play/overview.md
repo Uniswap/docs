@@ -4,7 +4,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-## Enter the Authentication Flow by following the steps below
+## Getting started with Free-to-play
 
 1. Navigate to the [Games page](https://niftyleague.com/games) on our website
 
