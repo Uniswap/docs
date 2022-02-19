@@ -27,7 +27,7 @@ npm init
 npm i typescript --save
 npm i ts-node --save
 npm i @uniswap/v3-sdk --save
-npm i @uniswap/sdk-core i --save
+npm i @uniswap/sdk-core --save
 npm i ethers  --save
 ```
 
