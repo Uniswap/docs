@@ -45,7 +45,7 @@ Below is a depiction of wearable multiplier strength for each corresponding wear
 - All 6 Comics can be burned together as a set for a special mystery item
 - This mystery item will NOT modify the P2E multiplier
 
-![](/img/NL_Comic_1.png)
-![](/img/NL_Comic_2.png)
-![](/img/NL_Comic_3.png)
-![](/img/NL_Comic_4.png)
+<div style={{ width: "80%" }}><img src="/img/NL_Comic_1.png" /></div>
+<div style={{ width: "80%" }}><img src="/img/NL_Comic_2.png" /></div>
+<div style={{ width: "80%" }}><img src="/img/NL_Comic_3.png" /></div>
+<div style={{ width: "80%" }}><img src="/img/NL_Comic_4.png" /></div>
