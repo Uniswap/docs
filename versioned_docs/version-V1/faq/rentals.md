@@ -1,6 +1,7 @@
 ---
 id: rentals
 title: Rentals
+sidebar_position: 3
 ---
 
 ## Where do I rent a DEGEN?

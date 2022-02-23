@@ -8,7 +8,7 @@ sidebar_position: 3
 
 DEGEN backgrounds were randomly assigned upon minting, which either resulted in a **Common** background or one of three special backgrounds: **Rare**, **Meta**, **Legendary**.
 
-Background come with special perks such as a distinguished look in game and exta earning multipliers.
+Backgrounds come with special perks such as a distinguished look in game and extra earning multipliers.
 
 ## Earnings Multipliers
 
