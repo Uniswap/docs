@@ -56,7 +56,8 @@ To get data about a certain pool, pass in the pool address. Reference the full [
 
 The query below returns the feeTier, spot price, and liquidity for the ETH-USDC pool.
 
-```{
+```
+{
   pool(id: "0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8") {
     tick
     token0 {
