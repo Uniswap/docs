@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Founders
 
-| Andrew Mahoney-Fernades                | A T                                 | Mike Soctt                                        |
+| Andrew Mahoney-Fernades                | Ali Timnak                          | Mike Soctt                                        |
 | -------------------------------------- | ----------------------------------- | ------------------------------------------------- |
 | <div align="center"> Nifty Andy </div> | <div align="center"> Snarfy </div>  | <div align="center"> Nifty Spike</div>            |
 | ![](/img/NiftyAndy.png)                | ![](/img/snarfy.png)                | ![](/img/NiftySpike.png)                          |
@@ -22,6 +22,6 @@ sidebar_position: 2
 
 ## Community Moderators
 
-| <div align="center"> Real Deal McKeel </div> | <div align="center"> Sacx </div> | <div align="center"> DoomyDays </div> | <div align="center"> Nard </div> | <div align="center"> Jordan </div> |
+| <div align="center" style={{ width: "175px" }}> Real Deal McKeel </div> | <div align="center" style={{ width: "175px" }}> Sacx </div> | <div align="center" style={{ width: "175px" }}> DoomyDays </div> | <div align="center" style={{ width: "175px" }}> Nard </div> | <div align="center" style={{ width: "175px" }}> Jordan </div> |
 | -------------------------------------------- | -------------------------------- | ------------------------------------- | -------------------------------- | ---------------------------------- |
 | ![](/img/realdeal.png)                       | ![](/img/sacx.png)               | ![](/img/doomy.png)                   | ![](/img/nard.png)               | ![](/img/jordan.png)               |
