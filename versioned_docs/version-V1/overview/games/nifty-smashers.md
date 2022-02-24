@@ -47,7 +47,7 @@ As background, the local-multiplayer version of Nifty Smashers was made availabl
 
 - A custom lobby can be used to open a match in a chosen region
 - The creator of the lobby can see a code in the lobby map which can be shared with others
-- If another Degen wants to join the lobby, they must first select the same region as the custom lobby, and then type the lobby code into the input box
+- If another DEGEN wants to join the lobby, they must first select the same region as the custom lobby, and then type the lobby code into the input box
 
 ## Changing Regions
 

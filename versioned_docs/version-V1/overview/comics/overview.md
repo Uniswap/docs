@@ -40,7 +40,7 @@ Below is a depiction of wearable multiplier strength for each corresponding wear
 
 - Each comic can be burned for a in-game wearable item
 - These NFTs will be ERC-1155’s
-- Items modify a degen's P2E multiplier when worn
+- Items modify a DEGEN's P2E multiplier when worn
 - Alternatively, you can hold the comics for future utility we have not yet disclosed
 - All 6 Comics can be burned together as a set for a special mystery item
 - This mystery item will NOT modify the P2E multiplier

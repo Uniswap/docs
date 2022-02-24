@@ -6,17 +6,19 @@ sidebar_position: 2
 
 ## Founders
 
-| Nifty Andy                      | Snarfy                          | Nifty Spike                                   |
-| ------------------------------- | ------------------------------- | --------------------------------------------- |
-| ![](/img/NiftyAndy.png)         | ![](/img/snarfy.png)            | ![](/img/NiftySpike.png)                      |
-| <div align="center" style={{ width: "300px" }}> CEO </div> | <div align="center" style={{ width: "300px" }}> CTO </div> | <div align="center" style={{ width: "300px" }}> Creative Director </div> |
+| Andrew Mahoney-Fernades                | Ali Timnak                          | Mike Soctt                                        |
+| -------------------------------------- | ----------------------------------- | ------------------------------------------------- |
+| <div align="center"> Nifty Andy </div> | <div align="center"> Snarfy </div>  | <div align="center"> Nifty Spike</div>            |
+| ![](/img/NiftyAndy.png)                | ![](/img/snarfy.png)                | ![](/img/NiftySpike.png)                          |
+| <div align="center"> **CEO** </div>    | <div align="center"> **CTO** </div> | <div align="center"> **Creative Director** </div> |
 
 ## Team
 
-| Meghan Vita                           | Koa                                      | Bolo Dave                                               | Zoiby                                                 | Michael                                    | Jeppe                                         |
-| ------------------------------------- | ---------------------------------------- | ------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------ | --------------------------------------------- |
-| ![](/img/NiftyMorgan.png)             | ![](/img/koa.png)                        | ![](/img/bolo.png)                                      | ![](/img/zoiby.png)                                   | ![](/img/NiftyMichael.png)                 | ![](/img/jeppe.png)                           |
-| <div align="center" style={{ width: "150px" }}> VP of Ops </div> | <div align="center" style={{ width: "150px" }}> DAO Director </div> | <div align="center" style={{ width: "150px" }}> Program & Community Manager </div> | <div align="center" style={{ width: "150px" }}> Senior Software Developer </div> | <div align="center" style={{ width: "150px" }}> Web3 Developer </div> | <div align="center" style={{ width: "150px" }}> Marketing Manager </div> |
+| Meghan Vita                              | Ali Zandi                                | Dave R                                              | Jeff Elkind                                  | Brandon                                   | Jeppe                                     |
+| ---------------------------------------- | ---------------------------------------- | --------------------------------------------------- | -------------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| <div align="center"> Nifty Morgan </div> | <div align="center"> Koa </div>          | <div align="center"> Bolo Dave </div>               | <div align="center"> Zoiby </div>            | <div align="center"> Nifty Michael </div> | <div align="center"> Nifty Jeppe </div>   |
+| ![](/img/NiftyMorgan.png)                | ![](/img/koa.png)                        | ![](/img/bolo.png)                                  | ![](/img/zoiby.png)                          | ![](/img/NiftyMichael.png)                | ![](/img/jeppe.png)                       |
+| <div align="center"> VP of Ops </div>    | <div align="center"> DAO Director </div> | <div align="center"> Program & Community Mgr </div> | <div align="center"> Sr. Software Dev </div> | <div align="center"> Web3 Dev </div>      | <div align="center"> Marketing Mgr </div> |
 
 ## Community Moderators
 

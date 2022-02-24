@@ -8,7 +8,7 @@ Players are able to earn [NFTL](https://docs.niftyleague.com/overview/nftl/overv
 
 The more you play and practice, the better you will play against your opponents, and the more NFLT you will earn by gaming.
 
-New details will be announced as we define our emission model for each new game. We plan to implement a progression system to level-up Degens and gain additional rewards with the goal to enhance the player experience.
+New details will be announced as we define our emission model for each new game. We plan to implement a progression system to level-up DEGENs and gain additional rewards with the goal to enhance the player experience.
 
 ## Noob Player Earnings Bonus
 
