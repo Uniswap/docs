@@ -16,7 +16,7 @@ Our current game, [Nifty Smashers](https://docs.niftyleague.com/overview/games/n
 **Ape**
 
 - Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it hits an opponent, hits a map part or flies off the map
-- Pressing the SA button again makes the banana fly back to the Degen, making it possible to hit an opponent again.
+- Pressing the SA button again makes the banana fly back to the DEGEN, making it possible to hit an opponent again.
 - Bananas can be hit with a bat and fly in the aimed direction
 
 ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
@@ -50,5 +50,5 @@ Our current game, [Nifty Smashers](https://docs.niftyleague.com/overview/games/n
 - The bomb has a flying curve and doesn't fly straight like bananas (if the bomb is not detonated prior, it remains on the ground)
 - The bomb explodes after some time or after the SA button is pressed a second time
 - Currently, the bomb can hit an opponent by hitting it or by explosion
-- Bombs are the only SA that can hit the throwing Degen itself with its explosion
+- Bombs are the only SA that can hit the throwing DEGEN itself with its explosion
 - Bombs can also be hit with a bat and fly in the aimed direction

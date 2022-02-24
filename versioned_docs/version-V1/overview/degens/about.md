@@ -12,6 +12,6 @@ There are 6 tribes of DEGENs: apes, humans, dogs, frogs, cats, and aliens.
 
 The DEGEN's design affected available character traits and accessories, and determined certain in-game mechanics and special moves.
 
-Minters were able to browse through already minted DEGENS to determine which tribes were rarer than others and what type of DEGEN they gravitated toward.
+Minters were able to browse through already minted DEGENs to determine which tribes were rarer than others and what type of DEGEN they gravitated toward.
 
 Although our NFTs minted out in October 2021, they can be purchased on the secondary market via [OpenSea](https://opensea.io/collection/niftydegen).
