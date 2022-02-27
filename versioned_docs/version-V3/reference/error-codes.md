@@ -48,4 +48,4 @@ UniswapV3Pool.sol
 * `IIA`: Insufficient input amount, an insufficient amount of input token was sent during the callback
 * `L`: Liquidity in the pool must be greater than zero for a flash to be executed
 * `F0`: The balance of token0 in the given pool before the flash transaction must be less than, or equal to, the balance of token0 after the flash plus the fee
-* `F1`: The balance of token1 in the given pool before the flash transaction must be less than, or equal to, the balance of token0 after the flash plus the fee
+* `F1`: The balance of token1 in the given pool before the flash transaction must be less than, or equal to, the balance of token1 after the flash plus the fee
