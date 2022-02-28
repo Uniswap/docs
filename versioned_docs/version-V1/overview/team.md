@@ -6,15 +6,15 @@ sidebar_position: 2
 
 ## Founders
 
-| Andrew Mahoney-Fernades                | Ali Timnak                          | Mike Soctt                                        |
+| <div align="center" style={{ width: "225px" }}> Andrew Mahoney-Fernades </div> | <div align="center" style={{ width: "225px" }}> Ali Timnak </div> | <div align="center" style={{ width: "225px" }}> Mike Scott </div> |
 | -------------------------------------- | ----------------------------------- | ------------------------------------------------- |
-| <div align="center"> Nifty Andy </div> | <div align="center"> Snarfy </div>  | <div align="center"> Nifty Spike</div>            |
+| <div align="center" style={{ width: "225px" }}> Nifty Andy </div> | <div align="center" style={{ width: "225px" }}> Snarfy </div>  | <div align="center" style={{ width: "225px" }}> Nifty Spike</div>            |
 | ![](/img/NiftyAndy.png)                | ![](/img/snarfy.png)                | ![](/img/NiftySpike.png)                          |
 | <div align="center"> **CEO** </div>    | <div align="center"> **CTO** </div> | <div align="center"> **Creative Director** </div> |
 
 ## Team
 
-| Meghan Vita                              | Ali Zandi                                | Dave R                                              | Jeff Elkind                                  | Brandon                                   | Jeppe                                     |
+| <div align="center" style={{ width: "150px" }}> Meghan Vita </div> | <div align="center" style={{ width: "150px" }}> Ali Zandi </div> | <div align="center" style={{ width: "150px" }}> Dave R </div> | <div align="center" style={{ width: "150px" }}> Jeff Elkind </div> | <div align="center" style={{ width: "150px" }}> Brandon </div> | <div align="center" style={{ width: "150px" }}> Jeppe </div> |
 | ---------------------------------------- | ---------------------------------------- | --------------------------------------------------- | -------------------------------------------- | ----------------------------------------- | ----------------------------------------- |
 | <div align="center"> Nifty Morgan </div> | <div align="center"> Koa </div>          | <div align="center"> Bolo Dave </div>               | <div align="center"> Zoiby </div>            | <div align="center"> Nifty Michael </div> | <div align="center"> Nifty Jeppe </div>   |
 | ![](/img/NiftyMorgan.png)                | ![](/img/koa.png)                        | ![](/img/bolo.png)                                  | ![](/img/zoiby.png)                          | ![](/img/NiftyMichael.png)                | ![](/img/jeppe.png)                       |
