@@ -5,10 +5,19 @@ sidebar_position: 2
 ---
 
   <div>
-  <video width="100%" height="100%" playsInline controls loop>
-  <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
-  Your browser does not support the video tag.
-  </video>
+    <iframe
+      height="380px"
+      width="100%"
+      src="https://www.youtube.com/embed/WWLqE1tnf6U"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      title="Nifty Smashers Video Clip"
+      className="pixelated"
+      style={{
+        borderRadius: '25px',
+      }}
+    />
   </div>
 
 ---
