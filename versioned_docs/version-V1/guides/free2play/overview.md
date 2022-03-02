@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Getting started with Free-to-play
 
-1. Navigate to the [Games page](https://niftyleague.com/games) on our website
+1. Navigate to the [Games page](https://app.niftyleague.com/games) on our website
 
 2. Connect your Metamask (or other preferred crypto wallet - we support nearly all of them!) by tapping **Wallet** in the top bar
 
@@ -21,5 +21,3 @@ sidebar_position: 1
 7. If you own a DEGEN or have an active DEGEN rental, you will be prompted to enter the game
 
 8. If you don't own a DEGEN or have an active DEGEN rental, you will be presented with the Free-to-play option, where you can select a tribe and enter the game
-
-You may find [our guide](https://www.loom.com/share/2bedc69db7e84e1fb1084c2182b86149) for connecting your crypto wallet helpful.
