@@ -24,9 +24,9 @@ sidebar_position: 2
 
 # Game Overview
 
-Battle it out amongst the community and get in as many bat bonks on your friends as you can! [Nifty Smashers](https://nifty-league.com/games) takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points.
+Battle it out amongst the community and get in as many bat bonks on your friends as you can! Nifty Smashers takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points.
 
-You can play using your keyboard or any other compatible controller (Playstation, Xbox, etc.). You must have a [DEGEN NFT](https://docs.niftyleague.com/overview/degens/about) to play the game. Simply connect your crypto wallet holding your DEGEN, enter the game lobby, and select your DEGEN for battle.
+You can play using your keyboard or any other compatible controller (Playstation, Xbox, etc.). You must have a [DEGEN NFT](https://niftyleague.com/docs/overview/degens/About) to play the game. Simply connect your crypto wallet holding your DEGEN, enter the game lobby, and select your DEGEN for battle.
 
 As background, the local-multiplayer version of Nifty Smashers was made available immediately during mint in September 2021, followed by the online multiplayer.
 
@@ -99,8 +99,8 @@ General information, advice, tips and tricks regarding battling in Nifty Smasher
 
 # Tribe Specifics
 
-All DEGEN tribes have a Special Ability (”SA”), which are consistent across all Nifty League games (live and future), including Nifty Smashers. Learn everytyhing you need to know about each tribe [here](http://localhost:3000/overview/degens/tribes).
+All DEGEN tribes have a Special Ability (”SA”), which are consistent across all Nifty League games (live and future), including Nifty Smashers. Learn everytyhing you need to know about each tribe [here](https://niftyleague.com/docs/overview/degens/tribes).
 
 <br></br>
 
-Please join our **[Discord](https://discord.gg/niftyleague)** to provide feedback and ideas on how we can improve the game and take it to the next level!
+Please join our [Discord](https://discord.gg/niftyleague) to provide feedback and ideas on how we can improve the game and take it to the next level!
