@@ -239,7 +239,7 @@ iframe {
   background: transparent;
 }
 
-.admonition-note {
+.admonition-note:last-child {
   margin-top: 3rem;
 }
 

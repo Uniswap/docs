@@ -8,6 +8,8 @@ sidebar_position: 2
 
 # Swap Widget API Reference
 
+_The swap widget is currently in beta. Join the [Discord channel](https://discord.com/channels/597638925346930701/941447445844463676) to ask questions and get support._
+
 ## Required Parameters {#required-parameters}
 
 | Prop Name | Prop Type | Default Value | Description |
@@ -18,7 +20,7 @@ sidebar_position: 2
 
 | Prop Name | Prop Type | Default Value | Description |
 | --- | --- | --- | --- |
-| `jsonRpcEndpoint` | `string` | `undefined` | URI of your JSON-RPC endpoint. Strongly recommended in order to provide trade quotes prior to the user connecting a wallet. If none is provided, the widget will be completely disabled until the user connects a wallet. Once a wallet is connected, the widget will use the wallet’s JSON RPC. See [Understanding the Swap Widget States](../swap-widget#understanding-widget-states). |
+| `jsonRpcEndpoint` | `string` | `undefined` | URI of your JSON-RPC endpoint. Strongly recommended in order to provide trade quotes prior to the user connecting a wallet. If none is provided, the widget will be completely disabled until the user connects a wallet. Once a wallet is connected, the widget will use the wallet’s JSON-RPC. See [Understanding the Swap Widget States](../swap-widget#understanding-widget-states). |
 | `width` | `number` or `string` | `360` | Specifies the width of the widget. If specified as a number, this is in pixels; otherwise, it is interpreted as a CSS `<length>` data type. Recommended width is 360px. Minimum width is 270px. See [Customizing the Width](../swap-widget#customizing-width). |
 | `theme` | `Theme` | `lightTheme` | Specifies a custom theme (colors, font, and border radii). See [Customizing the Theme](../swap-widget#customizing-theme). |
 | `defaultTokenList` | `string` | `TokenInfo[]` | Specifies the set of tokens that appear by default in the token selector list. Accepts either a URI of a token list as defined by the Token Lists standard, or an inline array of tokens. If none is provided, the Uniswap Labs default token list will be used. See [Customizing the Default Token List](../swap-widget#customizing-default-token-list). |
