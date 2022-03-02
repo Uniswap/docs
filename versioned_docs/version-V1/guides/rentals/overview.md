@@ -4,6 +4,8 @@ title: Overview
 sidebar_position: 1
 ---
 
+DEGEN NFT Rentals has yet to launch for Nifty Smashers, and the information below is subject to change at any time.
+
 In order to rent a DEGEN, you'll need NFTL in your crypto wallet (NFTL can easily be swapped on [SushiSwap](https://sushi.com/).
 
 There will be a small, up-front rental fee - 50% of this cost will be burned (removed from circulation) and 50% goes to the NFT owner.
@@ -26,4 +28,4 @@ Rental prices vary based on the DEGEN's wearables and background. Multipliers wi
 
 Renters will never have to contact or be concerned with who owns their DEGEN - the agreemend is executed by the smart contract making renting no-contact and seamless.
 
-Renters can cash out their NFTL to another cryptocurrency using almost any Web3 wallet (Metamask, Cionbase Wallet, Wallet Connect, etc.) After cashing out to your wallet, you can send the NFTL to an exchange in order to sell for USDC or another stable coin like USDT.
+Renters can cash out their NFTL to another cryptocurrency using almost any Web3 wallet (Metamask, Coinbase Wallet, Wallet Connect, etc.) After cashing out to your wallet, you can send the NFTL to an exchange in order to sell for USDC or another stable coin like USDT.
