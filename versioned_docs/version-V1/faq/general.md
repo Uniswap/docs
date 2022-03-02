@@ -81,7 +81,7 @@ Backgrounds come with special perks such as a distinguished look in game and ext
 - Meta: x3
 - Legendary: x6
 
-Read more about [DEGEN backgrounds](https://docs.niftyleague.com/overview/degens/backgrounds).
+Read more about [DEGEN backgrounds](https://niftyleague.com/docs/overview/degens/backgrounds).
 
 </details>
 
@@ -93,6 +93,6 @@ Renaming a character costs 1k NFTL, which is immediately burned by the Nifty Deg
 
 <details><summary>Where can I buy Nifty League merchandise?</summary><br/>
 
-You can puchase Nifty League merchandise on our official [Shopify site](https://shop.niftyleague.com/).
+You can puchase Nifty League merchandise on our official [Shopify site](https://niftyleague.com/shop).
 
 </details>
