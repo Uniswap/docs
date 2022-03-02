@@ -16,7 +16,7 @@ Rental fees will be charged weekly, with daily rental fees kicking in after the 
 
 Upon confirming your rental, the daily fee is locked at this maximum for the remainder of the rental period. If people ahead of you in the queue cancel their rental, your daily rental fee will decrease based on your queue position (and demand). This is meant to incentivize players to play frequently during their rental period.
 
-Rentals may be cancelled at any time via the [renter dashboard](https://niftyleague.com/profile).
+Rentals may be cancelled at any time via the renter dashboard.
 
 The rental will continue until it is cancelled by the renter or the renter's crypto wallet does not have a large enough NFTL balance to cover the cost of the rental. If this is the case, the player will be automatically kicked out of the queue and the DEGEN will be available to rent.
 
