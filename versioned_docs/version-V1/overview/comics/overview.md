@@ -21,7 +21,7 @@ The Nifty League Comic Collection consists of 6 pages with Comics 5 and 6 yet to
 
 There was a snapshot on 1/31/2022 for Comic 5 awarded to all DEGEN holders, and Comic 6 awarded to all wallets containing all 6 DEGEN tribes.
 
-All [Meta background](https://docs.niftyleague.com/overview/degens/backgrounds) DEGENs will receive one Comic 6, and all [Legendary background](https://docs.niftyleague.com/overview/degens/backgrounds) DEGENs will receive two Comic 6 NFTs. These will be made available via a claim flow on [our website](https://niftyleague.com/) (coming soon).
+All [Meta background](https://niftyleague.com/docs/overview/degens/backgrounds) DEGENs will receive one Comic 6, and all [Legendary background](https://niftyleague.com/docs/overview/degens/backgrounds) DEGENs will receive two Comic 6 NFTs. These will be made available via a claim flow on [our website](https://niftyleague.com/) (coming soon).
 
 Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. These items modify a DEGEN's P2E multiplier when worn.
 
@@ -44,8 +44,3 @@ Below is a depiction of wearable multiplier strength for each corresponding wear
 - Alternatively, you can hold the comics for future utility we have not yet disclosed
 - All 6 Comics can be burned together as a set for a special mystery item
 - This mystery item will NOT modify the P2E multiplier
-
-<div style={{ width: "80%" }}><img src="/img/NL_Comic_1.png" /></div>
-<div style={{ width: "80%" }}><img src="/img/NL_Comic_2.png" /></div>
-<div style={{ width: "80%" }}><img src="/img/NL_Comic_3.png" /></div>
-<div style={{ width: "80%" }}><img src="/img/NL_Comic_4.png" /></div>
