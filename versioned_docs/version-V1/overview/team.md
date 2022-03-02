@@ -6,11 +6,11 @@ sidebar_position: 2
 
 ## Founders
 
-| <div align="center" style={{ width: "225px" }}> Andrew Mahoney-Fernades </div> | <div align="center" style={{ width: "225px" }}> Ali Timnak </div> | <div align="center" style={{ width: "225px" }}> Mike Scott </div> |
-| ------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| <div align="center" style={{ width: "225px" }}> Nifty Andy </div>              | <div align="center" style={{ width: "225px" }}> Snarfy </div>     | <div align="center" style={{ width: "225px" }}> Nifty Spike</div> |
-| ![](/img/NiftyAndy.png)                                                        | ![](/img/snarfy.png)                                              | ![](/img/NiftySpike.png)                                          |
-| <div align="center"> **CEO** </div>                                            | <div align="center"> **CTO** </div>                               | <div align="center"> **Creative Director** </div>                 |
+| <div align="center" style={{ width: "100%" }}> Andrew Mahoney-Fernades </div> | <div align="center" style={{ width: "100%" }}> Ali Timnak </div> | <div align="center" style={{ width: "100%" }}> Mike Scott </div> |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| <div align="center" style={{ width: "100%" }}> Nifty Andy </div>              | <div align="center" style={{ width: "100%" }}> Snarfy </div>     | <div align="center" style={{ width: "100%" }}> Nifty Spike</div> |
+| ![](/img/NiftyAndy.png)                                                       | ![](/img/snarfy.png)                                             | ![](/img/NiftySpike.png)                                         |
+| <div align="center"> **CEO** </div>                                           | <div align="center"> **CTO** </div>                              | <div align="center"> **Creative Director** </div>                |
 
 ## Team
 
