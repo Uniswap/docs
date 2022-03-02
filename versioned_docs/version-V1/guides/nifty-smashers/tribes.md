@@ -4,7 +4,7 @@ title: Tribe Special Abilities
 sidebar_position: 3
 ---
 
-Our current game, [Nifty Smashers](https://docs.niftyleague.com/overview/games/nifty-smashers), and all future games will feature the same Special Ability ("SA") for each [tribe](http://localhost:3000/overview/degens/tribes).
+Our current game, Nifty Smashers, and all future games will feature the same Special Ability ("SA") for each [tribe](https://niftyleague.com/docs/overview/degens/tribes).
 
 ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
 **Alien**
