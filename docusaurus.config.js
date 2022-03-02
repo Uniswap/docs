@@ -126,7 +126,7 @@ module.exports = {
             },
             {
               label: 'Feedback',
-              href: 'https://feedback.nifty-league.com/',
+              href: 'https://feedback.niftyleague.com/',
             },
             {
               label: 'Subgraph',

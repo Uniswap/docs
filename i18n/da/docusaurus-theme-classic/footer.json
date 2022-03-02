@@ -21,7 +21,7 @@
   },
   "link.item.label.Feedback": {
     "message": "Feedback",
-    "description": "The label of footer link with label=Feedback linking to https://feedback.nifty-league.com/"
+    "description": "The label of footer link with label=Feedback linking to https://feedback.niftyleague.com/"
   },
   "link.item.label.Subgraph": {
     "message": "Undergraf",
