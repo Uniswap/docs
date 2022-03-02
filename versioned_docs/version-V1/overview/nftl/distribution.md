@@ -6,7 +6,7 @@ sidebar_position: 2
 
 There is no max supply set currently, but we expect around 1 Billion NFTL to be distributed over the calendar year post-mint (through September 2022)
 
-<div style={{ width: "100%" }}><img src="/img/NFTL_Distribution_Year_1_Nifty_League.png" /></div>
+![](/img/NFTL_Distribution_Year_1_Nifty_League.png)
 
 ## Community Giveaways
 
