@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Founders
 
-| <div align="center" style={{ width: "100%" }}> Andrew Mahoney-Fernades </div> | <div align="center" style={{ width: "100%" }}> Ali Timnak </div> | <div align="center" style={{ width: "100%" }}> Mike Scott </div> |
+| <div align="center" style={{ width: "100%" }}> Andrew Mahoney-Fernandes </div> | <div align="center" style={{ width: "100%" }}> Ali Timnak </div> | <div align="center" style={{ width: "100%" }}> Mike Scott </div> |
 | ----------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
 | <div align="center" style={{ width: "100%" }}> Nifty Andy </div>              | <div align="center" style={{ width: "100%" }}> Snarfy </div>     | <div align="center" style={{ width: "100%" }}> Nifty Spike</div> |
 | ![](/img/NiftyAndy.png)                                                       | ![](/img/snarfy.png)                                             | ![](/img/NiftySpike.png)                                         |
