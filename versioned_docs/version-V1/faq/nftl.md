@@ -6,7 +6,7 @@ sidebar_position: 2
 
 <details><summary>How do I add the NFTL token to Metamask?</summary><br/>
 
-Click the NL icon on the [Profile](niftyleague.com/profile) section of our website to add the token visibility to your Metamask.
+Click the NL icon on the [Profile](https://app.niftyleague.com/profile) section of our website to add the token visibility to your Metamask.
 
 </details>
 
@@ -36,7 +36,7 @@ Each DEGEN accumulates 68.5 NFTL per day for 3 years post-launch (specifically, 
 
 <details><summary>Where can I view gameplay earnings?</summary><br/>
 
-Navigate to your [Profile](https://niftyleague.com/profile) on the Nifty League website.
+Navigate to your [Profile](https://app.niftyleague.com/profile) on the Nifty League website.
 
 </details>
 
@@ -48,7 +48,7 @@ Make sure that you’re in the official [Nifty League Discord](https://discord.g
 
 <details><summary>How can I claim my accumulated NFTL?</summary><br/>
 
-Navigate to your [Profile](https://niftyleague.com/profile) on the Nifty League website. Click the "Claim" button and initiate a gas transaction to claim your NFTL.
+Navigate to your [Profile](https://app.niftyleague.com/profile) on the Nifty League website. Click the "Claim" button and initiate a gas transaction to claim your NFTL.
 
 </details>
 
@@ -60,7 +60,7 @@ Yes! And the NFTL token will be used to govern the DAO.
 
 <details><summary>Is there a max supply of NFTL?</summary><br/>
 
-Roughly 1 billion tokens will be minted during the first year. The supply will only be increased if the DAO votes to do so. Read more [here](https://docs.niftyleague.com/overview/nifty-dao/overview).
+Roughly 1 billion tokens will be minted during the first year. The supply will only be increased if the DAO votes to do so. Read more [here](https://niftyleague.com/docs/overview/nifty-dao/overview).
 
 </details>
 
