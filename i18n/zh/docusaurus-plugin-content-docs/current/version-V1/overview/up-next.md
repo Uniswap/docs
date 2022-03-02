@@ -10,12 +10,13 @@ sidebar_position: 9
 
 ## 德正铸币
 
-2021 年 9 月，我们的社区将 Nifty League DEGEN NFT 变为现实。 铸币过程是一种独一无二的奇观，它使铸币者能够使用 Satoshi 的 **[Mint-O-Matic** 设计自己的 DEGEN。](https://niftyleague.com/mint-o-matic)
+2021 年 9 月，我们的社区将 Nifty League DEGEN NFT 变为现实。 铸币过程是一种独一无二的奇观，它使铸币者能够使用 Satoshi 的 **[Mint-O-Matic** 设计自己的 DEGEN。](https://app.niftyleague.com/mint-o-matic)
 
 ## 漂亮的粉碎机阿尔法
 
-我们的 NFT 发布恰逢我们的第一款游戏**[Nifty Smashers](http://localhost:3000/games)**立即可用。 <div>
-  <video width="100%" height="100%" playsInline controls loop>
+我们的 NFT 发布恰逢我们的第一款游戏**[Nifty Smashers](https://app.niftyleague.com/games)**立即可用。 <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   您的浏览器不支持 video 标签。
   </video>
@@ -23,7 +24,7 @@ sidebar_position: 9
 
 ## 桌面应用
 
-**[桌面应用程序](https://niftyleague.com/games)**现已面向 Windows 用户推出！ *（MacOS 指日可待）*
+**[桌面应用程序](https://app.niftyleague.com/games)**现已面向 Windows 用户推出！ *（MacOS 指日可待）*
 
 考虑到我们之前构建的 WebGL 的浏览器限制，我们特别强调立即努力创建一个启动器来容纳我们所有的游戏并包括 Discord 集成。 现在内存限制不再是我们关心的问题，我们可以自由地引入额外的动画、移动集和其他 NFT 项目——同时显着改善我们用户的 ping。
 
@@ -89,7 +90,7 @@ sidebar_position: 9
 
 ## 宠物
 
-在我们推出 NiftyVerse 之后，我们将为您的 DEGENS 推出酷炫的宠物！ 很多社区成员要求我们除尘并带回 Satoshi 的 **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**，我们完全同意！
+在我们推出 NiftyVerse 之后，我们将为您的 DEGENS 推出酷炫的宠物！ 很多社区成员要求我们除尘并带回 Satoshi 的 **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**，我们完全同意！
 
 DEGEN NFT 持有者将获得白名单，以便我们的社区可以在闲暇时创建宠物。 任何剩余的宠物都将进行公开募股。 如果您错过了第一次铸币体验，请务必将其保留在您的日历上！
 

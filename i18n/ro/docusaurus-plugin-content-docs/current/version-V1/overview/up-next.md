@@ -10,12 +10,13 @@ Alături de jocuri suplimentare, avem câteva idei pregătite pentru a continua 
 
 ## Monetărie DEGEN
 
-Nifty League DEGEN NFT au fost aduse la viață de comunitatea noastră la sfârșitul lunii septembrie 2021. Procesul de batere a fost un spectacol unic, care a permis monetărilor posibilitatea de a-și proiecta propriul DEGEN folosind **[Mint-O-Matic** de la Satoshi.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFT au fost aduse la viață de comunitatea noastră la sfârșitul lunii septembrie 2021. Procesul de batere a fost un spectacol unic, care a permis monetărilor posibilitatea de a-și proiecta propriul DEGEN folosind **[Mint-O-Matic** de la Satoshi.](https://app.niftyleague.com/mint-o-matic)
 
 ## Nifty Smashers Alpha
 
-Lansarea noastră NFT a coincis cu disponibilitatea imediată a primului nostru dintre multele jocuri,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Lansarea noastră NFT a coincis cu disponibilitatea imediată a primului nostru dintre multele jocuri,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Browserul dvs. nu acceptă eticheta video.
   </video>
@@ -23,7 +24,7 @@ Lansarea noastră NFT a coincis cu disponibilitatea imediată a primului nostru 
 
 ## Aplicația desktop
 
-Aplicația desktop**[](https://niftyleague.com/games)**este acum live pentru utilizatorii de Windows! *(MacOS este chiar după colț)*
+Aplicația desktop**[](https://app.niftyleague.com/games)**este acum live pentru utilizatorii de Windows! *(MacOS este chiar după colț)*
 
 Având în vedere limitările browserului cu versiunea anterioară a WebGL, ne-am concentrat eforturile imediate pe crearea unui lansator care să găzduiască toate jocurile noastre și să includă integrări Discord. Acum că limitele de memorie nu sunt o problemă, suntem liberi să introducem animații suplimentare, seturi de mișcări și alte proiecte NFT - toate în același timp îmbunătățind semnificativ ping-ul pentru utilizatorii noștri.
 
@@ -57,7 +58,7 @@ Dacă citiți ultimul punct, veți ști că scalarea platformei noastre este o p
 
 Echipa noastră a sugerat treptat viitoarele utilități pentru benzi desenate - așa cum probabil știți deja, veți putea arde fiecare pagină pentru articole speciale din joc care vă măresc multiplicatorul NFTL DEGEN... dar distracția nu se oprește aici. !
 
-Am trimis anterior cele 4 pagini de benzi desenate inițiale pentru monet și încă mai au 2 pagini rămase pentru posesorii DEGEN la începutul anului 2022. Cuvânt de la Satoshi - asigurarea unei colecții complete sau 2 este __ foarte recomandat.
+Am trimis anterior cele 4 pagini de benzi desenate inițiale pentru monet și încă mai au 2 pagini rămase pentru posesorii DEGEN la începutul anului 2022. Cuvânt de la Satoshi - asigurarea unei colecții complete sau 2 este \_\_ foarte recomandat.
 
 ## Piața de articole
 
@@ -89,7 +90,7 @@ Oh... și probabil că merită remarcat că terenul și activele vor fi vândute
 
 ## Animale de companie
 
-În urma lansării noastre NiftyVerse, vom introduce animale de companie grozave pentru DEGENS! Mulți membri ai comunității ne-au rugat să scoatem praful și să aducem înapoi **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**al lui Satoshi și nu am putut fi mai de acord!
+În urma lansării noastre NiftyVerse, vom introduce animale de companie grozave pentru DEGENS! Mulți membri ai comunității ne-au rugat să scoatem praful și să aducem înapoi **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**al lui Satoshi și nu am putut fi mai de acord!
 
 Deținătorii DEGEN NFT vor primi locuri pe lista albă, astfel încât comunitatea noastră să poată crea animale de companie în timpul liber. Va urma o ofertă publică pentru orice animal de companie rămas. Dacă ați ratat prima experiență de batere, asigurați-vă că o păstrați pe aceasta în calendarul dvs.!
 

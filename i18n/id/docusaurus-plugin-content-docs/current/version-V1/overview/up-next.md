@@ -10,12 +10,13 @@ Seiring dengan permainan tambahan, kami memiliki beberapa ide untuk terus mengem
 
 ## Percetakan DEGEN
 
-Nifty League DEGEN NFT dihidupkan kembali oleh komunitas kami pada akhir September 2021. Proses pencetakan adalah tontonan unik yang memungkinkan para pembuatnya merancang DEGEN mereka sendiri menggunakan **[Mint-O-Matic** Satoshi.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFT dihidupkan kembali oleh komunitas kami pada akhir September 2021. Proses pencetakan adalah tontonan unik yang memungkinkan para pembuatnya merancang DEGEN mereka sendiri menggunakan **[Mint-O-Matic** Satoshi.](https://app.niftyleague.com/mint-o-matic)
 
 ## Alpha Smashers yang Bagus
 
-Peluncuran NFT kami bertepatan dengan ketersediaan langsung dari banyak game pertama kami,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Peluncuran NFT kami bertepatan dengan ketersediaan langsung dari banyak game pertama kami,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Browser Anda tidak mendukung tag video.
   </video>
@@ -23,7 +24,7 @@ Peluncuran NFT kami bertepatan dengan ketersediaan langsung dari banyak game per
 
 ## Aplikasi Desktop
 
-**[Desktop App](https://niftyleague.com/games)**sekarang tersedia untuk pengguna Windows! *(MacOS ada di tikungan)*
+**[Desktop App](https://app.niftyleague.com/games)**sekarang tersedia untuk pengguna Windows! *(MacOS ada di tikungan)*
 
 Mempertimbangkan keterbatasan browser dengan versi WebGL kami sebelumnya, kami memutuskan untuk memfokuskan upaya langsung kami dalam membuat peluncur untuk menampung semua game kami dan menyertakan integrasi Discord. Sekarang batas memori tidak menjadi masalah, kami bebas untuk memperkenalkan, animasi tambahan, gerakan, dan proyek NFT lainnya - semuanya sambil meningkatkan ping secara signifikan untuk pengguna kami.
 
@@ -89,7 +90,7 @@ Oh... dan mungkin perlu dicatat bahwa tanah dan aset akan dijual dengan NFTL (se
 
 ## hewan peliharaan
 
-Setelah peluncuran NiftyVerse kami, kami akan memperkenalkan hewan peliharaan keren untuk DEGEN Anda! Banyak anggota komunitas meminta kami untuk membersihkan debu dan membawa kembali Satoshi **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**, dan kami sangat setuju!
+Setelah peluncuran NiftyVerse kami, kami akan memperkenalkan hewan peliharaan keren untuk DEGEN Anda! Banyak anggota komunitas meminta kami untuk membersihkan debu dan membawa kembali Satoshi **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**, dan kami sangat setuju!
 
 Pemegang DEGEN NFT akan menerima tempat daftar putih sehingga komunitas kami dapat membuat hewan peliharaan di waktu luang mereka. Penawaran umum akan mengikuti untuk hewan peliharaan yang tersisa. Jika Anda melewatkan pengalaman pencetakan pertama, pastikan untuk menyimpan yang ini di kalender Anda!
 

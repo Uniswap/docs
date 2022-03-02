@@ -10,12 +10,13 @@ Spolu s dalšími hrami máme připraveno několik nápadů, jak naši platformu
 
 ## Ražba DEGEN
 
-Nifty League DEGEN NFT byly uvedeny do života naší komunitou na konci září 2021. Proces ražby byl jedinečnou podívanou, která umožnila ražbám navrhnout si vlastní DEGEN pomocí Satoshi **[Mint-O-Matic**.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFT byly uvedeny do života naší komunitou na konci září 2021. Proces ražby byl jedinečnou podívanou, která umožnila ražbám navrhnout si vlastní DEGEN pomocí Satoshi **[Mint-O-Matic**.](https://app.niftyleague.com/mint-o-matic)
 
 ## Šikovný Smashers Alpha
 
-Naše spuštění NFT se časově shodovalo s okamžitou dostupností naší první z mnoha her,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Naše spuštění NFT se časově shodovalo s okamžitou dostupností naší první z mnoha her,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Váš prohlížeč nepodporuje značku videa.
   </video>
@@ -23,7 +24,7 @@ Naše spuštění NFT se časově shodovalo s okamžitou dostupností naší prv
 
 ## Desktopová aplikace
 
-Aplikace**[Desktop App](https://niftyleague.com/games)**je nyní dostupná pro uživatele Windows! *(MacOS je hned za rohem)*
+Aplikace**[Desktop App](https://app.niftyleague.com/games)**je nyní dostupná pro uživatele Windows! *(MacOS je hned za rohem)*
 
 S ohledem na omezení prohlížeče s naší předchozí verzí WebGL jsme se rozhodli zaměřit naše okamžité úsilí na vytvoření spouštěče, který bude obsahovat všechny naše hry a bude zahrnovat integrace Discord. Nyní, když se limity paměti netýkají, můžeme volně zavádět další animace, sady pohybů a další projekty NFT – to vše při výrazném zlepšení pingu pro naše uživatele.
 
@@ -89,7 +90,7 @@ Oh... a pravděpodobně stojí za zmínku, že půda a majetek budou prodány s 
 
 ## Domácí mazlíčci
 
-Po našem uvedení NiftyVerse představíme skvělé mazlíčky pro vaše DEGENS! Mnoho členů komunity nás požádalo, abychom oprášili a přinesli zpět Satoshiho **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**, a nemohli jsme více souhlasit!
+Po našem uvedení NiftyVerse představíme skvělé mazlíčky pro vaše DEGENS! Mnoho členů komunity nás požádalo, abychom oprášili a přinesli zpět Satoshiho **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**, a nemohli jsme více souhlasit!
 
 Držitelé DEGEN NFT obdrží místa na whitelist, takže naše komunita může vytvářet domácí mazlíčky ve svém volném čase. Pro všechna zbývající zvířata bude následovat veřejná nabídka. Pokud jste zmeškali první zkušenost s ražbou, nezapomeňte si ji nechat ve svém kalendáři!
 

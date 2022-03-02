@@ -10,12 +10,13 @@ En plus de jeux supplémentaires, nous avons plusieurs idées en réserve pour c
 
 ## DEGEN Frappe
 
-Les NFT Nifty League DEGEN ont été créés par notre communauté fin septembre 2021. Le processus de frappe était un spectacle unique en son genre qui permettait aux monnayeurs de concevoir leur propre DEGEN en utilisant le **[Mint-O-Matic ** de Satoshi.](https://niftyleague.com/mint-o-matic)
+Les NFT Nifty League DEGEN ont été créés par notre communauté fin septembre 2021. Le processus de frappe était un spectacle unique en son genre qui permettait aux monnayeurs de concevoir leur propre DEGEN en utilisant le **[Mint-O-Matic ** de Satoshi.](https://app.niftyleague.com/mint-o-matic)
 
 ## Nifty Smashers Alpha
 
-Notre lancement NFT a coïncidé avec la disponibilité immédiate de notre premier de nombreux jeux,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Notre lancement NFT a coïncidé avec la disponibilité immédiate de notre premier de nombreux jeux,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Votre navigateur ne prend pas en charge la balise vidéo.
   </video>
@@ -23,7 +24,7 @@ Notre lancement NFT a coïncidé avec la disponibilité immédiate de notre prem
 
 ## Application de bureau
 
-L'application de bureau**[](https://niftyleague.com/games)**est désormais disponible pour les utilisateurs de Windows ! *(MacOS est juste au coin de la rue)*
+L'application de bureau**[](https://app.niftyleague.com/games)**est désormais disponible pour les utilisateurs de Windows ! *(MacOS est juste au coin de la rue)*
 
 Compte tenu des limitations du navigateur avec notre version précédente de WebGL, nous avons tenu à concentrer nos efforts immédiats sur la création d'un lanceur pour héberger tous nos jeux et inclure les intégrations Discord. Maintenant que les limites de mémoire ne sont plus un problème, nous sommes libres d'introduire des animations supplémentaires, des ensembles de mouvements et d'autres projets NFT - tout en améliorant considérablement le ping pour nos utilisateurs.
 
@@ -89,7 +90,7 @@ Oh ... et il vaut probablement la peine de noter que les terres et les actifs se
 
 ## Animaux domestiques
 
-Suite à notre lancement de NiftyVerse, nous introduirons des animaux de compagnie sympas pour votre DEGENS ! De nombreux membres de la communauté nous ont demandé de dépoussiérer et de ramener le **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**Satoshi, et nous sommes tout à fait d'accord !
+Suite à notre lancement de NiftyVerse, nous introduirons des animaux de compagnie sympas pour votre DEGENS ! De nombreux membres de la communauté nous ont demandé de dépoussiérer et de ramener le **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**Satoshi, et nous sommes tout à fait d'accord !
 
 Les détenteurs de DEGEN NFT recevront des places sur la liste blanche afin que notre communauté puisse créer des animaux de compagnie à leur guise. Une offre publique suivra pour tous les animaux restants. Si vous avez manqué la première expérience de frappe, assurez-vous de garder celle-ci dans votre calendrier !
 

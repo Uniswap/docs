@@ -81,7 +81,7 @@ Backgrounds come with special perks such as a distinguished look in game and ext
 - Meta: x3
 - Legendary: x6
 
-Read more about [DEGEN backgrounds](https://niftyleague.com/docs/overview/degens/backgrounds).
+Read more about [DEGEN backgrounds](/docs/overview/degens/backgrounds).
 
 </details>
 

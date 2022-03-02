@@ -6,11 +6,11 @@ sidebar_position: 4
 
 When renting a DEGEN NFT, you will receive temporary access to play our first game, Nifty Smashers.
 
-In order to rent a DEGEN, you'll need NFTL in your crypto wallet (NFTL can be swapped for wETH on [SushiSwap](https://sushi.com/).
+In order to rent a DEGEN, you'll need NFTL in your crypto wallet (NFTL can be swapped for wETH on [SushiSwap](https://sushi.com/)).
 
 There will be a small, up-front rental fee - 50% of this cost will be burned (removed from circulation) and 50% goes to the NFT owner.
 
-The rental fee is determined based on the number of people renting a DEGEN - the rental feee increases as demand increases.
+The rental fee is determined based on the number of people renting a DEGEN - the rental fee increases as demand increases.
 
 Rental fees will be charged weekly, with daily rental fees kicking in after the first week (equivalent to approximately 5-10% of the original rental cost).
 
@@ -26,6 +26,6 @@ When navigating to the renter dashboard, you will see the current price and mult
 
 Rental prices vary based on the DEGEN's wearables and background. Multipliers will be driven by the market - every DEGEN will cost the same for its initial rental.
 
-Renters will never have to contact or be concerned with who owns their DEGEN - the agreemend is executed by the smart contract making renting no-contact and seamless!
+Renters will never have to contact or be concerned with who owns their DEGEN - the agreement is executed by the smart contract making renting no-contact and seamless!
 
-Renters can cash out their NFTL to another cryptocurrency using almost any Web3 wallet (Metamask, Cionbase Wallet, Wallet Connect, etc.). After cashing out NFTL to your wallet, you can send the NFTL to an exchange in order to sell for USDC or another stable coin like USDT.
+Renters can cash out their NFTL to another cryptocurrency using almost any Web3 wallet (Metamask, Coinbase Wallet, Wallet Connect, etc.). After cashing out NFTL to your wallet, you can send the NFTL to an exchange in order to sell for USDC or another stable coin like USDT.

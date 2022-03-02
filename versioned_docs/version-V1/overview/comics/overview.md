@@ -17,11 +17,11 @@ Snapshots for comics were taken throughout the minting process for the first 4 c
 
 Our collection of Comics 1-4 are available for purchase on [OpenSea](https://opensea.io/collection/nifty-league-launch-comics).
 
-The Nifty League Comic Collection consists of 6 pages with Comics 5 and 6 yet to be released (coming in February/March 2022).
+The Nifty League Comic Collection consists of 6 pages with Comics 5 and 6 yet to be released (coming in March 2022).
 
 There was a snapshot on 1/31/2022 for Comic 5 awarded to all DEGEN holders, and Comic 6 awarded to all wallets containing all 6 DEGEN tribes.
 
-All [Meta background](https://niftyleague.com/docs/overview/degens/backgrounds) DEGENs will receive one Comic 6, and all [Legendary background](https://niftyleague.com/docs/overview/degens/backgrounds) DEGENs will receive two Comic 6 NFTs. These will be made available via a claim flow on [our website](https://niftyleague.com/) (coming soon).
+All [Meta background](/docs/overview/degens/backgrounds) DEGENs will receive one Comic 6, and all [Legendary background](/docs/overview/degens/backgrounds) DEGENs will receive two Comic 6 NFTs. These will be made available via a claim flow on [our app](https://app.niftyleague.com/) (coming soon).
 
 Each comic will be burnable at a future date to receive an in-game wearable or weapon in exchange for each page burned. These items modify a DEGEN's P2E multiplier when worn.
 

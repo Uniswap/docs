@@ -10,12 +10,13 @@ Tillsammans med ytterligare spel har vi flera idéer på gång för att fortsät
 
 ## DEGEN Minting
 
-Nifty League DEGEN NFTs väcktes till liv av vårt community i slutet av september 2021. Präglingsprocessen var ett unikt spektakel som gjorde att myntverkarna kunde designa sin egen DEGEN med hjälp av Satoshis **[Mint-O-Matic**.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFTs väcktes till liv av vårt community i slutet av september 2021. Präglingsprocessen var ett unikt spektakel som gjorde att myntverkarna kunde designa sin egen DEGEN med hjälp av Satoshis **[Mint-O-Matic**.](https://app.niftyleague.com/mint-o-matic)
 
 ## Snygga Smashers Alpha
 
-Vår NFT-lansering sammanföll med den omedelbara tillgängligheten av vårt första av många spel,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Vår NFT-lansering sammanföll med den omedelbara tillgängligheten av vårt första av många spel,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Din webbläsare stöder inte videotaggen.
   </video>
@@ -23,7 +24,7 @@ Vår NFT-lansering sammanföll med den omedelbara tillgängligheten av vårt fö
 
 ## Desktop-app
 
-**[Desktop App](https://niftyleague.com/games)**är nu live för Windows-användare! *(MacOS är precis runt hörnet)*
+**[Desktop App](https://app.niftyleague.com/games)**är nu live för Windows-användare! *(MacOS är precis runt hörnet)*
 
 Med tanke på webbläsarbegränsningar med vårt tidigare WebGL-bygge, gjorde vi en poäng att fokusera våra omedelbara ansträngningar på att skapa en startprogram för alla våra spel och inkluderar Discord-integrationer. Nu när minnesbegränsningar inte är ett problem är vi fria att introducera ytterligare animationer, movesets och andra NFT-projekt - allt samtidigt som vi förbättrar ping för våra användare avsevärt.
 
@@ -89,7 +90,7 @@ Om du är en kreativ typ, missa inte denna möjlighet - vi kommer att ha en till
 
 ## Sällskapsdjur
 
-Efter vår lansering av NiftyVerse kommer vi att introducera coola husdjur för dina DEGENS! Många communitymedlemmar har bett oss att damma av och ta tillbaka Satoshis **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**, och vi kunde inte vara mer överens!
+Efter vår lansering av NiftyVerse kommer vi att introducera coola husdjur för dina DEGENS! Många communitymedlemmar har bett oss att damma av och ta tillbaka Satoshis **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**, och vi kunde inte vara mer överens!
 
 DEGEN NFT-innehavare kommer att få vitlistade platser så att vårt community kan skapa husdjur när de vill. Ett offentligt erbjudande kommer att följa för eventuella kvarvarande husdjur. Om du missade den första präglingsupplevelsen, se till att ha denna i din kalender!
 

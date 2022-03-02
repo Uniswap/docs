@@ -26,14 +26,14 @@ sidebar_position: 2
 
 Battle it out amongst the community and get in as many bat bonks on your friends as you can! Nifty Smashers takes inspiration from the classic Super Smash Bros game where the objective is to knock your opponents off the map to score points.
 
-You can play using your keyboard or any other compatible controller (Playstation, Xbox, etc.). You must have a [DEGEN NFT](https://niftyleague.com/docs/overview/degens/About) to play the game. Simply connect your crypto wallet holding your DEGEN, enter the game lobby, and select your DEGEN for battle.
+You can play using your keyboard or any other compatible controller (Playstation, Xbox, etc.). You must have a [DEGEN NFT](/docs/overview/degens/About) to play the game. Simply connect your crypto wallet holding your DEGEN, enter the game lobby, and select your DEGEN for battle.
 
 As background, the local-multiplayer version of Nifty Smashers was made available immediately during mint in September 2021, followed by the online multiplayer.
 
 ## Scoring
 
 - If a DEGEN is hit once and dies (fall off the map) you earn 1 point
-- If a DEGEN is hit multiple times without being able to recover, you get points as often as the DEGEN is hit (regardless of if previous hits were done by another DEGEN - so land the final mega-bonk to hit them off the map and claim all the points for the round)
+- If a DEGEN is hit multiple times without being able to recover, you get points as often as the DEGEN is hit (regardless if previous hits were done by another DEGEN - so land the final mega-bonk to hit them off the map and claim all the points for the round)
 - The more your opponent is successively bonked, the faster they bounce around and the more points you'll score for bonking
 - The last hit that kills the DEGEN, gets all combo points
 - Currently there is no cap of how often a DEGEN can be hit ("combo’ed"), but there is a cap on the number of points you can get (max 3 points in a 2-player match, and max 5 points in a 3- & 4-player match)
@@ -45,7 +45,7 @@ As background, the local-multiplayer version of Nifty Smashers was made availabl
 ## Lag
 
 - The lag indicator shows the lag (ping speed) of your connection
-- Lag tyipcally indicates your ping speed is above 100ms
+- Lag typically indicates your ping speed is above 100ms
 - Generally speaking, lag is always present whenever there is physical distance between the players on the internet (the greater the distance, the greater the lag)
 - There are different techniques that developers use to compensate and hide the lag
 - We have implemented a number of these lag compensation techniques that veil the lag for the best experience possible
@@ -72,11 +72,12 @@ General information, advice, tips and tricks regarding battling in Nifty Smasher
 
 ## Controllers
 
-- Playing with a controller highly recommended (Playstation, Xbox, or any other controller recognized by your PC/Mac)
+- Playing with a controller is highly recommended (Playstation, Xbox, or any other controller recognized by your PC/Mac)
+- For a cheap solution checkout the Logitech F310 Gamepad
 
 ## Bat swings
 
-- The bat can be swung in all possible direction: left, right, up, down, diagonals
+- The bat can be swung in all possible directions: left, right, up, down, diagonals
 - The bat can be swung by clicking the attack button
 - Longer button presses makes the bat hit harder
 - The bat can be swung while standing, running, or jumping
@@ -99,7 +100,7 @@ General information, advice, tips and tricks regarding battling in Nifty Smasher
 
 # Tribe Specifics
 
-All DEGEN tribes have a Special Ability (”SA”), which are consistent across all Nifty League games (live and future), including Nifty Smashers. Learn everytyhing you need to know about each tribe [here](https://niftyleague.com/docs/overview/degens/tribes).
+All DEGEN tribes have a Special Ability (”SA”), which are consistent across all Nifty League games (live and future), including Nifty Smashers. Learn everything you need to know about each tribe [here](/docs/overview/degens/tribes).
 
 <br></br>
 

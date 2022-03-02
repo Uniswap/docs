@@ -10,7 +10,7 @@ Nifty League introduced a unique minting experience for the genesis drop in Sept
 
 There are 6 tribes of DEGENs: apes, humans, dogs, frogs, cats, and aliens.
 
-The DEGEN's design affected available character traits and accessories, and determined certain in-game mechanics and special moves.
+Each DEGEN's design affected available character traits and accessories, and determined certain in-game mechanics and special moves.
 
 Minters were able to browse through already minted DEGENs to determine which tribes were rarer than others and what type of DEGEN they gravitated toward.
 

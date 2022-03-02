@@ -60,7 +60,7 @@ Yes! And the NFTL token will be used to govern the DAO.
 
 <details><summary>Is there a max supply of NFTL?</summary><br/>
 
-Roughly 1 billion tokens will be minted during the first year. The supply will only be increased if the DAO votes to do so. Read more [here](https://niftyleague.com/docs/overview/nifty-dao/overview).
+Roughly 1 billion tokens will be minted during the first year. The supply will only be increased if the DAO votes to do so. Read more [here](/docs/overview/nifty-dao/overview).
 
 </details>
 

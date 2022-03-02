@@ -10,12 +10,13 @@ Cùng với các trò chơi bổ sung, chúng tôi có một số ý tưởng tr
 
 ## DEGEN Minting
 
-Nifty League DEGEN NFTs đã được cộng đồng của chúng tôi đưa vào cuộc sống vào cuối tháng 9 năm 2021. Quá trình đúc tiền là một cảnh tượng có một không hai cho phép những người thợ đúc có khả năng thiết kế DEGEN của riêng họ bằng cách sử dụng **[Mint-O-Matic ** của Satoshi.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFTs đã được cộng đồng của chúng tôi đưa vào cuộc sống vào cuối tháng 9 năm 2021. Quá trình đúc tiền là một cảnh tượng có một không hai cho phép những người thợ đúc có khả năng thiết kế DEGEN của riêng họ bằng cách sử dụng **[Mint-O-Matic ** của Satoshi.](https://app.niftyleague.com/mint-o-matic)
 
 ## Nifty Smashers Alpha
 
-Sự ra mắt NFT của chúng tôi trùng với sự ra mắt ngay lập tức của trò chơi đầu tiên trong số nhiều trò chơi của chúng tôi,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Sự ra mắt NFT của chúng tôi trùng với sự ra mắt ngay lập tức của trò chơi đầu tiên trong số nhiều trò chơi của chúng tôi,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Trình duyệt của bạn không hỗ trợ thẻ video.
   </video>
@@ -23,7 +24,7 @@ Sự ra mắt NFT của chúng tôi trùng với sự ra mắt ngay lập tức 
 
 ## Ứng dụng máy tính để bàn
 
-Ứng dụng**[](https://niftyleague.com/games)**hiện đã có sẵn cho người dùng Windows! *(MacOS ở ngay gần góc)*
+Ứng dụng**[](https://app.niftyleague.com/games)**hiện đã có sẵn cho người dùng Windows! *(MacOS ở ngay gần góc)*
 
 Xem xét các hạn chế của trình duyệt với bản dựng WebGL trước đây của chúng tôi, chúng tôi đã đưa ra quan điểm là tập trung nỗ lực ngay lập tức vào việc tạo trình khởi chạy để chứa tất cả các trò chơi của chúng tôi và bao gồm tích hợp Discord. Giờ đây, giới hạn bộ nhớ không phải là mối quan tâm, chúng tôi có thể tự do giới thiệu các hoạt ảnh bổ sung, bộ di chuyển và các dự án NFT khác - tất cả đồng thời cải thiện đáng kể ping cho người dùng của chúng tôi.
 
@@ -89,7 +90,7 @@ Nếu bạn thuộc tuýp người sáng tạo, đừng bỏ lỡ cơ hội này
 
 ## Vật nuôi
 
-Sau khi ra mắt NiftyVerse, chúng tôi sẽ giới thiệu những vật nuôi thú vị dành cho DEGENS của bạn! Rất nhiều thành viên cộng đồng đã yêu cầu chúng tôi phủi bụi và mang về **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**của Satoshi, và chúng tôi không thể đồng ý hơn!
+Sau khi ra mắt NiftyVerse, chúng tôi sẽ giới thiệu những vật nuôi thú vị dành cho DEGENS của bạn! Rất nhiều thành viên cộng đồng đã yêu cầu chúng tôi phủi bụi và mang về **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**của Satoshi, và chúng tôi không thể đồng ý hơn!
 
 Chủ sở hữu DEGEN NFT sẽ nhận được các điểm trong danh sách trắng để cộng đồng của chúng tôi có thể tạo vật nuôi khi họ rảnh rỗi. Một đợt chào bán công khai sẽ theo sau cho bất kỳ vật nuôi nào còn lại. Nếu bạn đã bỏ lỡ trải nghiệm đúc tiền đầu tiên, hãy nhớ giữ trải nghiệm này trên lịch của bạn!
 

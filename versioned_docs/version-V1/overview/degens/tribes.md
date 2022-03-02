@@ -4,7 +4,7 @@ title: Tribes
 sidebar_position: 2
 ---
 
-Our current game, [Nifty Smashers](https://niftyleague.com/docs/overview/games/nifty-smashers), and all future games will feature the same Special Ability ("SA") for each tribe.
+Our current game, [Nifty Smashers](/docs/overview/games/nifty-smashers), and all future games will feature the same Special Ability ("SA") for each tribe.
 
 ## Special Ability by tribe:
 
@@ -22,6 +22,9 @@ Our current game, [Nifty Smashers](https://niftyleague.com/docs/overview/games/n
 
 <br></br>
 
-Learn more about these movesets in our [Smashers Guide](https://niftyleague.com/docs/guides/nifty-smashers/tribes).
+Learn more about these movesets in our [Smashers Guide](/docs/guides/nifty-smashers/tribes).
 
 In the future, we envision introducing new "special" tribes may be released for scalability, new games, tournament rewards, and more.
+
+| ![](/img/alien-sketch.gif) | ![](/img/cat-sketch.gif) | ![](/img/doge-sketch.gif) |
+| -------------------------- | ------------------------ | ------------------------- |

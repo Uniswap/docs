@@ -10,12 +10,13 @@ Ek oyunların yanı sıra, platformumuzu büyütmeye devam etmek için mağazam�
 
 ## DEGEN Darphane
 
-Nifty League DEGEN NFT'leri, Eylül 2021'in sonunda topluluğumuz tarafından hayata geçirildi. [Mint-O-Matic**'ini kullanarak kendi DEGEN'lerini tasarlamalarına olanak tanıyan türünün tek örneği bir gösteriydi.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFT'leri, Eylül 2021'in sonunda topluluğumuz tarafından hayata geçirildi. [Mint-O-Matic\*\*'ini kullanarak kendi DEGEN'lerini tasarlamalarına olanak tanıyan türünün tek örneği bir gösteriydi.](https://app.niftyleague.com/mint-o-matic)
 
 ## Şık Smashers Alfa
 
-NFT lansmanımız, birçok oyunumuzun ilki olan**[Nifty Smashers](http://localhost:3000/games)**hemen kullanıma sunulmasıyla aynı zamana denk geldi. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+NFT lansmanımız, birçok oyunumuzun ilki olan**[Nifty Smashers](https://app.niftyleague.com/games)**hemen kullanıma sunulmasıyla aynı zamana denk geldi. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Tarayıcınız video etiketini desteklemiyor.
   </video>
@@ -23,7 +24,7 @@ NFT lansmanımız, birçok oyunumuzun ilki olan**[Nifty Smashers](http://localho
 
 ## Masaüstü uygulaması
 
-**[Masaüstü Uygulaması](https://niftyleague.com/games)**şimdi Windows kullanıcıları için yayında! *(MacOS hemen köşede)*
+**[Masaüstü Uygulaması](https://app.niftyleague.com/games)**şimdi Windows kullanıcıları için yayında! *(MacOS hemen köşede)*
 
 Önceki WebGL derlememizdeki tarayıcı sınırlamalarını göz önünde bulundurarak, tüm oyunlarımızı barındıracak ve Discord entegrasyonlarını içerecek bir başlatıcı oluşturmaya yönelik acil çabalarımızı odaklamaya odaklandık. Artık hafıza limitleri bir endişe değil, ek animasyonlar, hareket kümeleri ve diğer NFT projelerini tanıtmakta özgürüz - tüm bunlar kullanıcılarımız için ping'i önemli ölçüde iyileştirirken.
 
@@ -89,7 +90,7 @@ Oh... ve muhtemelen arazinin ve varlıkların NFTL ile satılacağını (bir kı
 
 ## Evcil Hayvanlar
 
-NiftyVerse lansmanımızın ardından DEGENS'iniz için harika evcil hayvanları tanıtacağız! Topluluk üyelerinin bir çok tozunu ve geri Satoshi getirmek talebinde bulundukları **[Nane-O-Matic](https://niftyleague.com/mint-o-matic)**ve daha fazla anlaşamadı!
+NiftyVerse lansmanımızın ardından DEGENS'iniz için harika evcil hayvanları tanıtacağız! Topluluk üyelerinin bir çok tozunu ve geri Satoshi getirmek talebinde bulundukları **[Nane-O-Matic](https://app.niftyleague.com/mint-o-matic)**ve daha fazla anlaşamadı!
 
 DEGEN NFT sahipleri, topluluğumuzun boş zamanlarında evcil hayvan yaratabilmesi için beyaz liste noktaları alacak. Kalan evcil hayvanlar için halka arz yapılacaktır. İlk para basma deneyimini kaçırdıysanız, bunu takviminize eklemeyi unutmayın!
 

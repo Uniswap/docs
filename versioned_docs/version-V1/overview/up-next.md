@@ -14,7 +14,7 @@ Nifty League DEGEN NFTs were brought to life by our community at the end of Sept
 
 ## Nifty Smashers Alpha Launch ✅
 
-Our NFT launch coincided with the immediate availability of our first of many games, [Nifty Smashers](https://niftyleague.com/docs/overview/games/nifty-smashers).
+Our NFT launch coincided with the immediate availability of our first of many games, [Nifty Smashers](/docs/overview/games/nifty-smashers).
 
   <div>
   <video width="100%" height="100%" playsInline controls loop>
@@ -25,7 +25,7 @@ Our NFT launch coincided with the immediate availability of our first of many ga
 
 ## Desktop App ✅
 
-The [Desktop App](https://niftyleague.com/docs/overview/games/nifty-smashers) is now live for Windows users! MacOS is right around the corner.
+The [Desktop App](https://app.niftyleague.com/games) is now live for Windows users! MacOS is right around the corner.
 
 Considering browser limitations with our previous WebGL build, we made a point to focus our immediate efforts on creating a launcher to house all of our games and include Discord social integrations. Now that memory limits are not a concern we are free to introduce additional animations, movesets, and other NFT projects - all while significantly improving ping for our users.
 

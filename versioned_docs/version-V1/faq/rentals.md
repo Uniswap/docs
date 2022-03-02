@@ -12,6 +12,6 @@ The DEGEN rentals flow will live on the Nifty League website, but is not live ye
 
 <details><summary>Where can I learn more about DEGEN rentals?</summary><br/>
 
-Read more about our plans for DEGEN rentals [here](https://niftyleague.com/docs/guides/rentals/rental-overview).
+Read more about our plans for DEGEN rentals [here](/docs/guides/rentals/rental-overview).
 
 </details>

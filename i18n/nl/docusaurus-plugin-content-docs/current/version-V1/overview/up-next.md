@@ -10,12 +10,13 @@ Naast extra games hebben we verschillende ideeën in petto om ons platform verde
 
 ## DEGEN Munten
 
-Nifty League DEGEN NFT's werden eind september 2021 door onze community tot leven gebracht. Het muntproces was een uniek spektakel dat minters de mogelijkheid bood om hun eigen DEGEN te ontwerpen met behulp van Satoshi's **[Mint-O-Matic**.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFT's werden eind september 2021 door onze community tot leven gebracht. Het muntproces was een uniek spektakel dat minters de mogelijkheid bood om hun eigen DEGEN te ontwerpen met behulp van Satoshi's **[Mint-O-Matic**.](https://app.niftyleague.com/mint-o-matic)
 
 ## Handige Smashers Alpha
 
-Onze NFT-lancering viel samen met de onmiddellijke beschikbaarheid van onze eerste van vele games,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Onze NFT-lancering viel samen met de onmiddellijke beschikbaarheid van onze eerste van vele games,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Uw browser ondersteunt de videotag niet.
   </video>
@@ -23,7 +24,7 @@ Onze NFT-lancering viel samen met de onmiddellijke beschikbaarheid van onze eers
 
 ## Desktop-app
 
-De**[Desktop App](https://niftyleague.com/games)**is nu live voor Windows-gebruikers! *(MacOS is om de hoek)*
+De**[Desktop App](https://app.niftyleague.com/games)**is nu live voor Windows-gebruikers! *(MacOS is om de hoek)*
 
 Gezien de browserbeperkingen met onze vorige WebGL-build, hebben we er een punt van gemaakt om onze onmiddellijke inspanningen te concentreren op het maken van een launcher om al onze games te huisvesten en Discord-integraties op te nemen. Nu geheugenlimieten geen punt van zorg zijn, zijn we vrij om extra animaties, movesets en andere NFT-projecten te introduceren - terwijl we tegelijkertijd de ping voor onze gebruikers aanzienlijk verbeteren.
 
@@ -89,7 +90,7 @@ Oh... en het is waarschijnlijk de moeite waard om op te merken dat het land en d
 
 ## Huisdieren
 
-Na onze lancering van NiftyVerse introduceren we coole pets voor je DEGENS! Veel communityleden hebben ons gevraagd om Satoshi's **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**af te stoffen en terug te brengen, en we waren het daar helemaal mee eens!
+Na onze lancering van NiftyVerse introduceren we coole pets voor je DEGENS! Veel communityleden hebben ons gevraagd om Satoshi's **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**af te stoffen en terug te brengen, en we waren het daar helemaal mee eens!
 
 DEGEN NFT-houders ontvangen plaatsen op de witte lijst zodat onze gemeenschap op hun gemak huisdieren kan maken. Voor de resterende huisdieren volgt een openbare aanbieding. Als je de eerste muntervaring hebt gemist, houd deze dan in je agenda!
 

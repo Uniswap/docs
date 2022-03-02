@@ -16,4 +16,4 @@ We plan to work with indie gaming studios and artists to allow them to build Nif
 
 The first iteration will be a top down, pixel art meta verse, with the urban Sushi art theme.
 
-All land purchases in the Nifty Verse will be done using our token, [NFTL](https://docs.niftyleague.com/overview/nftl/overview).
+All land purchases in the Nifty Verse will be done using our token, [NFTL](/docs/overview/nftl/overview).

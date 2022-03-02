@@ -10,12 +10,13 @@ sidebar_position: 9
 
 ## DEGEN 주조
 
-Nifty League DEGEN NFT는 2021년 9월 말에 커뮤니티에 의해 활성화되었습니다. [Mint-O-Matic**을 사용하여 자신의 DEGEN을 설계할 수 있는 독특한 광경이었습니다.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFT는 2021년 9월 말에 커뮤니티에 의해 활성화되었습니다. [Mint-O-Matic\*\*을 사용하여 자신의 DEGEN을 설계할 수 있는 독특한 광경이었습니다.](https://app.niftyleague.com/mint-o-matic)
 
 ## 멋진 스매셔스 알파
 
-NFT 출시는 많은 게임 중 첫 번째 게임인**[Nifty Smashers](http://localhost:3000/games)**의 즉각적인 가용성과 일치했습니다. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+NFT 출시는 많은 게임 중 첫 번째 게임인**[Nifty Smashers](https://app.niftyleague.com/games)**의 즉각적인 가용성과 일치했습니다. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   귀하의 브라우저는 비디오 태그를 지원하지 않습니다.
   </video>
@@ -23,7 +24,7 @@ NFT 출시는 많은 게임 중 첫 번째 게임인**[Nifty Smashers](http://lo
 
 ## 데스크탑 앱
 
-**[Desktop App](https://niftyleague.com/games)**이 이제 Windows 사용자를 위해 출시되었습니다! *(MacOS가 바로 모퉁이에 있음)*
+**[Desktop App](https://app.niftyleague.com/games)**이 이제 Windows 사용자를 위해 출시되었습니다! *(MacOS가 바로 모퉁이에 있음)*
 
 이전 WebGL 빌드의 브라우저 제한 사항을 고려하여 모든 게임을 수용하고 Discord 통합을 포함하는 런처를 만드는 데 즉각적인 노력을 집중하는 데 중점을 두었습니다. 이제 메모리 제한이 문제가 아니므로 추가 애니메이션, 이동 세트 및 기타 NFT 프로젝트를 자유롭게 도입할 수 있습니다. 동시에 사용자의 핑도 크게 향상됩니다.
 
@@ -57,7 +58,7 @@ NFT 출시는 많은 게임 중 첫 번째 게임인**[Nifty Smashers](http://lo
 
 우리 팀은 다가오는 만화용 유틸리티에 대해 천천히 암시해 왔습니다. 이미 알고 계시겠지만 DEGEN'S NFTL 승수를 증가시키는 특별한 게임 내 아이템을 위해 각 페이지를 구울 수 있습니다... 하지만 재미는 여기서 그치지 않습니다. !
 
-우리는 이전에 초기 4개의 만화 페이지를 발행인에게 에어드롭했으며 2022년 초에 DEGEN 보유자를 위해 아직 2페이지가 남아 있습니다. Satoshi의 말 - 전체 컬렉션을 확보하거나 2는 __ 권장합니다.
+우리는 이전에 초기 4개의 만화 페이지를 발행인에게 에어드롭했으며 2022년 초에 DEGEN 보유자를 위해 아직 2페이지가 남아 있습니다. Satoshi의 말 - 전체 컬렉션을 확보하거나 2는 \_\_ 권장합니다.
 
 ## 아이템 마켓플레이스
 
@@ -89,7 +90,7 @@ NiftyVerse에 오신 것을 환영합니다. DEGENS 및 NFT 커뮤니티로 가�
 
 ## 애완동물
 
-NiftyVerse 출시에 이어 DEGENS를 위한 멋진 애완동물을 소개합니다! 많은 커뮤니티 구성원이 우리에게 Satoshi의 **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**제거하고 다시 가져오도록 요청했지만 더 이상 동의할 수 없었습니다!
+NiftyVerse 출시에 이어 DEGENS를 위한 멋진 애완동물을 소개합니다! 많은 커뮤니티 구성원이 우리에게 Satoshi의 **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**제거하고 다시 가져오도록 요청했지만 더 이상 동의할 수 없었습니다!
 
 DEGEN NFT 소지자는 커뮤니티가 여가 시간에 애완 동물을 만들 수 있도록 허용 목록을 받게 됩니다. 남은 반려동물에 대한 공모가 이어집니다. 첫 주조 경험을 놓쳤다면 이것을 달력에 보관하십시오!
 

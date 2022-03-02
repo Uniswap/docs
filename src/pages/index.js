@@ -119,7 +119,7 @@ export const quick = [
   // {
   //   title: 'Whitepaper',
   //   text: "Details  on Nifty League's vision",
-  //   to: 'http://localhost:3000/overview/intro',
+  //   to: 'http://niftyleague.com/whitepaper',
   // },
 ];
 

@@ -8,7 +8,7 @@ sidebar_position: 4
 
 Each comic can be burned for in-game wearables that will increase your NFTL multiplier. Each comic corresponds with a specific wearable that will earn NFTL at different rates based on the rarity of the comic. A full set of comics, 1-6, can also be exchanged for a mystery item. Alternatively, you can always choose to hold on to your comics after the burning window — you never know what Satoshi has up his sleeve!
 
-Read more about [Nifty League Comics](https://niftyleague.com/docs/overview/comics/overview).
+Read more about [Nifty League Comics](/docs/overview/comics/overview).
 
 </details>
 
@@ -20,6 +20,6 @@ The snapshot for Comics 5 and 6 was taken at [Ethereum Block 14115835](https://e
 
 Comics 1-4 were airdropped as minting promotions and are available on [OpenSea](https://opensea.io/collection/nifty-league-launch-comics). Please note - all other Nifty League Laucnh Comics Collecitons on OpenSea are fake/fraudulent!
 
-Read more about [Nifty League Comics](https://niftyleague.com/docs/overview/comics/overview).
+Read more about [Nifty League Comics](/docs/overview/comics/overview).
 
 </details>

@@ -10,12 +10,13 @@ sidebar_position: 9
 
 ## سك ديجن
 
-تم إحياء Nifty League DEGEN NFTs من قبل مجتمعنا في نهاية سبتمبر 2021. كانت عملية سك النقود مشهدًا فريدًا من نوعه سمح للسكّين بالقدرة على تصميم DEGEN الخاص بهم باستخدام **[Mint-O-Matic ** من Satoshi.](https://niftyleague.com/mint-o-matic)
+تم إحياء Nifty League DEGEN NFTs من قبل مجتمعنا في نهاية سبتمبر 2021. كانت عملية سك النقود مشهدًا فريدًا من نوعه سمح للسكّين بالقدرة على تصميم DEGEN الخاص بهم باستخدام **[Mint-O-Matic ** من Satoshi.](https://app.niftyleague.com/mint-o-matic)
 
 ## Nifty Smashers Alpha
 
-تزامن إطلاق NFT مع التوافر الفوري لأول ألعابنا من بين العديد من الألعاب ،**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+تزامن إطلاق NFT مع التوافر الفوري لأول ألعابنا من بين العديد من الألعاب ،**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   متصفحك الحالي لا يدعم تشغيل الفيديو.
   </video>
@@ -23,7 +24,7 @@ sidebar_position: 9
 
 ## التطبيق سطح المكتب
 
-تطبيق سطح المكتب**[](https://niftyleague.com/games)**متاح الآن لمستخدمي Windows! *(MacOS قريب جدًا)*
+تطبيق سطح المكتب**[](https://app.niftyleague.com/games)**متاح الآن لمستخدمي Windows! *(MacOS قريب جدًا)*
 
 بالنظر إلى قيود المستعرض مع إصدار WebGL السابق ، فقد وضعنا نقطة لتركيز جهودنا الفورية على إنشاء قاذفة لإيواء جميع ألعابنا وتضمين تكامل Discord. الآن بما أن حدود الذاكرة ليست مصدر قلق ، فنحن أحرار في تقديم رسوم متحركة إضافية ومجموعات متحركة ومشاريع NFT أخرى - كل ذلك مع تحسين اختبار ping بشكل كبير لمستخدمينا.
 
@@ -89,7 +90,7 @@ sidebar_position: 9
 
 ## حيوانات أليفة
 
-بعد إطلاق NiftyVerse الخاص بنا ، سنقدم حيوانات أليفة رائعة لـ DEGENS! لقد طلب منا الكثير من أعضاء المجتمع التخلص من الغبار وإعادة ساتوشي **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**، ولم نتمكن من الاتفاق أكثر!
+بعد إطلاق NiftyVerse الخاص بنا ، سنقدم حيوانات أليفة رائعة لـ DEGENS! لقد طلب منا الكثير من أعضاء المجتمع التخلص من الغبار وإعادة ساتوشي **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**، ولم نتمكن من الاتفاق أكثر!
 
 سيحصل حاملو DEGEN NFT على نقاط في القائمة البيضاء حتى يتمكن مجتمعنا من إنشاء حيوانات أليفة في أوقات فراغهم. سيتبع عرض عام لأي حيوانات أليفة متبقية. إذا فاتتك تجربة سك العملة الأولى ، فتأكد من الاحتفاظ بهذه التجربة في التقويم الخاص بك!
 

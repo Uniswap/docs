@@ -10,12 +10,13 @@ Lisäpelien lisäksi meillä on useita ideoita alustamme kasvattamiseksi. Yksi t
 
 ## DEGENin lyönti
 
-Yhteisömme herätti Nifty League DEGEN NFT:t henkiin syyskuun 2021 lopussa. Lyöntiprosessi oli ainutlaatuinen spektaakkeli, jonka ansiosta rahapajat pystyivät suunnittelemaan oman DEGEN-mallinsa Satoshin **[Mint-O-Maticilla**.](https://niftyleague.com/mint-o-matic)
+Yhteisömme herätti Nifty League DEGEN NFT:t henkiin syyskuun 2021 lopussa. Lyöntiprosessi oli ainutlaatuinen spektaakkeli, jonka ansiosta rahapajat pystyivät suunnittelemaan oman DEGEN-mallinsa Satoshin **[Mint-O-Maticilla**.](https://app.niftyleague.com/mint-o-matic)
 
 ## Näppärä Smashers Alpha
 
-NFT-julkaisumme osui samaan aikaan, kun ensimmäinen monista peleistämme,**[Nifty Smashers](http://localhost:3000/games)**, tuli välittömästi saataville. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+NFT-julkaisumme osui samaan aikaan, kun ensimmäinen monista peleistämme,**[Nifty Smashers](https://app.niftyleague.com/games)**, tuli välittömästi saataville. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Selaimesi ei tue videotunnistetta.
   </video>
@@ -23,7 +24,7 @@ NFT-julkaisumme osui samaan aikaan, kun ensimmäinen monista peleistämme,**[Nif
 
 ## Työpöytäsovellus
 
-**[Desktop App](https://niftyleague.com/games)**on nyt saatavilla Windows-käyttäjille! *(MacOS on aivan nurkan takana)*
+**[Desktop App](https://app.niftyleague.com/games)**on nyt saatavilla Windows-käyttäjille! *(MacOS on aivan nurkan takana)*
 
 Ottaen huomioon aiemman WebGL-versiomme selaimen rajoitukset, päätimme keskittää välittömät ponnistelumme luomaan käynnistysohjelma, joka sisältää kaikki pelimme ja sisältää Discord-integraatiot. Nyt kun muistirajoitukset eivät ole huolestuttavia, voimme vapaasti ottaa käyttöön lisäanimaatioita, siirtosarjoja ja muita NFT-projekteja – kaikki samalla kun parannamme käyttäjiemme pingiä merkittävästi.
 
@@ -89,7 +90,7 @@ Ai... ja on luultavasti huomionarvoista, että maa ja omaisuus myydään NFTL:ll
 
 ## Lemmikit
 
-NiftyVerse-julkaisumme jälkeen esittelemme upeita lemmikkejä DEGENS-illesi! Monet yhteisön jäsenet ovat pyytäneet meitä pyyhkimään pölyt pois ja tuomaan takaisin Satoshin **[Mint-O-Maticin](https://niftyleague.com/mint-o-matic)**, emmekä voisi olla enempää samaa mieltä!
+NiftyVerse-julkaisumme jälkeen esittelemme upeita lemmikkejä DEGENS-illesi! Monet yhteisön jäsenet ovat pyytäneet meitä pyyhkimään pölyt pois ja tuomaan takaisin Satoshin **[Mint-O-Maticin](https://app.niftyleague.com/mint-o-matic)**, emmekä voisi olla enempää samaa mieltä!
 
 DEGEN NFT:n haltijat saavat paikkoja valkoiselle listalle, jotta yhteisömme voi luoda lemmikkejä vapaa-ajallaan. Jäljellä olevista lemmikeistä järjestetään yleisötarjous. Jos unohdat ensimmäisen lyöntikokemuksen, muista pitää tämä kalenterissasi!
 

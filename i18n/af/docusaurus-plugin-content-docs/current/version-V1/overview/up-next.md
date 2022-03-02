@@ -10,12 +10,13 @@ Saam met bykomende speletjies het ons verskeie idees in die vooruitsig om voort 
 
 ## DEGEN Minting
 
-Nifty League DEGEN NFT's is aan die einde van September 2021 deur ons gemeenskap tot lewe gebring. Die muntproses was 'n unieke skouspel wat munters die vermoë gegee het om hul eie DEGEN te ontwerp deur gebruik te maak van Satoshi se **[Mint-O-Matic**.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFT's is aan die einde van September 2021 deur ons gemeenskap tot lewe gebring. Die muntproses was 'n unieke skouspel wat munters die vermoë gegee het om hul eie DEGEN te ontwerp deur gebruik te maak van Satoshi se **[Mint-O-Matic**.](https://app.niftyleague.com/mint-o-matic)
 
 ## Nifty Smashers Alpha
 
-Ons NFT-bekendstelling het saamgeval met die onmiddellike beskikbaarheid van ons eerste van vele speletjies,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Ons NFT-bekendstelling het saamgeval met die onmiddellike beskikbaarheid van ons eerste van vele speletjies,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Jou blaaier ondersteun nie die videomerker nie.
   </video>
@@ -23,7 +24,7 @@ Ons NFT-bekendstelling het saamgeval met die onmiddellike beskikbaarheid van ons
 
 ## Werkskerm-toepassing
 
-Die**[Desktop App](https://niftyleague.com/games)**is nou regstreeks vir Windows-gebruikers! *(MacOS is reg om die draai)*
+Die**[Desktop App](https://app.niftyleague.com/games)**is nou regstreeks vir Windows-gebruikers! *(MacOS is reg om die draai)*
 
 Met inagneming van blaaierbeperkings met ons vorige WebGL-bou, het ons 'n punt gemaak om ons onmiddellike pogings te fokus op die skep van 'n lanseerder om al ons speletjies te huisves en Discord-integrasies in te sluit. Noudat geheuelimiete nie 'n bekommernis is nie, is ons vry om bykomende animasies, bewegingsstelle en ander NFT-projekte bekend te stel - alles terwyl ons ping vir ons gebruikers aansienlik verbeter.
 
@@ -89,7 +90,7 @@ O... en dit is waarskynlik die moeite werd om daarop te let dat die grond en bat
 
 ## Troeteldiere
 
-Na ons NiftyVerse-bekendstelling sal ons koel troeteldiere vir jou DEGENS bekendstel! Baie gemeenskapslede het ons gevra om Satoshi se **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**af te stof en terug te bring, en ons kon nie meer saamstem nie!
+Na ons NiftyVerse-bekendstelling sal ons koel troeteldiere vir jou DEGENS bekendstel! Baie gemeenskapslede het ons gevra om Satoshi se **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**af te stof en terug te bring, en ons kon nie meer saamstem nie!
 
 DEGEN NFT-houers sal witlysplekke ontvang sodat ons gemeenskap troeteldiere op hul gemak kan skep. 'n Openbare aanbieding sal volg vir enige oorblywende troeteldiere. As jy die eerste muntervaring gemis het, hou seker hierdie een op jou kalender!
 

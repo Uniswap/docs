@@ -16,7 +16,7 @@ Backgrounds come with special perks such as a distinguished look in game and ext
 - **Meta**: 3
 - **Legendary**: 6
 
-The earnings multipliers above are based off of the baseline Common NFTL earning amount for play-and-earn winnings it [Nifty Smashers](https://niftyleague.com/docs/overview/games/nifty-smashers) gameplay.
+The earnings multipliers above are based off of the baseline Common NFTL earning amount for play-and-earn winnings in [Nifty Smashers](/docs/overview/games/nifty-smashers) gameplay.
 
 <br></br>
 

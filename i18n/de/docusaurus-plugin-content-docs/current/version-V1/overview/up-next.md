@@ -10,12 +10,13 @@ Neben zusätzlichen Spielen haben wir einige Ideen auf Lager, um unsere Plattfor
 
 ## DEGEN Prägeanstalt
 
-Nifty League DEGEN NFTs wurden Ende September 2021 von unserer Community zum Leben erweckt. Der Prägeprozess war ein einzigartiges Spektakel, das es den Münzern ermöglichte, ihre eigene DEGEN mit Satoshis **[Mint-O-Matic ** zu entwerfen.](https://niftyleague.com/mint-o-matic)
+Nifty League DEGEN NFTs wurden Ende September 2021 von unserer Community zum Leben erweckt. Der Prägeprozess war ein einzigartiges Spektakel, das es den Münzern ermöglichte, ihre eigene DEGEN mit Satoshis **[Mint-O-Matic ** zu entwerfen.](https://app.niftyleague.com/mint-o-matic)
 
 ## Geschickte Smashers Alpha
 
-Unser NFT-Launch fiel mit der sofortigen Verfügbarkeit unseres ersten von vielen Spielen,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Unser NFT-Launch fiel mit der sofortigen Verfügbarkeit unseres ersten von vielen Spielen,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Ihr Browser unterstützt das Video-Tag nicht.
   </video>
@@ -23,7 +24,7 @@ Unser NFT-Launch fiel mit der sofortigen Verfügbarkeit unseres ersten von viele
 
 ## Desktop-Anwendung
 
-Die**[Desktop App](https://niftyleague.com/games)**ist jetzt live für Windows-Benutzer! *(MacOS ist gleich um die Ecke)*
+Die**[Desktop App](https://app.niftyleague.com/games)**ist jetzt live für Windows-Benutzer! *(MacOS ist gleich um die Ecke)*
 
 In Anbetracht der Browserbeschränkungen bei unserem vorherigen WebGL-Build haben wir uns darauf konzentriert, unsere unmittelbaren Bemühungen auf die Erstellung eines Launchers zu konzentrieren, der alle unsere Spiele enthält und Discord-Integrationen enthält. Jetzt, da Speicherbeschränkungen kein Problem mehr sind, können wir zusätzliche Animationen, Movesets und andere NFT-Projekte einführen – und das alles, während wir den Ping für unsere Benutzer erheblich verbessern.
 
@@ -89,7 +90,7 @@ Oh ... und es ist wahrscheinlich erwähnenswert, dass das Land und die Vermögen
 
 ## Haustiere
 
-Nach unserem Start von NiftyVerse werden wir coole Haustiere für deine DEGENS vorstellen! Viele Community-Mitglieder haben uns gebeten, Satoshis **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**abzustauben und zurückzubringen, und wir könnten nicht mehr zustimmen!
+Nach unserem Start von NiftyVerse werden wir coole Haustiere für deine DEGENS vorstellen! Viele Community-Mitglieder haben uns gebeten, Satoshis **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**abzustauben und zurückzubringen, und wir könnten nicht mehr zustimmen!
 
 DEGEN NFT-Inhaber erhalten Whitelist-Spots, damit unsere Community nach Belieben Haustiere erstellen kann. Für alle verbleibenden Haustiere wird ein öffentliches Angebot folgen. Wenn Sie das erste Minting-Erlebnis verpasst haben, behalten Sie es auf jeden Fall in Ihrem Kalender!
 

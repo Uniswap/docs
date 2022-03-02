@@ -10,12 +10,13 @@ A további játékok mellett számos ötletünk van a platformunk továbbfejlesz
 
 ## DEGEN pénzverés
 
-A Nifty League DEGEN NFT-ket közösségünk keltette életre 2021. szeptember végén. A pénzverési folyamat egyedülálló látványosság volt, amely lehetővé tette a pénzverők számára, hogy saját DEGEN-t tervezzenek a Satoshi **[Mint-O-Matic** használatával.](https://niftyleague.com/mint-o-matic)
+A Nifty League DEGEN NFT-ket közösségünk keltette életre 2021. szeptember végén. A pénzverési folyamat egyedülálló látványosság volt, amely lehetővé tette a pénzverők számára, hogy saját DEGEN-t tervezzenek a Satoshi **[Mint-O-Matic** használatával.](https://app.niftyleague.com/mint-o-matic)
 
 ## Ügyes Smashers Alpha
 
-Az NFT bevezetése egybeesett azzal, hogy a sok közül az első játékunk, a**[Nifty Smashers](http://localhost:3000/games)**azonnal elérhetővé vált. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+Az NFT bevezetése egybeesett azzal, hogy a sok közül az első játékunk, a**[Nifty Smashers](https://app.niftyleague.com/games)**azonnal elérhetővé vált. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   Az Ön böngészője nem támogatja a videocímkét.
   </video>
@@ -23,7 +24,7 @@ Az NFT bevezetése egybeesett azzal, hogy a sok közül az első játékunk, a**
 
 ## Asztali alkalmazás
 
-A**[Desktop App](https://niftyleague.com/games)**már elérhető a Windows felhasználók számára! *(a MacOS a sarkon van)*
+A**[Desktop App](https://app.niftyleague.com/games)**már elérhető a Windows felhasználók számára! *(a MacOS a sarkon van)*
 
 Figyelembe véve a böngésző korlátait korábbi WebGL-felépítésünkkel kapcsolatban, azonnali erőfeszítéseinket egy olyan indító létrehozására összpontosítjuk, amely minden játékunknak helyet ad, és Discord-integrációkat tartalmaz. Most, hogy a memóriakorlátok nem aggodalomra adnak okot, szabadon bevezethetünk további animációkat, mozgatásokat és egyéb NFT-projekteket – mindezt úgy, hogy közben jelentősen javítjuk a ping-et a felhasználók számára.
 
@@ -89,7 +90,7 @@ Ha Ön kreatív típus, ne hagyja ki ezt a lehetőséget – lesz egy eszköztá
 
 ## Háziállatok
 
-A NiftyVerse bevezetését követően nagyszerű háziállatokat mutatunk be DEGENS-ének! A közösség sok tagja arra kért minket, hogy poroljuk le és hozzuk vissza Satoshi **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**-át, és nem is értünk egyet!
+A NiftyVerse bevezetését követően nagyszerű háziállatokat mutatunk be DEGENS-ének! A közösség sok tagja arra kért minket, hogy poroljuk le és hozzuk vissza Satoshi **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**-át, és nem is értünk egyet!
 
 A DEGEN NFT-tartók fehérlistás helyeket kapnak, így közösségünk kedvükre készíthet házi kedvenceket. A fennmaradó háziállatok után nyilvános ajánlattételre kerül sor. Ha lemaradt az első pénzverésről, ezt mindenképpen jegyezze fel a naptárába!
 

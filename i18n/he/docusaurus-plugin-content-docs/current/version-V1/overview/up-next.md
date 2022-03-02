@@ -10,12 +10,13 @@ sidebar_position: 9
 
 ## טבעת DEGEN
 
-מכשירי DEGEN NFT של ליגת Nifty הובאו לחיים על ידי הקהילה שלנו בסוף ספטמבר 2021. תהליך ההטבעה היה מחזה מיוחד במינו שאיפשר למנטות את היכולת לעצב DEGEN משלהם באמצעות שימוש ב-**[Mint-O-Matic** של Satoshi.](https://niftyleague.com/mint-o-matic)
+מכשירי DEGEN NFT של ליגת Nifty הובאו לחיים על ידי הקהילה שלנו בסוף ספטמבר 2021. תהליך ההטבעה היה מחזה מיוחד במינו שאיפשר למנטות את היכולת לעצב DEGEN משלהם באמצעות שימוש ב-**[Mint-O-Matic** של Satoshi.](https://app.niftyleague.com/mint-o-matic)
 
 ## Nifty Smashers Alpha
 
-השקת ה-NFT שלנו עלתה במקביל לזמינות המיידית של המשחק הראשון מני רבים שלנו,**[Nifty Smashers](http://localhost:3000/games)**. <div>
-  <video width="100%" height="100%" playsInline controls loop>
+השקת ה-NFT שלנו עלתה במקביל לזמינות המיידית של המשחק הראשון מני רבים שלנו,**[Nifty Smashers](https://app.niftyleague.com/games)**. <div>
+<video width="100%" height="100%" playsInline controls loop>
+
   <source src="https://www.youtube.com/watch?v=WWLqE1tnf6U&feature=youtu.be" />
   הדפדפן שלך אינו תומך בתג הווידאו.
   </video>
@@ -23,7 +24,7 @@ sidebar_position: 9
 
 ## אפליקציית שולחן עבודה
 
-**[Desktop App](https://niftyleague.com/games)**פעילה כעת עבור משתמשי Windows! *(MacOS ממש מעבר לפינה)*
+**[Desktop App](https://app.niftyleague.com/games)**פעילה כעת עבור משתמשי Windows! *(MacOS ממש מעבר לפינה)*
 
 בהתחשב במגבלות הדפדפן עם מבנה ה-WebGL הקודם שלנו, הקפדנו למקד את המאמצים המיידיים שלנו ביצירת משגר שיכיל את כל המשחקים שלנו ויכלול שילובי Discord. כעת, כאשר מגבלות הזיכרון אינן עניין, אנו חופשיים להציג, אנימציות נוספות, סטים ופרויקטים אחרים של NFT - כל זאת תוך שיפור משמעותי ב-ping עבור המשתמשים שלנו.
 
@@ -89,7 +90,7 @@ sidebar_position: 9
 
 ## חיות מחמד
 
-בעקבות השקת NiftyVerse שלנו, נציג חיות מחמד מגניבות עבור DEGENS שלך! הרבה חברי קהילה ביקשו מאיתנו לנקות את האבק ולהחזיר את ה **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**של Satoshi, ולא יכולנו להסכים יותר!
+בעקבות השקת NiftyVerse שלנו, נציג חיות מחמד מגניבות עבור DEGENS שלך! הרבה חברי קהילה ביקשו מאיתנו לנקות את האבק ולהחזיר את ה **[Mint-O-Matic](https://app.niftyleague.com/mint-o-matic)**של Satoshi, ולא יכולנו להסכים יותר!
 
 מחזיקי DEGEN NFT יקבלו מקומות ברשימת הלבנים כדי שהקהילה שלנו תוכל ליצור חיות מחמד בשעות הפנאי שלהם. הנפקה לציבור תתבצע עבור כל חיות המחמד שנותרו. אם פספסת את חווית ההטבעה הראשונה, הקפד לשמור את זה בלוח השנה שלך!
 

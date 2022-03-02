@@ -4,7 +4,7 @@ title: Tribe Special Abilities
 sidebar_position: 3
 ---
 
-Our current game, Nifty Smashers, and all future games will feature the same Special Ability ("SA") for each [tribe](https://niftyleague.com/docs/overview/degens/tribes).
+Our current game, Nifty Smashers, and all future games will feature the same Special Ability ("SA") for each [tribe](/docs/overview/degens/tribes).
 
 ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
 **Alien**
@@ -16,14 +16,14 @@ Our current game, Nifty Smashers, and all future games will feature the same Spe
 **Ape**
 
 - Pressing the SA button throws a banana in the aimed direction (left, right, up, down, diagonals) until it hits an opponent, hits a map part or flies off the map
-- Pressing the SA button again makes the banana fly back to the DEGEN, making it possible to hit an opponent again.
+- Pressing the SA button again makes the banana fly back to the DEGEN, making it possible to hit an opponent again
 - Bananas can be hit with a bat and fly in the aimed direction
 
 ![https://cdn.discordapp.com/emojis/876655087869644830.png?size=44](https://cdn.discordapp.com/emojis/876655087869644830.png?size=44)
 **Cat**
 
 - Pressing the SA makes the cat pounce, and after pouncing for a short duration, the cat gets empowered
-- Empored bat swing - bat hits harder
+- Empowered bat swing - bat hits harder
 - Empowered movement - cats run faster
 - Cats can double jump, jumping in mid-air
 
