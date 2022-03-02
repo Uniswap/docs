@@ -10,11 +10,11 @@ Along with additional games, we have several ideas in store to continue to grow 
 
 ## DEGEN Minting ✅
 
-Nifty League DEGEN NFTs were brought to life by our community at the end of Sept 2021. The minting process was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using using Satoshi's [Mint-O-Matic](https://niftyleague.com/mint-o-matic).
+Nifty League DEGEN NFTs were brought to life by our community at the end of Sept 2021. The minting process was a one-of-a-kind spectacle that allowed minters the ability to design their own DEGEN using using Satoshi's [Mint-O-Matic](https://app.niftyleague.com/mint-o-matic).
 
 ## Nifty Smashers Alpha Launch ✅
 
-Our NFT launch coincided with the immediate availability of our first of many games, [Nifty Smashers](http://localhost:3000/games).
+Our NFT launch coincided with the immediate availability of our first of many games, [Nifty Smashers](https://niftyleague.com/docs/overview/games/nifty-smashers).
 
   <div>
   <video width="100%" height="100%" playsInline controls loop>
@@ -25,7 +25,7 @@ Our NFT launch coincided with the immediate availability of our first of many ga
 
 ## Desktop App ✅
 
-The [Desktop App](https://niftyleague.com/games) is now live for Windows users! MacOS is right around the corner.
+The [Desktop App](https://niftyleague.com/docs/overview/games/nifty-smashers) is now live for Windows users! MacOS is right around the corner.
 
 Considering browser limitations with our previous WebGL build, we made a point to focus our immediate efforts on creating a launcher to house all of our games and include Discord social integrations. Now that memory limits are not a concern we are free to introduce additional animations, movesets, and other NFT projects - all while significantly improving ping for our users.
 
@@ -92,7 +92,7 @@ The land and assets will be sold with NFTL (a portion of which will be burned).
 
 ## Pets
 
-Following our Niftyverse launch we will introduce cool pets for your DEGENS! A lot of community members have asked us to dust off and bring back Satoshi's **[Mint-O-Matic](https://niftyleague.com/mint-o-matic)**, and we couldn't agree more!
+Following our Niftyverse launch we will introduce cool pets for your DEGENS! A lot of community members have asked us to dust off and bring back Satoshi's [Mint-O-Matic](https://app.niftyleague.com/mint-o-matic), and we couldn't agree more!
 
 DEGEN NFT holders will receive whitelist spots so our community can create pets at their leisure. A public offering will follow for any remaining pets. If you missed the first minting experience be sure to keep this one on your calendar!
 
