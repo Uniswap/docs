@@ -4,7 +4,7 @@ title: Gameplay Rewards
 sidebar_position: 1
 ---
 
-Players are able to earn [NFTL](https://docs.niftyleague.com/overview/nftl/overview) by gaming in Nifty Smashers - successfully landing hits on your opponent(s) and winning matches earn NFTL.
+Players are able to earn [NFTL](https://niftyleague.com/docs/overview/nftl/overview) by gaming in Nifty Smashers - successfully landing hits on your opponent(s) and winning matches earn NFTL.
 
 The more you play and practice, the better you will play against your opponents, and the more NFLT you will earn by gaming.
 
@@ -12,7 +12,7 @@ New details will be announced as we define our emission model for each new game.
 
 ## Noob Player Earnings Bonus
 
-We added a Noob Player Earnings bonus in February 2022, which allows new players to accrue NFTL while learning to play [Nifty Smashers](https://docs.niftyleague.com/overview/games/nifty-smashers). The bonus is based on number of games played and is constantly being tested and tweaked to ensure new player activation, engagement and retention are optimal, while also controlling overall NFTL emissions. Changes to this P&E Earnings Bonus will be announced in our [Discord server](https://discord.gg/niftyleague).
+We added a Noob Player Earnings bonus in February 2022, which allows new players to accrue NFTL while learning to play [Nifty Smashers](https://niftyleague.com/docs/overview/games/nifty-smashers). The bonus is based on number of games played and is constantly being tested and tweaked to ensure new player activation, engagement and retention are optimal, while also controlling overall NFTL emissions. Changes to this P&E Earnings Bonus will be announced in our [Discord server](https://discord.gg/niftyleague).
 
 ## Double Bonks Earnings Bonus
 
