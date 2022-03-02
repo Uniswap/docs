@@ -12,7 +12,7 @@ There will be a small, up-front rental fee - 50% of this cost will be burned (re
 
 The rental fee is determined based on the number of people renting a DEGEN - the rental fee increases as demand increases.
 
-Rental fees will be charged weekly, with daily rental fees kicking in after the first week (equivalent to approximately 5-10% of the original rental cost). The exact rants are still TBD.
+Rental fees will be charged weekly, with daily rental fees kicking in after the first week (equivalent to approximately 5-10% of the original rental cost). The exact rates are still TBD.
 
 Upon confirming your rental, the daily fee is locked at this maximum for the remainder of the rental period. If people ahead of you in the queue cancel their rental, your daily rental fee will decrease based on your queue position (and demand). This is meant to incentivize players to play frequently during their rental period.
 
