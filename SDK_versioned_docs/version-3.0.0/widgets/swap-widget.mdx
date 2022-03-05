@@ -11,6 +11,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Getting Started with the Swap Widget
 
+_The swap widget is currently in beta. Join the [Discord channel](https://discord.com/channels/597638925346930701/941447445844463676) to ask questions and get support._
+
 This guide walks you through the steps to embed the swap widget in your web3 decentralized application (dApp). With the swap widget, your users can trade tokens on the Uniswap Protocol without leaving your dApp!
 
 Here’s a live preview of the swap widget. Please note that wallet connect is not supported here in the documentation. Your app will be responsible for providing a method to connect a wallet.
@@ -54,16 +56,16 @@ After the user connects a wallet, the widget will use the JSON-RPC provided by t
 
 ## Installing the Widgets Library {#installing-library}
 
-To get started, install the widgets library using npm or yarn:
+To get started, install the widgets library using npm or yarn. If you don’t already use it, you’ll need to install `react-redux` as well.
 
 ```bash
 # With npm
-npm install --save @uniswap/widgets
+npm install --save @uniswap/widgets react-redux
 ```
 
 ```bash
 # With yarn
-yarn add @uniswap/widgets
+yarn add @uniswap/widgets react-redux
 ```
 
 ## Adding the Swap Widget to Your App {#adding-the-widget}
@@ -72,21 +74,33 @@ Next, embed the React component in your application. Pass along the `provider` a
 
 ```jsx
 import { SwapWidget } from '@uniswap/widgets'
-import { provider } from './your/provider' // See section Requirements > Web3 Provider
+import '@uniswap/widgets/fonts.css'
 
-// Infura Endpoint
+// Web3 provider as described in the requirements above
+import { provider } from './your/provider'
+
+// Infura endpoint
 const jsonRpcEndpoint = 'https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'
 
 function App() {
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint} />
+      jsonRpcEndpoint={jsonRpcEndpoint}
+    />
   </div>
 }
 ```
 
 That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](https://docs.uniswap.org/sdk/guides/auto-router/quick-start) to compute the best price across all Uniswap v2 and v3 pools.
+
+:::note Create React App V4
+All code snippets will work seamlessly if you use [Next.js](https://nextjs.org/) or [Create React App](https://create-react-app.dev/) V5. However, if you’re using Create React App V4, you’ll need to following `import` statement instead:
+```jsx
+import { SwapWidget } from '@uniswap/widgets/dist/index.js'
+import '@uniswap/widgets/dist/fonts.css'
+```
+:::
 
 # Customizing the Swap Widget {#customizing-widget}
 
@@ -100,9 +114,10 @@ You can customize the width by passing a number (of pixels) or a valid CSS width
 
 ```tsx
 import { SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 
 function App() {
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
@@ -160,14 +175,19 @@ const theme: Theme = {
 }
 
 function App() {
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={theme} />
+      theme={theme}
+    />
   </div>
 }
 ```
+
+:::note Importing Fonts
+The swap widget fonts must be imported explicitly with `import '@uniswap/widgets/fonts.css'`. However, if you’re overriding the swap widget fonts with your own, or with a default font such as Helvetica in the example above, you can remove this `import` statement.
+:::
 
 ### Enabling Token Color Extraction {#enabling-color-extraction}
 
@@ -177,17 +197,19 @@ To enable color extraction, set the `tokenColorExtraction` property to `true` in
 
 ```tsx
 import { Theme, SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 
 const enableColorExtractionTheme: Theme = {
   tokenColorExtraction: true, // Enable color extraction of the output token
 }
 
 function App() {
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={enableColorExtractionTheme} />
+      theme={enableColorExtractionTheme}
+    />
   </div>
 }
 ```
@@ -198,14 +220,16 @@ The swap widget provides a default light theme and dark theme as a starting poin
 
 ```tsx
 import { darkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 
 let darkMode = true // Dynamically toggle dark mode on and off
 function App() {
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={darkMode ? darkTheme : lightTheme} />
+      theme={darkMode ? darkTheme : lightTheme}
+    />
   </div>
 }
 ```
@@ -216,6 +240,7 @@ You can match the user’s system preference for light/dark mode by using the `u
 
 ```tsx
 import { SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 
 function useSystemTheme() {
   // Access
@@ -223,11 +248,12 @@ function useSystemTheme() {
 
 function App() {
   const theme = useSystemTheme() // Get a theme that matches the user system preference
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={theme} />
+      theme={theme}
+    />
   </div>
 }
 ```
@@ -238,6 +264,7 @@ You can extend any theme with custom attributes. The below example extends the b
 
 ```tsx
 import { darkTheme, lightTheme, Theme, SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 
 const myLightTheme: Theme = {
   ...lightTheme, // Extend the lightTheme
@@ -255,11 +282,12 @@ const myDarkTheme: Theme = {
 
 let darkMode = true
 function App() {
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={darkMode ? myDarkTheme : myLightTheme} />
+      theme={darkMode ? myDarkTheme : myLightTheme}
+    />
   </div>
 }
 ```
@@ -274,15 +302,17 @@ If you want to offer a different set of tokens in the widget, you can provide a 
 
 ```jsx
 import { SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 
 const CMC_TOKEN_LIST = 'https://api.coinmarketcap.com/data-api/v3/uniswap/all.json'
 
 function App() {
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      defaultTokenList={CMC_TOKEN_LIST} /> // Use the CoinMarketCap token list
+      defaultTokenList={CMC_TOKEN_LIST} // Use the CoinMarketCap token list
+    />
   </div>
 }
 ```
@@ -295,6 +325,7 @@ The second and easiest option is to construct a custom token list inline as an a
 
 ```jsx
 import { SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 
 // You can also pass a token list as JSON, as long as it matches the schema
 const MY_TOKEN_LIST = [
@@ -325,11 +356,12 @@ const MY_TOKEN_LIST = [
 ]
 
 function App() {
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      defaultTokenList={MY_TOKEN_LIST} />
+      defaultTokenList={MY_TOKEN_LIST}
+    />
   </div>
 }
 ```
@@ -348,6 +380,7 @@ The following example sets the default input token to ETH and the default output
 
 ```tsx
 import { SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
 
 // Default token list from Uniswap
 const UNISWAP_TOKEN_LIST = 'https://gateway.ipfs.io/ipns/tokens.uniswap.org'
@@ -359,13 +392,14 @@ const NATIVE = 'NATIVE' // Special address for native token
 const WBTC = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
 
 function App() {
-  <div classname="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
       defaultTokenList={UNISWAP_TOKEN_LIST}
       defaultInputTokenAddress={NATIVE}
-      defaultOutputTokenAddress={WBTC} />
+      defaultOutputTokenAddress={WBTC}
+    />
   </div>
 }
 ```
