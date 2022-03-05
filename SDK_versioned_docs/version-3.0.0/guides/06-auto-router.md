@@ -37,7 +37,7 @@ The `AlphaRouter` class contains methods for generating optimized routes. To cre
 | provider | [required]  | A JSON RPC endpoint, e.g., Infura.                                                             |
 
 ```typescript
-const router = new AlphaRouter({ chainId: 1, provider: web3Provider };
+const router = new AlphaRouter({ chainId: 1, provider: web3Provider });
 ```
 
 ## Calling `route`
