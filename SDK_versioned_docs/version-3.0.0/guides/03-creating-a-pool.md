@@ -3,7 +3,7 @@ id: creating-a-pool
 title: Creating a Pool Instance
 ---
 
-This guide extends the previous [getting started](./using-ethers) guide by using the fetched data from the EVM to create a `Pool` instance using the V3 SDK. A "Pool" as we refer to it here does not mean an actual V3 pool, but a model of one created with the SDK. This model will help us interact with the protocol, or manipulate data relevant to the protocol, in a way that does not require continually fetching pool data from the EVM - which can be time intensive and computationally costly.
+This guide extends the previous [Using Ethers.js](./using-ethers) guide by using the fetched data from the EVM to create a `Pool` instance using the V3 SDK. A "Pool" as we refer to it here does not mean an actual V3 pool, but a model of one created with the SDK. This model will help us interact with the protocol, or manipulate data relevant to the protocol, in a way that does not require continually fetching pool data from the EVM - which can be time intensive and computationally costly.
 
 ## Importing the ABI
 
