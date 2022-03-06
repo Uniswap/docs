@@ -95,7 +95,7 @@ function App() {
 That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](https://docs.uniswap.org/sdk/guides/auto-router/quick-start) to compute the best price across all Uniswap v2 and v3 pools.
 
 :::note Create React App V4
-All code snippets will work seamlessly if you use [Next.js](https://nextjs.org/) or [Create React App](https://create-react-app.dev/) V5. However, if you’re using Create React App V4, you’ll need to following `import` statement instead:
+All code snippets will work seamlessly if you use [Next.js](https://nextjs.org/) or [Create React App](https://create-react-app.dev/) V5. However, if you’re using Create React App V4, you’ll need to use the following `import` statements instead:
 ```jsx
 import { SwapWidget } from '@uniswap/widgets/dist/index.js'
 import '@uniswap/widgets/dist/fonts.css'
@@ -298,7 +298,7 @@ By default, the widget will use the [Uniswap Labs default token list](https://to
 
 ### Customizing the Default Token List {#customizing-default-token-list}
 
-If you want to offer a different set of tokens in the widget, you can provide a custom `defaultTokenList` parameter. You can [browse popular token lists](https://tokenlists.org/) to find one that suits your needs and then pass the URL as a parameter.
+If you want to offer a different set of tokens in the widget, you can provide a custom `tokenList` parameter. You can [browse popular token lists](https://tokenlists.org/) to find one that suits your needs and then pass the URL as a parameter.
 
 ```jsx
 import { SwapWidget } from '@uniswap/widgets'
@@ -311,7 +311,7 @@ function App() {
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      defaultTokenList={CMC_TOKEN_LIST} // Use the CoinMarketCap token list
+      tokenList={CMC_TOKEN_LIST} // Use the CoinMarketCap token list
     />
   </div>
 }
@@ -360,7 +360,7 @@ function App() {
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      defaultTokenList={MY_TOKEN_LIST}
+      tokenList={MY_TOKEN_LIST}
     />
   </div>
 }
@@ -374,7 +374,7 @@ If you want to add Layer 2 tokens to the token list, you can add an extension fi
 
 You can set the `defaultInputTokenAddress` and the `defaultOutputTokenAddress` to pre-populate the input and output token fields respectively. This is useful when the widget appears in a context where you know which tokens the user is evaluating to trade. For example, if the widget appears on a page that displays the WBTC price chart, it would be helpful to pre-select WBTC as the output token in the widget.
 
-If your page does not need any particular defaults, then the recommended default input token is the native asset of the active network (e.g. ETH) and now default output token is recommended. Since ETH does not have an address, you can pass `'NATIVE'` as the parameter to set it as the default input or output token.
+If your page does not need any particular defaults, then the recommended default input token is the native asset of the active network (e.g. ETH) and no default output token is recommended. Since ETH does not have an address, you can pass `'NATIVE'` as the parameter to set it as the default input or output token.
 
 The following example sets the default input token to ETH and the default output token to WBTC.
 
@@ -396,7 +396,7 @@ function App() {
     <SwapWidget
       provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
-      defaultTokenList={UNISWAP_TOKEN_LIST}
+      tokenList={UNISWAP_TOKEN_LIST}
       defaultInputTokenAddress={NATIVE}
       defaultOutputTokenAddress={WBTC}
     />
