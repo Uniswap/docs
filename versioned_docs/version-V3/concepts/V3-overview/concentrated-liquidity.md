@@ -35,7 +35,7 @@ Importantly, LPs are free to create as many positions as they see fit, each with
 
 To achieve concentrated liquidity, the once continuous spectrum of price space has been partitioned with ticks.
 
-Ticks are the boundaries between discrete areas in price space. Ticks are spaced such that an increase or decrease of 1 tick represents a 0.0001% increase or decrease in price at any point in price space.
+Ticks are the boundaries between discrete areas in price space. Ticks are spaced such that an increase or decrease of 1 tick represents a 0.01% (1 basis point) increase or decrease in price at any point in price space.
 
 Ticks function as boundaries for liquidity positions. When a position is created, the provider must choose the lower and upper tick that will represent their position's borders.
 
