@@ -10,6 +10,6 @@ DEGEN arka planları, ya ortak bir arka planla ya da üç özel seçenekten biri
 
 ### Kazanç Çarpanları
 
-- Nadir: 1.5
+- Nadir: 2
 - Meta: 3
 - Efsanevi: 6

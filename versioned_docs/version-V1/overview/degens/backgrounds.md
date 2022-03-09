@@ -12,7 +12,7 @@ Backgrounds come with special perks such as a distinguished look in game and ext
 
 ## Earnings Multipliers
 
-- **Rare**: 1.5
+- **Rare**: 2
 - **Meta**: 3
 - **Legendary**: 6
 

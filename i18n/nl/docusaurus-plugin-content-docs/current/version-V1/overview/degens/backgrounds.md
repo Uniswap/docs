@@ -10,6 +10,6 @@ DEGEN-achtergronden werden willekeurig toegewezen bij het slaan, wat ofwel resul
 
 ### Winstvermenigvuldigers
 
-- Zeldzaam: 1.5
+- Zeldzaam: 2
 - Meta: 3
 - Legendarisch: 6

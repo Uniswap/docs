@@ -20,7 +20,7 @@ Rentals may be cancelled at any time via the renter dashboard.
 
 The rental will continue until it is cancelled by the renter or the renter's crypto wallet does not have a large enough NFTL balance to cover the cost of the rental. If this is the case, the player will be automatically kicked out of the queue and the DEGEN will be available to rent.
 
-All Play-and-earn earnings will be split between the DEGEN owner and renter according to the following profit share model - 30% of the in-game earnings go to the DEGEN owner, 70% of the in-game earnings go to the DEGEN renter.
+All play-and-earn earnings will be split between the DEGEN owner and renter according to the following profit share model - 30% of the in-game earnings go to the DEGEN owner, 70% of the in-game earnings go to the DEGEN renter.
 
 When navigating to the renter dashboard, you will see the current price and multiplier (these are locked upon confirming the rental agreement). Renters can also view NFTL earnings, gameplay stats, and more in the renter dashboard.
 

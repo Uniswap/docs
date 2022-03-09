@@ -12,7 +12,7 @@ sidebar_position: 2
 
 - Bat can be swung in all possible direction: left, right, up, down, diagonals
 - Bat can be swung by clicking the attack button. Longer button press makes the bat hit harder
-- Bat can be swung during standing, running, jumping
+- Bat can be swung while standing, running, and jumping
 - Long press attack button during jumps is possible (possibly surprising opponents)
 
 ### Moving

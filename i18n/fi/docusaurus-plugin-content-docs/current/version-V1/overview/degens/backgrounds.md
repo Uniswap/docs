@@ -10,6 +10,6 @@ DEGEN-taustat jaettiin satunnaisesti lyönnin yhteydessä, mikä johti joko yhte
 
 ### Tulojen kertoimet
 
-- Harvinainen: 1.5
+- Harvinainen: 2
 - Meta: 3
 - Legendaarinen: 6

@@ -10,6 +10,6 @@ DEGEN backgrounds were randomly assigned upon minting which either resulted in a
 
 ### Earnings Multipliers
 
-- Rare: 1.5
+- Rare: 2
 - Meta: 3
 - Legendary: 6

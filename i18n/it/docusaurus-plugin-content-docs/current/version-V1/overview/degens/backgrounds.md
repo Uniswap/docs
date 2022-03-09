@@ -10,6 +10,6 @@ Gli sfondi DEGEN sono stati assegnati casualmente al momento del conio che ha po
 
 ### Moltiplicatori di guadagni
 
-- Raro: 1.5
+- Raro: 2
 - Meta: 3
 - Leggendario: 6

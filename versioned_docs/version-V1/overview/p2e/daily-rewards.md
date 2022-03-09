@@ -4,9 +4,9 @@ title: Gameplay Rewards
 sidebar_position: 1
 ---
 
-Players are able to earn [NFTL](/docs/overview/nftl/overview) by gaming in Nifty Smashers - successfully landing hits on your opponent(s) and winning matches earn NFTL.
+Players are able to earn [NFTL](/docs/overview/nftl/overview) while gaming in Nifty Smashers - successfully landing hits on your opponent(s) and winning matches earn NFTL.
 
-The more you play and practice, the better you will play against your opponents, and the more NFTL you will earn by gaming.
+The more you play and practice, the better you will play against your opponents, and the more NFTL you will earn while gaming.
 
 New details will be announced as we define our emission model for each new game. We plan to implement a progression system to level-up DEGENs and gain additional rewards with the goal to enhance the player experience.
 

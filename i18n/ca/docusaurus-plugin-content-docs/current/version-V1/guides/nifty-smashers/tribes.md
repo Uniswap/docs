@@ -17,8 +17,8 @@ sidebar_position: 3
 
 ### Alien
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- Pressing the SA button makes Alien teleport a short distance in the aimed direction (left, right, up, down, diagonals)
+- There is an energy explosion at the teleported location, hitting opponents that stand near
 
 ### Ape
 

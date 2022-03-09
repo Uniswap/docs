@@ -9,8 +9,8 @@ Our current game, Nifty Smashers, and all future games will feature the same Spe
 ![https://cdn.discordapp.com/emojis/876655147634294794.png?size=44](https://cdn.discordapp.com/emojis/876655147634294794.png?size=44)
 **Alien**
 
-- Pressing the SA button makes Alien can teleport a short distance in the aimed direction (left, right, up, down, diagonals)
-- There is a energy explosion at the teleported location, hitting opponents that stand near
+- Pressing the SA button makes Alien teleport a short distance in the aimed direction (left, right, up, down, diagonals)
+- There is an energy explosion at the teleported location, hitting opponents that stand near
 
 ![https://cdn.discordapp.com/emojis/876605610165157968.png?size=44](https://cdn.discordapp.com/emojis/876605610165157968.png?size=44)
 **Ape**
