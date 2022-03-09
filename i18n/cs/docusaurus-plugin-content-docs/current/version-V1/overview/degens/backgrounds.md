@@ -10,6 +10,6 @@ Pozadí DEGEN byla náhodně přiřazena při ražbě, což mělo za následek b
 
 ### Multiplikátory výdělků
 
-- Vzácné: 1.5
+- Vzácné: 2
 - Meta: 3
 - Legendární: 6

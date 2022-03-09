@@ -24,7 +24,7 @@ Our current game, [Nifty Smashers](/docs/overview/games/nifty-smashers), and all
 
 Learn more about these movesets in our [Smashers Guide](/docs/guides/nifty-smashers/tribes).
 
-In the future, we envision introducing new "special" tribes may be released for scalability, new games, tournament rewards, and more.
+In the future, we envision new "special" tribes may be released for scalability, new games, tournament rewards, and more.
 
 | ![](/img/alien-sketch.gif) | ![](/img/cat-sketch.gif) | ![](/img/doge-sketch.gif) |
 | -------------------------- | ------------------------ | ------------------------- |

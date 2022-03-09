@@ -10,6 +10,6 @@ Los fondos DEGEN se asignaron aleatoriamente al acuñar, lo que resultó en un f
 
 ### Multiplicadores de ganancias
 
-- Raro: 1.5
+- Raro: 2
 - Meta: 3
 - Legendario: 6
