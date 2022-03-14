@@ -61,7 +61,7 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 | Name          | Requirement | Description                                                                                                                                          |
 | ------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | amount        | [required]  | The amount specified by the user. For EXACT_INPUT swaps, this is the input token amount. For EXACT_OUTPUT swaps, this is the output token.                 |
-| quoteCurrency | [required]  | The currency of the token we are returning a quote for. For EXACT_INPUT swaps, this is the output token. For EXACT_OUTPUT, this is the input tok           |
+| quoteCurrency | [required]  | The currency of the token we are returning a quote for. For EXACT_INPUT swaps, this is the output token. For EXACT_OUTPUT, this is the input token           |
 | swapType      | [required]  | Either an exactInput swap or an exactOutput swap.                                                                                                    |
 | swapConfig    | [optional]  | Configure to set a recipient, slippageTolerance, deadline, and inputTokenPermit. If provided, calldata for executing the swap will also be returned. |
 | routingConfig | [optional]  | Optional config for tuning the performance of the routing algorithm.                                                                                 |
@@ -92,7 +92,7 @@ const route = await router.route(
   {
     recipient: myAddress,
     slippageTolerance: new Percent(5, 100),
-    deadline: Date.now() + 1800
+    deadline: Math.floor(Date.now()/1000 +1800)
   }
 );
 ```
@@ -173,7 +173,7 @@ const route = await router.route(
   {
     recipient: myAddress,
     slippageTolerance: new Percent(5, 100),
-    deadline: Date.now() + 1800
+    deadline: Math.floor(Date.now()/1000 +1800)
   }
 );
 
