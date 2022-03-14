@@ -2,7 +2,7 @@ Functions for swapping tokens via Uniswap V3
 
 ## Parameter Structs
 
-Note that `fee` is in hundreds of basis points (e.g. the `fee` for a pool at the 0.3% tier is 3000; the `fee` for a pool at the 0.01% tier is 100).
+Note that `fee` is in hundredths of basis points (e.g. the `fee` for a pool at the 0.3% tier is 3000; the `fee` for a pool at the 0.01% tier is 100).
 
 ### ExactInputSingleParams
 
