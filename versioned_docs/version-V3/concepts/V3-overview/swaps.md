@@ -5,7 +5,7 @@ title: Swaps
 
 ## Introduction
 
-Swaps are the most common way of interacting with the Uniswap protocol. For end-users, swapping is straightforward: a user selects an ERC-20 token that they own and a token they would like to trade it for. Executing a swap sells the currently owned tokens for the proportional[1] amount of the tokens desired, minus the swap fee, which is awarded to liquidity providers[^2]. Swapping with the Uniswap protocol is a permissionless process.
+Swaps are the most common way of interacting with the Uniswap protocol. For end-users, swapping is straightforward: a user selects an ERC-20 token that they own and a token they would like to trade it for. Executing a swap sells the currently owned tokens for the proportional[^1] amount of the tokens desired, minus the swap fee, which is awarded to liquidity providers[^2]. Swapping with the Uniswap protocol is a permissionless process.
 
 > note: Using web interfaces (websites) to swap via the Uniswap protocol can introduce additional permission structures, and may result in different execution behavior compared to using the Uniswap protocol directly. To learn more about the differences between the protocol and a web interface, see What is Uniswap.
 
@@ -41,6 +41,6 @@ Price impact and slippage can both change while a transaction is pending, which 
 
 - **INSUFFICIENT_OUTPUT_AMOUNT** : When a user submits a swap, the Uniswap interface will send an estimate of how much of the purchased token the user should expect to receive. If the anticipated output amount of a swap does not match the estimate within a certain margin of error (the slippage tolerance), the swap will be canceled. This attempts to protect the user from any drastic and unfavorable price changes while their transaction is pending.
 
-[^1] Proportional in this instance takes into account many factors, including the relative price of one token in terms of the other, slippage, price impact, and other factors related to the open and adversarial nature of Ethereum.
-[^2] For information about liquidity provision, see the liquidity user guide
-[^3] The Uniswap interface informs the user about the circumstances of their swap, but it is not guaranteed.
+[^1]: Proportional in this instance takes into account many factors, including the relative price of one token in terms of the other, slippage, price impact, and other factors related to the open and adversarial nature of Ethereum.
+[^2]: For information about liquidity provision, see the liquidity user guide
+[^3]: The Uniswap interface informs the user about the circumstances of their swap, but it is not guaranteed.
