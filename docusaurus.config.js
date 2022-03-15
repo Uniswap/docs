@@ -117,20 +117,6 @@ module.exports = {
           position: "right",
           className: "persistent",
         },
-        {
-          type: "localeDropdown",
-
-          //// Optional
-          position: "right",
-          // Add additional dropdown items at the beginning/end of the dropdown.
-          dropdownItemsBefore: [],
-          dropdownItemsAfter: [
-            {
-              to: "https://my-site.com/help-us-translate",
-              label: "Help us translate",
-            },
-          ],
-        },
       ],
     },
     footer: {
