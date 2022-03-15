@@ -1,7 +1,6 @@
 ---
 id: process
 title: Process
-tags: goveranance, documentation
 ---
 
 This document is a living document which represents the current process guidelines for developing and advancing Uniswap Governance Proposals.

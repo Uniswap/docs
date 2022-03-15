@@ -1,7 +1,6 @@
 ---
 id: quick-start
 title: Smart Contract Quick start
-tags: smart contract integration, documentation, quick start
 ---
 
 Developing smart contracts for Ethereum involves a bevy of off-chain tools used for producing and testing bytecode

@@ -1,7 +1,6 @@
 ---
 id: library
 title: Library
-tags: smart-contracts, documentation
 ---
 
 # Library

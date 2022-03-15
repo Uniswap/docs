@@ -1,7 +1,6 @@
 ---
 id: factory
 title: Factory
-tags: smart-contracts, documentation
 ---
 
 # Factory

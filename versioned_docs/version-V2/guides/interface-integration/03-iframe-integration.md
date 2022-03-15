@@ -1,7 +1,6 @@
 ---
 id: iframe-integration
 title: Iframe Integration
-tags: frontend integration, documentation
 ---
 
 Uniswap can be used within other sites as an iframe. An iframe shows an exact version of the uniswap frontend site and can have custom prefilled settings.

@@ -1,7 +1,6 @@
 ---
 id: trading
 title: Trading
-tags: SDK, developer-guides, documentation
 ---
 
 > Looking for a [quickstart](quick-start)?

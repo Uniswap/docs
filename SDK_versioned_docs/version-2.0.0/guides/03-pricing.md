@@ -1,7 +1,6 @@
 ---
 id: pricing
 title: Pricing
-tags: SDK, developer-guides, documentation
 ---
 
 > Looking for a [quickstart](quick-start)?

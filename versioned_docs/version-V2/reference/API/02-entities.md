@@ -1,7 +1,6 @@
 ---
 id: entities
 title: Entities
-tags: api, documentation
 ---
 
 Entities define the schema of the subgraph, and represent the data that can be queried. Within each entity are sets of fields that store useful information related to the entity. Below is a list of the available entities within the Uniswap Subgraph, and descriptions for the available fields.

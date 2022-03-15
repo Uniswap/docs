@@ -1,7 +1,6 @@
 ---
 id: pools
 title: Pools
-tags: pools, documentation
 ---
 
 ![](./images/anatomy.jpg)

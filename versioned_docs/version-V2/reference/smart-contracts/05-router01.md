@@ -1,7 +1,6 @@
 ---
 id: router-01
 title: Router01
-tags: smart-contracts, documentation
 ---
 
 > UniswapV2Router01 should not be used any longer, because of the discovery of a [low severity bug](../smart-contracts/router-01#getamountin) and the fact that some methods do not work with tokens that take fees on transfer. The current recommendation is to use [UniswapV2Router02](../smart-contracts/router-02).

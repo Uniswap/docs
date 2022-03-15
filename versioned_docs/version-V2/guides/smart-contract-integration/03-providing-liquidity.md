@@ -1,7 +1,6 @@
 ---
 id: providing-liquidity
 title: Providing Liquidity
-tags: smart contract integration, developer-guides, documentation
 ---
 
 # Providing Liquidity

@@ -1,7 +1,6 @@
 ---
 id: overview
 title: Overview
-tags: smart-contracts, documentation
 ---
 
 ## Code

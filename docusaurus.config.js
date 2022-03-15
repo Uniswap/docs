@@ -70,7 +70,7 @@ module.exports = {
           className: "V2_active",
         },
         {
-          to: "/sdk/2.0.0/introduction",
+          to: "/sdk/2.0.0/",
           label: "SDK",
           position: "left",
           className: "V2_active",
@@ -94,7 +94,7 @@ module.exports = {
           className: "V1_active",
         },
         {
-          to: "/sdk/1.0.0/introduction",
+          to: "/sdk/1.0.0/",
           label: "SDK",
           position: "left",
           className: "V1_active",
@@ -234,20 +234,6 @@ module.exports = {
       // Should we use the prefers-color-scheme media-query,
       // using user system preferences, instead of the hardcoded defaultMode
       respectPrefersColorScheme: true,
-
-      // Dark/light switch icon options
-      switchConfig: {
-        // Icon for the switch while in dark mode
-        darkIcon: "\u{263D}",
-
-        // Unicode icons such as '\u2600' will work
-        // Unicode with 5 chars require brackets: '\u{1F602}'
-        lightIcon: "\u{263C}",
-      },
-    },
-    googleAnalytics: {
-      trackingID: "UA-128182339-7",
-      anonymizeIP: true,
     },
   },
   presets: [
@@ -260,8 +246,22 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/uniswap/uniswap-docs/tree/main/",
           includeCurrentVersion: false,
+          versions: {
+            V3: {
+              banner: "none",
+            },
+            V2: {
+              banner: "none",
+            },
+            V1: {
+              banner: "none",
+            },
+          },
         },
-
+        googleAnalytics: {
+          trackingID: "UA-128182339-7",
+          anonymizeIP: true,
+        },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
           customCss2: require.resolve("./src/css/colors.css"),
@@ -278,6 +278,17 @@ module.exports = {
         routeBasePath: "sdk/",
         sidebarPath: require.resolve("./sdkSidebars.js"),
         includeCurrentVersion: false,
+        versions: {
+          "3.0.0": {
+            banner: "none",
+          },
+          "2.0.0": {
+            banner: "none",
+          },
+          "1.0.0": {
+            banner: "none",
+          },
+        },
       },
     ],
   ],

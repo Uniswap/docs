@@ -1,7 +1,6 @@
 ---
 id: custom-interface-linking
 title: Custom Linking
-tags: frontend integration, documentation
 ---
 
 # Query Parameters

@@ -1,7 +1,6 @@
 ---
 id: pair
 title: Pair
-tags: sdk, documentation
 ---
 
 ```typescript
