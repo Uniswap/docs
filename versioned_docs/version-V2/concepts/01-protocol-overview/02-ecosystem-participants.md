@@ -1,7 +1,6 @@
 ---
 id: ecosystem-participants
 title: Ecosystem Participants
-tags: protocol-overview, documentation
 ---
 
 ![](./images/participants.jpg)

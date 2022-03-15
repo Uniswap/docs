@@ -1,7 +1,6 @@
 ---
 id: trade
 title: Trade
-tags: sdk, documentation
 ---
 
 ```typescript

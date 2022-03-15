@@ -1,7 +1,6 @@
 ---
 id: getting-started
 title: Getting Started
-tags: sdk, documentation
 ---
 
 The pages that follow contain technical reference information on the Uniswap SDK.

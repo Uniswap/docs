@@ -1,7 +1,6 @@
 ---
 id: common-errors
 title: Common Errors
-tags: smart-contracts, documentation
 ---
 
 This document covers a few error codes frequently encountered while building on Uniswap V2.

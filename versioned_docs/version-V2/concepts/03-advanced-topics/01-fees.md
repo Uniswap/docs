@@ -1,7 +1,6 @@
 ---
 id: fees
 title: Fees
-tags: protocol-overview, documentation
 ---
 
 ## Liquidity provider fees

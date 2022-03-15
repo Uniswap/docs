@@ -1,7 +1,6 @@
 ---
 id: governance-reference
 title: Governance Reference
-tags: governance, documentation
 ---
 
 > The updated reference for the newly deployed Governor Bravo is available via [Etherscan](https://etherscan.io/address/0x408ED6354d4973f66138C91495F2f2FCbd8724C3), some of the reference material below may be out of date.

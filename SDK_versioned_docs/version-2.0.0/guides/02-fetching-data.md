@@ -1,7 +1,6 @@
 ---
 id: fetching-data
 title: Fetching Data
-tags: SDK, developer-guides, documentation
 ---
 
 > Looking for a [quickstart](quick-start)?

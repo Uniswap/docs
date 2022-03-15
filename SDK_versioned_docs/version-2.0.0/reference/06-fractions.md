@@ -1,7 +1,6 @@
 ---
 id: fractions
 title: Fractions
-tags: sdk, documentation
 ---
 
 # Fraction

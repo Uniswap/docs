@@ -1,7 +1,6 @@
 ---
 id: glossary
 title: Glossary
-tags: goveranance, documentation
 ---
 
 - **UNI:** An ERC-20 token that designates the weight of a user&#39;s voting rights. The more UNI a user has in their wallet, the more weight their delegation or vote on a proposal holds.

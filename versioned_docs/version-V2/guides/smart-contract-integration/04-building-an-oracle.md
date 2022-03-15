@@ -1,7 +1,6 @@
 ---
 id: building-an-oracle
 title: Building an Oracle
-tags: oracles, documentation
 ---
 
 To build a price oracle on Uniswap V2, you must first understand the

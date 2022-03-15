@@ -1,7 +1,6 @@
 ---
 id: understanding-returns
 title: Understanding Returns
-tags: pools, documentation
 ---
 
 Uniswap incentivizes users to add liquidity to trading pools by rewarding providers with the fees generated when other users trade with those pools. Market making, in general, is a complex activity. There is a risk of losing money during large and sustained movement in the underlying asset price compared to simply holding an asset.

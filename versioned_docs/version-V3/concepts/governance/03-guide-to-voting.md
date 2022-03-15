@@ -1,7 +1,6 @@
 ---
 id: guide-to-voting
 title: Beginners Guide to Voting
-tags: goveranance, documentation
 ---
 
 This guide contains everything you need to start voting in Uniswap Governance.

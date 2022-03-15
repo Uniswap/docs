@@ -1,7 +1,6 @@
 ---
 id: Pair-ERC-20
 title: Pair (ERC-20)
-tags: smart-contracts, documentation
 ---
 
 This documentation covers ERC-20 functionality for denominating pool tokens. For Uniswap-specific functionality, see [Pair](../smart-contracts/pair).

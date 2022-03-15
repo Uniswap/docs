@@ -1,7 +1,6 @@
 ---
 id: pricing
 title: Pricing
-tags: swaps, documentation
 ---
 
 # How are prices determined?

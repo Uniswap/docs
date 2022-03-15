@@ -1,7 +1,6 @@
 ---
 id: oracles
 title: Oracles
-tags: oracles, documentation
 ---
 
 # Introduction

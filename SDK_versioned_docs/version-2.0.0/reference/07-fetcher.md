@@ -1,7 +1,6 @@
 ---
 id: fetcher
 title: Fetcher
-tags: sdk, documentation
 ---
 
 The data fetching logic is split from the rest of the code for better tree-shaking,
