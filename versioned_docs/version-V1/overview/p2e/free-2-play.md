@@ -4,7 +4,7 @@ title: Free-to-play
 sidebar_position: 3
 ---
 
-[Nifty Smashers](/docs/overview/games/nifty-smashers) Free-to-Play ("F2P") will launch in March 2022. F2P is key to the renter and owner onboarding flow. We plan to launch initially on desktop, and later on mobile including Android and iOS.
+[Nifty Smashers](/docs/overview/games/nifty-smashers) Free-to-Play ("F2P") is key to the renter and owner onboarding flow. We plan to launch initially on desktop, and later on mobile including Android and iOS.
 
 In F2P, players will be able to jump into the game immediately.
 
