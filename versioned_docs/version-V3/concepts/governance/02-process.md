@@ -67,7 +67,7 @@ To create a Governance Proposal:
 
 1. Call the propose() function of the Governor Bravo to deploy your proposal.
 
-Once the propose() function has been called, a seven day voting period will start. Ongoing discussion can take place in the gov.uniswap.org forum. If the proposal passes successfully, a two day timelock will follow before the proposed code is executed.
+Once the propose() function has been called, a two day voting delay will start. After voting delay is finished a seven day voting period begins. Ongoing discussion can take place in the gov.uniswap.org forum. If the proposal passes successfully, a two day timelock will follow before the proposed code is executed.
 
 ## Soft governance
 
