@@ -3,7 +3,7 @@ id: auto-router
 title: Integrating the Auto Router
 ---
 
-# Quick Start
+# Integrating the Auto Router
 
 You can use the Auto Router to fetch optimized trade routes for swapping on Uniswap. To use the Auto Router, you will create an `AlphaRouter` instance and use the method `route` to get quotes, gas information, and calldata for an optimized swap.
 
@@ -60,8 +60,8 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 
 | Name          | Requirement | Description                                                                                                                                          |
 | ------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| amount        | [required]  | The amount specified by the user. For EXACT_INPUT swaps, this is the input token amount. For EXACT_OUTPUT swaps, this is the output token.                 |
-| quoteCurrency | [required]  | The currency of the token we are returning a quote for. For EXACT_INPUT swaps, this is the output token. For EXACT_OUTPUT, this is the input token           |
+| amount        | [required]  | The amount specified by the user. For EXACT_INPUT swaps, this is the input token amount. For EXACT_OUTPUT swaps, this is the output token.           |
+| quoteCurrency | [required]  | The currency of the token we are returning a quote for. For EXACT_INPUT swaps, this is the output token. For EXACT_OUTPUT, this is the input token   |
 | swapType      | [required]  | Either an exactInput swap or an exactOutput swap.                                                                                                    |
 | swapConfig    | [optional]  | Configure to set a recipient, slippageTolerance, deadline, and inputTokenPermit. If provided, calldata for executing the swap will also be returned. |
 | routingConfig | [optional]  | Optional config for tuning the performance of the routing algorithm.                                                                                 |
@@ -71,30 +71,25 @@ This example gets a route for a WETH-USDC swap.
 ```typescript
 const WETH = new Token(
   1,
-  '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+  "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
   18,
-  'WETH',
-  'Wrapped Ether'
+  "WETH",
+  "Wrapped Ether"
 );
 
 const USDC = new Token(
   ChainId.MAINNET,
-  '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+  "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
   6,
-  'USDC',
-  'USD//C'
+  "USDC",
+  "USD//C"
 );
 
-const route = await router.route(
-  wethAmount,
-  USDC,
-  TradeType.EXACT_INPUT,
-  {
-    recipient: myAddress,
-    slippageTolerance: new Percent(5, 100),
-    deadline: Math.floor(Date.now()/1000 +1800)
-  }
-);
+const route = await router.route(wethAmount, USDC, TradeType.EXACT_INPUT, {
+  recipient: myAddress,
+  slippageTolerance: new Percent(5, 100),
+  deadline: Math.floor(Date.now() / 1000 + 1800),
+});
 ```
 
 ## Submitting a Transaction
