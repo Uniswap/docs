@@ -5,7 +5,7 @@ title: Fetching Spot Prices
 
 ## Fetching Token Prices with the SDK
 
-This guide will teach you how to fetch the current market price of any token on Uniswap. First, you will learn how to call the getter methods `token0Price` and `token1Price` exposed on `Pool` instances. Then you will peek under the hood and learn how the SDK calculates these quantities from the `sqrtPriceX96` value. Going through these calculations will hopefully provide the necessary context behind fixed-point numbers, square roots, and difficult-to-understand variable names like `sqrtPriceX96`. :)
+This guide will teach you how to fetch the current market price of any token on Uniswap. First, you will learn how to call the getter methods `token0Price` and `token1Price` exposed on `Pool` instances. Then you will peek under the hood and learn how the SDK calculates these quantities from the `sqrtPriceX96` value. Going through these calculations will hopefully provide the necessary context behind fixed-point numbers, square roots, and difficult-to-understand variable names like `sqrtPriceX96`.
 
 ### Calling the functions
 
