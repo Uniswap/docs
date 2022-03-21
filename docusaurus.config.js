@@ -263,6 +263,9 @@ module.exports = {
         path: "sdk",
         routeBasePath: "sdk/",
         sidebarPath: require.resolve("./sdkSidebars.js"),
+        remarkPlugins: [
+          [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+        ],
         includeCurrentVersion: false,
         versions: {
           "3.0.0": {
