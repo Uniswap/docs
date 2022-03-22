@@ -1,6 +1,5 @@
 ---
 title: An Introduction to Gas Optimization
-description: This is my first post on Docusaurus 2.
 authors:
   - name: Moody Salem
     url: https://github.com/moodysalem
