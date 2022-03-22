@@ -39,7 +39,7 @@ While much of the discourse around gas optimization takes the form of specific i
 
 If there’s one lesson to learn from this post, it’s that all optimization starts with measurement. The single biggest tool in our arsenal of gas optimization is the [snapshot test](https://jestjs.io/docs/snapshot-testing) borrowed from Jest snapshot testing. For V3, we used a snippet in combination with the [mocha-chai-jest-snapshot](https://www.npmjs.com/package/mocha-chai-jest-snapshot) plugin to record gas costs in [hundreds of situations](https://github.com/Uniswap/v3-core/blob/ed88be38ab2032d82bf10ac6f8d03aa631889d48/test/__snapshots__/UniswapV3Pool.gas.spec.ts.snap)
 
-The code below has been implimented in an NPM package: [The Uniswap Gas Snapshot Test](https://www.npmjs.com/package/@uniswap/snapshot-gas-cost)
+The code below, which we use in our development process, has been implimented in an NPM package for easy use in your project: [The Uniswap Gas Snapshot Test](https://www.npmjs.com/package/@uniswap/snapshot-gas-cost)
 
 ```typescript
 import {
