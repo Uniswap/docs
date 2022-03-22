@@ -69,7 +69,7 @@ contract PairFlash is IUniswapV3FlashCallback, PeripheryImmutableState, Peripher
                     tokenOut: token0,
                     fee: decoded.poolFee2,
                     recipient: address(this),
-                    deadline: block.timestamp + 200,
+                    deadline: block.timestamp,
                     amountIn: decoded.amount1,
                     amountOutMinimum: amount0Min,
                     sqrtPriceLimitX96: 0
@@ -84,7 +84,7 @@ contract PairFlash is IUniswapV3FlashCallback, PeripheryImmutableState, Peripher
                     tokenOut: token1,
                     fee: decoded.poolFee3,
                     recipient: address(this),
-                    deadline: block.timestamp + 200,
+                    deadline: block.timestamp,
                     amountIn: decoded.amount0,
                     amountOutMinimum: amount1Min,
                     sqrtPriceLimitX96: 0
