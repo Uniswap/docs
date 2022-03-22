@@ -86,7 +86,7 @@ Context is also relevant for where to spend your time in a codebase. For example
 
 Sometimes optimization is less clear cut. In many cases, the code is strictly better after a change, whereas in others, certain scenarios become more expensive while making others less, e.g., mint is cheaper, but swap is more expensive. In order to understand whether to commit to a change, it’s important to understand how users will interact with a contract.
 
-An extreme example of this is the lack of proxies in the Uniswap V3 codebase. Using a proxy could save millions of gas every time you create a V3 pool. However, users will interact with a particular pool on average over a thousand times over the lifetime of the contracts. Assuming $O(1M)$ gas and $O(1k)$ calls per contract, the proxy must have an overhead of less than $O(1M) / O(1K) = O(1K)$ gas. The overhead of a proxy, unfortunately, is more than that. A proxy contract means that an implementation address *and* a proxy address must be called to execute a swap. Calling a new address as part of a swap incurs an additional minimum $O(1K)$ gas. Interestingly, the solidity optimizer ‘runs’ parameter does something like this: it optimizes your code such that the gas cost is minimized if you deployed and ran your contract `runs` times.
+An extreme example of this is the lack of proxies in the Uniswap V3 codebase. Using a proxy could save millions of gas every time you create a V3 pool. However, users will interact with a particular pool on average over a thousand times over the lifetime of the contracts. Assuming $O(1M)$ gas and $O(1k)$ calls per contract, the proxy must have an overhead of less than $O(1M) / O(1K) = O(1K)$ gas. The overhead of a proxy, unfortunately, is more than that. A proxy contract means that an implementation address *and* a proxy address must be called to execute a swap. Calling a new address as part of a swap incurs an additional minimum $O(1K)$ gas. Interestingly, the Solidity optimizer ‘runs’ parameter does something like this: it optimizes your code such that the gas cost is minimized if you deployed and ran your contract `runs` times.
 
 # In Practice: storage packing
 
@@ -130,8 +130,8 @@ To verify that this is the case, we can simply add up the number of bits used by
 
 $160 + 24 + 16 + 16 + 16 + 8 + 1 = 241$
 
-This tells us we actually have 15 bits to spare! This contract stores many more variables, some of which take up entire slots on their own, but by carefully selecting the variables with compact representations and declaring them side-by-side, we’ve achieved our aim of gas optimization. By this point, it should be apparent that gas optimization is not just a matter of clever ticks and novel expressions of data; but also a matter of foundational decision-making made while designing the architecture of your smart contracts.
+This tells us we actually have 15 bits to spare! This contract stores many more variables, some of which take up entire slots on their own, but by carefully selecting the variables with compact representations and declaring them side-by-side, we’ve achieved our aim of gas optimization. By this point, it should be apparent that gas optimization is not just a matter of clever tricks and novel expressions of data; but also a matter of foundational decision-making made while designing the architecture of your smart contracts.
 
-For a deeper look into slot packing in solidity, a good place to start is the [solidity documentation](https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html).
+For a deeper look into slot packing in Solidity, a good place to start is the [Solidity Documentation](https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html).
 
 </div>
