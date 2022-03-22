@@ -15,9 +15,11 @@ image: /use.png
 slug: intro-to-gas-optimization
 ---
 
+<div class="blog">
+
 <img src={require('./use.png').default} alt="RangeOrder1" width="100%" height="100%" />
 
-## Gas Optimization
+# Gas Optimization
 
 :::tip
 
@@ -35,7 +37,7 @@ As a result, it is difficult to overstate the significance of these optimization
 
 While much of the discourse around gas optimization takes the form of specific implementation techniques, which can be quite fun to read and experiment with, we think a more effective approach is the development of a process around gas optimization, rather than a blog full of tricks.
 
-## Measurement
+# Measurement
 
 If there’s one lesson to learn from this post, it’s that all optimization starts with measurement. The single biggest tool in our arsenal of gas optimization is the [snapshot test](https://jestjs.io/docs/snapshot-testing) borrowed from Jest snapshot testing. For V3, we used a snippet in combination with the [mocha-chai-jest-snapshot](https://www.npmjs.com/package/mocha-chai-jest-snapshot) plugin to record gas costs in [hundreds of situations](https://github.com/Uniswap/v3-core/blob/ed88be38ab2032d82bf10ac6f8d03aa631889d48/test/__snapshots__/UniswapV3Pool.gas.spec.ts.snap)
 
@@ -86,7 +88,7 @@ Sometimes optimization is less clear cut. In many cases, the code is strictly be
 
 An extreme example of this is the lack of proxies in the Uniswap V3 codebase. Using a proxy could save millions of gas every time you create a V3 pool. However, users will interact with a particular pool on average over a thousand times over the lifetime of the contracts. Assuming $O(1M)$ gas and $O(1k)$ calls per contract, the proxy must have an overhead of less than $O(1M) / O(1K) = O(1K)$ gas. The overhead of a proxy, unfortunately, is more than that. A proxy contract means that an implementation address *and* a proxy address must be called to execute a swap. Calling a new address as part of a swap incurs an additional minimum $O(1K)$ gas. Interestingly, the solidity optimizer ‘runs’ parameter does something like this: it optimizes your code such that the gas cost is minimized if you deployed and ran your contract `runs` times.
 
-## In Practice: storage packing
+# In Practice: storage packing
 
 When optimizing smart contracts, it’s important to identify areas of the code that are likely to yield the most significant returns (in terms of gas saved). To gain intuition about this, it’s important to take a step back and understand the fundamental constraints at play.
 
@@ -131,3 +133,5 @@ $160 + 24 + 16 + 16 + 16 + 8 + 1 = 241$
 This tells us we actually have 15 bits to spare! This contract stores many more variables, some of which take up entire slots on their own, but by carefully selecting the variables with compact representations and declaring them side-by-side, we’ve achieved our aim of gas optimization. By this point, it should be apparent that gas optimization is not just a matter of clever ticks and novel expressions of data; but also a matter of foundational decision-making made while designing the architecture of your smart contracts.
 
 For a deeper look into slot packing in solidity, a good place to start is the [solidity documentation](https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html).
+
+</div>
