@@ -20,7 +20,7 @@ slug: intro-to-gas-optimization
 
 ## Gas Optimization
 
-:::tip
+:::tip Get Started
 
 To help devs get their contracts into tip-top shape before deployment, we reconfigured our most used gas snapshot tool as a simple npm package: [The Uniswap Gas Snapshot Test](https://www.npmjs.com/package/@uniswap/snapshot-gas-cost)
 
@@ -93,7 +93,9 @@ When optimizing smart contracts, it’s important to identify areas of the code 
 
 The most expensive operations on Ethereum (and most other L1 blockchains) typically involve storing and fetching data that must persist across transactions and blocks. The totality of this data is referred to as the blockchain’s *state*. If we zoom in to the subset of that state associated with a particular smart contract, we refer to it as the contract’s *storage*.
 
-(A quick aside: storing and retrieving state is so expensive because it must reside on [disk](https://en.wikipedia.org/wiki/Disk_storage), as it’s too large to fit in [memory](https://en.wikipedia.org/wiki/Random-access_memory). For more information on these types of tradeoffs in blockchain settings, see [The Limits to Blockchain Scalability](https://vitalik.ca/general/2021/05/23/scaling.html).)
+:::note Disk vs Memory
+A quick aside: storing and retrieving state is so expensive because it must reside on [disk](https://en.wikipedia.org/wiki/Disk_storage), as it’s too large to fit in [memory](https://en.wikipedia.org/wiki/Random-access_memory). For more information on these types of tradeoffs in blockchain settings, see [The Limits to Blockchain Scalability](https://vitalik.ca/general/2021/05/23/scaling.html).
+:::
 
 So, returning to optimization, it’s clear that one of our primary goals should be to minimize our contract’s use of storage, as this can lead to massive savings for end-users.
 
