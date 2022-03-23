@@ -110,7 +110,7 @@ module.exports = {
         },
         {
           label: "Blog",
-          to: "/blog",
+          to: "/blog/intro-to-gas-optimization",
           position: "right",
           className: "persistent",
         },
@@ -258,7 +258,7 @@ module.exports = {
         blog: {
           remarkPlugins: [math],
           rehypePlugins: [katex],
-          path: "blog",
+          path: "blog/",
           blogTitle: "Engineering Blog",
           blogSidebarCount: 0,
         },
