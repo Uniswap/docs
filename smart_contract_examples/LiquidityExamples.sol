@@ -39,7 +39,7 @@ contract LiquidityExamples is IERC721Receiver {
 
     function _createDeposit(address owner, uint256 tokenId) internal {
         (, , address token0, address token1, , , , uint128 liquidity, , , , ) =
-            nonfungiblePositionManager.positions(tokenId);
+        INonfungiblePositionManager(nonfungiblePositionManager).positions(tokenId);
         // set the owner and data for position
         deposits[tokenId] = Deposit({owner: owner, liquidity: liquidity, token0: token0, token1: token1});
     }
@@ -51,13 +51,13 @@ contract LiquidityExamples is IERC721Receiver {
     /// @return amount0 The amount of token0
     /// @return amount1 The amount of token1
     function mintNewPosition()
-        external
-        returns (
-            uint256 tokenId,
-            uint128 liquidity,
-            uint256 amount0,
-            uint256 amount1
-        )
+    external
+    returns (
+        uint256 tokenId,
+        uint128 liquidity,
+        uint256 amount0,
+        uint256 amount1
+    )
     {
         // For this example, we will provide equal amounts of liquidity in both assets.
         // Providing liquidity in both assets means liquidity will be earning fees and is considered in-range.
@@ -75,22 +75,22 @@ contract LiquidityExamples is IERC721Receiver {
         // The values for tickLower and tickUpper may not work for all tick spacings.
         // Setting amount0Min and amount1Min to 0 is unsafe.
         INonfungiblePositionManager.MintParams memory params =
-            INonfungiblePositionManager.MintParams({
-                token0: DAI,
-                token1: USDC,
-                fee: poolFee,
-                tickLower: TickMath.MIN_TICK,
-                tickUpper: TickMath.MAX_TICK,
-                amount0Desired: amount0ToMint,
-                amount1Desired: amount1ToMint,
-                amount0Min: 0,
-                amount1Min: 0,
-                recipient: address(this),
-                deadline: block.timestamp
-            });
+        INonfungiblePositionManager.MintParams({
+        token0: DAI,
+        token1: USDC,
+        fee: poolFee,
+        tickLower: TickMath.MIN_TICK,
+        tickUpper: TickMath.MAX_TICK,
+        amount0Desired: amount0ToMint,
+        amount1Desired: amount1ToMint,
+        amount0Min: 0,
+        amount1Min: 0,
+        recipient: address(this),
+        deadline: block.timestamp
+        });
 
         // Note that the pool defined by DAI/USDC and fee tier 0.3% must already be created and initialized in order to mint
-        (tokenId, liquidity, amount0, amount1) = nonfungiblePositionManager.mint(params);
+        (tokenId, liquidity, amount0, amount1) = INonfungiblePositionManager(nonfungiblePositionManager).mint(params);
 
         // Create a deposit
         _createDeposit(msg.sender, tokenId);
@@ -119,14 +119,14 @@ contract LiquidityExamples is IERC721Receiver {
         // set amount0Max and amount1Max to type(uint128).max to collect all fees
         // alternatively can set recipient to msg.sender and avoid another transaction in `sendToOwner`
         INonfungiblePositionManager.CollectParams memory params =
-            INonfungiblePositionManager.CollectParams({
-                tokenId: tokenId,
-                recipient: address(this),
-                amount0Max: type(uint128).max,
-                amount1Max: type(uint128).max
-            });
+        INonfungiblePositionManager.CollectParams({
+        tokenId: tokenId,
+        recipient: address(this),
+        amount0Max: type(uint128).max,
+        amount1Max: type(uint128).max
+        });
 
-        (amount0, amount1) = nonfungiblePositionManager.collect(params);
+        (amount0, amount1) = INonfungiblePositionManager(nonfungiblePositionManager).collect(params);
 
         // send collected fees back to owner
         _sendToOwner(tokenId, amount0, amount1);
@@ -146,15 +146,15 @@ contract LiquidityExamples is IERC721Receiver {
         // amount0Min and amount1Min are price slippage checks
         // if the amount received after burning is not greater than these minimums, transaction will fail
         INonfungiblePositionManager.DecreaseLiquidityParams memory params =
-            INonfungiblePositionManager.DecreaseLiquidityParams({
-                tokenId: tokenId,
-                liquidity: halfLiquidity,
-                amount0Min: 0,
-                amount1Min: 0,
-                deadline: block.timestamp
-            });
+        INonfungiblePositionManager.DecreaseLiquidityParams({
+        tokenId: tokenId,
+        liquidity: halfLiquidity,
+        amount0Min: 0,
+        amount1Min: 0,
+        deadline: block.timestamp
+        });
 
-        (amount0, amount1) = nonfungiblePositionManager.decreaseLiquidity(params);
+        (amount0, amount1) = INonfungiblePositionManager(nonfungiblePositionManager).decreaseLiquidity(params);
 
         // send liquidity back to owner
         _sendToOwner(tokenId, amount0, amount1);
@@ -170,15 +170,16 @@ contract LiquidityExamples is IERC721Receiver {
         uint256 amountAdd0,
         uint256 amountAdd1
     )
-        external
-        returns (
-            uint128 liquidity,
-            uint256 amount0,
-            uint256 amount1
-        )
+    external
+    returns (
+        uint128 liquidity,
+        uint256 amount0,
+        uint256 amount1
+    )
     {
-        uint256 token0 = deposits[tokenId].token0;
-        uint256 token1 = deposits[tokenId].token1;
+        address token0 = deposits[tokenId].token0;
+        address token1 = deposits[tokenId].token1;
+
         TransferHelper.safeTransferFrom(token0, msg.sender, address(this), amountAdd0);
         TransferHelper.safeTransferFrom(token1, msg.sender, address(this), amountAdd1);
 
@@ -186,17 +187,17 @@ contract LiquidityExamples is IERC721Receiver {
         TransferHelper.safeApprove(token1, address(nonfungiblePositionManager), amountAdd1);
 
         INonfungiblePositionManager.IncreaseLiquidityParams memory params =
-            INonfungiblePositionManager.IncreaseLiquidityParams({
-                tokenId: tokenId,
-                amount0Desired: amountAdd0,
-                amount1Desired: amountAdd1,
-                amount0Min: 0,
-                amount1Min: 0,
-                deadline: block.timestamp
-            });
+        INonfungiblePositionManager.IncreaseLiquidityParams({
+        tokenId: tokenId,
+        amount0Desired: amountAdd0,
+        amount1Desired: amountAdd1,
+        amount0Min: 0,
+        amount1Min: 0,
+        deadline: block.timestamp
+        });
 
-        (liquidity, amount0, amount1) = nonfungiblePositionManager.increaseLiquidity(params);
-        
+        (liquidity, amount0, amount1) = INonfungiblePositionManager(nonfungiblePositionManager).increaseLiquidity(params);
+
         // Remove allowance and refund in both assets.
         if (amount0 < amountAdd0) {
             TransferHelper.safeApprove(token0, address(nonfungiblePositionManager), 0);
@@ -204,9 +205,9 @@ contract LiquidityExamples is IERC721Receiver {
             TransferHelper.safeTransfer(token0, msg.sender, refund0);
         }
 
-        if (amount1 < amount1ToMint) {
+        if (amount1 < amountAdd1) {
             TransferHelper.safeApprove(token1, address(nonfungiblePositionManager), 0);
-            uint256 refund1 = amount1ToMint - amount1;
+            uint256 refund1 = amountAdd1 - amount1;
             TransferHelper.safeTransfer(token1, msg.sender, refund1);
         }
     }
@@ -238,6 +239,6 @@ contract LiquidityExamples is IERC721Receiver {
         // remove information related to tokenId
         delete deposits[tokenId];
         // transfer ownership to original owner
-        nonfungiblePositionManager.safeTransferFrom(address(this), msg.sender, tokenId);
+        INonfungiblePositionManager(nonfungiblePositionManager).safeTransferFrom(address(this), msg.sender, tokenId);
     }
 }
