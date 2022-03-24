@@ -42,6 +42,9 @@ If there’s one lesson to learn from this post, it’s that all optimization st
 
 The code below, which we use in our development process, has been implemented in an NPM package for easy use in your project: [The Uniswap Gas Snapshot Test.](https://www.npmjs.com/package/@uniswap/snapshot-gas-cost)
 
+<details>
+<summary> The Gas Snapshot Test Code </summary>
+
 ```typescript
 import {
   TransactionReceipt,
@@ -74,6 +77,8 @@ export default async function snapshotGasCost(
   }
 }
 ```
+
+</details>
 
 This test allows us to see [every change](https://github.com/Uniswap/v3-core/pull/455/files#diff-9dd2638a0155da6d7dcf09f3866954da30e66e6a3569a6aa7794604e51ad030c) to the smart contracts - and surfaces the exact savings that the user would experience in a variety of situations. It’s essential to commit these snapshots to the repository so that future changes can be compared against the current gas costs of your smart contracts.
 
@@ -129,7 +134,7 @@ Slot0 public slot0;
 
 To verify that this is the case, we can simply add up the number of bits used by each variable
 
-$160 + 24 + 16 + 16 + 16 + 8 + 1 = 241$
+> 160 + 24 + 16 + 16 + 16 + 8 + 1 = 241
 
 This tells us we actually have 15 bits to spare! This contract stores many more variables, some of which take up entire slots on their own, but by carefully selecting the variables with compact representations and declaring them side-by-side, we’ve achieved our aim of gas optimization. By this point, it should be apparent that gas optimization is not just a matter of clever tricks and novel expressions of data; but also a matter of foundational decision-making made while designing the architecture of your smart contracts.
 
