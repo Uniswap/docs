@@ -11,7 +11,8 @@ License changes must be enacted via the [ENS domain](https://ens.domains/) unisw
 
 <details>
 <summary> ENS Subdomain Details & Process </summary>
-1. If the subdomain does not already exist which can be [checked at this URL](https://app.ens.domains/name/uniswap.eth/subdomains), the [`setSubnodeRecord`](https://docs.ens.domains/contract-api-reference/ens#set-subdomain-record) function of the ENS registry should be called with the following arguments:
+
+If the subdomain does not already exist which can be checked [here](https://app.ens.domains/name/uniswap.eth/subdomains), the [`setSubnodeRecord`](https://docs.ens.domains/contract-api-reference/ens#set-subdomain-record) function of the ENS registry should be called with the following arguments:
 
 - `node`: `namehash('uniswap.eth')` (`0xa2a03459171c76bff45817330c10ef9f8af07011a33005b73b50189bbc7e7132`)
 - `label`: `keccak256('v3-core-license-date')` (`0xee55740591b0fd5d7a28a6edc49567f6ff3febbe942ec0e2fa49ee536595085b`) or `keccak256('v3-core-license-grants')` (`0x15ff9b5bd7642701a10e5ea8fb29c957ffda4854cd028e9f6218506e6b509af2`)
