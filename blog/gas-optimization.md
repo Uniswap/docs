@@ -34,7 +34,7 @@ Due to the protocol’s significant use, and reuse in the form of forks, a chang
 
 As a result, it is difficult to overstate the significance of these optimizations. Considerable effort goes into this work, [which](https://github.com/Uniswap/v3-core/commit/705be1eefc56a3620afe96a725c3a68951e8d4a9) [frequently](https://github.com/Uniswap/v3-core/commit/7689aa8e2adecbcf94198f79cb4f230d0419d009) [continues](https://github.com/Uniswap/v3-core/commit/225399176cf1fa562aa74345b7885e1244d95417) [right](https://github.com/Uniswap/v3-core/commit/ebcdb5225a3cf4188f4752f59fe52e6b0071909d) [up](https://github.com/Uniswap/v3-core/commit/49ce1c3a600e4c0e22e272b2144a3082663cb1ea) [to](https://github.com/Uniswap/v3-core/commit/5b485192df944273882397d804d13c2e4ebb25da) [deployment](https://github.com/Uniswap/v3-core/commit/723f90cbea93fc09ff06303bd4db03ce3b0847a1).
 
-While much of the discourse around gas optimization takes the form of specific implementation techniques, which can be quite fun to read and experiment with, we think a more helpful thing to write about is the development of a process in persuit of gas optimization, rather than a collection of specific optimizations which may become dated as Ethereum progresses.
+While much of the discourse around gas optimization takes the form of specific implementation techniques, which can be quite fun to read and experiment with, we think a more helpful thing to write about is the development of a process in pursuit of gas optimization, rather than a collection of specific optimizations which may become dated as Ethereum progresses.
 
 ## Measurement
 
