@@ -34,7 +34,7 @@ These contract function calls should then be encoded into a governance proposal,
 
 ## Proposals
 
-Proposals are submitted to Uniswap Governance via the [governance contract](https://etherscan.io/address/0x408ED6354d4973f66138C91495F2f2FCbd8724C3). NPM packages for consuming the contract ABI, and details on previous versions, are available [here](https://docs.uniswap.org/protocol/concepts/governance/overview).
+Proposals are submitted to Uniswap Governance via the [Governance Bravo Delegate contract](https://etherscan.io/address/0x53a328f4086d7c0f1fa19e594c9b842125263026#code). NPM packages for consuming the governance contract ABIs, and details on previous versions, are available [here](https://docs.uniswap.org/protocol/concepts/governance/overview).
 
 <details>
     <summary> Governor Bravo #propose Parameters </summary>
