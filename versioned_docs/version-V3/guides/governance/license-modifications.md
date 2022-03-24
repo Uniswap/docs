@@ -157,6 +157,8 @@ async function main() {
       .propose(targets, values, signatures, calldatas, description)
   );
 }
+
+main();
 ```
 
 </details>
