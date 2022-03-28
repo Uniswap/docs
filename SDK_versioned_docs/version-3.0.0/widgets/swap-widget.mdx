@@ -11,8 +11,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Getting Started with the Swap Widget
 
-_The swap widget is currently in beta. Join the [Discord channel](https://discord.com/channels/597638925346930701/941447445844463676) to ask questions and get support._
-
 This guide walks you through the steps to embed the swap widget in your web3 decentralized application (dApp). With the swap widget, your users can trade tokens on the Uniswap Protocol without leaving your dApp!
 
 Here’s a live preview of the swap widget. Please note that wallet connect is not supported here in the documentation. Your app will be responsible for providing a method to connect a wallet.
@@ -32,7 +30,7 @@ You can make the widget feel like a native part of your app by customizing the c
 
 The swap widget is a React component that can be easily imported into any React project. It supports trading on all networks where the Uniswap Protocol is deployed: Ethereum, Arbitrum, Optimism, and Polygon.
 
-The swap widget is designed to work out of the box. Only one parameter is strictly required and that is a [web3 provider](#web3-provider). Additionally, a [JSON RPC Endpoint](#json-rpc-endpoint) is strongly recommended as described below. Additional [optional parameters](/sdk/widgets/swap-widget-reference#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
+The swap widget is designed to work out of the box. Only one parameter is strictly required and that is a [web3 provider](#web3-provider). Additionally, a [JSON RPC Endpoint](#json-rpc-endpoint) is strongly recommended as described below. Additional [optional parameters](/sdk/widgets/swap-widget/api#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
 
 ### Web3 Provider {#web3-provider}
 
@@ -56,16 +54,10 @@ After the user connects a wallet, the widget will use the JSON-RPC provided by t
 
 ## Installing the Widgets Library {#installing-library}
 
-To get started, install the widgets library using npm or yarn. If you don’t already use it, you’ll need to install `react-redux` as well.
+To get started, install the widgets library using npm or Yarn. If you don’t already use it, you’ll need to install `react-redux` as well.
 
-```bash
-# With npm
+```bash npm2yarn
 npm install --save @uniswap/widgets react-redux
-```
-
-```bash
-# With yarn
-yarn add @uniswap/widgets react-redux
 ```
 
 ## Adding the Swap Widget to Your App {#adding-the-widget}
@@ -92,7 +84,7 @@ function App() {
 }
 ```
 
-That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](https://docs.uniswap.org/sdk/guides/auto-router/quick-start) to compute the best price across all Uniswap v2 and v3 pools.
+That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](https://docs.uniswap.org/sdk/guides/auto-router) to compute the best price across all Uniswap v2 and v3 pools.
 
 :::note Create React App V4
 All code snippets will work seamlessly if you use [Next.js](https://nextjs.org/) or [Create React App](https://create-react-app.dev/) V5. However, if you’re using Create React App V4, you’ll need to use the following `import` statements instead:
@@ -139,7 +131,7 @@ The recommended and default width is 360 pixels.
 
 You can customize the colors, font, and border radius of the swap widget to match the look-and-feel of your dApp. You can also toggle between light and dark modes. This section explains how to customize each attribute of the widget with your own `theme`.
 
-All attributes below are color codes, except `fontFamily` (string), `borderRadius` (number), and `tokenColorExtraction`(boolean). The next two sections show code examples using these attributes.
+All attributes below are color codes, except `fontFamily` (string), `borderRadius` (number between 0 and 1), and `tokenColorExtraction`(boolean). The next two sections show code examples using these attributes.
 
 Check out the [Figma file](https://www.figma.com/file/m0pVMlgAgSoaIrXlM3VRUG/Widgets-(External)?node-id=4302%3A18261) if you want to mock it up first!
 
@@ -184,6 +176,8 @@ function App() {
   </div>
 }
 ```
+
+Please note that the `borderRadius` attribute is a multiplier from 0 to 1 of how much radius to apply. Since the widget uses different values of border radius (e.g. internal edges have tighter radii than external edges), `borderRadius` will apply your multiplier value on all instances so that the border radii still look proportionally correct.
 
 :::note Importing Fonts
 The swap widget fonts must be imported explicitly with `import '@uniswap/widgets/fonts.css'`. However, if you’re overriding the swap widget fonts with your own, or with a default font such as Helvetica in the example above, you can remove this `import` statement.
