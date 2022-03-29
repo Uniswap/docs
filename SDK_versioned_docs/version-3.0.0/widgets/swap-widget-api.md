@@ -3,10 +3,12 @@ id: swap-widget-api
 slug: swap-widget/api
 title: Swap Widget API Reference
 sidebar_label: API Reference
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Swap Widget API Reference
+
+<div className="widget-api">
 
 ## Required Parameters {#required-parameters}
 
@@ -48,6 +50,8 @@ ethereum.on(
   handler: (message: ProviderMessage) => void
 );
 ```
+
+</div>
 
 :::note Questions?
 Join the [Discord channel](https://discord.com/channels/597638925346930701/941447445844463676) to ask questions and get support from the Uniswap community.
