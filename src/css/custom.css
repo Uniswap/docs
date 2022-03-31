@@ -239,6 +239,61 @@ iframe {
   background: transparent;
 }
 
+.widget-api th:nth-child(1) {
+  width: 28%;
+}
+
+.widget-api th:nth-child(2) {
+  width: 18%;
+}
+
+.widget-api th:nth-child(3) {
+  width: 18%;
+}
+
+.widget-api th:nth-child(4) {
+  width: auto;
+}
+
+.widget-examples  {
+  background: none;
+}
+
+.widget-examples {
+  width: 100%;
+}
+
+.widget-examples tr,
+.widget-examples tr:nth-child(2n),
+.widget-examples td {
+  border: 0;
+  background: none;
+}
+
+.widget-examples td:first-child {
+  padding-left: 0;
+  font-size: 0;
+}
+
+.widget-examples td:last-child {
+  width: 100%;
+  padding-right: 0;
+}
+
+.widget-examples .theme-code-block {
+  margin: 0;
+}
+
+.widget-examples pre {
+  min-height: 360px;
+  padding-top: var(--ifm-pre-padding);
+}
+
+.widget-theme-example {
+  max-width: 360px;
+  max-height: 360px;
+}
+
 .admonition-note:last-child {
   margin-top: 3rem;
 }
