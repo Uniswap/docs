@@ -78,7 +78,7 @@ Given an _input_ asset amount and an array of token addresses, calculates all su
 ## getAmountsIn
 
 ```solidity
-function getAmountsIn(uint amountOut, address[] memory path) internal view returns (uint[] memory amounts);
+function getAmountsIn(address factory, uint amountOut, address[] memory path) internal view returns (uint[] memory amounts);
 ```
 
 Given an _output_ asset amount and an array of token addresses, calculates all preceding minimum _input_ token amounts by calling [getReserves](#getreserves) for each pair of token addresses in the path in turn, and using these to call [getAmountIn](#getamountin).
