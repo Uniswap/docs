@@ -92,7 +92,7 @@ Then, transfer the `amount` of Dai from the calling address into our contract, a
 
 ### Swap Input Parameters
 
-To execute the swap function, we need to populate the `ExactInputSingleParams` with the data necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed [here](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter).
+To execute the swap function, we need to populate the `ExactInputSingleParams` with the necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed [here](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter).
 
 A brief overview of the parameters:
 
