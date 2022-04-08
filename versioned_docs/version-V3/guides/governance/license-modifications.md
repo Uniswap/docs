@@ -129,18 +129,21 @@ const calldatas = [setSubnodeRecordCalldata, setTextCalldata]
 // the description of the proposal.
 const description = '# TITLE ## SECTION_EXPLANATION'
 
+
 async function main() {
-  await governorBravo
-    .connect(signer)
-    .propose(targets, values, signatures, calldatas, description)
-    .then(async (tx: ethers.providers.TransactionResponse) => {
-      console.log(`Proposal created: ${tx.hash}`)
-      await tx.wait()
-      console.log(`Proposal mined: ${tx.hash}`)
-    })
+  try {
+    const txResponse: ethers.providers.TransactionResponse = await governorBravo
+      .connect(signer)
+      .propose(targets, values, signatures, calldatas, description)
+    console.log(`Proposal transaction sent: ${txResponse.hash}`)
+    await txResponse.wait(1)
+    console.log(`Proposal has been mined at blocknumber: ${txResponse.blockNumber}, transaction hash: ${txResponse.hash}`)
+  } catch (error) {
+    console.error(error)
+  }
 }
 
-main();
+main().then(() => console.log('done'))
 ```
 
 </details>
