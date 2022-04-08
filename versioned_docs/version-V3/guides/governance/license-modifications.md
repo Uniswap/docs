@@ -34,12 +34,10 @@ These contract function calls should then be encoded into a governance proposal,
 
 ## Proposals
 
-Proposals are submitted to Uniswap Governance via the [Governance Bravo Delegate contract](https://etherscan.io/address/0x53a328f4086d7c0f1fa19e594c9b842125263026#code). NPM packages for consuming the governance contract ABIs, and details on previous versions, are available [here](https://docs.uniswap.org/protocol/concepts/governance/overview).
+Proposals are submitted via `GovernorBravoDelegator` @ `0x408ED6354d4973f66138C91495F2f2FCbd8724C3`, a proxy contract currently pointing to the implementation at `0x53a328F4086d7C0F1Fa19e594c9b842125263026`. NPM packages for consuming the governance contract ABIs, and details on previous versions, are available [here](https://docs.uniswap.org/protocol/concepts/governance/overview).
 
 <details>
     <summary> Governor Bravo #propose Parameters </summary>
-
-Deployment reference available [here.](https://etherscan.io/address/0x53a328f4086d7c0f1fa19e594c9b842125263026#code)
 
 ```solidity
 /**
@@ -65,98 +63,81 @@ function propose(
 
 ## Populating Proposal Calldata
 
-Below is an example of using a scripting environment to generate a proposal. This is for educational purposes only - that example assumes access to a private key with a sufficient amount of delegated UNI to submit a proposal, which may be an insecure practice. There are several ways to generate a proposal transaction and submit it to Ethereum; this example should only be used for reference and not in production.
+Below is an example of using a scripting environment to generate a proposal. This is for educational purposes only - that example assumes access to a private key with a sufficient amount of delegated UNI to submit a proposal, which is an insecure practice. There are several ways to generate a proposal transaction and submit it to Ethereum; this example should only be used for reference and not in production.
 
 <details>
 <summary> Populating `Propose` Calldata </summary>
 
 ```typescript
-import { ethers } from "hardhat";
-import { waffle } from "hardhat";
-import { Contract } from "ethers";
-import {
-  GOVERNOR_BRAVO_ABI,
-  ENS_REGISTRY_ABI,
-  ENS_PUBLIC_RESOLVER_ABI,
-} from "./utils";
-import { namehash } from "@ethersproject/hash";
-import { keccak256 } from "@ethersproject/keccak256";
-import { utils } from "ethers";
-import { Interface } from "@ethersproject/abi";
-import "hardhat";
+import { Contract, ethers } from 'ethers'
+import { namehash } from '@ethersproject/hash'
+import { keccak256 } from '@ethersproject/keccak256'
+import { Interface } from '@ethersproject/abi'
+// note: contract ABIs should be imported via etherscan
+import { GOVERNOR_BRAVO_ABI, ENS_REGISTRY_ABI, ENS_PUBLIC_RESOLVER_ABI } from './utils'
 
-const { provider } = waffle;
+const GOVERNOR_BRAVO_ADDRESS: string = '0x408ED6354d4973f66138C91495F2f2FCbd8724C3'
+const ENS_REGISTRY_ADDRESS: string = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
+const PUBLIC_ENS_RESOLVER_ADDRESS: string = '0x4976fb03c32e5b8cfe2b6ccb31c09ba78ebaba41'
 
-// get the governor bravo contract
-const governorBravoAddress = "0x408ED6354d4973f66138C91495F2f2FCbd8724C3";
-const governorBravo = new Contract(
-  governorBravoAddress,
-  GOVERNOR_BRAVO_ABI,
-  provider
-);
+const provider = new ethers.providers.JsonRpcProvider('YOUR_RPC_URL_HERE')
+const signer = provider.getSigner('YOUR_SIGNER_ADDRESS_HERE')
 
-const NODE_TOP_LEVEL: string = namehash("uniswap.eth");
-const LABEL: string = keccak256(utils.toUtf8Bytes("v3-core-license-grants"));
-const OWNER_UNISWAP_GOVERNANCE_TIMELOCK: string =
-  "0x1a9C8182C09F50C8318d769245beA52c32BE35BC";
-const RESOLVER_PUBLIC_ENS_RESOLVER: string =
-  "0x4976fb03c32e5b8cfe2b6ccb31c09ba78ebaba41";
-const TTL: number = 0;
+const ensPublicResolverInterface = new Interface(ENS_PUBLIC_RESOLVER_ABI)
+const setTextCalldata = ensPublicResolverInterface.encodeFunctionData('setText', [
+  // node
+  namehash('v3-core-license-grants.uniswap.eth'),
+  // key
+  '[your-projects-additional-use-grant-title]',
+  // value
+  '[your-additional-use-grant-description]',
+])
 
-const ensRegistryInterface = new Interface(ENS_REGISTRY_ABI);
-const setSubnodeRecordCalldata = ensRegistryInterface.encodeFunctionData(
-  "setSubnodeRecord",
-  [
-    NODE_TOP_LEVEL,
-    LABEL,
-    OWNER_UNISWAP_GOVERNANCE_TIMELOCK,
-    RESOLVER_PUBLIC_ENS_RESOLVER,
-    TTL,
-  ]
-);
+const ensRegistryInterface = new Interface(ENS_REGISTRY_ABI)
+const setSubnodeRecordCalldata = ensRegistryInterface.encodeFunctionData('setSubnodeRecord', [
+  // node top level
+  namehash('uniswap.eth'),
+  // label
+  keccak256('v3-core-license-grants'),
+  // owner: Uniswap Governance Timelock contract address
+  '0x1a9C8182C09F50C8318d769245beA52c32BE35BC',
+  // resolver: ENS Resolver contract address
+  `0x4976fb03c32e5b8cfe2b6ccb31c09ba78ebaba41`,
+  // "time-to-live"
+  0,
+])
 
-const ensPublicResolverInterface = new Interface(ENS_PUBLIC_RESOLVER_ABI);
+// Create a new local instance of the governorBravo contract
+// Note that in production the abi should be gathered via etherscan
+const governorBravo = new Contract(GOVERNOR_BRAVO_ADDRESS, GOVERNOR_BRAVO_ABI, provider)
 
-const NODE: string = namehash("v3-core-license-grants.uniswap.eth");
-const KEY: string = "[your-project's-additional-use-grant-title]";
-const VALUE: string = "[your-additional-use-grant-description]";
-const setTextCalldata = ensPublicResolverInterface.encodeFunctionData(
-  "setText",
-  [NODE, KEY, VALUE]
-);
+// the ordered list of target addresses for calls to be made
+const targets = [ENS_REGISTRY_ADDRESS, PUBLIC_ENS_RESOLVER_ADDRESS]
 
-const ENS_REGISTRY_ADDRESS: string =
-  "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e";
+// The ordered list of values (i.e. msg.value) to be passed to the calls to be made.
+// as this example does not include the transfering of any tokens, this list is empty.
+const values = [0, 0]
 
-const PUBLIC_ENS_RESOLVER_ADDRESS: string =
-  "0x4976fb03c32e5b8cfe2b6ccb31c09ba78ebaba41";
+// The ordered list of function signatures to be called. The signatures arguments
+// are optional, if not provided, the function signature will be inferred from the calldata
+const signatures = ['', '']
 
-/// @notice the ordered list of target addresses for calls to be made
-const targets = [ENS_REGISTRY_ADDRESS, PUBLIC_ENS_RESOLVER_ADDRESS];
+// The ordered list of calldata to be passed to each call in the proposal. The calldata
+// in this example takes the place of the function signature arguments.
+const calldatas = [setSubnodeRecordCalldata, setTextCalldata]
 
-/// @notice The ordered list of values (i.e. msg.value) to be passed to the calls to be made.
-/// as this example does not include the transfering of any tokens, this list is empty.
-const values = [0, 0];
-
-/// @notice The ordered list of function signatures to be called. The signatures arguments
-/// are optional, if not provided, the function signature will be inferred from the calldata
-const signatures = ["", ""];
-
-/// @notice The ordered list of calldata to be passed to each call in the proposal. The calldata
-/// in this example takes the place of the function signature arguments.
-const calldatas = [setSubnodeRecordCalldata, setTextCalldata];
-
-/// @notice the description of the proposal.
-const description = "Your Additional Use Grant Proposal Description";
+// the description of the proposal.
+const description = '# TITLE ## SECTION_EXPLANATION'
 
 async function main() {
-  const yourSigner = await ethers.getSigner("YOUR_SIGNER_ADDRESS_HERE");
-
-  return Promise.all(
-    await governorBravo
-      .connect(yourSigner)
-      .propose(targets, values, signatures, calldatas, description)
-  );
+  await governorBravo
+    .connect(signer)
+    .propose(targets, values, signatures, calldatas, description)
+    .then(async (tx: ethers.providers.TransactionResponse) => {
+      console.log(`Proposal created: ${tx.hash}`)
+      await tx.wait()
+      console.log(`Proposal mined: ${tx.hash}`)
+    })
 }
 
 main();
