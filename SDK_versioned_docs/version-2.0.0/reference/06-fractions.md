@@ -16,19 +16,19 @@ The base class which all subsequent fraction classes extend. **Not meant to be u
 ### numerator
 
 ```typescript
-numerator: JSBI;
+numerator: JSBI
 ```
 
 ### denominator
 
 ```typescript
-denominator: JSBI;
+denominator: JSBI
 ```
 
 ### quotient
 
 ```typescript
-quotient: JSBI;
+quotient: JSBI
 ```
 
 Performs floor division.
@@ -100,10 +100,10 @@ Responsible for formatting percentages (10% instead of 0.1).
 ## Example
 
 ```typescript
-import { Percent } from "@uniswap/sdk";
+import { Percent } from '@uniswap/sdk'
 
-const percent = new Percent("60", "100");
-console.log(percent.toSignificant(2)); // 60
+const percent = new Percent('60', '100')
+console.log(percent.toSignificant(2)) // 60
 ```
 
 ### toSignificant
@@ -125,18 +125,12 @@ Responsible for formatting token amounts with specific decimal places.
 ## Example
 
 ```typescript
-import { Token, TokenAmount } from "@uniswap/sdk";
+import { Token, TokenAmount } from '@uniswap/sdk'
 
-const FRIED = new Token(
-  ChainId.MAINNET,
-  "0xfa1aFe1000000000000000000000000000000000",
-  18,
-  "FRIED",
-  "Beans"
-);
+const FRIED = new Token(ChainId.MAINNET, '0xfa1aFe1000000000000000000000000000000000', 18, 'FRIED', 'Beans')
 
-const tokenAmount = new TokenAmount(FRIED, "3000000000000000000");
-console.log(tokenAmount.toExact()); // 3
+const tokenAmount = new TokenAmount(FRIED, '3000000000000000000')
+console.log(tokenAmount.toExact()) // 3
 ```
 
 ## Properties
@@ -144,13 +138,13 @@ console.log(tokenAmount.toExact()); // 3
 ### token
 
 ```typescript
-token: Token;
+token: Token
 ```
 
 ### raw
 
 ```typescript
-raw: JSBI;
+raw: JSBI
 ```
 
 Returns the full token amount, unadjusted for decimals.
@@ -194,23 +188,13 @@ Responsible for denominating the relative price between two tokens. Denominator 
 ## Example
 
 ```typescript
-import { ChainId, WETH as WETHs, Token, Price } from "@uniswap/sdk";
+import { ChainId, WETH as WETHs, Token, Price } from '@uniswap/sdk'
 
-const WETH = WETHs[ChainId.MAINNET];
-const ABC = new Token(
-  ChainId.MAINNET,
-  "0xabc0000000000000000000000000000000000000",
-  18,
-  "ABC"
-);
+const WETH = WETHs[ChainId.MAINNET]
+const ABC = new Token(ChainId.MAINNET, '0xabc0000000000000000000000000000000000000', 18, 'ABC')
 
-const price = new Price(
-  WETH,
-  ABC,
-  "1000000000000000000",
-  "123000000000000000000"
-);
-console.log(price.toSignificant(3)); // 123
+const price = new Price(WETH, ABC, '1000000000000000000', '123000000000000000000')
+console.log(price.toSignificant(3)) // 123
 ```
 
 This example shows the ETH/XYZ price, where ETH is the base token, and XYZ is the quote token. The price is constructed from an amount of XYZ (the numerator) / an amount of WETH (the denominator).
@@ -228,19 +212,19 @@ fromRoute(route: Route): Price
 ### baseToken
 
 ```typescript
-baseToken: Token;
+baseToken: Token
 ```
 
 ### quoteToken
 
 ```typescript
-quoteToken: Token;
+quoteToken: Token
 ```
 
 ### scalar
 
 ```typescript
-scalar: Fraction;
+scalar: Fraction
 ```
 
 Used to adjust the price for the decimals of the base and quote tokens.
@@ -248,7 +232,7 @@ Used to adjust the price for the decimals of the base and quote tokens.
 ### raw
 
 ```typescript
-raw: Fraction;
+raw: Fraction
 ```
 
 Returns the raw price, unadjusted for decimals.
@@ -256,7 +240,7 @@ Returns the raw price, unadjusted for decimals.
 ### adjusted
 
 ```typescript
-adjusted: Fraction;
+adjusted: Fraction
 ```
 
 Returns the price, adjusted for decimals.

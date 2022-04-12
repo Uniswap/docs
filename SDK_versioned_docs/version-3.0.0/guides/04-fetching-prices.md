@@ -21,10 +21,10 @@ const DAI_USDC_POOL = new Pool(
   state.sqrtPriceX96.toString(),
   state.liquidity.toString(),
   state.tick
-);
+)
 
-const token0Price = DAI_USDC_POOL.token0Price;
-const token1Price = DAI_USDC_POOL.token1Price;
+const token0Price = DAI_USDC_POOL.token0Price
+const token1Price = DAI_USDC_POOL.token1Price
 ```
 
 ### Understanding sqrtPrice
@@ -107,8 +107,8 @@ It's worth noting that the numerator is misleadingly listed _below_ the denomina
 The denominator is `Q192`. To break this number down recall the following constants defined in the SDK:
 
 ```typescript
-export const Q96 = JSBI.exponentiate(JSBI.BigInt(2), JSBI.BigInt(96));
-export const Q192 = JSBI.exponentiate(Q96, JSBI.BigInt(2));
+export const Q96 = JSBI.exponentiate(JSBI.BigInt(2), JSBI.BigInt(96))
+export const Q192 = JSBI.exponentiate(Q96, JSBI.BigInt(2))
 ```
 
 Thus, the denominator for the `token0Price` also matches the math derived above where `Q192` is `(2 ** 96) * (2 ** 96)` which is the same as `(2 ** 192)`.

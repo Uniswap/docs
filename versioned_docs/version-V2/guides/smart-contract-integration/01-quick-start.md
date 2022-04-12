@@ -186,8 +186,7 @@ to compute the pair address.
 To get the bytecode for deploying UniswapV2Factory, you can import the file via:
 
 ```javascript
-const UniswapV2FactoryBytecode =
-  require("@uniswap/v2-core/build/UniswapV2Factory.json").bytecode;
+const UniswapV2FactoryBytecode = require('@uniswap/v2-core/build/UniswapV2Factory.json').bytecode
 ```
 
 We recommend using a standard ERC20 from `@openzeppelin/contracts` for deploying an ERC20.

@@ -16,15 +16,15 @@ To run code from the SDK in your application, use an `import` or `require` state
 ## ES6 (import)
 
 ```typescript
-import { ChainId } from "@uniswap/sdk";
-console.log(`The chainId of mainnet is ${ChainId.MAINNET}.`);
+import { ChainId } from '@uniswap/sdk'
+console.log(`The chainId of mainnet is ${ChainId.MAINNET}.`)
 ```
 
 ## CommonJS (require)
 
 ```typescript
-const UNISWAP = require("@uniswap/sdk");
-console.log(`The chainId of mainnet is ${UNISWAP.ChainId.MAINNET}.`);
+const UNISWAP = require('@uniswap/sdk')
+console.log(`The chainId of mainnet is ${UNISWAP.ChainId.MAINNET}.`)
 ```
 
 # Reference

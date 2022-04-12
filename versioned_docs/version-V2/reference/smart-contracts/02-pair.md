@@ -232,7 +232,7 @@ interface IUniswapV2Pair {
 # ABI
 
 ```typescript
-import IUniswapV2Pair from "@uniswap/v2-core/build/IUniswapV2Pair.json";
+import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 ```
 
 [https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Pair.json](https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2Pair.json)

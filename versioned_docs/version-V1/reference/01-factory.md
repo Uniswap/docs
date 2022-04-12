@@ -18,7 +18,7 @@ initializeFactory(template: address)
 ## Web3
 
 ```javascript
-factoryContract.methods.initializeFactory(template).send();
+factoryContract.methods.initializeFactory(template).send()
 ```
 
 # createExchange
@@ -40,7 +40,7 @@ createExchange(token: address): address
 ## Web3
 
 ```javascript
-factoryContract.methods.createExchange(token).send();
+factoryContract.methods.createExchange(token).send()
 ```
 
 # getExchange
@@ -61,7 +61,7 @@ getExchange(token: address): address
 ```
 
 ```javascript
-factoryContract.methods.getExchange(token).call();
+factoryContract.methods.getExchange(token).call()
 ```
 
 # getToken
@@ -84,7 +84,7 @@ getToken(exchange: address): address
 ## Web3
 
 ```javascript
-factoryContract.methods.getToken(exchange).call();
+factoryContract.methods.getToken(exchange).call()
 ```
 
 # getTokenWithId
@@ -107,5 +107,5 @@ getTokenWithId(token_id: uint256): address
 ## Web3
 
 ```javascript
-factoryContract.methods.getTokenWithId(token_id).call();
+factoryContract.methods.getTokenWithId(token_id).call()
 ```

@@ -19,7 +19,7 @@ npm i --save-dev @uniswap/sdk-core
 # Usage
 
 ```javascript
-import { Pool } from "@uniswap/v3-sdk";
+import { Pool } from '@uniswap/v3-sdk'
 ```
 
 # Next Steps

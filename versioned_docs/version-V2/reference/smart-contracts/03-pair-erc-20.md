@@ -180,7 +180,7 @@ interface IUniswapV2ERC20 {
 # ABI
 
 ```typescript
-import IUniswapV2ERC20 from "@uniswap/v2-core/build/IUniswapV2ERC20.json";
+import IUniswapV2ERC20 from '@uniswap/v2-core/build/IUniswapV2ERC20.json'
 ```
 
 [https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2ERC20.json](https://unpkg.com/@uniswap/v2-core@1.0.0/build/IUniswapV2ERC20.json)

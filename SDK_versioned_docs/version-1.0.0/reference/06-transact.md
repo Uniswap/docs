@@ -15,7 +15,7 @@ export function getExecutionDetails(
   maxSlippage?: number,
   deadline?: number,
   recipient?: string
-): ExecutionDetails;
+): ExecutionDetails
 ```
 
 ## Input Parameters
@@ -32,14 +32,9 @@ export function getExecutionDetails(
 Method arguments are returned as one of: `BigNumber`, `number`, or `string`. `BigNumber`s are large number objects, `numbers` are small numbers in base 10, and `string`s are addresses.
 
 ```typescript
-const tradeDetails: TradeDetails = tradeExactEthForTokensWithData(
-  reserves,
-  "1000000000000000000"
-);
+const tradeDetails: TradeDetails = tradeExactEthForTokensWithData(reserves, '1000000000000000000')
 
-const executionDetails: ExecutionDetails = await getExecutionDetails(
-  tradeDetails
-);
+const executionDetails: ExecutionDetails = await getExecutionDetails(tradeDetails)
 
 /*
 {

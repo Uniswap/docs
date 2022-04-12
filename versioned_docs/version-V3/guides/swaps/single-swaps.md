@@ -17,7 +17,7 @@ For simplification, the example hardcodes the token contract addresses, but as e
 
 When trading from a smart contract, the most important thing to keep in mind is that access to an external price source is required. Without this, trades can be frontrun for considerable loss.
 
-**Note:**  The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
+**Note:** The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
 ## Set Up the Contract
 

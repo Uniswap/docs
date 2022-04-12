@@ -16,7 +16,7 @@ This function fetches Uniswap reserve data for a given token address on a given 
 export async function getTokenReserves(
   tokenAddress: string,
   chainIdOrProvider: ChainIdOrProvider = 1
-): Promise<TokenReservesNormalized>;
+): Promise<TokenReservesNormalized>
 ```
 
 ## Input Parameters
@@ -29,13 +29,10 @@ export async function getTokenReserves(
 ## Example Usage
 
 ```typescript
-const tokenAddress = "0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359"; // DAI Mainnet
-const chainIdOrProvider: ChainIdOrProvider = 1; // could be e.g. window.ethereum instead
+const tokenAddress = '0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359' // DAI Mainnet
+const chainIdOrProvider: ChainIdOrProvider = 1 // could be e.g. window.ethereum instead
 
-const tokenReserves: TokenReservesNormalized = await getTokenReserves(
-  tokenAddress,
-  chainIdOrProvider
-);
+const tokenReserves: TokenReservesNormalized = await getTokenReserves(tokenAddress, chainIdOrProvider)
 
 /*
 {

@@ -82,11 +82,10 @@
   --ifm-font-color-base: var(--ifm-color-content);
   --ifm-font-color-base-inverse: var(--ifm-color-content-inverse);
   --ifm-font-color-secondary: var(--ifm-color-content-secondary);
-  --ifm-font-family-base: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
-    Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --ifm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  --ifm-font-family-base: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif,
+    BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  --ifm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --ifm-font-size-base: 100%;
   --ifm-font-weight-light: 300;
   --ifm-font-weight-normal: 400;
@@ -102,8 +101,7 @@
   --ifm-transition-timing-default: cubic-bezier(0.08, 0.52, 0.52, 1);
   --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   --ifm-global-shadow-md: 0 5px 40px rgba(0, 0, 0, 0.2);
-  --ifm-global-shadow-tl: 0 12px 28px 0 rgba(0, 0, 0, 0.2),
-    0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  --ifm-global-shadow-tl: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   --ifm-z-index-dropdown: 100;
   --ifm-z-index-fixed: 200;
   --ifm-z-index-overlay: 400;
@@ -189,7 +187,7 @@
   --ifm-breadcrumb-size-multiplier: 1;
   --ifm-breadcrumb-separator: url(
     data:image/svg + xml;utf8,
-    <svgxmlns="http://www.w3.org/2000/svg"x="0px"y="0px"viewBox="0 0 256 256"><g><g><polygonpoints="79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+    <svgxmlns='http://www.w3.org/2000/svg'x='0px'y='0px'viewBox='0 0 256 256'><g><g><polygonpoints='79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128'/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
   );
   --ifm-breadcrumb-separator-filter: none;
   --ifm-breadcrumb-separator-size: 0.5rem;
@@ -203,9 +201,7 @@
   --ifm-button-padding-vertical: 0.375rem;
   --ifm-button-size-multiplier: 1;
   --ifm-button-transition-duration: var(--ifm-transition-fast);
-  --ifm-button-border-radius: calc(
-    var(--ifm-global-radius) * var(--ifm-button-size-multiplier)
-  );
+  --ifm-button-border-radius: calc(var(--ifm-global-radius) * var(--ifm-button-size-multiplier));
   --ifm-button-group-margin: 2px;
   --ifm-card-background-color: var(--ifm-background-surface-color);
   --ifm-card-border-radius: calc(var(--ifm-global-radius) * 2);
@@ -237,7 +233,7 @@
   --ifm-menu-link-padding-vertical: 0.375rem;
   --ifm-menu-link-sublist-icon: url(
     data:image/svg + xml;utf8,
-    <svgxmlns="http://www.w3.org/2000/svg"width="16px"height="16px"viewBox="0 0 24 24"><pathfill="rgba(0,0,0,0.5)"d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+    <svgxmlns='http://www.w3.org/2000/svg'width='16px'height='16px'viewBox='0 0 24 24'><pathfill='rgba(0,0,0,0.5)'d='M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z'></path></svg>
   );
   --ifm-menu-link-sublist-icon-filter: none;
   --ifm-navbar-background-color: var(--ifm-background-surface-color);
@@ -255,12 +251,10 @@
   --ifm-navbar-search-input-placeholder-color: var(--ifm-color-emphasis-500);
   --ifm-navbar-search-input-icon: url(
     data:image/svg + xml;utf8,
-    <svgfill="currentColor"xmlns="http://www.w3.org/2000/svg"viewBox="0 0 16 16"height="16px"width="16px"><pathd="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z"/></svg>
+    <svgfill='currentColor'xmlns='http://www.w3.org/2000/svg'viewBox='0 0 16 16'height='16px'width='16px'><pathd='M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z'/></svg>
   );
   --ifm-navbar-sidebar-width: 80vw;
-  --ifm-pagination-border-radius: calc(
-    var(--ifm-global-radius) * var(--ifm-pagination-size-multiplier)
-  );
+  --ifm-pagination-border-radius: calc(var(--ifm-global-radius) * var(--ifm-pagination-size-multiplier));
   --ifm-pagination-color-active: var(--ifm-color-primary);
   --ifm-pagination-font-size: 1rem;
   --ifm-pagination-item-active-background: var(--ifm-hover-overlay);
