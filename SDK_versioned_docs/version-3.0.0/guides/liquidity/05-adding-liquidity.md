@@ -48,9 +48,9 @@ To construct the `IncreaseOptions` struct, specify `slippageTolerance`, `deadlin
 Use [the functions](https://docs.openzeppelin.com/contracts/2.x/api/token/erc721#ERC721Enumerable-tokenOfOwnerByIndex-address-uint256-) `tokensByIndex` or `tokenOfOwnerByIndex` to fetch `tokenId`s for ERC721s.
 
 ```typescript
-const {calldata ,value} = NonfungiblePositionManager.addCallParameters(position, {
-        slippageTolerance: new Percent(50, 10_000),
-        deadline: deadline,
-        tokenId: 1
-        });
+const { calldata, value } = NonfungiblePositionManager.addCallParameters(position, {
+  slippageTolerance: new Percent(50, 10_000),
+  deadline: deadline,
+  tokenId: 1,
+})
 ```
