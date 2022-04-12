@@ -6,6 +6,7 @@ sidebar_position: 6
 
 Below we have the complete functioning code example: a contract that can custody Uniswap V3 position NFT's and manipulate the positions and liquidity therein by collecting fees, increasing or decreasing liquidity, and minting new positions. View on github [here](https://github.com/Uniswap/uniswap-docs/blob/main/smart_contract_examples/LiquidityExamples.sol).
 
+
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.7.6;
@@ -66,7 +67,7 @@ contract LiquidityExamples is IERC721Receiver {
         deposits[tokenId] = Deposit({owner: owner, liquidity: liquidity, token0: token0, token1: token1});
     }
 
-    /// @notice Calls the mint function defined in periphery, mints the same amount of each token.
+    /// @notice Calls the mint function defined in periphery, mints the same amount of each token. 
     /// For this example we are providing 1000 DAI and 1000 USDC in liquidity
     /// @return tokenId The id of the newly minted ERC721
     /// @return liquidity The amount of liquidity for the position
@@ -197,7 +198,7 @@ contract LiquidityExamples is IERC721Receiver {
             uint256 amount0,
             uint256 amount1
         ) {
-
+        
         TransferHelper.safeTransferFrom(deposits[tokenId].token0, msg.sender, address(this), amountAdd0);
         TransferHelper.safeTransferFrom(deposits[tokenId].token1, msg.sender, address(this), amountAdd1);
 

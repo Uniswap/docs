@@ -5,7 +5,7 @@ title: Fees
 
 ## Swap Fees
 
-Swap fees are distributed pro-rata to all in-range[^1] liquidity at the time of the swap. If the spot price moves out of a position’s range, the given liquidity is no longer active and does not generate any fees. If the spot price reverses and reenters the position’s range, the position’s liquidity becomes active again and will generate fees.
+Swap fees are distributed pro-rata to all in-range[1] liquidity at the time of the swap. If the spot price moves out of a position’s range, the given liquidity is no longer active and does not generate any fees. If the spot price reverses and reenters the position’s range, the position’s liquidity becomes active again and will generate fees.
 
 Swap fees are not automatically reinvested as they were in previous versions of Uniswap. Instead, they are collected separately from the pool and must be manually redeemed when the owner wishes to collect their fees.
 
@@ -29,4 +29,4 @@ Similarly, we anticipate more exotic assets, or those traded rarely, will natura
 
 Uniswap v3 has a protocol fee that can be turned on by UNI governance. Compared to v2, UNI governance has more flexibility in choosing the fraction of swap fees that go to the protocol. For details regarding the protocol fee, see the [**whitepaper**](https://uniswap.org/whitepaper-v3.pdf).
 
-[^1] In-range liquidity refers to the liquidity contained in any positions which span both sides of the spot price.
+[1] In-range liquidity refers to the liquidity contained in any positions which span both sides of the spot price.

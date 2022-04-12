@@ -7,8 +7,8 @@ sidebar_position: 4
 Make sure to go through the [Setting Up Your Contract](./setting-up-your-contract.md) before continuing to this section
 
 Here we decrease the liquidity of our position without withdrawing all of it.
-
-- This example assumes the contract already has possession of the position NFT, and requires the calling address to be the same address that deposited the position NFT to our contract.
+  
+-  This example assumes the contract already has possession of the position NFT, and requires the calling address to be the same address that deposited the position NFT to our contract.
 
 - In production, `amount0Min` and `amount1Min` should be adjusted to create slippage protections.
 

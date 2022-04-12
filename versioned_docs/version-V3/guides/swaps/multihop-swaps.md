@@ -108,7 +108,7 @@ An exact output swap will swap a variable amount of the input token for a fixed 
 - `path`: The path is a sequence of `tokenAddress` `Fee` `tokenAddress`, _encoded in reverse order_, which are the variables needed to compute each pool contract address in our sequence of swaps. The multihop swap router code will automatically find the correct pool with these variables, and execute the swap needed within each pool in our sequence.
 - `recipient`: the destination address of the outbound asset.
 - `deadline`: the unix time after which a transaction will be reverted, to protect against long delays and the increased chance of large price swings therein.
-- `amountOut`: The desired amount of WETH9.
+- `amountOut`:  The desired amount of WETH9.
 - `amountInMaximum`: The maximum amount of DAI willing to be swapped for the specified amountOut of WETH9.
 
 ### Calling the function

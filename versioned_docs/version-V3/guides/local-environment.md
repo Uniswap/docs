@@ -8,13 +8,14 @@ This guide describes how to set up your environment using a specific toolset: `N
 
 Once you have set up your environment, read the guides on liquidity mining, implementing swaps, and so on, which provide example contracts for those interactions.
 
+
 ## Create a Node.js Project
 
 1. Download and install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
 2. Create a new directory and navigate to it. Also, create a new node project with `npm init`.
 
-   ```console
+   ```
    $ mkdir swap-example
    $ cd swap-example
    $ npm init
@@ -24,19 +25,19 @@ Once you have set up your environment, read the guides on liquidity mining, impl
 
 1. Install [Hardhat](https://hardhat.org/), which you can use for compiling contracts.
 
-   ```console
+   ```
    $ npm add --save-dev hardhat
    ```
 
 2. Install the V3 Periphery contracts so that you can inherit what you need from them to execute contracts.
 
-   ```console
+   ```
    $ npm add @uniswap/v3-periphery
    ```
 
 3. Create a new hardhat config file, which you can use for compiling and testing contracts.
 
-   ```console
+   ```
    $ npx hardhat
    ```
 
@@ -49,8 +50,8 @@ For this example, we'll need to change ./hardhat.config.js to include the approp
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: '0.7.6',
-}
+  solidity: "0.7.6",
+};
 ```
 
 ## Compile a Contract

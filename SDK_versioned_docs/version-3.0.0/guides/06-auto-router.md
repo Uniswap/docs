@@ -22,7 +22,7 @@ To integrate with the Auto Router, you will use the [smart-order-router](https:/
 Import `AlphaRouter` from the smart-order-router package to get started.
 
 ```typescript
-import { AlphaRouter } from '@uniswap/smart-order-router'
+import { AlphaRouter } from "@uniswap/smart-order-router";
 ```
 
 ## Initializing the AlphaRouter
@@ -37,7 +37,7 @@ The `AlphaRouter` class contains methods for generating optimized routes. To cre
 | provider | [required]  | A JSON RPC endpoint, e.g., Infura.                                                             |
 
 ```typescript
-const router = new AlphaRouter({ chainId: 1, provider: web3Provider })
+const router = new AlphaRouter({ chainId: 1, provider: web3Provider });
 ```
 
 ## Calling `route`
@@ -69,15 +69,27 @@ Once you instantiate `AlphaRouter` call `route` with the following parameters:
 This example gets a route for a WETH-USDC swap.
 
 ```typescript
-const WETH = new Token(1, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped Ether')
+const WETH = new Token(
+  1,
+  "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+  18,
+  "WETH",
+  "Wrapped Ether"
+);
 
-const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
+const USDC = new Token(
+  ChainId.MAINNET,
+  "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+  6,
+  "USDC",
+  "USD//C"
+);
 
 const route = await router.route(wethAmount, USDC, TradeType.EXACT_INPUT, {
   recipient: myAddress,
   slippageTolerance: new Percent(5, 100),
   deadline: Math.floor(Date.now() / 1000 + 1800),
-})
+});
 ```
 
 ## Submitting a Transaction
@@ -86,17 +98,17 @@ The object returned from calling `route` is a `SwapRoute` object with the follow
 
 ```typescript
 export type SwapRoute = {
-  quote: CurrencyAmount
-  quoteGasAdjusted: CurrencyAmount
-  estimatedGasUsed: BigNumber
-  estimatedGasUsedQuoteToken: CurrencyAmount
-  estimatedGasUsedUSD: CurrencyAmount
-  gasPriceWei: BigNumber
-  trade: Trade<Currency, Currency, TradeType>
-  route: RouteWithValidQuote[]
-  blockNumber: BigNumber
-  methodParameters?: MethodParameters
-}
+  quote: CurrencyAmount;
+  quoteGasAdjusted: CurrencyAmount;
+  estimatedGasUsed: BigNumber;
+  estimatedGasUsedQuoteToken: CurrencyAmount;
+  estimatedGasUsedUSD: CurrencyAmount;
+  gasPriceWei: BigNumber;
+  trade: Trade<Currency, Currency, TradeType>;
+  route: RouteWithValidQuote[];
+  blockNumber: BigNumber;
+  methodParameters?: MethodParameters;
+};
 ```
 
 Use the quoted gas price and generated call data as inputs for the transaction, as done below:

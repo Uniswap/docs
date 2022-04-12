@@ -18,8 +18,8 @@ npm install @uniswap/smart-order-router
 ```
 
 ```typescript
-import { AlphaRouter } from '@uniswap/smart-order-router'
-const router = new AlphaRouter({ chainId: 1, provider: web3Provider })
+import { AlphaRouter } from "@uniswap/smart-order-router";
+const router = new AlphaRouter({ chainId: 1, provider: web3Provider });
 ```
 
 ## Fetching calldata from `routeToRatio`
@@ -129,19 +129,19 @@ The `SwapToRatioRoute` object will have the properties listed out in the type be
 
 ```typescript
 type SwapToRatioRoute = {
-  quote: CurrencyAmount
-  quoteGasAdjusted: CurrencyAmount
-  optimalRatio: Fraction
-  postSwapTargetPool: Pool
-  estimatedGasUsed: BigNumber
-  estimatedGasUsedQuoteToken: CurrencyAmount
-  estimatedGasUsedUSD: CurrencyAmount
-  gasPriceWei: BigNumber
-  trade: Trade<Currency, Currency, TradeType>
-  route: RouteWithValidQuote[]
-  blockNumber: BigNumber
-  methodParameters?: MethodParameters
-}
+  quote: CurrencyAmount;
+  quoteGasAdjusted: CurrencyAmount;
+  optimalRatio: Fraction;
+  postSwapTargetPool: Pool;
+  estimatedGasUsed: BigNumber;
+  estimatedGasUsedQuoteToken: CurrencyAmount;
+  estimatedGasUsedUSD: CurrencyAmount;
+  gasPriceWei: BigNumber;
+  trade: Trade<Currency, Currency, TradeType>;
+  route: RouteWithValidQuote[];
+  blockNumber: BigNumber;
+  methodParameters?: MethodParameters;
+};
 ```
 
 Use the quoted gas price defined as `gasPriceWei` in the above `SwapToRatioRoute` object above and generated call data as inputs for the transaction, as done below:

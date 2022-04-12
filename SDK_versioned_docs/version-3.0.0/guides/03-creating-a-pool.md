@@ -12,18 +12,24 @@ First we will replace the abi that we previously wrote out manually with a libra
 Depending on your local configuration, you may need to update your tsconfig.json to allow importing of `json` files with `"resolveJsonModule": true,`.
 
 ```typescript
-import { ethers } from 'ethers'
-import { Pool } from '@uniswap/v3-sdk'
-import { Token } from '@uniswap/sdk-core'
-import { abi as IUniswapV3PoolABI } from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
+import { ethers } from "ethers";
+import { Pool } from "@uniswap/v3-sdk";
+import { Token } from "@uniswap/sdk-core";
+import { abi as IUniswapV3PoolABI } from "@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json";
 ```
 
 Now we'll update the `Contract` object with our imported ABI - and keep the pool address and provider the same as the previous example.
 
 ```typescript
-const provider = new ethers.providers.JsonRpcProvider('https://mainnet.infura.io/v3/<YOUR-ENDPOINT-HERE>')
-const poolAddress = '0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8'
-const poolContract = new ethers.Contract(poolAddress, IUniswapV3PoolABI, provider)
+const provider = new ethers.providers.JsonRpcProvider(
+  "https://mainnet.infura.io/v3/<YOUR-ENDPOINT-HERE>"
+);
+const poolAddress = "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8";
+const poolContract = new ethers.Contract(
+  poolAddress,
+  IUniswapV3PoolABI,
+  provider
+);
 ```
 
 ## Creating The Interfaces
@@ -32,40 +38,41 @@ Create two interfaces with types that are appropriate for the data we need. We w
 
 ```typescript
 interface Immutables {
-  factory: string
-  token0: string
-  token1: string
-  fee: number
-  tickSpacing: number
-  maxLiquidityPerTick: ethers.BigNumber
+  factory: string;
+  token0: string;
+  token1: string;
+  fee: number;
+  tickSpacing: number;
+  maxLiquidityPerTick: ethers.BigNumber;
 }
 
 interface State {
-  liquidity: ethers.BigNumber
-  sqrtPriceX96: ethers.BigNumber
-  tick: number
-  observationIndex: number
-  observationCardinality: number
-  observationCardinalityNext: number
-  feeProtocol: number
-  unlocked: boolean
+  liquidity: ethers.BigNumber;
+  sqrtPriceX96: ethers.BigNumber;
+  tick: number;
+  observationIndex: number;
+  observationCardinality: number;
+  observationCardinalityNext: number;
+  feeProtocol: number;
+  unlocked: boolean;
 }
 ```
 
 ## Fetching Immutable Data
 
-Fetch the immutable data from the deployed V3 pool contract and return it to create a model of the pool.
+Fetch the immutable data from the deployed V3 pool contract and return it to create a model of the pool. 
 
 ```typescript
 async function getPoolImmutables() {
-  const [factory, token0, token1, fee, tickSpacing, maxLiquidityPerTick] = await Promise.all([
-    poolContract.factory(),
-    poolContract.token0(),
-    poolContract.token1(),
-    poolContract.fee(),
-    poolContract.tickSpacing(),
-    poolContract.maxLiquidityPerTick(),
-  ])
+  const [factory, token0, token1, fee, tickSpacing, maxLiquidityPerTick] =
+    await Promise.all([
+      poolContract.factory(),
+      poolContract.token0(),
+      poolContract.token1(),
+      poolContract.fee(),
+      poolContract.tickSpacing(),
+      poolContract.maxLiquidityPerTick(),
+    ]);
 
   const immutables: Immutables = {
     factory,
@@ -74,8 +81,8 @@ async function getPoolImmutables() {
     fee,
     tickSpacing,
     maxLiquidityPerTick,
-  }
-  return immutables
+  };
+  return immutables;
 }
 ```
 
@@ -87,7 +94,10 @@ Fetch the state data in with the same `Promise.all` style. This approach queries
 
 ```typescript
 async function getPoolState() {
-  const [liquidity, slot] = await Promise.all([poolContract.liquidity(), poolContract.slot0()])
+  const [liquidity, slot] = await Promise.all([
+    poolContract.liquidity(),
+    poolContract.slot0(),
+  ]);
 
   const PoolState: State = {
     liquidity,
@@ -98,9 +108,9 @@ async function getPoolState() {
     observationCardinalityNext: slot[4],
     feeProtocol: slot[5],
     unlocked: slot[6],
-  }
+  };
 
-  return PoolState
+  return PoolState;
 }
 ```
 
@@ -112,11 +122,14 @@ Create a function called `main`, which calls previously written functions, and u
 
 ```typescript
 async function main() {
-  const [immutables, state] = await Promise.all([getPoolImmutables(), getPoolState()])
+  const [immutables, state] = await Promise.all([
+    getPoolImmutables(),
+    getPoolState(),
+  ]);
 
-  const TokenA = new Token(3, immutables.token0, 6, 'USDC', 'USD Coin')
+  const TokenA = new Token(3, immutables.token0, 6, "USDC", "USD Coin");
 
-  const TokenB = new Token(3, immutables.token1, 18, 'WETH', 'Wrapped Ether')
+  const TokenB = new Token(3, immutables.token1, 18, "WETH", "Wrapped Ether");
 
   const poolExample = new Pool(
     TokenA,
@@ -125,11 +138,11 @@ async function main() {
     state.sqrtPriceX96.toString(),
     state.liquidity.toString(),
     state.tick
-  )
-  console.log(poolExample)
+  );
+  console.log(poolExample);
 }
 
-main()
+main();
 ```
 
 If everything is working, the script should return something like this:
@@ -165,46 +178,54 @@ Pool {
 ## The Final Script
 
 ```typescript
-import { ethers } from 'ethers'
-import { Pool } from '@uniswap/v3-sdk'
-import { Token } from '@uniswap/sdk-core'
-import { abi as IUniswapV3PoolABI } from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
+import { ethers } from "ethers";
+import { Pool } from "@uniswap/v3-sdk";
+import { Token } from "@uniswap/sdk-core";
+import { abi as IUniswapV3PoolABI } from "@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json";
 
-const provider = new ethers.providers.JsonRpcProvider('https://mainnet.infura.io/v3/<YOUR-ENDPOINT-HERE>')
+const provider = new ethers.providers.JsonRpcProvider(
+  "https://mainnet.infura.io/v3/<YOUR-ENDPOINT-HERE>"
+);
 
-const poolAddress = '0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8'
 
-const poolContract = new ethers.Contract(poolAddress, IUniswapV3PoolABI, provider)
+const poolAddress = "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8";
+
+const poolContract = new ethers.Contract(
+  poolAddress,
+  IUniswapV3PoolABI,
+  provider
+);
 
 interface Immutables {
-  factory: string
-  token0: string
-  token1: string
-  fee: number
-  tickSpacing: number
-  maxLiquidityPerTick: ethers.BigNumber
+  factory: string;
+  token0: string;
+  token1: string;
+  fee: number;
+  tickSpacing: number;
+  maxLiquidityPerTick: ethers.BigNumber;
 }
 
 interface State {
-  liquidity: ethers.BigNumber
-  sqrtPriceX96: ethers.BigNumber
-  tick: number
-  observationIndex: number
-  observationCardinality: number
-  observationCardinalityNext: number
-  feeProtocol: number
-  unlocked: boolean
+  liquidity: ethers.BigNumber;
+  sqrtPriceX96: ethers.BigNumber;
+  tick: number;
+  observationIndex: number;
+  observationCardinality: number;
+  observationCardinalityNext: number;
+  feeProtocol: number;
+  unlocked: boolean;
 }
 
 async function getPoolImmutables() {
-  const [factory, token0, token1, fee, tickSpacing, maxLiquidityPerTick] = await Promise.all([
-    poolContract.factory(),
-    poolContract.token0(),
-    poolContract.token1(),
-    poolContract.fee(),
-    poolContract.tickSpacing(),
-    poolContract.maxLiquidityPerTick(),
-  ])
+  const [factory, token0, token1, fee, tickSpacing, maxLiquidityPerTick] =
+    await Promise.all([
+      poolContract.factory(),
+      poolContract.token0(),
+      poolContract.token1(),
+      poolContract.fee(),
+      poolContract.tickSpacing(),
+      poolContract.maxLiquidityPerTick(),
+    ]);
 
   const immutables: Immutables = {
     factory,
@@ -213,12 +234,15 @@ async function getPoolImmutables() {
     fee,
     tickSpacing,
     maxLiquidityPerTick,
-  }
-  return immutables
+  };
+  return immutables;
 }
 
 async function getPoolState() {
-  const [liquidity, slot] = await Promise.all([poolContract.liquidity(), poolContract.slot0()])
+  const [liquidity, slot] = await Promise.all([
+    poolContract.liquidity(),
+    poolContract.slot0(),
+  ]);
 
   const PoolState: State = {
     liquidity,
@@ -229,17 +253,20 @@ async function getPoolState() {
     observationCardinalityNext: slot[4],
     feeProtocol: slot[5],
     unlocked: slot[6],
-  }
+  };
 
-  return PoolState
+  return PoolState;
 }
 
 async function main() {
-  const [immutables, state] = await Promise.all([getPoolImmutables(), getPoolState()])
+  const [immutables, state] = await Promise.all([
+    getPoolImmutables(),
+    getPoolState(),
+  ]);
 
-  const TokenA = new Token(3, immutables.token0, 6, 'USDC', 'USD Coin')
+  const TokenA = new Token(3, immutables.token0, 6, "USDC", "USD Coin");
 
-  const TokenB = new Token(3, immutables.token1, 18, 'WETH', 'Wrapped Ether')
+  const TokenB = new Token(3, immutables.token1, 18, "WETH", "Wrapped Ether");
 
   const poolExample = new Pool(
     TokenA,
@@ -248,9 +275,10 @@ async function main() {
     state.sqrtPriceX96.toString(),
     state.liquidity.toString(),
     state.tick
-  )
-  console.log(poolExample)
+  );
+  console.log(poolExample);
 }
 
-main()
+main();
+
 ```

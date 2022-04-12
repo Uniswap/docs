@@ -49,10 +49,9 @@ export interface RemoveLiquidityOptions {
 }
 ```
 
-To remove liquidity from a position, set the parameters for `tokenId`, `liquidityPercentage`, `slippageTolerance`, `deadline`, and `collectOptions`.
+To remove liquidity from a position, set the parameters for `tokenId`, `liquidityPercentage`, `slippageTolerance`, `deadline`, and `collectOptions`. 
 
-The reference for `CollectOptions` is
-
+The reference for `CollectOptions` is 
 ```typescript
 export interface CollectOptions {
   /**
@@ -78,26 +77,26 @@ export interface CollectOptions {
 ```
 
 The parameter inputs are outlined below for `RemoveLiquidityOptions`:
-
-- the`tokenId` is again set to 1 for this example, but refers to the unique id of the position nft.
-- `liquidityPercentage` represents the amount of liquidity to remove. Adjust this parameter based on how much liquidity you want to remove. Set it to `Percent(1)` to remove all liquidity.
-- This example sets `slipppageTolerance` and `deadline` to the same values as the previous examples.
-- `collectOptions` defines the tokens to be collected and are passed onto `collect`. This example collects the maximum amount of DAI and USDC.
+-  the`tokenId` is again set to 1 for this example, but refers to the unique id of the position nft. 
+- `liquidityPercentage` represents the amount of liquidity to remove. Adjust this parameter based on how much liquidity you want to remove. Set it to `Percent(1)` to remove all liquidity. 
+- This example sets `slipppageTolerance` and `deadline` to the same values as the previous examples. 
+- `collectOptions` defines the tokens to be collected and are passed onto `collect`. This example collects the maximum amount of DAI and USDC. 
 
 When collecting fees in ETH, you must precompute the fees owed to protect against reentrancy attacks. In order to set a safety check, set the minimum fees owed in `expectedCurrencyOwed0` and `expectedCurrencyOwed1`. To calculate this, quote the `collect` function and store the amounts. The interface does similar behavior [here](https://github.com/Uniswap/uniswap-interface/blob/eff512deb8f0ab832eb8d1834f6d1a20219257d0/src/hooks/useV3PositionFees.ts#L32). For this example, it is not necessary to set a minimum amount of fees to collect because there is no concern with reentrancy for tokens (DAI/USDC).
 
+
 ```typescript
-const { calldata, value } = NonfungiblePositionManager.removeCallParameters(position, {
-  tokenId: 1,
-  liquidityPercentage: new Percent(1),
-  slippageTolerance: new Percent(50, 10_000),
-  deadline: deadline,
-  collectOptions: {
-    expectedCurrencyOwed0: CurrencyAmount.fromRawAmount(DAI, 0),
-    expectedCurrencyOwed1: CurrencyAmount.fromRawAmount(USDC, 0),
-    recipient: sender,
-  },
-})
+const {calldata, value} = NonfungiblePositionManager.removeCallParameters(position, {
+        tokenId: 1,
+        liquidityPercentage: new Percent(1),
+        slippageTolerance: new Percent(50, 10_000),
+        deadline: deadline,
+        collectOptions: {
+          expectedCurrencyOwed0: CurrencyAmount.fromRawAmount(DAI, 0),
+          expectedCurrencyOwed1: CurrencyAmount.fromRawAmount(USDC, 0),
+          recipient: sender
+        }}
+    );
 ```
 
 ## The example code
