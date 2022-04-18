@@ -104,6 +104,10 @@ html[data-theme="light"] {
   color: #3578e5;
 }
 
+.blog {
+  max-width: 650px;
+}
+
 p {
   line-height: 1.5rem;
   font-weight: 400;
@@ -490,6 +494,7 @@ html[data-theme="dark"] .DocSearch-Hit a {
 .menu__link.V1_active.V1 {
   display: flex;
 }
+
 @media (max-width: 960px) {
   .menu {
     /* background-color: var(--ifm-color-emphasis-0); */
