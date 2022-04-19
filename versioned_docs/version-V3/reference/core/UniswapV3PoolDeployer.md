@@ -1,8 +1,7 @@
-
-
-
 ## Functions
+
 ### deploy
+
 ```solidity
   function deploy(
     address factory,
@@ -17,11 +16,11 @@ Deploys a pool with the given parameters by transiently setting the parameters s
 clearing it after deploying the pool.
 
 #### Parameters:
-| Name | Type | Description                                                          |
-| :--- | :--- | :------------------------------------------------------------------- |
-|`factory` | address | The contract address of the Uniswap V3 factory
-|`token0` | address | The first token of the pool by address sort order
-|`token1` | address | The second token of the pool by address sort order
-|`fee` | uint24 | The fee collected upon every swap in the pool, denominated in hundredths of a bip
-|`tickSpacing` | int24 | The spacing between usable ticks
 
+| Name          | Type    | Description                                                                       |
+| :------------ | :------ | :-------------------------------------------------------------------------------- |
+| `factory`     | address | The contract address of the Uniswap V3 factory                                    |
+| `token0`      | address | The first token of the pool by address sort order                                 |
+| `token1`      | address | The second token of the pool by address sort order                                |
+| `fee`         | uint24  | The fee collected upon every swap in the pool, denominated in hundredths of a bip |
+| `tickSpacing` | int24   | The spacing between usable ticks                                                  |

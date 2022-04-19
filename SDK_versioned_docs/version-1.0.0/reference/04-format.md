@@ -10,10 +10,7 @@ This function formats values to a specified number of significant digits.
 ## Function Signature
 
 ```typescript
-export function formatSignificant(
-  bigNumberish: BigNumberish,
-  options?: FormatSignificantOptions
-): string;
+export function formatSignificant(bigNumberish: BigNumberish, options?: FormatSignificantOptions): string
 ```
 
 ## Input Parameters
@@ -26,7 +23,7 @@ export function formatSignificant(
 ## Example Usage
 
 ```typescript
-const formatted: string = formatSignificant("123456", { significantDigits: 3 }); // 1.23
+const formatted: string = formatSignificant('123456', { significantDigits: 3 }) // 1.23
 ```
 
 # formatSignificantDecimals
@@ -40,7 +37,7 @@ export function formatSignificantDecimals(
   bigNumberish: BigNumberish,
   decimals: number,
   options?: FormatSignificantOptions
-): string;
+): string
 ```
 
 ## Input Parameters
@@ -54,9 +51,9 @@ export function formatSignificantDecimals(
 ## Example Usage
 
 ```typescript
-const formatted: string = formatSignificantDecimals("1234560000000000000", 18, {
+const formatted: string = formatSignificantDecimals('1234560000000000000', 18, {
   significantDigits: 3,
-}); // 1.23
+}) // 1.23
 ```
 
 # formatFixed
@@ -66,10 +63,7 @@ This function formats values to a specified number of decimal places.
 ## Function Signature
 
 ```typescript
-export function formatFixed(
-  bigNumberish: BigNumberish,
-  options?: FormatFixedOptions
-): string;
+export function formatFixed(bigNumberish: BigNumberish, options?: FormatFixedOptions): string
 ```
 
 ## Input Parameters
@@ -82,7 +76,7 @@ export function formatFixed(
 ## Example Usage
 
 ```typescript
-const formatted: string = formatFixed("1.2345", { decimalPlaces: 2 }); // 1.23
+const formatted: string = formatFixed('1.2345', { decimalPlaces: 2 }) // 1.23
 ```
 
 # formatFixedDecimals
@@ -92,11 +86,7 @@ This function formats token and ethereum values to a specified number of decimal
 ## Function Signature
 
 ```typescript
-export function formatFixedDecimals(
-  bigNumberish: BigNumberish,
-  decimals: number,
-  options?: FormatFixedOptions
-): string;
+export function formatFixedDecimals(bigNumberish: BigNumberish, decimals: number, options?: FormatFixedOptions): string
 ```
 
 ## Input Parameters
@@ -110,7 +100,7 @@ export function formatFixedDecimals(
 ## Example Usage
 
 ```typescript
-const formatted: string = formatFixedDecimals("1234560000000000000", 18, {
+const formatted: string = formatFixedDecimals('1234560000000000000', 18, {
   decimalPlaces: 2,
-}); // 1.23
+}) // 1.23
 ```

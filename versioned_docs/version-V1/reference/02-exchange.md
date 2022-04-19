@@ -20,7 +20,7 @@ setup(token_addr: address):
 
 ```javascript
 // Can only be called by factory contract during createExchange()
-exchangeContract.methods.setup((token: String)).send();
+exchangeContract.methods.setup((token: String)).send()
 ```
 
 # addLiquidity
@@ -50,9 +50,7 @@ addLiquidity(
 ## Web3
 
 ```javascript
-exchangeContract.methods
-  .addLiquidity(min_liquidity, max_tokens, deadline)
-  .send({ value: ethValue });
+exchangeContract.methods.addLiquidity(min_liquidity, max_tokens, deadline).send({ value: ethValue })
 ```
 
 # removeLiquidity
@@ -83,9 +81,7 @@ removeLiquidity(
 ## Web3
 
 ```javascript
-exchangeContract.methods
-  .removeLiquidity(amount, min_eth, min_tokens, deadline)
-  .send();
+exchangeContract.methods.removeLiquidity(amount, min_eth, min_tokens, deadline).send()
 ```
 
 # default
@@ -105,7 +101,7 @@ __default__():
 ## Web3
 
 ```javascript
-web3.eth.sendTransaction({ value: ethAmount });
+web3.eth.sendTransaction({ value: ethAmount })
 ```
 
 # ethToTokenSwapInput
@@ -133,9 +129,7 @@ ethToTokenSwapInput(
 ## Web3
 
 ```javascript
-exchangeContract.methods
-  .ethToTokenSwapInput(min_liquidity, max_tokens, deadline)
-  .send({ value: ethValue });
+exchangeContract.methods.ethToTokenSwapInput(min_liquidity, max_tokens, deadline).send({ value: ethValue })
 ```
 
 # ethToTokenTransferInput
@@ -167,7 +161,7 @@ ethToTokenTransferInput(
 ```javascript
 exchangeContract.methods
   .ethToTokenTransferInput(min_liquidity, max_tokens, deadline, recipient)
-  .send({ value: ethValue });
+  .send({ value: ethValue })
 ```
 
 # ethToTokenSwapOutput
@@ -195,9 +189,7 @@ ethToTokenSwapOutput(
 ## Web3
 
 ```javascript
-exchangeContract.methods
-  .ethToTokenSwapOutput(tokens_bought, deadline)
-  .send({ value: ethValue });
+exchangeContract.methods.ethToTokenSwapOutput(tokens_bought, deadline).send({ value: ethValue })
 ```
 
 # ethToTokenTransferOutput
@@ -229,7 +221,7 @@ ethToTokenTransferOutput(
 ```javascript
 exchangeContract.methods
   .ethToTokenTransferOutput(tokens_bought, deadline, (recipient: String))
-  .send({ value: ethValue });
+  .send({ value: ethValue })
 ```
 
 # tokenToEthSwapInput
@@ -257,9 +249,7 @@ tokenToEthSwapInput(
 ## Web3
 
 ```javascript
-exchangeContract.methods
-  .tokenToEthSwapInput(tokens_sold, min_eth, deadline)
-  .send();
+exchangeContract.methods.tokenToEthSwapInput(tokens_sold, min_eth, deadline).send()
 ```
 
 # tokenToEthTransferInput
@@ -289,9 +279,7 @@ tokenToEthTransferInput(
 ## Web3
 
 ```javascript
-exchangeContract.methods
-  .tokenToEthTransferInput(tokens_sold, min_eth, deadline, recipient)
-  .send();
+exchangeContract.methods.tokenToEthTransferInput(tokens_sold, min_eth, deadline, recipient).send()
 ```
 
 # tokenToEthSwapOutput
@@ -319,9 +307,7 @@ tokenToEthSwapOutput(
 ## Web3
 
 ```javascript
-exchangeContract.methods
-  .tokenToEthSwapOutput(eth_bought, max_tokens, (deadline: Integer))
-  .send();
+exchangeContract.methods.tokenToEthSwapOutput(eth_bought, max_tokens, (deadline: Integer)).send()
 ```
 
 # tokenToEthTransferOutput
@@ -352,13 +338,8 @@ tokenToEthTransferOutput(
 
 ```javascript
 exchangeContract.methods
-  .tokenToEthTransferOutput(
-    eth_bought,
-    max_tokens,
-    (deadline: Integer),
-    (recipient: String)
-  )
-  .send();
+  .tokenToEthTransferOutput(eth_bought, max_tokens, (deadline: Integer), (recipient: String))
+  .send()
 ```
 
 # tokenToTokenSwapInput
@@ -391,14 +372,8 @@ tokenToTokenSwapInput(
 
 ```javascript
 exchangeContract.methods
-  .tokenToTokenSwapInput(
-    tokens_sold,
-    min_tokens_bought,
-    min_eth_bought,
-    deadline,
-    token_addr
-  )
-  .send();
+  .tokenToTokenSwapInput(tokens_sold, min_tokens_bought, min_eth_bought, deadline, token_addr)
+  .send()
 ```
 
 # tokenToTokenTransferInput
@@ -433,15 +408,8 @@ tokenToTokenTransferInput(
 
 ```javascript
 exchangeContract.methods
-  .tokenToTokenTransferInput(
-    tokens_sold,
-    min_tokens_bought,
-    min_eth_bought,
-    deadline,
-    recipient,
-    token_addr
-  )
-  .send();
+  .tokenToTokenTransferInput(tokens_sold, min_tokens_bought, min_eth_bought, deadline, recipient, token_addr)
+  .send()
 ```
 
 # tokenToTokenSwapOutput
@@ -474,14 +442,8 @@ tokenToTokenSwapOutput(
 
 ```javascript
 exchangeContract.methods
-  .tokenToTokenSwapOutput(
-    tokens_bought,
-    max_tokens_sold,
-    max_eth_sold,
-    deadline,
-    token_addr
-  )
-  .send();
+  .tokenToTokenSwapOutput(tokens_bought, max_tokens_sold, max_eth_sold, deadline, token_addr)
+  .send()
 ```
 
 # tokenToTokenTransferOutput
@@ -516,15 +478,8 @@ tokenToTokenTransferOutput(
 
 ```javascript
 exchangeContract.methods
-  .tokenToTokenTransferOutput(
-    tokens_bought,
-    max_tokens_sold,
-    max_eth_sold,
-    deadline,
-    recipient,
-    token_addr
-  )
-  .send();
+  .tokenToTokenTransferOutput(tokens_bought, max_tokens_sold, max_eth_sold, deadline, recipient, token_addr)
+  .send()
 ```
 
 # tokenToExchangeSwapInput
@@ -557,14 +512,8 @@ tokenToTokenSwapInput(
 
 ```javascript
 exchangeContract.methods
-  .tokenToTokenSwapInput(
-    tokens_sold,
-    min_tokens_bought,
-    min_eth_bought,
-    deadline,
-    exchange_addr
-  )
-  .send();
+  .tokenToTokenSwapInput(tokens_sold, min_tokens_bought, min_eth_bought, deadline, exchange_addr)
+  .send()
 ```
 
 # tokenToExchangeTransferInput
@@ -599,15 +548,8 @@ tokenToExchangeTransferInput(
 
 ```javascript
 exchangeContract.methods
-  .tokenToExchangeTransferInput(
-    tokens_sold,
-    min_tokens_bought,
-    min_eth_bought,
-    deadline,
-    recipient,
-    exchange_addr
-  )
-  .send();
+  .tokenToExchangeTransferInput(tokens_sold, min_tokens_bought, min_eth_bought, deadline, recipient, exchange_addr)
+  .send()
 ```
 
 # tokenToExchangeSwapOutput
@@ -640,14 +582,8 @@ tokenToExchangeSwapOutput(
 
 ```javascript
 exchangeContract.methods
-  .tokenToExchangeSwapOutput(
-    tokens_bought,
-    max_tokens_sold,
-    max_eth_sold,
-    deadline,
-    exchange_addr
-  )
-  .send();
+  .tokenToExchangeSwapOutput(tokens_bought, max_tokens_sold, max_eth_sold, deadline, exchange_addr)
+  .send()
 ```
 
 # tokenToExchangeTransferOutput
@@ -682,15 +618,8 @@ tokenToExchangeTransferOutput(
 
 ```javascript
 exchangeContract.methods
-  .tokenToExchangeTransferOutput(
-    tokens_bought,
-    max_tokens_sold,
-    max_eth_sold,
-    deadline,
-    recipient,
-    exchange_addr
-  )
-  .send();
+  .tokenToExchangeTransferOutput(tokens_bought, max_tokens_sold, max_eth_sold, deadline, recipient, exchange_addr)
+  .send()
 ```
 
 # getEthToTokenInputPrice
@@ -713,7 +642,7 @@ getEthToTokenInputPrice(eth_sold: uint256): uint256
 ## Web3
 
 ```javascript
-exchangeContract.methods.getEthToTokenInputPrice(eth_sold).call();
+exchangeContract.methods.getEthToTokenInputPrice(eth_sold).call()
 ```
 
 # getEthToTokenOutputPrice
@@ -736,7 +665,7 @@ getEthToTokenOutputPrice(tokens_bought: uint256): uint256
 ## Web3
 
 ```javascript
-exchangeContract.methods.getEthToTokenOutputPrice(tokens_bought).call();
+exchangeContract.methods.getEthToTokenOutputPrice(tokens_bought).call()
 ```
 
 # getTokenToEthInputPrice
@@ -759,7 +688,7 @@ getTokenToEthInputPrice(tokens_sold: uint256): uint256
 ## Web3
 
 ```javascript
-exchangeContract.methods.getTokenToEthInputPrice(tokens_sold).call();
+exchangeContract.methods.getTokenToEthInputPrice(tokens_sold).call()
 ```
 
 # getTokenToEthOutputPrice
@@ -782,7 +711,7 @@ getTokenToEthOutputPrice(eth_bought: uint256): uint256
 ## Web3
 
 ```javascript
-exchangeContract.methods.getTokenToEthOutputPrice(eth_bought).call();
+exchangeContract.methods.getTokenToEthOutputPrice(eth_bought).call()
 ```
 
 # tokenAddress
@@ -801,7 +730,7 @@ tokenAddress(): address
 ## Web3
 
 ```javascript
-exchangeContract.methods.tokenAddress().call();
+exchangeContract.methods.tokenAddress().call()
 ```
 
 # factoryAddress
@@ -820,7 +749,7 @@ factoryAddress(): address
 ## Web3
 
 ```javascript
-exchangeContract.methods.factoryAddress().call();
+exchangeContract.methods.factoryAddress().call()
 ```
 
 # name
@@ -840,7 +769,7 @@ name(): bytes32 // Uniswap V1
 ## Web3
 
 ```javascript
-exchangeContract.methods.tokenAddress().call();
+exchangeContract.methods.tokenAddress().call()
 ```
 
 # symbol
@@ -860,7 +789,7 @@ symbol(): bytes32 // UNI-V1
 ## Web3
 
 ```javascript
-exchangeContract.methods.tokenAddress().call();
+exchangeContract.methods.tokenAddress().call()
 ```
 
 # decimals
@@ -880,7 +809,7 @@ decimals(): uint256 // 18
 ## Web3
 
 ```javascript
-exchangeContract.methods.decimals().call();
+exchangeContract.methods.decimals().call()
 ```
 
 # balanceOf
@@ -903,7 +832,7 @@ balanceOf(_owner: address): uint256
 ## Web3
 
 ```javascript
-exchangeContract.methods.balanceOf(_owner).call();
+exchangeContract.methods.balanceOf(_owner).call()
 ```
 
 # transfer
@@ -929,7 +858,7 @@ transfer(
 ## Web3
 
 ```javascript
-exchangeContract.methods.transfer(_to, _value).send();
+exchangeContract.methods.transfer(_to, _value).send()
 ```
 
 # transferFrom
@@ -957,7 +886,7 @@ transferFrom(
 ## Web3
 
 ```javascript
-exchangeContract.methods.transferFrom(_from, _to, _value).send();
+exchangeContract.methods.transferFrom(_from, _to, _value).send()
 ```
 
 # approve
@@ -983,7 +912,7 @@ approve(
 ## Web3
 
 ```javascript
-exchangeContract.methods.approve(_spender, _value).send();
+exchangeContract.methods.approve(_spender, _value).send()
 ```
 
 # allowance
@@ -1009,5 +938,5 @@ allowance(
 ## Web3
 
 ```javascript
-exchangeContract.methods.allowance(_owner, _spender).call();
+exchangeContract.methods.allowance(_owner, _spender).call()
 ```

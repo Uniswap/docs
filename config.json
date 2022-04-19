@@ -1,11 +1,7 @@
 {
   "index_name": "v3-docs",
-  "start_urls": [
-    "https://docs.uniswap.org/"
-  ],
-  "sitemap_urls": [
-    "https://docs.uniswap.org/sitemap.xml"
-  ],
+  "start_urls": ["https://docs.uniswap.org/"],
+  "sitemap_urls": ["https://docs.uniswap.org/sitemap.xml"],
   "sitemap_alternate_links": true,
   "stop_urls": [],
   "selectors": {
@@ -26,23 +22,9 @@
   "strip_chars": " .,;:#",
   "custom_settings": {
     "separatorsToIndex": "_",
-    "attributesForFaceting": [
-      "language",
-      "version",
-      "type",
-      "docusaurus_tag"
-    ],
-    "attributesToRetrieve": [
-      "hierarchy",
-      "content",
-      "anchor",
-      "url",
-      "url_without_anchor",
-      "type"
-    ]
+    "attributesForFaceting": ["language", "version", "type", "docusaurus_tag"],
+    "attributesToRetrieve": ["hierarchy", "content", "anchor", "url", "url_without_anchor", "type"]
   },
-  "conversation_id": [
-    "833762294"
-  ],
+  "conversation_id": ["833762294"],
   "nb_hits": 1335
 }

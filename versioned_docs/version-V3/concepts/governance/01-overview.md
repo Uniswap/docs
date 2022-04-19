@@ -18,7 +18,7 @@ For reference material on the Uniswap Governance system please see [Governance R
 ### ABI
 
 ```typescript
-import Uni from "@uniswap/governance/build/Uni.json";
+import Uni from '@uniswap/governance/build/Uni.json'
 ```
 
 [https://unpkg.com/@uniswap/governance@1.0.2/build/Uni.json](https://unpkg.com/@uniswap/governance@1.0.2/build/Uni.json)
@@ -30,7 +30,7 @@ import Uni from "@uniswap/governance/build/Uni.json";
 ### ABI
 
 ```typescript
-import Timelock from "@uniswap/governance/build/Timelock.json";
+import Timelock from '@uniswap/governance/build/Timelock.json'
 ```
 
 [https://unpkg.com/@uniswap/governance@1.0.2/build/Timelock.json](https://unpkg.com/@uniswap/governance@1.0.2/build/Timelock.json)
@@ -46,7 +46,7 @@ The `GovernorAlpha` ABI is viewable on [Etherscan](https://etherscan.io/address/
 [https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json](https://unpkg.com/@uniswap/governance@1.0.2/build/GovernorAlpha.json)
 
 ```typescript
-import GovernorAlpha from "@uniswap/governance/build/GovernorAlpha.json";
+import GovernorAlpha from '@uniswap/governance/build/GovernorAlpha.json'
 ```
 
 ## GovernorAlpha v2 (Deprecated)
@@ -76,19 +76,19 @@ The staking rewards factory address is `0x3032Ab3Fa8C01d786D29dAdE018d7f2017918e
 The four staking rewards addresses are:
 
 ```js
-0x6c3e4cb2e96b01f4b866965a91ed4437839a121a;
-0x7fba4b8dc5e7616e59622806932dbea72537a56b;
-0xa1484c3aa22a66c62b77e0ae78e15258bd0cb711;
-0xca35e32e7926b96a9988f61d510e038108d8068e;
+0x6c3e4cb2e96b01f4b866965a91ed4437839a121a
+0x7fba4b8dc5e7616e59622806932dbea72537a56b
+0xa1484c3aa22a66c62b77e0ae78e15258bd0cb711
+0xca35e32e7926b96a9988f61d510e038108d8068e
 ```
 
 The four year-long vesting contract addresses are:
 
 ```js
-0x4750c43867ef5f89869132eccf19b9b6c4286e1a;
-0xe3953d9d317b834592ab58ab2c7a6ad22b54075d;
-0x4b4e140d1f131fdad6fb59c13af796fd194e4135;
-0x3d30b1ab88d487b0f3061f40de76845bec3f1e94;
+0x4750c43867ef5f89869132eccf19b9b6c4286e1a
+0xe3953d9d317b834592ab58ab2c7a6ad22b54075d
+0x4b4e140d1f131fdad6fb59c13af796fd194e4135
+0x3d30b1ab88d487b0f3061f40de76845bec3f1e94
 ```
 
 The `feeToSetterVester` address is `0x18e433c7Bf8A2E1d0197CE5d8f9AFAda1A771360`.

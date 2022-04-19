@@ -8,7 +8,6 @@ This guide describes how to set up your environment using a specific toolset: `N
 
 Once you have set up your environment, read the guides on liquidity mining, implementing swaps, and so on, which provide example contracts for those interactions.
 
-
 ## Create a Node.js Project
 
 1. Download and install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
@@ -50,8 +49,8 @@ For this example, we'll need to change ./hardhat.config.js to include the approp
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.7.6",
-};
+  solidity: '0.7.6',
+}
 ```
 
 ## Compile a Contract

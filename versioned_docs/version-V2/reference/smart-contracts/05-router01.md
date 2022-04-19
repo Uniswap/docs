@@ -506,7 +506,7 @@ interface IUniswapV2Router01 {
 # ABI
 
 ```typescript
-import IUniswapV2Router01 from "@uniswap/v2-periphery/build/IUniswapV2Router01.json";
+import IUniswapV2Router01 from '@uniswap/v2-periphery/build/IUniswapV2Router01.json'
 ```
 
 [https://unpkg.com/@uniswap/v2-periphery@1.0.0-beta.0/build/IUniswapV2Router01.json](https://unpkg.com/@uniswap/v2-periphery@1.0.0-beta.0/build/IUniswapV2Router01.json)

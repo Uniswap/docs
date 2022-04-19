@@ -2,10 +2,9 @@
 id: introduction
 title: The Uniswap V1 Protocol
 sidebar_position: 1
-
 ---
 
-Uniswap V1 is the first version of the protocol, [launched in November 2018](https://twitter.com/haydenzadams/status/1058376395108376577) at Devcon 4. Because of its permissionless nature, it will exist for as long as Ethereum does. 
+Uniswap V1 is the first version of the protocol, [launched in November 2018](https://twitter.com/haydenzadams/status/1058376395108376577) at Devcon 4. Because of its permissionless nature, it will exist for as long as Ethereum does.
 
 Designed with simplicity in mind, the Uniswap protocol provides an interface for seamless exchange of ERC20 tokens on Ethereum. By eliminating unnecessary forms of rent extraction and middlemen it allows faster, more efficient exchange. Where it makes tradeoffs, decentralization, censorship resistance, and security are prioritized.
 

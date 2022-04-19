@@ -111,11 +111,11 @@ This method can be bundled with mint for the first mint of a pool to create, ini
 
 #### Parameters:
 
-| Name     | Type    | Description                                     |
-| :------- | :------ | :---------------------------------------------- |
-| `tokenA` | address | The contract address of either token0 or token1 |
-| `tokenB` | address | The contract address of the other token |
-| `fee` | uint24 | The fee amount of the v3 pool for the specified token pair |
+| Name           | Type    | Description                                                 |
+| :------------- | :------ | :---------------------------------------------------------- |
+| `tokenA`       | address | The contract address of either token0 or token1             |
+| `tokenB`       | address | The contract address of the other token                     |
+| `fee`          | uint24  | The fee amount of the v3 pool for the specified token pair  |
 | `sqrtPriceX96` | uint160 | The initial square root price of the pool as a Q64.96 value |
 
 We use tokenA and tokenB when we are referring to unsorted, or unordered tokens

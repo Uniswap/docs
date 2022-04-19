@@ -1,8 +1,9 @@
-
 Base contract that is overridden for tests
 
 ## Functions
-### _blockTimestamp
+
+### \_blockTimestamp
+
 ```solidity
   function _blockTimestamp(
   ) internal view returns (uint256)
@@ -10,8 +11,8 @@ Base contract that is overridden for tests
 
 Method that exists purely to be overridden for tests
 
-
 #### Return Values:
-| Type          | Description                                                                  |
-| :------------ | :--------------------------------------------------------------------------- |
-| uint256 | current block timestamp
+
+| Type    | Description             |
+| :------ | :---------------------- |
+| uint256 | current block timestamp |

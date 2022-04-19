@@ -12,27 +12,12 @@ The Pair entity represents a Uniswap pair with a balance of each of its pair tok
 # Example
 
 ```typescript
-import { ChainId, Token, TokenAmount, Pair } from "@uniswap/sdk";
+import { ChainId, Token, TokenAmount, Pair } from '@uniswap/sdk'
 
-const HOT = new Token(
-  ChainId.MAINNET,
-  "0xc0FFee0000000000000000000000000000000000",
-  18,
-  "HOT",
-  "Caffeine"
-);
-const NOT = new Token(
-  ChainId.MAINNET,
-  "0xDeCAf00000000000000000000000000000000000",
-  18,
-  "NOT",
-  "Caffeine"
-);
+const HOT = new Token(ChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
+const NOT = new Token(ChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
 
-const pair = new Pair(
-  new TokenAmount(HOT, "2000000000000000000"),
-  new TokenAmount(NOT, "1000000000000000000")
-);
+const pair = new Pair(new TokenAmount(HOT, '2000000000000000000'), new TokenAmount(NOT, '1000000000000000000'))
 ```
 
 # Static Methods
@@ -50,7 +35,7 @@ Computes the pair address for the passed [Tokens](token). See [Pair Addresses](.
 ## liquidityToken
 
 ```typescript
-liquidityToken: Token;
+liquidityToken: Token
 ```
 
 A Token representing the liquidity token for the pair. See [Pair (ERC-20)](../../../protocol/V2/reference/smart-contracts/pair-erc-20).
@@ -58,7 +43,7 @@ A Token representing the liquidity token for the pair. See [Pair (ERC-20)](../..
 ## token0
 
 ```typescript
-token0: Token;
+token0: Token
 ```
 
 See [Token0](../../../protocol/V2/reference/smart-contracts/pair#token0).
@@ -66,7 +51,7 @@ See [Token0](../../../protocol/V2/reference/smart-contracts/pair#token0).
 ## token1
 
 ```typescript
-token1: Token;
+token1: Token
 ```
 
 See [Token1](../../../protocol/V2/reference/smart-contracts/pair#token1).
@@ -74,7 +59,7 @@ See [Token1](../../../protocol/V2/reference/smart-contracts/pair#token1).
 ## reserve0
 
 ```typescript
-reserve0: TokenAmount;
+reserve0: TokenAmount
 ```
 
 The reserve of token0.
@@ -82,7 +67,7 @@ The reserve of token0.
 ## reserve1
 
 ```typescript
-reserve1: TokenAmount;
+reserve1: TokenAmount
 ```
 
 The reserve of token1.

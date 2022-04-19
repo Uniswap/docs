@@ -2,14 +2,14 @@ name: Algolia Search
 
 on:
   schedule:
-  - cron: "0 10 * * *"
+    - cron: '0 10 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Run Scraper
-      run: |
-        brew install jq
-        docker run -e "APPLICATION_ID=${{ secrets.ALGOLIA_APP_ID }}" -e "API_KEY=${{ secrets.API_KEY }}" -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper
+      - uses: actions/checkout@v2
+      - name: Run Scraper
+        run: |
+          brew install jq
+          docker run -e "APPLICATION_ID=${{ secrets.ALGOLIA_APP_ID }}" -e "API_KEY=${{ secrets.API_KEY }}" -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper

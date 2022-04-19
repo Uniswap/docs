@@ -18,22 +18,18 @@ Let's consider the mid price for DAI-WETH (that is, the amount of DAI per 1 WETH
 The simplest way to get the DAI-WETH mid price is to observe the pair directly:
 
 ```typescript
-import { ChainId, Token, WETH, Fetcher, Route } from "@uniswap/sdk";
+import { ChainId, Token, WETH, Fetcher, Route } from '@uniswap/sdk'
 
-const DAI = new Token(
-  ChainId.MAINNET,
-  "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-  18
-);
+const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // note that you may want/need to handle this async code differently,
 // for example if top-level await is not an option
-const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId]);
+const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId])
 
-const route = new Route([pair], WETH[DAI.chainId]);
+const route = new Route([pair], WETH[DAI.chainId])
 
-console.log(route.midPrice.toSignificant(6)); // 201.306
-console.log(route.midPrice.invert().toSignificant(6)); // 0.00496756
+console.log(route.midPrice.toSignificant(6)) // 201.306
+console.log(route.midPrice.invert().toSignificant(6)) // 0.00496756
 ```
 
 You may be wondering why we have to construct a _route_ to get the mid price, as opposed to simply getting it from the pair (which, after all, includes all the necessary data). The reason is simple: a route forces us to be opinionated about the _direction_ of trading. Routes consist of one or more pairs, and an input token (which fully defines a trading path). In this case, we passed WETH as the input token, meaning we're interested in a WETH -> DAI trade.
@@ -47,28 +43,20 @@ Finally, you may have noticed that we're formatting the price to 6 significant d
 For the sake of example, let's imagine a direct pair between DAI and WETH _doesn't exist_. In order to get a DAI-WETH mid price we'll need to pick a valid route. Imagine both DAI and WETH have pairs with a third token, USDC. In that case, we can calculate an indirect mid price through the USDC pairs:
 
 ```typescript
-import { ChainId, Token, WETH, Fetcher, Route } from "@uniswap/sdk";
+import { ChainId, Token, WETH, Fetcher, Route } from '@uniswap/sdk'
 
-const USDC = new Token(
-  ChainId.MAINNET,
-  "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-  6
-);
-const DAI = new Token(
-  ChainId.MAINNET,
-  "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-  18
-);
+const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6)
+const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // note that you may want/need to handle this async code differently,
 // for example if top-level await is not an option
-const USDCWETHPair = await Fetcher.fetchPairData(USDC, WETH[ChainId.MAINNET]);
-const DAIUSDCPair = await Fetcher.fetchPairData(DAI, USDC);
+const USDCWETHPair = await Fetcher.fetchPairData(USDC, WETH[ChainId.MAINNET])
+const DAIUSDCPair = await Fetcher.fetchPairData(DAI, USDC)
 
-const route = new Route([USDCWETHPair, DAIUSDCPair], WETH[ChainId.MAINNET]);
+const route = new Route([USDCWETHPair, DAIUSDCPair], WETH[ChainId.MAINNET])
 
-console.log(route.midPrice.toSignificant(6)); // 202.081
-console.log(route.midPrice.invert().toSignificant(6)); // 0.00494851
+console.log(route.midPrice.toSignificant(6)) // 202.081
+console.log(route.midPrice.invert().toSignificant(6)) // 0.00494851
 ```
 
 # Execution Price
@@ -78,37 +66,20 @@ Mid prices are great representations of the _current_ state of a route, but what
 Imagine we're interested in trading 1 WETH for DAI:
 
 ```typescript
-import {
-  ChainId,
-  Token,
-  WETH,
-  Fetcher,
-  Trade,
-  Route,
-  TokenAmount,
-  TradeType,
-} from "@uniswap/sdk";
+import { ChainId, Token, WETH, Fetcher, Trade, Route, TokenAmount, TradeType } from '@uniswap/sdk'
 
-const DAI = new Token(
-  ChainId.MAINNET,
-  "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-  18
-);
+const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // note that you may want/need to handle this async code differently,
 // for example if top-level await is not an option
-const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId]);
+const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId])
 
-const route = new Route([pair], WETH[DAI.chainId]);
+const route = new Route([pair], WETH[DAI.chainId])
 
-const trade = new Trade(
-  route,
-  new TokenAmount(WETH[DAI.chainId], "1000000000000000000"),
-  TradeType.EXACT_INPUT
-);
+const trade = new Trade(route, new TokenAmount(WETH[DAI.chainId], '1000000000000000000'), TradeType.EXACT_INPUT)
 
-console.log(trade.executionPrice.toSignificant(6));
-console.log(trade.nextMidPrice.toSignificant(6));
+console.log(trade.executionPrice.toSignificant(6))
+console.log(trade.nextMidPrice.toSignificant(6))
 ```
 
 Notice that we're constructing a trade of 1 WETH for as much DAI as possible, _given the current reserves of the direct pair_. The execution price represents the average DAI/WETH price for this trade. Of course, the reserves of any pair can change every block, which would affect the execution price.
