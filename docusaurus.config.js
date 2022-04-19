@@ -1,3 +1,6 @@
+const math = require('remark-math')
+const katex = require('rehype-katex')
+
 module.exports = {
   title: 'Uniswap',
   tagline: 'Documentation and Guides',
@@ -102,6 +105,12 @@ module.exports = {
         {
           label: 'Whitepaper',
           to: 'https://uniswap.org/whitepaper-v3.pdf',
+          position: 'right',
+          className: 'persistent',
+        },
+        {
+          label: 'Blog',
+          to: '/blog/intro-to-gas-optimization',
           position: 'right',
           className: 'persistent',
         },
@@ -228,6 +237,8 @@ module.exports = {
       {
         docs: {
           path: 'protocol',
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
           routeBasePath: 'protocol/',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/uniswap/uniswap-docs/tree/main/',
@@ -244,6 +255,13 @@ module.exports = {
             },
           },
         },
+        blog: {
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
+          path: 'blog/',
+          blogTitle: 'Engineering Blog',
+          blogSidebarCount: 0,
+        },
         googleAnalytics: {
           trackingID: 'UA-128182339-7',
           anonymizeIP: true,
@@ -254,6 +272,14 @@ module.exports = {
         },
       },
     ],
+  ],
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+      type: 'text/css',
+      integrity: 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+      crossorigin: 'anonymous',
+    },
   ],
   plugins: [
     [
