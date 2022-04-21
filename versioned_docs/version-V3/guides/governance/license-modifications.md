@@ -84,6 +84,7 @@ const UNISWAP_GOVERNANCE_TIMELOCK_ADDRESS: string = '0x1a9C8182C09F50C8318d76924
 const provider = new ethers.providers.JsonRpcProvider('YOUR_RPC_URL_HERE')
 const signer = provider.getSigner('YOUR_SIGNER_ADDRESS_HERE')
 
+// note: setting the subnode record should only take place if the subdomain does not already exist
 const ensRegistryInterface = new Interface(ENS_REGISTRY_ABI)
 const setSubnodeRecordCalldata = ensRegistryInterface.encodeFunctionData('setSubnodeRecord', [
   // node: The parent node
@@ -98,7 +99,6 @@ const setSubnodeRecordCalldata = ensRegistryInterface.encodeFunctionData('setSub
   0,
 ])
 
-// note: setting the subnode record should only take place if the subdomain does not already exist
 const ensPublicResolverInterface = new Interface(ENS_PUBLIC_RESOLVER_ABI)
 const setTextCalldata = ensPublicResolverInterface.encodeFunctionData('setText', [
   // node: The node to update
