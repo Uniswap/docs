@@ -36,12 +36,12 @@ Below is a depiction of wearable multiplier strength for each corresponding wear
 
 Below is a list of items for each Comic's corresponding wearable: 
 
-**Comic 1**: Cape
-**Comic 2**: Halo
-**Comic 3**: Diamond Bat
-**Comic 4**: Bread Bat
-**Comic 5**: TBA
-**Comic 6**: TBA
+**Comic 1**: Cape  
+**Comic 2**: Halo  
+**Comic 3**: Diamond Bat  
+**Comic 4**: Bread Bat  
+**Comic 5**: TBA  
+**Comic 6**: TBA  
 
 ## Summary
 
