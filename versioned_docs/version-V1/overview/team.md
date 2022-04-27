@@ -20,17 +20,17 @@ sidebar_position: 2
 | <img src={require('/static/img/NiftyMorgan.png').default} width="175" /> | <img src={require('/static/img/koa.png').default} width="175" /> | <img src={require('/static/img/bolo.png').default} width="175" /> | <img src={require('/static/img/zoiby.png').default} width="175" /> |
 | <div align="center"> VP of Ops </div>                              | <div align="center"> DAO Director </div>                         | <div align="center" style={{ width: "175px" }}> Program & Community Mgr </div>                | <div align="center"> Sr. Software Dev </div>                       |
 
-| <div align="center" style={{ width: "175px" }}> Brian Wang </div> | <div align="center" style={{ width: "175px" }}> Brandon </div> | <div align="center" style={{ width: "175px" }}> Jeppe </div> | <div align="center" style={{ width: "175px" }}> Ben Collie </div> |
-| -------------------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| <div align="center"> Brian </div>                                 | <div align="center"> Nifty Michael </div>                      | <div align="center"> Nifty Jeppe </div>                      | <div align="center"> Ben </div>                                   | 
-| <img src={require('/static/img/brian.png').default} width="175" /> | <img src={require('/static/img/NiftyMichael.png').default} width="175" /> | <img src={require('/static/img/jeppe.png').default} width="175" /> | <img src={require('/static/img/ben.png').default} width="175" /> |
-| <div align="center"> Sr. Web3 Dev </div>                          | <div align="center"> Web3 Dev </div>                           | <div align="center"> Marketing Mgr </div>                    | <div align="center"> Pixel Artist </div>                          | 
+| <div align="center" style={{ width: "175px" }}> Brian Wang </div> | <div align="center" style={{ width: "175px" }}> David </div> | <div align="center" style={{ width: "175px" }}> Matt </div> | <div align="center" style={{ width: "175px" }}> Brandon </div> |
+| -------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <div align="center"> Brian </div>                                 | <div align="center"> Nifty David </div>                      | <div align="center"> Nifty Matt </div>                      | <div align="center"> Nifty Michael </div>                      |
+| <img src={require('/static/img/brian.png').default} width="175" /> | <img src={require('/static/img/davidLee.png').default} width="175" /> | <img src={require('/static/img/matt.png').default} width="175" /> | <img src={require('/static/img/NiftyMichael.png').default} width="175" /> |
+| <div align="center"> Sr. Web3 Dev </div>                          | <div align="center"> Sr. Solidity Dev </div>                           | <div align="center"> FE Dev </div>                           | <div align="center"> Web3 Dev </div>                           |
 
-| <div align="center" style={{ width: "175px" }}> Caleb Chronowski </div> | <div align="center" style={{ width: "175px" }}> David Lee </div> |
-| -------------------------------------------------------------- | ------------------------------------------------------------ |
-| <div align="center"> Caleb </div>                                 | <div align="center"> Nifty David </div>                      |
-| <img src={require('/static/img/caleb.png').default} width="175" /> | <img src={require('/static/img/davidLee.png').default} width="175" /> |
-| <div align="center"> Game Economy Designer </div>                          | <div align="center"> Sr. Solidity Dev </div>                           |
+| <div align="center" style={{ width: "175px" }}> Jeppe </div> | <div align="center" style={{ width: "175px" }}> Ben Collie </div> | <div align="center" style={{ width: "175px" }}> Caleb </div> |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------- |
+| <div align="center"> Nifty Jeppe </div>                      | <div align="center"> Ben </div>                                   | <div align="center"> Caleb </div>                                 |
+| <img src={require('/static/img/jeppe.png').default} width="175" /> | <img src={require('/static/img/ben.png').default} width="175" /> | <img src={require('/static/img/caleb.png').default} width="175" /> |
+| <div align="center"> Marketing Mgr </div>                          | <div align="center"> Pixel Artist </div>                          | <div align="center" style={{ width: "175px" }}> Game Economy Designer </div>                          |
 
 ## Community Moderators
 
