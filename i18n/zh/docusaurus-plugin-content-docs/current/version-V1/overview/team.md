@@ -22,4 +22,4 @@ sidebar_position: 2
 
 | 真正的交易麦基尔               | 萨克克斯               | 末日                  | 纳德                 | 考阿                | 约旦                   |
 | ---------------------- | ------------------ | ------------------- | ------------------ | ----------------- | -------------------- |
-| ![](/img/realdeal.png) | ![](/img/sacx.png) | ![](/img/doomy.png) | ![](/img/nard.png) | ![](/img/koa.png) | ![](/img/jordan.png) |
+| ![](/img/realdealmc.png) | ![](/img/sacx.png) | ![](/img/doomy.png) | ![](/img/nard.png) | ![](/img/koa.png) | ![](/img/jordan.png) |

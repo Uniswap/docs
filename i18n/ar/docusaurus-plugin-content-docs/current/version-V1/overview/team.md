@@ -22,4 +22,4 @@ sidebar_position: 2
 
 | صفقة حقيقية McKeel     | ساكس               | DoomyDays           | ناردين             | كوا               | الأردن               |
 | ---------------------- | ------------------ | ------------------- | ------------------ | ----------------- | -------------------- |
-| ![](/img/realdeal.png) | ![](/img/sacx.png) | ![](/img/doomy.png) | ![](/img/nard.png) | ![](/img/koa.png) | ![](/img/jordan.png) |
+| ![](/img/realdealmc.png) | ![](/img/sacx.png) | ![](/img/doomy.png) | ![](/img/nard.png) | ![](/img/koa.png) | ![](/img/jordan.png) |

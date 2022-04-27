@@ -22,4 +22,4 @@ sidebar_position: 2
 
 | Gerçek Anlaşma McKeel  | saks               | Kıyamet Günleri     | nard               | koa               | Ürdün                |
 | ---------------------- | ------------------ | ------------------- | ------------------ | ----------------- | -------------------- |
-| ![](/img/realdeal.png) | ![](/img/sacx.png) | ![](/img/doomy.png) | ![](/img/nard.png) | ![](/img/koa.png) | ![](/img/jordan.png) |
+| ![](/img/realdealmc.png) | ![](/img/sacx.png) | ![](/img/doomy.png) | ![](/img/nard.png) | ![](/img/koa.png) | ![](/img/jordan.png) |
