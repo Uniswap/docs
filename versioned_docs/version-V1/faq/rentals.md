@@ -155,7 +155,7 @@ Navigate to the Owner, Sponsor or Player/Recruit dashboard and tap cancel on the
 
 <details><summary>How is this sustainable?!</summary><br/>
 
-It’s not. Link to Compete & Earn (be sure to explain that F2P P&E will still be active but for minimal amounts, the best path to earning will always be through Compete & Earn)
+It's not. Solution? ✨COMPETE & EARN✨ (more details to come shortly)
 
 </details>
 
