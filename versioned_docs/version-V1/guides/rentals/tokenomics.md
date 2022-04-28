@@ -4,7 +4,7 @@ title: Tokenomics
 sidebar_position: 2
 ---
 
-What is the current split for in-game earnings?
+**What is the current split for In-Game Earnings?**
 
 | Audience       | Share |
 | -------------- | ----- |
@@ -12,7 +12,7 @@ What is the current split for in-game earnings?
 | Sponsor        | 50%   |
 | Player/Recruit | 40%   |
 
-What is the current split for Daily rental fees?
+**What is the current split for Daily Rental Fees?**
 
 | Audience     | Share |
 | ------------ | ----- |
@@ -20,7 +20,7 @@ What is the current split for Daily rental fees?
 | Nifty League | 10%   |
 | Burn         | 80%   |
 
-What is the current split for weekly rental fees?
+**What is the current split for Weekly Rental Fees?**
 
 | Audience     | Share |
 | ------------ | ----- |
@@ -28,7 +28,7 @@ What is the current split for weekly rental fees?
 | Nifty League | 5%    |
 | Burn         | 50%   |
 
-Weekly Rental Fees and In-Game Earnings Caps per DEGEN broken down by [Background](https://niftyleague.com/docs/overview/degens/backgrounds):
+**Weekly Rental Fees and In-Game Earnings Caps per DEGEN broken down by [Background](https://niftyleague.com/docs/overview/degens/backgrounds):**
 
 | Background | Weekly Rental Fee (NFTL) | Weekly In-Game Earnings Cap (NFTL) |
 | ---------- | ------------------------ | ---------------------------------- |
