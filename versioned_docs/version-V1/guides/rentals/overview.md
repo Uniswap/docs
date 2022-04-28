@@ -10,7 +10,7 @@ In order to rent a DEGEN, you'll need NFTL in your crypto wallet (NFTL can easil
 
 There will be a small, up-front rental fee, which is determined based on the number of people renting a DEGEN. Rental fees increase as demand increases.
 
-Rental fees will be charged weekly initially, with daily rental fees kicking in after the first week. After the initial week, renters may continue their rental on a daily basis at a 30% discount from the prorated weekly rental price.
+**Rental fees will be charged weekly initially, with daily rental fees kicking in after the first week. After the initial week, renters may continue their rental on a daily basis at a 30% discount from the prorated weekly rental price.**
 
 Upon confirming your rental, the daily fee is locked at this maximum for the remainder of the rental period. If people ahead of you in the queue cancel their rental, your daily rental fee will decrease based on your queue position (and demand). This is meant to incentivize players to play frequently during their rental period.
 
