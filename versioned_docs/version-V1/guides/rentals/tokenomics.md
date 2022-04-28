@@ -28,7 +28,7 @@ What is the current split for weekly rental fees?
 | Nifty League | 5%    |
 | Burn         | 50%   |
 
-Weekly Rental Rees and In-Game Earnings Caps per DEGEN by on Background:
+Weekly Rental Fees and In-Game Earnings Caps per DEGEN broken down by [Background](https://niftyleague.com/docs/overview/degens/backgrounds):
 
 | Background | Weekly Rental Fee (NFTL) | Weekly In-Game Earnings Cap (NFTL) |
 | ---------- | ------------------------ | ---------------------------------- |
