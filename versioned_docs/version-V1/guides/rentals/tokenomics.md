@@ -18,7 +18,7 @@ What is the current split for Daily rental fees?
 | ------------ | ----- |
 | Owner        | 10%   |
 | Nifty League | 10%   |
-| Burn.        | 80%   |
+| Burn         | 80%   |
 
 What is the current split for weekly rental fees?
 
@@ -26,7 +26,7 @@ What is the current split for weekly rental fees?
 | ------------ | ----- |
 | Owner        | 45%   |
 | Nifty League | 5%    |
-| Burn.        | 50%   |
+| Burn         | 50%   |
 
 Weekly Rental Rees and In-Game Earnings Caps per DEGEN by on Background:
 
