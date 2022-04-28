@@ -44,7 +44,7 @@ The curve will start out steeper to create a fair spread across all DEGENs while
 
 </details>
 
-<details><summary>How can the cap and rental fee keep up with the NFTL market?</summary><br/>
+<details><summary>How can the in-game earnings cap and rental fee keep up with the NFTL market?</summary><br/>
 
 Earning rates, rentals price and the rental cap will be closely monitored and periodically adjusted based on the needs of the community.
 
