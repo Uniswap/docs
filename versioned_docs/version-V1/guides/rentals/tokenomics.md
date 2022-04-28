@@ -10,7 +10,7 @@ What is the current split for in-game earnings?
 | -------------- | ----- |
 | Owner          | 10%   |
 | Sponsor        | 50%   |
-| Player/Recruit | 50%   |
+| Player/Recruit | 40%   |
 
 What is the current split for Daily rental fees?
 
