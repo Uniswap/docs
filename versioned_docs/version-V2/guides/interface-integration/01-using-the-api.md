@@ -39,13 +39,7 @@ We need to set up some middleware in order to make requests to the Uniswap subgr
 
 ```javascript
 import './App.css'
-import {
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-  gql,
-  useQuery,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink, gql, useQuery } from '@apollo/client'
 
 export const client = new ApolloClient({
   link: new HttpLink({
@@ -65,20 +59,18 @@ export default App
 
 ```javascript
 import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-import registerServiceWorker from './registerServiceWorker'
+import ReactDOM from 'react-dom/client'
 import './index.css'
 import { ApolloProvider } from '@apollo/client'
+import App from './App'
 import { client } from './App'
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
   <ApolloProvider client={client}>
     <App />
-  </ApolloProvider>,
-  document.getElementById('root')
+  </ApolloProvider>
 )
-registerServiceWorker()
 ```
 
 ### Writing the queries
@@ -113,21 +105,17 @@ We use an id of `1` for the bundle because there is only one hardcoded bundle in
 Now we're ready to use these queries to fetch data from the Uniswap V2 subgraph. To do this we can use the `useQuery` hook which uses our client instance to fetch data, and gives us live info about the status of the request. To do this add the following to your App function:
 
 ```javascript
-const {
-  data: ethPriceData,
-  loading: ethLoading,
-  error: ethError,
-} = useQuery(ETH_PRICE_QUERY);
+ const { data: ethPriceData, loading: ethLoading, error: ethError } = useQuery(ETH_PRICE_QUERY)
 
-const {
-  data: daiData,
-  loading: daiLoading,
-  error: daiError,
-} = useQuery(DAI_QUERY, {
-  variables: {
-    tokenAddress: "0x6b175474e89094c44da98b954eedeac495271d0f",
-  },
-});
+  const {
+    data: daiData,
+    loading: daiLoading,
+    error: daiError,
+  } = useQuery(DAI_QUERY, {
+    variables: {
+      tokenAddress: '0x6b175474e89094c44da98b954eedeac495271d0f',
+    },
+  })
 ```
 
 Notice we're using the Dai token address to fetch data about Dai.
@@ -141,9 +129,9 @@ These queries will return a response object for each query. Within each one we'r
 Add the following lines to your `App.js` file to parse the responses:
 
 ```javascript
-const daiPriceInEth = daiData && daiData.tokens[0].derivedETH;
-const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity;
-const ethPriceInUSD = ethPriceData && ethPriceData.bundle.ethPrice;
+const daiPriceInEth = daiData && daiData.tokens[0].derivedETH
+const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity
+const ethPriceInUSD = ethPriceData && ethPriceData.bundle.ethPrice
 ```
 
 ### Displaying in the UI
@@ -160,22 +148,22 @@ To do this add the following lines in the return function of your `App.js` file:
 return (
   <div>
     <div>
-      Dai price:{" "}
+      Dai price:{' '}
       {ethLoading || daiLoading
-        ? "Loading token data..."
-        : "$" +
+        ? 'Loading token data...'
+        : '$' +
           // parse responses as floats and fix to 2 decimals
           (parseFloat(daiPriceInEth) * parseFloat(ethPriceInUSD)).toFixed(2)}
     </div>
     <div>
-      Dai total liquidity:{" "}
+      Dai total liquidity:{' '}
       {daiLoading
-        ? "Loading token data..."
+        ? 'Loading token data...'
         : // display the total amount of DAI spread across all pools
           parseFloat(daiTotalLiquidity).toFixed(0)}
     </div>
   </div>
-);
+)
 ```
 
 ### Next steps
@@ -189,21 +177,15 @@ You can visit our [analytics site](https://uniswap.info/) to see a more advanced
 In the end your `App.js` file should look like this:
 
 ```javascript
-import "./App.css";
-import {
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-  gql,
-  useQuery,
-} from "@apollo/client";
+import './App.css'
+import { ApolloClient, InMemoryCache, HttpLink, gql, useQuery } from '@apollo/client'
 
 export const client = new ApolloClient({
   link: new HttpLink({
-    uri: "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
+    uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2',
   }),
   cache: new InMemoryCache(),
-});
+})
 
 const DAI_QUERY = gql`
   query tokens($tokenAddress: Bytes!) {
@@ -212,7 +194,7 @@ const DAI_QUERY = gql`
       totalLiquidity
     }
   }
-`;
+`
 
 const ETH_PRICE_QUERY = gql`
   query ethPrice {
@@ -220,14 +202,10 @@ const ETH_PRICE_QUERY = gql`
       ethPrice
     }
   }
-`;
+`
 
 function App() {
-  const {
-    data: ethPriceData,
-    loading: ethLoading,
-    error: ethError,
-  } = useQuery(ETH_PRICE_QUERY);
+  const { data: ethPriceData, loading: ethLoading, error: ethError } = useQuery(ETH_PRICE_QUERY)
 
   const {
     data: daiData,
@@ -235,34 +213,34 @@ function App() {
     error: daiError,
   } = useQuery(DAI_QUERY, {
     variables: {
-      tokenAddress: "0x6b175474e89094c44da98b954eedeac495271d0f",
+      tokenAddress: '0x6b175474e89094c44da98b954eedeac495271d0f',
     },
-  });
+  })
 
-  const daiPriceInEth = daiData && daiData.tokens[0].derivedETH;
-  const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity;
-  const ethPriceInUSD = ethPriceData && ethPriceData.bundle.ethPrice;
+  const daiPriceInEth = daiData && daiData.tokens[0].derivedETH
+  const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity
+  const ethPriceInUSD = ethPriceData && ethPriceData.bundle.ethPrice
 
   return (
     <div>
       <div>
-        Dai price:{" "}
+        Dai price:{' '}
         {ethLoading || daiLoading
-          ? "Loading token data..."
-          : "$" +
+          ? 'Loading token data...'
+          : '$' +
             // parse responses as floats and fix to 2 decimals
             (parseFloat(daiPriceInEth) * parseFloat(ethPriceInUSD)).toFixed(2)}
       </div>
       <div>
-        Dai total liquidity:{" "}
+        Dai total liquidity:{' '}
         {daiLoading
-          ? "Loading token data..."
+          ? 'Loading token data...'
           : // display the total amount of DAI spread across all pools
             parseFloat(daiTotalLiquidity).toFixed(0)}
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
 ```
