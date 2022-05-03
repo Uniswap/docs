@@ -117,6 +117,12 @@ You can still play but you won’t earn NFTL until the rental is in the daily pe
 
 </details>
 
+<details><summary>Help! I tried to rent a DEGEN but I see an error saying 'insufficient funds'. What now?</summary><br/>
+  
+Rental Costs are deducted from your 'Game & Rental Balance'. If you have NFTL balance available in Daily NFTL Accrued, you can tap Claim, which will move the balance to your 'Game & Rental Balance', which will allow you to activate a Rental if you have sufficient funds.
+  
+</details>
+
 <details><summary>Can I take my DEGEN off the market if it has already been rented?</summary><br/>
 
 The existing rentals on your DEGEN will be terminated at the end of the ongoing rental period. After which, your DEGEN will no longer be possible to rent by the public. Keep in mind that re-activating a DEGEN rental costs 1,000 NFTL.
