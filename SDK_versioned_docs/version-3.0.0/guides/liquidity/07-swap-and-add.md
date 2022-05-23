@@ -93,28 +93,28 @@ const pool = new Pool(
 
 
 const routeToRatioResponse = await router.routeToRatio(
-  token0Balance,
-  token1Balance,
-  position: new Position({
-    pool,
-    tickLower: -60,
-    tickUpper: 60,
-    liquidity: 1,
-   }),
-   swapAndAddConfig: {
-     ratioErrorTolerance: new Fraction(1, 100),
-     maxIterations: 6,
-   },
-   swapAndAddOptions: {
-     swapConfig: {
-       recipient: <myAddress>,
-       slippage: new Percent(5, 100),
-       deadline: 100
-     },
-     addLiquidityOptions: {
-       tokenId: 10,
-     }
-   }
+    token0Balance,
+    token1Balance,
+    new Position({
+        pool,
+        tickLower: -60,
+        tickUpper: 60,
+        liquidity: 1,
+    }),
+    {
+        ratioErrorTolerance: new Fraction(1, 100),
+        maxIterations: 6,
+    },
+    {
+        swapConfig: {
+            recipient: <myAddress>,
+            slippage: new Percent(5, 100),
+            deadline: 100
+        }
+    },
+    {
+        tokenId: 10,
+    }
 );
 ```
 
