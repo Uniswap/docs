@@ -23,9 +23,9 @@ Liquidity providers, or LPs, are not a homogenous group:
 
 # Traders
 
-There are a several categories of traders in the protocol ecosystem:
+There are several categories of traders in the protocol's ecosystem:
 
-- Speculators use a variety of community built tools and products to swap tokens using liquidity pulled from the Uniswap protocol.
+- Speculators use a variety of community-built tools and products to swap tokens using liquidity pulled from the Uniswap protocol.
 
 - Arbitrage bots seek profits by comparing prices across different platforms to find an edge. (Though it might seem extractive, these bots actually help equalize prices across broader Ethereum markets and keep things fair.)
 
