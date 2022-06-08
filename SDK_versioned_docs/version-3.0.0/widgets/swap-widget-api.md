@@ -10,12 +10,12 @@ sidebar_position: 3
 
 <div className="widget-api">
 
-## Required Parameters {#required-parameters}
+## Strongly Recommended Parameters {#recommended-parameters}
 
 | Prop Name         | Prop Type | Default Value | Description                                                                                                                                                                                                                                                                                                                                                                              |
 | ----------------- | --------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `jsonRpcEndpoint` | `string`  | `undefined`   | URI of your JSON-RPC endpoint. Strongly recommended in order to provide trade quotes prior to the user connecting a wallet. If none is provided, the widget will be completely disabled until the user connects a wallet. Once a wallet is connected, the widget will use the wallet’s JSON-RPC. See [Understanding the Swap Widget States](../swap-widget#understanding-widget-states). |
-| `provider`        | `any`     | `undefined`   | An [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider. This is required to swap.                                                                                                                                                                                                                                                                                               |
+| `provider`        | `any`     | `FIXME: defaultProvider ???`   | An [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider. If you don't provide one, the widget will fallback to a default out-of-the-box wallet connection functionality.                                                                                                                                                                                                                                                                                               |
 
 ## Optional Parameters {#optional-parameters}
 
