@@ -11,13 +11,13 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Getting Started with the Swap Widget
 
-This guide walks you through the steps to embed the swap widget in your web3 decentralized application (dApp). With the swap widget, your users can trade tokens on the Uniswap Protocol without leaving your dApp!
+This guide walks you through the steps to embed the swap widget in your website in 5 minutes — whether your site is already a decentralized application (dApp) or not. With the swap widget, your users can trade ERC-20 tokens on the Uniswap Protocol without leaving your site!
 
-Here’s a live preview of the swap widget. Please note that wallet connect is not supported here in the documentation. Your app will be responsible for providing a method to connect a wallet.
+Here’s a live preview of the swap widget.
 
 <iframe width="360" height="360" scrolling="no" src="https://widgets-uniswap.vercel.app/_renderer.html?_fixtureId=%7B%22path%22%3A%22src%2Fcosmos%2FSwap.fixture.tsx%22%2C%22name%22%3Anull%7D"></iframe>
 
-With the swap widget, your users can trade for any ERC-20 token without leaving your app! Example use cases include:
+Example use cases include:
 
 - Building a custom frontend for the Uniswap Protocol
 - Swapping assets in a DeFi application
@@ -26,19 +26,11 @@ With the swap widget, your users can trade for any ERC-20 token without leaving 
 
 You can make the widget feel like a native part of your app by customizing the colors, font, and token list to match your app theme. This guide will teach you how.
 
-## Requirements {#requirements}
+## Recommended Parameters {#recommended-parameters}
 
-The swap widget is a React component that can be easily imported into any React project. It supports trading on all networks where the Uniswap Protocol is deployed: Ethereum, Arbitrum, Optimism, and Polygon.
+The swap widget is a React component that can be easily imported into any React project. It's designed to work out-of-the-box, with no required parameters or web3 integration necessary. Trading is supported on all networks where the Uniswap Protocol is deployed: Ethereum, Arbitrum, Optimism, and Polygon.
 
-The swap widget is designed to work out of the box. Only one parameter is strictly required and that is a [web3 provider](#web3-provider). Additionally, a [JSON RPC Endpoint](#json-rpc-endpoint) is strongly recommended as described below. Additional [optional parameters](/sdk/widgets/swap-widget/api#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
-
-### Web3 Provider {#web3-provider}
-
-The swap widget requires a web3 provider to fetch balances and submit transactions through the user’s connected wallet. If you’re building a dApp, you probably have a web3 provider already. Both the [ethers](https://docs.ethers.io/v5/api/providers/provider/) and [web3.js](https://web3js.readthedocs.io/en/v1.5.2/index.html) provider objects are compatible with the widget, as is any [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider. You can pass this directly into the `provider` prop.
-
-If you don’t have a web3 provider yet, you can add a wallet connect flow to your app by using a library such as [web3-react](https://github.com/NoahZinsmeister/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet). In a future release, we may make this wallet connect functionality available directly in the widget. If that would be useful for you, please file a [feature request](https://github.com/Uniswap/widgets/issues)!
-
-The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
+Only a [JSON RPC Endpoint](#json-rpc-endpoint) parameter is strongly recommended as described below. Also, if you already have a [Web3 provider](#web3-provider) in your dApp, you should pass that provider object in. Additional [optional parameters](/sdk/widgets/swap-widget/api#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
 
 ### JSON-RPC Endpoint {#json-rpc-endpoint}
 
@@ -52,6 +44,19 @@ If you choose not to provide a JSON-RPC endpoint, the widget will be [disabled](
 
 After the user connects a wallet, the widget will use the JSON-RPC provided by the wallet when possible.
 
+### Web3 Provider {#web3-provider}
+
+The swap widget uses a web3 provider to allow users to connect their wallets, fetch balances, and submit transactions through the user’s connected wallet. 
+
+FIXME: onWalletConnect ???
+
+If you don't have a web3 provider yet, simply do not pass anything to the `provider` and `onWalletConnect` props. The widget has built-in wallet connect functionality that supports [WalletConnect](https://walletconnect.com/) and [MetaMask](https://metamask.io/) wallets, making it super simple for you to integrate web3 in your app!
+Otherwise, you can also add a custom wallet connect flow to your app by using a library such as [web3-react](https://github.com/NoahZinsmeister/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet).
+
+If you’re building a dApp, you probably have a web3 provider already. Both the [ethers](https://docs.ethers.io/v5/api/providers/provider/) and [web3.js](https://web3js.readthedocs.io/en/v1.5.2/index.html) provider objects are compatible with the widget, as is any [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider. You can pass this directly into the `provider` prop.
+
+The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
+
 ## Installing the Widgets Library {#installing-library}
 
 To get started, install the widgets library using npm or Yarn. If you don’t already use it, you’ll need to install `react-redux` as well.
@@ -62,22 +67,22 @@ npm install --save @uniswap/widgets react-redux
 
 ## Adding the Swap Widget to Your App {#adding-the-widget}
 
-Next, embed the React component in your application. Pass along the `provider` and `jsonRpcEndpoint` parameters.
+Next, embed the React component in your application. Pass along the recommended `provider` and `jsonRpcEndpoint` parameters.
 
 ```jsx
 import { SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
-// Web3 provider as described in the requirements above
-import { provider } from './your/provider'
+// FIXME: remove provider in this example? To get new users up & spinning
+// // Web3 provider as described in the recommendations above
+// import { provider } from './your/provider'
 
-// Infura endpoint
+// Infura endpoint as described in the recommendations above
 const jsonRpcEndpoint = 'https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'
 
 function App() {
   <div className="Uniswap">
     <SwapWidget
-      provider={provider}
       jsonRpcEndpoint={jsonRpcEndpoint}
     />
   </div>
@@ -85,6 +90,8 @@ function App() {
 ```
 
 That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](https://docs.uniswap.org/sdk/guides/auto-router) to compute the best price across all Uniswap v2 and v3 pools.
+
+FIXME: is this still true?
 
 :::note Create React App V4
 All code snippets will work seamlessly if you use [Next.js](https://nextjs.org/) or [Create React App](https://create-react-app.dev/) V5. However, if you’re using Create React App V4, you’ll need to use the following `import` statements instead:
