@@ -144,9 +144,7 @@ The caller of this method receives a callback in the form of IUniswapV3SwapCallb
 | `recipient`         | address | The address to receive the output of the swap                                                                      |
 | `zeroForOne`        | bool    | The direction of the swap, true for token0 to token1, false for token1 to token0                                   |
 | `amountSpecified`   | int256  | The amount of the swap, which implicitly configures the swap as exact input (positive), or exact output (negative) |
-| `sqrtPriceLimitX96` | uint160 | The Q64.96 sqrt price limit. If zero for one, the price cannot be less than this                                   |
-
-value after the swap. If one for zero, the price cannot be greater than this value after the swap
+| `sqrtPriceLimitX96` | uint160 | The Q64.96 sqrt price limit. If zero for one, the price cannot be less than this value after the swap. If one for zero, the price cannot be greater than this value after the swap                                                                                           |
 |`data` | bytes | Any data to be passed through to the callback
 
 #### Return Values:
