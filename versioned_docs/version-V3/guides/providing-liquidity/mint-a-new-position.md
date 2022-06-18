@@ -35,7 +35,7 @@ For the sake of this example, were hard coding the token amounts to be minted. I
 
 Here we approve the `nonfungiblePositionManager` to use the contracts' tokens, then populate the `MintParams` struct and assign it to a local variable `params` that will be passed to the `nonfungiblePositionManager` when we call `mint`.
 
-- By using `TickMath.MIN_TICK` and `TickMath.MAX_TICK`, we are providing liquidity across the whole range of the pool. In production you may want to specify a more concentrated position.
+- By using `TickMath.MIN_TICK` and `TickMath.MAX_TICK`, we are providing liquidity across the whole range of the pool. In production you may want to specify a more concentrated position. `tickLower` and `tickUpper` must be divisible by `tickSpacing` otherwise the transaction will revert without reason.
 
 - We set `amount0Min` and `amount1Min` to zero for the example - but this would be a vulnerability in production. A function calling `mint` with no slippage protection would be vulnerable to a frontrunning attack designed to execute the `mint` call at an inaccurate price.
 - For a more secure practice the developer would need to implement a slippage estimation process.
@@ -52,8 +52,8 @@ Here we approve the `nonfungiblePositionManager` to use the contracts' tokens, t
                 token0: DAI,
                 token1: USDC,
                 fee: poolFee,
-                tickLower: TickMath.MIN_TICK,
-                tickUpper: TickMath.MAX_TICK,
+                tickLower: (TickMath.MIN_TICK / tickSpacing) * tickSpacing,
+                tickUpper: (TickMath.MAX_TICK / tickSpacing) * tickSpacing,
                 amount0Desired: amount0ToMint,
                 amount1Desired: amount1ToMint,
                 amount0Min: 0,
