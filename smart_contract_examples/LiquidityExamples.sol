@@ -12,6 +12,7 @@ contract LiquidityExamples is IERC721Receiver {
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     uint24 public constant poolFee = 3000;
+    int24 public constant tickSpacing = 60;
 
     /// @notice Represents the deposit of an NFT
     struct Deposit {
@@ -79,8 +80,8 @@ contract LiquidityExamples is IERC721Receiver {
                 token0: DAI,
                 token1: USDC,
                 fee: poolFee,
-                tickLower: TickMath.MIN_TICK,
-                tickUpper: TickMath.MAX_TICK,
+                tickLower: (TickMath.MIN_TICK / tickSpacing) * tickSpacing,
+                tickUpper: (TickMath.MAX_TICK / tickSpacing) * tickSpacing,
                 amount0Desired: amount0ToMint,
                 amount1Desired: amount1ToMint,
                 amount0Min: 0,
