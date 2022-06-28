@@ -48,7 +48,7 @@ import { SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
 function App() {
-  <div className="Uniswap">
+  ;<div className="Uniswap">
     <SwapWidget />
   </div>
 }
@@ -72,7 +72,9 @@ import '@uniswap/widgets/dist/fonts.css'
 
 The swap widget is a React component that can be easily imported into any React project. It's designed to work out-of-the-box, with no required parameters or web3 integration necessary. Trading is supported on all networks where the Uniswap Protocol is deployed: Ethereum, Arbitrum, Optimism, and Polygon.
 
-Only one [JSON-RPC Endpoint](#json-rpc-endpoint) parameter is strongly recommended as described below. Also, if you already have a [Web3 provider](#web3-provider) in your dApp, you should pass that provider object in. Additional [optional parameters](/sdk/widgets/swap-widget/api#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
+Although the widget will work out-of-the-box with no parameters, we recommend integrators provide a [JSON-RPC Endpoint](#json-rpc-endpoint) like Infura or Alchemy to improve performance. Existing dApps can also provide their existing [Web3 provider](#web3-provider) to integrate the widget seamlessly into their dApp.
+
+Additional [optional parameters](/sdk/widgets/swap-widget/api#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
 
 ## JSON-RPC Endpoint {#json-rpc-endpoint}
 
@@ -100,15 +102,12 @@ import '@uniswap/widgets/fonts.css'
 
 // Recommended to provide a Web3 provider
 import { provider } from './your/provider'
-// Recommended to provide an Infura endpoint
+// Recommended to provide a JSON-RPC endpoint
 const jsonRpcEndpoint = 'https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'
 
 function App() {
-  <div className="Uniswap">
-    <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
-    />
+  ;<div className="Uniswap">
+    <SwapWidget provider={provider} jsonRpcEndpoint={jsonRpcEndpoint} />
   </div>
 }
 ```
@@ -128,7 +127,7 @@ import { SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
 function App() {
-  <div className="Uniswap">
+  ;<div className="Uniswap">
     <SwapWidget
       width={360} // Custom width in pixels
     />
@@ -140,7 +139,7 @@ For example:
 
 - `width={360}` sets the width to 360 pixels
 - `width="100%"` sets the width to dynamically fill 100% of the parent container
-- `width="20em"` sets the width to 20 * 16 = 320 pixels because 16px is the base font-size of the widget
+- `width="20em"` sets the width to 20 \* 16 = 320 pixels because 16px is the base font-size of the widget
 
 The recommended and default width is 360 pixels.
 
@@ -150,7 +149,7 @@ You can customize the colors, font, and border radius of the swap widget to matc
 
 All attributes below are color codes, except `fontFamily` (string), `borderRadius` (number between 0 and 1), and `tokenColorExtraction`(boolean). The next two sections show code examples using these attributes.
 
-Check out [examples](/sdk/widgets/swap-widget/examples) of the swap widget, and the [Figma file](https://www.figma.com/file/m0pVMlgAgSoaIrXlM3VRUG/Widgets-(External)?node-id=4302%3A18261) if you want to mock it up first!
+Check out [examples](/sdk/widgets/swap-widget/examples) of the swap widget, and the [Figma file](<https://www.figma.com/file/m0pVMlgAgSoaIrXlM3VRUG/Widgets-(External)?node-id=4302%3A18261>) if you want to mock it up first!
 
 <ThemedImage
   alt="Swap Widget Theme Attributes"
@@ -184,7 +183,7 @@ const theme: Theme = {
 }
 
 function App() {
-  <div className="Uniswap">
+  ;<div className="Uniswap">
     <SwapWidget theme={theme} />
   </div>
 }
@@ -211,7 +210,7 @@ const enableColorExtractionTheme: Theme = {
 }
 
 function App() {
-  <div className="Uniswap">
+  ;<div className="Uniswap">
     <SwapWidget theme={enableColorExtractionTheme} />
   </div>
 }
@@ -227,7 +226,7 @@ import '@uniswap/widgets/fonts.css'
 
 let darkMode = true // Dynamically toggle dark mode on and off
 function App() {
-  <div className="Uniswap">
+  ;<div className="Uniswap">
     <SwapWidget theme={darkMode ? darkTheme : lightTheme} />
   </div>
 }
@@ -277,7 +276,7 @@ const myDarkTheme: Theme = {
 
 let darkMode = true
 function App() {
-  <div className="Uniswap">
+  ;<div className="Uniswap">
     <SwapWidget theme={darkMode ? myDarkTheme : myLightTheme} />
   </div>
 }
@@ -298,7 +297,7 @@ import '@uniswap/widgets/fonts.css'
 const CMC_TOKEN_LIST = 'https://api.coinmarketcap.com/data-api/v3/uniswap/all.json'
 
 function App() {
-  <div className="Uniswap">
+  ;<div className="Uniswap">
     <SwapWidget
       tokenList={CMC_TOKEN_LIST} // Use the CoinMarketCap token list
     />
@@ -348,7 +347,7 @@ const MY_TOKEN_LIST = [
 ]
 
 function App() {
-  <div className="Uniswap">
+  ;<div className="Uniswap">
     <SwapWidget tokenList={MY_TOKEN_LIST} />
   </div>
 }
@@ -380,12 +379,8 @@ const NATIVE = 'NATIVE' // Special address for native token
 const WBTC = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
 
 function App() {
-  <div className="Uniswap">
-    <SwapWidget
-      tokenList={UNISWAP_TOKEN_LIST}
-      defaultInputTokenAddress={NATIVE}
-      defaultOutputTokenAddress={WBTC}
-    />
+  ;<div className="Uniswap">
+    <SwapWidget tokenList={UNISWAP_TOKEN_LIST} defaultInputTokenAddress={NATIVE} defaultOutputTokenAddress={WBTC} />
   </div>
 }
 ```
