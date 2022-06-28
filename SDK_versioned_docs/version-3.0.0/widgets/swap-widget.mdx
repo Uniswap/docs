@@ -94,6 +94,25 @@ Otherwise, you can also add your own custom wallet connection flow in the `onCli
 
 The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
 
+```tsx
+import { SwapWidget } from '@uniswap/widgets'
+import '@uniswap/widgets/fonts.css'
+
+// Recommended to provide a Web3 provider
+import { provider } from './your/provider'
+// Recommended to provide an Infura endpoint
+const jsonRpcEndpoint = 'https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'
+
+function App() {
+  <div className="Uniswap">
+    <SwapWidget
+      provider={provider}
+      jsonRpcEndpoint={jsonRpcEndpoint}
+    />
+  </div>
+}
+```
+
 # Customizing the Swap Widget {#customizing-widget}
 
 You can set [optional parameters](/sdk/widgets/swap-widget-reference#optional-parameters) to tailor the appearance and functionality of the swap widget to fit your dApp.
@@ -121,7 +140,7 @@ For example:
 
 - `width={360}` sets the width to 360 pixels
 - `width="100%"` sets the width to dynamically fill 100% of the parent container
-- `width="20em"` sets the width to 20 \* 16 = 320 pixels because 16px is the base font-size of the widget
+- `width="20em"` sets the width to 20 * 16 = 320 pixels because 16px is the base font-size of the widget
 
 The recommended and default width is 360 pixels.
 
@@ -131,7 +150,7 @@ You can customize the colors, font, and border radius of the swap widget to matc
 
 All attributes below are color codes, except `fontFamily` (string), `borderRadius` (number between 0 and 1), and `tokenColorExtraction`(boolean). The next two sections show code examples using these attributes.
 
-Check out [examples](/sdk/widgets/swap-widget/examples) of the swap widget, and the [Figma file](<https://www.figma.com/file/m0pVMlgAgSoaIrXlM3VRUG/Widgets-(External)?node-id=4302%3A18261>) if you want to mock it up first!
+Check out [examples](/sdk/widgets/swap-widget/examples) of the swap widget, and the [Figma file](https://www.figma.com/file/m0pVMlgAgSoaIrXlM3VRUG/Widgets-(External)?node-id=4302%3A18261) if you want to mock it up first!
 
 <ThemedImage
   alt="Swap Widget Theme Attributes"
@@ -229,11 +248,7 @@ function useSystemTheme() {
 function App() {
   const theme = useSystemTheme() // Get a theme that matches the user system preference
   <div className="Uniswap">
-    <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={theme}
-    />
+    <SwapWidget theme={theme} />
   </div>
 }
 ```
@@ -379,7 +394,7 @@ function App() {
 
 The widget has two main connectivity states depending on if the user has connected a wallet.
 
-<!-- FIXME(kristiehuang): Update possible states bc JSON-RPC will now have fallback -->
+<!-- FIXME(kristiehuang): Update possible states graphic bc JSON-RPC will now have fallback -->
 
 <ThemedImage
   alt="Swap Widget States"
