@@ -6,8 +6,8 @@ sidebar_label: Getting Started
 sidebar_position: 1
 ---
 
-import ThemedImage from '@theme/ThemedImage';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import ThemedImage from '@theme/ThemedImage'
+import useBaseUrl from '@docusaurus/useBaseUrl'
 
 # Getting Started with the Swap Widget
 
@@ -15,7 +15,12 @@ This guide walks you through the steps to embed the swap widget in your website 
 
 Here’s a live preview of the swap widget.
 
-<iframe width="360" height="360" scrolling="no" src="https://widgets-uniswap.vercel.app/_renderer.html?_fixtureId=%7B%22path%22%3A%22src%2Fcosmos%2FSwap.fixture.tsx%22%2C%22name%22%3Anull%7D"></iframe>
+<iframe
+  width="360"
+  height="360"
+  scrolling="no"
+  src="https://widgets-uniswap.vercel.app/_renderer.html?_fixtureId=%7B%22path%22%3A%22src%2Fcosmos%2FSwap.fixture.tsx%22%2C%22name%22%3Anull%7D"
+></iframe>
 
 Example use cases include:
 
@@ -25,37 +30,6 @@ Example use cases include:
 - Converting to the required currency for an NFT purchase (e.g. WETH)
 
 You can make the widget feel like a native part of your app by customizing the colors, font, and token list to match your app theme. This guide will teach you how.
-
-## Recommended Parameters {#recommended-parameters}
-
-The swap widget is a React component that can be easily imported into any React project. It's designed to work out-of-the-box, with no required parameters or web3 integration necessary. Trading is supported on all networks where the Uniswap Protocol is deployed: Ethereum, Arbitrum, Optimism, and Polygon.
-
-Only a [JSON RPC Endpoint](#json-rpc-endpoint) parameter is strongly recommended as described below. Also, if you already have a [Web3 provider](#web3-provider) in your dApp, you should pass that provider object in. Additional [optional parameters](/sdk/widgets/swap-widget/api#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
-
-### JSON-RPC Endpoint {#json-rpc-endpoint}
-
-We strongly recommend you provide a JSON-RPC endpoint URI in the widget’s `jsonRpcEndpoint` prop. The widget will use this endpoint to fetch on-chain data and submit transactions for signature.
-
-If your dApp already has a JSON RPC endpoint, you can pass that in the `jsonRpcEndpoint` prop.
-
-If you don’t yet have a JSON RPC endpoint, you can easily create one with services like [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode).
-
-If you choose not to provide a JSON-RPC endpoint, the widget will be [disabled](#understanding-widget-states) until the user connects a wallet. The user will not be able to interact with the widget or fetch a price quote until a wallet is connected. Thus, it is strongly recommended that you provide your own JSON-RPC endpoint.
-
-After the user connects a wallet, the widget will use the JSON-RPC provided by the wallet when possible.
-
-### Web3 Provider {#web3-provider}
-
-The swap widget uses a web3 provider to allow users to connect their wallets, fetch balances, and submit transactions through the user’s connected wallet. 
-
-FIXME: onWalletConnect ???
-
-If you don't have a web3 provider yet, simply do not pass anything to the `provider` and `onWalletConnect` props. The widget has built-in wallet connect functionality that supports [WalletConnect](https://walletconnect.com/) and [MetaMask](https://metamask.io/) wallets, making it super simple for you to integrate web3 in your app!
-Otherwise, you can also add a custom wallet connect flow to your app by using a library such as [web3-react](https://github.com/NoahZinsmeister/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet).
-
-If you’re building a dApp, you probably have a web3 provider already. Both the [ethers](https://docs.ethers.io/v5/api/providers/provider/) and [web3.js](https://web3js.readthedocs.io/en/v1.5.2/index.html) provider objects are compatible with the widget, as is any [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider. You can pass this directly into the `provider` prop.
-
-The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
 
 ## Installing the Widgets Library {#installing-library}
 
@@ -67,39 +41,56 @@ npm install --save @uniswap/widgets react-redux
 
 ## Adding the Swap Widget to Your App {#adding-the-widget}
 
-Next, embed the React component in your application. Pass along the recommended `provider` and `jsonRpcEndpoint` parameters.
+Next, embed the React component in your application.
 
 ```jsx
 import { SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
-// FIXME: remove provider in this example? To get new users up & spinning
-// // Web3 provider as described in the recommendations above
-// import { provider } from './your/provider'
-
-// Infura endpoint as described in the recommendations above
-const jsonRpcEndpoint = 'https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'
-
 function App() {
   <div className="Uniswap">
-    <SwapWidget
-      jsonRpcEndpoint={jsonRpcEndpoint}
-    />
+    <SwapWidget />
   </div>
 }
 ```
 
 That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](https://docs.uniswap.org/sdk/guides/auto-router) to compute the best price across all Uniswap v2 and v3 pools.
 
-FIXME: is this still true?
-
 :::note Create React App V4
 All code snippets will work seamlessly if you use [Next.js](https://nextjs.org/) or [Create React App](https://create-react-app.dev/) V5. However, if you’re using Create React App V4, you’ll need to use the following `import` statements instead:
+
 ```jsx
 import { SwapWidget } from '@uniswap/widgets/dist/index.js'
 import '@uniswap/widgets/dist/fonts.css'
 ```
+
 :::
+
+# Recommended Parameters {#recommended-parameters}
+
+The swap widget is a React component that can be easily imported into any React project. It's designed to work out-of-the-box, with no required parameters or web3 integration necessary. Trading is supported on all networks where the Uniswap Protocol is deployed: Ethereum, Arbitrum, Optimism, and Polygon.
+
+Only a [JSON-RPC Endpoint](#json-rpc-endpoint) parameter is strongly recommended as described below. Also, if you already have a [Web3 provider](#web3-provider) in your dApp, you should pass that provider object in. Additional [optional parameters](/sdk/widgets/swap-widget/api#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
+
+## JSON-RPC Endpoint {#json-rpc-endpoint}
+
+We strongly recommend you provide a JSON-RPC endpoint URI in the widget’s `jsonRpcEndpoint` prop. The widget will use this endpoint to fetch on-chain data and submit transactions for signature. After the user connects a wallet, the widget will use the JSON-RPC provided by the wallet when possible.
+
+If your dApp already has a JSON-RPC endpoint, you can pass that in the `jsonRpcEndpoint` prop. If you don’t yet have a JSON-RPC endpoint, you can easily create one with services like [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode).
+
+If you choose not to provide a JSON-RPC endpoint, the widget uses a free public JSON-RPC endpoint (`https://cloudflare-eth.com`) to still allow users to interact with the widget and fetch price quotes. However, this endpoint is ~2x slower than Infura and Alchemy and isn't necessarily as reliable. When possible, we'd recommend providing your own endpoint!
+
+## Web3 Provider {#web3-provider}
+
+The swap widget uses a web3 `provider` prop to allow users to connect their wallets, fetch balances, and submit transactions through the user’s connected wallet.
+
+If you already have a web3 provider, you can pass your provider object directly into the `provider` prop. Both the [ethers](https://docs.ethers.io/v5/api/providers/provider/) and [web3.js](https://web3js.readthedocs.io/en/v1.5.2/index.html) provider objects are compatible with the widget, as is any [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider.
+
+If you don't have a web3 provider yet, the widget has built-in wallet connection functionality that supports [WalletConnect](https://walletconnect.com/) and [MetaMask](https://metamask.io/) wallets, making it super simple for you to integrate web3 in your app!
+
+Otherwise, you can also add your own custom wallet connection flow in the `onClickConnectWallet` callback, which is triggered when the widget's 'Connect your wallet' message is clicked. Disable the widget's built-in wallet connection flow by calling `e?.preventDefault()` in your `onClickConnectWallet` callback. Check out libraries such as [web3-react](https://github.com/NoahZinsmeister/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow.
+
+The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
 
 # Customizing the Swap Widget {#customizing-widget}
 
@@ -118,19 +109,17 @@ import '@uniswap/widgets/fonts.css'
 function App() {
   <div className="Uniswap">
     <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
       width={360} // Custom width in pixels
     />
   </div>
 }
 ```
 
- For example:
+For example:
 
 - `width={360}` sets the width to 360 pixels
 - `width="100%"` sets the width to dynamically fill 100% of the parent container
-- `width="20em"` sets the width to 20 * 16 = 320 pixels because 16px is the base font-size of the widget
+- `width="20em"` sets the width to 20 \* 16 = 320 pixels because 16px is the base font-size of the widget
 
 The recommended and default width is 360 pixels.
 
@@ -140,7 +129,7 @@ You can customize the colors, font, and border radius of the swap widget to matc
 
 All attributes below are color codes, except `fontFamily` (string), `borderRadius` (number between 0 and 1), and `tokenColorExtraction`(boolean). The next two sections show code examples using these attributes.
 
-Check out [examples](/sdk/widgets/swap-widget/examples) of the swap widget, and the [Figma file](https://www.figma.com/file/m0pVMlgAgSoaIrXlM3VRUG/Widgets-(External)?node-id=4302%3A18261) if you want to mock it up first!
+Check out [examples](/sdk/widgets/swap-widget/examples) of the swap widget, and the [Figma file](<https://www.figma.com/file/m0pVMlgAgSoaIrXlM3VRUG/Widgets-(External)?node-id=4302%3A18261>) if you want to mock it up first!
 
 <ThemedImage
   alt="Swap Widget Theme Attributes"
@@ -175,11 +164,7 @@ const theme: Theme = {
 
 function App() {
   <div className="Uniswap">
-    <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={theme}
-    />
+    <SwapWidget theme={theme} />
   </div>
 }
 ```
@@ -206,11 +191,7 @@ const enableColorExtractionTheme: Theme = {
 
 function App() {
   <div className="Uniswap">
-    <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={enableColorExtractionTheme}
-    />
+    <SwapWidget theme={enableColorExtractionTheme} />
   </div>
 }
 ```
@@ -226,11 +207,7 @@ import '@uniswap/widgets/fonts.css'
 let darkMode = true // Dynamically toggle dark mode on and off
 function App() {
   <div className="Uniswap">
-    <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={darkMode ? darkTheme : lightTheme}
-    />
+    <SwapWidget theme={darkMode ? darkTheme : lightTheme} />
   </div>
 }
 ```
@@ -284,11 +261,7 @@ const myDarkTheme: Theme = {
 let darkMode = true
 function App() {
   <div className="Uniswap">
-    <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
-      theme={darkMode ? myDarkTheme : myLightTheme}
-    />
+    <SwapWidget theme={darkMode ? myDarkTheme : myLightTheme} />
   </div>
 }
 ```
@@ -310,8 +283,6 @@ const CMC_TOKEN_LIST = 'https://api.coinmarketcap.com/data-api/v3/uniswap/all.js
 function App() {
   <div className="Uniswap">
     <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
       tokenList={CMC_TOKEN_LIST} // Use the CoinMarketCap token list
     />
   </div>
@@ -330,39 +301,38 @@ import '@uniswap/widgets/fonts.css'
 
 // You can also pass a token list as JSON, as long as it matches the schema
 const MY_TOKEN_LIST = [
-	{
-    "name": "Dai Stablecoin",
-    "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-    "symbol": "DAI",
-    "decimals": 18,
-    "chainId": 1,
-    "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png"
-  },
-	{
-    "name": "Tether USD",
-    "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-    "symbol": "USDT",
-    "decimals": 6,
-    "chainId": 1,
-    "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png"
+  {
+    name: 'Dai Stablecoin',
+    address: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+    symbol: 'DAI',
+    decimals: 18,
+    chainId: 1,
+    logoURI:
+      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png',
   },
   {
-    "name": "USD Coin",
-    "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-    "symbol": "USDC",
-    "decimals": 6,
-    "chainId": 1,
-    "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
+    name: 'Tether USD',
+    address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+    symbol: 'USDT',
+    decimals: 6,
+    chainId: 1,
+    logoURI:
+      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png',
+  },
+  {
+    name: 'USD Coin',
+    address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    symbol: 'USDC',
+    decimals: 6,
+    chainId: 1,
+    logoURI:
+      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png',
   },
 ]
 
 function App() {
   <div className="Uniswap">
-    <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
-      tokenList={MY_TOKEN_LIST}
-    />
+    <SwapWidget tokenList={MY_TOKEN_LIST} />
   </div>
 }
 ```
@@ -395,8 +365,6 @@ const WBTC = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
 function App() {
   <div className="Uniswap">
     <SwapWidget
-      provider={provider}
-      jsonRpcEndpoint={jsonRpcEndpoint}
       tokenList={UNISWAP_TOKEN_LIST}
       defaultInputTokenAddress={NATIVE}
       defaultOutputTokenAddress={WBTC}
@@ -407,7 +375,9 @@ function App() {
 
 ## Understanding the Swap Widget States {#understanding-widget-states}
 
-The widget has three main connectivity states depending if your app provides a JSON RPC endpoint and if the user has connected a wallet.
+The widget has two main connectivity states depending on if the user has connected a wallet.
+
+<!-- FIXME(kristiehuang): Update possible states bc JSON-RPC will now have fallback -->
 
 <ThemedImage
   alt="Swap Widget States"
@@ -418,9 +388,7 @@ The widget has three main connectivity states depending if your app provides a J
   }}
 />
 
-1. **Before wallet connection**, the widget has two possible states:
-    1. **If you did *not* provide a JSON-RPC**, the swap widget will be disabled. Without a JSON-RPC endpoint the widget is unable to show token price data or fetch quotes. Without a web3 provider, the widget is unable to submit transactions. The widget will remain disabled until the user connects a wallet and you pass the `provider` and `jsonRpcEndpoint` parameters from the wallet into the widget.
-    2. **If your dApp provides a JSON-RPC,** the widget will be interactive even prior to the user connecting a wallet. The widget will use your JSON-RPC endpoint to fetch token price data and provide trade quotes. For this reason, it is strongly recommended that your app provide a JSON RPC endpoint as an input parameter. 
+1. **Before wallet connection**, the widget will use the JSON-RPC endpoint to fetch token price data and provide trade quotes, but submitting transactions will be disabled.
 2. **After wallet connection**, the widget will be fully functional. The user will be able to fetch trade quotes and submit swap transactions using the JSON-RPC endpoint and web3 provider from their connected wallet.
 
 :::note Questions?
