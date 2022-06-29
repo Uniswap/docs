@@ -48,7 +48,7 @@ import { SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget />
   </div>
 }
@@ -106,7 +106,7 @@ import { provider } from './your/provider'
 const jsonRpcEndpoint = 'https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'
 
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget provider={provider} jsonRpcEndpoint={jsonRpcEndpoint} />
   </div>
 }
@@ -127,7 +127,7 @@ import { SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       width={360} // Custom width in pixels
     />
@@ -139,7 +139,7 @@ For example:
 
 - `width={360}` sets the width to 360 pixels
 - `width="100%"` sets the width to dynamically fill 100% of the parent container
-- `width="20em"` sets the width to 20 \* 16 = 320 pixels because 16px is the base font-size of the widget
+- `width="20em"` sets the width to 20 * 16 = 320 pixels because 16px is the base font-size of the widget
 
 The recommended and default width is 360 pixels.
 
@@ -149,7 +149,7 @@ You can customize the colors, font, and border radius of the swap widget to matc
 
 All attributes below are color codes, except `fontFamily` (string), `borderRadius` (number between 0 and 1), and `tokenColorExtraction`(boolean). The next two sections show code examples using these attributes.
 
-Check out [examples](/sdk/widgets/swap-widget/examples) of the swap widget, and the [Figma file](<https://www.figma.com/file/m0pVMlgAgSoaIrXlM3VRUG/Widgets-(External)?node-id=4302%3A18261>) if you want to mock it up first!
+Check out [examples](/sdk/widgets/swap-widget/examples) of the swap widget, and the [Figma file](https://www.figma.com/file/m0pVMlgAgSoaIrXlM3VRUG/Widgets-(External)?node-id=4302%3A18261) if you want to mock it up first!
 
 <ThemedImage
   alt="Swap Widget Theme Attributes"
@@ -183,7 +183,7 @@ const theme: Theme = {
 }
 
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget theme={theme} />
   </div>
 }
@@ -210,7 +210,7 @@ const enableColorExtractionTheme: Theme = {
 }
 
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget theme={enableColorExtractionTheme} />
   </div>
 }
@@ -226,7 +226,7 @@ import '@uniswap/widgets/fonts.css'
 
 let darkMode = true // Dynamically toggle dark mode on and off
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget theme={darkMode ? darkTheme : lightTheme} />
   </div>
 }
@@ -276,7 +276,7 @@ const myDarkTheme: Theme = {
 
 let darkMode = true
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget theme={darkMode ? myDarkTheme : myLightTheme} />
   </div>
 }
@@ -297,7 +297,7 @@ import '@uniswap/widgets/fonts.css'
 const CMC_TOKEN_LIST = 'https://api.coinmarketcap.com/data-api/v3/uniswap/all.json'
 
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget
       tokenList={CMC_TOKEN_LIST} // Use the CoinMarketCap token list
     />
@@ -317,37 +317,34 @@ import '@uniswap/widgets/fonts.css'
 
 // You can also pass a token list as JSON, as long as it matches the schema
 const MY_TOKEN_LIST = [
-  {
-    name: 'Dai Stablecoin',
-    address: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-    symbol: 'DAI',
-    decimals: 18,
-    chainId: 1,
-    logoURI:
-      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png',
+	{
+    "name": "Dai Stablecoin",
+    "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+    "symbol": "DAI",
+    "decimals": 18,
+    "chainId": 1,
+    "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png"
+  },
+	{
+    "name": "Tether USD",
+    "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "symbol": "USDT",
+    "decimals": 6,
+    "chainId": 1,
+    "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png"
   },
   {
-    name: 'Tether USD',
-    address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-    symbol: 'USDT',
-    decimals: 6,
-    chainId: 1,
-    logoURI:
-      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png',
-  },
-  {
-    name: 'USD Coin',
-    address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-    symbol: 'USDC',
-    decimals: 6,
-    chainId: 1,
-    logoURI:
-      'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png',
+    "name": "USD Coin",
+    "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "symbol": "USDC",
+    "decimals": 6,
+    "chainId": 1,
+    "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png"
   },
 ]
 
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget tokenList={MY_TOKEN_LIST} />
   </div>
 }
@@ -379,7 +376,7 @@ const NATIVE = 'NATIVE' // Special address for native token
 const WBTC = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
 
 function App() {
-  ;<div className="Uniswap">
+  <div className="Uniswap">
     <SwapWidget tokenList={UNISWAP_TOKEN_LIST} defaultInputTokenAddress={NATIVE} defaultOutputTokenAddress={WBTC} />
   </div>
 }
