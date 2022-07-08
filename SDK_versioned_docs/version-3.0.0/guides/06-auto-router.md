@@ -122,11 +122,12 @@ This full example compiles all of the steps above and also prints the route quot
 
 ```typescript
 import { AlphaRouter } from '@uniswap/smart-order-router'
-import { Token, CurrencyAmount } from '@uniswap/sdk-core'
+import { Token, CurrencyAmount, Percent } from '@uniswap/sdk-core'
+import { ChainId, TradeType,JSBI } from '@uniswap/sdk';
 
 const V3_SWAP_ROUTER_ADDRESS = '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45';
 const MY_ADDRESS = /*YOUR ADDRESS HERE*/;
-const web3Provider = /*YOUR PROVIDER HERE*/
+const web3Provider = /*YOUR PROVIDER HERE*/;
 
 const router = new AlphaRouter({ chainId: 1, provider: web3Provider });
 
@@ -147,14 +148,14 @@ const USDC = new Token(
 );
 
 const typedValueParsed = '100000000000000000000'
-const wethAmount = CurrencyAmount.fromRawAmount(currency, JSBI.BigInt(typedValueParsed));
+const wethAmount = CurrencyAmount.fromRawAmount(WETH, JSBI.BigInt(typedValueParsed));
 
 const route = await router.route(
   wethAmount,
   USDC,
   TradeType.EXACT_INPUT,
   {
-    recipient: myAddress,
+    recipient: MY_ADDRESS,
     slippageTolerance: new Percent(5, 100),
     deadline: Math.floor(Date.now()/1000 +1800)
   }
