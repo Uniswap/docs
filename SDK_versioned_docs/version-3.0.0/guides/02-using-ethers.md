@@ -44,7 +44,6 @@ For this example, we're using an infura endpoint. If you don't have access to an
 
 ```typescript
 import { ethers } from 'ethers'
-import { Address } from 'cluster'
 
 const provider = new ethers.providers.JsonRpcProvider('<YOUR-ENDPOINT-HERE>')
 ```
@@ -81,9 +80,9 @@ Now we'll create an interface with all the data we're going to return, each assi
 
 ```typescript
 interface Immutables {
-  factory: Address
-  token0: Address
-  token1: Address
+  factory: string
+  token0: string
+  token1: string
   fee: number
   tickSpacing: number
   maxLiquidityPerTick: number
@@ -145,7 +144,6 @@ If everything worked correctly, you should see something like this:
 
 ```typescript
 import { ethers } from 'ethers'
-import { Address } from 'cluster'
 
 const provider = new ethers.providers.JsonRpcProvider('<YOUR_ENDPOINT_HERE>')
 
@@ -163,9 +161,9 @@ const poolImmutablesAbi = [
 const poolContract = new ethers.Contract(poolAddress, poolImmutablesAbi, provider)
 
 interface Immutables {
-  factory: Address
-  token0: Address
-  token1: Address
+  factory: string
+  token0: string
+  token1: string
   fee: number
   tickSpacing: number
   maxLiquidityPerTick: number
