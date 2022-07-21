@@ -11,6 +11,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 # Getting Started with the Swap Widget
 
+<!-- UPDATE VERSION -->
+
 This guide walks you through the steps to embed the swap widget in your website in 2 minutes — whether your site is already a decentralized application (dApp) or not. With the swap widget, your users can trade ERC-20 tokens on the Uniswap Protocol without leaving your site!
 
 Here’s a live preview of the swap widget.
@@ -70,19 +72,19 @@ import '@uniswap/widgets/dist/fonts.css'
 
 # Recommended Parameters {#recommended-parameters}
 
-The swap widget is a React component that can be easily imported into any React project. It's designed to work out-of-the-box, with no required parameters or web3 integration necessary. Trading is supported on all networks where the Uniswap Protocol is deployed: Ethereum, Arbitrum, Optimism, and Polygon.
+The swap widget is a React component that can be easily imported into any React project. It's designed to work out-of-the-box, with no required parameters or web3 integration necessary. Trading is supported on all networks where the Uniswap Protocol is deployed.
 
-Although the widget will work out-of-the-box with no parameters, we recommend integrators provide a [JSON-RPC Endpoint](#json-rpc-endpoint) like Infura or Alchemy to improve performance. Existing dApps can also provide their existing [Web3 provider](#web3-provider) to integrate the widget seamlessly into their dApp.
+Although the widget will work out-of-the-box with no parameters, we highly recommend integrators provide [JSON-RPC Endpoints](#json-rpc-endpoint) like Infura or Alchemy. Existing dApps can also provide their existing [Web3 provider](#web3-provider) to integrate the widget seamlessly into their dApp.
 
 Additional [optional parameters](/sdk/widgets/swap-widget/api#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
 
-## JSON-RPC Endpoint {#json-rpc-endpoint}
+## JSON-RPC Endpoints {#json-rpc-endpoint}
 
-We strongly recommend you provide a JSON-RPC endpoint URI in the widget’s `jsonRpcEndpoint` prop. The widget will use this endpoint to fetch on-chain data and submit transactions for signature. After the user connects a wallet, the widget will use the JSON-RPC provided by the wallet when possible.
+We strongly recommend you provide JSON-RPC endpoint URLs in the widget’s `jsonRpcUrlMap` prop. The widget will use these endpoints to fetch on-chain data and submit transactions for signature. If the user connects a MetaMask wallet, the widget will use the JSON-RPC provided by MetaMask when possible. [(See a list of all chains supported on widget.)](https://github.com/Uniswap/widgets/blob/main/src/constants/chains.ts#L4) 
 
-If your dApp already has a JSON-RPC endpoint, you can pass that in the `jsonRpcEndpoint` prop. If you don’t yet have a JSON-RPC endpoint, you can easily create one with services like [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode).
+If you don’t yet have JSON-RPC endpoints, you can easily create them with services like [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode).
 
-If you choose not to provide a JSON-RPC endpoint, the widget uses a free public JSON-RPC endpoint (`https://cloudflare-eth.com`) to still allow users to interact with the widget and fetch price quotes. However, this endpoint is ~2x slower than Infura and Alchemy and isn't necessarily as reliable. When possible, we'd recommend providing your own endpoint!
+If you choose not to provide a `jsonRpcUrlMap` prop or are missing endpoints for some chains, the widget uses free public JSON-RPC endpoints to still allow users to interact with the widget and fetch price quotes. However, these public endpoints are NOT recommended for production environment usage, have rate limits, and aren't necessarily as reliable. When possible, we'd recommend providing your own endpoints!
 
 ## Web3 Provider {#web3-provider}
 
@@ -102,12 +104,15 @@ import '@uniswap/widgets/fonts.css'
 
 // Recommended to provide a Web3 provider
 import { provider } from './your/provider'
-// Recommended to provide a JSON-RPC endpoint
-const jsonRpcEndpoint = 'https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'
+// Recommended to provide your own JSON-RPC endpoints
+const jsonRpcUrlMap = { 
+  1: ['https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'], 
+  3: ['https://ropsten.infura.io/v3/<YOUR_INFURA_PROJECT_ID>']
+}
 
 function App() {
   <div className="Uniswap">
-    <SwapWidget provider={provider} jsonRpcEndpoint={jsonRpcEndpoint} />
+    <SwapWidget provider={provider} jsonRpcUrlMap={jsonRpcUrlMap} />
   </div>
 }
 ```
@@ -385,8 +390,6 @@ function App() {
 ## Understanding the Swap Widget States {#understanding-widget-states}
 
 The widget has two main connectivity states depending on if the user has connected a wallet.
-
-<!-- FIXME(kristiehuang): Update possible states graphic bc JSON-RPC will now have fallback -->
 
 <ThemedImage
   alt="Swap Widget States"
