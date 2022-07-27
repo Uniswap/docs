@@ -40,6 +40,25 @@ If you don’t have a web3 provider yet, you can add a wallet connect flow to yo
 
 The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
 
+### Using RainbowKit / WAGMI Provider {#rainbowkit}
+If you're using [RainbowKit](https://www.rainbowkit.com/) or [WAGMI](https://wagmi.sh/) you can get the swap widget working by simply following the code sample below:
+
+```
+  import { ethers } from "ethers";
+  import { useSigner } from 'wagmi';
+  ...
+  const { data: signer } = useSigner()
+  ...
+
+  return (
+     <SwapWidget
+        provider={signer?.provider as ethers.providers.JsonRpcProvider}
+        {...}
+      />
+  )
+
+```
+
 ### JSON-RPC Endpoint {#json-rpc-endpoint}
 
 We strongly recommend you provide a JSON-RPC endpoint URI in the widget’s `jsonRpcEndpoint` prop. The widget will use this endpoint to fetch on-chain data and submit transactions for signature.
