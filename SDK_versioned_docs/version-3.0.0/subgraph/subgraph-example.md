@@ -122,8 +122,8 @@ query pools( $skip: Int!) {
         id
       }
     	token1{
-      id
-    }
+        id
+      }
     }
   }
 
