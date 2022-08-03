@@ -94,7 +94,7 @@ If you already have a web3 provider, you can pass your provider object directly 
 
 If you don't have a web3 provider yet, the widget has built-in wallet connection functionality that supports [WalletConnect](https://walletconnect.com/) and [MetaMask](https://metamask.io/) wallets, making it super simple for you to integrate web3 in your app!
 
-Otherwise, you can also add your own custom wallet connection flow in the `onConnectWalletClick` callback, which is triggered when the widget's 'Connect your wallet' message is clicked. Disable the widget's built-in wallet connection flow by calling `e?.preventDefault()` in your `onConnectWalletClick` callback. Check out libraries such as [web3-react](https://github.com/Uniswap/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow.
+Otherwise, you can also add your own custom wallet connection flow in the [`onConnectWalletClick` handler](../swap-widget/api), which is triggered when the widget's 'Connect your wallet to swap' button is clicked. Check out libraries such as [web3-react](https://github.com/Uniswap/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow.
 
 The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
 
