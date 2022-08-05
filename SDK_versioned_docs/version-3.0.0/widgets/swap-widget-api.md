@@ -1,12 +1,12 @@
 ---
 id: swap-widget-api
-slug: swap-widget/api
-title: Swap Widget API Reference
+slug: swap-widget/api/v2
+title: Swap Widget API V2 Reference
 sidebar_label: API Reference
 sidebar_position: 3
 ---
 
-# Swap Widget API Reference
+# Swap Widget API V2 Reference
 
 <div className="widget-api">
 
