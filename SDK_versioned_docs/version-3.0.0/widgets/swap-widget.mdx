@@ -359,11 +359,11 @@ If you want to add Layer 2 tokens to the token list, you can add an extension fi
 
 ## Customizing the Default Input and Output Tokens {#customizing-default-input-output-tokens}
 
-You can set the `defaultInputTokenAddress` and the `defaultOutputTokenAddress` to pre-populate the input and output token fields respectively. This is useful when the widget appears in a context where you know which tokens the user is evaluating to trade. For example, if the widget appears on a page that displays the WBTC price chart, it would be helpful to pre-select WBTC as the output token in the widget.
+You can set the `defaultInputTokenAddress`, `defaultInputAmount`, `defaultOutputTokenAddress`, and `defaultOutputAmount` to pre-populate the input and output token fields respectively. This is useful when the widget appears in a context where you know which tokens the user is evaluating to trade. For example, if the widget appears on a page that displays the WBTC price chart, it would be helpful to pre-select WBTC as the output token in the widget.
 
 If your page does not need any particular defaults, then the recommended default input token is the native asset of the active network (e.g. ETH) and no default output token is recommended. Since ETH does not have an address, you can pass `'NATIVE'` as the parameter to set it as the default input or output token.
 
-The following example sets the default input token to ETH and the default output token to WBTC.
+The following example sets the default input to 2 ETH and the default output token to WBTC.
 
 ```tsx
 import { SwapWidget } from '@uniswap/widgets'
@@ -380,7 +380,12 @@ const WBTC = '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599'
 
 function App() {
   <div className="Uniswap">
-    <SwapWidget tokenList={UNISWAP_TOKEN_LIST} defaultInputTokenAddress={NATIVE} defaultOutputTokenAddress={WBTC} />
+    <SwapWidget
+      tokenList={UNISWAP_TOKEN_LIST}
+      defaultInputTokenAddress={NATIVE}
+      defaultInputAmount={2}
+      defaultOutputTokenAddress={WBTC}
+    />
   </div>
 }
 ```
