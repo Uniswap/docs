@@ -103,14 +103,14 @@ module.exports = {
           className: 'V1_active',
         },
         {
-          label: 'Whitepaper',
-          to: 'https://uniswap.org/whitepaper-v3.pdf',
+          label: 'Give Feedback',
+          to: 'https://forms.gle/13XtjmkwdXQ2jMn26',
           position: 'right',
           className: 'persistent',
         },
         {
-          label: 'Blog',
-          to: '/blog/intro-to-gas-optimization',
+          label: 'Whitepaper',
+          to: 'https://uniswap.org/whitepaper-v3.pdf',
           position: 'right',
           className: 'persistent',
         },
@@ -134,6 +134,10 @@ module.exports = {
         {
           title: 'Developers',
           items: [
+            {
+              label: 'Feedback',
+              href: 'https://forms.gle/13XtjmkwdXQ2jMn26',
+            },
             {
               label: 'Bug Bounty',
               href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md',
