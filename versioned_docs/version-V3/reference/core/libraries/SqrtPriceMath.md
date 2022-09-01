@@ -18,7 +18,7 @@ Gets the next sqrt price given a delta of token0
 Always rounds up, because in the exact output case (increasing price) we need to move the price at least
 far enough to get the desired output amount, and in the exact input case (decreasing price) we need to move the
 price less in order to not send too much output.
-The most precise formula for this is liquidity _ sqrtPX96 / (liquidity +- amount _ sqrtPX96),
+The most precise formula for this is liquidity \* sqrtPX96 / (liquidity +- amount \* sqrtPX96),
 if this is impossible because of overflow, we calculate liquidity / (liquidity / sqrtPX96 +- amount).
 
 #### Parameters:
@@ -143,7 +143,7 @@ Throws if price or liquidity are 0 or the next price is out of bounds
 Gets the amount0 delta between two prices
 
 Calculates liquidity / sqrt(lower) - liquidity / sqrt(upper),
-i.e. liquidity _ (sqrt(upper) - sqrt(lower)) / (sqrt(upper) _ sqrt(lower))
+i.e. liquidity \* (sqrt(upper) - sqrt(lower)) / (sqrt(upper) \* sqrt(lower))
 
 #### Parameters:
 
