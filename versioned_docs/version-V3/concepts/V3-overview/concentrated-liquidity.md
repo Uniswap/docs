@@ -45,7 +45,7 @@ While each pool has the same number of underlying ticks, in practice only a port
 
 While inactive ticks have no impact on transaction cost during swaps, crossing an active tick does increase the cost of the transaction in which it is crossed, as the tick crossing will activate the liquidity within any new positions using the given tick as a border.
 
-In areas where capital efficiency is paramount, such as stable coin pairs, narrower tick spacing increases the granularity of liquidity provisioning and will likely lower price impact when swapping - the result being significantly improved prices for stable coin swaps.
+In areas where capital efficiency is paramount, such as stable coin pairs, narrower tick spacing increases the granularity of liquidity provisioning and will likely lower price impact when swapping - the result being significantly improved prices for stablecoin swaps.
 
 For more information on fee levels and their correlation to tick spacing, see the [**whitepaper.**](https://uniswap.org/whitepaper-v3.pdf)
 
