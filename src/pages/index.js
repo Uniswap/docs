@@ -75,14 +75,14 @@ export const github = [
 
 export const Guides = [
   {
-    title: 'Integration Quick Start',
-    text: 'Build your first on chain integration with the Uniswap Protocol.',
-    to: './protocol/guides/quickstart',
-  },
-  {
     title: 'SDK Quick Start',
     text: 'Integrate with the Uniswap Protocol using JavaScript',
     to: './sdk/guides/quick-start',
+  },
+  {
+    title: 'Implementing a Swap',
+    text: 'Start swapping from a smart contract in Solidity',
+    to: './protocol/guides/swaps/single-swaps',
   },
   {
     title: 'Embedding a Swap Widget',
