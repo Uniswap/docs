@@ -5,14 +5,7 @@ title: Deployment Addresses
 
 # Uniswap Contract Deployments
 
-All deployments of Uniswap V3 starting with Celo in June 2022 will have their own addresses, this is a departure from previous chains that were deployed to the same "Historical Addresses". The **following chains are the only ones that use the "Historical Addresses"** for `@uniswap/v3-core`and `@uniswap/v3-periphery`: 
-- Ethereum Mainnet
-- Polygon
-- Optimism
-- Arbitrum
-- All testnets of the above
-
-Deployments to **all other chains will not use these historical addresses**. Integrators should be extremely careful to check this table to confirm their integrations use the correct chain -> address mappings:
+Integrators should no longer assume that Uniswap V3 is deployed to the same address for all chains and instead refer to the following table to get the correct mappings. Be extremely careful to confirm that your mapping matches: 
 
 | Contract                                                                                                                                                            | Historic Address (Only Mainnet, Polygon, Optimism, Arbitrum, Testnets) | Celo Address                                 | 
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------| -----------------------------------------------------------------------| -------------------------------------------- |
@@ -23,8 +16,8 @@ Deployments to **all other chains will not use these historical addresses**. Int
 | [Quoter](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/Quoter.sol)                                                                     | `0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6`                           | `0x82825d0554fA07f7FC52Ab63c961F330fdEFa8E8` |
 | [SwapRouter](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/SwapRouter.sol)                                                                  | `0xE592427A0AEce92De3Edee1F18E0157C05861564`                           | `0x5615CDAb10dc425a742d643d949a7F474C01abc4` |
 | [NFTDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/libraries/NFTDescriptor.sol)                                                  | `0x42B24A95702b9986e82d421cC3568932790A48Ec`                           |                                              |
-| [NonfungibleTokenPositionDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungibleTokenPositionDescriptor.sol)                  | `0x91ae842A5Ffd8d12023116943e72A606179294f3`                           |                                              |
-| [TransparentUpgradeableProxy](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.1-solc-0.7-2/contracts/proxy/TransparentUpgradeableProxy.sol)        | `0xEe6A57eC80ea46401049E92587E52f5Ec1c24785`                           |                                              |
+| [NonfungibleTokenPositionDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungibleTokenPositionDescriptor.sol)                  | `0x91ae842A5Ffd8d12023116943e72A606179294f3`                           | `0x644023b316bB65175C347DE903B60a756F6dd554` |
+| [TransparentUpgradeableProxy](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.1-solc-0.7-2/contracts/proxy/TransparentUpgradeableProxy.sol)        | `0xEe6A57eC80ea46401049E92587E52f5Ec1c24785`                           | `0x505B43c452AA4443e0a6B84bb37771494633Fde9` |
 | [NonfungiblePositionManager](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungiblePositionManager.sol)                                  | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88`                           | `0x3d79EdAaBC0EaB6F08ED885C05Fc0B014290D95A` |
 | [V3Migrator](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/V3Migrator.sol)                                                                  | `0xA5644E29708357803b5A882D272c41cC0dF92B34`                           | `0x3cFd4d48EDfDCC53D3f173F596f621064614C582` |
 
