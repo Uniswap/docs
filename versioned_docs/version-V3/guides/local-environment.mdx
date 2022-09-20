@@ -4,142 +4,150 @@ title: Set Up Your Local Environment
 sidebar_position: 0.5
 ---
 
-This guide describes how to set up your environment using a specific toolset: `Node.js` + `npm` + `hardhat`. It also shows you how to install the Uniswap V3 Periphery contracts, which are required for the contract examples in the Uniswap Docs V3 guides.
+One of the most common questions we get asked is what development toolset to use to build on-chain integrations with Uniswap. There’s no right answer to this question but for this guide we’ll recommend a common one: `Node.js` , `NPM` and `Hardhat`.
 
-Once you have set up your environment, read the guides on liquidity mining, implementing swaps, and so on, which provide example contracts for those interactions.
+At the end of this guide you’ll have a development environment set up that you can use to build the rest of the examples in the Guides section of the docs, or start your own integration project!
 
-## Create a Node.js Project
+To get you started as quickly as possible, we have provided the `Quick Start` section below where you can clone some boiler plate and get building. To start from scratch and learn the underlying concepts, jump to the `Start from Scratch` section. 
 
-1. Download and install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+# Quick Start
 
-2. Create a new directory and navigate to it. Also, create a new node project with `npm init`.
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="package-managers">
-<TabItem value="npm" label="npm">
+The Uniswap [boilerplate repo](https://github.com/Uniswap/uniswap-first-contract-example) provides a basic Hardhat environment with required imports already pre-loaded for you. You can simply clone it and install the dependencies: 
 
 ```bash
-   $ mkdir swap-example
-   $ cd swap-example
-   $ npm init
-   ``` 
+git clone https://github.com/Uniswap/uniswap-first-contract-example
+cd uniswap-first-contract-example
+npm install 
+```
 
-</TabItem>
+Then hop to the `Local Node with a Mainnet Fork` to complete your set up and start developing. 
 
-<TabItem value="yarn" label="yarn">
+# Start from Scratch
 
-```bash
-   $ mkdir swap-example
-   $ cd swap-example
-   $ yarn init
-   ```
+In the following sections, we’ll walk through the steps to create the same environment set up as the boiler plate from scratch and learn the underlying concepts.  
 
-</TabItem>
-</Tabs>
+## Set Up Dependencies
 
-## Install Hardhat and the Periphery Contracts
-
-1. Install [Hardhat](https://hardhat.org/), a development environment to compile, deploy, test, and debug your Smart Contracts.
-
-<Tabs groupId="package-managers">
-<TabItem value="npm" label="npm">
-
-   ```bash
-   $ npm add --save-dev hardhat
-   ```
-
-</TabItem>
-
-<TabItem value="yarn" label="yarn">
-
-   ```bash
-   $ yarn add --dev hardhat
-   ```
-
-</TabItem>
-</Tabs>
-
-2. Install the V3 Periphery contracts so that you can inherit what you need from them in your Smart Contracts.
-
-<Tabs groupId="package-managers">
-<TabItem value="npm" label="npm">
-
-   ```bash
-   $ npm add @uniswap/v3-periphery
-   ```
-
-</TabItem>
-
-<TabItem value="yarn" label="yarn">
-
-   ```bash
-   $ yarn add @uniswap/v3-periphery
-   ```
-
-</TabItem>
-</Tabs>
-
-3. Create a new hardhat config file, which you can use for compiling and testing contracts. For an example of how a typical smart contract repo is structure, select the "create a sample project" option during setup.
-
-<Tabs groupId="package-managers">
-<TabItem value="npm" label="npm">
-
-   ```bash
-   $ npx hardhat
-   ```
-
-</TabItem>
-
-<TabItem value="yarn" label="yarn">
+Node is one of the most common Javascript runtimes. For our purposes it will provide scripting we can use to compile and test our contracts. If you haven’t already, install NodeJS and its package manager NPM ([instructions](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)). Once those dependencies are set up, we can initialize our project: 
 
 ```bash
-$ yarn hardhat
-```   
+$ npm init
+```
 
-</TabItem>
-</Tabs>
+[Hardhat](https://hardhat.org/) is an Ethereum development toolset that provides a number of powerful features including Solidity compilation, testing and deployment, all in a single convenient wrapper. We’ll use NPM to add Hardhat to our project: 
 
+```bash
+$ npm add --save-dev hardhat
+```
 
-## Set the Solidity Version for Hardhat
+With Hardhat installed we can invoke it to scaffold our development environment. When you first run Hardhat you’ll have the option of starting with a templated Javascript or Typescript project or an empty project. Since Hardhat relies heavily on folder structure, we recommend starting  with either of the templated options. Initialize Hardhat and follow the prompts to make your selection and answer yes to the follow up prompts:
 
-For this example, we'll need to change ./hardhat.config.js to include the appropriate solidity version for compiling the Uniswap V3 contracts. If you are using Hardhat's example project, you can skip this step.
+```bash
+$ npx hardhat init
+```
 
-```js
-/**
- * @type import('hardhat/config').HardhatUserConfig
- */
+Once the Hardhat initialization completes, take a look around at what got set up. The folder structure should be intuitive, `./contracts` is where you’ll write your Solidity contracts, `./test` is where you’ll write your tests and `./scripts` is where you can write scripts to perform actions like deploying. Out of the box, Hardhat is configured to use this folder structure so don’t change it unless you know what you’re doing!
+
+Next we’ll use NPM to add the Uniswap V3 contracts which will allow us to seamlessly integrate with the protocol in our new contracts:
+
+```bash
+$ npm add @uniswap/v3-periphery @uniswap/v3-core
+```
+
+The Uniswap V3 contracts were written using a past version of the solidity compiler. Since we’re building integrations on V3 we have to tell Hardhat to use the correct compiler to build these files. Go to the `./hardhat.config.js` file and change the Solidity version to “0.7.6”: 
+
+```jsx
+// ...
 module.exports = {
-  solidity: '0.7.6',
+  solidity: "0.7.6",
+};
+```
+
+That’s it! You should now have a functional development environment to start building on chain Uniswap integrations. Let’s run a quick test to confirm everything is set up properly. 
+
+## Compile a Basic Contract
+
+To confirm that our environment is configured correctly we’ll attempt to compile a basic Swap contract. Create a new file, `./contracts/Swap.sol` and paste the following code into it (a detailed guide to this contract can be found [here](https://docs.uniswap.org/protocol/guides/swaps/single-swaps)): 
+
+```jsx
+// SPDX-License-Identifier: GPL-2.0-or-later
+pragma solidity =0.7.6;
+pragma abicoder v2;
+
+import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
+import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
+
+contract SimpleSwap {
+    ISwapRouter public immutable swapRouter;
+    address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
+    address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+    uint24 public constant feeTier = 3000;
+    
+    constructor(ISwapRouter _swapRouter) {
+        swapRouter = _swapRouter;
+    }
+    
+    function swapWETHForDAI(uint256 amountIn) external returns (uint256 amountOut) {
+
+        // Transfer the specified amount of WETH9 to this contract.
+        TransferHelper.safeTransferFrom(WETH9, msg.sender, address(this), amountIn);
+        // Approve the router to spend WETH9.
+        TransferHelper.safeApprove(WETH9, address(swapRouter), amountIn);
+        // Note: To use this example, you should explicitly set slippage limits, omitting for simplicity
+        const minOut = /* Calculate min output */ 0; 
+        const priceLimit = /* Calculate price limit */ 0; 
+        // Create the params that will be used to execute the swap
+        ISwapRouter.ExactInputSingleParams memory params =
+            ISwapRouter.ExactInputSingleParams({
+                tokenIn: WETH9,
+                tokenOut: DAI,
+                fee: feeTier,
+                recipient: msg.sender,
+                deadline: block.timestamp,
+                amountIn: amountIn,
+                amountOutMinimum: minOut,
+                sqrtPriceLimitX96: priceLimit
+            });
+        // The call to `exactInputSingle` executes the swap.
+        amountOut = swapRouter.exactInputSingle(params);
+    }
 }
 ```
 
-## Compile Your Contracts
+To compile all the contracts in the `./contracts` folder, we’ll use the Hardhat compile command: 
 
-<Tabs groupId="package-managers">
-<TabItem value="npm" label="npm">
-
-   ```bash
-   $ npx hardhat compile
-   ```
-
-</TabItem>
-
-<TabItem value="yarn" label="yarn">
-
-   ```bash
-   $ yarn hardhat compile
-   ```   
-
-</TabItem>
-</Tabs>
-
-If everything worked correctly, and you used hardhat's simple example project, you should see the following output:
-
-```console
-Downloading compiler 0.8.4
-Compiled 2 Solidity files successfully
-✨  Done in 6.75s.
+```bash
+$ npx hardhat compile
 ```
 
+If the environment is compiled correctly you should see the message: 
+
+```bash
+Compiled { x } Solidity files successfully
+```
+
+# Local Node with a Mainnet Fork
+
+When building and testing integrations with on chain protocols, developers often hit a problem: the liquidity on the live chain is critical to thoroughly testing their code but testing against a live network like Mainnet can be extremely expensive. 
+
+Luckily, Hardhat has a powerful feature that allows developers to run a local Ethereum test node that uses a fork of Mainnet. This allows us to test against simulated liquidity for free. 
+
+As a prerequisite we’ll need an RPC that supports [Forking](https://hardhat.org/hardhat-network/docs/guides/forking-other-networks). [Alchemy](https://www.alchemy.com/) includes forking in its free tier so it’s a great place to start (sign up and get an API key [here](https://www.alchemy.com/)).  You can then run the following Hardhat command to start your node:
+
+```bash
+$ npx hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/{YOUR_API_KEY}
+```
+
+With your local node up and running, you can use the `--network localhost` flag in tests to point the Hardhat testing suite to that local node: 
+
+```bash
+$ npx hardhat test --network localhost
+```
+
+# Next Steps
+
+With your environment set up you’re ready to start building. Jump over to the guides section to learn about the Uniswap functions you can integrate with. Remember to add all contracts (.sol files) to the `./contracts` folder and their subsequent tests to the `./tests` folder. You can then test them against your local forked node by running: 
+
+```bash
+$ npx hardhat test --network localhost
+```

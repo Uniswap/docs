@@ -80,14 +80,14 @@ export const Guides = [
     to: './sdk/guides/quick-start',
   },
   {
-    title: 'Embedding a Swap Widget',
-    text: 'Let your users trade tokens without leaving your dApp',
-    to: './sdk/widgets/swap-widget',
-  },
-  {
     title: 'Implementing a Swap',
     text: 'Start swapping from a smart contract in Solidity',
     to: './protocol/guides/swaps/single-swaps',
+  },
+  {
+    title: 'Embedding a Swap Widget',
+    text: 'Let your users trade tokens without leaving your dApp',
+    to: './sdk/widgets/swap-widget',
   },
   {
     title: 'Providing Liquidity',
