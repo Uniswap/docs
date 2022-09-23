@@ -8,10 +8,10 @@ Provides functions to integrate with V3 pool oracle
   function consult(
     address pool,
     uint32 period
-  ) internal view returns (int24 timeWeightedAverageTick)
+  ) internal view returns (int24 arithmeticMeanTick, uint128 harmonicMeanLiquidity)
 ```
 
-Fetches time-weighted average tick using Uniswap V3 oracle
+Calculates time-weighted means of tick and liquidity for a given Uniswap V3 pool
 
 #### Parameters:
 
@@ -24,7 +24,9 @@ Fetches time-weighted average tick using Uniswap V3 oracle
 
 | Name                      | Type    | Description                                                                       |
 | :------------------------ | :------ | :-------------------------------------------------------------------------------- |
-| `timeWeightedAverageTick` | address | The time-weighted average tick from (block.timestamp - period) to block.timestamp |
+| `arithmeticMeanTick` | int24 | The arithmetic mean tick from (block.timestamp - secondsAgo) to block.timestamp |
+| `harmonicMeanLiquidity` | uint128 | The harmonic mean liquidity from (block.timestamp - secondsAgo) to block.timestamp |
+
 
 ### getQuoteAtTick
 
