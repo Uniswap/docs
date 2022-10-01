@@ -94,8 +94,8 @@ contract SimpleSwap {
         // Approve the router to spend WETH9.
         TransferHelper.safeApprove(WETH9, address(swapRouter), amountIn);
         // Note: To use this example, you should explicitly set slippage limits, omitting for simplicity
-        const minOut = /* Calculate min output */ 0; 
-        const priceLimit = /* Calculate price limit */ 0; 
+        uint256 minOut = /* Calculate min output */ 0; 
+        uint160 priceLimit = /* Calculate price limit */ 0; 
         // Create the params that will be used to execute the swap
         ISwapRouter.ExactInputSingleParams memory params =
             ISwapRouter.ExactInputSingleParams({
