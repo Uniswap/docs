@@ -113,7 +113,7 @@ For buy orders \(exact output\), the cost \(input\) is calculated:
 
 ```javascript
 // Buy TokenB with ETH
-const outputAmountB = userInputEthValue
+const outputAmountB = userInputTokenBValue
 const inputReserveB = web3.eth.getBalance(exchangeAddressB)
 const outputReserveB = tokenContractB.methods.balanceOf(exchangeAddressB).call()
 
@@ -123,7 +123,7 @@ const denominatorB = (outputReserveB - outputAmountB) * 997
 const inputAmountB = numeratorB / denominatorB + 1
 
 // Buy ETH with TokenA
-const outputAmountA = userInputEthValue
+const outputAmountA = inputAmountB
 const inputReserveA = tokenContractA.methods.balanceOf(exchangeAddressA).call()
 const outputReserveA = web3.eth.getBalance(exchangeAddressA)
 
