@@ -13,3 +13,5 @@ i18n/*
 artifacts/
 cache/
 typechain/
+
+.env
