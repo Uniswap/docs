@@ -1,17 +1,11 @@
-name: Lint
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-  # manual trigger
-  workflow_dispatch:
-
+name: CI
+on: push
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup
-      - run: yarn lint
+    - uses: actions/checkout@v3
+    - name: Install modules
+      run: yarn --frozen-lockfile
+    - name: Run ESLint
+      run: yarn lint
