@@ -61,9 +61,5 @@
     "eslint-plugin-promise": "^6.0.0",
     "prettier": "2.7.1",
     "typescript": "^4.8.4"
-  },
-  "main": "index.js",
-  "repository": "git@github.com:Uniswap/docs.git",
-  "author": "<danny.daniil@uniswap.org>",
-  "license": "MIT"
+  }
 }
