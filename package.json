@@ -10,7 +10,7 @@
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
-    "lint": "yarn eslint ."
+    "lint": "yarn eslint src"
   },
   "dependencies": {
     "@algolia/autocomplete-preset-algolia": "^1.1.0",
