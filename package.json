@@ -61,5 +61,10 @@
     "eslint-plugin-promise": "^6.0.0",
     "prettier": "2.7.1",
     "typescript": "^4.8.4"
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "node": "14",
+    "yarn": ">=1.22"
   }
 }

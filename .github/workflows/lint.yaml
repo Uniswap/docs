@@ -1,11 +1,23 @@
 name: Lint
+
 on: push
+
 jobs:
-  build:
+  lint:
+    name: Run linters
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Install modules
-      run: yarn --frozen-lockfile
-    - name: Run ESLint
-      run: yarn lint
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Run linters
+        run: yarn lint
