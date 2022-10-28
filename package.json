@@ -15,6 +15,7 @@
   "dependencies": {
     "@algolia/autocomplete-preset-algolia": "^1.1.0",
     "@algolia/client-search": "^4.9.1",
+    "@amplitude/analytics-browser": "^1.5.8",
     "@babel/core": "^7.14.6",
     "@docusaurus/core": "^2.0.0-beta.17",
     "@docusaurus/plugin-content-docs": "^2.0.0-beta.17",
