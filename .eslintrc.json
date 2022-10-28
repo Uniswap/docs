@@ -2,15 +2,20 @@
     "parser": "@typescript-eslint/parser",
     "env": {
         "browser": true,
-        "es2021": true
+        "amd": true,
+        "node": true
     },
     "extends": [
         "plugin:prettier/recommended",
         "eslint:recommended",
-        "prettier" 
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
     ],
     "overrides": [],
-    "plugins": ["prettier"],
+    "plugins": [
+        "prettier",
+        "@typescript-eslint"
+    ],
     "parserOptions": {
         "ecmaVersion": 2020,
         "sourceType": "module",
@@ -19,7 +24,23 @@
             "jsx": true
         }
     },
+    "ignorePatterns": [
+        "node_modules",
+        "coverage",
+        "build",
+        "dist",
+        ".DS_Store",
+        ".env.local",
+        ".env.development.local",
+        ".env.test.local",
+        ".env.production.local",
+        ".vscode/",
+        "package-lock.json",
+        "yarn.lock",
+        "docusaurus.config.js"
+    ],
     "rules": {
-        "prettier/prettier": "error"
-      }
+        "prettier/prettier": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+    }
 }

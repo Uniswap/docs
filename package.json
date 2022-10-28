@@ -50,9 +50,9 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.1.0",
     "@tsconfig/docusaurus": "^1.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "5.41.0",
-    "eslint": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
+    "eslint": "^8.26.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.25.2",
@@ -60,7 +60,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "prettier": "2.7.1",
-    "typescript": "*"
+    "typescript": "^4.8.4"
   },
   "main": "index.js",
   "repository": "git@github.com:Uniswap/docs.git",
