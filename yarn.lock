@@ -351,24 +351,24 @@
     "@algolia/requester-common" "4.9.3"
 
 "@amplitude/analytics-browser@^1.5.8":
-  version "1.5.8"
-  resolved "https://registry.yarnpkg.com/@amplitude/analytics-browser/-/analytics-browser-1.5.8.tgz#6981635c6465acd6460d02f9633069c131049c85"
-  integrity sha512-5i1WApc/7vazFulu5Pcjc7QCUok5U32GCJ6rTOAANB7FnVJZeuW85gR1zyxP4Fhiw1cM5MTlpcnKTcKxuMi1xg==
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@amplitude/analytics-browser/-/analytics-browser-1.6.1.tgz#1b67f117643e3c3acba71a915e11d1e280a853eb"
+  integrity sha512-i9Mt3p6ikZm7zu6QRMIziSzNwWW3F2zEIKoOoBbMxy97hSliM93/VoLBLOzwMhusHK3Xy5OwcIgYVUHdXbmigw==
   dependencies:
-    "@amplitude/analytics-client-common" "^0.3.4"
-    "@amplitude/analytics-core" "^0.9.7"
-    "@amplitude/analytics-types" "^0.11.0"
+    "@amplitude/analytics-client-common" "^0.4.0"
+    "@amplitude/analytics-core" "^0.10.0"
+    "@amplitude/analytics-types" "^0.12.0"
     "@amplitude/ua-parser-js" "^0.7.31"
     tslib "^2.3.1"
 
-"@amplitude/analytics-client-common@^0.3.4":
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@amplitude/analytics-client-common/-/analytics-client-common-0.3.4.tgz#3243a10773feec443217cce811375d365d544cd6"
-  integrity sha512-3xm1QKE5jhdJ7XzlOhKjfSEL9Cg0VxB09/pAqQtb6LlbRhztWa41/mW32iNYj9awqpoYg+4atuQy37CDFS5BSg==
+"@amplitude/analytics-client-common@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@amplitude/analytics-client-common/-/analytics-client-common-0.4.0.tgz#5ba53af7d447a992d006f263dd9040c87e07ec6b"
+  integrity sha512-I3cy6AYCiVUqXAD6yU+tm3qBZdEyrdruDaUS/vVPoi+MvHIkZIXw7xaQjmkBRURWCgdcxu5LioU8r1ld1widtA==
   dependencies:
     "@amplitude/analytics-connector" "^1.4.5"
-    "@amplitude/analytics-core" "^0.9.7"
-    "@amplitude/analytics-types" "^0.11.0"
+    "@amplitude/analytics-core" "^0.10.0"
+    "@amplitude/analytics-types" "^0.12.0"
     tslib "^2.3.1"
 
 "@amplitude/analytics-connector@^1.4.5":
@@ -378,18 +378,18 @@
   dependencies:
     "@amplitude/ua-parser-js" "0.7.31"
 
-"@amplitude/analytics-core@^0.9.7":
-  version "0.9.7"
-  resolved "https://registry.yarnpkg.com/@amplitude/analytics-core/-/analytics-core-0.9.7.tgz#ef0073c0c8320af3b37a605dd40f65864071a8a8"
-  integrity sha512-IQ8/tjLwv88Fqus9ORz+/cp5J/lIXsOryBnf4aGfAbzNKcMYlvhxMk6K5Zdz3tAXs9hBRu5XqoqqGPAn6uRQCQ==
+"@amplitude/analytics-core@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@amplitude/analytics-core/-/analytics-core-0.10.0.tgz#0d68cede53fecaadfef9c36455eb271454b6ccee"
+  integrity sha512-D/6U9SzyDmcNWnT/lFnBKfYl4ASicLlwD1tqu4RZoYS3SwHd/PNST+LbnL3yBTEIJIY//qjth9lLBh/RRzePfg==
   dependencies:
-    "@amplitude/analytics-types" "^0.11.0"
+    "@amplitude/analytics-types" "^0.12.0"
     tslib "^2.3.1"
 
-"@amplitude/analytics-types@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@amplitude/analytics-types/-/analytics-types-0.11.0.tgz#20efb8e36e44729a235e075bec6690346678138d"
-  integrity sha512-xvqGwF9Ga1zd41AcJdfSL7HFqfv/us25gotzxc3N9a3KsRwAkrcYRfsx0baaD4iLUQDNFfFq3OCW83T/UK4lgw==
+"@amplitude/analytics-types@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@amplitude/analytics-types/-/analytics-types-0.12.0.tgz#aeec6f204758637603937f05393bdf89fa8e7a5b"
+  integrity sha512-XwySEhnCdU8fNWUNaB38JS7bwOt4GOUG8OqgzuXtR8HvGnpCvuT7C6H+BIGA7MfctNQBAzR+6IBgDD+8r1/OEQ==
 
 "@amplitude/ua-parser-js@0.7.31", "@amplitude/ua-parser-js@^0.7.31":
   version "0.7.31"
@@ -3098,6 +3098,14 @@
     "@typescript-eslint/types" "5.41.0"
     eslint-visitor-keys "^3.3.0"
 
+"@uniswap/analytics@../analytics/uniswap-analytics-v1.0.14.tgz":
+  version "1.0.14"
+  resolved "../analytics/uniswap-analytics-v1.0.14.tgz#a7e7279c5653dbe44fb74a26294887d36f28bdbf"
+  dependencies:
+    "@amplitude/analytics-browser" "^1.5.8"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.11.1.tgz#2bfd767eae1a6996f432ff7e8d7fc75679c0b6a7"
@@ -4741,6 +4749,11 @@ dot-prop@^5.2.0:
   integrity sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==
   dependencies:
     is-obj "^2.0.0"
+
+dotenv@^16.0.3:
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
+  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -8158,6 +8171,14 @@ react-dom@^16.8.4:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
+react-dom@^18.2.0:
+  version "18.2.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
+  integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
+  dependencies:
+    loose-envify "^1.1.0"
+    scheduler "^0.23.0"
+
 react-error-overlay@^6.0.10:
   version "6.0.10"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.10.tgz#0fe26db4fa85d9dbb8624729580e90e7159a59a6"
@@ -8270,6 +8291,13 @@ react@^16.8.4:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
+
+react@^18.2.0:
+  version "18.2.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
+  integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
+  dependencies:
+    loose-envify "^1.1.0"
 
 readable-stream@^2.0.1:
   version "2.3.7"
@@ -8686,6 +8714,13 @@ scheduler@^0.19.1:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+scheduler@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.23.0.tgz#ba8041afc3d30eb206a487b6b384002e4e61fdfe"
+  integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
+  dependencies:
+    loose-envify "^1.1.0"
 
 schema-utils@2.7.0:
   version "2.7.0"

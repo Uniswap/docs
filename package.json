@@ -15,7 +15,6 @@
   "dependencies": {
     "@algolia/autocomplete-preset-algolia": "^1.1.0",
     "@algolia/client-search": "^4.9.1",
-    "@amplitude/analytics-browser": "^1.5.8",
     "@babel/core": "^7.14.6",
     "@docusaurus/core": "^2.0.0-beta.17",
     "@docusaurus/plugin-content-docs": "^2.0.0-beta.17",
@@ -27,6 +26,7 @@
     "@heroicons/react": "^1.0.1",
     "@mdx-js/react": "^1.6.21",
     "@types/react": "^17.0.11",
+    "@uniswap/analytics": "../analytics/uniswap-analytics-v1.0.14.tgz",
     "algoliasearch": "^4.9.1",
     "clsx": "^1.1.1",
     "hast-util-is-element": "1.1.0",
@@ -53,6 +53,7 @@
     "@tsconfig/docusaurus": "^1.0.6",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
+    "dotenv": "^16.0.3",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
