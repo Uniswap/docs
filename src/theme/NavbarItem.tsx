@@ -5,8 +5,8 @@ import { useLocation } from '@docusaurus/router'
 export default function NavbarItem(props) {
   const { pathname } = useLocation()
 
-  let versionDoc = pathname.split('/')
-  let activeNav = null
+  const versionDoc = pathname.split('/')
+  let activeNav: null | string = null
 
   if (versionDoc[2] === 'V2' || versionDoc[2] === '2.0.0') {
     activeNav = 'V2'
