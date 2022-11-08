@@ -305,7 +305,7 @@ export default function Home() {
               alignItems: 'center',
             }}
           >
-            <h1 style={{ fontWeight: '600' }}> Welcome to the Uniswap Docs</h1>
+            <h1 style={{ fontWeight: 600 }}> Welcome to the Uniswap Docs</h1>
             <HideMedium>
               <SearchBar />{' '}
             </HideMedium>
@@ -319,7 +319,7 @@ export default function Home() {
           />
           <Row>
             {actions.map((action) => (
-              <TraceEvent key={action.href} events={[BrowserEvent.onClick]} name={action.title}>
+              <TraceEvent key={action.href} events={[BrowserEvent.onClick]} name={''}>
                 <Link style={{ textDecoration: 'none' }} to={action.to}>
                   <ShadowCard key={action.title}>
                     <TopSection>
@@ -450,6 +450,7 @@ export default function Home() {
         </TwoRow>
 
         <hr />
+
         <TwoRow
           style={{
             gap: '48px',

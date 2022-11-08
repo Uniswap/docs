@@ -10,27 +10,22 @@ import { getBrowser } from '../utils/browser'
 // Placeholder API key. Actual API key used in the proxy server
 const ANALYTICS_DUMMY_KEY = '00000000000000000000000000000000'
 
-function getCurrentPageFromLocation(locationPathname: string): PageName | undefined {
-  switch (locationPathname) {
-    case '/swap':
-      return PageName.SWAP_PAGE
-    case '/vote':
-      return PageName.VOTE_PAGE
-    case '/pool':
-      return PageName.POOL_PAGE
-    case '/tokens':
-      return PageName.TOKENS_PAGE
-    default:
-      return undefined
+function getCurrentPageFromLocation(locationPathname: string): PageName | undefined | string {
+  if (locationPathname === '/') {
+    return 'landing-page'
   }
+  const pathWithoutPrefix = locationPathname.slice(1)
+  const pathWithHyphenReplaced = pathWithoutPrefix.replace(/\//g, '-')
+  const pageName = pathWithHyphenReplaced.concat('-page')
+  return pageName
 }
 
 // Default implementation, that you can customize
-export default function Root({ children }) {
+export default function Root({ children }: React.PropsWithChildren<{ open: boolean }>) {
   const { siteConfig } = useDocusaurusContext()
 
-  const analyticsUrl = typeof siteConfig.customFields.analytics === 'string' ? siteConfig.customFields.analytics : null
-  initializeAnalytics(ANALYTICS_DUMMY_KEY, analyticsUrl)
+  const proxyUrl = typeof siteConfig.customFields.analytics === 'string' ? siteConfig.customFields.analytics : undefined
+  initializeAnalytics(ANALYTICS_DUMMY_KEY, proxyUrl)
 
   useEffect(() => {
     sendAnalyticsEvent(EventName.APP_LOADED)
@@ -47,5 +42,9 @@ export default function Root({ children }) {
   const { pathname } = useLocation()
   const currentPage = getCurrentPageFromLocation(pathname)
 
-  return <><Trace page={currentPage}>{children}</Trace></>
+  return (
+    <>
+      <Trace page={currentPage}>{children}</Trace>
+    </>
+  )
 }
