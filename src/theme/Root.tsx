@@ -10,9 +10,23 @@ import { getBrowser } from '../utils/browser'
 // Placeholder API key. Actual API key used in the proxy server
 const ANALYTICS_DUMMY_KEY = '00000000000000000000000000000000'
 
+function getCurrentPageFromLocation(locationPathname: string): PageName | undefined {
+  switch (locationPathname) {
+    case '/swap':
+      return PageName.SWAP_PAGE
+    case '/vote':
+      return PageName.VOTE_PAGE
+    case '/pool':
+      return PageName.POOL_PAGE
+    case '/tokens':
+      return PageName.TOKENS_PAGE
+    default:
+      return undefined
+  }
+}
+
 // Default implementation, that you can customize
 export default function Root({ children }) {
-  const location = useLocation()
   const { siteConfig } = useDocusaurusContext()
 
   const analyticsUrl = typeof siteConfig.customFields.analytics === 'string' ? siteConfig.customFields.analytics : null
@@ -30,9 +44,8 @@ export default function Root({ children }) {
     getLCP(({ delta }: Metric) => sendAnalyticsEvent(EventName.WEB_VITALS, { largest_contentful_paint_ms: delta }))
   }, [])
 
-  useEffect(() => {
-    console.log('Location changed: ', location.pathname)
-  }, [location])
+  const { pathname } = useLocation()
+  const currentPage = getCurrentPageFromLocation(pathname)
 
-  return <>{children}</>
+  return <><Trace page={currentPage}>{children}</Trace></>
 }
