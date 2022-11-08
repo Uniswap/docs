@@ -1,7 +1,6 @@
 {
-  "name": "uniswap",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@uniswap/docs",
+  "description": "Uniswap docs",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -35,7 +34,8 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "rehype-katex": "5",
-    "remark-math": "3"
+    "remark-math": "3",
+    "web-vitals": "2.1.0"
   },
   "browserslist": {
     "production": [
