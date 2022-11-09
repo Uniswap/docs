@@ -12,7 +12,7 @@ const ANALYTICS_DUMMY_KEY = '00000000000000000000000000000000'
 
 function getCurrentPageFromLocation(locationPathname: string): PageName | undefined | string {
   if (locationPathname === '/') {
-    return 'landing-page'
+    return PageName.HOME_PAGE
   }
   const pathWithoutInitialSlash = locationPathname.slice(1)
   const pathWithSlashesReplaced = pathWithoutInitialSlash.replace(/\//g, '-')
@@ -22,6 +22,9 @@ function getCurrentPageFromLocation(locationPathname: string): PageName | undefi
 
 // Default implementation, that you can customize
 export default function Root({ children }: React.PropsWithChildren<{ open: boolean }>) {
+  const { pathname } = useLocation()
+  const currentPage = getCurrentPageFromLocation(pathname)
+
   const { siteConfig } = useDocusaurusContext()
 
   const proxyUrl = typeof siteConfig.customFields.analytics === 'string' ? siteConfig.customFields.analytics : undefined
@@ -39,8 +42,11 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
     getLCP(({ delta }: Metric) => sendAnalyticsEvent(EventName.WEB_VITALS, { largest_contentful_paint_ms: delta }))
   }, [])
 
-  const { pathname } = useLocation()
-  const currentPage = getCurrentPageFromLocation(pathname)
+  useEffect(() => {
+    sendAnalyticsEvent(EventName.PAGE_VIEWED, {
+      pageName: getCurrentPageFromLocation(pathname),
+    })
+  }, [pathname])
 
   return (
     <>
