@@ -11,7 +11,7 @@ import UGP from '@site/static/img/UGP.png'
 import ThemedImage from '@theme/ThemedImage'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 
-import SearchBar from '@theme-original/SearchBar'
+import SearchBar from '../theme/SearchBar'
 import { TraceEvent } from '@uniswap/analytics'
 
 import {
@@ -21,7 +21,7 @@ import {
   ChatIcon,
   CodeIcon,
 } from '@heroicons/react/outline'
-import { BrowserEvent } from '@uniswap/analytics-events'
+import { BrowserEvent, EventName } from '@uniswap/analytics-events'
 
 export const actions = [
   {
@@ -30,6 +30,7 @@ export const actions = [
     icon: InformationCircleIcon,
     to: './protocol/introduction',
     text: `Learn about the core concepts of the Uniswap Protocol. Swaps, Pools, Concentrated Liquidity and more.`,
+    name: EventName.WHAT_IS_UNISWAP_CLICKED,
   },
   {
     title: 'Smart contract overview',
@@ -37,6 +38,7 @@ export const actions = [
     icon: BookOpenIcon,
     to: './protocol/reference/smart-contracts',
     text: `Learn about the architecture of the Uniswap Protocol smart contracts made up of the Core and Periphery libraries.`,
+    name: EventName.SMART_CONTRACT_OVERVIEW_CLICKED,
   },
   {
     title: 'V3 SDK',
@@ -44,6 +46,7 @@ export const actions = [
     icon: QuestionMarkCircleIcon,
     to: './sdk/introduction',
     text: `The SDK is designed to assist developers when interacting with the protocol in any environment that can execute JavaScript.`,
+    name: EventName.V3_SDK_CLICKED,
   },
 ]
 
@@ -52,76 +55,90 @@ export const github = [
     title: 'uniswap-v3-core',
     href: 'https://github.com/Uniswap/uniswap-v3-core',
     icon: CodeIcon,
+    name: EventName.GITHUB_V3_CORE_CLICKED,
   },
   {
     title: 'uniswap-v3-sdk',
     href: 'https://github.com/Uniswap/uniswap-v3-sdk',
     icon: CodeIcon,
+    name: EventName.GITHUB_V3_SDK_CLICKED,
   },
   {
     title: 'uniswap-v3-periphery',
     href: 'https://github.com/Uniswap/uniswap-v3-periphery',
     icon: CodeIcon,
+    name: EventName.GITHUB_V3_PERIPHERY_CLICKED,
   },
   {
     title: 'Deployment addresses',
     href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
+    name: EventName.GITHUB_V3_CONTRACT_ADDRESS_CLICKED,
   },
   {
     title: '@uniswap/widgets',
     href: 'https://www.npmjs.com/package/@uniswap/widgets',
     icon: CodeIcon,
+    name: EventName.GITHUB_V3_WIDGETS_CLICKED,
   },
 ]
 
-export const Guides = [
+export const guides = [
   {
     title: 'SDK Quick Start',
     text: 'Integrate with the Uniswap Protocol using JavaScript',
     to: './sdk/guides/quick-start',
+    name: EventName.GUIDE_SDK_QUICK_START_CLICKED,
   },
   {
     title: 'Implementing a Swap',
     text: 'Start swapping from a smart contract in Solidity',
     to: './protocol/guides/swaps/single-swaps',
+    name: EventName.GUIDE_IMPLEMENT_SWAP_CLICKED,
   },
   {
     title: 'Embedding a Swap Widget',
     text: 'Let your users trade tokens without leaving your dApp',
     to: './sdk/widgets/swap-widget',
+    name: EventName.GUIDE_EMBED_SWAP_WIDGET_CLICKED,
   },
   {
     title: 'Providing Liquidity',
     text: 'Provide liquidity from a smart contract in Solidity',
     to: './protocol/guides/providing-liquidity/setting-up',
+    name: EventName.GUIDE_PROVIDE_LIQUIDITY_CLICKED,
   },
   {
     title: 'Building an Oracle',
     text: 'Learn how Uniswap v3 pools can serve as oracles',
     to: './protocol/concepts/V3-overview/oracle',
+    name: EventName.GUIDE_BUILD_ORACLE_CLICKED,
   },
 ]
 
-export const quick = [
+export const quickLinks = [
   {
     title: 'Smart Contracts',
     text: 'Start swapping from a smart contract',
     to: './protocol/reference/smart-contracts',
+    name: EventName.QUICK_LINK_SMART_CONTRACTS_CLICKED,
   },
   {
     title: 'SDK',
     text: 'Start swapping from a smart contract',
     to: './sdk/introduction',
+    name: EventName.QUICK_LINK_SDK_CLICKED,
   },
   {
     title: 'Widgets',
     text: 'Get started with the swap widget',
     to: './sdk/widgets/swap-widget',
+    name: EventName.QUICK_LINK_WIDGETS_CLICKED,
   },
   {
     title: 'Whitepaper',
     text: 'Read the Uniswap V3 whitepaper',
     to: 'https://uniswap.org/whitepaper-v3.pdf',
+    name: EventName.QUICK_LINK_WHITEPAPER_CLICKED,
   },
 ]
 
@@ -307,7 +324,8 @@ export default function Home() {
           >
             <h1 style={{ fontWeight: 600 }}> Welcome to the Uniswap Docs</h1>
             <HideMedium>
-              <SearchBar />{' '}
+              {/* <TraceEvent events={[BrowserEvent.onKeyPress]} name={EventNames.SEARCH_BAR_CLICKED}> */}
+              <SearchBar /> {/* </TraceEvent> */}
             </HideMedium>
           </div>
           <StyledTitleImage
@@ -319,12 +337,12 @@ export default function Home() {
           />
           <Row>
             {actions.map((action) => (
-              <TraceEvent key={action.href} events={[BrowserEvent.onClick]} name={''}>
+              <TraceEvent key={action.name} events={[BrowserEvent.onClick]} name={action.name}>
                 <Link style={{ textDecoration: 'none' }} to={action.to}>
                   <ShadowCard key={action.title}>
                     <TopSection>
                       <IconWrapper>
-                        <action.icon style={{ width: '24px' }} color={action.color} />
+                        <action.icon style={{ width: '24px' }} />
                       </IconWrapper>
 
                       <svg
@@ -336,7 +354,7 @@ export default function Home() {
                         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                       </svg>
                     </TopSection>
-                    <h3 style={{ marginBottom: '.75rem', color: action.color }}>{action.title}</h3>
+                    <h3 style={{ marginBottom: '.75rem' }}>{action.title}</h3>
                     <p style={{ marginBottom: '0.5rem' }}>{action.text}</p>
                   </ShadowCard>
                 </Link>
@@ -358,8 +376,8 @@ export default function Home() {
               project.
             </p>
             <div>
-              {Guides.map((action) => (
-                <TraceEvent key={action.text} name={action.text} events={[BrowserEvent.onClick]}>
+              {guides.map((action) => (
+                <TraceEvent key={action.name} name={action.name} events={[BrowserEvent.onClick]}>
                   <Link style={{ textDecoration: 'none' }} key={action.title} to={action.to}>
                     <Card key={action.title} style={{ marginBottom: '1rem' }}>
                       <LinkRow>
@@ -386,7 +404,7 @@ export default function Home() {
             <h2>Developer Links</h2>
             <p>The Uniswap codebase is comprised of an ecosystem of open source components.</p>
             {github.map((action) => (
-              <TraceEvent key={action.href} name={action.title} events={[BrowserEvent.onClick]}>
+              <TraceEvent key={action.name} name={action.name} events={[BrowserEvent.onClick]}>
                 <Link style={{ textDecoration: 'none' }} href={action.href}>
                   <Card key={action.title} style={{ marginBottom: '1rem' }}>
                     <LinkRow>
@@ -467,9 +485,9 @@ export default function Home() {
           <div>
             <h2>Quick Links</h2>
             <p></p>
-            {quick.map((action) => (
-              <TraceEvent key={action.to} name={action.title} events={[BrowserEvent.onClick]}>
-                <Link style={{}} to={action.to || action.href}>
+            {quickLinks.map((action) => (
+              <TraceEvent key={action.name} name={action.name} events={[BrowserEvent.onClick]}>
+                <Link style={{}} to={action.to}>
                   <div
                     style={{
                       display: 'flex',

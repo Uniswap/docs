@@ -14,9 +14,9 @@ function getCurrentPageFromLocation(locationPathname: string): PageName | undefi
   if (locationPathname === '/') {
     return 'landing-page'
   }
-  const pathWithoutPrefix = locationPathname.slice(1)
-  const pathWithHyphenReplaced = pathWithoutPrefix.replace(/\//g, '-')
-  const pageName = pathWithHyphenReplaced.concat('-page')
+  const pathWithoutInitialSlash = locationPathname.slice(1)
+  const pathWithSlashesReplaced = pathWithoutInitialSlash.replace(/\//g, '-')
+  const pageName = pathWithSlashesReplaced.concat('-page')
   return pageName
 }
 
