@@ -11,7 +11,14 @@ import Translate from '@docusaurus/Translate'
 import { useActivePlugin, useActiveVersion, useDocVersionSuggestions } from '@theme/hooks/useDocs'
 import { useDocsPreferredVersion } from '@docusaurus/theme-common'
 
-function UnreleasedVersionLabel({ siteTitle, versionLabel }) {
+type VersionLabelProps = {
+  siteTitle?: string
+  versionLabel?: string
+  to?: string
+  onClick?: () => void
+}
+
+function UnreleasedVersionLabel({ siteTitle, versionLabel }: VersionLabelProps) {
   return (
     <Translate
       id="theme.docs.versions.unreleasedVersionLabel"
@@ -26,7 +33,8 @@ function UnreleasedVersionLabel({ siteTitle, versionLabel }) {
   )
 }
 
-function UnmaintainedVersionLabel({ siteTitle, versionLabel }) {
+// eslint-disable-next-line react/prop-types
+function UnmaintainedVersionLabel({ siteTitle, versionLabel }: VersionLabelProps) {
   return (
     <Translate
       id="theme.docs.versions.unmaintainedVersionLabel"
@@ -43,7 +51,8 @@ function UnmaintainedVersionLabel({ siteTitle, versionLabel }) {
   )
 }
 
-function LatestVersionSuggestionLabel({ versionLabel, to, onClick }) {
+// eslint-disable-next-line react/prop-types
+function LatestVersionSuggestionLabel({ versionLabel, to, onClick }: VersionLabelProps) {
   return (
     <Translate
       id="theme.docs.versions.latestVersionSuggestionLabel"

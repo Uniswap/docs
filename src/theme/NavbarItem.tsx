@@ -2,7 +2,7 @@ import React from 'react'
 import OriginalNavBarItem from '@theme-original/NavbarItem'
 import { useLocation } from '@docusaurus/router'
 
-export default function NavbarItem(props) {
+export default function NavbarItem(props: { className: string }) {
   const { pathname } = useLocation()
 
   const versionDoc = pathname.split('/')
