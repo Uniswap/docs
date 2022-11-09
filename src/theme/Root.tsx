@@ -12,11 +12,11 @@ const ANALYTICS_DUMMY_KEY = '00000000000000000000000000000000'
 
 function getCurrentPageFromLocation(locationPathname: string): PageName | undefined | string {
   if (locationPathname === '/') {
-    return 'home-page'
+    return 'home page'
   }
   const pathWithoutInitialSlash = locationPathname.slice(1)
-  const pathWithSlashesReplaced = pathWithoutInitialSlash.replace(/\//g, '-')
-  const pageName = pathWithSlashesReplaced.concat('-page')
+  const pathWithSlashesReplaced = pathWithoutInitialSlash.replace(/\//g, ' ')
+  const pageName = pathWithSlashesReplaced.concat(' page')
   return pageName
 }
 
@@ -30,6 +30,7 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
   const proxyUrl = typeof siteConfig.customFields.analytics === 'string' ? siteConfig.customFields.analytics : undefined
   initializeAnalytics(ANALYTICS_DUMMY_KEY, proxyUrl)
 
+  // Fires on initial render of the page
   useEffect(() => {
     sendAnalyticsEvent(EventName.APP_LOADED)
     user.set(CustomUserProperties.USER_AGENT, navigator.userAgent)
@@ -42,9 +43,10 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
     getLCP(({ delta }: Metric) => sendAnalyticsEvent(EventName.WEB_VITALS, { largest_contentful_paint_ms: delta }))
   }, [])
 
+  // Fires on route change
   useEffect(() => {
     sendAnalyticsEvent(EventName.PAGE_VIEWED, {
-      pageName: getCurrentPageFromLocation(pathname),
+      page: getCurrentPageFromLocation(pathname),
     })
   }, [pathname])
 

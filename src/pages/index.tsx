@@ -11,7 +11,7 @@ import UGP from '@site/static/img/UGP.png'
 import ThemedImage from '@theme/ThemedImage'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 
-import SearchBar from '../theme/SearchBar'
+import SearchBarWithAnalytics from '../theme/SearchBar'
 import { TraceEvent } from '@uniswap/analytics'
 
 import {
@@ -329,7 +329,7 @@ export default function Home() {
           >
             <h1 style={{ fontWeight: 600 }}> Welcome to the Uniswap Docs</h1>
             <HideMedium>
-              <SearchBar />
+              <SearchBarWithAnalytics />
             </HideMedium>
           </div>
           <StyledTitleImage

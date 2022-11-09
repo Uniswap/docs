@@ -3,7 +3,7 @@ import OriginalSearchBar from '@theme-original/SearchBar'
 import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent, EventName } from '@uniswap/analytics-events'
 
-export default function SearchBar(props) {
+export default function SearchBarWithAnalytics(props) {
   return (
     <>
       <TraceEvent events={[BrowserEvent.onClick]} name={EventName.NAVBAR_SEARCH_SELECTED}>
