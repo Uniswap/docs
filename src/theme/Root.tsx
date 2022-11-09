@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import { useLocation } from '@docusaurus/router'
 
 import { initializeAnalytics, sendAnalyticsEvent, Trace, user } from '@uniswap/analytics'
-import { CustomUserProperties, EventName, PageName } from '@uniswap/analytics-events'
+import { CustomUserProperties, EventName, PageName, getBrowser } from '@uniswap/analytics-events'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import { getCLS, getFCP, getFID, getLCP, Metric } from 'web-vitals'
-import { getBrowser } from '../utils/browser'
 
 // Placeholder API key. Actual API key used in the proxy server
 const ANALYTICS_DUMMY_KEY = '00000000000000000000000000000000'
