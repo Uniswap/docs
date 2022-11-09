@@ -12,7 +12,7 @@ const ANALYTICS_DUMMY_KEY = '00000000000000000000000000000000'
 
 function getCurrentPageFromLocation(locationPathname: string): PageName | undefined | string {
   if (locationPathname === '/') {
-    return PageName.HOME_PAGE
+    return 'home-page'
   }
   const pathWithoutInitialSlash = locationPathname.slice(1)
   const pathWithSlashesReplaced = pathWithoutInitialSlash.replace(/\//g, '-')

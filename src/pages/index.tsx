@@ -21,7 +21,12 @@ import {
   ChatIcon,
   CodeIcon,
 } from '@heroicons/react/outline'
-import { BrowserEvent } from '@uniswap/analytics-events'
+import {
+  BrowserEvent,
+  DocsHomepageElementName as ElementName,
+  DocsSectionName as SectionName,
+  EventName,
+} from '@uniswap/analytics-events'
 
 export const actions = [
   {
