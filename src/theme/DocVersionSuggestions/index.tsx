@@ -33,7 +33,6 @@ function UnreleasedVersionLabel({ siteTitle, versionLabel }: VersionLabelProps) 
   )
 }
 
-// eslint-disable-next-line react/prop-types
 function UnmaintainedVersionLabel({ siteTitle, versionLabel }: VersionLabelProps) {
   return (
     <Translate
@@ -51,7 +50,6 @@ function UnmaintainedVersionLabel({ siteTitle, versionLabel }: VersionLabelProps
   )
 }
 
-// eslint-disable-next-line react/prop-types
 function LatestVersionSuggestionLabel({ versionLabel, to, onClick }: VersionLabelProps) {
   return (
     <Translate
