@@ -31,7 +31,9 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
 
   // Fires on initial render of the page
   useEffect(() => {
-    sendAnalyticsEvent(EventName.APP_LOADED)
+    sendAnalyticsEvent(EventName.APP_LOADED, {
+      referer: document.referrer,
+    })
     user.set(CustomUserProperties.USER_AGENT, navigator.userAgent)
     user.set(CustomUserProperties.BROWSER, getBrowser())
     user.set(CustomUserProperties.SCREEN_RESOLUTION_HEIGHT, window.screen.height)
