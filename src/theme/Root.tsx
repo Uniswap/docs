@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useLocation } from '@docusaurus/router'
 
-import { initializeAnalytics, sendAnalyticsEvent, Trace, user } from '@uniswap/analytics'
+import { initializeAnalytics, sendAnalyticsEvent, Trace, user, OriginApplication } from '@uniswap/analytics'
 import { CustomUserProperties, EventName, PageName, getBrowser } from '@uniswap/analytics-events'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import { getCLS, getFCP, getFID, getLCP, Metric } from 'web-vitals'
@@ -27,7 +27,7 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
   const { siteConfig } = useDocusaurusContext()
 
   const proxyUrl = typeof siteConfig.customFields.analytics === 'string' ? siteConfig.customFields.analytics : undefined
-  initializeAnalytics(ANALYTICS_DUMMY_KEY, proxyUrl)
+  initializeAnalytics(ANALYTICS_DUMMY_KEY, OriginApplication.DOCS, proxyUrl)
 
   // Fires on initial render of the page
   useEffect(() => {
