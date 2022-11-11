@@ -4,11 +4,11 @@ require('dotenv').config()
 
 module.exports = {
   customFields: {
-    // amplitude URL
-    analytics: process.env.REACT_APP_AMPLITUDE_PROXY_URL,
-    // application environment (i.e. staging or prod)
+    // Analytics proxy URL
+    analyticsProxyUrl: process.env.REACT_APP_AMPLITUDE_PROXY_URL,
+    // Determines if staging env
     stagingEnv: process.env.REACT_APP_STAGING,
-    //built in
+    // From node
     nodeEnv: process.env.NODE_ENV,
   },
   title: 'Uniswap',

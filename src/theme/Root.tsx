@@ -26,14 +26,17 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
 
   const { siteConfig } = useDocusaurusContext()
 
-  const proxyUrl = typeof siteConfig.customFields.analytics === 'string' ? siteConfig.customFields.analytics : undefined
+  const analyticsProxyUrl =
+    typeof siteConfig.customFields.analyticsProxyUrl === 'string'
+      ? siteConfig.customFields.analyticsProxyUrl
+      : undefined
   const nodeEnv = siteConfig.customFields.nodeEnv
   const stagingEnv = Boolean(siteConfig.customFields.stagingEnv)
   const isProductionEnv = !stagingEnv && nodeEnv === 'production'
 
   try {
     initializeAnalytics(ANALYTICS_DUMMY_KEY, OriginApplication.DOCS, {
-      proxyUrl,
+      proxyUrl: analyticsProxyUrl,
       isProductionEnv,
     })
   } catch {}
