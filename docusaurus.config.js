@@ -2,12 +2,14 @@ const math = require('remark-math')
 const katex = require('rehype-katex')
 require('dotenv').config()
 
-
-
 module.exports = {
   customFields: {
-    // application environment (i.e. staging or prod)
+    // amplitude URL
     analytics: process.env.REACT_APP_AMPLITUDE_PROXY_URL,
+    // application environment (i.e. staging or prod)
+    stagingEnv: process.env.REACT_APP_STAGING,
+    //built in
+    nodeEnv: process.env.NODE_ENV,
   },
   title: 'Uniswap',
   tagline: 'Documentation and Guides',
