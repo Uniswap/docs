@@ -7,6 +7,7 @@ export default function DocSidebarItem(props: { item }) {
   return (
     <>
       <TraceEvent events={[BrowserEvent.onClick]} element={props.item.label} name={EventName.MENU_CLICK}>
+        {/* Required for onClick to register */}
         <div>
           <OriginalDocSidebarItem {...props} />
         </div>
