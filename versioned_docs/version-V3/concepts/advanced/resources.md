@@ -1,4 +1,5 @@
 ---
+id: resources
 title: Resources
 ---
 

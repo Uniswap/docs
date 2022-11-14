@@ -2,27 +2,16 @@ import React, { useEffect } from 'react'
 import { useLocation } from '@docusaurus/router'
 
 import { initializeAnalytics, sendAnalyticsEvent, Trace, user, OriginApplication } from '@uniswap/analytics'
-import { CustomUserProperties, EventName, PageName, getBrowser } from '@uniswap/analytics-events'
+import { CustomUserProperties, EventName, getBrowser } from '@uniswap/analytics-events'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import { getCLS, getFCP, getFID, getLCP, Metric } from 'web-vitals'
 
 // Placeholder API key. Actual API key used in the proxy server
 const ANALYTICS_DUMMY_KEY = '00000000000000000000000000000000'
 
-function getCurrentPageFromLocation(locationPathname: string): PageName | undefined | string {
-  if (locationPathname === '/') {
-    return 'home page'
-  }
-  const pathWithoutInitialSlash = locationPathname.slice(1)
-  const pathWithSlashesReplaced = pathWithoutInitialSlash.replace(/\/|-/g, ' ')
-  const pageName = pathWithSlashesReplaced.concat(' page')
-  return pageName
-}
-
 // Default implementation, that you can customize
 export default function Root({ children }: React.PropsWithChildren<{ open: boolean }>) {
   const { pathname } = useLocation()
-  const currentPage = getCurrentPageFromLocation(pathname)
 
   const { siteConfig } = useDocusaurusContext()
 
@@ -59,13 +48,13 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
   // Fires on route change
   useEffect(() => {
     sendAnalyticsEvent(EventName.PAGE_VIEWED, {
-      page: getCurrentPageFromLocation(pathname),
+      page: pathname,
     })
   }, [pathname])
 
   return (
     <>
-      <Trace page={currentPage}>{children}</Trace>
+      <Trace page={pathname}>{children}</Trace>
     </>
   )
 }
