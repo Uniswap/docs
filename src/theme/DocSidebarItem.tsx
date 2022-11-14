@@ -10,6 +10,7 @@ export default function DocSidebarItem(props: { item }) {
         {/* Required for onClick to register */}
         <div
           onClick={(event) => {
+            // Required for Analytics to accurately determine the item clicked
             event.stopPropagation()
           }}
         >
