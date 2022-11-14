@@ -345,7 +345,7 @@ export default function Home() {
                 key={action.name}
                 element={action.name}
                 events={[BrowserEvent.onClick]}
-                name={EventName.PAGE_CLICK}
+                name={EventName.PAGE_CLICKED}
                 section={SectionName.WELCOME_LINKS}
               >
                 <Link style={{ textDecoration: 'none' }} to={action.to}>
@@ -391,7 +391,7 @@ export default function Home() {
                   key={action.name}
                   element={action.name}
                   events={[BrowserEvent.onClick]}
-                  name={EventName.PAGE_CLICK}
+                  name={EventName.PAGE_CLICKED}
                   section={SectionName.DEVELOPER_LINKS}
                 >
                   <Link style={{ textDecoration: 'none' }} key={action.title} to={action.to}>
@@ -422,7 +422,7 @@ export default function Home() {
             {github.map((action) => (
               <TraceEvent
                 key={action.name}
-                name={EventName.PAGE_CLICK}
+                name={EventName.PAGE_CLICKED}
                 element={action.name}
                 events={[BrowserEvent.onClick]}
                 section={SectionName.DEVELOPER_LINKS}
@@ -510,7 +510,7 @@ export default function Home() {
             {quickLinks.map((action) => (
               <TraceEvent
                 key={action.name}
-                name={EventName.MENU_CLICK}
+                name={EventName.MENU_CLICKED}
                 element={action.name}
                 events={[BrowserEvent.onClick]}
                 section={SectionName.QUICK_LINKS}
@@ -547,7 +547,7 @@ export default function Home() {
             events={[BrowserEvent.onClick]}
             element={ElementName.DISCORD}
             section={SectionName.BOTTOM_MENU_LINKS}
-            name={EventName.PAGE_CLICK}
+            name={EventName.PAGE_CLICKED}
           >
             <Link style={{ textDecoration: 'none' }} href={'https://discord.gg/ybKVQUWb4s'}>
               <CenterCard>
@@ -563,7 +563,7 @@ export default function Home() {
             events={[BrowserEvent.onClick]}
             element={ElementName.GRANTS}
             section={SectionName.BOTTOM_MENU_LINKS}
-            name={EventName.PAGE_CLICK}
+            name={EventName.PAGE_CLICKED}
           >
             <Link style={{ textDecoration: 'none' }} href={'https://gov.uniswap.org/'}>
               <CenterCard>
@@ -579,7 +579,7 @@ export default function Home() {
             events={[BrowserEvent.onClick]}
             section={SectionName.BOTTOM_MENU_LINKS}
             element={ElementName.GITHUB}
-            name={EventName.PAGE_CLICK}
+            name={EventName.PAGE_CLICKED}
           >
             <Link style={{ textDecoration: 'none' }} href={'https://github.com/Uniswap'}>
               <CenterCard>
