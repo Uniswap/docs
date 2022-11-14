@@ -11,7 +11,6 @@ enum ProtocolVersion {
 }
 
 const UNKNOWN_PROTOCOL_VERSION = 'UNKNOWN_PROTOCOL_VERSION'
-const FALLBACK_DOCS_VERSION = ProtocolVersion.V3
 
 const getSection = (version: string) => {
   switch (version) {
@@ -35,7 +34,7 @@ const getSelectedDocVersion = (docVersion: string) => {
     case '2.0.0':
       return ProtocolVersion.V2
     default:
-      return FALLBACK_DOCS_VERSION
+      return ProtocolVersion.V3
   }
 }
 
