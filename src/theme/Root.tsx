@@ -23,6 +23,7 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
   const stagingEnv = Boolean(siteConfig.customFields.stagingEnv)
   const isProductionEnv = !stagingEnv && nodeEnv === 'production'
 
+  // Only initialized analytics once, catching and ignoring the error that is raised on re-initialization
   try {
     initializeAnalytics(ANALYTICS_DUMMY_KEY, OriginApplication.DOCS, {
       proxyUrl: analyticsProxyUrl,
