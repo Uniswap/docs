@@ -14,7 +14,7 @@ function getCurrentPageFromLocation(locationPathname: string): PageName | undefi
     return 'home page'
   }
   const pathWithoutInitialSlash = locationPathname.slice(1)
-  const pathWithSlashesReplaced = pathWithoutInitialSlash.replace(/\//g, ' ')
+  const pathWithSlashesReplaced = pathWithoutInitialSlash.replace(/\/|-/g, ' ')
   const pageName = pathWithSlashesReplaced.concat(' page')
   return pageName
 }
