@@ -2,7 +2,7 @@ import React from 'react'
 import OriginalNavBarItem from '@theme-original/NavbarItem'
 import { useLocation } from '@docusaurus/router'
 import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, EventName } from '@uniswap/analytics-events'
+import { BrowserEvent, EventName, DocsProtocolVersion } from '@uniswap/analytics-events'
 
 enum ProtocolVersion {
   V1 = 'V1',
@@ -10,11 +10,16 @@ enum ProtocolVersion {
   V3 = 'V3',
 }
 
-const getElementName = (version: string, elementName: string) => {
-  if (elementName in ProtocolVersion) {
-    return elementName
+const getSection = (version: string) => {
+  if (version === ProtocolVersion.V2) {
+    return DocsProtocolVersion.V2
   }
-  return version + ' ' + elementName
+
+  if (version === ProtocolVersion.V1) {
+    return DocsProtocolVersion.V1
+  }
+
+  return DocsProtocolVersion.V3
 }
 
 const getClassName = (version: string, className: string) => {
@@ -39,8 +44,9 @@ export default function NavbarItem(props: { className: string; label: string }) 
     <>
       <TraceEvent
         events={[BrowserEvent.onClick]}
-        element={getElementName(activeNav, props.label)}
-        name={EventName.NAVBAR_CLICK}
+        element={props.label}
+        name={EventName.NAVBAR_CLICKED}
+        section={getSection(activeNav)}
       >
         <OriginalNavBarItem {...props} className={getClassName(activeNav, props.className)} />
       </TraceEvent>
