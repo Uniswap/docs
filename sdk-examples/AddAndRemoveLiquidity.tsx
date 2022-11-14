@@ -1,4 +1,4 @@
-import { Pool, Position, NonfungiblePositionManager, nearestUsableTick } from '@uniswap/v3-sdk/'
+import { Pool, Position, NonfungiblePositionManager, nearestUsableTick } from '@uniswap/v3-sdk'
 
 import { ethers } from 'ethers'
 import { Percent, Token, CurrencyAmount } from '@uniswap/sdk-core'

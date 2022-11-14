@@ -1,40 +1,54 @@
 {
-    "parser": "@typescript-eslint/parser",
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "root": true,
     "extends": [
-        "plugin:prettier/recommended",
-        "eslint:recommended",
+        "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier"
+        "plugin:react-hooks/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:prettier/recommended"
     ],
     "overrides": [],
-    "plugins": [
-        "prettier",
-        "@typescript-eslint"
-    ],
     "parserOptions": {
-        "ecmaVersion": 2020,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            // Allows for the parsing of JSX
-            "jsx": true
-        }
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
-    "ignorePatterns": [
-        "node_modules",
-        "coverage",
-        "build",
-        "dist",
-        ".DS_Store",
-        ".env.local",
-        ".env.development.local",
-        ".env.test.local",
-        ".env.production.local",
-        ".vscode/",
-        "package-lock.json",
-        "yarn.lock",
-        "docusaurus.config.js"
+    "plugins": [
+        "typescript-sort-keys"
     ],
     "rules": {
-        "prettier/prettier": "error"
+        "typescript-sort-keys/string-enum": [
+            "error",
+            "asc",
+            {
+                "caseSensitive": true
+            }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/naming-convention": [
+            "warn",
+            {
+                "selector": "enum",
+                "format": [
+                    "StrictPascalCase"
+                ]
+            }
+        ],
+        "curly": [
+            "warn",
+            "all"
+        ],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "_",
+                "varsIgnorePattern": "_",
+                "caughtErrorsIgnorePattern": "_"
+            }
+        ]
     }
 }
