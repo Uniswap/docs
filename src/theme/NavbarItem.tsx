@@ -10,35 +10,44 @@ enum ProtocolVersion {
   V3 = 'V3',
 }
 
+const UNKNOWN_PROTOCOL_VERSION = 'UNKNOWN_PROTOCOL_VERSION'
+const FALLBACK_DOCS_VERSION = ProtocolVersion.V3
+
 const getSection = (version: string) => {
-  if (version === ProtocolVersion.V2) {
-    return DocsProtocolVersion.V2
+  switch (version) {
+    case ProtocolVersion.V1:
+      return DocsProtocolVersion.V1
+    case ProtocolVersion.V2:
+      return DocsProtocolVersion.V2
+    case ProtocolVersion.V3:
+      return DocsProtocolVersion.V3
+    default:
+      return UNKNOWN_PROTOCOL_VERSION
   }
-
-  if (version === ProtocolVersion.V1) {
-    return DocsProtocolVersion.V1
-  }
-
-  return DocsProtocolVersion.V3
 }
 
-const getClassName = (version: string, className: string) => {
+const getSelectedDocVersion = (docVersion: string) => {
+  switch (docVersion) {
+    case ProtocolVersion.V1:
+    case '1.0.0':
+      return ProtocolVersion.V1
+    case ProtocolVersion.V2:
+    case '2.0.0':
+      return ProtocolVersion.V2
+    default:
+      return FALLBACK_DOCS_VERSION
+  }
+}
+
+const getClassName = (className: string, version: string) => {
   return className + ' ' + version
 }
 
 export default function NavbarItem(props: { className: string; label: string }) {
   const { pathname } = useLocation()
 
-  const versionDoc = pathname.split('/')
-  let activeNav: null | string = null
-
-  if (versionDoc[2] === ProtocolVersion.V2 || versionDoc[2] === '2.0.0') {
-    activeNav = ProtocolVersion.V2
-  } else if (versionDoc[2] === ProtocolVersion.V1 || versionDoc[2] === '1.0.0') {
-    activeNav = ProtocolVersion.V1
-  } else {
-    activeNav = ProtocolVersion.V3
-  }
+  const docVersionFromPath = pathname.split('/')
+  const selectedDocVersion = getSelectedDocVersion(docVersionFromPath[2])
 
   return (
     <>
@@ -46,9 +55,9 @@ export default function NavbarItem(props: { className: string; label: string }) 
         events={[BrowserEvent.onClick]}
         element={props.label}
         name={EventName.NAVBAR_CLICKED}
-        section={getSection(activeNav)}
+        section={getSection(selectedDocVersion)}
       >
-        <OriginalNavBarItem {...props} className={getClassName(activeNav, props.className)} />
+        <OriginalNavBarItem {...props} className={getClassName(props.className, selectedDocVersion)} />
       </TraceEvent>
     </>
   )
