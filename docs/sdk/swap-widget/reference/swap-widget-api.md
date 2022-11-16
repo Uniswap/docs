@@ -1,8 +1,7 @@
 ---
-id: reference
-title: Swap Widget API V2 Reference
-sidebar_label: API Reference
-sidebar_position: 3
+id: v2
+title: API V2 Reference
+sidebar_position: 1
 ---
 
 # Swap Widget API V2 Reference

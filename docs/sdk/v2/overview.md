@@ -1,6 +1,7 @@
 ---
-id: introduction
+id: overview
 sidebar_position: 1
+title: Overview
 ---
 
 # The Uniswap V2 SDK

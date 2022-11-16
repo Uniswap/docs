@@ -1,6 +1,6 @@
 ---
-id: introduction
-title: The Uniswap V2 Protocol
+id: overview
+title: Overview
 sidebar_position: 1
 ---
 

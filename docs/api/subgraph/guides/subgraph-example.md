@@ -1,6 +1,6 @@
 ---
-id: subgraph-examples
-title: Subgraph Query Examples
+id: examples
+title: Query Examples
 sidebar_position: 3
 ---
 

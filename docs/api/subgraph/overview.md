@@ -1,7 +1,7 @@
 ---
-id: subgraph-data
-sidebar_position: 2
-title: Subgraph Data Introduction
+id: overview
+sidebar_position: 1
+title: Overview
 ---
 
 # Uniswap Subgraph Introduction

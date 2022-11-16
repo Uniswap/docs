@@ -38,6 +38,12 @@ module.exports = {
       },
       items: [
         {
+          to: '/general/overview',
+          label: 'General',
+          position: 'left',
+          className: 'V3_active',
+        },
+        {
           to: '/protocol/overview',
           label: 'Contracts',
           position: 'left',
@@ -229,7 +235,7 @@ module.exports = {
       {
         id: 'sdk',
         path: 'docs/sdk',
-        routeBasePath: 'sdk/',
+        routeBasePath: 'sdk',
         remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
         includeCurrentVersion: true,
       },
@@ -247,9 +253,9 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'about',
-        path: 'docs/about',
-        routeBasePath: 'about/',
+        id: 'general',
+        path: 'docs/general',
+        routeBasePath: 'general/',
         remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
         includeCurrentVersion: true,
       },

@@ -1,8 +1,7 @@
 ---
-id: swap-widget-v1
-title: Swap Widget API V1 Reference
-sidebar_label: (Deprecated) V1 API Reference
-sidebar_position: 4
+id: v1
+title: API V1 Reference (Deprecated)
+sidebar_position: 2
 ---
 
 # Swap Widget API V1 Reference (Deprecated)

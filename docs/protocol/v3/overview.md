@@ -1,6 +1,6 @@
 ---
-id: smart-contracts
-title: Smart Contracts Overview
+id: overview
+title: Overview
 sidebar_position: 1
 ---
 

@@ -1,6 +1,5 @@
 ---
 id: swap-widget-api
-slug: swap-widget/api
 title: Swap Widget API V2 Reference
 sidebar_label: API Reference
 sidebar_position: 3
