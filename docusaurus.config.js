@@ -38,40 +38,20 @@ module.exports = {
       },
       items: [
         {
-          type: 'docsVersionDropdown',
-          //// Optional
-          position: 'left',
-          dropdownActiveClassDisabled: true,
-          docsPluginId: 'default',
-          className: 'persistent',
-        },
-        {
-          to: '/protocol/reference/smart-contracts',
+          to: '/protocol/overview',
           label: 'Contracts',
           position: 'left',
           className: 'V3_active',
         },
         {
-          to: '/sdk/introduction',
-          label: 'SDK',
+          to: '/sdk/overview',
+          label: 'SDKs',
           position: 'left',
           className: 'V3_active',
         },
         {
-          to: '/sdk/widgets/swap-widget',
-          label: 'Widgets',
-          position: 'left',
-          className: 'V3_active',
-        },
-        {
-          to: '/sdk/subgraph/subgraph-data',
-          label: 'Subgraph (API)',
-          position: 'left',
-          className: 'V3_active',
-        },
-        {
-          to: '/protocol/concepts/governance/overview',
-          label: 'Governance',
+          to: '/api/overview',
+          label: 'APIs',
           position: 'left',
           className: 'V3_active',
         },
@@ -249,24 +229,13 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          path: 'protocol',
+          id: 'protocol',
+          path: 'docs/protocol',
+          routeBasePath: 'protocol/',
           remarkPlugins: [math],
           rehypePlugins: [katex],
-          routeBasePath: 'protocol/',
-          sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/uniswap/uniswap-docs/tree/main/',
-          includeCurrentVersion: false,
-          versions: {
-            V3: {
-              banner: 'none',
-            },
-            V2: {
-              banner: 'none',
-            },
-            V1: {
-              banner: 'none',
-            },
-          },
+          includeCurrentVersion: true,
         },
         blog: {
           remarkPlugins: [math],
@@ -274,10 +243,6 @@ module.exports = {
           path: 'blog/',
           blogTitle: 'Engineering Blog',
           blogSidebarCount: 0,
-        },
-        googleAnalytics: {
-          trackingID: 'UA-128182339-7',
-          anonymizeIP: true,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -298,23 +263,22 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'SDK',
-        path: 'sdk',
+        id: 'sdk',
+        path: 'docs/sdk',
         routeBasePath: 'sdk/',
-        sidebarPath: require.resolve('./sdkSidebars.js'),
         remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
-        includeCurrentVersion: false,
-        versions: {
-          '3.0.0': {
-            banner: 'none',
-          },
-          '2.0.0': {
-            banner: 'none',
-          },
-          '1.0.0': {
-            banner: 'none',
-          },
-        },
+        includeCurrentVersion: true,
+        disableVersioning: true,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api',
+        path: 'docs/api',
+        routeBasePath: 'api/',
+        remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
+        includeCurrentVersion: true,
       },
     ],
   ],
