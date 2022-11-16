@@ -4,7 +4,7 @@ sidebar_position: 1
 title: Overview
 ---
 
-# Uniswap Subgraph Introduction
+# The Uniswap Subgraph
 
 Uniswap uses multiple [subgraphs](https://thegraph.com/docs/about/introduction#what-the-graph-is) for indexing and organizing data from the Uniswap smart contracts.
 These subgraphs are hosted on The Graph hosted service and can be used to query Uniswap data.

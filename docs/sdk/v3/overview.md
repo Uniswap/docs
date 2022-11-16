@@ -8,6 +8,8 @@ title: Overview
 
 Welcome to the V3 Uniswap Protocol SDK. To begin, we recommend looking at the [**Guides**](./guides/01-quick-start.md) and for deeper reference see the [**V3 SDK Github**](https://github.com/Uniswap/v3-sdk) repo.
 
+These docs will help you better understand how to use the SDK and integrate it into your application. 
+
 # Alpha software
 
 The latest version of the SDK is used in production in the Uniswap Interface,
@@ -15,7 +17,7 @@ but it is considered Alpha software and may contain bugs or change significantly
 If you have questions about how to use the SDK, please reach out in the `#dev-chat` channel of our Discord.
 Pull requests are welcome!
 
-# Uniswap V3 SDK
+# Resources
 
 - [**V3 SDK Github Repo**](https://github.com/Uniswap/v3-sdk)
 - [**SDK Core Github Repo**](https://github.com/Uniswap/sdk-core)
