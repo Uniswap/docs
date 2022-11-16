@@ -44,19 +44,19 @@ module.exports = {
           className: 'V3_active',
         },
         {
-          to: '/protocol/overview',
+          to: '/protocol/v3/overview',
           label: 'Contracts',
           position: 'left',
           className: 'V3_active',
         },
         {
-          to: '/sdk/overview',
+          to: '/sdk/v3/overview',
           label: 'SDKs',
           position: 'left',
           className: 'V3_active',
         },
         {
-          to: '/api/overview',
+          to: '/api/subgraph/overview',
           label: 'APIs',
           position: 'left',
           className: 'V3_active',
