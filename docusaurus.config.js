@@ -56,42 +56,6 @@ module.exports = {
           className: 'V3_active',
         },
         {
-          to: '/protocol/V2/guides/smart-contract-integration/quick-start',
-          label: 'Contracts',
-          position: 'left',
-          className: 'V2_active',
-        },
-        {
-          to: '/sdk/2.0.0/',
-          label: 'SDK',
-          position: 'left',
-          className: 'V2_active',
-        },
-        {
-          to: '/protocol/V2/reference/API/overview',
-          label: 'Subgraph (API)',
-          position: 'left',
-          className: 'V2_active',
-        },
-        {
-          to: '/protocol/concepts/governance/overview',
-          label: 'Governance',
-          position: 'left',
-          className: 'V2_active',
-        },
-        {
-          to: '/protocol/V1/guides/connect-to-uniswap',
-          label: 'Contracts',
-          position: 'left',
-          className: 'V1_active',
-        },
-        {
-          to: '/sdk/1.0.0/',
-          label: 'SDK',
-          position: 'left',
-          className: 'V1_active',
-        },
-        {
           label: 'Give Feedback',
           to: 'https://forms.gle/13XtjmkwdXQ2jMn26',
           position: 'right',
@@ -268,7 +232,6 @@ module.exports = {
         routeBasePath: 'sdk/',
         remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
         includeCurrentVersion: true,
-        disableVersioning: true,
       },
     ],
     [
