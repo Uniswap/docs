@@ -34,7 +34,7 @@ These contract function calls should then be encoded into a governance proposal,
 
 ## Proposals
 
-Proposals are submitted via `GovernorBravoDelegator` @ `0x408ED6354d4973f66138C91495F2f2FCbd8724C3`, a proxy contract currently pointing to the implementation at `0x53a328F4086d7C0F1Fa19e594c9b842125263026`. NPM packages for consuming the governance contract ABIs, and details on previous versions, are available [here](https://docs.uniswap.org/protocol/concepts/governance/overview).
+Proposals are submitted via `GovernorBravoDelegator` @ `0x408ED6354d4973f66138C91495F2f2FCbd8724C3`, a proxy contract currently pointing to the implementation at `0x53a328F4086d7C0F1Fa19e594c9b842125263026`. NPM packages for consuming the governance contract ABIs, and details on previous versions, are available [here](../../../../general/concepts/governance/01-overview.md)
 
 <details>
     <summary> Governor Bravo #propose Parameters </summary>

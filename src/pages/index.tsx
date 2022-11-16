@@ -91,7 +91,7 @@ export const guides = [
   {
     title: 'SDK Quick Start',
     text: 'Integrate with the Uniswap Protocol using JavaScript',
-    to: './sdk/guides/quick-start',
+    to: './sdk/v3/guides/quick-start',
     name: ElementName.SDK_QUICK_START,
   },
   {
