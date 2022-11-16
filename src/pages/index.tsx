@@ -41,7 +41,7 @@ export const actions = [
     title: 'Smart contract overview',
     href: '#',
     icon: BookOpenIcon,
-    to: './protocol/overview',
+    to: './contracts/v3/overview',
     text: `Learn about the architecture of the Uniswap Protocol smart contracts made up of the Core and Periphery libraries.`,
     name: ElementName.SMART_CONTRACT_OVERVIEW,
   },
@@ -97,25 +97,25 @@ export const guides = [
   {
     title: 'Implementing a Swap',
     text: 'Start swapping from a smart contract in Solidity',
-    to: './protocol/guides/swaps/single-swaps',
+    to: './contracts/v3/guides/swaps/single-swaps',
     name: ElementName.IMPLEMENT_SWAP,
   },
   {
     title: 'Embedding a Swap Widget',
     text: 'Let your users trade tokens without leaving your dApp',
-    to: './sdk/widgets/swap-widget',
+    to: './sdk/swap-widget/overview',
     name: ElementName.EMBED_SWAP_WIDGET,
   },
   {
     title: 'Providing Liquidity',
     text: 'Provide liquidity from a smart contract in Solidity',
-    to: './protocol/guides/providing-liquidity/setting-up',
+    to: './contracts/v3/guides/providing-liquidity/setting-up',
     name: ElementName.PROVIDE_LIQUIDITY,
   },
   {
     title: 'Building an Oracle',
     text: 'Learn how Uniswap v3 pools can serve as oracles',
-    to: './protocol/concepts/V3-overview/oracle',
+    to: './general/concepts/V3-overview/oracle',
     name: ElementName.BUILD_ORACLE,
   },
 ]
@@ -124,19 +124,19 @@ export const quickLinks = [
   {
     title: 'Smart Contracts',
     text: 'Start swapping from a smart contract',
-    to: './protocol/reference/smart-contracts',
+    to: './contracts/v3/overview',
     name: ElementName.SMART_CONTRACTS,
   },
   {
     title: 'SDK',
     text: 'Start swapping from a smart contract',
-    to: './sdk/introduction',
+    to: './sdk/v3/overview',
     name: ElementName.SDK,
   },
   {
     title: 'Widgets',
     text: 'Get started with the swap widget',
-    to: './sdk/widgets/swap-widget',
+    to: './sdk/swap-widget/overview',
     name: ElementName.WIDGETS,
   },
   {

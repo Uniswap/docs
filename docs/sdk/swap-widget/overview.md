@@ -4,12 +4,6 @@ sidebar_position: 1
 title: Overview
 ---
 
----
-id: overview
-sidebar_position: 1
-title: Overview
----
-
 # The Uniswap Swap Widget
 
 Welcome to the Uniswap Swap Widget. To begin, we recommend looking at the [**Guides**](./guides/swap-widget.mdx) and for deeper reference see the [**Swap Widget Github**](https://github.com/Uniswap/widgets) repo.

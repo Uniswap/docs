@@ -44,7 +44,7 @@ module.exports = {
           className: 'V3_active',
         },
         {
-          to: '/protocol/v3/overview',
+          to: '/contracts/v3/overview',
           label: 'Contracts',
           position: 'left',
           className: 'V3_active',
@@ -199,9 +199,9 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          id: 'protocol',
-          path: 'docs/protocol',
-          routeBasePath: 'protocol/',
+          id: 'contracts',
+          path: 'docs/contracts',
+          routeBasePath: 'contracts/',
           remarkPlugins: [math],
           rehypePlugins: [katex],
           editUrl: 'https://github.com/uniswap/uniswap-docs/tree/main/',
