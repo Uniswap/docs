@@ -8,6 +8,8 @@ title: Overview
 
 Here you can find documentation for tools used to interact with the Uniswap protocol in a javascript environment.
 
+This is the original documentation for the Uniswap V1 SDK, released in 2019. The SDK helps developers interact with the Uniswap protocol in any javascript environment. Uses range from returning chain data for off-chain modeling, to building customized transactions which will be broadcast to the EVM.
+
 
 
 Welcome to the Uniswap Protocol SDKs. To begin, we recommend looking at the [**Guides**](./guides/01-quick-start.md), for deeper reference see the [**SDK Github**](https://github.com/Uniswap/uniswap-v3-sdk) repo.
