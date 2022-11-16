@@ -281,5 +281,15 @@ module.exports = {
         includeCurrentVersion: true,
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'about',
+        path: 'docs/about',
+        routeBasePath: 'about/',
+        remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
+        includeCurrentVersion: true,
+      },
+    ],
   ],
 }

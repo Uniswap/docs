@@ -1,5 +1,5 @@
 ---
-id: introduction
+id: about
 title: What Is Uniswap?
 sidebar_position: 1
 ---

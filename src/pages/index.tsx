@@ -33,7 +33,7 @@ export const actions = [
     title: 'What is Uniswap',
     href: '#',
     icon: InformationCircleIcon,
-    to: './protocol/introduction',
+    to: './about',
     text: `Learn about the core concepts of the Uniswap Protocol. Swaps, Pools, Concentrated Liquidity and more.`,
     name: ElementName.WHAT_IS_UNISWAP,
   },
