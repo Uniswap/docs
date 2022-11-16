@@ -6,7 +6,7 @@ title: Overview
 
 # The Uniswap Contracts
 
-Welcome to the Uniswap Protocol SDKs. To begin, we recommend looking at the [**Guides**](./guides/01-quick-start.md), for deeper reference see the [**SDK Github**](https://github.com/Uniswap/uniswap-v3-sdk) repo.
+Welcome to the Uniswap Smart Contracts. To begin, we recommend looking at the [**Guides**](./guides/01-quick-start.md), for deeper reference see the [**SDK Github**](https://github.com/Uniswap/uniswap-v3-sdk) repo.
 
 # Alpha software
 

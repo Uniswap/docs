@@ -4,62 +4,24 @@ title: Overview
 sidebar_position: 1
 ---
 
-Uniswap V3 is a binary smart contract system comprised of many libraries, which together make the Core and Periphery
+# The Uniswap SDKs
 
-Core contracts provide fundamental safety guarantees for all parties interacting with Uniswap. They define the logic of pool generation, the pools themselves, and the interactions involving the respective assets therein.
+Welcome to the Uniswap Smart Contracts. To begin, we recommend looking at the [**Guides**](./guides/01-quick-start.md), for deeper reference see the [**SDK Github**](https://github.com/Uniswap/uniswap-v3-sdk) repo.
 
-Periphery contracts interact with one or more Core contracts but are not part of the core. They are designed to provide methods of interacting with the core that increase clarity and user safety.
+# Alpha software
 
-External calls will primarily call the periphery interfaces. Externally available functions are all viewable in the reference documentation. Internal functions are viewable on the Uniswap V3 Github repo.
+The latest version of the SDK is used in production in the Uniswap Interface,
+but it is considered Alpha software and may contain bugs or change significantly between patch versions.
+If you have questions about how to use the SDK, please reach out in the `#dev-chat` channel of the Discord.
+Pull requests welcome!
 
-## Core
+# Uniswap V3 SDK
 
-> [**Core Source Code**](https://github.com/Uniswap/uniswap-v3-core)
+- [**V3 SDK Github Repo**](https://github.com/Uniswap/uniswap-v3-sdk)
+- [**SDK Core Github Repo**](https://github.com/Uniswap/uniswap-sdk-core)
+- [**SDK NPM Package**](https://www.npmjs.com/package/@uniswap/v3-sdk)
 
-The core consists of a single factory, a pool deployer, and the many pools the factory will create.
-
-A significant amount of care and attention has been given to gas optimization in the core contracts. The result is a substantial reduction in gas costs for all protocol interactions compared to V2, at the cost of a reduction in code clarity.
-
-### Factory
-
-> [**Factory Reference**](https://docs.uniswap.org/protocol/reference/core/UniswapV3Factory)
-
-The factory defines the logic for generating pools. A pool is defined by two tokens, which make up the asset pair, and a fee. There can be multiple pools of the same asset pair, distinguished only by their swap fee.
-
-### Pools
-
-> [**Pool Reference**](https://docs.uniswap.org/protocol/reference/core/UniswapV3Pool).
-
-Pools primarily serve as automated market makers for the paired assets. Additionally, they expose price oracle data and may be used as an asset source for flash transactions.
-
-## Periphery
-
-The periphery is a constellation of smart contracts designed to support domain-specific interactions with the core. As the Uniswap protocol is a permissionless system, the contracts described below have no special privileges and are only a small subset of possible periphery-like contracts.
-
-### SwapRouter
-
-> [**Swap Router Reference**](https://docs.uniswap.org/protocol/reference/periphery/SwapRouter)
-
-> [**Swap Router Interface**](https://docs.uniswap.org/protocol/reference/periphery/interfaces/ISwapRouter)
-
-The swap router supports all the basic requirements of a front-end offering trading. It natively supports single trades (x to y) and multihop trades (e.g. x to y to z).
-
-### Nonfungible Position Manager
-
-> [**Nonfungible Position Manager Reference**](https://docs.uniswap.org/protocol/reference/periphery/NonfungiblePositionManager)
-
-> [**Nonfungible Position Manager Interface**](https://docs.uniswap.org/protocol/reference/periphery/interfaces/INonfungiblePositionManager)
-
-The position manager handles the logic transactions involving the creation, adjustment, or exiting of positions.
-
-### Oracle
-
-> [**Oracle Reference**](https://docs.uniswap.org/protocol/reference/core/libraries/Oracle)
-
-The oracle provides price and liquidity data useful for a wide variety of system designs, and is available in every deployed pool.
-
-### Periphery Libraries
-
-> [**Periphery Libraries**](https://docs.uniswap.org/protocol/reference/periphery/libraries/Base64)
-
-The libraries provide a variety of helper functions developers may need, like calculating pool addresses, safe transfer functions, and more.
+[![Unit Tests](https://github.com/Uniswap/uniswap-v3-sdk/workflows/Unit%20Tests/badge.svg)](https://github.com/Uniswap/uniswap-v3-sdk/actions?query=workflow%3A%22Unit+Tests%22)
+[![Lint](https://github.com/Uniswap/uniswap-v3-sdk/workflows/Lint/badge.svg)](https://github.com/Uniswap/uniswap-v3-sdk/actions?query=workflow%3ALint)
+[![npm version](https://img.shields.io/npm/v/@uniswap/v3-sdk/latest.svg)](https://www.npmjs.com/package/@uniswap/v3-sdk/v/latest)
+[![npm bundle size (scoped version)](https://img.shields.io/bundlephobia/minzip/@uniswap/v3-sdk/latest.svg)](https://bundlephobia.com/result?p=@uniswap/v3-sdk@latest)
