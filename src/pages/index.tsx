@@ -354,7 +354,6 @@ export default function Home() {
                       <IconWrapper>
                         <action.icon style={{ width: '24px' }} />
                       </IconWrapper>
-
                       <svg
                         style={{ width: '24px', opacity: 0.2 }}
                         xmlns="http://www.w3.org/2000/svg"
@@ -364,15 +363,14 @@ export default function Home() {
                         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                       </svg>
                     </TopSection>
-                    <h3 style={{ marginBottom: '.75rem' }}>{action.title}</h3>
-                    <p style={{ marginBottom: '0.5rem' }}>{action.text}</p>
+                    <h3 style={{ marginBottom: '.75rem', fontWeight: 500 }}>{action.title}</h3>
+                    <p style={{ marginBottom: '0.5rem', fontWeight: 300 }}>{action.text}</p>
                   </ShadowCard>
                 </Link>
               </TraceEvent>
             ))}
           </Row>
         </DocsHeader>
-
         <TwoRow
           style={{
             gap: '56px',
@@ -398,7 +396,7 @@ export default function Home() {
                     <Card key={action.title} style={{ marginBottom: '1rem' }}>
                       <LinkRow>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                          <h3 style={{ marginBottom: '0rem' }}>{action.title}</h3>
+                          <h3 style={{ marginBottom: '0rem', fontWeight: 400 }}>{action.title}</h3>
                         </div>
                         <svg
                           style={{ width: '24px', opacity: 0.2 }}
@@ -409,7 +407,7 @@ export default function Home() {
                           <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                         </svg>
                       </LinkRow>
-                      <p style={{ marginBottom: '0rem' }}>{action.text}</p>
+                      <p style={{ marginBottom: '0rem', fontWeight: 200 }}>{action.text}</p>
                     </Card>
                   </Link>
                 </TraceEvent>
@@ -432,8 +430,6 @@ export default function Home() {
                     <LinkRow>
                       <StyledGithubIcon style={{ display: 'flex', alignItems: 'center' }}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.78 117.79" style={{ width: '24px' }}>
-                          <defs></defs>
-                          <title>testlogo</title>
                           <g id="Layer_2" data-name="Layer 2">
                             <g id="Layer_1-2" data-name="Layer 1">
                               <path
@@ -471,7 +467,7 @@ export default function Home() {
                             </g>
                           </g>
                         </svg>
-                        <h3 style={{ marginBottom: '0rem', marginLeft: '16px' }}>{action.title}</h3>
+                        <h3 style={{ marginBottom: '0rem', marginLeft: '16px', fontWeight: 350 }}>{action.title}</h3>
                       </StyledGithubIcon>
                       <svg
                         style={{ width: '24px', height: '24px', opacity: 0.2 }}
@@ -488,9 +484,7 @@ export default function Home() {
             ))}
           </div>
         </TwoRow>
-
         <hr />
-
         <TwoRow
           style={{
             gap: '48px',
@@ -506,7 +500,6 @@ export default function Home() {
           />
           <div>
             <h2>Quick Links</h2>
-            <p></p>
             {quickLinks.map((action) => (
               <TraceEvent
                 key={action.name}
@@ -523,7 +516,7 @@ export default function Home() {
                       marginBottom: '0.5rem',
                     }}
                   >
-                    <h3 style={{ marginBottom: '0rem' }}>{action.title}</h3>
+                    <h3 style={{ marginBottom: '0rem', fontWeight: 300 }}>{action.title}</h3>
 
                     <svg
                       style={{ width: '16px', opacity: 0.2 }}
