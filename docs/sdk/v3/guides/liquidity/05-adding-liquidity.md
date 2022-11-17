@@ -5,7 +5,7 @@ title: Adding Liquidity
 
 ## Adding Liquidity to the Position
 
-Constructing the calldata for adding liquidity uses the same function call to `addCallParameters`, which takes in a `Position` and an options field of type `AddLiquidityOptions`. Since the goal of this example is to add liquidity to an already existing position, construct `IncreaseOptions` instead of `MintOptions`. `IncreaseOptions` types are defined by the interfaces [`CommonAddLiquidityOptions`](https://docs.uniswap.org/sdk/reference/interfaces/CommonAddLiquidityOptions) and [`IncreaseSpecificOptions`](https://docs.uniswap.org/sdk/reference/interfaces/IncreaseSpecificOptions).
+Constructing the calldata for adding liquidity uses the same function call to `addCallParameters`, which takes in a `Position` and an options field of type `AddLiquidityOptions`. Since the goal of this example is to add liquidity to an already existing position, construct `IncreaseOptions` instead of `MintOptions`. `IncreaseOptions` types are defined by the interfaces [`CommonAddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L47) and [`IncreaseSpecificOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L37).
 
 ```typescript
 export interface CommonAddLiquidityOptions {

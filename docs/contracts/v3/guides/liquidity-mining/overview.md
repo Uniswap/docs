@@ -1,5 +1,5 @@
 ---
-id: liquidity-mining-overview
+id: overview
 title: Overview
 sidebar_position: 1
 ---
@@ -28,7 +28,7 @@ Recall that `Incentive` creators pick a `reward` amount and a program duration. 
 
 ## Staking
 
-So, how do users participate in these programs? Note that this section requires a basic understanding of [how Uniswap V3 position NFTs work](../../../version-V3/reference/periphery/NonfungiblePositionManager.md).
+So, how do users participate in these programs? Note that this section requires a basic understanding of [how Uniswap V3 position NFTs work](../../reference/periphery/NonfungiblePositionManager)
 
 The first action a user must take in order to begin participating in an `Incentive` is to _deposit_ their position NFT into the [canonical staking contract address](https://github.com/Uniswap/uniswap-v3-staker#deployments), effectively temporarily giving custody over their NFT to this contract. This is necessary because, as we'll see later on, the staking contract needs to be able to guarantee that liquidity cannot be removed from NFTs participating in the program.
 

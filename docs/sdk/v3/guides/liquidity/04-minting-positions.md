@@ -57,7 +57,7 @@ After you fetch these variables, call the Position constructor and input the par
 
 To create the calldata for minting a position, use the function defined in the SDK called `addCallParameters` which takes in a position (of type `Position`) and an option (of type `AddLiquidityOptions`). `AddLiquidityOptions` are either `MintOptions` for minting a new position or `IncreaseOptions` for adding liquidity to an existing position. Below, the example outlines the parameters needed to mint a new position and passes in a valid `MintOptions` struct to the SDK function `addCallParameters`.
 
-`MintOptions` are constructed from `CommonAddLiquidityOptions & MintSpecificOptions`. To see all potential parameters that can be inputted here is the reference for [`CommonAddLiquidityOptions`](https://docs.uniswap.org/sdk/reference/interfaces/CommonAddLiquidityOptions):
+`MintOptions` are constructed from `CommonAddLiquidityOptions & MintSpecificOptions`. To see all potential parameters that can be inputted here is the reference for [`CommonAddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L47):
 
 ```typescript
 export interface CommonAddLiquidityOptions {
@@ -88,7 +88,7 @@ export interface CommonAddLiquidityOptions {
 }
 ```
 
-and here is the reference for [`MintSpecificOptions`](https://docs.uniswap.org/sdk/reference/interfaces/MintSpecificOptions):
+and here is the reference for [`MintSpecificOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L25):
 
 ```typescript
 export interface MintSpecificOptions {

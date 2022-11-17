@@ -25,7 +25,7 @@ keccak256(
 
 - `name` is always `Uniswap V2`, see [name](../../reference/smart-contracts/pair-erc-20#name).
 - `chainId` is determined from the [ERC-1344](https://ethereum-magicians.org/t/eip-1344-add-chain-id-opcode/1131) `chainid` opcode.
-- `address(this)` is the address of the pair, see [Pair Addresses](../../../../sdk/2.0.0/guides/getting-pair-addresses).
+- `address(this)` is the address of the pair, see [Pair Addresses](../../../../sdk/v2/guides/getting-pair-addresses).
 
 ## Permit Typehash
 

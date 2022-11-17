@@ -5,7 +5,7 @@ title: Removing Liquidity
 
 ## Removing Liquidity from a Position
 
-Use the function `removeCallParameters` with the `position` instantiated earlier and a `RemoveLiquidityOptions` interface. The reference for [`RemoveLiquidityOptions`](https://docs.uniswap.org/sdk/reference/interfaces/RemoveLiquidityOptions) is:
+Use the function `removeCallParameters` with the `position` instantiated earlier and a `RemoveLiquidityOptions` interface. The reference for [`RemoveLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L138) is:
 
 ```typescript
 /**
@@ -51,7 +51,7 @@ export interface RemoveLiquidityOptions {
 
 To remove liquidity from a position, set the parameters for `tokenId`, `liquidityPercentage`, `slippageTolerance`, `deadline`, and `collectOptions`.
 
-The reference for `CollectOptions` is
+The reference for [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) is
 
 ```typescript
 export interface CollectOptions {
