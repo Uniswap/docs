@@ -53,7 +53,7 @@ function App() {
 }
 ```
 
-That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](https://docs.uniswap.org/sdk/guides/auto-router) to compute the best price across all Uniswap v2 and v3 pools.
+That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](/sdk/v3/guides/auto-router) to compute the best price across all Uniswap v2 and v3 pools.
 
 See a full implementation of the swap widget in the `/cra` and `/nextjs` branches of the [widgets-demo](https://github.com/Uniswap/widgets-demo) repo.
 
@@ -91,7 +91,7 @@ If you already have a web3 provider, you can pass your provider object directly 
 
 If you don't have a web3 provider yet, the widget has built-in wallet connection functionality that supports [WalletConnect](https://walletconnect.com/) and [MetaMask](https://metamask.io/) wallets, making it super simple for you to integrate web3 in your app!
 
-Otherwise, you can also add your own custom wallet connection flow in the [`onConnectWalletClick` handler](../swap-widget/api), which is triggered when the widget's 'Connect your wallet to swap' button is clicked. Check out libraries such as [web3-react](https://github.com/Uniswap/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow. To hide the widget's native wallet connection flow, set the `hideConnectionUI` prop to true.
+Otherwise, you can also add your own custom wallet connection flow in the [`onConnectWalletClick`](/sdk/swap-widget/reference/v2#onConnectWalletClick) handler, which is triggered when the widget's 'Connect your wallet to swap' button is clicked. Check out libraries such as [web3-react](https://github.com/Uniswap/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow. To hide the widget's native wallet connection flow, set the `hideConnectionUI` prop to true.
 
 The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
 
