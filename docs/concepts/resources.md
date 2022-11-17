@@ -1,6 +1,7 @@
 ---
 id: resources
 title: Resources
+sidebar_position: 6
 ---
 
 This page will be periodically updated with helpful resources for calculations and software design as they are made available.

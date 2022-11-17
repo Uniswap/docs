@@ -38,8 +38,8 @@ module.exports = {
       },
       items: [
         {
-          to: '/general/overview',
-          label: 'General',
+          to: '/concepts/overview',
+          label: 'Concepts',
           position: 'left',
           className: 'V3_active',
         },
@@ -253,9 +253,9 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'general',
-        path: 'docs/general',
-        routeBasePath: 'general/',
+        id: 'concepts',
+        path: 'docs/concepts',
+        routeBasePath: 'concepts/',
         remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
         includeCurrentVersion: true,
       },

@@ -1,6 +1,7 @@
 ---
 id: concentrated-liquidity
 title: Concentrated Liquidity
+sidebar_position: 1
 ---
 
   <div>

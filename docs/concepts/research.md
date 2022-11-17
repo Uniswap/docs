@@ -1,6 +1,7 @@
 ---
 id: research
 title: Research
+sidebar_position: 4
 ---
 
 The automated market maker is a new concept, and as such, new research comes out frequently. We've selected some of the most thoughtful here.

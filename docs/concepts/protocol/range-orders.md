@@ -1,6 +1,7 @@
 ---
 id: range-orders
 title: Range Orders
+sidebar_position: 4
 ---
 
 Customizable liquidity positions, along with single-sided asset provisioning, allow for a new style of swapping with automated market makers: the range order.
