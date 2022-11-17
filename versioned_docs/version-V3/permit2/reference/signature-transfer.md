@@ -209,7 +209,7 @@ It’s important to note that when hashing multiple typed structs, the ordering 
 > If the struct type references other struct types (and these in turn reference even more struct types), then the set of referenced struct types is collected, sorted by name and appended to the encoding. An example encoding is `Transaction(Person from,Person to,Asset tx)Asset(address token,uint256 amount)Person(address wallet,string name)`
 > 
 
-### **Nonce Schema**
+## Nonce Schema
 
 Instead of using incrementing nonces, we introduce non-monotonic, or unordered nonces with a `nonceBitmap`. 
 
@@ -231,7 +231,7 @@ uint8 bitPos = uint8(nonce);
 uint256 bitmap = nonceBitmap[wordPos][bitPos]
 ```
 
-### *****Security Considerations*****
+## Security Considerations
 
 An integrating contract must check that tokens are released by a triggering call from the signer, or that the signer meant for their signature to be released by someone else.
 
