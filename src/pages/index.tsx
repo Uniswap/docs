@@ -33,7 +33,7 @@ export const actions = [
     title: 'What is Uniswap',
     href: '#',
     icon: InformationCircleIcon,
-    to: './general/overview',
+    to: './concepts/overview',
     text: `Learn about the core concepts of the Uniswap Protocol. Swaps, Pools, Concentrated Liquidity and more.`,
     name: ElementName.WHAT_IS_UNISWAP,
   },
@@ -115,7 +115,7 @@ export const guides = [
   {
     title: 'Building an Oracle',
     text: 'Learn how Uniswap v3 pools can serve as oracles',
-    to: './general/concepts/V3-overview/oracle',
+    to: './concepts/protocol/oracle',
     name: ElementName.BUILD_ORACLE,
   },
 ]
