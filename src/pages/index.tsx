@@ -134,7 +134,7 @@ export const quickLinks = [
     name: ElementName.SDK,
   },
   {
-    title: 'Widgets',
+    title: 'Swap Widget',
     text: 'Get started with the swap widget',
     to: './sdk/swap-widget/overview',
     name: ElementName.WIDGETS,
