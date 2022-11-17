@@ -1,7 +1,7 @@
 ---
 id: glossary
 title: Glossary
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 ## Automated Market Maker

@@ -12,6 +12,8 @@ The pages here contain conceptual and technical documentation of the Uniswap V2 
 
 If you are new to Uniswap, you might want to check out the [Protocol overview](../V2/concepts/protocol-overview/how-uniswap-works) first.
 
+You can also take a look at the V2 Protocol <a href='/whitepaper.pdf' target='_blank' rel='noopener noreferrer'>Whitepaper</a>.
+
 # Developer links
 
 The V2 Uniswap protocol is separated across two repositories
