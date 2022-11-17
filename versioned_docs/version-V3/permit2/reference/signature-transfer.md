@@ -28,9 +28,8 @@ Use the `permitTransferFrom` to transfer just one token.
 ```solidity
 function permitTransferFrom(
         PermitTransferFrom memory permit,
+        SignatureTransferDetails calldata transferDetails,
         address owner,
-        address to,
-        uint256 requestedAmount,
         bytes calldata signature
     ) external
 ```
@@ -56,9 +55,22 @@ struct TokenPermissions {
     }
 ```
 
+- transferDetails - information about recipient and amount
+
+```solidity
+struct SignatureTransferDetails {
+        // recipient address
+        address to;
+        // spender requested amount
+        uint256 requestedAmount;
+    }PermitBatchTransferFrom memory permit,
+        SignatureTransferDetails[] calldata transferDetails,
+        address owner,
+        bytes calldata signature
+    ) external
+```
+
 - owner - the signer of the permit message and owner of the tokens
-- to - the recipient of the tokens
-- requestedAmount - the amount to be transferred requested by the signed spender
 - signature - the signature over the permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)
 
 ### Batched `permitTransferFrom`
@@ -70,10 +82,10 @@ Use `permitTransferFrom` with the batched parameters when you want to transfer m
 ```solidity
 function permitTransferFrom(
         PermitBatchTransferFrom memory permit,
-        address owner,
         SignatureTransferDetails[] calldata transferDetails,
+        address owner,
         bytes calldata signature
-    ) external;
+    ) external
 ```
 
 **Parameters**
@@ -98,10 +110,10 @@ struct TokenPermissions {
     }
 ```
 
-- owner - the signer of the permit message and owner of the tokens
 - transferDetails - parameterized by the spender with information about the token transfer.
     - The length of the `SignatureTransferDetails` array must equal the length of the `TokenPermissions` array passed in with `PermitBatchTransferFrom` struct. The token to be transferred specified in the `TokenPermissions` array should match the index of the `SignatureTransferDetails` array.
     - Note that if a spender is permitted to a token but does not need to transfer that token, they can specify that the `requestedAmount` is 0 so that the transfer is skipped.
+- owner - the signer of the permit message and owner of the tokens
 
 ```solidity
 struct SignatureTransferDetails {
@@ -121,21 +133,19 @@ struct SignatureTransferDetails {
 ```solidity
 function permitWitnessTransferFrom(
         PermitTransferFrom memory permit,
+        SignatureTransferDetails calldata transferDetails,
         address owner,
-        address to,
-        uint256 requestedAmount,
         bytes32 witness,
         string calldata witnessTypeString,
         bytes calldata signature
-    ) external;
+    ) external
 ```
 
 **Parameters**
 
 - permit - constructed with the same type as defined above in the single permitTransferFrom case
+- transferDetails constructed with same type as defined above in the single permitTransferFrom case
 - owner - the signer of the permit message and owner of the tokens
-- to - the recipient of the tokens
-- requestedAmount - the amount to be transferred requested by the signed spender
 - witness - arbitrary data passed through that was signed by the user. Is used to reconstruct the signature. Pass through this data if you want the permit signature recovery also to validate other data.
 - witnessTypeString - a string that defines the typed data that the witness was hashed from. It must also include the `TokenPermissions` struct and comply with [EIP-712](https://eips.ethereum.org/EIPS/eip-712) struct ordering. See an example below.
 - signature - the signature over the permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)
@@ -147,19 +157,19 @@ function permitWitnessTransferFrom(
 ```solidity
 function permitWitnessTransferFrom(
         PermitBatchTransferFrom memory permit,
-        address owner,
         SignatureTransferDetails[] calldata transferDetails,
+        address owner,
         bytes32 witness,
         string calldata witnessTypeString,
         bytes calldata signature
-    ) external {
+    ) external
 ```
 
 **Parameters**
 
 - permit - constructed with the same type in the batched case of `permitTransferFrom`
-- owner - the signer of the permit message and owner of the tokens
 - transferDetails - constructed with the same type in the batched case of `permitTransferFrom`
+- owner - the signer of the permit message and owner of the tokens
 - witness - arbitrary data passed through that was signed by the user. Is used to reconstruct the signature. Pass through this data if you want the permit signature recovery to also validate other data.
 - witnessTypeString - a string that defines the typed data that the witness was hashed from. It must also include the `TokenPermissions` struct and comply with [EIP-712](https://eips.ethereum.org/EIPS/eip-712) struct ordering. See an example below.
 - signature - the signature over the permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)
@@ -199,7 +209,7 @@ It’s important to note that when hashing multiple typed structs, the ordering 
 > If the struct type references other struct types (and these in turn reference even more struct types), then the set of referenced struct types is collected, sorted by name and appended to the encoding. An example encoding is `Transaction(Person from,Person to,Asset tx)Asset(address token,uint256 amount)Person(address wallet,string name)`
 > 
 
-## Nonce Schema
+### **Nonce Schema**
 
 Instead of using incrementing nonces, we introduce non-monotonic, or unordered nonces with a `nonceBitmap`. 
 
@@ -221,7 +231,7 @@ uint8 bitPos = uint8(nonce);
 uint256 bitmap = nonceBitmap[wordPos][bitPos]
 ```
 
-## Security Considerations
+### *****Security Considerations*****
 
 An integrating contract must check that tokens are released by a triggering call from the signer, or that the signer meant for their signature to be released by someone else.
 
