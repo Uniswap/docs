@@ -28,6 +28,6 @@ Similarly, we anticipate more exotic assets, or those traded rarely, will natura
 
 ## Protocol Fees
 
-Uniswap v3 has a protocol fee that can be turned on by UNI governance. Compared to v2, UNI governance has more flexibility in choosing the fraction of swap fees that go to the protocol. For details regarding the protocol fee, see the [**whitepaper**](https://uniswap.org/whitepaper-v3.pdf).
+Uniswap v3 has a protocol fee that can be turned on by UNI governance. Compared to v2, UNI governance has more flexibility in choosing the fraction of swap fees that go to the protocol. For details regarding the protocol fee, see the [whitepaper](https://uniswap.org/whitepaper-v3.pdf).
 
 [^1]: In-range liquidity refers to the liquidity contained in any positions which span both sides of the spot price.

@@ -48,6 +48,6 @@ While inactive ticks have no impact on transaction cost during swaps, crossing a
 
 In areas where capital efficiency is paramount, such as stable coin pairs, narrower tick spacing increases the granularity of liquidity provisioning and will likely lower price impact when swapping - the result being significantly improved prices for stable coin swaps.
 
-For more information on fee levels and their correlation to tick spacing, see the [**whitepaper.**](https://uniswap.org/whitepaper-v3.pdf)
+For more information on fee levels and their correlation to tick spacing, see the [whitepaper](https://uniswap.org/whitepaper-v3.pdf).
 
 [^1]: Tick interval refers to the area of price space between two nearest active ticks
