@@ -2,9 +2,60 @@
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
+
+
+## Questions
+- How do we embed code
+- How do we embed example
+
+## Goals
+- Consistency
+- 
+
+## The layout
+
+The project is broken down into 4 sections.
+- Concepts - General Uniswap information or concepts that are useful for using Uniswap products, such as Liquidity and Fees.
+- Contracts - The Uniswap smart contracts such as Permit2, or groupings such as the V3 Contracts
+- SDKs - The Uniswap SDKs such the v3-sdk
+- APIs - The Uniswap APIs such the Subgraph API
+
+Each section contains items or groupings of items of that category.
+For each item or grouping there should be:
+- Overview
+- Guides
+- Technical Reference
+
+## Steps for adding a new project
+
+### Checklist
+- Did I introduce any new concepts?
+- Did I include an Overview of the project
+- Did I include Guides for 
+- Did I include Technical Reference
+- Did I open a PR using the the guidelines?
+
+## Deep dive into the requirements of each part
+
+### Overview
+This should be an overview of the project
+A good example is
+
+### Guides
+This should contains guides for using the product
+A good example is
+
+How deep should they be?
+
+### Technical References
+This should contain
+A good example is
+
+
+
 # Contributing to Uniswap Docs
 
-Contributing to the docs site is a great way to get involved in the dev community and help other devs along the way! Check out our guidelines [here](https://github.com/Uniswap/uniswap-docs/blob/main/CONTRIBUTING.md).
+Contributing to the docs site is a great way to get involved in the dev community and help other developers along the way! Check out our guidelines [here](https://github.com/Uniswap/uniswap-docs/blob/main/CONTRIBUTING.md).
 
 # How to generate markdown files from solidity Natspec comments
 
