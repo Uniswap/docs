@@ -266,7 +266,7 @@ module.exports = {
         createRedirects(existingPath) {
           // V3 Redirects
           if (existingPath.includes('/concepts/overview')) {
-            return [existingPath.replace('/concepts/overview', 'protocol/introduction')]
+            return [existingPath.replace('/concepts/overview', '/protocol/introduction')]
           }
           if (existingPath.includes('/protocol/reference')) {
             return [existingPath.replace('/protocol/reference', '/contracts/v3/reference')]
