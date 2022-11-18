@@ -122,15 +122,19 @@ h5 {
 h1 {
   font-size: 32px !important;
 }
+
 h2 {
   font-size: 24px !important;
 }
+
 h3 {
   font-size: 20px !important;
 }
+
 h4 {
   font-size: 20px !important;
 }
+
 h4 {
   font-size: 16px !important;
 }
@@ -344,11 +348,9 @@ html[data-theme='dark'] .DocSearch {
   --docsearch-searchbox-background: rgba(0, 0, 0, 0.2);
   /* Footer */
   --docsearch-footer-background: var(--ifm-background-surface-color);
-  --docsearch-key-gradient: linear-gradient(
-    -26.5deg,
-    var(--ifm-color-emphasis-200) 0%,
-    var(--ifm-color-emphasis-100) 100%
-  );
+  --docsearch-key-gradient: linear-gradient(-26.5deg,
+      var(--ifm-color-emphasis-200) 0%,
+      var(--ifm-color-emphasis-100) 100%);
 
   --docsearch-searchbox-shadow: inset 0 0 0 2px var(--ifm-color-emphasis-200);
 }
@@ -360,6 +362,7 @@ html[data-theme='light'] .DocSearch-Hit {
 html[data-theme='light'] .DocSearch-Hit :focus {
   background-color: var(--ifm-color-emphasis-100);
 }
+
 html[data-theme='light'] .DocSearch-Hit :hover {
   background-color: var(--ifm-color-emphasis-100);
 }
@@ -375,9 +378,11 @@ html[data-theme='dark'] .DocSearch-Hit {
 html[data-theme='dark'] .DocSearch-Hit :focus {
   background-color: var(--ifm-color-emphasis-100);
 }
+
 html[data-theme='dark'] .DocSearch-Hit :hover {
   background-color: var(--ifm-color-emphasis-100);
 }
+
 html[data-theme='dark'] .DocSearch-Hit a :hover {
   background-color: transparent;
 }
@@ -391,11 +396,13 @@ html[data-theme='dark'] .DocSearch-Hit a {
   outline: none;
   box-shadow: none;
 }
+
 .react-toggle-thumb :focus {
   border: none;
   outline: none;
   box-shadow: none;
 }
+
 .react-toggle-thumb :active {
   border: none;
   outline: none;
@@ -448,14 +455,6 @@ html[data-theme='dark'] .DocSearch-Hit a {
 }
 
 .navbar__item.V3_active.V3 {
-  display: inline-block;
-}
-
-.navbar__item.V2_active.V2 {
-  display: inline-block;
-}
-
-.navbar__item.V1_active.V1 {
   display: inline-block;
 }
 

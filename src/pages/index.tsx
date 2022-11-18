@@ -33,7 +33,7 @@ export const actions = [
     title: 'What is Uniswap',
     href: '#',
     icon: InformationCircleIcon,
-    to: './protocol/introduction',
+    to: './concepts/overview',
     text: `Learn about the core concepts of the Uniswap Protocol. Swaps, Pools, Concentrated Liquidity and more.`,
     name: ElementName.WHAT_IS_UNISWAP,
   },
@@ -41,7 +41,7 @@ export const actions = [
     title: 'Smart contract overview',
     href: '#',
     icon: BookOpenIcon,
-    to: './protocol/reference/smart-contracts',
+    to: './contracts/v3/overview',
     text: `Learn about the architecture of the Uniswap Protocol smart contracts made up of the Core and Periphery libraries.`,
     name: ElementName.SMART_CONTRACT_OVERVIEW,
   },
@@ -49,7 +49,7 @@ export const actions = [
     title: 'V3 SDK',
     href: '#',
     icon: QuestionMarkCircleIcon,
-    to: './sdk/introduction',
+    to: './sdk/v3/overview',
     text: `The SDK is designed to assist developers when interacting with the protocol in any environment that can execute JavaScript.`,
     name: ElementName.V3_SDK,
   },
@@ -91,31 +91,31 @@ export const guides = [
   {
     title: 'SDK Quick Start',
     text: 'Integrate with the Uniswap Protocol using JavaScript',
-    to: './sdk/guides/quick-start',
+    to: './sdk/v3/guides/quick-start',
     name: ElementName.SDK_QUICK_START,
   },
   {
     title: 'Implementing a Swap',
     text: 'Start swapping from a smart contract in Solidity',
-    to: './protocol/guides/swaps/single-swaps',
+    to: './contracts/v3/guides/swaps/single-swaps',
     name: ElementName.IMPLEMENT_SWAP,
   },
   {
     title: 'Embedding a Swap Widget',
     text: 'Let your users trade tokens without leaving your dApp',
-    to: './sdk/widgets/swap-widget',
+    to: './sdk/swap-widget/overview',
     name: ElementName.EMBED_SWAP_WIDGET,
   },
   {
     title: 'Providing Liquidity',
     text: 'Provide liquidity from a smart contract in Solidity',
-    to: './protocol/guides/providing-liquidity/setting-up',
+    to: './contracts/v3/guides/providing-liquidity/setting-up',
     name: ElementName.PROVIDE_LIQUIDITY,
   },
   {
     title: 'Building an Oracle',
     text: 'Learn how Uniswap v3 pools can serve as oracles',
-    to: './protocol/concepts/V3-overview/oracle',
+    to: './concepts/protocol/oracle',
     name: ElementName.BUILD_ORACLE,
   },
 ]
@@ -124,19 +124,19 @@ export const quickLinks = [
   {
     title: 'Smart Contracts',
     text: 'Start swapping from a smart contract',
-    to: './protocol/reference/smart-contracts',
+    to: './contracts/v3/overview',
     name: ElementName.SMART_CONTRACTS,
   },
   {
     title: 'SDK',
     text: 'Start swapping from a smart contract',
-    to: './sdk/introduction',
+    to: './sdk/v3/overview',
     name: ElementName.SDK,
   },
   {
-    title: 'Widgets',
+    title: 'Swap Widget',
     text: 'Get started with the swap widget',
-    to: './sdk/widgets/swap-widget',
+    to: './sdk/swap-widget/overview',
     name: ElementName.WIDGETS,
   },
   {
@@ -354,7 +354,6 @@ export default function Home() {
                       <IconWrapper>
                         <action.icon style={{ width: '24px' }} />
                       </IconWrapper>
-
                       <svg
                         style={{ width: '24px', opacity: 0.2 }}
                         xmlns="http://www.w3.org/2000/svg"
@@ -364,15 +363,14 @@ export default function Home() {
                         <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                       </svg>
                     </TopSection>
-                    <h3 style={{ marginBottom: '.75rem' }}>{action.title}</h3>
-                    <p style={{ marginBottom: '0.5rem' }}>{action.text}</p>
+                    <h3 style={{ marginBottom: '.75rem', fontWeight: 500 }}>{action.title}</h3>
+                    <p style={{ marginBottom: '0.5rem', fontWeight: 300 }}>{action.text}</p>
                   </ShadowCard>
                 </Link>
               </TraceEvent>
             ))}
           </Row>
         </DocsHeader>
-
         <TwoRow
           style={{
             gap: '56px',
@@ -409,7 +407,7 @@ export default function Home() {
                           <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                         </svg>
                       </LinkRow>
-                      <p style={{ marginBottom: '0rem' }}>{action.text}</p>
+                      <p style={{ marginBottom: '0rem', fontWeight: 300 }}>{action.text}</p>
                     </Card>
                   </Link>
                 </TraceEvent>
@@ -432,8 +430,6 @@ export default function Home() {
                     <LinkRow>
                       <StyledGithubIcon style={{ display: 'flex', alignItems: 'center' }}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.78 117.79" style={{ width: '24px' }}>
-                          <defs></defs>
-                          <title>testlogo</title>
                           <g id="Layer_2" data-name="Layer 2">
                             <g id="Layer_1-2" data-name="Layer 1">
                               <path
@@ -471,7 +467,7 @@ export default function Home() {
                             </g>
                           </g>
                         </svg>
-                        <h3 style={{ marginBottom: '0rem', marginLeft: '16px' }}>{action.title}</h3>
+                        <h3 style={{ marginBottom: '0rem', marginLeft: '16px', fontWeight: 350 }}>{action.title}</h3>
                       </StyledGithubIcon>
                       <svg
                         style={{ width: '24px', height: '24px', opacity: 0.2 }}
@@ -488,9 +484,7 @@ export default function Home() {
             ))}
           </div>
         </TwoRow>
-
         <hr />
-
         <TwoRow
           style={{
             gap: '48px',
@@ -506,7 +500,6 @@ export default function Home() {
           />
           <div>
             <h2>Quick Links</h2>
-            <p></p>
             {quickLinks.map((action) => (
               <TraceEvent
                 key={action.name}
@@ -523,8 +516,7 @@ export default function Home() {
                       marginBottom: '0.5rem',
                     }}
                   >
-                    <h3 style={{ marginBottom: '0rem' }}>{action.title}</h3>
-
+                    <h3 style={{ marginBottom: '0rem', fontWeight: 300 }}>{action.title}</h3>
                     <svg
                       style={{ width: '16px', opacity: 0.2 }}
                       xmlns="http://www.w3.org/2000/svg"
