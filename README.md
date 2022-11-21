@@ -43,13 +43,13 @@ Let's walk through an example of adding documentation for new contract, say *Per
 
 | Question  | Complete |
 | ------------- | ------------- |
-| Pick the right section for the product   | In this case, [contracts](./docs/contracts/)  |
-| Did I create the product folder   | In this case, [yes](./docs/contracts/permit2/)  |
+| Did I pick the right section for the product? | In this case, [contracts](./docs/contracts/)  |
+| Did I create the product folder?   | In this case, [yes](./docs/contracts/permit2/)  |
 | Did I introduce any new concepts? | In this case no, but if so add [here](./docs/concepts/) |
 | Did I include an Overview of the product under <product_name>/overview? | Yes, I did add them [here](./docs/contracts/permit2/overview.md) |
 | Did I include Guides of the product under <product_name>/guides? | They should be added [here](./docs/contracts/permit2/guides) |
 | Did I include Technical Reference of the product under <product_name>/reference? | Yes I added them [here](./docs/contracts/permit2/reference) |
-| Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines | Yes
+| Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines? | Yes
 
 
 # Contributing to Uniswap Docs
