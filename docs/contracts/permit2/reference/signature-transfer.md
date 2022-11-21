@@ -63,11 +63,7 @@ struct SignatureTransferDetails {
         address to;
         // spender requested amount
         uint256 requestedAmount;
-    }PermitBatchTransferFrom memory permit,
-        SignatureTransferDetails[] calldata transferDetails,
-        address owner,
-        bytes calldata signature
-    ) external
+    }
 ```
 
 - owner - the signer of the permit message and owner of the tokens
