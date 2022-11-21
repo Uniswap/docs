@@ -31,7 +31,7 @@ struct Observation {
 }
 ```
 
-`Observation`s may be retrieved via the [`observations`](https://docs.uniswap.org/protocol/reference/core/interfaces/pool/IUniswapV3PoolState#observations) method on v3 pools. However, this is _not_ the recommended way to consume oracle data. Instead, prefer [`observe`](https://docs.uniswap.org/protocol/reference/core/UniswapV3Pool#observe):
+`Observation`s may be retrieved via the [`observations`](../../contracts/v3/reference/core/interfaces/pool/IUniswapV3PoolState#observations) method on v3 pools. However, this is _not_ the recommended way to consume oracle data. Instead, prefer [`observe`](../../contracts/v3/reference/core/UniswapV3Pool#observe):
 
 ```solidity
 function observe(uint32[] calldata secondsAgos)
