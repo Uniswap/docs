@@ -6,7 +6,7 @@
 - SDKs - The Uniswap SDKs such the *v3-sdk*
 - APIs - The Uniswap APIs such the *Subgraph API*
 
-### Each section contains items of that category.
+### Each section contains items of that category
 For each item there should be:
 - Overview
 - Guides
@@ -16,14 +16,15 @@ For each item there should be:
 
 ### Overview
 This should be an overview of the product.
-Each guide must have 3 parts:
-- An introduction
-- A step-by-step walk through of each line
-- An output or end state that users can test against
 A good example is the [V3 Smart Contracts](./docs/contracts/v3/overview.md)
 
 ### Guides
 This should contain guides for using the product.
+Each guide must have 3 parts:
+- An introduction
+- A step-by-step walk through of each line
+- An output or end state that users can test against
+
 A good example is the [V3 SDK Guides](./docs//sdk/v3/guides/01-quick-start.md)
 
 ### Technical References
