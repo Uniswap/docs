@@ -32,7 +32,7 @@ Each guide must have 3 parts:
 - A step-by-step walk through of each line of code. The guide should not include code that is not part of the example, but should instead reference or link those pieces.
 - An output or end state that users can test against
 
-A good example is the [V3 SDK Guides](./docs//sdk/v3/guides/01-quick-start.md)/
+A good example is the [V3 SDK Guides](./docs//sdk/v3/guides/01-quick-start.md).
 
 ### Technical References
 This should contain the technical reference for the exported interfaces.
@@ -43,7 +43,7 @@ A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overvie
 - Did I include an Overview of the product?
 - Did I include Guides for the product?
 - Did I include Technical Reference of the product?
-- Did I open a PR using the the [Contributing](#contributing-to-uniswap-docs) guidelines?
+- Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
 
 
 # Contributing to Uniswap Docs
@@ -81,10 +81,6 @@ Edit config.json file with
 - install jq : `brew install jq`
   run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
 
-# How to add a new page
-
-Create a markdown file in its respective versioned docs, or versioned SDK, directory.
-
 ## Installation
 
 ```console
@@ -112,11 +108,3 @@ yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
