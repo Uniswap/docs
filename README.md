@@ -38,12 +38,17 @@ A good example is the [V3 SDK Guides](./docs//sdk/v3/guides/01-quick-start.md).
 This should contain the technical reference for the exported interfaces.
 A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overview.md).
 
-## Checklist for adding a new project
-- Did I introduce any new concepts?
-- Did I include an Overview of the product?
-- Did I include Guides for the product?
-- Did I include Technical Reference of the product?
-- Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
+## Checklist for adding a new product
+Let's walk through an example of adding documentation for new contract, say *Permit2* 
+
+| Question  | Complete |
+| ------------- | ------------- |
+| Pick the right section for the product   | In this case, [contracts](./docs/contracts/)  |
+| For that section, do I need to create a new product?   | In this case, [yes](./docs/contracts/permit2/)  |
+| Did I introduce any new concepts? | In this case no, but If so add [here](./docs/concepts/) |
+| Did I include an Overview of the product? | Yes, I did add them [here](./docs/contracts/permit2/overview.md) |
+| Did I include Technical Reference of the product? | They should be added [here](./docs/contracts/permit2/reference) |
+| Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines | Yes
 
 
 # Contributing to Uniswap Docs
