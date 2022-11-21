@@ -24,4 +24,4 @@ import { Pool } from '@uniswap/v3-sdk'
 
 # Next Steps
 
-To use `Ethers.js` for the first time, or would like a more beginner friendly starting place, check out [**Using Ethers.js**](./02-using-ethers.md). If you are already familiar with ethers.js and general dev setup, you can move to [**Creating a Pool Instance**](./03-creating-a-pool.md).
+To use `Ethers.js` for the first time, or would like a more beginner friendly starting place, check out [**Using Ethers.js**](./02-using-ethers). If you are already familiar with ethers.js and general dev setup, you can move to [**Creating a Pool Instance**](./03-creating-a-pool.md).

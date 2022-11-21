@@ -5,11 +5,11 @@ title: Minting a new Position
 
 ## Overview
 
-In this guide, you will learn how to mint a new liquidity position, add liquidity, and then remove liquidity. You will learn how to invoke each function with the required parameters necessary in returning the calldata. Because any liquidity related action relies on setting up pool and position instances, you will also need to know [How to Create A Pool](../03-creating-a-pool) and how to set up a position instance.
+In this guide, you will learn how to mint a new liquidity position, add liquidity, and then remove liquidity. You will learn how to invoke each function with the required parameters necessary in returning the calldata. Because any liquidity related action relies on setting up pool and position instances, you will also need to know [How to Create A Pool](../03-creating-a-pool.md) and how to set up a position instance.
 
 In summary, the following is what you will learn in this guide:
 
-1. Set up the pool instance. This follows the same structure as the previous guide. Refer to [Creating a Pool Instance](../03-creating-a-pool) for more detail.
+1. Set up the pool instance. This follows the same structure as the previous guide. Refer to [Creating a Pool Instance](../03-creating-a-pool.md) for more detail.
 2. Create a position.
 3. Construct the calldata for minting a position.
 4. Construct the calldata for adding to a position.
