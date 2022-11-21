@@ -8,28 +8,35 @@
 
 ### Each section contains items of that category
 For each item there should be:
-- Overview
-- Guides
-- Technical Reference
+- *Overview*
+- *Guides*
+- *Technical Reference*
 
 ## Deep dive into the requirements of each part
 
 ### Overview
 This should be an overview of the product.
-A good example is the [V3 Smart Contracts](./docs/contracts/v3/overview.md)
+It should address points such as:
+
+- What are the high level components of the product
+- What are the high level functionalities
+- Where does the source code of the product live
+- Where does the code artifact live (eg *npm*) and how to integrate with it
+
+A good example is the [V3 Smart Contracts](./docs/contracts/v3/overview.md).
 
 ### Guides
 This should contain guides for using the product.
 Each guide must have 3 parts:
 - An introduction
-- A step-by-step walk through of each line
+- A step-by-step walk through of each line of code. The guide should not include code that is not part of the example, but should instead reference or link those pieces.
 - An output or end state that users can test against
 
-A good example is the [V3 SDK Guides](./docs//sdk/v3/guides/01-quick-start.md)
+A good example is the [V3 SDK Guides](./docs//sdk/v3/guides/01-quick-start.md)/
 
 ### Technical References
 This should contain the technical reference for the exported interfaces.
-A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overview.md)
+A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overview.md).
 
 ## Checklist for adding a new project
 - Did I introduce any new concepts?
