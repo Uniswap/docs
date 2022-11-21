@@ -1,52 +1,41 @@
+# Project Layout
 
+### The project is broken down into 4 sections
+- Concepts - General Uniswap information or concepts useful for using Uniswap products, such as *Liquidity* and *Fees*
+- Contracts - The Uniswap smart contracts such as *Permit2*, or groupings such as the V3 Contracts
+- SDKs - The Uniswap SDKs such the *v3-sdk*
+- APIs - The Uniswap APIs such the *Subgraph API*
 
-## Questions
-- How do we embed code
-- How do we embed example
-
-## Goals
-- Consistency across projects
-- 
-
-## The layout
-
-The project is broken down into 4 sections
-- Concepts - General Uniswap information or concepts that are useful for using Uniswap products, such as Liquidity and Fees
-- Contracts - The Uniswap smart contracts such as Permit2, or groupings such as the V3 Contracts
-- SDKs - The Uniswap SDKs such the v3-sdk
-- APIs - The Uniswap APIs such the Subgraph API
-
-Each section contains items or groupings of items of that category.
-For each item or grouping there should be:
+### Each section contains items of that category.
+For each item there should be:
 - Overview
 - Guides
 - Technical Reference
 
-## Steps for adding a new project
-
-### Checklist
-- Did I introduce any new concepts?
-- Did I include an Overview of the product?
-- Did I include Guides for the product?
-- Did I include Technical Reference
-- Did I open a PR using the the guidelines?
-
 ## Deep dive into the requirements of each part
 
 ### Overview
-This should be an overview of the project
-A good example is
+This should be an overview of the product.
+Each guide must have 3 parts:
+- An introduction
+- A step-by-step walk through of each line
+- An output or end state that users can test against
+A good example is the [V3 Smart Contracts](./docs/contracts/v3/overview.md)
 
 ### Guides
-This should contain guides for using the product
-A good example is
-
-How deep should they be?
+This should contain guides for using the product.
+A good example is the [V3 SDK Guides](./docs//sdk/v3/guides/01-quick-start.md)
 
 ### Technical References
-This should contain
-A good example is
+This should contain the technical reference for the exported interfaces.
+A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overview.md)
 
+## Checklist for adding a new project
+- Did I introduce any new concepts?
+- Did I include an Overview of the product?
+- Did I include Guides for the product?
+- Did I include Technical Reference of the product?
+- Did I open a PR using the the [Contributing](#contributing-to-uniswap-docs) guidelines?
 
 
 # Contributing to Uniswap Docs
