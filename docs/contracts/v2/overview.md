@@ -4,7 +4,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-# The Uuniswap V2 Smart Contracts
+# The Uniswap V2 Smart Contracts
 
 Welcome to the Uniswap protocol V2 docs.
 
