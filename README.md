@@ -1,7 +1,3 @@
-# Website
-
-This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
-
 
 
 ## Questions
@@ -9,13 +5,13 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern 
 - How do we embed example
 
 ## Goals
-- Consistency
+- Consistency across projects
 - 
 
 ## The layout
 
-The project is broken down into 4 sections.
-- Concepts - General Uniswap information or concepts that are useful for using Uniswap products, such as Liquidity and Fees.
+The project is broken down into 4 sections
+- Concepts - General Uniswap information or concepts that are useful for using Uniswap products, such as Liquidity and Fees
 - Contracts - The Uniswap smart contracts such as Permit2, or groupings such as the V3 Contracts
 - SDKs - The Uniswap SDKs such the v3-sdk
 - APIs - The Uniswap APIs such the Subgraph API
@@ -30,8 +26,8 @@ For each item or grouping there should be:
 
 ### Checklist
 - Did I introduce any new concepts?
-- Did I include an Overview of the project
-- Did I include Guides for 
+- Did I include an Overview of the product?
+- Did I include Guides for the product?
 - Did I include Technical Reference
 - Did I open a PR using the the guidelines?
 
@@ -42,7 +38,7 @@ This should be an overview of the project
 A good example is
 
 ### Guides
-This should contains guides for using the product
+This should contain guides for using the product
 A good example is
 
 How deep should they be?
