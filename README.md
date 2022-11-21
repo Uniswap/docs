@@ -1,3 +1,8 @@
+# Uniswap Docs
+
+This web application contains all documentation for Uniswap products. It is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+
+
 # Project Layout
 
 ### The project is broken down into 4 sections
