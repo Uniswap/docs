@@ -53,6 +53,7 @@ Contributing to the docs site is a great way to get involved in the dev communit
 - Did I include an Overview of the product under *<category_name><product_name>/overview* ?
 - Did I include Guides of the product under *<category_name><product_name>/guides* ?
 - Did I include Technical Reference of the product under *<category_name><product_name>/reference* ?
+- Did I give a descriptive name/id to each document? This is important because that shows up in the URL
 - Did I open a PR using the the [contributing](./CONTRIBUTING.md) guidelines?
 
 ## Checklist example
