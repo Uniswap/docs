@@ -30,11 +30,11 @@ A good example is the [V3 Smart Contracts](./docs/contracts/v3/overview.md).
 
 ### Guides
 Guides should ensure users can easily integrate with the product by including the following parts:
-- An introduction that gives the developer the required context and a summary of what the guide will cover and result in/
+- An introduction that gives the developer the required context and a summary of what the guide will cover and result in.
 - A walk-through of the provided example code. The guide should not directly include large blocks of code, but should instead reference/link to this code as needed, including snippets sparingly when required.
-- An output or end state that users can test against
+- An output or end state that users can test against.
 
-A good example is the [V3 SDK Guides](./docs//sdk/v3/guides/01-quick-start.md).
+A good example is the [V3 SDK Guides](./docs/sdk/v3/guides/01-quick-start.md).
 
 ### Technical References
 This should contain the technical reference for the exported interfaces. A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overview.md).
@@ -50,9 +50,9 @@ Contributing to the docs site is a great way to get involved in the dev communit
 - Did I pick the right section for the product? 
 - Did I create the product folder?
 - Did I introduce any new concepts? If so add under */concepts/<category_name><product_name>*
-- Did I include an Overview of the product under *<category_name><product_name>/overview* ?
-- Did I include Guides of the product under *<category_name><product_name>/guides* ?
-- Did I include Technical Reference of the product under *<category_name><product_name>/reference* ?
+- Did I include an Overview of the product under *<category_name>/<product_name>/overview* ?
+- Did I include Guides of the product under *<category_name>/<product_name>/guides* ?
+- Did I include Technical Reference of the product under *<category_name>/<product_name>/reference* ?
 - Did I give a descriptive name/id to each document? This is important because that shows up in the URL
 - Did I open a PR using the the [contributing](./CONTRIBUTING.md) guidelines?
 
