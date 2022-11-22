@@ -423,7 +423,7 @@ export default function Home() {
                 name={EventName.PAGE_CLICKED}
                 element={action.name}
                 events={[BrowserEvent.onClick]}
-                section={SectionName.DEVELOPER_LINKS}
+                section={SectionName.GITHUB_LINKS}
               >
                 <Link style={{ textDecoration: 'none' }} href={action.href}>
                   <Card key={action.title} style={{ marginBottom: '1rem' }}>
