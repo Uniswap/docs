@@ -276,7 +276,7 @@ module.exports = {
           }
           // V2 Redirects
           if (existingPath.includes('/contracts/v2/reference')) {
-            return [existingPath.replace('/contracts/V2/reference', '/protocol/V2/reference')]
+            return [existingPath.replace('/contracts/v2/reference', '/protocol/V2/reference')]
           }
           if (existingPath.includes('/contracts/v2/guides')) {
             return [existingPath.replace('/contracts/v2/guides', '/protocol/V2/guides')]
