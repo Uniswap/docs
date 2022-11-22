@@ -275,11 +275,11 @@ module.exports = {
             return [existingPath.replace('/contracts/v3/guides', '/protocol/guides')]
           }
           // V2 Redirects
-          if (existingPath.includes('/contracts/v2/reference') || existingPath.includes('/contracts/V2/reference')) {
-            return [existingPath.replace('/contracts/v2/reference', '/protocol/v2/reference')]
+          if (existingPath.includes('/contracts/V2/reference')) {
+            return [existingPath.replace('/contracts/V2/reference', '/protocol/v2/reference')]
           }
-          if (existingPath.includes('/contracts/v2/guides') || existingPath.includes('/contracts/V2/guides')) {
-            return [existingPath.replace('/contracts/v2/guides', '/protocol/v2/guides')]
+          if (existingPath.includes(existingPath.includes('/contracts/V2/guides'))) {
+            return [existingPath.replace('/contracts/V2/guides', '/protocol/v2/guides')]
           }
           // Permit2 Redirects
           if (existingPath.includes('/contracts/permit2')) {
