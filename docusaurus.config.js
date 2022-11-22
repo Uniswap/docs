@@ -278,7 +278,7 @@ module.exports = {
           if (existingPath.includes('/contracts/V2/reference')) {
             return [existingPath.replace('/contracts/V2/reference', '/protocol/v2/reference')]
           }
-          if (existingPath.includes(existingPath.includes('/contracts/V2/guides'))) {
+          if (existingPath.includes('/contracts/V2/guides')) {
             return [existingPath.replace('/contracts/V2/guides', '/protocol/v2/guides')]
           }
           // Permit2 Redirects
