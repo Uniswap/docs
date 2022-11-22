@@ -1,65 +1,77 @@
-# Uniswap Docs
+# Uniswap Documentation
 
 This web application contains all documentation for Uniswap products. It is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
 
 # Project Layout
 
-### The project is broken down into 4 sections
+### Uniswap documentation is broken down into four sections:
 - Concepts - General Uniswap information or concepts useful for using Uniswap products, such as *Liquidity* and *Fees*
-- Contracts - The Uniswap smart contracts such as *Permit2*, or groupings such as the V3 Contracts
-- SDKs - The Uniswap SDKs such the *v3-sdk*
+- Contracts - Uniswap smart contracts such as the V3 Contracts or *Permit2*
+- SDKs - Uniswap integrations such as the *v3-sdk* and the *Swap Widget*
 - APIs - The Uniswap APIs such the *Subgraph API*
 
-### Each section contains items of that category
-For each item there should be:
+### Each item in a section should include the following:
 - *Overview*
 - *Guides*
 - *Technical Reference*
 
-## Deep dive into the requirements of each part
+## Adding Documentation
 
 ### Overview
-This should be an overview of the product.
-It should address points such as:
+A product overview should address points such as:
 
-- What are the high level components of the product
-- What are the high level functionalities
-- Where does the source code of the product live
-- Where does the code artifact live (eg *npm*) and how to integrate with it
+- What are the high level components of the product?
+- What what is the high level functionality the product offers?
+- Where does the source code of the product live?
+- Where does the code artifact live (eg *npm*) and how does someone integrate with it?
 
 A good example is the [V3 Smart Contracts](./docs/contracts/v3/overview.md).
 
 ### Guides
-This should contain guides for using the product.
-Each guide must have 3 parts:
-- An introduction
-- A step-by-step walk through of each line of code. The guide should not include code that is not part of the example, but should instead reference or link those pieces.
+Guides should ensure users can easily integrate with the product by including the following parts:
+- An introduction that gives the developer the required context and a summary of what the guide will cover and result in/
+- A walk-through of the provided example code. The guide should not directly include large blocks of code, but should instead reference/link to this code as needed, including snippets sparingly when required.
 - An output or end state that users can test against
 
 A good example is the [V3 SDK Guides](./docs//sdk/v3/guides/01-quick-start.md).
 
 ### Technical References
-This should contain the technical reference for the exported interfaces.
-A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overview.md).
-
-## Checklist for adding a new product
-Let's walk through an example of adding documentation for new contract, say *Permit2* 
-
-| Question  | Complete |
-| ------------- | ------------- |
-| Did I pick the right section for the product? | In this case, [contracts](./docs/contracts/)  |
-| Did I create the product folder?   | In this case, [yes](./docs/contracts/permit2/)  |
-| Did I introduce any new concepts? | In this case no, but if so add [here](./docs/concepts/) |
-| Did I include an Overview of the product under <product_name>/overview? | Yes, I did add them [here](./docs/contracts/permit2/overview.md) |
-| Did I include Guides of the product under <product_name>/guides? | They should be added [here](./docs/contracts/permit2/guides) |
-| Did I include Technical Reference of the product under <product_name>/reference? | Yes I added them [here](./docs/contracts/permit2/reference) |
-| Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines? | Yes
+This should contain the technical reference for the exported interfaces. A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overview.md).
 
 
 # Contributing to Uniswap Docs
 
-Contributing to the docs site is a great way to get involved in the dev community and help other developers along the way! Check out our guidelines [here](https://github.com/Uniswap/uniswap-docs/blob/main/CONTRIBUTING.md).
+## Guidelines
+Contributing to the docs site is a great way to get involved in the dev community and help other developers along the way! Check out our guidelines [here](./CONTRIBUTING.md).
+
+## Checklist for adding a new product
+
+- Did I pick the right section for the product? 
+- Did I create the product folder?
+- Did I introduce any new concepts? If so add under */concepts/<category_name><product_name>*
+- Did I include an Overview of the product under *<category_name><product_name>/overview* ?
+- Did I include Guides of the product under *<category_name><product_name>/guides* ?
+- Did I include Technical Reference of the product under *<category_name><product_name>/reference* ?
+- Did I open a PR using the the [contributing](./CONTRIBUTING.md) guidelines?
+
+## Checklist example
+
+Let's walk through an example by considering the *Permit2* smart contract:
+-  Did I pick the right section for the product? 
+    - In this case, [contracts](./docs/contracts/) 
+- Did I create the product folder? 
+    - In this case, [yes](./docs/contracts/permit2/)
+- Did I introduce any new concepts? 
+    - No
+- Did I include an Overview of the product under */contracts/permit2/overview* ?
+    - Yes, I did add them [here](./docs/contracts/permit2/overview.md)
+- Did I include Guides of the product under *contracts/permit2/guides* ?
+    - No, they should be added [here](./docs/contracts/permit2/guides)
+- Did I include Technical Reference of the product under *contracts/permit2/reference* ?
+    - Yes I added them [here](./docs/contracts/permit2/reference)
+- Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
+    - Yes
 
 # How to generate markdown files from solidity Natspec comments
 
