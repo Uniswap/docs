@@ -6,10 +6,10 @@ import { ThumbsUp, ThumbsDown } from 'react-feather'
 
 import styled from '@emotion/styled'
 
-const SECTION_NAME = 'RATING'
-const POSITIVE_ELEMENT_NAME = 'POSITIVE_SENTIMENT'
-const NEGATIVE_ELEMENT_NAME = 'NEGATIVE_SENTIMENT'
-const EVENT_NAME = 'RATING_CLICKED'
+const ANALYTICS_SECTION_NAME = 'RATING'
+const ANALYTICS_POSITIVE_ELEMENT_NAME = 'POSITIVE_SENTIMENT'
+const ANALYTICS_NEGATIVE_ELEMENT_NAME = 'NEGATIVE_SENTIMENT'
+const ANALYTICS_EVENT_NAME = 'RATING_CLICKED'
 const POSITIVE_SENTIMENT_COLOR = 'green'
 const NEGATIVE_SENTIMENT_COLOR = 'red'
 const UNSELECTED_SENTIMENT_COLOR = 'clear'
@@ -23,6 +23,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 0.5rem;
 `
 
 const SentimentContainer = styled.div`
@@ -55,10 +56,10 @@ export default function Rating() {
   return (
     <Container>
       <TraceEvent
-        element={POSITIVE_ELEMENT_NAME}
-        name={EVENT_NAME}
+        element={ANALYTICS_POSITIVE_ELEMENT_NAME}
+        name={ANALYTICS_EVENT_NAME}
         events={[BrowserEvent.onClick]}
-        section={SECTION_NAME}
+        section={ANALYTICS_SECTION_NAME}
       >
         Helpful?
         <SentimentContainer>
@@ -71,10 +72,10 @@ export default function Rating() {
         </SentimentContainer>
       </TraceEvent>
       <TraceEvent
-        element={NEGATIVE_ELEMENT_NAME}
-        name={EVENT_NAME}
+        element={ANALYTICS_NEGATIVE_ELEMENT_NAME}
+        name={ANALYTICS_EVENT_NAME}
         events={[BrowserEvent.onClick]}
-        section={SECTION_NAME}
+        section={ANALYTICS_SECTION_NAME}
       >
         <SentimentContainer>
           <NegativeSentimentIcon
