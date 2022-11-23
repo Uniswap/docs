@@ -1,8 +1,8 @@
-import React from 'react'
-import OriginalNavBarItem from '@theme-original/NavbarItem'
 import { useLocation } from '@docusaurus/router'
+import OriginalNavBarItem from '@theme-original/NavbarItem'
 import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, EventName, DocsProtocolVersion } from '@uniswap/analytics-events'
+import { BrowserEvent, DocsProtocolVersion, EventName } from '@uniswap/analytics-events'
+import React from 'react'
 
 enum ProtocolVersion {
   V1 = 'V1',

@@ -1,11 +1,10 @@
-import React, { useCallback, useState } from 'react'
-
+import styled from '@emotion/styled'
 import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent } from '@uniswap/analytics-events'
-import { ThumbsUp, ThumbsDown } from 'react-feather'
-import { colors } from '../../theme/color'
+import React, { useCallback, useState } from 'react'
+import { ThumbsDown, ThumbsUp } from 'react-feather'
 
-import styled from '@emotion/styled'
+import { colors } from '../../theme/color'
 
 const ANALYTICS_SECTION_NAME = 'RATING'
 const ANALYTICS_POSITIVE_ELEMENT_NAME = 'POSITIVE_SENTIMENT'

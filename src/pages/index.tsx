@@ -1,32 +1,29 @@
-import React from 'react'
-import Layout from '@theme/Layout'
-import Link from '@docusaurus/Link'
-
 import './styles.module.css'
-import styled from '@emotion/styled'
 
-import Discord from '@site/static/img/discord.svg'
-import UGP from '@site/static/img/UGP.png'
-
-import ThemedImage from '@theme/ThemedImage'
+import Link from '@docusaurus/Link'
 import useBaseUrl from '@docusaurus/useBaseUrl'
-
-import SearchBarWithAnalytics from '../theme/SearchBar'
-import { TraceEvent } from '@uniswap/analytics'
-
+import styled from '@emotion/styled'
 import {
-  InformationCircleIcon,
-  QuestionMarkCircleIcon,
   BookOpenIcon,
   ChatIcon,
   CodeIcon,
+  InformationCircleIcon,
+  QuestionMarkCircleIcon,
 } from '@heroicons/react/outline'
+import Discord from '@site/static/img/discord.svg'
+import UGP from '@site/static/img/UGP.png'
+import Layout from '@theme/Layout'
+import ThemedImage from '@theme/ThemedImage'
+import { TraceEvent } from '@uniswap/analytics'
 import {
   BrowserEvent,
   DocsHomepageElementName as ElementName,
   DocsSectionName as SectionName,
   EventName,
 } from '@uniswap/analytics-events'
+import React from 'react'
+
+import SearchBarWithAnalytics from '../theme/SearchBar'
 
 export const actions = [
   {

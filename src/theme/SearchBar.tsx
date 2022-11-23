@@ -1,7 +1,7 @@
-import React from 'react'
 import OriginalSearchBar from '@theme-original/SearchBar'
 import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent, EventName } from '@uniswap/analytics-events'
+import React from 'react'
 
 export default function SearchBarWithAnalytics(props) {
   return (
