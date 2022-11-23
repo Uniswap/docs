@@ -39,15 +39,15 @@ export const actions = [
     href: '#',
     icon: QuestionMarkCircleIcon,
     to: './sdk/v3/overview',
-    text: `The SDK is designed to assist developers when interacting with the protocol in any environment that can execute JavaScript.`,
+    text: `Learn how to integrate with Uniswap by building a dApp through guided examples.`,
     name: ElementName.V3_SDK,
   },
   {
-    title: 'Uniswap smart contracts',
+    title: 'The Uniswap smart contracts',
     href: '#',
     icon: BookOpenIcon,
     to: './contracts/v3/overview',
-    text: `Learn about the architecture of the Uniswap Protocol smart contracts made up of the Core and Periphery libraries.`,
+    text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples`,
     name: ElementName.SMART_CONTRACT_OVERVIEW,
   },
 ]
