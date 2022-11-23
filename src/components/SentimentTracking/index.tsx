@@ -50,7 +50,7 @@ const NegativeSentimentIcon = styled(ThumbsDown)<{ isSelect: boolean }>`
   }
 `
 
-export default function Rating() {
+export default function SentimentTracking() {
   const [selectedSentiment, setSelectedSentiment] = useState<null | Sentiment>(null)
 
   return (
