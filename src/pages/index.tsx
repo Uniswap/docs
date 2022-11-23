@@ -14,7 +14,6 @@ import {
   InformationCircleIcon,
   QuestionMarkCircleIcon,
   ArrowSmUpIcon as LinkIcon,
-  LibraryIcon,
 } from '@heroicons/react/outline'
 import Discord from '@site/static/img/discord.svg'
 import UGP from '@site/static/img/UGP.png'
