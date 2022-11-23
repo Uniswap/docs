@@ -48,6 +48,11 @@ const NegativeSentimentIcon = styled(ThumbsDown)<{ isSelect: boolean }>`
   }
 `
 
+const StyledDiv = styled.div`
+  font-size: 1.25rem;
+  padding-right: 0.5rem;
+`
+
 export default function SentimentTracking() {
   const [selectedSentiment, setSelectedSentiment] = useState<null | Sentiment>(null)
 
@@ -59,7 +64,7 @@ export default function SentimentTracking() {
         events={[BrowserEvent.onClick]}
         section={ANALYTICS_SECTION_NAME}
       >
-        Helpful?
+        <StyledDiv>Helpful?</StyledDiv>
         <SentimentContainer>
           <PositiveSentimentIcon
             isSelect={selectedSentiment && selectedSentiment === Sentiment.POSITIVE}
