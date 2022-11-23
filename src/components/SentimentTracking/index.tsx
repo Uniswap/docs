@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent } from '@uniswap/analytics-events'
