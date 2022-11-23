@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 
 import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent } from '@uniswap/analytics-events'
@@ -30,31 +30,36 @@ const SentimentContainer = styled.div`
   align-items: center;
 `
 
-const PositiveSentimentIcon = styled(ThumbsUp)<{ isSelect: boolean }>`
-  fill: ${(props) => (props.isSelect ? colors.greenVibrant : 'transparent')};
-  opacity: ${(props) => (props.isSelect ? 1 : 0.5)};
+const PositiveSentimentIcon = styled(ThumbsUp)<{ isSelected: boolean }>`
+  fill: ${(props) => (props.isSelected ? colors.greenVibrant : 'transparent')};
+  opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
 
   &:hover {
     fill: ${colors.greenVibrant};
   }
 `
 
-const NegativeSentimentIcon = styled(ThumbsDown)<{ isSelect: boolean }>`
-  fill: ${(props) => (props.isSelect ? colors.redVibrant : 'transparent')};
-  opacity: ${(props) => (props.isSelect ? 1 : 0.5)};
+const NegativeSentimentIcon = styled(ThumbsDown)<{ isSelected: boolean }>`
+  fill: ${(props) => (props.isSelected ? colors.redVibrant : 'transparent')};
+  opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
 
   &:hover {
     fill: ${colors.redVibrant};
   }
 `
 
-const StyledDiv = styled.div`
+const StyledTextDiv = styled.div`
   font-size: 1.25rem;
   padding-right: 0.5rem;
 `
 
 export default function SentimentTracking() {
   const [selectedSentiment, setSelectedSentiment] = useState<null | Sentiment>(null)
+
+  const isSentimentSelected = useCallback(
+    (sentiment: Sentiment) => selectedSentiment && selectedSentiment === sentiment,
+    [selectedSentiment]
+  )
 
   return (
     <Container>
@@ -64,10 +69,10 @@ export default function SentimentTracking() {
         events={[BrowserEvent.onClick]}
         section={ANALYTICS_SECTION_NAME}
       >
-        <StyledDiv>Helpful?</StyledDiv>
+        <StyledTextDiv>Helpful?</StyledTextDiv>
         <SentimentContainer>
           <PositiveSentimentIcon
-            isSelect={selectedSentiment && selectedSentiment === Sentiment.POSITIVE}
+            isSelected={isSentimentSelected(Sentiment.POSITIVE)}
             onClick={() => {
               setSelectedSentiment(Sentiment.POSITIVE)
             }}
@@ -82,7 +87,7 @@ export default function SentimentTracking() {
       >
         <SentimentContainer>
           <NegativeSentimentIcon
-            isSelect={selectedSentiment && selectedSentiment === Sentiment.NEGATIVE}
+            isSelected={isSentimentSelected(Sentiment.NEGATIVE)}
             onClick={() => {
               setSelectedSentiment(Sentiment.NEGATIVE)
             }}
