@@ -81,8 +81,6 @@ This is a result of a transaction that took too long to be broadcast to the main
 
 Uniswap does not set gas prices natively, so most users default to the suggested gas prices in metamask. Sometimes metamask gets it wrong, though, and sets the gas price too low. If a swap takes more than 20 minutes to execute, the core contract won’t allow it to go through.
 
-Finding accurate gas prices can be a challenge, for the time being, we like [Gas Now](https://www.gasnow.org/).
-
 # Action Requires an Active Reserve
 
 VM Exception While Processing Transaction: Action Requires an Active Reserve
