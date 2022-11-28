@@ -34,7 +34,7 @@ export const actions = [
     title: 'What is Uniswap',
     icon: InformationCircleIcon,
     to: '/concepts/overview',
-    text: `Learn about the core concepts of the Uniswap Protocol. Swaps, Pools, Concentrated Liquidity and more.`,
+    text: `Learn about the core concepts of the Uniswap Protocol, Swaps, Pools, Concentrated Liquidity and more.`,
   },
   {
     title: 'Integrate with Uniswap',
@@ -46,7 +46,7 @@ export const actions = [
     title: 'The Uniswap smart contracts',
     icon: BookOpenIcon,
     to: '/contracts/v3/overview',
-    text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples`,
+    text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples.`,
   },
 ]
 
@@ -443,25 +443,22 @@ export default function Home() {
                 events={[BrowserEvent.onClick]}
                 section={SectionName.DEVELOPER_LINKS}
               >
-                <Link style={{}} to={action.href}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'start',
-                      width: '100%',
-                      alignItems: 'start',
-                    }}
-                  >
-                    {action.icon && (
-                      <IconWrapper>
-                        <action.icon style={{ width: '24px' }} />
-                      </IconWrapper>
-                    )}
-                    <h3 style={{ fontWeight: 300 }}>{action.title}</h3>
-                    <LinkIconWrapper>
-                      <LinkIcon style={{ width: '24px' }} />
-                    </LinkIconWrapper>
-                  </div>
+                <Link key={action.href} to={action.href}>
+                  <Card key={action.href} style={{ marginBottom: '0.5rem' }}>
+                    <LinkRow>
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {action.icon && (
+                          <IconWrapper>
+                            <action.icon style={{ width: '24px' }} />
+                          </IconWrapper>
+                        )}
+                        {action.title}
+                      </div>
+                      <LinkIconWrapper>
+                        <LinkIcon />
+                      </LinkIconWrapper>
+                    </LinkRow>
+                  </Card>
                 </Link>
               </TraceEvent>
             ))}
