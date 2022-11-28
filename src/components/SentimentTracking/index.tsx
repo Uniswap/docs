@@ -25,11 +25,6 @@ const Container = styled.div`
   padding: 0.5rem;
 `
 
-const SentimentContainer = styled.div`
-  display: flex;
-  align-items: center;
-`
-
 const PositiveSentimentIcon = styled(Smile)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.greenVibrant : 'transparent')};
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
@@ -51,7 +46,7 @@ const NegativeSentimentIcon = styled(Frown)<{ isSelected: boolean }>`
 `
 
 const NeutralSentimentIcon = styled(Meh)<{ isSelected: boolean }>`
-  fill: ${(props) => (props.isSelected ? colors.redVibrant : 'transparent')};
+  fill: ${(props) => (props.isSelected ? colors.yellowVibrant : 'transparent')};
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
   margin: 0 0.2rem;
 
