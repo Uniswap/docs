@@ -39,7 +39,7 @@ export const actions = [
     href: '#',
     icon: QuestionMarkCircleIcon,
     to: './sdk/v3/overview',
-    text: `Learn how to integrate with Uniswap by building a dApp through guided examples.`,
+    text: `Learn how to integrate with Uniswap through guided examples to power your dApp.`,
     name: ElementName.V3_SDK,
   },
   {
@@ -47,7 +47,7 @@ export const actions = [
     href: '#',
     icon: BookOpenIcon,
     to: './contracts/v3/overview',
-    text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples`,
+    text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples.`,
     name: ElementName.SMART_CONTRACT_OVERVIEW,
   },
 ]
