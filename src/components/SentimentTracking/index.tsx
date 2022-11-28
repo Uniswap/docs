@@ -1,16 +1,10 @@
 import styled from '@emotion/styled'
 import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent } from '@uniswap/analytics-events'
+import { BrowserEvent, DocsSentiment, DocsSentimentSection, EventName } from '@uniswap/analytics-events'
 import React, { useCallback, useState } from 'react'
 import { Frown, Meh, Smile } from 'react-feather'
 
 import { colors } from '../../theme/color'
-
-const ANALYTICS_SECTION_NAME = 'RATING'
-const ANALYTICS_POSITIVE_ELEMENT_NAME = 'POSITIVE_SENTIMENT'
-const ANALYTICS_NEGATIVE_ELEMENT_NAME = 'NEGATIVE_SENTIMENT'
-const ANALYTICS_NEUTRAL_ELEMENT_NAME = 'NEUTRAL_SENTIMENT'
-const ANALYTICS_EVENT_NAME = 'RATING_CLICKED'
 
 enum Sentiment {
   NEGATIVE = 'NEGATIVE',
@@ -58,7 +52,7 @@ const StyledTextDiv = styled.div`
   padding-right: 0.5rem;
 `
 
-export default function SentimentTracking() {
+export default function SentimentTracking({ analyticsSection }: { analyticsSection: DocsSentimentSection }) {
   const [selectedSentiment, setSelectedSentiment] = useState<null | Sentiment>(null)
 
   const isSentimentSelected = useCallback(
@@ -70,10 +64,10 @@ export default function SentimentTracking() {
     <Container>
       <StyledTextDiv>Helpful?</StyledTextDiv>
       <TraceEvent
-        element={ANALYTICS_POSITIVE_ELEMENT_NAME}
-        name={ANALYTICS_EVENT_NAME}
+        element={DocsSentiment.POSITIVE_SENTIMENT}
+        name={EventName.SENTIMENT_SUBMITTED}
         events={[BrowserEvent.onClick]}
-        section={ANALYTICS_SECTION_NAME}
+        section={analyticsSection}
       >
         <PositiveSentimentIcon
           isSelected={isSentimentSelected(Sentiment.POSITIVE)}
@@ -83,10 +77,10 @@ export default function SentimentTracking() {
         />
       </TraceEvent>
       <TraceEvent
-        element={ANALYTICS_NEUTRAL_ELEMENT_NAME}
-        name={ANALYTICS_EVENT_NAME}
+        element={DocsSentiment.NEUTRAL_SENTIMENT}
+        name={EventName.SENTIMENT_SUBMITTED}
         events={[BrowserEvent.onClick]}
-        section={ANALYTICS_SECTION_NAME}
+        section={analyticsSection}
       >
         <NeutralSentimentIcon
           isSelected={isSentimentSelected(Sentiment.NEUTRAL)}
@@ -96,10 +90,10 @@ export default function SentimentTracking() {
         />
       </TraceEvent>
       <TraceEvent
-        element={ANALYTICS_NEGATIVE_ELEMENT_NAME}
-        name={ANALYTICS_EVENT_NAME}
+        element={DocsSentiment.NEGATIVE_SENTIMENT}
+        name={EventName.SENTIMENT_SUBMITTED}
         events={[BrowserEvent.onClick]}
-        section={ANALYTICS_SECTION_NAME}
+        section={analyticsSection}
       >
         <NegativeSentimentIcon
           isSelected={isSentimentSelected(Sentiment.NEGATIVE)}
