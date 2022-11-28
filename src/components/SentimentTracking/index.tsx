@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
+import { ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/outline'
 import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent } from '@uniswap/analytics-events'
 import React, { useCallback, useState } from 'react'
-import { ThumbsDown, ThumbsUp } from 'react-feather'
 
 import { colors } from '../../theme/color'
 
@@ -24,23 +24,24 @@ const Container = styled.div`
 `
 
 const SentimentContainer = styled.div`
-  padding: 0 0.2rem;
   display: flex;
   align-items: center;
 `
 
-const PositiveSentimentIcon = styled(ThumbsUp)<{ isSelected: boolean }>`
+const PositiveSentimentIcon = styled(ThumbUpIcon)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.greenVibrant : 'transparent')};
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
+  width: 1.5rem;
 
   &:hover {
     fill: ${colors.greenVibrant};
   }
 `
 
-const NegativeSentimentIcon = styled(ThumbsDown)<{ isSelected: boolean }>`
+const NegativeSentimentIcon = styled(ThumbDownIcon)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.redVibrant : 'transparent')};
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
+  width: 1.5rem;
 
   &:hover {
     fill: ${colors.redVibrant};
