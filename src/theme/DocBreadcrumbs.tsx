@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import OriginalHeading from '@theme-original/Heading'
+import OriginalDocBreadcrumbs from '@theme-original/DocBreadcrumbs'
 import React from 'react'
 
 import SentimentTracking from '../components/SentimentTracking'
@@ -12,13 +12,13 @@ const Container = styled.div`
 `
 
 const SentimentTrackingContainer = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
 `
 
-export default function TOCItems(props) {
+export default function DocBreadcrumbs(props) {
   return (
     <Container>
-      <OriginalHeading {...props} />
+      <OriginalDocBreadcrumbs {...props} />
       <SentimentTrackingContainer>
         <SentimentTracking />
       </SentimentTrackingContainer>
