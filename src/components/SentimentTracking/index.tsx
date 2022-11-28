@@ -28,7 +28,6 @@ const Container = styled.div`
 const PositiveSentimentIcon = styled(Smile)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.greenVibrant : 'transparent')};
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
-  margin: 0 0.2rem;
 
   &:hover {
     fill: ${colors.greenVibrant};
@@ -38,7 +37,6 @@ const PositiveSentimentIcon = styled(Smile)<{ isSelected: boolean }>`
 const NegativeSentimentIcon = styled(Frown)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.redVibrant : 'transparent')};
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
-  margin: 0 0.2rem;
 
   &:hover {
     fill: ${colors.redVibrant};
