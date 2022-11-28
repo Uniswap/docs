@@ -1,18 +1,20 @@
 import styled from '@emotion/styled'
-import { ThumbDownIcon, ThumbUpIcon } from '@heroicons/react/outline'
 import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent } from '@uniswap/analytics-events'
 import React, { useCallback, useState } from 'react'
+import { Frown, Meh, Smile } from 'react-feather'
 
 import { colors } from '../../theme/color'
 
 const ANALYTICS_SECTION_NAME = 'RATING'
 const ANALYTICS_POSITIVE_ELEMENT_NAME = 'POSITIVE_SENTIMENT'
 const ANALYTICS_NEGATIVE_ELEMENT_NAME = 'NEGATIVE_SENTIMENT'
+const ANALYTICS_NEUTRAL_ELEMENT_NAME = 'NEUTRAL_SENTIMENT'
 const ANALYTICS_EVENT_NAME = 'RATING_CLICKED'
 
 enum Sentiment {
   NEGATIVE = 'NEGATIVE',
+  NEUTRAL = 'NEUTRAL',
   POSITIVE = 'POSITIVE',
 }
 
@@ -28,23 +30,33 @@ const SentimentContainer = styled.div`
   align-items: center;
 `
 
-const PositiveSentimentIcon = styled(ThumbUpIcon)<{ isSelected: boolean }>`
+const PositiveSentimentIcon = styled(Smile)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.greenVibrant : 'transparent')};
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
-  width: 1.5rem;
+  margin: 0 0.2rem;
 
   &:hover {
     fill: ${colors.greenVibrant};
   }
 `
 
-const NegativeSentimentIcon = styled(ThumbDownIcon)<{ isSelected: boolean }>`
+const NegativeSentimentIcon = styled(Frown)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.redVibrant : 'transparent')};
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
-  width: 1.5rem;
+  margin: 0 0.2rem;
 
   &:hover {
     fill: ${colors.redVibrant};
+  }
+`
+
+const NeutralSentimentIcon = styled(Meh)<{ isSelected: boolean }>`
+  fill: ${(props) => (props.isSelected ? colors.redVibrant : 'transparent')};
+  opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
+  margin: 0 0.2rem;
+
+  &:hover {
+    fill: ${colors.yellowVibrant};
   }
 `
 
@@ -63,21 +75,32 @@ export default function SentimentTracking() {
 
   return (
     <Container>
+      <StyledTextDiv>Helpful?</StyledTextDiv>
       <TraceEvent
         element={ANALYTICS_POSITIVE_ELEMENT_NAME}
         name={ANALYTICS_EVENT_NAME}
         events={[BrowserEvent.onClick]}
         section={ANALYTICS_SECTION_NAME}
       >
-        <StyledTextDiv>Helpful?</StyledTextDiv>
-        <SentimentContainer>
-          <PositiveSentimentIcon
-            isSelected={isSentimentSelected(Sentiment.POSITIVE)}
-            onClick={() => {
-              setSelectedSentiment(Sentiment.POSITIVE)
-            }}
-          />
-        </SentimentContainer>
+        <PositiveSentimentIcon
+          isSelected={isSentimentSelected(Sentiment.POSITIVE)}
+          onClick={() => {
+            setSelectedSentiment(Sentiment.POSITIVE)
+          }}
+        />
+      </TraceEvent>
+      <TraceEvent
+        element={ANALYTICS_NEUTRAL_ELEMENT_NAME}
+        name={ANALYTICS_EVENT_NAME}
+        events={[BrowserEvent.onClick]}
+        section={ANALYTICS_SECTION_NAME}
+      >
+        <NeutralSentimentIcon
+          isSelected={isSentimentSelected(Sentiment.NEUTRAL)}
+          onClick={() => {
+            setSelectedSentiment(Sentiment.NEUTRAL)
+          }}
+        />
       </TraceEvent>
       <TraceEvent
         element={ANALYTICS_NEGATIVE_ELEMENT_NAME}
@@ -85,14 +108,12 @@ export default function SentimentTracking() {
         events={[BrowserEvent.onClick]}
         section={ANALYTICS_SECTION_NAME}
       >
-        <SentimentContainer>
-          <NegativeSentimentIcon
-            isSelected={isSentimentSelected(Sentiment.NEGATIVE)}
-            onClick={() => {
-              setSelectedSentiment(Sentiment.NEGATIVE)
-            }}
-          />
-        </SentimentContainer>
+        <NegativeSentimentIcon
+          isSelected={isSentimentSelected(Sentiment.NEGATIVE)}
+          onClick={() => {
+            setSelectedSentiment(Sentiment.NEGATIVE)
+          }}
+        />
       </TraceEvent>
     </Container>
   )

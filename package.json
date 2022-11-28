@@ -34,6 +34,7 @@
     "intl-locales-supported": "^1.8.12",
     "react": "18",
     "react-dom": "18",
+    "react-feather": "^2.0.10",
     "rehype-katex": "5",
     "remark-math": "3",
     "web-vitals": "2.1.0"
