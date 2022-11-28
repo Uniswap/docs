@@ -5,6 +5,7 @@ import React, { useCallback, useState } from 'react'
 import { Frown, Meh, Smile } from 'react-feather'
 
 import { colors } from '../../theme/color'
+import { Opacity } from '../../theme/style'
 
 enum Sentiment {
   NEGATIVE = 'NEGATIVE',
@@ -21,7 +22,7 @@ const Container = styled.div`
 
 const PositiveSentimentIcon = styled(Smile)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.greenVibrant : 'transparent')};
-  opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
+  opacity: ${(props) => (props.isSelected ? Opacity.FULL : Opacity.MEDIUM)};
 
   &:hover {
     fill: ${colors.greenVibrant};
@@ -30,7 +31,7 @@ const PositiveSentimentIcon = styled(Smile)<{ isSelected: boolean }>`
 
 const NegativeSentimentIcon = styled(Frown)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.redVibrant : 'transparent')};
-  opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
+  opacity: ${(props) => (props.isSelected ? Opacity.FULL : Opacity.MEDIUM)};
 
   &:hover {
     fill: ${colors.redVibrant};
@@ -39,7 +40,7 @@ const NegativeSentimentIcon = styled(Frown)<{ isSelected: boolean }>`
 
 const NeutralSentimentIcon = styled(Meh)<{ isSelected: boolean }>`
   fill: ${(props) => (props.isSelected ? colors.yellowVibrant : 'transparent')};
-  opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
+  opacity: ${(props) => (props.isSelected ? Opacity.FULL : Opacity.MEDIUM)};
   margin: 0 0.2rem;
 
   &:hover {
