@@ -20,27 +20,27 @@ const Container = styled.div`
   justify-content: center;
 `
 
-const PositiveSentimentIcon = styled(Smile)<{ isSelected: boolean }>`
-  fill: ${(props) => (props.isSelected ? colors.greenVibrant : 'transparent')};
-  opacity: ${(props) => (props.isSelected ? Opacity.FULL : Opacity.MEDIUM)};
+const PositiveSentimentIcon = styled(Smile)<{ selected: boolean }>`
+  fill: ${(props) => (props.selected ? colors.greenVibrant : 'transparent')};
+  opacity: ${(props) => (props.selected ? Opacity.FULL : Opacity.MEDIUM)};
 
   &:hover {
     fill: ${colors.greenVibrant};
   }
 `
 
-const NegativeSentimentIcon = styled(Frown)<{ isSelected: boolean }>`
-  fill: ${(props) => (props.isSelected ? colors.redVibrant : 'transparent')};
-  opacity: ${(props) => (props.isSelected ? Opacity.FULL : Opacity.MEDIUM)};
+const NegativeSentimentIcon = styled(Frown)<{ selected: boolean }>`
+  fill: ${(props) => (props.selected ? colors.redVibrant : 'transparent')};
+  opacity: ${(props) => (props.selected ? Opacity.FULL : Opacity.MEDIUM)};
 
   &:hover {
     fill: ${colors.redVibrant};
   }
 `
 
-const NeutralSentimentIcon = styled(Meh)<{ isSelected: boolean }>`
-  fill: ${(props) => (props.isSelected ? colors.yellowVibrant : 'transparent')};
-  opacity: ${(props) => (props.isSelected ? Opacity.FULL : Opacity.MEDIUM)};
+const NeutralSentimentIcon = styled(Meh)<{ selected: boolean }>`
+  fill: ${(props) => (props.selected ? colors.yellowVibrant : 'transparent')};
+  opacity: ${(props) => (props.selected ? Opacity.FULL : Opacity.MEDIUM)};
   margin: 0 0.2rem;
 
   &:hover {
@@ -71,7 +71,7 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
         section={analyticsSection}
       >
         <PositiveSentimentIcon
-          isSelected={isSentimentSelected(Sentiment.POSITIVE)}
+          selected={isSentimentSelected(Sentiment.POSITIVE)}
           onClick={() => {
             setSelectedSentiment(Sentiment.POSITIVE)
           }}
@@ -84,7 +84,7 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
         section={analyticsSection}
       >
         <NeutralSentimentIcon
-          isSelected={isSentimentSelected(Sentiment.NEUTRAL)}
+          selected={isSentimentSelected(Sentiment.NEUTRAL)}
           onClick={() => {
             setSelectedSentiment(Sentiment.NEUTRAL)
           }}
@@ -97,7 +97,7 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
         section={analyticsSection}
       >
         <NegativeSentimentIcon
-          isSelected={isSentimentSelected(Sentiment.NEGATIVE)}
+          selected={isSentimentSelected(Sentiment.NEGATIVE)}
           onClick={() => {
             setSelectedSentiment(Sentiment.NEGATIVE)
           }}
