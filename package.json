@@ -23,7 +23,6 @@
     "@docusaurus/theme-search-algolia": "^2.0.0-beta.17",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@heroicons/react": "^1.0.1",
     "@mdx-js/react": "^1.6.21",
     "@types/react": "^17.0.11",
     "@uniswap/analytics": "1.1.0",
@@ -34,6 +33,7 @@
     "intl-locales-supported": "^1.8.12",
     "react": "18",
     "react-dom": "18",
+    "react-feather": "^2.0.10",
     "rehype-katex": "5",
     "remark-math": "3",
     "web-vitals": "2.1.0"

@@ -3,22 +3,13 @@ import './styles.module.css'
 import Link from '@docusaurus/Link'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import styled from '@emotion/styled'
-
-import SearchBarWithAnalytics from '../theme/SearchBar'
-import { TraceEvent } from '@uniswap/analytics'
-
-import {
-  BookOpenIcon,
-  ChatIcon,
-  CodeIcon,
-  InformationCircleIcon,
-  QuestionMarkCircleIcon,
-  ArrowSmUpIcon as LinkIcon,
-} from '@heroicons/react/outline'
 import Discord from '@site/static/img/discord.svg'
+import GitHub from '@site/static/img/github.svg'
+import Npm from '@site/static/img/npm.svg'
 import UGP from '@site/static/img/UGP.png'
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
+import { TraceEvent } from '@uniswap/analytics'
 import {
   BrowserEvent,
   DocsHomepageElementName as ElementName,
@@ -26,25 +17,26 @@ import {
   EventName,
 } from '@uniswap/analytics-events'
 import React from 'react'
-import { GitHub } from 'react-feather'
+import { ArrowUpRight as LinkIcon, BookOpen, HelpCircle, Info, MessageCircle } from 'react-feather'
 
+import SearchBarWithAnalytics from '../theme/SearchBar'
 
 export const actions = [
   {
     title: 'What is Uniswap',
-    icon: InformationCircleIcon,
+    icon: Info,
     to: '/concepts/overview',
     text: `Learn about the core concepts of the Uniswap Protocol, Swaps, Pools, Concentrated Liquidity and more.`,
   },
   {
     title: 'Integrate with Uniswap',
-    icon: QuestionMarkCircleIcon,
+    icon: HelpCircle,
     to: '/sdk/v3/overview',
     text: `Learn how to integrate with Uniswap by building a dApp through guided examples.`,
   },
   {
     title: 'The Uniswap smart contracts',
-    icon: BookOpenIcon,
+    icon: BookOpen,
     to: '/contracts/v3/overview',
     text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples.`,
   },
@@ -54,25 +46,26 @@ export const developerLinks = [
   {
     title: 'uniswap-v3-core',
     href: 'https://github.com/Uniswap/uniswap-v3-core',
-    icon: CodeIcon,
+    icon: GitHub,
   },
   {
     title: 'uniswap-v3-sdk',
     href: 'https://github.com/Uniswap/uniswap-v3-sdk',
-    icon: CodeIcon,
+    icon: GitHub,
   },
   {
     title: 'uniswap-v3-periphery',
     href: 'https://github.com/Uniswap/uniswap-v3-periphery',
-    icon: CodeIcon,
+    icon: GitHub,
   },
   {
     title: 'Deployment addresses',
     href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
   },
   {
-    title: '@uniswap/widgets',
+    title: 'widgets',
     href: 'https://www.npmjs.com/package/@uniswap/widgets',
+    icon: Npm,
   },
 ]
 
@@ -241,10 +234,10 @@ const IconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 4px;
+  margin-right: 0.5rem;
 `
 
-const LinkIconWrapper = styled(IconWrapper)`
-  transform: rotate(45deg);
+const LinkIconWrapper = styled.div`
   opacity: 0.25;
 `
 
@@ -490,7 +483,7 @@ export default function Home() {
           >
             <Link style={{ textDecoration: 'none' }} href={'https://gov.uniswap.org/'}>
               <CenterCard>
-                <ChatIcon style={{ width: '48px', height: '48px' }} />
+                <MessageCircle style={{ width: '48px', height: '48px' }} />
                 <div>
                   <h3>Forum</h3>
                   <p>Discuss governance and more.</p>
@@ -506,7 +499,7 @@ export default function Home() {
           >
             <Link style={{ textDecoration: 'none' }} href={'https://github.com/Uniswap'}>
               <CenterCard>
-                <CodeIcon style={{ width: '48px', height: '48px' }} />
+                <GitHub style={{ width: '48px', height: '48px' }} />
                 <div>
                   <h3>GitHub</h3>
                   <p>View all Uniswap repositories.</p>
