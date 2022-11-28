@@ -363,7 +363,7 @@ export default function Home() {
                   element={action.to}
                   events={[BrowserEvent.onClick]}
                   name={EventName.PAGE_CLICKED}
-                  section={'DAPP_LINKS'}
+                  section={SectionName.DAPP_LINKS}
                 >
                   <Link style={{ textDecoration: 'none' }} key={action.title} to={action.to}>
                     <Card key={action.title} style={{ marginBottom: '1rem' }}>
@@ -392,7 +392,7 @@ export default function Home() {
                   element={action.to}
                   events={[BrowserEvent.onClick]}
                   name={EventName.PAGE_CLICKED}
-                  section={'SMART_CONTRACT_LINKS'}
+                  section={SectionName.SMART_CONTRACT_LINKS}
                 >
                   <Link style={{ textDecoration: 'none' }} key={action.title} to={action.to}>
                     <Card key={action.title} style={{ marginBottom: '1rem' }}>
