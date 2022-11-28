@@ -1,7 +1,7 @@
-import React from 'react'
 import OriginalDocSidebarItem from '@theme-original/DocSidebarItem'
 import { TraceEvent } from '@uniswap/analytics'
 import { BrowserEvent, EventName } from '@uniswap/analytics-events'
+import React from 'react'
 
 const DOCUSAURUS_LINK_ITEM_TYPE = 'link'
 

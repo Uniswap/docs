@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
 import { useLocation } from '@docusaurus/router'
-
-import { initializeAnalytics, sendAnalyticsEvent, Trace, user, OriginApplication } from '@uniswap/analytics'
-import { CustomUserProperties, EventName, getBrowser } from '@uniswap/analytics-events'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import { initializeAnalytics, OriginApplication, sendAnalyticsEvent, Trace, user } from '@uniswap/analytics'
+import { CustomUserProperties, EventName, getBrowser } from '@uniswap/analytics-events'
+import React, { useEffect } from 'react'
 import { getCLS, getFCP, getFID, getLCP, Metric } from 'web-vitals'
 
 // Placeholder API key. Actual API key used in the proxy server

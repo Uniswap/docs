@@ -4,12 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from 'react'
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import Link from '@docusaurus/Link'
-import Translate from '@docusaurus/Translate'
-import { useActivePlugin, useActiveVersion, useDocVersionSuggestions } from '@theme/hooks/useDocs'
 import { useDocsPreferredVersion } from '@docusaurus/theme-common'
+import Translate from '@docusaurus/Translate'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import { useActivePlugin, useActiveVersion, useDocVersionSuggestions } from '@theme/hooks/useDocs'
+import React from 'react'
 
 type VersionLabelProps = {
   siteTitle?: string
