@@ -61,6 +61,7 @@ export const developerLinks = [
   {
     title: 'Deployment addresses',
     href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
+    icon: GitHub,
   },
   {
     title: 'widgets',
@@ -294,6 +295,12 @@ const HideMedium = styled.div`
   }
 `
 
+const StyledIcon = styled.div`
+  svg {
+    fill: var(--ifm-font-color-base);
+  }
+`
+
 export default function Home() {
   return (
     <Layout title={`Uniswap Docs`} description="Technical Documentation For The Uniswap Protocol">
@@ -314,7 +321,6 @@ export default function Home() {
             </HideMedium>
           </div>
           <StyledTitleImage
-            alt="Docusaurus themed image"
             sources={{
               light: useBaseUrl('/img/grow.png'),
               dark: useBaseUrl('/img/grow2.png'),
@@ -440,11 +446,11 @@ export default function Home() {
                   <Card key={action.href} style={{ marginBottom: '0.5rem' }}>
                     <LinkRow>
                       <div style={{ display: 'flex', alignItems: 'center' }}>
-                        {action.icon && (
-                          <IconWrapper>
+                        <IconWrapper>
+                          <StyledIcon>
                             <action.icon style={{ width: '24px' }} />
-                          </IconWrapper>
-                        )}
+                          </StyledIcon>
+                        </IconWrapper>
                         {action.title}
                       </div>
                       <LinkIconWrapper>
@@ -499,7 +505,9 @@ export default function Home() {
           >
             <Link style={{ textDecoration: 'none' }} href={'https://github.com/Uniswap'}>
               <CenterCard>
-                <GitHub style={{ width: '48px', height: '48px' }} />
+                <StyledIcon>
+                  <GitHub style={{ width: '48px', height: '48px' }} />
+                </StyledIcon>
                 <div>
                   <h3>GitHub</h3>
                   <p>View all Uniswap repositories.</p>
