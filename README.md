@@ -18,6 +18,7 @@ This web application contains all documentation for Uniswap products. It is buil
 
 ## Adding Documentation
 
+> **After deploying your change, please make sure you [update the search indices](#how-to-update-search-indices-with-algolia) if a new file was added as part of the change**
 ### Overview
 A product overview should address points such as:
 
@@ -37,8 +38,8 @@ Guides should ensure users can easily integrate with the product by including th
 A good example is the [V3 SDK Guides](./docs/sdk/v3/guides/01-quick-start.md).
 
 ### Technical References
-This should contain the technical reference for the exported interfaces. A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overview.md).
-
+This should contain the technical reference for the exported interfaces. A good example is the [V3 SDK](./docs/sdk/v3/reference/overview).
+These files can be created using the [guides below](#how-to-create-a-technical-reference).
 
 # Contributing to Uniswap Docs
 
@@ -55,6 +56,7 @@ Contributing to the docs site is a great way to get involved in the dev communit
 - Did I include Technical Reference of the product under *<category_name>/<product_name>/reference* ?
 - Did I give a descriptive name/id to each document? This is important because that shows up in the URL
 - Did I open a PR using the the [contributing](./CONTRIBUTING.md) guidelines?
+- Did I [update the search indices](#how-to-update-search-indices-with-algolia) after my change was deployed?
 
 ## Checklist example
 
@@ -73,8 +75,11 @@ Let's walk through an example by considering the *Permit2* smart contract:
     - Yes I added them [here](./docs/contracts/permit2/reference)
 - Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
     - Yes
+- Did I update the search indices after my change was deployed?
+    - Yes I did using the [guides below](#how-to-update-search-indices-with-algolia)
 
-# How to generate markdown files from solidity Natspec comments
+# How to create a Technical Reference
+## How to generate markdown files from solidity Natspec comments
 
 Install solidity doc gen
 `npm install solidity-docgen`
@@ -86,9 +91,12 @@ Put the updated template `contract.hbs` in a /templates folder under the same di
 
 Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
 
-# How to gernerate markdown files from typescript commments
+# How to generate markdown files from typescript comments
 
 `npm install --save-dev typedoc typedoc-plugin-markdown`
+
+Depending on how your project was created, you might have to install Typescript:
+`npm install --save-dev typescript`
 
 `typedoc --out <docs> src/index.ts`
 
@@ -96,14 +104,15 @@ see https://www.npmjs.com/package/typedoc-plugin-markdown for details
 
 # How to Update search indices with algolia
 
-create .env file with `APPLICATION_ID` and the `API_KEY` (write access)
-Edit config.json file with
-
-- start url from updated website
-- sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
-- "v3-docs" index name
-- install jq : `brew install jq`
-  run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
+- Create an .env file with `APPLICATION_ID` and the `API_KEY` (write access). 
+If you don't have those, one for the Engineering Managers should be able to help you.
+- Edit config.json file if needed:
+    - Start url from updated website
+    - Sitemap url from updated website: eg for docs: https://docs.uniswap.org/sitemap.xml
+    - Use "v3-docs" as the index name
+- [Install](https://www.docker.com/products/docker-desktop/) and start running Docker Desktop
+- Install jq `brew install jq`
+- Run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
 
 ## Installation
 
@@ -132,3 +141,7 @@ yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+
+## Deployment
+The application automatically deployed to production using [Vercel](https://vercel.com/uniswap/docs) upon merge into **main**.
