@@ -18,6 +18,7 @@ This web application contains all documentation for Uniswap products. It is buil
 
 ## Adding Documentation
 
+> **Please make sure you [update the search indices](#how-to-update-search-indices-with-algolia) every time a new file is added!**
 ### Overview
 A product overview should address points such as:
 
@@ -37,8 +38,8 @@ Guides should ensure users can easily integrate with the product by including th
 A good example is the [V3 SDK Guides](./docs/sdk/v3/guides/01-quick-start.md).
 
 ### Technical References
-This should contain the technical reference for the exported interfaces. A good example is the [V3 Smart Contracts](./docs/contracts/v3/reference/overview.md).
-
+This should contain the technical reference for the exported interfaces. A good example is the [V3 SDK](./docs/sdk/v3/reference/overview).
+These files can be created using the [guides below](#how-to-create-a-technical-reference).
 
 # Contributing to Uniswap Docs
 
@@ -52,8 +53,9 @@ Contributing to the docs site is a great way to get involved in the dev communit
 - Did I introduce any new concepts? If so add under */concepts/<category_name><product_name>*
 - Did I include an Overview of the product under *<category_name>/<product_name>/overview* ?
 - Did I include Guides of the product under *<category_name>/<product_name>/guides* ?
-- Did I include Technical Reference of the product under *<category_name>/<product_name>/reference* ?
+- Did I include Technical Reference of the product under *<category_name>/<product_name>/reference* ? 
 - Did I give a descriptive name/id to each document? This is important because that shows up in the URL
+- Did I [update the search indices?](#how-to-update-search-indices-with-algolia)
 - Did I open a PR using the the [contributing](./CONTRIBUTING.md) guidelines?
 
 ## Checklist example
@@ -71,10 +73,13 @@ Let's walk through an example by considering the *Permit2* smart contract:
     - No, they should be added [here](./docs/contracts/permit2/guides)
 - Did I include Technical Reference of the product under *contracts/permit2/reference* ?
     - Yes I added them [here](./docs/contracts/permit2/reference)
+- Did I update the search indices?
+    - Yes I did using the [guides below](#how-to-update-search-indices-with-algolia)
 - Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
     - Yes
 
-# How to generate markdown files from solidity Natspec comments
+# How to create a Technical Reference
+## How to generate markdown files from solidity Natspec comments
 
 Install solidity doc gen
 `npm install solidity-docgen`
@@ -86,7 +91,7 @@ Put the updated template `contract.hbs` in a /templates folder under the same di
 
 Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
 
-# How to gernerate markdown files from typescript commments
+# How to generate markdown files from typescript comments
 
 `npm install --save-dev typedoc typedoc-plugin-markdown`
 
