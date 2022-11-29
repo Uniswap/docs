@@ -17,11 +17,11 @@ To begin, we recommend looking at the [**Guides**](../v3/guides/06-auto-router.m
 
 # Resources
 
-- [**V3 SDK Github Repo**](https://github.com/Uniswap/smart-order-router)
-- [**V3 SDK NPM Package**](https://www.npmjs.com/package/@uniswap/smart-order-router)
+- [**Smart Order Router SDK Github Repo**](https://github.com/Uniswap/smart-order-router)
+- [**Smart Order Router SDK NPM Package**](https://www.npmjs.com/package/@uniswap/smart-order-router)
 
 [![Unit Tests](https://github.com/Uniswap/uniswap-v3-sdk/workflows/Unit%20Tests/badge.svg)](https://github.com/Uniswap/uniswap-smart-order-router/actions?query=workflow%3A%22Unit+Tests%22)
-[![Lint](https://github.com/Uniswap/uniswap-v3-sdk/workflows/Lint/badge.svg)](https://github.com/Uniswap/uniswap-smart-order-router/actions?query=workflow%3ALint)
-[![npm version](https://img.shields.io/npm/v/@uniswap/v3-sdk/latest.svg)](https://www.npmjs.com/package/@uniswap/v3-sdk/v/latest)
-[![npm bundle size (scoped version)](https://img.shields.io/bundlephobia/minzip/@uniswap/smart-order-router/latest.svg)](https://bundlephobia.com/result?p=@uniswap/v3-sdk@latest)
+[![Lint](https://github.com/Uniswap/uniswap-smart-order-router/workflows/Lint/badge.svg)](https://github.com/Uniswap/uniswap-smart-order-router/actions?query=workflow%3ALint)
+[![npm version](https://img.shields.io/npm/v/@uniswap/smart-order-router/latest.svg)](https://www.npmjs.com/package/@uniswap/smart-order-router/v/latest)
+[![npm bundle size (scoped version)](https://img.shields.io/bundlephobia/minzip/@uniswap/smart-order-router/latest.svg)](https://bundlephobia.com/result?p=@uniswap/smart-order-router@latest)
 [![Discord](https://img.shields.io/badge/discord-join%20chat-blue.svg)](https://discord.com/channels/597638925346930701/607978109089611786)
