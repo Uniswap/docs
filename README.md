@@ -18,7 +18,7 @@ This web application contains all documentation for Uniswap products. It is buil
 
 ## Adding Documentation
 
-> **Please make sure you [update the search indices](#how-to-update-search-indices-with-algolia) every time a new file is added!**
+> **After deploying your change, please make sure you [update the search indices](#how-to-update-search-indices-with-algolia) every time a new file is added!**
 ### Overview
 A product overview should address points such as:
 
@@ -55,8 +55,8 @@ Contributing to the docs site is a great way to get involved in the dev communit
 - Did I include Guides of the product under *<category_name>/<product_name>/guides* ?
 - Did I include Technical Reference of the product under *<category_name>/<product_name>/reference* ? 
 - Did I give a descriptive name/id to each document? This is important because that shows up in the URL
-- Did I [update the search indices?](#how-to-update-search-indices-with-algolia)
 - Did I open a PR using the the [contributing](./CONTRIBUTING.md) guidelines?
+- Did I [update the search indices](#how-to-update-search-indices-with-algolia) after my change was deployed?
 
 ## Checklist example
 
@@ -73,10 +73,10 @@ Let's walk through an example by considering the *Permit2* smart contract:
     - No, they should be added [here](./docs/contracts/permit2/guides)
 - Did I include Technical Reference of the product under *contracts/permit2/reference* ?
     - Yes I added them [here](./docs/contracts/permit2/reference)
-- Did I update the search indices?
-    - Yes I did using the [guides below](#how-to-update-search-indices-with-algolia)
 - Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
     - Yes
+- Did I update the search indices after my change was deployed?
+    - Yes I did using the [guides below](#how-to-update-search-indices-with-algolia)
 
 # How to create a Technical Reference
 ## How to generate markdown files from solidity Natspec comments
@@ -95,20 +95,23 @@ Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
 
 `npm install --save-dev typedoc typedoc-plugin-markdown`
 
+Depending on how your project was created, you might have to install Typescript:
+`npm install --save-dev typescript`
+
 `typedoc --out <docs> src/index.ts`
 
 see https://www.npmjs.com/package/typedoc-plugin-markdown for details
 
 # How to Update search indices with algolia
 
-create .env file with `APPLICATION_ID` and the `API_KEY` (write access)
-Edit config.json file with
-
-- start url from updated website
-- sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
-- "v3-docs" index name
-- install jq : `brew install jq`
-  run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
+- Create an .env file with `APPLICATION_ID` and the `API_KEY` (write access)
+- Edit config.json file with
+    - Start url from updated website
+    - Sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
+    - Use "v3-docs" as the index name
+- [Install](https://www.docker.com/products/docker-desktop/) and start running Docker Desktop
+- Install jq `brew install jq`
+- Run `docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper`
 
 ## Installation
 
@@ -137,3 +140,7 @@ yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+
+## Deployment
+The application automatically deployed to production using [Vercel](https://vercel.com/uniswap/docs) upon merge into **main**.
