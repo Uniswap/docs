@@ -12,7 +12,7 @@ The Uniswap Core SDK provides abstractions for other SKDs to use in a Typescript
 
 This SDK is not expected to be used in isolation, but only as part of other SDKs.
 
-We recommend taking a look at the [**Technical Reference**](./reference/overview.md).
+We recommend taking a look at the [**Technical Reference**](./reference/overview).
 
 
 # Resources

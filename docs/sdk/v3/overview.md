@@ -12,7 +12,7 @@ The Uniswap V3 SDK provides abstractions to assist you with interacting with the
 
 These docs will help you better understand how to use the SDK and integrate it into your application.
 
-To begin, we recommend looking at the [**Guides**](./guides/01-quick-start.md) and for deeper reference see the [**Technical Reference**](./reference/overview.md).
+To begin, we recommend looking at the [**Guides**](./guides/01-quick-start) and for deeper reference see the [**Technical Reference**](./reference/overview).
 
 
 # Resources
