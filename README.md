@@ -18,7 +18,7 @@ This web application contains all documentation for Uniswap products. It is buil
 
 ## Adding Documentation
 
-> **After deploying your change, please make sure you [update the search indices](#how-to-update-search-indices-with-algolia) every time a new file is added!**
+> **After deploying your change, please make sure you [update the search indices](#how-to-update-search-indices-with-algolia) every time a new file is added**
 ### Overview
 A product overview should address points such as:
 
@@ -104,10 +104,11 @@ see https://www.npmjs.com/package/typedoc-plugin-markdown for details
 
 # How to Update search indices with algolia
 
-- Create an .env file with `APPLICATION_ID` and the `API_KEY` (write access)
-- Edit config.json file as required:
+- Create an .env file with `APPLICATION_ID` and the `API_KEY` (write access). 
+If you don't have those, one for the Engineering Managers should be able to help you.
+- Edit config.json file if needed:
     - Start url from updated website
-    - Sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
+    - Sitemap url from updated website: eg for docs: https://docs.uniswap.org/sitemap.xml
     - Use "v3-docs" as the index name
 - [Install](https://www.docker.com/products/docker-desktop/) and start running Docker Desktop
 - Install jq `brew install jq`
