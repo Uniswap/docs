@@ -98,9 +98,11 @@ Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
 Depending on how your project was created, you might have to install Typescript:
 `npm install --save-dev typescript`
 
-`typedoc --out <docs> src/index.ts`
+`npx typedoc --out <docs> src/index.ts`
 
-see https://www.npmjs.com/package/typedoc-plugin-markdown for details
+You might have to use the `----skipErrorChecking` flag to the `typedoc` command for cases where types are fetched during transpile time, such as contract ABIs.
+
+See https://www.npmjs.com/package/typedoc-plugin-markdown for details.
 
 # How to Update search indices with algolia
 

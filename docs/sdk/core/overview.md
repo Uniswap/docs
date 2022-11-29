@@ -2,8 +2,7 @@
 id: overview
 sidebar_position: 1
 title: Overview
-------
-
+---
 # The Uniswap Core SDK
 
 > **Welcome to the V3 Core SDK!**

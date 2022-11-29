@@ -3,7 +3,6 @@ id: overview
 sidebar_position: 1
 title: Overview
 ---
-
 # The Uniswap V3 SDK
 
 > **Welcome to the V3 Uniswap SDK!**
