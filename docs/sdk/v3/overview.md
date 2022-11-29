@@ -6,12 +6,11 @@ title: Overview
 
 # The Uniswap V3 SDK
 
-Welcome to the V3 Uniswap SDK. The Uniswap V3 SDK provides abstractions to assist you with interacting with the Uniswap V3 smart contracts in a Typescript/Javascript environment.
+> **Welcome to the V3 Uniswap SDK!**
+
+The Uniswap V3 SDK provides abstractions to assist you with interacting with the Uniswap V3 smart contracts in a Typescript/Javascript environment. It makes uses of the [**Core SDK**](../core//overview.md) to gain access to types and functions that are common amongst the Uniswap SDKs.
 
 These docs will help you better understand how to use the SDK and integrate it into your application.
-
-It makes uses of the [core-sdk](../core//overview.md) to gain access to types and functions
-that are common amongst the Uniswap sdks.
 
 To begin, we recommend looking at the [**Guides**](./guides/01-quick-start.md) and for deeper reference see the [**Technical Reference**](./reference/overview.md).
 
