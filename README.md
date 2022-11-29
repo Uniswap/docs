@@ -18,7 +18,7 @@ This web application contains all documentation for Uniswap products. It is buil
 
 ## Adding Documentation
 
-> **After deploying your change, please make sure you [update the search indices](#how-to-update-search-indices-with-algolia) every time a new file is added**
+> **After deploying your change, please make sure you [update the search indices](#how-to-update-search-indices-with-algolia) if a new file was added as part of the change**
 ### Overview
 A product overview should address points such as:
 
