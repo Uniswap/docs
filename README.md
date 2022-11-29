@@ -105,7 +105,7 @@ see https://www.npmjs.com/package/typedoc-plugin-markdown for details
 # How to Update search indices with algolia
 
 - Create an .env file with `APPLICATION_ID` and the `API_KEY` (write access)
-- Edit config.json file with
+- Edit config.json file as required:
     - Start url from updated website
     - Sitemap url from updated website: ex) for docs: https://docs.uniswap.org/sitemap.xml
     - Use "v3-docs" as the index name
