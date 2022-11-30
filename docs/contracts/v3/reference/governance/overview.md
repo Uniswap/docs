@@ -216,14 +216,14 @@ function state(uint proposalId) returns (ProposalState)
 ```
 
 Returns enum of type ProposalState, possible types are:
--Pending
--Active
--Canceled
--Defeated
--Succeeded
--Queued
--Expired
--andExecuted
+- Pending
+- Active
+- Canceled
+- Defeated
+- Succeeded
+- Queued
+- Expired
+- Executed
 
 | Name       | Type   |                    |
 | :--------- | :----- | :----------------- |
