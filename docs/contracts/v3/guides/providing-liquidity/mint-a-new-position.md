@@ -8,7 +8,7 @@ sidebar_position: 2
 
 To mint a new position, we use the `nonFungiblePositionManager` and call `mint`.
 
-For the sake of this example, were hard coding the token amounts to be minted. In production, this would be a user-configurable function argument.
+For the sake of this example, we're hard coding the token amounts to be minted. In production, this would be a user-configurable function argument.
 
 ```solidity
     /// @notice Calls the mint function defined in periphery, mints the same amount of each token. For this example we are providing 1000 DAI and 1000 USDC in liquidity
