@@ -476,7 +476,7 @@ export default function Home() {
                 <Discord style={{ width: '48px', height: '48px' }} />
                 <div>
                   <h3>Discord</h3>
-                  <p>Hop in to the #dev-chat to get realtime help.</p>
+                  <p>Join our Developer Community.</p>
                 </div>
               </CenterCard>
             </Link>
