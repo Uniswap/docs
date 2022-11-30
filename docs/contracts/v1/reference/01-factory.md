@@ -60,6 +60,8 @@ factoryContract.methods.createExchange(token).send()
 getExchange(token: address): address
 ```
 
+## Web3
+
 ```javascript
 factoryContract.methods.getExchange(token).call()
 ```
