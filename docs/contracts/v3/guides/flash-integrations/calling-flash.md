@@ -72,7 +72,6 @@ Finally, we call `flash` on our previously declared `pool`. In the last paramete
                 })
             )
         );
-    }
 ```
 
 The full function:
