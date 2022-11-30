@@ -216,14 +216,14 @@ function state(uint proposalId) returns (ProposalState)
 ```
 
 Returns enum of type ProposalState, possible types are:
--Pending
--Active
--Canceled
--Defeated
--Succeeded
--Queued
--Expired
--andExecuted
+- Pending
+- Active
+- Canceled
+- Defeated
+- Succeeded
+- Queued
+- Expired
+- Executed
 
 | Name       | Type   |                    |
 | :--------- | :----- | :----------------- |
@@ -311,7 +311,7 @@ Cast a vote on a proposal. The account's voting weight is determined by it's num
 function castVoteBySig(uint proposalId, bool support, uint8 v, bytes32 r, bytes32 s)
 ```
 
-Cast a vote on a proposal. The account's voting weight is determined its number of delegated votes at the time the proposal became active. This method has the same purpose as Cast Vote, but instead enables offline signatures to participate in governance voting. For more details on how to create an offline signature, review EIP-712.
+Cast a vote on a proposal. The account's voting weight is determined by its number of delegated votes at the time the proposal became active. This method has the same purpose as Cast Vote, but instead enables offline signatures to participate in governance voting. For more details on how to create an offline signature, review EIP-712.
 
 | Name       | Type      |                                                                                         |
 | :--------- | :-------- | :-------------------------------------------------------------------------------------- |

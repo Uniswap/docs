@@ -142,8 +142,8 @@ Because this example transfers in the inbound asset in anticipation of the swap 
 /// @param amountInMaximum The amount of DAI we are willing to spend to receive the specified amount of WETH9.
 /// @return amountIn The amount of DAI actually spent in the swap.
 function swapExactOutputSingle(uint256 amountOut, uint256 amountInMaximum) external returns (uint256 amountIn) {
-// Transfer the specified amount of DAI to this contract.
-TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), amountInMaximum);
+        // Transfer the specified amount of DAI to this contract.
+        TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), amountInMaximum);
 
         // Approve the router to spend the specified `amountInMaximum` of DAI.
         // In production, you should choose the maximum amount to spend based on oracles or other data sources to achieve a better swap.

@@ -24,7 +24,7 @@ Fetches time-weighted average tick using Uniswap V3 oracle
 
 | Name                      | Type    | Description                                                                       |
 | :------------------------ | :------ | :-------------------------------------------------------------------------------- |
-| `timeWeightedAverageTick` | address | The time-weighted average tick from (block.timestamp - period) to block.timestamp |
+| `timeWeightedAverageTick` | int24   | The time-weighted average tick from (block.timestamp - period) to block.timestamp |
 
 ### getQuoteAtTick
 
