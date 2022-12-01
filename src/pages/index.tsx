@@ -315,7 +315,7 @@ export default function Home() {
               alignItems: 'center',
             }}
           >
-            <h1 style={{ fontWeight: 600 }}> Welcome to the Uniswap Docs</h1>
+            <h1 style={{ fontWeight: 600 }}> Welcome to Uniswap Docs</h1>
             <HideMedium>
               <SearchBarWithAnalytics />
             </HideMedium>
