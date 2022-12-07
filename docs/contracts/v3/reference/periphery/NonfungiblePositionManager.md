@@ -76,8 +76,21 @@ a method does not exist, i.e. the pool is assumed to be initialized.
 
 ```solidity
   function tokenURI(
+    uint256 tokenId
   ) public view returns (string)
 ```
+
+Returns a URI describing a particular token ID
+
+#### Parameters:
+
+| Name      | Type    | Description                                              |
+| :-------- | :------ | :------------------------------------------------------- |
+| `tokenId` | uint256 | The ID of the token that represents the minted position  |
+
+#### Return Values:
+
+A base64 string with the URI data.
 
 ### baseURI
 
