@@ -26,3 +26,6 @@ package-lock.json
 
 # For analytics testing
 *.tgz
+
+# VSCode
+.vscode/
