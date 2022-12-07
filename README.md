@@ -30,10 +30,23 @@ A product overview should address points such as:
 A good example is the [V3 Smart Contracts](./docs/contracts/v3/overview.md).
 
 ### Guides
-Guides should ensure users can easily integrate with the product by including the following parts:
-- An introduction that gives the developer the required context and a summary of what the guide will cover and result in.
-- A walk-through of the provided example code. The guide should not directly include large blocks of code, but should instead reference/link to this code as needed, including snippets sparingly when required.
-- An output or end state that users can test against.
+> Guides should follow the **Principles of a Good Guide**:
+- A guide corresponds to a reusable piece of code that demonstrates a single concept in the Uniswap ecosystem.
+- Guides have three parts:
+    1. An **introduction** that explains the concept that the piece of code implements and a summary of what the guide will cover and result in.
+    2. A step-by-step **walkthrough** of each line of the example code 
+    3. An **output** or end state that users can test against what they’re seeing to know if they implemented correctly
+- Guides do not show source code snippets that should not be included in the example (IE using snippets from a source contract to explain how to integrate with it). If a guide needs to reference an external piece of code it should link to the source code or technical reference.
+- We keep Links and References ***only at the bottom*** of pages and reference them using footnotes to **keep distractions at a minimum**
+- Our goal is to have the developer build something within **10 minutes per guide** but also provide the option for a deep dive by providing references to extra content.
+- Guides should end with a **transition** to the next one, recommendations and real world projects examples
+- Each guides should refer to a code example in our example-repo
+- Guides should be standalone pieces
+- Use the least dependencies as possible
+- Input changes (eg address, tokens, amounts) should be in the code
+
+By implementing these consistent principles Uniswap will have docs that are easy to understand and produce reusable code for its community.
+
 
 A good example is the [V3 SDK Guides](./docs/sdk/v3/guides/01-quick-start.md).
 
