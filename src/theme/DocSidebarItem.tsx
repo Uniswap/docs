@@ -1,6 +1,6 @@
 import OriginalDocSidebarItem from '@theme-original/DocSidebarItem'
 import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, EventName } from '@uniswap/analytics-events'
+import { BrowserEvent, SharedEventName } from '@uniswap/analytics-events'
 import React from 'react'
 
 const DOCUSAURUS_LINK_ITEM_TYPE = 'link'
@@ -11,7 +11,7 @@ export default function DocSidebarItem(props: { item }) {
       <TraceEvent
         events={[BrowserEvent.onClick]}
         element={props.item.href}
-        name={EventName.MENU_CLICKED}
+        name={SharedEventName.MENU_CLICKED}
         shouldLogImpression={props.item.type === DOCUSAURUS_LINK_ITEM_TYPE}
       >
         {/* Required for onClick to register */}

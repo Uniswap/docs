@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, DocsSentiment, DocsSentimentSection, EventName } from '@uniswap/analytics-events'
+import { BrowserEvent, DocsSentiment, DocsSentimentSection, SharedEventName } from '@uniswap/analytics-events'
 import React, { useCallback, useState } from 'react'
 import { Frown, Meh, Smile } from 'react-feather'
 
@@ -66,7 +66,7 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
       <StyledTextDiv>Helpful?</StyledTextDiv>
       <TraceEvent
         element={DocsSentiment.POSITIVE_SENTIMENT}
-        name={EventName.SENTIMENT_SUBMITTED}
+        name={SharedEventName.SENTIMENT_SUBMITTED}
         events={[BrowserEvent.onClick]}
         section={analyticsSection}
       >
@@ -79,7 +79,7 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
       </TraceEvent>
       <TraceEvent
         element={DocsSentiment.NEUTRAL_SENTIMENT}
-        name={EventName.SENTIMENT_SUBMITTED}
+        name={SharedEventName.SENTIMENT_SUBMITTED}
         events={[BrowserEvent.onClick]}
         section={analyticsSection}
       >
@@ -92,7 +92,7 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
       </TraceEvent>
       <TraceEvent
         element={DocsSentiment.NEGATIVE_SENTIMENT}
-        name={EventName.SENTIMENT_SUBMITTED}
+        name={SharedEventName.SENTIMENT_SUBMITTED}
         events={[BrowserEvent.onClick]}
         section={analyticsSection}
       >

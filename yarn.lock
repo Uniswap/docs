@@ -3151,6 +3151,10 @@
   resolved "https://registry.yarnpkg.com/@uniswap/analytics-events/-/analytics-events-1.1.1.tgz#7514f45ec4936fb44f94c691b977ba3f741a54b3"
   integrity sha512-B8cIbBdpqv3do4mO+/bu6WGsIuTuQqjtYDGZthhCrmdiN3ImE8HVGXKzVV3t9CyG1vPssxCtRSeSgyPVOm/4vA==
 
+"@uniswap/analytics-events@file:uniswap-analytics-events-dev.tgz":
+  version "0.0.1"
+  resolved "file:uniswap-analytics-events-dev.tgz#f31e3c493705627344a5e6e14c43f25e361d5123"
+
 "@uniswap/analytics@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@uniswap/analytics/-/analytics-1.1.0.tgz#0b42f9e3db06e84504ed3f5461d00544ea0fe8de"
