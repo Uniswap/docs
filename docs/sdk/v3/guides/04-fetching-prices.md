@@ -9,7 +9,7 @@ This guide will teach you how to fetch the current market price of any token on 
 
 ### Calling the functions
 
-Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a `Pool` instance see [Creating a Pool Instance](../guides/03-creating-a-pool.md) or look at this typescript [example](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx). The `Pool` class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
+Similar to other examples, you first must set up your pool. If you’re unsure how to collect all the parameters necessary in creating a `Pool` instance see [Creating a Pool Instance](../guides/03-creating-a-pool.md) or look at this typescript [example](https://github.com/Uniswap/uniswap-docs/blob/main/examples/sdk/AddAndRemoveLiquidity.tsx). The `Pool` class contains two getter methods `token0Price` and `token1Price` which will return the prices of each token respectively as a `Price`.
 
 After constructing the pool, you can save the token prices as constants:
 

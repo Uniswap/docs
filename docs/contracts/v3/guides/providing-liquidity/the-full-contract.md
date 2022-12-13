@@ -4,7 +4,7 @@ title: The Full Contract
 sidebar_position: 6
 ---
 
-Below we have the complete functioning code example: a contract that can custody Uniswap V3 position NFT's and manipulate the positions and liquidity therein by collecting fees, increasing or decreasing liquidity, and minting new positions. View on github [here](https://github.com/Uniswap/uniswap-docs/blob/main/smart_contract_examples/LiquidityExamples.sol).
+Below we have the complete functioning code example: a contract that can custody Uniswap V3 position NFT's and manipulate the positions and liquidity therein by collecting fees, increasing or decreasing liquidity, and minting new positions. View on github [here](https://github.com/Uniswap/uniswap-docs/blob/main/examples/smart-contracts/LiquidityExamples.sol).
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later

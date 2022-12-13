@@ -102,4 +102,4 @@ const { calldata, value } = NonfungiblePositionManager.removeCallParameters(posi
 
 ## The example code
 
-You now know how to mint a liquidity position, add liquidity, and remove liquidity. Here's the [full example code](https://github.com/Uniswap/uniswap-docs/blob/main/sdk-examples/AddAndRemoveLiquidity.tsx) for reference.
+You now know how to mint a liquidity position, add liquidity, and remove liquidity. Here's the [full example code](https://github.com/Uniswap/uniswap-docs/blob/main/examples/sdk/AddAndRemoveLiquidity.tsx) for reference.
