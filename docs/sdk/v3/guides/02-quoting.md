@@ -1,6 +1,6 @@
 ---
 id: quoting
-title: Quoting
+title: Getting a Quote
 ---
 
 TODO

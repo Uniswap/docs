@@ -1,6 +1,6 @@
 ---
 id: trading
-title: Trading
+title: Executing a Trading
 ---
 
 TODO
