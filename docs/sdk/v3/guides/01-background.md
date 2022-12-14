@@ -9,15 +9,11 @@ If you are already familiar with web3 development and/or the basics of our SDK, 
 
 ## Web3 Providers
 
-To communicate with the Ethereum blockchain, you will need a web3 provider. There are a few ways to get a provider:
+To communicate with the Ethereum blockchain, you will need a web3 provider. To create a provider, you can use [ethers.js](https://docs.ethers.io/v5/) to connect to a blockchain via a data supply.
 
-### ethers.js
+Blockchain data providers such as [infura](https://infura.io/) offer RPC URL's that you can use as input into `ethers.js` from somewhere such as . Our code examples and guides will provide more information on setup.
 
-[ethers.js](https://docs.ethers.io/v5/) offers a quick method to connect to a blockchain. In order to supply the data, you will need to get a RPC URL from somewhere such as [infura](https://infura.io/). Our code examples and guides will provide more information on setup.
-
-### Wallet Extensions
-
-Wallet extensions embed a provider directly into the Javascript window object as `window.ethereum`. From this provider you can directly access the blockchain and a user's connected accounts.
+If you are connecting to a wallet extension, these wallets embed a provider directly into the Javascript window object as `window.ethereum` which can also be used as input into `ethers.js` to construct a provider as well as to access the user's wallet information and complete transactions through the wallet.
 
 ## Uniswap's Runnable Examples
 
@@ -35,7 +31,7 @@ To allow the guides to focus on the SDK's core functionality, basic building blo
 
 #### Provider Utilities
 
-`provider.ts` wraps the basics of `ethers.js` and connecting to wallet extensions into an abstracted view of a provider, a wallet, and the ability to send transactions. It also helps abstract the configured environment you wish to run against.
+`provider.ts` wraps the basics of `ethers.js` and connecting to wallet extensions into an abstracted view of a provider, a wallet address, and the ability to send transactions. It also helps abstract the configured environment you wish to run against in your example without making code changes outside of your configuration.
 
 #### Wallet Utilities
 
@@ -57,7 +53,7 @@ To allow others to interact with a smart contract, each exposes an ABI (Applicat
 
 Cryptocurrency applications often work with very small fractions of tokens. As a result, high precision is very important. To ensure precision is upheld, the `CurrencyAmount` class helps store exact values as fractions as well as utilizing [JSBI](https://github.com/GoogleChromeLabs/jsbi) for compatibility across the web. To display these amounts nicely to users, additional work is sometimes required.
 
-### Tokens
+### Currency
 
-ERC20 Tokens and ETH vary in their relative value, so storage of these can also vary for precision reasons. The `Token` class allows your application to define the number of decimals needed for each currency along with the currency's address, symbol, and name.
+The `Currency` class can represent both native currency (ETH) and an ERC20 `Token`. Currencies vary in their relative value, so the `Token` class allows your application to define the number of decimals needed for each currency along with the currency's address, symbol, and name.
 
