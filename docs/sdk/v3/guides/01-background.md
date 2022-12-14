@@ -21,7 +21,7 @@ Wallet extensions embed a provider directly into the Javascript window object as
 
 ## Uniswap's Runnable Examples
 
-Each guide is accompanied and driven by [runnable examples](https://github.com/Uniswap/examples/tree/main/v3-sdk) using React to provide a basic UI for interacting with the example. Each examples provides relevant options to run against such as running against a local blockchain, connecting to the Ethereum mainnet directly, or using a wallet extension. 
+Each guide is accompanied and driven by [runnable examples](https://github.com/Uniswap/examples/tree/main/v3-sdk) using React to provide a basic UI for interacting with the example. Each examples provides relevant options to run against such as running against a local blockchain, connecting to the Ethereum mainnet directly, or using a wallet extension.
 
 Inputs and environment settings are configured in each example's `config.ts` and allows for simple setup and configuration.
 
