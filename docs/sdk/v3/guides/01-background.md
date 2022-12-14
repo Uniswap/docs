@@ -11,7 +11,7 @@ If you are already familiar with web3 development and/or the basics of our SDK, 
 
 To communicate with the Ethereum blockchain, you will need a web3 provider. There are a few ways to get a provider:
 
-### Ethers.js
+### ethers.js
 
 [ethers.js](https://docs.ethers.io/v5/) offers a quick method to connect to a blockchain. In order to supply the data, you will need to get a RPC URL from somewhere such as [infura](https://infura.io/). Our code examples and guides will provide more information on setup.
 
@@ -59,5 +59,5 @@ Cryptocurrency applications often work with very small fractions of tokens. As a
 
 ### Tokens
 
-ERC20 Tokens and ETH very in their relative value, so storage of these can also vary for precision reasons. The `Token` class allows your application to define the number of decimals needed for each currency along with the currency's address, symbol, and name.
+ERC20 Tokens and ETH vary in their relative value, so storage of these can also vary for precision reasons. The `Token` class allows your application to define the number of decimals needed for each currency along with the currency's address, symbol, and name.
 
