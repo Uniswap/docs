@@ -9,20 +9,14 @@ This guide will cover how to get the current quotes for any token pair on Uniswa
 It is based on the [Quoting code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/quoting), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
 
 In this example we will use `quoteExactInputSingle` to get a quote for the pair **USDC - WETH**.
+The inputs are the **token in**, the **token out** and the **amount in**.
 
 The guide will **cover**:
 1. Computing the **USDC - WETH** Pool's deployment address
-2. Setting up a reference to the Pool smart contract
-3. Getting Pool metadata from the Pool smart contact
-4. Setting up a reference to the Quoter contract
-5. Getting **quotes** from the Quoter contract
+2. Setting up a reference to the Pool contract and getting metadata from it.
+3. Setting up a reference to the Quoter contract and getting a quote for the pool
 
-The **inputs** to the example are:
-1. Token in
-2. Token out
-3. Amount in
-
-The **output** of the guide is a visual representation of the quote.
+At the end of the guide, we should be able to fetch a quote for the given input token pair and the input token amount with the press of a button on the web application.
 
 ## Example
 
@@ -53,7 +47,7 @@ https://github.com/Uniswap/examples/blob/e1fbf8612e2e7d0b86a25637cc75881ff809ca2
 ```
 
 To construct the *Contract* we just need to provide the address of the contract, its ABI and the provider that will carry out the RPC call for us.
-We can get access to the contract's ABI through the [@uniswap/v3-core](https://www.npmjs.com/package/@uniswap/v3-core) package:
+We can get access to the contract's ABI through the [@uniswap/v3-core](https://www.npmjs.com/package/@uniswap/v3-core) package, which holds 
 
 ```js reference title="Uniswap V3 Pool smart contract ABI"
 https://github.com/Uniswap/examples/blob/22ae27bafdbff895ee2168584154626ef4af4d30/v3-sdk/quoting/src/example/Example.tsx#L7
@@ -91,11 +85,11 @@ https://github.com/Uniswap/examples/blob/22ae27bafdbff895ee2168584154626ef4af4d3
 We can now use our Quoter contact to obtain the quote.
 
 In an ideal world, the quoter functions would be `view` functions, which would make them very easy to query on-chain with minimal gas costs. 
-Instead, the Uniswap V3 Quoter contracts rely on state-changing calls designed to be reverted to return the desired data. 
+However, the Uniswap V3 Quoter contracts rely on state-changing calls designed to be reverted to return the desired data. 
 This means calling the quoter will be very expensive and should not be called on-chain.
 
-To get around this difficulty, we can use the `callStatic` method provided by **ethers.js** `Contract` instances.
-The same is a useful method that submits a state-changing transaction to an Ethereum node, but asks the node to simulate the state change, rather than to execute it. 
+To get around this difficulty, we can use the `callStatic` method provided by the **ethers.js** `Contract` instances.
+This is a useful method that submits a state-changing transaction to an Ethereum node, but asks the node to simulate the state change, rather than to execute it. 
 Our script can then return the result of the simulated state change:
 
 ```js reference title="Getting Quotes from the Quoter contract"
@@ -107,7 +101,3 @@ It should be noted that `quoteExactInputSingle` is only 1 of 4 different methods
 2. `quoteExactInput` - given the amount you want to swap, produces a quote for the amount out for a swap over multiple pools
 3. `quoteExactOutputSingle` - given the amount you want to get out, produces a quote for the amount in for a swap over a single pool
 4. `quoteExactOutput`  - given the amount you want to get out, produces a quote for the amount in for a swap over multiple pools
-
-## Output
-
-After clicking on the **Quote** button, the output should be available on the running web application.
