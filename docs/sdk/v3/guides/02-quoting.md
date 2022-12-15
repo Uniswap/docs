@@ -9,6 +9,12 @@ This guide will cover how to get the current quotes for any token pair on Uniswa
 It is based on the [Quoting code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/quoting), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
 To run this example, check out the guide's README and follow the setup instructions.
 
+:::info
+
+For a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background coverage](./01-background.md) page!
+
+:::
+
 In this example we will use `quoteExactInputSingle` to get a quote for the pair **USDC - WETH**.
 The inputs are the **token in**, the **token out** and the **amount in**.
 
@@ -89,6 +95,8 @@ Our script can then return the result of the simulated state change:
 ```js reference title="Getting Quotes from the Quoter contract"
 https://github.com/Uniswap/examples/blob/1ef393c2b8f8206a3dc5a42562382c267bcc361b/v3-sdk/quoting/src/example/Example.tsx#L35-L41
 ```
+
+The result of the call is the number of output tokens you'd receive for the quoted swap.
 
 It should be noted that `quoteExactInputSingle` is only 1 of 4 different methods that the quoter offers:
 1. `quoteExactInputSingle` - given the amount you want to swap, produces a quote for the amount out for a swap of a single pool
