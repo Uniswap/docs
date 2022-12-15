@@ -21,7 +21,7 @@ At the end of the guide, we should be able to fetch a quote for the given input 
 
 ## Example
 
-### Computing the Pool's address
+### Computing the **USDC - WETH** Pool's deployment address
 
 
 To interact with the **USDC - WETH** Pool contract, we first need to compute its deployment address.
@@ -38,8 +38,7 @@ These parameters have already been defined in our configuration file:
 https://github.com/Uniswap/examples/blob/1ef393c2b8f8206a3dc5a42562382c267bcc361b/v3-sdk/quoting/src/config.ts#L34-L39
 ```
 
-
-### Setting up a reference to the Pool contract
+### Setting up a reference to the Pool contract and getting metadata from it
 
 Now that we have the deployment address of the **USDC - ETH** Pool, we can construct an instance of an **ethers** `Contract` to interact with it:
 
@@ -48,14 +47,11 @@ https://github.com/Uniswap/examples/blob/e1fbf8612e2e7d0b86a25637cc75881ff809ca2
 ```
 
 To construct the *Contract* we just need to provide the address of the contract, its ABI and the provider that will carry out the RPC call for us.
-We can get access to the contract's ABI through the [@uniswap/v3-core](https://www.npmjs.com/package/@uniswap/v3-core) package, which holds the core smart contracts of the Uniswap V3 protocol:
+We get access to the contract's ABI through the [@uniswap/v3-core](https://www.npmjs.com/package/@uniswap/v3-core) package, which holds the core smart contracts of the Uniswap V3 protocol:
 
 ```js reference title="Uniswap V3 Pool smart contract ABI"
 https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad29/v3-sdk/quoting/src/example/Example.tsx#L7
 ```
-
-
-### Getting Pool metadata from the Pool smart contact
 
 Having constructed our reference to the contract, we can now access its methods through our provider.
 We use a batch `Promise` call. This approach queries state data concurrently, rather than sequentially, to avoid out of sync data that may be returned if sequential queries are executed over the span of two blocks:
@@ -67,21 +63,18 @@ https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad2
 
 The return values of these methods will become inputs to the quote fetching function.
 
-### Setting up a reference to the Quoter contract
+### Setting up a reference to the Quoter contract and getting a quote for the pool
 
 Like we did for the Pool contract, we need to construct an instance of an **ethers** `Contract` for our Quoter contract in order to interact with it:
 ```js reference title="Setting up a reference to the Quoter contract"
 https://github.com/Uniswap/examples/blob/1ef393c2b8f8206a3dc5a42562382c267bcc361b/v3-sdk/quoting/src/example/Example.tsx#L32
 ```
 
-We can get access to the contract's ABI through the [@uniswap/v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) package, which holds the periphery smart contracts of the Uniswap V3 protocol:
+We get access to the contract's ABI through the [@uniswap/v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) package, which holds the periphery smart contracts of the Uniswap V3 protocol:
 
 ```js reference title="Uniswap V3 Quoter smart contract ABI"
 https://github.com/Uniswap/examples/blob/22ae27bafdbff895ee2168584154626ef4af4d30/v3-sdk/quoting/src/example/Example.tsx#L6
 ```
-
-
-### Getting Quotes from the Quoter contract
 
 We can now use our Quoter contact to obtain the quote.
 
