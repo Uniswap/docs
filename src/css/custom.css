@@ -508,6 +508,13 @@ html[data-theme='dark'] .DocSearch-Hit a {
   }
 }
 
+.github-codeblock-reference-link {
+  margin-top: -16px;
+  padding-bottom: 13px;
+  font-size: 0.7em;
+  text-align: right;
+}
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
