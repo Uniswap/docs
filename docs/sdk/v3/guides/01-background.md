@@ -8,7 +8,7 @@ Before integrating with Uniswap, it may be helpful for newcomers to review the f
 
 :::info
 
-Already familiar with web3 development and/or the basics of our SDK and want to get right to right to the code? Start with our first guide, [Getting a Quote](./02-quoting.md)!
+Already familiar with web3 development and/or the basics of our SDK and want to get right to the code? Start with our first guide, [Getting a Quote](./02-quoting.md)!
 
 :::
 
