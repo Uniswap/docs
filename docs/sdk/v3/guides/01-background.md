@@ -16,7 +16,7 @@ Already familiar with web3 development and/or the basics of our SDK and want to 
 
 To communicate with the Ethereum blockchain, you will need a web3 provider. To create a provider, you can use [ethers.js](https://docs.ethers.io/v5/) to connect to a blockchain via a data supply. The library also allows you to define a local model of a smart contract using the provider and an [ABI](./01-background.md#abis).
 
-Blockchain data providers such as [infura](https://infura.io/) offer RPC URL's that you can use as input into `ethers.js` from somewhere such as . Our code examples and guides will provide more information on setup.
+Blockchain data providers such as [infura](https://infura.io/) offer RPC URL's that you can use as input into `ethers.js`. Our code examples and guides will provide more information on setup.
 
 If you are connecting to a wallet extension, these wallets embed a provider directly into the Javascript window object as `window.ethereum` which can also be used as input into `ethers.js` to construct a provider as well as to access the user's wallet information and complete transactions through the wallet.
 
