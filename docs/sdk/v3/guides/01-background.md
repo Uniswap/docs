@@ -12,13 +12,15 @@ Already familiar with web3 development and/or the basics of our SDK and want to 
 
 :::
 
-## Web3 Providers
+## Providers
 
-To retrieve data about the blockchain, you'll need a source such as [infura](https://infura.io/). Infura offers RPC URL's for a wide variety of chains and testnets. For our examples, we'll only be using the Ethereum mainnet.
+Communication with the blockchain is typically done through a provider and local models of smart contracts and their [ABIs](./01-background.md#abis).
 
-To communicate with the Ethereum blockchain, you will need a web3 provider. To create a provider, you can use [ethers.js](https://docs.ethers.io/v5/) to connect to a blockchain, using a data source such as infura as input. The library also allows you to define a local model of a smart contract using the provider and an [ABI](./01-background.md#abis).
+To achieve this, our examples use the [ethers.js](https://docs.ethers.io/v5/) library. To instantiate a provider you will need a data source. Our examples offer two options:
 
-If you are connecting to a wallet extension, these wallets embed a provider directly into the Javascript window object as `window.ethereum`. This object surfaces information and communication with the user's wallet and creating transactions on the connected chain. Importantly for our examples, it can be used with `ethers.js` to construct a provider.
+- **JSON RPC URL**: If you are working directly with the Ethereum mainnet or a local fork, products such as [infura](https://infura.io/) offer JSON RPC URLs for a wide variety of chains and testnets. For our examples, we'll only be using the Ethereum mainnet.
+
+- **Wallet Extension**: If you are connecting to a wallet browser extension, these wallets embed a source directly into the Javascript window object as `window.ethereum`. This object surfaces information about the user's wallets and provides the ability to communicate with the connected chain. Importantly for our examples, it can be used with `ethers.js` to construct a provider.
 
 ## Uniswap's Runnable Examples
 
