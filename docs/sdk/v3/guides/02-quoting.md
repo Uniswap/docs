@@ -73,7 +73,7 @@ The return values of these methods will become inputs to the quote fetching func
 
 Like we did for the Pool contract, we need to construct an instance of an **ethers** `Contract` for our Quoter contract in order to interact with it:
 ```js reference title="Setting up a reference to the Quoter contract" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/1ef393c2b8f8206a3dc5a42562382c267bcc361b/v3-sdk/quoting/src/example/Example.tsx#L32
+https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad29/v3-sdk/quoting/src/example/Example.tsx#L46-L49
 ```
 
 We get access to the contract's ABI through the [@uniswap/v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) package, which holds the periphery smart contracts of the Uniswap V3 protocol:
