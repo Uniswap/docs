@@ -27,7 +27,7 @@ To interact with the **USDC - WETH** Pool contract, we first need to compute its
 The SDK provides a utility method for that:
 
 ```js reference title="Computing the Pool's address"
-https://github.com/Uniswap/examples/blob/22ae27bafdbff895ee2168584154626ef4af4d30/v3-sdk/quoting/src/example/Example.tsx#L13-L18
+https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad29/v3-sdk/quoting/src/example/Example.tsx#L20-L25
 ```
 Since each *Uniswap V3 Pool* is uniquely identified by 3 characteristics (token in, token out, fee), we use those
 in combination with the address of the *PoolFactory* contract to compute the address of the **USDC - ETH** Pool.
@@ -50,7 +50,7 @@ To construct the *Contract* we just need to provide the address of the contract,
 We can get access to the contract's ABI through the [@uniswap/v3-core](https://www.npmjs.com/package/@uniswap/v3-core) package, which holds 
 
 ```js reference title="Uniswap V3 Pool smart contract ABI"
-https://github.com/Uniswap/examples/blob/22ae27bafdbff895ee2168584154626ef4af4d30/v3-sdk/quoting/src/example/Example.tsx#L7
+https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad29/v3-sdk/quoting/src/example/Example.tsx#L7
 ```
 
 
@@ -61,7 +61,7 @@ We use a batch `Promise` call. This approach queries state data concurrently, ra
 
 
 ```js reference title="Getting Pool metadata from the Pool smart contact"
-https://github.com/Uniswap/examples/blob/1ef393c2b8f8206a3dc5a42562382c267bcc361b/v3-sdk/quoting/src/example/Example.tsx#L22
+https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad29/v3-sdk/quoting/src/example/Example.tsx#L32-L36
 ```
 
 The return values of these methods will become inputs to the quote fetching function.
