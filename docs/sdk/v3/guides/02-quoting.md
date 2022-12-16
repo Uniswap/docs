@@ -5,9 +5,9 @@ title: Quoting
 
 ## Introduction
 
-This guide will cover how to get the current quotes for any token pair on Uniswap.
+This guide will cover how to get the current quotes for any token pair on the Uniswap protocol.
 It is based on the [Quoting code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/quoting), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
-To run this example, check out the guide's README and follow the setup instructions.
+To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/README.md) and follow the setup instructions.
 
 :::info
 
@@ -16,7 +16,7 @@ For a briefer on the SDK and to learn more about how these guides connect to the
 :::
 
 In this example we will use `quoteExactInputSingle` to get a quote for the pair **USDC - WETH**.
-The inputs are the **token in**, the **token out** and the **amount in**.
+The inputs are the **token in**, the **token out**, the **amount in** and the **fee**.
 
 The guide will **cover**:
 1. Computing the **USDC - WETH** Pool's deployment address
