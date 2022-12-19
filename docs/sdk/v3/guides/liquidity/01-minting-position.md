@@ -11,7 +11,7 @@ To run this example, check out the examples's [README](https://github.com/Uniswa
 
 :::info
 
-For a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background coverage](./01-background.md) page!
+For a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 
 :::
 
