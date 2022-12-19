@@ -23,7 +23,7 @@ The guide will **cover**:
 2. Fetching the Pool's constants and current state.
 3. Creating an instance of a `Position` class and using `addCallParameters` on our `NonfungiblePositionManager` to get the data for the transaction.
 
-At the end of the guide, we should be able to mint a liquidity position, given the inputs above with the press of a button and view the position's id on the web application.
+At the end of the guide, given the inputs above with, we should be able to mint a liquidity position with the press of a button and view the position's id on the web application.
 
 ## Example
 
@@ -53,7 +53,7 @@ https://github.com/Uniswap/examples/blob/6fba6da4d323804db56b3189ad1bbbaf18e6180
 
 :::info
 
-For a briefer on how to instantiate a reference to the Uniswap V3 Pool smart contract, and retrieving the pool constants, please take a look at the [quoting guide](../quoting#setting-up-a-reference-to-the-pool-contract-and-getting-metadata-from-it)!
+For a briefer on how to instantiate a reference to the Uniswap V3 Pool smart contract, and to retrieve the pool constants, please take a look at the [quoting guide](../quoting#setting-up-a-reference-to-the-pool-contract-and-getting-metadata-from-it)!
 
 :::
 
@@ -83,10 +83,10 @@ The Position instance is then passed as input to the `NonfungiblePositionManager
 https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b8/v3-sdk/minting-position/src/example/Example.tsx#L149-L156
 ```
 
-The function return value is the calldata and value we need to execute the transaction:
+The function returns the calldata as well as the value required to execute the transaction:
 
-```js reference title="Submit the position NFT minting transaction" referenceLinkText="View on Github" customStyling
+```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b8/v3-sdk/minting-position/src/example/Example.tsx#L159-L168
 ```
 
-The effect of the transaction is to mint a new Position NFT.
+The effect of the transaction is to mint a new Position NFT, which should then be visible on the list of position ids.
