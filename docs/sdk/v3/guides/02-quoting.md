@@ -18,7 +18,7 @@ For a briefer on the SDK and to learn more about how these guides connect to the
 In this example we will use `quoteExactInputSingle` to get a quote for the pair **USDC - WETH**.
 The inputs are the **token in**, the **token out**, the **amount in** and the **fee**.
 
-The **fee** input parameters represents the swap fee that distributed ti all in range liquidity at the time of the swap. It is one of the identifiers of a Pool, the others being **tokenIn** and **tokenOut**.
+The **fee** input parameters represents the swap fee that distributed to all in range liquidity at the time of the swap. It is one of the identifiers of a Pool, the others being **tokenIn** and **tokenOut**.
 
 The guide will **cover**:
 1. Computing the **USDC - WETH** Pool's deployment address

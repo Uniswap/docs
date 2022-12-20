@@ -29,7 +29,7 @@ At the end of the guide, given the inputs above, we should be able to mint a liq
 
 ### Giving approval to the `NonfungiblePositionManager` contract to transfer our tokens
 
-The first step is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens. 
+The first step is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens:
 
 ```js reference title="Approving our tokens for transferring" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/6fba6da4d323804db56b3189ad1bbbaf18e6180f/v3-sdk/minting-position/src/example/Example.tsx#L113-L124
@@ -45,7 +45,7 @@ https://github.com/Uniswap/examples/blob/6fba6da4d323804db56b3189ad1bbbaf18e6180
 
 Having approved the transfer of our tokens, we now need to get data about the pool for which we will provide liquidity, in order to instantiate a Pool class. 
 
-To start, we compute our Pool's address by using a helper function and passing in the unique identifiers of a Pool - a **tokenIn**, a **tokenOut**, and the Pool **fee**. The **fee** input parameter represents the swap fee that is distributed to all in range liquidity at the time of the swap:
+To start, we compute our Pool's address by using a helper function and passing in the unique identifiers of a Pool - the **two tokens** and the Pool **fee**. The **fee** input parameter represents the swap fee that is distributed to all in range liquidity at the time of the swap:
 
 ```js reference title="Fetching the Pool's constants and current state" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L47-L52
