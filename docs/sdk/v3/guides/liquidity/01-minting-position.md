@@ -15,7 +15,7 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 
 :::
 
-In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for, the Pool **fee** and the **liquidity** we are providing to the Pool.
+In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for and the Pool **fee**.
 
 The guide will **cover**:
 1. Giving approval to the `NonfungiblePositionManager` contract to transfer our tokens.
