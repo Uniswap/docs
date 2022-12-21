@@ -3,6 +3,11 @@ id: liquidity
 title: Adding & Removing Liquidity
 ---
 
+# Notes
+- mention how you also have the option to collect fees but we will do that in the next guide
+- % to decrease liquidty by
+
+
 ## Introduction
 
 This guide will cover how to modify a liquidity position by adding or removing liquidity on the Uniswap V3 protocol.
@@ -15,82 +20,61 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 
 :::
 
-In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position and then modify the provided liquidity for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for and the Pool **fee**.
+In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position and then modify the provided liquidity for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for, the Pool **fee** and the **percentage** by which to **add and remove** from our position.
 
 The guide will **cover**:
-1. Giving approval to the `NonfungiblePositionManager` contract to transfer our tokens.
-2. Fetching the Pool's constants and current state and using them to create an instance of a `Pool` class.
-3. Creating an instance of a `Position` class by calculating the liquidity we want to supply.
-4. Using `addCallParameters` on our `NonfungiblePositionManager` to get the data for making the transaction, and executing the transaction.
+1. Creating or minting our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the position minting transaction, and then executing the transaction.
+2. Adding liquidity to our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the add liquidity transaction, and then executing the transaction.
+3. Removing our position's liquidity  by using the `NonfungiblePositionManager`'s `removeCallParameters` to get the data for making the remove liquidity transaction, and then executing the transaction.
 
-At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application.
+At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to add or remove liquidity with the change of a button and see the change reflected in the balance of our tokens.
 
 ## Example
 
-### Giving approval to the `NonfungiblePositionManager` contract to transfer our tokens
+### Creating or minting our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the position minting transaction, and then executing the transaction
 
-The first step is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens:
+This step is covered in great detail in the previous guide, which focuses on [minting a position](./01-minting-position.md). However, we will go over the high level parts here too as they contribute to the understanding of modifying a position.
 
-```js reference title="Approving our tokens for transferring" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/6fba6da4d323804db56b3189ad1bbbaf18e6180f/v3-sdk/minting-position/src/example/Example.tsx#L113-L124
-```
+All of the minting logic cannot be found in the [`mintPosition`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L128) function. The first step in that function is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens by calling the `approve` method of the ERC20 contract. We achieve that by creating a local reference to our tokens's contracts. The logic for that step is encapsulated in the [`getTokenTransferApprovals`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/libs/positions.ts#L31) function.
 
-The logic to achieve that is wrapped in the `getTokenTransferApprovals` function. In short, since both **USDC** and **DAI** are ERC20 tokens, we setup a reference to their smart contracts and call the `approve` function:
+We then create an instance of the Position class. The logic for creating the instance of the Position class is captured inside the [`getPosition`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L83) function, which fetches the Pool data by creating a local reference to a Pool contract, and uses that to create and return an instance of the Position class. Note how we do not pass any parameters to `getPosition`, as we do not want to consider the full amounts for the position we are minting.
 
-```js reference title="Setting up an ERC20 contract reference and approving" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/6fba6da4d323804db56b3189ad1bbbaf18e6180f/v3-sdk/minting-position/src/libs/contracts.ts#L73-L78
-```
-
-### Fetching the Pool's constants and current state and creating an instance of a `Pool` class
-
-Having approved the transfer of our tokens, we now need to get data about the pool for which we will provide liquidity, in order to instantiate a Pool class. 
-
-To start, we compute our Pool's address by using a helper function and passing in the unique identifiers of a Pool - the **two tokens** and the Pool **fee**. The **fee** input parameter represents the swap fee that is distributed to all in range liquidity at the time of the swap:
-
-```js reference title="Fetching the Pool's constants and current state" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L47-L52
-```
-
-Then, we get the Pool's data by creating a reference to the Pool's smart contract and accessing its methods:
-
-```js reference title="Setting up a Pool contract reference and fetching current state data" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/3fe96214409a78c34e35747fc2567330c7b505d7/v3-sdk/minting-position/src/example/Example.tsx#L53-L67
-```
-
-Having collected the required data, we can now create an instance of the Pool class:
-
-
-```js reference title="Fetching pool data and creating an instance of the Pool class" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L112-L119
-```
-
-
-### Creating an instance of a `Position` class by calculating the liquidity we want to supply
-
-Having created the instance of the Pool class, we can now use that to create an instance of a Position class, which represents the price range for a specific pool that LPs choose to provide in:
-
-```js reference title="Create a Position representation instance" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L122-L139
-```
-
-We use the `fromAmounts` static function of the `Position` class to create an instance of it. The **tickLower** and **tickUpper** parameters specify the price range at which to provide liquidity. This example calls **nearestUsableTick** to get the current useable tick and adjust the lower parameter to be below it by 2 **tickSpacing** and the upper to be above it by 2 tickSpacing. This guarantees that the provided liquidity is "in range", meaning it will be earning fees upon minting this position. We also provide **amount0** and **amount1** from our configuration parameters.
-
-Given those parameters, `fromAmount` will attempt to calculate the maximum amount of liquidity we can supply.
-
-
-### Using `addCallParameters` on our `NonfungiblePositionManager` to get the data for making the transaction, and executing the transaction
-
-The Position instance is then passed as input to the `NonfungiblePositionManager`'s `addCallParameters` function. 
-The function also requires an options object as its second parameter off type `AddLiquidityOptions`. This is either of type `MintOptions` for minting a new position or `IncreaseOptions` for adding liquidity to an existing position. Below, the example outlines the parameters needed to mint a new position:
+We then pass the Position instance as input to the `NonfungiblePositionManager`'s `addCallParameters` function:
 
 ```js reference title="Getting the transaction calldata and parameters" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b8/v3-sdk/minting-position/src/example/Example.tsx#L149-L156
+https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L156-L163
 ```
 
-The function returns the calldata as well as the value required to execute the transaction:
+Note how the function also requires an options object as its second parameter off type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77). This is either of type [`MintOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L74) for minting a new position or [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75) for adding liquidity to an existing position. In the minting case, we want to populate `MintOptions`.
+
+The function returns the calldata as well as the value required to execute the transaction, which we then execute. The effect of the transaction is to mint a new Position NFT, which should then be visible on the list of position ids.
+
+### Adding liquidity to our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the add liquidity transaction, and then executing the transaction
+
+All of the liquidity adding logic cannot be found in the [`mintPosition`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L128) function. The function is very similar to `mintPosition`, except for some details that we will go over. Notice how the **Add Liquidity** button is disabled until a position is minted.
+
+The first difference to point out is that we do need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we have already done that when minting our position. 
+
+To start, we create the position by which we want to increase our current position:
 
 ```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b8/v3-sdk/minting-position/src/example/Example.tsx#L159-L168
+https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L186-L188
 ```
 
-The effect of the transaction is to mint a new Position NFT, which should then be visible on the list of position ids.
+Note how we pass `percentageToAdd` to add as a parameter, which creates a new position with a percentage of the amount of each token that we want to increase by. We do not create a new position, but instead use the new Position instance to consider how much liquidity we want to add to our current position.
+
+We then pass the new Position, along with an options object of type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77) to the `NonfungiblePositionManager`'s `addCallParameters`, exactly like we did in the minting case. Note however, how oru config object is now of the other allowed type of `AddLiquidityOptions`, which is [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75):
+
+```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L191-L198
+```
+In essence, the difference here is that we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. Note how `tokenId` is just the `positionId` that we passed in as an argument to the function. In this example, we just pick the last position that we minted:
+
+```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L357-L359
+```
+
+
+### Removing our position's liquidity  by using the `NonfungiblePositionManager`'s `removeCallParameters` to get the data for making the remove liquidity transaction, and then executing the transaction.
+
+All of the liquidity removing logic cannot be found in the [`mintPosition`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L128) function. The function is very similar to `mintPosition`, except for some details that we will go over. Notice how the **Remove Liquidity** button is disabled until a position is minted.
