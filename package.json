@@ -26,7 +26,7 @@
     "@mdx-js/react": "^1.6.21",
     "@types/react": "^17.0.11",
     "@uniswap/analytics": "1.1.0",
-    "@uniswap/analytics-events": "file:uniswap-analytics-events-dev.tgz",
+    "@uniswap/analytics-events": "2.0.0",
     "algoliasearch": "^4.9.1",
     "clsx": "^1.1.1",
     "hast-util-is-element": "1.1.0",
