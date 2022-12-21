@@ -3,11 +3,6 @@ id: liquidity
 title: Adding & Removing Liquidity
 ---
 
-# Notes
-- mention how you also have the option to collect fees but we will do that in the next guide
-- % to decrease liquidty by
-
-
 ## Introduction
 
 This guide will cover how to modify a liquidity position by adding or removing liquidity on the Uniswap V3 protocol.
@@ -51,7 +46,7 @@ The function returns the calldata as well as the value required to execute the t
 
 ### Adding liquidity to our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the add liquidity transaction, and then executing the transaction
 
-All of the liquidity adding logic cannot be found in the [`mintPosition`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L128) function. The function is very similar to `mintPosition`, except for some details that we will go over. Notice how the **Add Liquidity** button is disabled until a position is minted.
+All of the liquidity adding logic cannot be found in the [`addLiquidity`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L128) function. The function is very similar to `mintPosition`, except for some details that we will go over. Notice how the **Add Liquidity** button is disabled until a position is minted.
 
 The first difference to point out is that we do need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we have already done that when minting our position. 
 
@@ -77,4 +72,25 @@ https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232b
 
 ### Removing our position's liquidity  by using the `NonfungiblePositionManager`'s `removeCallParameters` to get the data for making the remove liquidity transaction, and then executing the transaction.
 
-All of the liquidity removing logic cannot be found in the [`mintPosition`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L128) function. The function is very similar to `mintPosition`, except for some details that we will go over. Notice how the **Remove Liquidity** button is disabled until a position is minted.
+All of the liquidity removing logic cannot be found in the [`removeLiquidity`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L128) function. The function is very similar to `mintPosition`, except for some details that we will go over. Notice how the **Remove Liquidity** button is disabled until a position is minted.
+
+The first difference to point out is that we do need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we have already done that when minting our position. 
+
+To start, we create the position by which we want to increase our current position:
+
+```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L186-L188
+```
+
+Note how we pass `percentageToAdd` to add as a parameter, which creates a new position with a percentage of the amount of each token that we want to increase by. We do not create a new position, but instead use the new Position instance to consider how much liquidity we want to add to our current position.
+
+We then pass the new Position, along with an options object of type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77) to the `NonfungiblePositionManager`'s `addCallParameters`, exactly like we did in the minting case. Note however, how oru config object is now of the other allowed type of `AddLiquidityOptions`, which is [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75):
+
+```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L191-L198
+```
+In essence, the difference here is that we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. Note how `tokenId` is just the `positionId` that we passed in as an argument to the function. In this example, we just pick the last position that we minted:
+
+```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L357-L359
+```
