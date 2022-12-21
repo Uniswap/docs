@@ -28,7 +28,7 @@ At the end of the guide, we should be able to create a route and and execute a s
 To compute our route, we will use the `@uniswap/smart-order-router` package, specifically the `AlphaRouter` class which requires a `chainId` and a `provider`. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork.
 
 ```typescript reference title="Instantiating an AlphaRouter" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/a8e82ac2ee543eed620f0750f35eb6860f9f2567/v3-sdk/routing/src/routing.ts#L23-L26
+https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68fd/v3-sdk/routing/src/libs/routing.ts#L24-L27
 ```
 
 ## Creating a route
@@ -36,13 +36,13 @@ https://github.com/Uniswap/examples/blob/a8e82ac2ee543eed620f0750f35eb6860f9f256
 Next, we will create our options conforming to the `SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction:
 
 ```typescript reference title="Routing Options" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/e2ffa0e58ddd28443c60611c2fca8ab464aeb6eb/v3-sdk/routing/src/routing.ts#L29-L34
+https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68fd/v3-sdk/routing/src/libs/routing.ts#L29-L34
 ```
 
 Using these options, we can now create a trade (`TradeType.EXACT_INPUT` or `TradeType.EXACT_OUTPUT`) with the currency and the input amount to use to get a quote. For this example, we'll use an `EXACT_INPUT` trade to get a quote outputted in the quote currency.
 
 ```typescript reference title="Creating a route" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/e2ffa0e58ddd28443c60611c2fca8ab464aeb6eb/v3-sdk/routing/src/routing.ts#L36-L46
+https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68fd/v3-sdk/routing/src/libs/routing.ts#L36-L47
 ```
 
 ## Swapping using a route
@@ -50,7 +50,7 @@ https://github.com/Uniswap/examples/blob/e2ffa0e58ddd28443c60611c2fca8ab464aeb6e
 Using this route, we can now execute the trade using the route's computed calldata, values, and gas values.
 
 ```typescript reference title="Using a route" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/e2ffa0e58ddd28443c60611c2fca8ab464aeb6eb/v3-sdk/routing/src/routing.ts#L60-L67
+https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68fd/v3-sdk/routing/src/libs/routing.ts#L61-L68
 ```
 
 After swapping, you should see the currency balances update in the UI shortly after the block is confirmed.
