@@ -81,7 +81,7 @@ Given those parameters, `fromAmount` will attempt to calculate the maximum amoun
 ### Using `addCallParameters` on our `NonfungiblePositionManager` to get the data for making the transaction, and executing the transaction
 
 The Position instance is then passed as input to the `NonfungiblePositionManager`'s `addCallParameters` function. 
-The function also requires an options object as its second parameter off type `AddLiquidityOptions`. This is either of type `MintOptions` for minting a new position or `IncreaseOptions` for adding liquidity to an existing position. Below, the example outlines the parameters needed to mint a new position:
+The function also requires an options object as its second parameter off type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77). This is either of type [`MintOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L74) for minting a new position or [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75) for adding liquidity to an existing position. Below, the example outlines the parameters needed to mint a new position:
 
 ```js reference title="Getting the transaction calldata and parameters" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b8/v3-sdk/minting-position/src/example/Example.tsx#L149-L156
