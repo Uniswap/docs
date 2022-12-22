@@ -1,6 +1,6 @@
 ---
 id: quoting
-title: Quoting
+title: Getting a Quote
 ---     
 
 ## Introduction
@@ -70,6 +70,10 @@ https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad2
 ```
 
 The return values of these methods will become inputs to the quote fetching function.
+
+:::note
+In this example, the metadata we fetch is already present in our inputs. This guide fetches this information first in order to show how to fetch any metadata, which will be expanded on in future guides.
+:::
 
 ### Setting up a reference to the Quoter contract and getting a quote for the pool
 
