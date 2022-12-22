@@ -1,7 +1,7 @@
 import { useLocation } from '@docusaurus/router'
 import OriginalNavBarItem from '@theme-original/NavbarItem'
 import { TraceEvent } from '@uniswap/analytics'
-import { BrowserEvent, DocsProtocolVersion, EventName } from '@uniswap/analytics-events'
+import { BrowserEvent, DocsProtocolVersion, SharedEventName } from '@uniswap/analytics-events'
 import React from 'react'
 
 enum ProtocolVersion {
@@ -54,7 +54,7 @@ export default function NavbarItem(props: { className: string; label: string }) 
       <TraceEvent
         events={[BrowserEvent.onClick]}
         element={props.label}
-        name={EventName.NAVBAR_CLICKED}
+        name={SharedEventName.NAVBAR_CLICKED}
         section={getSection(selectedDocVersion)}
       >
         <OriginalNavBarItem {...props} className={getClassName(props.className, selectedDocVersion)} />

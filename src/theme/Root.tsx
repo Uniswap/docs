@@ -1,7 +1,7 @@
 import { useLocation } from '@docusaurus/router'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import { initializeAnalytics, OriginApplication, sendAnalyticsEvent, Trace, user } from '@uniswap/analytics'
-import { CustomUserProperties, EventName, getBrowser } from '@uniswap/analytics-events'
+import { CustomUserProperties, getBrowser, SharedEventName } from '@uniswap/analytics-events'
 import React, { useEffect } from 'react'
 import { getCLS, getFCP, getFID, getLCP, Metric } from 'web-vitals'
 
@@ -32,20 +32,22 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
 
   // Fires on initial render of the page
   useEffect(() => {
-    sendAnalyticsEvent(EventName.APP_LOADED)
+    sendAnalyticsEvent(SharedEventName.APP_LOADED)
     user.set(CustomUserProperties.USER_AGENT, navigator.userAgent)
     user.set(CustomUserProperties.BROWSER, getBrowser())
     user.set(CustomUserProperties.SCREEN_RESOLUTION_HEIGHT, window.screen.height)
     user.set(CustomUserProperties.SCREEN_RESOLUTION_WIDTH, window.screen.width)
-    getCLS(({ delta }: Metric) => sendAnalyticsEvent(EventName.WEB_VITALS, { cumulative_layout_shift: delta }))
-    getFCP(({ delta }: Metric) => sendAnalyticsEvent(EventName.WEB_VITALS, { first_contentful_paint_ms: delta }))
-    getFID(({ delta }: Metric) => sendAnalyticsEvent(EventName.WEB_VITALS, { first_input_delay_ms: delta }))
-    getLCP(({ delta }: Metric) => sendAnalyticsEvent(EventName.WEB_VITALS, { largest_contentful_paint_ms: delta }))
+    getCLS(({ delta }: Metric) => sendAnalyticsEvent(SharedEventName.WEB_VITALS, { cumulative_layout_shift: delta }))
+    getFCP(({ delta }: Metric) => sendAnalyticsEvent(SharedEventName.WEB_VITALS, { first_contentful_paint_ms: delta }))
+    getFID(({ delta }: Metric) => sendAnalyticsEvent(SharedEventName.WEB_VITALS, { first_input_delay_ms: delta }))
+    getLCP(({ delta }: Metric) =>
+      sendAnalyticsEvent(SharedEventName.WEB_VITALS, { largest_contentful_paint_ms: delta })
+    )
   }, [])
 
   // Fires on route change
   useEffect(() => {
-    sendAnalyticsEvent(EventName.PAGE_VIEWED, {
+    sendAnalyticsEvent(SharedEventName.PAGE_VIEWED, {
       page: pathname,
     })
   }, [pathname])
