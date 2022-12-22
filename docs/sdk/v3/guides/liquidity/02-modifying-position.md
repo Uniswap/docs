@@ -1,5 +1,5 @@
 ---
-id: liquidity
+id: modifying-liquidity
 title: Adding & Removing Liquidity
 ---
 
@@ -18,31 +18,14 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position and then modify the provided liquidity for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for, the Pool **fee** and the **percentage** by which to **add and remove** from our position.
 
 The guide will **cover**:
-1. Creating or minting our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the position minting transaction, and then executing the transaction.
-2. Adding liquidity to our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the add liquidity transaction, and then executing the transaction.
-3. Removing our position's liquidity  by using the `NonfungiblePositionManager`'s `removeCallParameters` to get the data for making the remove liquidity transaction, and then executing the transaction.
+1. Adding liquidity to our position
+2. Removing liquidity from our position
+
+Please note tha the step of creating a position is covered in great detail in the previous guide, which focuses on [minting a position](./01-minting-position.md).
 
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to add or remove liquidity with the press of a button and see the change reflected in the balance of our tokens.
 
 ## Example
-
-### Creating or minting our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the position minting transaction, and then executing the transaction
-
-This step is covered in great detail in the previous guide, which focuses on [minting a position](./01-minting-position.md). However, we will go over the high level parts here too as they contribute to the understanding of modifying a position.
-
-All of the minting logic can be found in the [`mintPosition`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L128) function. The first step in that function is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens by calling the `approve` method of the ERC20 contract. We achieve that by creating a local reference to our tokens's contracts. The logic for that step is encapsulated in the [`getTokenTransferApprovals`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/libs/positions.ts#L31) function.
-
-We then create an instance of the Position class. The logic for creating the instance of the Position class is captured inside the [`getPosition`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L83) function, which fetches the Pool data by creating a local reference to a Pool contract, and uses that to create and return an instance of the Position class. Note how we do not pass any parameters to `getPosition`, as we do not want to consider the full amounts for the position we are minting.
-
-We then pass the Position instance as input to the `NonfungiblePositionManager`'s `addCallParameters` function:
-
-```js reference title="Getting the transaction calldata and parameters" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L156-L163
-```
-
-Note how the function also requires an options object as its second parameter off type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77). This is either of type [`MintOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L74) for minting a new position or [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75) for adding liquidity to an existing position. In the minting case, we want to populate `MintOptions`.
-
-The function returns the calldata as well as the value required to execute the transaction, which we then execute. The effect of the transaction is to mint a new Position NFT, which should then be visible on the list of position ids.
 
 ### Adding liquidity to our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the add liquidity transaction, and then executing the transaction
 
@@ -63,11 +46,7 @@ We then pass the new Position, along with an options object of type [`AddLiquidi
 ```js reference title="Getting that calldata and value for the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L191-L198
 ```
-In essence, the difference here is that we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. Note how `tokenId` is just the `positionId` that we passed in as an argument to the function. In this example, we just pick the last position that we minted:
-
-```js reference title="Passing the token id of the last minted position" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L357-L359
-```
+In essence, the difference here is that we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. Note how `tokenId` is just the `positionId` that we passed in as an argument to the function. In this example, we just pick the last position that we minted.
 
 Now that we have both the calldata and value we needed for the transaction, we can build it and execute it:
 
@@ -90,26 +69,22 @@ To start, we create a position identical to the one we created during minting:
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L221
 ```
 
-We then pass the new Position, along with an options object of type [`RemoveLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L138) to the `NonfungiblePositionManager`'s `removeCallParameters`, exactly like we did in the adding liquidity case:
+We then pass the position   , along with an options object of type [`RemoveLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L138) to the `NonfungiblePositionManager`'s `removeCallParameters`, exactly like we did in the adding liquidity case:
 
 ```js reference title="Getting the calldata and value for the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L224-L238
 ```
-Note how we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. `tokenId` is just the `positionId` that we passed in as an argument to the function. In this example, we just pick the last position that we minted:
+Note how we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. `tokenId` is just the `positionId` that we passed in as an argument to the function. In this example, we just pick the last position that we minted.
 
-```js reference title="Passing the tokenId of the last minted position" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L370-L372
-```
+We have also provided two other parameters: `liquidityPercentage` and `collectOptions`. The first is of type `Percentage` and accepts a fraction from 0 to 1, which we provide through our configuration file. This parameter determines how much liquidity is removed from our initial position, and transfers the removed liquidity back to our address. 
 
-We have also provided two other parameters: `liquidityPercentage` and `collectOptions`. The first is of type `Percentage` and accepts a fraction from 0 to 1, which we provide through our configuration file. This parameter determines how much liquidity is removed from our initial position, and transfers the removed liquidity back to our address. The latter parameter is of type [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) and gives us the option to collect the fees that we have collected for the time that we were actively provisioning liquidity. In this example, we pass in 0 for both tokens as we do not want to collect any fees.
+The latter parameter is of type [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) and gives us the option to collect the fees that we have collected for the time that we were actively provisioning liquidity. In this example, we pass in 0 for both tokens as we do not want to collect any fees.
 
 Now that we have both the calldata and value we needed for the transaction, we can build it and execute it:
 
 ```js reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L241-L251
 ```
-
-After pressing the button, note how the balance of USDC and DAI drops as we add liquidity to our position.
 
 
 After pressing the button, note how the balance of USDC and DAI drops as we remove liquidity from our position.
