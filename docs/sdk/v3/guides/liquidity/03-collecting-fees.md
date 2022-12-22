@@ -3,8 +3,6 @@ id: liquidity-fees
 title: Collecting Fees
 ---
 
-# Notes
-- encode takes max fees to pull
 ## Introduction
 
 This guide will cover how to collect fees from a liquidity position on the Uniswap V3 protocol.
