@@ -5,7 +5,7 @@ title: Executing a Trading
 
 ## Introduction
 
-This guide will cover build off our [quoting guide](./02-quoting.md) and show how to use a quote to construct and execute a trade on the Uniswap V3 protocol.
+This guide will build off our [quoting guide](./02-quoting.md) and show how to use a quote to construct and execute a trade on the Uniswap V3 protocol.
 It is based on the [Trading code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/trading), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
 To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/README.md) and follow the setup instructions.
 
@@ -40,9 +40,9 @@ Using this metadata along with our inputs, we will then construct a `Pool`:
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L42-L49
 ```
 
-With this `Pool`, we can now construct a route to use in our trade. We will reuse our previous quoting code to calculate the output amount we expect from our trade.
+With this `Pool`, we can now construct a route to use in our trade. We will reuse our previous quoting code to calculate the output amount we expect from our trade:
 
-```js reference title="Constructing a Pool" referenceLinkText="View on Github" customStyling
+```js reference title="Constructing a Route" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L51-L55
 ```
 ## Constructing an unchecked trade
@@ -52,6 +52,8 @@ Once we have a route, we can now construct an unchecked trade using the route in
 ```js reference title="Creating a Trade" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L59-L73
 ```
+
+This example uses an exact input trade, but we can also construct a trade using exact output assuming we adapt our quoting code accordingly.
 
 ## Executing a trade
 
