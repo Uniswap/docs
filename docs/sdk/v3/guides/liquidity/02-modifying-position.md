@@ -18,9 +18,9 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position and then modify the provided liquidity for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for, the Pool **fee** and the **percentage** by which to **add and remove** from our position.
 
 The guide will **cover**:
-1. Creating or minting our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the position minting transaction, and then executing the transaction.
-2. Adding liquidity to our position by using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for making the add liquidity transaction, and then executing the transaction.
-3. Removing our position's liquidity  by using the `NonfungiblePositionManager`'s `removeCallParameters` to get the data for making the remove liquidity transaction, and then executing the transaction.
+1. Creating or minting our position using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for creating the position minting transaction, and then executing the transaction.
+2. Adding liquidity to our position using the `NonfungiblePositionManager`'s `addCallParameters` to get the data for creating the add liquidity transaction, and then executing the transaction.
+3. Removing our position's liquidity using the `NonfungiblePositionManager`'s `removeCallParameters` to get the data for creating the remove liquidity transaction, and then executing the transaction.
 
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to add or remove liquidity with the press of a button and see the change reflected in the balance of our tokens.
 
