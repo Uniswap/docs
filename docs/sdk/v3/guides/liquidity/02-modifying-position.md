@@ -52,7 +52,7 @@ The first difference to point out is that we do not need to give approval to the
 
 To start, we create the position by which we want to increase our current position:
 
-```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+```js reference title="Creating the Position" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L186-L188
 ```
 
@@ -60,13 +60,19 @@ Note how we pass `percentageToAdd` to add as a parameter, which creates a new po
 
 We then pass the new Position, along with an options object of type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77) to the `NonfungiblePositionManager`'s `addCallParameters`, exactly like we did in the minting case. Note however, how our config object is now of the other allowed type of `AddLiquidityOptions`, which is [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75):
 
-```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+```js reference title="Getting that calldata and value for the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L191-L198
 ```
 In essence, the difference here is that we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. Note how `tokenId` is just the `positionId` that we passed in as an argument to the function. In this example, we just pick the last position that we minted:
 
-```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+```js reference title="Passing the token id of the last minted position" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L357-L359
+```
+
+Now that we have both the calldata and value we needed for the transaction, we can build it and execute it:
+
+```js reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L201-L210
 ```
 
 After pressing the button, note how the balance of USDC and DAI drops as we add liquidity to our position.
@@ -80,22 +86,30 @@ Note how we do not need to give approval to the `NonfungiblePositionManager` to 
 
 To start, we create a position identical to the one we created during minting:
 
-```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+```js reference title="Creating an identical position as minting" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L221
 ```
 
 We then pass the new Position, along with an options object of type [`RemoveLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L138) to the `NonfungiblePositionManager`'s `removeCallParameters`, exactly like we did in the adding liquidity case:
 
-```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+```js reference title="Getting the calldata and value for the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L224-L238
 ```
 Note how we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. `tokenId` is just the `positionId` that we passed in as an argument to the function. In this example, we just pick the last position that we minted:
 
-```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
+```js reference title="Passing the tokenId of the last minted position" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L370-L372
 ```
 
 We have also provided two other parameters: `liquidityPercentage` and `collectOptions`. The first is of type `Percentage` and accepts a fraction from 0 to 1, which we provide through our configuration file. This parameter determines how much liquidity is removed from our initial position, and transfers the removed liquidity back to our address. The latter parameter is of type [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) and gives us the option to collect the fees that we have collected for the time that we were actively provisioning liquidity. In this example, we pass in 0 for both tokens as we do not want to collect any fees.
+
+Now that we have both the calldata and value we needed for the transaction, we can build it and execute it:
+
+```js reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L241-L251
+```
+
+After pressing the button, note how the balance of USDC and DAI drops as we add liquidity to our position.
 
 
 After pressing the button, note how the balance of USDC and DAI drops as we remove liquidity from our position.
