@@ -18,8 +18,8 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position and then modify the provided liquidity for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for, the Pool **fee** and the **fraction** by which to **add and remove** from our position.
 
 The guide will **cover**:
-1. Adding liquidity to our position.
-2. Removing liquidity from our position.
+1. Adding liquidity to our position
+2. Removing liquidity from our position
 
 Note that the minting logic is not covered in this guide as it was covered in detail in the [previous guide](./01-minting-position.md).
 
@@ -40,7 +40,7 @@ https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a65
 
 The function receives 2 arguments, which are the 2 `CurrencyAmount`s that are used to construct the Position instance. Both of the arguments follow the same logic: we multiply the parameterized `tokenAmount` by the parameterized `fractionToAdd` since the new liquidity position will be added on top of the already minted liquidity position.
 
-We then need to construct an options object of type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77) exactly like we did in the minting case. Note however, how our config object is now of the other allowed type of `AddLiquidityOptions`, which is [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75):
+We then need to construct an options object of type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77) similar to how we did in the minting case. Note however, how our config object is now of the other allowed type of `AddLiquidityOptions`, which is [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75):
 
 ```js reference title="Constructing the options object" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L57-L61
