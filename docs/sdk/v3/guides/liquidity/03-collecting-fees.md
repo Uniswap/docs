@@ -17,8 +17,7 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 
 In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position for the  **USDC - DAI** pair. We will then attempt to collect any fees that the position has accrued from those trading against our provisioned liquidity. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for, the Pool **fee** and the **max amount of accrued fees** we want to collect for each token.
 
-The guide will **cover**:
-1. Collecting accrued fees from our position
+The guide will **cover** collecting accrued fees from our position.
 
 Note that the minting logic is not covered in this guide as it was covered in detail in the [previous guide](./01-minting-position.md).
 
@@ -28,13 +27,11 @@ At the end of the guide, given the inputs above, we should be able to mint a liq
 
 ### Collecting accrued fees from our position
 
-All of the fee collecting logic can be found in the [`collectFees`](https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L24) function. The function is very similar to `mintPosition`, except for some details that we will go over. Notice how the **Collect Fees** button is disabled until a position is minted.
-
-Note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we have already done that when minting our position. 
+All of the fee collecting logic can be found in the [`collectFees`](https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L24) function. Notice how the **Collect Fees** button is disabled until a position is minted. This happens because there will be no fees to collect unless there is a position whose liquidity has been traded against. 
 
 To start, we construct an options object of type  [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) that holds the data about the fees we want to collect:
 
-```js reference title="Constructing the collectOptions object" 
+```js reference title="Constructing the CollectOptions" referenceLinkText="View on Github" customStyling 
 https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L31-L48
 ```
 
@@ -42,16 +39,18 @@ Similar to the other functions exposed by the `NonfungiblePositionManager`, we p
 
 The other 2 parameters, `expectedCurrencyOwed0` and `expectedCurrencyOwed1`, concern the type of currency and **max** amount of currency we expect to get collect through accrued fees, one for each of the two tokens of the pool. The type of the parameters is `CurrencyAmount`, a type that describes both the type and amount of currency. The values we provide are configuration parameters to our guide.
 
-We then pass the options object to the `NonfungiblePositionManager`'s `collectCallParameters`'s function:
+We then get the call parameters for collecting our fees from our `NonfungiblePositionManager` using the constructed `CollectOptions`:
 
 ```js reference title="Getting the calldata and value for the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L51-L52
 ```
 
-Now that we have both the calldata and value we needed for the transaction, we can build and execute the transaction:
+The function above returns the calldata and value required to construct the transaction for collecting accrued fees. Now that we have both the calldata and value we needed for the transaction, we can build and execute the it:
 
 ```js reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L55-L64
 ```
 
-After pressing the button, if someone has traded against our position, we should be able to note how the balance of USDC and DAI drops as we collect fees.
+After pressing the button, if someone has traded against our position, we should be able to note how the balance of USDC and DAI increases as we collect fees.
+
+Note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we have already done that when minting our position.
