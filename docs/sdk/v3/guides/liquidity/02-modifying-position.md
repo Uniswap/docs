@@ -54,7 +54,7 @@ The newly created position along with the options object are then passed to the 
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L64-L67
 ```
 
-The return values of `addCallParameters` are the calldata and value of the transaction we need to submit to increase our position's liquidity. We can now build and execute it:
+The return values of `addCallParameters` are the calldata and value of the transaction we need to submit to increase our position's liquidity. We can now build and execute the transaction:
 
 ```js reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L70-L79
@@ -65,32 +65,41 @@ After pressing the button, note how the balance of USDC and DAI drops as we add 
 
 ### Removing liquidity from our position
 
-All of the liquidity removing logic can be found in the [`removeLiquidity`](https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L128) function. The function is very similar to `addLiquidity`, except for some details that we will go over. Notice how the **Remove Liquidity** button is disabled until a position is minted.
+All of the liquidity removing logic can be found in the [`removeLiquidity`](https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L83) function. The function is very similar to `addLiquidity`, except for some details that we will go over. The **Remove Liquidity** button is disabled until a position is minted.
 
 Note how we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we have already done that when minting our position. 
 
 To start, we create a position identical to the one we created during minting:
 
 ```js reference title="Creating an identical position as minting" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L221
+https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L90-L105
 ```
 
-We then pass the new Position, along with an options object of type [`RemoveLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L138) to the `NonfungiblePositionManager`'s `removeCallParameters`, exactly like we did in the adding liquidity case:
+The function receives 2 arguments, both of which are `CurrencyAmount`s and are parameterized in our guide. In contrast to the `addLiquidity` case, there is no fraction by which we multiply the currency amounts.
+
+We then need to construct an options object of type [`RemoveLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L138):
+
+```js reference title="Constructing the options object" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L113-L120
+```
+
+Note how we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. `tokenId` is just the `positionId` that we passed in as an argument to the function.
+
+We have also provided 2 other parameters: `liquidityPercentage` and `collectOptions`. The first is of type `Percentage` and accepts a value from 0 to 1, which is a parameter to our guide. This parameter determines how much liquidity is removed from our initial position, and transfers the removed liquidity back to our address. 
+
+The latter parameter is of type [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) and gives us the option to collect the fees, if any, that we have accrued for the time that we were actively provisioning liquidity. In this example, we pass in 0 for both tokens as we do not want to collect any fees. The `collectOptions` object is created right before `removeLiquidityOptions`:
+
+```js reference title="Constructing the collect options object" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L107-L111
+```
+
+The position object along with the options object is passed to the `NonfungiblePositionManager`'s `removeCallParameters`, similar to how we did in the adding liquidity case:
 
 ```js reference title="Getting the calldata and value for the transaction" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L224-L238
-```
-Note how we have omitted the `recipient` parameters in the config object, and have instead passed in the `tokenId` of the position we previously minted. `tokenId` is just the `positionId` that we passed in as an argument to the function. In this example, we just pick the last position that we minted:
-
-```js reference title="Passing the tokenId of the last minted position" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L370-L372
+https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L122-L125
 ```
 
-We have also provided two other parameters: `liquidityPercentage` and `collectOptions`. The first is of type `Percentage` and accepts a fraction from 0 to 1, which we provide through our configuration file. This parameter determines how much liquidity is removed from our initial position, and transfers the removed liquidity back to our address. 
-
-The latter parameter is of type [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) and gives us the option to collect the fees that we have collected for the time that we were actively provisioning liquidity. In this example, we pass in 0 for both tokens as we do not want to collect any fees.
-
-Now that we have both the calldata and value we needed for the transaction, we can build it and execute it:
+The return values `removeCallParameters` are the calldata and value that are needed to construct the transaction to remove liquidity from our position. We can build the transaction and send it for execution:
 
 ```js reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L241-L251
