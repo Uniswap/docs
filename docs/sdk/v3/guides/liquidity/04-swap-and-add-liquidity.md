@@ -41,7 +41,7 @@ Please note that routing has been covered in greater detail in the [routing guid
 ### Constructing the parameters for the swap-and-add function call
 
 
-Having created the router, we now need to construct the parameters required to make a call to it's `routeToRatio` function.
+Having created the router, we now need to construct the parameters required to make a call to its `routeToRatio` function. This is exactly what we want in our example.
 
 The first parameter is an instance of `SwapAndAddConfig`, which sets configurations for the `routeToRatio ` algorithm. `ratioErrorTolerance` determines the margin of error the resulting ratio can have from the optimal ratio. `maxIterations` determines the maximum times the algorithm will iterate to find a ratio within error tolerance. If max iterations is exceeded, an error is returned:
 
@@ -49,11 +49,9 @@ The first parameter is an instance of `SwapAndAddConfig`, which sets configurati
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L43-L46
 ```
 
-The second parameter, which is optional, is an instance of `SwapAndAddOptions`. If it is included, `routeToRatio` will return the calldata for executing the atomic swap-and-add. These options contain `swapConfig` and `addLiquidityOptions`. 
+The second parameter, which is optional, is an instance of `SwapAndAddOptions`. If it is included, `routeToRatio` will return the calldata for executing the atomic swap-and-add. These options contain `swapConfig` and `addLiquidityOptions`. `swapConfig` configures to set a recipient of leftover dust from swap, `slippageTolerance` and a `deadline` for the swap.
 
-`swapConfig` configures to set a recipient of leftover dust from swap, `slippageTolerance` and a `deadline` for the swap.
-
-Then, `addLiquidityOptions` must contain a `tokenId` to add to an existing position, **or** a `recipient` to mint a new one. It also includes a `slippage tolerance` and `deadline` for adding liquidity.
+Then, `addLiquidityOptions` must contain a `tokenId` to add to an existing position, **or** a `recipient` to mint a new one. It also includes a `slippageTolerance` and `deadline` for adding liquidity.
 
 The only custom parameter for `swapAndAddOptions`, is the token id, which is no other than the position id of the last position we minted in the example:
 
@@ -61,7 +59,7 @@ The only custom parameter for `swapAndAddOptions`, is the token id, which is no 
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L48-L58
 ```
 
-Thirdly, we construct two instances of `CurrencyAmounts`, each of which represents the initial balance of the token that we wish to swap-and-add, where the token is the token in our target liquidity pool. We use the configuration parameters of the guide to set those:
+Thirdly, we construct two instances of `CurrencyAmount`s, each of which represents the initial balance of the token that we wish to swap-and-add, where the token is the token in our target liquidity pool. We use the configuration parameters of the guide to set those:
 
 ```js reference title="Constructing the two CurrencyAmounts" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L60-L74
