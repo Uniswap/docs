@@ -15,82 +15,85 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 
 :::
 
-When adding liquidity to a Uniswap v3 pool, you must provide two assets in a particular ratio. In many cases, your contract or the user's wallet hold a different ratio of those two assets. In order to deposit 100% of your assets, you must first swap your assets to the optimal ratio and then add liquidity. However, the swap may shift the balance of the pool and thus change the optimal ratio. To avoid that, we can execute this swap-and-add liquidity operation in an atomic fashion. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for and the Pool **fee**.
+When adding liquidity to a Uniswap v3 pool, you must provide two assets in a particular ratio. In many cases, your contract or the user's wallet hold a different ratio of those two assets. In order to deposit 100% of your assets, you must first swap your assets to the optimal ratio and then add liquidity. 
+
+However, the swap may shift the balance of the pool and thus change the optimal ratio. To avoid that, we can execute this swap-and-add liquidity operation in an atomic fashion, using a router. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for and the Pool **fee**.
 
 The guide will **cover**:
-1. Giving approval to the `NonfungiblePositionManager` contract to transfer our tokens.
-2. Fetching the Pool's constants and current state and using them to create an instance of a `Pool` class.
-3. Creating an instance of a `Position` class by calculating the liquidity we want to supply.
-4. Using `addCallParameters` on our `NonfungiblePositionManager` to get the data for making the transaction, and executing the transaction.
+1. Creating a router instance
+2. Constructing the parameters for the swap-and-add function call
+3. Making the swap-and function call 
+4. Constructing and executing the transaction to swap-and-add liquidity 
 
-At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application.
+At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to swap-and-add liquidity with the press of a button and see the change reflected in the balance of our tokens.
 
 ## Example
 
-### Giving approval to the `NonfungiblePositionManager` contract to transfer our tokens
+### Creating a router instance
 
-The first step is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens:
+The first step is to setup our router, the [`AlphaRouter`](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/alpha-router/alpha-router.ts#L333), which is part of the [smart-order-router package](https://www.npmjs.com/package/@uniswap/smart-order-router). The router requires a `chainId` and a `provider` to be initialized. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
 
-```js reference title="Approving our tokens for transferring" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/6fba6da4d323804db56b3189ad1bbbaf18e6180f/v3-sdk/minting-position/src/example/Example.tsx#L113-L124
+```js reference title="Creating a router instance" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L41
 ```
 
-The logic to achieve that is wrapped in the `getTokenTransferApprovals` function. In short, since both **USDC** and **DAI** are ERC20 tokens, we setup a reference to their smart contracts and call the `approve` function:
+Please note that routing has been covered in greater detail in the [routing guide](../04-routing.md).
+### Constructing the parameters for the swap-and-add function call
 
-```js reference title="Setting up an ERC20 contract reference and approving" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/6fba6da4d323804db56b3189ad1bbbaf18e6180f/v3-sdk/minting-position/src/libs/contracts.ts#L73-L78
+
+Having created the router, we now need to construct the parameters required to make a call to it's `routeToRatio` function.
+
+The first parameter is an instance of `SwapAndAddConfig`, which sets configurations for the `routeToRatio ` algorithm. `ratioErrorTolerance` determines the margin of error the resulting ratio can have from the optimal ratio. `maxIterations` determines the maximum times the algorithm will iterate to find a ratio within error tolerance. If max iterations is exceeded, an error is returned:
+
+```js reference title="Constructing SwapAndAddConfig" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L43-L46
 ```
 
-### Fetching the Pool's constants and current state and creating an instance of a `Pool` class
+The second parameter, which is optional, is an instance of `SwapAndAddOptions`. If it is included, `routeToRatio` will return the calldata for executing the atomic swap-and-add. These options contain `swapConfig` and `addLiquidityOptions`. 
 
-Having approved the transfer of our tokens, we now need to get data about the pool for which we will provide liquidity, in order to instantiate a Pool class. 
+`swapConfig` configures to set a recipient of leftover dust from swap, `slippageTolerance` and a `deadline` for the swap.
 
-To start, we compute our Pool's address by using a helper function and passing in the unique identifiers of a Pool - the **two tokens** and the Pool **fee**. The **fee** input parameter represents the swap fee that is distributed to all in range liquidity at the time of the swap:
+Then, `addLiquidityOptions` must contain a `tokenId` to add to an existing position, **or** a `recipient` to mint a new one. It also includes a `slippage tolerance` and `deadline` for adding liquidity.
 
-```js reference title="Fetching the Pool's constants and current state" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L47-L52
+The only custom parameter for `swapAndAddOptions`, is the token id, which is no other than the position id of the last position we minted in the example:
+
+```js reference title="Constructing SwapAndAddOptions" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L48-L58
 ```
 
-Then, we get the Pool's data by creating a reference to the Pool's smart contract and accessing its methods:
+Thirdly, we construct two instances of `CurrencyAmounts`, each of which represents the initial balance of the token that we wish to swap-and-add, where the token is the token in our target liquidity pool. We use the configuration parameters of the guide to set those:
 
-```js reference title="Setting up a Pool contract reference and fetching current state data" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/3fe96214409a78c34e35747fc2567330c7b505d7/v3-sdk/minting-position/src/example/Example.tsx#L53-L67
-```
-
-Having collected the required data, we can now create an instance of the Pool class:
-
-
-```js reference title="Fetching pool data and creating an instance of the Pool class" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L112-L119
+```js reference title="Constructing the two CurrencyAmounts" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L60-L74
 ```
 
 
-### Creating an instance of a `Position` class by calculating the liquidity we want to supply
+Finally we construct the position, a position object that contains the details of the position for which to add liquidity. The position liquidity can be set to 1, since liquidity is still unknown and will be set inside the call to `routeToRatio`:
 
-Having created the instance of the Pool class, we can now use that to create an instance of a Position class, which represents the price range for a specific pool that LPs choose to provide in:
-
-```js reference title="Create a Position representation instance" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L122-L139
+```js reference title="Making the call to routeToRatio" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L76-L79
 ```
 
-We use the `fromAmounts` static function of the `Position` class to create an instance of it. The **tickLower** and **tickUpper** parameters specify the price range at which to provide liquidity. This example calls **nearestUsableTick** to get the current useable tick and adjust the lower parameter to be below it by 2 **tickSpacing** and the upper to be above it by 2 tickSpacing. This guarantees that the provided liquidity is "in range", meaning it will be earning fees upon minting this position. We also provide **amount0** and **amount1** from our configuration parameters.
 
-Given those parameters, `fromAmount` will attempt to calculate the maximum amount of liquidity we can supply.
+### Making the swap-and function call
 
+Having constructed all the parameters we need to call `routeToRatio`, we can now make the call to the function:
 
-### Using `addCallParameters` on our `NonfungiblePositionManager` to get the data for making the transaction, and executing the transaction
+```js reference title="Constructing the position object" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L81-L87
+```
+The return type of the function call is [SwapToRatioResponse](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/router.ts#L121). If a route was found successfully, this object will have two fields: the status will be set to success and the result will contain the `SwapToRatioRoute` object. We check to make sure that both of those conditions hold true before we construct and submit the transaction:
 
-The Position instance is then passed as input to the `NonfungiblePositionManager`'s `addCallParameters` function. 
-The function also requires an options object as its second parameter off type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77). This is either of type [`MintOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L74) for minting a new position or [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75) for adding liquidity to an existing position. Below, the example outlines the parameters needed to mint a new position:
-
-```js reference title="Getting the transaction calldata and parameters" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b8/v3-sdk/minting-position/src/example/Example.tsx#L149-L156
+```js reference title="Checking that a route was found" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L89-L94
 ```
 
-The function returns the calldata as well as the value required to execute the transaction:
+### Constructing and executing the transaction to swap-and-add liquidity
 
-```js reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b8/v3-sdk/minting-position/src/example/Example.tsx#L159-L168
+After making sure that a route was successfully found, we can now construct and send the transaction. The response result, that is of type`SwapToRatioRoute`, has the properties we need to construct our transaction object:
+
+```js reference title="Constructing and sending the transaction" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L96-L104
 ```
 
-The effect of the transaction is to mint a new Position NFT, which should then be visible on the list of position ids.
+If the transaction was successful, the effect of it is to swap-and-add the the amount of each token that we supplied.

@@ -25,7 +25,7 @@ At the end of the guide, we should be able to create a route and and execute a s
 
 ## Creating a router instance
 
-To compute our route, we will use the `@uniswap/smart-order-router` package, specifically the `AlphaRouter` class which requires a `chainId` and a `provider`. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork.
+To compute our route, we will use the `@uniswap/smart-order-router` package, specifically the `AlphaRouter` class which requires a `chainId` and a `provider`. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
 
 ```typescript reference title="Instantiating an AlphaRouter" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68fd/v3-sdk/routing/src/libs/routing.ts#L24-L27
