@@ -37,7 +37,7 @@ To interact with the **USDC - WETH** Pool contract, we first need to compute its
 The SDK provides a utility method for that:
 
 ```typescript reference title="Computing the Pool's address" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad29/v3-sdk/quoting/src/example/Example.tsx#L20-L25
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L40-L45
 ```
 
 Since each *Uniswap V3 Pool* is uniquely identified by 3 characteristics (token in, token out, fee), we use those
@@ -53,21 +53,21 @@ https://github.com/Uniswap/examples/blob/1ef393c2b8f8206a3dc5a42562382c267bcc361
 Now that we have the deployment address of the **USDC - ETH** Pool, we can construct an instance of an **ethers** `Contract` to interact with it:
 
 ```typescript reference title="Setting up a reference to the Pool contract" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/e1fbf8612e2e7d0b86a25637cc75881ff809ca2e/v3-sdk/quoting/src/example/Example.tsx#L27-L31
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L47-L51
 ```
 
 To construct the *Contract* we need to provide the address of the contract, its ABI and the provider that will carry out the RPC call for us.
 We get access to the contract's ABI through the [@uniswap/v3-core](https://www.npmjs.com/package/@uniswap/v3-core) package, which holds the core smart contracts of the Uniswap V3 protocol:
 
 ```typescript reference title="Uniswap V3 Pool smart contract ABI" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad29/v3-sdk/quoting/src/example/Example.tsx#L7
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L5
 ```
 
 Having constructed our reference to the contract, we can now access its methods through our provider.
 We use a batch `Promise` call. This approach queries state data concurrently, rather than sequentially, to avoid out of sync data that may be returned if sequential queries are executed over the span of two blocks:
 
 ```typescript reference title="Getting Pool metadata from the Pool smart contact" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad29/v3-sdk/quoting/src/example/Example.tsx#L32-L36
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L52-L56
 ```
 
 The return values of these methods will become inputs to the quote fetching function.
@@ -81,13 +81,13 @@ In this example, the metadata we fetch is already present in our inputs. This gu
 Like we did for the Pool contract, we need to construct an instance of an **ethers** `Contract` for our Quoter contract in order to interact with it:
 
 ```typescript reference title="Setting up a reference to the Quoter contract" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/a88c8bc7a16ae15922c4ee86af796a9e430aad29/v3-sdk/quoting/src/example/Example.tsx#L46-L50
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L14-L18
 ```
 
 We get access to the contract's ABI through the [@uniswap/v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) package, which holds the periphery smart contracts of the Uniswap V3 protocol:
 
 ```typescript reference title="Uniswap V3 Quoter smart contract ABI" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/22ae27bafdbff895ee2168584154626ef4af4d30/v3-sdk/quoting/src/example/Example.tsx#L6
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L4
 ```
 
 We can now use our Quoter contact to obtain the quote.
@@ -98,7 +98,7 @@ To get around this difficulty, we can use the `callStatic` method provided by th
 This is a useful method that submits a state-changing transaction to an Ethereum node, but asks the node to simulate the state change, rather than to execute it. Our script can then return the result of the simulated state change:
 
 ```typescript reference title="Getting Quotes from the Quoter contract" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/1ef393c2b8f8206a3dc5a42562382c267bcc361b/v3-sdk/quoting/src/example/Example.tsx#L35-L41
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L21-L30
 ```
 
 The result of the call is the number of output tokens you'd receive for the quoted swap.
