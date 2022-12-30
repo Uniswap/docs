@@ -5,23 +5,29 @@ title: Routing a Swap
 
 ## Introduction
 
-This guide will cover how to use Uniswap's smart order router to compute optimal routes and execute swaps.
-Rather than trading between a single pool, smart routing uses multiple hops (as many as needed) to ensure that the end result of the swap is the optimal price.
-It is based on the [routing code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/routing), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
-To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/routing/README.md) and follow the setup instructions.
+This guide will cover how to use Uniswap's smart order router to compute optimal routes and execute swaps. Rather than trading between a single pool, smart routing may use multiple hops (as many as needed) to ensure that the end result of the swap is the optimal price. It is based on the [routing code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/routing), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/routing/README.md) and follow the setup instructions.
 
 :::info
-For a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
+If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 :::
 
 In this example we will trade between **ETH and USDC**, but you can configure your example to us any two currencies and amount of input currency.
 
 The guide will **cover**:
+
 1. Creating a router instance
 2. Creating a route
 3. Swapping using a route
 
 At the end of the guide, we should be able to create a route and and execute a swap between any two currencies tokens using the example's included UI.
+
+For this guide, the following Uniswap packages are used:
+
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswap/smart-order-router`](https://www.npmjs.com/package/@uniswap/smart-order-router)
+
+The core code of this guide can be found in [`routing.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/routing/src/libs/routing.ts)
 
 ## Creating a router instance
 
@@ -54,3 +60,7 @@ https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68f
 ```
 
 After swapping, you should see the currency balances update in the UI shortly after the block is confirmed.
+
+## Next Steps
+
+Now that you're familiar with trading, consider checking out our next guides on [pooling liquidity](./liquidity/01-minting-position.md) to Uniswap!

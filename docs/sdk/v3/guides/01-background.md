@@ -5,11 +5,8 @@ title: Background
 
 Before integrating with Uniswap, it may be helpful for newcomers to review the following background information on some important developer web3 concepts, the structure of our examples, and SDK concepts.
 
-
 :::info
-
 Already familiar with web3 development and/or the basics of our SDK and want to get right to the code? Start with our first guide, [Getting a Quote](./02-quoting.md)!
-
 :::
 
 ## Providers
@@ -34,7 +31,9 @@ To test your code, we recommend utilizing a local fork of the Ethereum mainnet. 
 
 ### Utility Libraries
 
-To allow the guides to focus on the SDK's core functionality, basic building blocks can be found in each example's `libs` folder. The exported functionality from these files is intended to be the minimum needed for each example and not a complete library for production usage. These also include storing core constants such as definitions for tokens, ABI's, and blockchain addresses that can distract from the core concepts. Below are summaries of the helping libraries you will encounter.
+Each example is concentrated into a single file within the `libs/` folder of the example, with the entry points noted in each guide and README.
+
+To allow the guides to focus on the SDK's core functionality, additional basic building blocks can be found in each example's `libs` folder. The exported functionality from these files is intended to be the minimum needed for each example and not a complete library for production usage. These also include storing core constants such as definitions for tokens, ABI's, and blockchain addresses that can distract from the core concepts. Below are summaries of the helping libraries you will encounter.
 
 #### Provider Utilities
 
@@ -43,6 +42,10 @@ To allow the guides to focus on the SDK's core functionality, basic building blo
 #### Wallet Utilities
 
 `wallet.ts` offers the ability to query a wallet (whether connected via an extension or defined in code/config) for its balances and other essential information.
+
+#### Pool Infroamtion
+
+`pool.ts` contains the basic querying of pool information when not essential / core to the relevant guide
 
 #### Display Utilities
 
@@ -63,4 +66,3 @@ Cryptocurrency applications often work with very small fractions of tokens. As a
 ### Currency
 
 The `Currency` class can represent both native currency (ETH) and an ERC20 `Token`. Currencies vary in their relative value, so the `Token` class allows your application to define the number of decimals needed for each currency along with the currency's address, symbol, and name.
-

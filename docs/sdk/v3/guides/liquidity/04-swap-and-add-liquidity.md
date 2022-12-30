@@ -5,94 +5,104 @@ title: Swapping and Adding Liquidity
 
 ## Introduction
 
-This guide will cover how to execute a swap-and-add operation in a single atomic transaction.
-It is based on the [swap-and-add example](https://github.com/Uniswap/examples/tree/main/v3-sdk/swap-and-add-liquidity), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
-To run this example, check out the examples's [README](https://github.com/Uniswap/examples/tree/main/v3-sdk/swap-and-add-liquidity) and follow the setup instructions.
+This guide will cover how to execute a swap-and-add operation in a single atomic transaction. It is based on the [swap-and-add example](https://github.com/Uniswap/examples/tree/main/v3-sdk/swap-and-add-liquidity), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/tree/main/v3-sdk/swap-and-add-liquidity) and follow the setup instructions.
 
 :::info
-
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
-
 :::
 
-When adding liquidity to a Uniswap v3 pool, you must provide two assets in a particular ratio. In many cases, your contract or the user's wallet hold a different ratio of those two assets. In order to deposit 100% of your assets, you must first swap your assets to the optimal ratio and then add liquidity. 
+When adding liquidity to a Uniswap v3 pool, you must provide two assets in a particular ratio. In many cases, your contract or the user's wallet hold a different ratio of those two assets. In order to deposit 100% of your assets, you must first swap your assets to the optimal ratio and then add liquidity.
 
 However, the swap may shift the balance of the pool and thus change the optimal ratio. To avoid that, we can execute this swap-and-add liquidity operation in an atomic fashion, using a router. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for and the Pool **fee**.
 
 The guide will **cover**:
+
 1. Creating a router instance
-2. Constructing the parameters for the swap-and-add function call
-3. Making the swap-and-add function call 
-4. Constructing and executing the transaction to swap-and-add liquidity 
+2. Configuring our ratio calculation
+3. Calculating our currency ratio
+4. Constructing and executing our swap-and-add transaction
 
-At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to swap-and-add liquidity using 100% of the input assets with the press of a button and see the change reflected in the balance of our tokens.
+At the end of the guide, given the inputs above, we should be able swap-and-add liquidity using 100% of the input assets with the press of a button and see the change reflected in our position and the balance of our tokens.
 
-## Example
+For this guide, the following Uniswap packages are used:
 
-### Creating a router instance
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswap/smart-order-router`](https://www.npmjs.com/package/@uniswap/smart-order-router)
+
+The core code of this guide can be found in [`swapAndAddLiquidity()`](https://github.com/Uniswap/examples/blob/main/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L48).
+
+:::note
+This guide assumes you are familiar with our [Minting a Position](./01-minting-position.md) guide. A minted position is required to add or remove liquidity from, so the buttons will be disabled until a position is minted.
+
+Also note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we will have already done that when minting our position.
+:::
+
+## Creating a router instance
 
 The first step is to setup our router, the [`AlphaRouter`](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/alpha-router/alpha-router.ts#L333), which is part of the [smart-order-router package](https://www.npmjs.com/package/@uniswap/smart-order-router). The router requires a `chainId` and a `provider` to be initialized. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
 
-```js reference title="Creating a router instance" referenceLinkText="View on Github" customStyling
+```typescript reference title="Creating a router instance" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L41
 ```
 
-Please note that routing has been covered in greater detail in the [routing guide](../04-routing.md).
+For a more detailed example, check out our [routing guide](../04-routing.md).
 
-### Constructing the parameters for the swap-and-add function call
+## Configuring our ratio calculation
 
-Having created the router, we now need to construct the parameters required to make a call to its `routeToRatio` function, which will ensure the ratio of currency used matches the pool's required ratio to add our total liquidity.
+Having created the router, we now need to construct the parameters required to make a call to its `routeToRatio` function, which will ensure the ratio of currency used matches the pool's required ratio to add our total liquidity. This will require the following parameters:
 
-The first parameter is an instance of `SwapAndAddConfig`, which sets configurations for the `routeToRatio ` algorithm. `ratioErrorTolerance` determines the margin of error the resulting ratio can have from the optimal ratio. `maxIterations` determines the maximum times the algorithm will iterate to find a ratio within error tolerance. If max iterations is exceeded, an error is returned. A sane default for `maxIterations` is 6, and the benefit of running the algorithm more times is that we have more chances to find a route, but takes longer to execute:
+The first two parameters are the currency amounts we use as input to the `routeToRatio` algorithm:
 
-```js reference title="Constructing SwapAndAddConfig" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L43-L46
-```
-
-The second parameter, which is optional, is an instance of `SwapAndAddOptions`. If it is included, `routeToRatio` will return the calldata for executing the atomic swap-and-add. These options contain `swapConfig` and `addLiquidityOptions`. `swapConfig` configures to set a recipient of leftover dust from swap, `slippageTolerance` and a `deadline` for the swap.
-
-Then, `addLiquidityOptions` must contain a `tokenId` to add to an existing position, **or** a `recipient` to mint a new one. It also includes a `slippageTolerance` and `deadline` for adding liquidity.
-
-The only custom parameter for `swapAndAddOptions` is the token id, which is no other than the position id of the last position we minted in the example:
-
-```js reference title="Constructing SwapAndAddOptions" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L48-L58
-```
-
-Next, we construct two instances of `CurrencyAmount`s, each of which represents the initial balance of the token that we wish to swap-and-add, where the token is the token in our target liquidity pool. We use the configuration parameters of the guide to set those:
-
-```js reference title="Constructing the two CurrencyAmounts" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing the two CurrencyAmounts" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L60-L74
 ```
 
+Next, we will create a placeholder position with a liquidity of `1` since liquidity is still unknown and will be set inside the call to `routeToRatio`:
 
-Finally we construct the position, a position object that contains the details of the position for which to add liquidity. The position liquidity can be set to `1`, as a placeholder, since liquidity is still unknown and will be set inside the call to `routeToRatio`:
-
-```js reference title="Making the call to routeToRatio" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing the position object" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L76-L79
 ```
 
+We then need to create an instance of `SwapAndAddConfig` which will set additional configuration parameters for the `routeToRatio` algorithm:
 
-### Making the swap-and function call
+- `ratioErrorTolerance` determines the margin of error the resulting ratio can have from the optimal ratio.
+- `maxIterations` determines the maximum times the algorithm will iterate to find a ratio within error tolerance. If max iterations is exceeded, an error is returned. The benefit of running the algorithm more times is that we have more chances to find a route, but more iterations will longer to execute. We've used a default of 6 in our example.
+
+```typescript reference title="Constructing SwapAndAddConfig" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L43-L46
+```
+
+Finally, we will create an instance of `SwapAndAddOptions` to configure which position we are adding liquidity to and our defined swapping parameters in two different objects:
+
+- **`swapConfig`** configures the `recipient` of leftover dust from swap, `slippageTolerance` and a `deadline` for the swap.
+- **`addLiquidityOptions`** must contain a `tokenId` to add to an existing position
+
+```typescript reference title="Constructing SwapAndAddOptions" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L48-L58
+```
+
+## Calculating our currency ratio
 
 Having constructed all the parameters we need to call `routeToRatio`, we can now make the call to the function:
 
-```js reference title="Constructing the position object" referenceLinkText="View on Github" customStyling
+```typescript reference title="Making the call to routeToRatio" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L81-L87
 ```
+
 The return type of the function call is [SwapToRatioResponse](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/router.ts#L121). If a route was found successfully, this object will have two fields: the status (success) and the `SwapToRatioRoute` object. We check to make sure that both of those conditions hold true before we construct and submit the transaction:
 
-```js reference title="Checking that a route was found" referenceLinkText="View on Github" customStyling
+```typescript reference title="Checking that a route was found" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L89-L94
 ```
 
 In case a route was not found, we return from the function a `Failed` state for the transaction.
 
-### Constructing and executing the transaction to swap-and-add liquidity
+## Constructing and executing our swap-and-add transaction
 
 After making sure that a route was successfully found, we can now construct and send the transaction. The response (`SwapToRatioRoute`) will have the properties we need to construct our transaction object:
 
-```js reference title="Constructing and sending the transaction" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing and sending the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L96-L104
 ```
 
