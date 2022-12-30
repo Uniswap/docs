@@ -58,3 +58,7 @@ https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213ad
 After pressing the button, if someone has traded against our position, we should be able to note how the balance of USDC and DAI increases as we collect fees.
 
 Note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we have already done that when minting our position.
+
+## Next Steps
+
+The previous guides detail all the atomic steps needed to create and manage positions. However, these approaches may not use all of your desired currency. To ensure you are using your full funds while minimizing gas prices, check out our guide on [Swapping and Adding Liquidity](./04-swap-and-add-liquidity.md) in a single transaction!

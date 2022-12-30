@@ -101,3 +101,7 @@ https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232b
 ```
 
 After pressing the button, note how the balance of USDC and DAI increases and our position's liquidity drops.
+
+## Next Steps
+
+Now that you can mint and modify a position, check out how to [collect fees](./03-collecting-fees.md)) from the position!

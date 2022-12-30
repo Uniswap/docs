@@ -96,3 +96,7 @@ https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b
 ```
 
 The effect of the transaction is to mint a new Position NFT. We should see a new position with liquidity in our list of positions.
+
+## Next Steps
+
+Once you have minted a position, our next guide ([Adding and Removing Liquidity](./02-modifying-position.md)) will demonstrate how you can add and remove liquidity from that minted position!

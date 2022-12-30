@@ -80,6 +80,6 @@ Finally, we can construct a transaction from the method parameters and send the 
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L94-L101
 ```
 
-## Result and Next Steps
+## Next Steps
 
-The resulting example allows for trading between any two ERC20 tokens, but this can be suboptimal for the best pricing and fees. To achieve the best possible price, we use the Uniswap auto router to route through pools to get an optimal cost. The next guide on [routing](./04-routing.md) will show you how to use this router and execute optimal swaps.
+The resulting example allows for trading between any two ERC20 tokens, but this can be suboptimal for the best pricing and fees. To achieve the best possible price, we use the Uniswap auto router to route through pools to get an optimal cost. Our [routing](./04-routing.md) guide will show you how to use this router and execute optimal swaps.

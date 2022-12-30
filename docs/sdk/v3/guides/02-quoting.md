@@ -107,3 +107,7 @@ It should be noted that `quoteExactInputSingle` is only 1 of 4 different methods
 2. `quoteExactInput` - given the amount you want to swap, produces a quote for the amount out for a swap over multiple pools
 3. `quoteExactOutputSingle` - given the amount you want to get out, produces a quote for the amount in for a swap over a single pool
 4. `quoteExactOutput`  - given the amount you want to get out, produces a quote for the amount in for a swap over multiple pools
+
+## Next Steps
+
+Now that you're able to make a quote, check out our next guide on [trading](./03-trading.md) using this quote!
