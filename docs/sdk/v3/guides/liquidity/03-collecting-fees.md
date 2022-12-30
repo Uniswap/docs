@@ -13,30 +13,35 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 
 In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position for the  **USDC - DAI** pair. We will then attempt to collect any fees that the position has accrued from those trading against our provisioned liquidity. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for, the Pool **fee** and the **max amount of accrued fees** we want to collect for each token.
 
-The guide will **cover** collecting accrued fees from our position.
+The guide will **cover**:
+
+1. Setting up our fee collection
+2. Submitting our fee collection transaction
 
 Note that the minting logic is not covered in this guide as it was covered in detail in the [previous guide](./01-minting-position.md).
 
-At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to collect the accrued fees (if any) with the press of a button and see the change reflected in the balance of our tokens.
+At the end of the guide, given the inputs above, we should be able to collect the accrued fees (if any) of a minted position with the press of a button and see the change reflected in our position and the balance of our tokens.
 
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
 - [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 
-## Collecting accrued fees from our position
+## Setting up our fee collection
 
-All of the fee collecting logic can be found in the [`collectFees`](https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L24) function. Notice how the **Collect Fees** button is disabled until a position is minted. This happens because there will be no fees to collect unless there is a position whose liquidity has been traded against. 
+All of the fee collecting logic can be found in the [`collectFees`](https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L24) function. Notice how the **Collect Fees** button is disabled until a position is minted. This happens because there will be no fees to collect unless there is a position whose liquidity has been traded against.
 
 To start, we construct an options object of type  [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) that holds the data about the fees we want to collect:
 
-```typescript reference title="Constructing the CollectOptions" referenceLinkText="View on Github" customStyling 
+```typescript reference title="Constructing the CollectOptions" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L31-L48
 ```
 
-Similar to the other functions exposed by the `NonfungiblePositionManager`, we pass the `tokenId` which is just the `positionId` that we passed in as an argument to the function. We also provide the `recipient` of the fees, which in this case is our wallet's address.
+Similar to the other functions exposed by the `NonfungiblePositionManager`, we pass the `tokenId` and the `recipient` of the fees, which in this case is our function's input position id and our wallet's address.
 
-The other 2 parameters, `expectedCurrencyOwed0` and `expectedCurrencyOwed1`, concern the type of currency and **max** amount of currency we expect to get collect through accrued fees, one for each of the two tokens of the pool. The type of the parameters is `CurrencyAmount`, a type that describes both the type and amount of currency. The values we provide are configuration parameters to our guide.
+The other two `CurrencyAmount` parameters (`expectedCurrencyOwed0` and `expectedCurrencyOwed1`) define the **maximum** amount of currency we expect to get collect through accrued fees of each token in the pool. We set these through our guide's configuration.
+
+## Submitting our fee collection transaction
 
 We then get the call parameters for collecting our fees from our `NonfungiblePositionManager` using the constructed `CollectOptions`:
 
