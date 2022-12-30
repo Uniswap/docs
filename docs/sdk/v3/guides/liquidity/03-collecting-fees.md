@@ -19,8 +19,6 @@ Note that the minting logic is not covered in this guide as it was covered in de
 
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to collect the accrued fees (if any) with the press of a button and see the change reflected in the balance of our tokens.
 
-## Needed Packages
-
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
@@ -32,7 +30,7 @@ All of the fee collecting logic can be found in the [`collectFees`](https://gith
 
 To start, we construct an options object of type  [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) that holds the data about the fees we want to collect:
 
-```js reference title="Constructing the CollectOptions" referenceLinkText="View on Github" customStyling 
+```typescript reference title="Constructing the CollectOptions" referenceLinkText="View on Github" customStyling 
 https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L31-L48
 ```
 
@@ -42,13 +40,13 @@ The other 2 parameters, `expectedCurrencyOwed0` and `expectedCurrencyOwed1`, con
 
 We then get the call parameters for collecting our fees from our `NonfungiblePositionManager` using the constructed `CollectOptions`:
 
-```js reference title="Getting the calldata and value for the transaction" referenceLinkText="View on Github" customStyling
+```typescript reference title="Getting the calldata and value for the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L51-L52
 ```
 
 The function above returns the calldata and value required to construct the transaction for collecting accrued fees. Now that we have both the calldata and value we needed for the transaction, we can build and execute the it:
 
-```js reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
+```typescript reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L55-L64
 ```
 

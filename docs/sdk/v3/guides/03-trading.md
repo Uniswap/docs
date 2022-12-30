@@ -25,8 +25,6 @@ At the end of the guide, we should be able to create and execute a trade between
 Included in the example application is functionality to wrap/unwrap ETH as needed to fund the example `WETH` to `USDC` swap directly from an `ETH` balance.
 :::
 
-## Needed Packages
-
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
@@ -42,13 +40,13 @@ https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90
 
 Using this metadata along with our inputs, we will then construct a `Pool`:
 
-```js reference title="Constructing a Pool" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing a Pool" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L42-L49
 ```
 
 With this `Pool`, we can now construct a route to use in our trade. We will reuse our previous quoting code to calculate the output amount we expect from our trade:
 
-```js reference title="Constructing a Route" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing a Route" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L51-L55
 ```
 
@@ -56,7 +54,7 @@ https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90
 
 Once we have a route, we can now construct an unchecked trade using the route in addition to the output amount from a quote based on our input:
 
-```js reference title="Creating a Trade" referenceLinkText="View on Github" customStyling
+```typescript reference title="Creating a Trade" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L59-L73
 ```
 
@@ -66,19 +64,19 @@ This example uses an exact input trade, but we can also construct a trade using 
 
 Once we have created a trade, we can now execute this trade with our provider. First, we must set our options that define how much time and slippage can occur in our execution as well as the address to use for our wallet:
 
-```js reference title="Constructing SwapOptions" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing SwapOptions" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L86-L90
 ```
 
 Next, we use the Uniswap `SwapRouter` to get the associated call parameters for our trade and options:
 
-```js reference title="Getting call parameters" referenceLinkText="View on Github" customStyling
+```typescript reference title="Getting call parameters" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L92
 ```
 
 Finally, we can construct a transaction from the method parameters and send the transaction:
 
-```js reference title="Sending a transaction" referenceLinkText="View on Github" customStyling
+```typescript reference title="Sending a transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L94-L101
 ```
 

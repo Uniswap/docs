@@ -24,8 +24,6 @@ The guide will **cover**:
 
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to swap-and-add liquidity using 100% of the input assets with the press of a button and see the change reflected in the balance of our tokens.
 
-## Needed Packages
-
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
@@ -36,7 +34,7 @@ For this guide, the following Uniswap packages are used:
 
 The first step is to setup our router, the [`AlphaRouter`](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/alpha-router/alpha-router.ts#L333), which is part of the [smart-order-router package](https://www.npmjs.com/package/@uniswap/smart-order-router). The router requires a `chainId` and a `provider` to be initialized. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
 
-```js reference title="Creating a router instance" referenceLinkText="View on Github" customStyling
+```typescript reference title="Creating a router instance" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L41
 ```
 
@@ -48,7 +46,7 @@ Having created the router, we now need to construct the parameters required to m
 
 The first parameter is an instance of `SwapAndAddConfig`, which sets configurations for the `routeToRatio ` algorithm. `ratioErrorTolerance` determines the margin of error the resulting ratio can have from the optimal ratio. `maxIterations` determines the maximum times the algorithm will iterate to find a ratio within error tolerance. If max iterations is exceeded, an error is returned. A sane default for `maxIterations` is 6, and the benefit of running the algorithm more times is that we have more chances to find a route, but takes longer to execute:
 
-```js reference title="Constructing SwapAndAddConfig" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing SwapAndAddConfig" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L43-L46
 ```
 
@@ -58,19 +56,19 @@ Then, `addLiquidityOptions` must contain a `tokenId` to add to an existing posit
 
 The only custom parameter for `swapAndAddOptions` is the token id, which is no other than the position id of the last position we minted in the example:
 
-```js reference title="Constructing SwapAndAddOptions" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing SwapAndAddOptions" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L48-L58
 ```
 
 Next, we construct two instances of `CurrencyAmount`s, each of which represents the initial balance of the token that we wish to swap-and-add, where the token is the token in our target liquidity pool. We use the configuration parameters of the guide to set those:
 
-```js reference title="Constructing the two CurrencyAmounts" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing the two CurrencyAmounts" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L60-L74
 ```
 
 Finally we construct the position, a position object that contains the details of the position for which to add liquidity. The position liquidity can be set to `1`, as a placeholder, since liquidity is still unknown and will be set inside the call to `routeToRatio`:
 
-```js reference title="Making the call to routeToRatio" referenceLinkText="View on Github" customStyling
+```typescript reference title="Making the call to routeToRatio" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L76-L79
 ```
 
@@ -78,13 +76,13 @@ https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8
 
 Having constructed all the parameters we need to call `routeToRatio`, we can now make the call to the function:
 
-```js reference title="Constructing the position object" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing the position object" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L81-L87
 ```
 
 The return type of the function call is [SwapToRatioResponse](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/router.ts#L121). If a route was found successfully, this object will have two fields: the status (success) and the `SwapToRatioRoute` object. We check to make sure that both of those conditions hold true before we construct and submit the transaction:
 
-```js reference title="Checking that a route was found" referenceLinkText="View on Github" customStyling
+```typescript reference title="Checking that a route was found" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L89-L94
 ```
 
@@ -94,7 +92,7 @@ In case a route was not found, we return from the function a `Failed` state for 
 
 After making sure that a route was successfully found, we can now construct and send the transaction. The response (`SwapToRatioRoute`) will have the properties we need to construct our transaction object:
 
-```js reference title="Constructing and sending the transaction" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing and sending the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L96-L104
 ```
 

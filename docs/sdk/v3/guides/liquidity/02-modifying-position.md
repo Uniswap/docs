@@ -22,8 +22,6 @@ Note that the minting logic is not covered in this guide as it was covered in de
 
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to add or remove liquidity with the press of a button and see the change reflected in the balance of our tokens.
 
-## Needed Packages
-
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
@@ -37,7 +35,7 @@ The first difference to point out is that we do not need to give approval to the
 
 To start, we construct the position by which we want to increase our current position:
 
-```js reference title="Creating the Position" referenceLinkText="View on Github" customStyling
+```typescript reference title="Creating the Position" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L40-L55
 ```
 
@@ -45,7 +43,7 @@ The function receives 2 arguments, which are the 2 `CurrencyAmount`s that are us
 
 We then need to construct an options object of type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77) similar to how we did in the minting case. Note however, how our config object is now of the other allowed type of `AddLiquidityOptions`, which is [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75):
 
-```js reference title="Constructing the options object" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing the options object" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L57-L61
 ```
 
@@ -53,13 +51,13 @@ In essence, the difference with the minting case is that we have omitted the `re
 
 The newly created position along with the options object are then passed to the `NonfungiblePositionManager`'s `addCallParameters`:
 
-```js reference title="Passing the position and options object to addCallParameters" referenceLinkText="View on Github" customStyling
+```typescript reference title="Passing the position and options object to addCallParameters" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L64-L67
 ```
 
 The return values of `addCallParameters` are the calldata and value of the transaction we need to submit to increase our position's liquidity. We can now build and execute the transaction:
 
-```js reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
+```typescript reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L70-L79
 ```
 
@@ -74,7 +72,7 @@ Note how we do not need to give approval to the `NonfungiblePositionManager` to 
 
 To start, we create a position identical to the one we created during minting:
 
-```js reference title="Creating an identical position as minting" referenceLinkText="View on Github" customStyling
+```typescript reference title="Creating an identical position as minting" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L90-L105
 ```
 
@@ -82,7 +80,7 @@ The function receives 2 arguments, both of which are `CurrencyAmount`s and are p
 
 We then need to construct an options object of type [`RemoveLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L138):
 
-```js reference title="Constructing the options object" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing the options object" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L113-L120
 ```
 
@@ -92,19 +90,19 @@ We have also provided 2 other parameters: `liquidityPercentage` and `collectOpti
 
 The latter parameter is of type [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) and gives us the option to collect the fees, if any, that we have accrued for the time that we were actively provisioning liquidity. In this example, we pass in 0 for both tokens as we do not want to collect any fees. The `collectOptions` object is created right before `removeLiquidityOptions`:
 
-```js reference title="Constructing the collect options object" referenceLinkText="View on Github" customStyling
+```typescript reference title="Constructing the collect options object" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L107-L111
 ```
 
 The position object along with the options object is passed to the `NonfungiblePositionManager`'s `removeCallParameters`, similar to how we did in the adding liquidity case:
 
-```js reference title="Getting the calldata and value for the transaction" referenceLinkText="View on Github" customStyling
+```typescript reference title="Getting the calldata and value for the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L122-L125
 ```
 
 The return values `removeCallParameters` are the calldata and value that are needed to construct the transaction to remove liquidity from our position. We can build the transaction and send it for execution:
 
-```js reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
+```typescript reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/d6300e2db41f6a2c3e9c69860347c17c484232ba/v3-sdk/modifying-position/src/example/Example.tsx#L241-L251
 ```
 

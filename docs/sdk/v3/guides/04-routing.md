@@ -21,8 +21,6 @@ The guide will **cover**:
 
 At the end of the guide, we should be able to create a route and and execute a swap between any two currencies tokens using the example's included UI.
 
-## Needed Packages
-
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
