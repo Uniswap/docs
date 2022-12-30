@@ -19,9 +19,14 @@ Note that the minting logic is not covered in this guide as it was covered in de
 
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to collect the accrued fees (if any) with the press of a button and see the change reflected in the balance of our tokens.
 
-## Example
+## Needed Packages
 
-### Collecting accrued fees from our position
+For this guide, the following Uniswap packages are used:
+
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+
+## Collecting accrued fees from our position
 
 All of the fee collecting logic can be found in the [`collectFees`](https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L24) function. Notice how the **Collect Fees** button is disabled until a position is minted. This happens because there will be no fees to collect unless there is a position whose liquidity has been traded against. 
 

@@ -21,6 +21,14 @@ The guide will **cover**:
 
 At the end of the guide, we should be able to create a route and and execute a swap between any two currencies tokens using the example's included UI.
 
+## Needed Packages
+
+For this guide, the following Uniswap packages are used:
+
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswap/smart-order-router`](https://www.npmjs.com/package/@uniswap/smart-order-router)
+
 ## Creating a router instance
 
 To compute our route, we will use the `@uniswap/smart-order-router` package, specifically the `AlphaRouter` class which requires a `chainId` and a `provider`. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:

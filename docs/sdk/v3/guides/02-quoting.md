@@ -24,9 +24,14 @@ The guide will **cover**:
 
 At the end of the guide, we should be able to fetch a quote for the given input token pair and the input token amount with the press of a button on the web application.
 
-## Example
+## Needed Packages
 
-### Computing the **USDC - WETH** Pool's deployment address
+For this guide, the following Uniswap packages are used:
+
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+
+## Computing the **USDC - WETH** Pool's deployment address
 
 To interact with the **USDC - WETH** Pool contract, we first need to compute its deployment address.
 The SDK provides a utility method for that:
@@ -43,7 +48,7 @@ These parameters have already been defined in our configuration file:
 https://github.com/Uniswap/examples/blob/1ef393c2b8f8206a3dc5a42562382c267bcc361b/v3-sdk/quoting/src/config.ts#L34-L39
 ```
 
-### Setting up a reference to the Pool contract and getting metadata from it
+## Setting up a reference to the Pool contract and getting metadata from it
 
 Now that we have the deployment address of the **USDC - ETH** Pool, we can construct an instance of an **ethers** `Contract` to interact with it:
 
@@ -71,7 +76,7 @@ The return values of these methods will become inputs to the quote fetching func
 In this example, the metadata we fetch is already present in our inputs. This guide fetches this information first in order to show how to fetch any metadata, which will be expanded on in future guides.
 :::
 
-### Setting up a reference to the Quoter contract and getting a quote for the pool
+## Setting up a reference to the Quoter contract and getting a quote for the pool
 
 Like we did for the Pool contract, we need to construct an instance of an **ethers** `Contract` for our Quoter contract in order to interact with it:
 ```js reference title="Setting up a reference to the Quoter contract" referenceLinkText="View on Github" customStyling

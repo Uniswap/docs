@@ -22,7 +22,12 @@ Note that the minting logic is not covered in this guide as it was covered in de
 
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to add or remove liquidity with the press of a button and see the change reflected in the balance of our tokens.
 
-## Example
+## Needed Packages
+
+For this guide, the following Uniswap packages are used:
+
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 
 ### Adding liquidity to our position
 

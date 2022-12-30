@@ -25,6 +25,13 @@ At the end of the guide, we should be able to create and execute a trade between
 Included in the example application is functionality to wrap/unwrap ETH as needed to fund the example `WETH` to `USDC` swap directly from an `ETH` balance.
 :::
 
+## Needed Packages
+
+For this guide, the following Uniswap packages are used:
+
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+
 ## Constructing a route from pool information
 
 To construct our trade, we will first create an model instance of a `Pool`. We will first extract the needed metadata from the relevant pool contract. Metadata includes both constant information about the pool as well as information about its current state stored in its first slot:

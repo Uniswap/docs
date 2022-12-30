@@ -24,9 +24,15 @@ The guide will **cover**:
 
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to swap-and-add liquidity using 100% of the input assets with the press of a button and see the change reflected in the balance of our tokens.
 
-## Example
+## Needed Packages
 
-### Creating a router instance
+For this guide, the following Uniswap packages are used:
+
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswap/smart-order-router`](https://www.npmjs.com/package/@uniswap/smart-order-router)
+
+## Creating a router instance
 
 The first step is to setup our router, the [`AlphaRouter`](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/alpha-router/alpha-router.ts#L333), which is part of the [smart-order-router package](https://www.npmjs.com/package/@uniswap/smart-order-router). The router requires a `chainId` and a `provider` to be initialized. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
 
@@ -36,7 +42,7 @@ https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8
 
 Please note that routing has been covered in greater detail in the [routing guide](../04-routing.md).
 
-### Constructing the parameters for the swap-and-add function call
+## Constructing the parameters for the swap-and-add function call
 
 Having created the router, we now need to construct the parameters required to make a call to its `routeToRatio` function, which will ensure the ratio of currency used matches the pool's required ratio to add our total liquidity.
 
@@ -68,7 +74,7 @@ Finally we construct the position, a position object that contains the details o
 https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8b/v3-sdk/swap-and-add-liquidity/src/example/Example.tsx#L76-L79
 ```
 
-### Making the swap-and function call
+## Making the swap-and function call
 
 Having constructed all the parameters we need to call `routeToRatio`, we can now make the call to the function:
 
@@ -84,7 +90,7 @@ https://github.com/Uniswap/examples/blob/a34ecd48c95c075bfbc443af4b4150b481e87b8
 
 In case a route was not found, we return from the function a `Failed` state for the transaction.
 
-### Constructing and executing the transaction to swap-and-add liquidity
+## Constructing and executing the transaction to swap-and-add liquidity
 
 After making sure that a route was successfully found, we can now construct and send the transaction. The response (`SwapToRatioRoute`) will have the properties we need to construct our transaction object:
 
