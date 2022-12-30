@@ -58,3 +58,7 @@ https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68f
 ```
 
 After swapping, you should see the currency balances update in the UI shortly after the block is confirmed.
+
+## Next Steps
+
+Now that you're familiar with trading, consider checking out our next guides on [pooling liquidity](./liquidity/01-minting-position.md) to Uniswap!
