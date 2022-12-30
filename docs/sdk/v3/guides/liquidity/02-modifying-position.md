@@ -5,19 +5,16 @@ title: Adding & Removing Liquidity
 
 ## Introduction
 
-This guide will cover how to modify a liquidity position by adding or removing liquidity on the Uniswap V3 protocol.
-It is based on the [modifying a position code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/modifying-position), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
-To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/modifying-position/README.md) and follow the setup instructions.
+This guide will cover how to modify a liquidity position by adding or removing liquidity on the Uniswap V3 protocol. It is based on the [modifying a position code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/modifying-position), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/modifying-position/README.md) and follow the setup instructions.
 
 :::info
-
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
-
 :::
 
 In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position and then modify the provided liquidity for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for, the Pool **fee** and the **fraction** by which to **add and remove** from our position.
 
 The guide will **cover**:
+
 1. Adding liquidity to our position
 2. Removing liquidity from our position
 
@@ -26,6 +23,7 @@ Note that the minting logic is not covered in this guide as it was covered in de
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position's id on the UI of the web application. We should also be able to add or remove liquidity with the press of a button and see the change reflected in the balance of our tokens.
 
 ## Example
+
 ### Adding liquidity to our position
 
 All of the liquidity adding logic can be found in the [`addLiquidity`](https://github.com/Uniswap/examples/blob/d34a53412dbf905802da2249391788a225719bb8/v3-sdk/modifying-position/src/example/Example.tsx#L33) function. The function is very similar to `mintPosition`, except for some details that we will go over. Notice how the **Add Liquidity** button is disabled until a position is minted.

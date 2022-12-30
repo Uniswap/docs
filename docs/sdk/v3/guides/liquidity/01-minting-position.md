@@ -10,14 +10,13 @@ It is based on the [minting a position code example](https://github.com/Uniswap/
 To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-posotion/README.md) and follow the setup instructions.
 
 :::info
-
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
-
 :::
 
 In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for and the Pool **fee**.
 
 The guide will **cover**:
+
 1. Giving approval to the `NonfungiblePositionManager` contract to transfer our tokens.
 2. Fetching the Pool's constants and current state and using them to create an instance of a `Pool` class.
 3. Creating an instance of a `Position` class by calculating the liquidity we want to supply.

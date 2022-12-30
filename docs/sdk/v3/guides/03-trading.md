@@ -5,17 +5,16 @@ title: Executing a Trading
 
 ## Introduction
 
-This guide will build off our [quoting guide](./02-quoting.md) and show how to use a quote to construct and execute a trade on the Uniswap V3 protocol.
-It is based on the [Trading code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/trading), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
-To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/README.md) and follow the setup instructions.
+This guide will build off our [quoting guide](./02-quoting.md) and show how to use a quote to construct and execute a trade on the Uniswap V3 protocol. It is based on the [Trading code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/trading), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/README.md) and follow the setup instructions.
 
 :::info
-For a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
+If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 :::
 
 In this example we will trade between two ERC20 tokens: **WETH and USDC**. The tokens, amount of input token, and the fee level can be configured as inputs.
 
 The guide will **cover**:
+
 1. Constructing a route from pool information
 2. Constructing an unchecked trade
 3. Executing a trade
@@ -45,6 +44,7 @@ With this `Pool`, we can now construct a route to use in our trade. We will reus
 ```js reference title="Constructing a Route" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L51-L55
 ```
+
 ## Constructing an unchecked trade
 
 Once we have a route, we can now construct an unchecked trade using the route in addition to the output amount from a quote based on our input:
