@@ -18,8 +18,6 @@ The guide will **cover**:
 1. Adding liquidity to our position
 2. Removing liquidity from our position
 
-Note that the minting logic is not covered in this guide as it was covered in detail in the [previous guide](./01-minting-position.md).
-
 At the end of the guide, given the inputs above, we should be able to add or remove liquidity from a minted position with the press of a button and see the change reflected in our position and the balance of our tokens.
 
 For this guide, the following Uniswap packages are used:
@@ -27,11 +25,17 @@ For this guide, the following Uniswap packages are used:
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
 - [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 
+The core code of this guide can be found in [`addLiquidity()`](https://github.com/Uniswap/examples/blob/d34a53412dbf905802da2249391788a225719bb8/v3-sdk/modifying-position/src/example/Example.tsx#L33) and [`removeLiquidity()`](https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L83)
+
+:::note
+This guide assumes you are familiar with our [Minting a Position](./01-minting-position.md) guide. A minted position is required to add or remove liquidity from, so the buttons will be disabled until a position is minted.
+
+Also note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we will have already done that when minting our position.
+:::
+
 ### Adding liquidity to our position
 
-All of the liquidity adding logic can be found in the [`addLiquidity`](https://github.com/Uniswap/examples/blob/d34a53412dbf905802da2249391788a225719bb8/v3-sdk/modifying-position/src/example/Example.tsx#L33) function. The function is similar to `mintPosition` covered in our previous guide with some modified parameters. Also note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we have already done that when minting our position.
-
-Assuming we have already minted a position (the **Add Liquidity** button is disabled until a position is minted), our first step is to construct the modified position using our original position to calculate the amount by which we want to increase our current position:
+Assuming we have already minted a position, our first step is to construct the modified position using our original position to calculate the amount by which we want to increase our current position:
 
 ```typescript reference title="Creating the Position" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L40-L55
@@ -63,7 +67,7 @@ After pressing the button, note how the balance of USDC and DAI drops and our po
 
 ### Removing liquidity from our position
 
-All of the liquidity removing logic can be found in the [`removeLiquidity`](https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L83) function. This is the mirror action of adding liquidity and will be somewhat similar as a result, requiring a position to already be minted.
+The `removeLiquidity` function is the mirror action of adding liquidity and will be somewhat similar as a result, requiring a position to already be minted.
 
 To start, we create a position identical to the one we minted:
 

@@ -29,6 +29,8 @@ For this guide, the following Uniswap packages are used:
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
 - [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 
+The core code of this guide can be found in [`quote.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/quoting/src/libs/quote.ts)
+
 ## Computing the Pool's deployment address
 
 To interact with the **USDC - WETH** Pool contract, we first need to compute its deployment address.

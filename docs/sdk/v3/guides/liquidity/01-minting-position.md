@@ -30,6 +30,8 @@ For this guide, the following Uniswap packages are used:
 - [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 - [`@uniswap/smart-order-router`](https://www.npmjs.com/package/@uniswap/smart-order-router)
 
+The core code of this guide can be found in [`mintPosition()`](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/src/libs/positions.ts#L37)
+
 ## Giving approval to transfer our tokens
 
 The first step is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens:

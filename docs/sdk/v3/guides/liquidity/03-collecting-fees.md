@@ -18,14 +18,20 @@ The guide will **cover**:
 1. Setting up our fee collection
 2. Submitting our fee collection transaction
 
-Note that the minting logic is not covered in this guide as it was covered in detail in the [previous guide](./01-minting-position.md).
-
 At the end of the guide, given the inputs above, we should be able to collect the accrued fees (if any) of a minted position with the press of a button and see the change reflected in our position and the balance of our tokens.
 
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
 - [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+
+The core code of this guide can be found in [`collectFees()`](https://github.com/Uniswap/examples/blob/main/v3-sdk/collecting-fees/src/libs/liquidity.ts#L35).
+
+:::note
+This guide assumes you are familiar with our [Minting a Position](./01-minting-position.md) guide. A minted position is required to add or remove liquidity from, so the buttons will be disabled until a position is minted.
+
+Also note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we will have already done that when minting our position.
+:::
 
 ## Setting up our fee collection
 
@@ -56,8 +62,6 @@ https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213ad
 ```
 
 After pressing the button, if someone has traded against our position, we should be able to note how the balance of USDC and DAI increases as we collect fees.
-
-Note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we have already done that when minting our position.
 
 ## Next Steps
 
