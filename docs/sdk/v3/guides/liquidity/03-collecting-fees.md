@@ -40,7 +40,7 @@ All of the fee collecting logic can be found in the [`collectFees`](https://gith
 To start, we construct an options object of type  [`CollectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) that holds the data about the fees we want to collect:
 
 ```typescript reference title="Constructing the CollectOptions" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L31-L48
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/collecting-fees/src/libs/liquidity.ts#L44-L61
 ```
 
 Similar to the other functions exposed by the `NonfungiblePositionManager`, we pass the `tokenId` and the `recipient` of the fees, which in this case is our function's input position id and our wallet's address.
@@ -52,13 +52,13 @@ The other two `CurrencyAmount` parameters (`expectedCurrencyOwed0` and `expected
 We then get the call parameters for collecting our fees from our `NonfungiblePositionManager` using the constructed `CollectOptions`:
 
 ```typescript reference title="Getting the calldata and value for the transaction" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L51-L52
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/collecting-fees/src/libs/liquidity.ts#L64-L65
 ```
 
 The function above returns the calldata and value required to construct the transaction for collecting accrued fees. Now that we have both the calldata and value we needed for the transaction, we can build and execute the it:
 
 ```typescript reference title="Building and submitting the transaction" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/be67e7df220b0a270c9d18bbaab529e017213adf/v3-sdk/collecting-fees/src/example/Example.tsx#L55-L64
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/collecting-fees/src/libs/liquidity.ts#L68-L77
 ```
 
 After pressing the button, if someone has traded against our position, we should be able to note how the balance of USDC and DAI increases as we collect fees.

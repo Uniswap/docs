@@ -37,13 +37,13 @@ The core code of this guide can be found in [`mintPosition()`](https://github.co
 The first step is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens:
 
 ```typescript reference title="Approving our tokens for transferring" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/6fba6da4d323804db56b3189ad1bbbaf18e6180f/v3-sdk/minting-position/src/example/Example.tsx#L113-L124
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L46-L51
 ```
 
 The logic to achieve that is wrapped in the `getTokenTransferApprovals` function. In short, since both **USDC** and **DAI** are ERC20 tokens, we setup a reference to their smart contracts and call the `approve` function:
 
 ```typescript reference title="Setting up an ERC20 contract reference and approving" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/6fba6da4d323804db56b3189ad1bbbaf18e6180f/v3-sdk/minting-position/src/libs/contracts.ts#L73-L78
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L202-L211
 ```
 
 ## Creating an instance of a `Pool`
@@ -52,20 +52,20 @@ Having approved the transfer of our tokens, we now need to get data about the po
 
 To start, we compute our Pool's address by using a helper function and passing in the unique identifiers of a Pool - the **two tokens** and the Pool **fee**. The **fee** input parameter represents the swap fee that is distributed to all in range liquidity at the time of the swap:
 
-```typescript reference title="Fetching the Pool's constants and current state" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L47-L52
+```typescript reference title="Computing the Pool's address" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/pool.ts#L24-L29
 ```
 
 Then, we get the Pool's data by creating a reference to the Pool's smart contract and accessing its methods:
 
 ```typescript reference title="Setting up a Pool contract reference and fetching current state data" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/3fe96214409a78c34e35747fc2567330c7b505d7/v3-sdk/minting-position/src/example/Example.tsx#L53-L67
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/pool.ts#L31-L45
 ```
 
 Having collected the required data, we can now create an instance of the `Pool` class:
 
 ```typescript reference title="Fetching pool data and creating an instance of the Pool class" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L112-L119
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L111-L118
 ```
 
 ## Calculating our `Position` from our input tokens
@@ -73,7 +73,7 @@ https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d0
 Having created the instance of the `Pool` class, we can now use that to create an instance of a `Position` class, which represents the price range for a specific pool that LPs choose to provide in:
 
 ```typescript reference title="Create a Position representation instance" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/5007bda6dfa1255846248514018d995818b67d09/v3-sdk/minting-position/src/example/Example.tsx#L122-L139
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L121-L132
 ```
 
 We use the `fromAmounts` static function of the `Position` class to create an instance of it, which uses the following parameters:
@@ -88,13 +88,13 @@ Given those parameters, `fromAmounts` will attempt to calculate the maximum amou
 The Position instance is then passed as input to the `NonfungiblePositionManager`'s `addCallParameters` function. The function also requires an [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77) object as its second parameter. This is either of type [`MintOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L74) for minting a new position or [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75) for adding liquidity to an existing position. For this example, we're using a `MintOptions` to create our position.
 
 ```typescript reference title="Getting the transaction calldata and parameters" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b8/v3-sdk/minting-position/src/example/Example.tsx#L149-L156
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L78-L88
 ```
 
 The function returns the calldata as well as the value required to execute the transaction:
 
 ```typescript reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/74621ce380dec537a3f9654ec8723cc4be9e54b8/v3-sdk/minting-position/src/example/Example.tsx#L159-L168
+https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L91-L100
 ```
 
 The effect of the transaction is to mint a new Position NFT. We should see a new position with liquidity in our list of positions.
