@@ -108,4 +108,4 @@ After pressing the button, note how the balance of USDC and DAI increases and ou
 
 ## Next Steps
 
-Now that you can mint and modify a position, check out how to [collect fees](./03-collecting-fees.md)) from the position!
+Now that you can mint and modify a position, check out how to [collect fees](./03-collecting-fees.md) from the position!

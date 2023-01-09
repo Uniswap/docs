@@ -1,6 +1,6 @@
 ---
 id: trading
-title: Executing a Trading
+title: Executing a Trade
 ---   
 
 ## Introduction
@@ -54,7 +54,26 @@ https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90
 
 ## Constructing an unchecked trade
 
-Once we have a route, we can now construct an unchecked trade using the route in addition to the output amount from a quote based on our input:
+Once we have constructed the route object, we now need to obtain a quote for the given `inputAmount` of the example:
+
+```typescript reference title="Getting a quote" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5aa1cc2d4d5a7a2c5ce4a6f69f6cba28d925eeb3/v3-sdk/trading/src/libs/trading.ts#L58
+```
+
+As shown below, the quote is obtained using the `v3-sdk`'s `SwapQuoter`, in contrast to the [previous quoting guide](./02-quoting.md), where we directly accessed the smart contact:
+
+```typescript reference title="Getting a quote using the v3-sdk" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5aa1cc2d4d5a7a2c5ce4a6f69f6cba28d925eeb3/v3-sdk/trading/src/libs/trading.ts#L132-L145
+```
+
+The `SwapQuoter`'s `quoteCallParameters` function, gives us the calldata needed to make the call to the `Quoter`, and we then decode the returned quote:
+
+```typescript reference title="Getting a quote using the v3-sdk" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5aa1cc2d4d5a7a2c5ce4a6f69f6cba28d925eeb3/v3-sdk/trading/src/libs/trading.ts#L147-L152
+```
+
+
+With the quote and the route, we can now construct an unchecked trade using the route in addition to the output amount from a quote based on our input:
 
 ```typescript reference title="Creating a Trade" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L59-L73
@@ -64,7 +83,13 @@ This example uses an exact input trade, but we can also construct a trade using 
 
 ## Executing a trade
 
-Once we have created a trade, we can now execute this trade with our provider. First, we must set our options that define how much time and slippage can occur in our execution as well as the address to use for our wallet:
+Once we have created a trade, we can now execute this trade with our provider. First, we must give the `SwapRouter` approval to spend our tokens for us:
+
+```typescript reference title="Approve SwapRouter to spend our tokens" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5aa1cc2d4d5a7a2c5ce4a6f69f6cba28d925eeb3/v3-sdk/trading/src/libs/trading.ts#L90-L94
+```
+
+Then, we set our options that define how much time and slippage can occur in our execution as well as the address to use for our wallet:
 
 ```typescript reference title="Constructing SwapOptions" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L86-L90

@@ -13,11 +13,11 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 
 When adding liquidity to a Uniswap v3 pool, you must provide two assets in a particular ratio. In many cases, your contract or the user's wallet hold a different ratio of those two assets. In order to deposit 100% of your assets, you must first swap your assets to the optimal ratio and then add liquidity.
 
-However, the swap may shift the balance of the pool and thus change the optimal ratio. To avoid that, we can execute this swap-and-add liquidity operation in an atomic fashion, using a router. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for and the Pool **fee**.
+However, the swap may shift the balance of the pool and thus change the optimal ratio. To avoid that, we can execute this swap-and-add liquidity operation in an atomic fashion, using a router. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for, the **amount** of each token to swap-and-add, and the Pool **fee**.
 
 The guide will **cover**:
 
-1. Creating a router instance
+1. Setup a router instance
 2. Configuring our ratio calculation
 3. Calculating our currency ratio
 4. Constructing and executing our swap-and-add transaction
@@ -38,9 +38,15 @@ This guide assumes you are familiar with our [Minting a Position](./01-minting-p
 Also note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we will have already done that when minting our position.
 :::
 
-## Creating a router instance
+## Setup a router instance
 
-The first step is to setup our router, the [`AlphaRouter`](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/alpha-router/alpha-router.ts#L333), which is part of the [smart-order-router package](https://www.npmjs.com/package/@uniswap/smart-order-router). The router requires a `chainId` and a `provider` to be initialized. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
+The first step is to approve the `SwapRouter` smart contract to spend our tokens for us in order for us to add liquidity to our position:
+
+```typescript reference title="Approve SwapRouter to spend our tokens" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/ec48bb845402419fa6e613cb26512a76d864afa5/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L58-L66
+```
+
+The we can setup our router, the [`AlphaRouter`](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/alpha-router/alpha-router.ts#L333), which is part of the [smart-order-router package](https://www.npmjs.com/package/@uniswap/smart-order-router). The router requires a `chainId` and a `provider` to be initialized. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
 
 ```typescript reference title="Creating a router instance" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L57
@@ -55,7 +61,7 @@ Having created the router, we now need to construct the parameters required to m
 The first two parameters are the currency amounts we use as input to the `routeToRatio` algorithm:
 
 ```typescript reference title="Constructing the two CurrencyAmounts" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L59-L73
+https://github.com/Uniswap/examples/blob/ec48bb845402419fa6e613cb26512a76d864afa5/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L78-L92
 ```
 
 Next, we will create a placeholder position with a liquidity of `1` since liquidity is still unknown and will be set inside the call to `routeToRatio`:
