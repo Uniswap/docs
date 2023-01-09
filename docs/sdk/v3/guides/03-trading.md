@@ -1,6 +1,6 @@
 ---
 id: trading
-title: Executing a Trading
+title: Executing a Trade
 ---   
 
 ## Introduction
