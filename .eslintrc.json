@@ -9,7 +9,8 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:react-hooks/recommended",
         "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:markdown/recommended"
     ],
     "overrides": [],
     "parserOptions": {

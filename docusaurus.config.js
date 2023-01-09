@@ -230,6 +230,7 @@ module.exports = {
     },
   ],
   plugins: [
+    ['@saucelabs/theme-github-codeblock', {}],
     [
       '@docusaurus/plugin-content-docs',
       {
