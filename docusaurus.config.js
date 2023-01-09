@@ -264,6 +264,29 @@ module.exports = {
     [
       '@docusaurus/plugin-client-redirects',
       {
+        redirects: [
+          // 1/9/23 V3 SDK Guide Redirects
+          {
+            to: '/sdk/v3/guides/background',
+            from: '/sdk/v3/guides/quick-start',
+          },
+          {
+            to: '/sdk/v3/guides/quoting',
+            from: ['/sdk/v3/guides/creating-a-pool', '/sdk/v3/guides/fetching-prices'],
+          },
+          {
+            to: '/sdk/v3/guides/trading',
+            from: '/sdk/v3/guides/creating-a-trade',
+          },
+          {
+            to: '/sdk/v3/guides/routing',
+            from: '/sdk/v3/guides/auto-router',
+          },
+          {
+            to: '/sdk/v3/guides/liquidity/modifying-position',
+            from: ['/sdk/v3/guides/liquidity/adding', '/sdk/v3/guides/liquidity/removing'],
+          },
+        ],
         createRedirects(existingPath) {
           // V3 Redirects
           if (existingPath.includes('/concepts/overview')) {

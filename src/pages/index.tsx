@@ -72,24 +72,19 @@ export const developerLinks = [
 
 export const dAppGuides = [
   {
-    title: 'Setup your environment',
-    text: 'Prepare your local environment by installing the required dependencies',
-    to: '/sdk/v3/guides/quick-start',
-  },
-  {
     title: 'Fetch token prices',
     text: 'Fetch the price of tokens in a specific Pool',
-    to: '/sdk/v3/guides/fetching-prices',
+    to: 'sdk/v3/guides/quoting',
   },
   {
     title: 'Create a Trade',
     text: 'Fetch a Quote for a Trade and execute the Trade',
-    to: '/sdk/v3/guides/creating-a-trade',
+    to: '/sdk/v3/guides/trading',
   },
   {
     title: 'Route trades',
     text: 'Use Routing to get optimized prices for your Trades',
-    to: '/sdk/v3/guides/auto-router',
+    to: '/sdk/v3/guides/routing',
   },
   {
     title: 'Provide liquidity',

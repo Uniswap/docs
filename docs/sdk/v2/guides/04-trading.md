@@ -7,7 +7,7 @@ title: Trading
 
 The SDK _cannot execute trades or send transactions on your behalf_. Rather, it offers utility classes and functions which make it easy to calculate the data required to safely interact with Uniswap. Nearly everything you need to safely transact with Uniswap is provided by the [Trade](../reference/trade) entity. However, it is your responsibility to use this data to send transactions in whatever context makes sense for your application.
 
-This guide will focus exclusively on sending a transaction to the [currently recommended Uniswap router](../../../protocol/V2/reference/smart-contracts/router-02)
+This guide will focus exclusively on sending a transaction to the [currently recommended Uniswap router](../../../contracts/v2/reference/smart-contracts/router-02)
 
 # Sending a Transaction to the Router
 
@@ -33,7 +33,7 @@ So, we've constructed a trade entity, but how do we use it to actually send a tr
 
 Before going on, we should explore how ETH works in the context of trading. Internally, the SDK uses WETH, as all Uniswap V2 pairs use WETH under the hood. However, it's perfectly possible for you as an end user to use ETH, and rely on the router to handle converting to/from WETH. So, let's use ETH.
 
-The first step is selecting the appropriate router function. The names of router functions are intended to be self-explanatory; in this case we want [swapExactETHForTokens](../../../protocol/V2/reference/smart-contracts/router-02#swapexactethfortokens), because we're swapping an exact amount of ETH for tokens.
+The first step is selecting the appropriate router function. The names of router functions are intended to be self-explanatory; in this case we want [swapExactETHForTokens](../../../contracts/v2/reference/smart-contracts/router-02#swapexactethfortokens), because we're swapping an exact amount of ETH for tokens.
 
 That Solidity interface for this function is:
 
