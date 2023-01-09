@@ -264,34 +264,30 @@ module.exports = {
     [
       '@docusaurus/plugin-client-redirects',
       {
-        createRedirects(existingPath) {
+        redirects: [
           // 1/9/23 V3 SDK Guide Redirects
-          if (existingPath.includes('/sdk/v3/guides/quick-start')) {
-            return [existingPath.replace('sdk/v3/guides/quick-start', '/sdk/v3/guides/background')]
-          }
-          if (existingPath.includes('/sdk/v3/guides/creating-a-pool')) {
-            return [existingPath.replace('sdk/v3/guides/creating-a-pool', '/sdk/v3/guides/quoting')]
-          }
-          if (existingPath.includes('/sdk/v3/guides/fetching-prices')) {
-            return [existingPath.replace('sdk/v3/guides/fetching-prices', '/sdk/v3/guides/quoting')]
-          }
-          if (existingPath.includes('/sdk/v3/guides/creating-a-trade')) {
-            return [existingPath.replace('sdk/v3/guides/creating-a-trade', '/sdk/v3/guides/trading')]
-          }
-          if (existingPath.includes('/sdk/v3/guides/auto-router')) {
-            return [existingPath.replace('sdk/v3/guides/auto-router', '/sdk/v3/guides/routing')]
-          }
-          if (existingPath.includes('/sdk/v3/guides/liquidity/adding')) {
-            return [
-              existingPath.replace('sdk/v3/guides/liquidity/adding', '/sdk/v3/guides/liquidity/modifying-position'),
-            ]
-          }
-          if (existingPath.includes('/sdk/v3/guides/liquidity/removing')) {
-            return [
-              existingPath.replace('sdk/v3/guides/liquidity/removing', '/sdk/v3/guides/liquidity/modifying-position'),
-            ]
-          }
-
+          {
+            to: '/sdk/v3/guides/background',
+            from: '/sdk/v3/guides/quick-start',
+          },
+          {
+            to: '/sdk/v3/guides/quoting',
+            from: ['/sdk/v3/guides/creating-a-pool', '/sdk/v3/guides/fetching-prices'],
+          },
+          {
+            to: '/sdk/v3/guides/trading',
+            from: '/sdk/v3/guides/creating-a-trade',
+          },
+          {
+            to: '/sdk/v3/guides/routing',
+            from: '/sdk/v3/guides/auto-router',
+          },
+          {
+            to: '/sdk/v3/guides/liquidity/modifying-position',
+            from: ['/sdk/v3/guides/liquidity/adding', '/sdk/v3/guides/liquidity/removing'],
+          },
+        ],
+        createRedirects(existingPath) {
           // V3 Redirects
           if (existingPath.includes('/concepts/overview')) {
             return [existingPath.replace('/concepts/overview', '/protocol/introduction')]
