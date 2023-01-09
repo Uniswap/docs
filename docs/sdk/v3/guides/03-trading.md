@@ -54,7 +54,26 @@ https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90
 
 ## Constructing an unchecked trade
 
-Once we have a route, we can now construct an unchecked trade using the route in addition to the output amount from a quote based on our input:
+Once we have constructed the route object, we now need to obtain a quote for the given `inputAmount` of the example:
+
+```typescript reference title="Getting a quote" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5aa1cc2d4d5a7a2c5ce4a6f69f6cba28d925eeb3/v3-sdk/trading/src/libs/trading.ts#L58
+```
+
+As shown below, the quote is obtained using the `v3-sdk`'s `SwapQuoter`, in contrast to the [previous quoting guide](./02-quoting.md), where we directly accessed the smart contact:
+
+```typescript reference title="Getting a quote using the v3-sdk" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5aa1cc2d4d5a7a2c5ce4a6f69f6cba28d925eeb3/v3-sdk/trading/src/libs/trading.ts#L132-L145
+```
+
+The `SwapQuoter`'s `quoteCallParameters` function, gives us the calldata needed to make the call to the `Quoter`, and we then decode the returned quote:
+
+```typescript reference title="Getting a quote using the v3-sdk" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5aa1cc2d4d5a7a2c5ce4a6f69f6cba28d925eeb3/v3-sdk/trading/src/libs/trading.ts#L147-L152
+```
+
+
+With the quote and the route, we can now construct an unchecked trade using the route in addition to the output amount from a quote based on our input:
 
 ```typescript reference title="Creating a Trade" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/e8bd4178ccaccd6776407f79a319128d4c31f90d/v3-sdk/trading/src/trading.ts#L59-L73
