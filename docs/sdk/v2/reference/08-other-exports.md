@@ -67,7 +67,7 @@ A enum denominating supported rounding options.
 import { FACTORY_ADDRESS } from '@uniswap/sdk'
 ```
 
-The [factory address](../../../protocol/V2/reference/smart-contracts/factory#address).
+The [factory address](../../../contracts/v2/reference/smart-contracts/factory#address).
 
 # INIT_CODE_HASH
 
@@ -75,7 +75,7 @@ The [factory address](../../../protocol/V2/reference/smart-contracts/factory#add
 import { INIT_CODE_HASH } from '@uniswap/sdk'
 ```
 
-See [pair addresses](../../../protocol/V2/guides/smart-contract-integration/getting-pair-addresses).
+See [pair addresses](../../../contracts/v2/guides/smart-contract-integration/getting-pair-addresses).
 
 # MINIMUM_LIQUIDITY
 
@@ -83,7 +83,7 @@ See [pair addresses](../../../protocol/V2/guides/smart-contract-integration/gett
 import { MINIMUM_LIQUIDITY } from '@uniswap/sdk'
 ```
 
-See [minimum liquidity](../../../protocol/V2/reference/smart-contracts/pair#minimum-liquidity).
+See [minimum liquidity](../../../contracts/v2/reference/smart-contracts/pair#minimum-liquidity).
 
 # InsufficientReservesError
 
@@ -103,4 +103,4 @@ import { InsufficientInputAmountError } from '@uniswap/sdk'
 import { WETH } from '@uniswap/sdk'
 ```
 
-An object whose values are [WETH](../../../protocol/V2/reference/smart-contracts/router-02#weth) [Token](token) instances, indexed by [ChainId](#chainid).
+An object whose values are [WETH](../../../contracts/v2/reference/smart-contracts/router-02#weth) [Token](token) instances, indexed by [ChainId](#chainid).

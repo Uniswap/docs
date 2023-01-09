@@ -5,7 +5,7 @@ title: Pair Addresses
 
 # getPair
 
-The most obvious way to get the address for a pair is to call [getPair](../../../protocol/V2/reference/smart-contracts/factory#getpair) on the factory. If the pair exists, this function will return its address, else `address(0)` (`0x0000000000000000000000000000000000000000`).
+The most obvious way to get the address for a pair is to call [getPair](../../../contracts/v2/reference/smart-contracts/factory#getpair) on the factory. If the pair exists, this function will return its address, else `address(0)` (`0x0000000000000000000000000000000000000000`).
 
 - The "canonical" way to determine whether or not a pair exists.
 - Requires an on-chain lookup.
@@ -14,11 +14,11 @@ The most obvious way to get the address for a pair is to call [getPair](../../..
 
 Thanks to some [fancy footwork in the factory](https://github.com/Uniswap/uniswap-v2-core/blob/master/contracts/UniswapV2Factory.sol#L32), we can also compute pair addresses _without any on-chain lookups_ because of [CREATE2](https://eips.ethereum.org/EIPS/eip-1014). The following values are required for this technique:
 
-|                        |                                                                               |
-| :--------------------- | :---------------------------------------------------------------------------- |
-| `address`              | The [factory address](../../../protocol/V2/reference/smart-contracts/factory) |
-| `salt`                 | `keccak256(abi.encodePacked(token0, token1))`                                 |
-| `keccak256(init_code)` | `0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f`          |
+|                        |                                                                                |
+| :--------------------- | :----------------------------------------------------------------------------- |
+| `address`              | The [factory address](../../../contracts/v2/reference/smart-contracts/factory) |
+| `salt`                 | `keccak256(abi.encodePacked(token0, token1))`                                  |
+| `keccak256(init_code)` | `0x96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f`           |
 
 - `token0` must be strictly less than `token1` by sort order.
 

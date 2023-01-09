@@ -23,7 +23,7 @@ The second concern is precision loss due to, for example, chained price ratio ca
 To address this issue, all math operations are performed as fraction operations, ensuring arbitrary precision up
 until the point that values are rounded for display purposes, or truncated to fit inside a fixed bit width.
 
-The SDK works for all chains on which the [factory](../../../protocol/V2/reference/smart-contracts/factory#address) is deployed.
+The SDK works for all chains on which the [factory](../../../contracts/v2/reference/smart-contracts/factory#address) is deployed.
 
 ## Code
 

@@ -95,7 +95,7 @@ const DAI = await Fetcher.fetchTokenData(
 
 # Case 2: Pairs
 
-Now that we've explored how to define a token, let's talk about pairs. To read more about what Uniswap pairs are, see [Pair](../../../protocol/V2/reference/smart-contracts/pair)
+Now that we've explored how to define a token, let's talk about pairs. To read more about what Uniswap pairs are, see [Pair](../../../contracts/v2/reference/smart-contracts/pair)
 
 As an example, let's try to represent the DAI-WETH pair.
 
@@ -105,7 +105,7 @@ Each pair consists of two tokens (see previous section). Note that WETH used by 
 
 ## Required Data
 
-The data we need is the _reserves_ of the pair. To read more about reserves, see [getReserves](../../../protocol/V2/reference/smart-contracts/pair#getreserves).
+The data we need is the _reserves_ of the pair. To read more about reserves, see [getReserves](../../../contracts/v2/reference/smart-contracts/pair#getreserves).
 
 ### Provided by the User
 
