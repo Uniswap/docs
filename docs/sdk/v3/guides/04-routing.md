@@ -11,7 +11,7 @@ This guide will cover how to use Uniswap's smart order router to compute optimal
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 :::
 
-In this example we will trade between **ETH and USDC**, but you can configure your example to us any two currencies and amount of input currency.
+In this example we will trade between **WETH and USDC**, but you can configure your example to us any two currencies and amount of input currency.
 
 The guide will **cover**:
 
@@ -53,7 +53,15 @@ https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68f
 
 ## Swapping using a route
 
-Using this route, we can now execute the trade using the route's computed calldata, values, and gas values.
+
+First, we need to give approval to the `SwapRouter` smart contract to spend our tokens for us:
+
+```typescript reference title="Approving SwapRouter to spend our tokens" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/0071bb5883fba6f4cc39a5f1644ac941e4f24822/v3-sdk/routing/src/libs/routing.ts#L66
+```
+
+Once the approval has been granted and using the route, we can now execute the trade using the route's computed calldata, values, and gas values:
+
 
 ```typescript reference title="Using a route" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68fd/v3-sdk/routing/src/libs/routing.ts#L61-L68
