@@ -27,7 +27,7 @@
     "@saucelabs/theme-github-codeblock": "https://github.com/Uniswap/docusaurus-theme-github-codeblock.git#f55fe4caed9fce974c9b82bf2164f76cc5509eef",
     "@types/react": "^17.0.11",
     "@uniswap/analytics": "1.1.0",
-    "@uniswap/analytics-events": "1.1.1",
+    "@uniswap/analytics-events": "2.0.0",
     "algoliasearch": "^4.9.1",
     "clsx": "^1.1.1",
     "hast-util-is-element": "1.1.0",
