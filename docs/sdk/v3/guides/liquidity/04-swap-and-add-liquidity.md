@@ -17,7 +17,7 @@ However, the swap may shift the balance of the pool and thus change the optimal 
 
 The guide will **cover**:
 
-1. Creating a router instance
+1. Setup a router instance
 2. Configuring our ratio calculation
 3. Calculating our currency ratio
 4. Constructing and executing our swap-and-add transaction
@@ -38,7 +38,7 @@ This guide assumes you are familiar with our [Minting a Position](./01-minting-p
 Also note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we will have already done that when minting our position.
 :::
 
-## Creating a router instance
+## Setup a router instance
 
 The first step is to approve the `SwapRouter` smart contract to spend our tokens for us in order for us to add liquidity to our position:
 
