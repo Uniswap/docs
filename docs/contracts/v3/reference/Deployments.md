@@ -20,6 +20,8 @@ The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, `@uniswap/swa
 | [TransparentUpgradeableProxy](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.1-solc-0.7-2/contracts/proxy/TransparentUpgradeableProxy.sol)        | `0xEe6A57eC80ea46401049E92587E52f5Ec1c24785`                           | `0x505B43c452AA4443e0a6B84bb37771494633Fde9` |
 | [NonfungiblePositionManager](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungiblePositionManager.sol)                                  | `0xC36442b4a4522E871399CD717aBDD847Ab11FE88`                           | `0x3d79EdAaBC0EaB6F08ED885C05Fc0B014290D95A` |
 | [V3Migrator](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/V3Migrator.sol)                                                                  | `0xA5644E29708357803b5A882D272c41cC0dF92B34`                           | `0x3cFd4d48EDfDCC53D3f173F596f621064614C582` |
+| [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                                                     | `0x61fFE014bA17989E743c5F6cB21bF9697530B21e`                           | `0x82825d0554fA07f7FC52Ab63c961F330fdEFa8E8` |
+| [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                                                                     | `0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45`                           | `0x5615CDAb10dc425a742d643d949a7F474C01abc4` |
 
 These addresses are final and were deployed from these npm package versions:
 
