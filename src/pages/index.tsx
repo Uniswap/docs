@@ -384,7 +384,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <h2>Integrate your smart contacts</h2>
+            <h2>Integrate your smart contracts</h2>
             <p>Explore these guided tutorials to get started integrating with Uniswap in your smart contracts.</p>
             <div>
               {smartContractGuides.map((action) => (
