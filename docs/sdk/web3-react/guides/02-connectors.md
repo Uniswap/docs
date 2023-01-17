@@ -1,6 +1,6 @@
 ---
-id: setting-up
-title: Setting up
+id: connectors
+title: Connectors
 ---     
 
 ## Introduction
@@ -11,12 +11,12 @@ This guide will cover how to integrate with web3-react. It is based on the [web3
 In this example we will walk through setting up web3-react by defining our connectors and wrapping our app using the `Web3ReactProvider`.
 
 
-The only input parameters to this guide are the chains, and the respective RPC URLs, that we want our app to be able to connect to.
+The only input parameters to this guide are the chains, and their respective RPC URLs, that we want our app to be able to connect to.
 
 The guide will **cover**:
 
 1. Creating a Web3ReactProvider
-2. Creating the connectors
+2. Building a Connector
 3. Wrapping the app with the Web3ContextProvider
 
 At the end of the guide, we should be able to ....
@@ -25,21 +25,18 @@ For this guide, the following web3-react packages are used ...
 
 - [`@web3-react/core`](https://www.npmjs.com/package/@web3-react/core)
 - [`@web3-react/types`](https://www.npmjs.com/package/@web3-react/types)
-- [`@web3-react/network`](https://www.npmjs.com/package/@web3-react/network)
-- [`@web3-react/wallet-connect`](https://www.npmjs.com/package/@web3-react/wallet-connect)
-- [`@web3-react/gnosis-safe`](https://www.npmjs.com/package/@web3-react/gnosis-safe)
 - [`@web3-react/metamask`](https://www.npmjs.com/package/@web3-react/metamask)
 
-The core code of this guide can be found in [Web3Provider](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/components/Web3Provider.tsx) and the connectors in ....
+The core code of this guide can be found in [Web3Provider](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/components/Web3Provider.tsx) and [Injected Connector](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/injected.ts).
 
 
 ## Creating a `Web3ReactProvider`
 
 To be able to interact with the methods that web3-react offers, we first need to setup a `Web3ReactProvider`. The latter uses [React Context](https://reactjs.org/docs/context.html) to allow us to use the exposed hooks without additional configuration. 
 
-To start, we create a React component called `Web3ContextProvider` in order to wrap the logic of configuring the `Web3ReactProvider`. In this component, we first import the `Web3ReactProvider` from the web3-react [core package](https://www.npmjs.com/package/@web3-react/core).
+To start, we create a React component called `Web3ContextProvider` in order to wrap the logic of configuring the `Web3ReactProvider`. In this component, we first import  `Web3ReactProvider` from the web3-react [core package](https://www.npmjs.com/package/@web3-react/core).
 
-The component receive just one parameter which is the children to which it will be providing the React Context:
+The component receives just one parameter which is the children to which it will be providing the React Context:
 
 ```typescript reference title="Defining the Web3React component" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/components/Web3ContextProvider.tsx#L6
