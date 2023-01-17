@@ -38,14 +38,14 @@ To start, we create a React component called `Web3ContextProvider` in order to w
 
 The component receives just one parameter which is the children to which it will be providing the React Context:
 
-```typescript reference title="Defining the Web3React component" referenceLinkText="View on Github" customStyling
+```typescript reference title="Defining the Web3ContextProvider component" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/components/Web3ContextProvider.tsx#L6
 ```
 
 We then implement the component by rendering the imported `Web3ReactProvider`, and the children within that:
 
 
-```typescript reference title="Implementing the component" referenceLinkText="View on Github" customStyling
+```typescript reference title="Implementing the Web3ContextProvider component" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/components/Web3ContextProvider.tsx#L10-L16
 ```
 
@@ -53,7 +53,7 @@ https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea7
 
 Note that the only parameter that we provide to `WebReactProvider` is the list of prioritized connectors, `PRIORITIZED_CONNECTORS`. The prioritization ordering is with regards to which one we want to be the active connector when a lot of them are connected to our application. The list is defined inside our connectors module: 
 
-```typescript reference title="Implementing the component" referenceLinkText="View on Github" customStyling
+```typescript reference title="Creating the Connectors list" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L36-L42
 ```
 

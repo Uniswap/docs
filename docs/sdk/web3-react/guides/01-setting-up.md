@@ -53,7 +53,7 @@ https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea7
 
 Note that the only parameter that we provide to `WebReactProvider` is the list of prioritized connectors, `PRIORITIZED_CONNECTORS`. The prioritization ordering is with regards to which one we want to be the active connector when more than one Connector is connected to our application. The list is defined inside our connectors module: 
 
-```typescript reference title="Implementing the component" referenceLinkText="View on Github" customStyling
+```typescript reference title="Creating the Connectors list" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L36-L42
 ```
 
@@ -61,13 +61,13 @@ Each one of those connectors lives within its own file, and they all follow a ve
 
 An example of a connector in the list is the `InjectedConnector`, which supports wallets that inject an Ethereum Provider into the browser window. The most popular example is the MetaMask browser extension. To set it up, we import the `initializeConnector` function from the web3-react **core** package and the `MetaMask` type from the web3-react **metamask** package:
 
-```typescript reference title="Implementing the component" referenceLinkText="View on Github" customStyling
+```typescript reference title="Importing Connector dependencies" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/injected.ts#L1-L2
 ```
 
 We then utilize the templated `initializeConnector` function with a type of `MetMask`:
 
-```typescript reference title="Implementing the component" referenceLinkText="View on Github" customStyling
+```typescript reference title="Initializing the MetaMask connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/injected.ts#L12-L15
 ```
 
@@ -76,7 +76,7 @@ By passing in `MetaMask` as the template parameter, we define the function's req
 The return type of the function is a tuple of the initialized **connector** and the **hooks** that we can use on it. Using this tuple, we create an instance of a [`Connection`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) type, by setting the `type` attribute to `INJECTED`:
 
 
-```typescript reference title="Implementing the component" referenceLinkText="View on Github" customStyling
+```typescript reference title="Creating a connection instance" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/injected.ts#L16-L20
 ```
 Finally, we return the instance we created, which is added to the list of prioritized connectors. 
@@ -90,7 +90,7 @@ For help on creating the rest of the supported connectors of this examples, plea
 
 Finally, now that we have created the `Web3ContextProvider` component, we can wrap our app with it:
 
-```typescript reference title="Getting Pool metadata from the Pool smart contact" referenceLinkText="View on Github" customStyling
+```typescript reference title="Wrapping our app with the web3 context" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/7ac3853bc465aecc428a32be584bbeb833b0a63c/web3-react/src/index.tsx#L16-L22
 ```
 
