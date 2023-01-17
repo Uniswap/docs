@@ -1,6 +1,6 @@
 ---
 id: overview
-sidebar_position: 2
+sidebar_position: 1
 title: Overview
 ---
 # Web3-React
@@ -14,13 +14,13 @@ Web3-React provides abstractions to assist you with connecting to web3 connector
 - Coinbase wallet
 - WalletConnect wallet
 
-To begin, we recommend looking at our [**guide**](./guides/01-setting-up.md) which include [runnable examples](https://github.com/Uniswap/examples/tree/main/web3-react) and walkthroughs of core usages. These guides will help you better understand how to use web3-react and integrate it into your application.
+To begin, we recommend looking at our [guides](./guides/01-setting-up.md) which include [runnable examples](https://github.com/Uniswap/examples/tree/main/web3-react) and walkthroughs of core usages. These guides will help you better understand how to use web3-react and integrate it into your application.
 
 ## Installation
 
-Web3-react consists of many packages, each providing different functionalities. The **core** package exposes the methods used to interact with providers, while the others are installed to enable different providers.
+Web3-react consists of many packages, each providing different functionalities. The [core](https://www.npmjs.com/package/@web3-react/core) package exposes the methods used to interact with providers, the [types](https://www.npmjs.com/package/@web3-react/types) package declares useful types, while the others are installed to enable different providers.
 
-To interact with the web3-react we recommend installing though npm:
+To interact with web3-react we recommend installing though npm:
 
 ```bash
 npm i --save @web3-react/core

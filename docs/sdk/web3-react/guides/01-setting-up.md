@@ -52,16 +52,18 @@ We then implement the component by rendering the imported `Web3ReactProvider`, a
 https://github.com/Uniswap/examples/blob/7ac3853bc465aecc428a32be584bbeb833b0a63c/web3-react/src/index.tsx#L10-L16
 ```
 
-Note that the only parameter that we provide to `WebReactProvider` is the list of prioritized connectors. 
+# Creating the connectors
 
+Note that the only parameter that we provide to `WebReactProvider` is the list of prioritized connectors: `PRIORITIZED_CONNECTORS`. This list allows us to link our Ethereum accounts
+
+
+# Wrapping the app with `Web3ContextProvider`
 
 Finally, now that we have created the `Web3ContextProvider` component, we can wrap our app with it:
 
 ```typescript reference title="Getting Pool metadata from the Pool smart contact" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/7ac3853bc465aecc428a32be584bbeb833b0a63c/web3-react/src/index.tsx#L16-L22
 ```
-
-# Creating the connectors
 
 In the next guide we will ...
 # 
