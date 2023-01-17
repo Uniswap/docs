@@ -8,6 +8,9 @@ title: Setting up
 This guide will cover how to integrate with web3-react. It is based on the [web3-react example](https://github.com/Uniswap/examples/tree/main/v3-sdk/quoting), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/README.md) and follow the setup instructions.
 
 
+In this example we will integrate with web3-react to allow our app to connect to different connectors. Those are used to link our Ethereum accounts. 
+
+
 In this example we will use `quoteExactInputSingle` to get a quote for the pair **USDC - WETH**.
 The inputs are the **token in**, the **token out**, the **amount in** and the **fee**.
 
