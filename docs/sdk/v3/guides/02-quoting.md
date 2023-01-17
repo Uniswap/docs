@@ -98,7 +98,7 @@ To get around this difficulty, we can use the `callStatic` method provided by th
 This is a useful method that submits a state-changing transaction to an Ethereum node, but asks the node to simulate the state change, rather than to execute it. Our script can then return the result of the simulated state change:
 
 ```typescript reference title="Getting Quotes from the Quoter contract" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L21-L30
+https://github.com/Uniswap/examples/blob/2e8fb5ef56e502d4eb0261e4abff262c33a30760/v3-sdk/quoting/src/libs/quote.ts#L21-L30
 ```
 
 The result of the call is the number of output tokens you'd receive for the quoted swap.
