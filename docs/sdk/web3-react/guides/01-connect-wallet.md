@@ -1,6 +1,6 @@
 ---
-id: setting-up
-title: Setting up
+id: connecting-wallet
+title: Connecting a Wallet
 ---     
 
 ## Introduction
