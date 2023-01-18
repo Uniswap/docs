@@ -1,6 +1,6 @@
 ---
-id: connectors
-title: Connectors
+id: switch-chains
+title: Switching chains
 ---     
 
 ## Introduction
