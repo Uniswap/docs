@@ -17,7 +17,8 @@ The guide will **cover**:
 
 1. Creating a Web3ReactProvider
 2. Building an Injected Connector
-3. Connecting and disconnecting to the wallet
+3. Connecting the application to the wallet
+4. Disconnecting the application from the wallet
 
 At the end of the guide, we should be able to connect and disconnect to our wallet using MetaMask.
 
@@ -48,7 +49,7 @@ We then implement the component by rendering the imported `Web3ReactProvider`, a
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/components/Web3ContextProvider.tsx#L10-L16
 ```
 
-Note that we map our list of [`Connections`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) to a tuple of the connector and hooks of the connection. The third member of a Connection is the [type of Connection](https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/connections.ts#L16) being established, which we will later use to keep track of the actively connected wallet.
+Note that we map our list of [`Connections`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) to a tuple of the connector and hooks of the connection. The third member of a Connection refers to the [type](https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/connections.ts#L16) of Connection being established, which we will later use to keep track of the actively connected wallet.
 
 Finally, having created the `Web3ContextProvider` component, we can navigate to our [index file](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/index.tsx) and wrap the whole application with it:
 
@@ -58,7 +59,7 @@ https://github.com/Uniswap/examples/blob/7ac3853bc465aecc428a32be584bbeb833b0a63
 
 ## Building an Injected Connector
 
-The only parameter that we provide to the `Web3ReactProvider` component is a list of prioritized connectors, called `PRIORITIZED_CONNECTORS`. The prioritization ordering is with regards to which connector we want to be active when more than one connector is connected to our application. The list is defined inside our connectors module: 
+The only parameter that we provided to the `Web3ReactProvider` component is a list of prioritized connectors, declared as `PRIORITIZED_CONNECTORS`. The prioritization ordering is with regards to which connector we want to be active when more than one connector is connected to our application. The list is defined inside our connectors module: 
 
 ```typescript reference title="Creating the prioritized Connectors list" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L36-L42
@@ -94,7 +95,7 @@ For help on creating the rest of the supported connectors of this examples, plea
 :::
 
 
-## Connecting and disconnecting to the wallet
+## Connecting the application to the wallet
 
 Having built our Injected Connector, we now need to build the component that gives our application the ability to communicate with that connector. The basic functionality we would like to support is connecting and disconnecting our wallet. We start by declaring the MetaMask option of our injected connector:
 
@@ -102,22 +103,38 @@ Having built our Injected Connector, we now need to build the component that giv
 https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/components/MetaMaskOption.tsx#L5-L10
 ```
 
-The component receives 4 parameters, the first being wether a web3 connection is currently connected. The second parameter concerns the type of connection being established, and the last 2 are hooks which are called once the component has established a connection or has been disconnected. 
+The component receives 4 parameters, the first being wether a wallet connection is currently established. The second parameter concerns the type of connection being established, and the last 2 are hooks which are called once the component has established a connection or has been disconnected. 
 
 Using those parameters, we can now define logic that allow us to enable the **Connect** button when wallet is not connected, and the **Disconnect** button when the wallet is connected. In the case that we are not actively connected:
 
-```typescript reference title="Connected to MetaMask" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/components/MetaMaskOption.tsx#L18-L27
+```typescript reference title="Connecting to MetaMask" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5ce44e28ca7a9323ec226f5452d6ffb6c949a82f/web3-react/src/libs/components/MetaMaskOption.tsx#L22-L34
 ```
 
-The logic for showing the **Connect** option can be simplified as follows: we want to allow connection to MetaMask when there is no connected option, or when there is a connected option but that is of type `NETWORK`. To connect our wallet, all we need to do is to call `onActivate` and pass in it the injected connector we created before.
+The logic for showing the **Connect** option can be simplified as follows: we want to allow connection to MetaMask when there is no connected option, or when there is a connected option of type `NETWORK`. To connect our wallet, all we need to do is to call the `tryActivateConnector` function and pass it the injected connector, as well as the `onActivate` callback, which will be called once the application successfully connects. 
 
-Whereas in the case where we are actively connected:
+`tryActivateConnector` receives the connector that we want to activate, and attempts to call `activate` on it. If this succeeds, it set our app's `connectionType` to **INJECTED**:
+
+
+```typescript reference title="Activating the Injected Connector" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5ce44e28ca7a9323ec226f5452d6ffb6c949a82f/web3-react/src/libs/connections.ts#L104-L106
+```
+
+## Disconnecting the application from the wallet
+
+Now that we can connect our application to the wallet, we also need a way to disconnect it:
 
 ```typescript reference title="Disconnecting from MetaMask" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/components/MetaMaskOption.tsx#L28-L35
+https://github.com/Uniswap/examples/blob/5ce44e28ca7a9323ec226f5452d6ffb6c949a82f/web3-react/src/libs/components/MetaMaskOption.tsx#L35-L45
 ```
-Note that to show the **Disconnect** option, we just need to check whether a connection has been established, which is of type `INJECTED`. To disconnect, all we need to do is to call `onActivate` and pass in it the injected connector we created before.
+
+Note that to show the **Disconnect** option, we just need to check whether a connection has been established, which is of type `INJECTED`. To disconnect, all we need to do is to call the `tryDeactivateConnector` and pass in it the injected connector we created before, as well as the `onDeactivate` callback, which will be called once the application successfully disconnects. 
+
+`tryDeactivateConnector` receives the connector that we want to deactivate, and attempts to call `deactivate` on it. If this succeeds, it resets the connector's state and sets our application's `connectionType` to **null**:
+
+```typescript reference title="Disconnecting the Injected Connector" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5ce44e28ca7a9323ec226f5452d6ffb6c949a82f/web3-react/src/libs/connections.ts#L118-L122
+```
 
 
 In the next guide we will dig it into how we create all the types of connectors that our example application supports.
