@@ -1,6 +1,6 @@
 ---
-id: connect-wallets
-title: Connecting Wallets
+id: connect-wallet
+title: Connecting to Wallets
 ---     
 
 ## Introduction
