@@ -1,6 +1,6 @@
 ---
 id: overview
-sidebar_position: 2
+sidebar_position: 1
 title: Overview
 ---
 # Web3-React
