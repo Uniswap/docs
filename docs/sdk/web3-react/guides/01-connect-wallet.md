@@ -110,6 +110,12 @@ Note that to access the `isActive` parameter, we utilize `web3-react`'s hooks in
 https://github.com/Uniswap/examples/blob/5ce44e28ca7a9323ec226f5452d6ffb6c949a82f/web3-react/src/example/Example.tsx#L24
 ```
 
+In our case, when declaring the `InjectedConnector` we pass the injected connector specific arguments:
+
+```typescript reference title="Creating an injected connector" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/components/ConnectionOptions.tsx#L26-L33
+```
+
 Using those parameters, we have enough information to determine if the current option is **active** and wether any other option is currently active:
 
 ```typescript reference title="Managing Options state" referenceLinkText="View on Github" customStyling
@@ -117,7 +123,7 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 ```
 
 
-In the UI, we can figure out whether we want the current Option's action button to be clickable, and whether this option can be connected or disconnected:
+In the UI, we can figure out whether we want the current `Option`'s action button to be clickable, and whether this option can be connected or disconnected:
 
 ```typescript reference title="The Option UI" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/components/Option.tsx#L47-L54
