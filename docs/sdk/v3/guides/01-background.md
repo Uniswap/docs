@@ -43,7 +43,7 @@ To allow the guides to focus on the SDK's core functionality, additional basic b
 
 `wallet.ts` offers the ability to query a wallet (whether connected via an extension or defined in code/config) for its balances and other essential information.
 
-#### Pool Infroamtion
+#### Pool Information
 
 `pool.ts` contains the basic querying of pool information when not essential / core to the relevant guide
 
