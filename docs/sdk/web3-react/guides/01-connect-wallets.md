@@ -103,7 +103,13 @@ Having built our Injected Connector, we now need to build the component that giv
 https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/components/MetaMaskOption.tsx#L5-L10
 ```
 
-The component receives 4 parameters, the first being wether a wallet connection is currently established. The second parameter concerns the type of connection being established, and the last 2 are hooks which are called once the component has established a connection or has been disconnected. 
+The component receives 4 parameters, the first being wether a wallet connection is currently established. The second parameter concerns the type of connection being established, and the last 2 are hooks which are called once the component has established a connection or has been disconnected. Note that to access the `isActive` parameter, we utilize web3-react's hooks in our [Example](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/example/Example.tsx#L24) page:
+
+```typescript reference title="Connecting to MetaMask" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/5ce44e28ca7a9323ec226f5452d6ffb6c949a82f/web3-react/src/example/Example.tsx#L24
+```
+
+
 
 Using those parameters, we can now define logic that allow us to enable the **Connect** button when wallet is not connected, and the **Disconnect** button when the wallet is connected. In the case that we are not actively connected:
 
@@ -130,7 +136,7 @@ https://github.com/Uniswap/examples/blob/5ce44e28ca7a9323ec226f5452d6ffb6c949a82
 
 Note that to show the **Disconnect** option, we just need to check whether a connection has been established, which is of type `INJECTED`. To disconnect, all we need to do is to call the `tryDeactivateConnector` and pass in it the injected connector we created before, as well as the `onDeactivate` callback, which will be called once the application successfully disconnects. 
 
-`tryDeactivateConnector` receives the connector that we want to deactivate, and attempts to call `deactivate` on it. If this succeeds, it resets the connector's state and sets our application's `connectionType` to **null**:
+`tryDeactivateConnector` receives the connector that we want to deactivate, and attempts to call `deactivate` on it. If this succeeds, it resets the connector's state by calling `resetState` and sets our application's `connectionType` to **null**:
 
 ```typescript reference title="Disconnecting the Injected Connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/5ce44e28ca7a9323ec226f5452d6ffb6c949a82f/web3-react/src/libs/connections.ts#L118-L122
