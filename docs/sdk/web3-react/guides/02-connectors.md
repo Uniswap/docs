@@ -68,10 +68,10 @@ Note how we have provided the value of `CoinbaseWallet` as `initializeConstructo
 
 Therefore, we build the new `CoinbaseWallet` instance by passing the `actions` object to the `CoinbaseWallet` constructor, and returning the new instance. The class also expects an options objects, as well as an `onError` function. The latter handles errors that occur during interaction with the connector, and the former is used to configure the connector. In our case, we are passing the `url` , the `appName` and the `reloadOnDisconnect` options. The first argument is the RPC URL to connect to that was provided as an parameter to the example, the second is the name of our application, and the third is a boolean that indicates whether the application should reload when the user disconnects from the wallet.
 
-After building the connector, we use its two return types: the connector and it's respective hooks and build a `Connection` object by setting the connection's type as the coinbase wallet:
+After building the connector, we use its two return types, the connector and it's respective hooks, and build a `Connection` object by setting the connection's type as the coinbase wallet:
 
 ```typescript reference title="Building the Coinbase Wallet connection" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/coinbase.ts#L20-24
+https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/coinbase.ts#L20-L24
 ```
 
 Having built the connector, all that remains is to build the user interface piece and supply it to our [`ConnectionOptions`](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/components/ConnectionOptions.tsx):
