@@ -31,7 +31,7 @@ The core code of this guide can be found in [Web3Provider](https://github.com/Un
 
 ## Creating a `Web3ReactProvider`
 
-To be able to interact with the methods that web3-react offers, we first need to setup a `Web3ReactProvider` and wrap our application in it. Web3-react uses [React Context](https://reactjs.org/docs/context.html) to allow us to use the exposed hooks without additional configuration. 
+To be able to interact with the methods that `web3-react` offers, we first need to setup a `Web3ReactProvider` and wrap our application in it. `web3-react` uses [React Context](https://reactjs.org/docs/context.html) to allow us to use the exposed hooks without additional configuration. 
 
 To start, we create a React component called `Web3ContextProvider` in order to wrap the logic of configuring the `Web3ReactProvider`. In this component, we first import  `Web3ReactProvider` from the web3-react [core package](https://www.npmjs.com/package/@web3-react/core).
 
@@ -48,7 +48,7 @@ We then implement the component by rendering the imported `Web3ReactProvider`, a
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/components/Web3ContextProvider.tsx#L11-L15
 ```
 
-Note that we map our list of [`Connections`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) to a **tuple** of the **connector** and **hooks** of the connection. The third member of a Connection refers to the [type](https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/connections.ts#L16) of Connection being established, which we will later use to keep track of the actively connected wallet.
+Note that we map our list of [`Connections`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) to a **tuple** of the **connector** and **hooks** of the connection. The third member of a `Connection` refers to the [type](https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/connections.ts#L16) of Connection being established, which we will later use to keep track of the actively connected wallet.
 
 Finally, having created the `Web3ContextProvider` component, we can navigate to our [index file](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/index.tsx) and wrap the whole application with it:
 
@@ -78,7 +78,7 @@ We then utilize the templated `initializeConnector` function with a type of `Met
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/injected.ts#L12-L15
 ```
 
-By passing in `MetaMask` as the templated parameter, we define the function's required input parameters. In this case, the only parameter we need to pass is an instance of `Metamask`, which receives the `actions` and `onError` parameters. The initial parameter defines the actions that web3-react can execute on a local store it creates for the connector, while the latter parameter defines the connector's behavior when an error in encountered.
+By passing in `MetaMask` as the templated parameter, we define the function's required input parameters. In this case, the only parameter we need to pass is an instance of `Metamask`, which receives the `actions` and `onError` parameters. The initial parameter defines the actions that `web3-react` can execute on a local store it creates for the connector, while the latter parameter defines the connector's behavior when an error in encountered.
 
 The return type of the function is a tuple of the initialized **connector** and the **hooks** that we can use on it. Using this tuple, we create an instance of a [`Connection`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) type, by setting the `type` attribute to `INJECTED`:
 
@@ -102,7 +102,7 @@ Having built our Injected Connector, we now need to build the component that giv
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/components/Option.tsx#L5-L11
 ```
 
-The component receives 5 parameters, the first being wether a wallet connection is currently established. The second parameter is the currently active connection type, while the third parameter concerns the type of connection being established. The last 2 are hooks which are called once the component has established a connection or has been disconnected. 
+The component receives 5 parameters, the first being wether any wallet connection is currently established. The second parameter is the currently active `ConnectionType`, while the third parameter concerns the type of connection being established. The last 2 are hooks which are called once the component has established a connection or has been disconnected. 
 
 Note that to access the `isActive` parameter, we utilize `web3-react`'s hooks in our [Example](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/example/Example.tsx#L24) page:
 
@@ -110,7 +110,7 @@ Note that to access the `isActive` parameter, we utilize `web3-react`'s hooks in
 https://github.com/Uniswap/examples/blob/5ce44e28ca7a9323ec226f5452d6ffb6c949a82f/web3-react/src/example/Example.tsx#L24
 ```
 
-In our case, when declaring the `InjectedConnector` we pass the injected connector specific arguments:
+In the case of MetaMask, when declaring the `InjectedConnector` we pass the injected connector specific arguments:
 
 ```typescript reference title="Creating an injected connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/components/ConnectionOptions.tsx#L26-L33
@@ -123,9 +123,9 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 ```
 
 
-In the UI, we can figure out whether we want the current `Option`'s action button to be clickable, and whether this option can be connected or disconnected:
+Then, in the html portion of the component, we can figure out whether we want the current `Option`'s action button to be disabled, and whether clicking the button would result in the connector being connected or disconnected:
 
-```typescript reference title="The Option UI" referenceLinkText="View on Github" customStyling
+```typescript reference title="The Option user interface" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/components/Option.tsx#L47-L54
 ```
 
@@ -135,10 +135,10 @@ Finally, we also have enough information to figure out what action to take when 
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/components/Option.tsx#L38-L43
 ```
 
-To connect our wallet, all we need to do is to call the `tryActivateConnector` function and pass it the injected connector. We then call the `onActivate` callback, which makes the injected connector the active connector.
+To connect our wallet, all we need to do is to call the `tryActivateConnector` function and pass it the injected connector. We then call the `onActivate` callback, which makes the injected connector the active connector in our application's state.
 
 
-`tryActivateConnector` receives the connector that we want to activate, and attempts to call `activate` on it. If this succeeds, it set our app's `connectionType` to **INJECTED** and return the new connection type:
+`tryActivateConnector` receives the connector that we want to activate, and attempts to call `activate` on it. If this succeeds, it returns the new `ConnectionType`:
 
 
 ```typescript reference title="The implementation of tryActivateConnector" referenceLinkText="View on Github" customStyling
@@ -153,7 +153,7 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 ```
 
 
-To disconnect, all we need to do is to call the `tryDeactivateConnector` and pass in it the injected connector we created before. We then call the `onDeactivate` callback, which removes the injected connector as the currently active connector.
+To disconnect, all we need to do is to call the `tryDeactivateConnector` and pass in it the injected connector we created before. We then call the `onDeactivate` callback, which removes the injected connector as the currently active connector from our application's state.
 
 `tryDeactivateConnector` receives the connector that we want to deactivate, and attempts to call `deactivate` on it. If this succeeds, it resets the connector's state by calling `resetState` and returns **null**:
 
@@ -163,6 +163,6 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 
 ## Next Steps
 
-Now that you're familiar with connecting and disconnecting from an injected connector, consider checking out our next guides on connecting and disconnecting from all the different types of connectors that web3-react supports.
+Now that you're familiar with connecting and disconnecting from an `InjectedConnector`, consider checking out our next guides on connecting and disconnecting from all the different types of connectors that web3-react supports.
 
 
