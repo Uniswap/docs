@@ -58,7 +58,7 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 ```
 We can now build our connector, supplying the required arguments:
 
-```typescript reference title="Initializing the Coinbase Wallet connector" referenceLinkText="View on Github" customStyling
+```typescript reference title="Initializing the Coinbase Wallet Connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/coinbase.ts#L8-L19
 ```
 
@@ -83,12 +83,12 @@ The third connector in the list of prioritized connectors that we provided to [`
 
 To connect to a WalletConnect Wallet connector, we first need to install the `@web3-react/walletconnect` package, as well as the [`@walletconnect/ethereum-provider`](https://www.npmjs.com/package/@walletconnect/ethereum-provider) package. Having installed the packages, we can import the `WalletConnect` class from the `@web3-react/walletconnect` package, as well as the `initializeConnector` function from the `@web3-react/core` package:
 
-```typescript reference title="Importing the WalletConnect Wallet connector" referenceLinkText="View on Github" customStyling
+```typescript reference title="Importing the WalletConnect Wallet Connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/wallet-connect.ts#L1-L2
 ```
 We can now build our connector, supplying the required arguments:
 
-```typescript reference title="Initializing the WalletConnect Wallet connector" referenceLinkText="View on Github" customStyling
+```typescript reference title="Initializing the WalletConnect Wallet Connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/wallet-connect.ts#L8-L17
 ```
 
@@ -104,35 +104,35 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 
 ## Building a Network connector
 
-The Network connector, alongside the Gnosis Safe connector, are two of the connectors that we do not surface through our user interface, but instead we connect to them programmatically. We attempt to connect to them **eagerly** in our [`Web3ContextProvider`](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/components/Web3ContextProvider.tsx) component through a hook:
+The Network connector, alongside the Gnosis Safe connector, are two of the connectors that we do not surface through our user interface, but instead we connect to them programmatically. In contrast to the previous Connectors, these do not come with any pre-built user interface for the user to interact with. We attempt to connect to them **eagerly** in our [`Web3ContextProvider`](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/components/Web3ContextProvider.tsx) component through a hook:
     
 ```typescript reference title="Hook to connect eagerly" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/components/Web3ContextProvider.tsx#L8
 ```
 
-The `useEagerConnect` hook is called in the `Web3ContextProvider` component, and it attempts to connect to the Network connector, and the Gnosis Safe connector. The hook is called eagerly, as it is called in the component's body as an effect when the component is first rendered. In the hook, implementation we attempt to call `web3-react` `connectEagerly` function if it exist for the connector, or we simple call `activate` otherwise. The `connectEagerly` function attempts to connect our application to the connector, and fails silently if it fails: 
+The `useEagerlyConnect` hook is called in the `Web3ContextProvider` component, and attempts to connect to the Network Connector, and the Gnosis Safe Connector. The hook is named **eagerly**, as it is called in the component's body as an [React effect](https://reactjs.org/docs/hooks-effect.html) when the component is first rendered. In the hook implementation we attempt to call `web3-react`'s `connectEagerly` function if it exist on the connector, or call `activate` otherwise. The `connectEagerly` function attempts to connect our application to the connector, and fails silently if it does not succeed: 
 
 ```typescript reference title="Connecting eagerly" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/hooks.ts#L15-L19
 ```
 
-Before connecting to the connectors eagerly, we first need to them. We start by building the Network connector, and we first need to install the `@web3-react/network` package, and import the `Network` class from it. We also need to import the `initializeConnector` function from the `@web3-react/core` package:
+Before connecting to the connectors eagerly, we first need to initialize them. We start by building the Network connector, and we first need to install the `@web3-react/network` package, and import the `Network` class from it. Note how this Connect does not require any package besides its `web3-react` package to function. We also need to import the `initializeConnector` function from the `@web3-react/core` package:
 
-```typescript reference title="Importing the Network connector" referenceLinkText="View on Github" customStyling
+```typescript reference title="Importing the Network Connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/network.ts#L1-L2
 ```
 We can now build our connector, supplying the required arguments:
 
-```typescript reference title="Initializing the Network connector" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/network.ts#L8
+```typescript reference title="Initializing the Network Connector" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/network.ts#L8-L15
 ```
 
-The main difference with the other connectors lies in the arguments that the `Network` class requires to be instantiated. `web3-react` knows about this difference, as we pass the `Network` class as the templated parameter to `initializeConnector`, further specifying the type of `AbstractConnector`. In this case, the class receives 2 arguments, the first one being `actions`, and is identical to those supplied in the rest of the connectors. The second argument is a `urlMap` which is an object that maps the chain ID to the RPC URL to connect to, which have already created in our `constants` file. The second parameter is a `defaultChainId` which is the chain ID to connect to by default and whose value is parameterized in our in the example. 
+The main difference with the other connectors lies in the arguments that the `Network` class requires to be instantiated. `web3-react` knows about this difference, as we pass the `Network` class as the templated parameter to `initializeConnector`, further specifying the type of `AbstractConnector`. In this case, the class receives 2 arguments, the first one being `actions`, and is identical to that supplied in the rest of the connectors. The second argument is a `urlMap` which is an object that maps the chain ID to the RPC URL to connect to, which we have already created in our `constants` file. The second parameter is a `defaultChainId` which is the chain ID to connect to by default and whose value is parameterized in our in the example. 
 
-After building, the connector, we can create a `Connection` instance supplying it the return value of the `initializeConnector` function, and the `Network` class:
+After building, the connector, we can create a `Connection` instance by supplying it the return value of the `initializeConnector` function, and the `Network` class:
 
 ```typescript reference title="Creating a Network connection" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/network.ts#L16
+https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/network.ts#L16-L20
 ```
 All that remains is to return the constructed `Connection` instance.
 ## Building a Gnosis Safe connector
@@ -140,13 +140,19 @@ All that remains is to return the constructed `Connection` instance.
 Similar to the Network connector, we build the Gnosis Safe connector. We start by first installing the `@web3-react/gnosis-safe` package, and import the `GnosisSafe` class from it. We also need to import the `initializeConnector` function from the `@web3-react/core` package:
 
 ```typescript reference title="Importing the Gnosis Safe connector" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/gnosis.tsx#L7
+https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/gnosis.tsx#L1-L2
 ```
 
-The Gnosis Safe connector is the simplest of them all, as it does not require any additional parameterization. Having initialized the connector, we can now build the `Connection` instance and return it:
+The Gnosis Safe connector is the simplest of them all, as it does not require any additional parameterization, other than `actions`:
 
-```typescript reference title="Creating a Gnosis Safe connection" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/gnosis.tsx#L10
+```typescript reference title="Initializing a Gnosis Safe Connector" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/gnosis.tsx#L6-L9
+```
+
+Having initialized the connector, we can now build the `Connection` instance and return it:
+
+```typescript reference title="Creating a Gnosis Safe Connection" referenceLinkText="View on Github" customStyling
+https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/gnosis.tsx#L10-L14
 ```
 
 ## Next steps
