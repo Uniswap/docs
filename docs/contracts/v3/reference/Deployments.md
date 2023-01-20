@@ -24,7 +24,7 @@ The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, `@uniswap/swa
 | [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                                                        | `0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45`           | `0x5615CDAb10dc425a742d643d949a7F474C01abc4` |
 | [Permit2](https://github.com/Uniswap/permit2)                                                                                                                | `0x000000000022d473030f116ddee9f6b43ac78ba3`           | `0x000000000022d473030f116ddee9f6b43ac78ba3` |
 
-The new UniversalRouter has been deployed to the following addresses on the following chains:
+The new `UniversalRouter` has been deployed to the following addresses on the following chains:
 
 | Contract                                                                                               | Mainnet Address                              | Optimism Address                             | Arbitrum Address                             | Polygon Address                              | See other chain addresses here                                                            |
 | ------------------------------------------------------------------------------------------------------ | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------- |
@@ -51,16 +51,16 @@ getPool("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "0xc02aaa39b223fe8d0a0e5c4
 
 The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native asset like ETH (or MATIC on Polygon), the Uniswap protocol wraps these assets in an ERC20 wrapped native token contract. The protocol uses the following WETH9 addresses on Ethereum and WMATIC addresses on Polygon.
 
-| Network          | ChainId  | Wrapped Nat4ive Token | Address                                        |
-| ---------------- | -------- | --------------------- | ---------------------------------------------- |
-| Ethereum         | `1`      | WETH                  | `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`   |
-| Ropsten          | `3`      | WETH                  | `0xc778417E063141139Fce010982780140Aa0cD5Ab` ∏ |
-| Rinkeby          | `4`      | WETH                  | `0xc778417E063141139Fce010982780140Aa0cD5Ab`   |
-| Goerli           | `5`      | WETH                  | `0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6`   |
-| Kovan            | `42`     | WETH                  | `0xd0A1E359811322d97991E03f863a0C30C2cF029C`   |
-| Optimism         | `10`     | WETH                  | `0x4200000000000000000000000000000000000006`   |
-| Optimistic Kovan | `69`     | WETH                  | `0x4200000000000000000000000000000000000006`   |
-| Arbitrum One     | `42161`  | WETH                  | `0x82aF49447D8a07e3bd95BD0d56f35241523fBab1`   |
-| Arbitrum Rinkeby | `421611` | WETH                  | `0xB47e6A5f8b33b3F17603C83a0535A9dcD7E32681`   |
-| Polygon          | `137`    | WMATIC                | `0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270`   |
-| Polygon Mumbai   | `80001`  | WMATIC                | `0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889`   |
+| Network          | ChainId  | Wrapped Nat4ive Token | Address                                      |
+| ---------------- | -------- | --------------------- | -------------------------------------------- |
+| Ethereum         | `1`      | WETH                  | `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2` |
+| Ropsten          | `3`      | WETH                  | `0xc778417E063141139Fce010982780140Aa0cD5Ab` |
+| Rinkeby          | `4`      | WETH                  | `0xc778417E063141139Fce010982780140Aa0cD5Ab` |
+| Goerli           | `5`      | WETH                  | `0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6` |
+| Kovan            | `42`     | WETH                  | `0xd0A1E359811322d97991E03f863a0C30C2cF029C` |
+| Optimism         | `10`     | WETH                  | `0x4200000000000000000000000000000000000006` |
+| Optimistic Kovan | `69`     | WETH                  | `0x4200000000000000000000000000000000000006` |
+| Arbitrum One     | `42161`  | WETH                  | `0x82aF49447D8a07e3bd95BD0d56f35241523fBab1` |
+| Arbitrum Rinkeby | `421611` | WETH                  | `0xB47e6A5f8b33b3F17603C83a0535A9dcD7E32681` |
+| Polygon          | `137`    | WMATIC                | `0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270` |
+| Polygon Mumbai   | `80001`  | WMATIC                | `0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889` |
