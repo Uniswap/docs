@@ -16,7 +16,7 @@ In this example we will cover connecting our dApp to the following connectors:
 
 
 :::info
-For help on setting up web3-react and interacting with an `InjectedConnector`, please visit our [connecting to wallets](./01-connect-wallet.md) page!
+For help on setting up web3-react and interacting with a MetaMask wallet, please visit our [connecting to wallets](./01-connect-wallet.md) page!
 :::
 
 
