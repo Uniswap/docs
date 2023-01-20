@@ -79,7 +79,7 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 ```
 ## Building a WalletConnect Wallet connector
 
-The second connector in the list of prioritized connectors that we provided as a parameter to [`Web3ReactProvider`](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/components/Web3ContextProvider.tsx) is the WalletConnect Wallet connector.
+The third connector in the list of prioritized connectors that we provided to [`Web3ReactProvider`](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/components/Web3ContextProvider.tsx) is the WalletConnect Wallet connector.
 
 To connect to a WalletConnect Wallet connector, we first need to install the `@web3-react/walletconnect` package, as well as the [`@walletconnect/ethereum-provider`](https://www.npmjs.com/package/@walletconnect/ethereum-provider) package. Having installed the packages, we can import the `WalletConnect` class from the `@web3-react/walletconnect` package, as well as the `initializeConnector` function from the `@web3-react/core` package:
 
@@ -92,9 +92,9 @@ We can now build our connector, supplying the required arguments:
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/wallet-connect.ts#L8-L17
 ```
 
-The main difference with the Coinbase Wallet connector lies in the arguments that the `WalletConnect` class requires to be instantiated. `web3-react` knows about this difference, as we pass the `WalletConnect` class as the templated parameter to `initializeConnector`, further specifying the type of `AbstractConnector`. In this case, the class receives 3 arguments, the first and third one being `actions`, and `onError`, and are identical to those supplied in the Coinbase Wallet connector case. 
+The main difference with the Coinbase Wallet connector lies in the arguments that the `WalletConnect` class requires to be instantiated. `web3-react` knows about this difference, as we pass the `WalletConnect` class as the templated parameter to `initializeConnector`, further specifying the type of `AbstractConnector`. In this case, the class receives three arguments, the first and third being `actions`, and `onError`, and are identical to those supplied in the Coinbase Wallet connector case. 
 
-The difference lies in the second argument, which is an options object. In this case, we are passing the `rpc` parameter, which is an object that maps the chain ID to the RPC URL to connect to. We have already created this [map](https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/constants.ts#L11) in our [constants](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/constants.ts) file using our example's parameters. The other option that we are passing is the `qrcode` option, which is a boolean that indicates whether the QR code should be displayed in the browser. In our case, we are passing `true` as the value of this option as we want to show the qr code.
+The difference lies in the second argument, which is an `options` object. In this case, we are passing the `rpc` parameter, which is an object that maps the chain ID to the RPC URL to connect to. We have already created this [map](https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/constants.ts#L11) in our [constants](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/constants.ts) file using our example's parameters. The other option that we are passing is the `qrcode`, which is a `boolean` that indicates whether the QR code should be displayed in the browser. In our case, we are passing `true` as the value of this option as we want to show the qr code.
 
 Having built the connector, we just need to build the user interface to enable user interaction with the connector, and supply it to our `ConnectionOptions`:
     
