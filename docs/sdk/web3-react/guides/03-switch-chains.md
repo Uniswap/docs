@@ -38,7 +38,7 @@ Given the `ConnectionType`, we can retrieve the actual connector:
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L69
 ```
 
-Then, depending on the `ConnectionType`, there are different ways to switch chains. For the `Network` or `WalletConnect` cases, we simply call `web3-react`'s `activate` function with the supplied chainId:
+Then, depending on the `ConnectionType`, there are different ways to switch chains. For the `Network` or `WalletConnect` cases, we simply call `web3-react`'s `activate` function with the supplied `chainId`:
 
 ```typescript reference title="Switching chains for Network and WalletConnect" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L71-L74
