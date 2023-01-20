@@ -41,7 +41,7 @@ For this guide, the following `web3-react` packages are used:
 - [`@web3-react/network`](https://www.npmjs.com/package/@web3-react/network)
 - [`@web3-react/gnosis-safe`](https://www.npmjs.com/package/@web3-react/gnosis-safe)
 
-The core code of this guide can be found in ...
+The core code of this guide can be found in the top level of our examples repository, under each connectors' name. For example, the code for the Coinbase Wallet connector can be found in the the [coinbase file](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/coinbase.ts).
 
 ## Building a Coinbase Wallet connector
 
