@@ -8,11 +8,11 @@ This guide will cover how to prompt a wallet that has connected to our dApp to s
 
 
 :::info
-For help on setting up web3-react and interacting with an `InjectedConnector`, please visit our [connecting to wallets](./01-connect-wallet.md) page!
+For help on setting up web3-react and interacting with a MetaMask wallet, please visit our [connecting to wallets](./01-connect-wallet.md) page!
 :::
 
 
-The input parameters to this guide are the chains that we want our app to be able to connect to and their RPC URLs.
+The input parameters to this guide are the chains that we want our dApp to be able to connect to and their RPC URLs.
 
 At the end of the guide, we should be able to switch chains for a connected wallet.
 
@@ -38,10 +38,10 @@ Given the `ConnectionType`, we can retrieve the actual connector:
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L69
 ```
 
-Then, depending on the `ConnectionType`, there are different ways to switch chains. For the `Network` or `WalletConnect` we we simply call `web3-react`'s `activate` function with the supplied chainId:
+Then, depending on the `ConnectionType`, there are different ways to switch chains. For the `Network` or `WalletConnect` cases, we simply call `web3-react`'s `activate` function with the supplied chainId:
 
 ```typescript reference title="Switching chains for Network and WalletConnect" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L71
+https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L71-L74
 ```
 
 On the other hand, the rest of the connectors require us to build an object of type `AddEthereumChainParameter` and pass it to the `web3-react`'s `activate` function:
@@ -55,3 +55,7 @@ The argument supplied in the second case have been already defined in our consta
 ```typescript reference title="Defining the chain parameters" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/constants.ts#L27-L40
 ```
+
+## Next steps
+
+You know now how to support `web3-react`'s most common use cases! Stay tuned for follow up guides.
