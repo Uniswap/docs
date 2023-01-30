@@ -51,7 +51,7 @@ getPool("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "0xc02aaa39b223fe8d0a0e5c4
 
 The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native asset like ETH (or MATIC on Polygon), the Uniswap protocol wraps these assets in an ERC20 wrapped native token contract. The protocol uses the following WETH9 addresses on Ethereum and WMATIC addresses on Polygon.
 
-| Network          | ChainId  | Wrapped Nat4ive Token | Address                                      |
+| Network          | ChainId  | Wrapped Native Token | Address                                      |
 | ---------------- | -------- | --------------------- | -------------------------------------------- |
 | Ethereum         | `1`      | WETH                  | `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2` |
 | Ropsten          | `3`      | WETH                  | `0xc778417E063141139Fce010982780140Aa0cD5Ab` |
