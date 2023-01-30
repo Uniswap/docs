@@ -85,7 +85,7 @@ If you already have a web3 provider, you can pass your provider object directly 
 You can directly use the providers returned from [web3-react](https://github.com/Uniswap/web3-react) or [wagmi](https://wagmi.sh/) (both are [ethers](https://docs.ethers.io/v5/api/providers/provider/) providers). If it is not connected to a wallet, it will still be used to read data from the chain, but the widget will still prompt the user to "Connect wallet".
 
 :::note Be sure to use the wallet-connected provider
-When using [wagmi](https://wagmi.sh/), `useProvider()` will return the fallback provider, *not* the wallet-connected provider. You should instead pass `useSigner<JsonRpcSigner>().data?.provider` to reflect the user's connected wallet.
+When using [wagmi@v0.11](https://wagmi.sh/), `useProvider()` will return the fallback provider, *not* the wallet-connected provider. You should instead pass `useSigner<JsonRpcSigner>().data?.provider` to reflect the user's connected wallet.
 :::
 
 If you maintain a web3 provider on your app, you should also consider intercepting the swap widget's wallet connection flow. Do so by passing a handler returning `false` to the [`onConnectWalletClick`](/sdk/swap-widget/reference/v2#onConnectWalletClick) prop, which is triggered when the widget's 'Connect wallet' button is clicked. Check out libraries such as [web3-react](https://github.com/Uniswap/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow.
