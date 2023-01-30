@@ -87,21 +87,25 @@ If you choose not to provide a `jsonRpcUrlMap` prop or are missing endpoints for
 
 The swap widget uses a web3 `provider` prop to allow users to connect their wallets, fetch balances, and submit transactions through the user’s connected wallet.
 
-If you already have a web3 provider, you can pass your provider object directly into the `provider` prop. Both the [ethers](https://docs.ethers.io/v5/api/providers/provider/) and [web3.js](https://web3js.readthedocs.io/en/v1.5.2/index.html) provider objects are compatible with the widget, as is any [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider.
+If your app does not maintain its own web3 provider, you can omit the `provider` prop. The widget will use built-in wallet connection functionality (for [WalletConnect](https://walletconnect.com/) and [MetaMask](https://metamask.io/)) built in, making it easy for you to integrate web3 in your app!
 
-If you don't have a web3 provider yet, the widget has built-in wallet connection functionality that supports [WalletConnect](https://walletconnect.com/) and [MetaMask](https://metamask.io/) wallets, making it super simple for you to integrate web3 in your app!
+If you already have a web3 provider, you can pass your provider object directly into the `provider` prop. Both [ethers](https://docs.ethers.io/v5/api/providers/provider/) and [web3.js](https://web3js.readthedocs.io/en/v1.5.2/index.html) provider objects are compatible with the widget, as is any [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider.
+You can directly use the providers returned from [web3-react](https://github.com/Uniswap/web3-react) or [wagmi](https://wagmi.sh/) (both are [ethers](https://docs.ethers.io/v5/api/providers/provider/) providers). If it is not connected to a wallet, it will still be used to read data from the chain, but the widget will still prompt the user to "Connect wallet".
 
-Otherwise, you can also add your own custom wallet connection flow in the [`onConnectWalletClick`](/sdk/swap-widget/reference/v2#onConnectWalletClick) handler, which is triggered when the widget's 'Connect your wallet to swap' button is clicked. Check out libraries such as [web3-react](https://github.com/Uniswap/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow. To hide the widget's native wallet connection flow, set the `hideConnectionUI` prop to true.
+NOTE: When using [wagmi](https://wagmi.sh/), `useProvider()` will return the fallback provider, *not* the wallet-connected provider. You should instead pass `useSigner<JsonRpcSigner>().data?.provider` to reflect the user's connected wallet.
 
-The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
+If you maintain a web3 provider on your app, you should also consider intercepting the swap widget's wallet connection flow. Do so by passing a handler returning `false` to the [`onConnectWalletClick`](/sdk/swap-widget/reference/v2#onConnectWalletClick) prop, which is triggered when the widget's 'Connect wallet' button is clicked. Check out libraries such as [web3-react](https://github.com/Uniswap/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow.
+
+The widget will match the network currently selected by the passed provider. If the user switches networks in your app or in their connected wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
 
 ```tsx
 import { SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
-// Recommended to provide a Web3 provider
+// We recommend you pass a web3 provider.
 import { provider } from './your/provider'
-// Recommended to provide your own JSON-RPC endpoints
+
+// We recommend you pass your own JSON-RPC endpoints.
 const jsonRpcUrlMap = { 
   1: ['https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'], 
   3: ['https://ropsten.infura.io/v3/<YOUR_INFURA_PROJECT_ID>']
