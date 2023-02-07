@@ -7,9 +7,9 @@ title: Overview
 
 > **Welcome to Web3-React!**
 
-Web3-React provides abstractions to assist you with connecting your dApp to web3 connectors and exposes methods to interact with those connections. It currently supports connecting to the following connectors:
+Web3-React provides abstractions to assist you with connecting your dApp to web3 connectors and exposes methods to interact with those connections. It currently supports connecting to the following wallets:
 - Network
-- Injected wallet (eg MetaMask)
+- Injected wallets (eg MetaMask)
 - Gnosis safe
 - Coinbase wallet
 - WalletConnect wallet

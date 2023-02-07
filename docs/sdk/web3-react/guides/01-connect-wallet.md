@@ -5,21 +5,21 @@ title: Connecting to Wallets
 
 ## Introduction
 
-This guide will cover how to connect wallets with `web3-react`. It is based on the [web3-react example](https://github.com/Uniswap/examples/tree/main/web3-react), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md) and follow the setup instructions.
+This guide will cover how to connect wallets with `web3-react`. It is based on the [web3-react example](https://github.com/Uniswap/examples/tree/main/web3-react) found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md) and follow the setup instructions.
 
 
-In this example we will walk through setting up `web3-react` and connecting the most popular browser injected connector, *MetaMask*, using the web3-react [MetaMask package](https://www.npmjs.com/package/@web3-react/metamask).
+In this example we will walk through setting up `web3-react` and connecting the most popular browser-injected connector, *MetaMask*, using [@web3-react/metamask](https://www.npmjs.com/package/@web3-react/metamask).
 
 
 The input parameters to this guide are the chains that we want our app to be able to connect to and their RPC URLs.
 
 The guide will **cover**:
 
-1. Creating a `Web3ReactProvider`
-2. Building an `InjectedConnector`
-3. Connecting and  disconnecting the application to the connector
+1. Creating a `web3-react` `Web3ReactProvider`
+2. Building a `web3-react` `InjectedConnector`
+3. Connecting and disconnecting the application to the connector
 
-At the end of the guide, we should be able to connect and disconnect the application to a MetaMask injected connector.
+At the end of the guide, we should be able to connect and disconnect your dApp to a MetaMask connector.
 
 For this guide, the following `web3-react` packages are used:
 
@@ -27,15 +27,17 @@ For this guide, the following `web3-react` packages are used:
 - [`@web3-react/types`](https://www.npmjs.com/package/@web3-react/types)
 - [`@web3-react/metamask`](https://www.npmjs.com/package/@web3-react/metamask)
 
-The core code of this guide can be found in [Web3Provider](https://github.com/Uniswap/examples) and [Injected Connector](https://github.com/Uniswap/examples).
+These will be automatically installed by following the example's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md).
+
+The core code of this guide can be found in [Web3ContextProvider](https://github.com/Uniswap/examples/blob/main/web3-react/src/libs/components/Web3ContextProvider.tsx) and [Injected Connector](https://github.com/Uniswap/examples/blob/main/web3-react/src/libs/injected.ts).
 
 ## Creating a `Web3ReactProvider`
 
-To be able to interact with the methods that `web3-react` offers, we first need to setup a `Web3ReactProvider` and wrap our application in it. `web3-react` uses [React Context](https://reactjs.org/docs/context.html) to allow us to use the exposed hooks without additional configuration. 
+To be able to interact with the methods that `web3-react` offers, we first need to setup a `Web3ReactProvider` and wrap our application in it. `web3-react` uses a [React Context](https://reactjs.org/docs/context.html) to allow us to use the exposed hooks without additional configuration. 
 
-To start, we create a React component called `Web3ContextProvider` in order to wrap the logic of configuring the `Web3ReactProvider`. In this component, we first import  `Web3ReactProvider` from the web3-react [core package](https://www.npmjs.com/package/@web3-react/core).
+To start, we create a React component called `Web3ContextProvider` in order to wrap the logic of configuring the `Web3ReactProvider`. In this component, we first import  `Web3ReactProvider` from [@web3-react/core](https://www.npmjs.com/package/@web3-react/core).
 
-The component receives just one parameter which is the children to which it will be providing the React Context:
+The component receives just one prop which is the children to which it will be providing the React Context:
 
 ```typescript reference title="Defining the Web3React component" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/81ec93e97b0afded621e177fe5f34fc9f98f80b0/web3-react/src/libs/components/Web3ContextProvider.tsx#L24
@@ -48,7 +50,7 @@ We then implement the component by rendering the imported `Web3ReactProvider`, a
 https://github.com/Uniswap/examples/blob/81ec93e97b0afded621e177fe5f34fc9f98f80b0/web3-react/src/libs/components/Web3ContextProvider.tsx#L30-L34
 ```
 
-Note that we map our list of [`Connections`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) to a *tuple* of the `connector` and `hooks` of the connection. The third member of a `Connection` refers to the [type](https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/connections.ts#L16) of Connection being established, which we will later use to keep track of the actively connected wallet.
+Note that we map our list of [`Connections`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) to a *tuple* of the `connector` and `hooks` of the connection. The third member of a `Connection` refers to the [type](https://github.com/Uniswap/examples/blob/06980acc8f6d484b719d2c60f5bfe9d766cb95d6/web3-react/src/libs/connections.ts#L16) of `Connection` being established, which we will later use to keep track of the actively connected wallet.
 
 Finally, having created the `Web3ContextProvider` component, we can navigate to our [index file](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/index.tsx) and wrap the whole application with it:
 
@@ -66,7 +68,7 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 
 Each one of those connectors lives within its own file, and they all follow a very similar setup pattern. 
 
-An example of a connector in the list is the `InjectedConnector`, which supports wallets that inject an *Ethereum Provider* into the browser window. The most popular example of an injected connector is the *MetaMask* browser extension. To set it up, we import the `initializeConnector` function from the web3-react [core]((https://www.npmjs.com/package/@web3-react/core)) package and the `MetaMask` type from the web3-react [Metamask]((https://www.npmjs.com/package/@web3-react/core)) package:
+An example of a connector in the list is the `InjectedConnector`, which supports wallets that inject an *Ethereum Provider* into the browser window. The most popular example of an injected connector is the *MetaMask* browser extension. To set it up, we import the `initializeConnector` function from the [@web3-react/core]((https://www.npmjs.com/package/@web3-react/core)) and the `MetaMask` type from [@web3-react/metamask]((https://www.npmjs.com/package/@web3-react/core)):
 
 ```typescript reference title="Importing Connector dependencies" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/injected.ts#L1-L2
@@ -78,16 +80,16 @@ We then utilize the templated `initializeConnector` function with a type of `Met
 https://github.com/Uniswap/examples/blob/81ec93e97b0afded621e177fe5f34fc9f98f80b0/web3-react/src/libs/injected.ts#L7-L9
 ```
 
-By passing in `MetaMask` as the templated parameter, we define the function's required input parameters. In this case, the only parameter we need to pass is an instance of `Metamask`, which receives the `actions` and `onError` parameters. The initial parameter defines the actions that `web3-react` can execute on a local store it creates for the connector, while the latter parameter defines the connector's behavior when an error in encountered.
+By passing in `MetaMask` as the templated parameter, we define the function's required input parameters. In this case, the only parameter we need to pass is an instance of `Metamask`, which receives the `actions` and `onError` parameters. The first parameter defines the actions that `web3-react` on its local store for the connector (this usually can be passed through without modification), while tsecond parameter is a callback invoked when an error occurs.
 
-The return type of the function is a tuple of the initialized **connector** and the **hooks** that we can use on it. Using this tuple, we create an instance of a [`Connection`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) type, by setting the `type` attribute to `INJECTED`:
+The return type of the function is a tuple of the initialized `Connector` and the `Hooks` that we can use on it. Using this tuple, we create an instance of a [`Connection`](https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/connections.ts#L10) type, by setting the `type` attribute to `INJECTED`:
 
 
 ```typescript reference title="Creating a connection instance" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/injected.ts#L16-L20
 ```
 
-Finally, we return the instance we created, which is added to the list of prioritized connectors. 
+Finally, we return the instance of `Connection` we created, which is added to the list of prioritized connectors. 
 
 :::info
 For help on creating the rest of the supported connectors of this examples, please visit our [connectors](./connectors.md) page!
@@ -96,28 +98,23 @@ For help on creating the rest of the supported connectors of this examples, plea
 
 ## Connecting and  disconnecting the application to the connector
 
-Having built our Injected Connector, we can now build the component that gives our application the ability to communicate with that connector. The basic functionality we would like to support is **connecting** and **disconnecting**  the connector to our application. To achieve this, we create a reusable [Option component](https://github.com/Uniswap/examples/blob/main/web3-react/src/libs/components/Option.tsx) that supports rendering the UI and managing state for any connector that we want to support in our application:
+Having built our Injected Connector, we can now use it in the Context that allows our application to use that Connector:
 
 ```typescript reference title="Creating the Option component" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/81ec93e97b0afded621e177fe5f34fc9f98f80b0/web3-react/src/libs/components/Option.tsx#L5-L11
 ```
 
 The component receives 5 parameters:
-- whether the connector is eligible for to be activated
-- whether the connector is currently active 
-- the `ConnectionType`
-- the last 2 are hooks which are called once the component has established a connection or has been disconnected. 
+- `isEnabled` determines whether the connector is eligible to be activated
+- `isConnected` determines whether the connector is currently active 
+- `connectionType` determines the `ConnectionType`
+- `onActivate` is called once the component has established a connection 
+- `onDeactivate` is called once the component has disconnected
 
 In the case of *MetaMask*, when declaring the `InjectedConnector` we pass the connector specific arguments:
 
 ```typescript reference title="Creating an injected connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/81ec93e97b0afded621e177fe5f34fc9f98f80b0/web3-react/src/libs/components/ConnectionOptions.tsx#L26-L32
-```
-
-It is worth noting that there are 2 ways for `isEnabled` to be `true`. Either the option is the currently active option, and so the `Option` is enabled so we can disconnect. The other case is when there is no `Option` active: 
-
-```typescript reference title="Condition for no option to be active" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/81ec93e97b0afded621e177fe5f34fc9f98f80b0/web3-react/src/libs/components/ConnectionOptions.tsx#L23
 ```
 
 Then, in the `html` portion of the `Option`, we can figure out whether we want the current `Option`'s action button to be disabled, and whether clicking the button would result in the connector being connected or disconnected:
@@ -126,7 +123,7 @@ Then, in the `html` portion of the `Option`, we can figure out whether we want t
 https://github.com/Uniswap/examples/blob/81ec93e97b0afded621e177fe5f34fc9f98f80b0/web3-react/src/libs/components/Option.tsx#L38-L42
 ```
 
-Finally, we also have enough information to figure out what action to take when the button is clicked. In the case that the click concerns a connection:
+Finally, we also have enough information to figure out what action to take when the button is clicked. In the case that the click triggers a connection:
 
 ```typescript reference title="On connecting to a Connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/components/Option.tsx#L38-L42
@@ -143,7 +140,7 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 ```
 
 
-In the case that a click regards a disconnection:
+In the case that a click triggers a disconnection:
 
 ```typescript reference title="On disconnecting from a Connector" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/components/Option.tsx#L29-L36
