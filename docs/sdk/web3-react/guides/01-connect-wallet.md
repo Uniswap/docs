@@ -23,9 +23,13 @@ At the end of the guide, we should be able to connect and disconnect your dApp t
 
 For this guide, the following `web3-react` packages are used:
 
-- [`core`](https://www.npmjs.com/package/@web3-react/core)
-- [`types`](https://www.npmjs.com/package/@web3-react/types)
-- [`metamask`](https://www.npmjs.com/package/@web3-react/metamask)
+- [`@web3-react/core`](https://www.npmjs.com/package/@web3-react/core)
+- [`@web3-react/types`](https://www.npmjs.com/package/@web3-react/types)
+- [`@web3-react/metamask`](https://www.npmjs.com/package/@web3-react/metamask)
+
+:::info
+This guide uses `web3-react` version 8, which is a beta version.
+:::
 
 These will be automatically installed by following the example's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md).
 

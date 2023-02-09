@@ -16,6 +16,10 @@ title: Overview
 
 To begin, we recommend looking at our [guides](./guides/01-setting-up.md) which include [runnable examples](https://github.com/Uniswap/examples/tree/main/web3-react) and walkthroughs of core usages. These guides will help you better understand how to use `web3-react` and integrate it into your application.
 
+:::info
+This guide uses `web3-react` version 8, which is a beta version.
+:::
+
 ## Installation
 
 `web3-react` consists of many packages, each providing different functionalities. The [core](https://www.npmjs.com/package/@web3-react/core) package exposes the methods used to interact with web3 connectors, the [types](https://www.npmjs.com/package/@web3-react/types) package declares useful types, while the others are installed to enable interactions with different connectors.
