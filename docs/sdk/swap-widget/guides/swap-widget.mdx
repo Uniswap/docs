@@ -75,33 +75,31 @@ Although the widget will work out-of-the-box with no parameters, we highly recom
 
 Additional [optional parameters](/sdk/swap-widget/reference/v2#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
 
-## JSON-RPC Endpoints {#json-rpc-endpoint}
-
-We strongly recommend you provide JSON-RPC endpoint URLs in the widget’s `jsonRpcUrlMap` prop. The widget will use these endpoints to fetch on-chain data and submit transactions for signature. If the user connects a MetaMask wallet, the widget will use the JSON-RPC provided by MetaMask when possible. [(See a list of all chains supported on widget.)](https://github.com/Uniswap/widgets/blob/main/src/constants/chains.ts#L4) 
-
-If you don’t yet have JSON-RPC endpoints, you can easily create them with services like [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode).
-
-If you choose not to provide a `jsonRpcUrlMap` prop or are missing endpoints for some chains, the widget uses free public JSON-RPC endpoints to still allow users to interact with the widget and fetch price quotes. However, these public endpoints are NOT recommended for production environment usage, are severely rate-limited, and aren't necessarily as reliable. When possible, we'd recommend providing your own endpoints!
-
 ## Web3 Provider {#web3-provider}
 
 The swap widget uses a web3 `provider` prop to allow users to connect their wallets, fetch balances, and submit transactions through the user’s connected wallet.
 
-If you already have a web3 provider, you can pass your provider object directly into the `provider` prop. Both the [ethers](https://docs.ethers.io/v5/api/providers/provider/) and [web3.js](https://web3js.readthedocs.io/en/v1.5.2/index.html) provider objects are compatible with the widget, as is any [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider.
+If your app does not maintain its own web3 provider, you can omit the `provider` prop. The widget will use built-in wallet connection functionality (for [WalletConnect](https://walletconnect.com/) and [MetaMask](https://metamask.io/)), making it easy for you to integrate web3 in your app!
 
-If you don't have a web3 provider yet, the widget has built-in wallet connection functionality that supports [WalletConnect](https://walletconnect.com/) and [MetaMask](https://metamask.io/) wallets, making it super simple for you to integrate web3 in your app!
+If you already have a web3 provider, you can pass your provider object directly into the `provider` prop. Both [ethers](https://docs.ethers.io/v5/api/providers/provider/) and [web3.js](https://web3js.readthedocs.io/en/v1.5.2/index.html) provider objects are compatible with the widget, as is any [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) provider.
+You can directly use the providers returned from [web3-react](https://github.com/Uniswap/web3-react) or [wagmi](https://wagmi.sh/) (both are [ethers](https://docs.ethers.io/v5/api/providers/provider/) providers). If it is not connected to a wallet, it will still be used to read data from the chain, but the widget will still prompt the user to "Connect wallet".
 
-Otherwise, you can also add your own custom wallet connection flow in the [`onConnectWalletClick`](/sdk/swap-widget/reference/v2#onConnectWalletClick) handler, which is triggered when the widget's 'Connect your wallet to swap' button is clicked. Check out libraries such as [web3-react](https://github.com/Uniswap/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow. To hide the widget's native wallet connection flow, set the `hideConnectionUI` prop to true.
+:::note Be sure to use the wallet-connected provider
+When using [wagmi@v0.11](https://wagmi.sh/), `useProvider()` will return the fallback provider, *not* the wallet-connected provider. You should instead pass `useSigner<JsonRpcSigner>().data?.provider` to reflect the user's connected wallet.
+:::
 
-The widget will match the network currently selected by the user. If the user switches networks in your app or in their wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
+If you maintain a web3 provider on your app, you should also consider intercepting the swap widget's wallet connection flow. Do so by passing a handler returning `false` to the [`onConnectWalletClick`](/sdk/swap-widget/reference/v2#onConnectWalletClick) prop, which is triggered when the widget's "Connect wallet" button is clicked. Check out libraries such as [web3-react](https://github.com/Uniswap/web3-react), BlockNative’s [Onboard](https://www.blocknative.com/onboard), or Aragon’s [useWallet()](https://github.com/aragon/use-wallet) to build your own flow. To hide the swap widget's wallet connection flow entirely, pass `true` to the `hideConnectionUI` prop.
+
+The widget will match the network currently selected by the passed provider. If the user switches networks in your app or in their connected wallet, that change will propagate to the widget as well. If the user connects to a network that is not supported by the swap widget, the widget will gracefully disable itself.
 
 ```tsx
 import { SwapWidget } from '@uniswap/widgets'
 import '@uniswap/widgets/fonts.css'
 
-// Recommended to provide a Web3 provider
+// We recommend you pass a web3 provider.
 import { provider } from './your/provider'
-// Recommended to provide your own JSON-RPC endpoints
+
+// We recommend you pass your own JSON-RPC endpoints.
 const jsonRpcUrlMap = { 
   1: ['https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'], 
   3: ['https://ropsten.infura.io/v3/<YOUR_INFURA_PROJECT_ID>']
@@ -113,6 +111,16 @@ function App() {
   </div>
 }
 ```
+
+## JSON-RPC Endpoints {#json-rpc-endpoint}
+
+JSON-RPC endpoints are used to read data when no `provider` is connected. We strongly recommend you pass either a Web3 Provider to the `provider` prop, or JSON-RPC endpoint URLs to the `jsonRpcUrlMap` prop.
+
+The widget will use these endpoints to fetch on-chain data and submit transactions for signature. If the user connects a MetaMask wallet, the widget will use the JSON-RPC provided by MetaMask when possible. [(See a list of all chains supported on widget.)](https://github.com/Uniswap/widgets/blob/main/src/constants/chains.ts#L4) 
+
+If you don’t yet have JSON-RPC endpoints, you can easily create them with services like [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode).
+
+If you choose not to provide a `jsonRpcUrlMap` prop or are missing endpoints for some chains, the widget uses free public JSON-RPC endpoints to still allow users to interact with the widget and fetch price quotes. However, these public endpoints are NOT recommended for production environment usage, are severely rate-limited, and aren't necessarily as reliable. When possible, we'd recommend providing your own endpoints!
 
 # Customizing the Swap Widget {#customizing-widget}
 

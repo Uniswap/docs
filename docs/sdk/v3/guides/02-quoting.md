@@ -66,7 +66,7 @@ https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024b
 Having constructed our reference to the contract, we can now access its methods through our provider.
 We use a batch `Promise` call. This approach queries state data concurrently, rather than sequentially, to avoid out of sync data that may be returned if sequential queries are executed over the span of two blocks:
 
-```typescript reference title="Getting Pool metadata from the Pool smart contact" referenceLinkText="View on Github" customStyling
+```typescript reference title="Getting Pool metadata from the Pool smart contract" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L52-L56
 ```
 
@@ -90,7 +90,7 @@ We get access to the contract's ABI through the [@uniswap/v3-periphery](https://
 https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L4
 ```
 
-We can now use our Quoter contact to obtain the quote.
+We can now use our Quoter contract to obtain the quote.
 
 In an ideal world, the quoter functions would be `view` functions, which would make them very easy to query on-chain with minimal gas costs. However, the Uniswap V3 Quoter contracts rely on state-changing calls designed to be reverted to return the desired data. This means calling the quoter will be very expensive and should not be called on-chain.
 
@@ -98,7 +98,7 @@ To get around this difficulty, we can use the `callStatic` method provided by th
 This is a useful method that submits a state-changing transaction to an Ethereum node, but asks the node to simulate the state change, rather than to execute it. Our script can then return the result of the simulated state change:
 
 ```typescript reference title="Getting Quotes from the Quoter contract" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/quoting/src/libs/quote.ts#L21-L30
+https://github.com/Uniswap/examples/blob/2e8fb5ef56e502d4eb0261e4abff262c33a30760/v3-sdk/quoting/src/libs/quote.ts#L21-L30
 ```
 
 The result of the call is the number of output tokens you'd receive for the quoted swap.
