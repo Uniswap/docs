@@ -14,7 +14,7 @@ For help on setting up web3-react and interacting with a MetaMask wallet, please
 
 The input parameters to this guide are the chains that we want our dApp to be able to connect to and their RPC URLs.
 
-At the end of the guide, we should be able to switch chains for a connected wallet.
+At the end of the guide, we should be able to switch chains on the connected wallet.
 
 For this guide, the following `web3-react` packages are used:
 
@@ -24,9 +24,9 @@ The core code of this guide can be found in [connections](https://github.com/Uni
 
 ## Switching Chains
 
-Having setup our application to use `web3-react` and having built out the ability to connect and disconnect wallets, we can now move on to switching chains.
+Having [setup our application](./01-connect-wallet.md) to use `web3-react` and having built out the ability to [connect and disconnect wallets](./02-connectors.md), we can now move on to switching chains.
 
-Our function requires 2 parameters, which are the chainId we want to switch to, as well as the current connection type:
+Switching chains requires two parameters, the `chainId` we want to switch to, and the current `connectionType`:
 
 ```typescript reference title="Defining the function" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L64
@@ -38,19 +38,19 @@ Given the `ConnectionType`, we can retrieve the actual connector:
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L69
 ```
 
-Then, depending on the `ConnectionType`, there are different ways to switch chains. For the `Network` or `WalletConnect` cases, we simply call `web3-react`'s `activate` function with the supplied `chainId`:
+Then, depending on the `ConnectionType`, we determine how to switch chains. For the `Network` or `WalletConnect` cases, we call `web3-react`'s `activate` function with the supplied `chainId`:
 
 ```typescript reference title="Switching chains for Network and WalletConnect" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L71-L74
 ```
 
-On the other hand, the rest of the connectors require us to build an object of type `AddEthereumChainParameter` and pass it to the `web3-react`'s `activate` function:
+The rest of the connectors require us to build an `AddEthereumChainParameter` object and pass it to the `web3-react`'s `activate` function:
 
 ```typescript reference title="Switching chains the other Connectors" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L77-L84
 ```
 
-The argument supplied in the second case have been already defined in our constants file:
+The metadata required to build `AddEthereumChainParameter`  are defined in our constants file:
     
 ```typescript reference title="Defining the chain parameters" referenceLinkText="View on Github" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/constants.ts#L27-L40
