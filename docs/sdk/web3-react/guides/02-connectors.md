@@ -5,7 +5,7 @@ title: Supported Connectors
 
 ## Introduction
 
-This guide will cover how to connect our dApp to all the different connectors that `web3-react` supports. It is based on the [web3-react example](https://github.com/Uniswap/examples/tree/main/web3-react), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md) and follow the setup instructions.
+This guide will cover how to connect our dApp to all the different connectors that `web3-react` supports. It is based on the [`web3-react` example](https://github.com/Uniswap/examples/tree/main/web3-react), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md) and follow the setup instructions.
 
 
 In this example we will cover connecting our dApp to the following connectors:
@@ -16,7 +16,7 @@ In this example we will cover connecting our dApp to the following connectors:
 
 
 :::info
-For help on setting up web3-react and interacting with a MetaMask wallet, please visit our [connecting to wallets](./01-connect-wallet.md) page!
+For help on setting up `web3-react` and interacting with a MetaMask wallet, please visit our [connecting to wallets](./01-connect-wallet.md) page!
 :::
 
 

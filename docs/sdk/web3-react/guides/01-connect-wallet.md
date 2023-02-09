@@ -5,7 +5,7 @@ title: Connecting to Wallets
 
 ## Introduction
 
-This guide will cover how to connect wallets with `web3-react`. It is based on the [web3-react example](https://github.com/Uniswap/examples/tree/main/web3-react) found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md) and follow the setup instructions.
+This guide will cover how to connect wallets with `web3-react`. It is based on the [`web3-react` example](https://github.com/Uniswap/examples/tree/main/web3-react) found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md) and follow the setup instructions.
 
 
 In this example we will walk through setting up `web3-react` and connecting the most popular browser-injected connector, [MetaMask](https://metamask.io/), using [@web3-react/metamask](https://www.npmjs.com/package/@web3-react/metamask).
@@ -156,6 +156,6 @@ https://github.com/Uniswap/examples/blob/81ec93e97b0afded621e177fe5f34fc9f98f80b
 
 ## Next Steps
 
-Now that you're familiar with connecting and disconnecting from an `InjectedConnector`, consider checking out our [next guide](./02-connectors.md) on connecting and disconnecting from all the different types of connectors that web3-react supports.
+Now that we have gone through connecting and disconnecting from an `InjectedConnector`, we will learn how to [connect and disconnect]1G(./02-connectors.md) from all the different types of connectors that `web3-react` supports.
 
 

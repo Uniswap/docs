@@ -5,11 +5,11 @@ title: Switching Chains
 
 ## Introduction
 
-This guide will cover how to prompt a wallet that has connected to our dApp to switch chains using `web3-react`. It is based on the [web3-react example](https://github.com/Uniswap/examples/tree/main/web3-react), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md) and follow the setup instructions.
+This guide will cover how to prompt a wallet that has connected to our dApp to switch chains using `web3-react`. It is based on the [`web3-react` example](https://github.com/Uniswap/examples/tree/main/web3-react), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/web3-react/README.md) and follow the setup instructions.
 
 
 :::info
-For help on setting up web3-react and interacting with a MetaMask wallet, please visit our [connecting to wallets](./01-connect-wallet.md) page!
+For help on setting up `web3-react` and interacting with a MetaMask wallet, please visit our [connecting to wallets](./01-connect-wallet.md) page!
 :::
 
 
@@ -59,4 +59,4 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 
 ## Next steps
 
-You know now how to support `web3-react`'s most common use cases! Stay tuned for follow up guides.
+Know you know how to support `web3-react`'s most common use cases! Stay tuned for follow up guides.

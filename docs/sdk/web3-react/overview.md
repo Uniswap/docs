@@ -3,27 +3,27 @@ id: overview
 sidebar_position: 1
 title: Overview
 ---
-# Web3-React
+# `web3-React`
 
-> **Welcome to Web3-React!**
+> **Welcome to `web3-react`!**
 
-Web3-React provides abstractions to assist you with connecting your dApp to web3 connectors and exposes methods to interact with those connections. It currently supports connecting to the following wallets:
+`web3-react` provides abstractions to assist you with connecting your dApp to web3 connectors and exposes methods to interact with those connections. It currently supports connecting to the following wallets:
 - Network
 - Injected wallets (eg MetaMask)
 - Gnosis safe
 - Coinbase wallet
 - WalletConnect wallet
 
-To begin, we recommend looking at our [guides](./guides/01-setting-up.md) which include [runnable examples](https://github.com/Uniswap/examples/tree/main/web3-react) and walkthroughs of core usages. These guides will help you better understand how to use web3-react and integrate it into your application.
+To begin, we recommend looking at our [guides](./guides/01-setting-up.md) which include [runnable examples](https://github.com/Uniswap/examples/tree/main/web3-react) and walkthroughs of core usages. These guides will help you better understand how to use `web3-react` and integrate it into your application.
 
 ## Installation
 
-Web3-react consists of many packages, each providing different functionalities. The [core](https://www.npmjs.com/package/@web3-react/core) package exposes the methods used to interact with web3 connectors, the [types](https://www.npmjs.com/package/@web3-react/types) package declares useful types, while the others are installed to enable interactions with different connectors.
+`web3-react` consists of many packages, each providing different functionalities. The [core](https://www.npmjs.com/package/@web3-react/core) package exposes the methods used to interact with web3 connectors, the [types](https://www.npmjs.com/package/@web3-react/types) package declares useful types, while the others are installed to enable interactions with different connectors.
 
-To interact with web3-react we recommend installing though npm:
+To interact with `web3-react` we recommend installing though npm:
 
 ```bash
-npm i --save @web3-react/core
+npm install --save @web3-react/core
 ```
 
 or yarn:
@@ -34,7 +34,7 @@ yarn add @web3-react/core
 
 ## Developer Links
 
-- [**Web3-react Repo**](https://github.com/Uniswap/web3-react)
+- [**`web3-react` on Github**](https://github.com/Uniswap/web3-react)
 
 [![npm version](https://img.shields.io/npm/v/@web3-react/core/latest.svg)](https://www.npmjs.com/package/@web3-react/core/v/latest)
 [![npm bundle size (scoped version)](https://img.shields.io/bundlephobia/minzip/@web3-react/core/latest.svg)](https://bundlephobia.com/result?p=@web3-react/core@latest)
