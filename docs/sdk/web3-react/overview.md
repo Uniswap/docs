@@ -3,7 +3,7 @@ id: overview
 sidebar_position: 1
 title: Overview
 ---
-# `web3-React`
+# `web3-react`
 
 > **Welcome to `web3-react`!**
 
