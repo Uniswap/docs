@@ -21,6 +21,10 @@ For this guide, the following `web3-react` packages are used:
 
 - [`@web3-react/core`](https://www.npmjs.com/package/@web3-react/core)
 
+:::info
+This guide uses `web3-react` version 8, which is a beta version.
+:::
+
 The core code of this guide can be found in [connections](https://github.com/Uniswap/examples/blob/feat/web3-react/web3-react/src/libs/connections.ts).
 
 ## Switching Chains
