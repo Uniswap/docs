@@ -113,7 +113,7 @@ Depending on how your project was created, you might have to install Typescript:
 
 `npx typedoc --out <docs> src/index.ts`
 
-You might have to use the `----skipErrorChecking` flag to the `typedoc` command for cases where types are fetched during transpile time, such as contract ABIs.
+You might have to use the `--skipErrorChecking` flag to the `typedoc` command for cases where types are fetched during transpile time, such as contract ABIs.
 
 See https://www.npmjs.com/package/typedoc-plugin-markdown for details.
 
