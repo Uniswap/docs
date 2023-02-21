@@ -323,6 +323,9 @@ module.exports = {
           if (existingPath.includes('/sdk/swap-widget/reference/v2')) {
             return [existingPath.replace('/sdk/swap-widget/reference/v2', '/sdk/widgets/swap-widget/api')]
           }
+          if (existingPath.includes('/concepts')) {
+            return [existingPath.replace('/concepts', '/protocol/concepts')]
+          }
 
           // Return a falsy value: no redirect created
           return undefined
