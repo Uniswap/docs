@@ -92,7 +92,7 @@ https://github.com/Uniswap/examples/blob/bbee4b974768ff1668ac56e27d1fe840060bb61
 Then, we set our options that define how much time and slippage can occur in our execution as well as the address to use for our wallet:
 
 ```typescript reference title="Constructing SwapOptions" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/bbee4b974768ff1668ac56e27d1fe840060bb61b/v3-sdk/trading/src/libs/trading.ts#L97-L101
+https://github.com/Uniswap/examples/blob/c4667fadb13584268bbee2e0e0f556558a474751/v3-sdk/trading/src/libs/trading.ts#L97-L101
 ```
 
 Next, we use the Uniswap `SwapRouter` to get the associated call parameters for our trade and options:

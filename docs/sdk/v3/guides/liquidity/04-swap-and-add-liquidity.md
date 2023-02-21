@@ -61,7 +61,7 @@ Having created the router, we now need to construct the parameters required to m
 The first two parameters are the currency amounts we use as input to the `routeToRatio` algorithm:
 
 ```typescript reference title="Constructing the two CurrencyAmounts" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/ec48bb845402419fa6e613cb26512a76d864afa5/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L78-L92
+https://github.com/Uniswap/examples/blob/c4667fadb13584268bbee2e0e0f556558a474751/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L78-L92
 ```
 
 Next, we will create a placeholder position with a liquidity of `1` since liquidity is still unknown and will be set inside the call to `routeToRatio`:
@@ -85,7 +85,7 @@ Finally, we will create an instance of `SwapAndAddOptions` to configure which po
 - **`addLiquidityOptions`** must contain a `tokenId` to add to an existing position
 
 ```typescript reference title="Constructing SwapAndAddOptions" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L85-L95
+https://github.com/Uniswap/examples/blob/c4667fadb13584268bbee2e0e0f556558a474751/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L104-L114
 ```
 
 ## Calculating our currency ratio

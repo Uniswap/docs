@@ -42,7 +42,7 @@ https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68f
 Next, we will create our options conforming to the `SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction:
 
 ```typescript reference title="Routing Options" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/38ff60aeb3ad8ff839db9e7952a726ca7d6b68fd/v3-sdk/routing/src/libs/routing.ts#L29-L34
+https://github.com/Uniswap/examples/blob/c4667fadb13584268bbee2e0e0f556558a474751/v3-sdk/routing/src/libs/routing.ts#L33-L38
 ```
 
 Using these options, we can now create a trade (`TradeType.EXACT_INPUT` or `TradeType.EXACT_OUTPUT`) with the currency and the input amount to use to get a quote. For this example, we'll use an `EXACT_INPUT` trade to get a quote outputted in the quote currency.
