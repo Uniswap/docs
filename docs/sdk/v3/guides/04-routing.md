@@ -11,7 +11,7 @@ This guide will cover how to use Uniswap's smart order router to compute optimal
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 :::
 
-In this example we will trade between **WETH and USDC**, but you can configure your example to us any two currencies and amount of input currency.
+In this example we will trade between **WETH and USDC**, but you can configure your example to use any two currencies and amount of input currency.
 
 The guide will **cover**:
 
