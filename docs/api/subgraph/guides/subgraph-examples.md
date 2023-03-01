@@ -1,7 +1,7 @@
 ---
 id: examples
 title: Query Examples
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 # Subgraph Query Examples

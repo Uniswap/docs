@@ -56,7 +56,7 @@ module.exports = {
           className: 'V3_active',
         },
         {
-          to: '/api/subgraph/overview',
+          to: '/api/nft/overview',
           label: 'APIs',
           position: 'left',
           className: 'V3_active',
