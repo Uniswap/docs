@@ -1,6 +1,6 @@
 ---
 id: examples
-title: Trading NFTs
+title: Buying NFTs
 ---
 
 ## Buying NFTs
