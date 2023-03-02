@@ -16,6 +16,8 @@ You can now embed the same aggregated NFT functionality available in the [Uniswa
     </a>
 </div>
 
+# Uniswap NFT Integration Overview
+<img src={require('./images/architecture.png').default} alt="Architecture" width="100%" height="45%" />
 
 
 # Uniswap NFT Integration Features
@@ -57,8 +59,7 @@ Reduce costly approvals for your users with Permit2, rolled into easy to integra
 
 
 # Accessing the API
-
-To use the Uniswap Labs NFT API, you will need an API key. You can request an API key by emailing us.
+To use the Uniswap Labs API, you will need an API key. Request one below and start building on Uniswap NFT. 
 
 <div style={{width: "100%", justifyContent: "center", display: "flex" }}>
     <a href="https://forms.gle/uRAKftx4sPQiRsB2A" style={{background: "linear-gradient(93.06deg, rgb(255, 0, 199) 2.66%, rgb(255, 159, 251) 98.99%)", border: "none", color: "rgb(255, 255, 255)", padding: "16px 0px", borderRadius:"24px", minWidth:"300px", marginBottom: "5%" }}>
