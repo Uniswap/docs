@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # What is Uniswap NFT?
 
-Uniswap NFT is an Aggregated Orderbook that enables buying, listing and selling NFTs across a growing number of 1st party marketplaces (including OpenSea, X2Y2, Rarible and more). 
+Uniswap NFT is a marketplace aggregator that enables buying, listing and selling NFTs across a growing number of 1st party marketplaces (including OpenSea, X2Y2, Rarible and more). 
 
 You can now embed the same aggregated NFT functionality available in the [Uniswap web app](https://app.uniswap.org/#/nfts) directly into your own application with our easy to integrate API and SDKs!
 
