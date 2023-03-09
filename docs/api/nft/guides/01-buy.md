@@ -61,7 +61,7 @@ The response will be an object that specifying the steps necessary for a user to
   ],
   "actions": [
     {
-      "tokenIndexes" : [ 0, 1],
+      "tokenIndexes" : [0, 1],
       "method": "eth_sendTransaction",
       "payload": {
           "from": "0x17A18958F70fD2C863B7306B90d68D9586a86fb1",
