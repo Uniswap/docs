@@ -9,9 +9,13 @@ export default function ApiReference() {
         scrollYOffset: '.navbar', // hides the fixed sidebar and scrolling play nicely with docusaurus navbar
         hideLoading: true, // hides the loading bar
         theme: {
+          schema: {
+            defaultDetailsWidth: '100%',
+          },
           colors: {
             primary: {
-              main: '#25c2a0',
+              light: 'white',
+              dark: 'black',
             },
           },
           typography: {
@@ -28,7 +32,7 @@ export default function ApiReference() {
             },
           },
           sidebar: {
-            width: '200px', // about the same as the sidebar in the docs area, for consistency
+            width: '0px', // about the same as the sidebar in the docs area, for consistency
           },
         },
       }}
