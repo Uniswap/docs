@@ -2,6 +2,7 @@
 id: examples
 title: Buying NFTs
 ---
+
 # Introduction
 
 Uniswap NFT makes adding the NFT purchase functionality to your application simple. At a high level integrators will: 
@@ -23,6 +24,7 @@ BODY:
 {
   "buyerAddress": "String: The address of the account purchasing the NFT",
   "chain": "String: The chain the NFT is on",
+  "currency": "String: The currency the NFT is bought in",
   "tokens": [{
     "collectionAddress": "String: the address of the collection to purchase",
     "tokenId": "String: The id of the specific asset in the collection",
@@ -100,14 +102,3 @@ You can use the `buy_intent` endpoint to add the purchase of NFTs directly to yo
       await provider.getSigner().sendTransaction({ ...txPayload, gasLimit })
     })
 ```
-
-## Coming Next
-
-We are actively adding features to this Alpha software and plan to soon add functionality to: 
-
-- - Allowing purchase of NFTs from the Polygon ecosystem
-- Allow payment for NFTs using any ERC-20 token
-
-Check back to these docs for updates!
-
-
