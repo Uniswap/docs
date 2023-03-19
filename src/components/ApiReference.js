@@ -7,7 +7,8 @@ export default function ApiReference() {
       specUrl={'https://beta.api.uniswap.org/v1/nft/docs'}
       options={{
         scrollYOffset: '.navbar', // hides the fixed sidebar and scrolling play nicely with docusaurus navbar
-        hideLoading: true, // hides the loading bar
+        hideLoading: true,
+        disableSearch: true,
         theme: {
           schema: {
             defaultDetailsWidth: '100%',
@@ -30,9 +31,9 @@ export default function ApiReference() {
               lineHeight: 'var(--ifm-pre-line-height)',
               fontFamily: 'var(--ifm-font-family-monospace)',
             },
-          },
-          sidebar: {
-            width: '0px', // about the same as the sidebar in the docs area, for consistency
+            sidebar: {
+              width: '0px', // about the same as the sidebar in the docs area, for consistency
+            },
           },
         },
       }}
