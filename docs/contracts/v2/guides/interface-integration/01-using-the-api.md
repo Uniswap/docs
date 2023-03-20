@@ -178,31 +178,26 @@ You can visit our [analytics site](https://uniswap.info/) to see a more advanced
 In the end your `App.js` file should look like this:
 
 ```javascript
-import React, { useEffect } from 'react'
+import React from 'react'
 import './App.css'
-import { ApolloClient } from 'apollo-client'
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import { HttpLink } from 'apollo-link-http'
-import { useQuery } from '@apollo/react-hooks'
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import gql from 'graphql-tag'
+import { useQuery } from '@apollo/react-hooks'
 
+// Setting the Apollo client to uniswap API
 export const client = new ApolloClient({
-  link: new HttpLink({
     uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2',
-  }),
-  fetchOptions: {
-    mode: 'no-cors',
-  },
-  cache: new InMemoryCache(),
+    cache: new InMemoryCache(),
 })
 
+// Defining the queries
 const DAI_QUERY = gql`
-  query tokens($tokenAddress: Bytes!) {
-    tokens(where: { id: $tokenAddress }) {
-      derivedETH
-      totalLiquidity
-    }
-  }
+   query tokens($tokenAddress: Bytes!) {
+      tokens(where: {id: $tokenAddress }) {
+         derivedETH
+         totalLiquidity
+      } 
+   }
 `
 
 const ETH_PRICE_QUERY = gql`
@@ -210,10 +205,11 @@ const ETH_PRICE_QUERY = gql`
     bundles(where: { id: "1" }) {
       ethPrice
     }
-  }
+}
 `
 
 function App() {
+  // Fetching the API data
   const { loading: ethLoading, data: ethPriceData } = useQuery(ETH_PRICE_QUERY)
   const { loading: daiLoading, data: daiData } = useQuery(DAI_QUERY, {
     variables: {
@@ -221,6 +217,7 @@ function App() {
     },
   })
 
+  // Formating the responses
   const daiPriceInEth = daiData && daiData.tokens[0].derivedETH
   const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity
   const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice
@@ -236,7 +233,7 @@ function App() {
             (parseFloat(daiPriceInEth) * parseFloat(ethPriceInUSD)).toFixed(2)}
       </div>
       <div>
-        Dai total liquidity:{' '}
+          Dai total liquidity:{' D'}
         {daiLoading
           ? 'Loading token data...'
           : // display the total amount of DAI spread across all pools
@@ -246,5 +243,5 @@ function App() {
   )
 }
 
-export default App
+export default App;
 ```
