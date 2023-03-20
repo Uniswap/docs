@@ -93,13 +93,12 @@ const DAI_QUERY = gql`
     }
   }
 `
-
 const ETH_PRICE_QUERY = gql`
-  query ethPrice {
-    bundle(id: "1") {
+  query bundles {
+    bundles(where: { id: "1" }) {
       ethPrice
     }
-  }
+}
 `
 ```
 
