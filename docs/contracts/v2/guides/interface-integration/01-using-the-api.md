@@ -58,19 +58,22 @@ export default App
 2. We also need to add a context so that Apollo can handle requests properly. In your `index.js` file import the proper provider and wrap the root in it like this:
 
 ```javascript
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
-import { ApolloProvider } from 'react-apollo'
+import { ApolloProvider } from '@apollo/client';
 import { client } from './App'
+import reportWebVitals from './reportWebVitals'
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <ApolloProvider client={ client }>
     <App />
   </ApolloProvider>,
-  document.getElementById('root')
-)
+);
+
+reportWebVitals(console.log);
 ```
 
 ### Writing the queries
