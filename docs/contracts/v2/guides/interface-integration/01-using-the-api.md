@@ -169,7 +169,7 @@ return (
 
 ### Next steps
 
-This should render a very basic page with these two stats about the Dai token within Uniswap. This is a very basic example of what you can do with the Uniswap subgraph and we encourage you to build out more complex and interesting tools!
+This should render a very basic page with these two stats about the Dai token within Uniswap, check the review section if your code does not work. This is a very basic example of what you can do with the Uniswap subgraph and we encourage you to build out more complex and interesting tools!
 
 You can visit our [analytics site](https://uniswap.info/) to see a more advanced analytics page, or visit [the github](https://github.com/Uniswap/uniswap-info) for more detailed examples of using the Uniswap subgraph to create UIs.
 
