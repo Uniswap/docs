@@ -112,30 +112,24 @@ let response = await new BuyApi().buyIntent(
   },
   {
     headers: {
-      'x-api-key': 'YOUR_API_KEY',
+      'x-api-key': apiKey,
     },
   }
 )
 let permit
 
 while (response.data.actions?.length !== 0) {
-  // Iterate over all the actions and execute them
   for (const action of response.data.actions ?? []) {
     const method = action.method
     const payload = action.payload
 
     if (method === 'eth_signTypedData') {
-      const { types, values, domain } = payload as any
+      const { domain, types, values } = payload as any
       const signature = await signer._signTypedData(domain, types, values)
 
       permit = {
         signature,
-        spender: values?.spender,
-        sigDeadline: values?.sigDeadline.toString(),
-        details: {
-          ...values?.details,
-          amount: values?.details.amount.hex,
-        },
+        values,
       }
     } else {
       const gasLimit = await provider.estimateGas({ ...payload, value: undefined })
@@ -143,7 +137,6 @@ while (response.data.actions?.length !== 0) {
     }
   }
 
-  // Call the buy intent endpoint again to get the next set of actions
   response = await new BuyApi().buyIntent(
     {
       buyerAddress,
@@ -154,7 +147,7 @@ while (response.data.actions?.length !== 0) {
     },
     {
       headers: {
-        'x-api-key': 'YOUR_API_KEY',
+        'x-api-key': apiKey,
       },
     }
   )
