@@ -61,7 +61,6 @@ export default App
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 import { ApolloProvider } from 'react-apollo'
 import { client } from './App'
@@ -72,7 +71,6 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById('root')
 )
-registerServiceWorker()
 ```
 
 ### Writing the queries
