@@ -14,7 +14,7 @@ We'll need to create the basic skeleton for the application. We'll use [create-r
 ```javascript
 yarn create react-app uniswap-demo
 cd uniswap-demo
-yarn add  apollo-client apollo-cache-inmemory apollo-link-http graphql graphql-tag @apollo/react-hooks
+yarn add react-apollo apollo-client apollo-cache-inmemory apollo-link-http graphql graphql-tag @apollo/react-hooks
 yarn start
 ```
 
