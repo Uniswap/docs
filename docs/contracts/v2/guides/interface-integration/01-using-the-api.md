@@ -106,7 +106,7 @@ We use an id of `1` for the bundle because there is only one hardcoded bundle in
 
 ### Fetch data
 
-Now we're ready to use these queries to fetch data from the Uniswap V2 subgraph. To do this we can use the `useQuery` hook which uses our client instance to fetch data, and gives us live info about the status of the request. To do this add the following to your `App.js` file:
+Now we're ready to use these queries to fetch data from the Uniswap V2 subgraph. To do this we can use the `useQuery` hook which uses our client instance to fetch data, and gives us live info about the status of the request. To do this add the following to your `App.js` file (import line at the top of the imports block, the rest inside `App()` function):
 
 ```javascript
 import { useQuery } from '@apollo/react-hooks'
