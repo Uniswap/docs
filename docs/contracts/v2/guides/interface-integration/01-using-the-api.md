@@ -111,12 +111,8 @@ Now we're ready to use these queries to fetch data from the Uniswap V2 subgraph.
 ```javascript
 import { useQuery } from '@apollo/react-hooks'
 
-const { loading, error, data: ethPriceData } = useQuery(ETH_PRICE_QUERY)
-const {
-  loading: daiLoading,
-  error: daiError,
-  data: daiData,
-} = useQuery(DAI_QUERY, {
+const { loading: ethLoading, data: ethPriceData } = useQuery(ETH_PRICE_QUERY)
+const { loading: daiLoading, data: daiData } = useQuery(DAI_QUERY, {
   variables: {
     tokenAddress: '0x6b175474e89094c44da98b954eedeac495271d0f',
   },
