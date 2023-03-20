@@ -11,13 +11,13 @@ Along with creating new listings, the API also supports methods for getting and 
 
 To get all active listings for an asset, across every supported marketplace, integrators can call the following method: 
 
-```jsx
+```json
 GET: /listings/{collectionId}/{tokenId}
 ```
 
 This will return information about the owner of the asset as well as information about any active listings for it across the supported marketplaces: 
 
-```jsx
+```json
 {
   "ownerAddress": "0x123",
   "chaindId": 1,
@@ -41,7 +41,7 @@ To cancel a listing, the address that created the original listing will need to 
 
 To retrieve the transaction information to cancel a listing, a caller will first create a `Cancel Listing Intent` object that references the transaction hash of the offer and then execute the actions it contains: 
 
-```jsx
+```json
 POST: /listing_cancel_intent
 BODY: 
 {
@@ -56,7 +56,7 @@ BODY:
 
 Like the creation end point, this will return an ***Intent*** that contains the required action to cancel the specified listing. The cancellation transaction will only be accepted if the caller is the same address that created the initial listing: 
 
-```jsx
+```json
 {
   "listing": {
     "marketplace": "OPENSEA",

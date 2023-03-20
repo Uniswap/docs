@@ -11,13 +11,13 @@ Along with creating new offers, the API also supports methods for getting and ma
 
 To get all offers for an asset across marketplaces, query the offers endpoint: 
 
-```jsx
+```json
  GET: /offers/{collectionId}/{tokenId}
 ```
 
 This will return a list of the existing offers for the specified asset. Included in each returned offer, is the calldata that the owner of the asset needs to send in order to execute that offer:  
 
-```jsx
+```json
 {
   "ownerAddress": "0x123",
   "chaindId": 1,
@@ -66,7 +66,7 @@ BODY:
 
 Like the creation end point, this will return an ***Intent*** that contains the required action to cancel the specified offer. The cancellation transaction will only be accepted if the caller is the same address that created the initial offer: 
 
-```jsx
+```json
 {
   "chaindId": 1,
   "collection": "0x123",

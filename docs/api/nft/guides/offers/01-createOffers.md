@@ -7,13 +7,16 @@ title: Create Offers
 
 Uniswap NFT API provides easy to use endpoints that allow integrators to programmatically create signed offers for assets across supported marketplaces. By sending offers to multiple marketplaces your users maximize their chance of a successful purchase.
 
-Similar to other Uniswap NFT endpoints, to create offers a caller will start by creating an **Offer Intent** 
+To integrate the **Create Offers** functionality you’ll need to add the following steps to your application: 
 
-## Calling the `/offer_intent` Endpoint
+1. Create an **Offer Intent** by posting intended offer information to the `/offer_intent` end point.
+2. The **Offer Intent** returned will include a series of **Actions** your user will need to complete. Iterate through each **Action** required to complete the listing. 
+
+## Creating an Offer Intent:
 
 Creating an **Offer Intent** provides the caller with all of the methods required to create offers on one or more supported marketplaces. To create an offer, the caller will create a request with the following information: 
 
-```jsx
+```json
 POST: /offer_intent
 BODY: 
 {
@@ -32,7 +35,7 @@ BODY:
 
 Here the caller specifies the details of their offer to purchase an asset that they do not currently hold. The API will then return an **Offer Intent** that lists the actions they need to perform to create offers on the requested marketplaces: 
 
-```jsx
+```json
 {
   "chaindId": 1,
   "collection": "0x123",

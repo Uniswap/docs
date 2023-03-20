@@ -15,11 +15,10 @@ To integrate the **Aggregated Listing** functionality you’ll need to add the f
 
 Creating a **Listing Intent** provides the caller with all of the methods required to create a listing on one or more supported marketplaces. To create one, the caller will create a request with the following information: 
 
-```jsx
-POST: /listing/intent
+```json
+POST: /listing_intent
 BODY: 
 {
-  "operation": "create",
   "ownerAddress": "0x123",
   "chaindId": 1,
   "collection": "0x123",
@@ -37,7 +36,7 @@ For the call to be successful the `ownerAddress` field needs to match the owner 
 
 A successful call will return a **Listing Intent** that specifies the Actions that need to be taken to list the asset on the requested marketplaces: 
 
-```jsx
+```json
 {
   "ownerAddress": "0x123",
   "chaindId": 1,
