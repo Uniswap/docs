@@ -7,8 +7,9 @@ title: Buying NFTs
 
 Uniswap NFT makes adding the NFT purchase functionality to your application simple. At a high level integrators will: 
 
-1. Send a request to the Uniswap API specifying the assets to be purchased. The API will find the best price for that asset across our onboarded marketplaces and return the calldata to execute the purchase 
-2. Use the provider or wallet of their choosing to execute that calldata and complete the purchase
+1. Create a **Buy Intent** by sending a request to the Uniswap API specifying the assets to be purchased. The API will find the best price for that asset across our onboarded marketplaces and return the calldata to execute the purchase.
+2. The **Buy Intent** returned will include a series of **Actions** your user will need to complete. Iterate through each **Action** required to complete the purchase. 
+3. Use the provider or wallet of their choosing to execute that calldata and complete the purchase.
 
 The Uniswap API is designed to be flexible and easy to integrate, below is a simple walk through of how you can use it to add the purchase of NFTs to your web application. 
 

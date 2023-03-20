@@ -8,7 +8,7 @@ Uniswap NFT provides a simple layer for your users to list their assets for sale
 
 To integrate the **Aggregated Listing** functionality you’ll need to add the following steps to your application: 
 
-1. Create a **Listing Intent** by posting intended listing information (price, expiry, marketplaces to list on etc.) to the `/listing_intent` end point
+1. Create a **Listing Intent** by posting intended listing information (price, expiry, marketplaces to list on etc.) to the `/listing_intent` end point.
 2. The **Listing Intent** returned will include a series of **Actions** your user will need to complete. Iterate through each **Action** required to complete the listing. 
 
 ## Creating a Listing Intent:
