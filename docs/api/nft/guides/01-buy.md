@@ -53,8 +53,13 @@ The response will be an object specifying the steps necessary for a user to comp
     {
       "tokenId": "10110",
       "collectionAddress": "0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b",
+      "marketplace": "X2Y2",
       "amount": 1,
-      "status": [ "REQUIRES_APPROVAL" ],
+      "quote": {
+          "currency": "ETH",
+          "rawValue": "1365851250141177"
+      },
+      "status": [ "REQUIRES_ROUTE_TX" ],
     }
   ],
   "actions": [
@@ -80,7 +85,7 @@ The response will include the following fields:
   - `status`: The current status of the token during this buy intent. Intended to be used for UI state update purposes.
 - `actions`: A list of all the actions that need to be executed on the client to complete the purchase. This field will be empty if there are no actions required to complete the purchase.
   - `tokenIndexes`: A list of all the tokens that are affected by this action. This is used to determine which tokens need to be updated in the UI after the action is executed.
-  - `method`: The method that should be called to execute the action.
+  - `method`: The [*JsonRpcProvider*](https://docs.ethers.org/v5/api/providers/jsonrpc-provider/#JsonRpcProvider) method that should be called to execute the action.
   - `payload`: The payload that should be sent to the method to execute the action.
 
 The `status` field of each token will be one of the following:
