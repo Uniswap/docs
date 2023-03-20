@@ -86,7 +86,7 @@ The response will include the following fields:
   - `status`: The current status of the token during this buy intent. Intended to be used for UI state update purposes.
 - `actions`: A list of all the actions that need to be executed on the client to complete the purchase. This field will be empty if there are no actions required to complete the purchase.
   - `tokenIndexes`: A list of all the tokens that are affected by this action. This is used to determine which tokens need to be updated in the UI after the action is executed.
-  - `method`: The [*JsonRpcProvider*](https://docs.ethers.org/v5/api/providers/jsonrpc-provider/#JsonRpcProvider) method that should be called to execute the action.
+  - `method`: The [*JsonRpcProvider*](https://docs.ethers.org/v5/api/providers/jsonrpc-provider/#JsonRpcProvider) method that should be called to execute the action. 
   - `payload`: The payload that should be sent to the method to execute the action.
 
 The `status` field of each token will be one of the following:
@@ -95,6 +95,10 @@ The `status` field of each token will be one of the following:
 - `NO_LISTINGS`: No listings were found for the token.
 - `REQUIRES_APPROVE_TX`: (PWAT only) The user needs to approve the Permit2 to spend the input currency.
 - `REQUIRES_PERMIT_SIGN`: (PWAT only) The user needs to sign the permit to spend the input currency.
+
+The `method` field of each action will be one of the following:
+- `eth_sendTransaction`: The user needs to approve the transaction on their wallet.
+- `eth_signTypedData`: (PWAT only) The user needs to sign the permit to spend the input currency.
 
 
 ## Simple Example
@@ -119,6 +123,7 @@ let response = await new BuyApi().buyIntent(
 )
 let permit
 
+// iterate over all actions that need to be executed
 while (response.data.actions?.length !== 0) {
   for (const action of response.data.actions ?? []) {
     const method = action.method
