@@ -127,7 +127,7 @@ Now that we have our data we can format it and display it in the UI. First, we p
 
 These queries will return a response object for each query. Within each one we're interested in the root field we defined in the query definition. For the `daiData` response we defined this as `tokens`, and for the `ethPriceData` query we defined this as `ethPrice`. Within each one we'll get an array of results. Because we're only querying for single entities we'll reference the `0` index in the data array.
 
-Add the following lines to your `App.js` file to parse the responses:
+Add the following lines to your `App.js` file inside the `App()` function to parse the responses:
 
 ```javascript
 const daiPriceInEth = daiData && daiData.tokens[0].derivedETH
