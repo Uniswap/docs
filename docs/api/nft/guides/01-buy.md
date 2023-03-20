@@ -105,7 +105,7 @@ The `method` field of each action will be one of the following:
 
 You can use the `buy_intent` endpoint to add the purchase of NFTs directly to your web app in a few lines of code. Below is an example implementation using the auto-generated client of the Uniswap API. In the example, we simply call the API, get the actions required to complete a transaction and uses a connected wallet to execute the transaction: 
 
-```typescript title="Create Trade calldata"
+```typescript title="Go over actions and execute them"
 import { BuyApi } from '../types/generated-sources/openapi'
 
 let response = await new BuyApi().buyIntent(
@@ -138,8 +138,8 @@ while (response.data.actions?.length !== 0) {
         values,
       }
     } else {
-      const gasLimit = await provider.estimateGas({ ...payload, value: undefined })
-      await signer.sendTransaction({ ...payload, gasLimit, value: undefined })
+      const gasLimit = await provider.estimateGas(payloadgs)
+      await signer.sendTransaction({ ...payload, gasLimit })
     }
   }
 
