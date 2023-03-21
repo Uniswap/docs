@@ -7,8 +7,9 @@ title: Buying NFTs
 
 Uniswap NFT makes adding the NFT purchase functionality to your application simple. At a high level integrators will: 
 
-1. Send a request to the Uniswap API specifying the assets to be purchased. The API will find the best price for that asset across our onboarded marketplaces and return the calldata to execute the purchase 
-2. Use the provider or wallet of their choosing to execute that calldata and complete the purchase
+1. Create a **Buy Intent** by sending a request to the Uniswap API specifying the assets to be purchased. The API will find the best price for that asset across our onboarded marketplaces and return the calldata to execute the purchase.
+2. The **Buy Intent** returned will include a series of **Actions** your user will need to complete. Iterate through each **Action** required to complete the purchase. 
+3. Use the provider or wallet of their choosing to execute that calldata and complete the purchase.
 
 The Uniswap API is designed to be flexible and easy to integrate, below is a simple walk through of how you can use it to add the purchase of NFTs to your web application. 
 
@@ -28,11 +29,12 @@ BODY:
   "tokens": [{
     "collectionAddress": "String: the address of the collection to purchase",
     "tokenId": "String: The id of the specific asset in the collection",
+    "amount": "Number: The amount of the asset to purchase"
   }] 
 } 
 ```
 
-The response will be an object that specifying the steps necessary for a user to complete the purchase. To demonstrate, the below is an example response from the API we can walk through in more detail:  
+The response will be an object specifying the steps necessary for a user to complete the purchase. To demonstrate, the below is an example response from the API we can walk through in more detail:  
 
 ```json
 {
@@ -52,11 +54,11 @@ The response will be an object that specifying the steps necessary for a user to
     {
       "tokenId": "10110",
       "collectionAddress": "0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b",
-      "marketplace": "OPENSEA",
+      "marketplace": "X2Y2",
       "amount": 1,
       "quote": {
           "currency": "ETH",
-          "rawValue": "1345851250141177"
+          "rawValue": "1365851250141177"
       },
       "status": [ "REQUIRES_ROUTE_TX" ],
     }
@@ -76,29 +78,84 @@ The response will be an object that specifying the steps necessary for a user to
 }
 ```
 
-The first field is a `requestId` which can be used to track and recall the request made. 
-The next field, the `tokens` list, is a list of all the tokens requested to purchase and all of the information about each. 
-Some important fields to understand are: 
+The response will include the following fields:
+- `requestId`: An id which can be used to track and recall the request made.
+- `tokens`: A list of all the tokens requested to purchase and all of the information about each.
+  - `marketplace`: This is the marketplace where Uniswap NFT found the best price available for the requested asset.
+  - `quote`: The listing price that Uniswap NFT discovered and the currency that the use will be paying in (this defaults to ETH).
+  - `status`: The current status of the token during this buy intent. Intended to be used for UI state update purposes.
+- `actions`: A list of all the actions that need to be executed on the client to complete the purchase. This field will be empty if there are no actions required to complete the purchase.
+  - `tokenIndexes`: A list of all the tokens that are affected by this action. This is used to determine which tokens need to be updated in the UI after the action is executed.
+  - `method`: The [*JsonRpcProvider*](https://docs.ethers.org/v5/api/providers/jsonrpc-provider/#JsonRpcProvider) method that should be called to execute the action. 
+  - `payload`: The payload that should be sent to the method to execute the action.
 
-- `marketplace`: This is the marketplace where Uniswap NFT found the best price available for the requested asset.
-- `quote`: The listing price that Uniswap NFT discovered and the currency that the use will be paying in (this defaults to ETH)
-- `status`: If the requested assets were discovered on a marketplace this field will include “REQUIRES_ROUTE_TX”. If the asset wasn’t found on any marketplace the status will be “NO_LISTINGS”.
+The `status` field of each token will be one of the following:
+- `REQUIRES_ROUTE_TX`: The user needs to approve the *buy* transaction.
+- `ALREADY_OWNED`: The user already owns the token.
+- `NO_LISTINGS`: No listings were found for the token.
+- `REQUIRES_APPROVE_TX`: (PWAT only) The user needs to approve the Permit2 to spend the input currency.
+- `REQUIRES_PERMIT_SIGN`: (PWAT only) The user needs to sign the permit to spend the input currency.
 
-The third field, the `actions` list, is a list of all the actions that need to be executed on the client to complete the purchase. The `payload` field of each action can be signed and sent using an [Ethereum client](https://docs.ethers.org/v5/api/signer/) `eth_sendTransaction` method to execute the action.
+The `method` field of each action will be one of the following:
+- `eth_sendTransaction`: The user needs to approve the transaction on their wallet.
+- `eth_signTypedData`: (PWAT only) The user needs to sign the permit to spend the input currency.
+
 
 ## Simple Example
 
-You can use the `buy_intent` endpoint to add the purchase of NFTs directly to your web app in about 5 lines of code. Below is an example implementation using the auto-generated client of the Uniswap API. In the example, we simply call the API, get the actions required to complete a transaction and uses a connected wallet to execute the transaction: 
+You can use the `buy_intent` endpoint to add the purchase of NFTs directly to your web app in a few lines of code. Below is an example implementation using the auto-generated client of the Uniswap API. In the example, we simply call the API, get the actions required to complete a transaction and uses a connected wallet to execute the transaction: 
 
-```typescript title="Create Trade calldata" 
- const response = await new BuyApi().buyIntent({
+```typescript title="Go over actions and execute them"
+import { BuyApi } from '../types/generated-sources/openapi'
+
+let response = await new BuyApi().buyIntent(
+  {
+    buyerAddress,
+    chain,
+    currency,
+    tokens,
+  },
+  {
+    headers: {
+      'x-api-key': apiKey,
+    },
+  }
+)
+let permit
+
+// iterate over all actions that need to be executed
+while (response.data.actions?.length !== 0) {
+  for (const action of response.data.actions ?? []) {
+    const method = action.method
+    const payload = action.payload
+
+    if (method === 'eth_signTypedData') {
+      const { domain, types, values } = payload as any
+      const signature = await signer._signTypedData(domain, types, values)
+
+      permit = {
+        signature,
+        values,
+      }
+    } else {
+      const gasLimit = await provider.estimateGas(payloadgs)
+      await signer.sendTransaction({ ...payload, gasLimit })
+    }
+  }
+
+  response = await new BuyApi().buyIntent(
+    {
       buyerAddress,
-      tokens: trades,
-    })
-
-    response.data.actions?.forEach(async (action) => {
-      const txPayload = action.payload
-      const gasLimit = await provider.estimateGas(txPayload)
-      await provider.getSigner().sendTransaction({ ...txPayload, gasLimit })
-    })
+      chain,
+      currency,
+      tokens,
+      permit,
+    },
+    {
+      headers: {
+        'x-api-key': apiKey,
+      },
+    }
+  )
+}
 ```
