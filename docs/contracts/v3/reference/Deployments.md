@@ -62,5 +62,6 @@ The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native
 | Optimistic Kovan | `69`     | WETH                  | `0x4200000000000000000000000000000000000006` |
 | Arbitrum One     | `42161`  | WETH                  | `0x82aF49447D8a07e3bd95BD0d56f35241523fBab1` |
 | Arbitrum Rinkeby | `421611` | WETH                  | `0xB47e6A5f8b33b3F17603C83a0535A9dcD7E32681` |
+| Arbitrum Goerli  | `421613` | WETH                  | `0xe39Ab88f8A4777030A534146A9Ca3B52bd5D43A3` |
 | Polygon          | `137`    | WMATIC                | `0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270` |
 | Polygon Mumbai   | `80001`  | WMATIC                | `0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889` |
