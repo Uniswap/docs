@@ -70,7 +70,7 @@ Information about a pair. Includes references to each token within the pair, vol
 ### User
 
 A user entity is created for any address that provides liquidity to a pool on Uniswap. This entity
-can be used to track open positions for users. LiquidyPosition entities can be referenced to get
+can be used to track open positions for users. LiquidityPosition entities can be referenced to get
 specific data about each position.
 
 | Field Name         | Value Type          | Description                                    |
@@ -79,7 +79,7 @@ specific data about each position.
 | liquidityPositions | [LiquidityPosition] | array of all liquidity positions user has open |
 | usdSwapped         | BigDecimal          | total USD value swapped                        |
 
-### LiquidityPositiion
+### LiquidityPosition
 
 This entity is used to store data about a user's liquidity position. This information, along with
 information from the pair itself can be used to provide position sizes, token deposits, and more.

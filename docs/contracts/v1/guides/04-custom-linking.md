@@ -104,8 +104,8 @@ The Pool page is made up of 3 subroutes: `add-liquidity`, `remove-liquidity`, `c
 
 ## Custom Routes
 
-Custom token routes can still be used in combination with URL paramters. URL paramters are higher in the settings hierarchy than custom routes.
+Custom token routes can still be used in combination with URL parameters. URL parameters are higher in the settings hierarchy than custom routes.
 
-An example using custom token route and URL paramters.
+An example using custom token route and URL parameters.
 
 `https://app.uniswap.org/#/swap/0x0F5D2fB29fb7d3CFeE444a200298f468908cC942?exactField=input&exactAmount=10&use=v1`

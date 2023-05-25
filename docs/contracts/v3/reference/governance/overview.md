@@ -126,7 +126,7 @@ Delegate votes from the sender to the delegatee. Users can delegate to 1 address
 
 | Name      | Type      |                                                                                                                     |
 | :-------- | :-------- | :------------------------------------------------------------------------------------------------------------------ |
-| delegatee | `address` | The address to which msg.sender wishis to delegate their vote to                                                    |
+| delegatee | `address` | The address to which msg.sender wishes to delegate their vote to                                                    |
 | nonce     | `uint`    | The contract state required to match the signature. This can be retrieved from the contract’s public nonces mapping |
 | expiry    | `uint`    | The time when the signature expires. A block timestamp in seconds since the unix epoch.                             |
 | v         | `uint`    | The recovery byte of the signature.                                                                                 |
