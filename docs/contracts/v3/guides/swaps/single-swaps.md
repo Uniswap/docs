@@ -249,8 +249,8 @@ contract SwapExamples {
         // Transfer the specified amount of DAI to this contract.
         TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), amountInMaximum);
 
-        // Approve the router to spend the specifed `amountInMaximum` of DAI.
-        // In production, you should choose the maximum amount to spend based on oracles or other data sources to acheive a better swap.
+        // Approve the router to spend the specified `amountInMaximum` of DAI.
+        // In production, you should choose the maximum amount to spend based on oracles or other data sources to achieve a better swap.
         TransferHelper.safeApprove(DAI, address(swapRouter), amountInMaximum);
 
         ISwapRouter.ExactOutputSingleParams memory params =
