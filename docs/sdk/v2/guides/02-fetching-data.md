@@ -84,7 +84,7 @@ import { Pair } from '@uniswap/v2-sdk'
 
 const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
-async function getPair(): Promise<Pair> {
+async function createPair(): Promise<Pair> {
   const pairAddress = Pair.getAddress(DAI, WETH9[DAI.chainId])
 
   // Setup provider, import necessary ABI ...

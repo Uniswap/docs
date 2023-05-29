@@ -24,7 +24,7 @@ import { Route } from '@uniswap/v2-sdk'
 const DAI = new Token(SupportedChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // To learn how to get Pair data, refer to the previous guide.
-const pair = await getPair(DAI, WETH9[SupportedChainId.MAINNET])
+const pair = await createPair(DAI, WETH9[SupportedChainId.MAINNET])
 
 const route = new Route([pair], WETH9[DAI.chainId], DAI)
 
@@ -50,8 +50,8 @@ const USDC = new Token(SupportedChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9E
 const DAI = new Token(SupportedChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // To learn how to get Pair data, refer to the previous guide.
-const USDCWETHPair = await getPair(USDC, WETH9[SupportedChainId.MAINNET])
-const DAIUSDCPair = await getPair(DAI, USDC)
+const USDCWETHPair = await createPair(USDC, WETH9[SupportedChainId.MAINNET])
+const DAIUSDCPair = await createPair(DAI, USDC)
 
 const route = new Route([USDCWETHPair, DAIUSDCPair], WETH9[SupportedChainId.MAINNET], DAI)
 
@@ -72,7 +72,7 @@ import { Route, Pair, Trade } from '@uniswap/v2-sdk'
 const DAI = new Token(SupportedChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // To learn how to get Pair data, refer to the previous guide.
-const pair = await getPair(DAI, WETH9[DAI.chainId])
+const pair = await createPair(DAI, WETH9[DAI.chainId])
 
 const route = new Route([pair], WETH9[DAI.chainId], DAI)
 

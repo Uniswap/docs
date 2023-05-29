@@ -20,7 +20,7 @@ import {Trade, Route} from '@uniswap/v2-sdk'
 const DAI = new Token(SupportedChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // See the Fetching Data guide to learn how to get Pair data
-const pair = await getPair(DAI, WETH9[DAI.chainId])
+const pair = await createPair(DAI, WETH9[DAI.chainId])
 
 const route = new Route([pair], WETH9[DAI.chainId], DAI)
 
