@@ -26,7 +26,7 @@ The next piece of data we need is **decimals**.
 
 ### Provided by the User
 
-One option here is to simply pass in the correct value, which we may know is `18`. At this point, we're ready to represent DAI as a [Token](../reference/token):
+One option here is to simply pass in the correct value, which we may know is `18`. At this point, we're ready to represent DAI as a [Token](../../core/reference/classes/Token.md):
 
 ```typescript
 import { SupportedChainId, Token } from '@uniswap/sdk-core'
