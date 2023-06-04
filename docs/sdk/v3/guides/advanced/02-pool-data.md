@@ -11,7 +11,7 @@ This guide will cover how to initialize a Pool with full tick data to allow offc
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 :::
 
-In this example we will use **ethers JS** and **The Graph** to construct a `Pool` object that we can use in the following guides.
+In this example we will use **ethers JS** and **The Graph** to construct a `Pool` object that we can use in the following guides. We will also [Axios](https://axios-http.com/docs/intro) for requests, but any http client is fine.
 
 This guide will **cover**:
 
@@ -50,12 +50,13 @@ Uniswap V3 allows different Fee tiers when deploying a pool, so multiple pools c
 ## Creating a Pool Contract instance and fetching metadata
 
 Now that we have the address of a **USDC - ETH** Pool, we can construct an instance of an **ethers** `Contract` to interact with it.
-To construct the Contract we need to provide the address of the contract, its ABI and the provider that will carry out the RPC call for us. We get access to the contract's ABI through the @uniswap/v3-core package, which holds the core smart contracts of the Uniswap V3 protocol:
+To construct the Contract we need to provide the address of the contract, its ABI and a provider connected to an [RPC endpoint](https://docs.infura.io/infura/getting-started). We get access to the contract's ABI through the `@uniswap/v3-core` package, which holds the core smart contracts of the Uniswap V3 protocol:
 
 ```typescript
 import { ethers } from 'ethers
 import IUniswapV3PoolABI from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
 
+const provider = new ethers.provider.JsonRpcProvider(rpcUrl)
 const poolContract = new ethers.Contract(
     poolAddress,
     IUniswapV3PoolABI.abi,
@@ -64,7 +65,7 @@ const poolContract = new ethers.Contract(
 ```
 
 Once we have set up our reference to the contract, we can proceed to access its methods. To construct our offchain representation of the Pool Contract, we need to fetch its liquidity, sqrtPrice, currently active tick and the full Tick data.
-We get the **liquidity**, **sqrtPrice** and **tick** directly from the blockchain:
+We get the **liquidity**, **sqrtPrice** and **tick** directly from the blockchain by calling `liquidity()`and `slot0()` on the Pool contract:
 
 ```typescript
 const [liquidity, slot0] =
@@ -74,6 +75,16 @@ const [liquidity, slot0] =
   ])
 ```
 
+The [slot0 function](../../../../contracts/v3/reference/core/interfaces/pool/IUniswapV3PoolState.md#slot0) represents the first (0th) storage slot of the pool and exposes multiple useful values in a single function:
+
+```solidity
+  function slot0(
+  ) external view returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, uint8 feeProtocol, bool unlocked)
+```
+
+For our use case, we only need the `sqrtPriceX96` and the currently active `tick`.
+
+
 ## Fetching all Ticks
 
 V3 pools use ticks to [concentrate liquidity](../../../concepts/protocol/concentrated-liquidity.md) in price ranges and allow for better pricing of trades.
@@ -81,23 +92,34 @@ Even though most Pools only have a couple of initialized ticks, it is possible t
 In that case, it can be very expensive or slow to get all of them with RPC calls.
 
 To fetch all ticks of the **USDC - WETH Pool**, we will use the [Uniswap V3 graph](../../../api/subgraph/overview.md). To construct a `Tick` for the SDK, we need the **tickIdx**, the **liquidityGross** and the **liquidityNet**.
-We define our GraphQL query:
+We define our GraphQL query and [send a POST request](https://axios-http.com/docs/post_example) to the V3 subgraph API endpoint:
 
-```{
- ticks (
-          where: {
-            poolAddress: "${poolAddress.toLowerCase()}", 
-            liquidityGross_gt: "0"}
-          first: 1000
-        ) {
-          tickIdx
-          liquidityGross
-          liquidityNet
+```typescript
+axios.post(
+        "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
+        {"query": `{ ticks(
+              where: {poolAddress: "${poolAddress.toLowerCase()}", liquidityNet_not: "0"}
+              first: 1000,
+              skip: ${skip},
+              orderBy: tickIdx,
+              orderDirection: asc
+            ) {
+              tickIdx
+              liquidityGross
+              liquidityNet
+            }
+          }`
+        },
+        {
+            headers: {
+                "Content-Type": "application/json"
+            }
         }
-}
+    )
 ```
 
-We only fetch the ticks that have liquidity, and we convert the poolAddress to lower case for the subgraph to work with.
+We only fetch the ticks that have liquidity, and we convert the poolAddress to lower case for the subgraph to work with. To make sure the Ticks are ordered correctly, we also define the order direction in the query.
+
 To create our Pool, we need to map the raw data we received from the subgraph to `Tick` objects that the SDK can work with:
 
 ```typescript
@@ -129,3 +151,7 @@ const usdcWethPool = new Pool(
 ```
 
 With this fully initialized Pool, we can calculate swaps on it offchain, without the need to make expensive RPC calls.
+
+## Next Steps
+
+Now that you are familiar with using TheGraph, continue your journey with the next example on visualizing Liquidity density.
