@@ -18,8 +18,9 @@ This guide will **cover**:
 1. Computing the Pool's address
 2. Referencing the Pool contract and fetching metadata
 3. Using the V3 subgraph to fetch Tick data
+4. Constructing the Pool object
 
-At the end of the guide, we should be able to view the full tick data of a pool using the example's included UI.
+At the end of the guide, we will have created a `Pool` Object that accurately represents the state of a V3 pool at the time we fetched it.
 
 For this guide, the following Uniswap packages are used:
   
@@ -154,4 +155,4 @@ With this fully initialized Pool, we can calculate swaps on it offchain, without
 
 ## Next Steps
 
-Now that you are familiar with using TheGraph, continue your journey with the next example on visualizing Liquidity density.
+Now that you are familiar with using TheGraph, continue your journey with the next example on visualizing the Liquidity density of a pool.

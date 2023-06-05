@@ -13,4 +13,4 @@ The following examples use **ethersJS** and the **Uniswap V3 subgraph** hosted o
 
 We will take a deep dive into the Uniswap V3 protocol and use practical examples to understand the data stored by the Uniswap smart contracts. We will explore how we can compute the available liquidity in a specific price range, visualize **liquidity density** in pools and how to use Uniswap as a **price oracle**.
 
-These guides are a bit longer than the previous ones and provide more complete code examples.
+These guides are a bit longer than the previous ones and provide more theoratical background and complete code examples.
