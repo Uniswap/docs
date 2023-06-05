@@ -226,4 +226,9 @@ Finally, we draw the Chart:
 
 In a real application, you will probably want to format the chart properly and display additional information for users.
 Check out the full [code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/active-liquidity) to this guide and the official recharts [documentation](https://recharts.org/).
+
 You can also take a look at the [Uniswap Info](https://github.com/Uniswap/v3-info) repository to see a similar chart used in production.
+
+## Next Steps
+
+Now that you are familiar with liquidity data, consider checking out our next guide on using Uniswap as a Price Oracle.
