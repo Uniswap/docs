@@ -79,14 +79,13 @@ We know the spacing between ticks and the Initialized Ticks where active liquidi
 To draw our chart we want a data structure that looks something like this:
 
 ```typescript
-import { Price } from '@uniswap/sdk-core'
 
 interface TickProcessed {
     tickIdx: number,
     liquidityActive: JSBI,
     liquidityNet: JSBI,
-    price0: Price,
-    price1: Price,
+    price0: string,
+    price1: string,
     isCurrent: boolean
 }
 ```
@@ -113,13 +112,14 @@ const activeTickProcessed: TickProcessed = {
     tickIdx: activeTickIdx,
     liquidityActive: pool.liquidity,
     liquidityNet: JSBI.BigInt(0),
-    price0: tickToPrice(tokenA, tokenB, activeTickIdx),
-    price1: tickToPrice(tokenB, tokenA, activeTickIdx),
+    price0: tickToPrice(tokenA, tokenB, activeTickIdx).toFixed(6),
+    price1: tickToPrice(tokenB, tokenA, activeTickIdx).toFixed(6),
     isCurrent: true
 }
 ```
 
-Here we also calculate the price of the tokens from the tickIdx, the `v3-sdk` exports a handy utility function for that.
+Here we also calculate the price of the tokens from the tickIdx, the `v3-sdk` exports a handy utility function for that. 
+We store it as a string as we won't make any further calculations in this example.
 If the active Tick is initialized, we also need to set the liquidityNet to correctly handle moving out of the position:
 
 ```typescript
