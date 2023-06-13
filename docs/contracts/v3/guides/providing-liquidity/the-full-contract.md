@@ -149,7 +149,7 @@ contract LiquidityExamples is IERC721Receiver {
 
         (amount0, amount1) = nonfungiblePositionManager.collect(params);
 
-        // send collected feed back to owner
+        // send collected fees back to owner
         _sendToOwner(tokenId, amount0, amount1);
     }
 
@@ -177,7 +177,7 @@ contract LiquidityExamples is IERC721Receiver {
 
         (amount0, amount1) = nonfungiblePositionManager.decreaseLiquidity(params);
 
-        //send liquidity back to owner
+        // send liquidity back to owner
         _sendToOwner(tokenId, amount0, amount1);
     }
 
