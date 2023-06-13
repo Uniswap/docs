@@ -137,7 +137,7 @@ contract LiquidityExamples is IERC721Receiver {
     function collectAllFees(uint256 tokenId) external returns (uint256 amount0, uint256 amount1) {
         // Caller must own the ERC721 position, meaning it must be a deposit
 
-        // set amount0Max and amount1Max to uint256.max to collect all fees
+        // set amount0Max and amount1Max to type (uint128).max to collect all fees
         // alternatively can set recipient to msg.sender and avoid another transaction in `sendToOwner`
         INonfungiblePositionManager.CollectParams memory params =
             INonfungiblePositionManager.CollectParams({
