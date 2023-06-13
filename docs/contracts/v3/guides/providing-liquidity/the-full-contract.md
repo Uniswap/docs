@@ -239,10 +239,10 @@ contract LiquidityExamples is IERC721Receiver {
     function retrieveNFT(uint256 tokenId) external {
         // must be the owner of the NFT
         require(msg.sender == deposits[tokenId].owner, 'Not the owner');
-        // transfer ownership to original owner
-        nonfungiblePositionManager.safeTransferFrom(address(this), msg.sender, tokenId);
         //remove information related to tokenId
         delete deposits[tokenId];
+        // transfer ownership to original owner
+        nonfungiblePositionManager.safeTransferFrom(address(this), msg.sender, tokenId);
     }
 }
 ```
