@@ -18,9 +18,11 @@ We will then calculate the time weighted average price - TWAP, and time weighted
 
 This guide will **cover**:
 
-1. Fetching observations
-2. Computing TWAP
-3. Computing TWAL
+1. Understanding observations
+2. Fetching observations
+3. Computing TWAP
+4. Computing TWAL
+5. Why prefer observe over observations
 
 Before diving into this guide, consider reading the theory behind using Uniswap V3 as an [Onchain Oracle](../../../../concepts/protocol/oracle.md).
 
@@ -44,9 +46,9 @@ const poolContract = new ethers.Contract(
 ```
 
 All V3 pools store observations of the current tick and the block timestamp. 
-To minimize pool deployment costs, only one observation is stored in the contract when the Pool is created.
+To minimize pool deployment costs, only one Observation is stored in the contract when the Pool is created.
 Anyone who is willing to pay the gas costs can [increase](../../../../contracts/v3/reference/core/UniswapV3Pool.md#increaseobservationcardinalitynext) the number of stored observations to up to `65535`.
-If the Pool cannot store an additional observation, it overwrites the oldest one.
+If the Pool cannot store an additional Observation, it overwrites the oldest one.
 
 We create an interface to map our data to:
 
@@ -58,7 +60,7 @@ interface Observation {
 }
 ```
 
-To fetch the `Observations` from our pool contract, we will use the [`observe`](../../../../contracts/v3/reference/core/UniswapV3Pool.md#observe)function. 
+To fetch the `Observations` from our pool contract, we will use the [`observe`](../../../../contracts/v3/reference/core/UniswapV3Pool.md#observe) function. 
 We first check how many observations are stored in the Pool by calling the `slot0` function.
 
 ```typescript
@@ -69,14 +71,18 @@ const maxObservationCount = slot0.observationCardinalityNext
 ```
 
 The `observationCardinalityNext` is the maximum number of Observations the Pool **can store** at the moment.
-The `observatioCardinality` is the actual number of Observations the Pool **has currently stored**. 
-Observations are only stored when the `swap`function is called on the Pool so it can take some time to write the Observations after the `observationCardinalityNext`was increased.
-If the number of Observations on the Pool is not sufficient, we need to call the `increaseObservationCardinalityNext` function and set it to the value we desire.
-Keep in mind that this is a write function as the contract needs to store more data on the blockchain and we will have to pay a corresponding gas fee.
-We will need a **signer** or **wallet** to achieve that. In this example, we want to fetch 10 observations.
+The `observationCardinality` is the actual number of Observations the Pool **has currently stored**.
+
+Observations are only stored when the `swap()` function is called on the Pool or when a **Position is modified**, so it can take some time to write the Observations after the `observationCardinalityNext` was increased.
+If the number of Observations on the Pool is not sufficient, we need to call the `increaseObservationCardinalityNext()` function and set it to the value we desire.
+
+This is a write function as the contract needs to store more data on the blockchain.
+We will need a **wallet** or **signer** to pay the corresponding gas fee.
+
+In this example, we want to fetch 10 observations.
 
 ```typescript
-import { ethers } from 'ethers
+import { ethers } from 'ethers'
 
 let provider = new ethers.providers.WebSocketProvider('rpcUrl...')
 let wallet = new ethers.Wallet('private_key', provider)
@@ -91,10 +97,10 @@ const txRes = await poolContract.increaseObservationCardinalityNext(10)
 ```
 
 The Pool will now fill the open Observation Slots.
-As someone has to pay for the gas to write the observations, the functionality to write to the array of observations is part of the `swap` function of the Pool.
+As someone has to pay for the gas to write the observations, writing to the array of observations is part of the `swap()` and the `modifyPosition()` function of the Pool.
 
 :::note
-Saving an observation is a write operation on the blockchain and therefore costs gas.
+Saving an Observation is a write operation on the blockchain and therefore costs gas.
 This means that the pool will only be able to save observations for blocks where write calls are executed on the Pool contract.
 If no Observation is stored for a block, it is calculated as the time weighted arithmetic mean between the two closest Observations.
 Because of this, we can be sure the oldest Observation is **at least** 10 blocks old.
@@ -105,8 +111,9 @@ It is very likely that the number of blocks covered is bigger than 10.
 
 We are now sure that at least 10 observations exist, and can safely fetch observations for the last 10 blocks.
 We call the `observe` function with an array of numbers, representing the timestamps of the Observations in seconds ago from now.
+
 In this example, we calculate averages over the last ten blocks so we fetch 2 observations with 9 times the blocktime in between.
-Fetching an observation `0s` ago will return the most recent observation interpolated to the current timestamp as observations are written at most once a block.
+Fetching an Observation `0s` ago will return the **most recent Observation** interpolated to the current timestamp as observations are written at most once a block.
 
 ```typescript
 const timestamps = [
@@ -132,7 +139,7 @@ To calculate the time weighted average price (TWAP) in the period we fetched, we
 
 The `tickCumulative` value is a snapshot of the `tick accumulator` at the timestamp we fetched. The Tick Accumulator stores the sum of all current ticks at every second since the Pool was initialised. Its value is therefore increasing with every second.
 
-We cannot directly use the value of a single Observation for anything meaningful. Instead we need to compare the difference between two Observations and calculate the time weighted arithmetic mean.
+We cannot directly use the value of a single Observation for anything meaningful. Instead we need to compare the **difference** between two Observations and calculate the **time weighted arithmetic mean**.
 
 ```typescript
 const diffTickCumulative = observations[0].tickCumulative - observations[1].tickCumulative
@@ -151,7 +158,7 @@ const pool = new Pool(...)
 const TWAP = tickToPrice(pool.token0, pool.token1, averageTick)
 ```
 
-We have now calculated the time weighted average price over the last 108 seconds.
+We have now calculated the **time weighted average price** over the last 108 seconds.
 
 Let's continue with the average liquidity.
 
@@ -159,7 +166,7 @@ Let's continue with the average liquidity.
 
 To understand the term **active Liquidity**, check out the [previous guide](./03-active-liquidity.md).
 Similar to the `tick accumulator`, the `liquidity accumulator` stores a sum of values for every second since the Pool was initialized and increases with every second.
-Because of the size of the active liquidity value, it is impractical to just add up the active liquidity. Instead the seconds per liquidity are summed up.
+Because of the size of the active liquidity value, it is impractical to just add up the active liquidity. Instead the **seconds per liquidity** are summed up.
 
 The `secondsPerLiquidityX128` value is calculated by shifting the seconds since the last Observation by 128 bits and dividing that value by the active liquidity. It is then added to the accumulator.
 
@@ -170,7 +177,7 @@ uint128 secondsPerLiquidityX128 = (uint160(delta) << 128) / liquidity
 uint160 secondsPerLiquidityCumulativeX128 = last.secondsPerLiquidityCumulativeX128 + secondsPerLiquidityX128
 ```
 
-`last` is the last Observation in this illustrative code snippet. Consider taking a look at the [Oracle library](https://github.com/Uniswap/v3-core/blob/main/contracts/libraries/Oracle.sol) to see the actual implementation.
+`last` is the most recent Observation in this illustrative code snippet. Consider taking a look at the [Oracle library](https://github.com/Uniswap/v3-core/blob/main/contracts/libraries/Oracle.sol) to see the actual implementation.
 
 Let's invert this calculation and find the average active liquidity over our observed time period.
 
@@ -182,7 +189,14 @@ const secondsBetweenX128 = BigInt(108) << 128
 const TWAL = diffSecondsPerLiquidityX128 / secondsBetweenX128
 ```
 
-This *Time weighted average liquidity* is the harmonic mean over the time period observed.
+This **time weighted average liquidity** is the harmonic mean over the time period observed.
+
+:::note
+The costs associated with manipulating/ changing the liquidity of a Pool are **orders of magnitude smaller** than with manipulating the price of the assets, as **prices** will be arbitraged for assets **with more than one market**.
+Adding massive amounts of liquidity to a Pool and withdrawing them after a block has passed more or less only costs gas fees.
+
+Use the **TWAP** with care and consider handling outliers.
+:::
 
 ## Why prefer observe over observations?
 
@@ -233,11 +247,12 @@ One way to handle this behaviour is deploying or [using](https://github.com/mds1
 We map the RPC result to the Typescript interface that we created:
 
 ```typescript
+const utcNow = Math.floor(Date.now() / 1000)
 const observations = results.map((result) => {
-    const secondsAgo = Math.floor(Date.now() / 1000) - Number(result.blockTimeStamp)
+    const secondsAgo = utcNow - Number(result.blockTimeStamp)
     return {
         secondsAgo,
-        tickCumulative: BigInt(result.tickCumulative)
+        tickCumulative: BigInt(result.tickCumulative),
         secondsPerLiquidityCumulativeX128: BigInt(result.secondsPerLiquidityCumulativeX128) 
     }
 }).sort((a, b) => a.secondsAgo - b.secondsAgo)
@@ -246,7 +261,7 @@ const observations = results.map((result) => {
 We now have an Array of observations in the same format that we are used to.
 
 :::note
-Because of the way Observations are stored, they are **not sorted**. We need to sort the result by the timestamp.
+Because Observations are stored in a **fixed size array**, they are **not sorted**. We need to sort the result by the timestamp.
 :::
 
 The timestamps of the Observations we got are correspondent to blocks where Swaps happened on the Pool.
