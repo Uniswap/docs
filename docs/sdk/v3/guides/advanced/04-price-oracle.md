@@ -29,7 +29,6 @@ Before diving into this guide, consider reading the theory behind using Uniswap 
 For this guide, the following Uniswap packages are used:
   
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 
 The core code of this guide can be found in [`oracle.ts`](https://github.com/Uniswap/v3-sdk/blob/main/src/entities/oracle.ts)
 
@@ -120,7 +119,7 @@ const timestamps = [
     0, 108
 ]
 
-const tickCumulatives, secondsPerLiquidityCumulatives  = await poolContract.observe(timestamps)
+const [tickCumulatives, secondsPerLiquidityCumulatives] = await poolContract.observe(timestamps)
 
 const observations: Observation[] = timestamps.map((time, i) => {
     return {
@@ -186,7 +185,7 @@ const diffSecondsPerLiquidityX128 = observations[0].secondsPerLiquidityCumulativ
                     observations[1].secondsPerLiquidityCumulativeX128
 const secondsBetweenX128 = BigInt(108) << 128
 
-const TWAL = diffSecondsPerLiquidityX128 / secondsBetweenX128
+const TWAL =  secondsBetweenX128 / diffSecondsPerLiquidityX128
 ```
 
 This **time weighted average liquidity** is the harmonic mean over the time period observed.
@@ -222,7 +221,6 @@ struct Observation {
 It is possible to request any Observation up to (excluding) index `65535`, but indices equal to or greater than the `observationCardinality` will return uninitialized Observations.
 
 ```typescript
-
 let requests = []
 for (let i = 0; i < 10; i++) {
     requets.push(poolContract.observations(i))
