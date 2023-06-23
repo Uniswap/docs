@@ -14,10 +14,10 @@ This guide will focus exclusively on sending a transaction to the [latest Uniswa
 Let's say we want to trade 1 WETH for as much DAI as possible:
 
 ```typescript
-import { SupportedChainId, Token, WETH9, CurrencyAmount, TradeType } from '@uniswap/sdk-core'
+import { ChainId, Token, WETH9, CurrencyAmount, TradeType } from '@uniswap/sdk-core'
 import {Trade, Route} from '@uniswap/v2-sdk'
 
-const DAI = new Token(SupportedChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
+const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // See the Fetching Data guide to learn how to get Pair data
 const pair = await createPair(DAI, WETH9[DAI.chainId])

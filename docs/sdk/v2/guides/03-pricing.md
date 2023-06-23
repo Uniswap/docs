@@ -18,13 +18,13 @@ Let's consider the mid price for DAI-WETH (that is, the amount of DAI per 1 WETH
 The simplest way to get the DAI-WETH mid price is to observe the pair directly:
 
 ```typescript
-import { SupportedChainId, Token, WETH9 } from '@uniswap/sdk-core'
+import { ChainId, Token, WETH9 } from '@uniswap/sdk-core'
 import { Route } from '@uniswap/v2-sdk'
 
-const DAI = new Token(SupportedChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
+const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // To learn how to get Pair data, refer to the previous guide.
-const pair = await createPair(DAI, WETH9[SupportedChainId.MAINNET])
+const pair = await createPair(DAI, WETH9[ChainId.MAINNET])
 
 const route = new Route([pair], WETH9[DAI.chainId], DAI)
 
@@ -43,17 +43,17 @@ Finally, you may have noticed that we're formatting the price to 6 significant d
 For the sake of example, let's imagine a direct pair between DAI and WETH _doesn't exist_. In order to get a DAI-WETH mid price we'll need to pick a valid route. Imagine both DAI and WETH have pairs with a third token, USDC. In that case, we can calculate an indirect mid price through the USDC pairs:
 
 ```typescript
-import { SupportedChainId, Token, WETH9} from '@uniswap/sdk-core'
+import { ChainId, Token, WETH9} from '@uniswap/sdk-core'
 import { Route, Pair } from '@uniswap/v2-sdk'
 
-const USDC = new Token(SupportedChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6)
-const DAI = new Token(SupportedChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
+const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6)
+const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // To learn how to get Pair data, refer to the previous guide.
-const USDCWETHPair = await createPair(USDC, WETH9[SupportedChainId.MAINNET])
+const USDCWETHPair = await createPair(USDC, WETH9[ChainId.MAINNET])
 const DAIUSDCPair = await createPair(DAI, USDC)
 
-const route = new Route([USDCWETHPair, DAIUSDCPair], WETH9[SupportedChainId.MAINNET], DAI)
+const route = new Route([USDCWETHPair, DAIUSDCPair], WETH9[ChainId.MAINNET], DAI)
 
 console.log(route.midPrice.toSignificant(6)) // 1896.34
 console.log(route.midPrice.invert().toSignificant(6)) // 0.000527331
@@ -66,10 +66,10 @@ Mid prices are great representations of the _current_ state of a route, but what
 Imagine we're interested in trading 1 WETH for DAI:
 
 ```typescript
-import { SupportedChainId, Token, WETH9, CurrencyAmount, TradeType } from '@uniswap/sdk-core'
+import { ChainId, Token, WETH9, CurrencyAmount, TradeType } from '@uniswap/sdk-core'
 import { Route, Pair, Trade } from '@uniswap/v2-sdk'
 
-const DAI = new Token(SupportedChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
+const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 // To learn how to get Pair data, refer to the previous guide.
 const pair = await createPair(DAI, WETH9[DAI.chainId])

@@ -12,11 +12,11 @@ The Route entity represents one or more ordered Uniswap pairs with a fully speci
 # Example
 
 ```typescript
-import { SupportedChainId, Token, CurrencyAmount } from '@uniswap/sdk-core'
+import { ChainId, Token, CurrencyAmount } from '@uniswap/sdk-core'
 import { Pair, Route } from '@uniswap/v2-sdk'
 
-const HOT = new Token(SupportedChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
-const NOT = new Token(SupportedChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
+const HOT = new Token(ChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
+const NOT = new Token(ChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
 const HOT_NOT = new Pair(CurrencyAmount.fromRawAmount(HOT, '2000000000000000000'), CurrencyAmount.fromRawAmount(NOT, '1000000000000000000'))
 
 const route = new Route([HOT_NOT], NOT, HOT)

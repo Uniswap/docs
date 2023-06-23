@@ -9,7 +9,8 @@ title: Overview
 ### Enumerations
 
 - [Rounding](enums/Rounding.md)
-- [SupportedChainId](enums/SupportedChainId.md)
+- [ChainId](enums/ChainId.md)
+- [NativeCurrencyName](enums/NativeCurrencyName.md)
 - [TradeType](enums/TradeType.md)
 
 ### Classes

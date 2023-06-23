@@ -13,10 +13,10 @@ The Pair entity represents a Uniswap pair with a balance of each of its pair tok
 
 ```typescript
 import { Pair } from '@uniswap/sdk-core'
-import {SupportedChainId, Token, CurrencyAmount } from '@uniswap/v2-sdk'
+import {ChainId, Token, CurrencyAmount } from '@uniswap/v2-sdk'
 
-const HOT = new Token(SupportedChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
-const NOT = new Token(SupportedChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
+const HOT = new Token(ChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
+const NOT = new Token(ChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
 
 const pair = new Pair(CurrencyAmount.fromRawAmount(HOT, '2000000000000000000'), CurrencyAmount.fromRawAmount(NOT, '1000000000000000000'))
 ```

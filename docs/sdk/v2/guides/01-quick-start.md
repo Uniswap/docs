@@ -16,9 +16,9 @@ To run code from the SDK in your application, use an `import` or `require` state
 ## ES6 (import)
 
 ```typescript
-import { SupportedChainId } from '@uniswap/sdk-core'
+import { ChainId } from '@uniswap/sdk-core'
 import {Pair} from '@uniswap/v2-sdk'
-console.log(`The chainId of mainnet is ${SupportedChainId.MAINNET}.`)
+console.log(`The chainId of mainnet is ${ChainId.MAINNET}.`)
 ```
 
 ## CommonJS (require)
@@ -26,7 +26,7 @@ console.log(`The chainId of mainnet is ${SupportedChainId.MAINNET}.`)
 ```typescript
 const CORE = require('@uniswap/sdk-core')
 const V2_SDK = require('@uniswap/v2-sdk')
-console.log(`The chainId of mainnet is ${CORE.SupportedChainId.MAINNET}.`)
+console.log(`The chainId of mainnet is ${CORE.ChainId.MAINNET}.`)
 ```
 
 # Reference

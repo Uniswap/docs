@@ -29,9 +29,9 @@ The next piece of data we need is **decimals**.
 One option here is to simply pass in the correct value, which we may know is `18`. At this point, we're ready to represent DAI as a [Token](../../core/reference/classes/Token.md):
 
 ```typescript
-import { SupportedChainId, Token } from '@uniswap/sdk-core'
+import { ChainId, Token } from '@uniswap/sdk-core'
 
-const chainId = SupportedChainId.MAINNET
+const chainId = ChainId.MAINNET
 const tokenAddress = '0x6B175474E89094C44Da98b954EedeAC495271d0F' // must be checksummed
 const decimals = 18
 
@@ -41,9 +41,9 @@ const DAI = new Token(chainId, tokenAddress, decimals)
 If we don't know or don't want to hardcode the value, we could look it up ourselves via any method of retrieving on-chain data in a function that looks something like:
 
 ```typescript
-import { SupportedChainId } from '@uniswap/sdk-core'
+import { ChainId } from '@uniswap/sdk-core'
 
-async function getDecimals(chainId: SupportedChainId, tokenAddress: string): Promise<number> {
+async function getDecimals(chainId: ChainId, tokenAddress: string): Promise<number> {
   // Setup provider, import necessary ABI ...
   const tokenContract = new ethers.Contract(tokenAddress, erc20abi, provider)
   return tokenContract["decimals"]()
@@ -55,7 +55,7 @@ async function getDecimals(chainId: SupportedChainId, tokenAddress: string): Pro
 Finally, we can talk about **symbol** and **name**. Because these fields aren't used anywhere in the SDK itself, they're optional, and can be provided if you want to use them in your application. However, the SDK will not fetch them for you, so you'll have to provide them:
 
 ```typescript
-import { SupportedChainId, Token } from '@uniswap/sdk-core'
+import { ChainId, Token } from '@uniswap/sdk-core'
 
 const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 ```
@@ -79,7 +79,7 @@ The data we need is the _reserves_ of the pair. To read more about reserves, see
 One option here is to simply pass in values which we've fetched ourselves to create a [Pair](../reference/pair). In this example we use ethers to fetch the data directly from the blockchain:
 
 ```typescript
-import { SupportedChainId, Token, WETH9, CurrencyAmount } from '@uniswap/sdk-core'
+import { ChainId, Token, WETH9, CurrencyAmount } from '@uniswap/sdk-core'
 import { Pair } from '@uniswap/v2-sdk'
 
 const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
