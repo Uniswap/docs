@@ -30,7 +30,7 @@ For this guide, the following Uniswap packages are used:
   
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
 
-The core code of this guide can be found in [`oracle.ts`](https://github.com/Uniswap/v3-sdk/blob/main/src/entities/oracle.ts)
+The core code of this guide can be found in [`oracle.ts`](https://github.com/Uniswap/examples/tree/main/v3-sdk/price-oracle/src/libs/oracle.ts)
 
 ## Understanding Observations
 
