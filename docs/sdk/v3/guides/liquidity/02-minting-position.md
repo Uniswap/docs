@@ -36,44 +36,123 @@ The core code of this guide can be found in [`mintPosition()`](https://github.co
 
 The first step is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens:
 
-```typescript reference title="Approving our tokens for transferring" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L46-L51
+```typescript
+const token0Approval = await getTokenTransferApproval(
+  token0Address,
+  amount0
+)
+const token1Approval = await getTokenTransferApproval(
+  token1Address,
+  amount1
+)
 ```
 
 The logic to achieve that is wrapped in the `getTokenTransferApprovals` function. In short, since both **USDC** and **DAI** are ERC20 tokens, we setup a reference to their smart contracts and call the `approve` function:
 
-```typescript reference title="Setting up an ERC20 contract reference and approving" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L202-L211
+```typescript
+import { ethers, BigNumber } from 'ethers'
+
+async function getTokenTransferApproval(address: string, amount: BigNumber) {
+    const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
+
+    const tokenContract = new ethers.Contract(
+        token.address,
+        ERC20_ABI,
+        provider
+    )
+
+    return tokenContract.approve(
+        NONFUNGIBLE_POSITION_MANAGER_CONTRACT_ADDRESS,
+        amount
+    )
+}
 ```
+
+We can get the Contract address for the NonfungiblePositionManager from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
 
 ## Creating an instance of a `Pool`
 
 Having approved the transfer of our tokens, we now need to get data about the pool for which we will provide liquidity, in order to instantiate a Pool class.
 
-To start, we compute our Pool's address by using a helper function and passing in the unique identifiers of a Pool - the **two tokens** and the Pool **fee**. The **fee** input parameter represents the swap fee that is distributed to all in range liquidity at the time of the swap:
+To start, we compute our Pool's address by using a helper function and passing in the unique identifiers of a Pool - the **two tokens** and the Pool **fee**. 
+The **fee** input parameter represents the swap fee that is distributed to all in range liquidity at the time of the swap:
 
-```typescript reference title="Computing the Pool's address" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/pool.ts#L24-L29
+```typescript
+import { computePoolAddress, FeeAmount } from '@uniswap/v3-sdk'
+import { Token } from '@uniswap/sdk-core'
+
+const token0: Token = ...
+const token1: Token = ...
+const fee: FeeAmount = ...
+const POOL_FACTORY_CONTRACT_ADDRESS: string = ...
+
+const currentPoolAddress = computePoolAddress({
+  factoryAddress: POOL_FACTORY_CONTRACT_ADDRESS,
+  tokenA: token0,
+  tokenB: token1,
+  fee: poolFee,
+})
 ```
+
+Again, we can get the factory contract address from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
 
 Then, we get the Pool's data by creating a reference to the Pool's smart contract and accessing its methods:
 
-```typescript reference title="Setting up a Pool contract reference and fetching current state data" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/pool.ts#L31-L45
+```typescript
+import IUniswapV3PoolABI from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
+
+const poolContract = new ethers.Contract(
+  currentPoolAddress,
+  IUniswapV3PoolABI.abi,
+  provider
+)
+
+const [liquidity, slot0] =
+  await Promise.all([
+    poolContract.liquidity(),
+    poolContract.slot0(),
+  ])
 ```
 
 Having collected the required data, we can now create an instance of the `Pool` class:
 
-```typescript reference title="Fetching pool data and creating an instance of the Pool class" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L111-L118
+```typescript
+import { Pool } from '@uniswap/v3-sdk'
+
+const configuredPool = new Pool(
+  token0,
+  token1,
+  poolFee,
+  slot0.sqrtPriceX96.toString(),
+  liquidity.toString(),
+  slot0.tick
+)
 ```
 
 ## Calculating our `Position` from our input tokens
 
 Having created the instance of the `Pool` class, we can now use that to create an instance of a `Position` class, which represents the price range for a specific pool that LPs choose to provide in:
 
-```typescript reference title="Create a Position representation instance" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L121-L132
+```typescript
+import { Position } from '@uniswap/v3-sdk'
+import { BigIntish } from '@uniswap/sdk-core'
+
+// The maximum token amounts we want to provide. BigIntish accepts number, string or JSBI
+const amount0: BigIntish = ...
+const amount1: BigIntish = ...
+
+const position = Position.fromAmounts({
+  pool: configuredPool,
+  tickLower:
+    nearestUsableTick(configuredPool.tickCurrent, configuredPool.tickSpacing) -
+    configuredPool.tickSpacing * 2,
+  tickUpper:
+    nearestUsableTick(configuredPool.tick, configuredPool.tickSpacing) +
+    configuredPool.tickSpacing * 2,
+  amount0: amount0,
+  amount1: amount1,
+  useFullPrecision: true,
+})
 ```
 
 We use the `fromAmounts` static function of the `Position` class to create an instance of it, which uses the following parameters:
@@ -87,18 +166,50 @@ Given those parameters, `fromAmounts` will attempt to calculate the maximum amou
 
 The Position instance is then passed as input to the `NonfungiblePositionManager`'s `addCallParameters` function. The function also requires an [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77) object as its second parameter. This is either of type [`MintOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L74) for minting a new position or [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75) for adding liquidity to an existing position. For this example, we're using a `MintOptions` to create our position.
 
-```typescript reference title="Getting the transaction calldata and parameters" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L78-L88
+```typescript
+import { MintOptions, NonfungiblePositionManager } from '@uniswap/v3-sdk'
+import { Percent } from '@uniswap/sdk-core'
+
+const mintOptions: MintOptions = {
+  recipient: address,
+  deadline: Math.floor(Date.now() / 1000) + 60 * 20,
+  slippageTolerance: new Percent(50, 10_000),
+}
+
+// get calldata for minting a position
+const { calldata, value } = NonfungiblePositionManager.addCallParameters(
+  position,
+  mintOptions
+)
 ```
 
 The function returns the calldata as well as the value required to execute the transaction:
 
-```typescript reference title="Submitting the Position NFT minting transaction" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/minting-position/src/libs/positions.ts#L91-L100
+```typescript
+const transaction = {
+  data: calldata,
+  to: NONFUNGIBLE_POSITION_MANAGER_CONTRACT_ADDRESS,
+  value: value,
+  from: address,
+  maxFeePerGas: MAX_FEE_PER_GAS,
+  maxPriorityFeePerGas: MAX_PRIORITY_FEE_PER_GAS,
+}
 ```
+
+We use our wallet to send the transaction. As it is a write call, we need to sign the transaction with a valid private key.
+
+```typescript
+const wallet = new ethers.Wallet(privateKey, provider)
+
+const txRes = await wallet.sendTransaction(transaction)
+```
+
+Write calls do not return the result of the transaction. If we want to read the result we would need to use for example `trace_transaction`.
+You can find an example of that in the [Range Order guide](../advanced/05-range-orders.md).
+In this example, we don't need the result of the transaction.
 
 The effect of the transaction is to mint a new Position NFT. We should see a new position with liquidity in our list of positions.
 
 ## Next Steps
 
-Once you have minted a position, our next guide ([Adding and Removing Liquidity](./02-modifying-position.md)) will demonstrate how you can add and remove liquidity from that minted position!
+Once you have minted a position, our next guide ([Adding and Removing Liquidity](./03-modifying-position.md)) will demonstrate how you can add and remove liquidity from that minted position!
