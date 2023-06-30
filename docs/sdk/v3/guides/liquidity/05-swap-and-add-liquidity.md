@@ -42,17 +42,32 @@ Also note that we do not need to give approval to the `NonfungiblePositionManage
 
 The first step is to approve the `SwapRouter` smart contract to spend our tokens for us in order for us to add liquidity to our position:
 
-```typescript reference title="Approve SwapRouter to spend our tokens" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/ec48bb845402419fa6e613cb26512a76d864afa5/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L58-L66
+```typescript
+const tokenInApproval = await getTokenTransferApproval(
+  token0,
+  V3_SWAP_ROUTER_ADDRESS
+)
+
+const tokenOutApproval = await getTokenTransferApproval(
+  token1,
+  V3_SWAP_ROUTER_ADDRESS
+)
 ```
 
-The we can setup our router, the [`AlphaRouter`](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/alpha-router/alpha-router.ts#L333), which is part of the [smart-order-router package](https://www.npmjs.com/package/@uniswap/smart-order-router). The router requires a `chainId` and a `provider` to be initialized. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
+We described the `getTokenTransferApproval` function [here](./02-minting-position.md#giving-approval-to-transfer-our-tokens).
 
-```typescript reference title="Creating a router instance" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L57
+Then we can setup our router, the [`AlphaRouter`](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/alpha-router/alpha-router.ts#L333), which is part of the [smart-order-router package](https://www.npmjs.com/package/@uniswap/smart-order-router). The router requires a `chainId` and a `provider` to be initialized. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
+
+```typescript
+import { ethers } from 'ethers'
+import { AlphaRouter } from '@uniswap/smart-order-router'
+
+const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
+
+const router = new AlphaRouter({ chainId: 1, provider })
 ```
 
-For a more detailed example, check out our [routing guide](../04-routing.md).
+For a more detailed example, check out our [routing guide](../trading/03-routing.md).
 
 ## Configuring our ratio calculation
 
@@ -60,14 +75,41 @@ Having created the router, we now need to construct the parameters required to m
 
 The first two parameters are the currency amounts we use as input to the `routeToRatio` algorithm:
 
-```typescript reference title="Constructing the two CurrencyAmounts" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/c4667fadb13584268bbee2e0e0f556558a474751/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L78-L92
+```typescript
+import { CurrencyAmount } from '@uniswap/sdk-core'
+
+const token0CurrencyAmount = CurrencyAmount.fromRawAmount(
+  token0,
+  fromReadableAmount(
+    token0AmountToAdd,
+    token0.decimals
+  )
+)
+
+const token1CurrencyAmount = CurrencyAmount.fromRawAmount(
+  token1,
+  fromReadableAmount(
+    token1AmountToAdd,
+    token1.decimals
+  )
+)
 ```
 
 Next, we will create a placeholder position with a liquidity of `1` since liquidity is still unknown and will be set inside the call to `routeToRatio`:
 
-```typescript reference title="Constructing the position object" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L75-L78
+```typescript
+import { Pool, Position, nearestUsableTick } from '@uniswap/v3-sdk'
+
+const placeholderPosition = new Position{
+    pool,
+    liquidity: 1,
+    tickLower:
+      nearestUsableTick(pool.tickCurrent, pool.tickSpacing) -
+      pool.tickSpacing * 2,
+    tickUpper:
+      nearestUsableTick(pool.tickCurrent, pool.tickSpacing) +
+      poolInfo.tickSpacing * 2
+}
 ```
 
 We then need to create an instance of `SwapAndAddConfig` which will set additional configuration parameters for the `routeToRatio` algorithm:
@@ -75,8 +117,14 @@ We then need to create an instance of `SwapAndAddConfig` which will set addition
 - `ratioErrorTolerance` determines the margin of error the resulting ratio can have from the optimal ratio.
 - `maxIterations` determines the maximum times the algorithm will iterate to find a ratio within error tolerance. If max iterations is exceeded, an error is returned. The benefit of running the algorithm more times is that we have more chances to find a route, but more iterations will longer to execute. We've used a default of 6 in our example.
 
-```typescript reference title="Constructing SwapAndAddConfig" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L80-L83
+```typescript
+import { Fraction } from '@uniswap/sdk-core'
+import { SwapAndAddConfig } from '@uniswap/smart-order-router'
+
+const swapAndAddConfig: SwapAndAddConfig = {
+  ratioErrorTolerance: new Fraction(1, 100),
+  maxIterations: 6,
+}
 ```
 
 Finally, we will create an instance of `SwapAndAddOptions` to configure which position we are adding liquidity to and our defined swapping parameters in two different objects:
@@ -84,22 +132,49 @@ Finally, we will create an instance of `SwapAndAddOptions` to configure which po
 - **`swapConfig`** configures the `recipient` of leftover dust from swap, `slippageTolerance` and a `deadline` for the swap.
 - **`addLiquidityOptions`** must contain a `tokenId` to add to an existing position
 
-```typescript reference title="Constructing SwapAndAddOptions" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/c4667fadb13584268bbee2e0e0f556558a474751/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L104-L114
+```typescript
+import { SwapAndAddOptions } from '@uniswap/smart-order-router'
+
+const swapAndAddOptions: SwapAndAddOptions = {
+  swapOptions: {
+    type: SwapType.SWAP_ROUTER_02,
+    recipient: address,
+    slippageTolerance: new Percent(50, 10_000),
+    deadline: Math.floor(Date.now() / 1000) + 60 * 20,
+  },
+  addLiquidityOptions: {
+    tokenId: positionId,
+  },
+}
 ```
 
 ## Calculating our currency ratio
 
 Having constructed all the parameters we need to call `routeToRatio`, we can now make the call to the function:
 
-```typescript reference title="Making the call to routeToRatio" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L97-L103
+```typescript
+import { SwapToRatioResponse } from '@uniswap/smart-order-router'
+
+const routeToRatioResponse: SwapToRatioResponse = await router.routeToRatio(
+  token0CurrencyAmount,
+  token1CurrencyAmount,
+  currentPosition,
+  swapAndAddConfig,
+  swapAndAddOptions
+)
 ```
 
 The return type of the function call is [SwapToRatioResponse](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/router.ts#L121). If a route was found successfully, this object will have two fields: the status (success) and the `SwapToRatioRoute` object. We check to make sure that both of those conditions hold true before we construct and submit the transaction:
 
-```typescript reference title="Checking that a route was found" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L105-L110
+```typescript
+import { SwapToRatioStatus } from '@uniswap/smart-order-router'
+
+if (
+  !routeToRatioResponse ||
+  routeToRatioResponse.status !== SwapToRatioStatus.SUCCESS
+) {
+  // Handle Failed Transaction
+}
 ```
 
 In case a route was not found, we return from the function a `Failed` state for the transaction.
@@ -108,8 +183,18 @@ In case a route was not found, we return from the function a `Failed` state for 
 
 After making sure that a route was successfully found, we can now construct and send the transaction. The response (`SwapToRatioRoute`) will have the properties we need to construct our transaction object:
 
-```typescript reference title="Constructing and sending the transaction" referenceLinkText="View on Github" customStyling
-https://github.com/Uniswap/examples/blob/b5e64e3d6c17cb91bc081f1ed17581bbf22024bc/v3-sdk/swap-and-add-liquidity/src/libs/liquidity.ts#L112-L120
+```typescript
+import { SwapToRatioRoute } from '@uniswap/smart-order-router'
+
+const route: SwapToRatioRoute = routeToRatioResponse.result
+const transaction = {
+  data: route.methodParameters?.calldata,
+  to: V3_SWAP_ROUTER_ADDRESS,
+  value: route.methodParameters?.value,
+  from: address,
+}
+
+const txRes = await wallet.sendTransaction(transaction)
 ```
 
 If the transaction was successful, our swap-and-add will be completed! We should see our input token balances decrease and our position balance should be increased accordingly.

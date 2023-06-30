@@ -1,12 +1,13 @@
 ---
 id: background
 title: Background
+position: 1
 ---
 
 Before integrating with Uniswap, it may be helpful for newcomers to review the following background information on some important developer web3 concepts, the structure of our examples, and SDK concepts.
 
 :::info
-Already familiar with web3 development and/or the basics of our SDK and want to get right to the code? Start with our first guide, [Getting a Quote](./02-quoting.md)!
+Already familiar with web3 development and/or the basics of our SDK and want to get right to the code? Start with our first guide, [Getting a Quote](./trading/01-quoting.md)!
 :::
 
 ## Providers
