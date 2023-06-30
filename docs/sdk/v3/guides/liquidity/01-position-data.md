@@ -5,13 +5,13 @@ title: Liquidity Positions
 
 ## Introduction
 
-This guide will introduce us to liquidity positions in Uniswap V3 and present the `v3-sdk` classes and Contracts used to interact with the protocol.
+This guide will introduce us to **liquidity positions** in Uniswap V3 and present the `v3-sdk` classes and Contracts used to interact with the protocol.
 The concepts and code snippets showcased here can be found across the **Pooling Liquidity** examples in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
 
 In this guide, we will take a look at the [Position](../../reference/classes/Position.md) and [NonfungiblePositionManager](../../reference/classes/NonfungiblePositionManager.md) classes, as well as the [NonfungiblePositionManager Contract](../../../../contracts/v3/reference/periphery/NonfungiblePositionManager.md).
 
 At the end of the guide, we should be familiar with the most important classes used to interact with liquidity positions.
-We should also understand how to fetch and create positions on the Contract side.
+We should also understand how to fetch positions from the **NonfungiblePositionManager Contract**.
 
 For this guide, the following Uniswap packages are used:
 
@@ -91,7 +91,7 @@ const singleSidePositionToken0 = Position.fromAmount0({
 
 const amount1: BigIntish = 100000000
 
-const singleSidePositionToken1 = Position.fromAmount0({
+const singleSidePositionToken1 = Position.fromAmount1({
     pool, 
     tickLower, 
     tickUpper, 
@@ -105,6 +105,8 @@ For example, if a tick range where the ratio between `token0` and `token1` is 1 
 A create transaction would then fail if the wallet doesn't hold enough `token1` or the Contract is not given the necessary **Transfer Approval**.
 
 All of these functions take an Object with **named values** as a call parameter. The amount and liquidity values are of type `BigIntish` which accepts `number`, `string` and `JSBI`.
+
+The values of `tickLower` and `tickUpper` must match **initializable ticks** of the Pool.
 
 ## NonfungiblePositionManager
 
@@ -150,11 +152,21 @@ const { calldata, value } = NonfungiblePositionManager.removeCallParameters(
 
 Take a look at the [Modify Positions guide](04-modifying-position.md) to learn how to create the `currentPosition` and `removeLiquidityOptions` parameters.
 
+### Collecting Fees
+
+To collect fees accrued, the `collect` function is called on the Contract.
+The **sdk class** provides the `collectCallParameters` function to create the calldata for that:
+
+```typescript
+const { calldata, value } =
+  NonfungiblePositionManager.collectCallParameters(collectOptions)
+```
+
 ## Fetching Positions
 
 The [NonfungiblePositionManager Contract](../../../../contracts/v3/reference/periphery/NonfungiblePositionManager.md) can be used to create Positions, as well as get information on existing Positions.
 
-In this section we will fetch all positions for an address.
+In this section we will **fetch all Positions** for an address.
 
 ### Creating an ethers Contract
 

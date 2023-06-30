@@ -88,7 +88,7 @@ const options: SwapOptionsSwapRouter02 = {
 Using these options, we can now create a trade (`TradeType.EXACT_INPUT` or `TradeType.EXACT_OUTPUT`) with the currency and the input amount to use to get a quote. For this example, we'll use an `EXACT_INPUT` trade to get a quote outputted in the quote currency.
 
 ```typescript
-import { CurrencyAmount } from '@uniswap/sdk-core'
+import { CurrencyAmount, TradeType } from '@uniswap/sdk-core'
 
 const rawTokenAmountIn: JSBI = fromReadableAmount(
       CurrentConfig.currencies.amountIn,
@@ -108,7 +108,7 @@ const route = await router.route(
 
 The `fromReadableAmount` function calculates the amount of tokens in the Token's smallest unit from the full unit and the Token's decimals.
 
-`route` and `route.methodParameters` are *optional* as the request can fail, for example if no route exists between the two Tokens or because of networking issues.
+`route` and `route.methodParameters` are *optional* as the request can fail, for example if **no route exists** between the two Tokens or because of networking issues.
 We check if the call was succesful:
 
 ```typescript
@@ -142,7 +142,6 @@ const tokenApproval = await tokenContract.approve(
 We can get the **V3_SWAP_ROUTER_ADDRESS** for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md). We need to wait one block for the approval transaction to be included by the blockchain.
 
 Once the approval has been granted, we can now execute the trade using the route's computed calldata, values, and gas values:
-
 
 ```typescript
 const txRes = await wallet.sendTransaction({

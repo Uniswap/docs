@@ -134,6 +134,7 @@ With the quote and the route, we can now construct an unchecked trade using the 
 
 ```typescript
 import { Trade } from 'uniswap/v3-sdk'
+import { CurrencyAmount, TradeType } from '@uniswap/sdk-core'
 import JSBI from 'jsbi'
 
 const uncheckedTrade = Trade.createUncheckedTrade({
@@ -162,6 +163,9 @@ Once we have created a trade, we can now execute this trade with our provider. F
 ```typescript
 const tokenApproval = await getTokenTransferApproval(CurrentConfig.tokens.in)
 ```
+
+You can find the approval function [here](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/src/libs/trading.ts#L151). 
+We will use this function or similar implementations in most guides.
 
 Then, we set our options that define how much time and slippage can occur in our execution as well as the address to use for our wallet:
 
