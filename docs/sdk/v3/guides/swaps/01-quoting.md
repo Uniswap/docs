@@ -8,7 +8,7 @@ title: Getting a Quote
 This guide will cover how to get the current quotes for any token pair on the Uniswap protocol. It is based on the [Quoting code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/quoting), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/README.md) and follow the setup instructions.
 
 :::info
-If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
+If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](../01-background.md) page!
 :::
 
 In this example we will use `quoteExactInputSingle` to get a quote for the pair **USDC - WETH**.
@@ -51,9 +51,7 @@ interface ExampleConfig {
   }
 }
 
-export CurrentConfig: ExampleConfig = {
-    ...
-}
+export const CurrentConfig: ExampleConfig = {...}
 ```
 
 ## Computing the Pool's deployment address
@@ -62,6 +60,8 @@ To interact with the **USDC - WETH** Pool contract, we first need to compute its
 The SDK provides a utility method for that:
 
 ```typescript
+import { computePoolAddress } from '@uniswap/v3-sdk' 
+
 const currentPoolAddress = computePoolAddress({
   factoryAddress: POOL_FACTORY_CONTRACT_ADDRESS,
   tokenA: CurrentConfig.tokens.in,
@@ -127,10 +127,12 @@ Having constructed our reference to the contract, we can now access its methods 
 We use a batch `Promise` call. This approach queries state data concurrently, rather than sequentially, to minimize the chance of fetching out of sync data that may be returned if sequential queries are executed over the span of two blocks:
 
 ```typescript
-const [token0, token1, fee] = await Promise.all([
+const [token0, token1, fee, liquidity, slot0] = await Promise.all([
   poolContract.token0(),
   poolContract.token1(),
   poolContract.fee(),
+  poolContract.liquidity(),
+  poolContract.slot0(),
 ])
 ```
 

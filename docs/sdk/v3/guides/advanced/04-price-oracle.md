@@ -13,8 +13,8 @@ To run this example, check out the guide's [README](https://github.com/Uniswap/e
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 :::
 
-In this example we will use **ethers JS** to observe the development of a Pool's current tick over several blocks. 
-We will then calculate the time weighted average price - TWAP, and time weighted average liquidity - TWAL over the observed time interval.
+In this example we will use **ethers JS** to observe the development of a Pool's current tick over several blocks.
+We will then calculate the time weighted average price - **TWAP**, and time weighted average liquidity - **TWAL** over the observed time interval.
 
 This guide will **cover**:
 
@@ -147,7 +147,7 @@ const secondsBetween = 108
 const averageTick = diffTickCumulative / secondsBetween
 ```
 
-Now that we know the average active Tick over the last 10 blocks, we can calculate the price with the `tickToPrice` function, which returns a [`Price`](../../../core/reference/classes/Price.md) Object. Check out the [Pool data](./02-pool-data.md) guide to understand how to construct a Pool Object and access its properties.
+Now that we know the average active Tick over the last 10 blocks, we can calculate the price with the `tickToPrice` function, which returns a [`Price`](../../../core/reference/classes/Price.md) Object. Check out the [Pool data](./02-pool-data.md) guide to understand how to construct a Pool Object and access its properties. We don't need the full Tick Data for this guide.
 
 ```typescript
 import { tickToPrice, Pool } from '@uniswap/v3-sdk'
@@ -176,7 +176,7 @@ uint128 secondsPerLiquidityX128 = (uint160(delta) << 128) / liquidity
 uint160 secondsPerLiquidityCumulativeX128 = last.secondsPerLiquidityCumulativeX128 + secondsPerLiquidityX128
 ```
 
-`last` is the most recent Observation in this illustrative code snippet. Consider taking a look at the [Oracle library](https://github.com/Uniswap/v3-core/blob/main/contracts/libraries/Oracle.sol) to see the actual implementation.
+`last` is the most recent Observation in this illustrative code snippet. Consider taking a look at the [Solidity Oracle library](https://github.com/Uniswap/v3-core/blob/main/contracts/libraries/Oracle.sol) to see the actual implementation.
 
 Let's invert this calculation and find the average active liquidity over our observed time period.
 
@@ -259,13 +259,14 @@ const observations = results.map((result) => {
 We now have an Array of observations in the same format that we are used to.
 
 :::note
-Because Observations are stored in a **fixed size array**, they are **not sorted**. We need to sort the result by the timestamp.
+Because Observations are stored in a **fixed size array** with always the oldest Observation overwritten if a new one is stored, they are **not sorted**.
+We need to sort the result by the timestamp.
 :::
 
-The timestamps of the Observations we got are correspondent to blocks where Swaps happened on the Pool.
-Because of this, we would need to calculate Observations for specific intervals manually from the surrounding Observations.
+The timestamps of the Observations we got are correspondent to blocks where **Swaps or Position changes** happened on the Pool.
+Because of this, we would need to calculate Observations for specific intervals manually from the **surrounding Observations**.
 
-Overall, it is much harder to work with `observations` than with `observe`, and we need to consider multiple edge cases.
+In conclusion, it is much harder to work with `observations` than with `observe`, and we need to consider multiple edge cases.
 For this reason, it is recommended to use the `observe` function.
 
 ## Next Steps

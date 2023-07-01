@@ -7,7 +7,7 @@ position: 1
 Before integrating with Uniswap, it may be helpful for newcomers to review the following background information on some important developer web3 concepts, the structure of our examples, and SDK concepts.
 
 :::info
-Already familiar with web3 development and/or the basics of our SDK and want to get right to the code? Start with our first guide, [Getting a Quote](./trading/01-quoting.md)!
+Already familiar with web3 development and/or the basics of our SDK and want to get right to the code? Start with our first guide, [Getting a Quote](./swaps/01-quoting.md)!
 :::
 
 ## Providers
@@ -16,7 +16,7 @@ Communication with the blockchain is typically done through a provider and local
 
 To achieve this, our examples use the [ethers.js](https://docs.ethers.io/v5/) library. To instantiate a provider you will need a data source. Our examples offer two options:
 
-- **JSON RPC URL**: If you are working directly with the Ethereum mainnet or a local fork, products such as [infura](https://infura.io/) offer JSON RPC URLs for a wide variety of chains and testnets. For our examples, we'll only be using the Ethereum mainnet.
+- **JSON RPC URL**: If you are working directly with the Ethereum mainnet or a local fork, products such as [Infura](https://infura.io/) offer JSON RPC URLs for a wide variety of chains and testnets. For our examples, we'll only be using the Ethereum mainnet.
 
 - **Wallet Extension**: If you are connecting to a wallet browser extension, these wallets embed a source directly into the Javascript window object as `window.ethereum`. This object surfaces information about the user's wallets and provides the ability to communicate with the connected chain. Importantly for our examples, it can be used with `ethers.js` to construct a provider.
 
