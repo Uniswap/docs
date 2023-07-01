@@ -51,8 +51,8 @@ Returns information about a staked liquidity NFT
 | :---------------------------- | :----------------------------------- | :--------------------------------------------------------------------------- |
 | `_factory`                    | contract IUniswapV3Factory           | the Uniswap V3 factory                                                       |
 | `_nonfungiblePositionManager` | contract INonfungiblePositionManager | the NFT position manager contract address                                    |
-| `_maxIncentiveStartLeadTime`  | uint256                              | the max duration of an incentive in seconds                                  |
-| `_maxIncentiveDuration`       | uint256                              | the max amount of seconds into the future the incentive startTime can be set |
+| `_maxIncentiveStartLeadTime`  | uint256                              | the max amount of seconds into the future the incentive startTime can be set |
+| `_maxIncentiveDuration`       | uint256                              | the max duration of an incentive in seconds |
 
 ### createIncentive
 
