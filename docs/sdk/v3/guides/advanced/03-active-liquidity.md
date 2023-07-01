@@ -36,13 +36,16 @@ To visualize the distribution of active liquidity in our Pool, we want to draw o
 
 When providing liquidity for a pool, the LP decides the **price range** in which the liquidity should be provided, and the amount of liquidity to be provided.
 The pool understands the position as **liquidity between the lower and upper Tick**. The Tick Index in this context is a representation of the price between the Pool's assets.
+
 Looking at this [visualization](https://www.desmos.com/calculator/oduetjzfp4) of multiple positions in a V3 Pool, we can see that the liquidity available for a swap does not change inside a position, but when crossing into the next position.
 This is what the **Initialized Ticks** of a Pool represent - they are a representation of the start or end of one or more positions.
 
 <img src={require('./images/liquidityNetComparison.png').default} alt="LiquidityNet1" box-shadow="none"/>
 
-When entering or leaving a position, its liquidity is added or correspondingly removed from the active liquidity available for a Swap. The initialized Ticks store this change in available liquidity in the `liquidityNet` field.
-The change is always stored in relation to the currently active Tick - the current price. When the price crosses an initialized Tick, it gets updated and liqudity that was previously added when crossing the Tick would now be removed and vice versa.
+When entering or leaving a position, its liquidity is added or removed from the **active liquidity available** for a Swap.
+The initialized Ticks store this change in available liquidity in the `liquidityNet` field.
+The change is always stored in relation to the currently active Tick - the current price. 
+When the price crosses an initialized Tick, it gets updated and liqudity that was previously added when crossing the Tick would now be removed and vice versa.
 
 We already fetched the initialized Ticks of our Pool in the [previous guide](./02-pool-data.md). The format we got from the Graph is:
 
@@ -56,12 +59,17 @@ interface GraphTick {
 
 ### Current Tick
 
-The current Tick of the Pool represents the price after the last swap. Considering that the initialized Ticks only represent positions, we see that it is not necessarily one of the initialized Ticks but can be at any point in between them.
-The active liqudity at the current Price is also stored in the smart contract - we already fetched it with the slot0 function.
+The current Tick of the Pool represents the **current Price** after the last swap.
+Considering that the initialized Ticks only represent positions, we see that it is not necessarily one of the initialized Ticks but can be at any point in between them.
+The active liqudity at the current Price is also stored in the smart contract - we already fetched it with the `liquidity` function.
 
 ### Tickspacing
 
-Only the Ticks with indices that are dividable by the tickspacing of a Pool are initializable. The Tickspacing of the Pool is dependent on the Fee Tier. Pools with lower fees are meant to be used for more stable Token Pairs and allow for more granularity in where LPs position their liquidity. We can get the `tickSpacing`from our pool:
+Only the Ticks with indices that are dividable with 0 remainder by the tickspacing of a Pool are initializable.
+The Tickspacing of the Pool is dependent on the Fee Tier.
+Pools with lower fees are meant to be used for more stable Token Pairs and allow for more granularity in where LPs position their liquidity.
+
+We can get the `tickSpacing`from our pool:
 
 ```typescript
 const tickSpacing = pool.tickSpacing
@@ -75,11 +83,12 @@ Instead, we will display a sensible number of Ticks around the current price.
 
 ## Calculating active liquidity
 
-We know the spacing between Ticks and the Initialized Ticks where active liquidity changes. All we have to do is start calculating from the current Tick and iterate outwards.
+We know the spacing between Ticks and the Initialized Ticks where active liquidity changes.
+All we have to do is start calculating from the current Tick and iterate outwards.
+
 To draw our chart we want a data structure that looks something like this:
 
 ```typescript
-
 interface TickProcessed {
     tickIdx: number,
     liquidityActive: JSBI,
@@ -118,8 +127,9 @@ const activeTickProcessed: TickProcessed = {
 }
 ```
 
-Here we also calculate the price of the tokens from the tickIdx, the `v3-sdk` exports a handy utility function for that. 
-We store it as a string as we won't make any further calculations in this example.
+Here we also calculate the price of the tokens from the tickIdx, the `v3-sdk` exports a handy utility function for that, `tickToPrice`.
+We store the Price as a string as we won't make any further calculations in this example. We will instead use it to display prices in the tooltip of our chart.
+Notice how the `price0` is the Price of tokenA in terms of tokenB and the `price1` is the Price of tokenB in terms of tokenA **at the specified Tick**.
 
 If the **current Tick is initialized**, we also need to set the **liquidityNet** to correctly handle moving out of the position:
 
@@ -162,7 +172,7 @@ for (let i = 0; i < 100; i++) {
 }
 ```
 
-We calculate one Tick at a time, and we need to make sure our Tick stays inside the possible price range.
+We calculate one Tick at a time, and we need to make sure our Tick stays inside the possible price range by checking against `TickMath.MAX_TICK`.
 Again, we check if our current Tick is initialized and if so, recalculate the active liquidity:
 
 ```typescript
@@ -187,6 +197,7 @@ for (let i = 0; i < 100; i++) {
 
 After we are done calculating the next 100 Ticks after the current Tick, we iterate in the opposite direction for the previous Ticks. Iterating downwards, we need to subtract the net liquidity where we added it when iterating upwards.
 You can find a full code example in the [Uniswap Example repository](https://github.com/Uniswap/examples/tree/main/v3-sdk/active-liquidity).
+
 We are finally able to combine the previous, active and subsequent Ticks:
 
 ```typescript
@@ -204,6 +215,8 @@ const chartTicks: TicksChart[] = allProcessedTicks.map((tickProcessed) => {
 ```
 
 The loss of precision will not be visually noticeable in the chart and we are still able to display the exact number in a Tooltip if we wish to.
+Liquidity is stored in a `uint128` format onchain, so the maximum loss of precision will be far smaller than the number of decimals of almost any ERC20 Token.
+
 Finally, we draw the Chart:
 
 ```jsx
@@ -232,13 +245,13 @@ You can also take a look at the [Uniswap Info](https://github.com/Uniswap/v3-inf
 
 ## Locked Liquidity
 
-If you run the example, you will notice that the chart also displays a custom tooltip with additional information that we didn't touch on in this example. 
+If you run the example, you will notice that the chart also displays a custom tooltip with additional information that we didn't touch on in this example.
 The total locked liqudity in the tooltip represents the sum of positions in the currency locked at the selected Tick.
-It is calculated as the maximum token output of a swap when crossing to the next Tick. 
+It is calculated as the maximum token output of a swap when crossing to the next Tick.
 The V3 pool here is initialized with only the liquidity of the current Tick.
 
-Depending on your use case, it may make sense to display this value. You can find the full code in the [code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/active-liquidity)
+Depending on your use case, it may make sense to display this value. You can find the full code in the [code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/active-liquidity).
 
 ## Next Steps
 
-Now that you are familiar with liquidity data, consider checking out our next guide on using Uniswap as a Price Oracle.
+Now that you are familiar with liquidity data, consider checking out our [next guide](./04-price-oracle.md) on using Uniswap as a Price Oracle.

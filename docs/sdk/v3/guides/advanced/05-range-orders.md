@@ -5,12 +5,12 @@ title: Range Orders
 
 ## Introduction
 
-This guide will cover how single-side liquidity provisioning can be used to execute Limit Orders on Uniswap V3 Pools.
+This guide will cover how single-side liquidity provisioning can be used to execute **Limit Orders** on Uniswap V3 Pools.
 An example to showcase this concept can be found in the [Range Order example](https://github.com/Uniswap/examples/tree/main/v3-sdk/range-order), in the Uniswap code examples [repository](https://github.com/Uniswap/example).
 To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/price-oracle/README.md) and follow the setup instructions.
 
 :::info
-This guide builds on top of the [Pooling Liquidity guides](../liquidity/01-minting-position.md).
+This guide builds on top of the [Pooling Liquidity guides](../liquidity/01-position-data.md).
 We recommend going through this section of the docs before imnplementing Range Orders.
 :::
 
@@ -56,7 +56,8 @@ function positions(
     uint256 feeGrowthInside0LastX128, 
     uint256 feeGrowthInside1LastX128, 
     uint128 tokensOwed0, 
-    uint128 tokensOwed1)
+    uint128 tokensOwed1
+    )
 ```
 
 We see that a position only stores a single `liquidity` value, and a `tickLower` and `tickUpper` value that define the range in which the liquidity of the Position can be utilised for Swaps.
@@ -109,10 +110,10 @@ const targetPrice = new Price(
 
 Be aware that the `numerator` and `denominator` parameters are ordered differently in the `Fraction` and `Price` constructor.
 
-We have calculated our target Price but we still need to find the nearest tick to create our Position.
+We have calculated our target Price but we still need to find the **nearest usable tick** to create our Position.
 
 :::info
-As Positions can only start and end at initializable Ticks of the Pool, so we can only create a Range Order to a Price that exactly matches a Tick.
+As Positions can only start and end at initializable Ticks of the Pool, so we can only create a Range Order to a Price that exactly matches an initializable Tick.
 :::
 
 We use the `priceToClosestTick` function to find the closest tick to our targetPrice. 
@@ -275,6 +276,8 @@ const tokenId = decodedOutput.toNumber()
 
 We have created our Range Order Position, now we need to monitor it.
 
+The tokenId could theoretically be too large to handle as a JS `number` but at the time of writing this guide there exist no such ids by several orders of magnitude and most certainly never will.
+
 ## Observing the Price
 
 We need to observe the price of the Pool and withdraw our Position once the `tickCurrent` has moved across our Position.
@@ -402,7 +405,7 @@ Executing a range order has certain limitations that may have become obvious dur
 
 ## Next Steps
 
-This guide showcases everything you need to implement Range Orders on your own but only demonstrates creating a Take Profit order in `token0` to `token1` direction.
+This guide showcases everything you need to implement Range Orders on your own, but only demonstrates creating a Take Profit order in `token0` to `token1` direction.
 Consider implementing Buy Limit orders as described in the [Range Orders concept page](../../../../concepts/protocol/range-orders.md#buy-limit-orders).
 
 This is currently the last guide in the `v3-sdk` series. Consider joining the [Uniswap Discord](https://discord.com/invite/ybKVQUWb4s) or checkout the official [Github](https://github.com/Uniswap) to learn more about the Uniswap Protocol.

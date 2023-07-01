@@ -27,7 +27,7 @@ For this guide, the following Uniswap packages are used:
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
 - [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 
-The core code of this guide can be found in [`pool.ts`](https://github.com/Uniswap/v3-sdk/blob/main/src/entities/pool.ts)
+The core code of this guide can be found in [`pool.ts`](https://github.com/Uniswap/examples/tree/main/v3-sdk/pool-data/src/lib/pool.ts)
 
 ## Computing the Pool's deployment address
 
@@ -40,10 +40,10 @@ import { Token, WETH9 } from '@uniswap/sdk-core'
 const USDC = new Token(1, "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", 6)
 const WETH = WETH9[USDC.chainId]
 const poolAddress = Pool.getAddress(
-    tokenA, 
-    tokenB, 
+    USDC, 
+    WETH, 
     FeeAmount.LOW
-    )
+  )
 ```
 
 Uniswap V3 allows different Fee tiers when deploying a pool, so multiple pools can exist for each pair of tokens.
@@ -80,19 +80,28 @@ The [slot0 function](../../../../contracts/v3/reference/core/interfaces/pool/IUn
 
 ```solidity
   function slot0(
-  ) external view returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, uint8 feeProtocol, bool unlocked)
+  ) external view returns (
+    uint160 sqrtPriceX96, 
+    int24 tick, 
+    uint16 observationIndex, 
+    uint16 observationCardinality, 
+    uint16 observationCardinalityNext, 
+    uint8 feeProtocol, 
+    bool unlocked
+  )
 ```
 
 For our use case, we only need the `sqrtPriceX96` and the currently active `tick`.
 
-
 ## Fetching all Ticks
 
 V3 pools use ticks to [concentrate liquidity](../../../concepts/protocol/concentrated-liquidity.md) in price ranges and allow for better pricing of trades.
-Even though most Pools only have a couple of initialized ticks, it is possible that a pools liquidity is spread among thousands of ticks.
+Even though most Pools only have a couple of **initialized ticks**, it is possible that a pools liquidity is defined by thousands of **initialized ticks**.
 In that case, it can be very expensive or slow to get all of them with RPC calls.
 
-To fetch all ticks of the **USDC - WETH Pool**, we will use the [Uniswap V3 graph](../../../api/subgraph/overview.md). To construct a `Tick` for the SDK, we need the **tickIdx**, the **liquidityGross** and the **liquidityNet**.
+To fetch all ticks of the **USDC - WETH Pool**, we will use the [Uniswap V3 graph](../../../../api/subgraph/overview.md).
+To construct a `Tick` for the SDK, we need the **tickIdx**, the **liquidityGross** and the **liquidityNet**.
+
 We define our GraphQL query and [send a POST request](https://axios-http.com/docs/post_example) to the V3 subgraph API endpoint:
 
 ```typescript
@@ -119,7 +128,7 @@ axios.post(
     )
 ```
 
-We only fetch the ticks that have liquidity, and we convert the poolAddress to lower case for the subgraph to work with. To make sure the Ticks are ordered correctly, we also define the order direction in the query.
+We only fetch the ticks that **have liquidity**, and we convert the poolAddress to **lower case** for the subgraph to work with. To make sure the Ticks are ordered correctly, we also define the **order direction** in the query.
 
 To create our Pool, we need to map the raw data we received from the subgraph to `Tick` objects that the SDK can work with:
 
@@ -141,8 +150,8 @@ We have everything to construct our `Pool` now:
 
 ```typescript
 const usdcWethPool = new Pool(
-    tokenA,
-    tokenB,
+    USDC,
+    WETH,
     feeAmount,
     slot0.sqrtPriceX96,
     liquidity,
@@ -155,4 +164,4 @@ With this fully initialized Pool, we can calculate swaps on it offchain, without
 
 ## Next Steps
 
-Now that you are familiar with using TheGraph, continue your journey with the next example on visualizing the Liquidity density of a pool.
+Now that you are familiar with using TheGraph, continue your journey with the [next example](./03-active-liquidity.md) on visualizing the Liquidity density of a pool.
