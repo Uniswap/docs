@@ -271,12 +271,12 @@ const decodedOutput = ethers.utils.defaultAbiCoder.decode(
     mintCallOutput
   )[0]
 
-const tokenId = decodedOutput.toNumber()
+const tokenId = decodedOutput.toString()
 ```
 
 We have created our Range Order Position, now we need to monitor it.
 
-The tokenId could theoretically be too large to handle as a JS `number` but at the time of writing this guide there exist no such ids by several orders of magnitude and most certainly never will.
+The decodedOutput we get from the AbiCoder is a `Bignumber` so we need to cast it to a string to use it with the SDK.
 
 ## Observing the Price
 

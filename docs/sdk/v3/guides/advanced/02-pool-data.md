@@ -160,7 +160,12 @@ const usdcWethPool = new Pool(
 )
 ```
 
-With this fully initialized Pool, we can calculate swaps on it offchain, without the need to make expensive RPC calls.
+With this fully initialized Pool, we can display all the datapoints we fetched, without the need to make thousands of expensive RPC calls.
+
+:::warning
+The Uniswap subgraphs do not handle block reorgs correctly, resulting in (slightly) incorrect data for Entities where historic reorgs are relevant to their state, e.g. Pools, Positions.
+Do not use theGraph for calculations where exact results are needed, but rather for visualization.
+:::
 
 ## Next Steps
 
