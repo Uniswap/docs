@@ -1,6 +1,6 @@
 ---
 id: overview
-title: What Is Uniswap?
+title: Uniswap Overview
 sidebar_position: 1
 ---
 
