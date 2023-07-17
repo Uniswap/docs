@@ -21,7 +21,7 @@ Swappers generate signed orders which specify the intents of their swap, and fil
 # Trading on UniswapX
 To trade using UniswapX, swappers create a new type of order called an Exclusive Dutch Order which specifies the maximum and minimum outputs they are willing to receive in a trade over a certain time period.
 
-<img src={require('./images/UniswapX_graph.png').default} alt="UniswapX" width="100%%" />
+<!-- <img src={require('./images/UniswapX_graph.png').default} alt="UniswapX" width="100%%" /> -->
 
 They then sign a message that uses Permit2 to allow the transfer of tokens to complete the trade as long as the the number of tokens sent and received matched what is specified in the decay curve. These Signed Order messages are broadcast publicly and available to be executed by anyone who wants to be a “filler”.
 
