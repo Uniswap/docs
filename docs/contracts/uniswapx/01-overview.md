@@ -28,7 +28,7 @@ They then sign a message that uses Permit2 to allow the transfer of tokens to co
 ## Fillers on UniswapX
 UniswapX introduces a new participant in the Uniswap ecosystem, the _Filler_. These agents pickup signed orders from swappers and compete to execute them using any source of liquidity they have access to.
 
-Anyone can fill orders on UniswapX, get started by reading our [Filler Integration Guide](/uniswapx/guides/createfiller).
+Anyone can fill orders on UniswapX, get started by reading our [Filler Integration Guide](/contracts/unigstswapx/guides/createfiller).
 
 ## Parametizing UniswapX Orders
 The UniswapX protocol does not explicitly parameterize the pricing of orders like the Exclusive Dutch Order, rather order parameterization is left to be configured by the order constructor. 
@@ -55,19 +55,19 @@ Reactors process orders using the following steps:
 - Call `reactorCallback` on the fillContract
 - Verify that the output tokens were received by the output recipients
 
-Reactors implement the [IReactor](./src/interfaces/IReactor.sol) interface which abstracts the specifics of the order specification. This allows for different reactor implementations with different order formats to be used with the same interface, allowing for shared infrastructure and easy extension by fillers.
+Reactors implement the [IReactor](https://github.com/Uniswap/UniswapX/blob/main/src/interfaces/IReactor.sol) interface which abstracts the specifics of the order specification. This allows for different reactor implementations with different order formats to be used with the same interface, allowing for shared infrastructure and easy extension by fillers.
 
 Current reactor implementations:
-- [LimitOrderReactor](./src/reactors/LimitOrderReactor.sol): A reactor that settles simple static limit orders
-- [DutchOrderReactor](./src/reactors/DutchOrderReactor.sol): A reactor that settles linear-decay dutch orders
-- [ExclusiveDutchOrderReactor](./src/reactors/ExclusiveDutchOrderReactor.sol): A reactor that settles linear-decay dutch orders with a period of exclusivity before decay begins
+- [LimitOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol): A reactor that settles simple static limit orders
+- [DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/DutchOrderReactor.sol): A reactor that settles linear-decay dutch orders
+- [ExclusiveDutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/ExclusiveDutchOrderReactor.sol): A reactor that settles linear-decay dutch orders with a period of exclusivity before decay begins
 
 ### Fill Contracts
 
 Order fillContracts _fill_ UniswapX orders. They specify the filler's strategy for fulfilling orders and are called by the reactor with `reactorCallback`.
 
 Some sample fillContract implementations are provided in this repository:
-- [SwapRouter02Executor](./src/sample-executors/SwapRouter02Executor.sol): A fillContract that uses UniswapV2 and UniswapV3 via the SwapRouter02 router
+- [SwapRouter02Executor](https://github.com/Uniswap/UniswapX/blob/main/src/sample-executors/SwapRouter02Executor.sol): A fillContract that uses UniswapV2 and UniswapV3 via the SwapRouter02 router
 
 ### Direct Fill
 
