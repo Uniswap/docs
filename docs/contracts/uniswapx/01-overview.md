@@ -6,10 +6,40 @@ sidebar_position: 1
 
 # UniswapX
 
-UniswapX is an intent-based ERC20 swap settlement protocol that provides swappers with a gasless experience, MEV protection, and access to arbitrary liquidity sources. Swappers generate signed orders which specify the intents of their swap, and fillers compete using arbitrary fill strategies to satisfy these orders.
+UniswapX is a new permissionless, open source (GPL), auction-based routing protocol for trading across AMMs and other liquidity sources.
 
+UniswapX improves swapping in several ways:
 
-## UniswapX Protocol Architecture
+- Better prices by aggregating liquidity sources
+- Gas-free swapping
+- Protection against MEV (Maximal Extractable Value)
+- No cost for failed transactions
+- And in the coming months, UniswapX will expand to gas-free cross-chain swaps.
+
+Swappers generate signed orders which specify the intents of their swap, and fillers compete using arbitrary filling strategies to satisfy these orders.
+
+# Trading on UniswapX
+To trade using UniswapX, swappers create a new type of order called an Exclusive Dutch Order which specifies the maximum and minimum outputs they are willing to receive in a trade over a certain time period.
+
+<img src={require('./images/UniswapX_graph.png').default} alt="UniswapX" width="100%%" />
+
+They then sign a message that uses Permit2 to allow the transfer of tokens to complete the trade as long as the the number of tokens sent and received matched what is specified in the decay curve. These Signed Order messages are broadcast publicly and available to be executed by anyone who wants to be a “filler”.
+
+## Fillers on UniswapX
+UniswapX introduces a new participant in the Uniswap ecosystem, the _Filler_. These agents pickup signed orders from swappers and compete to execute them using any source of liquidity they have access to.
+
+Anyone can fill orders on UniswapX, get started by reading our [Filler Integration Guide](/uniswapx/guides/createfiller).
+
+## Parametizing UniswapX Orders
+The UniswapX protocol does not explicitly parameterize the pricing of orders like the Exclusive Dutch Order, rather order parameterization is left to be configured by the order constructor. 
+
+In the current Uniswap Labs interface implementation of UniswapX, some fillers may choose to help parameterize orders by participating as quoters. These fillers can *only* win a quote if they guarantee improved swapper execution over Uniswap v3 or v2 liquidity pools. Fillers who win a quote will receive execution priority for a limited period of time to fill orders they submitted wining quotes for. 
+
+To ensure a smooth swapping experience for traders during the beta period, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch, with plans to make the quoting system fully permissionless in the near future.
+
+If you are interested in participating as a Quoter during the beta period, please reach out [here](mailto:quoters@uniswap.org).
+
+# UniswapX Protocol Architecture
 
 <!-- ![Architecture](./assets/uniswapx-architecture.png) -->
 <img src={require('./images/UniswapX.png').default} alt="UniswapX" width="100%%" />
@@ -43,8 +73,8 @@ Some sample fillContract implementations are provided in this repository:
 
 If a filler wants to fill orders using funds on-hand rather than a fillContract, they can do so gas efficiently using the `directFill` macro by specifying `address(1)` as the fillContract. This will pull tokens from the filler using `msg.sender` to satisfy the order outputs.
 
-# Integrating with UniswapX
-See [Filler Integration Guide](/contracts/uniswapx/guides/createfiller)
+# Whitepaper
+More details on the UniswapX protocol are available in the [UniswapX Whitepaper](https://uniswap.org/whitepaper-uniswapx.pdf). 
 
 # Deployment Addresses
 

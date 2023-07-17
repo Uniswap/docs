@@ -32,9 +32,15 @@ For convenience, we’ve provided an [example Executor Contract](https://github.
 
 ## 2. Retrieve & Execute Signed Orders
 
-All signed orders created through the Uniswap UI will be available via the [UniswapX Orders Endpoint](https://6q5qkya37k.execute-api.us-east-2.amazonaws.com/prod/api-docs). It’s up to the individual filler to architect their own systems for finding and executing profitable orders, but the basic flow is as follows:
+All signed orders created through the Uniswap UI will be available via the UniswapX Orders Endpoint: 
 
-1. Call `GET` on the `prod/dutch-auction/orders` of the UniswapX Orders Endpoint to retrieve open signed orders
+```
+GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&limit=1
+```
+
+It’s up to the individual filler to architect their own systems for finding and executing profitable orders, but the basic flow is as follows:
+
+1. Call `GET` on the `/orders` of the UniswapX Orders Endpoint as written above, to retrieve open signed orders
 2. Decode returned orders using the [UniswapX SDK](https://github.com/Uniswap/UniswapX-sdk/#parsing-orders)
 3. Determine which orders you would like to execute
 4. Send a new transaction to the [execute](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L29) or [executeBatch](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L37) methods of the [Dutch Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/DutchOrderReactor.sol) specifying the signed orders you’d like to fill and the address of your executor contract
