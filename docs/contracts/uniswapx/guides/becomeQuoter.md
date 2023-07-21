@@ -6,4 +6,78 @@ sidebar_position: 2
 # Quoting During UniswapX Beta
 To ensure a smooth swapping experience for traders during the beta period, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch, with plans to make the quoting system fully permissionless in the near future.
 
-If you are interested in participating as a Quoter during the beta period, please reach out [here](mailto:quoters@uniswap.org).
+Once you've been approved to be a quoter by the Uniswap Labs team follow the instructions below to complete your integration. If you have not been approved, please reach to the Uniswap Labs team [here](mailto:quoters@uniswap.org).
+
+# Integrating with UniswapX RFQ
+
+To participate as quoters, fillers must host a service that adheres to the UniswapX RFQ API schema (below) and responds to requests with quotes. The RFQ participant who submits the best quote for a given order will receive exclusive rights to fill it using their Executor during the _Exclusivity Period_ of the auction.
+
+## RFQ API Schema
+
+To successfully receive and respond to UniswapX RFQ Quotes, you must have a publicly accessible endpoint that receives incoming quote requests and responds with quotes by implementing the following schema:
+
+Request:
+
+```jsx
+method: POST
+content-type: application/json
+data: {
+    requestId: "string uuid - a unique identifier for this quote request",
+    tokenInChainId: "number - the `tokenIn` chainId",
+    tokenOutChainId: "number - the `tokenOut` chainId",
+    swapper: "string address - The swapper’s EOA address that will sign the order",
+    tokenIn: "string address - The ERC20 token that the swapper will provide",
+    tokenOut: "string address - The ERC20 token that the swapper will receive",
+    amount: "string number - If the trade type is exact input then this is amount of `tokenIn` the user wants to swap otherwise this is amount of tokenOut the user wants to receive",
+    type: "number - This is either `EXACT_INPUT` or `EXACT_OUTPUT`"
+}
+```
+
+Response (status 200 - OK):
+
+```jsx
+{
+    chainId: "number - the chainId for the quoted token",
+    amountIn: "string number - If the request type is exact input then this field is `amount` from the quote request, otherwise this is the provided quote",
+    amountOut: "string number - If the request type is exact output then this field is `amount` from the quote request, otherwise this is the provided quote",
+    filler: "string address - The executor address that you would like to have last-look exclusivity for this order"
+
+    { ...The following fields should be echoed from the quote request...},
+    requestId: "string uuid - a unique identifier for this quote request",
+    swapper: "string address - The swapper’s EOA address that will sign the order",
+    tokenIn: "string address - The ERC20 token that the swapper will provide",
+    tokenOut: "string address - The ERC20 token that the swapper will receive"
+}
+```
+
+There is a latency requirement on responses from registered endpoints. Currently set to 500ms, but is subject to change. If you do not wish to respond to a quote request, you must return an empty response with status code `204`.
+
+# (Optional) Signed Order Webhook Notifications
+
+Signed open orders can always be fetched via the UniswapX API, but to provide improved latency there is the option to register for webhook notifications. Quoters can register an endpoint with their filler address, and receive notifications for every newly posted order that matches the filter. 
+
+**Filter**
+
+Orders can be filtered by various fields, but most relevant here is `filler`. When registering your webhook notification endpoint, you must provide the `filler` address that you plan to use to execute orders and to receive the last-look exclusivity period.
+
+**Notification**
+
+Order notifications will be sent to the registered endpoint as http requests as follows:
+
+```jsx
+method: POST
+content-type: application/json
+data: {
+    orderHash: "the hash identifier for the order", 
+    createdAt: "timestamp at which the order was posted",
+    signature: "the swapper signature to include with order execution",
+    swapper: "the swapper address",
+    orderStatus: "current order status (always should be `active` upon receiving notification)",
+    encodedOrder: "The abi-encoded order to include with order execution. This can be decoded using the Uniswapx-SDK (https://github.com/uniswap/uniswapx-sdk) to verify order fields and signature",
+    chainId: "The chain ID that the order originates from and must be settled on",
+    filler?: "If this order was quoted by an RFQ participant then this will be their filler address",
+    quoteId?: "If this order was quoted by an RFQ participant then this will be the requestId from the quote request"
+}
+```
+
+Once your quoting service is ready to receive quotes, message your Uniswap Labs contact to begin the onboarding process into UniswapX RFQ.
