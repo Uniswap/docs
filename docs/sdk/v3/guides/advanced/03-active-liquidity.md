@@ -11,7 +11,7 @@ This guide will cover how to fetch and compute the active liquidity in the speci
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 :::
 
-In this guide, we will use the Tick data we fetched from the V3 subgraph in the previous guide and compute the active liquidity our Pool can use at each Tick. We then use `recharts` to draw a chart that visualizes our Pool's liqudity density.
+In this guide, we will use the V3 subgraph to fetch all ticks from **theGraph** and compute the active liquidity our Pool can use at each Tick. We then use `recharts` to draw a chart that visualizes our Pool's liqudity density.
 
 This guide will cover:
 
@@ -44,16 +44,55 @@ This is what the **Initialized Ticks** of a Pool represent - they are a represen
 
 When entering or leaving a position, its liquidity is added or removed from the **active liquidity available** for a Swap.
 The initialized Ticks store this change in available liquidity in the `liquidityNet` field.
-The change is always stored in relation to the currently active Tick - the current price. 
+The change is always stored in relation to the currently active Tick - the current price.
 When the price crosses an initialized Tick, it gets updated and liqudity that was previously added when crossing the Tick would now be removed and vice versa.
 
-We already fetched the initialized Ticks of our Pool in the [previous guide](./02-pool-data.md). The format we got from the Graph is:
+### Fetching initialized Ticks
+
+To demonstrate another way
+
+To fetch all ticks of our Pool, we will use the [Uniswap V3 graph](../../../../api/subgraph/overview.md).
+To visualize active liquidity, we need the **tickIdx**, the **liquidityGross** and the **liquidityNet**.
+
+We define our GraphQL query and [send a POST request](https://axios-http.com/docs/post_example) to the V3 subgraph API endpoint:
+
+```typescript
+axios.post(
+        "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
+        {"query": `{ ticks(
+              where: {poolAddress: "${poolAddress.toLowerCase()}", liquidityNet_not: "0"}
+              first: 1000,
+              skip: ${skip},
+              orderBy: tickIdx,
+              orderDirection: asc
+            ) {
+              tickIdx
+              liquidityGross
+              liquidityNet
+            }
+          }`
+        },
+        {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+    )
+```
+
+We only fetch the ticks that **have liquidity**, and we convert the poolAddress to **lower case** for the subgraph to work with. To make sure the Ticks are ordered correctly, we also define the **order direction** in the query.
+
+:::note
+GraphQL is only able to fetch 1000 records at a time. If a pool has more than 1000 initialized ticks, multiple calls are necessary to get all of them.
+:::
+
+The ticks we got from **theGraph** have this format:
 
 ```typescript
 interface GraphTick {
-  tickIdx: string
-  liquidityGross: string
-  liquidityNet: string
+    tickIdx: string
+    liquidityGross: string
+    liquidityNet: string
 }
 ```
 
@@ -61,7 +100,7 @@ interface GraphTick {
 
 The current Tick of the Pool represents the **current Price** after the last swap.
 Considering that the initialized Ticks only represent positions, we see that it is not necessarily one of the initialized Ticks but can be at any point in between them.
-The active liqudity at the current Price is also stored in the smart contract - we already fetched it with the `liquidity` function.
+The active liqudity at the current Price is also stored in the smart contract - we already fetched it with the `liquidity` function in the [previous guide](./02-pool-data.md).
 
 ### Tickspacing
 
@@ -69,11 +108,15 @@ Only the Ticks with indices that are dividable with 0 remainder by the tickspaci
 The Tickspacing of the Pool is dependent on the Fee Tier.
 Pools with lower fees are meant to be used for more stable Token Pairs and allow for more granularity in where LPs position their liquidity.
 
-We can get the `tickSpacing`from our pool:
+We can get the `tickSpacing` from the `TICK_SPACINGS` enum exposed by the `v3-sdk`:
 
 ```typescript
-const tickSpacing = pool.tickSpacing
+import { TICK_SPACINGS }
+
+const tickSpacing = TICK_SPACINGS[fee]
 ```
+
+Alternatively, if we have already constructed a `Pool` object, we couild just call `Pool.tickSpacing()`.
 
 ### Putting it all together
 
