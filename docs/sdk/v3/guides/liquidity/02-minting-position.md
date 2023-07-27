@@ -7,7 +7,7 @@ title: Minting a Position
 
 This guide will cover how to create (or mint) a liquidity position on the Uniswap V3 protocol.
 It is based on the [minting a position code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/minting-position), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
-To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-posotion/README.md) and follow the setup instructions.
+To run this example, check out the examples's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/README.md) and follow the setup instructions.
 
 :::info
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](../01-background.md) page!
@@ -69,13 +69,15 @@ async function getTokenTransferApproval(address: string, amount: BigNumber) {
 ```
 
 We can get the Contract address for the NonfungiblePositionManager from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+For Ethereum mainnet or a local fork of mainnet, we see that the contract address is `0xC36442b4a4522E871399CD717aBDD847Ab11FE88`.
+In our example, this is defined in the [`constants.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/src/libs/constants.ts) file.
 
 ## Creating an instance of a `Pool`
 
 Having approved the transfer of our tokens, we now need to get data about the pool for which we will provide liquidity, in order to instantiate a Pool class.
 
-To start, we compute our Pool's address by using a helper function and passing in the unique identifiers of a Pool - the **two tokens** and the Pool **fee**. 
-The **fee** input parameter represents the swap fee that is distributed to all in range liquidity at the time of the swap:
+To start, we compute our Pool's address by using a helper function and passing in the unique identifiers of a Pool - the **two tokens** and the Pool **fee**.
+The **fee** input parameter represents the swap fee that is distributed to all in range liquidity at the time of the swap.
 
 ```typescript
 import { computePoolAddress, FeeAmount } from '@uniswap/v3-sdk'
@@ -94,9 +96,11 @@ const currentPoolAddress = computePoolAddress({
 })
 ```
 
-Again, we can get the factory contract address from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+Again, we can get the factory contract address from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md). 
+For Ethereum mainnet, or a local fork of mainnet, it is `0x1F98431c8aD98523631AE4a59f267346ea31F984`. 
+In our example, it is defined in [`constants.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/src/libs/constants.ts)
 
-Then, we get the Pool's data by creating a reference to the Pool's smart contract and accessing its methods:
+Then, we get the Pool's data by creating a reference to the Pool's smart contract and accessing its methods, very similar to what we did in the [Quoting guide](../swaps/01-quoting.md#referencing-the-pool-contract-and-fetching-metadata):
 
 ```typescript
 import IUniswapV3PoolABI from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'

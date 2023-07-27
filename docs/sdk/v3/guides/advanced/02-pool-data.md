@@ -51,7 +51,7 @@ const poolAddress = Pool.getAddress(
   )
 ```
 
-Uniswap V3 allows different Fee tiers when deploying a pool, so multiple pools can exist for each pair of tokens.
+Uniswap V3 allows different Fee tiers when deploying a pool, so multiple pools can exist for each pair of tokens. FeeAmount.LOW means the pool has a swap fee of 0.05%.
 
 ## Creating a Pool Contract instance and fetching metadata
 
@@ -100,7 +100,7 @@ For our use case, we only need the `sqrtPriceX96` and the currently active `tick
 
 ## Fetching all Ticks
 
-V3 pools use ticks to [concentrate liquidity](../../../concepts/protocol/concentrated-liquidity.md) in price ranges and allow for better pricing of trades.
+V3 pools use ticks to [concentrate liquidity](../../../../concepts/protocol/concentrated-liquidity.md) in price ranges and allow for better pricing of trades.
 Even though most Pools only have a couple of **initialized ticks**, it is possible that a pools liquidity is defined by thousands of **initialized ticks**.
 In that case, it can be very expensive or slow to get all of them with normal RPC calls.
 

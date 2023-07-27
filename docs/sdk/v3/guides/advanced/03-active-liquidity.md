@@ -116,7 +116,7 @@ import { TICK_SPACINGS }
 const tickSpacing = TICK_SPACINGS[fee]
 ```
 
-Alternatively, if we have already constructed a `Pool` object, we couild just call `Pool.tickSpacing()`.
+Alternatively, if we have already constructed a `Pool` object, we could just call `Pool.tickSpacing()`.
 
 ### Putting it all together
 

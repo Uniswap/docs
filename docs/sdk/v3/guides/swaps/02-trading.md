@@ -9,6 +9,8 @@ This guide will build off our [quoting guide](./01-quoting.md) and show how to u
 
 :::info
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](../01-background.md) page!
+
+To get started with local development, also check out the [local development guide](../02-local-development.md).
 :::
 
 In this example we will trade between two ERC20 tokens: **WETH and USDC**. The tokens, amount of input token, and the fee level can be configured as inputs.
@@ -32,35 +34,111 @@ For this guide, the following Uniswap packages are used:
 
 The core code of this guide can be found in [`trading.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/src/libs/trading.ts)
 
+## Using a wallet extension
+
+Like in the previous guide, our [example](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading) uses a [config file ](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/src/config.ts) to configurate the inputs used.
+The strucuture is similar to the quoting config, but we also have the option to select an environment:
+
+```typescript
+export interface ExampleConfig {
+  env: Environment
+  rpc: {
+    local: string
+    mainnet: string
+  }
+  wallet: {
+    address: string
+    privateKey: string
+  }
+  tokens: {
+    in: Token
+    amountIn: number
+    out: Token
+    poolFee: number
+  }
+}
+```
+
+Per default, the env field is set to `Environment.LOCAL`:
+
+```typescript
+export const CurrentConfig: ExampleConfig = {
+  env: Environment.LOCAL,
+  rpc: {
+    local: 'http://localhost:8545',
+    mainnet: '',
+  },
+  wallet: {
+    address: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
+    privateKey:
+      '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80',
+  },
+  tokens: {
+    in: WETH_TOKEN,
+    amountIn: 1,
+    out: USDC_TOKEN,
+    poolFee: FeeAmount.MEDIUM,
+  },
+}
+```
+
+In this example, we have the option to use a Wallet Extension like Metamask to sign the transactions we are sending. To do so, let's change the Environment to `Environment.WALLET_EXTENSION`:
+
+```typescript
+export const CurrentConfig: ExampleConfig = {
+  env: Environment.WALLET_EXTENSION,
+  rpc: {
+    local: 'http://localhost:8545',
+  },
+  wallet: {
+    ...
+  },
+  tokens: {
+    ...
+  },
+}
+```
+
+Run the example and then add the local network to your wallet browser extension, if you are using Metamask for example, follow [this guide](https://support.metamask.io/hc/en-us/articles/360043227612-How-to-add-a-custom-network-RPC).
+You should also import a private key to use on your local network, for example `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80` from Foundry's example wallets.
+
+Consider checking out the [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/README.md) of the example.
+
+If you cannot see the Tokens traded in your wallet, you possibly have to [import them](https://support.metamask.io/hc/en-us/articles/360015489031-How-to-display-tokens-in-MetaMask).
+
 ## Constructing a route from pool information
 
 To construct our trade, we will first create an model instance of a `Pool`. We create an **ethers** contract like in the [previous guide](./01-quoting.md#referencing-the-pool-contract-and-fetching-metadata).
- We will first extract the needed metadata from the relevant pool contract. Metadata includes both constant information about the pool as well as information about its current state stored in its first slot:
+We will first extract the needed metadata from the relevant pool contract. Metadata includes both constant information about the pool as well as information about its current state stored in its first slot:
 
 ```typescript
 async function getPoolInfo() {
-    const [token0, token1, fee, tickSpacing, liquidity, slot0] =
+    const [token0, token1, fee, liquidity, slot0] =
     await Promise.all([
-        poolContract.token0(),
-        poolContract.token1(),
         poolContract.fee(),
-        poolContract.tickSpacing(),
         poolContract.liquidity(),
         poolContract.slot0(),
     ])
 
     return {
-        token0,
-        token1,
         fee,
-        tickSpacing,
         liquidity,
         sqrtPriceX96: slot0[0],
         tick: slot0[1],
     } 
 }
-
 ```
+
+Before continuing, let's talk about the values we fetched here and what they represent:
+
+- `fee` is the fee that is taken from every swap that is executed on the pool in 1 per million - if the `fee` value of a pool is 500, ```500/ 1000000``` (or 0.05%) of the trade amount is taken as a fee. This fee goes to the liquidity providers of the Pool.
+- `liquidity` is the amount of liquidity the Pool can use for trades at the current price.
+- `sqrtPriceX96` is the current Price of the pool, encoded as a ratio between `token0` and `token1`.
+- `tick` is the tick at the current price of the pool.
+
+Check out the [whitepaper](https://uniswap.org/whitepaper-v3.pdf) to learn more on how liquidity and ticks work in Uniswap V3.
+  
+You can find the full code in [`pool.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/src/libs/pool.ts).
 
 Using this metadata along with our inputs, we will then construct a `Pool`:
 
@@ -77,7 +155,25 @@ const pool = new Pool(
 )
 ```
 
-With this `Pool`, we can now construct a route to use in our trade. We will reuse our previous quoting code to calculate the output amount we expect from our trade:
+## Creating a Route
+
+With this `Pool`, we can now construct a route to use in our trade. Routes represent a route over one or more pools from one Token to another. Let's imagine we have three pools:
+
+```
+- PoolA: USDC/ WETH
+- PoolB: USDT/ WETH
+- PoolC: USDT/ DAI
+```
+
+We would like to trade from USDC to DAI, so we create a route through our 3 pools:
+
+```
+PoolA -> PoolB -> PoolC
+```
+
+The `Route` object can find this route from an array of given pools and an input and output Token.
+
+To keep it simple for this guide, we only swap over one Pool:
 
 ```typescript
 import { Route } from '@uniswap/v3-sdk'
@@ -88,6 +184,9 @@ const swapRoute = new Route(
   CurrentConfig.tokens.out
 )
 ```
+
+Our `Route` understands that `CurrentConfig.tokens.in` should be traded for `CurrentConfig.tokens.out` over the Array of pools `[pool]`.
+
 
 ## Constructing an unchecked trade
 
@@ -130,7 +229,8 @@ const quoteCallReturnData = await provider.call({
 return ethers.utils.defaultAbiCoder.decode(['uint256'], quoteCallReturnData)
 ```
 
-With the quote and the route, we can now construct an unchecked trade using the route in addition to the output amount from a quote based on our input:
+With the quote and the route, we can now construct a trade using the route in addition to the output amount from a quote based on our input.
+Because we already know the expected output of our Trade, we do not have to check it again. We can use the `uncheckedTrade` function to create our Trade:
 
 ```typescript
 import { Trade } from 'uniswap/v3-sdk'
@@ -180,7 +280,11 @@ const options: SwapOptions = {
 }
 ```
 
-Next, we use the Uniswap `SwapRouter` to get the associated call parameters for our trade and options:
+The slippage of our trade is the maximum decrease from our calculated output amount that we are willing to accept for this trade.
+The deadline is the latest point in time when we want the transaction to go through. 
+If we set this value too high, the transaction could be left waiting for days and we would need to pay gas fees to cancel it.
+
+Next, we use the `SwapRouter` class, a representation of the Uniswap [SwapRouter Contract](https://github.com/Uniswap/v3-periphery/blob/v1.0.0/contracts/SwapRouter.sol), to get the associated call parameters for our trade and options:
 
 ```typescript
 import { SwapRouter } from '@uniswap/v3-sdk'
