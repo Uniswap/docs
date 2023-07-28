@@ -10,29 +10,40 @@ There are two components to integrating as a filler: defining a filler execution
 
 ## 1. Defining a Filler Execution Strategy
 
-To execute a discovered order, a filler needs to call one of the `execute` methods ([source](https://github.com/Uniswap/UniswapX/blob/de36900fa074784bda215b902d4854bdffab09ba/src/reactors/BaseReactor.sol#L31)) of the Dutch Order Reactor, providing it with the orders to execute along with the address of the executor contract that defines their fill strategy.
+To execute a discovered order, a filler needs to call one of the `execute` methods ([source](https://github.com/Uniswap/UniswapX/blob/v1.1.0/src/reactors/BaseReactor.sol#L31)) of the Dutch Order Reactor, providing it with the orders to execute.
 
-The simplest fill strategy is called `Direct Filler`, where the trade is executed directly against tokens held in the fillers address. To use this strategy, we’ve provided a short cut so fillers do not need to deploy an executor contract. They can simply call `execute` with filler address `address(1)` to fill against themselves (see [source](https://github.com/Uniswap/UniswapX/blob/de36900fa074784bda215b902d4854bdffab09ba/src/reactors/BaseReactor.sol#L73)):
+The simplest fill strategy is called `Direct Filler`, where the trade is executed directly against tokens held in the fillers address. To use this strategy, a filler can simply approve the order's output tokens to the reactor and call `execute` or `executeBatch` from their address. (see [source](https://github.com/Uniswap/UniswapX/blob/v1.1.0/src/reactors/BaseReactor.sol#L35)):
 
 ```solidity
 // Execute direct filler order
-DutchOrderReactor.execute(order, address(1));
+outputToken.approve(reactor, type(uint256).max);
+reactor.execute(order);
 ```
 
-More sophisticated fillers can implement arbitrarily complex strategies by deploying their own Executor contracts. This contract should implement the [IReactorCallback](https://github.com/Uniswap/UniswapX/blob/main/src/interfaces/IReactorCallback.sol) interface, which takes in an order with input tokens and returns the allotted number of output tokens to the caller. To use an executor contract, fillers simply specify it’s address when calling `execute`:
+More sophisticated fillers can implement arbitrarily complex strategies by deploying their own Executor contracts. This contract should implement the [IReactorCallback](https://github.com/Uniswap/UniswapX/blob/v1.1.0/src/interfaces/IReactorCallback.sol) interface, which takes in an order with input tokens and acquires the allotted number of output tokens for the caller. It must approve the output tokens to the reactor, which then transfers them to the order output recipients to settle the order. Executor contracts must call `reactor.executeWithCallback` or `reactor.executeBatchWithCallback`. They can also specify arbitrary callback data that will be passed into the `reactorCallback` call.
 
 ```solidity
+contract Executor {
+  function execute(Order calldata order, bytes calldata callbackData) {
+    reactor.executeWithCallback(order, callbackData)
+  }
+
+  function reactorCallback(ResolvedOrder[] calldata orders, bytes calldata callbackData) {
+    // implement strategy here
+  }
+}
+
 // Execute custom fill strategy
 address executor = /* Address of deployed executor contract */ ;
 bytes fillData = /* Call data to be sent to your executor contract */;
-DutchOrderReactor.execute(order, executor, fillData);
+executor.execute(order, fillData);
 ```
 
-For convenience, we’ve provided an [example Executor Contract](https://github.com/Uniswap/UniswapX/tree/main/src/sample-executors) which demonstrates how a filler could implement a strategy that executes a UniswapX order against a Uniswap V3 pool.
+For convenience, we’ve provided an [example Executor Contract](https://github.com/Uniswap/UniswapX/tree/v1.1.0/src/sample-executors) which demonstrates how a filler could implement a strategy that executes a UniswapX order against a Uniswap V3 pool.
 
 ## 2. Retrieve & Execute Signed Orders
 
-All signed orders created through the Uniswap UI will be available via the UniswapX Orders Endpoint: 
+All signed orders created through the Uniswap UI will be available via the UniswapX Orders Endpoint:
 
 ```
 GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&limit=1
