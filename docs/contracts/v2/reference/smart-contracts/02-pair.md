@@ -1,3 +1,4 @@
+![yeoldepunks-24x24](https://github.com/Uniswap/docs/assets/129458935/b3ff4681-b7a0-4146-96b7-358bc46ff0d8)
 ---
 id: pair
 title: Pair
