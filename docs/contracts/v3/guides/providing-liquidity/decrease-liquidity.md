@@ -39,8 +39,18 @@ Here we decrease the liquidity of our position without withdrawing all of it.
 
         (amount0, amount1) = nonfungiblePositionManager.decreaseLiquidity(params);
 
-        //send liquidity back to owner
-        _sendToOwner(tokenId, amount0, amount1);
+        INonfungiblePositionManager.CollectParams memory params =
+            INonfungiblePositionManager.CollectParams({
+                tokenId: tokenId,
+                recipient: address(this),
+                amount0Max: amount0,
+                amount1Max: amount1
+            });
+
+        (collectedAmount0, collectedAmount1) = nonfungiblePositionManager.collect(params);
+
+        // send liquidity back to owner
+        _sendToOwner(tokenId, collectedAmount0, collectedAmount1);
     }
 ```
 
