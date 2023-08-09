@@ -59,7 +59,17 @@ interface Observation {
 }
 ```
 
-To fetch the `Observations` from our pool contract, we will use the [`observe`](../../../../contracts/v3/reference/core/UniswapV3Pool.md#observe) function. 
+To fetch the `Observations` from our pool contract, we will use the [`observe`](../../../../contracts/v3/reference/core/UniswapV3Pool.md#observe) function:
+
+```solidity
+function observe(
+    uint32[] secondsAgos
+) external view override noDelegateCall returns (
+    int56[] tickCumulatives, 
+    uint160[] secondsPerLiquidityCumulativeX128s
+)
+```
+
 We first check how many observations are stored in the Pool by calling the `slot0` function.
 
 ```typescript
@@ -220,6 +230,8 @@ struct Observation {
 
 It is possible to request any Observation up to (excluding) index `65535`, but indices equal to or greater than the `observationCardinality` will return uninitialized Observations.
 
+The full code to the following code snippets can be found in [`oracle.ts`](https://github.com/uniswap/examples/blob/main/v3-sdk/oracle/src/libs/oracle.ts)
+
 ```typescript
 let requests = []
 for (let i = 0; i < 10; i++) {
@@ -241,6 +253,7 @@ Because we access indices of an array, this would give us an unexpected result t
 :::
 
 One way to handle this behaviour is deploying or [using](https://github.com/mds1/multicall) a Contract with a [multicall](https://solidity-by-example.org/app/multi-call/) functionality to get all observations with one request.
+You can also find an example of a JS multicall in the [Pool data guide](./02-pool-data.md).
 
 We map the RPC result to the Typescript interface that we created:
 
