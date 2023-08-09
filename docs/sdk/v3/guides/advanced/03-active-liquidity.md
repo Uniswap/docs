@@ -43,13 +43,17 @@ This is what the **Initialized Ticks** of a Pool represent - they are a represen
 <img src={require('./images/liquidityNetComparison.png').default} alt="LiquidityNet1" box-shadow="none"/>
 
 When entering or leaving a position, its liquidity is added or removed from the **active liquidity available** for a Swap.
-The initialized Ticks store this change in available liquidity in the `liquidityNet` field.
+The initialized Ticks store this **change in available liquidity** in the `liquidityNet` field.
 The change is always stored in relation to the currently active Tick - the current price.
 When the price crosses an initialized Tick, it gets updated and liqudity that was previously added when crossing the Tick would now be removed and vice versa.
 
-### Fetching initialized Ticks
+The `liquidityGross` value represents the gross value of liquidity referencing the tick.
+This is important for the edge case that one position ends at a Tick and a second position with exactly the same liquidity value would start at the Tick.
+In this case `liquidityNet` would be **0** but `liquidityGross` would still have a value, which ensures that the Tick is not deleted from the Pool.
 
-To demonstrate another way
+To visualize liquidity in a graph, we will only need to consider the changes, so it's sufficient to fetch the Ticks with `liquidityNet` not 0.
+
+### Fetching initialized Ticks
 
 To fetch all ticks of our Pool, we will use the [Uniswap V3 graph](../../../../api/subgraph/overview.md).
 To visualize active liquidity, we need the **tickIdx**, the **liquidityGross** and the **liquidityNet**.
@@ -104,7 +108,8 @@ The active liqudity at the current Price is also stored in the smart contract - 
 
 ### Tickspacing
 
-Only the Ticks with indices that are dividable with 0 remainder by the tickspacing of a Pool are initializable.
+Only the Ticks with indices that are divisible with 0 remainder by the tickspacing of a Pool are initializable.
+This is a convention defined by the protocol to save gas.
 The Tickspacing of the Pool is dependent on the Fee Tier.
 Pools with lower fees are meant to be used for more stable Token Pairs and allow for more granularity in where LPs position their liquidity.
 
@@ -129,6 +134,8 @@ Instead, we will display a sensible number of Ticks around the current price.
 We know the spacing between Ticks and the Initialized Ticks where active liquidity changes.
 All we have to do is start calculating from the current Tick and iterate outwards.
 
+The code mentioned in the following snippets can be found in [`active-liquidity.ts`](https://github.com/Uniswap/examples/tree/main/v3-sdk/pool-data/src/libs/active-liquidity.ts).
+
 To draw our chart we want a data structure that looks something like this:
 
 ```typescript
@@ -150,7 +157,7 @@ const tickIdxToTickDictionary: Record<string, GraphTick> = Object.fromEntries(
   ) 
 ```
 
-The Ticks variable in this code snippet is the response we got from the V3 Subgraph.
+The `ticks` variable in this code snippet is the result we got from the V3 Subgraph earlier.
 
 We want to mark the Tick closest to the current Price and we want to be able to display the prices at a Tick to the user.
 We calculate the **initializable Tick** closest to the current price and create the active Tick that we start from:
