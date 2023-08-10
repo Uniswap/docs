@@ -199,9 +199,8 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          id: 'contracts',
-          path: 'docs/contracts',
-          routeBasePath: 'contracts/',
+          routeBasePath: '/',
+          sidebarPath: require.resolve("./sidebars.js"),
           remarkPlugins: [math],
           rehypePlugins: [katex],
           editUrl: 'https://github.com/uniswap/uniswap-docs/tree/main/',
@@ -231,36 +230,6 @@ module.exports = {
   ],
   plugins: [
     ['@saucelabs/theme-github-codeblock', {}],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'sdk',
-        path: 'docs/sdk',
-        routeBasePath: 'sdk',
-        remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
-        includeCurrentVersion: true,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'api',
-        path: 'docs/api',
-        routeBasePath: 'api/',
-        remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
-        includeCurrentVersion: true,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'concepts',
-        path: 'docs/concepts',
-        routeBasePath: 'concepts/',
-        remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]],
-        includeCurrentVersion: true,
-      },
-    ],
     [
       '@docusaurus/plugin-client-redirects',
       {
