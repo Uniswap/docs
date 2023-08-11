@@ -73,9 +73,30 @@ Similar to the other functions exposed by the `NonfungiblePositionManager`, we p
 
 The other two `CurrencyAmount` parameters (`expectedCurrencyOwed0` and `expectedCurrencyOwed1`) define the **maximum** amount of currency we expect to get collect through accrued fees of each token in the pool. We set these through our guide's configuration.
 
+In a real world scenario, we can fetch the amount of fees that are owed to the Position through the `positions()` function of the NonfungiblePositionManager Contract.
+We fetch the position info like in this code snippet taken from the [Fetching Positions guide](./03-fetching-positions.md):
+
+```typescript
+const positionInfos = callResponses.map((position) => {
+    return {
+        tickLower: position.tickLower,
+        tickUpper: position.tickUpper,
+        liquidity: JSBI.BigInt(position.liquidity),
+        feeGrowthInside0LastX128: JSBI.BigInt(position.feeGrowthInside0LastX128),
+        feeGrowthInside1LastX128: JSBI.BigInt(position.feeGrowthInside1LastX128),
+        tokensOwed0: JSBI.BigInt(position.tokensOwed0),
+        tokensOwed1: JSBI.BigInt(position.tokensOwed1),
+  }
+})
+```
+
+The `tokensOwed0` and `tokensOwed1` values are the fees owed.
+
+In this example, we have the values hardcoded in the [`config.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/collecting-fees/src/config.ts) file.
+
 ## Submitting our fee collection transaction
 
-We then get the call parameters for collecting our fees from our `NonfungiblePositionManager` using the constructed `CollectOptions`:
+Next, we get the call parameters for collecting our fees from our `NonfungiblePositionManager` using the constructed `CollectOptions`:
 
 ```typescript
 const { calldata, value } =

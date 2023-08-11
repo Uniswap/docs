@@ -3,15 +3,29 @@ id: fetching-positions
 title: Fetching Positions
 ---
 
-# Introduction
+## Introduction
 
-## Fetching Positions
+This guide will cover how to create (or mint) a liquidity position on the Uniswap V3 protocol.
+Like the [Liquidity Position guide](./01-position-data.md) it doesn't have an accompanying example, nevertheless the concepts and functions used here can be found among the various examples that interact with liquidity positions.
 
-The [NonfungiblePositionManager Contract](../../../../contracts/v3/reference/periphery/NonfungiblePositionManager.md) can be used to create Positions, as well as get information on existing Positions.
+:::info
+If you need an introduction to liquidity positions, check out the [Liquidity Position guide](./01-position-data.md)
+:::
 
-In this section we will **fetch all Positions** for an address.
+The [NonfungiblePositionManager Contract](../../../../contracts/v3/reference/periphery/NonfungiblePositionManager.md) can be used to create Positions, as well as get information on **existing Positions**.
+In this guide, we will fetch **all Positions** an address has and fetch the **detailed Position Data** for those positions.
 
-### Creating an ethers Contract
+The guide will **cover**:
+
+1. Creating an ethersJS contract to interact with the NonfungiblePositionManager.
+2. Fetching all positions for an address.
+3. Fetching the position info for the positions.
+
+At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position on the UI of the web application.
+
+For this guide, we do not need to use the Uniswap SDKs, we will only import the contract ABI for the NonfungiblePositionManager Contract from [`@uniswap/v3-periphery`](https://www.npmjs.com/package/@uniswap/v3-periphery).
+
+## Connecting to the NFTPositionManager Contract
 
 We use **ethersJS** to interact with the NonfungiblePositionManager Contract. Let's create an ethers Contract:
 
@@ -30,7 +44,7 @@ const nfpmContract = new ethers.Contract(
 
 We get the Contract ABI from the 'v3-periphery` package and the contract address from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md)
 
-### Fetching the Position Ids
+## Fetching the Position Ids
 
 We want to fetch all Position Ids for our address. We first fetch the number of positions and then the ids by their indices.
 
@@ -55,7 +69,7 @@ for (let i = 0; i < numPositions; i++) {
 const positionIds = await Promise.all(calls)
 ```
 
-### Fetching the Position Info
+## Fetching the Position Info
 
 Now that we have the ids of the Positions associated with our address, we can fetch the position info using the `positions` function.
 

@@ -34,7 +34,11 @@ The core code of this guide can be found in [`mintPosition()`](https://github.co
 
 ## Giving approval to transfer our tokens
 
-The first step is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens:
+We want to use the `NonfungiblePositionManager` contract to create our liqudity position.
+In situations where a smart contract is transfering tokens on our behalf, we need to give it approval to do so.
+This is done by interacting with the Contract of the contract, considering ERC20 Tokens are smart contracts of their own.
+
+Considering this, the first step to create our position is to give approval to the protocol's `NonfungiblePositionManager` to transfer our tokens:
 
 ```typescript
 const token0Approval = await getTokenTransferApproval(
@@ -133,6 +137,11 @@ const configuredPool = new Pool(
 )
 ```
 
+We need a Pool instance to create our Position as various parameters of liquidity positions depend on the state of the Pool where they are created.
+An example is the current price (named *sqrtPriceX96* after the way it is encoded) to know the ratio of the two Tokens we need to send to the Pool.
+
+Liquidity provided below the current Price will be provided in the first Token of the Pool, while liquidity provided above the current Price is made up by the second Token.
+
 ## Calculating our `Position` from our input tokens
 
 Having created the instance of the `Pool` class, we can now use that to create an instance of a `Position` class, which represents the price range for a specific pool that LPs choose to provide in:
@@ -187,7 +196,13 @@ const { calldata, value } = NonfungiblePositionManager.addCallParameters(
 )
 ```
 
-The function returns the calldata as well as the value required to execute the transaction:
+The `MintOptions` interface requires three keys:
+
+- `recipient` defines the address of the Position owner, so in our case the address of our wallet.
+- `deadline` defines the latest point in time at which we want our transaction to be included in the blockchain.
+- `slippageTolerance` defines the maximum amount of **change of the ratio** of the Tokens we provide. The ratio can change if for example **trades** that change the price of the Pool are included before our transaction.
+
+The `addCallParameters` function returns the calldata as well as the value required to execute the transaction:
 
 ```typescript
 const transaction = {

@@ -33,6 +33,39 @@ This guide assumes you are familiar with our [Minting a Position](./02-minting-p
 Also note that we do not need to give approval to the `NonfungiblePositionManager` to transfer our tokens as we will have already done that when minting our position.
 :::
 
+## Configuration and utils
+
+The example can be configured in the [`config.ts`](https://github.com/Uniswap/examples/blob/d34a53412dbf905802da2249391788a225719bb8/v3-sdk/modifying-position/src/config.ts) file.
+The `CurrentConfig` object has this structure:
+
+```typescript
+export const CurrentConfig: ExampleConfig = {
+  env: Environment.LOCAL,
+  rpc: {
+    local: 'http://localhost:8545',
+    mainnet: 'https://mainnet.infura.io/v3/0ac57a06f2994538829c14745750d721',
+  },
+  wallet: {
+    address: '0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266',
+    privateKey:
+      '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80',
+  },
+  tokens: {
+    token0: USDC_TOKEN,
+    token0Amount: 1000,
+    token1: DAI_TOKEN,
+    token1Amount: 1000,
+    poolFee: FeeAmount.LOW,
+    fractionToRemove: 1,
+    fractionToAdd: 0.5,
+  },
+}
+```
+
+You should already be familiar with the `rpc`, `wallet` and token parameters, they are used in the same way as in the guides earlier in our v3-sdk series.
+The `fractionToAdd` variable is the multiplicator by which we will increase the Position. A fraction of **0.5** means we increase the liquidity by **50%**.
+The `fractionToRemove` variable is the fraction of the Position that we want to remove later in the guide. A fraction of **1** means we remove **100%** of the liquidity.
+
 ## Adding liquidity to our position
 
 Assuming we have already minted a position, our first step is to construct the modified position using our original position to calculate the amount by which we want to increase our current position:
@@ -103,12 +136,16 @@ const addLiquidityOptions: AddLiquidityOptions = {
 ```
 
 Compared to minting, we have we have omitted the `recipient` parameter and instead passed in the `tokenId` of the position we previously minted.
+As the Position already exists, the recipient doesn't change, instead the NonfungiblePositionManager contract can modify the existing Position by accessing it with its id.
+
 The tokenId can be fetched with the tokenOfOwnerByIndex function of the NonfungiblePositionManager Contract as described [here](./01-position-data.md#fetching-positions).
 
 The newly created position along with the options object are then passed to the `NonfungiblePositionManager`'s `addCallParameters`:
 
 ```typescript
 import { NonfungiblePositionManager } from '@uniswap/v3-sdk'
+
+const positionToIncreaseBy = constructPosition(CurrentConfig.tokens.amount0, CurrentConfig.tokens.amount1)
 
 const { calldata, value } = NonfungiblePositionManager.addCallParameters(
   positionToIncreaseBy,
