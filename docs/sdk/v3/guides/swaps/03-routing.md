@@ -71,7 +71,8 @@ const router = new AlphaRouter({
 
 ## Creating a route
 
-Next, we will create our options conforming to the `SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction:
+We will use the [SwapRouter02](https://github.com/Uniswap/v3-periphery/blob/v1.0.0/contracts/SwapRouter.sol) for our trade.
+The `smart-order-router` package provides us with a SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction that we need to interact with the contract:
 
 ```typescript
 import { SwapOptionsSwapRouter02, SwapType } from '@uniswap/smart-order-router'
@@ -84,6 +85,8 @@ const options: SwapOptionsSwapRouter02 = {
   type: SwapType.SWAP_ROUTER_02,
 }
 ```
+
+Like explained in the [previous guide](./02-trading.md#executing-a-trade), it is important to set the parameters to sensible values.
 
 Using these options, we can now create a trade (`TradeType.EXACT_INPUT` or `TradeType.EXACT_OUTPUT`) with the currency and the input amount to use to get a quote. For this example, we'll use an `EXACT_INPUT` trade to get a quote outputted in the quote currency.
 
@@ -106,7 +109,21 @@ const route = await router.route(
 )
 ```
 
-The `fromReadableAmount` function calculates the amount of tokens in the Token's smallest unit from the full unit and the Token's decimals.
+The `fromReadableAmount` function calculates the amount of tokens in the Token's smallest unit from the full unit and the Token's decimals:
+
+```typescript title="src/libs/conversion.ts"
+export function fromReadableAmount(amount: number, decimals: number): JSBI {
+  const extraDigits = Math.pow(10, countDecimals(amount))
+  const adjustedAmount = amount * extraDigits
+  return JSBI.divide(
+    JSBI.multiply(
+      JSBI.BigInt(adjustedAmount),
+      JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(decimals))
+    ),
+    JSBI.BigInt(extraDigits)
+  )
+}
+```
 
 `route` and `route.methodParameters` are *optional* as the request can fail, for example if **no route exists** between the two Tokens or because of networking issues.
 We check if the call was succesful:
@@ -139,7 +156,14 @@ const tokenApproval = await tokenContract.approve(
 )
 ```
 
-We can get the **V3_SWAP_ROUTER_ADDRESS** for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md). We need to wait one block for the approval transaction to be included by the blockchain.
+To be able to spend the tokens of a wallet, a smart contract first needs to get an approval from that wallet. 
+ERC20 tokens have an `approve` function that accepts the address of the smart contract that we want to allow spending our tokens and the amount the smart contract should be allowed to spend.
+
+We can get the **V3_SWAP_ROUTER_ADDRESS** for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md). 
+Keep in mind that different chains might have **different deployment addresses** for the same contracts.
+The deployment address for local forks of a network are the same as in the network you forked, so for a **fork of mainnet** it would be the address for **Mainnet**.
+
+We need to wait one block for the approval transaction to be included by the blockchain.
 
 Once the approval has been granted, we can now execute the trade using the route's computed calldata, values, and gas values:
 
@@ -155,6 +179,8 @@ const txRes = await wallet.sendTransaction({
 ```
 
 After swapping, you should see the currency balances update in the UI shortly after the block is confirmed.
+
+You can find the full code in [`routing.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/routing/src/libs/routing.ts).
 
 ## Next Steps
 

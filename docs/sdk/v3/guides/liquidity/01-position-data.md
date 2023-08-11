@@ -21,10 +21,48 @@ For this guide, the following Uniswap packages are used:
 
 The code mentioned in this guide can be found across the [minting Position](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/src), [collecting Fees](https://github.com/Uniswap/examples/blob/main/v3-sdk/collecting-fees/src), [modifying positions](https://github.com/Uniswap/examples/blob/d34a53412dbf905802da2249391788a225719bb8/v3-sdk/modifying-position/src) and [swap and add liquidity](https://github.com/Uniswap/examples/blob/main/v3-sdk/swap-and-add-liquidity/src) examples.
 
+## Prerequisites
+
+To understand what Positions are, we need to understand some underlying concepts of the Uniswap protocol.
+
+Consider checking out the [Concepts section](../../../../concepts/protocol/concentrated-liquidity.md) as well as the [Uniswap Book](https://uniswapv3book.com/docs/introduction/uniswap-v3/).
+
+### Concentrated liquidity
+
+Uniswap V3 Pools use concentrated liquidity to allow a denser concentration of liquidity at specific prices.
+Compared to the full range liquidity model Uniswap V2 uses, this allows traders to make larger trades with less price impact.
+Liquidity providers can choose a specific price range in which they want their liquidity to be used by trades.
+
+To achieve this, Uniswap V3 Pools discriminate the price range with **Ticks**.
+
+### Ticks
+
+Ticks are the boundaries between discrete price ranges.
+A change of 1 Tick always represents a price change of 0.01% from the current price.
+Uniswap V3 Pools can have different `tickSpacings`, a constant that describes which ticks can be used by the Pool.
+Only ticks at indices that are divisible by the tickSpacing can be initialized.
+This value is dependant on the fee of the Pool, Pools with higher fees have higher tickSpacing.
+
+For example, a Pool with **HIGH** fee (1%) has a tickSpacing of 200, meaning the price difference between initializable Ticks is:
+
+$$1.0001^{200} = 1.0202$$ or $$2.02$$%
+
+### Liquidity Positions
+
+When someone provides liquidity to a Pool, they create a **Liquidity Position**.
+This position is defined by the amount of liquidity provided and the start tick and the end tick, or price range, of the Position.
+
+Because V3 Pools allow users to choose any price range in which they want to provide liquidity, it is possible to create positions that do not contain the current Price of the Pool.
+In this case, the liquidity provider will pay only one type of Token into the Pool, creating a **single side liquidity position**.
+
+To learn more about how Ticks and Liquidity positions work, consider reading the [whitepaper](https://uniswap.org/whitepaper-v3.pdf) or the other resources mentioned above.
+
+Now that we have a rough understanding of liquidity positions in Uniswap V3, let's look at the correspondent classes the SDK offers us.
+
 ## Position class
 
-The **sdk** provides a `Position` class used to create local representations of an onchain position.
-It is used to create the calldata for onchain calls to mint or modify an onchain position. 
+The **sdk** provides a [`Position`](https://github.com/Uniswap/v3-sdk/blob/main/src/entities/position.ts) class used to create local representations of an onchain position.
+It is used to create the calldata for onchain calls to mint or modify an onchain position.
 
 There are four ways to construct a position.
 
@@ -100,8 +138,8 @@ const singleSidePositionToken1 = Position.fromAmount1({
 })
 ```
 
-These last two functions calculate a position at the given tick range given the amount of `token0` or `token1` and an unlimited amount of the other Token.
-For example, if a tick range where the ratio between `token0` and `token1` is 1 : 2 is defined by `tickLower` and `tickUpper`, the position would be created with that ratio.
+These last two functions calculate a position at the given tick range given the amount of `token0` or `token1`. The amount of the second token is calculated from the ratio of the tokens inside the tick range and the amount of token one.
+
 A create transaction would then fail if the wallet doesn't hold enough `token1` or the Contract is not given the necessary **Transfer Approval**.
 
 All of these functions take an Object with **named values** as a call parameter. The amount and liquidity values are of type `BigIntish` which accepts `number`, `string` and `JSBI`.
@@ -162,126 +200,6 @@ const { calldata, value } =
   NonfungiblePositionManager.collectCallParameters(collectOptions)
 ```
 
-## Fetching Positions
-
-The [NonfungiblePositionManager Contract](../../../../contracts/v3/reference/periphery/NonfungiblePositionManager.md) can be used to create Positions, as well as get information on existing Positions.
-
-In this section we will **fetch all Positions** for an address.
-
-### Creating an ethers Contract
-
-We use **ethersJS** to interact with the NonfungiblePositionManager Contract. Let's create an ethers Contract:
-
-```typescript
-import { ethers } from 'ethers'
-import INONFUNGIBLE_POSITION_MANAGER from '@uniswap/v3-periphery/artifacts/contracts/NonfungiblePositionManager.sol/NonfungiblePositionManager.json'
-
-const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
-
-const nfpmContract = new ethers.Contract(
-    NONFUNGIBLE_POSITION_MANAGER_CONTRACT_ADDRESS,
-    INONFUNGIBLE_POSITION_MANAGER.abi,
-    provider
-)
-```
-
-We get the Contract ABI from the 'v3-periphery` package and the contract address from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md)
-
-### Fetching the Position Ids
-
-We want to fetch all Position Ids for our address. We first fetch the number of positions and then the ids by their indices.
-
-We fetch the number of positions using the `balanceOf` read call:
-
-```typescript
-
-const numPositions = await nfpmContract.balanceOf(address)
-```
-
-Next we iterate over the number of positions and fetch the ids:
-
-```typescript
-const calls = []
-
-for (let i = 0; i < numPositions; i++) {
-    calls.push(
-        nfpmContract.tokenOfOwnerByIndex(address, i)
-    )
-}
-
-const positionIds = await Promise.all(calls)
-```
-
-### Fetching the Position Info
-
-Now that we have the ids of the Positions associated with our address, we can fetch the position info using the `positions` function.
-
-The solidity function returns a lot of values describing the Position:
-
-```solidity
-function positions(
-    uint256 tokenId
-  ) external view returns (
-    uint96 nonce, 
-    address operator, 
-    address token0, 
-    address token1, 
-    uint24 fee, 
-    int24 tickLower, 
-    int24 tickUpper, 
-    uint128 liquidity, 
-    uint256 feeGrowthInside0LastX128, 
-    uint256 feeGrowthInside1LastX128, 
-    uint128 tokensOwed0, 
-    uint128 tokensOwed1
-    )
-```
-
-In this example we only care about values needed to interact with positions, so we create an Interface `PositionInfo`:
-
-```typescript
-interface PositionInfo {
-  tickLower: number
-  tickUpper: number
-  liquidity: JSBI
-  feeGrowthInside0LastX128: JSBI
-  feeGrowthInside1LastX128: JSBI
-  tokensOwed0: JSBI
-  tokensOwed1: JSBI
-}
-```
-
-We fetch the Position data with `positions`:
-
-```typescript
-const positionCalls = []
-
-for (let id of positionIds) {
-    positionCalls.push(
-        nfpmContract.positions(id)
-    )
-}
-
-const callResponses = await Promise.all(positionCalls)
-```
-
-Finally, we map the RPC response to our interface:
-
-```typescript
-const positionInfos = callResponses.map((position) => {
-    return {
-        tickLower: position.tickLower,
-        tickUpper: position.tickUpper,
-        liquidity: JSBI.BigInt(position.liquidity),
-        feeGrowthInside0LastX128: JSBI.BigInt(position.feeGrowthInside0LastX128),
-        feeGrowthInside1LastX128: JSBI.BigInt(position.feeGrowthInside1LastX128),
-        tokensOwed0: JSBI.BigInt(position.tokensOwed0),
-        tokensOwed1: JSBI.BigInt(position.tokensOwed1),
-  }
-})
-```
-
-We now have an array containing PositionInfo for all positions that our address holds.
 
 ## Next steps
 

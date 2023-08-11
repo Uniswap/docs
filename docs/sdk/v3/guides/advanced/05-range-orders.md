@@ -128,7 +128,7 @@ let targetTick = nearestUsableTick(
 )
 ```
 
-This nearest Tick will most likely not exactly match our Price target.
+This nearest Tick will most likely not **exactly** match our Price target.
 
 Depending on our personal preferences we can either err on the higher or lower side of our target by adding or subtracting the `tickSpacing` if the initializable Tick is lower or higher than the theoretically closest Tick.
 
@@ -157,6 +157,8 @@ We now have a lower and upper Tick for our Position, next we need to construct a
 
 We will use the `NonfungiblePositionManager` and `Position` classes from the `v3-sdk` to construct our position. We then use an **etherJS** wallet to mint our Position on-chain.
 
+If you are not familiar with liquidity Positions, check out the [liquidity position guides](../liquidity/01-position-data.md).
+
 ### Minting the Position
 
 We create a `Position` object with our ticks and the amount of tokens we want to deposit:
@@ -175,6 +177,8 @@ const position = Position.fromAmount0({
 
 Before we mint our position, we need to give the `NonfungiblePositionManager` Contract an approval to transfer our tokens.
 We can find the Contract address on the official [Uniswap Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+For local development, the contract address is the same as the network we are forking from.
+So if we are using a local fork of mainnet like described in the [Local development guide](../02-local-development.md), the contract address would be the same as on mainnet.
 
 ```typescript
 import ethers from 'ethers'
@@ -227,9 +231,12 @@ We can populate our mint transaction and send it with our wallet:
 const txRes = await wallet.sendTransaction(transaction)
 ```
 
+You can find full code examples for these code snippets in [`range-order.ts`](https://github.com/uniswap/examples/blob/main/v3-sdk/range-order/src/libs/range-order.ts).
+
 ### Getting the tokenId
 
-We want to read the response to our `Mint` function call to get the position id.
+We want to read the response to our `Mint` function call to get **the position id**.
+We will need the positionId to fetch the Position Info from the NFTPositionManager contract.
 We wait for the transaction receipt and fetch the result using `trace_transaction`:
 
 ```typescript
@@ -254,7 +261,13 @@ while (receipt === null) {
 }
 ```
 
-Your Node provider may not support this call. In that case you can also call the NonfungiblePositionManager Contract with the wallet address and identify the Range Order Position manually.
+Your Node provider may not support this call. In that case you can also call the NonfungiblePositionManager Contract with the wallet address and identify the Range Order Position manually:
+
+```typescript
+const mintCallOutput = await wallet.call(transaction)
+```
+
+We get a raw byte string as a return value from this function and have to parse it ourselves.
 We decode the result with the **ethers AbiCoder**. The solidity function has this signature:
 
 ```solidity
@@ -274,9 +287,15 @@ const decodedOutput = ethers.utils.defaultAbiCoder.decode(
 const tokenId = decodedOutput.toString()
 ```
 
+Ethers handles the string decoding of the byte string we got and parses it to its internal datatypes.
+The decodedOutput we get from the AbiCoder is a `ethers.Bignumber` so we need to cast it to a string to use it with the SDK.
+
 We have created our Range Order Position, now we need to monitor it.
 
-The decodedOutput we get from the AbiCoder is a `Bignumber` so we need to cast it to a string to use it with the SDK.
+In the [code example](https://github.com/uniswap/examples/blob/main/v3-sdk/range-order/src/libs/range-order.ts#L180) we use `wallet.call` to get the position id.
+`call` and `trace_call` both simulate a transaction on the connected node and return the expected output, `trace_call` gives us a much more detailed output though.
+Depending on the use case, either can be the better choice.
+In a production environment you would prefer to wait for the `transactionReceipt` like described earlier to ensure the transaction was actaully included in the blockchain.
 
 ## Observing the Price
 
