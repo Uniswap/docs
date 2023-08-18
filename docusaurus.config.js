@@ -13,7 +13,7 @@ module.exports = {
   },
   title: 'Uniswap',
   tagline: 'Documentation and Guides',
-  url: 'https://docs.uniswap.org/',
+  url: 'https://docs.uniswap.org',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'ignore',
@@ -200,7 +200,7 @@ module.exports = {
       {
         docs: {
           routeBasePath: '/',
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: require.resolve('./sidebars.js'),
           remarkPlugins: [math],
           rehypePlugins: [katex],
           editUrl: 'https://github.com/uniswap/uniswap-docs/tree/main/',
