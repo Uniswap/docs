@@ -31,9 +31,9 @@ UniswapX introduces a new participant in the Uniswap ecosystem, the _Filler_. Th
 Anyone can fill orders on UniswapX, get started by reading our [Filler Integration Guide](/contracts/uniswapx/guides/createfiller).
 
 ## Parametizing UniswapX Orders
-The UniswapX protocol does not explicitly parameterize the pricing of orders like the Exclusive Dutch Order, rather order parameterization is left to be configured by the order constructor. 
+The UniswapX protocol does not explicitly parameterize the pricing of orders like the Exclusive Dutch Order, rather order parameterization is left to be configured by the order constructor.
 
-In the current Uniswap Labs interface implementation of UniswapX, some fillers may choose to help parameterize orders by participating as quoters. These fillers can *only* win a quote if they guarantee improved swapper execution over Uniswap v3 or v2 liquidity pools. Fillers who win a quote will receive execution priority for a limited period of time to fill orders they submitted wining quotes for. 
+In the current Uniswap Labs interface implementation of UniswapX, some fillers may choose to help parameterize orders by participating as quoters. These fillers can *only* win a quote if they guarantee improved swapper execution over Uniswap v3 or v2 liquidity pools. Fillers who win a quote will receive execution priority for a limited period of time to fill orders they submitted wining quotes for.
 
 To ensure a smooth swapping experience for traders during the beta period, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch, with plans to make the quoting system fully permissionless in the near future.
 
@@ -71,10 +71,10 @@ Some sample fillContract implementations are provided in this repository:
 
 ### Direct Fill
 
-If a filler wants to fill orders using funds on-hand rather than a fillContract, they can do so gas efficiently using the `directFill` macro by specifying `address(1)` as the fillContract. This will pull tokens from the filler using `msg.sender` to satisfy the order outputs.
+If a filler wants to fill orders using funds on-hand rather than a fillContract, they can do so gas efficiently by simply approving the order's output tokens to the reactor and calling `execute`. This will pull tokens from the filler using `msg.sender` to satisfy the order outputs.
 
 # Whitepaper
-More details on the UniswapX protocol are available in the [UniswapX Whitepaper](https://uniswap.org/whitepaper-uniswapx.pdf). 
+More details on the UniswapX protocol are available in the [UniswapX Whitepaper](https://uniswap.org/whitepaper-uniswapx.pdf).
 
 # Deployment Addresses
 
