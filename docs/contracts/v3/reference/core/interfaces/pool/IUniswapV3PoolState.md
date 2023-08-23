@@ -159,7 +159,7 @@ ago, rather than at a specific index in the array.
 
 | Name                                | Type    | Description                                                                                      |
 | :---------------------------------- | :------ | :----------------------------------------------------------------------------------------------- |
-| `blockTimestamp`                    | uint256 | The timestamp of the observation,                                                                |
+| `blockTimestamp`                    | uint32 | The timestamp of the observation,                                                                |
 | `tickCumulative`                    | int56   | the tick multiplied by seconds elapsed for the life of the pool as of the observation timestamp, |
 | `secondsPerLiquidityCumulativeX128` | uint160 | the seconds per in range liquidity for the life of the pool as of the observation timestamp      |
 | `initialized`                       | bool    | whether the observation has been initialized and the values are safe to use                      |
