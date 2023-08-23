@@ -130,7 +130,7 @@ Returns the information about a position by the position's key
 
 | Name                       | Type    | Description                                                                       |
 | :------------------------- | :------ | :-------------------------------------------------------------------------------- |
-| `_liquidity`               | bytes32 | The amount of liquidity in the position,                                          |
+| `_liquidity`               | uint128 | The amount of liquidity in the position,                                          |
 | `feeGrowthInside0LastX128` | uint256 | fee growth of token0 inside the tick range as of the last mint/burn/poke,         |
 | `feeGrowthInside1LastX128` | uint256 | fee growth of token1 inside the tick range as of the last mint/burn/poke,         |
 | `tokensOwed0`              | uint128 | the computed amount of token0 owed to the position as of the last mint/burn/poke, |
