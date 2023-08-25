@@ -71,7 +71,7 @@ import '@uniswap/widgets/dist/fonts.css'
 
 The swap widget is a React component that can be easily imported into any React project. It's designed to work out-of-the-box, with no required parameters or web3 integration necessary. Trading is supported on all networks where the Uniswap Protocol is deployed.
 
-Although the widget will work out-of-the-box with no parameters, we highly recommend integrators provide [JSON-RPC endpoints](#json-rpc-endpoint), like from Infura or Alchemy. Existing dApps can also provide their existing [web3 provider](#web3-provider) to integrate the widget seamlessly into their dApp.
+Although the widget will work out-of-the-box with no parameters, we highly recommend integrators provide [JSON-RPC endpoints](#json-rpc-endpoint), like from [Chainnodes](https://www.chainnodes.org), Infura or Alchemy. Existing dApps can also provide their existing [web3 provider](#web3-provider) to integrate the widget seamlessly into their dApp.
 
 Additional [optional parameters](/sdk/swap-widget/reference/v2#optional-parameters) are available to customize the appearance and performance of the swap widget to fit your unique use case.
 
@@ -100,8 +100,8 @@ import '@uniswap/widgets/fonts.css'
 import { provider } from './your/provider'
 
 // We recommend you pass your own JSON-RPC endpoints.
-const jsonRpcUrlMap = { 
-  1: ['https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'], 
+const jsonRpcUrlMap = {
+  1: ['https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'],
   3: ['https://ropsten.infura.io/v3/<YOUR_INFURA_PROJECT_ID>']
 }
 
@@ -116,9 +116,9 @@ function App() {
 
 JSON-RPC endpoints are used to read data when no `provider` is connected. We strongly recommend you pass either a Web3 Provider to the `provider` prop, or JSON-RPC endpoint URLs to the `jsonRpcUrlMap` prop.
 
-The widget will use these endpoints to fetch on-chain data and submit transactions for signature. If the user connects a MetaMask wallet, the widget will use the JSON-RPC provided by MetaMask when possible. [(See a list of all chains supported on widget.)](https://github.com/Uniswap/widgets/blob/main/src/constants/chains.ts#L4) 
+The widget will use these endpoints to fetch on-chain data and submit transactions for signature. If the user connects a MetaMask wallet, the widget will use the JSON-RPC provided by MetaMask when possible. [(See a list of all chains supported on widget.)](https://github.com/Uniswap/widgets/blob/main/src/constants/chains.ts#L4)
 
-If you don’t yet have JSON-RPC endpoints, you can easily create them with services like [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode).
+If you don’t yet have JSON-RPC endpoints, you can easily create them with services like [Chainnodes](https://www.chainnodes.org), [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode).
 
 If you choose not to provide a `jsonRpcUrlMap` prop or are missing endpoints for some chains, the widget uses free public JSON-RPC endpoints to still allow users to interact with the widget and fetch price quotes. However, these public endpoints are NOT recommended for production environment usage, are severely rate-limited, and aren't necessarily as reliable. When possible, we'd recommend providing your own endpoints!
 
