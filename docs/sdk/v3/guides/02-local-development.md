@@ -114,6 +114,8 @@ The result should look like the below (see image below as well):
 
 As you can see, the chain id is `1`, just like on Mainnet!
 
+You can find the above example and more in [this Postman workspace](https://www.postman.com/chainnodes/workspace/uniswap-examples) under "Local Development".
+
 ## Using your Mainnet Fork
 
 Now that you have a running Mainnet Fork, you will be able to use it everywhere in your development setup.
