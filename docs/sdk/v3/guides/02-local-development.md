@@ -1,6 +1,7 @@
 ---
 id: local-development
 title: Local Development
+position: 2
 ---
 
 ## Introduction

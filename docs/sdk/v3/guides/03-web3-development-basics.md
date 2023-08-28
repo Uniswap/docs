@@ -1,6 +1,7 @@
 ---
 id: web3-development-basics
 title: Web3 Development Basics
+position: 3
 ---
 
 ## Introduction
