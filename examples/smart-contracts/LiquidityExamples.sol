@@ -204,9 +204,9 @@ contract LiquidityExamples is IERC721Receiver {
             TransferHelper.safeTransfer(token0, msg.sender, refund0);
         }
 
-        if (amount1 < amount1ToMint) {
+        if (amount1 < amountAdd1) {
             TransferHelper.safeApprove(token1, address(nonfungiblePositionManager), 0);
-            uint256 refund1 = amount1ToMint - amount1;
+            uint256 refund1 = amountAdd1 - amount1;
             TransferHelper.safeTransfer(token1, msg.sender, refund1);
         }
     }
