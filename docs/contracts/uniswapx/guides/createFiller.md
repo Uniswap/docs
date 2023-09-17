@@ -43,7 +43,7 @@ For convenience, we’ve provided an [example Executor Contract](https://github.
 
 ## 2. Retrieve & Execute Signed Orders
 
-All signed orders created through the Uniswap UI will be available via the UniswapX Orders Endpoint:
+All signed orders created through the Uniswap UI will be available via the UniswapX Orders Endpoint. We have [swagger documentation](https://api.uniswap.org/v2/uniswapx/docs) but see below for a quick example curl.
 
 ```
 GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&limit=1
