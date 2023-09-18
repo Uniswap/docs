@@ -96,7 +96,7 @@ Uniswap V3 allows 4 different Fee tiers when deploying a pool, so multiple pools
 ## Creating a Pool Contract instance and fetching metadata
 
 Now that we have the address of a **USDC - ETH** Pool, we can construct an instance of an **ethers** `Contract` to interact with it.
-To construct the Contract we need to provide the address of the contract, its ABI and a provider connected to an [RPC endpoint](https://docs.infura.io/infura/getting-started). We get access to the contract's ABI through the `@uniswap/v3-core` package, which holds the core smart contracts of the Uniswap V3 protocol:
+To construct the Contract we need to provide the address of the contract, its ABI and a provider connected to an [RPC endpoint](https://www.chainnodes.org/docs). We get access to the contract's ABI through the `@uniswap/v3-core` package, which holds the core smart contracts of the Uniswap V3 protocol:
 
 ```typescript
 import { ethers } from 'ethers

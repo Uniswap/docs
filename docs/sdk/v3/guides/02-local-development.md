@@ -1,6 +1,7 @@
 ---
 id: local-development
 title: Local Development
+position: 2
 ---
 
 ## Introduction
@@ -113,6 +114,8 @@ The result should look like the below (see image below as well):
 <img src={require('./images/postman-chainid-result.png').default} alt="anvil result after calling" box-shadow="none"/>
 
 As you can see, the chain id is `1`, just like on Mainnet!
+
+You can find the above example and more in [this Postman workspace](https://www.postman.com/chainnodes/workspace/uniswap-examples) under "Local Development".
 
 ## Using your Mainnet Fork
 
