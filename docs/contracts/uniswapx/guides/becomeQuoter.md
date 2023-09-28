@@ -28,14 +28,15 @@ Request:
 method: POST
 content-type: application/json
 data: {
-    requestId: "string uuid - a unique identifier for this quote request",
+    requestId: "string uuid - a unique identifier for swapper's request",
     tokenInChainId: "number - the `tokenIn` chainId",
     tokenOutChainId: "number - the `tokenOut` chainId",
     swapper: "string address - The swapper’s EOA address that will sign the order",
     tokenIn: "string address - The ERC20 token that the swapper will provide",
     tokenOut: "string address - The ERC20 token that the swapper will receive",
     amount: "string number - If the trade type is exact input then this is amount of `tokenIn` the user wants to swap otherwise this is amount of tokenOut the user wants to receive",
-    type: "number - This is either `EXACT_INPUT` or `EXACT_OUTPUT`"
+    type: "number - This is either `EXACT_INPUT` or `EXACT_OUTPUT`",
+    quoteId: "string uuid - a unique identifier for the quote an integrator is sending back"
 }
 ```
 
@@ -77,12 +78,12 @@ data: {
     orderHash: "the hash identifier for the order", 
     createdAt: "timestamp at which the order was posted",
     signature: "the swapper signature to include with order execution",
-    swapper: "the swapper address",
-    orderStatus: "current order status (always should be `active` upon receiving notification)",
+    orderStatus: "current order status (always should be `open` upon receiving notification)",
     encodedOrder: "The abi-encoded order to include with order execution. This can be decoded using the Uniswapx-SDK (https://github.com/uniswap/uniswapx-sdk) to verify order fields and signature",
     chainId: "The chain ID that the order originates from and must be settled on",
     filler?: "If this order was quoted by an RFQ participant then this will be their filler address",
-    quoteId?: "If this order was quoted by an RFQ participant then this will be the requestId from the quote request"
+    quoteId?: "If this order was quoted by an RFQ participant then this will be the requestId from the quote request",
+    swapper: "OPTIONAL: the swapper address"
 }
 ```
 
