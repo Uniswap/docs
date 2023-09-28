@@ -53,7 +53,8 @@ Response (status 200 - OK):
     requestId: "string uuid - a unique identifier for this quote request",
     swapper: "string address - The swapper’s EOA address that will sign the order",
     tokenIn: "string address - The ERC20 token that the swapper will provide",
-    tokenOut: "string address - The ERC20 token that the swapper will receive"
+    tokenOut: "string address - The ERC20 token that the swapper will receive",
+    quoteId: "string uuid - a unique identifier for the quote an integrator is sending back"
 }
 ```
 
@@ -65,7 +66,7 @@ Signed open orders can always be fetched via the UniswapX API, but to provide im
 
 **Filter**
 
-Orders can be filtered by various fields, but most relevant here is `filler`. When registering your webhook notification endpoint, you must provide the `filler` address that you plan to use to execute orders and to receive the last-look exclusivity period.
+Orders can be filtered by various fields, but most relevant here is `filler`. When registering your webhook notification endpoint, we recommend you provide the `filler` address that you plan to use to execute orders and to receive the last-look exclusivity period. Alternatively the webhook can be configured to send all open orders to your endpoint. 
 
 **Notification**
 
