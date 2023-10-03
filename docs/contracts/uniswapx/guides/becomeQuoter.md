@@ -12,8 +12,8 @@ Once you've been approved to be a quoter by the Uniswap Labs team follow the ins
 
 To participate as quoters, fillers must host a service that adheres to the UniswapX RFQ API schema (below) and responds to requests with quotes. The RFQ participant who submits the best quote for a given order will receive exclusive rights to fill it using their Executor during the _Exclusivity Period_ of the auction.
 
-## Requirements & SLAs
-During the UniswapX beta period, quoters will be held to the following standards to assure a fair auction process and the best experience for swappers. Any quoters who drop below these requirements are subject to suspension or removal from the UniswapX beta: 
+## Performance Expectations
+During the UniswapX beta period, quoters will be expected to uphold the following standards to assure a fair auction process and the best experience for swappers. Any quoters who drop below these expectations are subject to suspension or removal from the UniswapX beta: 
 
 1. **500ms Response Time:** When a quoter receives a request for quote, their server should respond within 500ms with either a quote for the trade or a 204 response code
 2. **90% Rolling Fill Rate:** When a quoter wins an auction, meaning their contract address is in the `exclusiveFiller` field of an order, they are required to fill that order >90% of the time. We'll measure this on a rolling 7-day day period.
