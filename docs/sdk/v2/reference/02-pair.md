@@ -4,7 +4,7 @@ title: Pair
 ---
 
 ```typescript
-constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount)
+constructor(tokenAmountA: CurrencyAmount, tokenAmountB: CurrencyAmount)
 ```
 
 The Pair entity represents a Uniswap pair with a balance of each of its pair tokens.
@@ -12,12 +12,13 @@ The Pair entity represents a Uniswap pair with a balance of each of its pair tok
 # Example
 
 ```typescript
-import { ChainId, Token, TokenAmount, Pair } from '@uniswap/sdk'
+import { Pair } from '@uniswap/sdk-core'
+import {ChainId, Token, CurrencyAmount } from '@uniswap/v2-sdk'
 
 const HOT = new Token(ChainId.MAINNET, '0xc0FFee0000000000000000000000000000000000', 18, 'HOT', 'Caffeine')
 const NOT = new Token(ChainId.MAINNET, '0xDeCAf00000000000000000000000000000000000', 18, 'NOT', 'Caffeine')
 
-const pair = new Pair(new TokenAmount(HOT, '2000000000000000000'), new TokenAmount(NOT, '1000000000000000000'))
+const pair = new Pair(CurrencyAmount.fromRawAmount(HOT, '2000000000000000000'), CurrencyAmount.fromRawAmount(NOT, '1000000000000000000'))
 ```
 
 # Static Methods
@@ -59,7 +60,7 @@ See [Token1](../../../contracts/v2/reference/smart-contracts/pair#token1).
 ## reserve0
 
 ```typescript
-reserve0: TokenAmount
+reserve0: CurrencyAmount
 ```
 
 The reserve of token0.
@@ -67,7 +68,7 @@ The reserve of token0.
 ## reserve1
 
 ```typescript
-reserve1: TokenAmount
+reserve1: CurrencyAmount
 ```
 
 The reserve of token1.
@@ -77,7 +78,7 @@ The reserve of token1.
 ## reserveOf
 
 ```typescript
-reserveOf(token: Token): TokenAmount
+reserveOf(token: Token): CurrencyAmount
 ```
 
 Returns reserve0 or reserve1, depending on whether token0 or token1 is passed in.
@@ -85,7 +86,7 @@ Returns reserve0 or reserve1, depending on whether token0 or token1 is passed in
 ## getOutputAmount
 
 ```typescript
-getOutputAmount(inputAmount: TokenAmount): [TokenAmount, Pair]
+getOutputAmount(inputAmount: CurrencyAmount): [CurrencyAmount, Pair]
 ```
 
 Pricing function for exact input amounts. Returns maximum output amount based on current reserves and the new Pair that would exist if the trade were executed.
@@ -93,7 +94,7 @@ Pricing function for exact input amounts. Returns maximum output amount based on
 ## getInputAmount
 
 ```typescript
-getInputAmount(outputAmount: TokenAmount): [TokenAmount, Pair]
+getInputAmount(outputAmount: CurrencyAmount): [CurrencyAmount, Pair]
 ```
 
 Pricing function for exact output amounts. Returns minimum input amount based on current reserves and the new Pair that would exist if the trade were executed.
@@ -101,7 +102,7 @@ Pricing function for exact output amounts. Returns minimum input amount based on
 ## getLiquidityMinted
 
 ```typescript
-getLiquidityMinted(totalSupply: TokenAmount, tokenAmountA: TokenAmount, tokenAmountB: TokenAmount): TokenAmount
+getLiquidityMinted(totalSupply: CurrencyAmount, tokenAmountA: CurrencyAmount, tokenAmountB: CurrencyAmount): CurrencyAmount
 ```
 
 Calculates the exact amount of liquidity tokens minted from a given amount of token0 and token1.
@@ -114,11 +115,11 @@ Calculates the exact amount of liquidity tokens minted from a given amount of to
 ```typescript
 getLiquidityValue(
   token: Token,
-  totalSupply: TokenAmount,
-  liquidity: TokenAmount,
+  totalSupply: CurrencyAmount,
+  liquidity: CurrencyAmount,
   feeOn: boolean = false,
   kLast?: BigintIsh
-): TokenAmount
+): CurrencyAmount
 ```
 
 Calculates the exact amount of token0 or token1 that the given amount of liquidity tokens represent.
