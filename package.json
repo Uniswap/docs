@@ -16,7 +16,7 @@
     "@algolia/client-search": "^4.9.1",
     "@babel/core": "^7.14.6",
     "@docusaurus/core": "^2.0.0-beta.17",
-    "@docusaurus/plugin-client-redirects": "2.0.0-beta.17",
+    "@docusaurus/plugin-client-redirects": "^2.4.3",
     "@docusaurus/plugin-content-docs": "^2.0.0-beta.17",
     "@docusaurus/preset-classic": "^2.0.0-beta.17",
     "@docusaurus/remark-plugin-npm2yarn": "^2.0.0-beta.17",
@@ -72,7 +72,7 @@
   },
   "engines": {
     "npm": "please-use-yarn",
-    "node": "16",
+    "node": "18",
     "yarn": ">=1.22"
   }
 }
