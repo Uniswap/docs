@@ -53,7 +53,7 @@ function App() {
 }
 ```
 
-That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](/sdk/v3/guides/routing) to compute the best price across all Uniswap v2 and v3 pools.
+That’s it! You should now see a fully functional swap widget on your site. The widget is self-contained and gracefully handles all interactions with the Uniswap Protocol. It leverages the [Auto Router](/sdk/v3/guides/swaps/routing) to compute the best price across all Uniswap v2 and v3 pools.
 
 See a full implementation of the swap widget in the `/cra` and `/nextjs` branches of the [widgets-demo](https://github.com/Uniswap/widgets-demo) repo.
 
@@ -101,7 +101,7 @@ import { provider } from './your/provider'
 
 // We recommend you pass your own JSON-RPC endpoints.
 const jsonRpcUrlMap = {
-  1: ['https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'], 
+  1: ['https://mainnet.infura.io/v3/<YOUR_INFURA_PROJECT_ID>'],
   3: ['https://ropsten.infura.io/v3/<YOUR_INFURA_PROJECT_ID>']
 }
 
@@ -116,7 +116,7 @@ function App() {
 
 JSON-RPC endpoints are used to read data when no `provider` is connected. We strongly recommend you pass either a Web3 Provider to the `provider` prop, or JSON-RPC endpoint URLs to the `jsonRpcUrlMap` prop.
 
-The widget will use these endpoints to fetch on-chain data and submit transactions for signature. If the user connects a MetaMask wallet, the widget will use the JSON-RPC provided by MetaMask when possible. [(See a list of all chains supported on widget.)](https://github.com/Uniswap/widgets/blob/main/src/constants/chains.ts#L4) 
+The widget will use these endpoints to fetch on-chain data and submit transactions for signature. If the user connects a MetaMask wallet, the widget will use the JSON-RPC provided by MetaMask when possible. [(See a list of all chains supported on widget.)](https://github.com/Uniswap/widgets/blob/main/src/constants/chains.ts#L4)
 
 If you don’t yet have JSON-RPC endpoints, you can easily create them with services like [Chainnodes](https://www.chainnodes.org), [Infura](https://infura.io/product/ethereum) or [Alchemy](https://www.alchemy.com/supernode).
 
