@@ -79,12 +79,12 @@ export const dAppGuides = [
   {
     title: 'Create a Trade',
     text: 'Fetch a Quote for a Trade and execute the Trade',
-    to: '/sdk/v3/guides/trading',
+    to: '/sdk/v3/guides/swaps/trading',
   },
   {
     title: 'Route trades',
     text: 'Use Routing to get optimized prices for your Trades',
-    to: '/sdk/v3/guides/routing',
+    to: '/sdk/v3/guides/swaps/routing',
   },
   {
     title: 'Provide liquidity',
