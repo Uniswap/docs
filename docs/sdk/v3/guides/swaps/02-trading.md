@@ -108,7 +108,7 @@ If you cannot see the Tokens traded in your wallet, you possibly have to [import
 
 ## Constructing a route from pool information
 
-To construct our trade, we will first create an model instance of a `Pool`. We create an **ethers** contract like in the [previous guide](./01-quoting.md#referencing-the-pool-contract-and-fetching-metadata).
+To construct our trade, we will first create a model instance of a `Pool`. We create an **ethers** contract like in the [previous guide](./01-quoting.md#referencing-the-pool-contract-and-fetching-metadata).
 We will first extract the needed metadata from the relevant pool contract. Metadata includes both constant information about the pool as well as information about its current state stored in its first slot:
 
 ```typescript

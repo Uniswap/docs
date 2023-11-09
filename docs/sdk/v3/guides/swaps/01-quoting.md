@@ -11,16 +11,14 @@ This guide will cover how to get the current quotes for any token pair on the Un
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](../01-background.md) page!
 :::
 
-In this example we will use `quoteExactInputSingle` to get a quote for the pair **USDC - WETH**.
+In this example we will use the Quoter class to get a quote for a trade from **USDC to WETH**.
 The inputs are the **token in**, the **token out**, the **amount in** and the **fee**.
 
-The **fee** input parameters represents the swap fee that distributed to all in range liquidity at the time of the swap. It is one of the identifiers of a Pool, the others being **tokenIn** and **tokenOut**.
+The **fee** input parameter represents the swap fee that is deducted from the trade and given to liquidity providers. It is one of the identifiers of a Pool, the others being **tokenIn** and **tokenOut**.
 
 The guide will **cover**:
 
-1. Computing the Pool's deployment address
-2. Referencing the Pool contract and fetching metadata
-3. Referencing the Quoter contract and getting a quote
+1. Fetching a Quote for a simple swap on one Pool
 
 At the end of the guide, we should be able to fetch a quote for the given input token pair and the input token amount with the press of a button on the web application.
 
@@ -37,6 +35,7 @@ We will use the example configuration `CurrentConfig` in most code snippets of t
 
 ```typescript
 import { Token } from '@uniswap/sdk-core'
+import { FeeAmount } from '@uniswap/v3-sdk'
 
 interface ExampleConfig {
   rpc: {
@@ -45,9 +44,9 @@ interface ExampleConfig {
   }
   tokens: {
     in: Token
-    amountIn: number
+    readableAmountIn: number
     out: Token
-    poolFee: number
+    poolFee: FeeAmount
   }
 }
 
@@ -77,138 +76,57 @@ The pool used is defined by a pair of tokens in [`constants.ts`](https://github.
 You can also change these two tokens and the fee of the pool in the config, just make sure a Pool actually exists for your configuration.
 Check out the top pools on [Uniswap info](https://info.uniswap.org/#/pools).
 
-## Computing the Pool's deployment address
+Check out the full code for the following snippets in [quote.ts](https://github.com/Uniswap/examples/blob/main/v3-sdk/quoting/src/libs/quote.ts)
 
-To interact with the **USDC - WETH** Pool contract, we first need to compute its deployment address.
-If you haven't worked directly with smart contracts yet, check out this [guide](https://docs.alchemy.com/docs/smart-contract-basics) from Alchemy.
-The SDK provides a utility method for that:
+## Using the SwapQuoter class to fetch a quote
 
-```typescript
-import { computePoolAddress } from '@uniswap/v3-sdk' 
+To get quotes for trades, Uniswap has deployed a Quoter Contract. We will use this contract to fetch the output amount we can expect for our trade, without actually executing the trade.
 
-const currentPoolAddress = computePoolAddress({
-  factoryAddress: POOL_FACTORY_CONTRACT_ADDRESS,
-  tokenA: CurrentConfig.tokens.in,
-  tokenB: CurrentConfig.tokens.out,
-  fee: CurrentConfig.tokens.poolFee,
-})
-```
-
-Since each *Uniswap V3 Pool* is uniquely identified by 3 characteristics (token in, token out, fee), we use those
-in combination with the address of the *PoolFactory* contract to compute the address of the **USDC - ETH** Pool.
-These parameters have already been defined in our [constants.ts](https://github.com/Uniswap/examples/blob/main/v3-sdk/quoting/src/libs/constants.ts#L14) file:
+The `SwapQuoter` class allows us to interact with the Quoter Contract.
+We will use the `quoteExactInputSingle` function to fetch a quote for our swap:
 
 ```typescript
-const WETH_TOKEN = new Token(
-  1,
-  '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-  18,
-  'WETH',
-  'Wrapped Ether'
-)
-
-const USDC_TOKEN = new Token(
-  1,
-  '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
-  6,
-  'USDC',
-  'USD//C'
-)
+async function quoteExactInputSingle<TInput extends Token, TOutput extends Token>(
+    amountIn: CurrencyAmount<TInput>,
+    tokenOut: TOutput,
+    poolFee: FeeAmount,
+    provider: Provider
+): Promise<CurrencyAmount<TOutput>>
 ```
 
-These constants are used in the `config.ts` file, as mentioned in the Introduction.
-
-We can find the Pool Factory Contract address for our chain [here](../../../../contracts/v3/reference/Deployments.md).
-
-## Referencing the Pool contract and fetching metadata
-
-Now that we have the deployment address of the **USDC - ETH** Pool, we can construct an instance of an **ethers** `Contract` to interact with it:
+The function expects a `CurrencyAmount` object. We use ethers to parse the input amount:
 
 ```typescript
 import { ethers } from 'ethers'
+import { CurrencyAmount } from 'sdk-core'
 
-const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
-const poolContract = new ethers.Contract(
-  currentPoolAddress,
-  IUniswapV3PoolABI.abi,
+const rawInputAmount = ethers.utils.parseUnits(
+    CurrentConfig.tokens.amountIn,
+    CurrentConfig.tokens.in.decimals
+    )
+
+const currencyAmountIn = CurrencyAmount.fromRawAmount(
+  CurrentConfig.tokens.tokenIn,
+  rawInputAmount
+)
+```
+
+We can now use the SwapQuoter class to fetch a quote for our swap. We need a provider to connect to the blockchain:
+
+```typescript
+import { SwapQuoter } from '@uniswap/v3-sdk'
+
+const provider = new ethers.providers.JsonRpcProvider(CurrentConfig.rpc.mainnet)
+
+const currencyAmountOut = await SwapQuoter.quoteExactInputSingle(
+  currencyAmountInt,
+  CurrentConfig.tokens.out,
+  CurrentConfig.tokens.poolFee,
   provider
 )
 ```
 
-To construct the *Contract* we need to provide the address of the contract, its ABI and the provider that will carry out the RPC call for us.
-We get access to the contract's ABI through the [@uniswap/v3-core](https://www.npmjs.com/package/@uniswap/v3-core) package, which holds the core smart contracts of the Uniswap V3 protocol:
-
-```typescript
-import IUniswapV3PoolABI from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
-```
-
-Having constructed our reference to the contract, we can now access its methods through our provider.
-We use a batch `Promise` call. This approach queries state data concurrently, rather than sequentially, to minimize the chance of fetching out of sync data that may be returned if sequential queries are executed over the span of two blocks:
-
-```typescript
-const [token0, token1, fee, liquidity, slot0] = await Promise.all([
-  poolContract.token0(),
-  poolContract.token1(),
-  poolContract.fee(),
-  poolContract.liquidity(),
-  poolContract.slot0(),
-])
-```
-
-The return values of these methods will become inputs to the quote fetching function.
-The `token0` and `token1` variables are the addresses of the tokens in the Pool and should not be mistaken for `Token` objects from the sdk.
-For the full code, check out [`getPoolConstants()`](https://github.com/Uniswap/examples/blob/main/v3-sdk/quoting/src/libs/quote.ts#L35) in `quote.ts`.
-
-:::note
-In this example, the metadata we fetch is already present in our inputs. This guide fetches this information first in order to show how to fetch any metadata, which will be expanded on in future guides.
-:::
-
-## Referencing the Quoter contract and getting a quote
-
-To get quotes for trades, Uniswap has deployed a **Quoter Contract**. We will use this contract to fetch the output amount we can expect for our trade, without actually executing the trade.
-Check out the full code for the following snippets in [quote.ts](https://github.com/Uniswap/examples/blob/main/v3-sdk/quoting/src/libs/quote.ts)
-
-Like we did for the Pool contract, we need to construct an instance of an **ethers** `Contract` for our Quoter contract in order to interact with it:
-
-```typescript
-const quoterContract = new ethers.Contract(
-  QUOTER_CONTRACT_ADDRESS,
-  Quoter.abi,
-  getProvider()
-)
-```
-
-We get access to the contract's ABI through the [@uniswap/v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) package, which holds the periphery smart contracts of the Uniswap V3 protocol:
-
-```typescript
-import Quoter from '@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json'
-```
-
-We get the QUOTE_CONTRACT_ADDRESS for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
-
-We can now use our Quoter contract to obtain the quote.
-
-In an ideal world, the quoter functions would be `view` functions, which would make them very easy to query on-chain with minimal gas costs. However, the Uniswap V3 Quoter contracts rely on state-changing calls designed to be reverted to return the desired data. This means calling the quoter will be very expensive and should not be called on-chain.
-
-To get around this difficulty, we can use the `callStatic` method provided by the **ethers.js** `Contract` instances.
-This is a useful method that submits a state-changing transaction to an Ethereum node, but asks the node to simulate the state change, rather than to execute it. Our script can then return the result of the simulated state change:
-
-```typescript
-const quotedAmountOut = await quoterContract.callStatic.quoteExactInputSingle(
-  token0,
-  token1,
-  fee,
-  fromReadableAmount(
-    CurrentConfig.tokens.amountIn,
-    CurrentConfig.tokens.in.decimals
-  ).toString(),
-  0
-)
-```
-
-The `fromReadableAmount()` function creates the amount of the smallest unit of a token from the full unit amount and the decimals.
-
-The result of the call is the number of output tokens you'd receive for the quoted swap.
+The return value is a `CurrencyAmount` object of the expected output amount for our swap.
 
 It should be noted that `quoteExactInputSingle` is only 1 of 4 different methods that the quoter offers:
 
