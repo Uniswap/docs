@@ -80,7 +80,7 @@ Check out the full code for the following snippets in [quote.ts](https://github.
 
 ## Using the SwapQuoter class to fetch a quote
 
-To get quotes for trades, Uniswap has deployed a Quoter Contract. We will use this contract to fetch the output amount we can expect for our trade, without actually executing the trade.
+To get quotes for trades, Uniswap has deployed a **Quoter Contract**. We will use this contract to fetch the output amount we can expect for our trade, without actually executing the trade.
 
 The `SwapQuoter` class allows us to interact with the Quoter Contract.
 We will use the `quoteExactInputSingle` function to fetch a quote for our swap:
@@ -126,9 +126,11 @@ const currencyAmountOut = await SwapQuoter.quoteExactInputSingle(
 )
 ```
 
+The function calls the Quoter contract and parses the response value. It only works on chains where Uniswap has officially deployed the QuoterV2 contract.
+
 The return value is a `CurrencyAmount` object of the expected output amount for our swap.
 
-It should be noted that `quoteExactInputSingle` is only 1 of 4 different methods that the quoter offers:
+It should be noted that `quoteExactInputSingle` is only 1 of 4 different methods that the quoter **contract** offers:
 
 1. `quoteExactInputSingle` - given the amount you want to swap, produces a quote for the amount out for a swap of a single pool
 2. `quoteExactInput` - given the amount you want to swap, produces a quote for the amount out for a swap over multiple pools
@@ -137,6 +139,8 @@ It should be noted that `quoteExactInputSingle` is only 1 of 4 different methods
 
 If we want to trade two tokens that do not share a pool with each other, we will need to make swaps over multiple pools.
 This is where the `quoteExactInput` and `quoteExactOutput` methods come in.
+
+In the `SwapQuoter` JS class, all 4 of these functions can be accessed with the `callQuoter` function, using a `Route` object.
 We will dive deeper into routing in the [routing guide](03-routing.md).
 
 For the `exactOutput` and `exactOutputSingle` methods, we need to keep in mind that a pool can not give us more than the amount of Tokens it holds.
