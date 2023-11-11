@@ -121,8 +121,14 @@ Now we can call the internal function we previously wrote in [Setting Up Your Co
                 token0: DAI,
                 token1: USDC,
                 fee: poolFee,
-                tickLower: TickMath.MIN_TICK,
-                tickUpper: TickMath.MAX_TICK,
+                // `tickLower % tickSpacing` and `tickUpper % tickSpacing` must be 0.
+                // The variable `tickSpacing` is set in the UniswapV3Factory.
+                // `UniswapV3Pool.fee` <= 500, `tickSpacing` = 10
+                // `UniswapV3Pool.fee` <= 3000, `tickSpacing` = 60
+                // `UniswapV3Pool.fee` <= 10000, `tickSpacing` = 200
+                // The example uses UniswapV3Pool.fee set to 500.
+                tickLower: TickMath.MIN_TICK - (TickMath.MIN_TICK % 10),
+                tickUpper: TickMath.MAX_TICK - (TickMath.MAX_TICK % 10),
                 amount0Desired: amount0ToMint,
                 amount1Desired: amount1ToMint,
                 amount0Min: 0,
