@@ -56,22 +56,6 @@ address constant HOOK_ADDRESS = address(0x0); // hookless pool is 0x0!
 ```
 Here it uses the pre-deployed PoolManager contract and token contracts. You can replace these addresses with your own.
 
-It then initialized the pool without the hook
-
-```solidity
-bytes memory hookData = new bytes(0);
-
-PoolKey memory pool = PoolKey({
-    currency0: Currency.wrap(token0),
-    currency1: Currency.wrap(token1),
-    fee: swapFee,
-    tickSpacing: tickSpacing,
-    hooks: IHooks(address(HOOK_ADDRESS)) // 0x0 is the hookless pool
-});
-
-manager.initialize(pool, startingPrice, hookData);
-```
-
 ### 3. scrips/CounterDeploy.s.sol
 This script deploys the Counter hook using Deterministic Deployment Proxy. It uses the pre-deployed PoolManager contract
 and proxy

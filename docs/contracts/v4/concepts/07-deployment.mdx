@@ -11,6 +11,8 @@ Hooks library checks the starting (or leading) bits of the hook contract's addre
 is deployed at address 0x9000000000000000000000000000000000000000, its starting bits are '1001'. This means two
 specific hooks ('before initialize' and 'after modify position') will be triggered.
 
+![Hooks Address](./images/01_Pool_Initialization/hooks_address.png)
+
 ```solidity
 uint256 internal constant BEFORE_INITIALIZE_FLAG = 1 << 159;
 uint256 internal constant AFTER_INITIALIZE_FLAG = 1 << 158;
@@ -68,18 +70,23 @@ Address: `0xFF00000000000000000000000000000000000000`
 Leading bits: '11111111...'
 Hooks: 'before initialize', 'after initialize', 'before modify position', 'after modify position', 'before swap', 'after swap', 'before donate', and 'after donate'.
 
-![Hooks Address](./images/01_Pool_Initialization/hooks_address.png)
+
 
 # CREATE2
-Ethereum blockchain allows you to create contracts (think of them as mini-programs). There are two ways to create these contracts:
+Ethereum blockchain allows you to create contracts. There are two ways to create
+these contracts:
 
-1. **CREATE**: This is the regular way. Every time you create a contract using this, it gets a new, unique address (like a house getting a unique postal address). You can't fully predict this address in advance.
+1. **CREATE**: This is the regular way. Every time you create a contract using this, it gets a new, unique
+address (like a house getting a unique postal address).
 
-2. **CREATE2**: This is a special way. Here, you use some ingredients (your address, a `salt` which is a unique number you choose, and the contract's code called `bytecode`) to create the contract. The magic of `CREATE2` is that if you use the same ingredients, you'll get the same contract address every time.
+2. **CREATE2**: This is a special way. Here, you use your address, a `salt` which is a unique number you choose, and
+the contract's code called `bytecode` to create the contract. The magic of `CREATE2` is that if you use the same
+fields, you'll get the same contract address every time.
 
 So, why use `CREATE2`? Because sometimes you want to know exactly where your contract will be, even before you create it. Like in your hooks system, where certain addresses trigger certain actions, using `CREATE2` helps ensure the contract is deployed to the exact right address.
 
-Here's a small code to show how `CREATE2` works:
+Here's a small code that predicts the address where a contract will be deployed using `CREATE2` before actually
+deploying it.
 ```solidity
 bytes32 salt = keccak256(abi.encodePacked(someData));
 address predictedAddress = address(uint(keccak256(abi.encodePacked(
@@ -89,13 +96,12 @@ address predictedAddress = address(uint(keccak256(abi.encodePacked(
     keccak256(bytecode)
 ))));
 ```
-This code predicts the address where a contract will be deployed using `CREATE2` before actually deploying it.
+
 
 # Deterministic Deployment Proxy
 Many developers use https://github.com/Arachnid/deterministic-deployment-proxy to deploy contracts to a specific
 address. The main feature of this project is the use of the Ethereum CREATE2 opcode, which allows for deterministic
-deployment of contracts. This means that using a specific set of inputs (bytecode hash and salt), the deployed
-contract will always end up at the same address across different networks.
+deployment of contracts. The deployment proxy also enables the same address across different networks.
 
 Deterministic deployment proxy uses two key techniques:
 1) The proxy contract is deployed using a one-time private key, so it will always have the same address no matter when
@@ -114,7 +120,7 @@ Here is the code for deploying the hooks using Deterministic Deployment Proxy wh
 ```solidity
 contract CounterScript is Script {
     address constant CREATE2_DEPLOYER = address(0x4e59b44847b379578588920cA78FbF26c0B4956C);
-    address constant GOERLI_POOLMANAGER = address(0x3A9D48AB9751398BbFa63ad67599Bb04e4BdF98b);
+    address constant POOLMANAGER = address(0x3A9D48AB9751398BbFa63ad67599Bb04e4BdF98b);
 
     function setUp() public {}
 
@@ -127,15 +133,15 @@ contract CounterScript is Script {
 
         // Mine a salt that will produce a hook address with the correct flags
         (address hookAddress, bytes32 salt) =
-            HookMiner.find(CREATE2_DEPLOYER, flags, type(Counter).creationCode, abi.encode(address(GOERLI_POOLMANAGER)));
+            HookMiner.find(CREATE2_DEPLOYER, flags, type(Counter).creationCode, abi.encode(address(POOLMANAGER)));
 
         // Deploy the hook using CREATE2
         vm.broadcast();
-        Counter counter = new Counter{salt: salt}(IPoolManager(address(GOERLI_POOLMANAGER)));
+        Counter counter = new Counter{salt: salt}(IPoolManager(address(POOLMANAGER)));
         require(address(counter) == hookAddress, "CounterScript: hook address mismatch");
     }
 }
 ```
 https://github.com/uniswapfoundation/v4-template/blob/main/script/CounterDeploy.s.sol
 
-
+Note: This is a Foundry script, and it wont work for hardhat.
