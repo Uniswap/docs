@@ -123,9 +123,9 @@ Depending on our preferences and reason for the issue we could retry the request
 
 ## Swapping using a route
 
-To be able to spend the tokens of a wallet, a smart contract first needs to get an approval from that wallet. 
+To be able to spend the tokens of a wallet, a smart contract first needs to get an approval from that wallet.
 ERC20 tokens have an `approve` function that accepts the address of the smart contract that we want to allow spending our tokens and the amount the smart contract should be allowed to spend.
-The `executeQuotedSwapFromRoute()` function takes care of this, but possibly needs two blocks for the execution for this reason.
+The `executeQuotedSwapFromRoute()` function takes care of this, but might need two blocks for the execution for this reason.
 
 ```typescript
 import { SwapRouter, TradeType } from '@uniswap/v3-sdk'

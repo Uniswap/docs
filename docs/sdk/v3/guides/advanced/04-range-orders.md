@@ -81,13 +81,12 @@ To create our Position, we need to first decide the Tick Range that we want to p
 
 ### Upper Tick
 
-We [create a Pool](./02-pool-data.md) that represents the V3 Pool we are interacting with and get the `token0Price`.
+We create a Pool that represents the V3 Pool we are interacting with and get the `token0Price`.
 We won't need full tick data in this example.
 
 ```typescript
 import { Pool } from '@uniswap/v3-sdk'
 
-... 
 const pool = new Pool(token0, token1, fee, sqrtPriceX96, liquidity, tickCurrent)
 
 const currentPrice = pool.token0Price
