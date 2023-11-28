@@ -71,7 +71,9 @@ const router = new AlphaRouter({
 
 ## Creating a route
 
-We will use the [SwapRouter02](https://github.com/Uniswap/v3-periphery/blob/v1.0.0/contracts/SwapRouter.sol) for our trade.
+We will use the [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol) for our trade.
+This is a different SwapRouter contract than the one we used in the previous example.
+In contrast to the contract we used previously, this on can execute swaps on both V3 Pools and V2 Pairs.
 The `smart-order-router` package provides us with a `SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction that we need to interact with the contract:
 
 ```typescript
@@ -123,22 +125,44 @@ Depending on our preferences and reason for the issue we could retry the request
 
 ## Swapping using a route
 
-To be able to spend the tokens of a wallet, a smart contract first needs to get an approval from that wallet.
-ERC20 tokens have an `approve` function that accepts the address of the smart contract that we want to allow spending our tokens and the amount the smart contract should be allowed to spend.
-The `executeQuotedSwapFromRoute()` function takes care of this, but might need two blocks for the execution for this reason.
+First, we need to give approval to the `SwapRouter02` smart contract to spend our tokens for us:
 
 ```typescript
-import { SwapRouter, TradeType } from '@uniswap/v3-sdk'
+import { ethers } from 'ethers'
+...
 
-wallet.connect(provider)
-
-const txResponse = await executeQuotedSwapFromRoute(
-    route,
-    currencyAmountIn,
-    TradeType.EXACT_INPUT,
-    undefined,
+const wallet = new ethers.Wallet(privateKey, provider)
+const tokenContract = new ethers.Contract(
+    CurrentConfig.tokens.in.address, 
+    ERC20ABI, 
     wallet
 )
+const tokenApproval = await tokenContract.approve(
+    V3_SWAP_ROUTER_ADDRESS, 
+    ethers.BigNumber.from(rawTokenAmountIn.toString())
+)
+```
+
+To be able to spend the tokens of a wallet, a smart contract first needs to get an approval from that wallet. 
+ERC20 tokens have an `approve` function that accepts the address of the smart contract that we want to allow spending our tokens and the amount the smart contract should be allowed to spend.
+
+We can get the **V3_SWAP_ROUTER_ADDRESS** for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+Keep in mind that different chains might have **different deployment addresses** for the same contracts.
+The deployment address for local forks of a network are the same as in the network you forked, so for a **fork of mainnet** it would be the address for **Mainnet**.
+
+We need to wait one block for the approval transaction to be included by the blockchain.
+
+Once the approval has been granted, we can now execute the trade using the route's computed calldata, values, and gas values:
+
+```typescript
+const txRes = await wallet.sendTransaction({
+  data: route.methodParameters.calldata,
+  to: V3_SWAP_ROUTER_ADDRESS,
+  value: route.methodParameters.value,
+  from: wallet.address,
+  maxFeePerGas: MAX_FEE_PER_GAS,
+  maxPriorityFeePerGas: MAX_PRIORITY_FEE_PER_GAS,
+})
 ```
 
 After swapping, you should see the currency balances update in the UI shortly after the block is confirmed.
