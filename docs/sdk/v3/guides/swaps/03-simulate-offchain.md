@@ -85,7 +85,7 @@ Check out the top pools on [Uniswap info](https://info.uniswap.org/#/pools).
 
 ## Initializing the Pools
 
-We already initialized a Pool object in the previous guide using the `getPoolData` function.
+We already initialized a Pool object in the previous guide using the `initFromChain` function.
 By default, a Pool does not hold the full Tickdata necessary to compute trades, as fetching it is not necessary for most use cases and can be expensive.
 
 To fetch the full Tickdata for the Pool, we use the `initializeTicks()` function on our Pools:
@@ -110,7 +110,7 @@ Our pools are now fully initialized and we can use them to simulate our trade of
 
 ## Simulating trades
 
-In this example, we want to make an exact Input trade from **USDC** to **DAI**. 
+In this example, we want to make an exact Input trade from **USDC** to **DAI**.
 We use the `Trade.bestTradeExactIn` function to find the best route given our Pools:
 
 ```typescript

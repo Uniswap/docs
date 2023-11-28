@@ -109,77 +109,28 @@ If you cannot see the Tokens traded in your wallet, you possibly have to [import
 ## Constructing a route from pool information
 
 To construct our trade, we will first create a model instance of a `Pool`. We create an **ethers** provider like in the [previous guide](./01-quoting.md).
-We will first extract the needed metadata from the relevant pool contract. Metadata includes both constant information about the pool as well as information about its current state stored in its first slot.
-To interact with the Pool, we need to compute its contract address. We use the `computePoolAddress()` function to achieve that:
+The sdk has a utility function to create a Pool from onchain data:
 
 ```typescript
-import { computePoolAddress } from '@uniswap/v3-sdk' 
+  import {Pool} from '@uniswap/v3-sdk'
+  import ethers from 'ethers'
 
-const currentPoolAddress = computePoolAddress({
-  factoryAddress: POOL_FACTORY_CONTRACT_ADDRESS,
-  tokenA: CurrentConfig.tokens.in,
-  tokenB: CurrentConfig.tokens.out,
-  fee: CurrentConfig.tokens.poolFee,
-})
+  const provider = new ethers.providers.JsonRpcProvider(CurrentConfig.rpc.mainnet)
+
+  const pool = await Pool.initFromChain(
+    provider,
+    CurrentConfig.tokens.in,
+    CurrentConfig.tokens.out,
+    CurrentConfig.tokens.poolFee
+  )
 ```
 
 Every Pool is uniquely identified by the two tokens it contains and its fee.
-We can find the Pool Factory Contract address for our chain [here](https://docs.uniswap.org/contracts/v3/reference/deployments).
-
-We can now use the `getPoolData` function to fetch the metadata:
-
-```typescript
-import { RPCPool } from '@uniswap/v3-sdk'
-import { ethers } from 'ethers'
-
-const provider = new ethers.providers.JsonRpcProvider(CurrentConfig.rpc.mainnet)
-const latestBlockNumber = await provider.getBlockNumber()
-
-const poolData = await RPCPool.getPoolData(
-  provider,
-  currentPoolAddress,
-  latestBlockNumber
-)
-```
-
-The `getPoolData()` function returns a `PoolData` object:
-
-```typescript
-interface PoolData {
-  address: string
-  tokenA: Token
-  tokenB: Token
-  fee: FeeAmount
-  sqrtPriceX96: BigInt
-  liquidity: BigInt
-  tick: number
-  tickSpacing: number
-}
-```
-
-Before continuing, let's talk about the values we fetched here and what they represent:
-
-- `fee` is the fee that is taken from every swap that is executed on the pool in 1 per million - if the `fee` value of a pool is 500, ```500/ 1000000``` (or 0.05%) of the trade amount is taken as a fee. This fee goes to the liquidity providers of the Pool.
-- `liquidity` is the amount of liquidity the Pool can use for trades at the current price.
-- `sqrtPriceX96` is the current Price of the pool, encoded as a ratio between `token0` and `token1`.
-- `tick` is the tick at the current price of the pool.
-
-Check out the [whitepaper](https://uniswap.org/whitepaper-v3.pdf) to learn more on how liquidity and ticks work in Uniswap V3.
+The initialized Pool already has all necessary metadata for our example but does not contain any Tick Data. 
+Fetching Ticks can be expensive for large pools and is not necessary for most use cases.
+We will dive deeper into this topic in the [next guide](./03-simulate-offchain.md)
   
 You can find the full code in [`pool.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/src/libs/pool.ts).
-
-Using this metadata along with our inputs, we will then construct a `Pool`:
-
-```typescript
-const pool = new Pool(
-  CurrentConfig.tokens.in,
-  CurrentConfig.tokens.out,
-  poolData.fee,
-  poolData.sqrtPriceX96,
-  poolData.liquidity,
-  poolData.tick
-)
-```
 
 ## Creating a Route
 
@@ -222,7 +173,7 @@ const amountOut = await getOutputQuote(swapRoute)
 ```
 
 As shown below, the quote is obtained using the `v3-sdk`'s `SwapQuoter`, for this guide we use the `callQuoter()` function.
-In contrast to the `quoteExactInputSingle()` function we used in the previous guide, this function works for any Route, not just a swap over a single Pool:
+In contrast to the `quoteExactInputSingle()` function we used in the previous guide, this function works for a Route with any number of Uniswap V3 Pools, not just a swap over a single Pool:
 
 ```typescript
 import { SwapQuoter } from '@uniswap/v3-sdk'
@@ -314,5 +265,5 @@ The return value is an `ethers.TransactionResponse` object.
 
 ## Next Steps
 
-So far, we have used onchain calls to get a quote for our trades. 
-In the next guide on [offchain simulations](03-simulate-offchain.md), we will use the sdk to fetch Pool information first and simulate our Trades offchain.
+So far, we have used onchain calls to get a quote for our trades.
+In the next guide on [offchain simulations](03-simulate-offchain.md), we will use the sdk to fetch Tickdata first and simulate our Trades offchain.
