@@ -4,23 +4,8 @@ title: Pool Manager and Pool Initialization
 sidebar_position: 1
 ---
 
-# Architecture
-In Uniswap v3, each pool has its own contract instance, which makes making pools and doing swaps in multiple pools costly
-
-![High Level Architecture](./images/01_Pool_Initialization/HighLevelArchitecture.png)
-
-In v4, all pools are kept in a single contract instance, saving a lot of important gas because tokens don’t have to move between different pool contracts during swaps. Early calculations say that v4 will make the gas cost of creating pools 99% less. Hooks offer unlimited choices and the single contract lets you easily move through all these choices.
-
-
-
-![Detailed Architecture](./images/01_Pool_Initialization/DetailedArchitecture.png)
-
-This Singleton design is improved by a new "flash accounting" method. Instead of moving assets in and out of pools after each swap in v3, this method only moves the net balances. This means the system is a lot more efficient and saves even more gas in Uniswap v4.
-
-Because of the efficiency of the Singleton contract and flash accounting, there is no need to limit fee tiers. People who create pools can choose them to be most competitive or change them with a dynamic fee hook. v4 also supports native ETH again, which helps save more gas.
-
 # PoolManager
-To understand the major parts of the PoolManager, let's look at the the main interface it implements: `IPoolManager.sol`.
+To understand the major parts of the PoolManager, let's look at the the main interface: `IPoolManager.sol`.
 
 https://github.com/Uniswap/v4-core/blob/main/src/interfaces/IPoolManager.sol
 
@@ -42,7 +27,7 @@ The `initialize` function sets up a new liquidity pool in Uniswap. It takes nece
 and pricing info, and hook information as inputs, checks various conditions to ensure that the pool is set up correctly,
 and sets initial values for the pool.
 
-After all the checks and setup, it announces that a new pool has been created by triggering an `Initialize` event.
+Upon success, the transaction announces a new pool was created by emitting an `Initialize` event.
 
 # PoolManager.sol
 https://github.com/Uniswap/v4-core/blob/main/src/PoolManager.sol
@@ -114,7 +99,7 @@ Here's what initialize does step-by-step:
 
 # PoolKey
 
-The `PoolKey` is a structure that uniquely identifies a liquidity pool by storing essential details like the two
+The `PoolKey` is a structure that uniquely identifies a liquidity pool by storing its details -- the two
 currencies involved (sorted numerically), the swap fee, tick spacing, and hooks (extra functionalities) of the pool.
 
 It acts as a unique identifier, ensuring that each pool can be precisely specified and accessed within the code.
