@@ -5,7 +5,7 @@ title: Fetching Positions
 
 ## Introduction
 
-This guide will cover how to create (or mint) a liquidity position on the Uniswap V3 protocol.
+This guide will cover how to fetch Positions from the Blockchain.
 Like the [Liquidity Position guide](./01-position-data.md) it doesn't have an accompanying example, nevertheless the concepts and functions used here can be found among the various examples that interact with liquidity positions.
 
 :::info
@@ -17,125 +17,75 @@ In this guide, we will fetch **all Positions** an address has and fetch the **de
 
 The guide will **cover**:
 
-1. Creating an ethersJS contract to interact with the NonfungiblePositionManager.
-2. Fetching all positions for an address.
-3. Fetching the position info for the positions.
+1. Fetching all positions for an address.
+2. Fetching the position info for the positions.
 
-At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position on the UI of the web application.
+For this guide, the following Uniswap packages are used:
 
-For this guide, we do not need to use the Uniswap SDKs, we will only import the contract ABI for the NonfungiblePositionManager Contract from [`@uniswap/v3-periphery`](https://www.npmjs.com/package/@uniswap/v3-periphery).
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 
-## Connecting to the NFTPositionManager Contract
+## Fetching the number of Positions
 
-We use **ethersJS** to interact with the NonfungiblePositionManager Contract. Let's create an ethers Contract:
+We want to fetch all Positions for our address.
+We first fetch the number of positions an address owns using the `getPositionCount` function:
 
 ```typescript
-import { ethers } from 'ethers'
-import INONFUNGIBLE_POSITION_MANAGER from '@uniswap/v3-periphery/artifacts/contracts/NonfungiblePositionManager.sol/NonfungiblePositionManager.json'
+import ethers from 'ethers'
+import { Position } from '@uniswap/v3-sdk'
 
-const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
+const provider = new ethers.providers.JsonRpcProvider('...rpcUrl')
 
-const nfpmContract = new ethers.Contract(
-    NONFUNGIBLE_POSITION_MANAGER_CONTRACT_ADDRESS,
-    INONFUNGIBLE_POSITION_MANAGER.abi,
-    provider
+// Address we want to fetch the positions for
+const address = '...'
+
+const positionCount: bigint = await Position.getPositionCount(provider, address)
+```
+
+Depending on the number of Positions this address owns, we may want to fetch them individually or all at once.
+
+## Fetching individual Positions
+
+If we want to paginate the positions an address owns we can fetch them one by one using the `getPositionForAddressAndIndex` function:
+
+```typescript
+let index = 0
+
+const position: Position = await getPositionForAddressAndIndex(
+    provider,
+    address,
+    index
 )
 ```
 
-We get the Contract ABI from the 'v3-periphery` package and the contract address from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md)
+We can use the position count we fetched earlier to create a loop for all positions we want to fetch.
 
-## Fetching the Position Ids
+## Fetching all Positions for an address
 
-We want to fetch all Position Ids for our address. We first fetch the number of positions and then the ids by their indices.
+To fetch all Positions at once, we can use the `getAllPositionsForAddress` function:
 
-We fetch the number of positions using the `balanceOf` read call:
+```typescript
+const allPositions: Position[] = await getAllPositionsForAddress(
+    provider,
+    address
+)
+```
+
+This call may be too heavy for addresses that have hundreds of Positions.
+
+## Fetching a Position with its Id
+
+In some cases we may know the id of a specific Position, for example if we just created it.
+We can use the `fetchWithPositionId` function to fetch the Position:
 
 ```typescript
 
-const numPositions = await nfpmContract.balanceOf(address)
+const position: Position = await fetchWithPositionId(
+    provider,
+    positionId
+)
 ```
 
-Next we iterate over the number of positions and fetch the ids:
+## Next Steps
 
-```typescript
-const calls = []
-
-for (let i = 0; i < numPositions; i++) {
-    calls.push(
-        nfpmContract.tokenOfOwnerByIndex(address, i)
-    )
-}
-
-const positionIds = await Promise.all(calls)
-```
-
-## Fetching the Position Info
-
-Now that we have the ids of the Positions associated with our address, we can fetch the position info using the `positions` function.
-
-The solidity function returns a lot of values describing the Position:
-
-```solidity
-function positions(
-    uint256 tokenId
-  ) external view returns (
-    uint96 nonce, 
-    address operator, 
-    address token0, 
-    address token1, 
-    uint24 fee, 
-    int24 tickLower, 
-    int24 tickUpper, 
-    uint128 liquidity, 
-    uint256 feeGrowthInside0LastX128, 
-    uint256 feeGrowthInside1LastX128, 
-    uint128 tokensOwed0, 
-    uint128 tokensOwed1
-    )
-```
-
-In this example we only care about values needed to interact with positions, so we create an Interface `PositionInfo`:
-
-```typescript
-interface PositionInfo {
-  tickLower: number
-  tickUpper: number
-  liquidity: JSBI
-  feeGrowthInside0LastX128: JSBI
-  feeGrowthInside1LastX128: JSBI
-  tokensOwed0: JSBI
-  tokensOwed1: JSBI
-}
-```
-
-We fetch the Position data with `positions`:
-
-```typescript
-const positionCalls = []
-
-for (let id of positionIds) {
-    positionCalls.push(
-        nfpmContract.positions(id)
-    )
-}
-
-const callResponses = await Promise.all(positionCalls)
-```
-
-Finally, we map the RPC response to our interface:
-
-```typescript
-const positionInfos = callResponses.map((position) => {
-    return {
-        tickLower: position.tickLower,
-        tickUpper: position.tickUpper,
-        liquidity: JSBI.BigInt(position.liquidity),
-        feeGrowthInside0LastX128: JSBI.BigInt(position.feeGrowthInside0LastX128),
-        feeGrowthInside1LastX128: JSBI.BigInt(position.feeGrowthInside1LastX128),
-        tokensOwed0: JSBI.BigInt(position.tokensOwed0),
-        tokensOwed1: JSBI.BigInt(position.tokensOwed1),
-  }
-})
-```
-
-We now have an array containing PositionInfo for all positions that our address holds.
+Now that we know how to fetch Positions, let's move to the next guide on [modifying Positions](./04-modifying-position.md).
