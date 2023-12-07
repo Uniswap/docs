@@ -127,7 +127,7 @@ let targetTick = nearestUsableTick(
 )
 ```
 
-This nearest Tick will most likely not **exactly** match our Price target.
+This nearest Tick will most likely not **exactly** match our Price target but should be quite close.
 
 Depending on our personal preferences we can either err on the higher or lower side of our target by adding or subtracting the `tickSpacing` if the initializable Tick is lower or higher than the theoretically closest Tick.
 
@@ -175,7 +175,7 @@ const position = Position.fromAmount0({
 ```
 
 Before we mint our position, we need to give the `NonfungiblePositionManager` Contract an approval to transfer our tokens.
-We can find the Contract address on the official [Uniswap Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+We can get the Contract address from the `sdk-core`.
 For local development, the contract address is the same as the network we are forking from.
 So if we are using a local fork of mainnet like described in the [Local development guide](../02-local-development.md), the contract address would be the same as on mainnet.
 
@@ -328,18 +328,12 @@ We check if the tick has crossed our position, and if so we withdraw the Positio
 
 ## Closing the Limit Order
 
-We call the NonfungiblePositionManager Contract with the `tokenId` to get all info of our position as we may have gotten fees from trades on the Pool:
+We use the NonfungiblePositionManager together with the `tokenId` to get all info of our position as we may have gotten fees from trades on the Pool:
 
 ```typescript
-import INON_FUNGIBLE_POSITION_MANAGER from '@uniswap/v3-periphery/artifacts/contracts/NonfungiblePositionManager.sol/NonfungiblePositionManager.json'
+import { NonfungiblePositionManager } from '@uniswap/v3-sdk'
 
-const positionManagerContract = new ethers.Contract(
-    NONFUNGIBLE_POSITION_MANAGER_CONTRACT_ADDRESS,
-    INONFUNGIBLE_POSITION_MANAGER.abi,
-    provider
-)
-
-const positionInfo = await positionManagerContract.positions(tokenId)
+const currentPosition = await NonfungiblePositionManager.fetchWithPositionId(getProvider(), tokenId)
 ```
 
 We use the `NonfungiblePositionManager`, the `pool`, `positionInfo` and `tokenId` to create call parameter for a `decreaseLiquidity` call.
@@ -349,19 +343,18 @@ We start with creating `CollectOptions`:
 ```typescript
 import { Percent, CurrencyAmount } from '@uniswap/sdk-core'
 import { CollectOptions, RemoveLiquidityOptions } from '@uniswap/v3-sdk'
-import JSBI from 'jsbi'
 
 const collectOptions: Omit<CollectOptions, 'tokenId'> = {
     expectedCurrencyOwed0: CurrencyAmount.fromRawAmount(
-        pool.token0,
-        JSBI.BigInt(positionInfo.tokensOwed0.toString())
+      CurrentConfig.tokens.token0,
+      0
     ),
     expectedCurrencyOwed1: CurrencyAmount.fromRawAmount(
-        pool.token1,
-        JSBI.BigInt(positionInfo.tokensOwed1.toString())
+      CurrentConfig.tokens.token1,
+      0
     ),
-    recipient: wallet.address,
-}
+    recipient: address,
+  }
 ```
 
 Next we create `RemoveLiquidityOptions`. We remove all our liquidity so we set liquidityPercentage to `1`:
@@ -377,24 +370,12 @@ const removeLiquidityOptions: RemoveLiquidityOptions = {
     }
 ```
 
-We create a new `Position` object from the updated `positionInfo` info we fetched:
-
-```typescript
-
-const updatedPosition = new Position{
-    pool,
-    liquidity: JSBI.BigInt(currentPositionInfo.liquidity.toString()),
-    tickLower: currentPositionInfo.tickLower,
-    tickUpper: currentPositionInfo.tickUpper,
-}
-```
-
 We have everything to create our calldata now and are ready to make our Contract call:
 
 ```typescript
 
 const { calldata, value } = NonfungiblePositionManager.removeCallParameters(
-      updatedPosition,
+      currentPosition,
       removeLiquidityOptions
     )
 const transaction = {
