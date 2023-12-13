@@ -68,201 +68,207 @@ The `fractionToRemove` variable is the fraction of the Position that we want to 
 
 ## Adding liquidity to our position
 
-Assuming we have already minted a position, our first step is to construct the modified position using our original position to calculate the amount by which we want to increase our current position:
+Assuming we have already minted a position, our first step is to fetch that position, or reuse the `Position` object if it was just created.
 
-```typescript
-const fractionToAdd: number = ...
+To fetch a position using the id you will need an initialized ethers provider for the RPC you are using.
+For the local fork configuration mentioned above you can use `http://localhost:8545`.
 
-const amount0Increased: JSBI = fromReadableAmount(
-    readableAmount0 * fractionToAdd, 
-    token0.decimals
-)
-const amount1Increase: JSBI = fromReadableAmount(
-    readableAmount1 * fractionToAdd, 
-    token1.decimals
-)
-
-const positionToIncreaseBy = constructPosition(
-    amount0Increased,
-    amount1Increase
-  )
-)
-```
-
-The `fromReadableAmount()` function calculates the amount of tokens in their smallest unit, so for example 1 ETH would be `1000000000000000000` Wei as ETH has 18 decimals.
-
-A better way to get the amounts might be to fetch them with the positionId directly from the blockchain.
-We demonstrated how to do that in the [first guide](./01-position-data.md#fetching-positions) of this series.
-
-```typescript
-import { Pool, Position } from '@uniswap/v3-sdk'
-import JSBI from 'jsbi'
-
-function constructPosition(
-    amount0: JSBI,
-    amount1: JSBI
-): Position {
-    // create Pool same as in the previous guide
-    const pool = new Pool(...)
-
-    // create position using the maximum liquidity from input amounts
-    return Position.fromAmounts({
-        pool,
-        tickLower:
-            nearestUsableTick(pool.tickCurrent, pool.tickSpacing) -
-            pool.tickSpacing * 2,
-        tickUpper:
-            nearestUsableTick(pool.tickCurrent, pool.tickSpacing) +
-            pool.tickSpacing * 2,
-        amount0,
-        amount1,
-        useFullPrecision: true,
-    })
-}
-```
-
-The function receives two arguments, which are the amounts that are used to construct the Position instance. In this example, both of the arguments follow the same logic: we multiply the parameterized `tokenAmount` by the parameterized `fractionToAdd` since the new liquidity position will be added on top of the already minted liquidity position.
-
-We then need to construct an options object of type [`AddLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L77) similar to how we did in the minting case. In this case, we will use [`IncreaseOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L75):
-
-```typescript
-import { AddLiquidityOptions } from '@uniswap/v3-sdk'
-
-const addLiquidityOptions: AddLiquidityOptions = {
-  deadline: Math.floor(Date.now() / 1000) + 60 * 20,
-  slippageTolerance: new Percent(50, 10_000),
-  tokenId,
-}
-```
-
-Compared to minting, we have we have omitted the `recipient` parameter and instead passed in the `tokenId` of the position we previously minted.
-As the Position already exists, the recipient doesn't change, instead the NonfungiblePositionManager contract can modify the existing Position by accessing it with its id.
-
-The tokenId can be fetched with the tokenOfOwnerByIndex function of the NonfungiblePositionManager Contract as described [here](./01-position-data.md#fetching-positions).
-
-The newly created position along with the options object are then passed to the `NonfungiblePositionManager`'s `addCallParameters`:
-
-```typescript
-import { NonfungiblePositionManager } from '@uniswap/v3-sdk'
-
-const positionToIncreaseBy = constructPosition(CurrentConfig.tokens.amount0, CurrentConfig.tokens.amount1)
-
-const { calldata, value } = NonfungiblePositionManager.addCallParameters(
-  positionToIncreaseBy,
-  addLiquidityOptions
-)
-```
-
-The return values of `addCallParameters` are the calldata and value of the transaction we need to submit to increase our position's liquidity. We can now build and execute the transaction:
+Use the following snippet to fetch a position using the position id:
 
 ```typescript
 import { ethers } from 'ethers'
+import { Position } from '@uniswap/v3-sdk'
 
-const transaction = {
-  data: calldata,
-  to: NONFUNGIBLE_POSITION_MANAGER_CONTRACT_ADDRESS,
-  value: value,
-  from: address,
-  maxFeePerGas: MAX_FEE_PER_GAS,
-  maxPriorityFeePerGas: MAX_PRIORITY_FEE_PER_GAS,
-}
+// You need to know this, or fetch the position differently
+const myPositionId = "0xabcdef"
 
-const wallet = new ethers.Wallet(privateKey, provider)
-
-const txRes = await wallet.sendTransaction(transaction)
+const ethersProvider = new ethers.providers.JsonRpcProvider("http://localhost:8545")
+const position = await Position.fetchWithPositionId(ethersProvider, myPositionId)
 ```
 
-We can get the Contract address for the NonfungiblePositionManager from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+For more examples on how to fetch your position, refer to the [Fetching Positions Guide](./03-fetching-positions.md).
 
-After pressing the button, note how the balance of USDC and DAI drops and our position's liquidity increases.
+The easiest version of increasing your position is if you know a percentage by which you want to increase it.
+If you increase it by 10%, it means both current token balances (amount0, amount1) in the position will be increased by 10% each.
 
-## Removing liquidity from our position
+So if you have a position with 1000 USDC and 1000 USDT, the 10% increase will increase both to 1100.
+This also means you need to make approvals to the `NonfungiblePositionManager` before to reflect at least those 100 USDC and USDT changes, as mentioned in the beginning of this guide. The exact amount can be calculated using current amount0 and amount1 of your position and the percentage you are using.
 
-The `removeLiquidity` function is the mirror action of adding liquidity and will be somewhat similar as a result, requiring a position to already be minted.
-
-To start, we create a position identical to the one we minted:
-
-```typescript
-const amount0: JSBI = fromReadableAmount(
-    readableAmount0 * fractionToAdd, 
-    token0.decimals
-)
-const amount1: JSBI = fromReadableAmount(
-    readableAmount1 * fractionToAdd, 
-    token1.decimals
-)
-
-const currentPosition = constructPosition(
-  amount0,
-  amount1
-)
-```
-
-We then need to construct an options object of type [`RemoveLiquidityOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L138):
+The snippet to increase liquidity by 10% can be seen below:
 
 ```typescript
-import { RemoveLiquidityOptions } from '@uniswap/v3-sdk'
-import { Percent } from '@uniswap/sdk-core'
+import { ethers } from 'ethers'
+import { Fraction } from '@uniswap/sdk-core'
 
-const removeLiquidityOptions: RemoveLiquidityOptions = {
+// Use your private key or another way to initialize a Wallet.
+// A different way would be to use the Metamask signer in the browser.
+const myWallet = new ethers.Wallet("0x_private_key")
+
+const ethersProvider = new ethers.providers.JsonRpcProvider("http://localhost:8545")
+
+// Either you know this already like mentioned before, or you can access it from the fetched position with
+// position.positionId
+const positionId = "0xabcdef"
+const addLiquidityOptions: AddLiquidityOptions = {
   deadline: Math.floor(Date.now() / 1000) + 60 * 20,
   slippageTolerance: new Percent(50, 10_000),
   tokenId: positionId,
-  // percentage of liquidity to remove
-  liquidityPercentage: new Percent(0.5),
-  collectOptions,
 }
-```
 
-Just as with adding liquidity, we have we have omitted the `recipient` parameter and instead passed in the `tokenId` of the position we previously minted.
-
-We have also provide two additional parameters:
-
-- `liquidityPercentage` determines how much liquidity is removed from our initial position (as a `Percentage`), and transfers the removed liquidity back to our address. We set this percentage from our guide configuration ranging from 0 (0%) to 1 (100%). In this example we would remove 50% of the liquidity.
-- [`collectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) gives us the option to collect the fees, if any, that we have accrued for this position. In this example, we won't collect any fees, so we provide zero values. If you'd like to see how to collect fees without modifying your position, check out our [collecting fees](./03-collecting-fees.md) guide!
-
-```typescript
-import { CurrencyAmount } from '@uniswap/sdk-core'
-import { CollectOptions } from '@uniswap/v3-sdk'
-
-const collectOptions: Omit<CollectOptions, 'tokenId'> = {
-  expectedCurrencyOwed0: CurrencyAmount.fromRawAmount(
-    token0,
-    0
-  ),
-  expectedCurrencyOwed1: CurrencyAmount.fromRawAmount(
-    token1,
-    0
-  ),
-  recipient: address,
-}
-```
-
-The position object along with the options object is passed to the `NonfungiblePositionManager`'s `removeCallParameters`, similar to how we did in the adding liquidity case:
-
-```typescript
-const { calldata, value } = NonfungiblePositionManager.removeCallParameters(
-  currentPosition,
-  removeLiquidityOptions
+const transactionResponse = await Position.increasePositionByPercentageOnChain(
+  myWallet,
+  ethersProvider,
+  new Fraction(10, 100), // (10 / 100) for 10%tokenId
+  addLiquidityOptions
 )
+
+// Wait for 3 confirmations and then access the transaction receipt.
+const transactionReceipt = await transactionResponse.wait(3)
 ```
 
-The return values `removeCallParameters` are the calldata and value that are needed to construct the transaction to remove liquidity from our position. We can build the transaction and send it for execution:
+In certain case you might want to increase your position to a specific value.
+
+Let's assume you display position data in a UI to the user and they can freely change the amounts to which they want to change the position amounts.
+Whenever the user changes one of the values (amount0 or amount1), you will need to automatically update the other value as positions can only be changed
+in percentage increments on both sides as they need to be balanced.
+
+If you display a position with the following values:
+
+```
+Pool: USDC <> WETH
+amount0: 1000 USDC
+amount1: 0.5 WETH
+```
+
+And the user wants to change `amount0` to 1500 USDC, you would run a calculation like the following:
 
 ```typescript
-const transaction = {
-  data: calldata,
-  to: NONFUNGIBLE_POSITION_MANAGER_CONTRACT_ADDRESS,
-  value: value,
-  from: address,
-  maxFeePerGas: MAX_FEE_PER_GAS,
-  maxPriorityFeePerGas: MAX_PRIORITY_FEE_PER_GAS,
-}
+const currentAmount0 = myPosition.amount0 // USDC
+const currentAmount1 = myPosition.amount1 // WETH
 
-const txRes = await wallet.sendTransaction(transaction)
+// User asked for 1500 USDC. Fractions are initialized with the smallest amount
+// So we need to multiply 1500 by 10^decimals
+const wantedAmount0 = CurrencyAmount.fromFractionalAmount(myPosition.pool.token0, 1500n * (10n ** BigInt(myPosition.pool.token0.decimals)), 1)
+
+// First make sure that wantedAmount0 is higher than currentAmount0, otherwise you will need to follow
+// the next section of this guide to decrease a position.
+
+const positionMultiplier = wantedAmount0.divide(currentAmount0).asFraction
+
+const resultingAmount1 = currentAmount1.multiply(positionMultiplier)
+
+// We can now display resultingAmount1 to the user, so he knows both amounts before confirming the position change.
+
+// 1500 / 1000 = 1.5, so we need to subtract 1 to get 0.5, which is the format the increase position function expects
+const percentageIncrease = positionMultiplier.subtract(new Fraction(1, 1))
 ```
 
-After pressing the button, note how the balance of USDC and DAI increases and our position's liquidity drops.
+Using this `percentageIncrease` Fraction you can follow the snippets from before to increase the position by this percentage.
+
+Make sure to approve the `NonfungiblePositionManager` by the difference of current amounts and wanted amounts for both tokens. If you made an unlimited
+approval for minting the position, you can skip this step.
+
+## Removing liquidity from our position
+
+Assuming we have already minted a position, our first step is to fetch that position, or reuse the `Position` object if it was just created.
+
+To fetch a position using the id you will need an initialized ethers provider for the RPC you are using.
+For the local fork configuration mentioned above you can use `http://localhost:8545`.
+
+Use the following snippet to fetch a position using the position id:
+
+```typescript
+import { ethers } from 'ethers'
+import { Position } from '@uniswap/v3-sdk'
+
+// You need to know this, or fetch the position differently
+const myPositionId = "0xabcdef"
+
+const ethersProvider = new ethers.providers.JsonRpcProvider("http://localhost:8545")
+const position = await Position.fetchWithPositionId(ethersProvider, myPositionId)
+```
+
+For more examples on how to fetch your position, refer to the [Fetching Positions Guide](./03-fetching-positions.md).
+
+The easiest version of increasing your position is if you know a percentage by which you want to decrease it.
+If you decrease it by 10%, it means both current token balances (amount0, amount1) in the position will be decreased by 10% each.
+
+So if you have a position with 1000 USDC and 1000 USDT, the 10% decrease will decrease both to 900.
+
+If you want to completely close a position, pass 100% to this function.
+
+The snippet to decrease liquidity by 10% can be seen below:
+
+```typescript
+import { ethers } from 'ethers'
+import { Fraction } from '@uniswap/sdk-core'
+
+// Use your private key or another way to initialize a Wallet.
+// A different way would be to use the Metamask signer in the browser.
+const myWallet = new ethers.Wallet("0x_private_key")
+
+const ethersProvider = new ethers.providers.JsonRpcProvider("http://localhost:8545")
+
+// Either you know this already like mentioned before, or you can access it from the fetched position with
+// position.positionId
+const positionId = "0xabcdef"
+const decreaseLiquidityOptions: Omit<RemoveLiquidityOptions, 'liquidityPercentage' | 'collectOptions'> = {
+  deadline: Math.floor(Date.now() / 1000) + 60 * 20,
+  slippageTolerance: new Percent(50, 10_000),
+  tokenId: positionId,
+}
+
+const transactionResponse = await Position.decreasePositionByPercentageOnChain(
+  myWallet,
+  ethersProvider,
+  new Fraction(10, 100), // (10 / 100) for 10%tokenId
+  decreaseLiquidityOptions
+)
+
+// Wait for 3 confirmations and then access the transaction receipt.
+const transactionReceipt = await transactionResponse.wait(3)
+```
+
+In certain case you might want to decrease your position to a specific value.
+
+Let's assume you display position data in a UI to the user and they can freely change the amounts to which they want to change the position amounts.
+Whenever the user changes one of the values (amount0 or amount1), you will need to automatically update the other value as positions can only be changed
+in percentage increments on both sides as they need to be balanced.
+
+If you display a position with the following values:
+
+```
+Pool: USDC <> WETH
+amount0: 1000 USDC
+amount1: 0.5 WETH
+```
+
+And the user wants to change `amount0` to 800 USDC, you would run a calculation like the following:
+
+```typescript
+const currentAmount0 = myPosition.amount0 // USDC
+const currentAmount1 = myPosition.amount1 // WETH
+
+// User asked for 800 USDC. Fractions are initialized with the smallest amount
+// So we need to multiply 1500 by 10^decimals
+const wantedAmount0 = CurrencyAmount.fromFractionalAmount(myPosition.pool.token0, 800n * (10n ** BigInt(myPosition.pool.token0.decimals)), 1)
+
+// First make sure that wantedAmount0 is lower than currentAmount0, otherwise you will need to follow
+// the previous section of this guide to increase a position.
+
+const positionMultiplier = wantedAmount0.divide(currentAmount0).asFraction
+
+const resultingAmount1 = currentAmount1.multiply(positionMultiplier)
+
+// We can now display resultingAmount1 to the user, so he knows both amounts before confirming the position change.
+
+// 800 / 1000 = 0.8, so we need to do 1 - 0.8 to get 0.2, which is the format the decrease position function expects
+const percentageDecrease = new Fraction(1, 1).subtract(positionMultiplier)
+```
+
+Using this `percentageDecrease` Fraction you can follow the snippets from before to decrease the position by this percentage.
+
+For decreasing positions, no approvals are required.
 
 ## Next Steps
 
