@@ -43,18 +43,22 @@ Also note that we do not need to give approval to the `NonfungiblePositionManage
 The first step is to approve the `SwapRouter` smart contract to spend our tokens for us in order for us to add liquidity to our position:
 
 ```typescript
-const tokenInApproval = await getTokenTransferApproval(
-  token0,
-  V3_SWAP_ROUTER_ADDRESS
-)
+// Give approval to the router contract to transfer tokens
+  const tokenInApproval = await getTokenTransferApproval(
+    V3_SWAP_ROUTER_ADDRESS,
+    CurrentConfig.tokens.token0,
+    TOKEN_AMOUNT_TO_APPROVE_FOR_TRANSFER
+  )
 
-const tokenOutApproval = await getTokenTransferApproval(
-  token1,
-  V3_SWAP_ROUTER_ADDRESS
-)
+  const tokenOutApproval = await getTokenTransferApproval(
+    V3_SWAP_ROUTER_ADDRESS,
+    CurrentConfig.tokens.token1,
+    TOKEN_AMOUNT_TO_APPROVE_FOR_TRANSFER
+  )
 ```
 
 We described the `getTokenTransferApproval` function [here](./02-minting-position.md#giving-approval-to-transfer-our-tokens).
+We defined the address for the swaprouter in our `constants.ts` file.
 
 Then we can setup our router, the [`AlphaRouter`](https://github.com/Uniswap/smart-order-router/blob/97c1bb7cb64b22ebf3509acda8de60c0445cf250/src/routers/alpha-router/alpha-router.ts#L333), which is part of the [smart-order-router package](https://www.npmjs.com/package/@uniswap/smart-order-router). The router requires a `chainId` and a `provider` to be initialized. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
 
