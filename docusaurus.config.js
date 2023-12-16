@@ -13,7 +13,7 @@ module.exports = {
   },
   title: 'Uniswap',
   tagline: 'Documentation and Guides',
-  url: 'https://docs.uniswap.org/',
+  url: 'https://docs.uniswap.org',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'ignore',
@@ -200,7 +200,7 @@ module.exports = {
       {
         docs: {
           routeBasePath: '/',
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: require.resolve('./sidebars.js'),
           remarkPlugins: [math],
           rehypePlugins: [katex],
           editUrl: 'https://github.com/uniswap/uniswap-docs/tree/main/',
@@ -240,15 +240,15 @@ module.exports = {
             from: '/sdk/v3/guides/quick-start',
           },
           {
-            to: '/sdk/v3/guides/quoting',
+            to: '/sdk/v3/guides/swaps/quoting',
             from: ['/sdk/v3/guides/creating-a-pool', '/sdk/v3/guides/fetching-prices'],
           },
           {
-            to: '/sdk/v3/guides/trading',
+            to: '/sdk/v3/guides/swaps/trading',
             from: '/sdk/v3/guides/creating-a-trade',
           },
           {
-            to: '/sdk/v3/guides/routing',
+            to: '/sdk/v3/guides/swaps/routing',
             from: '/sdk/v3/guides/auto-router',
           },
           {
