@@ -115,12 +115,12 @@ const addLiquidityOptions: AddLiquidityOptions = {
   tokenId: positionId,
 }
 
-const transactionResponse = await Position.increasePositionByPercentageOnChain(
-  myWallet,
-  ethersProvider,
-  new Fraction(10, 100), // (10 / 100) for 10%tokenId
-  addLiquidityOptions
-)
+const transactionResponse = await position.increasePositionByPercentageOnChain({
+  signer: myWallet,
+  provider: ethersProvider,
+  percentage: new Fraction(10, 100), // (10 / 100) for 10%tokenId
+  options: addLiquidityOptions
+})
 
 // Wait for 3 confirmations and then access the transaction receipt.
 const transactionReceipt = await transactionResponse.wait(3)
@@ -218,12 +218,12 @@ const decreaseLiquidityOptions: Omit<RemoveLiquidityOptions, 'liquidityPercentag
   tokenId: positionId,
 }
 
-const transactionResponse = await Position.decreasePositionByPercentageOnChain(
-  myWallet,
-  ethersProvider,
-  new Fraction(10, 100), // (10 / 100) for 10%tokenId
-  decreaseLiquidityOptions
-)
+const transactionResponse = await position.decreasePositionByPercentageOnChain({
+  signer: myWallet,
+  provider: ethersProvider,
+  percentage: new Fraction(10, 100), // (10 / 100) for 10%tokenId
+  options: decreaseLiquidityOptions
+})
 
 // Wait for 3 confirmations and then access the transaction receipt.
 const transactionReceipt = await transactionResponse.wait(3)
