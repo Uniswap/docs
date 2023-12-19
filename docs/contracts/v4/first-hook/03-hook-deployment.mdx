@@ -44,63 +44,79 @@ The template includes Mock UNI and Mock USDC contracts for testing. Deploy them 
 ```
 
 
-### 2. script/PoolCreateSolo.s.sol
-This script contains the steps for initializing the pool without a hook. It uses the pre-deployed PoolManager contract and
+### 2. script/01_CreatePool.s.sol
+This script contains the steps for initializing the pool with an existing hook. It uses the pre-deployed PoolManager contract and
 token contracts
-
 ```solidity
-address constant GOERLI_POOLMANAGER = address(0x3A9D48AB9751398BbFa63ad67599Bb04e4BdF98b); // pool manager deployed to GOERLI
-address constant MUNI_ADDRESS = address(0xbD97BF168FA913607b996fab823F88610DCF7737); // mUNI deployed to GOERLI -- insert your own contract address here
-address constant MUSDC_ADDRESS = address(0xa468864e673a807572598AB6208E49323484c6bF); // mUSDC deployed to GOERLI -- insert your own contract address here
-address constant HOOK_ADDRESS = address(0x0); // hookless pool is 0x0!
-```
-Here it uses the pre-deployed PoolManager contract and token contracts. You can replace these addresses with your own.
+contract CreatePoolScript is Script {
+    using CurrencyLibrary for Currency;
 
-### 3. scrips/CounterDeploy.s.sol
+    //addresses with contracts deployed
+    address constant GOERLI_POOLMANAGER = address(0x3A9D48AB9751398BbFa63ad67599Bb04e4BdF98b); //pool manager deployed to GOERLI
+    address constant MUNI_ADDRESS = address(0xbD97BF168FA913607b996fab823F88610DCF7737); //mUNI deployed to GOERLI -- insert your own contract address here
+    address constant MUSDC_ADDRESS = address(0xa468864e673a807572598AB6208E49323484c6bF); //mUSDC deployed to GOERLI -- insert your own contract address here
+    address constant HOOK_ADDRESS = address(0x3CA2cD9f71104a6e1b67822454c725FcaeE35fF6); //address of the hook contract deployed to goerli -- you can use this hook address or deploy your own!
+
+    IPoolManager manager = IPoolManager(GOERLI_POOLMANAGER);
+
+    function run() external {
+        // sort the tokens!
+        address token0 = uint160(MUSDC_ADDRESS) < uint160(MUNI_ADDRESS) ? MUSDC_ADDRESS : MUNI_ADDRESS;
+        address token1 = uint160(MUSDC_ADDRESS) < uint160(MUNI_ADDRESS) ? MUNI_ADDRESS : MUSDC_ADDRESS;
+        uint24 swapFee = 4000;
+        int24 tickSpacing = 10;
+
+        // floor(sqrt(1) * 2^96)
+        uint160 startingPrice = 79228162514264337593543950336;
+
+        bytes memory hookData = abi.encode(block.timestamp);
+
+        PoolKey memory pool = PoolKey({
+            currency0: Currency.wrap(token0),
+            currency1: Currency.wrap(token1),
+            fee: swapFee,
+            tickSpacing: tickSpacing,
+            hooks: IHooks(HOOK_ADDRESS)
+        });
+
+        // Turn the Pool into an ID so you can use it for modifying positions, swapping, etc.
+        PoolId id = PoolIdLibrary.toId(pool);
+        bytes32 idBytes = PoolId.unwrap(id);
+
+        console.log("Pool ID Below");
+        console.logBytes32(bytes32(idBytes));
+
+        vm.broadcast();
+        manager.initialize(pool, startingPrice, hookData);
+    }
+}
+```
+### 3. script/00_Counter.s.sol
 This script deploys the Counter hook using Deterministic Deployment Proxy. It uses the pre-deployed PoolManager contract
 and proxy
 
 ```solidity
-// hook contracts must have specific flags encoded in the address
-uint160 flags = uint160(
-    Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG | Hooks.BEFORE_MODIFY_POSITION_FLAG
-        | Hooks.AFTER_MODIFY_POSITION_FLAG
-);
+contract CounterScript is Script {
+    address constant CREATE2_DEPLOYER = address(0x4e59b44847b379578588920cA78FbF26c0B4956C);
+    address constant GOERLI_POOLMANAGER = address(0x3A9D48AB9751398BbFa63ad67599Bb04e4BdF98b);
 
-// Mine a salt that will produce a hook address with the correct flags
-(address hookAddress, bytes32 salt) =
-    HookMiner.find(CREATE2_DEPLOYER, flags, type(Counter).creationCode, abi.encode(address(GOERLI_POOLMANAGER)));
+    function setUp() public {}
 
-// Deploy the hook using CREATE2
-vm.broadcast();
-Counter counter = new Counter{salt: salt}(IPoolManager(address(GOERLI_POOLMANAGER)));
-```
-You can deploy your own hook by using the following command
-```
-forge script script/CounterDeploy.s.sol \
---rpc-url [your_rpc_url_here] \
---private-key [your_private_key_on_goerli_here] \
---broadcast
-```
+    function run() public {
+        // hook contracts must have specific flags encoded in the address
+        uint160 flags = uint160(
+            Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG
+                | Hooks.BEFORE_REMOVE_LIQUIDITY_FLAG
+        );
 
+        // Mine a salt that will produce a hook address with the correct flags
+        (address hookAddress, bytes32 salt) =
+            HookMiner.find(CREATE2_DEPLOYER, flags, type(Counter).creationCode, abi.encode(address(GOERLI_POOLMANAGER)));
 
-### 4. scrips/PoolCreateHook.s.sol
-This script contains the script for initializing the pool with the hook. It uses the pre-deployed PoolManager
-contract and hook addresss.
-
-Note: Update the hook address to your own hook which you get from the previous step.
-
-```solidity
-address constant HOOK_ADDRESS = address(0x3CA2cD9f71104a6e1b67822454c725FcaeE35fF6); //address of the hook contract deployed to goerli -- you can use this hook address or deploy your own!
-address hook = address(HOOK_ADDRESS);
-
-PoolKey memory pool = PoolKey({
-    currency0: Currency.wrap(token0),
-    currency1: Currency.wrap(token1),
-    fee: swapFee,
-    tickSpacing: tickSpacing,
-    hooks: IHooks(hook)
-});
-
-manager.initialize(pool, startingPrice, hookData);
+        // Deploy the hook using CREATE2
+        vm.broadcast();
+        Counter counter = new Counter{salt: salt}(IPoolManager(address(GOERLI_POOLMANAGER)));
+        require(address(counter) == hookAddress, "CounterScript: hook address mismatch");
+    }
+}
 ```
