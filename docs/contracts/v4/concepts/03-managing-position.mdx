@@ -25,19 +25,21 @@ returns (BalanceDelta);
 # Important Concepts
 Some of the important concepts to understand when working with Uniswap V3 or V4 positions are:
 
-1) Tick
-2) Tick Spacing
-4) SquareRoot Price X96
-5) Liquidity Delta
+1. Tick
+2. Tick Spacing
+3. SquareRoot Price X96
+4. Liquidity Delta
 
 ### Tick
 `tick` is a measure used in this code to handle prices of two different assets (tokens) in a unique way. A `tick`
 represents a specific price ratio between these two assets, calculated using a mathematical formula.
 
-There are minimum and maximum `tick` values defined within the code, ensuring that calculated prices are within a
-reasonable or acceptable range.
+![Price And Ticks](./images/02_Managing_Position/PriceAndTicks.png)
 
-In Uniswap V3(and V4), liquidity providers can provide liquidity at specific price ranges (ticks), allowing them to
+There are minimum and maximum `tick` values defined within the code, ensuring that calculated prices are within a
+reasonable and acceptable range.
+
+In Uniswap V3 (and V4), liquidity providers can provide liquidity at specific price ranges (ticks), allowing them to
 concentrate their liquidity and potentially earn more fees.
 
 Each tick corresponds to a specific price, and not all prices are represented due to the discrete nature of the ticks.
@@ -47,10 +49,8 @@ The tick spacing is a parameter that determines the separation between these usa
 Nth tick available for liquidity provision, where `N` is the tick spacing. This is a form of quantization of
 the price levels that liquidity can be provided at.
 
-![Price And Ticks](./images/02_Managing_Position/PriceAndTicks.png)
-
 ### SquareRoot Price X96
-In Uniswap V3(and V4), the square root price (`sqrtPriceX96`) is a key concept and a crucial part of the mathematical
+In Uniswap V3 (and V4), the square root price (`sqrtPriceX96`) is a key concept and a crucial part of the mathematical
 calculations. It's utilized for various calculations, including determining the amount of tokens that should be moved
 during a swap and the liquidity calculations within specific price ranges.
 
@@ -120,6 +120,7 @@ uint256 liquidity = 1e18;
 PoolManager manager = new PoolManager(500000);
 // Helpers for interacting with the pool
 PoolModifyPositionTest modifyPositionRouter = new PoolModifyPositionTest(IPoolManager(address(manager)));
+
 modifyPositionRouter.modifyPosition(
     poolKey,
     IPoolManager.ModifyPositionParams({
@@ -142,7 +143,7 @@ https://github.com/Uniswap/v4-core/blob/main/src/test/PoolModifyPositionTest.sol
 
 In `PoolModifyPositionTest` the `lockAcquired` function is executed when the lock is acquired, handling
 balance adjustments and interactions with external currencies and contracts. The function takes raw
-encoded data as input, which is then decoded into structured data, specifically CallbackData. Essential
+encoded data as input, which is then decoded into structured data, specifically `CallbackData`. Essential
 validations and checks are performed, ensuring the caller of the function is the manager, and it
 processes the modifications such as settling amounts and making necessary transfers based on
 conditions like whether the amount being positive or negative.

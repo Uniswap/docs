@@ -3,15 +3,17 @@ id: swap-tokens
 title: Swap Tokens
 sidebar_position: 3
 ---
-# Swap Tokens
-As explained in the fees section, the swap happens in a loop until the specified amount has been completely
-used or the price limit has been reached. In each iteration, the code calculates how much of the tokens can
-be swapped at the current price level.
+
+# Swap - Step by Step
+
+The swap happens in a loop until the specified amount has been completely used or the price limit
+has been reached. In each iteration, the code calculates how much of the tokens can be swapped at
+the current price level.
 
 The swap keeps iterating until either the specified amount is fully used or the square root of
 the price hits the defined limit (`sqrtPriceLimitX96`).
 
-Here is the important structs and `swap` function from IPoolManager which is used to swap tokens:
+Here is the `SwapParams` struct, `Swap` event and `swap` function from IPoolManager which is used to swap tokens:
 
 ```solidity
 /// @notice Emitted for swaps between currency0 and currency1
@@ -49,6 +51,7 @@ function swap(PoolKey memory key, SwapParams memory params, bytes calldata hookD
 Here is an example of how to swap tokens by calling the `swap` function:
 ```solidity
 PoolSwapTest swapRouter = new PoolSwapTest(IPoolManager(address(manager)));
+
 PoolSwapTest.TestSettings memory testSettings =
     PoolSwapTest.TestSettings({withdrawTokens: true, settleUsingTransfer: true});
 
