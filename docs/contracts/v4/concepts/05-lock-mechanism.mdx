@@ -4,7 +4,7 @@ title: Lock Mechanism - Flash Accounting
 sidebar_position: 4
 ---
 # Intro to Locking
-The locking mechanism in v4 ensures that certain operations are executed atomically without interference, ensuring
+The locking mechanism in V4 ensures that certain operations are executed atomically without interference, ensuring
 consistency and correctness in the PoolManager's state. PoolManager, uses `LockDataLibrary` to manager a queue of
 lockers, allowing nested locks, and ensures that all currency deltas are settled before releasing a lock.
 

@@ -9,18 +9,34 @@ To understand the major parts of the PoolManager, let's look at the the main int
 
 https://github.com/Uniswap/v4-core/blob/main/src/interfaces/IPoolManager.sol
 
-Here’s a brief overview of the interface.
+### Lifecycle Functions
 
-- It inherits from `IFees` and `IERC1155`, combining fee management and token management functionalities.
-- It then defines errors to handle various exceptional conditions like max currencies touched, currency not settled, and improper function caller.
-- It then includes the `Initialize`, `ModifyPosition`, and `Swap` events which get emitted during respective operations, helping in tracking state changes.
-- It then has the `initialize` function which is used to initialize a new pool.
-- Various functions are declared to manage and query pool states like `getSlot0`, `getLiquidity`, and `getPosition`.
-- There are functions to manage liquidity positions in pools such as `modifyPosition` and `swap`, which facilitate liquidity provision and token swaps.
-- It includes mechanisms to manage pool locks and concurrency through functions like `lock`.
-- Functions like `mint`, `take`, and `settle` manage user balances, allowing users to interact with their funds within pools.
-- It allows external contracts to access pool state through the `extsload` function, facilitating integration with other contracts or interfaces.
-- Custom structs like `ModifyPositionParams` and `SwapParams` are declared to bundle parameters neatly, improving code readability and usability.
+1. **initialize**: This function initializes a new pool with specified parameters such as pool key, initial price, and
+optional hook data, setting up the fundamental characteristics of the pool.
+
+2. **swap**: Allows users to exchange one type of currency for another within a specified pool, adhering to set limits
+and conditions, and adjusting the pool's state accordingly.
+
+3. **modifyLiquidity**: Enables users to change the amount of liquidity they've provided to a pool, either by adding or
+removing it, based on specified upper and lower tick limits.
+
+### Balance Functions
+1. **mint (related to ERC6909 claims)**: Used for creating new claim tokens (as per ERC6909 standards) for a user,
+denoting specific rights or entitlements, but not representing liquidity provider (LP) receipt tokens.
+
+2. **burn (related to ERC6909 claims)**: Allows users to destroy their claim tokens (compliant with ERC6909),
+effectively relinquishing the rights or entitlements those tokens represented.
+
+3. **take**: This function allows users to withdraw or "net out" a specified amount of a currency, which could be seen
+as a mechanism for zero-cost flash loans under certain conditions.
+
+4. **settle**: Used by users to pay off any outstanding amounts they owe, potentially in a different currency, with
+the function returning the amount paid.
+
+The `mint` and `burn` functions are specifically related to handling ERC6909 claims, which are distinct from liquidity
+provider receipt tokens. These functions deal with specific claims or entitlements rather than the representation of a
+user's share in the liquidity pool.
+
 
 # Pool Initialization
 The `initialize` function sets up a new liquidity pool in Uniswap. It takes necessary information such as currencies
@@ -32,70 +48,63 @@ Upon success, the transaction announces a new pool was created by emitting an `I
 # PoolManager.sol
 https://github.com/Uniswap/v4-core/blob/main/src/PoolManager.sol
 
+Here is the `initialize` function from the `PoolManager` contract which contains inline comments explaining the
+functionality of each line.
+
 ```solidity
-/// @inheritdoc IPoolManager
-function initialize(PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hookData)
-external
-override
-returns (int24 tick)
-{
-    if (key.fee.isStaticFeeTooLarge()) revert FeeTooLarge();
+// SPDX-License-Identifier: BUSL-1.1
+pragma solidity ^0.8.20;
 
-    // see TickBitmap.sol for overflow conditions that can arise from tick spacing being too large
-    if (key.tickSpacing > MAX_TICK_SPACING) revert TickSpacingTooLarge();
-    if (key.tickSpacing < MIN_TICK_SPACING) revert TickSpacingTooSmall();
-    if (key.currency0 > key.currency1) revert CurrenciesInitializedOutOfOrder();
-    if (!key.hooks.isValidHookAddress(key.fee)) revert Hooks.HookAddressNotValid(address(key.hooks));
+// ... [other imports and contract definitions]
 
-    if (key.hooks.shouldCallBeforeInitialize()) {
-        if (key.hooks.beforeInitialize(msg.sender, key, sqrtPriceX96, hookData) != IHooks.beforeInitialize.selector)
-        {
-            revert Hooks.InvalidHookResponse();
-        }
+/// @notice Holds the state for all pools
+contract PoolManager is IPoolManager, Fees, NoDelegateCall, ERC6909Claims {
+    // ... [other definitions and functions]
+
+    /// @inheritdoc IPoolManager
+    function initialize(PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hookData)
+        external
+        override
+        onlyByLocker // Modifier ensures only the current locker can call this function
+        returns (int24 tick)
+    {
+        // Check if the fee specified in the key is too large
+        if (key.fee.isStaticFeeTooLarge()) revert FeeTooLarge();
+
+        // Validate tick spacing - it must be within defined min and max limits
+        if (key.tickSpacing > MAX_TICK_SPACING) revert TickSpacingTooLarge();
+        if (key.tickSpacing < MIN_TICK_SPACING) revert TickSpacingTooSmall();
+
+        // Ensure the currency order is correct (currency0 < currency1)
+        if (key.currency0 >= key.currency1) revert CurrenciesOutOfOrderOrEqual();
+
+        // Validate the hooks contract address
+        if (!key.hooks.isValidHookAddress(key.fee)) revert Hooks.HookAddressNotValid(address(key.hooks));
+
+        // Call before initialization hook with provided data
+        key.hooks.beforeInitialize(key, sqrtPriceX96, hookData);
+
+        // Convert the PoolKey to a PoolId
+        PoolId id = key.toId();
+
+        // Fetch protocol fee and dynamic swap fee if applicable
+        (, uint16 protocolFee) = _fetchProtocolFee(key);
+        uint24 swapFee = key.fee.isDynamicFee() ? _fetchDynamicSwapFee(key) : key.fee.getStaticFee();
+
+        // Initialize the pool with the given parameters and receive the current tick
+        tick = pools[id].initialize(sqrtPriceX96, protocolFee, swapFee);
+
+        // Call after initialization hook with the resulting data
+        key.hooks.afterInitialize(key, sqrtPriceX96, tick, hookData);
+
+        // Emit an event to signal the initialization of the pool with key details
+        emit Initialize(id, key.currency0, key.currency1, key.fee, key.tickSpacing, key.hooks);
     }
 
-    PoolId id = key.toId();
-    uint24 protocolFees = _fetchProtocolFees(key);
-    uint24 hookFees = _fetchHookFees(key);
-    tick = pools[id].initialize(sqrtPriceX96, protocolFees, hookFees);
-
-    if (key.hooks.shouldCallAfterInitialize()) {
-        if (
-            key.hooks.afterInitialize(msg.sender, key, sqrtPriceX96, tick, hookData)
-                != IHooks.afterInitialize.selector
-        ) {
-            revert Hooks.InvalidHookResponse();
-        }
-    }
-
-    emit Initialize(id, key.currency0, key.currency1, key.fee, key.tickSpacing, key.hooks);
+    // ... [other functions]
 }
 ```
-Here's what initialize does step-by-step:
-
-1. **Check the Fee**:
-- If the fee for using the pool is too high, then revert error called `FeeTooLarge`.
-
-2. **Check the Tick Spacing**:
-- "Ticks" are like markers in the pool. There's a space between these markers.
-- If the space between the markers is too large, then revert with error `TickSpacingTooLarge`.
-- If it's too small, then revert with error `TickSpacingTooSmall`.
-
-3. **Ensure the Digital Currencies are in Order**:
-- Keys should be sorted numerically
-- If they are in the wrong order, then revert with error `CurrenciesInitializedOutOfOrder`.
-
-4. **Check the Hooks**:
-
-5. **Set Up the Pool**:
-- Create a unique `id` for the pool.
-- Actually set up the pool with the given starting price and fees.
-
-6. **After Setup Actions**:
-- Some hooks might have actions to do after the pool is set up. If they don't respond correctly, revert with `InvalidHookResponse`.
-
-7. **Announce the Pool**:
-- Finally, announce to everyone that a new pool has been created, sharing all its details.
+Upon success, the transaction announces a new pool was created by emitting an `Initialize` event.
 
 # PoolKey
 
@@ -103,6 +112,8 @@ The `PoolKey` is a structure that uniquely identifies a liquidity pool by storin
 currencies involved (sorted numerically), the swap fee, tick spacing, and hooks (extra functionalities) of the pool.
 
 It acts as a unique identifier, ensuring that each pool can be precisely specified and accessed within the code.
+
+The liquidity for a PoolKey is unique to that pool alone
 
 ```solidity
 /// @notice Returns the key for identifying a pool
@@ -126,35 +137,66 @@ want to use for the pool.
 We can use the `hooks` to customize the pool to our liking.
 
 # Initialization Code
+Here are the important parts of the initialization code from the `PoolManagerInitializeTest` contract.
 
+https://github.com/Uniswap/v4-core/blob/main/test/PoolManagerInitialize.t.sol
 ```solidity
 
-contract TestCounter {
-   Currency internal currency1;
-   Currency internal currency0;
-   uint160 constant SQRT_RATIO_10_1 = 250541448375047931186413801569;
-   TestERC20 token0;
-   TestERC20 token1;
-   PoolManager manager;
-   PoolKey key;
-   PoolId id;
+contract Deployers {
+  function deployFreshManager() internal {
+    manager = new PoolManager(500000);
+  }
 
-   bytes constant ZERO_BYTES = new bytes(0);
+  function deployFreshManagerAndRouters() internal {
+    deployFreshManager();
 
-   function setup(){
+    // Initialize various routers with the deployed manager. These routers likely handle
+    // different aspects of the pool's functionality, such as swapping, liquidity modification, etc.
+    swapRouter = new PoolSwapTest(manager);
+    modifyLiquidityRouter = new PoolModifyLiquidityTest(manager);
+    donateRouter = new PoolDonateTest(manager);
+    takeRouter = new PoolTakeTest(manager);
+    initializeRouter = new PoolInitializeTest(manager); // This is the router that is used to initialize the pool
 
-      MockERC20 tokenA = new MockERC20("TestA", "A", 18, 1000 ether);
-      MockERC20 tokenB = new MockERC20("TestB", "B", 18, 1000 ether);
+    // ... [other routers]
+  }
+}
 
-      (currency0, currency1) = SortTokens.sort(tokenA, tokenB);
+contract PoolManagerInitializeTest is Test, Deployers, GasSnapshot {
+    function setUp() public {
+      deployFreshManagerAndRouters();
 
-      manager = new PoolManager(500000);
+      (currency0, currency1) = deployMintAndApprove2Currencies();
 
+      uninitializedKey = PoolKey({
+          currency0: currency0,
+          currency1: currency1,
+          fee: 3000,
+          hooks: IHooks(ADDRESS_ZERO),
+          tickSpacing: 60
+      });
+    }
 
-      key = PoolKey(currency0, currency1, 3000, 60, limitOrder);
-      id = key.toId();
-      manager.initialize(key, SQRT_RATIO_1_1, ZERO_BYTES);
+    function test_initialize_succeedsWithHooks(uint160 sqrtPriceX96) public {
+        // Assumptions tested in Pool.t.sol
+        sqrtPriceX96 = uint160(bound(sqrtPriceX96, TickMath.MIN_SQRT_RATIO, TickMath.MAX_SQRT_RATIO - 1));
 
-   }
+        address payable mockAddr = payable(address(uint160(Hooks.BEFORE_INITIALIZE_FLAG | Hooks.AFTER_INITIALIZE_FLAG)));
+        address payable hookAddr = payable(MOCK_HOOKS);
+
+        vm.etch(hookAddr, vm.getDeployedCode("EmptyTestHooks.sol:EmptyTestHooks"));
+        MockContract mockContract = new MockContract();
+        vm.etch(mockAddr, address(mockContract).code);
+
+        MockContract(mockAddr).setImplementation(hookAddr);
+
+        uninitializedKey.hooks = IHooks(mockAddr);
+
+        // Call initialize function with the uninitialized key and the specified sqrtPriceX96
+        int24 tick = initializeRouter.initialize(uninitializedKey, sqrtPriceX96, ZERO_BYTES);
+        (Pool.Slot0 memory slot0,,,) = manager.pools(uninitializedKey.toId());
+        assertEq(slot0.sqrtPriceX96, sqrtPriceX96, "sqrtPrice");
+
+    }
 }
 ```

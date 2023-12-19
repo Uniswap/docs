@@ -23,7 +23,7 @@ returns (BalanceDelta);
 ```
 
 # Important Concepts
-Some of the important concepts to understand when working with Uniswap v3 or v4 positions are:
+Some of the important concepts to understand when working with Uniswap V3 or V4 positions are:
 
 1) Tick
 2) Tick Spacing
@@ -37,7 +37,7 @@ represents a specific price ratio between these two assets, calculated using a m
 There are minimum and maximum `tick` values defined within the code, ensuring that calculated prices are within a
 reasonable or acceptable range.
 
-In Uniswap v3(and v4), liquidity providers can provide liquidity at specific price ranges (ticks), allowing them to
+In Uniswap V3(and V4), liquidity providers can provide liquidity at specific price ranges (ticks), allowing them to
 concentrate their liquidity and potentially earn more fees.
 
 Each tick corresponds to a specific price, and not all prices are represented due to the discrete nature of the ticks.
@@ -50,7 +50,7 @@ the price levels that liquidity can be provided at.
 ![Price And Ticks](./images/02_Managing_Position/PriceAndTicks.png)
 
 ### SquareRoot Price X96
-In Uniswap v3(and v4), the square root price (`sqrtPriceX96`) is a key concept and a crucial part of the mathematical
+In Uniswap V3(and V4), the square root price (`sqrtPriceX96`) is a key concept and a crucial part of the mathematical
 calculations. It's utilized for various calculations, including determining the amount of tokens that should be moved
 during a swap and the liquidity calculations within specific price ranges.
 
@@ -62,7 +62,7 @@ simplifies the math, especially when it comes to calculating the amounts to be s
 liquidity calculations within tick ranges.
 
 ### 2. **X96:**
-The X96 suffix refers to the fixed-point format used. Uniswap v3 utilizes a 96-bit fixed-point number format.
+The X96 suffix refers to the fixed-point format used. Uniswap V3 utilizes a 96-bit fixed-point number format.
 In this representation, there is a convention to maintain high precision in calculations. The fixed-point
 representation means that the actual floating-point number is multiplied by \(2^{96}\) and stored as an
 integer. When reading the value, it has to be interpreted properly by dividing it by \(2^{96}\) to get the
@@ -74,7 +74,7 @@ actual value.
 ### SqrtPriceX96 to Tick
 Since both the `tick` and `sqrtPriceX96` are representations of the price, they can be converted from one to the other.
 
-The Uniswap v3/v4 core library provides two functions to convert between the two representations:
+The Uniswap V3/V4 core library provides two functions to convert between the two representations:
 
 https://github.com/Uniswap/v4-core/blob/main/src/libraries/TickMath.sol
 
@@ -92,7 +92,7 @@ price relationship.
 The `liquidityDelta` is the difference between the current liquidity and the desired liquidity in a position. It can
 be positive (when you're adding liquidity) or negative (when you're removing liquidity).
 
-Here is the code from Uniswap v3 contracts which calculates the liquidity (or liquidityDelta):
+Here is the code from Uniswap V3 contracts which calculates the liquidity (or liquidityDelta):
 
 https://github.com/Uniswap/v3-periphery/blob/main/contracts/base/LiquidityManagement.sol
 

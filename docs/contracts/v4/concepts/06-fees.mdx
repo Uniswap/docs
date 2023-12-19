@@ -20,10 +20,10 @@ the current price level.
 The swap keeps iterating until either the specified amount is fully used or the square root of
 the price hits the defined limit (`sqrtPriceLimitX96`).
 
-# Fees in Uniswap v3
-In Uniswap v3, there are two types of fees: Liquidity Provider (LP) Fees and Protocol Fees.
+# Fees in Uniswap V3
+In Uniswap V3, there are two types of fees: Liquidity Provider (LP) Fees and Protocol Fees.
 
-## Liquidity Provider (LP) Fees in v3
+## Liquidity Provider (LP) Fees in V3
 Whenever a trade (swap) is executed, the trader pays a fee, which is determined by the Uniswap pool's fee rate. The
 fee is a percentage of the trade amount and is added to the pool's liquidity. This fee compensates liquidity providers
 (LPs) for providing liquidity to the pool. The LP fees are implied within the swap calculation and not explicitly
@@ -31,7 +31,7 @@ shown in the code you provided. The fees for LPs are collected through price mov
 `feeGrowthGlobal0X128` and `feeGrowthGlobal1X128` variables, which track the global fee growth per unit of
 liquidity in terms of `token0` and `token1` respectively.
 
-## Protocol Fees in v3
+## Protocol Fees in V3
 These are different from LP fees. The Uniswap protocol may take a portion of the fees for itself, which is separate
 from the fees paid to liquidity providers. The `protocolFees` struct within the contract keeps track of the
 accumulated protocol fees in `token0` and `token1`.
@@ -64,7 +64,7 @@ Each swapping loop iteration starts a new swap step. As part of each iteration f
 - `feeGrowthGlobalX128`: This keeps track of the global fee growth, which will be used for liquidity providers to calculate their earned fees.
 
 
-# Fees in Uniswap v4
+# Fees in Uniswap V4
 V4: The fee structure can be dynamic. This means that the fee rate can potentially change with each swap, depending
 on external logic. This logic is encapsulated by the `IDynamicFeeManager`, which is called if `key.fee.isDynamicFee()`
 is true. There's also a provision for static fees, which behaves similarly to V3 if the dynamic fee feature is not used.
@@ -88,14 +88,14 @@ liquidity operation for both the protocol and the pool's hook.
 ```
 Here is a breakdown of each field:
 
-`feeForProtocol0` and `feeForProtocol1`: These are fees that are directed towards the protocol. This is similar to the fees in Uniswap v3.
+`feeForProtocol0` and `feeForProtocol1`: These are fees that are directed towards the protocol. This is similar to the fees in Uniswap V3.
 
 `feeForHook0` and `feeForHook1`: These are fees related to a specific operation or integration referred to as
 a "hook" in this code. The fees collected from these hooks may be directed towards the entity that provides the hook
 functionality. Similar to the protocol fees, they are specific to two different assets/tokens in the pool.
 
 
-If you look at the swapping code in v4, the fees are calculated for each swap step just like in Uniswap v3
+If you look at the swapping code in V4, the fees are calculated for each swap step just like in Uniswap V3
 https://github.com/Uniswap/v4-core/blob/main/src/libraries/Pool.sol#L378
 
 In V4, `Swap` event is emitted at the end of the swap function, which now includes the `totalSwapFee` in its
