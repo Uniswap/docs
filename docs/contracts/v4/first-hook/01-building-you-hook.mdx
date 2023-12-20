@@ -6,9 +6,8 @@ sidebar_position: 1
 
 # Build your own hook
 Whenever starting on a new project, it is always a good idea to use a framework which can assist in development and
-that can make the setup process easier. Similarly, when building your own hooks, you need to have a solidity framework
-in pace and then you will also need to use a few utilities to
-1) Mine the correct salt for your hook address
+that can make the setup process easier. Similarly, when building your own hooks, will would want to use a few utilities to
+1) Mining the correct salt for your hook address
 2) Using a router which acquire the lock and then call various functions on the pool manager
 3) Deploying the hook to a deterministic address
 
@@ -118,8 +117,8 @@ function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calld
 ```
 
 ## Additional Resources
-- **v4-periphery**: For advanced hook implementations.
-- **v4-core**: The core repository for Uniswap v4.
+- [v4-periphery](https://github.com/Uniswap/v4-periphery): For advanced hook implementations.
+- [v4-core](https://github.com/Uniswap/v4-core): The core repository for Uniswap v4.
 
 
 
