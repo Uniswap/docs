@@ -64,10 +64,10 @@ Full detail about the locking mechanism is explained in the [Locking Mechanism](
 
 The contract that calls the `swap` must implement ILockCallback interface.
 
-PoolSwapTest.sol has some examples of how to acquire lock and some basic checks in place.
+`PoolSwapTest.sol` has some examples of how to acquire lock and some basic checks in place.
 https://github.com/Uniswap/v4-core/blob/main/src/test/PoolSwapTest.sol
 
-In `PoolSwapTest` the `lockAcquired` function is triggered when a certain "lock" is acquired in the
+In `PoolSwapTest`, the `lockAcquired` function is triggered when a certain "lock" is acquired in the
 context of swapping assets or tokens. Once this lock is confirmed, the function handles
 the settlement based on the result of the swap. It decodes the data provided to understand the context, asks
 the manager to perform the swap, and then either
