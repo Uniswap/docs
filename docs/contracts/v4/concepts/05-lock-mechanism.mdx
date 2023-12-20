@@ -26,26 +26,26 @@ with each other. Here are the main components of the locking mechanism:
 - The `lock` function is where the locking mechanism is initiated. It pushes an address tuple (address locker, address lockCaller)
 to the locker array.
 
-```solidity
-function lock(address lockTarget, bytes calldata data) external payable override returns (bytes memory result) {
-    Lockers.push(lockTarget, msg.sender);
+  ```solidity
+  function lock(address lockTarget, bytes calldata data) external payable override returns (bytes memory result) {
+      Lockers.push(lockTarget, msg.sender);
 
-    // the caller does everything in this callback, including paying what they owe via calls to settle
-    result = ILockCallback(lockTarget).lockAcquired(msg.sender, data);
+      // the caller does everything in this callback, including paying what they owe via calls to settle
+      result = ILockCallback(lockTarget).lockAcquired(msg.sender, data);
 
-    if (Lockers.length() == 1) {
-        if (Lockers.nonzeroDeltaCount() != 0) revert CurrencyNotSettled();
-        Lockers.clear();
-    } else {
-        Lockers.pop();
-    }
-}
-```
+      if (Lockers.length() == 1) {
+          if (Lockers.nonzeroDeltaCount() != 0) revert CurrencyNotSettled();
+          Lockers.clear();
+      } else {
+          Lockers.pop();
+      }
+  }
+  ```
 
-  - During the lock, a callback function `ILockCallback(lockTarget).lockAcquired(msg.sender, data)` is called, where the locked
+- During the lock, a callback function `ILockCallback(lockTarget).lockAcquired(msg.sender, data)` is called, where the locked
 contract can perform necessary operations.
 
-  - After the operations in the callback are completed, it either clears the `Lockers` if it has only element,
+- After the operations in the callback are completed, it either clears the `Lockers` if it has only element,
 signifying the release of the lock, or it pops the last element from `Lockers`, signifying that the lock is
 released by that particular address.
 
