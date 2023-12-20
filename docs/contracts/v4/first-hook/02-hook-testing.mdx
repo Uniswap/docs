@@ -10,93 +10,93 @@ Testing hooks is same as testing contracts. The template includes a test for the
 Here are some key points about the Counter hook test:
 1. The hook extends from a couple of utilities that facilitate easier testing of hooks.
 
- ```solidity
-import "forge-std/Test.sol";
-import {Deployers} from "v4-core/test/utils/Deployers.sol";
+  ```solidity
+  import "forge-std/Test.sol";
+  import {Deployers} from "v4-core/test/utils/Deployers.sol";
 
-contract CounterTest is Test, Deployers {
-}
- ```
+  contract CounterTest is Test, Deployers {
+  }
+  ```
 
 2. The `setup` function, called before every test, creates a few test tokens, retrieves the hook address, and then initializes the pool with this hook address.
 
- ```solidity
-function setup() public {
-    Deployers.deployFreshManagerAndRouters();
-    (currency0, currency1) = Deployers.deployMintAndApprove2Currencies();
+  ```solidity
+  function setup() public {
+      Deployers.deployFreshManagerAndRouters();
+      (currency0, currency1) = Deployers.deployMintAndApprove2Currencies();
 
-    // Deploy the hook to an address with the correct flags
-    uint160 flags = uint160(
-        Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG
-        | Hooks.BEFORE_REMOVE_LIQUIDITY_FLAG
-    );
-    (address hookAddress, bytes32 salt) =
-        HookMiner.find(address(this), flags, type(Counter).creationCode, abi.encode(address(manager)));
-    counter = new Counter{salt: salt}(IPoolManager(address(manager)));
-}
-```
+      // Deploy the hook to an address with the correct flags
+      uint160 flags = uint160(
+          Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG
+          | Hooks.BEFORE_REMOVE_LIQUIDITY_FLAG
+      );
+      (address hookAddress, bytes32 salt) =
+          HookMiner.find(address(this), flags, type(Counter).creationCode, abi.encode(address(manager)));
+      counter = new Counter{salt: salt}(IPoolManager(address(manager)));
+  }
+  ```
 
-Pool is then initialized containing this hook
-```solidity
-// Create the pool
-key = PoolKey(currency0, currency1, 3000, 60, IHooks(counter));
-poolId = key.toId();
-initializeRouter.initialize(key, SQRT_RATIO_1_1, ZERO_BYTES);
-```
+  Pool is then initialized containing this hook
+  ```solidity
+    // Create the pool
+    key = PoolKey(currency0, currency1, 3000, 60, IHooks(counter));
+    poolId = key.toId();
+    initializeRouter.initialize(key, SQRT_RATIO_1_1, ZERO_BYTES);
+  ```
 
 3. Hook tests utilize a router, namely `PoolModifyPositionTest`, to modify positions. PoolModifyPositionTest implements the `ILockCallback` interface and adds the `lockAcquired` function, which in turn calls the `manager.modifyPosition` function.
- ```solidity
-PoolManager manager;
-PoolModifyPositionTest modifyPositionRouter;
+  ```solidity
+    PoolManager manager;
+    PoolModifyPositionTest modifyPositionRouter;
 
-manager = new PoolManager(500000);
+    manager = new PoolManager(500000);
 
-// Helpers for interacting with the pool
-modifyPositionRouter = new PoolModifyPositionTest(IPoolManager(address(manager)));
+    // Helpers for interacting with the pool
+    modifyPositionRouter = new PoolModifyPositionTest(IPoolManager(address(manager)));
 
-modifyPositionRouter.modifyPosition(poolKey, IPoolManager.ModifyPositionParams(-120, 120, 10 ether), ZERO_BYTES);
-```
-Similarly, for token swaps, the test uses `PoolSwapTest`, which also implements the `ILockCallback` interface.
+    modifyPositionRouter.modifyPosition(poolKey, IPoolManager.ModifyPositionParams(-120, 120, 10 ether), ZERO_BYTES);
+  ```
+  Similarly, for token swaps, the test uses `PoolSwapTest`, which also implements the `ILockCallback` interface.
 
 4. Testing the hook closely resembles testing any other smart contract. The function `testCounterHooks` executes swaps and verifies if the counters are updated correctly.
 
-```solidity
-function testCounterHooks() public {
-    // positions were created in setup()
-    assertEq(counter.beforeAddLiquidityCount(poolId), 3);
-    assertEq(counter.beforeRemoveLiquidityCount(poolId), 0);
+  ```solidity
+  function testCounterHooks() public {
+      // positions were created in setup()
+      assertEq(counter.beforeAddLiquidityCount(poolId), 3);
+      assertEq(counter.beforeRemoveLiquidityCount(poolId), 0);
 
-    assertEq(counter.beforeSwapCount(poolId), 0);
-    assertEq(counter.afterSwapCount(poolId), 0);
+      assertEq(counter.beforeSwapCount(poolId), 0);
+      assertEq(counter.afterSwapCount(poolId), 0);
 
-    // Perform a test swap //
-    bool zeroForOne = true;
-    int256 amountSpecified = 1e18;
-    BalanceDelta swapDelta = swap(key, zeroForOne, amountSpecified, ZERO_BYTES);
-    // ------------------- //
+      // Perform a test swap //
+      bool zeroForOne = true;
+      int256 amountSpecified = 1e18;
+      BalanceDelta swapDelta = swap(key, zeroForOne, amountSpecified, ZERO_BYTES);
+      // ------------------- //
 
-    assertEq(int256(swapDelta.amount0()), amountSpecified);
+      assertEq(int256(swapDelta.amount0()), amountSpecified);
 
-    assertEq(counter.beforeSwapCount(poolId), 1);
-    assertEq(counter.afterSwapCount(poolId), 1);
-}
+      assertEq(counter.beforeSwapCount(poolId), 1);
+      assertEq(counter.afterSwapCount(poolId), 1);
+  }
 
-/// Test Helper
-function swap(
-    PoolKey memory key,
-    bool zeroForOne,
-    int256 amountSpecified,
-    bytes memory hookData
-) internal returns (BalanceDelta delta) {
-    IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
-        zeroForOne: zeroForOne,
-        amountSpecified: amountSpecified,
-        sqrtPriceLimitX96: zeroForOne ? TickMath.MIN_SQRT_RATIO + 1 : TickMath.MAX_SQRT_RATIO - 1 // unlimited impact
-    });
+  /// Test Helper
+  function swap(
+      PoolKey memory key,
+      bool zeroForOne,
+      int256 amountSpecified,
+      bytes memory hookData
+  ) internal returns (BalanceDelta delta) {
+      IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+          zeroForOne: zeroForOne,
+          amountSpecified: amountSpecified,
+          sqrtPriceLimitX96: zeroForOne ? TickMath.MIN_SQRT_RATIO + 1 : TickMath.MAX_SQRT_RATIO - 1 // unlimited impact
+      });
 
-    PoolSwapTest.TestSettings memory testSettings =
-        PoolSwapTest.TestSettings({withdrawTokens: true, settleUsingTransfer: true, currencyAlreadySent: false});
+      PoolSwapTest.TestSettings memory testSettings =
+          PoolSwapTest.TestSettings({withdrawTokens: true, settleUsingTransfer: true, currencyAlreadySent: false});
 
-    delta = swapRouter.swap(key, params, testSettings, hookData);
-}
-```
+      delta = swapRouter.swap(key, params, testSettings, hookData);
+  }
+  ```

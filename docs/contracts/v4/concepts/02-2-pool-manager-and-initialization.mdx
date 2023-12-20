@@ -43,14 +43,7 @@ The `initialize` function sets up a new liquidity pool in Uniswap. It takes nece
 and pricing info, and hook information as inputs, checks various conditions to ensure that the pool is set up correctly,
 and sets initial values for the pool.
 
-Upon success, the transaction announces a new pool was created by emitting an `Initialize` event.
-
-# PoolManager.sol
 https://github.com/Uniswap/v4-core/blob/main/src/PoolManager.sol
-
-Here is the `initialize` function from the `PoolManager` contract which contains inline comments explaining the
-functionality of each line.
-
 ```solidity
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity ^0.8.20;

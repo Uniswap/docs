@@ -51,15 +51,9 @@ released by that particular address.
 
 ### 2. **Lockers.sol**
 
-The `Lockers` library stores an array of locker addresses and their corresponding lock callers in transient storage.
+The `Lockers` library stores an array/queue of locker addresses and their corresponding lock callers in transient storage.
 Each locker is represented as a tuple (address locker, address lockCaller), and each tuple occupies two slots in
 transient storage. The functions `push`, `pop`, `length`, and `clear` are used to manage this queue.
-
-Functions like `getCurrentHook`, `getHook`, `setCurrentHook`, and `clearCurrentHook` are used for accessing and
-modifying these hooks. For instance, `setCurrentHook` sets a hook for the current locker if it hasn't been set
-already.
-
-
 
 ### 3. **Non-Zero Deltas Tracking(Flash Accounting):**
 
