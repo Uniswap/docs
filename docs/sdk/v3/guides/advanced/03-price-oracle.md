@@ -6,23 +6,21 @@ title: Uniswap as a Price Oracle
 ## Introduction
 
 This guide will cover how to fetch price observations from a V3 pool to get onchain asset prices.
-It is based on the [Price Oracle example](https://github.com/Uniswap/examples/tree/main/v3-sdk/price-oracle), found in the Uniswap code examples [repository](https://github.com/Uniswap/example).
-To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/price-oracle/README.md) and follow the setup instructions.
+It is based on the [Price Oracle example](https://github.com/Uniswap/examples/tree/main/v3-sdk/oracle), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
+To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/oracle/README.md) and follow the setup instructions.
 
 :::info
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 :::
 
-In this example we will use **ethers JS** to observe the development of a Pool's current tick over several blocks.
+In this example we will observe the development of a Pool's current tick over several blocks.
 We will then calculate the time weighted average price - **TWAP**, and time weighted average liquidity - **TWAL** over the observed time interval.
 
 This guide will **cover**:
 
-1. Understanding observations
-2. Fetching observations
-3. Computing TWAP
-4. Computing TWAL
-5. Why prefer observe over observations
+1. Fetching observations
+2. Computing TWAP
+3. Computing TWAL
 
 Before diving into this guide, consider reading the theory behind using Uniswap V3 as an [Onchain Oracle](../../../../concepts/protocol/oracle.md).
 
@@ -34,75 +32,64 @@ The core code of this guide can be found in [`oracle.ts`](https://github.com/Uni
 
 ## Understanding Observations
 
-First, we need to create a Pool contract to fetch data from the blockchain. Check out the [Pool data guide](./02-pool-data.md) to learn how to compute the address and create an **ethers Contract** to interact with.
+First, we need to create a Pool object to interact with the blockchain.
+We use `initFromChain` to create a Pool with an RPC connection in the same manner we did in the Trading guides:
 
 ```typescript
-const poolContract = new ethers.Contract(
-    poolAddress,
-    IUniswapV3PoolABI.abi,
-    provider
+const provider = new ethers.providers.JsonRpcProvider(
+    '...rpcUrl'
+    )
+
+const pool = Pool.initFromChain(
+    provider,
+    CurrentConfig.pool.token0,
+    CurrentConfig.pool.token1,
+    CurrentConfig.pool.fee
 )
 ```
 
-All V3 pools store observations of the current tick and the block timestamp. 
+All V3 pools store observations of the current tick and the block timestamp.
+
 To minimize pool deployment costs, only one Observation is stored in the contract when the Pool is created.
 Anyone who is willing to pay the gas costs can [increase](../../../../contracts/v3/reference/core/UniswapV3Pool.md#increaseobservationcardinalitynext) the number of stored observations to up to `65535`.
+
 If the Pool cannot store an additional Observation, it overwrites the oldest one.
 
-We create an interface to map our data to:
+## Number of Observations
 
-```typescript
-interface Observation {
-    secondsAgo: number
-    tickCumulative: bigint
-    secondsPerLiquidityCumulativeX128: bigint
-}
-```
-
-To fetch the `Observations` from our pool contract, we will use the [`observe`](../../../../contracts/v3/reference/core/UniswapV3Pool.md#observe) function:
-
-```solidity
-function observe(
-    uint32[] secondsAgos
-) external view override noDelegateCall returns (
-    int56[] tickCumulatives, 
-    uint160[] secondsPerLiquidityCumulativeX128s
-)
-```
+Before fetching observations, we want to make sure the Pool stores enough observations to act as a reliable oracle.
 
 We first check how many observations are stored in the Pool by calling the `slot0` function.
 
 ```typescript
-const slot0 = await poolContract.slot0()
+const slot0 = await pool.rpcSlot0()
 
 const observationCount = slot0.observationCardinality
 const maxObservationCount = slot0.observationCardinalityNext
 ```
 
-The `observationCardinalityNext` is the maximum number of Observations the Pool **can store** at the moment.
 The `observationCardinality` is the actual number of Observations the Pool **has currently stored**.
+
+The `observationCardinalityNext` is the maximum number of Observations the Pool **can store** at the moment.
 
 Observations are only stored when the `swap()` function is called on the Pool or when a **Position is modified**, so it can take some time to write the Observations after the `observationCardinalityNext` was increased.
 If the number of Observations on the Pool is not sufficient, we need to call the `increaseObservationCardinalityNext()` function and set it to the value we desire.
 
-This is a write function as the contract needs to store more data on the blockchain.
-We will need a **wallet** or **signer** to pay the corresponding gas fee.
+This is a write function because the contract needs to store more data on the blockchain.
+We will need to pay the corresponding gas fee.
 
 In this example, we want to fetch 10 observations.
 
 ```typescript
 import { ethers } from 'ethers'
 
-let provider = new ethers.providers.WebSocketProvider('rpcUrl...')
 let wallet = new ethers.Wallet('private_key', provider)
+const observationCardinalityNext = 10
 
-const poolContract = new ethers.Contract(
-    poolAddress,
-    IUniswapV3PoolABI.abi,
-    wallet
+const txRes = await pool.increaseObservationCardinalityNext(
+    wallet,
+    observationCardinalityNext
 )
-
-const txRes = await poolContract.increaseObservationCardinalityNext(10)
 ```
 
 The Pool will now fill the open Observation Slots.
@@ -116,10 +103,36 @@ Because of this, we can be sure the oldest Observation is **at least** 10 blocks
 It is very likely that the number of blocks covered is bigger than 10.
 :::
 
+We are now sure that at least 10 observations exist, and can safely fetch observations for the last 10 blocks.
+
 ## Fetching Observations
 
-We are now sure that at least 10 observations exist, and can safely fetch observations for the last 10 blocks.
-We call the `observe` function with an array of numbers, representing the timestamps of the Observations in seconds ago from now.
+To fetch the `Observations` from our pool, we will use the [`observe`](../../../../contracts/v3/reference/core/UniswapV3Pool.md#observe) function:
+
+```solidity
+function observe(
+    uint32[] secondsAgos
+) external view override noDelegateCall returns (
+    int56[] tickCumulatives, 
+    uint160[] secondsPerLiquidityCumulativeX128s
+)
+```
+
+The sdk wraps this function in the `rpcObserve` function on our Pool object.
+
+```typescript
+  const observeResponse = await pool.rpcObserve(timestamps)
+```
+
+Let's create an interface to map our data to:
+
+```typescript
+interface Observation {
+    secondsAgo: number
+    tickCumulative: bigint
+    secondsPerLiquidityCumulativeX128: bigint
+}
+```
 
 In this example, we calculate averages over the last ten blocks so we fetch 2 observations with 9 times the blocktime in between.
 Fetching an Observation `0s` ago will return the **most recent Observation** interpolated to the current timestamp as observations are written at most once a block.
@@ -129,18 +142,19 @@ const timestamps = [
     0, 108
 ]
 
-const [tickCumulatives, secondsPerLiquidityCumulatives] = await poolContract.observe(timestamps)
+const observeResponse = await pool.rpcObserve(timestamps)
 
 const observations: Observation[] = timestamps.map((time, i) => {
     return {
-        secondsAgo: time
-        tickCumulative: BigInt(tickCumulatives[i])
-        secondsPerLiquidityCumulativeX128: BigInt(secondsPerLiquidityCumulatives[i]) 
+      secondsAgo: time,
+      tickCumulative: observeResponse.tickCumulatives[i],
+      secondsPerLiquidityCumulativeX128:
+        observeResponse.secondsPerLiquidityCumulativeX128s[i],
     }
 })
 ```
 
-We map the response from the RPC provider to match our Observations interface.
+We map the response from the RPC provider to match our `Observation` interface.
 
 ## Calculating the average Price
 
@@ -206,81 +220,6 @@ Adding massive amounts of liquidity to a Pool and withdrawing them after a block
 
 Use the **TWAP** with care and consider handling outliers.
 :::
-
-## Why prefer observe over observations?
-
-As touched on previously, the `observe` function calculates Observations for the timestamps requested from the nearest observations stored in the Pool.
-It is also possible to directly fetch the stored observations by calling the `observations` function with the index of the Observation that we are interested in.
-
-Let's fetch all observations stored in our Pool. We already made sure the observationCardinality is 10.
-The solidity struct `Observation` looks like this:
-
-```solidity
-struct Observation {
-    // the block timestamp of the observation
-    uint32 blockTimestamp;
-    // the tick accumulator, i.e. tick * time elapsed since the pool was first initialized
-    int56 tickCumulative;
-    // the seconds per liquidity, i.e. seconds elapsed / max(1, liquidity) since the pool was first initialized
-    uint160 secondsPerLiquidityCumulativeX128;
-    // whether or not the observation is initialized
-    bool initialized;
-}
-```
-
-It is possible to request any Observation up to (excluding) index `65535`, but indices equal to or greater than the `observationCardinality` will return uninitialized Observations.
-
-The full code to the following code snippets can be found in [`oracle.ts`](https://github.com/uniswap/examples/blob/main/v3-sdk/oracle/src/libs/oracle.ts)
-
-```typescript
-let requests = []
-for (let i = 0; i < 10; i++) {
-    requets.push(poolContract.observations(i))
-}
-
-const results = await Promise.all(requests)
-```
-
-We can only request one Observation at a time, so we create an Array of Promises to get an Array of Observations.
-
-We already see one difference, to using the `observe` function here.
-While `observe` creates an array onchain in the smart contract and returns it, calling `observations` requires us to make multiple RPC calls.
-
-:::note
-Depending on our setup and the Node we are using, either option can be faster, but making multiple RPC calls always has the danger of the blockchain state changing between our calls.
-While it is extremely unlikely, it is still possible that our Node updates with a new block and new Observation in between our calls.
-Because we access indices of an array, this would give us an unexpected result that we need to handle as an edge case in our implementation.
-:::
-
-One way to handle this behaviour is deploying or [using](https://github.com/mds1/multicall) a Contract with a [multicall](https://solidity-by-example.org/app/multi-call/) functionality to get all observations with one request.
-You can also find an example of a JS multicall in the [Pool data guide](./02-pool-data.md).
-
-We map the RPC result to the Typescript interface that we created:
-
-```typescript
-const utcNow = Math.floor(Date.now() / 1000)
-const observations = results.map((result) => {
-    const secondsAgo = utcNow - Number(result.blockTimeStamp)
-    return {
-        secondsAgo,
-        tickCumulative: BigInt(result.tickCumulative),
-        secondsPerLiquidityCumulativeX128: BigInt(result.secondsPerLiquidityCumulativeX128) 
-    }
-}).sort((a, b) => a.secondsAgo - b.secondsAgo)
-```
-
-We now have an Array of observations in the same format that we are used to.
-
-:::note
-Because Observations are stored in a **fixed size array** with always the oldest Observation overwritten if a new one is stored, they are **not sorted**.
-We need to sort the result by the timestamp.
-:::
-
-The timestamps of the Observations we got are correspondent to blocks where **Swaps or Position changes** happened on the Pool.
-Because of this, we would need to calculate Observations for specific intervals manually from the **surrounding Observations**.
-
-In conclusion, it is much harder to work with `observations` than with `observe`, and we need to consider multiple edge cases.
-For this reason, it is recommended to use the `observe` function.
 
 ## Next Steps
 
