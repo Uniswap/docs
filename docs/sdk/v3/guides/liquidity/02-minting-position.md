@@ -13,7 +13,7 @@ To run this example, check out the examples's [README](https://github.com/Uniswa
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](../01-background.md) page!
 :::
 
-In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will use the `NonfungiblePositionManager` class to help us mint a liquidity position for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for and the Pool **fee**.
+In the Uniswap V3 protocol, liquidity positions are represented using non-fungible tokens. In this guide we will mint a liquidity position for the  **USDC - DAI** pair. The inputs to our guide are the **two tokens** that we are pooling for, the **amount** of each token we are pooling for and the Pool **fee**.
 
 The guide will **cover**:
 
@@ -25,9 +25,8 @@ At the end of the guide, given the inputs above, we should be able to mint a liq
 
 For this guide, the following Uniswap packages are used:
 
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
-- [`@uniswap/smart-order-router`](https://www.npmjs.com/package/@uniswap/smart-order-router)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
+- [`@uniswapfoundation/sdk-core`](https://www.npmjs.com/package/@uniswapfoundation/sdk-core)
 
 The core code of this guide can be found in [`mintPosition()`](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/src/libs/positions.ts#L37)
 
@@ -39,27 +38,25 @@ In situations where a smart contract is transfering tokens on our behalf, we nee
 We can use the `approveTokenTransfer()` function from the sdk for that:
 
 ```typescript
-import { approveTokenTransfer } from '@uniswap/v3-sdk'
-import { NONFUNGIBLE_POSITION_MANAGER_ADDRESSES } from '@uniswap/sdk-core'
-
-const signer = getWallet()
+import { approveTokenTransfer } from '@uniswapfoundation/v3-sdk'
+import { NONFUNGIBLE_POSITION_MANAGER_ADDRESSES } from '@uniswapfoundation/sdk-core'
 
 const positionManagerAddress = NONFUNGIBLE_POSITION_MANAGER_ADDRESSES[
   CurrentConfig.tokens.token0.chainId
   ]
 
-const token0Approval = await approveTokenTransfer(
-  positionManagerAddress,
-  token0Address,
-  amount0,
-  signer
-)
-const token1Approval = await approveTokenTransfer(
-  positionManagerAddress,
-  token1Address,
-  amount1,
-  signer
-)
+const token0Approval = await approveTokenTransfer({
+    contractAddress: positionManagerAddress,
+    tokenAddress: CurrentConfig.tokens.token0.address,
+    amount: amount0,
+    signer: getWallet(),
+  })
+  const token1Approval = await approveTokenTransfer({
+    contractAddress: positionManagerAddress,
+    tokenAddress: CurrentConfig.tokens.token1.address,
+    amount: amount1,
+    signer: getWallet(),
+  })
 ```
 
 We can get the Contract address for the NonfungiblePositionManager from the `NONFUNGIBLE_POSITION_MANAGER_ADDRESSES` in the sdk-core.
@@ -69,23 +66,23 @@ We can get the Contract address for the NonfungiblePositionManager from the `NON
 To create our Position, we first need to instantiate a `Pool` object:
 
 ```typescript
-  import {Pool} from '@uniswap/v3-sdk'
+  import {Pool} from '@uniswapfoundation/v3-sdk'
 
   const provider = getProvider()
 
-  const pool = await Pool.initFromChain(
+  const pool = await Pool.initFromChain({
     provider,
-    CurrentConfig.tokens.in,
-    CurrentConfig.tokens.out,
-    CurrentConfig.tokens.poolFee
-  )
+    tokenA: CurrentConfig.tokens.token0,
+    tokenB: CurrentConfig.tokens.token1,
+    fee: CurrentConfig.tokens.poolFee,
+  })
 ```
 
 Next, we can use the pool to create an instance of a `Position` object, which represents a Liquidity Position offchain:
 
 ```typescript
-import { Position } from '@uniswap/v3-sdk'
-import { BigIntish } from '@uniswap/sdk-core'
+import { Position } from '@uniswapfoundation/v3-sdk'
+import { BigIntish } from '@uniswapfoundation/sdk-core'
 
 // The maximum token amounts we want to provide. BigIntish accepts number, string or bigint
 const amount0: BigIntish = ...
@@ -114,11 +111,11 @@ Given those parameters, `fromAmounts` will attempt to calculate the maximum amou
 
 ## Configuring and executing our minting transaction
 
-We can now use the `NonfungiblePositionManager` class to mint our Position:
+We can now mint our Position:
 
 ```typescript
-import { MintOptions, NonfungiblePositionManager } from '@uniswap/v3-sdk'
-import { Percent } from '@uniswap/sdk-core'
+import { MintOptions } from '@uniswapfoundation/v3-sdk'
+import { Percent } from '@uniswapfoundation/sdk-core'
 
 const signer = getWallet()
 
@@ -129,12 +126,11 @@ const mintOptions: MintOptions = {
 }
 
 // get calldata for minting a position
-const txResponse = NonfungiblePositionManager.mintOnChain(
-  signer,
-  provider,
-  position,
-  mintOptions
-)
+const txResponse = await positionToMint.mint({
+    signer: getWallet(),
+    provider,
+    options: mintOptions,
+  })
 ```
 
 The `MintOptions` interface requires three keys:
@@ -143,7 +139,7 @@ The `MintOptions` interface requires three keys:
 - `deadline` defines the latest point in time at which we want our transaction to be included in the blockchain.
 - `slippageTolerance` defines the maximum amount of **change of the ratio** of the Tokens we provide. The ratio can change if for example **trades** that change the price of the Pool are included before our transaction.
 
-The `mitOnChain()` function directly signs and executes a transaction that will create our Position.
+The `mint()` function directly signs and executes a transaction that will create our Position.
 
 The effect of the transaction is to mint a new Position NFT. We should see a new position with liquidity in our list of positions.
 

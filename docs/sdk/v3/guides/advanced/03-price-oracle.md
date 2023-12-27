@@ -26,7 +26,7 @@ Before diving into this guide, consider reading the theory behind using Uniswap 
 
 For this guide, the following Uniswap packages are used:
   
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
 
 The core code of this guide can be found in [`oracle.ts`](https://github.com/Uniswap/examples/tree/main/v3-sdk/price-oracle/src/libs/oracle.ts)
 
@@ -40,12 +40,12 @@ const provider = new ethers.providers.JsonRpcProvider(
     '...rpcUrl'
     )
 
-const pool = Pool.initFromChain(
+const pool = await Pool.initFromChain({
     provider,
-    CurrentConfig.pool.token0,
-    CurrentConfig.pool.token1,
-    CurrentConfig.pool.fee
-)
+    tokenA: CurrentConfig.pool.token0,
+    tokenB: CurrentConfig.pool.token1,
+    fee: CurrentConfig.pool.fee,
+  })
 ```
 
 All V3 pools store observations of the current tick and the block timestamp.
@@ -86,10 +86,10 @@ import { ethers } from 'ethers'
 let wallet = new ethers.Wallet('private_key', provider)
 const observationCardinalityNext = 10
 
-const txRes = await pool.increaseObservationCardinalityNext(
-    wallet,
-    observationCardinalityNext
-)
+const txRes = await pool.rpcIncreaseObservationCardinalityNext({
+    signer: wallet,
+    observationCardinalityNext,
+  })
 ```
 
 The Pool will now fill the open Observation Slots.
@@ -121,7 +121,7 @@ function observe(
 The sdk wraps this function in the `rpcObserve` function on our Pool object.
 
 ```typescript
-  const observeResponse = await pool.rpcObserve(timestamps)
+  const observeResponse = await pool.rpcObserve({ secondsAgo: timestamps })
 ```
 
 Let's create an interface to map our data to:
@@ -168,15 +168,13 @@ We cannot directly use the value of a single Observation for anything meaningful
 const diffTickCumulative = observations[0].tickCumulative - observations[1].tickCumulative
 const secondsBetween = 108
 
-const averageTick = diffTickCumulative / secondsBetween
+const averageTick = Number(diffTickCumulative / BigInt(secondsBetween))
 ```
 
-Now that we know the average active Tick over the last 10 blocks, we can calculate the price with the `tickToPrice` function, which returns a [`Price`](../../../core/reference/classes/Price.md) Object. Check out the [Pool data](./02-pool-data.md) guide to understand how to construct a Pool Object and access its properties. We don't need the full Tick Data for this guide.
+Now that we know the average active Tick over the last 10 blocks, we can calculate the price with the `tickToPrice` function, which returns a [`Price`](../../../core/reference/classes/Price.md) Object.
 
 ```typescript
-import { tickToPrice, Pool } from '@uniswap/v3-sdk'
-
-const pool = new Pool(...)
+import { tickToPrice } from '@uniswapfoundation/v3-sdk'
 
 const TWAP = tickToPrice(pool.token0, pool.token1, averageTick)
 ```

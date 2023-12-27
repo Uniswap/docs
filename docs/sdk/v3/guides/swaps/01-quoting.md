@@ -24,8 +24,8 @@ At the end of the guide, we should be able to fetch a quote for the given input 
 
 For this guide, the following Uniswap packages are used:
 
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
+- [`@uniswapfoundation/sdk-core`](https://www.npmjs.com/package/@uniswapfoundation/sdk-core)
 
 The core code of this guide can be found in [`quote.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/quoting/src/libs/quote.ts)
 
@@ -34,8 +34,8 @@ The core code of this guide can be found in [`quote.ts`](https://github.com/Unis
 We will use the example configuration `CurrentConfig` in most code snippets of this guide. It has the format:
 
 ```typescript
-import { Token } from '@uniswap/sdk-core'
-import { FeeAmount } from '@uniswap/v3-sdk'
+import { Token } from '@uniswapfoundation/sdk-core'
+import { FeeAmount } from '@uniswapfoundation/v3-sdk'
 
 interface ExampleConfig {
   rpc: {
@@ -114,16 +114,16 @@ const currencyAmountIn = CurrencyAmount.fromRawAmount(
 We can now use the SwapQuoter class to fetch a quote for our swap. We need a provider to connect to the blockchain:
 
 ```typescript
-import { SwapQuoter } from '@uniswap/v3-sdk'
+import { SwapQuoter } from '@uniswapfoundation/v3-sdk'
 
 const provider = new ethers.providers.JsonRpcProvider(CurrentConfig.rpc.mainnet)
 
-const currencyAmountOut = await SwapQuoter.quoteExactInputSingle(
-  currencyAmountInt,
-  CurrentConfig.tokens.out,
-  CurrentConfig.tokens.poolFee,
-  provider
-)
+const currencyAmountOut = await SwapQuoter.quoteExactInputSingle({
+    amountIn: currencyAmountIn,
+    tokenOut: CurrentConfig.tokens.out,
+    poolFee: CurrentConfig.tokens.poolFee,
+    provider,
+  })
 ```
 
 The function calls the Quoter contract and parses the response value. It only works on chains where Uniswap has officially deployed the QuoterV2 contract.

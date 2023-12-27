@@ -33,8 +33,8 @@ one of the network you want to use.
 
 For this guide, the following packages are used:
   
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
+- [`@uniswapfoundation/sdk-core`](https://www.npmjs.com/package/@uniswapfoundation/sdk-core)
 - [`ethers@5`](https://www.npmjs.com/package/ethers)
 
 Please note that we use ethers version 5, as this is still the most commonly used version of ethers.js.
