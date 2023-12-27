@@ -21,7 +21,7 @@ At the end of the guide, given the inputs above, we should be able to collect th
 
 For this guide, the following Uniswap packages are used:
 
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
 - [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 
 The core code of this guide can be found in [`collectFees()`](https://github.com/Uniswap/examples/blob/main/v3-sdk/collecting-fees/src/libs/liquidity.ts#L35).
@@ -39,7 +39,7 @@ All of the fee collecting logic can be found in the [`collectFees`](https://gith
 To start, we fetch the position from the NonfungiblePositionManager Contract to get the fees we are owed:
 
 ```typescript
-import { Position } from '@uniswap/v3-sdk'
+import { Position } from '@uniswapfoundation/v3-sdk'
 
 const position = await Position.fetchWithPositionId(provider, positionId)
 ```

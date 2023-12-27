@@ -22,8 +22,8 @@ At the end of the guide, given the inputs above, we should be able to add or rem
 
 For this guide, the following Uniswap packages are used:
 
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
+- [`@uniswapfoundation/sdk-core`](https://www.npmjs.com/package/@uniswapfoundation/sdk-core)
 
 The core code of this guide can be found in [`addLiquidity()`](https://github.com/Uniswap/examples/blob/d34a53412dbf905802da2249391788a225719bb8/v3-sdk/modifying-position/src/example/Example.tsx#L33) and [`removeLiquidity()`](https://github.com/Uniswap/examples/blob/733d586070afe2c8cceb35d557a77eac7a19a656/v3-sdk/modifying-position/src/example/Example.tsx#L83)
 
@@ -77,7 +77,7 @@ Use the following snippet to fetch a position using the position id:
 
 ```typescript
 import { ethers } from 'ethers'
-import { Position } from '@uniswap/v3-sdk'
+import { Position } from '@uniswapfoundation/v3-sdk'
 
 // You need to know this, or fetch the position differently
 const myPositionId = "0xabcdef"
@@ -98,7 +98,7 @@ The snippet to increase liquidity by 10% can be seen below:
 
 ```typescript
 import { ethers } from 'ethers'
-import { Fraction } from '@uniswap/sdk-core'
+import { Fraction } from '@uniswapfoundation/sdk-core'
 
 // Use your private key or another way to initialize a Wallet.
 // A different way would be to use the Metamask signer in the browser.
@@ -179,7 +179,7 @@ Use the following snippet to fetch a position using the position id:
 
 ```typescript
 import { ethers } from 'ethers'
-import { Position } from '@uniswap/v3-sdk'
+import { Position } from '@uniswapfoundation/v3-sdk'
 
 // You need to know this, or fetch the position differently
 const myPositionId = "0xabcdef"
@@ -201,7 +201,7 @@ The snippet to decrease liquidity by 10% can be seen below:
 
 ```typescript
 import { ethers } from 'ethers'
-import { Fraction } from '@uniswap/sdk-core'
+import { Fraction } from '@uniswapfoundation/sdk-core'
 
 // Use your private key or another way to initialize a Wallet.
 // A different way would be to use the Metamask signer in the browser.

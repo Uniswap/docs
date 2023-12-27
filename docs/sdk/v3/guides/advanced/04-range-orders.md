@@ -29,8 +29,8 @@ Before working through this guide, consider checking out the Range Orders [conce
 
 For this guide, the following Uniswap packages are used:
   
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
+- [`@uniswapfoundation/sdk-core`](https://www.npmjs.com/package/@uniswapfoundation/sdk-core)
 
 The core code of this guide can be found in [`range-order.ts`](https://github.com/Uniswap/examples/tree/main/v3-sdk/range-order/src/libs/range-order.ts).
 
@@ -85,7 +85,7 @@ We create a Pool that represents the V3 Pool we are interacting with and get the
 We won't need full tick data in this example.
 
 ```typescript
-import { Pool } from '@uniswap/v3-sdk'
+import { Pool } from '@uniswapfoundation/v3-sdk'
 
 const pool = new Pool(token0, token1, fee, sqrtPriceX96, liquidity, tickCurrent)
 
@@ -95,7 +95,7 @@ const currentPrice = pool.token0Price
 Next we increase the `Price` by 5%. We create a new Price with a numerator 5% higher than our current Price:
 
 ```typescript
-import { Price, Fraction } from '@uniswap/sdk-core'
+import { Price, Fraction } from '@uniswapfoundation/sdk-core'
 
 const targetFraction = Price.asFraction.multiply(new Fraction(100 + 5, 100))
 
@@ -119,7 +119,7 @@ We use the `priceToClosestTick` function to find the closest tick to our targetP
 We then use the `nearestUsableTick` function to find the closest initializable Tick for the `tickSpacing` of the `Pool`.
 
 ```typescript
-import {priceToClosestTick, nearestUsableTick} from '@uniswap/v3-sdk'
+import {priceToClosestTick, nearestUsableTick} from '@uniswapfoundation/v3-sdk'
 
 let targetTick = nearestUsableTick(
     priceToClosestTick(targetPrice),
@@ -163,7 +163,7 @@ If you are not familiar with liquidity Positions, check out the [liquidity posit
 We create a `Position` object with our ticks and the amount of tokens we want to deposit:
 
 ```typescript
-import { Position } from '@uniswap/v3-sdk'
+import { Position } from '@uniswapfoundation/v3-sdk'
 
 const position = Position.fromAmount0({
     pool: pool,
@@ -201,7 +201,7 @@ Once we have our approval, we create the calldata for the **Mint** call using th
 
 ```typescript
 import {MintOptions, NonfungiblePositionManager}
-import { Percent } from '@uniswap/sdk-core'
+import { Percent } from '@uniswapfoundation/sdk-core'
 
 const mintOptions: MintOptions = {
     recipient: wallet.address,
@@ -331,7 +331,7 @@ We check if the tick has crossed our position, and if so we withdraw the Positio
 We use the NonfungiblePositionManager together with the `tokenId` to get all info of our position as we may have gotten fees from trades on the Pool:
 
 ```typescript
-import { NonfungiblePositionManager } from '@uniswap/v3-sdk'
+import { NonfungiblePositionManager } from '@uniswapfoundation/v3-sdk'
 
 const currentPosition = await NonfungiblePositionManager.fetchWithPositionId(getProvider(), tokenId)
 ```
@@ -341,8 +341,8 @@ We use the `NonfungiblePositionManager`, the `pool`, `positionInfo` and `tokenId
 We start with creating `CollectOptions`:
 
 ```typescript
-import { Percent, CurrencyAmount } from '@uniswap/sdk-core'
-import { CollectOptions, RemoveLiquidityOptions } from '@uniswap/v3-sdk'
+import { Percent, CurrencyAmount } from '@uniswapfoundation/sdk-core'
+import { CollectOptions, RemoveLiquidityOptions } from '@uniswapfoundation/v3-sdk'
 
 const collectOptions: Omit<CollectOptions, 'tokenId'> = {
     expectedCurrencyOwed0: CurrencyAmount.fromRawAmount(

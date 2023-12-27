@@ -22,8 +22,8 @@ The guide will **cover**:
 
 For this guide, the following Uniswap packages are used:
 
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
+- [`@uniswapfoundation/sdk-core`](https://www.npmjs.com/package/@uniswapfoundation/sdk-core)
 
 ## Fetching the number of Positions
 
@@ -32,7 +32,7 @@ We first fetch the number of positions an address owns using the `getPositionCou
 
 ```typescript
 import ethers from 'ethers'
-import { Position } from '@uniswap/v3-sdk'
+import { Position } from '@uniswapfoundation/v3-sdk'
 
 const provider = new ethers.providers.JsonRpcProvider('...rpcUrl')
 

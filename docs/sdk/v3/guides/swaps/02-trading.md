@@ -29,8 +29,8 @@ Included in the example application is functionality to wrap/unwrap ETH as neede
 
 For this guide, the following Uniswap packages are used:
 
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
+- [`@uniswapfoundation/sdk-core`](https://www.npmjs.com/package/@uniswapfoundation/sdk-core)
 
 The core code of this guide can be found in [`trading.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/trading/src/libs/trading.ts)
 
@@ -112,7 +112,7 @@ To construct our trade, we will first create a model instance of a `Pool`. We cr
 The sdk has a utility function to create a Pool from onchain data:
 
 ```typescript
-  import {Pool} from '@uniswap/v3-sdk'
+  import {Pool} from '@uniswapfoundation/v3-sdk'
   import ethers from 'ethers'
 
   const provider = new ethers.providers.JsonRpcProvider(CurrentConfig.rpc.mainnet)
@@ -153,7 +153,7 @@ The `Route` object can find this route from an array of given pools and an input
 To keep it simple for this guide, we only swap over one Pool:
 
 ```typescript
-import { Route } from '@uniswap/v3-sdk'
+import { Route } from '@uniswapfoundation/v3-sdk'
 
 const swapRoute = new Route(
   [pool],
@@ -176,8 +176,8 @@ As shown below, the quote is obtained using the `v3-sdk`'s `SwapQuoter`, for thi
 In contrast to the `quoteExactInputSingle()` function we used in the previous guide, this function works for a Route with any number of Uniswap V3 Pools, not just a swap over a single Pool:
 
 ```typescript
-import { SwapQuoter } from '@uniswap/v3-sdk'
-import { CurrencyAmount, TradeType } from '@uniswap/sdk-core'
+import { SwapQuoter } from '@uniswapfoundation/v3-sdk'
+import { CurrencyAmount, TradeType } from '@uniswapfoundation/sdk-core'
 
 const rawInputAmount = ethers.utils.parseUnits(
     CurrentConfig.tokens.amountIn,
@@ -189,12 +189,12 @@ const currencyAmountIn = CurrencyAmount.fromRawAmount(
   rawInputAmount
 )
 
-const expectedOutput = await SwapQuoter.callQuoter(
-  swapRoute,
-  currencyAmountIn,
-  TradeType.EXACT_INPUT,
+const expectedOutput = await SwapQuoter.callQuoter({
+  route: swapRoute,
+  amount: currencyAmountIn,
+  tradeType: TradeType.EXACT_INPUT,
   provider
-)
+})
 ```
 
 We construct the input the same way we did in the previous guide.
@@ -204,7 +204,7 @@ With the quote and the route, we can now construct a trade using the route in ad
 Because we already know the expected output of our Trade, we do not have to check it again. We can use the `uncheckedTrade` function to create our Trade:
 
 ```typescript
-import { Trade } from 'uniswap/v3-sdk'
+import { Trade } from '@uniswapfoundation/v3-sdk'
 
 const uncheckedTrade = Trade.createUncheckedTrade({
   route: swapRoute,
@@ -223,8 +223,8 @@ We will use the `executeTrade()` function of the `SwapRouter` class.
 First we specify the deadline and the slippage tolerance we are willing to accept for our trade:
 
 ```typescript
-import { SwapOptions } frpm '@uniswap/v3-sdk'
-import { Percent } from '@uniswap/sdk-core'
+import { SwapOptions } frpm '@uniswapfoundation/v3-sdk'
+import { Percent } from '@uniswapfoundation/sdk-core'
 
 const swapOptions: SwapOptions = {
         slippageTolerance: new Percent(50, 10_000),
@@ -250,13 +250,13 @@ wallet.connect(provider)
 We are now ready to execute our trade:
 
 ```typescript
-import { SwapRouter } from '@uniswap/v3-sdk'
+import { SwapRouter } from '@uniswapfoundation/v3-sdk'
 
-const txResponse = await SwapRouter.executeTrade(
-  [uncheckedTrade],
-  swapOptions,
-  wallet
-)
+const txResponse = await SwapRouter.executeTrade({
+  trades: [uncheckedTrade],
+  options: swapOptions,
+  signer: wallet
+})
 ```
 
 The function automatically checks if the necessary token transfer approvals exist and creates them if not.

@@ -23,16 +23,16 @@ At the end of the guide, we should be able to create a route and and execute a s
 
 For this guide, the following Uniswap packages are used:
 
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
-- [`@uniswap/smart-order-router`](https://www.npmjs.com/package/@uniswap/smart-order-router)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
+- [`@uniswapfoundation/sdk-core`](https://www.npmjs.com/package/@uniswapfoundation/sdk-core)
+- [`@uniswapfoundation/smart-order-router`](https://www.npmjs.com/package/@uniswapfoundation/smart-order-router)
 
 The core code of this guide can be found in [`routing.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/routing/src/libs/routing.ts)
 
 The config, which we will use in some code snippets in this guides has this structure:
 
 ```typescript
-import { Token } from '@uniswap/sdk-core'
+import { Token } from '@uniswapfoundation/sdk-core'
 
 interface ExampleConfig {
   env: Environment
@@ -56,10 +56,10 @@ export const CurrentConfig: ExampleConfig = {...}
 
 ## Creating a router instance
 
-To compute our route, we will use the `@uniswap/smart-order-router` package, specifically the `AlphaRouter` class which requires a `chainId` and a `provider`. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
+To compute our route, we will use the `@uniswapfoundation/smart-order-router` package, specifically the `AlphaRouter` class which requires a `chainId` and a `provider`. Note that routing is not supported for local forks, so we will use a mainnet provider even when swapping on a local fork:
 
 ```typescript
-import { AlphaRouter, ChainId } from '@uniswap/smart-order-router'
+import { AlphaRouter, ChainId } from '@uniswapfoundation/smart-order-router'
 
 const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
 
@@ -77,8 +77,8 @@ In contrast to the contract we used previously, this on can execute swaps on bot
 The `smart-order-router` package provides us with a `SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction that we need to interact with the contract:
 
 ```typescript
-import { SwapOptionsSwapRouter02, SwapType } from '@uniswap/smart-order-router'
-import { Percent } from '@uniswap/sdk-core'
+import { SwapOptionsSwapRouter02, SwapType } from '@uniswapfoundation/smart-order-router'
+import { Percent } from '@uniswapfoundation/sdk-core'
 
 const options: SwapOptionsSwapRouter02 = {
   recipient: CurrentConfig.wallet.address,
@@ -93,9 +93,9 @@ Like explained in the [trading guide](./02-trading.md#executing-a-trade), it is 
 Using these options, we can now create a trade (`TradeType.EXACT_INPUT` or `TradeType.EXACT_OUTPUT`) with the currency and the input amount to use to get a quote. For this example, we'll use an `EXACT_INPUT` trade to get a quote outputted in the quote currency.
 
 ```typescript
-import { CurrencyAmount, TradeType } from '@uniswap/sdk-core'
+import { CurrencyAmount, TradeType } from '@uniswapfoundation/sdk-core'
 
-const rawTokenAmountIn: JSBI = fromReadableAmount(
+const rawTokenAmountIn = fromReadableAmount(
       CurrentConfig.currencies.amountIn,
       CurrentConfig.currencies.in.decimals
     )

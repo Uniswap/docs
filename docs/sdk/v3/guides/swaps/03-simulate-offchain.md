@@ -25,8 +25,8 @@ At the end of the guide, we should be able to initialize Pools with full tickdat
 
 For this guide, the following Uniswap packages are used:
 
-- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
-- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+- [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
+- [`@uniswapfoundation/sdk-core`](https://www.npmjs.com/package/@uniswapfoundation/sdk-core)
 
 The core code of this guide can be found in [`simulations.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/offchain-simulation/src/libs/simulations.ts)
 
@@ -35,8 +35,8 @@ The core code of this guide can be found in [`simulations.ts`](https://github.co
 We will use the example configuration `CurrentConfig` in most code snippets of this guide. It has the format:
 
 ```typescript
-import { Token } from '@uniswap/sdk-core'
-import { FeeAmount, Pool } from '@uniswap/v3-sdk'
+import { Token } from '@uniswapfoundation/sdk-core'
+import { FeeAmount, Pool } from '@uniswapfoundation/v3-sdk'
 
 interface ExampleConfig {
   rpc: {
@@ -114,8 +114,8 @@ In this example, we want to make an exact Input trade from **USDC** to **DAI**.
 We use the `Trade.bestTradeExactIn` function to find the best route given our Pools:
 
 ```typescript
-import { Trade, BestTradeOptions } from '@uniswap/v3-sdk'
-import { CurrencyAmount } from '@uniswap/sdk-core'
+import { Trade, BestTradeOptions } from '@uniswapfoundation/v3-sdk'
+import { CurrencyAmount } from '@uniswapfoundation/sdk-core'
 
 const currencyAmountIn = CurrencyAmount.fromRawAmount(...)
 
@@ -145,13 +145,12 @@ We can access them with the `swaps` getter if we want to access this information
 Like in the previous guide, we execute the trade with `executeTrade()` on the `SwapRouter` class:
 
 ```typescript
-import { SwapRouter } from '@uniswap/v3-sdk'
+import { SwapRouter } from '@uniswapfoundation/v3-sdk'
 
 wallet.connect(provider)
 const txResponse = SwapRouter.executeTrade(
-  [bestTrade[0]],
-  ,
-  wallet
+  trades: [bestTrade[0]],
+  signer: wallet
 )
 ```
 
@@ -164,13 +163,11 @@ wallet.connect(provider)
 
 const txResponse = SwapRouter.executeBestSimulatedSwapOnPools(
   pools,
-  currencyAmountIn,
-  CurrentConfig.tokens.in,
-  CurrentConfig.tokens.out,
-  TradeType.EXACT_INPUT,
-  undefined,
-  undefined,
-  wallet
+  amount: currencyAmountIn,
+  currencyIn: CurrentConfig.tokens.in,
+  currencyOut: CurrentConfig.tokens.out,
+  tradeType: TradeType.EXACT_INPUT,
+  signer: wallet
 )
 ```
 
