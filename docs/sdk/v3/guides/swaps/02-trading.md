@@ -27,6 +27,12 @@ At the end of the guide, we should be able to create and execute a trade between
 Included in the example application is functionality to wrap/unwrap ETH as needed to fund the example `WETH` to `USDC` swap directly from an `ETH` balance.
 :::
 
+:::info
+The SDKs that are used in the guide are now published by the [Uniswap Foundation](https://github.com/uniswapfoundation) instead of Uniswap Labs.
+You can find a list of supported SDKs [here](https://www.npmjs.com/org/uniswapfoundation).
+Make sure you don't mix SDKs published by Uniswap Labs and the Uniswap Foundation to avoid unpredictable behavior.
+:::
+
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)

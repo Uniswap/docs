@@ -23,6 +23,12 @@ The guide will **cover**:
 
 At the end of the guide, given the inputs above, we should be able to mint a liquidity position with the press of a button and view the position on the UI of the web application.
 
+:::info
+The SDKs that are used in the guide are now published by the [Uniswap Foundation](https://github.com/uniswapfoundation) instead of Uniswap Labs.
+You can find a list of supported SDKs [here](https://www.npmjs.com/org/uniswapfoundation).
+Make sure you don't mix SDKs published by Uniswap Labs and the Uniswap Foundation to avoid unpredictable behavior.
+:::
+
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)

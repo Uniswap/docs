@@ -20,6 +20,12 @@ The guide will **cover**:
 1. Fetching all positions for an address.
 2. Fetching the position info for the positions.
 
+:::info
+The SDKs that are used in the guide are now published by the [Uniswap Foundation](https://github.com/uniswapfoundation) instead of Uniswap Labs.
+You can find a list of supported SDKs [here](https://www.npmjs.com/org/uniswapfoundation).
+Make sure you don't mix SDKs published by Uniswap Labs and the Uniswap Foundation to avoid unpredictable behavior.
+:::
+
 For this guide, the following Uniswap packages are used:
 
 - [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
