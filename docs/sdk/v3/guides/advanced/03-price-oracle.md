@@ -24,6 +24,12 @@ This guide will **cover**:
 
 Before diving into this guide, consider reading the theory behind using Uniswap V3 as an [Onchain Oracle](../../../../concepts/protocol/oracle.md).
 
+:::info
+The SDKs that are used in the guide are now published by the [Uniswap Foundation](https://github.com/uniswapfoundation) instead of Uniswap Labs.
+You can find a list of supported SDKs [here](https://www.npmjs.com/org/uniswapfoundation).
+Make sure you don't mix SDKs published by Uniswap Labs and the Uniswap Foundation to avoid unpredictable behavior.
+:::
+
 For this guide, the following Uniswap packages are used:
   
 - [`@uniswapfoundation/v3-sdk`](https://www.npmjs.com/package/@uniswapfoundation/v3-sdk)
