@@ -52,7 +52,7 @@ A complete list of commands can be found in the table below:
 | `0x09`  | [`V2_SWAP_EXACT_OUT`](./02-technical-reference.md#v2_swap_exact_out)                     |
 | `0x0a`  | [`PERMIT2_PERMIT`](./02-technical-reference.md#permit2_permit)                           |
 | `0x0b`  | [`WRAP_ETH`](./02-technical-reference.md#wrap_eth)                                       |
-| `0x0c`  | [`UNWRAP_WETH`](./02-technical-reference.md#unwrap_eth)                                  |
+| `0x0c`  | [`UNWRAP_WETH`](./02-technical-reference.md#unwrap_weth)                                  |
 | `0x0d`  | [`PERMIT2_TRANSFER_FROM_BATCH`](./02-technical-reference.md#permit2_transfer_from_batch) |
 | `0x0e`  |                                                                                          |
 | `0x0f`  |                                                                                          |
@@ -160,7 +160,7 @@ The individual that signed the permit must be the `msg.sender` of the transactio
 - `address` The recipient of the WETH
 - `uint256` The amount of ETH to wrap
 
-### `UNWRAP_ETH`
+### `UNWRAP_WETH`
 
 - `address` The recipient of the ETH
 - `uint256` The minimum required ETH to receive from the unwrapping
