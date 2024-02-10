@@ -137,7 +137,7 @@ The individual that signed the permits must be the `msg.sender` of the transacti
 - `address` The recipient of the output of the trade
 - `uint256` The amount of input tokens for the trade
 - `uint256` The minimum amount of output tokens the user wants
-- `address[]` The UniswapV2 token path to trade along
+- `address[]` The UniswapV2 token path to trade along (**Note**: these are the pool addresses and not the token addresses)
 - `bool` A flag for whether the input tokens should come from the `msg.sender` (through Permit2) or whether the funds are already in the `UniversalRouter`
 
 ### `V2_SWAP_EXACT_OUT`
