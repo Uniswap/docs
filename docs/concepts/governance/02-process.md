@@ -13,7 +13,7 @@ Several governance venues are available to Uniswap governance, each serving its 
 
 gov.uniswap.org is a Discourse-hosted forum for governance-related discussion. Community members must register for an account before sharing or liking posts. New members are required to enter 4 topics and read 15 posts over the course of 10 minutes before they are permitted to post themselves.
 
-2. [_Snapshot_](https://snapshot.page/#/uniswap)
+2. [_Snapshot_](https://snapshot.org/#/uniswap)
 
 Snapshot is a simple voting interface that allows users to signal sentiment off-chain. Votes on snapshot are weighted by the number of UNI delegated to the address used to vote.
 
