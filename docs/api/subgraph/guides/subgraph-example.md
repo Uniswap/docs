@@ -304,4 +304,4 @@ To get data about a specific position, input the NFT tokenId. This queries the c
 
 ## Contribute
 
-There are many more queries you can do with the Uniswap v3 subgraph including data related to ticks, mints, positions, and burns. Once again you can reference the full schema [here](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql). If you'd like to suggest more example queries to showcase, feel free to drop some suggestions in [discord](https://discord.gg/UZvfWwwvwa) under #dev-chat or [contribute](../../../../CONTRIBUTING.md) your own queries by submitting a pull request to the docs repo.
+There are many more queries you can do with the Uniswap v3 subgraph including data related to ticks, mints, positions, and burns. Once again you can reference the full schema [here](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql). If you'd like to suggest more example queries to showcase, feel free to drop some suggestions in [discord](https://discord.com/invite/uniswap) under #dev-chat or [contribute](../../../../CONTRIBUTING.md) your own queries by submitting a pull request to the docs repo.
