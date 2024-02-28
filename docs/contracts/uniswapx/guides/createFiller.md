@@ -57,9 +57,9 @@ It’s up to the individual filler to architect their own systems for finding an
 4. Send a new transaction to the [execute](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L29) or [executeBatch](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L37) methods of the [Dutch Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/DutchOrderReactor.sol) specifying the signed orders you’d like to fill and the address of your executor contract
 
 ## 2B. Retrieve & Execute Signed Limit Orders
-The process for retrieving and executing limit orders is the same as Dutch Orders above except that Limit Orders will be retrieved from the [Limit Orders Endpoint](TODO) and executed against the [Limit Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol). The process is: 
+The process for retrieving and executing limit orders is the same as Dutch Orders above except that Limit Orders will be retrieved from the [Limit Orders Endpoint](https://api.uniswap.org/v2/limit-orders) (full API docs [here](https://api.uniswap.org/v2/uniswapx/docs)) and executed against the [Limit Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol). The process is: 
 
-1. Call `GET` on the `/TODO` of the UniswapX Limit Orders Endpoint as written above, to retrieve open signed orders
+1. Call `GET` on the `/limit-orders` of the UniswapX Limit Orders Endpoint as written above, to retrieve open signed orders
 2. Decode returned orders using the [UniswapX SDK](https://github.com/Uniswap/UniswapX-sdk/#parsing-orders)
 3. Send a new transaction to the [execute](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L29) or [executeBatch](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L37) methods of the [Limit Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol) specifying the signed orders you’d like to fill and the address of your executor contract 
 
