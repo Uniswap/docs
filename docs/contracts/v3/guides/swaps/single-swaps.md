@@ -102,7 +102,9 @@ A brief overview of the parameters:
 - `recipient` the destination address of the outbound token
 - `deadline`: the unix time after which a swap will fail, to protect against long-pending transactions and wild swings in prices
 - `amountOutMinimum`: we are setting to zero, but this is a significant risk in production. For a real deployment, this value should be calculated using our SDK or an onchain price oracle - this helps protect against getting an unusually bad price for a trade due to a front running sandwich or another type of price manipulation
-- `sqrtPriceLimitX96`: We set this to zero - which makes this parameter inactive. In production, this value can be used to set the limit for the price the swap will push the pool to, which can help protect against price impact or for setting up logic in a variety of price-relevant mechanisms.
+- `sqrtPriceLimitX96`: We set this to zero - which makes this parameter inactive. In production, this value can be used to set the limit for the price the swap will push the pool to, which can help protect against price impact or for setting up logic in a variety of price-relevant mechanisms. 
+
+  **WARNING: Passing in a non-zero `sqrtPriceLimitX96` can mean that less tokens that the amount specified by `amountIn` are swapped**. Any contract that uses a non-zero `sqrtPriceLimitX96` parameter will need to refund any unswapped tokens. 
 
 ### Call the function
 
