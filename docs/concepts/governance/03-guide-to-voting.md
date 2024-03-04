@@ -9,7 +9,8 @@ In order to participate you will need:
 
 - [UNI Tokens](https://uniswap.org/blog/uni/)
 - ETH for transaction costs
-- A browser with [Metamask](https://metamask.io/) installed
+- A Crypto wallet that supports the Ethereum protocol and holds UNI Tokens. Like the [Uniswap wallet](https://wallet.uniswap.org/).
+- To [delegate](#delegation) your tokens before the vote is active.
 
 The governance [process](./02-process.md) begins in the [Governance Forum](https://gov.uniswap.org/), where you can find proposals under consideration, gather information about community sentiment, and engage with the community.
 
