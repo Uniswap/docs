@@ -6,7 +6,7 @@ sidebar_position: 2
 # Quoting During UniswapX Beta
 To ensure a smooth swapping experience for traders during the beta period, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch, with plans to make the quoting system fully permissionless in the near future.
 
-Once you've been approved to be a quoter by the Uniswap Labs team follow the instructions below to complete your integration. If you have not been approved, please reach to the Uniswap Labs team [here](mailto:quoters@uniswap.org).
+Once you've been approved to be a quoter by the Uniswap Labs team follow the instructions below to complete your integration. If you have not been approved, please join the waitlist by filling out our [intake form](https://uniswap.typeform.com/to/UiPDKgY6).
 
 # Integrating with UniswapX RFQ
 
