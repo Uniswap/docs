@@ -215,7 +215,7 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
-          customCss2: require.resolve('./src/css/colors.css'),
+          
         },
       },
     ],
