@@ -48,7 +48,7 @@ You can get a free archival RPC that you can use to follow this guide and fork M
 ## Using Foundry and Anvil
 
 There are several developer tools to fork Mainnet.
-[Anvil](https://github.com/foundry-rs/foundry/blob/master/anvil/README.md) by foundry is a newcomer that's fast and easy to setup.
+[Anvil](https://github.com/foundry-rs/foundry/blob/master/crates/anvil/README.md) by foundry is a newcomer that's fast and easy to setup.
 This guide focuses on Anvil.
 
 As a first step, follow the [installation guide](https://book.getfoundry.sh/getting-started/installation) in the foundry book.
