@@ -15,7 +15,7 @@ For complete documentation of the SDK's offerings, see the [**Technical Referenc
 
 ## Installation
 
-To interact with the V3 SDK we recommend installing though npm:
+To interact with the V3 SDK we recommend installing through npm:
 
 ```bash
 npm i --save @uniswap/v3-sdk
