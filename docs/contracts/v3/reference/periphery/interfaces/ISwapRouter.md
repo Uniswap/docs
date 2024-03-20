@@ -12,7 +12,6 @@ Note that `fee` is in hundredths of basis points (e.g. the `fee` for a pool at t
         address tokenOut;
         uint24 fee;
         address recipient;
-        uint256 deadline;
         uint256 amountIn;
         uint256 amountOutMinimum;
         uint160 sqrtPriceLimitX96;
