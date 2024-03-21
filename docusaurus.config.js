@@ -103,7 +103,7 @@ module.exports = {
             },
             {
               label: '#dev-chat',
-              href: 'https://discord.gg/ybKVQUWb4s',
+              href: 'https://discord.com/invite/uniswap',
             },
             {
               label: 'Whitepaper',
@@ -166,7 +166,7 @@ module.exports = {
             },
             {
               label: 'Discord',
-              href: 'https://discord.gg/ybKVQUWb4s',
+              href: 'https://discord.com/invite/uniswap',
             },
             {
               label: 'Twitter',
