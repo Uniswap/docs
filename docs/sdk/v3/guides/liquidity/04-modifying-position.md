@@ -214,7 +214,7 @@ const removeLiquidityOptions: RemoveLiquidityOptions = {
 }
 ```
 
-Just as with adding liquidity, we have we have omitted the `recipient` parameter and instead passed in the `tokenId` of the position we previously minted.
+Just as with adding liquidity, we have omitted the `recipient` parameter and instead passed in the `tokenId` of the position we previously minted.
 
 We have also provide two additional parameters:
 
