@@ -9,14 +9,14 @@ The Uniswap Protocol is made up of multiple contracts on many networks.
 
 Please do not assume contracts are deployed to the same addresses across chains, and be extremely careful to confirm addresses before using a contract.
 
-- [`Etherum`](./Ethereum%20Deployments.md)
-- [`Arbitrum`](./Arbitrum%20Deployments.md)
-- [`Optimism`](./Optimism%20Deployments.md)
-- [`Polygon`](./Polygon%20Deployments.md)
-- [`Base`](./Base%20Deployments.md)
-- [`BNB`](./BNB%20Binance%20Deployments.md)
-- [`Avalanche C-Chain`](./AVAX%20Deployments.md)
-- [`CELO`](./Celo%20Deployments.md)
+- [`Etherum`](./Ethereum-Deployments.md)
+- [`Arbitrum`](./Arbitrum-Deployments.md)
+- [`Optimism`](./Optimism-Deployments.md)
+- [`Polygon`](./Polygon-Deployments.md)
+- [`Base`](./Base-Deployments.md)
+- [`BNB`](./BNB-Binance-Deployments.md)
+- [`Avalanche C-Chain`](./AVAX-Deployments.md)
+- [`CELO`](./Celo-Deployments.md)
 
 These addresses are final and were deployed from these npm package versions:
 

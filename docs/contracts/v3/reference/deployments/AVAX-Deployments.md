@@ -13,8 +13,8 @@ The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap
 | [Multicall](https://snowtrace.io/address/0x0139141Cd4Ee88dF3Cdb65881D411bAE271Ef0C2/contract/43114/code)                                                     | `0x0139141Cd4Ee88dF3Cdb65881D411bAE271Ef0C2` |
 | [ProxyAdmin](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.1-solc-0.7-2/contracts/proxy/ProxyAdmin.sol)                                   | `0x9AdA7D7879214073F40183F3410F2b3f088c6381` |
 | [TickLens](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/TickLens.sol)                                                          | `0xEB9fFC8bf81b4fFd11fb6A63a6B0f098c6e21950` |
-| [NFTDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/libraries/NFTDescriptor.sol)                                           | ``                                           |
-| [NonfungibleTokenPositionDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungibleTokenPositionDescriptor.sol)           | ``                                           |
+| [NFTDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/libraries/NFTDescriptor.sol)                                           | `0x27Dd7eE7fE723e83Bf3612a75a034951fe299E99` |
+| [NonfungibleTokenPositionDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungibleTokenPositionDescriptor.sol)           | `0xe89B7C295d73FCCe88eF263F86e7310925DaEBAF` |
 | [TransparentUpgradeableProxy](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.1-solc-0.7-2/contracts/proxy/TransparentUpgradeableProxy.sol) | `0xE1f93a7cB6fFa2dB4F9d5A2FD43158A428993C09` |
 | [NonfungiblePositionManager](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungiblePositionManager.sol)                           | `0x655C406EBFa14EE2006250925e54ec43AD184f8B` |
 | [V3Migrator](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/V3Migrator.sol)                                                           | `0x44f5f1f5E452ea8d29C890E8F6e893fC0f1f0f97` |
