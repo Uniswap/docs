@@ -7,7 +7,7 @@ title: Ethereum Deployments
 
 The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap/swap-router-contracts` are deployed at the addresses listed below. Integrators should **no longer assume that they are deployed to the same addresses across chains** and be extremely careful to confirm mappings below.
 
-| Contract                                                                                                                                                     | Mainnet, Goerli Addresses                    | Ethereum Sepolia Addresses                   |
+| Contract                                                                                                                                                     | Mainnet                                      | Ethereum Sepolia Addresses                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- | -------------------------------------------- |
 | [UniswapV3Factory](https://github.com/Uniswap/uniswap-v3-core/blob/v1.0.0/contracts/UniswapV3Factory.sol)                                                    | `0x1F98431c8aD98523631AE4a59f267346ea31F984` | `0x0227628f3F023bb0B980b67D528571c95c6DaC1c` |
 | [Multicall](https://etherscan.io/address/0x1F98415757620B543A52E61c46B32eB19261F984#code)                                                                    | `0x1F98415757620B543A52E61c46B32eB19261F984` | ``                                           |
@@ -59,6 +59,5 @@ The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native
 | Network             | ChainId     | Wrapped Native Token | Address                                      |
 | ------------------- | ----------- | -------------------- | -------------------------------------------- |
 | Ethereum            | `1`         | WETH                 | `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2` |
-| Goerli              | `5`         | WETH                 | `0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6` |
 | Sepolia             | `11155111`  | WETH                 | `0xfff9976782d46cc05630d1f6ebab18b2324d6b14` |
 

@@ -58,5 +58,4 @@ The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native
 | Network             | ChainId  | Wrapped Native Token | Address                                      |
 | ------------------- | -------- | -------------------- | -------------------------------------------- |
 | Arbitrum            | `42161`  | WETH                 | `0x82aF49447D8a07e3bd95BD0d56f35241523fBab1` |
-| Arbitrum Goerli     | `421613` | WETH                 | `0xe39Ab88f8A4777030A534146A9Ca3B52bd5D43A3` |
 | Arbitrum Sepolia    | `421614` | WETH                 | `0x980B62Da83eFf3D4576C647993b0c1D7faf17c73` |

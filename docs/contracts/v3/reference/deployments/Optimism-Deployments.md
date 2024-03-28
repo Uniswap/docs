@@ -58,5 +58,4 @@ The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native
 | Network             | ChainId  | Wrapped Native Token | Address                                      |
 | ------------------- | -------- | -------------------- | -------------------------------------------- |
 | Optimism            | `10`     | WETH                 | `0x4200000000000000000000000000000000000006` |
-| Optimism Goerli     | `420`    | WETH                 | `0x4200000000000000000000000000000000000006` |
 | Optimism Sepolia    | `137`    | WETH                 | `0x4200000000000000000000000000000000000006` |
