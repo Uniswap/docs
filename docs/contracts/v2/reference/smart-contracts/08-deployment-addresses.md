@@ -16,3 +16,10 @@ Contract addresses for the [Uniswap V2 Factory](https://github.com/Uniswap/v2-co
 | Base                                                 | `0x8909Dc15e40173Ff4699343b6eB8132c65e18eC6`    |
 | Optimism                                             | `0x0c3c1c532F1e39EdF36BE9Fe0bE1410313E074Bf`    |
 | Polygon                                              | `0x9e5A52f57b3038F1B8EeE45F28b3C1967e22799C`    |
+
+
+Contract addresses for the Uniswap V2 Router 
+
+| Network                                              | Contract Address                                |
+| ---------------------------------------------------- | ----------------------------------------------- |
+| Sepolia                                              | `0xC532a74256D3Db42D0Bf7a0400fEFDbad7694008`    |
