@@ -17,6 +17,7 @@ Please do not assume contracts are deployed to the same addresses across chains,
 - [`BNB`](./BNB-Binance-Deployments.md)
 - [`Avalanche C-Chain`](./AVAX-Deployments.md)
 - [`CELO`](./Celo-Deployments.md)
+- [`Blast`](./Blast-Deployments.md)
 
 These addresses are final and were deployed from these npm package versions:
 

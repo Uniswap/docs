@@ -17,3 +17,4 @@ Contract addresses for the [`Uniswap V2 Factory`](https://github.com/Uniswap/v2-
 | Base                                                 | `0x8909Dc15e40173Ff4699343b6eB8132c65e18eC6` | `0x4752ba5dbc23f44d87826276bf6fd6b1c372ad24` |
 | Optimism                                             | `0x0c3c1c532F1e39EdF36BE9Fe0bE1410313E074Bf` | `0x4A7b5Da61326A6379179b40d00F57E5bbDC962c2` |
 | Polygon                                              | `0x9e5A52f57b3038F1B8EeE45F28b3C1967e22799C` | `0xedf6066a2b290C185783862C7F4776A2C8077AD1` |
+| Blast                                                | `0x5C346464d33F90bABaf70dB6388507CC889C1070` | `0xBB66Eb1c5e875933D44DAe661dbD80e5D9B03035` |
