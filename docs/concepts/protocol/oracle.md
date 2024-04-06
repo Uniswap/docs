@@ -86,8 +86,4 @@ With a tick reading of `100_000`, we can find the value of `token1` (USDC) in te
 
 Ticks are signed integers and can be expressed as a negative number, so for any circumstances where `token0` is of a lower value than `token1`, a negative tick value will be returned by `tickCumulative` and a relative value of `< 0` will be returned by a calculation of `token0` in terms of `token1`.
 
-## Oracles Integrations on Layer 2 Rollups
 
-### Optimism
-
-On Optimism, every transaction is confirmed as an individual block. The `block.timestamp` of these blocks, however, reflect the `block.timestamp` of the last L1 block ingested by the Sequencer. For this reason, Uniswap pools on Optimism are not suitable for providing oracle prices, as this high-latency `block.timestamp` update process makes the oracle much less costly to manipulate. In the future, it's possible that the Optimism `block.timestamp` will have much higher granularity (with a small trust assumption in the Sequencer), or that forced inclusion transactions will improve oracle security. For more information on these potential upcoming changes, please see the [Optimistic Specs repo](https://github.com/ethereum-optimism/optimistic-specs/discussions/23). For the time being, usage of the oracle feature on Optimism should be avoided.
