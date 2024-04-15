@@ -18,6 +18,16 @@ tokenA and tokenB may be passed in either order: token0/token1 or token1/token0.
 from the fee. The call will revert if the pool already exists, the fee is invalid, or the token arguments
 are invalid.
 
+##### Available pool fees tiers:
+| Uint24  | Fee     |
+| :-----  | :------ |
+| `100`   | 0.01%   |
+| `500`   | 0.05%   |
+| `3000`  | 0.3%    |
+| `10000` | 1%      |
+
+More information about [Pool Fees](https://docs.uniswap.org/concepts/protocol/fees#pool-fees-tiers)
+
 #### Parameters:
 
 | Name     | Type    | Description                                     |
