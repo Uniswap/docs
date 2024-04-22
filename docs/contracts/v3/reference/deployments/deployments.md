@@ -9,7 +9,7 @@ The Uniswap Protocol is made up of multiple contracts on many networks.
 
 Please do not assume contracts are deployed to the same addresses across chains, and be extremely careful to confirm addresses before using a contract.
 
-- [`Etherum`](./Ethereum-Deployments.md)
+- [`Ethereum`](./Ethereum-Deployments.md)
 - [`Arbitrum`](./Arbitrum-Deployments.md)
 - [`Optimism`](./Optimism-Deployments.md)
 - [`Polygon`](./Polygon-Deployments.md)
