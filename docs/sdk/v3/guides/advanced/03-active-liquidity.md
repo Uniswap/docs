@@ -154,7 +154,7 @@ To access the initialized Ticks directly from their Tick Index, we store them in
 ```typescript
 const tickIdxToTickDictionary: Record<string, GraphTick> = Object.fromEntries(
     ticks.map((graphTick) => [graphTick.tickIdx, graphTick])
-  ) 
+  )
 ```
 
 The `ticks` variable in this code snippet is the result we got from the V3 Subgraph earlier.
@@ -217,7 +217,7 @@ for (let i = 0; i < 100; i++) {
         price1: tickToPrice(token1, token0, currentTickIdx),
         isActive: false
     }
-    
+
     ...
 }
 ```
@@ -289,7 +289,7 @@ Finally, we draw the Chart:
 ```
 
 In a real application, you will probably want to format the chart properly and display additional information for users.
-Check out the full [code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/active-liquidity) to this guide and the official recharts [documentation](https://recharts.org/).
+Check out the full [code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/pool-data) to this guide and the official recharts [documentation](https://recharts.org/).
 
 You can also take a look at the [Uniswap Info](https://github.com/Uniswap/v3-info) repository to see a similar chart used in production.
 
