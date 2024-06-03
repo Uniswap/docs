@@ -60,34 +60,6 @@ Response (status 200 - OK):
 
 There is a latency requirement on responses from registered endpoints. Currently set to 500ms, but is subject to change. If you do not wish to respond to a quote request, you must return an empty response with status code `204`.
 
-# (Optional) Signed Order Webhook Notifications
-
-Signed open orders can always be fetched via the UniswapX API, but to provide improved latency there is the option to register for webhook notifications. Quoters can register an endpoint with their filler address, and receive notifications for every newly posted order that matches the filter. 
-
-**Filter**
-
-Orders can be filtered by various fields, but most relevant here is `filler`. When registering your webhook notification endpoint, we recommend you provide the `filler` address that you plan to use to execute orders and to receive the last-look exclusivity period. Alternatively the webhook can be configured to send all open orders to your endpoint. 
-
-**Notification**
-
-Order notifications will be sent to the registered endpoint as http requests as follows:
-
-```jsx
-method: POST
-content-type: application/json
-data: {
-    orderHash: "the hash identifier for the order", 
-    createdAt: "timestamp at which the order was posted",
-    signature: "the swapper signature to include with order execution",
-    orderStatus: "current order status (always should be `open` upon receiving notification)",
-    encodedOrder: "The abi-encoded order to include with order execution. This can be decoded using the Uniswapx-SDK (https://github.com/uniswap/uniswapx-sdk) to verify order fields and signature",
-    chainId: "The chain ID that the order originates from and must be settled on",
-    filler?: "If this order was quoted by an RFQ participant then this will be their filler address",
-    quoteId?: "If this order was quoted by an RFQ participant then this will be the requestId from the quote request",
-    swapper: "OPTIONAL: the swapper address"
-}
-```
-
 # Requirements for Moving to Prod
 
 All new quoter instances will start by being onboarded to our [Beta environment](https://beta.api.uniswap.org/v2/uniswapx/docs), where they will need to demonstrate at least **5 valid Exclusive RFQ fills** in order to be moved to production. The [Beta environment](https://beta.api.uniswap.org/v2/uniswapx/docs) serves valid mainnet orders that should be filled against production contracts, it just does not receive traffic from any production interfaces. 
