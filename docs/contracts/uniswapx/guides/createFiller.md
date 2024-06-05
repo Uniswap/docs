@@ -4,6 +4,10 @@ title: Creating A Filler
 sidebar_position: 1
 ---
 
+### Get in touch
+
+For notifications from the Uniswap team on changes to filler set ups, join the [UniswapX Fillers - Announcements channel](https://t.me/uniswapx_fillers). For questions and discussion around integrations, join [UniswapX Fillers - Discussion](https://t.me/uniswapx_fillers_discussion).
+
 # Integrating as a Filler
 
 There are two components to integrating as a filler: defining a filler execution strategy and retrieving & executing discovered orders.
@@ -66,7 +70,7 @@ Orders can be filtered by various fields, but most relevant here is `filler`. Wh
 
 **Filter**
 
-To register your webhook endpoint, please reach out [here](mailto:quoters@uniswap.org).
+To register your webhook endpoint, please reach out in [UniswapX Fillers - Discussion](https://t.me/uniswapx_fillers_discussion).
 
 **Notification**
 
@@ -96,3 +100,8 @@ The process for retrieving and executing limit orders is the same as Dutch Order
 3. Send a new transaction to the [execute](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L29) or [executeBatch](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L37) methods of the [Limit Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol) specifying the signed orders you’d like to fill and the address of your executor contract 
 
 For Dutch and Limit Orders, if the order is valid it will be competing against other fillers attempts to execute it in a gas auction. For this reason, we recommend submitting these transactions through a service like [Flashbots Protect](https://docs.flashbots.net/flashbots-protect/overview).
+
+## Helpful Links
+
+- [UniswapX Fillers - Announcements channel](https://t.me/uniswapx_fillers)
+- [UniswapX Fillers - Discussion](https://t.me/uniswapx_fillers_discussion)
