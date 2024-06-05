@@ -88,7 +88,8 @@ data: {
     chainId: "The chain ID that the order originates from and must be settled on",
     filler?: "If this order was quoted by an RFQ participant then this will be their filler address",
     quoteId?: "If this order was quoted by an RFQ participant then this will be the requestId from the quote request",
-    swapper: "OPTIONAL: the swapper address"
+    swapper?: "The swapper address",
+    type?: "The order type (e.g. 'Dutch_V2', 'Limit', etc)"
 }
 ```
 
