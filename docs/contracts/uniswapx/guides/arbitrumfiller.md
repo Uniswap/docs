@@ -1,13 +1,15 @@
 ---
 id: arbitrumfiller
 title: Arbitrum Pilot
-sidebar_position: 1
+sidebar_position: 4
 ---
 
 # Arbitrum Pilot Overview
 Starting June 19 2024, the Uniswap team will be piloting running a portion of trades on Arbitrum through UniswapX. Unlike UniswapX on mainnet, these orders will have **no RFQ portion and thus no exclusivity** during the pilot. 
 
-Filling on Arbitrum, however, follows the same two steps as filling on Mainnet: 1) Retrieving signed orders and 2) Filling orders. 
+Filling on Arbitrum, however, follows the same two steps as filling on Mainnet: 
+1. Retrieving signed orders  
+2. Filling orders
 
 ## Retrieving Signed Orders
 All signed Dutch Orders on Arbitrum, created through the Uniswap UI will be available via the UniswapX Orders Endpoint. We have [swagger documentation](https://api.uniswap.org/v2/uniswapx/docs) but see below for a quick example curl.
@@ -17,6 +19,8 @@ GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=42161&limit=1000
 ```
 
 Use the [UniswapX SDK](https://github.com/Uniswap/sdks/tree/main/sdks/uniswapx-sdk) to parse the `encodedOrder` field returned from endpoint. Each one of these `Orders` represents a fillable user trader. 
+
+As a lower latency alternative to polling the API, fillers can also apply to register a webhook and receive a feed of all open orders. See details for registering [here](./webhooks)
 
 ## Filling Orders
 To execute a discovered order, a filler needs to call the [execute](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/BaseReactor.sol#L31) method of the Reactor specified in the retrieved `encodedOrder` body. Currently the Reactor used by the Uniswap interface is located at:  

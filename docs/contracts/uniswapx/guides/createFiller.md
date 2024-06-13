@@ -49,6 +49,8 @@ All signed Dutch Orders created through the Uniswap UI will be available via the
 GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&limit=1
 ```
 
+As a lower latency alternative to polling the API, fillers can also apply to register a webhook and receive a feed of all open orders. See details for registering [here](./webhooks). 
+
 It’s up to the individual filler to architect their own systems for finding and executing profitable orders, but the basic flow is as follows:
 
 1. Call `GET` on the `/orders` of the UniswapX Orders Endpoint as written above, to retrieve open signed orders. Dutch Orders are available on Mainnet (`chainId=1`) and Arbitrum (`chainId=42161`).
