@@ -1,12 +1,8 @@
 ---
 id: createfiller
-title: Creating A Filler
+title: Filling on Mainnet
 sidebar_position: 1
 ---
-
-### Get in touch
-
-For notifications from the Uniswap team on changes to filler set ups, join the [UniswapX Fillers - Announcements channel](https://t.me/uniswapx_fillers). For questions and discussion around integrations, join [UniswapX Fillers - Discussion](https://t.me/uniswapx_fillers_discussion).
 
 # Integrating as a Filler
 
@@ -59,39 +55,6 @@ It’s up to the individual filler to architect their own systems for finding an
 2. Decode returned orders using the [UniswapX SDK](https://github.com/Uniswap/UniswapX-sdk/#parsing-orders).
 3. Determine which orders you would like to execute.
 4. Send a new transaction to the [execute](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L29) or [executeBatch](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L37) methods of the [Dutch Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/DutchOrderReactor.sol) specifying the signed orders you’d like to fill and the address of your executor contract.
-
-### (Optional) Signed Order Webhook Notifications
-
-Signed open orders can always be fetched via the UniswapX API, but to provide improved latency there is the option to register for webhook notifications. Quoters can register an endpoint with their filler address, and receive notifications for every newly posted order that matches the filter. 
-
-**Filter**
-
-Orders can be filtered by various fields, but most relevant here is `filler`. When registering your webhook notification endpoint, we recommend you provide the `filler` address that you plan to use to execute orders and to receive the last-look exclusivity period. Alternatively the webhook can be configured to send all open orders to your endpoint.
-
-**Filter**
-
-To register your webhook endpoint, please reach out in [UniswapX Fillers - Discussion](https://t.me/uniswapx_fillers_discussion).
-
-**Notification**
-
-Order notifications will be sent to the registered endpoint as http requests as follows:
-
-```jsx
-method: POST
-content-type: application/json
-data: {
-    orderHash: "the hash identifier for the order", 
-    createdAt: "timestamp at which the order was posted",
-    signature: "the swapper signature to include with order execution",
-    orderStatus: "current order status (always should be `open` upon receiving notification)",
-    encodedOrder: "The abi-encoded order to include with order execution. This can be decoded using the Uniswapx-SDK (https://github.com/uniswap/uniswapx-sdk) to verify order fields and signature",
-    chainId: "The chain ID that the order originates from and must be settled on",
-    filler?: "If this order was quoted by an RFQ participant then this will be their filler address",
-    quoteId?: "If this order was quoted by an RFQ participant then this will be the requestId from the quote request",
-    swapper?: "The swapper address",
-    type?: "The order type (e.g. 'Dutch_V2', 'Limit', etc)"
-}
-```
 
 ## 2B. Retrieve & Execute Signed Limit Orders
 The process for retrieving and executing limit orders is the same as Dutch Orders above except that Limit Orders will be retrieved from the [Limit Orders Endpoint](https://api.uniswap.org/v2/limit-orders) (full API docs [here](https://api.uniswap.org/v2/uniswapx/docs)) and executed against the [Limit Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol). The process is: 

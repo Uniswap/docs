@@ -72,3 +72,36 @@ To begin testing in beta quoters will need to:
 4. **Send hashes of 5 filled transactions** that demonstrate that the integration was able to fill during the exclusive period; specifically before [decayStartTime](https://github.com/Uniswap/UniswapX/blob/abd7a0b080148fc42ef7c86536d14de714eec4c7/src/lib/ExclusiveDutchOrderLib.sol#L12)
 
 The Uniswap Labs team will review the 5 transactions to confirm they were successful exclusive fills. Once they are confirmed, the quoters setup will be promoted to production and will start receiving traffic.
+
+# (Optional) Signed Order Webhook Notifications
+
+Signed open orders can always be fetched via the UniswapX API, but to provide improved latency there is the option to register for webhook notifications. Quoters can register an endpoint with their filler address, and receive notifications for every newly posted order that matches the filter. 
+
+**Filter**
+
+Orders can be filtered by various fields, but most relevant here is `filler`. When registering your webhook notification endpoint, we recommend you provide the `filler` address that you plan to use to execute orders and to receive the last-look exclusivity period. Alternatively the webhook can be configured to send all open orders to your endpoint.
+
+**Filter**
+
+To register your webhook endpoint, please reach out in [UniswapX Fillers - Discussion](https://t.me/uniswapx_fillers_discussion).
+
+**Notification**
+
+Order notifications will be sent to the registered endpoint as http requests as follows:
+
+```jsx
+method: POST
+content-type: application/json
+data: {
+    orderHash: "the hash identifier for the order", 
+    createdAt: "timestamp at which the order was posted",
+    signature: "the swapper signature to include with order execution",
+    orderStatus: "current order status (always should be `open` upon receiving notification)",
+    encodedOrder: "The abi-encoded order to include with order execution. This can be decoded using the Uniswapx-SDK (https://github.com/uniswap/uniswapx-sdk) to verify order fields and signature",
+    chainId: "The chain ID that the order originates from and must be settled on",
+    filler?: "If this order was quoted by an RFQ participant then this will be their filler address",
+    quoteId?: "If this order was quoted by an RFQ participant then this will be the requestId from the quote request",
+    swapper?: "The swapper address",
+    type?: "The order type (e.g. 'Dutch_V2', 'Limit', etc)"
+}
+```
