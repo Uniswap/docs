@@ -14,7 +14,7 @@ We'll need to create the basic skeleton for the application. We'll use [create-r
 ```javascript
 yarn create react-app uniswap-demo
 cd uniswap-demo
-yarn add  apollo-client apollo-cache-inmemory apollo-link-http graphql graphql-tag @apollo/react-hooks
+yarn add react-apollo apollo-client apollo-cache-inmemory apollo-link-http graphql graphql-tag @apollo/react-hooks
 yarn start
 ```
 
@@ -42,12 +42,9 @@ import React from 'react'
 import './App.css'
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { HttpLink } from 'apollo-link-http'
 
 export const client = new ApolloClient({
-  link: new HttpLink({
-    uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2',
-  }),
+  uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2',
   cache: new InMemoryCache(),
 })
 
@@ -61,21 +58,22 @@ export default App
 2. We also need to add a context so that Apollo can handle requests properly. In your `index.js` file import the proper provider and wrap the root in it like this:
 
 ```javascript
-import React from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import App from './App'
-import registerServiceWorker from './registerServiceWorker'
 import './index.css'
-import { ApolloProvider } from 'react-apollo'
+import { ApolloProvider } from '@apollo/client';
 import { client } from './App'
+import reportWebVitals from './reportWebVitals'
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <ApolloProvider client={ client }>
     <App />
   </ApolloProvider>,
-  document.getElementById('root')
-)
-registerServiceWorker()
+);
+
+reportWebVitals(console.log);
 ```
 
 ### Writing the queries
@@ -95,13 +93,12 @@ const DAI_QUERY = gql`
     }
   }
 `
-
 const ETH_PRICE_QUERY = gql`
-  query ethPrice {
-    bundle(id: "1") {
+  query bundles {
+    bundles(where: { id: "1" }) {
       ethPrice
     }
-  }
+}
 `
 ```
 
@@ -109,17 +106,13 @@ We use an id of `1` for the bundle because there is only one hardcoded bundle in
 
 ### Fetch data
 
-Now we're ready to use these queries to fetch data from the Uniswap V2 subgraph. To do this we can use the `useQuery` hook which uses our client instance to fetch data, and gives us live info about the status of the request. To do this add the following to your `App.js` file:
+Now we're ready to use these queries to fetch data from the Uniswap V2 subgraph. To do this we can use the `useQuery` hook which uses our client instance to fetch data, and gives us live info about the status of the request. To do this add the following to your `App.js` file (import line at the top of the imports block, the rest inside `App()` function):
 
 ```javascript
 import { useQuery } from '@apollo/react-hooks'
 
-const { loading, error, data: ethPriceData } = useQuery(ETH_PRICE_QUERY)
-const {
-  loading: daiLoading,
-  error: daiError,
-  data: daiData,
-} = useQuery(DAI_QUERY, {
+const { loading: ethLoading, data: ethPriceData } = useQuery(ETH_PRICE_QUERY)
+const { loading: daiLoading, data: daiData } = useQuery(DAI_QUERY, {
   variables: {
     tokenAddress: '0x6b175474e89094c44da98b954eedeac495271d0f',
   },
@@ -134,7 +127,7 @@ Now that we have our data we can format it and display it in the UI. First, we p
 
 These queries will return a response object for each query. Within each one we're interested in the root field we defined in the query definition. For the `daiData` response we defined this as `tokens`, and for the `ethPriceData` query we defined this as `ethPrice`. Within each one we'll get an array of results. Because we're only querying for single entities we'll reference the `0` index in the data array.
 
-Add the following lines to your `App.js` file to parse the responses:
+Add the following lines to your `App.js` file inside the `App()` function to parse the responses:
 
 ```javascript
 const daiPriceInEth = daiData && daiData.tokens[0].derivedETH
@@ -176,7 +169,7 @@ return (
 
 ### Next steps
 
-This should render a very basic page with these two stats about the Dai token within Uniswap. This is a very basic example of what you can do with the Uniswap subgraph and we encourage you to build out more complex and interesting tools!
+This should render a very basic page with these two stats about the Dai token within Uniswap, check the review section if your code does not work. This is a very basic example of what you can do with the Uniswap subgraph and we encourage you to build out more complex and interesting tools!
 
 You can visit our [analytics site](https://uniswap.info/) to see a more advanced analytics page, or visit [the github](https://github.com/Uniswap/uniswap-info) for more detailed examples of using the Uniswap subgraph to create UIs.
 
@@ -185,31 +178,26 @@ You can visit our [analytics site](https://uniswap.info/) to see a more advanced
 In the end your `App.js` file should look like this:
 
 ```javascript
-import React, { useEffect } from 'react'
+import React from 'react'
 import './App.css'
-import { ApolloClient } from 'apollo-client'
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import { HttpLink } from 'apollo-link-http'
-import { useQuery } from '@apollo/react-hooks'
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import gql from 'graphql-tag'
+import { useQuery } from '@apollo/react-hooks'
 
+// Setting the Apollo client to uniswap API
 export const client = new ApolloClient({
-  link: new HttpLink({
     uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2',
-  }),
-  fetchOptions: {
-    mode: 'no-cors',
-  },
-  cache: new InMemoryCache(),
+    cache: new InMemoryCache(),
 })
 
+// Defining the queries
 const DAI_QUERY = gql`
-  query tokens($tokenAddress: Bytes!) {
-    tokens(where: { id: $tokenAddress }) {
-      derivedETH
-      totalLiquidity
-    }
-  }
+   query tokens($tokenAddress: Bytes!) {
+      tokens(where: {id: $tokenAddress }) {
+         derivedETH
+         totalLiquidity
+      } 
+   }
 `
 
 const ETH_PRICE_QUERY = gql`
@@ -217,10 +205,11 @@ const ETH_PRICE_QUERY = gql`
     bundles(where: { id: "1" }) {
       ethPrice
     }
-  }
+}
 `
 
 function App() {
+  // Fetching the API data
   const { loading: ethLoading, data: ethPriceData } = useQuery(ETH_PRICE_QUERY)
   const { loading: daiLoading, data: daiData } = useQuery(DAI_QUERY, {
     variables: {
@@ -228,6 +217,7 @@ function App() {
     },
   })
 
+  // Formating the responses
   const daiPriceInEth = daiData && daiData.tokens[0].derivedETH
   const daiTotalLiquidity = daiData && daiData.tokens[0].totalLiquidity
   const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice
@@ -243,7 +233,7 @@ function App() {
             (parseFloat(daiPriceInEth) * parseFloat(ethPriceInUSD)).toFixed(2)}
       </div>
       <div>
-        Dai total liquidity:{' '}
+          Dai total liquidity:{' D'}
         {daiLoading
           ? 'Loading token data...'
           : // display the total amount of DAI spread across all pools
@@ -253,5 +243,5 @@ function App() {
   )
 }
 
-export default App
+export default App;
 ```
