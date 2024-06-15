@@ -6,6 +6,14 @@ sidebar_position: 1
 
 In this guide, we will write a smart contract that calls `flash` on a V3 pool and swaps the full amount withdrawn of `token0` and `token1` in the corresponding pools with the same token pair - but different fee tiers. After the swap, the contract will pay back the first pool and transfer profits to the original calling address.
 
+The ability to make a profit comes from the difference in the price ratio between `token0` and `token1` in the different pools, not necessarily from the different fee tiers. While the fee tiers can affect the overall cost of the trade, the primary factor that allows for profitable swaps is the difference in price ratios.
+
+The contract is designed to withdraw tokens from a V3 pool, swap them in a different V3 pool with the same token pair but different price ratio and fee tier, and then pay back the original pool and transfer any profits to the calling address. By swapping the tokens in a different pool with a different price ratio, the contract is able to take advantage of the price difference and make a profit.
+
+The fees charged by the pools have an impact on the profitability of the trade. Lower fees can make it easier to profit from the trade because the price difference needed to cover the fees and still make a profit is smaller. However, other factors such as the amount of liquidity available in the pools, slippage, gas fees, and market volatility also play a role in determining the profitability of the trade. So while lower fees can make it easier to profit from a trade, it's not the only factor to consider.
+
+This code is intended to be just an example. For this reason, readers should do their own research to avoid losing their funds.
+
 ## Flash Transactions Overview
 
 Flash transactions are an approach to transferring tokens on Ethereum that transfer token balances _before_ the necessary conditions are met for those balances to be transferred. In the context of a swap, this would mean the output is sent from the swap before the input is received.
