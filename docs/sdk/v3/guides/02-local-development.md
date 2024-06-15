@@ -92,7 +92,7 @@ POST `http://127.0.0.1:8545`
 
 Body:
 
-```JSON
+```json
 {
     "jsonrpc": "2.0",
     "method": "eth_chainId",
@@ -103,7 +103,7 @@ Body:
 
 The result should look like the below (see image below as well):
 
-```JSON
+```json
 {
     "jsonrpc": "2.0",
     "id": 1,
