@@ -35,7 +35,12 @@ For the sake of this example, we're hard coding the token amounts to be minted. 
 
 Here we approve the `nonfungiblePositionManager` to use the contracts' tokens, then populate the `MintParams` struct and assign it to a local variable `params` that will be passed to the `nonfungiblePositionManager` when we call `mint`.
 
-- By using `TickMath.MIN_TICK` and `TickMath.MAX_TICK`, we are providing liquidity across the whole range of the pool. In production you may want to specify a more concentrated position.
+- By using `TickMath.MIN_TICK` and `TickMath.MAX_TICK`, we are providing liquidity across the whole range of the pool. These will give a min tick of `-887272` and a max tick of `887272`. This works as is with the 0.01% pool, However other pools will need to use the correct tick spacing for the pool you are working with. Tick spacing for the pools are `0.01% == 1 tick spacing, 0.3% == 60 tick spacing, 0.05 == 10 tick spacing, 1% == 200 tick spacing`. So when setting up a pool with a different tick spacing, you will need to use a tick that is evenly divisible by the spacing. You can get the tick spacing by casting the contract of the pool address, and calling `tickSpacing()`. In production you may want to specify a more concentrated position, where you would take x of these tick spaces around the current active tick range.
+
+```solidity
+    tickLower: (TickMath.MIN_TICK / tickSpacing) * tickSpacing,
+    tickUpper: (TickMath.MAX_TICK / tickSpacing) * tickSpacing,
+```
 
 - We set `amount0Min` and `amount1Min` to zero for the example - but this would be a vulnerability in production. A function calling `mint` with no slippage protection would be vulnerable to a frontrunning attack designed to execute the `mint` call at an inaccurate price.
 - For a more secure practice the developer would need to implement a slippage estimation process.
