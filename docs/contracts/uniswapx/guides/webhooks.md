@@ -24,7 +24,7 @@ data: {
     chainId: "The chain ID that the order originates from and must be settled on",
     filler?: "If this order was quoted by an RFQ participant then this will be their filler address",
     quoteId?: "If this order was quoted by an RFQ participant then this will be the requestId from the quote request",
-    swapper?: "The swapper address",
+    offerer?: "The swapper address",
     type?: "The order type (e.g. 'Dutch_V2', 'Limit', etc)"
 }
 ```
@@ -34,5 +34,5 @@ Orders can be filtered by various fields. For quoters, the most common use case 
 
 
 ## Request a Webhook
-To register your webhook endpoint, please reach out in [UniswapX Fillers - Discussion](https://t.me/uniswapx_fillers_discussion).
+To register your webhook endpoint, please reach out in [UniswapX Fillers - Discussion](https://t.me/UniswapXdiscussion).
 

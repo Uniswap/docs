@@ -61,4 +61,4 @@ For convenience, we’ve provided an [example Executor Contract](https://github.
 
 # Get in touch
 - To keep up to date, join our [Announcements Channel](https://t.me/uniswapx_fillers)
-- To ask questions and discuss, join our [Fillers Group](https://t.me/uniswapx_fillers_discussion)
+- To ask questions and discuss, join our [Fillers Group](https://t.me/UniswapXdiscussion)

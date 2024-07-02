@@ -70,4 +70,4 @@ For Dutch and Limit Orders, if the order is valid it will be competing against o
 ## Helpful Links
 
 - [UniswapX Fillers - Announcements channel](https://t.me/uniswapx_fillers)
-- [UniswapX Fillers - Discussion](https://t.me/uniswapx_fillers_discussion)
+- [UniswapX Fillers - Discussion](https://t.me/UniswapXdiscussion)
