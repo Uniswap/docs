@@ -34,5 +34,5 @@ Orders can be filtered by various fields. For quoters, the most common use case 
 
 
 ## Request a Webhook
-To register your webhook endpoint, please reach out in [UniswapX Fillers - Discussion](https://t.me/uniswapx_fillers_discussion).
+To register your webhook endpoint, please reach out in [UniswapX Fillers - Discussion](https://t.me/UniswapXdiscussion).
 
