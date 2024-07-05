@@ -10,7 +10,7 @@ Signed open orders can always be fetched via the UniswapX API, but to provide im
 
 ## Notifications
 
-Order notifications will be sent to the registered endpoint as http requests as follows:
+Order notifications will be sent to the registered endpoint as http requests from the ip `3.14.56.90`. The structure of the requests is as follows:
 
 ```jsx
 method: POST
@@ -34,5 +34,5 @@ Orders can be filtered by various fields. For quoters, the most common use case 
 
 
 ## Request a Webhook
-To register your webhook endpoint, please reach out in [UniswapX Fillers - Discussion](https://t.me/UniswapXdiscussion).
+To register your webhook endpoint, please fill out our [onboarding form](https://forms.gle/FtqVhSinod9fZDNH8). Reach out in the [UniswapX Fillers - Discussion](https://t.me/UniswapXdiscussion) Telegram group with any questions.
 
