@@ -1,5 +1,6 @@
 ---
-id: overview
+id: deuces9er/@deuces9ers 
+Co-author/Nathaniel Hooker
 sidebar_position: 1
 title: Overview
 ---
