@@ -9,7 +9,7 @@ The [Priority Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/r
 ## Example Implementation
 Alice submits a PriorityOrder offering 1 ETH in exchange for a minimum of 1000 USDC. The fair market rate for the order is 1100 USDC, resulting in around 100 USDC in potential profit. 
 
-If we assume a filler has a desired margin of 10% of the total profit, the best price is 1090 USDC. This would be 900 bps of improvement. Thiw filler would convert bps to mps (see below for details) to get 900 * 1000 = 900,000 mps of improvement. Thus they would set priorityFee of 900,000 wei on their fill transaction. Keep in mind that this is additional to the base fee.
+If we assume a filler has a desired margin of 10% of the total profit, the best price is 1090 USDC. This would be 900 bps of improvement. This filler would convert bps to mps (see below for details) to get 900 * 1000 = 900,000 mps of improvement. Thus they would set priorityFee of 900,000 wei on their fill transaction. Keep in mind that this is additional to the base fee.
 
 # Details for Fillers
 - The interface is exactly the same as the current production version of UniswapX, but there will be a new reactor address which will require new approvals.
