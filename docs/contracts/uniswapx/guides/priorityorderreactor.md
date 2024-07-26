@@ -15,7 +15,7 @@ If we assume a filler has a desired margin of 10% of the total profit, the best 
 - The interface is exactly the same as the current production version of UniswapX, but there will be a new reactor address which will require new approvals.
 - We do not plan to run any preliminary auctions for the start price of these orders, rather we set a minimum price that each order must be executed at.
 - Each order is only executable after a certain block specified by the user. You can expect this block to be a few blocks in the future from when you receive the order. To ensure the best UX for our users, Uniswap Labs will have the ability to make the start block earlier by cosigning the order. We expect nearly all orders to be filled in the first possible block.
-- For every wei of priority fee above a certain threshold (see appendix), the user is owed 1 milli-bps more of their output token. Milli-bps (or MPS) are one-thousandth of a basis point.
+- For every wei of priority fee above a certain threshold (an optional order specified value), the user is owed 1 milli-bps more of their output token. Milli-bps (or MPS) are one-thousandth of a basis point.
 - PriorityOrders are only supported on chains which order transactions by priority fee — currently limited to OP stack L2s. Because of this ordering policy, the winning fill transaction necessarily must have also given the user the best execution.
 
 # Timeline
