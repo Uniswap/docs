@@ -211,7 +211,7 @@ function tickToWord(tick: number): number {
   if (tick < 0 && tick % tickSpacing !== 0) {
     compressed -= 1
   }
-  return tick >> 8
+  return compressed >> 8
 }
 
 const minWord = tickToWord(-887272)
