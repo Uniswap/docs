@@ -61,6 +61,7 @@ Current reactor implementations:
 - [LimitOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol): A reactor that settles simple static limit orders
 - [DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/DutchOrderReactor.sol): A reactor that settles linear-decay dutch orders
 - [ExclusiveDutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/ExclusiveDutchOrderReactor.sol): A reactor that settles linear-decay dutch orders with a period of exclusivity before decay begins
+- [PriorityOrderReactor.sol](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol): A reactor that settles orders which implement priority taxes
 
 ### Fill Contracts
 
