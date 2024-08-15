@@ -51,9 +51,10 @@ The [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/rea
 
 # Deployment addresses
 The PriorityOrderReactor is deployed on the following chains:
-| Chain                      | Address                                                                                                               | Source                                                                                                                    |
-| ---                           | ---                                                                                                                   | ---                                                                                                                       |
-| Base | [0x000000001Ec5656dcdB24D90DFa42742738De729](https://basescan.org/address/0x000000001Ec5656dcdB24D90DFa42742738De729) | [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) |
+| Chain                                                                                                                 | Address                                                                                                     | Source |
+| ----- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Base       | [0x000000001Ec5656dcdB24D90DFa42742738De729](https://basescan.org/address/0x000000001Ec5656dcdB24D90DFa42742738De729)                                                                                                                      | [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol)                                                                                                            |
+
 
 # Timeline
 We are planning to pilot using the Priority Order Reactor in early August 2024. Join the [UniswapX Fillers Channel](https://t.me/UniswapXdiscussion) for more details. 
