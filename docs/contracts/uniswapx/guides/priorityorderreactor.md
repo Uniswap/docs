@@ -51,9 +51,10 @@ The [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/rea
 
 # Deployment addresses
 The PriorityOrderReactor is deployed on the following chains:
-| Chain                                                                                                                 | Address                                                                                                     | Source |
-| ----- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Base       | [0x000000001Ec5656dcdB24D90DFa42742738De729](https://basescan.org/address/0x000000001Ec5656dcdB24D90DFa42742738De729)                                                                                                                      | [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol)                                                                                                            |
+
+| Chain | Source                                                                                                        | Address                                                                                                               |
+| ----- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------|
+| Base  | [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol)   | [0x000000001Ec5656dcdB24D90DFa42742738De729](https://basescan.org/address/0x000000001Ec5656dcdB24D90DFa42742738De729) |
 
 
 # Timeline
