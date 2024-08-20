@@ -3,27 +3,32 @@ id: becomequoter
 title: Become a Quoter
 sidebar_position: 2
 ---
-# Quoting During UniswapX Beta
-To ensure a smooth swapping experience for traders during the beta period, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch, with plans to make the quoting system fully permissionless in the near future.
+# Quoting on UniswapX
+This guide provides step-by-step instructions for integrating as a Quoter on UniswapX. It is intended for experienced defi teams that have experience running similar systems on other protocols.
 
-Once you've been approved to be a quoter by the Uniswap Labs team follow the instructions below to complete your integration. If you have not been approved, please join the waitlist by filling out our [intake form](https://uniswap.typeform.com/to/UiPDKgY6).
+To ensure a smooth swapping experience for traders, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch. There are plans to make the quoting system fully permissionless in the near future.
 
-# Integrating with UniswapX RFQ
+Once you've been approved to be a quoter by the Uniswap Labs team, follow the instructions below to complete your integration. If you have not been approved, please join the waitlist by filling out our [intake form](https://uniswap.typeform.com/to/UiPDKgY6).
 
-To participate as quoters, fillers must host a service that adheres to the UniswapX RFQ API schema (below) and responds to requests with quotes. The RFQ participant who submits the best quote for a given order will receive exclusive rights to fill it using their Executor during the _Exclusivity Period_ of the auction.
+# Getting Started as a Quoter
+To participate as a quoter, you must host a service that adheres to the UniswapX RFQ API schema and responds to requests with quotes. The RFQ participant who submits the best quote for a given order will receive exclusive rights to fill it using their Executor during the _Exclusivity Period_ of the auction.
 
 ## Performance Expectations
-During the UniswapX beta period, quoters will be expected to uphold the following standards to assure a fair auction process and the best experience for swappers. Any quoters who drop below these expectations are subject to suspension or removal from the UniswapX beta: 
+To ensure a smooth experience for swappers and a fair auction process for quoters, we will hold participants to the following performance standards:
 
-1. **500ms Response Time:** When a quoter receives a request for quote, their server should respond within 500ms with either a quote for the trade or a 204 response code
-2. **90% Rolling Fill Rate:** When a quoter wins an auction, meaning their contract address is in the `exclusiveFiller` field of an order, they are required to fill that order >90% of the time. We'll measure this on a rolling 7-day day period.
+- ***500ms Response Time:*** Your server must respond to a request for a quote within **500ms**. If you cannot provide a quote, respond with a 204 status code.
 
-## RFQ API Schema
+Consistent failure to meet this standard may result in suspension from the system.
 
-To successfully receive and respond to UniswapX RFQ Quotes, you must have a publicly accessible endpoint that receives incoming quote requests and responds with quotes by implementing the following schema:
+## Handling Fades & the Circuit Breaker
+Quoters are expected to honor and execute the quotes they submit. If a quoter submits a winning quote but fails to fill the subsequent order, the "circuit breaker" will be triggered, temporarily disabling the quoter from receiving new requests.
 
-Request:
+- ***Cooldown Time:*** The cooldown period starts at 15 minutes for the first fade and increases exponentially for consecutive fades. More details on the cooldown calculation can be found in the [source code](https://github.com/Uniswap/uniswapx-parameterization-api/blob/bf87dcc0066fa21b72255f7155f5fbd04a518594/lib/cron/fade-rate-v2.ts#L215). 
 
+# RFQ API Integration Details
+To successfully receive and respond to UniswapX RFQ Quotes, you must have a publicly accessible endpoint that handles incoming quote requests according to the following schema:
+
+## Request Schema:
 ```jsx
 method: POST
 content-type: application/json
@@ -40,8 +45,8 @@ data: {
 }
 ```
 
-Response (status 200 - OK):
-
+## Response Schema:
+If you can fulfill the quote request, your server should respond with (status 200 - OK) and the following data:
 ```jsx
 {
     chainId: "number - the chainId for the quoted token",
@@ -58,13 +63,23 @@ Response (status 200 - OK):
 }
 ```
 
-There is a latency requirement on responses from registered endpoints. Currently set to 500ms, but is subject to change. If you do not wish to respond to a quote request, you must return an empty response with status code `204`.
+If you do not wish to respond to a quote request, you must return an empty response with status code `204`.
 
-# Requirements for Moving to Prod
+## Schema When Disabled Due to Circuit Breaker
+If you are an onboarded quoter who is currently disabled by the circuit breaker, your server will receive the following message on the same quote endpoint:
 
-All new quoter instances will start by being onboarded to our [Beta environment](https://beta.api.uniswap.org/v2/uniswapx/docs), where they will need to demonstrate at least **5 valid Exclusive RFQ fills** in order to be moved to production. The [Beta environment](https://beta.api.uniswap.org/v2/uniswapx/docs) serves valid mainnet orders that should be filled against production contracts, it just does not receive traffic from any production interfaces. 
+```jsx
+method: POST
+content-type: application/json
+data: {
+    blockUntil: "timestamp - the timestamp that this quoter is disabled until"
+}
+```
 
-To begin testing in beta quoters will need to: 
+# Moving to Production
+All new quoter instances will start by being onboarded to our [Beta environment](https://beta.api.uniswap.org/v2/uniswapx/docs). Here, they will need to demonstrate at least **5 valid Exclusive RFQ fills** to be moved to production. The Beta environment serves valid mainnet orders that should be filled against production contracts but does not receive traffic from production interfaces.
+
+## Steps to Move to Production
 
 1. **Provide their quote server URL** to your Uniswap Labs contact along with the contract address you’re using to fill. We recommend that this be the same quoting infrastructure that you plan to run in production. 
 2. **(Optional) Provide notification webhook URL** to you Uniswap Labs contact. We’ll set up notifications of won orders to be served there. Alternatively, you can poll the [Beta /orders Endpoint](https://beta.api.uniswap.org/v2/uniswapx/docs) for won orders. 
