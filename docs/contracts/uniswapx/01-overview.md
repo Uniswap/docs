@@ -58,6 +58,7 @@ Reactors process orders using the following steps:
 Reactors implement the [IReactor](https://github.com/Uniswap/UniswapX/blob/main/src/interfaces/IReactor.sol) interface which abstracts the specifics of the order specification. This allows for different reactor implementations with different order formats to be used with the same interface, allowing for shared infrastructure and easy extension by fillers.
 
 Current reactor implementations:
+- [V2DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V2DutchOrderReactor.sol): The latest version of the Dutch Order Reactor, that settle v2 linear decay dutch orders. 
 - [LimitOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol): A reactor that settles simple static limit orders
 - [DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/DutchOrderReactor.sol): A reactor that settles linear-decay dutch orders
 - [ExclusiveDutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/ExclusiveDutchOrderReactor.sol): A reactor that settles linear-decay dutch orders with a period of exclusivity before decay begins
