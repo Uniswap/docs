@@ -72,7 +72,7 @@ If you are an onboarded quoter who is currently disabled by the circuit breaker,
 method: POST
 content-type: application/json
 data: {
-    blockUntil: "timestamp - the timestamp that this quoter is disabled until"
+    blockUntilTimestamp: "timestamp - the timestamp that this quoter is disabled until"
 }
 ```
 
