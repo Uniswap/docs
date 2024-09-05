@@ -19,6 +19,7 @@ Please do not assume contracts are deployed to the same addresses across chains,
 - [`CELO`](./Celo-Deployments.md)
 - [`Blast`](./Blast-Deployments.md)
 - [`ZKsync`](./ZKsync-Deployments.md)
+- [`Zora`](./Zora-Deployments.md)
 
 These addresses are final and were deployed from these npm package versions:
 
