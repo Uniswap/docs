@@ -102,7 +102,7 @@ Thus, changes to all off-chain community governance processes should be voted on
 
 - **Proposal:** A proposal is executable code that modifies the governance contract or treasury and how they work. To create a proposal, a user must have at least 0.10% (1M UNI) of all UNI delegated to their address. Proposals are stored in the "proposals" mapping of the Governor smart contract. All proposals are subject to a ~7-day voting period. If the proposer does not maintain their vote weight balance throughout the voting period, anyone may cancel the proposal.
 
-- **Quorum:** In order for a vote to pass, it must achieve quorum of 4% of all UNI (40M) voting `yes`. The purpose of the quorum is to ensure that the only measures that pass have adequate voter participation.
+- **Quorum:** In order for a vote to pass,  4% of all UNI (40M) must vote, and the majority must vote `yes`. The purpose of the quorum is to ensure that the only measures that pass have adequate voter participation.
 
 - **Voting:** Users can vote for or against single proposals once they have voting rights delegated to their address. Votes can be cast while a proposal is in the "Active" state. Votes can be submitted immediately using "castVote" or submitted later with "castVoteBySig" (For more info on castVoteBySig and offline signatures, see EIP-712). If the majority of votes (and a 4% quorum of UNI) vote for a proposal, the proposal may be queued in the Timelock.
 
