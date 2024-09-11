@@ -1,30 +1,68 @@
 ---
-title: v4-versus-v3
+title: V4 vs V3
 ---
 
-While Uniswap v4's underlying concetrated liquidity is the same as Uniswap v3, there are some key differences in the architecture
-and accounting.
+While Uniswap v4's underlying concentrated liquidity is the same as Uniswap v3,
+there are some key differences in the architecture and accounting.
 
 # Singleton Design
 
 ### Pool Creation
 
-(TODO: talk about singleton vs factory, state vs contract/V3Pool)
+V4: The singleton contract facilitates the creation of a pool and 
+also stores its state. This pattern reduces costs when creating a pool
+and doing multi-hop swaps.
+
+V3: A factory contract is responsible for pool creation. The pool is
+a separate contract instance that manages its own state. Pool initialization
+is costly because of how gas consuming contract creation is.
 
 ### Flash Accounting
 
-(TODO: talk about flash accounting, multi-hop swaps)
+V4: The singleton uses "flash accounting", meaning a caller that unlocks it
+is allowed to freely access tokens given
+that prior to locking it back no tokens are owed to or from the caller. This
+further reduces the gas cost of
+trades that cross multiple pools and supports more complex
+integrations with Uniswap v4.
 
-# Liquidity Fee Accounting
+V3: Because flash accounting is missing from V3, it is the responsibility
+of the swap router to execute swaps on each individual pool from which the
+multi-hop swap needs access to liquidity.
 
-(TODO: talk about how fees must be collected on liquidity operation)
+# Liquidity Fee Accounting 
 
-(TODO: talk about fees are automatically credited in increase liquidity)
+V4: Accrued fees act like credit when modifying liquidity.
+Increasing liquidity will convert the fee revenue to liquidity
+inside the position while decreasing liquidity will automatically
+withdraw remaining fees.
 
-(TODO: talk about salts)
+A parameter called "salt" can be provided when modifying liquidity. The
+salt can be used to have multiple positions in the same range.
+This separation may be preferred in hook enabled pools where the hook
+introduces further differentiations in liquidity provisioning. An example
+could be when out-of-range liquidity is repurposed and despite the fact that
+a user has two positions in the same range, each position is assigned to
+two different lending protocols in this case.
+
+V3: Accrued fees are updated each time a liquidity operation occurs,
+however they don't account to liquidity deposit/withdrawal amounts 
+like in V4 and must be collected separately.
 
 # Native ETH
 
-(TODO: talk about native ETH vs WETH)
+V4: Pool pairs support native tokens, in doing so ETH swappers and
+liquidity providers benefit from gas cost reductions from cheaper
+transfers and removal of additional wrapping costs.
+
+V3: ETH needs to be wrapped first before being paired with other tokens.
+This results in higher gas costs because of wrapping and transferring
+a wrapped native token.
 
 # Subscribers
+
+Only V4: Owners can now set a subscriber for their positions.
+A subscriber contract will get notified every time the position's liquidity
+or owner changes. Liquidity modifications in this case will also provide
+the subscriber information about the change in liquidity and the amount of
+accrued fees.
