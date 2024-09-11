@@ -2,6 +2,31 @@
 title: ERC-6909
 ---
 
-(TODO: talk about ERC-6909 claims / redemptions)
+Uniswap v4 uses [ERC-6909](https://eips.ethereum.org/EIPS/eip-6909) to further improve gas-efficiency on token claims and redemptions.
 
-(TODO: talk about gas benefits, and users i.e. mev bots and high-frequency traders)
+ERC-6909 is a simple multi-token contract standard. Think of it as a way to manage multiple ERC-20 tokens from a single smart contract - which improves upon ERC-1155's design by actually simplifying it.
+
+# How it works
+
+Instead of choosing to move tokens in/out of the `PoolManager` every time users want to conduct swaps, they can choose to leave their tokens with the `PoolManager`. In exchange, the `PoolManager` **mints them an ERC-6909 token representing their claim** - the tokens they have deposited into the `PoolManager`. In future swaps, users will not need to transfer tokens out of their wallet into the `PoolManager` - the `PoolManager` can simply **burn some (or all) of their claim tokens they have, and mint new claim tokens representing the output of the swap**.
+
+Intuitively it may feel like this isn't much better since we're still minting/burning tokens - but that's not the point. 
+
+**Doing "real" ERC-20 token transfers would require calling functions on external smart contracts**. This presents the first gas overhead - external function calls. Secondly, these external smart contracts can have their own **custom logic within their transfer functions** - for example USDC has a blacklist it needs to check against before letting a transfer happen - which is a further gas overhead. Minting and burning ERC-6909 tokens therefore ends up being cheaper because it doesn't require external function calls and also has a **constant size gas overhead regardless of which underlying token is being represented by the claim token**.
+
+This mechanism therefore helps further reduce gas costs. All these gas cost reductions overall make pools much more competitive based on the fees they charge.
+
+# Examples
+
+## High-frequency traders / MEV bots
+
+These users are often conducting a lot of swaps in relatively short durations of time. ERC-6909 will benefit them from executing their trading strategy in a much more gas-efficient way.
+
+
+## Daily users
+
+Normal users could also benefit from such mechanism for example if they want to DCA on UNI for a month, they can let the `PoolManager` keep the actual UNI during the DCA and just use the ERC-6909 token to claim back all their UNI a month later to save a considerable amount of gas.
+
+
+
+
