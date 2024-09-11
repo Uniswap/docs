@@ -7,7 +7,7 @@ This is a living document which represents the current process guidelines for de
 
 ## Tools
 
-There are several venues where Uniswap Governance takes place. Each serves its own particular purpose.
+Uniswap Governance takes place in several venues. Each serves its own particular purpose.
 
 1.  [_Governance Forum_](https://gov.uniswap.org/)
 
@@ -17,9 +17,9 @@ A Discourse-hosted forum for governance-related discussion. Community members mu
 
 A simple voting interface that allows users to signal sentiment off-chain. Votes on Snapshot are weighted by the number of UNI delegated to the address used to vote.
 
-1. [_Uniswap Agora_](https://vote.uniswapfoundation.org)
+3. [_Uniswap Agora_](https://vote.uniswapfoundation.org)
 
-The [Uniswap Foundation](https://www.uniswapfoundation.org) supports this voting and delegation interface. (Tally)[https://www.tally.xyz/gov/uniswap] is another app that supports proposal creation, delegation, and voting.
+The [Uniswap Foundation](https://www.uniswapfoundation.org) supports this voting and delegation interface. (Tally)[https://www.tally.xyz/gov/uniswap] is another excellent app that supports proposal creation, delegation, and voting.
 
 
 ## Process
@@ -60,9 +60,9 @@ At the end of 5 days, the option with the majority of votes wins. There must be 
 
 ### Phase 3: Governance Proposal
 
-Timeframe: 2 day waiting period, 7 day voting period, 2 day timelock
-
-Threshold: 40M UNI
+_Timeframe_: 2 day waiting period, 7 day voting period, 2 day timelock
+_Threshold_: 1M UNI
+_Quorum_: 40M UNI votes in favor
 
 Form: [Governance Proposal](https://vote.uniswapfoundation.org/)
 
@@ -76,7 +76,7 @@ To create an onchain Governance Proposal:
 
 2. Create a topic in the [Governance Forum](https://gov.uniswap.org/) titled "Governance Proposal — [Your Title Here]" and link to previous forum posts and the Temperature Check Snapshot poll.
 
-3. Create your proposal. This can be done either through an interface (e.g. [vote.uniswapfoundation.org](vote.uniswapfoundation.org)) or through writing the calldata for more complicated proposal logic. This calldata will be executed if and when the proposal passes. If writing the calldata yourself, please review the logic with a qualified Uniswap community member prior to posting the proposal.
+3. Create your proposal. This can be done either through an interface (e.g. [Tally](https://tally.xyz/gov/uniswap)) or through writing the calldata for more complicated proposal logic. If the proposal passed, this calldata will execute. If writing the calldata yourself, please review the logic with a qualified Uniswap community member prior to posting the proposal.
 
 4. Ensure that at least 1 million UNI is delegated to your address in order to submit a proposal, or find a delegate who has enough delegated UNI to meet the proposal threshold to propose on your behalf.
 
@@ -102,7 +102,9 @@ Thus, changes to all off-chain community governance processes should be voted on
 
 - **Proposal:** A proposal is executable code that modifies the governance contract or treasury and how they work. To create a proposal, a user must have at least 0.10% (1M UNI) of all UNI delegated to their address. Proposals are stored in the "proposals" mapping of the Governor smart contract. All proposals are subject to a ~7-day voting period. If the proposer does not maintain their vote weight balance throughout the voting period, anyone may cancel the proposal.
 
-- **Quorum:** In order for a vote to pass,  4% of all UNI (40M) must vote, and the majority must vote `yes`. The purpose of the quorum is to ensure that the only measures that pass have adequate voter participation.
+- **Threshold:** The amount of UNI that must be delegated to an address to take a given action. Currently, the only action with a threshold is posting an onchain vote.
+
+- **Quorum:** In order for a vote to pass,  4% of all UNI (40M) must vote in favor. Votes against and abstentions do not count towards a quorum. The purpose of the quorum is to ensure that the only measures that pass have adequate voter participation.
 
 - **Voting:** Users can vote for or against single proposals once they have voting rights delegated to their address. Votes can be cast while a proposal is in the "Active" state. Votes can be submitted immediately using "castVote" or submitted later with "castVoteBySig" (For more info on castVoteBySig and offline signatures, see EIP-712). If the majority of votes (and a 4% quorum of UNI) vote for a proposal, the proposal may be queued in the Timelock.
 
