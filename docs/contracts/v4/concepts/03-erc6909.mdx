@@ -10,7 +10,6 @@ ERC-6909 is a simple multi-token contract standard. The token standard is analog
 
 Instead of choosing to move tokens in/out of the `PoolManager`, developers can opt-in and leave the ERC-20 tokens within the `PoolManager`. In exchange, the `PoolManager` can **mint them an ERC-6909 token representing their claim**. In subsequent interactions requiring _paying_ tokens, users will not need to transfer ERC-20 tokens into the `PoolManager` - users can simply _burn_ some (or all) of their claim tokens they have
 
-Intuitively it may feel like this isn't much better since we're still minting/burning tokens - but that's not the point. 
 
 **Doing "real" ERC-20 token transfers would require calling functions on external smart contracts**. This presents the first gas overhead - external function calls. Secondly, these external smart contracts can have their own **custom logic within their transfer functions** - for example USDC has a blacklist it needs to check against before letting a transfer happen - which is a further gas overhead. Minting and burning ERC-6909 tokens therefore ends up being cheaper because it doesn't require external function calls and also has a **constant size gas overhead regardless of which underlying token is being represented by the claim token**.
 
