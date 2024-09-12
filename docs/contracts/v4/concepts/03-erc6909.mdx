@@ -8,7 +8,7 @@ ERC-6909 is a simple multi-token contract standard. The token standard is analog
 
 # How it works
 
-Instead of choosing to move tokens in/out of the `PoolManager` every time users want to conduct swaps, they can choose to leave their tokens with the `PoolManager`. In exchange, the `PoolManager` **mints them an ERC-6909 token representing their claim** - the tokens they have deposited into the `PoolManager`. In future swaps, users will not need to transfer tokens out of their wallet into the `PoolManager` - the `PoolManager` can simply **burn some (or all) of their claim tokens they have, and mint new claim tokens representing the output of the swap**.
+Instead of choosing to move tokens in/out of the `PoolManager`, developers can opt-in and leave the ERC-20 tokens within the `PoolManager`. In exchange, the `PoolManager` can **mint them an ERC-6909 token representing their claim**. In subsequent interactions requiring _paying_ tokens, users will not need to transfer ERC-20 tokens into the `PoolManager` - users can simply _burn_ some (or all) of their claim tokens they have
 
 Intuitively it may feel like this isn't much better since we're still minting/burning tokens - but that's not the point. 
 
