@@ -2,8 +2,8 @@
 title: V4 vs V3
 ---
 
-While Uniswap v4's underlying concentrated liquidity is the same as Uniswap v3, there are some key differences in the architecture
-and accounting.
+While Uniswap v4's underlying concentrated liquidity is the same as Uniswap v3,
+there are some key differences in the architecture and accounting.
 
 # Singleton Design
 
@@ -32,9 +32,10 @@ multi-hop swap needs access to liquidity.
 
 # Liquidity Fee Accounting 
 
-(TODO: talk about how fees must be collected on liquidity operation)
-
-(TODO: talk about fees are automatically credited in increase liquidity)
+V4: Accrued fees act like credit when modifying liquidity.
+Increasing liquidity will convert the fee revenue to liquidity
+inside the position while decreasing liquidity will automatically
+withdraw remaining fees.
 
 A parameter called "salt" can be provided when modifying liquidity. The
 salt can be used to have multiple positions in the same range.
@@ -43,6 +44,10 @@ introduces further differentiations in liquidity provisioning. An example
 could be when out-of-range liquidity is repurposed and despite the fact that
 a user has two positions in the same range, each position is assigned to
 two different lending protocols in this case.
+
+V3: Accrued fees are updated each time a liquidity operation occurs,
+however they don't account to liquidity deposit/withdrawal amounts 
+like in V4 and must be collected separately.
 
 # Native ETH
 
@@ -56,7 +61,7 @@ a wrapped native token.
 
 # Subscribers
 
-Only V4: Owners can now set a subscriber for each position they have.
+Only V4: Owners can now set a subscriber for their positions.
 A subscriber contract will get notified every time the position's liquidity
 or owner changes. Liquidity modifications in this case will also provide
 the subscriber information about the change in liquidity and the amount of
