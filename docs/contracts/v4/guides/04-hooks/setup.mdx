@@ -1,16 +1,16 @@
 ---
-title:  Set Up Your Local Environment
+title:  Set Up Local Environment
 ---
 
-Before writing our hook let's first have our local environment properly configured e.g. deploying pool manager, utility routers and test tokens. 
+Before writing the hook let's first have a local environment properly configured e.g. deploying pool manager, utility routers and test tokens. 
 
-At the end of this guide you’ll have a development environment set up that you can use to build the rest of the examples in the Guides section of the docs, or start your own integration project!
+At the end of this guide a development environment will be set up to be used to build the rest of the examples in the Guides section of the docs.
 
-To get you started as quickly as possible for building Uniswap v4 hooks, we have provided the `Quick Start` section below where you can clone a boilerplate and get building. To start from scratch and learn the underlying concepts, jump to the `Start from Scratch` section.
+To get started as quickly as possible for building Uniswap v4 hooks, there is a `Quick Start` section below to clone a boilerplate and get building. To start from scratch and learn the underlying concepts, jump to the `Start from Scratch` section.
 
 # Quick Start
 
-The Uniswap [v4-template repo](https://github.com/uniswapfoundation/v4-template) provides a basic foundry environment with required imports already pre-loaded for you. You can click on [`Use this template`](https://github.com/new?template_name=v4-template&template_owner=uniswapfoundation) to create a new repository with it.
+The Uniswap [v4-template repo](https://github.com/uniswapfoundation/v4-template) provides a basic foundry environment with required imports already pre-loaded. Click on [`Use this template`](https://github.com/new?template_name=v4-template&template_owner=uniswapfoundation) to create a new repository with it.
 
 Or simply clone it and install the dependencies:
 
@@ -22,40 +22,42 @@ forge install
 forge test
 ```
 
-Then hop to the [Local Node via Anvil](#local-node-via-anvil) to complete your set up and start developing.
+Then hop to the [Local Node via Anvil](#local-node-via-anvil) to complete the set up and start developing.
+
+---
 
 # Start from Scratch
 
-In the following sections, we’ll walk through the steps to create the same environment set up as the boilerplate from scratch and learn the underlying concepts.
+In the following sections, let's walk through the steps to create the same environment set up as the boilerplate from scratch and learn the underlying concepts.
 
 ## Setting up Foundry
 
-The first thing we'll do is set up a new Foundry project. 
+First thing is to set up a new Foundry project. 
 
-If you don't have Foundry installed on your computer already - you can follow the [Foundry Book](https://book.getfoundry.sh/getting-started/installation) for installation.
+If there is no Foundry installed - follow the [Foundry Book](https://book.getfoundry.sh/getting-started/installation) for installation.
 
-Once Foundry is setup, we will first initialize a new project:
+Once Foundry is setup, initialize a new project:
 
 ```bash
 forge init counter-hook
 cd counter-hook
 ```
 
-Then we will install the Uniswap `v4-core` and `v4-periphery` contracts as dependencies:
+Then install the Uniswap `v4-core` and `v4-periphery` contracts as dependencies:
 
-```
+```bash
 forge install Uniswap/v4-core && forge install Uniswap/v4-periphery
 ```
 
-Next, we'll se up the remappings so that our shorthand syntax for importing contracts from the dependencies work nicely:
+Next, set up the remappings so that the shorthand syntax for importing contracts from the dependencies work nicely:
 
-```
+```bash
 forge remappings > remappings.txt
 ```
 
 > If there is something wrong with the inferred remappings, please replace with the following in `remappings.txt`:
 
-```
+```toml
 @uniswap/v4-core/=lib/v4-core/
 forge-gas-snapshot/=lib/v4-core/lib/forge-gas-snapshot/src/
 forge-std/=lib/v4-core/lib/forge-std/src/
@@ -65,29 +67,29 @@ v4-core/=lib/v4-core/
 v4-periphery/=lib/v4-periphery/
 ```
 
-After that, we can remove the default Counter contract and its associated test and script file that Foundry initially set up for us. To do that, you can either manually delete those files, or just run the following:
+After that, remove the default Counter contract and its associated test and script file that Foundry initially set up. To do that, either manually delete those files, or just run the following:
 
-```
+```bash
 rm ./**/Counter*.sol
 ```
 
-Finally, since v4 uses transient storage which is only available after Ethereum's cancun hard fork and on Solidity versions >= 0.8.24 - we must set some config in our `foundry.toml` config file. 
+Finally, since v4 uses transient storage which is only available after Ethereum's cancun hard fork and on Solidity versions >= 0.8.24 - some config must be set in `foundry.toml` config file. 
 
 To do that, add the following lines to `foundry.toml`:
 
-```
+```toml
 # foundry.toml
 
-solc_version = '0.8.26'
+solc_version = "0.8.26"
 evm_version = "cancun"
 ffi = true
 ```
 
-Awesome! Now we're all set up to start building our hook! Let’s run a quick test to confirm everything is set up properly.
+Awesome! Now it's all set to start building the hook! Let’s run a quick test to confirm everything is set up properly.
 
 ## Compile a Basic Hook Contract
 
-To confirm that our environment is configured correctly we’ll attempt to write a basic Counter Hook contract. Create a new file, `./src/CounterHook.sol` and paste the following code into it:
+To confirm that the environment is configured correctly let's write a basic Counter Hook contract. Create a new file, `./src/CounterHook.sol` and paste the following code into it:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -181,25 +183,25 @@ contract CounterHook is BaseHook {
 }
 ```
 
-To compile the Counter Hook contracts in the `./src` folder, we’ll use the foundry build command:
+To compile the Counter Hook contracts in the `./src` folder, use the foundry build command:
 
-```
+```bash
 forge build
 ```
 
-If the environment is compiled correctly you should see the message:
+If the environment is compiled correctly it will display a message:
 
-```
+```bash
 Compiler run successful!
 ```
 
 ## Local Node via Anvil
 
-Other than writing unit tests, you can deploy and test hooks on [Anvil](https://book.getfoundry.sh/anvil/).
+Other than writing unit tests, [Anvil](https://book.getfoundry.sh/anvil/) can be used to deploy and test hooks.
 
-With your local node up and running, you can use the `--rpc-url 127.0.0.1:8545` flag in tests to point the Foundry testing suite to that local node:
+With the local node up and running, use the `--rpc-url 127.0.0.1:8545` flag in tests to point the Foundry testing suite to that local node:
 
-```
+```bash
 # start anvil, a local EVM chain
 anvil
 
@@ -207,7 +209,7 @@ anvil
 # foundry script for deploying v4 & hooks to anvil
 forge script script/Anvil.s.sol \
     --rpc-url http://localhost:8545 \
-    --private-key <your_test_wallet_private_key> \
+    --private-key <test_wallet_private_key> \
     --broadcast
 
 # test on the anvil local node
@@ -215,9 +217,9 @@ forge test --rpc-url 127.0.0.1:8545
 ```
 
 # Next Steps
-With your environment set up you’re ready to start building. Jump over to the guides section to learn about the Uniswap functions you can integrate with Hook. Remember to add all contracts (.sol files) to the `./src` folder and their subsequent tests to the `./test` folder. You can then test them against your local anvil node by running:
+With the environment set up ready to be built on. Jump over to the guides section to learn about the Uniswap functions that can be integrated with Hook. Remember to add all contracts (.sol files) to the `./src` folder and their subsequent tests to the `./test` folder. Then test them against the local anvil node by running:
 
-```
+```bash
 forge test --rpc-url 127.0.0.1:8545
 ```
 
