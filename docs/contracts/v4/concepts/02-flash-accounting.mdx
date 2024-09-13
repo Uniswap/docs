@@ -8,7 +8,7 @@ In previous versions of Uniswap, every time a swap was made - including multi-ho
 
 This design incurred inefficiencies because transferring tokens with external calls to their smart contracts - especially in a multi-hop swap - is quite expensive. This design was required since each pool was its own contract and token transfers were required to maintain accounting and solvency
 
-With the singleton architecture, a better design now exists - this is called Flash Accounting(hereinafter FA). It is made even more efficient after the introduction of [Transient Storage](https://eips.ethereum.org/EIPS/eip-1153). FA further reduces the gas cost of trades that cross multiple pools and supports more complex integrations with Uniswap v4.
+With the singleton architecture, a better design was possible and is referred to as _Flash Accounting_. The design became practical with gas efficiencies of [Transient Storage](https://eips.ethereum.org/EIPS/eip-1153). _Flash Accounting_ further reduces the gas cost of trades that cross multiple pools and supports more complex integrations with Uniswap v4.
 
 With FA, tokens are moved into the `PoolManager` and each operation (e.g. swap and liquidity modification) conducted in `PoolManager` updates an internal net balance known as `delta`, **only the final output tokens need to be withdrawn out of the** `PoolManager`.
 
