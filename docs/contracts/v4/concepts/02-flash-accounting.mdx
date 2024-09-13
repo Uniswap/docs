@@ -10,7 +10,7 @@ This design incurred inefficiencies because transferring tokens with external ca
 
 With the singleton architecture, a better design was possible and is referred to as _Flash Accounting_. The design became practical with gas efficiencies of [Transient Storage](https://eips.ethereum.org/EIPS/eip-1153). _Flash Accounting_ further reduces the gas cost of trades that cross multiple pools and supports more complex integrations with Uniswap v4.
 
-With FA, tokens are moved into the `PoolManager` and each operation (e.g. swap and liquidity modification) conducted in `PoolManager` updates an internal net balance known as `delta`, **only the final output tokens need to be withdrawn out of the** `PoolManager`.
+With _flash accounting_, each balance-changing operation (e.g. swap and liquidity modification) updates an internal net balance known as `delta`. Only the final balance-changes require token transfers.
 
 ## Deltas
 
