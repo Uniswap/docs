@@ -53,13 +53,11 @@ As shown in the above diagram, for example - let's say you wanted to swap `ETH` 
 
 ### Now on v4
 
-1. `ETH` is sent to `PoolManager`
+1. Call `swap()` on `ETH <> USDC`
 
-2. `PoolManager` calculates `USDC` output amount
+2. Call `swap()` on `USDC <> DAI`, with the credit of USDC from above being used as the input amount
 
-3. Without transferring tokens, `PoolManager` calculates `DAI` output amount for `USDC` → `DAI` swap
-
-4. `DAI` is withdrawn and sent to user
+4. User _resolves deltas_ by paying ETH and receiving DAI
 
 Therefore we can skip the step of actually calling `transfer()` on the USDC contract. 
 
