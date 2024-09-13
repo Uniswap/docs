@@ -1,3 +1,66 @@
 ---
 title: Collect Fees
 ---
+
+### Setup
+
+See the [setup guide](./00-setup-liquidity.mdx)
+
+# Guide
+
+In order to collect fees, the integrator must execute encoded actions
+using the `PositionManager` contract.
+
+### 1. Import and define `IPositionManager`
+
+```solidity
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+// inside a contract, test, or foundry script:
+IPositionManager posm = IPositionManager(<address>);
+```
+
+### 2. Encode actions
+
+To collect fees, only the *decrease* operation is required.
+
+```solidity
+import {Actions} from "v4-periphery/src/libraries/Actions.sol";
+bytes memory actions = abi.encode(Actions.DECREASE_LIQUIDITY);
+```
+
+### 3. Encode Parameters
+
+The `DECREASE_LIQUIDITY` action requires the following parameters:
+
+| Parameter    | Type      | Description                                                                   |
+|--------------|-----------|-------------------------------------------------------------------------------|
+| `tokenId`    | _uint256_ | position identifier                                                           |
+| `liquidity`  | _uint256_ | the amount of liquidity to withdraw                                           |
+| `amount0Min` | _uint128_ | the minimum amount of currency0 liquidity msg.sender is expecting to get back |
+| `amount1Min` | _uint128_ | the minimum amount of currency1 liquidity msg.sender is expecting to get back |
+| `hookData`   | _bytes_   | arbitrary data that will be forwarded to hook functions                       |
+
+**Note** that in order to collect fees we will default `liquidity`, `amount0Min` and `amount1Min` to 0.
+These parameters need to be properly set when actual liquidity needs to be withdrawn.
+
+```solidity
+bytes[] memory params = abi.encode(tokenId, 0, 0, 0, hookData);
+```
+
+### 4. Submit Call
+
+The entrypoint for all liquidity operations is `modifyLiquidities()`.
+
+```solidity
+uint256 deadline = block.timestamp + 60;
+posm.modifyLiquidities(
+    abi.encode(actions, params),
+    deadline
+);
+```
+
+## Additional notes:
+
+* To obtain the amount of fees received, callers should read
+token balances before and after the `.modifyLiquidities()` call.
+
