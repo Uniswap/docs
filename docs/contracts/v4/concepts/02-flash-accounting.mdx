@@ -25,7 +25,7 @@ To ensure correctness and atomicity in complex operations like a multi-hop swap 
 - settle
 - mint
 - burn
-sync
+- sync
 
 Note that pool initialization can happen outside the context of unlocking the `PoolManager`, as there are no balance-changing operations associated with pool creation.
 
@@ -33,7 +33,7 @@ Note that pool initialization can happen outside the context of unlocking the `P
 
 Inside `unlockCallback`, a periphery contract performs balance-changing operations i.e. conduct swaps, modify positions, etc. After returning execution context back to `PoolManager`, the core contract checks that balances are resolved - nothing is owed to or from the `PoolManager`.
 
-The balances settled above is what we refer as the `delta`, a field held in the unlock state i.e. **debits and credits of assets from the `PoolManager`**. 
+The balances resolved above is what we refer as the `delta`, a field held in the _transient_ state. The value(s) represent the  _debts_ and _credits_ of assets owed to or from the `PoolManager`. 
 
 
 ## Swapping
