@@ -35,7 +35,6 @@ Inside `unlockCallback`, a periphery contract performs balance-changing operatio
 
 The balances settled above is what we refer as the `delta`, a field held in the unlock state i.e. **debits and credits of assets from the `PoolManager`**. 
 
-Once the `PoolManager` is unlocked, it starts with a blank slate. Then, the user may send the `PoolManager` some tokens for a swap to happen, and this creates a debit to the `PoolManager`. The swap logic is run, which then sends tokens back to the user, creating a credit to the `PoolManager`. In case of a multi-hop swap, multiple more debits and credits can be created here. But at the end, when the `unlockCallback` returns - **the net `delta` must be zero, i.e. no pending debits or credits**, and then only will the transaction succeed. This unlock and call style architecture gives callers maximum flexibility in integrating with the core code.
 
 ## Swapping
 
