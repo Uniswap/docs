@@ -69,31 +69,6 @@ The optimization becomes more evident for complex liquidity operations
 
 For example, a user wanted to add liquidity to `ETH <> DAI` but does not have DAI. The user can swap some `ETH` to `DAI` in order to add liquidity with both tokens. In addition, the user can multi-hop swap going from `ETH` to `USDC` to `DAI`. If properly integrated, the user would only need to transfer ETH _once_.
 
-### Previously on v3
-
-1. Some `ETH` is sent to `ETH <> USDC` pool contract
-
-2. `USDC` is withdrawn from `ETH <> USDC` contract and sent to `USDC <> DAI` contract
-
-3. `DAI` is withdrawn from `USDC <> DAI` contract and sent to user
-
-4. Both `ETH` and `DAI` are sent to `ETH <> DAI` pool contract to add liquidity
-
-Without FA, this would cost a considerable amount of gas due to external contracts calls and overhead on handling custom `transfer` logic with different tokens.
-
-### Now on v4
-
-1. `ETH` is sent to `PoolManager`
-
-2. During `modifyLiquidity()`, `PoolManager` detects a hook that has `beforeAddLiquidity` permission on `ETH <> DAI` pool contract
-
-3. Without transferring tokens, `PoolManager` calculates `USDC` output amount for `ETH` → `USDC` swap
-
-4. Without transferring tokens, `PoolManager` calculates `DAI` output amount for `USDC` → `DAI` swap
-
-4. Both `ETH` and `DAI` are sent to `ETH <> DAI` pool contract to add liquidity
-
-We can skip the step of actually calling `transfer()` on USDC contract, and Transient Storage improves gas efficiency by removing the necessity to require storage updates at every balance change.
 
 ## Developer resources
 To see how unlock callback and delta work in a smart contract read [Unlock Callback & Deltas](/contracts/v4/guides/unlock-callback).
