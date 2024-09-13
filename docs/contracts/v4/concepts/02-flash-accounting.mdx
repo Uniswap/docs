@@ -4,7 +4,7 @@ title: Flash Accounting
 
 # Flash Accounting
 
-In previous versions of Uniswap, every time a swap was made - including multi-hop swap - output tokens had to be transferred out the Pool contract and then transferred into whatever their destination was (next pool in case of multi-hop, or back to the user in case of simple swap).
+In previous versions of Uniswap, every time a swap was made - including multi-hop swap - tokens were transferred between Pool contracts for intermediate steps.
 
 This design led to inefficiencies because moving tokens around by calling external functions on their smart contracts - especially in a multi-hop swap - was quite expensive. But also, this was the only design possible since each pool was it's own contract and we needed to move tokens in and out of them to keep the logic sound.
 
