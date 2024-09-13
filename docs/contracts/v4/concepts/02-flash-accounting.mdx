@@ -31,7 +31,7 @@ Note that pool initialization can happen outside the context of unlocking the `P
 
 ### Balance Delta
 
-Inside `unlockCallback`, the periphery contract does whatever it needs to do, conduct swaps, modify positions, etc - and finally returns a result. At this point, the `PoolManager` checks to make sure all balances have been settled - and nothing is owed to or from the `PoolManager`. If all looks good, it locks again.
+Inside `unlockCallback`, a periphery contract performs balance-changing operations i.e. conduct swaps, modify positions, etc. After returning execution context back to `PoolManager`, the core contract checks that balances are resolved - nothing is owed to or from the `PoolManager`.
 
 The balances settled above is what we refer as the `delta`, a field held in the unlock state i.e. **debits and credits of assets from the `PoolManager`**. 
 
