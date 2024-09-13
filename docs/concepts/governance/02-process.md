@@ -61,7 +61,9 @@ At the end of 5 days, the option with the majority of votes wins. There must be 
 ### Phase 3: Governance Proposal
 
 _Timeframe_: 2 day waiting period, 7 day voting period, 2 day timelock
-_Threshold_: 1M UNI<br>
+
+ _Threshold_: 1M UNI
+
 _Quorum_: 40M UNI votes in favor
 
 Form: [Governance Proposal](https://vote.uniswapfoundation.org/)
