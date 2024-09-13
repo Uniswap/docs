@@ -63,7 +63,7 @@ As shown in the above diagram, for example - let's say you wanted to swap `ETH` 
 
 Therefore we can skip the step of actually calling `transfer()` on the USDC contract. 
 
-This same logic also scales further to **any swap with an arbitrary number of hops required, and the number of actual token transfers remains constant**.
+The optimization scales infinitely, any number of arbitrary hops only requires two token transfers - input and output tokens.
 
 ## Liquidity Management
 
