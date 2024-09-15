@@ -23,13 +23,13 @@ IPositionManager posm = IPositionManager(<address>);
 
 ### 2. Encode actions
 
-To collect fees, the following operations are require:
-* decrease - for fee collection intent
-* take pair - transfer the fees in both tokens back to owner
+To collect fees, the following operations are required:
+* decrease liquidity - collect fees from the core contract
+* take pair - transfer the fee revenue, as both tokens, to a recipient
 
 ```solidity
 import {Actions} from "v4-periphery/src/libraries/Actions.sol";
-bytes memory actions = abi.encode(Actions.DECREASE_LIQUIDITY, Actions.TAKE_PAIR);
+bytes memory actions = abi.encodePacked(uint8(Actions.DECREASE_LIQUIDITY), uint8(Actions.TAKE_PAIR));
 ```
 
 ### 3. Encode Parameters
@@ -52,6 +52,7 @@ The `DECREASE_LIQUIDITY` action requires the following parameters:
 These parameters need to be properly set when actual liquidity needs to be withdrawn.
 
 ```solidity
+/// @dev collecting fees is achieved with liquidity=0, the second parameter
 params[0] = abi.encode(tokenId, 0, 0, 0, hookData);
 ```
 
@@ -59,7 +60,7 @@ The `TAKE_PAIR` action requires the following parameters:
 
 * `currency0` - _Currency_, one of the tokens to be paid by msg.sender
 * `currency1` - _Currency_, the other token to be paid by msg.sender
-* `recipient` - _address_, destination of token transfers
+* `recipient` - _address_, destination of the fee revenue for both tokens
 
 ```solidity
 params[1] = abi.encode(currency0, currency1, recipient);
