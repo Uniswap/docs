@@ -9,7 +9,9 @@ See the [setup guide](./00-setup-liquidity.mdx)
 # Guide
 
 In order to collect fees, the integrator must execute encoded actions
-using the `PositionManager` contract.
+using the `PositionManager` contract. **Note** that there is no
+`COLLECT` command, instead developers must decrease liquidity with a zero
+liquidity change.
 
 ### 1. Import and define `IPositionManager`
 
@@ -21,14 +23,20 @@ IPositionManager posm = IPositionManager(<address>);
 
 ### 2. Encode actions
 
-To collect fees, only the *decrease* operation is required.
+To collect fees, the following operations are require:
+* decrease - for fee collection intent
+* take pair - transfer the fees in both tokens back to owner
 
 ```solidity
 import {Actions} from "v4-periphery/src/libraries/Actions.sol";
-bytes memory actions = abi.encode(Actions.DECREASE_LIQUIDITY);
+bytes memory actions = abi.encode(Actions.DECREASE_LIQUIDITY, Actions.TAKE_PAIR);
 ```
 
 ### 3. Encode Parameters
+
+```solidity
+bytes[] memory params = new bytes[](2);
+```
 
 The `DECREASE_LIQUIDITY` action requires the following parameters:
 
@@ -44,7 +52,17 @@ The `DECREASE_LIQUIDITY` action requires the following parameters:
 These parameters need to be properly set when actual liquidity needs to be withdrawn.
 
 ```solidity
-bytes[] memory params = abi.encode(tokenId, 0, 0, 0, hookData);
+params[0] = abi.encode(tokenId, 0, 0, 0, hookData);
+```
+
+The `TAKE_PAIR` action requires the following parameters:
+
+* `currency0` - _Currency_, one of the tokens to be paid by msg.sender
+* `currency1` - _Currency_, the other token to be paid by msg.sender
+* `recipient` - _address_, destination of token transfers
+
+```solidity
+params[1] = abi.encode(currency0, currency1, recipient);
 ```
 
 ### 4. Submit Call
