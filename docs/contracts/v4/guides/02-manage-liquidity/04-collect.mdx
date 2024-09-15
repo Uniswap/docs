@@ -49,7 +49,8 @@ The `DECREASE_LIQUIDITY` action requires the following parameters:
 | `hookData`   | _bytes_   | arbitrary data that will be forwarded to hook functions                       |
 
 **Note** that in order to collect fees we will default `liquidity`, `amount0Min` and `amount1Min` to 0.
-These parameters need to be properly set when actual liquidity needs to be withdrawn.
+Because fee collection can not be manipulated in a front-run attack, it is safe to set the slippage
+values `amount0Min, amount1Min` to `0`
 
 ```solidity
 params[0] = abi.encode(tokenId, 0, 0, 0, hookData);
