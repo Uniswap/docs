@@ -1,5 +1,5 @@
 ---
-title: Swap
+title: Swap Hooks
 ---
 
 Swaps are the most common interaction with the Uniswap protocol. When it comes to swap there are two hook functions available to customize and extend its behavior:
@@ -7,7 +7,7 @@ Swaps are the most common interaction with the Uniswap protocol. When it comes t
 - `beforeSwap`
 - `afterSwap`
 
-As the names suggest `beforeSwap`/`afterSwap` are functions called before or after a swap is executed in a pool.
+As the names suggest `beforeSwap`/`afterSwap` are functions called before or after a swap is executed on a pool.
 
 This guide will explain the mechanism of encoded flags for hooks, and go through the parameters and examples for `beforeSwap` and `afterSwap`.
 
@@ -15,11 +15,11 @@ Note: The swap examples are not production ready code, and are implemented in a 
 
 ## Hook Flags
 
-As mentioned in [Concept of Hooks](../../concepts/04-hooks.mdx), hook contracts specify the permissions that determine which hook functions they implement by __encoding them in the address of the contract__. Then the `PoolManager` uses these permissions to determine which hook functions to call for a given pool based on its Key. 
+As mentioned in [Concept of Hooks](../../concepts/04-hooks.mdx), hook contracts indicate their implemented functions by __encoding flags in the address of the contract__. The `PoolManager` uses these permissions to determine which hook functions to call for a given pool.
 
-This is where encoded flags come into play. Each hook function e.g. `beforeSwap` - corresponds to a certain "flag". For example, the `beforeSwap` function is correlated to the [`BEFORE_SWAP_FLAG`](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol#L37) which has a value of `1 << 7`.
+Each hook function e.g. `beforeSwap` - corresponds to a certain _flag_. For example, the `beforeSwap` function is correlated to the [`BEFORE_SWAP_FLAG`](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol#L37) which has a value of `1 << 7`.
 
-These flags represent specific bits in the address of the hook smart contract - and the value of the bit (a zero or a one) represents whether that flag is set to true or false. Let's understand this with an example:
+These flags represent specific bits in the address of the hook smart contract - and the value of the bit (a one or a zero) represents whether that flag is true or false. An example:
 
 Addresses on Ethereum are 20 bytes long (160 bits). So for example the address:
 
@@ -41,11 +41,11 @@ In binary it goes from right-to-left - so the trailing 8 bits of this address ar
 
 7th Bit to 8th Bit = `1`
 
-The `AFTER_SWAP` flag is represented by the 7th bit - which is set to `1` for the given contract address. That means this contract address - if it is a hook contract address - signals that the `afterSwap` function is implemented in it and the PoolManager will attempt to call that function during a `swap` workflow.
+The `AFTER_SWAP` flag is represented by the 7th bit - which is set to `1` for the example contract address. In the `PoolManager's` swap execution flow, it will observe the flag and make a call to the hook's `afterSwap` function.
 
-Similarly, the 8th bit which is also a `1`, actually corresponds to the `BEFORE_SWAP` i.e. the `beforeSwap` hook function - which will also attempt to be called by the `PoolManager` during a `swap` workflow.
+Similarly, the 8th bit which is also a `1`, actually corresponds to the `BEFORE_SWAP` i.e. the `beforeSwap` hook function - which will also be called by the `PoolManager` during a `swap` workflow.
 
-A full list of all flags can be found [here](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol). Now let's move on to the actual implementation.
+A full list of all flags can be found [here](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol).
 
 ## Set Up the Contract
 
@@ -69,7 +69,7 @@ import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
 import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "v4-core/src/types/BeforeSwapDelta.sol";
 ```
 
-Create a contract called SwapHook, use `PoolIdLibrary` to attach functions of computing ID of a pool to `PoolKey`. Declare two mappings to act as counters when calling `beforeSwap` and `afterSwap`. Also use `BaseHook` in constructor to import the abstract contract for hook implementations.
+Create a contract called SwapHook, use `PoolIdLibrary` to attach functions of computing ID of a pool to `PoolKey`. Declare two mappings to act as counters when calling `beforeSwap` and `afterSwap`.
 
 ```solidity
 contract SwapHook is BaseHook {
@@ -130,7 +130,7 @@ function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calld
 When triggering the `beforeSwap` hook function, there are some parameters we can make use of to customize or extend the behavior of `swap`. These parameters are described in `beforeSwap` from [`IHooks.sol`](https://github.com/Uniswap/v4-core/blob/main/src/interfaces/IHooks.sol#L111).
 
 A brief overview of the parameters:
-- `sender` The initial `msg.sender` for the swap call
+- `sender` The initial `msg.sender` for the `PoolManager.swap` call. Typically a swap router
 - `key` The key for the pool
 - `params` The parameters for the swap i.e. `SwapParams` from [`IPoolManager.sol`](https://github.com/Uniswap/v4-core/blob/main/src/interfaces/IPoolManager.sol#L146C12-L146C22)
 - `hookData` Arbitrary data handed into the `PoolManager` by the swapper to be be passed on to the hook
@@ -155,7 +155,7 @@ function afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams callda
 When triggering the `afterSwap` hook function, there are some parameters we can make use of to customize or extend the behavior of `swap`. These parameters are described in `afterSwap` from [`IHooks.sol`](https://github.com/Uniswap/v4-core/blob/main/src/interfaces/IHooks.sol#L126).
 
 A brief overview of the parameters:
-- `sender` The initial msg.sender for the swap call
+- `sender` The initial `msg.sender` for the `PoolManager.swap` call. Typically a swap router
 - `key` The key for the pool
 - `params` The parameters for the swap i.e. `SwapParams` from [`IPoolManager.sol`](https://github.com/Uniswap/v4-core/blob/main/src/interfaces/IPoolManager.sol#L146C12-L146C22)
 - `delta` The amount owed to the caller (positive) or owed to the pool (negative)
