@@ -1,0 +1,186 @@
+---
+title: Volatility-Based Dynamic Fee Hook
+---
+
+This example demonstrates a complete implementation of a volatility-based dynamic fee hook for Uniswap v4, incorporating all key components and functions.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import {BaseHook} from "@uniswap/v4-core/contracts/BaseHook.sol";
+import {Hooks} from "@uniswap/v4-core/contracts/libraries/Hooks.sol";
+import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
+import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
+import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/contracts/types/PoolId.sol";
+import {LPFeeLibrary} from "@uniswap/v4-core/contracts/libraries/LPFeeLibrary.sol";
+import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "@uniswap/v4-core/contracts/types/BeforeSwapDelta.sol";
+
+interface IVolatilityOracle {
+    function realizedVolatility() external view returns (uint256);
+    function latestTimestamp() external view returns (uint256);
+}
+
+contract VolatilityBasedFeeHook is BaseHook {
+    using PoolIdLibrary for PoolKey;
+
+    uint256 public constant HIGH_VOLATILITY_TRIGGER = 1400; // 14%
+    uint256 public constant MEDIUM_VOLATILITY_TRIGGER = 1000; // 10%
+    uint24 public constant HIGH_VOLATILITY_FEE = 10000; // 1%
+    uint24 public constant MEDIUM_VOLATILITY_FEE = 3000; // 0.3%
+    uint24 public constant LOW_VOLATILITY_FEE = 500; // 0.05%
+
+    IVolatilityOracle public immutable volatilityOracle;
+    uint256 public lastFeeUpdate;
+    uint256 public constant FEE_UPDATE_INTERVAL = 1 hours;
+
+    constructor(IPoolManager _poolManager, IVolatilityOracle _volatilityOracle) BaseHook(_poolManager) {
+        volatilityOracle = _volatilityOracle;
+    }
+
+    function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+        return Hooks.Permissions({
+            beforeInitialize: false,
+            afterInitialize: true,
+            beforeModifyLiquidity: false,
+            afterModifyLiquidity: false,
+            beforeSwap: true,
+            afterSwap: false,
+            beforeDonate: false,
+            afterDonate: false,
+            noOp: false
+        });
+    }
+
+    function afterInitialize(address, PoolKey calldata key, uint160, int24, bytes calldata)
+        external
+        override
+        returns (bytes4)
+    {
+        uint24 initialFee = getFee();
+        poolManager.updateDynamicLPFee(key, initialFee);
+        return IHooks.afterInitialize.selector;
+    }
+
+    function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
+        external
+        override
+        returns (bytes4, BeforeSwapDelta, uint24)
+    {
+        if (block.timestamp >= lastFeeUpdate + FEE_UPDATE_INTERVAL) {
+            uint24 newFee = getFee();
+            lastFeeUpdate = block.timestamp;
+            return (IHooks.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, newFee | LPFeeLibrary.OVERRIDE_FEE_FLAG);
+        }
+        return (IHooks.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
+    }
+
+    function getFee(address, PoolKey calldata) public view returns (uint24) {
+    uint256 realizedVolatility = volatilityOracle.realizedVolatility();
+    if (realizedVolatility > HIGH_VOLATILITY_TRIGGER) {
+        return HIGH_VOLATILITY_FEE;
+    } else if (realizedVolatility > MEDIUM_VOLATILITY_TRIGGER) {
+        return MEDIUM_VOLATILITY_FEE;
+    } else {
+        return LOW_VOLATILITY_FEE;
+    }
+  }
+}
+```
+
+# Volatility-Based Fee Structure
+
+This hook contract example sets up the structure for a volatility-based fee system, defining thresholds and corresponding fees:
+
+```solidity
+contract VolatilityBasedFeeHook is BaseHook {
+    uint256 public constant HIGH_VOLATILITY_TRIGGER = 1400; // 14%
+    uint256 public constant MEDIUM_VOLATILITY_TRIGGER = 1000; // 10%
+    uint24 public constant HIGH_VOLATILITY_FEE = 10000; // 1%
+    uint24 public constant MEDIUM_VOLATILITY_FEE = 3000; // 0.3%
+    uint24 public constant LOW_VOLATILITY_FEE = 500; // 0.05%
+
+    IVolatilityOracle public immutable volatilityOracle;
+
+    constructor(IPoolManager _poolManager, IVolatilityOracle _volatilityOracle) BaseHook(_poolManager) {
+        volatilityOracle = _volatilityOracle;
+    }
+
+    // Implementation of getFee and other functions...
+}
+```
+
+where:
+
+- High volatility tier: > 14% (fee: 1%)
+- Medium volatility tier: 10%-14% (fee: 0.30%)
+- Low volatility tier: < 10% (fee: 0.05%)
+
+The constructor sets up the initial parameters and connections to required contracts (PoolManager and VolatilityOracle).
+
+# Realized Volatility Oracle
+
+The contract utilizes an oracle to provide historical data on price movements for informed fee adjustments. This could be implemented as an external service or an on-chain mechanism tracking recent price changes.
+
+```solidity
+interface IVolatilityOracle {
+    function realizedVolatility() external view returns (uint256);
+    function latestTimestamp() external view returns (uint256);
+}
+```
+
+# getFee Function Implementation
+
+The getFee function calculates the fee based on the current volatility level and returns the appropriate fee rate. This function implements the logic for dynamically calculating fees based on current conditions. The getFee function should return a fee value based on your chosen criteria (e.g., volatility, volume, etc.).
+
+```solidity
+function getFee(address, PoolKey calldata) external view returns (uint24) {
+    uint256 realizedVolatility = volatilityOracle.realizedVolatility();
+    if (realizedVolatility > HIGH_VOLATILITY_TRIGGER) {
+        return HIGH_VOLATILITY_FEE;
+    } else if (realizedVolatility > MEDIUM_VOLATILITY_TRIGGER) {
+        return MEDIUM_VOLATILITY_FEE;
+    } else {
+        return LOW_VOLATILITY_FEE;
+    }
+}
+```
+
+# beforeSwap Hook Callback
+
+The `beforeSwap` hook is used to update fees before each swap, ensuring they reflect the most recent market conditions:
+
+```solidity
+function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
+    external
+    override
+    returns (bytes4, BeforeSwapDelta, uint24)
+{
+    if (block.timestamp >= lastFeeUpdate + FEE_UPDATE_INTERVAL) {
+        uint24 newFee = getFee();
+        lastFeeUpdate = block.timestamp;
+        return (IHooks.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, newFee | LPFeeLibrary.OVERRIDE_FEE_FLAG);
+    }
+    return (IHooks.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
+}
+```
+
+This implementation calculates the new fee and returns it with the `OVERRIDE_FEE_FLAG`, allowing for per-swap fee updates without calling `updateDynamicLPFee`.
+
+# afterInitialize Hook Callback
+
+The `afterInitialize` hook is used to set the initial fee for the dynamic fee pool:
+
+```solidity
+function afterInitialize(address, PoolKey calldata key, uint160, int24, bytes calldata)
+    external
+    override
+    returns (bytes4)
+{
+    uint24 initialFee = getFee();
+    poolManager.updateDynamicLPFee(key, initialFee);
+    return IHooks.afterInitialize.selector;
+}
+```
+
+This ensures that the pool starts with an appropriate fee based on current market conditions.
