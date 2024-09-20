@@ -4,11 +4,10 @@ title: Increase Liquidity
 
 ### Context
 
-The straightforward way to increase a position's liquidity is
-to simply send the required tokens. However, as a little reminder,
-earned fees act like a credit, allowing liquidity providers to reduce
-the total amount of tokens needed for transfer or to convert fees
-into liquidity directly.
+Please note that `PositionManager` is a command-based contract, where integrators will be encoding commands and their corresponding
+parameters.
+
+Increasing liquidity assumes the position already exists and the user wants to add more tokens to the position.
 
 ### Setup
 
@@ -16,7 +15,7 @@ See the [setup guide](./00-setup-liquidity.mdx)
 
 # Guide
 
-Below is a step-by-step guide for increasing a position's liquidity, in *Solidity*.
+Below is a step-by-step guide for increasing a position's liquidity, in *solidity*.
 
 ### 1. Import and define `IPositionManager`
 
@@ -31,17 +30,22 @@ IPositionManager posm = IPositionManager(<address>);
 
 To increase a position's liquidity, the first action must be:
 
-* _increase_ operation - signals the intent of adding liquidity to a position.
+* _increase_ operation - the addition of liquidity to an existing position.
 
-If increasing the liquidity requires transfers of both tokens:
+For _delta resolving_ operations, developers may need to choose between `SETTLE_PAIR`, `CLOSE_CURRENCY`, or `CLEAR_OR_TAKE` actions.
 
-* _settle pair_ - pays the required token amounts for increasing liquidity.
+> In Uniswap v4, fee revenue is automatically credited to a position on increasing liquidity
 
-Otherwise, one of the following actions needs to be added for each token:
+> There are some cases, where the fee revenue can entirely "pay" for a liquidity increase, and remainder tokens need to be collected
 
-* _close currency_ - determines if a currency should be settled or taken.
-* _clear or take_ - given a specified threshold, forfeit remainder tokens if
-below or retrieve if above.
+If increasing the liquidity requires the transfer of both tokens:
+
+* _settle pair_ - pays a pair of tokens, to increase liquidity
+
+Otherwise:
+
+* _close currency_ - automatically determines if a currency should be settled or taken.
+* OR _clear or take_ - if the token amount to-be-collected is below a threshold, opt to forfeit the dust. Otherwise, claim the tokens
 
 ```solidity
 import {Actions} from "v4-periphery/src/libraries/Actions.sol";
@@ -49,17 +53,17 @@ import {Actions} from "v4-periphery/src/libraries/Actions.sol";
 
 If both tokens need to be sent:
 ```solidity
-bytes memory actions = abi.encodePacked(Actions.INCREASE_LIQUIDITY, Actions.SETTLE_PAIR);
+bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8(Actions.SETTLE_PAIR));
 ```
 
-If converting fees to liquidity, collecting dust:
+If converting fees to liquidity, and expect excess fees to be collected
 ```solidity
-bytes memory actions = abi.encodePacked(Actions.INCREASE_LIQUIDITY, Actions.CLOSE_CURRENCY, Actions.CLOSE_CURRENCY);
+bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8(Actions.CLOSE_CURRENCY), uint8(Actions.CLOSE_CURRENCY));
 ```
 
 If converting fees to liquidity, forfeiting dust:
 ```solidity
-bytes memory actions = abi.encodePacked(Actions.INCREASE_LIQUIDITY, Actions.CLEAR_OR_TAKE, Actions.CLEAR_OR_TAKE);
+bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8(Actions.CLEAR_OR_TAKE), uint8(Actions.CLEAR_OR_TAKE));
 ```
 
 ### 3. Encoded Parameters
@@ -111,7 +115,7 @@ params[2] = abi.encode(currency1)
 
 The `CLEAR_OR_TAKE` action requires one `currency` and:
 
-* `amountMax` - _uint256_, the maximum threshold for which to concede dust,
+* `amountMax` - _uint256_, the maximum threshold to concede dust,
 otherwise taking the dust. 
 
 In this case, the parameter encoding is:
