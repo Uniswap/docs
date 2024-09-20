@@ -68,7 +68,7 @@ _Quorum_: 40M UNI votes in favor
 
 Form: [Governance Proposal](https://vote.uniswapfoundation.org/)
 
-![](./images/proposal_flow.png)
+![](./images/Proposal_Flow.png)
 
 Phase 3 is the final step of the governance process. If this vote passes, then a change will be enacted onchain.
 
