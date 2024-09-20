@@ -54,8 +54,8 @@ The `MINT_POSITION` action requires the following parameters:
 | `tickLower`  | _int24_   | the lower tick boundary of the position                        |
 | `tickUpper`  | _int24_   | the upper tick boundary of the position                        |
 | `liquidity`  | _uint256_ | the amount of liquidity units to mint                          |
-| `amount0Max` | _uint256_ | the maximum amount of currency0 msg.sender is willing to pay   |
-| `amount1Max` | _uint256_ | the maximum amount of currency1 msg.sender is willing to pay   |
+| `amount0Max` | _uint128_ | the maximum amount of currency0 msg.sender is willing to pay   |
+| `amount1Max` | _uint128_ | the maximum amount of currency1 msg.sender is willing to pay   |
 | `recipient`  | _address_ | the address that will receive the liquidity position (ERC-721) |
 | `hookData`   | _bytes_   | arbitrary data that will be forwarded to hook functions        |
 
