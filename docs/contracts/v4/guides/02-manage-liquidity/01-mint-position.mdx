@@ -1,0 +1,90 @@
+---
+title: Mint Position
+---
+
+Similar to Uniswap v3, liquidity positions are minted as ERC-721 tokens and depend on a *periphery* contract.
+v4's `PositionManager` contract will facilitate liquidity management
+
+### Context
+
+Please note that `PositionManager` is a command-based contract, where integrators will be encoding commands and their corresponding
+parameters.
+
+### Setup
+
+See the [setup guide](./00-setup-liquidity.mdx)
+
+# Guide
+
+Below is a step-by-step guide for minting a v4 liquidity position, in *solidity*
+
+### 1. Import and define `IPositionManager`
+
+```solidity
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+
+// inside a contract, test, or foundry script:
+IPositionManager posm = IPositionManager(<address>);
+```
+
+### 2. Encode Actions
+
+To mint a position, two actions are required:
+
+* mint operation - the creation of the liquidity position
+* settle pair - the two tokens to be paid by msg.sender
+
+```solidity
+import {Actions} from "v4-periphery/src/libraries/Actions.sol";
+
+bytes memory actions = abi.encodePacked(Actions.MINT_POSITION, Actions.SETTLE_PAIR);
+```
+
+### 3. Encode Parameters
+
+```solidity
+bytes[] memory params = new bytes[](2);
+```
+
+The `MINT_POSITION` action requires the following parameters:
+
+| Parameter    | Type      | Description                                                    |
+|--------------|-----------|----------------------------------------------------------------|
+| `poolKey`    | _PoolKey_ | where the liquidity will be added to                           |
+| `tickLower`  | _int24_   | the lower tick boundary of the position                        |
+| `tickUpper`  | _int24_   | the upper tick boundary of the position                        |
+| `liquidity`  | _uint256_ | the amount of liquidity units to mint                          |
+| `amount0Max` | _uint128_ | the maximum amount of currency0 msg.sender is willing to pay   |
+| `amount1Max` | _uint128_ | the maximum amount of currency1 msg.sender is willing to pay   |
+| `recipient`  | _address_ | the address that will receive the liquidity position (ERC-721) |
+| `hookData`   | _bytes_   | arbitrary data that will be forwarded to hook functions        |
+
+```solidity
+params[0] = abi.encode(poolKey, tickLower, tickUpper, liquidity, amount0Max, amount1Max, recipient, hookData);
+```
+
+The `SETTLE_PAIR` action requires the following parameters:
+
+* `currency0` - _Currency_, one of the tokens to be paid by msg.sender
+* `currency1` - _Currency_, the other token to be paid by msg.sender
+
+```solidity
+params[1] = abi.encode(currency0, currency1);
+```
+
+### 4. Submit Call
+
+The entrypoint for all liquidity operations is `modifyLiquidities()`
+
+```solidity
+uint256 deadline = block.timestamp + 60;
+
+posm.modifyLiquidities(
+    abi.encode(actions, params),
+    deadline
+);
+```
+
+## Additional notes:
+
+* To obtain balance changes, callers should read token balances before and after the `.modifyLiquidities()` call

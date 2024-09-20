@@ -1,0 +1,19 @@
+---
+title: Subscribers
+---
+
+Subscribers, new in Uniswap v4, allow for liquidity-position owners to opt-in to a contract that receives _notifcations_.
+The new design is intended to support _liquidity mining_, additional rewards given to in-range liquidity providers. Through notification logic, position owners do not need
+to risk their liquidity position and its underlying assets. In Uniswap v3, _liquidity mining_ was supported by fully transferring the 
+liquidity position to an external contract; this old design would give the external contract full ownership and control of the liquidity position.
+
+When a position owner _subscribes_ to a contract, the contract will receive notifcations when:
+
+* The position is initially subscribed
+
+* The position increases or decreases its liquidity
+
+* The position is transferred
+
+* The position is unsubscribed
+

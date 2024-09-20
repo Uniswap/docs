@@ -1,0 +1,138 @@
+---
+title: Increase Liquidity
+---
+
+### Context
+
+Please note that `PositionManager` is a command-based contract, where integrators will be encoding commands and their corresponding
+parameters.
+
+Increasing liquidity assumes the position already exists and the user wants to add more tokens to the position.
+
+### Setup
+
+See the [setup guide](./00-setup-liquidity.mdx)
+
+# Guide
+
+Below is a step-by-step guide for increasing a position's liquidity, in *solidity*.
+
+### 1. Import and define `IPositionManager`
+
+```solidity
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+
+// inside a contract, test, or foundry script:
+IPositionManager posm = IPositionManager(<address>);
+```
+
+### 2. Encode Actions
+
+To increase a position's liquidity, the first action must be:
+
+* _increase_ operation - the addition of liquidity to an existing position.
+
+For _delta resolving_ operations, developers may need to choose between `SETTLE_PAIR`, `CLOSE_CURRENCY`, or `CLEAR_OR_TAKE` actions.
+
+> In Uniswap v4, fee revenue is automatically credited to a position on increasing liquidity
+
+> There are some cases, where the fee revenue can entirely "pay" for a liquidity increase, and remainder tokens need to be collected
+
+If increasing the liquidity requires the transfer of both tokens:
+
+* _settle pair_ - pays a pair of tokens, to increase liquidity
+
+Otherwise:
+
+* _close currency_ - automatically determines if a currency should be settled or taken.
+* OR _clear or take_ - if the token amount to-be-collected is below a threshold, opt to forfeit the dust. Otherwise, claim the tokens
+
+```solidity
+import {Actions} from "v4-periphery/src/libraries/Actions.sol";
+```
+
+If both tokens need to be sent:
+```solidity
+bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8(Actions.SETTLE_PAIR));
+```
+
+If converting fees to liquidity, and expect excess fees to be collected
+```solidity
+bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8(Actions.CLOSE_CURRENCY), uint8(Actions.CLOSE_CURRENCY));
+```
+
+If converting fees to liquidity, forfeiting dust:
+```solidity
+bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8(Actions.CLEAR_OR_TAKE), uint8(Actions.CLEAR_OR_TAKE));
+```
+
+### 3. Encoded Parameters
+
+When settling pair:
+
+```solidity
+bytes[] memory params = new bytes[](2);
+```
+
+Otherwise:
+
+```solidity
+bytes[] memory params = new bytes[](3);
+```
+
+The `INCREASE_LIQUIDITY` action requires the following parameters:
+
+| Parameter    | Type      | Description                                                                   |
+|--------------|-----------|-------------------------------------------------------------------------------|
+| `tokenId`    | _uint256_ | position identifier                                                           |
+| `liquidity`  | _uint256_ | the amount of liquidity to add                                                |
+| `amount0Max` | _uint128_ | the maximum amount of currency0 liquidity msg.sender is willing to pay        |
+| `amount1Max` | _uint128_ | the maximum amount of currency1 liquidity msg.sender is willing to pay        |
+| `hookData`   | _bytes_   | arbitrary data that will be forwarded to hook functions                       |
+
+```solidity
+params[0] = abi.encode(tokenId, liquidity, amount0Max, amount1Max, hookData);
+```
+
+The `SETTLE_PAIR` action requires the following parameters:
+
+* `currency0` - _Currency_, one of the tokens to be paid by msg.sender
+* `currency1` - _Currency_, the other token to be paid by msg.sender
+
+In the above case, the parameter encoding is:
+
+```solidity
+params[1] = abi.encode(currency0, currency1);
+``` 
+
+The `CLOSE_CURRENCY` action requires only one `currency` parameter
+and the encoding is:
+
+```solidity
+params[1] = abi.encode(currency0)
+params[2] = abi.encode(currency1)
+```
+
+The `CLEAR_OR_TAKE` action requires one `currency` and:
+
+* `amountMax` - _uint256_, the maximum threshold to concede dust,
+otherwise taking the dust. 
+
+In this case, the parameter encoding is:
+
+```solidity
+params[1] = abi.encode(currency0, amount0Max);
+params[2] = abi.encode(currency1, amount1Max);
+```
+
+### 4. Submit Call
+
+The entrypoint for all liquidity operations is `modifyLiquidities()`.
+
+```solidity
+uint256 deadline = block.timestamp + 60;
+posm.modifyLiquidities(
+    abi.encode(actions, params),
+    deadline
+);
+```

@@ -1,0 +1,47 @@
+---
+title: Subscriber
+---
+
+# Context
+
+For developers looking to support custom _liquidity mining_, subscriber contracts receive notifications about a position.
+Rewards can be issued proportional to the liquidity's fee revenue, without the need of custodying the position.
+
+---
+
+# Guide
+
+## 1. Inherit `ISubscriber`
+
+Please see [`ISubscriber`](https://github.com/Uniswap/v4-periphery/blob/main/src/interfaces/ISubscriber.sol) for the interface definition
+
+```solidity
+import {ISubscriber} from "v4-periphery/src/interfaces/ISubscriber.sol";
+
+contract MySubscriber is ISubscriber {
+    // Implement the ISubscriber interface
+}
+```
+
+Developers should implement each function, and do proper accounting for rewards -- rewards should be proportional
+to a position's liquidity or fee-revenue.
+
+## 2. A note on `unsubscribe()`
+
+Unsubscribe has a gas limit to prevent griefing. The value is determined at deployment, and is readable via `unsubscribeGasLimit()` on `PositionManager`
+
+If `notifyUnsubscribe()` reverts, the position will still successfully unsubscribe.
+
+## 3. Opt-in to a subscriber contract
+
+To opt-in to a subscriber contract, call `subscribe()` on the `PositionManager` contract.
+
+```solidity
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+
+IPositionManager posm = IPositionManager(<address>);
+ISubscriber mySubscriber = ISubscriber(<address>);
+
+bytes memory optionalData = ...;
+posm.subscribe(tokenId, mySubscriber, optionalData);
+```
