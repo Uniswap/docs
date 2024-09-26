@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[ImmutableState](/src/base/ImmutableState.sol/contract.ImmutableState.md)
+[ImmutableState](contracts/v4/reference/periphery/base/ImmutableState.md)
 
 Abstract contract used to sync, send, and settle funds to the pool manager
 

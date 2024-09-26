@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[ImmutableState](/src/base/ImmutableState.sol/contract.ImmutableState.md), IUnlockCallback
+[ImmutableState](contracts/v4/reference/periphery/base/ImmutableState.md), IUnlockCallback
 
 A contract that only allows the Uniswap v4 PoolManager to call the unlockCallback
 

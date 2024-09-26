@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[SafeCallback](/src/base/SafeCallback.sol/abstract.SafeCallback.md)
+[SafeCallback](contracts/v4/reference/periphery/base/SafeCallback.md)
 
 
 ## Functions

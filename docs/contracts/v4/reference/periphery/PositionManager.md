@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[IPositionManager](/src/interfaces/IPositionManager.sol/interface.IPositionManager.md), [ERC721Permit_v4](/src/base/ERC721Permit_v4.sol/abstract.ERC721Permit_v4.md), [PoolInitializer](/src/base/PoolInitializer.sol/abstract.PoolInitializer.md), [Multicall_v4](/src/base/Multicall_v4.sol/abstract.Multicall_v4.md), [DeltaResolver](/src/base/DeltaResolver.sol/abstract.DeltaResolver.md), [ReentrancyLock](/src/base/ReentrancyLock.sol/contract.ReentrancyLock.md), [BaseActionsRouter](/src/base/BaseActionsRouter.sol/abstract.BaseActionsRouter.md), [Notifier](/src/base/Notifier.sol/abstract.Notifier.md), [Permit2Forwarder](/src/base/Permit2Forwarder.sol/contract.Permit2Forwarder.md)
+[IPositionManager](contracts/v4/reference/periphery/interfaces/IPositionManager.md), [ERC721Permit_v4](contracts/v4/reference/periphery/base/ERC721Permit_v4.md), [PoolInitializer](contracts/v4/reference/periphery/base/PoolInitializer.md), [Multicall_v4](contracts/v4/reference/periphery/base/Multicall_v4.md), [DeltaResolver](contracts/v4/reference/periphery/base/DeltaResolver.md), [ReentrancyLock](contracts/v4/reference/periphery/base/ReentrancyLock.md), [BaseActionsRouter](contracts/v4/reference/periphery/base/BaseActionsRouter.md), [Notifier](contracts/v4/reference/periphery/base/Notifier.md), [Permit2Forwarder](contracts/v4/reference/periphery/base/Permit2Forwarder.md)
 
 The PositionManager (PosM) contract is responsible for creating liquidity positions on v4.
 PosM mints and manages ERC721 tokens associated with each position.

@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[INotifier](/src/interfaces/INotifier.sol/interface.INotifier.md)
+[INotifier](contracts/v4/reference/periphery/interfaces/INotifier.md)
 
 Notifier is used to opt in to sending updates to external contracts about position modifications or transfers
 

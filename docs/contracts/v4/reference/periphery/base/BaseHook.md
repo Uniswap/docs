@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-IHooks, [SafeCallback](/src/base/SafeCallback.sol/abstract.SafeCallback.md)
+IHooks, [SafeCallback](contracts/v4/reference/periphery/base/SafeCallback.md)
 
 abstract contract for hook implementations
 

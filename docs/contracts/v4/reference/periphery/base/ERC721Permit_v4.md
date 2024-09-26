@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-ERC721, [IERC721Permit_v4](/src/interfaces/IERC721Permit_v4.sol/interface.IERC721Permit_v4.md), [EIP712_v4](/src/base/EIP712_v4.sol/contract.EIP712_v4.md), [UnorderedNonce](/src/base/UnorderedNonce.sol/contract.UnorderedNonce.md)
+ERC721, [IERC721Permit_v4](contracts/v4/reference/periphery/interfaces/IERC721Permit_v4.md), [EIP712_v4](contracts/v4/reference/periphery/base/EIP712_v4.md), [UnorderedNonce](contracts/v4/reference/periphery/base/UnorderedNonce.md)
 
 Nonfungible tokens that support an approve via signature, i.e. permit
 

@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[IMulticall_v4](/src/interfaces/IMulticall_v4.sol/interface.IMulticall_v4.md)
+[IMulticall_v4](contracts/v4/reference/periphery/interfaces/IMulticall_v4.md)
 
 Enables calling multiple methods in a single call to the contract
 

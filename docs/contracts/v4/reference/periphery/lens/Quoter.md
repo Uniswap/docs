@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[IQuoter](/src/interfaces/IQuoter.sol/interface.IQuoter.md), [BaseV4Quoter](/src/base/BaseV4Quoter.sol/abstract.BaseV4Quoter.md)
+[IQuoter](contracts/v4/reference/periphery/interfaces/IQuoter.md), [BaseV4Quoter](contracts/v4/reference/periphery/base/BaseV4Quoter.md)
 
 
 ## Functions

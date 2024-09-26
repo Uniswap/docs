@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[IV4Router](/src/interfaces/IV4Router.sol/interface.IV4Router.md), [BaseActionsRouter](/src/base/BaseActionsRouter.sol/abstract.BaseActionsRouter.md), [DeltaResolver](/src/base/DeltaResolver.sol/abstract.DeltaResolver.md)
+[IV4Router](contracts/v4/reference/periphery/interfaces/IV4Router.md), [BaseActionsRouter](contracts/v4/reference/periphery/base/BaseActionsRouter.md), [DeltaResolver](contracts/v4/reference/periphery/base/DeltaResolver.md)
 
 Abstract contract that contains all internal logic needed for routing through Uniswap V4 pools
 

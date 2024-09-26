@@ -3,7 +3,7 @@
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[ImmutableState](/src/base/ImmutableState.sol/contract.ImmutableState.md)
+[ImmutableState](contracts/v4/reference/periphery/base/ImmutableState.md)
 
 A view only contract wrapping the StateLibrary.sol library for reading storage in v4-core.
 
