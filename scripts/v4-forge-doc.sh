@@ -30,6 +30,11 @@ copy_docs() {
         # Copy the file to the new location
         cp "$file" "$new_file"
 
+        # Fix the Git source link
+        # replace `https://github.com/Uniswap/docs/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/IPositionManager.sol`
+        # with `https://github.com/Uniswap/v4-{component}/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/IPositionManager.sol`
+        sed -i "s|Uniswap/docs/|Uniswap/v4-${component}/|g" "$new_file"
+
         # Add note: 
         sed -i '3i | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)' "$new_file"
 
