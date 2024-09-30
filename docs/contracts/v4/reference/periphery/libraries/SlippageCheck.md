@@ -1,5 +1,5 @@
 # SlippageCheck
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/libraries/SlippageCheck.sol)
+[Git Source](https://github.com/Uniswap/docs/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/libraries/SlippageCheck.sol)
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 a library for checking if a delta exceeds a maximum ceiling or fails to meet a minimum floor
