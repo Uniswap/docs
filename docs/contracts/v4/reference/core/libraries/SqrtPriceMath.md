@@ -1,5 +1,5 @@
 # SqrtPriceMath
-[Git Source](https://github.com/Uniswap/docs/blob/1141642f8ba4665a50660886a8a8401526677045/src/libraries/SqrtPriceMath.sol)
+[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/libraries/SqrtPriceMath.sol)
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Contains the math that uses square root of price as a Q64.96 and liquidity to compute deltas

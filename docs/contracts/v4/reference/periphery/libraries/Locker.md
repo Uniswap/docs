@@ -1,5 +1,5 @@
 # Locker
-[Git Source](https://github.com/Uniswap/docs/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/libraries/Locker.sol)
+[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/libraries/Locker.sol)
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 This is a temporary library that allows us to use transient storage (tstore/tload)

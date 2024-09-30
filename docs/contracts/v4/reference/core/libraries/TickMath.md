@@ -1,5 +1,5 @@
 # TickMath
-[Git Source](https://github.com/Uniswap/docs/blob/1141642f8ba4665a50660886a8a8401526677045/src/libraries/TickMath.sol)
+[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/libraries/TickMath.sol)
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Computes sqrt price for ticks of size 1.0001, i.e. sqrt(1.0001^tick) as fixed point Q64.96 numbers. Supports

@@ -1,5 +1,5 @@
 # ISubscriber
-[Git Source](https://github.com/Uniswap/docs/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/ISubscriber.sol)
+[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/ISubscriber.sol)
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Interface that a Subscriber contract should implement to receive updates from the v4 position manager
