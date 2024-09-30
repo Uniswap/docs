@@ -1,11 +1,13 @@
 # Usage: ./scripts/v4-forge-doc.sh, called from the root directory
 
-# Find all the .md files in the source directory
-# @dev assumes that v4-periphery and v4-core are in the parent directory
-# i.e. /home/user/docs, /home/user/v4-periphery, /home/user/v4-core
+# regenerate docs
+forge doc --root submodules/v4-core --out forge-docs/v4-core
+rm -rf submodules/v4-core/forge-docs
+forge doc --root submodules/v4-periphery --out forge-docs/v4-periphery
+rm -rf submodules/v4-periphery/forge-docs
 
 # Copy v4-core
-find ../v4-core/docs/src -type f -regex '.*\.sol/[^.]*\.[^.]*\.md' | while read file; do
+find forge-docs/v4-core/src -type f -regex '.*\.sol/[^.]*\.[^.]*\.md' | while read file; do
     # Extract the directory part (e.g., base, base/hooks, libraries)
     dir_structure=$(echo "$file" | sed -r 's|.*/src/([^/]+)/.*\.sol/.*|\1|')
 
@@ -43,7 +45,7 @@ find ../v4-core/docs/src -type f -regex '.*\.sol/[^.]*\.[^.]*\.md' | while read 
 done
 
 # Copy v4-periphery
-find ../v4-periphery/docs/src -type f -regex '.*\.sol/[^.]*\.[^.]*\.md' | while read file; do
+find forge-docs/v4-periphery/src -type f -regex '.*\.sol/[^.]*\.[^.]*\.md' | while read file; do
     # Extract the directory part (e.g., base, base/hooks, libraries)
     dir_structure=$(echo "$file" | sed -r 's|.*/src/([^/]+)/.*\.sol/.*|\1|')
 
