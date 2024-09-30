@@ -16,6 +16,10 @@ typechain/
 
 .env
 
+# ignore forge-doc artifacts as they are copied to the proper location
+forge-docs/v4-core/*
+forge-docs/v4-periphery/*
+
 # Debugging logs
 npm-debug.log*
 yarn-debug.log*

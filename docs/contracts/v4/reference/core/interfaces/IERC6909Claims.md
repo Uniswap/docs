@@ -1,5 +1,5 @@
 # IERC6909Claims
-[Git Source](https://github.com/uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/interfaces/external/IERC6909Claims.sol)
+[Git Source](https://github.com/Uniswap/docs/blob/1141642f8ba4665a50660886a8a8401526677045/src/interfaces/external/IERC6909Claims.sol)
 | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Interface for claims over a contract balance, wrapped as a ERC6909
