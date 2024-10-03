@@ -13,40 +13,6 @@ This guide will explain the mechanism of encoded flags for hooks, and go through
 
 Note: The swap examples are not production ready code, and are implemented in a simplistic manner for the purpose of learning.
 
-## Hook Flags
-
-As mentioned in [Concept of Hooks](../../concepts/04-hooks.mdx), hook contracts indicate their implemented functions by __encoding flags in the address of the contract__. The `PoolManager` uses these permissions to determine which hook functions to call for a given pool.
-
-Each hook function e.g. `beforeSwap` - corresponds to a certain _flag_. For example, the `beforeSwap` function is correlated to the [`BEFORE_SWAP_FLAG`](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol#L37) which has a value of `1 << 7`.
-
-These flags represent specific bits in the address of the hook smart contract - and the value of the bit (a one or a zero) represents whether that flag is true or false. An example:
-
-Addresses on Ethereum are 20 bytes long (160 bits). So for example the address:
-
-```
-0x00000000000000000000000000000000000000C0
-```
-
-represented in binary is:
-
-```solidity
-0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 
-0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 
-0000 0000 0000 0000 0000 0000 1100 0000
-```
-
-In binary it goes from right-to-left - so the trailing 8 bits of this address are `1100 0000` where:
-
-1st Bit to 6th Bit = `0`
-
-7th Bit to 8th Bit = `1`
-
-The `AFTER_SWAP` flag is represented by the 7th bit - which is set to `1` for the example contract address. In the `PoolManager's` swap execution flow, it will observe the flag and make a call to the hook's `afterSwap` function.
-
-Similarly, the 8th bit which is also a `1`, actually corresponds to the `BEFORE_SWAP` i.e. the `beforeSwap` hook function - which will also be called by the `PoolManager` during a `swap` workflow.
-
-A full list of all flags can be found [here](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol).
-
 ## Set Up the Contract
 
 Declare the solidity version used to compile the contract, since transient storage is used the solidity version will be `>=0.8.24`.
