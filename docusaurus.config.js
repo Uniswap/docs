@@ -44,7 +44,7 @@ module.exports = {
           className: 'V3_active',
         },
         {
-          to: '/contracts/v3/overview',
+          to: '/contracts/v4/overview',
           label: 'Contracts',
           position: 'left',
           className: 'V3_active',
