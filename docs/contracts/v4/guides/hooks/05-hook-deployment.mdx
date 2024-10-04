@@ -4,7 +4,7 @@ title: Hook Deployment
 
 ## Hook Flags
 
-As mentioned in [Concept of Hooks](../../concepts/04-hooks.mdx), hook contracts indicate their implemented functions by __encoding flags in the address of the contract__. The `PoolManager` uses these permissions to determine which hook functions to call for a given pool.
+As mentioned in [Concept of Hooks](../../concepts/04-hooks.mdx), hook contracts indicate their implemented functions by __encoding its behavior in the address of the contract__. The `PoolManager` uses these permissions to determine which hook functions to call for a given pool.
 
 Each hook function e.g. `beforeSwap` - corresponds to a certain _flag_. For example, the `beforeSwap` function is correlated to the [`BEFORE_SWAP_FLAG`](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol#L37) which has a value of `1 << 7`.
 
@@ -28,7 +28,7 @@ In binary it goes from right-to-left - so the trailing 8 bits of this address ar
 
 1st Bit to 6th Bit = `0`
 
-7th Bit to 8th Bit = `1`
+7th Bit and 8th Bit = `1`
 
 The `AFTER_SWAP` flag is represented by the 7th bit - which is set to `1` for the example contract address. In the `PoolManager` swap execution flow, it will observe the flag and make a call to the hook's `afterSwap` function.
 
@@ -38,15 +38,14 @@ A full list of all flags can be found [here](https://github.com/Uniswap/v4-core/
 
 ## Hook Miner
 
-As mentioned above `PoolManager` determines which hook functions to call during the flow of an operation based on the flags encoded directly into the hook's address. 
-Each hook function e.g. `afterSwap` is represented by a `0` i.e. false or `1` i.e. true at a specific bit of the hook's address to indicate its implementation.
+Because of encoded addresses, hook developers must _mine_ an address to a their particular pattern
 
 For local testing, `deployCodeTo` cheatcode in Foundry can be used to deploy hook contract to any address. 
 
-But when deploying hooks to an actual network, address mining will need to be done to find a proper deployment address for the hook to properly represent the functions implemented. 
+But when deploying hooks to an actual network, address mining is required to find the proper deployment address
 There is a helper library [`HookMiner.sol`](https://github.com/uniswapfoundation/v4-template/blob/main/test/utils/HookMiner.sol) that can be used to mine for correct addresses.
 
-Let's see it in action on Foundry script. We will make use of the example - Points Hook from [Building Your First Hook](./01-your-first-hook.md).
+Let's see it in action for a Foundry script. We will make use of the example - Points Hook from [Building Your First Hook](./01-your-first-hook.md).
 
 First we set up the contract for Foundry script and import the relevant dependencies:
 
