@@ -235,7 +235,7 @@ The full code to the following code snippets can be found in [`oracle.ts`](https
 ```typescript
 let requests = []
 for (let i = 0; i < 10; i++) {
-    requets.push(poolContract.observations(i))
+    requests.push(poolContract.observations(i))
 }
 
 const results = await Promise.all(requests)
