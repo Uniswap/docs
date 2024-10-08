@@ -2,11 +2,19 @@
 title: Create Pool
 ---
 
-### Context
+## Context
 
-Creating a pool on Uniswap v4 is permissionless and enables the trading of an asset.
+Creating a pool on Uniswap v4 is permissionless and enables the trading of an asset. Uniswap v4 is a popular destination for creating markets due to its:
 
-Below, there are two approaches to creating a pool:
+* Proven track record and battle-tested codebase
+* Concentrated liquidity, unlocking capital efficiency
+* Flexibile pool design through dynamic fees and hooks
+* Gas-efficient architecture
+* Integrations with alternative trading venues
+
+For more information, developers should see [Uniswap v4 Overview](/contracts/v4/overview)
+
+The guide covers two approaches to creating a pool:
 1. Create a pool only
 2. Create a pool and add initial liquidity, with one transaction
 
@@ -23,6 +31,8 @@ forge install uniswap/v4-periphery
 ## Guide: Create a Pool Only
 
 To initialize a Uniswap v4 Pool _without initial liquidity_, developers should call [`PoolManager.initialize()`](/contracts/v4/reference/core/interfaces/IPoolManager#initialize)
+
+Creating a pool without liquidity may be useful for "reserving" a pool for future use, when initial liquidity is not available, or when external market makers would provide the starting liquidity
 
 ### 1. Configure the Pool
 
@@ -163,4 +173,4 @@ PositionManager(posm).multicall{value: ethToSend}(params);
 ```
 > Excess Ether is **NOT** refunded unless developers encoded `SWEEP` in the `actions` parameter
 
-For a full end-to-end script, developers should see [v4-template#script](https://github.com/uniswapfoundation/v4-template/tree/main/script)
+For a full end-to-end script, developers should see [v4-template's scripts](https://github.com/uniswapfoundation/v4-template/tree/main/script)
