@@ -1,0 +1,66 @@
+---
+id: errors
+title: Custom Errors
+sidebar_position: 7
+---
+
+# Custom Errors Selectors
+These are custom error selectors for Uniswap v4 contracts.
+
+## IPoolManager.sol
+1. `IPoolManager.CurrencyNotSettled.selector` - `0x5212cba1`
+2. `IPoolManager.PoolNotInitialized.selector` - `0x486aa307`
+3. `IPoolManager.AlreadyUnlocked.selector` - `0x5090d6c6`
+4. `IPoolManager.ManagerLocked.selector` - `0x54e3ca0d`
+5. `IPoolManager.TickSpacingTooLarge.selector` - `0xb02b5dc2`
+6. `IPoolManager.TickSpacingTooSmall.selector` - `0x16fe7696`
+7. `IPoolManager.CurrenciesOutOfOrderOrEqual.selector` - `0xeaa6c6eb`
+8. `IPoolManager.UnauthorizedDynamicLPFeeUpdate.selector` - `0x30d21641`
+9. `IPoolManager.SwapAmountCannotBeZero.selector` - `0xbe8b8507`
+10. `IPoolManager.NonZeroNativeValue.selector` - `0x19d245cf`
+
+## Hooks.sol
+1. `Hooks.HookAddressNotValid.selector` - `0xe65af6a0`
+2. `Hooks.InvalidHookResponse.selector` - `0x1e048e1d`
+3. `Hooks.FailedHookCall.selector` - `0x36bc48c5`
+4. `Hooks.HookDeltaExceedsSwapAmount.selector` - `0xfa0b71d6`
+
+## Pool.sol
+1. `Pool.TicksMisordered.selector` - `0xc4433ed5`
+2. `Pool.TickLowerOutOfBounds.selector` - `0xd5e2f7ab`
+3. `Pool.TickUpperOutOfBounds.selector` - `0x1ad777f8`
+4. `Pool.TickLiquidityOverflow.selector` - `0xb8e3c385`
+5. `Pool.TickNotInitialized.selector` - `0x82a774d3`
+6. `Pool.PoolAlreadyInitialized.selector` - `0x7983c051`
+7. `Pool.PoolNotInitialized.selector` - `0x486aa307`
+8. `Pool.PriceLimitAlreadyExceeded.selector` - `0x7c9c6e8f`
+9. `Pool.PriceLimitOutOfBounds.selector` - `0x9e4d7cc7`
+10. `Pool.NoLiquidityToReceiveFees.selector` - `0xa74f97ab`
+11. `Pool.InvalidFeeForExactOut.selector` - `0x96206246`
+
+## IProtocolFees.sol
+1. `IProtocolFees.ProtocolFeeCannotBeFetched.selector` - `0x1ee49702`
+2. `IProtocolFees.InvalidProtocolFee.selector` - `0xba97f838`
+3. `IProtocolFees.InvalidCaller.selector` - `0x48f5c3ed`
+
+## LPFeeLibrary.sol
+1. `LPFeeLibrary.FeeTooLarge.selector` - `0xfc5bee12`
+
+## Position.sol
+1. `Position.CannotUpdateEmptyPosition.selector` - `aefeb924`
+
+## Reserves.sol
+1. `Reserves.ReservesMustBeSynced.selector` - `8774be48`
+
+## SqrtPriceMath.sol
+1. `SqrtPriceMath.InvalidPriceOrLiquidity.selector` - `0x4f2461b8`
+2. `SqrtPriceMath.InvalidPrice.selector` - `0x00bfc921`
+3. `SqrtPriceMath.NotEnoughLiquidity.selector` - `0x4323a555`
+4. `SqrtPriceMath.PriceOverflow.selector` - `0xf5c787f1`
+
+## TickBitmap.sol
+1. `TickBitmap.TickMisaligned.selector` - `0xd4d8f3e6`
+
+## TickMath.sol
+1. `TickMath.InvalidTick.selector` - `0xce8ef7fc`
+2. `TickMath.InvalidSqrtPrice.selector` - `0x31efafe8`
