@@ -1,4 +1,7 @@
 name: Check Benchmarks & Deploy
+env:
+  VERCEL_TEAM_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   push:
 
@@ -34,51 +37,9 @@ jobs:
       - name: Check Formatting
         run: yarn prettier --check .
 
-  deploy-uniswap-preview:
-    name: Deploy Uniswap Blog Preview
-    if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/prod'
-    needs: check-uniswap-benchmarks
-    permissions:
-      contents: write
-      pull-requests: write
-    outputs:
-      preview-url: ${{ steps.vercel.outputs.preview-url }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      # need to update once we get the vercel access
-      - uses: amondnet/vercel-action@v25
-        id: vercel
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ vars.VERCEL_ORG_ID}}
-          vercel-project-id: ${{ vars.VERCEL_PROJECT_ID}}
-          working-directory: ./
-          scope: ${{ vars.VERCEL_ORG_ID }}
-
-  deploy-uniswap-staging:
-    name: Deploy Uniswap Blog Staging
-    if: github.ref == 'refs/heads/main'
-    needs: check-uniswap-benchmarks
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: amondnet/vercel-action@v25
-        id: vercel
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
-          working-directory: ./
-          scope: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-args: '--prod'
-
   audit_with_lighthouse:
     name: Audit with Lighthouse
     runs-on: ubuntu-latest
-    needs: [deploy-uniswap-preview]
     if: github.ref != 'refs/head/main' && github.ref != 'refs/heads/prod'
     permissions:
       contents: write
@@ -87,14 +48,33 @@ jobs:
       run:
         working-directory: ./
     steps:
-      - uses: actions/checkout@v3
+      # Step 1: Retrieve the Vercel Preview URL
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@v1.1.9
+        id: vercel_preview_url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel_team_id: ${{ secrets.VERCEL_ORG_ID }}
 
+      # Step 2: Wait for the Vercel deployment to be ready
+      - uses: UnlyEd/github-action-await-vercel@v1
+        id: await-vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          deployment-url: ${{ steps.vercel_preview_url.outputs.preview_url }}
+          timeout: 420
+          poll-interval: 15
+
+      - uses: actions/checkout@v3
       - name: Audit preview URL with Lighthouse (mobile)
         id: lighthouse_audit_mobile
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            ${{ needs.deploy-uniswap-preview.outputs.preview-url }}
+            ${{ steps.vercel_preview_url.outputs.preview_url }}
           uploadArtifacts: true
           temporaryPublicStorage: true
 
@@ -103,7 +83,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            ${{ needs.deploy-uniswap-preview.outputs.preview-url }}
+            ${{ steps.vercel_preview_url.outputs.preview_url }}
           uploadArtifacts: true
           temporaryPublicStorage: true
           configPath: .github/lighthouse/lighthouse-config.json
@@ -118,7 +98,7 @@ jobs:
             const mobileResult = ${{ steps.lighthouse_audit_mobile.outputs.manifest }}[0].summary;
             const desktopLinks = ${{ steps.lighthouse_audit.outputs.links }};
             const desktopResult = ${{ steps.lighthouse_audit.outputs.manifest }}[0].summary;
-            const previewUrl = "${{ needs.deploy-uniswap-preview.outputs.preview-url }}";
+            const previewUrl = "${{ steps.vercel_preview_url.outputs.preview_url }}";
             const formatResult = (res) => Math.round((res * 100));
             const score = res => res >= 90 ? '🟢' : res >= 50 ? '🟠' : '🔴';
             Object.keys(mobileResult).forEach(key => mobileResult[key] = formatResult(mobileResult[key]));
