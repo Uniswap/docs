@@ -1,0 +1,223 @@
+@layer utilities {
+  .serif-heading-0 {
+    @apply font-riegraf;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 4rem;
+    letter-spacing: -0.08rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .heading-0 {
+    @apply font-basel-grotesk;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 4rem;
+    letter-spacing: -0.08rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .heading-1 {
+    @apply font-basel-grotesk;
+    font-size: 3.25rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 3.75rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .serif-heading-2 {
+    @apply font-riegraf;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 2.75rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .heading-2 {
+    @apply font-basel-grotesk;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 2.75rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .heading-3 {
+    @apply font-basel-grotesk;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 2rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .heading-4 {
+    @apply font-basel-grotesk;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 1.625rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .serif-subheading-1 {
+    @apply font-riegraf;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .subheading-1 {
+    @apply font-basel-grotesk;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .subheading-2 {
+    @apply font-basel-grotesk;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .body-1 {
+    @apply font-basel-grotesk;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .body-2 {
+    @apply font-basel-grotesk;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 1/5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .body-3 {
+    @apply font-basel-grotesk;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 1/25rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .body-4 {
+    @apply font-basel-grotesk;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 485;
+    line-height: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .serif-caption-1 {
+    @apply font-riegraf;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .caption-1 {
+    @apply font-fragment-mono;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .pullquote-1 {
+    @apply font-riegraf;
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 3rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .pullquote-2 {
+    @apply font-riegraf;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.8rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .button-label-1 {
+    @apply font-basel-grotesk;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .button-label-2 {
+    @apply font-basel-grotesk;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .button-label-3 {
+    @apply font-basel-grotesk;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.25rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .button-label-4 {
+    @apply font-basel-grotesk;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

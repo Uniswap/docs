@@ -298,6 +298,15 @@ const StyledIcon = styled.div`
 
 export default function Home() {
   return (
+    <div>
+      <p className="!serif-heading-0">Build with Uniswap</p>
+      <p className="!body-2">
+        Dive into the world of DeFi apps, integrations, and developer tooling built on top of the Uniswap Protocol.
+      </p>
+      <p className="!caption-1">Whereas disregard and contempt for human rights have resulted</p>
+    </div>
+  )
+  return (
     <Layout title={`Uniswap Docs`} description="Technical Documentation For The Uniswap Protocol">
       <Container>
         <DocsHeader>

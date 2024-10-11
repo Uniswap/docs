@@ -1,5 +1,6 @@
 const math = require('remark-math')
 const katex = require('rehype-katex')
+const tailwindPlugin = require('./plugins/tailwind-config.cjs')
 require('dotenv').config()
 
 module.exports = {
@@ -215,7 +216,8 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
-          customCss2: require.resolve('./src/css/colors.css'),
+          customCss2: require.resolve('./src/css/font.css'),
+          customCss3: require.resolve('./src/css/types.css'),
         },
       },
     ],
@@ -229,6 +231,7 @@ module.exports = {
     },
   ],
   plugins: [
+    tailwindPlugin,
     ['@saucelabs/theme-github-codeblock', {}],
     [
       '@docusaurus/plugin-client-redirects',
