@@ -1,10 +1,9 @@
-import React from 'react'
 import Link from '@docusaurus/Link'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import Discord from '@site/static/img/discord.svg'
 import GitHub from '@site/static/img/github.svg'
 import Npm from '@site/static/img/npm.svg'
-import UGP from '@site/static/img/UGP.png'
+// import UGP from '@site/static/img/UGP.png'
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
 import { TraceEvent } from '@uniswap/analytics'
@@ -14,6 +13,7 @@ import {
   DocsSectionName as SectionName,
   SharedEventName,
 } from '@uniswap/analytics-events'
+import React from 'react'
 import { ArrowUpRight as LinkIcon, BookOpen, HelpCircle, Info, MessageCircle } from 'react-feather'
 
 import SearchBarWithAnalytics from '../theme/SearchBar'
@@ -123,21 +123,12 @@ export const smartContractGuides = [
 ]
 
 export default function Home() {
-  // return (
-  //   <div>
-  //     <p className="!serif-heading-0">Build with Uniswap</p>
-  //     <p className="!body-2">
-  //       Dive into the world of DeFi apps, integrations, and developer tooling built on top of the Uniswap Protocol.
-  //     </p>
-  //     <p className="!caption-1">Whereas disregard and contempt for human rights have resulted</p>
-  //   </div>
-  // )
   return (
     <Layout title={`Uniswap Docs`} description="Technical Documentation For The Uniswap Protocol">
       <div>
         <div>
           <div>
-            <h1 > Welcome to Uniswap Docs</h1>
+            <h1> Welcome to Uniswap Docs</h1>
             <div>
               <SearchBarWithAnalytics />
             </div>
@@ -167,8 +158,8 @@ export default function Home() {
                         <LinkIcon />
                       </div>
                     </div>
-                    <h3 >{action.title}</h3>
-                    <p >{action.text}</p>
+                    <h3>{action.title}</h3>
+                    <p>{action.text}</p>
                   </div>
                 </Link>
               </TraceEvent>
@@ -188,11 +179,11 @@ export default function Home() {
                   name={SharedEventName.PAGE_CLICKED}
                   section={SectionName.DAPP_LINKS}
                 >
-                  <Link  key={action.title} to={action.to}>
-                    <div key={action.title} >
+                  <Link key={action.title} to={action.to}>
+                    <div key={action.title}>
                       <div>
                         <div>
-                          <h3 >{action.title}</h3>
+                          <h3>{action.title}</h3>
                         </div>
                         <div>
                           <LinkIcon />
@@ -330,7 +321,7 @@ export default function Home() {
         </div>
         <Link href={'https://unigrants.org/'}>
           <div>
-            <img src={UGP} width={'120px'} />
+            {/* <img src={UGP} width={'120px'} /> */}
             <div>
               <h2>Uniswap Grants Program</h2>
               <p>

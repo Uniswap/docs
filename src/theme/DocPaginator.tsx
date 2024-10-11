@@ -4,7 +4,6 @@ import React from 'react'
 
 import SentimentTracking from '../components/SentimentTracking'
 
-
 export default function DocPaginator(props) {
   return (
     <>
