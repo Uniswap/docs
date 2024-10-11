@@ -14,7 +14,7 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
 
   const isSentimentSelected = useCallback(
     (sentiment: Sentiment) => selectedSentiment && selectedSentiment === sentiment,
-    [selectedSentiment]
+    [selectedSentiment],
   )
 
   return (

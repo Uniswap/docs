@@ -1,3 +1,5 @@
+@import 'tailwindcss/utilities';
+
 @layer utilities {
   .serif-heading-0 {
     @apply font-riegraf;

@@ -1,7 +1,9 @@
 {
-    "extends": "@tsconfig/docusaurus/tsconfig.json",
-    "compilerOptions": {
-        "baseUrl": ".",
-        "jsx": "react-jsx"
-    },
+  "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "compilerOptions": {
+    "module": "node16",
+    "baseUrl": ".",
+    "jsx": "react-jsx"
+  },
+  "exclude": ["node_modules", "blog/*", "docs/**/*", "examples/*"]
 }
