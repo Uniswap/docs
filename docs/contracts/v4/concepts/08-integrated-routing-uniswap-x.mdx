@@ -2,8 +2,12 @@
 title: Integrated Routing with UniswapX
 ---
 
-For the initial deployment of Uniswap v4, the [Uniswap Interface](https://app.uniswap.org) does not permissionlessly support routing to pools with hooks. The interface expects to support pools with hooks, *eventually*.
+The Uniswap Interface will be ramping up support for hooks in it's standard routing system progressively over time. Hook builders looking to get immediate access to flow from the interface can do so by running a UniswapX filler for their hooked pools. 
 
-In the interim, Hook developers can receive order routing from the Uniswap Interface by running a UniswapX filler.
+At a high level, hook builders filler implementations will need to do the following: 
 
-Developers should check [UniswapX Documentation](/contracts/uniswapx/overview) to get started
+1. (On Mainnet) Subscribe to the UniswapX RFQ system on mainnet and submit fillable bids from orders they receive 
+2. Listen to the public feed for orders they won or that are open to be filled publicly
+3. Execute those orders against pools that use their hooks
+
+Developers should check [UniswapX Documentation](/contracts/uniswapx/overview) to get started. 
