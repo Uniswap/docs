@@ -1,0 +1,154 @@
+name: Check Benchmarks & Deploy
+on:
+  push:
+
+jobs:
+  check-uniswap-benchmarks:
+    name: Check uniswap Benchmarks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 21.1.0
+          cache: 'yarn'
+          cache-dependency-path: yarn.lock
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Check Licensure
+        id: check_licensure
+        run: yarn run check-licensure
+
+      - name: Run Linter
+        run: yarn lint
+
+      - name: Check Type Correctness
+        run: yarn run tsc --noEmit
+
+      - name: Check Formatting
+        run: yarn prettier --check .
+
+  deploy-uniswap-preview:
+    name: Deploy Uniswap Blog Preview
+    if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/prod'
+    needs: check-uniswap-benchmarks
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      preview-url: ${{ steps.vercel.outputs.preview-url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # need to update once we get the vercel access
+      - uses: amondnet/vercel-action@v25
+        id: vercel
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ vars.VERCEL_ORG_ID}}
+          vercel-project-id: ${{ vars.VERCEL_PROJECT_ID}}
+          working-directory: ./
+          scope: ${{ vars.VERCEL_ORG_ID }}
+
+  deploy-uniswap-staging:
+    name: Deploy Uniswap Blog Staging
+    if: github.ref == 'refs/heads/main'
+    needs: check-uniswap-benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: amondnet/vercel-action@v25
+        id: vercel
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
+          working-directory: ./
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-args: '--prod'
+
+  audit_with_lighthouse:
+    name: Audit with Lighthouse
+    runs-on: ubuntu-latest
+    needs: [deploy-uniswap-preview]
+    if: github.ref != 'refs/head/main' && github.ref != 'refs/heads/prod'
+    permissions:
+      contents: write
+      pull-requests: write
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Audit preview URL with Lighthouse (mobile)
+        id: lighthouse_audit_mobile
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            ${{ needs.deploy-uniswap-preview.outputs.preview-url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Audit preview URL with Lighthouse (desktop)
+        id: lighthouse_audit
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            ${{ needs.deploy-uniswap-preview.outputs.preview-url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configPath: .github/lighthouse/lighthouse-config.json
+
+      - name: Format Lighthouse score
+        id: format_lighthouse_score
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const mobileLinks = ${{ steps.lighthouse_audit_mobile.outputs.links }};
+            const mobileResult = ${{ steps.lighthouse_audit_mobile.outputs.manifest }}[0].summary;
+            const desktopLinks = ${{ steps.lighthouse_audit.outputs.links }};
+            const desktopResult = ${{ steps.lighthouse_audit.outputs.manifest }}[0].summary;
+            const previewUrl = "${{ needs.deploy-uniswap-preview.outputs.preview-url }}";
+            const formatResult = (res) => Math.round((res * 100));
+            const score = res => res >= 90 ? '🟢' : res >= 50 ? '🟠' : '🔴';
+            Object.keys(mobileResult).forEach(key => mobileResult[key] = formatResult(mobileResult[key]));
+            Object.keys(desktopResult).forEach(key => desktopResult[key] = formatResult(desktopResult[key]));
+            const comment = [
+              `## ⚡️ Lighthouse Report`,
+              `### Mobile ([view report](${Object.values(mobileLinks)[0]}))`,
+              '| Category | Score |',
+              '| --- | --- |',
+              `| ${score(mobileResult.performance)} Performance | ${mobileResult.performance} |`,
+              `| ${score(mobileResult.accessibility)} Accessibility | ${mobileResult.accessibility} |`,
+              `| ${score(mobileResult['best-practices'])} Best practices | ${mobileResult['best-practices']} |`,
+              `| ${score(mobileResult.seo)} SEO | ${mobileResult.seo} |`,
+              ` `,
+              `### Desktop ([view report](${Object.values(desktopLinks)[0]}))`,
+              '| Category | Score |',
+              '| --- | --- |',
+              `| ${score(desktopResult.performance)} Performance | ${desktopResult.performance} |`,
+              `| ${score(desktopResult.accessibility)} Accessibility | ${desktopResult.accessibility} |`,
+              `| ${score(desktopResult['best-practices'])} Best practices | ${desktopResult['best-practices']} |`,
+              `| ${score(desktopResult.seo)} SEO | ${desktopResult.seo} |`,
+              ` `,
+              `*Lighthouse ran on [${previewUrl}](${previewUrl})*`
+            ].join('\n');
+            core.setOutput("comment", comment);
+      - name: Add comment to PR
+        uses: mshick/add-pr-comment@v1
+        with:
+          message: |
+            ${{ steps.format_lighthouse_score.outputs.comment }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+          allow-repeats: false # This is the default
