@@ -57,6 +57,15 @@ Returns the pool address for a given pair of tokens and a fee, or address 0 if i
 
 tokenA and tokenB may be passed in either token0/token1 or token1/token0 order
 
+##### Available pool fees tiers:
+| Uint24  | Fee     |
+| :-----  | :------ |
+| `100`   | 0.01%   |
+| `500`   | 0.05%   |
+| `3000`  | 0.3%    |
+| `10000` | 1%      |
+
+More information about [Pool Fees](https://docs.uniswap.org/concepts/protocol/fees#pool-fees-tiers)
 #### Parameters:
 
 | Name     | Type    | Description                                                                       |
