@@ -135,7 +135,7 @@ const addLiquidityOptions: AddLiquidityOptions = {
 }
 ```
 
-Compared to minting, we have we have omitted the `recipient` parameter and instead passed in the `tokenId` of the position we previously minted.
+Compared to minting, we have omitted the `recipient` parameter and instead passed in the `tokenId` of the position we previously minted.
 As the Position already exists, the recipient doesn't change, instead the NonfungiblePositionManager contract can modify the existing Position by accessing it with its id.
 
 The tokenId can be fetched with the tokenOfOwnerByIndex function of the NonfungiblePositionManager Contract as described [here](./01-position-data.md#fetching-positions).
