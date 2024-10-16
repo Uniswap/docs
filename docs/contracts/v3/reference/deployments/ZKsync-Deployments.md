@@ -54,5 +54,5 @@ The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native
 
 | Network           | ChainId  | Wrapped Native Token | Address                                      |
 | ----------------- | -------- | -------------------- | -------------------------------------------- |
-| ZKxync            | `324`    | WETH                 | `0x5aea5775959fbc2557cc8789bc1bf90a239d9a91` |
+| ZKsync            | `324`    | WETH                 | `0x5aea5775959fbc2557cc8789bc1bf90a239d9a91` |
 
