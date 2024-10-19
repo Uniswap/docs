@@ -39,7 +39,7 @@ contract LiquidityExamples is IERC721Receiver {
 
     function _createDeposit(address owner, uint256 tokenId) internal {
         (, , address token0, address token1, , , , uint128 liquidity, , , , ) =
-            nonfungiblePositionManager.positions(tokenId);
+            INonfungiblePositionManager(nonfungiblePositionManager).positions(tokenId);
         // set the owner and data for position
         deposits[tokenId] = Deposit({owner: owner, liquidity: liquidity, token0: token0, token1: token1});
     }
