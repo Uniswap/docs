@@ -1,0 +1,9 @@
+{
+  "ci": {
+    "collect": {
+      "settings": {
+        "preset": "desktop"
+      }
+    }
+  }
+}

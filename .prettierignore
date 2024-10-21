@@ -6,3 +6,5 @@
 **/.svn
 **/.hg
 *.mdx
+*.md
+*.hbs

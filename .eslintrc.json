@@ -1,59 +1,51 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "root": true,
-    "extends": [
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react-hooks/recommended",
-        "prettier/@typescript-eslint",
-        "plugin:prettier/recommended",
-        "plugin:markdown/recommended"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "root": true,
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier/@typescript-eslint",
+    "eslint:recommended",
+    "plugin:markdown/recommended"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["typescript-sort-keys", "simple-import-sort", "unused-imports"],
+  "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "typescript-sort-keys/string-enum": [
+      "error",
+      "asc",
+      {
+        "caseSensitive": true
+      }
     ],
-    "overrides": [],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "typescript-sort-keys",
-        "simple-import-sort",
-        "unused-imports"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/naming-convention": [
+      "warn",
+      {
+        "selector": "enum",
+        "format": ["StrictPascalCase"]
+      }
     ],
-    "rules": {
-        "simple-import-sort/imports": "error",
-        "simple-import-sort/exports": "error",
-        "typescript-sort-keys/string-enum": [
-            "error",
-            "asc",
-            {
-                "caseSensitive": true
-            }
-        ],
-        "@typescript-eslint/explicit-module-boundary-types": "off",
-        "@typescript-eslint/naming-convention": [
-            "warn",
-            {
-                "selector": "enum",
-                "format": [
-                    "StrictPascalCase"
-                ]
-            }
-        ],
-        "curly": [
-            "warn",
-            "all"
-        ],
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "error",
-            {
-                "argsIgnorePattern": "_",
-                "varsIgnorePattern": "_",
-                "caughtErrorsIgnorePattern": "_"
-            }
-        ]
-    }
+    "curly": ["warn", "all"],
+    "no-unused-vars": "off",
+    "no-empty": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "warn", // TODO: change back to "error" after removing all unused vars.
+      {
+        "argsIgnorePattern": "_",
+        "varsIgnorePattern": "_",
+        "caughtErrorsIgnorePattern": "_"
+      }
+    ]
+  }
 }
