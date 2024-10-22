@@ -30,14 +30,14 @@ UniswapX introduces a new participant in the Uniswap ecosystem, the _Filler_. Th
 
 Anyone can fill orders on UniswapX, get started by reading our [Filler Integration Guide](/contracts/uniswapx/guides/createfiller).
 
-## Parametizing UniswapX Orders
-The UniswapX protocol does not explicitly parameterize the pricing of orders like the Exclusive Dutch Order, rather order parameterization is left to be configured by the order constructor. 
+## Parametizing UniswapX Orders on Mainnet
+The UniswapX protocol on Mainnet does not explicitly parameterize the pricing of orders like the Exclusive Dutch Order, rather order parameterization is left to be configured by the order constructor. 
 
-In the current Uniswap Labs interface implementation of UniswapX, some fillers may choose to help parameterize orders by participating as quoters. These fillers can *only* win a quote if they guarantee improved swapper execution over Uniswap v3 or v2 liquidity pools. Fillers who win a quote will receive execution priority for a limited period of time to fill orders they submitted wining quotes for. 
+In the current Uniswap Labs interface implementation of UniswapX, some fillers may choose to help parameterize orders on Mainnet by participating as quoters. These fillers can *only* win a quote if they guarantee improved swapper execution over Uniswap v3 or v2 liquidity pools. Fillers who win a quote will receive execution priority for a limited period of time to fill orders they submitted wining quotes for. 
 
-To ensure a smooth swapping experience for traders during the beta period, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch, with plans to make the quoting system fully permissionless in the near future.
+To ensure a smooth swapping experience for traders, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch, with plans to make the quoting system fully permissionless in the near future.
 
-If you are interested in participating as a Quoter during the beta period, please reach out [here](mailto:quoters@uniswap.org).
+If you are interested in participating as a Quoter, please reach out [here](mailto:quoters@uniswap.org).
 
 # UniswapX Protocol Architecture
 

@@ -6,8 +6,8 @@ title: Uniswap as a Price Oracle
 ## Introduction
 
 This guide will cover how to fetch price observations from a V3 pool to get onchain asset prices.
-It is based on the [Price Oracle example](https://github.com/Uniswap/examples/tree/main/v3-sdk/price-oracle), found in the Uniswap code examples [repository](https://github.com/Uniswap/example).
-To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/price-oracle/README.md) and follow the setup instructions.
+It is based on the [Price Oracle example](https://github.com/Uniswap/examples/tree/main/v3-sdk/oracle), found in the Uniswap code examples [repository](https://github.com/Uniswap/example).
+To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/oracle/README.md) and follow the setup instructions.
 
 :::info
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
@@ -30,7 +30,7 @@ For this guide, the following Uniswap packages are used:
   
 - [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
 
-The core code of this guide can be found in [`oracle.ts`](https://github.com/Uniswap/examples/tree/main/v3-sdk/price-oracle/src/libs/oracle.ts)
+The core code of this guide can be found in [`oracle.ts`](https://github.com/Uniswap/examples/tree/main/v3-sdk/oracle/src/libs/oracle.ts)
 
 ## Understanding Observations
 
@@ -235,7 +235,7 @@ The full code to the following code snippets can be found in [`oracle.ts`](https
 ```typescript
 let requests = []
 for (let i = 0; i < 10; i++) {
-    requets.push(poolContract.observations(i))
+    requests.push(poolContract.observations(i))
 }
 
 const results = await Promise.all(requests)
