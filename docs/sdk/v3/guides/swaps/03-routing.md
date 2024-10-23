@@ -72,7 +72,7 @@ const router = new AlphaRouter({
 ## Creating a route
 
 We will use the [SwapRouter02](https://github.com/Uniswap/v3-periphery/blob/v1.0.0/contracts/SwapRouter.sol) for our trade.
-The `smart-order-router` package provides us with a SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction that we need to interact with the contract:
+The `smart-order-router` package provides us with a `SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction that we need to interact with the contract:
 
 ```typescript
 import { SwapOptionsSwapRouter02, SwapType } from '@uniswap/smart-order-router'
