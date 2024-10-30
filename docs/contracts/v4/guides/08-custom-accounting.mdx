@@ -1,5 +1,8 @@
-# Introduction
+---
+title: Unlock Callback & Deltas
+---
 
+# Introduction
 Uniswap v4 introduces a set of powerful, interconnected features that proposes a new way automated market makers (AMMs) can function. Custom accounting, hook fees, custom curves, and return deltas might seem like distinct concepts, but they form a cohesive system that enables unprecedented flexibility in decentralized exchange mechanisms.
 
 These features are grouped together because they collectively represent the core of Uniswap v4’s customizability. They all relate to how pool state is managed and modified, working in tandem to allow developers to create highly tailored AMM experiences. From dynamic fee structures to unique bonding curves.
@@ -10,7 +13,7 @@ Before we dive into the details of custom accounting, hook fees, custom curves, 
 
 ## Delta Accounting in v4
 
-As described in [Flash Accounting](https://docs.uniswap.org/contracts/v4/concepts/flash-accounting) Uniswap v4 tracks net token transfers with transient storage. Unlike previous versions that tracked absolute token balances, v4 records changes (*deltas*) to these balances. This approach is at the core of v4’s enhanced flexibility and efficiency.
+As described in [Flash Accounting](/contracts/v4/concepts/flash-accounting) Uniswap v4 tracks net token transfers with transient storage. Unlike previous versions that tracked absolute token balances, v4 records changes to these balances (*deltas*). This approach is at the core of v4’s enhanced flexibility and efficiency.
 
 In the v4 architecture, the `PoolManager` manages credits or debits per address. After a swap router contract interacts with the PoolManager, the core contract determines that the swap router owes input tokens and must claim output tokens. Token balances are tracked as accumulated deltas in transient storage; and only the final deltas incur token transfers
 
@@ -54,7 +57,7 @@ Keep reading because at the bottom we are providing a step by step guide on how 
 
 ## Custom Curves in v4
 
-Custom Curves in Uniswap v4 represent a big change in AMM design flexibility. Unlike [Uniswap v2](https://docs.uniswap.org/contracts/v2/concepts/protocol-overview/how-uniswap-works) where the x*y=k formula was hardcoded, v4 allows developers to implement a wide variety of pricing models.
+Custom Curves in Uniswap v4 represent a big change in AMM design flexibility. Unlike [Uniswap v2](/contracts/v2/concepts/protocol-overview/how-uniswap-works) where the x*y=k formula was hardcoded, v4 allows developers to implement a wide variety of pricing models.
 
 This is made possible through the hook system, particularly hooks that can interact with the swap process. Custom curves allow developers to eject the native concentrated liquidity pricing mechanism. These hooks can intercept swap requests, apply custom pricing logic, and return modified swap parameters. This enables the creation of pools with unique characteristics, such as:
 
@@ -74,9 +77,9 @@ Key aspects of return deltas:
 1. **Dual Adjustment**: Return deltas simultaneously modify the balance changes (deltas) for both the hook contract and the swap router. This dual nature ensures that custom logic is accurately reflected across the entire system.
 2. **Credits and Debts Modification**: By adjusting these deltas, return deltas effectively alter the credits and debts owed by the hook and the swap router. This allows for complex economic models to be implemented directly within the protocol.
 3. **Native Pricing Bypass**: Return deltas enable hooks to implement custom curves that can completely bypass Uniswap's native pricing mechanism. This opens up possibilities for entirely new types of automated market makers within the Uniswap ecosystem.
-4. **Hook Fee Implementation**: Through return deltas, hooks can implement their own fee structures, separate from and additional to the core protocol fees.
+4. **Hook Fee Implementation**: Through return deltas, hooks can implement their own fee structures, separate from the core protocol fees.
 
-In essence, it allow for bespoke modification of operation results and enables features that were previously impossible in earlier versions of the protocol.
+In essence, return deltas allow for bespoke modification of an operation's result -- enabling features that were previously impossible in earlier versions of the protocol.
 
 # Implementing Hook Fees: A Step-by-Step Guide
 
@@ -138,7 +141,7 @@ function beforeSwap(
     IPoolManager.SwapParams calldata params,
     bytes calldata
 ) external override returns (bytes4, BeforeSwapDelta, uint24) {
-		// Implementation details will be explained in the following sub-steps
+    // Implementation details will be explained in the following sub-steps
 }
 
 ```
@@ -174,8 +177,8 @@ This is where the magic happens. We create a `BeforeSwapDelta` that represents o
 
 ```solidity
 BeforeSwapDelta returnDelta = toBeforeSwapDelta(
-    int128(int256(feeAmount)),// Specified delta (fee amount)
-    0// Unspecified delta (no change)
+    int128(int256(feeAmount)), // Specified delta (fee amount)
+    0 // Unspecified delta (no change)
 );
 
 ```
@@ -193,7 +196,7 @@ return (BaseHook.beforeSwap.selector, returnDelta, 0);
 Now, let's dive deeper into how the `BeforeSwapDelta` works and how it affects the overall swap process.
 
 1. **Initial State**:
-Let's say a user wants to swap 100 USDC for USDT. Initially:
+Let's say a user wants to swap 100 USDC for USDT
     - Hook's delta: (0, 0)
     - User's swap request: -100 USDC (negative because they're selling)
     
@@ -203,26 +206,26 @@ Our hook has taken a 1 USDC fee (assuming 1% for simplicity):
     - BeforeSwapDelta returned: (1 USDC, 0) // This will be added to the hook's delta and subtracted from the swap delta
     
 3. **PoolManager Processing**:
-The PoolManager applies our `BeforeSwapDelta`:
+The PoolManager applies our `BeforeSwapDelta`
 The pool then swaps 99 USDC for, let's say, 98 USDT.
     
-    ```solidity
-    amountToSwap = params.amountSpecified + hookDelta.getSpecifiedDelta();
-    -99 USDC = -100 USDC + 1 USDC
-    ```
+```solidity
+amountToSwap = params.amountSpecified + hookDelta.getSpecifiedDelta();
+-99 USDC = -100 USDC + 1 USDC
+```
     
 4. **Delta Resolution**:
 The PoolManager then resolves the deltas:
     
-    ```solidity
-    // Hook's new delta
-    newHookDelta = oldHookDelta + returnDelta
-    (0, 0) = (-1 USDC, 0) + (1 USDC, 0)
-    
-    // Swap delta for router
-    swapDelta = (-99 USDC, 98 USDT) - (1 USDC, 0)
-              = (-100 USDC, 98 USDT)
-    ```
+```solidity
+// Hook's new delta
+newHookDelta = oldHookDelta + returnDelta
+(0, 0) = (-1 USDC, 0) + (1 USDC, 0)
+
+// Swap delta for router
+swapDelta = (-99 USDC, 98 USDT) - (1 USDC, 0)
+            = (-100 USDC, 98 USDT)
+```
     
 5. **Final Outcome**:
     - The hook's debt is cleared: It took 1 USDC as a fee, but "returned" it to the swap process.
