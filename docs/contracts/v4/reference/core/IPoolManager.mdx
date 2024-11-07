@@ -30,7 +30,7 @@ Used in the `swap` function to define the behavior of our swap.
 ## initialize
 
 ```solidity
-function initialize(PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hookData)
+function initialize(PoolKey memory key, uint160 sqrtPriceX96)
     external
     returns (int24 tick);
 ```
@@ -41,7 +41,6 @@ Initialize a new pool by defining its parameters: token pair, fee tier, tick spa
 |---------------|-----------|--------------------------------------------------|
 | key           | PoolKey   | The key defining the pool to initialize          |
 | sqrtPriceX96  | uint160   | The initial sqrt price of the pool as a Q64.96 value |
-| hookData      | bytes     | Any additional data to pass to our hook contract on the before/after initialization hooks    |
 
 Returns the initial tick value of the pool.
 
