@@ -34,57 +34,23 @@ module.exports = {
     navbar: {
       title: 'Uniswap Docs',
       logo: {
-        alt: 'Uniswap Unicorn',
-        src: 'img/uni_dark_icon.svg',
+        alt: 'Site Logo',
+        src: 'img/uni_light_icon.svg',
+        srcDark: 'img/uni_dark_icon.svg',
+        href: 'https://docusaurus.io/',
+        target: '_self',
+        width: 32,
+        height: 32,
       },
       items: [
         {
-          to: '/concepts/overview',
-          label: 'Concepts',
+          type: 'search',
           position: 'left',
-          className: 'V3_active',
         },
         {
-          to: '/contracts/v4/overview',
-          label: 'Contracts',
-          position: 'left',
-          className: 'V3_active',
-        },
-        {
-          to: '/sdk/v3/overview',
-          label: 'SDKs',
-          position: 'left',
-          className: 'V3_active',
-        },
-        {
-          to: '/api/subgraph/overview',
-          label: 'APIs',
-          position: 'left',
-          className: 'V3_active',
-        },
-        {
-          label: 'Give Feedback',
-          to: 'https://forms.gle/13XtjmkwdXQ2jMn26',
+          type: 'html',
           position: 'right',
-          className: 'persistent',
-        },
-        {
-          label: 'Whitepaper',
-          to: 'https://uniswap.org/whitepaper-v3.pdf',
-          position: 'right',
-          className: 'persistent',
-        },
-        {
-          href: 'https://github.com/uniswap/uniswap-docs',
-          label: 'GitHub',
-          position: 'right',
-          className: 'persistent',
-        },
-        {
-          href: 'https://unigrants.org/',
-          label: 'Grants',
-          position: 'right',
-          className: 'persistent',
+          value: '<button>Give feedback</button>',
         },
       ],
     },
@@ -180,7 +146,7 @@ module.exports = {
           ],
         },
       ],
-      // copyright: `unlicensed`,
+      copyright: `unlicensed`,
     },
     colorMode: {
       // "light" | "dark"

@@ -4,7 +4,6 @@
   .serif-heading-0 {
     @apply font-riegraf;
     font-size: 4rem;
-    font-style: normal;
     font-weight: 300;
     line-height: 4rem;
     letter-spacing: -0.08rem;
@@ -15,7 +14,6 @@
   .heading-0 {
     @apply font-basel-grotesk;
     font-size: 4rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 4rem;
     letter-spacing: -0.08rem;
@@ -26,7 +24,6 @@
   .heading-1 {
     @apply font-basel-grotesk;
     font-size: 3.25rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 3.75rem;
     -webkit-font-smoothing: antialiased;
@@ -36,7 +33,6 @@
   .serif-heading-2 {
     @apply font-riegraf;
     font-size: 2.25rem;
-    font-style: normal;
     font-weight: 300;
     line-height: 2.75rem;
     -webkit-font-smoothing: antialiased;
@@ -46,7 +42,6 @@
   .heading-2 {
     @apply font-basel-grotesk;
     font-size: 2.25rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 2.75rem;
     -webkit-font-smoothing: antialiased;
@@ -56,7 +51,6 @@
   .heading-3 {
     @apply font-basel-grotesk;
     font-size: 1.5rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 2rem;
     -webkit-font-smoothing: antialiased;
@@ -66,7 +60,6 @@
   .heading-4 {
     @apply font-basel-grotesk;
     font-size: 1.25rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 1.625rem;
     -webkit-font-smoothing: antialiased;
@@ -76,7 +69,6 @@
   .serif-subheading-1 {
     @apply font-riegraf;
     font-size: 1.125rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.25rem;
     -webkit-font-smoothing: antialiased;
@@ -86,7 +78,6 @@
   .subheading-1 {
     @apply font-basel-grotesk;
     font-size: 1.125rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 1.5rem;
     -webkit-font-smoothing: antialiased;
@@ -96,7 +87,6 @@
   .subheading-2 {
     @apply font-basel-grotesk;
     font-size: 1rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 1.5rem;
     -webkit-font-smoothing: antialiased;
@@ -106,7 +96,6 @@
   .body-1 {
     @apply font-basel-grotesk;
     font-size: 1.125rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 1.5rem;
     -webkit-font-smoothing: antialiased;
@@ -116,7 +105,6 @@
   .body-2 {
     @apply font-basel-grotesk;
     font-size: 1rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 1/5rem;
     -webkit-font-smoothing: antialiased;
@@ -126,7 +114,6 @@
   .body-3 {
     @apply font-basel-grotesk;
     font-size: 0.875rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 1/25rem;
     -webkit-font-smoothing: antialiased;
@@ -136,7 +123,6 @@
   .body-4 {
     @apply font-basel-grotesk;
     font-size: 0.75rem;
-    font-style: normal;
     font-weight: 485;
     line-height: 1rem;
     -webkit-font-smoothing: antialiased;
@@ -146,7 +132,6 @@
   .serif-caption-1 {
     @apply font-riegraf;
     font-size: 0.875rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.25rem;
     -webkit-font-smoothing: antialiased;
@@ -156,7 +141,6 @@
   .caption-1 {
     @apply font-fragment-mono;
     font-size: 0.8125rem;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.25rem;
     -webkit-font-smoothing: antialiased;
@@ -186,7 +170,6 @@
   .button-label-1 {
     @apply font-basel-grotesk;
     font-size: 1.125rem;
-    font-style: normal;
     font-weight: 600;
     line-height: 1.5rem;
     -webkit-font-smoothing: antialiased;
@@ -196,7 +179,6 @@
   .button-label-2 {
     @apply font-basel-grotesk;
     font-size: 1rem;
-    font-style: normal;
     font-weight: 600;
     line-height: 1.5rem;
     -webkit-font-smoothing: antialiased;
@@ -206,7 +188,6 @@
   .button-label-3 {
     @apply font-basel-grotesk;
     font-size: 0.875rem;
-    font-style: normal;
     font-weight: 600;
     line-height: 1.25rem;
     -webkit-font-smoothing: antialiased;
@@ -216,7 +197,6 @@
   .button-label-4 {
     @apply font-basel-grotesk;
     font-size: 0.75rem;
-    font-style: normal;
     font-weight: 600;
     line-height: 1rem;
     -webkit-font-smoothing: antialiased;

@@ -2,45 +2,45 @@
 
 @font-face {
   font-family: 'Basel Grotesk';
-  src: url('/fonts/baselGrotesk/Basel-Grotesk-Regular.woff2');
+  src: url('/fonts/Basel-Grotesk-Regular.woff2') format('woff2');
   font-weight: '400';
   font-style: 'normal';
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Basel Grotesk';
-  src: url('/fonts/baselGrotesk/Basel-Grotesk-Regular-Italic.woff2');
+  src: url('/fonts/Basel-Grotesk-Regular-Italic.woff2') format('woff2');
   font-weight: '400';
   font-style: 'italic';
-}
+} */
 
 @font-face {
   font-family: 'Basel Grotesk';
-  src: url('/fonts/baselGrotesk/Basel-Grotesk-Book.woff2');
+  src: url('/fonts/Basel-Grotesk-Book.woff2') format('woff2');
   font-weight: '500';
   font-style: 'normal';
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Basel Grotesk';
-  src: url('/fonts/baselGrotesk/Basel-Grotesk-Book-Italic.woff2');
+  src: url('/fonts/Basel-Grotesk-Book-Italic.woff2') format('woff2');
   font-weight: '500';
   font-style: 'italic';
-}
+} */
 
 @font-face {
   font-family: 'Basel Grotesk';
-  src: url('/fonts/baselGrotesk/Basel-Grotesk-Medium.woff2');
+  src: url('/fonts/Basel-Grotesk-Medium.woff2') format('woff2');
   font-weight: '600';
   font-style: 'normal';
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Basel Grotesk';
-  src: url('/fonts/baselGrotesk/Basel-Grotesk-Medium-Italic.woff2');
+  src: url('/fonts/Basel-Grotesk-Medium-Italic.woff2') format('woff2');
   font-weight: '600';
   font-style: 'italic';
-}
+} */
 
 @font-face {
   font-family: 'Riegraf';
@@ -56,12 +56,12 @@
   font-style: 'normal';
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Riegraf';
   src: url('/fonts/riegraf/Riegraf-Regular-Italic.otf');
   font-weight: '400';
   font-style: 'italic';
-}
+} */
 
 @font-face {
   font-family: 'Riegraf';

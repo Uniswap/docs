@@ -6,6 +6,7 @@
  */
 
 /* You can override the default Infima variables here. */
+@import './infma-overrides.css';
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
@@ -15,5 +16,8 @@
 @import './types.css';
 
 :root {
-  /* add override here */
+  .Navbar {
+    .Navbar__logo-text {
+    }
+  }
 }
