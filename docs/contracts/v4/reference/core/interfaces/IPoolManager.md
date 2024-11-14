@@ -1,6 +1,5 @@
 # IPoolManager
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/interfaces/IPoolManager.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/interfaces/IPoolManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [IProtocolFees](contracts/v4/reference/core/interfaces/IProtocolFees.md), [IERC6909Claims](contracts/v4/reference/core/interfaces/IERC6909Claims.md), [IExtsload](contracts/v4/reference/core/interfaces/IExtsload.md), [IExttload](contracts/v4/reference/core/interfaces/IExttload.md)
@@ -41,7 +40,7 @@ Initialize the state for a given pool ID
 
 
 ```solidity
-function initialize(PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hookData) external returns (int24 tick);
+function initialize(PoolKey memory key, uint160 sqrtPriceX96) external returns (int24 tick);
 ```
 **Parameters**
 
@@ -49,7 +48,6 @@ function initialize(PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hoo
 |----|----|-----------|
 |`key`|`PoolKey`|The pool key for the pool to initialize|
 |`sqrtPriceX96`|`uint160`|The initial square root price|
-|`hookData`|`bytes`|The data to pass through to the initialize hooks|
 
 **Returns**
 
@@ -168,7 +166,9 @@ function sync(Currency currency) external;
 
 Called by the user to net out some value owed to the user
 
-*Can also be used as a mechanism for _free_ flash loans*
+*Will revert if the requested amount is not available, consider using `mint` instead*
+
+*Can also be used as a mechanism for free flash loans*
 
 
 ```solidity
@@ -319,7 +319,7 @@ event Initialize(
 |`tickSpacing`|`int24`|The minimum number of ticks between initialized ticks|
 |`hooks`|`IHooks`|The hooks contract address for the pool, or address(0) if none|
 |`sqrtPriceX96`|`uint160`|The price of the pool on initialization|
-|`tick`|`int24`|The initial tick of the pool corresponding to the intialized price|
+|`tick`|`int24`|The initial tick of the pool corresponding to the initialized price|
 
 ### ModifyLiquidity
 Emitted when a liquidity position is modified

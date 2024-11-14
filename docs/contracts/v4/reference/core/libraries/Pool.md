@@ -1,6 +1,5 @@
 # Pool
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/libraries/Pool.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/libraries/Pool.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 a library with all actions that can be performed on a pool
 
@@ -19,9 +18,7 @@ function checkTicks(int24 tickLower, int24 tickUpper) private pure;
 
 
 ```solidity
-function initialize(State storage self, uint160 sqrtPriceX96, uint24 protocolFee, uint24 lpFee)
-    internal
-    returns (int24 tick);
+function initialize(State storage self, uint160 sqrtPriceX96, uint24 lpFee) internal returns (int24 tick);
 ```
 
 ### setProtocolFee

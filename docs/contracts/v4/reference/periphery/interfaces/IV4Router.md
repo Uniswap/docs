@@ -1,6 +1,8 @@
 # IV4Router
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/IV4Router.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/IV4Router.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+
+**Inherits:**
+[IImmutableState](contracts/v4/reference/periphery/interfaces/IImmutableState.md)
 
 Interface containing all the structs and errors for different v4 swap types
 
@@ -33,7 +35,6 @@ struct ExactInputSingleParams {
     bool zeroForOne;
     uint128 amountIn;
     uint128 amountOutMinimum;
-    uint160 sqrtPriceLimitX96;
     bytes hookData;
 }
 ```
@@ -61,7 +62,6 @@ struct ExactOutputSingleParams {
     bool zeroForOne;
     uint128 amountOut;
     uint128 amountInMaximum;
-    uint160 sqrtPriceLimitX96;
     bytes hookData;
 }
 ```

@@ -1,6 +1,5 @@
 # Slot0
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/types/Slot0.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/types/Slot0.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 *Slot0 is a packed version of solidity structure.
 Using the packaged version saves gas by not storing the structure fields in memory slots.

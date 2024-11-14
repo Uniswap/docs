@@ -1,13 +1,12 @@
 # LPFeeLibrary
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/libraries/LPFeeLibrary.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/libraries/LPFeeLibrary.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Library of helper functions for a pools LP fee
 
 
 ## State Variables
 ### DYNAMIC_FEE_FLAG
-An lp fee of exactly 0b1000000... signals a dynamic fee pool. This isnt a valid static fee as it is > MAX_LP_FEE
+An lp fee of exactly 0b1000000... signals a dynamic fee pool. This isn't a valid static fee as it is > MAX_LP_FEE
 
 
 ```solidity

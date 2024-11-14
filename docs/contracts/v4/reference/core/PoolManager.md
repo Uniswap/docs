@@ -1,6 +1,5 @@
 # PoolManager
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/PoolManager.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/PoolManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [IPoolManager](contracts/v4/reference/core/interfaces/IPoolManager.md), [ProtocolFees](contracts/v4/reference/core/ProtocolFees.md), [NoDelegateCall](contracts/v4/reference/core/NoDelegateCall.md), [ERC6909Claims](contracts/v4/reference/core/ERC6909Claims.md), [Extsload](contracts/v4/reference/core/Extsload.md), [Exttload](contracts/v4/reference/core/Exttload.md)
@@ -40,6 +39,13 @@ This will revert if the contract is locked
 modifier onlyWhenUnlocked();
 ```
 
+### constructor
+
+
+```solidity
+constructor(address initialOwner) ProtocolFees(initialOwner);
+```
+
 ### unlock
 
 All interactions on the contract that account deltas require unlocking. A caller that calls `unlock` must implement
@@ -72,10 +78,7 @@ Initialize the state for a given pool ID
 
 
 ```solidity
-function initialize(PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hookData)
-    external
-    noDelegateCall
-    returns (int24 tick);
+function initialize(PoolKey memory key, uint160 sqrtPriceX96) external noDelegateCall returns (int24 tick);
 ```
 **Parameters**
 
@@ -83,7 +86,6 @@ function initialize(PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hoo
 |----|----|-----------|
 |`key`|`PoolKey`|The pool key for the pool to initialize|
 |`sqrtPriceX96`|`uint160`|The initial square root price|
-|`hookData`|`bytes`|The data to pass through to the initialize hooks|
 
 **Returns**
 
@@ -207,14 +209,14 @@ native funds, this function can be called with the native currency to then be ab
 
 
 ```solidity
-function sync(Currency currency) external onlyWhenUnlocked;
+function sync(Currency currency) external;
 ```
 
 ### take
 
 Called by the user to net out some value owed to the user
 
-*Can also be used as a mechanism for _free_ flash loans*
+*Will revert if the requested amount is not available, consider using `mint` instead*
 
 
 ```solidity

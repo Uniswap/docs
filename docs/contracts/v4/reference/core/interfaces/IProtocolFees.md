@@ -1,6 +1,5 @@
 # IProtocolFees
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/interfaces/IProtocolFees.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/interfaces/IProtocolFees.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Interface for all protocol-fee related functions in the pool manager
 
@@ -49,13 +48,13 @@ Sets the protocol fee controller
 
 
 ```solidity
-function setProtocolFeeController(IProtocolFeeController controller) external;
+function setProtocolFeeController(address controller) external;
 ```
 **Parameters**
 
 |Name|Type|Description|
 |----|----|-----------|
-|`controller`|`IProtocolFeeController`|The new protocol fee controller|
+|`controller`|`address`|The new protocol fee controller|
 
 
 ### collectProtocolFees
@@ -91,13 +90,13 @@ Returns the current protocol fee controller address
 
 
 ```solidity
-function protocolFeeController() external view returns (IProtocolFeeController);
+function protocolFeeController() external view returns (address);
 ```
 **Returns**
 
 |Name|Type|Description|
 |----|----|-----------|
-|`<none>`|`IProtocolFeeController`|IProtocolFeeController The currency protocol fee controller|
+|`<none>`|`address`|address The current protocol fee controller address|
 
 
 ## Events
@@ -118,14 +117,6 @@ event ProtocolFeeUpdated(PoolId indexed id, uint24 protocolFee);
 ```
 
 ## Errors
-### ProtocolFeeCannotBeFetched
-Thrown when not enough gas is provided to look up the protocol fee
-
-
-```solidity
-error ProtocolFeeCannotBeFetched();
-```
-
 ### ProtocolFeeTooLarge
 Thrown when protocol fee is set too high
 
@@ -134,19 +125,19 @@ Thrown when protocol fee is set too high
 error ProtocolFeeTooLarge(uint24 fee);
 ```
 
-### ContractUnlocked
-Thrown when the contract is unlocked
-
-
-```solidity
-error ContractUnlocked();
-```
-
 ### InvalidCaller
 Thrown when collectProtocolFees or setProtocolFee is not called by the controller.
 
 
 ```solidity
 error InvalidCaller();
+```
+
+### ProtocolFeeCurrencySynced
+Thrown when collectProtocolFees is attempted on a token that is synced.
+
+
+```solidity
+error ProtocolFeeCurrencySynced();
 ```
 
