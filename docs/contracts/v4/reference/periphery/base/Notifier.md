@@ -1,6 +1,5 @@
 # Notifier
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/base/Notifier.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/base/Notifier.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [INotifier](contracts/v4/reference/periphery/interfaces/INotifier.md)
@@ -60,6 +59,15 @@ modifier onlyIfApproved(address caller, uint256 tokenId) virtual;
 |`tokenId`|`uint256`|the tokenId of the position|
 
 
+### onlyIfPoolManagerLocked
+
+Enforces that the PoolManager is locked.
+
+
+```solidity
+modifier onlyIfPoolManagerLocked() virtual;
+```
+
 ### _setUnsubscribed
 
 
@@ -85,6 +93,7 @@ Enables the subscriber to receive notifications for a respective position
 function subscribe(uint256 tokenId, address newSubscriber, bytes calldata data)
     external
     payable
+    onlyIfPoolManagerLocked
     onlyIfApproved(msg.sender, tokenId);
 ```
 **Parameters**
@@ -104,7 +113,7 @@ Removes the subscriber from receiving notifications for a respective position
 
 
 ```solidity
-function unsubscribe(uint256 tokenId) external payable onlyIfApproved(msg.sender, tokenId);
+function unsubscribe(uint256 tokenId) external payable onlyIfPoolManagerLocked onlyIfApproved(msg.sender, tokenId);
 ```
 **Parameters**
 

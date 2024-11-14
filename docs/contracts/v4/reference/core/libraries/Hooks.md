@@ -1,6 +1,5 @@
 # Hooks
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/libraries/Hooks.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/libraries/Hooks.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 V4 decides whether to invoke specific hooks by inspecting the least significant bits
 of the address that the hooks contract is deployed to.
@@ -158,7 +157,7 @@ function isValidHookAddress(IHooks self, uint24 fee) internal pure returns (bool
 
 ### callHook
 
-performs a hook call using the given calldata on the given hook that doesnt return a delta
+performs a hook call using the given calldata on the given hook that doesn't return a delta
 
 
 ```solidity
@@ -201,9 +200,7 @@ calls beforeInitialize hook if permissioned and validates return value
 
 
 ```solidity
-function beforeInitialize(IHooks self, PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hookData)
-    internal
-    noSelfCall(self);
+function beforeInitialize(IHooks self, PoolKey memory key, uint160 sqrtPriceX96) internal noSelfCall(self);
 ```
 
 ### afterInitialize
@@ -212,9 +209,7 @@ calls afterInitialize hook if permissioned and validates return value
 
 
 ```solidity
-function afterInitialize(IHooks self, PoolKey memory key, uint160 sqrtPriceX96, int24 tick, bytes calldata hookData)
-    internal
-    noSelfCall(self);
+function afterInitialize(IHooks self, PoolKey memory key, uint160 sqrtPriceX96, int24 tick) internal noSelfCall(self);
 ```
 
 ### beforeModifyLiquidity
@@ -326,20 +321,13 @@ Hook did not return its selector
 error InvalidHookResponse();
 ```
 
-### Wrap__FailedHookCall
-thrown when a hook call fails
+### HookCallFailed
+Additional context for ERC-7751 wrapped error when a hook call fails
 
 
 ```solidity
-error Wrap__FailedHookCall(address hook, bytes revertReason);
+error HookCallFailed();
 ```
-
-**Parameters**
-
-|Name|Type|Description|
-|----|----|-----------|
-|`hook`|`address`||
-|`revertReason`|`bytes`|bubbled up revert reason|
 
 ### HookDeltaExceedsSwapAmount
 The hook's delta changed the swap from exactIn to exactOut or vice versa

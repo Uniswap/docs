@@ -1,6 +1,5 @@
 # SkipCallsTestHook
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/test/SkipCallsTestHook.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/test/SkipCallsTestHook.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [BaseTestHooks](contracts/v4/reference/core/test/BaseTestHooks.md), Test
@@ -33,17 +32,14 @@ function setManager(IPoolManager _manager) external;
 
 
 ```solidity
-function beforeInitialize(address, PoolKey calldata key, uint160 sqrtPriceX96, bytes calldata hookData)
-    external
-    override
-    returns (bytes4);
+function beforeInitialize(address, PoolKey calldata key, uint160 sqrtPriceX96) external override returns (bytes4);
 ```
 
 ### afterInitialize
 
 
 ```solidity
-function afterInitialize(address, PoolKey calldata key, uint160 sqrtPriceX96, int24, bytes calldata hookData)
+function afterInitialize(address, PoolKey calldata key, uint160 sqrtPriceX96, int24)
     external
     override
     returns (bytes4);
@@ -148,7 +144,7 @@ function afterDonate(address, PoolKey calldata key, uint256 amt0, uint256 amt1, 
 
 
 ```solidity
-function _initialize(PoolKey memory key, uint160 sqrtPriceX96, bytes calldata hookData) public;
+function _initialize(PoolKey memory key, uint160 sqrtPriceX96) public;
 ```
 
 ### _swap

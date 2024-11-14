@@ -1,6 +1,5 @@
 # IHooks
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/interfaces/IHooks.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/interfaces/IHooks.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 V4 decides whether to invoke specific hooks by inspecting the least significant bits
 of the address that the hooks contract is deployed to.
@@ -18,9 +17,7 @@ The hook called before the state of a pool is initialized
 
 
 ```solidity
-function beforeInitialize(address sender, PoolKey calldata key, uint160 sqrtPriceX96, bytes calldata hookData)
-    external
-    returns (bytes4);
+function beforeInitialize(address sender, PoolKey calldata key, uint160 sqrtPriceX96) external returns (bytes4);
 ```
 **Parameters**
 
@@ -29,7 +26,6 @@ function beforeInitialize(address sender, PoolKey calldata key, uint160 sqrtPric
 |`sender`|`address`|The initial msg.sender for the initialize call|
 |`key`|`PoolKey`|The key for the pool being initialized|
 |`sqrtPriceX96`|`uint160`|The sqrt(price) of the pool as a Q64.96|
-|`hookData`|`bytes`|Arbitrary data handed into the PoolManager by the initializer to be be passed on to the hook|
 
 **Returns**
 
@@ -44,13 +40,9 @@ The hook called after the state of a pool is initialized
 
 
 ```solidity
-function afterInitialize(
-    address sender,
-    PoolKey calldata key,
-    uint160 sqrtPriceX96,
-    int24 tick,
-    bytes calldata hookData
-) external returns (bytes4);
+function afterInitialize(address sender, PoolKey calldata key, uint160 sqrtPriceX96, int24 tick)
+    external
+    returns (bytes4);
 ```
 **Parameters**
 
@@ -60,7 +52,6 @@ function afterInitialize(
 |`key`|`PoolKey`|The key for the pool being initialized|
 |`sqrtPriceX96`|`uint160`|The sqrt(price) of the pool as a Q64.96|
 |`tick`|`int24`|The current tick after the state of a pool is initialized|
-|`hookData`|`bytes`|Arbitrary data handed into the PoolManager by the initializer to be be passed on to the hook|
 
 **Returns**
 
@@ -183,7 +174,7 @@ function afterRemoveLiquidity(
 |`sender`|`address`|The initial msg.sender for the remove liquidity call|
 |`key`|`PoolKey`|The key for the pool|
 |`params`|`IPoolManager.ModifyLiquidityParams`|The parameters for removing liquidity|
-|`delta`|`BalanceDelta`|The caller's balance delta after adding liquidity; the sum of principal delta, fees accrued, and hook delta|
+|`delta`|`BalanceDelta`|The caller's balance delta after removing liquidity; the sum of principal delta, fees accrued, and hook delta|
 |`feesAccrued`|`BalanceDelta`|The fees accrued since the last time fees were collected from this position|
 |`hookData`|`bytes`|Arbitrary data handed into the PoolManager by the liquidity provider to be be passed on to the hook|
 

@@ -1,9 +1,8 @@
 # PositionManager
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/PositionManager.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/PositionManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[IPositionManager](contracts/v4/reference/periphery/interfaces/IPositionManager.md), [ERC721Permit_v4](contracts/v4/reference/periphery/base/ERC721Permit_v4.md), [PoolInitializer](contracts/v4/reference/periphery/base/PoolInitializer.md), [Multicall_v4](contracts/v4/reference/periphery/base/Multicall_v4.md), [DeltaResolver](contracts/v4/reference/periphery/base/DeltaResolver.md), [ReentrancyLock](contracts/v4/reference/periphery/base/ReentrancyLock.md), [BaseActionsRouter](contracts/v4/reference/periphery/base/BaseActionsRouter.md), [Notifier](contracts/v4/reference/periphery/base/Notifier.md), [Permit2Forwarder](contracts/v4/reference/periphery/base/Permit2Forwarder.md)
+[IPositionManager](contracts/v4/reference/periphery/interfaces/IPositionManager.md), [ERC721Permit_v4](contracts/v4/reference/periphery/base/ERC721Permit_v4.md), [PoolInitializer](contracts/v4/reference/periphery/base/PoolInitializer.md), [Multicall_v4](contracts/v4/reference/periphery/base/Multicall_v4.md), [DeltaResolver](contracts/v4/reference/periphery/base/DeltaResolver.md), [ReentrancyLock](contracts/v4/reference/periphery/base/ReentrancyLock.md), [BaseActionsRouter](contracts/v4/reference/periphery/base/BaseActionsRouter.md), [Notifier](contracts/v4/reference/periphery/base/Notifier.md), [Permit2Forwarder](contracts/v4/reference/periphery/base/Permit2Forwarder.md), [NativeWrapper](contracts/v4/reference/periphery/base/NativeWrapper.md)
 
 The PositionManager (PosM) contract is responsible for creating liquidity positions on v4.
 PosM mints and manages ERC721 tokens associated with each position.
@@ -18,6 +17,13 @@ Used to get the ID that will be used for the next minted liquidity position
 
 ```solidity
 uint256 public nextTokenId = 1;
+```
+
+
+### tokenDescriptor
+
+```solidity
+IPositionDescriptor public immutable tokenDescriptor;
 ```
 
 
@@ -40,11 +46,18 @@ mapping(bytes25 poolId => PoolKey poolKey) public poolKeys;
 
 
 ```solidity
-constructor(IPoolManager _poolManager, IAllowanceTransfer _permit2, uint256 _unsubscribeGasLimit)
+constructor(
+    IPoolManager _poolManager,
+    IAllowanceTransfer _permit2,
+    uint256 _unsubscribeGasLimit,
+    IPositionDescriptor _tokenDescriptor,
+    IWETH9 _weth9
+)
     BaseActionsRouter(_poolManager)
     Permit2Forwarder(_permit2)
-    ERC721Permit_v4("Uniswap V4 Positions NFT", "UNI-V4-POSM")
-    Notifier(_unsubscribeGasLimit);
+    ERC721Permit_v4("Uniswap v4 Positions NFT", "UNI-V4-POSM")
+    Notifier(_unsubscribeGasLimit)
+    NativeWrapper(_weth9);
 ```
 
 ### checkDeadline
@@ -80,6 +93,22 @@ modifier onlyIfApproved(address caller, uint256 tokenId) override;
 |`caller`|`address`|The address of the caller|
 |`tokenId`|`uint256`|the unique identifier of the ERC721 token|
 
+
+### onlyIfPoolManagerLocked
+
+Enforces that the PoolManager is locked.
+
+
+```solidity
+modifier onlyIfPoolManagerLocked() override;
+```
+
+### tokenURI
+
+
+```solidity
+function tokenURI(uint256 tokenId) public view override returns (string memory);
+```
 
 ### modifyLiquidities
 
@@ -273,9 +302,11 @@ function _setUnsubscribed(uint256 tokenId) internal override;
 
 *overrides solmate transferFrom in case a notification to subscribers is needed*
 
+*will revert if pool manager is locked*
+
 
 ```solidity
-function transferFrom(address from, address to, uint256 id) public virtual override;
+function transferFrom(address from, address to, uint256 id) public virtual override onlyIfPoolManagerLocked;
 ```
 
 ### getPoolAndPositionInfo

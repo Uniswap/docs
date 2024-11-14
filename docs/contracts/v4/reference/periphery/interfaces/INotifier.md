@@ -1,6 +1,5 @@
 # INotifier
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/INotifier.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/INotifier.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 This interface is used to opt in to sending updates to external contracts about position modifications or transfers
 
@@ -35,6 +34,8 @@ Enables the subscriber to receive notifications for a respective position
 
 *payable so it can be multicalled with NATIVE related actions*
 
+*will revert if pool manager is locked*
+
 
 ```solidity
 function subscribe(uint256 tokenId, address newSubscriber, bytes calldata data) external payable;
@@ -57,6 +58,8 @@ Removes the subscriber from receiving notifications for a respective position
 *payable so it can be multicalled with NATIVE related actions*
 
 *Must always allow a user to unsubscribe. In the case of a malicious subscriber, a user can always unsubscribe safely, ensuring liquidity is always modifiable.*
+
+*will revert if pool manager is locked*
 
 
 ```solidity
@@ -126,28 +129,28 @@ Thrown when a user specifies a gas limit too low to avoid valid unsubscribe noti
 error GasLimitTooLow();
 ```
 
-### Wrap__SubscriptionReverted
+### SubscriptionReverted
 Wraps the revert message of the subscriber contract on a reverting subscription
 
 
 ```solidity
-error Wrap__SubscriptionReverted(address subscriber, bytes reason);
+error SubscriptionReverted(address subscriber, bytes reason);
 ```
 
-### Wrap__ModifyLiquidityNotificationReverted
+### ModifyLiquidityNotificationReverted
 Wraps the revert message of the subscriber contract on a reverting modify liquidity notification
 
 
 ```solidity
-error Wrap__ModifyLiquidityNotificationReverted(address subscriber, bytes reason);
+error ModifyLiquidityNotificationReverted(address subscriber, bytes reason);
 ```
 
-### Wrap__TransferNotificationReverted
+### TransferNotificationReverted
 Wraps the revert message of the subscriber contract on a reverting transfer notification
 
 
 ```solidity
-error Wrap__TransferNotificationReverted(address subscriber, bytes reason);
+error TransferNotificationReverted(address subscriber, bytes reason);
 ```
 
 ### AlreadySubscribed
