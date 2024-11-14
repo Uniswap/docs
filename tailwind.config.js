@@ -72,8 +72,7 @@ module.exports = {
         'gap-medium': rem(12),
         'gap-small': rem(8),
         'gap-x-small': rem(4),
-        'mobile-nav-h': rem(72),
-        'nav-h': rem(59),
+        'nav-h': rem(72),
       },
       boxShadow: {
         'light-short': '0px 1px 6px 2px rgba(0, 0, 0, 0.03), 0px 1px 2px 0px rgba(0, 0, 0, 0.02)',

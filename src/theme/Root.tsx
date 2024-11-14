@@ -28,7 +28,9 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
       proxyUrl: analyticsProxyUrl,
       isProductionEnv,
     })
-  } catch {}
+  } catch {
+    // Ignore error
+  }
 
   // Fires on initial render of the page
   useEffect(() => {

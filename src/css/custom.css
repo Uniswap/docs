@@ -6,6 +6,7 @@
  */
 
 /* You can override the default Infima variables here. */
+@import './infima-overrides.css';
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
@@ -14,6 +15,10 @@
 @import './font.css';
 @import './types.css';
 
-:root {
-  /* add override here */
+.site-max-width {
+  max-width: 1440px;
+}
+
+.default-grid {
+  @apply grid grid-cols-4 gap-gap-large sm:grid-cols-8;
 }

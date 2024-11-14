@@ -17,10 +17,8 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["typescript-sort-keys", "simple-import-sort", "unused-imports"],
+  "plugins": ["typescript-sort-keys", "unused-imports"],
   "rules": {
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
     "typescript-sort-keys/string-enum": [
       "error",
       "asc",
