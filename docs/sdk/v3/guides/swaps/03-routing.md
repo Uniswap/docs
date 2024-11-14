@@ -11,7 +11,7 @@ This guide will cover how to use Uniswap's smart order router to compute optimal
 If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
 :::
 
-In this example we will trade between **WETH and USDC**, but you can configure your example to us any two currencies and amount of input currency.
+In this example we will trade between **WETH and USDC**, but you can configure your example to use any two currencies and amount of input currency.
 
 The guide will **cover**:
 
@@ -72,7 +72,7 @@ const router = new AlphaRouter({
 ## Creating a route
 
 We will use the [SwapRouter02](https://github.com/Uniswap/v3-periphery/blob/v1.0.0/contracts/SwapRouter.sol) for our trade.
-The `smart-order-router` package provides us with a SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction that we need to interact with the contract:
+The `smart-order-router` package provides us with a `SwapOptionsSwapRouter02` interface, defining the wallet to use, slippage tolerance, and deadline for the transaction that we need to interact with the contract:
 
 ```typescript
 import { SwapOptionsSwapRouter02, SwapType } from '@uniswap/smart-order-router'
