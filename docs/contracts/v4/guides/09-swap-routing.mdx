@@ -179,7 +179,7 @@ bytes memory actions = abi.encodePacked(
 
 These actions define the sequence of operations that will be performed in our v4 swap:
 
-1. `SWAP_EXACT_IN_SINGLE`: This action specifies that we want to perform an exact input swap using a single pool. This is where we define the type of swap we discussed earlier.
+1. `SWAP_EXACT_IN_SINGLE`: This action specifies that we want to perform an exact input swap using a single pool.
 2. `SETTLE_ALL`: This action ensures all input tokens involved in the swap are properly paid. This is part of v4's settlement pattern for handling token transfers.
 3. `TAKE_ALL`: This final action collects all output tokens after the swap is complete.
 
