@@ -16,7 +16,7 @@ While it’s technically possible to interact directly with the PoolManager cont
 
 The [Universal Router](/contracts/universal-router/overview) uses a unique encoding system for its commands and inputs, which is crucial to understand when configuring it for v4 swaps.
 
-When calling `UniversalRouter.execute`, you provide two main parameters:
+When calling `UniversalRouter.execute()`, you provide two main parameters:
 
 1. `bytes commands`: A string of bytes where each byte represents a single command to be executed.
 2. `bytes[] inputs`: An array of byte strings, each containing the encoded parameters for its corresponding command.
