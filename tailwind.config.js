@@ -28,7 +28,7 @@ module.exports = {
     preflight: false,
     container: false,
   },
-  content: ['./src/**/*.{ts,tsx}'],
+  content: ['./src/**/*.{ts,tsx}', './docusaurus.config.js'],
   darkMode: 'class',
   theme: {
     screens: {

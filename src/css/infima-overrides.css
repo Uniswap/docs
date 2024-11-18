@@ -102,3 +102,7 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
+.navbar {
+  all: initial;
+}

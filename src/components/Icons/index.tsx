@@ -170,6 +170,7 @@ export const Menu: FC<{
     </svg>
   )
 }
+
 export const Moon: FC<{
   className?: string
   color?: 'neutral-2'
@@ -181,6 +182,167 @@ export const Moon: FC<{
           'fill-light-neutral-2 dark:fill-dark-neutral-2': color === 'neutral-2',
         })}
         d="M8.75534 1.33337C8.75734 1.33337 8.76001 1.33337 8.76201 1.33337C8.97468 1.33337 9.06667 1.59538 8.90667 1.73338C7.786 2.69804 7.17002 4.2147 7.48402 5.84937C7.83268 7.66337 9.32535 9.04403 11.182 9.29203C12.3547 9.4487 13.4407 9.15203 14.304 8.55937C14.4793 8.4387 14.712 8.59804 14.6594 8.80204C13.9234 11.6794 11.084 13.73 7.84467 13.268C5.15401 12.884 3.02935 10.7247 2.71068 8.06337C2.54402 6.67537 2.85933 5.36738 3.51333 4.28005C4.57333 2.51605 6.52401 1.33337 8.75534 1.33337Z"
+      />
+    </svg>
+  )
+}
+
+export const Edit: FC<{
+  className?: string
+  color?: 'neutral-2'
+}> = ({ className, color = 'neutral-2' }) => {
+  return (
+    <svg className={className} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="Icon">
+        <path
+          id="Vector"
+          d="M10.6667 14.5001H4C2.388 14.5001 1.5 13.6121 1.5 12.0001V5.33348C1.5 3.72148 2.388 2.83348 4 2.83348H6C6.276 2.83348 6.5 3.05748 6.5 3.33348C6.5 3.60948 6.276 3.83348 6 3.83348H4C2.94867 3.83348 2.5 4.28215 2.5 5.33348V12.0001C2.5 13.0515 2.94867 13.5001 4 13.5001H10.6667C11.718 13.5001 12.1667 13.0515 12.1667 12.0001V10.0001C12.1667 9.72415 12.3907 9.50015 12.6667 9.50015C12.9427 9.50015 13.1667 9.72415 13.1667 10.0001V12.0001C13.1667 13.6121 12.2787 14.5001 10.6667 14.5001ZM13.72 3.35348L12.6466 2.28016C12.2666 1.90682 11.66 1.90681 11.28 2.28681L10.38 3.19349L12.8067 5.62014L13.7133 4.72014C14.0933 4.34014 14.0933 3.73348 13.72 3.35348ZM9.67334 3.90015L5.33333 8.26016V10.6668H7.73999L12.1 6.32681L9.67334 3.90015Z"
+          className={cn({
+            'fill-light-neutral-2 dark:fill-dark-neutral-2 group-hover/edit-icon:fill-light-neutral-1 group-hover/edit-icon:dark:fill-dark-neutral-1':
+              color === 'neutral-2',
+          })}
+        />
+      </g>
+    </svg>
+  )
+}
+
+export const Happy: FC<{
+  className?: string
+  color?: 'neutral-2'
+}> = ({ className, color = 'neutral-2' }) => {
+  return (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+      <circle
+        cx="10"
+        cy="10"
+        r="9"
+        className={cn({
+          'stroke-light-neutral-2 dark:stroke-dark-neutral-2 group-hover/positive:stroke-light-neutral-1 group-hover/positive:dark:stroke-dark-neutral-1 group-[.selected]/positive:fill-light-status-success-1 group-[.selected]/positive:dark:fill-dark-status-success-1 group-[.selected]/positive:stroke-light-neutral-1 group-[.selected]/positive:dark:stroke-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+        strokeWidth="2"
+      />
+      <circle
+        cx="7"
+        cy="8"
+        r="1"
+        className={cn({
+          'fill-light-neutral-2 dark:fill-dark-neutral-2 group-hover/positive:fill-light-neutral-1 group-hover/positive:dark:fill-dark-neutral-1 group-[.selected]/positive:fill-light-neutral-1 group-[.selected]/positive:dark:fill-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+      />
+      <circle
+        cx="13"
+        cy="8"
+        r="1"
+        className={cn({
+          'fill-light-neutral-2 dark:fill-dark-neutral-2 group-hover/positive:fill-light-neutral-1 group-hover/positive:dark:fill-dark-neutral-1 group-[.selected]/positive:fill-light-neutral-1 group-[.selected]/positive:dark:fill-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+      />
+      <path
+        d="M6 12C6 12 7.29032 14 10 14C12.7097 14 14 12 14 12"
+        className={cn({
+          'stroke-light-neutral-2 dark:stroke-dark-neutral-2 group-hover/positive:stroke-light-neutral-1 group-hover/positive:dark:stroke-dark-neutral-1 group-[.selected]/positive:stroke-light-neutral-1 group-[.selected]/positive:dark:stroke-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+export const Neutral: FC<{
+  className?: string
+  color?: 'neutral-2'
+}> = ({ className, color = 'neutral-2' }) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 20 20" fill="none">
+      <circle
+        cx="10"
+        cy="10"
+        r="9"
+        className={cn({
+          'stroke-light-neutral-2 dark:stroke-dark-neutral-2 group-hover/neutral:stroke-light-neutral-1 group-hover/neutral:dark:stroke-dark-neutral-1 group-[.selected]/neutral:fill-light-status-warning-1 group-[.selected]/neutral:dark:fill-dark-status-warning-1 group-[.selected]/neutral:stroke-light-neutral-1 group-[.selected]/neutral:dark:stroke-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+        strokeWidth="2"
+      />
+      <circle
+        cx="7"
+        cy="8"
+        r="1"
+        className={cn({
+          'fill-light-neutral-2 dark:fill-dark-neutral-2 group-hover/neutral:fill-light-neutral-1 group-hover/neutral:dark:fill-dark-neutral-1 group-[.selected]/neutral:fill-light-neutral-1 group-[.selected]/neutral:dark:fill-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+      />
+      <circle
+        cx="13"
+        cy="8"
+        r="1"
+        className={cn({
+          'fill-light-neutral-2 dark:fill-dark-neutral-2 group-hover/neutral:fill-light-neutral-1 group-hover/neutral:dark:fill-dark-neutral-1 group-[.selected]/neutral:fill-light-neutral-1 group-[.selected]/neutral:dark:fill-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+      />
+      <path
+        d="M7 13C7 13 7.96774 13 10 13C12.0323 13 13 13 13 13"
+        className={cn({
+          'stroke-light-neutral-2 dark:stroke-dark-neutral-2 group-hover/neutral:stroke-light-neutral-1 group-hover/neutral:dark:stroke-dark-neutral-1 group-[.selected]/neutral:stroke-light-neutral-1 group-[.selected]/neutral:dark:stroke-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+export const Sad: FC<{
+  className?: string
+  color?: 'neutral-2'
+}> = ({ className, color = 'neutral-2' }) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 20 20" fill="none">
+      <circle
+        cx="10"
+        cy="10"
+        r="9"
+        className={cn({
+          'stroke-light-neutral-2 dark:stroke-dark-neutral-2 group-hover/negative:stroke-light-neutral-1 group-hover/negative:dark:stroke-dark-neutral-1 group-[.selected]/negative:fill-light-status-critical-1 group-[.selected]/negative:dark:fill-dark-status-critical-1 group-[.selected]/negative:stroke-light-neutral-1 group-[.selected]/negative:dark:stroke-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+        strokeWidth="2"
+      />
+      <circle
+        cx="7"
+        cy="8"
+        r="1"
+        className={cn({
+          'fill-light-neutral-2 dark:fill-dark-neutral-2 group-hover/negative:fill-light-neutral-1 group-hover/negative:dark:fill-dark-neutral-1 group-[.selected]/negative:fill-light-neutral-1 group-[.selected]/negative:dark:fill-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+      />
+      <circle
+        cx="13"
+        cy="8"
+        r="1"
+        className={cn({
+          'fill-light-neutral-2 dark:fill-dark-neutral-2 group-hover/negative:fill-light-neutral-1 group-hover/negative:dark:fill-dark-neutral-1 group-[.selected]/negative:fill-light-neutral-1 group-[.selected]/negative:dark:fill-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+      />
+      <path
+        d="M14 13C14 13 12.7097 11 10 11C7.29032 11 6 13 6 13"
+        className={cn({
+          'stroke-light-neutral-2 dark:stroke-dark-neutral-2 group-hover/negative:stroke-light-neutral-1 group-hover/negative:dark:stroke-dark-neutral-1 group-[.selected]/negative:stroke-light-neutral-1 group-[.selected]/negative:dark:stroke-dark-neutral-1':
+            color === 'neutral-2',
+        })}
+        strokeWidth="2"
+        strokeLinecap="round"
       />
     </svg>
   )
