@@ -16,6 +16,7 @@ const ThemeSwitch: FC<{ className?: string }> = ({ className }) => {
 
       if (!currentTheme) {
         ThemeManager.set('light')
+        setTheme('light')
       } else {
         setTheme(currentTheme)
       }

@@ -18,7 +18,7 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
   )
 
   return (
-    <div className="flex flex-row space-x-4">
+    <div className="flex flex-row space-x-4 !mt-9">
       <div className="Sentiment__question">Was this helpful?</div>
       <div className="flex flex-row space-x-1">
         <SentimentButton
