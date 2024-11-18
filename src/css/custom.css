@@ -23,6 +23,14 @@
   @apply grid grid-cols-4 gap-gap-large sm:grid-cols-8;
 }
 
+.content-page-padding {
+  @apply p-6 pb-10 sm:p-12 sm:pt-6 md:px-10 md:pb-12;
+}
+
+.divider {
+  @apply border-t border-light-surface-3 dark:border-dark-surface-3;
+}
+
 .breadcrumbs__link {
   @apply !text-light-neutral-1 dark:!text-dark-neutral-1 !bg-transparent !p-0 !body-3;
 }
