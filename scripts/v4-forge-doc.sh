@@ -33,21 +33,24 @@ copy_docs() {
         # Fix the Git source link
         # replace `https://github.com/Uniswap/docs/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/IPositionManager.sol`
         # with `https://github.com/Uniswap/v4-{component}/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/IPositionManager.sol`
-        sed -i "s|Uniswap/docs/|Uniswap/v4-${component}/|g" "$new_file"
+        sed -i '' -e "s|uniswap/docs/|uniswap/v4-${component}/|g" "$new_file"
 
         # Add note: 
-        sed -i '3i | Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)' "$new_file"
+        # sed -i '' '3i\ 
+        sed -i '' '2s|$| - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)|' "$new_file"
+
 
         # Replace relative path links within the file with full paths
-        sed -i "s|/src/\([^/]\+\)/\([^/]\+\)\.sol/\([^/]\+\)\.\([^/]\+\)\.md|contracts/v4/reference/${component}/\1/\2.md|g" "$new_file"
+        # sed -i '' -e "s|/src/\([^/]\+\)/\([^/]\+\)\.sol/\([^/]\+\)\.\([^/]\+\)\.md|contracts/v4/reference/${component}/\1/\2.md|g" "$new_file"
+        sed -i '' -e "s|/src/\([^/]\{1,\}\)/\([^/]\{1,\}\)\.sol/\([^/]\{1,\}\)\.\([^/]\{1,\}\)\.md|contracts/v4/reference/${component}/\1/\2.md|g" "$new_file"
 
         # specially handle core paths
         if [ "$component" == "core" ]; then
             # replaces: /src/ProtocolFees.sol/abstract.ProtocolFees.md to contracts/v4/reference/core/ProtocolFees.md
-            sed -i -E 's|/src/([^/]+)\.sol/abstract\.[^/]+\.md|contracts/v4/reference/core/\1.md|g' "$new_file"
+            sed -i '' -E 's|/src/([^/]+)\.sol/abstract\.[^/]+\.md|contracts/v4/reference/core/\1.md|g' "$new_file"
 
             # replaces: /src/interfaces/external/IERC6909Claims.sol/interface.IERC6909Claims.md to contracts/v4/reference/core/interfaces/IERC6909Claims.md
-            sed -i -E 's|/src/interfaces/external/([^/]+)\.sol/interface\.[^/]+\.md|contracts/v4/reference/core/interfaces/\1.md|g' "$new_file"
+            sed -i '' -E 's|/src/interfaces/external/([^/]+)\.sol/interface\.[^/]+\.md|contracts/v4/reference/core/interfaces/\1.md|g' "$new_file"
         fi
 
         echo "Copied: $file -> $new_file"

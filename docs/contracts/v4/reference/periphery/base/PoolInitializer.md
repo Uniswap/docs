@@ -1,6 +1,5 @@
 # PoolInitializer
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/base/PoolInitializer.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/base/PoolInitializer.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [ImmutableState](contracts/v4/reference/periphery/base/ImmutableState.md)
@@ -17,10 +16,7 @@ Initialize a Uniswap v4 Pool
 
 
 ```solidity
-function initializePool(PoolKey calldata key, uint160 sqrtPriceX96, bytes calldata hookData)
-    external
-    payable
-    returns (int24);
+function initializePool(PoolKey calldata key, uint160 sqrtPriceX96) external payable returns (int24);
 ```
 **Parameters**
 
@@ -28,6 +24,5 @@ function initializePool(PoolKey calldata key, uint160 sqrtPriceX96, bytes callda
 |----|----|-----------|
 |`key`|`PoolKey`|the PoolKey of the pool to initialize|
 |`sqrtPriceX96`|`uint160`|the initial sqrtPriceX96 of the pool|
-|`hookData`|`bytes`|the optional data passed to the hook's initialize functions|
 
 

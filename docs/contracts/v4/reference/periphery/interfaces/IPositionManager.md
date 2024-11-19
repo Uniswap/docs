@@ -1,9 +1,8 @@
 # IPositionManager
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/IPositionManager.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/IPositionManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[INotifier](contracts/v4/reference/periphery/interfaces/INotifier.md)
+[INotifier](contracts/v4/reference/periphery/interfaces/INotifier.md), [IImmutableState](contracts/v4/reference/periphery/interfaces/IImmutableState.md)
 
 Interface for the PositionManager contract
 
@@ -116,5 +115,15 @@ Thrown when the block.timestamp exceeds the user-provided deadline
 
 ```solidity
 error DeadlinePassed(uint256 deadline);
+```
+
+### PoolManagerMustBeLocked
+Thrown when calling transfer, subscribe, or unsubscribe when the PoolManager is unlocked.
+
+*This is to prevent hooks from being able to trigger notifications at the same time the position is being modified.*
+
+
+```solidity
+error PoolManagerMustBeLocked();
 ```
 

@@ -1,6 +1,5 @@
 # DeltaResolver
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/base/DeltaResolver.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/base/DeltaResolver.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [ImmutableState](contracts/v4/reference/periphery/base/ImmutableState.md)
@@ -14,6 +13,8 @@ Abstract contract used to sync, send, and settle funds to the pool manager
 ### _take
 
 Take an amount of currency out of the PoolManager
+
+*Returns early if the amount is 0*
 
 
 ```solidity
@@ -33,6 +34,8 @@ function _take(Currency currency, address recipient, uint256 amount) internal;
 Pay and settle a currency to the PoolManager
 
 *The implementing contract must ensure that the `payer` is a secure address*
+
+*Returns early if the amount is 0*
 
 
 ```solidity
@@ -126,6 +129,26 @@ Calculates the amount for a take action
 function _mapTakeAmount(uint256 amount, Currency currency) internal view returns (uint256);
 ```
 
+### _mapWrapUnwrapAmount
+
+Calculates the sanitized amount before wrapping/unwrapping.
+
+
+```solidity
+function _mapWrapUnwrapAmount(Currency inputCurrency, uint256 amount, Currency outputCurrency)
+    internal
+    view
+    returns (uint256);
+```
+**Parameters**
+
+|Name|Type|Description|
+|----|----|-----------|
+|`inputCurrency`|`Currency`|The currency, either native or wrapped native, that this contract holds|
+|`amount`|`uint256`|The amount to wrap or unwrap. Can be CONTRACT_BALANCE, OPEN_DELTA or a specific amount|
+|`outputCurrency`|`Currency`|The currency after the wrap/unwrap that the user may owe a balance in on the poolManager|
+
+
 ## Errors
 ### DeltaNotPositive
 Emitted trying to settle a positive delta.
@@ -141,5 +164,13 @@ Emitted trying to take a negative delta.
 
 ```solidity
 error DeltaNotNegative(Currency currency);
+```
+
+### InsufficientBalance
+Emitted when the contract does not have enough balance to wrap or unwrap.
+
+
+```solidity
+error InsufficientBalance();
 ```
 

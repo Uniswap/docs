@@ -1,6 +1,5 @@
 # BaseHook
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/base/hooks/BaseHook.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/base/hooks/BaseHook.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 IHooks, [SafeCallback](contracts/v4/reference/periphery/base/SafeCallback.md)
@@ -71,7 +70,7 @@ The hook called before the state of a pool is initialized
 
 
 ```solidity
-function beforeInitialize(address, PoolKey calldata, uint160, bytes calldata) external virtual returns (bytes4);
+function beforeInitialize(address, PoolKey calldata, uint160) external virtual returns (bytes4);
 ```
 **Parameters**
 
@@ -80,7 +79,6 @@ function beforeInitialize(address, PoolKey calldata, uint160, bytes calldata) ex
 |`<none>`|`address`||
 |`<none>`|`PoolKey`||
 |`<none>`|`uint160`||
-|`<none>`|`bytes`||
 
 **Returns**
 
@@ -95,7 +93,7 @@ The hook called after the state of a pool is initialized
 
 
 ```solidity
-function afterInitialize(address, PoolKey calldata, uint160, int24, bytes calldata) external virtual returns (bytes4);
+function afterInitialize(address, PoolKey calldata, uint160, int24) external virtual returns (bytes4);
 ```
 **Parameters**
 
@@ -105,7 +103,6 @@ function afterInitialize(address, PoolKey calldata, uint160, int24, bytes callda
 |`<none>`|`PoolKey`||
 |`<none>`|`uint160`||
 |`<none>`|`int24`||
-|`<none>`|`bytes`||
 
 **Returns**
 

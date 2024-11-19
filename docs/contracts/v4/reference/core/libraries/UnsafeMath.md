@@ -1,6 +1,5 @@
 # UnsafeMath
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/libraries/UnsafeMath.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/libraries/UnsafeMath.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Contains methods that perform common math functions but do not do any overflow or underflow checks
 
@@ -10,7 +9,7 @@ Contains methods that perform common math functions but do not do any overflow o
 
 Returns ceil(x / y)
 
-*division by 0 has unspecified behavior, and must be checked externally*
+*division by 0 will return 0, and should be checked externally*
 
 
 ```solidity
@@ -34,7 +33,7 @@ function divRoundingUp(uint256 x, uint256 y) internal pure returns (uint256 z);
 
 Calculates floor(a×b÷denominator)
 
-*division by 0 has unspecified behavior, and must be checked externally*
+*division by 0 will return 0, and should be checked externally*
 
 
 ```solidity

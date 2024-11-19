@@ -1,6 +1,8 @@
 # ImmutableState
-[Git Source](https://github.com/Uniswap/v4-periphery/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/base/ImmutableState.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/base/ImmutableState.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+
+**Inherits:**
+[IImmutableState](contracts/v4/reference/periphery/interfaces/IImmutableState.md)
 
 A collection of immutable state variables, commonly used across multiple contracts
 

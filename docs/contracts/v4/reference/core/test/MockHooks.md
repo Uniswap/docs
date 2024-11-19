@@ -1,6 +1,5 @@
 # MockHooks
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/test/MockHooks.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/test/MockHooks.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [IHooks](contracts/v4/reference/core/interfaces/IHooks.md)
@@ -96,20 +95,14 @@ mapping(PoolId => uint16) public lpFees;
 
 
 ```solidity
-function beforeInitialize(address, PoolKey calldata, uint160, bytes calldata hookData)
-    external
-    override
-    returns (bytes4);
+function beforeInitialize(address, PoolKey calldata, uint160) external override returns (bytes4);
 ```
 
 ### afterInitialize
 
 
 ```solidity
-function afterInitialize(address, PoolKey calldata, uint160, int24, bytes calldata hookData)
-    external
-    override
-    returns (bytes4);
+function afterInitialize(address, PoolKey calldata, uint160, int24) external override returns (bytes4);
 ```
 
 ### beforeAddLiquidity

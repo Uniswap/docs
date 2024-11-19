@@ -1,6 +1,5 @@
 # CustomRevert
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/libraries/CustomRevert.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/libraries/CustomRevert.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Contains functions for reverting with custom errors with different argument types efficiently
 
@@ -76,12 +75,23 @@ function revertWith(bytes4 selector, address value1, address value2) internal pu
 
 ### bubbleUpAndRevertWith
 
-bubble up the revert message returned by a call and revert with the selector provided
+bubble up the revert message returned by a call and revert with a wrapped ERC-7751 error
 
-*this function should only be used with custom errors of the type `CustomError(address target, bytes revertReason)`*
+*this method can be vulnerable to revert data bombs*
 
 
 ```solidity
-function bubbleUpAndRevertWith(bytes4 selector, address addr) internal pure;
+function bubbleUpAndRevertWith(address revertingContract, bytes4 revertingFunctionSelector, bytes4 additionalContext)
+    internal
+    pure;
+```
+
+## Errors
+### WrappedError
+*ERC-7751 error for wrapping bubbled up reverts*
+
+
+```solidity
+error WrappedError(address target, bytes4 selector, bytes reason, bytes details);
 ```
 

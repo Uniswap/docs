@@ -1,6 +1,5 @@
 # ProtocolFees
-[Git Source](https://github.com/Uniswap/v4-core/blob/1141642f8ba4665a50660886a8a8401526677045/src/ProtocolFees.sol)
-| Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/ProtocolFees.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [IProtocolFees](contracts/v4/reference/core/interfaces/IProtocolFees.md), Owned
@@ -23,14 +22,7 @@ Returns the current protocol fee controller address
 
 
 ```solidity
-IProtocolFeeController public protocolFeeController;
-```
-
-
-### BLOCK_LIMIT_BPS
-
-```solidity
-uint256 private constant BLOCK_LIMIT_BPS = 100;
+address public protocolFeeController;
 ```
 
 
@@ -39,7 +31,7 @@ uint256 private constant BLOCK_LIMIT_BPS = 100;
 
 
 ```solidity
-constructor() Owned(msg.sender);
+constructor(address initialOwner) Owned(initialOwner);
 ```
 
 ### setProtocolFeeController
@@ -48,13 +40,13 @@ Sets the protocol fee controller
 
 
 ```solidity
-function setProtocolFeeController(IProtocolFeeController controller) external onlyOwner;
+function setProtocolFeeController(address controller) external onlyOwner;
 ```
 **Parameters**
 
 |Name|Type|Description|
 |----|----|-----------|
-|`controller`|`IProtocolFeeController`|The new protocol fee controller|
+|`controller`|`address`|The new protocol fee controller|
 
 
 ### setProtocolFee
@@ -118,20 +110,6 @@ function _isUnlocked() internal virtual returns (bool);
 
 ```solidity
 function _getPool(PoolId id) internal virtual returns (Pool.State storage);
-```
-
-### _fetchProtocolFee
-
-Fetch the protocol fees for a given pool
-
-*the success of this function is false if the call fails or the returned fees are invalid*
-
-*to prevent an invalid protocol fee controller from blocking pools from being initialized
-the success of this function is NOT checked on initialize and if the call fails, the protocol fees are set to 0.*
-
-
-```solidity
-function _fetchProtocolFee(PoolKey memory key) internal returns (uint24 protocolFee);
 ```
 
 ### _updateProtocolFees
