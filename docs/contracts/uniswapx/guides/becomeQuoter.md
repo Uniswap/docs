@@ -83,7 +83,7 @@ All new quoter instances will start by being onboarded to our [Beta environment]
 
 1. **Provide their quote server URL** to your Uniswap Labs contact along with the contract address you’re using to fill. We recommend that this be the same quoting infrastructure that you plan to run in production. 
 2. **(Optional) Provide notification webhook URL** to you Uniswap Labs contact. We’ll set up notifications of won orders to be served there. Alternatively, you can poll the [Beta /orders Endpoint](https://beta.api.uniswap.org/v2/uniswapx/docs) for won orders. 
-3. **Begin sending quotes and orders to beta** via the [UniswapX CLI](https://github.com/Uniswap/uniswapx-tool?tab=readme-ov-file#simple-order-creation). 
+3. **Begin sending quotes and orders to beta** via the [UniswapX CLI](https://github.com/Uniswap/uniswapx-tool?tab=readme-ov-file#simple-order-creation). Reach out to the Uniswap team to be added to the private github.
 4. **Send hashes of 5 filled transactions** that demonstrate that the integration was able to fill during the exclusive period; specifically before [decayStartTime](https://github.com/Uniswap/UniswapX/blob/abd7a0b080148fc42ef7c86536d14de714eec4c7/src/lib/ExclusiveDutchOrderLib.sol#L12)
 
 The Uniswap Labs team will review the 5 transactions to confirm they were successful exclusive fills. Once they are confirmed, the quoters setup will be promoted to production and will start receiving traffic.
