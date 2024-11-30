@@ -47,7 +47,7 @@ contract MySubscriber is ISubscriber {
 
 ## 2. A caveat on `unsubscribe()`
 
-There is a variable [`unsubscribeGasLimit`](https://github.com/Uniswap/v4-periphery/blob/main/src/base/Notifier.sol#L17) specifically set at deployment of `PositionManager` to prevent gas griefing on `unsubscribe()` - which could result in the subscriber contract not being notified during `unsubscribe()`. 
+There is a variable [`unsubscribeGasLimit`](/contracts/v4/reference/periphery/interfaces/INotifier#unsubscribegaslimit) specifically set at deployment of `PositionManager` to prevent gas griefing on `unsubscribe()` - which could result in the subscriber contract not being notified during `unsubscribe()`. 
 
 If notifying the subscriber contract is not necessary users can still specify a gas limit where `notifyUnsubscribe()` hits `OutOfGas` and reverts yet the unsubscription will still succeed.
 
