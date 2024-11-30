@@ -231,4 +231,4 @@ The effect of the transaction is to mint a new Position NFT. We should see a new
 
 ## Next Steps
 
-Once you have minted a position, our next guide ([Adding and Removing Liquidity](./03-modifying-position.md)) will demonstrate how you can add and remove liquidity from that minted position!
+Once you have minted a position, our next guide [Adding and Removing Liquidity](./04-modifying-position.md) will demonstrate how you can add and remove liquidity from that minted position!
