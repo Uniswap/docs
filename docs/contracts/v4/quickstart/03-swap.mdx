@@ -14,7 +14,17 @@ Set up a foundry project and install the necessary dependencies:
 forge install uniswap/v4-core
 forge install uniswap/v4-periphery
 forge install uniswap/permit2
-forge install Uniswap/universal-router
+forge install uniswap/universal-router
+forge install OpenZeppelin/openzeppelin-contracts
+```
+In the `remappings.txt`, add the following:
+```
+@uniswap/v4-core/=lib/v4-core/
+@uniswap/v4-periphery/=lib/v4-periphery/
+@uniswap/permit2/=lib/permit2/
+@uniswap/universal-router/=lib/universal-router/
+@openzeppelin/contracts/=lib/openzeppelin-contracts/
+[...]
 ```
 
 ## Step 1: Set Up the Project
