@@ -1,30 +1,60 @@
 ---
-title: Swap
+title: Swap routing
 ---
 
-# Swapping on Uniswap v4
-The `Universal Router` is a flexible, gas-efficient contract designed to execute complex swap operations across various protocols, including Uniswap v4. It serves as an intermediary between users and the Uniswap v4 `PoolManager`, handling the intricacies of swap execution.
+# Introduction to Universal Router for Uniswap v4 Swaps
 
-Although it's technically possible to interact directly with the PoolManager contract for swaps, this approach is not recommended due to its complexity and potential inefficiencies. Instead, the Universal Router is the preferred method, as it abstracts away these complexities. By using the Universal Router, developers and users can ensure a more straightforward, efficient, and standardized approach to executing swaps on v4 pools, aligning with best practices for Uniswap interactions.
+Uniswap v4 introduces a new architecture where all pools are managed by a single PoolManager contract. While the underlying architecture uses a callback system for swaps, developers can still use the Universal Router to execute swaps on v4 pools, just as you would for v2 or v3.
 
-# Configuring Universal Router for Uniswap v4 Swaps
+## What is the Universal Router?
 
-Set up a foundry project and install the necessary dependencies:
-```bash
-forge install uniswap/v4-core
-forge install uniswap/v4-periphery
-forge install uniswap/permit2
-forge install Uniswap/universal-router
+The Universal Router is a flexible, gas-efficient contract designed to execute complex swap operations across various protocols, including Uniswap v4. It serves as an intermediary between users and the Uniswap v4 `PoolManager`, handling the intricacies of swap execution.
+
+While it’s technically possible to interact directly with the PoolManager contract for swaps, this approach is generally not recommended due to its complexity and potential inefficiencies. The Universal Router is designed to abstract away these complexities, providing a more straightforward and efficient method for executing swaps on v4 pools.
+
+## UniversalRouter command encoding
+
+The [Universal Router](/contracts/universal-router/overview) uses a unique encoding system for its commands and inputs, which is crucial to understand when configuring it for v4 swaps.
+
+When calling `UniversalRouter.execute()`, you provide two main parameters:
+
+1. `bytes commands`: A string of bytes where each byte represents a single command to be executed.
+2. `bytes[] inputs`: An array of byte strings, each containing the encoded parameters for its corresponding command.
+
+The `commands[i]` byte corresponds to the `inputs[i]` parameters, allowing for a series of operations to be defined and executed in sequence.
+
+Each command is encoded as a single byte (`bytes1`) with a specific structure:
+
+```
+0 1 2 3 4 5 6 7
+┌─┬─┬───────────┐
+│f│r|  command  │
+└─┴─┴───────────┘
 ```
 
-## Step 1: Set Up the Project
+- The first bit (`f`) is a flag that determines whether the command is allowed to revert without causing the entire transaction to fail. This enables partial execution of complex transactions.
+- The second bit (`r`) is reserved for future use, providing flexibility for potential upgrades.
+- The remaining 6 bits represent the specific command to be executed.
+
+# Configuring Universal Router for Uniswap v4 Swaps
+
+## Use Cases
+
+Developers might need to configure the Universal Router for swapping on Uniswap v4 pools in several scenarios:
+
+1. **Building a DEX aggregator**: If you’re creating a platform that finds the best rates across multiple DEXes, you’ll want to include Uniswap v4 pools in your options.
+2. **Developing a trading bot**: Automated trading strategies often require the ability to execute swaps programmatically across various pools and versions.
+3. **Creating a Dapp**: Many DeFi applications (lending platforms, yield aggregators, etc.) need to perform token swaps as part of their core functionality.
+
+This guide focuses on how to interact with Universal Router from an on-chain contract.
+
+## Step 1: Set Up the Project
 
 First, we need to set up our project and import the necessary dependencies. We’ll create a new Solidity contract for our example.
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-
 import { UniversalRouter } from "@uniswap/universal-router/contracts/UniversalRouter.sol";
 import { Commands } from "@uniswap/universal-router/contracts/libraries/Commands.sol";
 import { IPoolManager } from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
@@ -32,20 +62,16 @@ import { IV4Router } from "@uniswap/v4-periphery/contracts/interfaces/IV4Router.
 import { Actions } from "@uniswap/v4-periphery/contracts/libraries/Actions.sol";
 import { IPermit2 } from "@uniswap/permit2/contracts/interfaces/IPermit2.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-
 contract Example {
     using StateLibrary for IPoolManager;
-
     UniversalRouter public immutable router;
     IPoolManager public immutable poolManager;
     IPermit2 public immutable permit2;
-
     constructor(address _router, address _poolManager, address _permit2) {
         router = UniversalRouter(_router);
         poolManager = IPoolManager(_poolManager);
         permit2 = IPermit2(_permit2);
     }
-
     // We'll add more functions here
 }
 ```
@@ -64,11 +90,10 @@ To use the Universal Router imports, you'll need to set up remappings in your pr
 
 ```
 @uniswap/universal-router/=lib/universal-router/
-
 [...]
 ```
 
-## Step 2: Implement Token Approval with Permit2
+## Step 2: Implement Token Approval with Permit2
 
 `UniversalRouter` integrates with [Permit2](https://github.com/Uniswap/permit2), to enable users to have more safety, flexibility, and control over their ERC20 token approvals.
 
@@ -89,7 +114,7 @@ function approveTokenWithPermit2(
 
 This function first approves Permit2 to spend the token, then uses Permit2 to approve the UniversalRouter with a specific amount and expiration time.
 
-## Step 3: Implementing a Swap Function
+## Step 3: Implementing a Swap Function
 
 ### 3.1: Function Signature
 
@@ -107,7 +132,7 @@ function swapExactInputSingle(
 
 The function takes:
 
-- `key`: The [PoolKey](https://github.com/Uniswap/v4-core/blob/main/src/types/PoolKey.sol) struct that identifies the v4 pool
+- `key`: The PoolKey struct that identifies the v4 pool
 - `amountIn`: The exact amount of tokens to swap
 - `minAmountOut`: The minimum amount of output tokens expected
 
@@ -117,11 +142,11 @@ When encoding a swap command for the Universal Router, we need to choose between
 
 1. Exact Input Swaps:
 
-Use this swap-type when you know the exact amount of tokens you want to swap in, and you're willing to accept any amount of output tokens above your minimum. This is common when you want to sell a specific amount of tokens.
+    Use this swap-type when you know the exact amount of tokens you want to swap in, and you're willing to accept any amount of output tokens above your minimum. This is common when you want to sell a specific amount of tokens.
 
 2. Exact Output Swaps:
 
-Use this swap-type when you need a specific amount of output tokens, and you're willing to spend up to a maximum amount of input tokens. This is useful when you need to acquire a precise amount of tokens, for example, to repay a loan or meet a specific requirement.
+    Use this swap-type when you need a specific amount of output tokens, and you're willing to spend up to a maximum amount of input tokens. This is useful when you need to acquire a precise amount of tokens, for example, to repay a loan or meet a specific requirement.
 
 Next, we encode the swap command:
 
@@ -160,7 +185,6 @@ For our v4 swap, we need to prepare three parameters that correspond to our enco
 
 ```solidity
 bytes[] memory params = new bytes[](3);
-
 // First parameter: swap configuration
 params[0] = abi.encode(
     IV4Router.ExactInputSingleParams({
@@ -172,22 +196,20 @@ params[0] = abi.encode(
         hookData: bytes("")             // no hook data needed
     })
 );
-
 // Second parameter: specify input tokens for the swap
 // encode SETTLE_ALL parameters
 params[1] = abi.encode(key.currency0, amountIn);
-
 // Third parameter: specify output tokens from the swap
 params[2] = abi.encode(key.currency1, minAmountOut);
 ```
 
-Each encoded parameter corresponds to a specific action in our swap:
+Each encoded parameter serves a specific purpose:
 
 1. The first parameter configures how the swap should be executed, defining the pool, amounts, and other swap-specific details
 2. The second parameter defines what tokens we're putting into the swap
 3. The third parameter defines what tokens we expect to receive from the swap
 
-The sequence of these parameters must match the sequence of actions we defined earlier (`SWAP_EXACT_IN_SINGLE`, `SETTLE_ALL`, and `TAKE_ALL`).
+These parameters work in conjunction with the actions we encoded earlier (`SWAP_EXACT_IN_SINGLE`, `SETTLE_ALL`, and `TAKE_ALL`) to execute our swap operation.
 
 ### 3.5: Executing the Swap
 
@@ -196,7 +218,6 @@ Now we can execute the swap using the Universal Router:
 ```solidity
 // Combine actions and params into inputs
 inputs[0] = abi.encode(actions, params);
-
 // Execute the swap
 router.execute(commands, inputs, block.timestamp);
 ```
@@ -233,14 +254,12 @@ function swapExactInputSingle(
 // Encode the Universal Router command
     bytes memory commands = abi.encodePacked(uint8(Commands.V4_SWAP));
     bytes[] memory inputs = new bytes[](1);
-
 // Encode V4Router actions
     bytes memory actions = abi.encodePacked(
         uint8(Actions.SWAP_EXACT_IN_SINGLE),
         uint8(Actions.SETTLE_ALL),
         uint8(Actions.TAKE_ALL)
     );
-
 // Prepare parameters for each action
     bytes[] memory params = new bytes[](3);
     params[0] = abi.encode(
@@ -255,13 +274,10 @@ function swapExactInputSingle(
     );
     params[1] = abi.encode(key.currency0, amountIn);
     params[2] = abi.encode(key.currency1, minAmountOut);
-
 // Combine actions and params into inputs
     inputs[0] = abi.encode(actions, params);
-
 // Execute the swap
     router.execute(commands, inputs, block.timestamp);
-
 // Verify and return the output amount
     amountOut = IERC20(key.currency1).balanceOf(address(this));
     require(amountOut >= minAmountOut, "Insufficient output amount");
