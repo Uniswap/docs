@@ -4,37 +4,67 @@ title: Subscriber
 
 # Context
 
-For developers looking to support custom _liquidity mining_, subscriber contracts receive notifications about a position.
-Rewards can be issued proportional to the liquidity's fee revenue, without the need of custodying the position.
+For developers looking to support custom _liquidity mining_, Subscriber contracts can be used to receive notifications about position modifications or transfers.
 
 ---
 
 # Guide
 
-## 1. Inherit `ISubscriber`
+## 1. Implement the [`ISubscriber`](https://github.com/Uniswap/v4-periphery/blob/main/src/interfaces/ISubscriber.sol) interface
 
-Please see [`ISubscriber`](https://github.com/Uniswap/v4-periphery/blob/main/src/interfaces/ISubscriber.sol) for the interface definition
+Can also refer to [MockSubscriber](https://github.com/Uniswap/v4-periphery/blob/main/test/mocks/MockSubscriber.sol) for an actual implementation example.
 
 ```solidity
 import {ISubscriber} from "v4-periphery/src/interfaces/ISubscriber.sol";
 
 contract MySubscriber is ISubscriber {
-    // Implement the ISubscriber interface
+    uint256 public notifySubscribeCount;
+    uint256 public notifyUnsubscribeCount;
+    uint256 public notifyModifyLiquidityCount;
+    uint256 public notifyBurnCount;
+    // other implementations...
+
+    function notifySubscribe(uint256, bytes memory) external onlyByPosm {
+        notifySubscribeCount++;
+    }
+
+    function notifyUnsubscribe(uint256) external onlyByPosm {
+        notifyUnsubscribeCount++;
+    }
+
+    function notifyModifyLiquidity(uint256, int256, BalanceDelta) external onlyByPosm {
+        notifyModifyLiquidityCount++;
+    }
+
+    function notifyBurn(uint256, address, PositionInfo, uint256, BalanceDelta)
+        external
+        onlyByPosm
+    {
+        notifyBurnCount++;
+    }
 }
 ```
 
-Developers should implement each function, and do proper accounting for rewards -- rewards should be proportional
-to a position's liquidity or fee-revenue.
+## 2. A caveat on `unsubscribe()`
 
-## 2. A note on `unsubscribe()`
+There is a variable [`unsubscribeGasLimit`](/contracts/v4/reference/periphery/interfaces/INotifier#unsubscribegaslimit) specifically set at deployment of `PositionManager` to prevent gas griefing on `unsubscribe()` - which could result in the subscriber contract not being notified during `unsubscribe()`. 
 
-Unsubscribe has a gas limit to prevent griefing. The value is determined at deployment, and is readable via `unsubscribeGasLimit()` on `PositionManager`
+If notifying the subscriber contract is not necessary users can still specify a gas limit where `notifyUnsubscribe()` hits `OutOfGas` and reverts yet the unsubscription will still succeed.
 
-If `notifyUnsubscribe()` reverts, the position will still successfully unsubscribe.
+From [`_unsubscribe()`](https://github.com/Uniswap/v4-periphery/blob/main/src/base/Notifier.sol#L80) on `Notifier`:
+```solidity
+if (address(_subscriber).code.length > 0) {
+    // require that the remaining gas is sufficient to notify the subscriber
+    // otherwise, users can select a gas limit where .notifyUnsubscribe hits OutOfGas yet the
+    // transaction/unsubscription can still succee
+    if (gasleft() < unsubscribeGasLimit) GasLimitTooLow.selector.revertWith();
+    try _subscriber.notifyUnsubscribe{gas: unsubscribeGasLimit}(tokenId) {} catch {}
+}
+```
 
 ## 3. Opt-in to a subscriber contract
 
-To opt-in to a subscriber contract, call `subscribe()` on the `PositionManager` contract.
+To opt-in to a subscriber contract, call [`subscribe()`](/contracts/v4/reference/periphery/interfaces/INotifier#subscribe) on `PositionManager`.
 
 ```solidity
 import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
