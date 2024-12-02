@@ -123,7 +123,7 @@ When triggering the `afterSwap` hook function, there are some parameters we can 
 A brief overview of the parameters:
 - `sender` The initial `msg.sender` for the `PoolManager.swap` call - typically a swap router
 - `key` The key for the pool
-- `params` The parameters for the swap i.e. [`SwapParams`](https://github.com/Uniswap/v4-core/blob/main/src/interfaces/IPoolManager.sol#L143) from `IPoolManager`
+- `params` The parameters for the swap i.e. [`SwapParams`](/contracts/v4/reference/core/interfaces/IPoolManager#swapparams) from `IPoolManager`
 - `delta` The amount owed to the caller (positive) or owed to the pool (negative)
 - `hookData` Arbitrary data handed into the `PoolManager` by the swapper to be be passed on to the hook
    
