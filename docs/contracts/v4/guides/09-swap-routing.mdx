@@ -36,7 +36,7 @@ Each command is encoded as a single byte (`bytes1`) with a specific structure:
 - The second bit (`r`) is reserved for future use, providing flexibility for potential upgrades.
 - The remaining 6 bits represent the specific command to be executed.
 
-# Configuring Universal Router for Uniswap v4 Swaps
+# Configuring Universal Router for Uniswap v4 Swaps
 
 ## Use Cases
 
@@ -48,9 +48,27 @@ Developers might need to configure the Universal Router for swapping on Uniswap 
 
 This guide focuses on how to interact with Universal Router from an on-chain contract.
 
-## Step 1: Set Up the Project
+## Step 1: Set Up the Project
 
-First, we need to set up our project and import the necessary dependencies. We’ll create a new Solidity contract for our example.
+First, we need to set up our project and install the necessary dependencies.
+```bash
+forge install uniswap/v4-core
+forge install uniswap/v4-periphery
+forge install uniswap/permit2
+forge install uniswap/universal-router
+forge install OpenZeppelin/openzeppelin-contracts
+```
+In the `remappings.txt`, add the following:
+```
+@uniswap/v4-core/=lib/v4-core/
+@uniswap/v4-periphery/=lib/v4-periphery/
+@uniswap/permit2/=lib/permit2/
+@uniswap/universal-router/=lib/universal-router/
+@openzeppelin/contracts/=lib/openzeppelin-contracts/
+[...]
+```
+
+We’ll create a new Solidity contract for our example.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -89,17 +107,7 @@ In this step, we’re importing the necessary contracts and interfaces:
 - `IPermit2`: This interface allows us to interact with the Permit2 contract, which provides enhanced token approval functionality.
 - `StateLibrary`: This provides optimized functions for interacting with the PoolManager’s state. By using `StateLibrary`, we can more efficiently read and manipulate pool states, which is crucial for many operations in Uniswap v4.
 
-**Important note:**
-
-To use the Universal Router imports, you'll need to set up remappings in your project. This can be done using a `remappings.txt` file:
-
-```
-@uniswap/universal-router/=lib/universal-router/
-
-[...]
-```
-
-## Step 2: Implement Token Approval with Permit2
+## Step 2: Implement Token Approval with Permit2
 
 `UniversalRouter` integrates with [Permit2](https://github.com/Uniswap/permit2), to enable users to have more safety, flexibility, and control over their ERC20 token approvals.
 
@@ -109,8 +117,8 @@ Here, for testing purposes, we set up our contract to use Permit2 with the Unive
 
 ```solidity
 function approveTokenWithPermit2(
-	address token, 
-	uint160 amount, 
+	address token,
+	uint160 amount,
 	uint48 expiration
 ) external {
     IERC20(token).approve(address(permit2), type(uint256).max);
@@ -120,7 +128,7 @@ function approveTokenWithPermit2(
 
 This function first approves Permit2 to spend the token, then uses Permit2 to approve the UniversalRouter with a specific amount and expiration time.
 
-## Step 3: Implementing a Swap Function
+## Step 3: Implementing a Swap Function
 
 ### 3.1: Function Signature
 
@@ -148,11 +156,11 @@ When encoding a swap command for the Universal Router, we need to choose between
 
 1. Exact Input Swaps:
 
-    Use this swap-type when you know the exact amount of tokens you want to swap in, and you're willing to accept any amount of output tokens above your minimum. This is common when you want to sell a specific amount of tokens.
+Use this swap-type when you know the exact amount of tokens you want to swap in, and you're willing to accept any amount of output tokens above your minimum. This is common when you want to sell a specific amount of tokens.
 
 2. Exact Output Swaps:
 
-    Use this swap-type when you need a specific amount of output tokens, and you're willing to spend up to a maximum amount of input tokens. This is useful when you need to acquire a precise amount of tokens, for example, to repay a loan or meet a specific requirement.
+Use this swap-type when you need a specific amount of output tokens, and you're willing to spend up to a maximum amount of input tokens. This is useful when you need to acquire a precise amount of tokens, for example, to repay a loan or meet a specific requirement.
 
 Next, we encode the swap command:
 
