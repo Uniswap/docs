@@ -93,7 +93,7 @@ function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calld
 
 ### `beforeSwap` Parameters
 
-When triggering the `beforeSwap` hook function, there are some parameters we can make use of to customize or extend the behavior of `swap`. These parameters are described in [`beforeSwap`](https://github.com/Uniswap/v4-core/blob/main/src/interfaces/IHooks.sol#L103) from `IHooks`.
+When triggering the `beforeSwap` hook function, there are some parameters we can make use of to customize or extend the behavior of `swap`. These parameters are described in [`beforeSwap`](/contracts/v4/reference/core/interfaces/IHooks#beforeswap) from `IHooks`.
 
 A brief overview of the parameters:
 - `sender` The initial `msg.sender` for the `PoolManager.swap` call - typically a swap router
