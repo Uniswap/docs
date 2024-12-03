@@ -207,3 +207,25 @@ And we can execute the donation:
 After executing the donation through the PoolManager, we need to handle the token transfers. The donation creates negative deltas, which represent tokens that we owe to the PoolManager. This is where ERC-6909's burn operation comes into play.
 
 Instead of using traditional token transfers, we can use ERC-6909's burn operation to settle this debt. We check each token's delta and, if negative, burn the corresponding amount of ERC-6909 tokens. And finally return the encoded delta. Let’s see how:
+
+```solidity
+ // Handle any negative deltas by burning ERC-6909 tokens
+    if (delta.amount0() < 0) {
+        poolManager.burn(
+            data.key.currency0,
+            address(this),
+            uint256(-delta.amount0())
+        );
+    }
+    if (delta.amount1() < 0) {
+        poolManager.burn(
+            data.key.currency1,
+            address(this),
+            uint256(-delta.amount1())
+        );
+    }
+
+    // Encode and return the delta so donate() can decode it
+    return abi.encode(delta);
+}
+```
