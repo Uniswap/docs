@@ -50,7 +50,7 @@ ___
 
 ### quoteCallParameters
 
-▸ `Static` **quoteCallParameters**<`TInput`, `TOutput`\>(`route`, `amount`, `tradeType`, `options?`): [`MethodParameters`](../interfaces/MethodParameters.md)
+▸ `Static` **quoteCallParameters**\<`TInput`, `TOutput`\>(`route`, `amount`, `tradeType`, `options?`): [`MethodParameters`](../interfaces/MethodParameters.md)
 
 Produces the on-chain method name of the appropriate function within QuoterV2,
 and the relevant hex encoded parameters.
@@ -66,8 +66,8 @@ and the relevant hex encoded parameters.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `route` | [`Route`](Route.md)<`TInput`, `TOutput`\> | The swap route, a list of pools through which a swap can occur |
-| `amount` | `CurrencyAmount`<`TInput` \| `TOutput`\> | The amount of the quote, either an amount in, or an amount out |
+| `route` | [`Route`](Route.md)\<`TInput`, `TOutput`\> | The swap route, a list of pools through which a swap can occur |
+| `amount` | `CurrencyAmount`\<`TInput` \| `TOutput`\> | The amount of the quote, either an amount in, or an amount out |
 | `tradeType` | `TradeType` | The trade type, either exact input or exact output |
 | `options` | [`QuoteOptions`](../interfaces/QuoteOptions.md) | The optional params including price limit and Quoter contract switch |
 

@@ -37,7 +37,7 @@ at the given tick
   ) internal pure returns (int24 tick)
 ```
 
-Calculates the greatest tick value such that getRatioAtTick(tick) <= ratio
+Calculates the greatest tick value such that getRatioAtTick(tick) \<= ratio
 
 Throws in case sqrtPriceX96 < MIN_SQRT_RATIO, as MIN_SQRT_RATIO is the lowest value getRatioAtTick may
 ever return.

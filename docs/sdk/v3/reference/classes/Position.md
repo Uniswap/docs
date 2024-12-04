@@ -59,7 +59,7 @@ Constructs a position for a given pool with the given liquidity
 
 ### \_mintAmounts
 
-• `Private` **\_mintAmounts**: ``null`` \| `Readonly`<{ `amount0`: `default` ; `amount1`: `default`  }\> = `null`
+• `Private` **\_mintAmounts**: ``null`` \| `Readonly`\<\{ `amount0`: `default` ; `amount1`: `default`  \\\}\> = `null`
 
 #### Defined in
 
@@ -69,7 +69,7 @@ ___
 
 ### \_token0Amount
 
-• `Private` **\_token0Amount**: ``null`` \| `CurrencyAmount`<`Token`\> = `null`
+• `Private` **\_token0Amount**: ``null`` \| `CurrencyAmount`\<`Token`\> = `null`
 
 #### Defined in
 
@@ -79,7 +79,7 @@ ___
 
 ### \_token1Amount
 
-• `Private` **\_token1Amount**: ``null`` \| `CurrencyAmount`<`Token`\> = `null`
+• `Private` **\_token1Amount**: ``null`` \| `CurrencyAmount`\<`Token`\> = `null`
 
 #### Defined in
 
@@ -129,13 +129,13 @@ ___
 
 ### amount0
 
-• `get` **amount0**(): `CurrencyAmount`<`Token`\>
+• `get` **amount0**(): `CurrencyAmount`\<`Token`\>
 
 Returns the amount of token0 that this position's liquidity could be burned for at the current pool price
 
 #### Returns
 
-`CurrencyAmount`<`Token`\>
+`CurrencyAmount`\<`Token`\>
 
 #### Defined in
 
@@ -145,13 +145,13 @@ ___
 
 ### amount1
 
-• `get` **amount1**(): `CurrencyAmount`<`Token`\>
+• `get` **amount1**(): `CurrencyAmount`\<`Token`\>
 
 Returns the amount of token1 that this position's liquidity could be burned for at the current pool price
 
 #### Returns
 
-`CurrencyAmount`<`Token`\>
+`CurrencyAmount`\<`Token`\>
 
 #### Defined in
 
@@ -161,14 +161,14 @@ ___
 
 ### mintAmounts
 
-• `get` **mintAmounts**(): `Readonly`<{ `amount0`: `default` ; `amount1`: `default`  }\>
+• `get` **mintAmounts**(): `Readonly`\<\{ `amount0`: `default` ; `amount1`: `default`  \\}\>
 
 Returns the minimum amounts that must be sent in order to mint the amount of liquidity held by the position at
 the current price for the pool
 
 #### Returns
 
-`Readonly`<{ `amount0`: `default` ; `amount1`: `default`  }\>
+`Readonly`\<\{ `amount0`: `default` ; `amount1`: `default`  \\}\>
 
 #### Defined in
 
@@ -178,13 +178,13 @@ ___
 
 ### token0PriceLower
 
-• `get` **token0PriceLower**(): `Price`<`Token`, `Token`\>
+• `get` **token0PriceLower**(): `Price`\<`Token`, `Token`\>
 
 Returns the price of token0 at the lower tick
 
 #### Returns
 
-`Price`<`Token`, `Token`\>
+`Price`\<`Token`, `Token`\>
 
 #### Defined in
 
@@ -194,13 +194,13 @@ ___
 
 ### token0PriceUpper
 
-• `get` **token0PriceUpper**(): `Price`<`Token`, `Token`\>
+• `get` **token0PriceUpper**(): `Price`\<`Token`, `Token`\>
 
 Returns the price of token0 at the upper tick
 
 #### Returns
 
-`Price`<`Token`, `Token`\>
+`Price`\<`Token`, `Token`\>
 
 #### Defined in
 
@@ -210,7 +210,7 @@ Returns the price of token0 at the upper tick
 
 ### burnAmountsWithSlippage
 
-▸ **burnAmountsWithSlippage**(`slippageTolerance`): `Readonly`<{ `amount0`: `default` ; `amount1`: `default`  }\>
+▸ **burnAmountsWithSlippage**(`slippageTolerance`): `Readonly`\<\{ `amount0`: `default` ; `amount1`: `default`  \\}\>
 
 Returns the minimum amounts that should be requested in order to safely burn the amount of liquidity held by the
 position with the given slippage tolerance
@@ -223,7 +223,7 @@ position with the given slippage tolerance
 
 #### Returns
 
-`Readonly`<{ `amount0`: `default` ; `amount1`: `default`  }\>
+`Readonly`\<\{ `amount0`: `default` ; `amount1`: `default`  \\}\>
 
 The amounts, with slippage
 
@@ -235,7 +235,7 @@ ___
 
 ### mintAmountsWithSlippage
 
-▸ **mintAmountsWithSlippage**(`slippageTolerance`): `Readonly`<{ `amount0`: `default` ; `amount1`: `default`  }\>
+▸ **mintAmountsWithSlippage**(`slippageTolerance`): `Readonly`\<\{ `amount0`: `default` ; `amount1`: `default`  \\}\>
 
 Returns the minimum amounts that must be sent in order to safely mint the amount of liquidity held by the position
 with the given slippage tolerance
@@ -248,7 +248,7 @@ with the given slippage tolerance
 
 #### Returns
 
-`Readonly`<{ `amount0`: `default` ; `amount1`: `default`  }\>
+`Readonly`\<\{ `amount0`: `default` ; `amount1`: `default`  \\}\>
 
 The amounts, with slippage
 

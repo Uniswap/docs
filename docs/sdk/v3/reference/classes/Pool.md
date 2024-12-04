@@ -66,7 +66,7 @@ Construct a pool
 
 ### \_token0Price
 
-• `Private` `Optional` **\_token0Price**: `Price`<`Token`, `Token`\>
+• `Private` `Optional` **\_token0Price**: `Price`\<`Token`, `Token`\>
 
 #### Defined in
 
@@ -76,7 +76,7 @@ ___
 
 ### \_token1Price
 
-• `Private` `Optional` **\_token1Price**: `Price`<`Token`, `Token`\>
+• `Private` `Optional` **\_token1Price**: `Price`\<`Token`, `Token`\>
 
 #### Defined in
 
@@ -186,13 +186,13 @@ ___
 
 ### token0Price
 
-• `get` **token0Price**(): `Price`<`Token`, `Token`\>
+• `get` **token0Price**(): `Price`\<`Token`, `Token`\>
 
 Returns the current mid price of the pool in terms of token0, i.e. the ratio of token1 over token0
 
 #### Returns
 
-`Price`<`Token`, `Token`\>
+`Price`\<`Token`, `Token`\>
 
 #### Defined in
 
@@ -202,13 +202,13 @@ ___
 
 ### token1Price
 
-• `get` **token1Price**(): `Price`<`Token`, `Token`\>
+• `get` **token1Price**(): `Price`\<`Token`, `Token`\>
 
 Returns the current mid price of the pool in terms of token1, i.e. the ratio of token0 over token1
 
 #### Returns
 
-`Price`<`Token`, `Token`\>
+`Price`\<`Token`, `Token`\>
 
 #### Defined in
 
@@ -218,7 +218,7 @@ Returns the current mid price of the pool in terms of token1, i.e. the ratio of 
 
 ### getInputAmount
 
-▸ **getInputAmount**(`outputAmount`, `sqrtPriceLimitX96?`): `Promise`<[`CurrencyAmount`<`Token`\>, [`Pool`](Pool.md)]\>
+▸ **getInputAmount**(`outputAmount`, `sqrtPriceLimitX96?`): `Promise`\<[`CurrencyAmount`\<`Token`\>, [`Pool`](Pool.md)]\>
 
 Given a desired output amount of a token, return the computed input amount and a pool with state updated after the trade
 
@@ -226,12 +226,12 @@ Given a desired output amount of a token, return the computed input amount and a
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `outputAmount` | `CurrencyAmount`<`Token`\> | the output amount for which to quote the input amount |
+| `outputAmount` | `CurrencyAmount`\<`Token`\> | the output amount for which to quote the input amount |
 | `sqrtPriceLimitX96?` | `default` | The Q64.96 sqrt price limit. If zero for one, the price cannot be less than this value after the swap. If one for zero, the price cannot be greater than this value after the swap |
 
 #### Returns
 
-`Promise`<[`CurrencyAmount`<`Token`\>, [`Pool`](Pool.md)]\>
+`Promise`\<[`CurrencyAmount`\<`Token`\>, [`Pool`](Pool.md)]\>
 
 The input amount and the pool with updated state
 
@@ -243,7 +243,7 @@ ___
 
 ### getOutputAmount
 
-▸ **getOutputAmount**(`inputAmount`, `sqrtPriceLimitX96?`): `Promise`<[`CurrencyAmount`<`Token`\>, [`Pool`](Pool.md)]\>
+▸ **getOutputAmount**(`inputAmount`, `sqrtPriceLimitX96?`): `Promise`\<[`CurrencyAmount`\<`Token`\>, [`Pool`](Pool.md)]\>
 
 Given an input amount of a token, return the computed output amount, and a pool with state updated after the trade
 
@@ -251,12 +251,12 @@ Given an input amount of a token, return the computed output amount, and a pool 
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `inputAmount` | `CurrencyAmount`<`Token`\> | The input amount for which to quote the output amount |
+| `inputAmount` | `CurrencyAmount`\<`Token`\> | The input amount for which to quote the output amount |
 | `sqrtPriceLimitX96?` | `default` | The Q64.96 sqrt price limit |
 
 #### Returns
 
-`Promise`<[`CurrencyAmount`<`Token`\>, [`Pool`](Pool.md)]\>
+`Promise`\<[`CurrencyAmount`\<`Token`\>, [`Pool`](Pool.md)]\>
 
 The output amount and the pool with updated state
 
@@ -292,7 +292,7 @@ ___
 
 ### priceOf
 
-▸ **priceOf**(`token`): `Price`<`Token`, `Token`\>
+▸ **priceOf**(`token`): `Price`\<`Token`, `Token`\>
 
 Return the price of the given token in terms of the other token in the pool.
 
@@ -304,7 +304,7 @@ Return the price of the given token in terms of the other token in the pool.
 
 #### Returns
 
-`Price`<`Token`, `Token`\>
+`Price`\<`Token`, `Token`\>
 
 The price of the given token, in terms of the other.
 
@@ -316,7 +316,7 @@ ___
 
 ### swap
 
-▸ `Private` **swap**(`zeroForOne`, `amountSpecified`, `sqrtPriceLimitX96?`): `Promise`<{ `amountCalculated`: `default` ; `liquidity`: `default` ; `sqrtRatioX96`: `default` ; `tickCurrent`: `number`  }\>
+▸ `Private` **swap**(`zeroForOne`, `amountSpecified`, `sqrtPriceLimitX96?`): `Promise`\<\{ `amountCalculated`: `default` ; `liquidity`: `default` ; `sqrtRatioX96`: `default` ; `tickCurrent`: `number`  \\}\>
 
 Executes a swap
 
@@ -330,7 +330,7 @@ Executes a swap
 
 #### Returns
 
-`Promise`<{ `amountCalculated`: `default` ; `liquidity`: `default` ; `sqrtRatioX96`: `default` ; `tickCurrent`: `number`  }\>
+`Promise`\<\{ `amountCalculated`: `default` ; `liquidity`: `default` ; `sqrtRatioX96`: `default` ; `tickCurrent`: `number`  \}\>
 
 amountCalculated
 
