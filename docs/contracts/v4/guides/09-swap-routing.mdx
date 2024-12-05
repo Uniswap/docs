@@ -136,19 +136,32 @@ First, let’s define our function signature:
 
 ```solidity
 function swapExactInputSingle(
-    PoolKey calldata key,
-    uint128 amountIn,
-    uint128 minAmountOut
+    PoolKey calldata key, // PoolKey struct that identifies the v4 pool
+    uint128 amountIn, // Exact amount of tokens to swap
+    uint128 minAmountOut // Minimum amount of output tokens expected
 ) external returns (uint256 amountOut) {
     // Implementation will follow
 }
 ```
+**Important note:**
 
-The function takes:
+When swapping tokens involving native ETH, we use `Currency.wrap(address(0))` to represent ETH in the `PoolKey` struct.
 
-- `key`: The PoolKey struct that identifies the v4 pool
-- `amountIn`: The exact amount of tokens to swap
-- `minAmountOut`: The minimum amount of output tokens expected
+```solidity
+struct PoolKey {
+    /// @notice The lower currency of the pool, sorted numerically.
+    ///         For native ETH, Currency currency0 = Currency.wrap(address(0));
+    Currency currency0;
+    /// @notice The higher currency of the pool, sorted numerically
+    Currency currency1;
+    /// @notice The pool LP fee, capped at 1_000_000. If the highest bit is 1, the pool has a dynamic fee and must be exactly equal to 0x800000
+    uint24 fee;
+    /// @notice Ticks that involve positions must be a multiple of tick spacing
+    int24 tickSpacing;
+    /// @notice The hooks of the pool
+    IHooks hooks;
+}
+```
 
 ### 3.2: Encoding the Swap Command
 

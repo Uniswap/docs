@@ -64,6 +64,8 @@ The `TAKE_PAIR` action requires the following parameters:
 * `recipient` - _address_, destination of the fee revenue for both tokens
 
 ```solidity
+Currency currency0 = Currency.wrap(<tokenAddress1>); // tokenAddress1 = 0 for native ETH
+Currency currency1 = Currency.wrap(<tokenAddress2>);
 params[1] = abi.encode(currency0, currency1, recipient);
 ```
 
@@ -73,7 +75,10 @@ The entrypoint for all liquidity operations is `modifyLiquidities()`.
 
 ```solidity
 uint256 deadline = block.timestamp + 60;
-posm.modifyLiquidities(
+
+uint256 valueToPass = currency0.isAddressZero() ? amount0Max : 0;
+
+posm.modifyLiquidities{value: valueToPass}(
     abi.encode(actions, params),
     deadline
 );
