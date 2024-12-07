@@ -54,7 +54,7 @@ A data provider for ticks that is backed by an in-memory array of ticks.
 
 ### getTick
 
-▸ **getTick**(`tick`): `Promise`<{ `liquidityGross`: `BigintIsh` ; `liquidityNet`: `BigintIsh`  }\>
+▸ **getTick**(`tick`): `Promise`\<\{ `liquidityGross`: `BigintIsh` ; `liquidityNet`: `BigintIsh`  \}\>
 
 Return information corresponding to a specific tick
 
@@ -66,7 +66,7 @@ Return information corresponding to a specific tick
 
 #### Returns
 
-`Promise`<{ `liquidityGross`: `BigintIsh` ; `liquidityNet`: `BigintIsh`  }\>
+`Promise`\<\{ `liquidityGross`: `BigintIsh` ; `liquidityNet`: `BigintIsh`  \}\>
 
 #### Implementation of
 
@@ -80,7 +80,7 @@ ___
 
 ### nextInitializedTickWithinOneWord
 
-▸ **nextInitializedTickWithinOneWord**(`tick`, `lte`, `tickSpacing`): `Promise`<[`number`, `boolean`]\>
+▸ **nextInitializedTickWithinOneWord**(`tick`, `lte`, `tickSpacing`): `Promise`\<[`number`, `boolean`]\>
 
 Return the next tick that is initialized within a single word
 
@@ -94,7 +94,7 @@ Return the next tick that is initialized within a single word
 
 #### Returns
 
-`Promise`<[`number`, `boolean`]\>
+`Promise`\<[`number`, `boolean`]\>
 
 #### Implementation of
 

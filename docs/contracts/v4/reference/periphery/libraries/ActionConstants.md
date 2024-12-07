@@ -19,7 +19,7 @@ uint128 internal constant OPEN_DELTA = 0;
 
 ### CONTRACT_BALANCE
 used to signal that an action should use the contract's entire balance of a currency
-This value is equivalent to 1<<255, i.e. a singular 1 in the most significant bit.
+This value is equivalent to 1\<\<255, i.e. a singular 1 in the most significant bit.
 
 
 ```solidity
