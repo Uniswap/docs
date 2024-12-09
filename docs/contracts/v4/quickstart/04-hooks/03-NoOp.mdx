@@ -2,7 +2,7 @@
 title: NoOp Hooks
 ---
 
-One feature enabled by custom accounting is​​​​‌ NoOp swap. This feature allows hook developers to replace the v4 (v3-style) swap logic.
+One feature enabled by [custom accounting](/contracts/v4/guides/custom-accounting) is​​​​‌ NoOp swap. This feature allows hook developers to replace the v4 (v3-style) swap logic.
 
 This means developers can replace Uniswap's internal core logic for how to handle swaps. Two emergent use-cases are possible with NoOp:
 
@@ -49,7 +49,7 @@ contract NoOpHook is BaseHook {
 
 # beforeSwap
 
-NoOp only works on exact-input swaps and the *beforeSwap* **must** take the input currency and return `BeforeSwapDelta`. The hook should `IPoolManager.mint` itself the corresponding tokens equal to the amount of the input (`amountSpecified`). It should then return a `BeforeSwapDelta` where `deltaSpecified = -amountSpecified` (the positive amount).
+NoOp only works on exact-input swaps and the *beforeSwap* **must** take the input currency and return [`BeforeSwapDelta`](/contracts/v4/reference/core/types/beforeswapdelta). The hook should `IPoolManager.mint` itself the corresponding tokens equal to the amount of the input (`amountSpecified`). It should then return a `BeforeSwapDelta` where `deltaSpecified = -amountSpecified` (the positive amount).
 
 The funds' movements are as follows:
 
