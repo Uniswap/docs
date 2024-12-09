@@ -1,6 +1,6 @@
 [@uniswap/sdk-core](../README.md) / [Exports](../modules.md) / Price
 
-# Class: Price<TBase, TQuote\>
+# Class: Price\<TBase, TQuote\>
 
 ## Type parameters
 
@@ -54,7 +54,7 @@
 
 ### constructor
 
-• **new Price**<`TBase`, `TQuote`\>(...`args`)
+• **new Price**\<`TBase`, `TQuote`\>(...`args`)
 
 Construct a price, either with the base and quote currency amount, or the
 
@@ -69,7 +69,7 @@ Construct a price, either with the base and quote currency amount, or the
 
 | Name | Type |
 | :------ | :------ |
-| `...args` | [`TBase`, `TQuote`, [`BigintIsh`](../modules.md#bigintish), [`BigintIsh`](../modules.md#bigintish)] \| [{ `baseAmount`: [`CurrencyAmount`](CurrencyAmount.md)<`TBase`\> ; `quoteAmount`: [`CurrencyAmount`](CurrencyAmount.md)<`TQuote`\>  }] |
+| `...args` | [`TBase`, `TQuote`, [`BigintIsh`](../modules.md#bigintish), [`BigintIsh`](../modules.md#bigintish)] \| [\{ `baseAmount`: [`CurrencyAmount`](CurrencyAmount.md)\<`TBase`\> ; `quoteAmount`: [`CurrencyAmount`](CurrencyAmount.md)\<`TQuote`\>  \}] |
 
 #### Overrides
 
@@ -309,13 +309,13 @@ ___
 
 ### invert
 
-▸ **invert**(): [`Price`](Price.md)<`TQuote`, `TBase`\>
+▸ **invert**(): [`Price`](Price.md)\<`TQuote`, `TBase`\>
 
 Flip the price, switching the base and quote currency
 
 #### Returns
 
-[`Price`](Price.md)<`TQuote`, `TBase`\>
+[`Price`](Price.md)\<`TQuote`, `TBase`\>
 
 #### Overrides
 
@@ -353,7 +353,7 @@ ___
 
 ### multiply
 
-▸ **multiply**<`TOtherQuote`\>(`other`): [`Price`](Price.md)<`TBase`, `TOtherQuote`\>
+▸ **multiply**\<`TOtherQuote`\>(`other`): [`Price`](Price.md)\<`TBase`, `TOtherQuote`\>
 
 Multiply the price by another price, returning a new price. The other price must have the same base currency as this price's quote currency
 
@@ -367,11 +367,11 @@ Multiply the price by another price, returning a new price. The other price must
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `other` | [`Price`](Price.md)<`TQuote`, `TOtherQuote`\> | the other price |
+| `other` | [`Price`](Price.md)\<`TQuote`, `TOtherQuote`\> | the other price |
 
 #### Returns
 
-[`Price`](Price.md)<`TBase`, `TOtherQuote`\>
+[`Price`](Price.md)\<`TBase`, `TOtherQuote`\>
 
 #### Overrides
 
@@ -385,7 +385,7 @@ ___
 
 ### quote
 
-▸ **quote**(`currencyAmount`): [`CurrencyAmount`](CurrencyAmount.md)<`TQuote`\>
+▸ **quote**(`currencyAmount`): [`CurrencyAmount`](CurrencyAmount.md)\<`TQuote`\>
 
 Return the amount of quote currency corresponding to a given amount of the base currency
 
@@ -393,11 +393,11 @@ Return the amount of quote currency corresponding to a given amount of the base 
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `currencyAmount` | [`CurrencyAmount`](CurrencyAmount.md)<`TBase`\> | the amount of base currency to quote against the price |
+| `currencyAmount` | [`CurrencyAmount`](CurrencyAmount.md)\<`TBase`\> | the amount of base currency to quote against the price |
 
 #### Returns
 
-[`CurrencyAmount`](CurrencyAmount.md)<`TQuote`\>
+[`CurrencyAmount`](CurrencyAmount.md)\<`TQuote`\>
 
 #### Defined in
 
