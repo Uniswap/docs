@@ -166,7 +166,7 @@ This query returns daily aggregated data for the first 10 days since the given t
 
 ### General Swap Data
 
-To query data about a particular swap, input the transaction hash + "#" + the index in the swaps the transaction array.R
+To query data about a particular swap, input the transaction hash + "#" + the index in the swaps the transaction array.
 This is the reference for the full [swap schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L353).
 
 This query fetches data about the sender, receiver, amounts, transaction data, and timestamp for a particular swap.
@@ -226,7 +226,7 @@ swaps(orderBy: timestamp, orderDirection: desc, where:
 
 ## Token Data
 
-Input the the token contract address to fetch token data. Any token that exists in at least one Uniswap V3 pool can be queried. The output will aggregate data across all v3 pools that include the token.
+Input the token contract address to fetch token data. Any token that exists in at least one Uniswap V3 pool can be queried. The output will aggregate data across all v3 pools that include the token.
 
 ### General Token Data
 
