@@ -78,7 +78,7 @@ IPoolManager(manager).initialize(pool, startingPrice);
     - i.e. `79228162514264337593543950336` is the starting price for a 1:1 pool
 
 ## Guide: Create a Pool & Add Liquidity
-Uniswap v4's `PositionManager` supports atomic creation of a pool and initial liquidity using [_multicall_](/contracts/v4/reference/periphery/base/Multicall_v4). Developers can create a trading pool, with liquidity, in a single transaction:
+Uniswap v4's [PositionManager](/contracts/v4/reference/periphery/PositionManager) supports atomic creation of a pool and initial liquidity using [_multicall_](/contracts/v4/reference/periphery/base/Multicall_v4). Developers can create a trading pool, with liquidity, in a single transaction:
 
 ### 1. Initialize the parameters provided to `multicall()`
 ```solidity
