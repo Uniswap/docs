@@ -60,6 +60,10 @@ The `MINT_POSITION` action requires the following parameters:
 | `hookData`   | _bytes_   | arbitrary data that will be forwarded to hook functions        |
 
 ```solidity
+Currency currency0 = Currency.wrap(<tokenAddress1>); // tokenAddress1 = 0 for native ETH
+Currency currency1 = Currency.wrap(<tokenAddress2>);
+PoolKey poolKey = PoolKey(currency0, currency1, 3000, 60, IHooks(hook));
+
 params[0] = abi.encode(poolKey, tickLower, tickUpper, liquidity, amount0Max, amount1Max, recipient, hookData);
 ```
 
@@ -79,7 +83,9 @@ The entrypoint for all liquidity operations is `modifyLiquidities()`
 ```solidity
 uint256 deadline = block.timestamp + 60;
 
-posm.modifyLiquidities(
+uint256 valueToPass = currency0.isAddressZero() ? amount0Max : 0;
+
+posm.modifyLiquidities{value: valueToPass}(
     abi.encode(actions, params),
     deadline
 );

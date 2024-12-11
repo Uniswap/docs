@@ -79,7 +79,7 @@ The query below returns the feeTier, spot price, and liquidity for the ETH-USDC 
 
 ### All Possible Pools
 
-The maxiumum items you can query at once is 1000. Thus to get all possible pools, you can interate using the skip variable. To get pools beyond the first 1000 you can also set the skip as shown below.
+The maximum items you can query at once is 1000. Thus to get all possible pools, you can iterate using the skip variable. To get pools beyond the first 1000 you can also set the skip as shown below.
 
 ### Skipping First 1000 Pools
 
@@ -280,7 +280,7 @@ query tokens($skip: Int!) {
 
 ### General Position Data
 
-To get data about a specific position, input the NFT tokenId. This queries the collected fees for token0 and token1 and current liquidity for the position with tokedId 3. Reference the full [position schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L192) to see all fields.
+To get data about a specific position, input the NFT tokenId. This queries the collected fees for token0 and token1 and current liquidity for the position with tokenId 3. Reference the full [position schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L192) to see all fields.
 
 ```
 {
