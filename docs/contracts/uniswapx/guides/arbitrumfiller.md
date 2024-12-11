@@ -5,7 +5,7 @@ sidebar_position: 4
 ---
 
 # Arbitrum Pilot Overview
-Starting June 19 2024, the Uniswap team will be piloting running a portion of trades on Arbitrum through UniswapX. Unlike UniswapX on mainnet, these orders will have **no RFQ portion and thus no exclusivity** during the pilot. 
+Starting June 19 2024, the Uniswap team began running a portion of trades on Arbitrum through UniswapX. Unlike UniswapX on mainnet, these orders will have **no RFQ portion and thus no exclusivity** during the pilot. 
 
 Filling on Arbitrum, however, follows the same two steps as filling on Mainnet: 
 1. Retrieving signed orders  
@@ -57,6 +57,21 @@ executor.execute(order, fillData);
 ```
 
 For convenience, we’ve provided an [example Executor Contract](https://github.com/Uniswap/UniswapX/blob/v2.0.0-deploy/src/sample-executors/SwapRouter02Executor.sol) which demonstrates how a filler could implement a strategy that executes a UniswapX order against a Uniswap V3 pool. These contracts should be deployed to each chain that the filler would like to support.
+
+## Order Types
+On Arbitrum, both DutchV2 and DutchV3 order types are supported. You may query for a specific type by specifying the `orderType` query string parameter:
+
+```
+GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=42161&limit=1000&orderType={Dutch_V2 | Dutch_V3}
+```
+
+The main difference between the two order types is that DutchV2 orders use a time-based decay while DutchV3 use a block-based decay. Because the `block.timestamp` of the EVM does not allow for millisecond-level granularity, all decay in DutchV2 must happen in seconds which does not take advantage of Arbitrum's 250 ms block frequency. For this reason, we will migrate Arbitrum to DutchV3 orders over time.
+
+### Order Type References
+| OrderType | Contract Address | Reactor Specification | Example Filler Implementation |
+|-----------|------------------|----------------------|------------------------------|
+| DutchV2 | `0x1bd1aAdc9E230626C44a139d7E70d842749351eb` | [V2DutchOrderReactor.sol](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V2DutchOrderReactor.sol) | [uniswapx_strategy.rs](https://github.com/Uniswap/uniswapx-artemis/blob/main/src/strategies/uniswapx_strategy.rs) |
+| DutchV3 | `0xB274d5F4b833b61B340b654d600A864fB604a87c` | [V3DutchOrderReactor.sol](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol) | [dutchv3_strategy.rs](https://github.com/Uniswap/uniswapx-artemis/blob/main/src/strategies/dutchv3_strategy.rs) |
 
 
 # Get in touch
