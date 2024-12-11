@@ -1,6 +1,6 @@
 [@uniswap/sdk-core](../README.md) / [Exports](../modules.md) / CurrencyAmount
 
-# Class: CurrencyAmount<T\>
+# Class: CurrencyAmount\<T\>
 
 ## Type parameters
 
@@ -54,7 +54,7 @@
 
 ### constructor
 
-• `Protected` **new CurrencyAmount**<`T`\>(`currency`, `numerator`, `denominator?`)
+• `Protected` **new CurrencyAmount**\<`T`\>(`currency`, `numerator`, `denominator?`)
 
 #### Type parameters
 
@@ -186,11 +186,11 @@ ___
 
 ### wrapped
 
-• `get` **wrapped**(): [`CurrencyAmount`](CurrencyAmount.md)<[`Token`](Token.md)\>
+• `get` **wrapped**(): [`CurrencyAmount`](CurrencyAmount.md)\<[`Token`](Token.md)\>
 
 #### Returns
 
-[`CurrencyAmount`](CurrencyAmount.md)<[`Token`](Token.md)\>
+[`CurrencyAmount`](CurrencyAmount.md)\<[`Token`](Token.md)\>
 
 #### Defined in
 
@@ -200,17 +200,17 @@ ___
 
 ### add
 
-▸ **add**(`other`): [`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+▸ **add**(`other`): [`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `other` | [`CurrencyAmount`](CurrencyAmount.md)<`T`\> |
+| `other` | [`CurrencyAmount`](CurrencyAmount.md)\<`T`\> |
 
 #### Returns
 
-[`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+[`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Overrides
 
@@ -224,7 +224,7 @@ ___
 
 ### divide
 
-▸ **divide**(`other`): [`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+▸ **divide**(`other`): [`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Parameters
 
@@ -234,7 +234,7 @@ ___
 
 #### Returns
 
-[`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+[`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Overrides
 
@@ -338,7 +338,7 @@ ___
 
 ### multiply
 
-▸ **multiply**(`other`): [`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+▸ **multiply**(`other`): [`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Parameters
 
@@ -348,7 +348,7 @@ ___
 
 #### Returns
 
-[`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+[`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Overrides
 
@@ -362,17 +362,17 @@ ___
 
 ### subtract
 
-▸ **subtract**(`other`): [`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+▸ **subtract**(`other`): [`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `other` | [`CurrencyAmount`](CurrencyAmount.md)<`T`\> |
+| `other` | [`CurrencyAmount`](CurrencyAmount.md)\<`T`\> |
 
 #### Returns
 
-[`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+[`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Overrides
 
@@ -458,7 +458,7 @@ ___
 
 ### fromFractionalAmount
 
-▸ `Static` **fromFractionalAmount**<`T`\>(`currency`, `numerator`, `denominator`): [`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+▸ `Static` **fromFractionalAmount**\<`T`\>(`currency`, `numerator`, `denominator`): [`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 Construct a currency amount with a denominator that is not equal to 1
 
@@ -478,7 +478,7 @@ Construct a currency amount with a denominator that is not equal to 1
 
 #### Returns
 
-[`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+[`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Defined in
 
@@ -488,7 +488,7 @@ ___
 
 ### fromRawAmount
 
-▸ `Static` **fromRawAmount**<`T`\>(`currency`, `rawAmount`): [`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+▸ `Static` **fromRawAmount**\<`T`\>(`currency`, `rawAmount`): [`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 Returns a new currency amount instance from the unitless amount of token, i.e. the raw amount
 
@@ -507,7 +507,7 @@ Returns a new currency amount instance from the unitless amount of token, i.e. t
 
 #### Returns
 
-[`CurrencyAmount`](CurrencyAmount.md)<`T`\>
+[`CurrencyAmount`](CurrencyAmount.md)\<`T`\>
 
 #### Defined in
 

@@ -90,7 +90,7 @@ Known WETH9 implementation addresses, used in our implementation of Ether#wrappe
 
 ### computePriceImpact
 
-▸ **computePriceImpact**<`TBase`, `TQuote`\>(`midPrice`, `inputAmount`, `outputAmount`): [`Percent`](classes/Percent.md)
+▸ **computePriceImpact**\<`TBase`, `TQuote`\>(`midPrice`, `inputAmount`, `outputAmount`): [`Percent`](classes/Percent.md)
 
 Returns the percent difference between the mid price and the execution price, i.e. price impact.
 
@@ -105,9 +105,9 @@ Returns the percent difference between the mid price and the execution price, i.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `midPrice` | [`Price`](classes/Price.md)<`TBase`, `TQuote`\> | mid price before the trade |
-| `inputAmount` | [`CurrencyAmount`](classes/CurrencyAmount.md)<`TBase`\> | the input amount of the trade |
-| `outputAmount` | [`CurrencyAmount`](classes/CurrencyAmount.md)<`TQuote`\> | the output amount of the trade |
+| `midPrice` | [`Price`](classes/Price.md)\<`TBase`, `TQuote`\> | mid price before the trade |
+| `inputAmount` | [`CurrencyAmount`](classes/CurrencyAmount.md)\<`TBase`\> | the input amount of the trade |
+| `outputAmount` | [`CurrencyAmount`](classes/CurrencyAmount.md)\<`TQuote`\> | the output amount of the trade |
 
 #### Returns
 
@@ -121,7 +121,7 @@ ___
 
 ### sortedInsert
 
-▸ **sortedInsert**<`T`\>(`items`, `add`, `maxSize`, `comparator`): `T` \| ``null``
+▸ **sortedInsert**\<`T`\>(`items`, `add`, `maxSize`, `comparator`): `T` \| ``null``
 
 #### Type parameters
 
