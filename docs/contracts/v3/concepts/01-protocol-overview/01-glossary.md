@@ -9,7 +9,7 @@ An automated market maker is a smart contract on Ethereum that holds on-chain li
 
 ### Concentrated liquidity
 
-A key concept of Uniswap v3, this is liquidity that is allocated within a custom price range as opposed to being uniformly spread across the entire price interval (0, ∞).
+A key concept of Uniswap V3, this is liquidity that is allocated within a custom price range as opposed to being uniformly spread across the entire price interval (0, ∞).
 
 ### ERC20
 
