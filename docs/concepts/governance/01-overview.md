@@ -9,7 +9,7 @@ title: Overview
 
 ## Documentation
 
-For reference material on the Uniswap Governance system please see [Governance Reference](../../../contracts/v3/reference/governance/overview.md).
+For reference material on the Uniswap Governance system please see [Governance Reference](../../contracts/v3/reference/governance/overview.md).
 
 ## UNI Address
 
