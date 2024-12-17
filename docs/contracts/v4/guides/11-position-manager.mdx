@@ -835,4 +835,4 @@ This function follows the same encoding and command patterns as `modifyLiquidity
 - When called from hooks that are already executing within the PoolManager's lock/unlock cycle
 - For operations like automatic fee compounding, where a hook might want to reinvest fees for users
 
-For example, a hook that automatically compounds fees for users would use this function because the hook is already executing within the PoolManager's unlock context, there's no need for another unlock cycle and it's more efficient than calling the standard `modifyLiquidity`.
+For example, a hook that automatically compounds fees for users would use `modifyLiquiditiesWithoutUnlock` because the hook is already executing within the PoolManager's unlock context, and cannot re-unlock the PoolManager
