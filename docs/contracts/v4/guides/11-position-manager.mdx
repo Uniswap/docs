@@ -382,47 +382,21 @@ When removing liquidity from a position, you’ll be able to receive tokens and 
 /// @param liquidityDecrease Amount of liquidity to remove
 /// @param amount0Min Minimum amount of token0 to receive
 /// @param amount1Min Minimum amount of token1 to receive
-/// @param ignoreDust Whether to ignore small amounts
 /// @param recipient Address to receive the tokens
 function decreaseLiquidity(
     uint256 tokenId,
     uint128 liquidityDecrease,
     uint256 amount0Min,
     uint256 amount1Min,
-    bool ignoreDust,
     address recipient
 ) external {
-
-```
-
-Choose the appropriate delta resolution based on dust handling preference:
-
-```solidity
-// Define the sequence of operations:
-// If ignoring dust: Use CLEAR_OR_TAKE for each token
-// If not: Use TAKE_PAIR to receive all tokens
-bytes memory actions;
-if (ignoreDust) {
-    actions = abi.encodePacked(
-        Actions.DECREASE_LIQUIDITY, // Remove liquidity
-        Actions.CLEAR_OR_TAKE,      // Handle token0 with dust threshold
-        Actions.CLEAR_OR_TAKE       // Handle token1 with dust threshold
-    );
-} else {
-    actions = abi.encodePacked(
-        Actions.DECREASE_LIQUIDITY, // Remove liquidity
-        Actions.TAKE_PAIR          // Receive both tokens
-    );
-}
 ```
 
 Prepare the parameters array:
 
 ```solidity
 // Number of parameters depends on our strategy
-bytes[] memory params = new bytes[](
-    ignoreDust ? 3 : 2
-);
+bytes[] memory params = new bytes[](2);
 
 // Parameters for DECREASE_LIQUIDITY
 params[0] = abi.encode(
@@ -437,19 +411,12 @@ params[0] = abi.encode(
 Set up delta resolution parameters:
 
 ```solidity
-if (ignoreDust) {
-    // Using CLEAR_OR_TAKE with dust thresholds
-    uint256 dustThreshold = 1000; // Example threshold
-    params[1] = abi.encode(currency0, dustThreshold);
-    params[2] = abi.encode(currency1, dustThreshold);
-} else {
-    // Standard TAKE_PAIR for receiving tokens
-    params[1] = abi.encode(
-        currency0,
-        currency1,
-        recipient
-    );
-}
+// Parameters for TAKE_PAIR
+params[1] = abi.encode(
+    currency0,
+    currency1,
+    recipient
+);
 ```
 
 Execute the operation:
@@ -485,47 +452,24 @@ function collectFees(
     uint256 tokenId,
     address recipient
 ) external {
-
-```
-
-Set up our operation sequence based on dust handling preference:
-
-```solidity
-// Define sequence of operations:
-// 1. DECREASE_LIQUIDITY with zero amount to collect fees
-// 2. Either TAKE_PAIR or CLEAR_OR_TAKE for receiving tokens
-bytes memory actions;
-if (ignoreDust) {
-    actions = abi.encodePacked(
-        Actions.DECREASE_LIQUIDITY,  // Zero liquidity decrease
-        Actions.CLEAR_OR_TAKE,       // Handle token0 fees
-        Actions.CLEAR_OR_TAKE        // Handle token1 fees
+    // Define the sequence of operations
+    bytes memory actions = abi.encodePacked(
+        Actions.DECREASE_LIQUIDITY, // Remove liquidity
+        Actions.TAKE_PAIR           // Receive both tokens
     );
-} else {
-    actions = abi.encodePacked(
-        Actions.DECREASE_LIQUIDITY,  // Zero liquidity decrease
-        Actions.TAKE_PAIR           // Take all fees
+
+    // Prepare parameters array
+    bytes[] memory params = new bytes[](2);
+
+    // Parameters for DECREASE_LIQUIDITY
+    // All zeros since we're only collecting fees
+    params[0] = abi.encode(
+        tokenId,    // Position to collect from
+        0,          // No liquidity change
+        0,          // No minimum for token0 (fees can't be manipulated)
+        0,          // No minimum for token1
+        ""          // No hook data needed
     );
-}
-```
-
-Prepare the parameters array:
-
-```solidity
-// Set up parameters array
-bytes[] memory params = new bytes[](
-    ignoreDust ? 3 : 2
-);
-
-// Parameters for DECREASE_LIQUIDITY
-// All zeros since we're only collecting fees
-params[0] = abi.encode(
-    tokenId,  // Position to collect from
-    0,        // No liquidity change
-    0,        // No minimum for token0 (fees can't be manipulated)
-    0,        // No minimum for token1
-    ""       // No hook data needed
-);
 ```
 
 When collecting fees, we use a zero-liquidity decrease operation - this means we're not actually removing any liquidity from the position, we're just collecting accumulated fees.
@@ -535,11 +479,6 @@ And note that we set minimums to 0 for fee collection because fees cannot be man
 Set up the fee collection parameters:
 
 ```solidity
-if (ignoreDust) {
-    // Using CLEAR_OR_TAKE with dust threshold
-    params[1] = abi.encode(currency0, dustThreshold);
-    params[2] = abi.encode(currency1, dustThreshold);
-} else {
     // Standard TAKE_PAIR for receiving all fees
     params[1] = abi.encode(
         currency0,
@@ -552,7 +491,7 @@ if (ignoreDust) {
 Execute the fee collection:
 
 ```solidity
-// Execute fee collection
+    // Execute fee collection
     positionManager.modifyLiquidities(
         abi.encode(actions, params),
         block.timestamp + 60  // 60 second deadline
