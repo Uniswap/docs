@@ -94,10 +94,10 @@ Actions that handle the token transfers needed to resolve deltas:
 
 ```solidity
 // Common delta-resolving operations
-uint8 constant SETTLE_PAIR = 10;    // For negative deltas: Pay two tokens to the pool
-uint8 constant TAKE_PAIR = 11;      // For positive deltas: Receive two tokens from the pool
-uint8 constant CLOSE_CURRENCY = 12; // Handles either direction based on final delta
-uint8 constant CLEAR_OR_TAKE = 13;  // For small amounts: Take if worth it, else ignore
+uint256 constant SETTLE_PAIR = 0x0d;    // For negative deltas: Pay two tokens to the pool
+uint256 constant TAKE_PAIR = 0x11;      // For positive deltas: Receive two tokens from the pool
+uint256 constant CLOSE_CURRENCY = 0x12; // Handles either direction based on final delta
+uint256 constant CLEAR_OR_TAKE = 0x13;  // For small amounts: Take if worth it, else ignore
 ```
 
 ## Operation Order
