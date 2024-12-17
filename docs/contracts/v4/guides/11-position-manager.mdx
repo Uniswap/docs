@@ -77,10 +77,10 @@ When you execute a liquidity operation:
 
 ```solidity
 // Common liquidity operations
-uint8 constant MINT_POSITION = 1;       // Creates negative deltas (tokens needed for position)
-uint8 constant INCREASE_LIQUIDITY = 2;  // Creates negative deltas (tokens to add)
-uint8 constant DECREASE_LIQUIDITY = 3;  // Creates positive deltas (tokens to receive)
-uint8 constant BURN_POSITION = 4;       // Creates positive deltas (tokens to receive)
+uint256 constant MINT_POSITION = 0x02;       // Creates negative deltas (tokens needed for position)
+uint256 constant INCREASE_LIQUIDITY = 0x00;  // Creates negative deltas (tokens to add)
+uint256 constant DECREASE_LIQUIDITY = 0x01;  // Creates positive deltas (tokens to receive)
+uint256 constant BURN_6909 = 0x18;           // Creates positive deltas (tokens to receive)
 ```
 
 Each operation creates specific deltas that must be resolved:
