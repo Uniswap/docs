@@ -363,22 +363,12 @@ Decreasing liquidity involves:
 
 When decreasing liquidity, you’ll receive tokens, so we have different options for handling the positive deltas:
 
-1. **Standard Case**: Receive all tokens
+**Standard Case**: Receive all tokens
 
 ```solidity
 bytes memory actions = abi.encodePacked(
     Actions.DECREASE_LIQUIDITY,
     Actions.TAKE_PAIR
-);
-```
-
-**2. Dust Handling**: Ignore small amounts
-
-```solidity
-bytes memory actions = abi.encodePacked(
-    Actions.DECREASE_LIQUIDITY,
-    Actions.CLEAR_OR_TAKE,  // For token0
-    Actions.CLEAR_OR_TAKE   // For token1
 );
 ```
 
