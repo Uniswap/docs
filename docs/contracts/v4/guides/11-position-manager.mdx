@@ -218,15 +218,14 @@ params[1] = abi.encode(
 );
 ```
 
-Finally, execute the minting operation:
+Finally, execute the mint operation:
 
 ```solidity
 // Execute the mint operation
-    positionManager.modifyLiquidities(
-        abi.encode(actions, params),
-        block.timestamp + 60  // 60 second deadline
-    );
-}
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60  // 60 second deadline
+);
 ```
 
 ## Increasing Liquidity
@@ -667,7 +666,7 @@ params[2] = abi.encode(
 With everything prepared, we can execute our batch operation:
 
 ```solidity
-// Execute all operations atomically
+    // Execute all operations atomically
     positionManager.modifyLiquidities(
         abi.encode(actions, params),
         block.timestamp + 60
@@ -730,7 +729,6 @@ If the amount to receive is:
 
 This is valuable for:
 
-- Fee collection with minimum amounts
 - Operations where dust amounts can be ignored
 - Gas optimization in production systems
 
