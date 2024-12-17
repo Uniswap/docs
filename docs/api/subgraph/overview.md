@@ -13,28 +13,16 @@ These subgraphs are hosted on The Graph hosted service and can be used to query 
 
 Each version of Uniswap has its own dedicated subgraph, and governance contracts have a dedicated subgraph as well.
 
-Each subgraph has a dedicated endpoint for querying data, as well as a page on [The Graph explorer](https://thegraph.com/explorer/) the exposes the schema and available fields to query.
+Each subgraph has a dedicated endpoint for querying data, as well as a page on [The Graph explorer](https://thegraph.com/explorer) that exposes the schema and available fields to query.
 
-##### V3
+##### V3 (Mainnet)
 
-- Explorer Page: https://thegraph.com/explorer/subgraph/uniswap/uniswap-v3
-- Graphql Endpoint: https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3
-- Code: https://github.com/Uniswap/uniswap-v3-subgraph
+- [Subgraph](https://thegraph.com/explorer/subgraphs/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV?view=Query&chain=arbitrum-one)
+- Graphql Endpoint: `https://gateway.thegraph.com/api/<YOUR_API_KEY_HERE>/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV`
+- Code: https://github.com/Uniswap/v3-subgraph
 
-##### Governance
+##### V2 (Mainnet)
 
-- Explorer Page: https://thegraph.com/explorer/subgraph/ianlapham/governance-tracking
-- Graphql Endpoint: https://api.thegraph.com/subgraphs/name/ianlapham/governance-tracking
-- Code: https://github.com/ianlapham/uniswap-governance-subgraph
-
-##### V2
-
-- Explorer Page: https://thegraph.com/explorer/subgraph/ianlapham/uniswapv2
-- Graphql Endpoint: https://api.thegraph.com/subgraphs/name/ianlapham/uniswapv2
-- Code: https://github.com/Uniswap/uniswap-v2-subgraph
-
-##### V1
-
-- Explorer Page: https://thegraph.com/explorer/subgraph/ianlapham/uniswap
-- Graphql Endpoint: https://api.thegraph.com/subgraphs/name/ianlapham/uniswap
-- Code: https://github.com/graphprotocol/uniswap-subgraph
+- [Subgraph](https://thegraph.com/explorer/subgraphs/A3Np3RQbaBA6oKJgiwDJeo5T3zrYfGHPWFYayMwtNDum?view=Query&chain=arbitrum-one)
+- Graphql Endpoint: `https://gateway.thegraph.com/api/<YOUR_API_KEY_HERE>/subgraphs/id/A3Np3RQbaBA6oKJgiwDJeo5T3zrYfGHPWFYayMwtNDum`
+- Code: https://github.com/Uniswap/v2-subgraph

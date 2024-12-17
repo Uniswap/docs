@@ -15,7 +15,7 @@ Before we dive into the details of custom accounting, hook fees, custom curves, 
 
 As described in [Flash Accounting](/contracts/v4/concepts/flash-accounting) Uniswap v4 tracks net token transfers with transient storage. Unlike previous versions that tracked absolute token balances, v4 records changes to these balances (*deltas*). This approach is at the core of v4’s enhanced flexibility and efficiency.
 
-In the v4 architecture, the `PoolManager` manages credits or debits per address. After a swap router contract interacts with the PoolManager, the core contract determines that the swap router owes input tokens and must claim output tokens. Token balances are tracked as accumulated deltas in transient storage; and only the final deltas incur token transfers
+In the v4 architecture, the [`PoolManager`](/contracts/v4/concepts/PoolManager) manages credits or debits per address. After a swap router contract interacts with the PoolManager, the core contract determines that the swap router owes input tokens and must claim output tokens. Token balances are tracked as accumulated deltas in transient storage; and only the final deltas incur token transfers
 
 Delta accounting provides several key benefits:
 
@@ -41,7 +41,7 @@ Hook fees are typically calculated and applied in the `beforeSwap` function, all
 
 **Use of BeforeSwapDelta**
 
-Hook fees often utilize the `BeforeSwapDelta` mechanism to adjust swap amounts and transfer deltas from the hook to the swap router, enabling precise control over how the fee affects the swap.
+Hook fees often utilize the [`BeforeSwapDelta`](/contracts/v4/reference/core/types/beforeswapdelta) mechanism to adjust swap amounts and transfer deltas from the hook to the swap router, enabling precise control over how the fee affects the swap.
 
 **Flexible Implementation**
 
