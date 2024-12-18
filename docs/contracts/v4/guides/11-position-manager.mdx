@@ -420,12 +420,11 @@ params[1] = abi.encode(
 Execute the operation:
 
 ```solidity
-    // Execute the decrease
-    positionManager.modifyLiquidities(
-        abi.encode(actions, params),
-        block.timestamp + 60  // 60 second deadline
-    );
-}
+// Execute the decrease
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60  // 60 second deadline
+);
 ```
 
 ## Collecting Fees
