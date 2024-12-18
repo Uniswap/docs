@@ -608,7 +608,7 @@ function rebalanceLiquidity(
     bytes memory actions = abi.encodePacked(
         Actions.BURN_POSITION,    // Remove old position
         Actions.MINT_POSITION,    // Create new position
-        Actions.SETTLE_PAIR      // Provide tokens for new position
+        Actions.SETTLE_PAIR       // Provide tokens for new position
     );
 ```
 
