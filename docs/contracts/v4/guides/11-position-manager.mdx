@@ -662,7 +662,11 @@ params[2] = abi.encode(
 With everything prepared, we can execute our batch operation:
 
 ```solidity
-    // Execute all operations atomically
+// Execute all operations atomically
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60
+);
     positionManager.modifyLiquidities(
         abi.encode(actions, params),
         block.timestamp + 60
