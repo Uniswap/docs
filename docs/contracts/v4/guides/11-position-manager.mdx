@@ -488,12 +488,11 @@ Set up the fee collection parameters:
 Execute the fee collection:
 
 ```solidity
-    // Execute fee collection
-    positionManager.modifyLiquidities(
-        abi.encode(actions, params),
-        block.timestamp + 60  // 60 second deadline
-    );
-}
+// Execute fee collection
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60  // 60 second deadline
+);
 ```
 
 ## Burning Positions
