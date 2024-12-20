@@ -1,6 +1,6 @@
 [@uniswap/v3-sdk](../README.md) / [Exports](../modules.md) / Trade
 
-# Class: Trade<TInput, TOutput, TTradeType\>
+# Class: Trade\<TInput, TOutput, TTradeType\>
 
 Represents a trade executed against a set of routes where some percentage of the input is
 split across each route.
@@ -59,7 +59,7 @@ the time the trade is submitted and when it is executed.
 
 ### constructor
 
-• `Private` **new Trade**<`TInput`, `TOutput`, `TTradeType`\>(`__namedParameters`)
+• `Private` **new Trade**\<`TInput`, `TOutput`, `TTradeType`\>(`__namedParameters`)
 
 Construct a trade by passing in the pre-computed property values
 
@@ -76,7 +76,7 @@ Construct a trade by passing in the pre-computed property values
 | Name | Type |
 | :------ | :------ |
 | `__namedParameters` | `Object` |
-| `__namedParameters.routes` | { `inputAmount`: `CurrencyAmount`<`TInput`\> ; `outputAmount`: `CurrencyAmount`<`TOutput`\> ; `route`: [`Route`](Route.md)<`TInput`, `TOutput`\>  }[] |
+| `__namedParameters.routes` | \{ `inputAmount`: `CurrencyAmount`\<`TInput`\> ; `outputAmount`: `CurrencyAmount`\<`TOutput`\> ; `route`: [`Route`](Route.md)\<`TInput`, `TOutput`\>  \}[] |
 | `__namedParameters.tradeType` | `TTradeType` |
 
 #### Defined in
@@ -87,7 +87,7 @@ Construct a trade by passing in the pre-computed property values
 
 ### \_executionPrice
 
-• `Private` **\_executionPrice**: `undefined` \| `Price`<`TInput`, `TOutput`\>
+• `Private` **\_executionPrice**: `undefined` \| `Price`\<`TInput`, `TOutput`\>
 
 The cached result of the computed execution price
 
@@ -99,7 +99,7 @@ ___
 
 ### \_inputAmount
 
-• `Private` **\_inputAmount**: `undefined` \| `CurrencyAmount`<`TInput`\>
+• `Private` **\_inputAmount**: `undefined` \| `CurrencyAmount`\<`TInput`\>
 
 The cached result of the input amount computation
 
@@ -111,7 +111,7 @@ ___
 
 ### \_outputAmount
 
-• `Private` **\_outputAmount**: `undefined` \| `CurrencyAmount`<`TOutput`\>
+• `Private` **\_outputAmount**: `undefined` \| `CurrencyAmount`\<`TOutput`\>
 
 The cached result of the output amount computation
 
@@ -135,7 +135,7 @@ ___
 
 ### swaps
 
-• `Readonly` **swaps**: { `inputAmount`: `CurrencyAmount`<`TInput`\> ; `outputAmount`: `CurrencyAmount`<`TOutput`\> ; `route`: [`Route`](Route.md)<`TInput`, `TOutput`\>  }[]
+• `Readonly` **swaps**: \{ `inputAmount`: `CurrencyAmount`\<`TInput`\> ; `outputAmount`: `CurrencyAmount`\<`TOutput`\> ; `route`: [`Route`](Route.md)\<`TInput`, `TOutput`\>  \}[]
 
 The swaps of the trade, i.e. which routes and how much is swapped in each that
 make up the trade.
@@ -160,13 +160,13 @@ The type of the trade, either exact in or exact out.
 
 ### executionPrice
 
-• `get` **executionPrice**(): `Price`<`TInput`, `TOutput`\>
+• `get` **executionPrice**(): `Price`\<`TInput`, `TOutput`\>
 
 The price expressed in terms of output amount/input amount.
 
 #### Returns
 
-`Price`<`TInput`, `TOutput`\>
+`Price`\<`TInput`, `TOutput`\>
 
 #### Defined in
 
@@ -176,13 +176,13 @@ ___
 
 ### inputAmount
 
-• `get` **inputAmount**(): `CurrencyAmount`<`TInput`\>
+• `get` **inputAmount**(): `CurrencyAmount`\<`TInput`\>
 
 The input amount for the trade assuming no slippage.
 
 #### Returns
 
-`CurrencyAmount`<`TInput`\>
+`CurrencyAmount`\<`TInput`\>
 
 #### Defined in
 
@@ -192,13 +192,13 @@ ___
 
 ### outputAmount
 
-• `get` **outputAmount**(): `CurrencyAmount`<`TOutput`\>
+• `get` **outputAmount**(): `CurrencyAmount`\<`TOutput`\>
 
 The output amount for the trade assuming no slippage.
 
 #### Returns
 
-`CurrencyAmount`<`TOutput`\>
+`CurrencyAmount`\<`TOutput`\>
 
 #### Defined in
 
@@ -224,7 +224,7 @@ ___
 
 ### route
 
-• `get` **route**(): [`Route`](Route.md)<`TInput`, `TOutput`\>
+• `get` **route**(): [`Route`](Route.md)\<`TInput`, `TOutput`\>
 
 **`Deprecated`**
 
@@ -236,7 +236,7 @@ i.e. which pools the trade goes through.
 
 #### Returns
 
-[`Route`](Route.md)<`TInput`, `TOutput`\>
+[`Route`](Route.md)\<`TInput`, `TOutput`\>
 
 #### Defined in
 
@@ -246,7 +246,7 @@ i.e. which pools the trade goes through.
 
 ### maximumAmountIn
 
-▸ **maximumAmountIn**(`slippageTolerance`, `amountIn?`): `CurrencyAmount`<`TInput`\>
+▸ **maximumAmountIn**(`slippageTolerance`, `amountIn?`): `CurrencyAmount`\<`TInput`\>
 
 Get the maximum amount in that can be spent via this trade for the given slippage tolerance
 
@@ -255,11 +255,11 @@ Get the maximum amount in that can be spent via this trade for the given slippag
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `slippageTolerance` | `Percent` | The tolerance of unfavorable slippage from the execution price of this trade |
-| `amountIn` | `CurrencyAmount`<`TInput`\> | - |
+| `amountIn` | `CurrencyAmount`\<`TInput`\> | - |
 
 #### Returns
 
-`CurrencyAmount`<`TInput`\>
+`CurrencyAmount`\<`TInput`\>
 
 The amount in
 
@@ -271,7 +271,7 @@ ___
 
 ### minimumAmountOut
 
-▸ **minimumAmountOut**(`slippageTolerance`, `amountOut?`): `CurrencyAmount`<`TOutput`\>
+▸ **minimumAmountOut**(`slippageTolerance`, `amountOut?`): `CurrencyAmount`\<`TOutput`\>
 
 Get the minimum amount that must be received from this trade for the given slippage tolerance
 
@@ -280,11 +280,11 @@ Get the minimum amount that must be received from this trade for the given slipp
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `slippageTolerance` | `Percent` | The tolerance of unfavorable slippage from the execution price of this trade |
-| `amountOut` | `CurrencyAmount`<`TOutput`\> | - |
+| `amountOut` | `CurrencyAmount`\<`TOutput`\> | - |
 
 #### Returns
 
-`CurrencyAmount`<`TOutput`\>
+`CurrencyAmount`\<`TOutput`\>
 
 The amount out
 
@@ -296,7 +296,7 @@ ___
 
 ### worstExecutionPrice
 
-▸ **worstExecutionPrice**(`slippageTolerance`): `Price`<`TInput`, `TOutput`\>
+▸ **worstExecutionPrice**(`slippageTolerance`): `Price`\<`TInput`, `TOutput`\>
 
 Return the execution price after accounting for slippage tolerance
 
@@ -308,7 +308,7 @@ Return the execution price after accounting for slippage tolerance
 
 #### Returns
 
-`Price`<`TInput`, `TOutput`\>
+`Price`\<`TInput`, `TOutput`\>
 
 The execution price
 
@@ -320,7 +320,7 @@ ___
 
 ### bestTradeExactIn
 
-▸ `Static` **bestTradeExactIn**<`TInput`, `TOutput`\>(`pools`, `currencyAmountIn`, `currencyOut`, `__namedParameters?`, `currentPools?`, `nextAmountIn?`, `bestTrades?`): `Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_INPUT`\>[]\>
+▸ `Static` **bestTradeExactIn**\<`TInput`, `TOutput`\>(`pools`, `currencyAmountIn`, `currencyOut`, `__namedParameters?`, `currentPools?`, `nextAmountIn?`, `bestTrades?`): `Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_INPUT`\>[]\>
 
 Given a list of pools, and a fixed amount in, returns the top `maxNumResults` trades that go from an input token
 amount to an output token, making at most `maxHops` hops.
@@ -339,16 +339,16 @@ the amount in among multiple routes.
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `pools` | [`Pool`](Pool.md)[] | `undefined` | the pools to consider in finding the best trade |
-| `currencyAmountIn` | `CurrencyAmount`<`TInput`\> | `undefined` | used in recursion; the original value of the currencyAmountIn parameter |
+| `currencyAmountIn` | `CurrencyAmount`\<`TInput`\> | `undefined` | used in recursion; the original value of the currencyAmountIn parameter |
 | `currencyOut` | `TOutput` | `undefined` | the desired currency out |
 | `__namedParameters` | [`BestTradeOptions`](../interfaces/BestTradeOptions.md) | `{}` | - |
 | `currentPools` | [`Pool`](Pool.md)[] | `[]` | used in recursion; the current list of pools |
-| `nextAmountIn` | `CurrencyAmount`<`Currency`\> | `currencyAmountIn` | exact amount of input currency to spend |
-| `bestTrades` | [`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_INPUT`\>[] | `[]` | used in recursion; the current list of best trades |
+| `nextAmountIn` | `CurrencyAmount`\<`Currency`\> | `currencyAmountIn` | exact amount of input currency to spend |
+| `bestTrades` | [`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_INPUT`\>[] | `[]` | used in recursion; the current list of best trades |
 
 #### Returns
 
-`Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_INPUT`\>[]\>
+`Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_INPUT`\>[]\>
 
 The exact in trade
 
@@ -360,7 +360,7 @@ ___
 
 ### bestTradeExactOut
 
-▸ `Static` **bestTradeExactOut**<`TInput`, `TOutput`\>(`pools`, `currencyIn`, `currencyAmountOut`, `__namedParameters?`, `currentPools?`, `nextAmountOut?`, `bestTrades?`): `Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_OUTPUT`\>[]\>
+▸ `Static` **bestTradeExactOut**\<`TInput`, `TOutput`\>(`pools`, `currencyIn`, `currencyAmountOut`, `__namedParameters?`, `currentPools?`, `nextAmountOut?`, `bestTrades?`): `Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_OUTPUT`\>[]\>
 
 similar to the above method but instead targets a fixed output amount
 given a list of pools, and a fixed amount out, returns the top `maxNumResults` trades that go from an input token
@@ -381,15 +381,15 @@ the amount in among multiple routes.
 | :------ | :------ | :------ | :------ |
 | `pools` | [`Pool`](Pool.md)[] | `undefined` | the pools to consider in finding the best trade |
 | `currencyIn` | `TInput` | `undefined` | the currency to spend |
-| `currencyAmountOut` | `CurrencyAmount`<`TOutput`\> | `undefined` | the desired currency amount out |
+| `currencyAmountOut` | `CurrencyAmount`\<`TOutput`\> | `undefined` | the desired currency amount out |
 | `__namedParameters` | [`BestTradeOptions`](../interfaces/BestTradeOptions.md) | `{}` | - |
 | `currentPools` | [`Pool`](Pool.md)[] | `[]` | used in recursion; the current list of pools |
-| `nextAmountOut` | `CurrencyAmount`<`Currency`\> | `currencyAmountOut` | the exact amount of currency out |
-| `bestTrades` | [`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_OUTPUT`\>[] | `[]` | used in recursion; the current list of best trades |
+| `nextAmountOut` | `CurrencyAmount`\<`Currency`\> | `currencyAmountOut` | the exact amount of currency out |
+| `bestTrades` | [`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_OUTPUT`\>[] | `[]` | used in recursion; the current list of best trades |
 
 #### Returns
 
-`Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_OUTPUT`\>[]\>
+`Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_OUTPUT`\>[]\>
 
 The exact out trade
 
@@ -401,7 +401,7 @@ ___
 
 ### createUncheckedTrade
 
-▸ `Static` **createUncheckedTrade**<`TInput`, `TOutput`, `TTradeType`\>(`constructorArguments`): [`Trade`](Trade.md)<`TInput`, `TOutput`, `TTradeType`\>
+▸ `Static` **createUncheckedTrade**\<`TInput`, `TOutput`, `TTradeType`\>(`constructorArguments`): [`Trade`](Trade.md)\<`TInput`, `TOutput`, `TTradeType`\>
 
 Creates a trade without computing the result of swapping through the route. Useful when you have simulated the trade
 elsewhere and do not have any tick data
@@ -419,14 +419,14 @@ elsewhere and do not have any tick data
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `constructorArguments` | `Object` | The arguments passed to the trade constructor |
-| `constructorArguments.inputAmount` | `CurrencyAmount`<`TInput`\> | - |
-| `constructorArguments.outputAmount` | `CurrencyAmount`<`TOutput`\> | - |
-| `constructorArguments.route` | [`Route`](Route.md)<`TInput`, `TOutput`\> | - |
+| `constructorArguments.inputAmount` | `CurrencyAmount`\<`TInput`\> | - |
+| `constructorArguments.outputAmount` | `CurrencyAmount`\<`TOutput`\> | - |
+| `constructorArguments.route` | [`Route`](Route.md)\<`TInput`, `TOutput`\> | - |
 | `constructorArguments.tradeType` | `TTradeType` | - |
 
 #### Returns
 
-[`Trade`](Trade.md)<`TInput`, `TOutput`, `TTradeType`\>
+[`Trade`](Trade.md)\<`TInput`, `TOutput`, `TTradeType`\>
 
 The unchecked trade
 
@@ -438,7 +438,7 @@ ___
 
 ### createUncheckedTradeWithMultipleRoutes
 
-▸ `Static` **createUncheckedTradeWithMultipleRoutes**<`TInput`, `TOutput`, `TTradeType`\>(`constructorArguments`): [`Trade`](Trade.md)<`TInput`, `TOutput`, `TTradeType`\>
+▸ `Static` **createUncheckedTradeWithMultipleRoutes**\<`TInput`, `TOutput`, `TTradeType`\>(`constructorArguments`): [`Trade`](Trade.md)\<`TInput`, `TOutput`, `TTradeType`\>
 
 Creates a trade without computing the result of swapping through the routes. Useful when you have simulated the trade
 elsewhere and do not have any tick data
@@ -456,12 +456,12 @@ elsewhere and do not have any tick data
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `constructorArguments` | `Object` | The arguments passed to the trade constructor |
-| `constructorArguments.routes` | { `inputAmount`: `CurrencyAmount`<`TInput`\> ; `outputAmount`: `CurrencyAmount`<`TOutput`\> ; `route`: [`Route`](Route.md)<`TInput`, `TOutput`\>  }[] | - |
+| `constructorArguments.routes` | \{ `inputAmount`: `CurrencyAmount`\<`TInput`\> ; `outputAmount`: `CurrencyAmount`\<`TOutput`\> ; `route`: [`Route`](Route.md)\<`TInput`, `TOutput`\>  \}[] | - |
 | `constructorArguments.tradeType` | `TTradeType` | - |
 
 #### Returns
 
-[`Trade`](Trade.md)<`TInput`, `TOutput`, `TTradeType`\>
+[`Trade`](Trade.md)\<`TInput`, `TOutput`, `TTradeType`\>
 
 The unchecked trade
 
@@ -473,7 +473,7 @@ ___
 
 ### exactIn
 
-▸ `Static` **exactIn**<`TInput`, `TOutput`\>(`route`, `amountIn`): `Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_INPUT`\>\>
+▸ `Static` **exactIn**\<`TInput`, `TOutput`\>(`route`, `amountIn`): `Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_INPUT`\>\>
 
 Constructs an exact in trade with the given amount in and route
 
@@ -488,12 +488,12 @@ Constructs an exact in trade with the given amount in and route
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `route` | [`Route`](Route.md)<`TInput`, `TOutput`\> | The route of the exact in trade |
-| `amountIn` | `CurrencyAmount`<`TInput`\> | The amount being passed in |
+| `route` | [`Route`](Route.md)\<`TInput`, `TOutput`\> | The route of the exact in trade |
+| `amountIn` | `CurrencyAmount`\<`TInput`\> | The amount being passed in |
 
 #### Returns
 
-`Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_INPUT`\>\>
+`Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_INPUT`\>\>
 
 The exact in trade
 
@@ -505,7 +505,7 @@ ___
 
 ### exactOut
 
-▸ `Static` **exactOut**<`TInput`, `TOutput`\>(`route`, `amountOut`): `Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_OUTPUT`\>\>
+▸ `Static` **exactOut**\<`TInput`, `TOutput`\>(`route`, `amountOut`): `Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_OUTPUT`\>\>
 
 Constructs an exact out trade with the given amount out and route
 
@@ -520,12 +520,12 @@ Constructs an exact out trade with the given amount out and route
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `route` | [`Route`](Route.md)<`TInput`, `TOutput`\> | The route of the exact out trade |
-| `amountOut` | `CurrencyAmount`<`TOutput`\> | The amount returned by the trade |
+| `route` | [`Route`](Route.md)\<`TInput`, `TOutput`\> | The route of the exact out trade |
+| `amountOut` | `CurrencyAmount`\<`TOutput`\> | The amount returned by the trade |
 
 #### Returns
 
-`Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `EXACT_OUTPUT`\>\>
+`Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `EXACT_OUTPUT`\>\>
 
 The exact out trade
 
@@ -537,7 +537,7 @@ ___
 
 ### fromRoute
 
-▸ `Static` **fromRoute**<`TInput`, `TOutput`, `TTradeType`\>(`route`, `amount`, `tradeType`): `Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `TTradeType`\>\>
+▸ `Static` **fromRoute**\<`TInput`, `TOutput`, `TTradeType`\>(`route`, `amount`, `tradeType`): `Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `TTradeType`\>\>
 
 Constructs a trade by simulating swaps through the given route
 
@@ -553,13 +553,13 @@ Constructs a trade by simulating swaps through the given route
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `route` | [`Route`](Route.md)<`TInput`, `TOutput`\> | route to swap through |
-| `amount` | `TTradeType` extends `EXACT_INPUT` ? `CurrencyAmount`<`TInput`\> : `CurrencyAmount`<`TOutput`\> | the amount specified, either input or output, depending on tradeType |
+| `route` | [`Route`](Route.md)\<`TInput`, `TOutput`\> | route to swap through |
+| `amount` | `TTradeType` extends `EXACT_INPUT` ? `CurrencyAmount`\<`TInput`\> : `CurrencyAmount`\<`TOutput`\> | the amount specified, either input or output, depending on tradeType |
 | `tradeType` | `TTradeType` | whether the trade is an exact input or exact output swap |
 
 #### Returns
 
-`Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `TTradeType`\>\>
+`Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `TTradeType`\>\>
 
 The route
 
@@ -571,7 +571,7 @@ ___
 
 ### fromRoutes
 
-▸ `Static` **fromRoutes**<`TInput`, `TOutput`, `TTradeType`\>(`routes`, `tradeType`): `Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `TTradeType`\>\>
+▸ `Static` **fromRoutes**\<`TInput`, `TOutput`, `TTradeType`\>(`routes`, `tradeType`): `Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `TTradeType`\>\>
 
 Constructs a trade from routes by simulating swaps
 
@@ -587,12 +587,12 @@ Constructs a trade from routes by simulating swaps
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `routes` | { `amount`: `TTradeType` extends `EXACT_INPUT` ? `CurrencyAmount`<`TInput`\> : `CurrencyAmount`<`TOutput`\> ; `route`: [`Route`](Route.md)<`TInput`, `TOutput`\>  }[] | the routes to swap through and how much of the amount should be routed through each |
+| `routes` | \{ `amount`: `TTradeType` extends `EXACT_INPUT` ? `CurrencyAmount`\<`TInput`\> : `CurrencyAmount`\<`TOutput`\> ; `route`: [`Route`](Route.md)\<`TInput`, `TOutput`\>  \}[] | the routes to swap through and how much of the amount should be routed through each |
 | `tradeType` | `TTradeType` | whether the trade is an exact input or exact output swap |
 
 #### Returns
 
-`Promise`<[`Trade`](Trade.md)<`TInput`, `TOutput`, `TTradeType`\>\>
+`Promise`\<[`Trade`](Trade.md)\<`TInput`, `TOutput`, `TTradeType`\>\>
 
 The trade
 

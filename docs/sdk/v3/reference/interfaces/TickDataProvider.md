@@ -20,7 +20,7 @@ Provides information about ticks
 
 ### getTick
 
-▸ **getTick**(`tick`): `Promise`<{ `liquidityNet`: `BigintIsh`  }\>
+▸ **getTick**(`tick`): `Promise`\<\{ `liquidityNet`: `BigintIsh`  \}\>
 
 Return information corresponding to a specific tick
 
@@ -32,7 +32,7 @@ Return information corresponding to a specific tick
 
 #### Returns
 
-`Promise`<{ `liquidityNet`: `BigintIsh`  }\>
+`Promise`\<\{ `liquidityNet`: `BigintIsh`  \}\>
 
 #### Defined in
 
@@ -42,7 +42,7 @@ ___
 
 ### nextInitializedTickWithinOneWord
 
-▸ **nextInitializedTickWithinOneWord**(`tick`, `lte`, `tickSpacing`): `Promise`<[`number`, `boolean`]\>
+▸ **nextInitializedTickWithinOneWord**(`tick`, `lte`, `tickSpacing`): `Promise`\<[`number`, `boolean`]\>
 
 Return the next tick that is initialized within a single word
 
@@ -56,7 +56,7 @@ Return the next tick that is initialized within a single word
 
 #### Returns
 
-`Promise`<[`number`, `boolean`]\>
+`Promise`\<[`number`, `boolean`]\>
 
 #### Defined in
 
