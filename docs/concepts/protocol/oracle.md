@@ -86,4 +86,8 @@ With a tick reading of `100_000`, we can find the value of `token1` (USDC) in te
 
 Ticks are signed integers and can be expressed as a negative number, so for any circumstances where `token0` is of a lower value than `token1`, a negative tick value will be returned by `tickCumulative` and a relative value of `< 0` will be returned by a calculation of `token0` in terms of `token1`.
 
+## Oracles Integrations on Layer 2 Rollups
 
+### Arbitrum One
+
+On Arbitrum One, multiple transactions can be part of a block, and [multiple blocks](https://arbiscan.io/blocks) are usually created per second (up to a maximum of 4 blocks per second). Their `block.timestamp` reflect the time at which the block was produced based on the sequencer's clock (see [Arbitrum's sequencer documentation](https://docs.arbitrum.io/sequencer) to learn more about its trust assumptions), so observations have enough granularity to make the oracle more difficult to manipulate. Thus, Uniswap pools on Arbitrum One are suitable for providing oracle prices. For more information on how block numbers and time work on Arbitrum One, please see the [Arbitrum documentation portal](https://docs.arbitrum.io/time).
