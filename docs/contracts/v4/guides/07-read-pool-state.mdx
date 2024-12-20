@@ -95,11 +95,11 @@ Moreover, using `extsload` instead of hand-written Solidity view functions lower
 ### TransientStateLibrary and `exttload`
 
 ```solidity
-abstract contract Extsload is IExtsload {
-    /// @inheritdoc IExtsload
-    function extsload(bytes32 slot) external view returns (bytes32) {
+abstract contract Exttload is IExttload {
+    /// @inheritdoc IExttload
+    function exttload(bytes32 slot) external view returns (bytes32) {
         assembly ("memory-safe") {
-            mstore(0, sload(slot))
+            mstore(0, tload(slot))
             return(0, 0x20)
         }
     }
