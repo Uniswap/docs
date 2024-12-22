@@ -21,8 +21,6 @@ ERC20 tokens are fungible tokens on Ethereum. Uniswap supports all standard ERC2
 
 ### Flash accounting
 
-An optimization introduced in V4 to reduce gas costs from expensive external contract calls, this utilizes EIP-1153's Transient Storage to make each balance-changing operation update an internal net balance known as delta. Subsequently, users only have to transfer tokens for the final balance change, eliminating the need for resolving intermediate balance changes.
-
 An optimization introduced in V4 that leverages EIP-1153's Transient Storage to reduce gas costs by consolidating balance changes into a single net update, eliminating intermediate balance transfers.
 
 ### Flash swap
@@ -49,6 +47,10 @@ In Uniswap V4, pools are initialized as unique poolKey structs and managed entir
 ### Pool key
 
 A crucial struct in Uniswap V4 that uniquely identifies a liquidity pool. It encapsulates all the essential parameters that define a pool's characteristics.
+
+### Pool manager
+
+The single entry point for every liquidity pool, all pool state and logic are contained within this contract.
 
 ### Price impact
 
