@@ -27,7 +27,6 @@ An optimization introduced in V4 that leverages EIP-1153's Transient Storage to 
 
 A trade that uses the tokens being purchased before paying for them.
 
-
 ### Liquidity provider / LP
 
 A liquidity provider is someone who deposits ERC20 tokens into a given liquidity pool. Liquidity providers take on price risk and are compensated with trading fees.
