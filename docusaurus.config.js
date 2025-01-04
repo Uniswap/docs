@@ -68,20 +68,21 @@ module.exports = {
           className: 'persistent',
         },
         {
+          label: 'Uniswap Foundation',
+          to: 'https://www.uniswapfoundation.org/',
+          position: 'right',
+          className: 'persistent',
+        },
+        // As soon as we have a whitepaper for v4 in the main link, we can replace it here
+        {
+          to: 'https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/Uniswap/v4-core/main/docs/whitepaper/whitepaper-v4.pdf',
           label: 'Whitepaper',
-          to: 'https://uniswap.org/whitepaper-v3.pdf',
           position: 'right',
           className: 'persistent',
         },
         {
-          href: 'https://github.com/uniswap/uniswap-docs',
           label: 'GitHub',
-          position: 'right',
-          className: 'persistent',
-        },
-        {
-          href: 'https://unigrants.org/',
-          label: 'Grants',
+          to: 'https://github.com/Uniswap/docs/',
           position: 'right',
           className: 'persistent',
         },
@@ -94,20 +95,20 @@ module.exports = {
           title: 'Developers',
           items: [
             {
+              label: 'Dev Chat',
+              href: 'https://discord.com/invite/uniswap',
+            },
+            {
               label: 'Feedback',
               href: 'https://forms.gle/13XtjmkwdXQ2jMn26',
             },
             {
               label: 'Bug Bounty',
-              href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/bug-bounty.md',
-            },
-            {
-              label: '#dev-chat',
-              href: 'https://discord.com/invite/uniswap',
+              href: 'https://blog.uniswap.org/v4-bug-bounty',
             },
             {
               label: 'Whitepaper',
-              href: 'https://uniswap.org/whitepaper-v3.pdf',
+              href: 'https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/Uniswap/v4-core/main/docs/whitepaper/whitepaper-v4.pdf',
             },
           ],
         },
@@ -115,30 +116,26 @@ module.exports = {
           title: 'Github',
           items: [
             {
-              label: 'uniswap-v3-core',
-              href: 'https://github.com/Uniswap/uniswap-v3-core',
+              label: 'uniswap-v4-core',
+              href: 'https://github.com/Uniswap/v4-core',
             },
             {
-              label: 'uniswap-v3-sdk',
-              href: 'https://github.com/Uniswap/uniswap-v3-sdk',
+              label: 'uniswap-v4-sdk',
+              href: 'https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk',
             },
             {
-              label: 'uniswap-v3-periphery',
-              href: 'https://github.com/Uniswap/uniswap-v3-periphery',
+              label: 'uniswap-v4-periphery',
+              href: 'https://github.com/Uniswap/v4-periphery',
             },
             {
               label: 'Deployment addresses',
-              href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
+              href: 'https://docs.uniswap.org/contracts/v4/deployments',
             },
           ],
         },
         {
           title: 'Ecosystem',
           items: [
-            {
-              label: 'Home',
-              href: 'https://uniswap.org/',
-            },
             {
               label: 'App',
               href: 'https://app.uniswap.org/',
@@ -153,7 +150,7 @@ module.exports = {
             },
             {
               label: 'Brand Assets',
-              href: 'https://uniswap.org/Uniswap_brand_assets.zip',
+              href: 'https://github.com/Uniswap/brand-assets/raw/main/Uniswap%20Brand%20Assets.zip',
             },
           ],
         },
@@ -174,7 +171,7 @@ module.exports = {
             },
             {
               label: 'Blog',
-              href: 'https://uniswap.org/blog/',
+              href: 'https://blog.uniswap.org/',
             },
           ],
         },
