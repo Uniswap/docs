@@ -60,7 +60,10 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
     (sentiment: Sentiment) => selectedSentiment && selectedSentiment === sentiment,
     [selectedSentiment]
   )
+ // Temporarily disabled feedback widget
+ return null
 
+   /* Original return:
   return (
     <Container>
       <StyledTextDiv>Helpful?</StyledTextDiv>
@@ -105,4 +108,5 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
       </TraceEvent>
     </Container>
   )
+    */
 }

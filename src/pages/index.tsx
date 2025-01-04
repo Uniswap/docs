@@ -7,6 +7,7 @@ import Discord from '@site/static/img/discord.svg'
 import GitHub from '@site/static/img/github.svg'
 import Npm from '@site/static/img/npm.svg'
 import UGP from '@site/static/img/UGP.png'
+//const UGPImage = '/img/UGP.png';
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
 import { TraceEvent } from '@uniswap/analytics'
@@ -44,30 +45,32 @@ export const actions = [
 
 export const developerLinks = [
   {
-    title: 'uniswap-v3-core',
-    href: 'https://github.com/Uniswap/uniswap-v3-core',
+    title: 'uniswap-v4-core',
+    href: 'https://github.com/Uniswap/v4-core/',
     icon: GitHub,
   },
   {
-    title: 'uniswap-v3-sdk',
-    href: 'https://github.com/Uniswap/uniswap-v3-sdk',
+    title: 'uniswap-v4-periphery',
+    href: 'https://github.com/Uniswap/v4-periphery',
     icon: GitHub,
   },
   {
-    title: 'uniswap-v3-periphery',
-    href: 'https://github.com/Uniswap/uniswap-v3-periphery',
+    title: 'uniswap-v4-sdk',
+    href: 'https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk',
     icon: GitHub,
   },
   {
     title: 'Deployment addresses',
-    href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
+    href: 'http://localhost:3000/contracts/v4/deployments',
     icon: GitHub,
   },
+  /*
   {
     title: 'widgets',
     href: 'https://www.npmjs.com/package/@uniswap/widgets',
     icon: Npm,
   },
+  */
 ]
 
 export const dAppGuides = [
@@ -530,9 +533,9 @@ export default function Home() {
           >
             <img src={UGP} width={'120px'} />
             <div>
-              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Grants Program</h2>
+              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Foundation Grants</h2>
               <p style={{ margin: '0rem' }}>
-                Uniswap Governance offers grant funding for people who are building apps, tools, and activities for
+                Uniswap Foundation offers grant funding for people who are building apps, tools, and activities for
                 Uniswap Protocol users, builders, and community members.{' '}
               </p>
             </div>
