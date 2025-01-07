@@ -535,8 +535,7 @@ export default function Home() {
             <div>
               <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Foundation Grants</h2>
               <p style={{ margin: '0rem' }}>
-                Uniswap Foundation offers grant funding for people who are building apps, tools, and activities for
-                Uniswap Protocol users, builders, and community members.{' '}
+              In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth, decentralization, and sustainability of the Uniswap community.{' '}
               </p>
             </div>
           </WideCard>
