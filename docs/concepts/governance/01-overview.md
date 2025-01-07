@@ -7,9 +7,13 @@ title: Overview
 
 [`governance`](https://github.com/Uniswap/governance)
 
+<!-- 
+
 ## Documentation
 
 For reference material on the Uniswap Governance system please see [Governance Reference](../../../contracts/v3/reference/governance/overview.md).
+
+ -->
 
 ## UNI Address
 
