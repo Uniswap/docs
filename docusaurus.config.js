@@ -75,7 +75,7 @@ module.exports = {
         },
         // As soon as we have a whitepaper for v4 in the main link, we can replace it here
         {
-          to: 'https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/Uniswap/v4-core/main/docs/whitepaper/whitepaper-v4.pdf',
+          to: 'https://app.uniswap.org/whitepaper-v3.pdf',
           label: 'Whitepaper',
           position: 'right',
           className: 'persistent',
@@ -108,7 +108,7 @@ module.exports = {
             },
             {
               label: 'Whitepaper',
-              href: 'https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/Uniswap/v4-core/main/docs/whitepaper/whitepaper-v4.pdf',
+              href: 'https://app.uniswap.org/whitepaper-v3.pdf',
             },
           ],
         },

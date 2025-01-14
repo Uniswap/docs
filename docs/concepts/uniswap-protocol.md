@@ -9,7 +9,7 @@ sidebar_position: 2
 
 The Uniswap protocol is a peer-to-peer[^1] system designed for exchanging cryptocurrencies [(ERC-20 Tokens)](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) on the [Ethereum](https://ethereum.org/) blockchain. The protocol is implemented as a set of persistent, non-upgradable smart contracts; designed to prioritize censorship resistance, security, self-custody, and to function without any trusted intermediaries who may selectively restrict access.
 
-There are currently three versions of the Uniswap protocol. V1 and V2 are open source and licensed under GPL. V3 is open source with slight modifications, which are viewable [here](https://github.com/Uniswap/uniswap-v3-core/blob/main/LICENSE). Each version of Uniswap, once deployed, will function in perpetuity, with 100% uptime, provided the continued existence of the Ethereum blockchain.
+There are currently three versions of the Uniswap protocol. v1 and v2 are open source and licensed under GPL. v3 is open source with slight modifications, which are viewable [here](https://github.com/Uniswap/uniswap-v3-core/blob/main/LICENSE). Each version of Uniswap, once deployed, will function in perpetuity, with 100% uptime, provided the continued existence of the Ethereum blockchain.
 
 ## How does the Uniswap protocol compare to a typical market?
 
@@ -35,6 +35,6 @@ The protocol is also immutable, in other words not upgradeable. No party is able
 
 For research into the economics of AMMs, game theory, or optimization research, check out our [research](./research.md) page.
 
-For new features implemented in V3 that expand and refine the AMM design, see the [V3 Concepts](./protocol/concentrated-liquidity.md) page.
+For new features implemented in v3 that expand and refine the AMM design, see the [v3 Concepts](./protocol/concentrated-liquidity.md) page.
 
 [^1]: Ethereum protocols are sometimes referred to as peer-to-contract systems as well. These are similar to a peer-to-peer systems, but with immutable, persistent programs known as smart contracts taking the place of a peer.

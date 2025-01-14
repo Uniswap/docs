@@ -4,13 +4,13 @@ title: Overview
 sidebar_position: 1
 ---
 
-Uniswap V3 is a binary smart contract system comprised of many libraries, which together make the Core and Periphery.
+Uniswap v3 is a binary smart contract system comprised of many libraries, which together make the Core and Periphery.
 
 Core contracts provide fundamental safety guarantees for all parties interacting with Uniswap. They define the logic of pool generation, the pools themselves, and the interactions involving the respective assets therein.
 
 Periphery contracts interact with one or more Core contracts but are not part of the core. They are designed to provide methods of interacting with the core that increase clarity and user safety.
 
-External calls will primarily call the periphery interfaces. Externally available functions are all viewable in the reference documentation. Internal functions are viewable on the Uniswap V3 Github repo.
+External calls will primarily call the periphery interfaces. Externally available functions are all viewable in the reference documentation. Internal functions are viewable on the Uniswap v3 Github repo.
 
 ## Core
 
