@@ -13,7 +13,7 @@ Uniswap Governance takes place in several venues. Each serves its own particular
 
 A Discourse-hosted forum for governance-related discussion. Community members must register for an account before sharing or liking posts. New members must read 4 topics and a combined 15 posts over the course of at least 10 minutes before they may  post themselves.
 
-2. [_Snapshot_](https://snapshot.org/#/uniswapgovernance.eth)
+2. [_Snapshot_](https://snapshot.box/#/s:uniswapgovernance.eth)
 
 A simple voting interface that allows users to signal sentiment off-chain. Votes on Snapshot are weighted by the number of UNI delegated to the address used to vote.
 
@@ -52,7 +52,7 @@ To create a Temperature Check:
 
 2. Create and post this version of the proposal in the [Governance Forum](https://gov.uniswap.org/) with the title “Temperature Check — [Your Title Here]”. Include a link to the RFC post. You will update the post to include a link to the Snapshot poll after you’ve posted that.
 
-3. Create a [Snapshot poll](https://snapshot.org/#/uniswap). The voting options should consist of those which have gained support in the RFC Phase. This poll can be either binary or multiple choice but must include a `No change` option. Set the poll duration to 5 days. Include a link to the Forum Temperature Check post.
+3. Create a [Snapshot poll](https://snapshot.box/#/s:uniswapgovernance.eth). The voting options should consist of those which have gained support in the RFC Phase. This poll can be either binary or multiple choice but must include a `No change` option. Set the poll duration to 5 days. Include a link to the Forum Temperature Check post.
 
 4. Update the Forum post with a link to the Snapshot Poll.
 
@@ -90,11 +90,14 @@ Timeframe: 7 days
 
 _Quorum_: 40M UNI
 
-Form: [Snapshot Poll](https://snapshot.org/#/uniswap)
+Form: [Snapshot Poll](https://snapshot.box/#/s:uniswapgovernance.eth)
 
 In the future, the community governance process above may need to undergo additional changes to continue to meet the needs of the Uniswap community. While an onchain vote is not required to change the majority of this process, a clear display of community support and acceptance is important for process changes to have legitimacy.
 
 Thus, changes to all off-chain community governance processes should be voted on through an off-chain Snapshot vote. There should be a 7-day voting period and 40M UNI quorum.
+
+
+<!-- 
 
 ## Governance Glossary
 
@@ -113,3 +116,4 @@ Thus, changes to all off-chain community governance processes should be voted on
 - **Voting Period:** Once a proposal has been created, Uniswap community members will have a seven day period (the Voting Period) to cast their votes.
 
 - **Timelock:** All governance proposals must sit in the Timelock for a minimum of 2 days, after which they can be executed.
+-->
