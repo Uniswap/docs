@@ -15,7 +15,9 @@ With _flash accounting_, each balance-changing operation (e.g. swap and liquidit
 ![Flash Accounting Step 1](./images/Uniswap_V4_Flash_Accounting_Step_1.png)
 ![Flash Accounting Step 2](./images/Uniswap_V4_Flash_Accounting_Step_2.png)
 
-For example from the above diagrams - let's say you have 20 `USDC` and 20 `USDT` but you want to add liquidity with lesser `USDC` and more `USDT`. Previously this would require multiple external calls as tokens were transferred between Pool contracts when swapping from `USDC` to `USDT`. But now with v4's Flash Accounting we only need to keep track of `delta` - thus we can `swap` and `modifyLiquidity` in a single call and only the final balance-changes involve actual token transfers.
+For example from the above diagrams - let's say you have 20 `USDC` and 20 `USDT` but you want to add liquidity with 15 `USDC` and 25 `USDT`. Previously this would require multiple external calls as tokens were transferred between Pool contracts when swapping from `USDC` to `USDT`. But now with v4's Flash Accounting we only need to keep track of `delta` - thus we can `swap` and `modifyLiquidity` in a single call and only the final balance-changes involve actual token transfers.
+
+In the above example, we are swapping 5 USDC to 5 USDT to create liquidity with 15 USDC and 25 USDT. In between the operations (*swap, modifyLiquidity*), no token transfers are made
 
 ## Mechanism
 
