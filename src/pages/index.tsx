@@ -7,7 +7,7 @@ import Discord from '@site/static/img/discord.svg'
 import GitHub from '@site/static/img/github.svg'
 import Npm from '@site/static/img/npm.svg'
 import UGP from '@site/static/img/UGP.png'
-//const UGPImage = '/img/UGP.png';
+
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
 import { TraceEvent } from '@uniswap/analytics'
