@@ -60,7 +60,7 @@ function executeSwap(PoolKey calldata key) external {
 
 When a swap is executed, the PoolManager returns a `BalanceDelta` that shows your token obligations. In this example, the negative delta (-1e18) means the executor owes 1 ETH to the PoolManager, while the positive delta (+2000e6) means the executor is entitled to receive 2000 USDC. These deltas must be resolved before the transaction completes.
 
-Note how negative values in v4 consistently represent tokens going to the PoolManager - both in `amountSpecified` for the input amount and in the returned delta for tokens owed.
+_Note how negative values in v4 consistently represent tokens going to the PoolManager - both in `amountSpecified` for the input amount and in the returned delta for tokens owed._
 
 ## Reading Delta States
 
