@@ -75,7 +75,7 @@ module.exports = {
         },
         // As soon as we have a whitepaper for v4 in the main link, we can replace it here
         {
-          to: 'https://app.uniswap.org/whitepaper-v3.pdf',
+          to: 'https://app.uniswap.org/whitepaper-v4.pdf',
           label: 'Whitepaper',
           position: 'right',
           className: 'persistent',
@@ -108,7 +108,7 @@ module.exports = {
             },
             {
               label: 'Whitepaper',
-              href: 'https://app.uniswap.org/whitepaper-v3.pdf',
+              href: 'https://app.uniswap.org/whitepaper-v4.pdf',
             },
           ],
         },
@@ -158,20 +158,24 @@ module.exports = {
           title: 'Community',
           items: [
             {
+              label: 'Blog',
+              href: 'https://blog.uniswap.org/',
+            },
+            //{
+            //  label: 'Discord',
+            //  href: 'https://discord.com/invite/uniswap',
+            //},
+            {
               label: 'Governance',
               href: 'https://gov.uniswap.org/',
             },
             {
-              label: 'Discord',
-              href: 'https://discord.com/invite/uniswap',
-            },
-            {
-              label: 'Twitter',
+              label: 'Uniswap Labs Twitter',
               href: 'https://twitter.com/Uniswap',
             },
             {
-              label: 'Blog',
-              href: 'https://blog.uniswap.org/',
+              label: 'Uniswap Foundation Twitter',
+              href: 'https://x.com/UniswapFND',
             },
           ],
         },
