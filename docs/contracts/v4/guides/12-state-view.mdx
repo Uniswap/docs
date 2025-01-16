@@ -156,22 +156,28 @@ const getPoolLiquidity = async (poolId: string) => {
 
 While **StateView** exposes many functions, here are several essential calls for most offchain applications. Each function typically takes a `poolId` (of type `bytes32`) as the key input, identifying which pool to query.
 
-1. **`getSlot0(poolId)`**
+1. **[`getSlot0(poolId)`](/contracts/v4/reference/periphery/lens/StateView#getslot0)**
     - Returns `(uint160 sqrtPriceX96, int24 tick, uint8 protocolFee, uint8 lpFee)`.
     - Essential for displaying real-time price data and fees.
-2. **`getLiquidity(poolId)`**
+2. **[`getLiquidity(poolId)`](/contracts/v4/reference/periphery/lens/StateView#getliquidity)**
     - Returns `uint128 liquidity` (the total active pool liquidity).
     - Used to assess trading depth and volatility.
-3. **`getPositionInfo(positionId)`**
+3. **[`getPositionInfo(positionId)`](/contracts/v4/reference/periphery/lens/StateView#getpositioninfo)**
     - Returns `(uint128 liquidity, uint256 feeGrowthInside0Last, uint256 feeGrowthInside1Last)`.
     - Critical for tracking user positions, especially to calculate earned fees over time.
-4. **`getFeeGrowthGlobals(poolId)`**
+4. **[`getFeeGrowthGlobals(poolId)`](/contracts/v4/reference/periphery/lens/StateView#getfeegrowthglobals)**
     - Returns `(uint256 feeGrowthGlobal0, uint256 feeGrowthGlobal1)`.
     - Useful for analytics around total fee accumulation in the pool.
 
 ### Note on `poolId` and `positionId`
 
-- In **Uniswap v4**, a `poolId` is typically a `bytes32` that can be derived from the pair of tokens, fee tier, and other parameters.
+- In **Uniswap v4**, a `poolId` is typically a `bytes32` that is derived by calling 
+`keccak256(abi.encode(poolKey))` where poolKey contains:
+  - currency0: The lower currency address of the pool
+  - currency1: The higher currency address of the pool
+  - fee: The pool LP fee (uint24)
+  - tickSpacing: The tick spacing value (int24)
+  - hooks: The hooks contract address
 - A `positionId` may also be a `bytes32` or other unique identifier that references a specific position.
 
 # Security and Gas Considerations

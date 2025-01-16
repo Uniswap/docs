@@ -156,7 +156,15 @@ To interact with the PoolManager, we first need to create the functions our user
 
 ## Using the Lock/Unlock Pattern
 
-Let’s start by creating our external function:
+Let's start by creating our external function. First, we need to implement the callback that the `PoolManager` will use:
+
+```solidity
+function unlockCallback(bytes calldata data) external returns (bytes memory) {
+    // To be implemented later
+}
+```
+
+Now let's implement our external function that users will call:
 
 ```solidity
 function executeSwap(
@@ -180,7 +188,7 @@ When you call this function the flow followed is the following:
 2. PoolManager calls back to your `unlockCallback`
 3. Your callback executes the operations
 4. All deltas must be resolved before returning
-5. Context returns to the PoolManager which verifies there are no outstanding deltas, and will relock itself
+5. Execution of the logic returns to the PoolManager which verifies there are no outstanding deltas, and will relock itself
 
 > **Warning***: Always implement proper access control in your unlock callback. Only the PoolManager should be able to call it.*
 > 
@@ -297,7 +305,7 @@ BalanceDelta delta = poolManager.modifyLiquidity(
 // delta.amount1() = -200  (need to provide token1)
 ```
 
-When adding liquidity to a pool, you’ll need to provide both tokens in the pair. The `modifyLiquidity` function returns a `BalanceDelta` that indicates how many tokens you need to provide. In this case:
+When adding liquidity to a pool, you’ll need to provide both tokens in the pair. The `modifyLiquidity` function returns a [`BalanceDelta`](/contracts/v4/reference/core/types/balancedelta) that indicates how many tokens you need to provide. In this case:
 
 - The negative values in the delta (-100, -200) indicate you need to provide these amounts of each token
 - The values are proportional to the current pool price and your specified price range (tickLower to tickUpper)
