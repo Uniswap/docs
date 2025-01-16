@@ -61,7 +61,7 @@ export const developerLinks = [
   },
   {
     title: 'Deployment addresses',
-    href: 'http://localhost:3000/contracts/v4/deployments',
+    href: '/contracts/v4/deployments',
     icon: GitHub,
   },
   /*
@@ -471,7 +471,9 @@ export default function Home() {
           >
             <Link style={{ textDecoration: 'none' }} href={'https://discord.gg/ybKVQUWb4s'}>
               <CenterCard>
-                <Discord style={{ width: '48px', height: '48px' }} />
+                <StyledIcon>
+                   <Discord style={{ width: '48px', height: '48px' }} />
+                </StyledIcon>
                 <div>
                   <h3>Discord</h3>
                   <p>Join our Developer Community.</p>
@@ -521,7 +523,7 @@ export default function Home() {
             margin: '0 auto 4rem auto',
             width: '100%',
           }}
-          href={'https://unigrants.org/'}
+          href={'https://uniswapfoundation.org/'}
         >
           <WideCard
             style={{
