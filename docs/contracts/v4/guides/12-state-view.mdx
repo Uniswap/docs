@@ -93,7 +93,7 @@ With this setup, you can now:
 
 When calling `stateView.read.<function>([poolId])`, be mindful that:
 
-- If you pass an invalid `poolId` (usually a `bytes32` in Uniswap v4), the call may revert or return unexpected data.
+- If you pass an invalid `poolId` (typically a [`bytes32`](https://github.com/Uniswap/v4-core/blob/main/src/types/PoolId.sol#L6) in Uniswap v4), the call may revert or return unexpected data.
 - Consider adding try-catch (or equivalent error handling in your framework) to gracefully handle failures if the pool does not exist or if the call fails onchain.
 
 # Reading Pool Data
