@@ -212,6 +212,13 @@ contract FlashAccountingExample {
     constructor(IPoolManager _poolManager) {
         poolManager = _poolManager;
     }
+    
+    function executeSwap(
+        PoolKey calldata key,
+        uint256 amount
+    ) external returns (int256, int256) {
+        ...
+    }
 
     function unlockCallback(bytes calldata data) external returns (bytes memory) {
         // Important: Must check caller is PoolManager
