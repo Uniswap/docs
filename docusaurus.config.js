@@ -73,7 +73,7 @@ module.exports = {
           position: 'right',
           className: 'persistent',
         },
-        // As soon as we have a whitepaper for v4 in the main link, we can replace it here
+        
         {
           to: 'https://app.uniswap.org/whitepaper-v4.pdf',
           label: 'Whitepaper',
