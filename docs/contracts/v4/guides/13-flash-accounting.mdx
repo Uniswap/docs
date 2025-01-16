@@ -85,7 +85,7 @@ contract DeltaReader {
 }
 ```
 
-The `TransientStateLibrary` provides utilities to check the current state of deltas at any point in your transaction. The `getCurrentDelta` function returns an int256 where negative values indicate the user owes tokens to the PoolManager, positive values mean the user can claim tokens, and zero means there are no outstanding obligations for this token/user pair.
+The `TransientStateLibrary` provides utilities to check the current state of deltas at any point in your transaction. The `getCurrentDelta` function returns an int256 where negative values indicate the user owes tokens to the PoolManager, positive values mean the user can claim tokens from the PoolManager, and zero means there are no outstanding obligations for this token/user pair.
 
 ## Resolving Deltas
 
