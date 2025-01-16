@@ -148,7 +148,7 @@ Notice how this pattern requires no additional sync operations or separate token
 > **Important**: *Every delta must be resolved before the transaction ends, or the entire transaction will revert. Use* `TransientStateLibrary` *to verify your balances are properly settled.*
 > 
 
-/callout Deltas are not associated to a "token type" therefore developers can mix and match the ERC-20 functions and the ERC-6909 functions
+> _Delta is a net balance resulting from token movements thus not bound to a certain token type i.e. can be resolved via mix-and-match with ERC-20 functions and ERC-6909 functions._
 
 # Working with Flash Accounting
 
