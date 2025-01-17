@@ -50,7 +50,7 @@ module.exports = {
           className: 'V3_active',
         },
         {
-          to: '/sdk/v3/overview',
+          to: '/sdk/v4/overview',
           label: 'SDKs',
           position: 'left',
           className: 'V3_active',
