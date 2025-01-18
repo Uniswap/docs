@@ -84,7 +84,7 @@ This test allows us to see [every change](https://github.com/Uniswap/v3-core/pu
 
 Now that the basics of the concepts are covered, how do you decide where to spend your time optimizing?
 
-First, it’s important to understand what changes are relevant and what changes are not. A gas difference of 50 gas on a call that costs 100k gas is typically below the bar of relevance. However, several 50 gas optimizations, called multiple times per transaction, can add up to a 1% savings for a user action. The important thing here is the context: if you are saving 50 gas in a function that typically costs 1000 gas, you are saving 5% in that function. You should separate your code into function boundaries and measure at those boundaries. We do this with the many libraries in the Uniswap V3 codebase.
+First, it’s important to understand what changes are relevant and what changes are not. A gas difference of 50 on a call that costs 100k gas is typically below the bar of relevance. However, several 50 gas optimizations, called multiple times per transaction, can add up to a 1% savings for a user action. The important thing here is the context: if you are saving 50 gas in a function that typically costs 1000 gas, you are saving 5% in that function. You should separate your code into function boundaries and measure at those boundaries. We do this with the many libraries in the Uniswap V3 codebase.
 
 Context is also relevant for where to spend your time in a codebase. For example, we know the majority of users will interact with Uniswap via calls to swap. So we should focus our energy primarily on the swap function.
 
