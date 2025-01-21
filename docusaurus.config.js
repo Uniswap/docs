@@ -161,10 +161,6 @@ module.exports = {
               label: 'Blog',
               href: 'https://blog.uniswap.org/',
             },
-            //{
-            //  label: 'Discord',
-            //  href: 'https://discord.com/invite/uniswap',
-            //},
             {
               label: 'Governance',
               href: 'https://gov.uniswap.org/',

@@ -64,13 +64,6 @@ export const developerLinks = [
     href: '/contracts/v4/deployments',
     icon: GitHub,
   },
-  /*
-  {
-    title: 'widgets',
-    href: 'https://www.npmjs.com/package/@uniswap/widgets',
-    icon: Npm,
-  },
-  */
 ]
 
 export const dAppGuides = [
