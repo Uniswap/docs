@@ -37,7 +37,7 @@ To mint a position, two actions are required:
 ```solidity
 import {Actions} from "v4-periphery/src/libraries/Actions.sol";
 
-bytes memory actions = abi.encodePacked(Actions.MINT_POSITION, Actions.SETTLE_PAIR);
+bytes memory actions = abi.encodePacked(uint8(Actions.MINT_POSITION), uint8(Actions.SETTLE_PAIR));
 ```
 
 ### 3. Encode Parameters
