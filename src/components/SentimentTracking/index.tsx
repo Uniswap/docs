@@ -60,7 +60,7 @@ export default function SentimentTracking({ analyticsSection }: { analyticsSecti
     (sentiment: Sentiment) => selectedSentiment && selectedSentiment === sentiment,
     [selectedSentiment]
   )
-
+  
   return (
     <Container>
       <StyledTextDiv>Helpful?</StyledTextDiv>

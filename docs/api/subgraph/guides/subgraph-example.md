@@ -6,7 +6,7 @@ sidebar_position: 3
 
 # Subgraph Query Examples
 
-This doc will teach you how to query Uniswap V3 analytics by writing GraphQL queries on the subgraph. You can fetch data points like :
+This doc will teach you how to query Uniswap v3 analytics by writing GraphQL queries on the subgraph. You can fetch data points like :
 
 - [collected fees for a position](#general-position-data)
 - [current liquidity](#pool-data) of a pool
@@ -16,7 +16,7 @@ and much more. Below are some example queries. To run a query copy and paste it 
 
 ## Global Data
 
-Global data refers to data points about the Uniswap v3 protocol as a whole. Some examples of global data points are total value locked in the protocol, total pools deployed, or total transaction counts. Thus, to query global data you must pass in the Uniswap V3 Factory address `0x1F98431c8aD98523631AE4a59f267346ea31F984` and select the desired fields. Reference the full [factory schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L1) to see all possible fields.
+Global data refers to data points about the Uniswap v3 protocol as a whole. Some examples of global data points are total value locked in the protocol, total pools deployed, or total transaction counts. Thus, to query global data you must pass in the Uniswap v3 Factory address `0x1F98431c8aD98523631AE4a59f267346ea31F984` and select the desired fields. Reference the full [factory schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L1) to see all possible fields.
 
 ### Current Global Data
 
@@ -226,7 +226,7 @@ swaps(orderBy: timestamp, orderDirection: desc, where:
 
 ## Token Data
 
-Input the the token contract address to fetch token data. Any token that exists in at least one Uniswap V3 pool can be queried. The output will aggregate data across all v3 pools that include the token.
+Input the the token contract address to fetch token data. Any token that exists in at least one Uniswap v3 pool can be queried. The output will aggregate data across all v3 pools that include the token.
 
 ### General Token Data
 

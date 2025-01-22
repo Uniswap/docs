@@ -12,9 +12,9 @@ const SentimentTrackingContainer = styled.div`
 export default function DocPaginator(props) {
   return (
     <>
-      <SentimentTrackingContainer>
+      {/* <SentimentTrackingContainer>
         <SentimentTracking analyticsSection={DocsSentimentSection.BOTTOM_SECTION} />
-      </SentimentTrackingContainer>
+      </SentimentTrackingContainer> */}
       <OriginalDocPaginator {...props} />
     </>
   )

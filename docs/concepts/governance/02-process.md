@@ -13,7 +13,7 @@ Uniswap Governance takes place in several venues. Each serves its own particular
 
 A Discourse-hosted forum for governance-related discussion. Community members must register for an account before sharing or liking posts. New members must read 4 topics and a combined 15 posts over the course of at least 10 minutes before they may  post themselves.
 
-2. [_Snapshot_](https://snapshot.org/#/uniswapgovernance.eth)
+2. [_Snapshot_](https://snapshot.box/#/s:uniswapgovernance.eth)
 
 A simple voting interface that allows users to signal sentiment off-chain. Votes on Snapshot are weighted by the number of UNI delegated to the address used to vote.
 
@@ -42,7 +42,7 @@ _Timeframe_: 5 days
 
 _Quorum_: 10M UNI
 
-_Form_: [Snapshot Poll](https://snapshot.org/#/uniswapgovernance.eth)
+_Form_: [Snapshot Poll](https://snapshot.box/#/s:uniswapgovernance.eth)
 
 The purpose of the Temperature Check is to signal community sentiment on a proposal prior to moving towards an onchain vote.
 
@@ -52,7 +52,7 @@ To create a Temperature Check:
 
 2. Create and post this version of the proposal in the [Governance Forum](https://gov.uniswap.org/) with the title “Temperature Check — [Your Title Here]”. Include a link to the RFC post. You will update the post to include a link to the Snapshot poll after you’ve posted that.
 
-3. Create a [Snapshot poll](https://snapshot.org/#/uniswap). The voting options should consist of those which have gained support in the RFC Phase. This poll can be either binary or multiple choice but must include a `No change` option. Set the poll duration to 5 days. Include a link to the Forum Temperature Check post.
+3. Create a [Snapshot poll](https://snapshot.box/#/s:uniswapgovernance.eth). The voting options should consist of those which have gained support in the RFC Phase. This poll can be either binary or multiple choice but must include a `No change` option. Set the poll duration to 5 days. Include a link to the Forum Temperature Check post.
 
 4. Update the Forum post with a link to the Snapshot Poll.
 
@@ -90,26 +90,8 @@ Timeframe: 7 days
 
 _Quorum_: 40M UNI
 
-Form: [Snapshot Poll](https://snapshot.org/#/uniswap)
+Form: [Snapshot Poll](https://snapshot.box/#/s:uniswapgovernance.eth)
 
 In the future, the community governance process above may need to undergo additional changes to continue to meet the needs of the Uniswap community. While an onchain vote is not required to change the majority of this process, a clear display of community support and acceptance is important for process changes to have legitimacy.
 
 Thus, changes to all off-chain community governance processes should be voted on through an off-chain Snapshot vote. There should be a 7-day voting period and 40M UNI quorum.
-
-## Governance Glossary
-
-- **UNI:** An ERC-20 token that designates the weight of a user's voting rights. The more UNI a user has in their wallet, the more weight their delegation or vote on a proposal holds.
-
-- **Delegation:** UNI holders cannot vote or create proposals until they delegate their voting rights to an address. A UNI holder can delegate to one address at a time, including their own address. Note that delegation does not lock tokens; it simply adds votes to the chosen delegation address.
-
-- **Proposal:** A proposal is executable code that modifies the governance contract or treasury and how they work. To create a proposal, a user must have at least 0.10% (1M UNI) of all UNI delegated to their address. Proposals are stored in the "proposals" mapping of the Governor smart contract. All proposals are subject to a ~7-day voting period. If the proposer does not maintain their vote weight balance throughout the voting period, anyone may cancel the proposal.
-
-- **Threshold:** The amount of UNI that must be delegated to an address to take a given action. Currently, the only action with a threshold is posting an onchain vote.
-
-- **Quorum:** In order for a vote to pass,  4% of all UNI (40M) must vote in favor. Votes against and abstentions do not count towards a quorum. The purpose of the quorum is to ensure that the only measures that pass have adequate voter participation.
-
-- **Voting:** Users can vote for or against single proposals once they have voting rights delegated to their address. Votes can be cast while a proposal is in the "Active" state. Votes can be submitted immediately using "castVote" or submitted later with "castVoteBySig" (For more info on castVoteBySig and offline signatures, see EIP-712). If the majority of votes (and a 4% quorum of UNI) vote for a proposal, the proposal may be queued in the Timelock.
-
-- **Voting Period:** Once a proposal has been created, Uniswap community members will have a seven day period (the Voting Period) to cast their votes.
-
-- **Timelock:** All governance proposals must sit in the Timelock for a minimum of 2 days, after which they can be executed.
