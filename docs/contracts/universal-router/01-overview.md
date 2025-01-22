@@ -4,7 +4,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-The `UniversalRouter` is an ETH, ERC20, and NFT swap router, that can aggregate trades across protocols to give users access highly-flexible and personalised transactions. The contract is unowned, and is not upgradeable.
+The `UniversalRouter` is an ETH, ERC20, and NFT swap router, that can aggregate trades across protocols to give users access to highly-flexible and personalised transactions. The contract is unowned, and is not upgradeable.
 
 The flexible command style allows us to provide users with:
 

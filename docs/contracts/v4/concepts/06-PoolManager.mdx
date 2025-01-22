@@ -2,9 +2,9 @@
 title: PoolManager
 ---
 
-In Uniswap V3, each liquidity pool was represented by a separate smart contract deployed through the UniswapV3Factory contract. While this approach provided flexibility, it also led to increased gas costs for pool creation and multi-hop swaps.
+In Uniswap v3, each liquidity pool was represented by a separate smart contract deployed through the Uniswapv3Factory contract. While this approach provided flexibility, it also led to increased gas costs for pool creation and multi-hop swaps.
 
-Uniswap V4 addresses this issue by introducing the Singleton design pattern. The PoolManager contract now serves as a single entry point for all liquidity pools. Instead of deploying separate contracts for each pool, the pool state and logic are encapsulated within the PoolManager itself.
+Uniswap v4 addresses this issue by introducing the Singleton design pattern. The PoolManager contract now serves as a single entry point for all liquidity pools. Instead of deploying separate contracts for each pool, the pool state and logic are encapsulated within the PoolManager itself.
 
 # Purpose
 
@@ -12,14 +12,14 @@ The primary purpose of the `PoolManager` is to:
 
 - Efficiently manage liquidity pools
 - Facilitate token swaps
-- Reduce gas costs compared to the factory-based approach in Uniswap V3
+- Reduce gas costs compared to the factory-based approach in Uniswap v3
 - Enable extensibility through hooks
 
 # Architecture
 
 ## Singleton Design
 
-- Uniswap V4 uses a Singleton design pattern for the `PoolManager`
+- Uniswap v4 uses a Singleton design pattern for the `PoolManager`
 - All pool state and logic are encapsulated within the `PoolManager` contract
 
 ## Locking Mechanism

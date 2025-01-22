@@ -37,7 +37,16 @@ Here we decrease the liquidity of our position without withdrawing all of it.
                 deadline: block.timestamp
             });
 
-        (amount0, amount1) = nonfungiblePositionManager.decreaseLiquidity(params);
+        nonfungiblePositionManager.decreaseLiquidity(params);
+
+        (amount0, amount1) = nonfungiblePositionManager.collect(
+            INonfungiblePositionManager.CollectParams({
+                tokenId: tokenId,
+                recipient: address(this),
+                amount0Max: type(uint128).max,
+                amount1Max: type(uint128).max
+            })
+        );
 
         //send liquidity back to owner
         _sendToOwner(tokenId, amount0, amount1);

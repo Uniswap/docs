@@ -7,6 +7,7 @@ import Discord from '@site/static/img/discord.svg'
 import GitHub from '@site/static/img/github.svg'
 import Npm from '@site/static/img/npm.svg'
 import UGP from '@site/static/img/UGP.png'
+
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
 import { TraceEvent } from '@uniswap/analytics'
@@ -44,29 +45,24 @@ export const actions = [
 
 export const developerLinks = [
   {
-    title: 'uniswap-v3-core',
-    href: 'https://github.com/Uniswap/uniswap-v3-core',
+    title: 'uniswap-v4-core',
+    href: 'https://github.com/Uniswap/v4-core/',
     icon: GitHub,
   },
   {
-    title: 'uniswap-v3-sdk',
-    href: 'https://github.com/Uniswap/uniswap-v3-sdk',
+    title: 'uniswap-v4-periphery',
+    href: 'https://github.com/Uniswap/v4-periphery',
     icon: GitHub,
   },
   {
-    title: 'uniswap-v3-periphery',
-    href: 'https://github.com/Uniswap/uniswap-v3-periphery',
+    title: 'uniswap-v4-sdk',
+    href: 'https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk',
     icon: GitHub,
   },
   {
     title: 'Deployment addresses',
-    href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
+    href: '/contracts/v4/deployments',
     icon: GitHub,
-  },
-  {
-    title: 'widgets',
-    href: 'https://www.npmjs.com/package/@uniswap/widgets',
-    icon: Npm,
   },
 ]
 
@@ -468,7 +464,9 @@ export default function Home() {
           >
             <Link style={{ textDecoration: 'none' }} href={'https://discord.gg/ybKVQUWb4s'}>
               <CenterCard>
-                <Discord style={{ width: '48px', height: '48px' }} />
+                <StyledIcon>
+                   <Discord style={{ width: '48px', height: '48px' }} />
+                </StyledIcon>
                 <div>
                   <h3>Discord</h3>
                   <p>Join our Developer Community.</p>
@@ -518,7 +516,7 @@ export default function Home() {
             margin: '0 auto 4rem auto',
             width: '100%',
           }}
-          href={'https://unigrants.org/'}
+          href={'https://uniswapfoundation.org/'}
         >
           <WideCard
             style={{
@@ -530,10 +528,9 @@ export default function Home() {
           >
             <img src={UGP} width={'120px'} />
             <div>
-              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Grants Program</h2>
+              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Foundation Grants</h2>
               <p style={{ margin: '0rem' }}>
-                Uniswap Governance offers grant funding for people who are building apps, tools, and activities for
-                Uniswap Protocol users, builders, and community members.{' '}
+              In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth, decentralization, and sustainability of the Uniswap community.{' '}
               </p>
             </div>
           </WideCard>
