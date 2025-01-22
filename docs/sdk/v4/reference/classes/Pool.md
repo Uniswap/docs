@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / Pool
+[@uniswap/v4-sdk](../overview.md) / Pool
 
 # Class: Pool
 
@@ -18,57 +18,17 @@ Construct a pool
 
 #### Parameters
 
-##### currencyA
-
-`Currency`
-
-One of the currencys in the pool
-
-##### currencyB
-
-`Currency`
-
-The other currency in the pool
-
-##### fee
-
-`number`
-
-The fee in hundredths of a bips of the input amount of every swap that is collected by the pool
-
-##### tickSpacing
-
-`number`
-
-The tickSpacing of the pool
-
-##### hooks
-
-`string`
-
-The address of the hook contract
-
-##### sqrtRatioX96
-
-`BigintIsh`
-
-The sqrt of the current ratio of amounts of currency1 to currency0
-
-##### liquidity
-
-`BigintIsh`
-
-The current value of in range liquidity
-
-##### tickCurrent
-
-`number`
-
-The current tick of the pool
-
-##### ticks
-
-`TickDataProvider` | (`Tick` \| `TickConstructorArgs`)[]
+| Parameter | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| `currencyA` | `Currency` | `undefined` | One of the currencys in the pool |
+| `currencyB` | `Currency` | `undefined` | The other currency in the pool |
+| `fee` | `number` | `undefined` | The fee in hundredths of a bips of the input amount of every swap that is collected by the pool |
+| `tickSpacing` | `number` | `undefined` | The tickSpacing of the pool |
+| `hooks` | `string` | `undefined` | The address of the hook contract |
+| `sqrtRatioX96` | `BigintIsh` | `undefined` | The sqrt of the current ratio of amounts of currency1 to currency0 |
+| `liquidity` | `BigintIsh` | `undefined` | The current value of in range liquidity |
+| `tickCurrent` | `number` | `undefined` | The current tick of the pool |
+| `ticks` | `TickDataProvider` \| (`Tick` \| `TickConstructorArgs`)[] | `NO_TICK_DATA_PROVIDER_DEFAULT` | - |
 
 #### Returns
 
@@ -82,7 +42,7 @@ The current tick of the pool
 
 Defined in: [entities/pool.ts:34](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L34)
 
----
+***
 
 ### currency1
 
@@ -90,7 +50,7 @@ Defined in: [entities/pool.ts:34](https://github.com/Uniswap/sdks/blob/c1c9f64f1
 
 Defined in: [entities/pool.ts:35](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L35)
 
----
+***
 
 ### fee
 
@@ -98,7 +58,7 @@ Defined in: [entities/pool.ts:35](https://github.com/Uniswap/sdks/blob/c1c9f64f1
 
 Defined in: [entities/pool.ts:36](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L36)
 
----
+***
 
 ### hooks
 
@@ -106,7 +66,7 @@ Defined in: [entities/pool.ts:36](https://github.com/Uniswap/sdks/blob/c1c9f64f1
 
 Defined in: [entities/pool.ts:39](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L39)
 
----
+***
 
 ### liquidity
 
@@ -114,7 +74,7 @@ Defined in: [entities/pool.ts:39](https://github.com/Uniswap/sdks/blob/c1c9f64f1
 
 Defined in: [entities/pool.ts:40](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L40)
 
----
+***
 
 ### poolId
 
@@ -122,15 +82,15 @@ Defined in: [entities/pool.ts:40](https://github.com/Uniswap/sdks/blob/c1c9f64f1
 
 Defined in: [entities/pool.ts:44](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L44)
 
----
+***
 
 ### poolKey
 
-> `readonly` **poolKey**: [`PoolKey`](../typeAliases/PoolKey.md)
+> `readonly` **poolKey**: [`PoolKey`](../overview.md#poolkey)
 
 Defined in: [entities/pool.ts:43](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L43)
 
----
+***
 
 ### sqrtRatioX96
 
@@ -138,7 +98,7 @@ Defined in: [entities/pool.ts:43](https://github.com/Uniswap/sdks/blob/c1c9f64f1
 
 Defined in: [entities/pool.ts:38](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L38)
 
----
+***
 
 ### tickCurrent
 
@@ -146,7 +106,7 @@ Defined in: [entities/pool.ts:38](https://github.com/Uniswap/sdks/blob/c1c9f64f1
 
 Defined in: [entities/pool.ts:41](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L41)
 
----
+***
 
 ### tickDataProvider
 
@@ -154,7 +114,7 @@ Defined in: [entities/pool.ts:41](https://github.com/Uniswap/sdks/blob/c1c9f64f1
 
 Defined in: [entities/pool.ts:42](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L42)
 
----
+***
 
 ### tickSpacing
 
@@ -178,7 +138,7 @@ Returns the chain ID of the currencies in the pool.
 
 `number`
 
----
+***
 
 ### currency0Price
 
@@ -194,7 +154,7 @@ Returns the current mid price of the pool in terms of currency0, i.e. the ratio 
 
 `Price`\<`Currency`, `Currency`\>
 
----
+***
 
 ### currency1Price
 
@@ -210,7 +170,7 @@ Returns the current mid price of the pool in terms of currency1, i.e. the ratio 
 
 `Price`\<`Currency`, `Currency`\>
 
----
+***
 
 ### token0
 
@@ -226,7 +186,7 @@ backwards compatibility with v2/3 sdks
 
 `Currency`
 
----
+***
 
 ### token0Price
 
@@ -242,7 +202,7 @@ backwards compatibility with v2/3 sdks
 
 `Price`\<`Currency`, `Currency`\>
 
----
+***
 
 ### token1
 
@@ -256,7 +216,7 @@ Defined in: [entities/pool.ts:146](https://github.com/Uniswap/sdks/blob/c1c9f64f
 
 `Currency`
 
----
+***
 
 ### token1Price
 
@@ -285,17 +245,10 @@ Works only for vanilla hookless v3 pools, otherwise throws an error
 
 #### Parameters
 
-##### outputAmount
-
-`CurrencyAmount`\<`Currency`\>
-
-the output amount for which to quote the input amount
-
-##### sqrtPriceLimitX96
-
-`JSBI`
-
-The Q64.96 sqrt price limit. If zero for one, the price cannot be less than this value after the swap. If one for zero, the price cannot be greater than this value after the swap
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `outputAmount` | `CurrencyAmount`\<`Currency`\> | the output amount for which to quote the input amount |
+| `sqrtPriceLimitX96`? | `JSBI` | The Q64.96 sqrt price limit. If zero for one, the price cannot be less than this value after the swap. If one for zero, the price cannot be greater than this value after the swap |
 
 #### Returns
 
@@ -303,7 +256,7 @@ The Q64.96 sqrt price limit. If zero for one, the price cannot be less than this
 
 The input amount and the pool with updated state
 
----
+***
 
 ### getOutputAmount()
 
@@ -315,19 +268,16 @@ Works only for vanilla hookless v3 pools, otherwise throws an error
 
 #### Parameters
 
-##### inputAmount
-
-`CurrencyAmount`\<`Currency`\>
-
-##### sqrtPriceLimitX96
-
-`JSBI`
+| Parameter | Type |
+| ------ | ------ |
+| `inputAmount` | `CurrencyAmount`\<`Currency`\> |
+| `sqrtPriceLimitX96`? | `JSBI` |
 
 #### Returns
 
 `Promise`\<\[`CurrencyAmount`\<`Currency`\>, [`Pool`](Pool.md)\]\>
 
----
+***
 
 ### involvesCurrency()
 
@@ -339,11 +289,9 @@ Returns true if the currency is either currency0 or currency1
 
 #### Parameters
 
-##### currency
-
-`Currency`
-
-The currency to check
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `currency` | `Currency` | The currency to check |
 
 #### Returns
 
@@ -351,7 +299,7 @@ The currency to check
 
 True if currency is either currency0 or currency1
 
----
+***
 
 ### involvesToken()
 
@@ -363,15 +311,15 @@ backwards compatibility with v2/3 sdks
 
 #### Parameters
 
-##### currency
-
-`Currency`
+| Parameter | Type |
+| ------ | ------ |
+| `currency` | `Currency` |
 
 #### Returns
 
 `boolean`
 
----
+***
 
 ### priceOf()
 
@@ -383,11 +331,9 @@ Return the price of the given currency in terms of the other currency in the poo
 
 #### Parameters
 
-##### currency
-
-`Currency`
-
-The currency to return price of
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `currency` | `Currency` | The currency to return price of |
 
 #### Returns
 
@@ -395,7 +341,7 @@ The currency to return price of
 
 The price of the given currency, in terms of the other.
 
----
+***
 
 ### getPoolId()
 
@@ -405,60 +351,36 @@ Defined in: [entities/pool.ts:71](https://github.com/Uniswap/sdks/blob/c1c9f64f1
 
 #### Parameters
 
-##### currencyA
-
-`Currency`
-
-##### currencyB
-
-`Currency`
-
-##### fee
-
-`number`
-
-##### tickSpacing
-
-`number`
-
-##### hooks
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `currencyA` | `Currency` |
+| `currencyB` | `Currency` |
+| `fee` | `number` |
+| `tickSpacing` | `number` |
+| `hooks` | `string` |
 
 #### Returns
 
 `string`
 
----
+***
 
 ### getPoolKey()
 
-> `static` **getPoolKey**(`currencyA`, `currencyB`, `fee`, `tickSpacing`, `hooks`): [`PoolKey`](../typeAliases/PoolKey.md)
+> `static` **getPoolKey**(`currencyA`, `currencyB`, `fee`, `tickSpacing`, `hooks`): [`PoolKey`](../overview.md#poolkey)
 
 Defined in: [entities/pool.ts:49](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/pool.ts#L49)
 
 #### Parameters
 
-##### currencyA
-
-`Currency`
-
-##### currencyB
-
-`Currency`
-
-##### fee
-
-`number`
-
-##### tickSpacing
-
-`number`
-
-##### hooks
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `currencyA` | `Currency` |
+| `currencyB` | `Currency` |
+| `fee` | `number` |
+| `tickSpacing` | `number` |
+| `hooks` | `string` |
 
 #### Returns
 
-[`PoolKey`](../typeAliases/PoolKey.md)
+[`PoolKey`](../overview.md#poolkey)

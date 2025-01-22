@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / NFTPermitOptions
+[@uniswap/v4-sdk](../overview.md) / NFTPermitOptions
 
 # Interface: NFTPermitOptions
 
@@ -20,7 +20,7 @@ Defined in: [PositionManager.ts:170](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 [`NFTPermitValues`](NFTPermitValues.md).[`deadline`](NFTPermitValues.md#deadline)
 
----
+***
 
 ### nonce
 
@@ -32,7 +32,7 @@ Defined in: [PositionManager.ts:171](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 [`NFTPermitValues`](NFTPermitValues.md).[`nonce`](NFTPermitValues.md#nonce)
 
----
+***
 
 ### signature
 
@@ -40,7 +40,7 @@ Defined in: [PositionManager.ts:171](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 Defined in: [PositionManager.ts:175](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L175)
 
----
+***
 
 ### spender
 
@@ -52,7 +52,7 @@ Defined in: [PositionManager.ts:168](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 [`NFTPermitValues`](NFTPermitValues.md).[`spender`](NFTPermitValues.md#spender)
 
----
+***
 
 ### tokenId
 

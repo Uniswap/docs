@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / NFTPermitData
+[@uniswap/v4-sdk](../overview.md) / NFTPermitData
 
 # Interface: NFTPermitData
 
@@ -12,7 +12,7 @@ Defined in: [PositionManager.ts:178](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 Defined in: [PositionManager.ts:179](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L179)
 
----
+***
 
 ### types
 
@@ -20,7 +20,7 @@ Defined in: [PositionManager.ts:179](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 Defined in: [PositionManager.ts:180](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L180)
 
----
+***
 
 ### values
 

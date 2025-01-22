@@ -9,7 +9,7 @@ SDKS_SUBMODULE_DIR="sdks"
 V4_SDK_DIR="${SDKS_SUBMODULE_DIR}/sdks/v4-sdk"
 
 # TypeDoc will output to this folder inside v4-sdk
-TYPEDOC_OUTPUT_DIR="${V4_SDK_DIR}/docs"
+TYPEDOC_OUTPUT_DIR="${V4_SDK_DIR}/tmp/docs"
 
 # Where we want the final docs in our Docusaurus site
 DOCS_V4_ROOT="docs/sdk/v4"
@@ -51,6 +51,12 @@ echo "==> Generating Markdown docs for v4-sdk..."
   yarn typedoc \
     --out docs \
     --plugin typedoc-plugin-markdown \
+    --hidePageHeader true \
+    --modulesFileName overview \
+    --membersWithOwnFile Class \
+    --membersWithOwnFile Enum \
+    --membersWithOwnFile Interface \
+    --parametersFormat table \
     --skipErrorChecking \
     --entryPoints src/index.ts \
     --tsconfig tsconfig.json
@@ -81,31 +87,7 @@ if [ -d "$DOCS_REFERENCE_DIR/guides" ]; then
 fi
 
 ##############################################################################
-# 6. Create _category_.json files (overwriting) as requested
-##############################################################################
-echo "==> Creating _category_.json in sdk/v4/ and sdk/v4/reference..."
-
-# 6a. sdk/v4/_category_.json
-mkdir -p "$DOCS_V4_ROOT"
-cat <<EOF > "$DOCS_V4_ROOT/_category_.json"
-{
-  "label": "V4 SDK",
-  "position": 1,
-  "collapsed": false
-}
-EOF
-
-# 6b. sdk/v4/reference/_category_.json
-cat <<EOF > "$DOCS_REFERENCE_DIR/_category_.json"
-{
-  "label": "Technical Reference",
-  "position": 3,
-  "collapsed": true
-}
-EOF
-
-##############################################################################
-# 7. Remove the sdks submodule (cleanup)
+# 6. Remove the sdks submodule (cleanup)
 ##############################################################################
 echo "==> Removing sdks submodule..."
 rm -rf "$SDKS_SUBMODULE_DIR"

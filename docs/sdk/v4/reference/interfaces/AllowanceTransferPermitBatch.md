@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / AllowanceTransferPermitBatch
+[@uniswap/v4-sdk](../overview.md) / AllowanceTransferPermitBatch
 
 # Interface: AllowanceTransferPermitBatch
 
@@ -12,7 +12,7 @@ Defined in: [PositionManager.ts:146](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 Defined in: [PositionManager.ts:147](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L147)
 
----
+***
 
 ### sigDeadline
 
@@ -20,7 +20,7 @@ Defined in: [PositionManager.ts:147](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 Defined in: [PositionManager.ts:149](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L149)
 
----
+***
 
 ### spender
 

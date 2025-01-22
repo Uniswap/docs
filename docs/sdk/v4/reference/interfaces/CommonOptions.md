@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / CommonOptions
+[@uniswap/v4-sdk](../overview.md) / CommonOptions
 
 # Interface: CommonOptions
 
@@ -14,9 +14,9 @@ Defined in: [PositionManager.ts:37](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 When the transaction expires, in epoch seconds.
 
----
+***
 
-### hookData
+### hookData?
 
 > `optional` **hookData**: `string`
 
@@ -24,7 +24,7 @@ Defined in: [PositionManager.ts:32](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 Optional data to pass to hooks
 
----
+***
 
 ### slippageTolerance
 

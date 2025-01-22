@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / V4PositionPlanner
+[@uniswap/v4-sdk](../overview.md) / V4PositionPlanner
 
 # Class: V4PositionPlanner
 
@@ -36,7 +36,7 @@ Defined in: [utils/v4Planner.ts:168](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 [`V4Planner`](V4Planner.md).[`actions`](V4Planner.md#actions)
 
----
+***
 
 ### params
 
@@ -58,13 +58,10 @@ Defined in: [utils/v4Planner.ts:176](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 #### Parameters
 
-##### type
-
-[`Actions`](../enums/Actions.md)
-
-##### parameters
-
-`any`[]
+| Parameter | Type |
+| ------ | ------ |
+| `type` | [`Actions`](../enumerations/Actions.md) |
+| `parameters` | `any`[] |
 
 #### Returns
 
@@ -74,7 +71,7 @@ Defined in: [utils/v4Planner.ts:176](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 [`V4Planner`](V4Planner.md).[`addAction`](V4Planner.md#addaction)
 
----
+***
 
 ### addBurn()
 
@@ -84,27 +81,18 @@ Defined in: [utils/v4PositionPlanner.ts:58](https://github.com/Uniswap/sdks/blob
 
 #### Parameters
 
-##### tokenId
-
-`BigintIsh`
-
-##### amount0Min
-
-`BigintIsh`
-
-##### amount1Min
-
-`BigintIsh`
-
-##### hookData
-
-`string` = `EMPTY_BYTES`
+| Parameter | Type | Default value |
+| ------ | ------ | ------ |
+| `tokenId` | `BigintIsh` | `undefined` |
+| `amount0Min` | `BigintIsh` | `undefined` |
+| `amount1Min` | `BigintIsh` | `undefined` |
+| `hookData` | `string` | `EMPTY_BYTES` |
 
 #### Returns
 
 `void`
 
----
+***
 
 ### addDecrease()
 
@@ -114,31 +102,19 @@ Defined in: [utils/v4PositionPlanner.ts:46](https://github.com/Uniswap/sdks/blob
 
 #### Parameters
 
-##### tokenId
-
-`BigintIsh`
-
-##### liquidity
-
-`BigintIsh`
-
-##### amount0Min
-
-`BigintIsh`
-
-##### amount1Min
-
-`BigintIsh`
-
-##### hookData
-
-`string` = `EMPTY_BYTES`
+| Parameter | Type | Default value |
+| ------ | ------ | ------ |
+| `tokenId` | `BigintIsh` | `undefined` |
+| `liquidity` | `BigintIsh` | `undefined` |
+| `amount0Min` | `BigintIsh` | `undefined` |
+| `amount1Min` | `BigintIsh` | `undefined` |
+| `hookData` | `string` | `EMPTY_BYTES` |
 
 #### Returns
 
 `void`
 
----
+***
 
 ### addIncrease()
 
@@ -148,31 +124,19 @@ Defined in: [utils/v4PositionPlanner.ts:34](https://github.com/Uniswap/sdks/blob
 
 #### Parameters
 
-##### tokenId
-
-`BigintIsh`
-
-##### liquidity
-
-`BigintIsh`
-
-##### amount0Max
-
-`BigintIsh`
-
-##### amount1Max
-
-`BigintIsh`
-
-##### hookData
-
-`string` = `EMPTY_BYTES`
+| Parameter | Type | Default value |
+| ------ | ------ | ------ |
+| `tokenId` | `BigintIsh` | `undefined` |
+| `liquidity` | `BigintIsh` | `undefined` |
+| `amount0Max` | `BigintIsh` | `undefined` |
+| `amount1Max` | `BigintIsh` | `undefined` |
+| `hookData` | `string` | `EMPTY_BYTES` |
 
 #### Returns
 
 `void`
 
----
+***
 
 ### addMint()
 
@@ -182,43 +146,22 @@ Defined in: [utils/v4PositionPlanner.ts:10](https://github.com/Uniswap/sdks/blob
 
 #### Parameters
 
-##### pool
-
-[`Pool`](Pool.md)
-
-##### tickLower
-
-`number`
-
-##### tickUpper
-
-`number`
-
-##### liquidity
-
-`BigintIsh`
-
-##### amount0Max
-
-`BigintIsh`
-
-##### amount1Max
-
-`BigintIsh`
-
-##### owner
-
-`string`
-
-##### hookData
-
-`string` = `EMPTY_BYTES`
+| Parameter | Type | Default value |
+| ------ | ------ | ------ |
+| `pool` | [`Pool`](Pool.md) | `undefined` |
+| `tickLower` | `number` | `undefined` |
+| `tickUpper` | `number` | `undefined` |
+| `liquidity` | `BigintIsh` | `undefined` |
+| `amount0Max` | `BigintIsh` | `undefined` |
+| `amount1Max` | `BigintIsh` | `undefined` |
+| `owner` | `string` | `undefined` |
+| `hookData` | `string` | `EMPTY_BYTES` |
 
 #### Returns
 
 `void`
 
----
+***
 
 ### addSettle()
 
@@ -228,17 +171,11 @@ Defined in: [utils/v4Planner.ts:213](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 #### Parameters
 
-##### currency
-
-`Currency`
-
-##### payerIsUser
-
-`boolean`
-
-##### amount
-
-`BigNumber`
+| Parameter | Type |
+| ------ | ------ |
+| `currency` | `Currency` |
+| `payerIsUser` | `boolean` |
+| `amount`? | `BigNumber` |
 
 #### Returns
 
@@ -248,7 +185,7 @@ Defined in: [utils/v4Planner.ts:213](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 [`V4Planner`](V4Planner.md).[`addSettle`](V4Planner.md#addsettle)
 
----
+***
 
 ### addSettlePair()
 
@@ -258,19 +195,16 @@ Defined in: [utils/v4PositionPlanner.ts:64](https://github.com/Uniswap/sdks/blob
 
 #### Parameters
 
-##### currency0
-
-`Currency`
-
-##### currency1
-
-`Currency`
+| Parameter | Type |
+| ------ | ------ |
+| `currency0` | `Currency` |
+| `currency1` | `Currency` |
 
 #### Returns
 
 `void`
 
----
+***
 
 ### addSweep()
 
@@ -280,19 +214,16 @@ Defined in: [utils/v4PositionPlanner.ts:76](https://github.com/Uniswap/sdks/blob
 
 #### Parameters
 
-##### currency
-
-`Currency`
-
-##### to
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `currency` | `Currency` |
+| `to` | `string` |
 
 #### Returns
 
 `void`
 
----
+***
 
 ### addTake()
 
@@ -302,17 +233,11 @@ Defined in: [utils/v4Planner.ts:218](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 #### Parameters
 
-##### currency
-
-`Currency`
-
-##### recipient
-
-`string`
-
-##### amount
-
-`BigNumber`
+| Parameter | Type |
+| ------ | ------ |
+| `currency` | `Currency` |
+| `recipient` | `string` |
+| `amount`? | `BigNumber` |
 
 #### Returns
 
@@ -322,7 +247,7 @@ Defined in: [utils/v4Planner.ts:218](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 [`V4Planner`](V4Planner.md).[`addTake`](V4Planner.md#addtake)
 
----
+***
 
 ### addTakePair()
 
@@ -332,23 +257,17 @@ Defined in: [utils/v4PositionPlanner.ts:70](https://github.com/Uniswap/sdks/blob
 
 #### Parameters
 
-##### currency0
-
-`Currency`
-
-##### currency1
-
-`Currency`
-
-##### recipient
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `currency0` | `Currency` |
+| `currency1` | `Currency` |
+| `recipient` | `string` |
 
 #### Returns
 
 `void`
 
----
+***
 
 ### addTrade()
 
@@ -358,13 +277,10 @@ Defined in: [utils/v4Planner.ts:183](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 #### Parameters
 
-##### trade
-
-`Trade`\<`Currency`, `Currency`, `TradeType`\>
-
-##### slippageTolerance
-
-`Percent`
+| Parameter | Type |
+| ------ | ------ |
+| `trade` | [`Trade`](Trade.md)\<`Currency`, `Currency`, `TradeType`\> |
+| `slippageTolerance`? | `Percent` |
 
 #### Returns
 
@@ -374,7 +290,7 @@ Defined in: [utils/v4Planner.ts:183](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 [`V4Planner`](V4Planner.md).[`addTrade`](V4Planner.md#addtrade)
 
----
+***
 
 ### finalize()
 

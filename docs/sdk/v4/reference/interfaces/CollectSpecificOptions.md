@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / CollectSpecificOptions
+[@uniswap/v4-sdk](../overview.md) / CollectSpecificOptions
 
 # Interface: CollectSpecificOptions
 
@@ -14,7 +14,7 @@ Defined in: [PositionManager.ts:113](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 The account that should receive the tokens.
 
----
+***
 
 ### tokenId
 

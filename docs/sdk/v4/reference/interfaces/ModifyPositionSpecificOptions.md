@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / ModifyPositionSpecificOptions
+[@uniswap/v4-sdk](../overview.md) / ModifyPositionSpecificOptions
 
 # Interface: ModifyPositionSpecificOptions
 

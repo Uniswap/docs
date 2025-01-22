@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / MintSpecificOptions
+[@uniswap/v4-sdk](../overview.md) / MintSpecificOptions
 
 # Interface: MintSpecificOptions
 
@@ -6,7 +6,7 @@ Defined in: [PositionManager.ts:47](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 ## Properties
 
-### createPool
+### createPool?
 
 > `optional` **createPool**: `boolean`
 
@@ -14,9 +14,9 @@ Defined in: [PositionManager.ts:56](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 Creates pool if not initialized before mint.
 
----
+***
 
-### migrate
+### migrate?
 
 > `optional` **migrate**: `boolean`
 
@@ -24,7 +24,7 @@ Defined in: [PositionManager.ts:66](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 Whether the mint is part of a migration from V3 to V4.
 
----
+***
 
 ### recipient
 
@@ -34,9 +34,9 @@ Defined in: [PositionManager.ts:51](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 The account that should receive the minted NFT.
 
----
+***
 
-### sqrtPriceX96
+### sqrtPriceX96?
 
 > `optional` **sqrtPriceX96**: `BigintIsh`
 

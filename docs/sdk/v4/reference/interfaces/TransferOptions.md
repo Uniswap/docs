@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / TransferOptions
+[@uniswap/v4-sdk](../overview.md) / TransferOptions
 
 # Interface: TransferOptions
 
@@ -14,7 +14,7 @@ Defined in: [PositionManager.ts:125](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 The account that should receive the NFT.
 
----
+***
 
 ### sender
 
@@ -24,7 +24,7 @@ Defined in: [PositionManager.ts:120](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 The account sending the NFT.
 
----
+***
 
 ### tokenId
 

@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / RemoveLiquiditySpecificOptions
+[@uniswap/v4-sdk](../overview.md) / RemoveLiquiditySpecificOptions
 
 # Interface: RemoveLiquiditySpecificOptions
 
@@ -8,7 +8,7 @@ Options for producing the calldata to exit a position.
 
 ## Properties
 
-### burnToken
+### burnToken?
 
 > `optional` **burnToken**: `boolean`
 
@@ -16,7 +16,7 @@ Defined in: [PositionManager.ts:96](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 Whether the NFT should be burned if the entire position is being exited, by default false.
 
----
+***
 
 ### liquidityPercentage
 
@@ -26,9 +26,9 @@ Defined in: [PositionManager.ts:91](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 The percentage of position liquidity to exit.
 
----
+***
 
-### permit
+### permit?
 
 > `optional` **permit**: [`NFTPermitOptions`](NFTPermitOptions.md)
 

@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / Hook
+[@uniswap/v4-sdk](../overview.md) / Hook
 
 # Class: Hook
 
@@ -24,15 +24,15 @@ Defined in: [utils/hook.ts:91](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 #### Parameters
 
-##### address
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `address` | `string` |
 
 #### Returns
 
 `boolean`
 
----
+***
 
 ### hasInitializePermissions()
 
@@ -42,15 +42,15 @@ Defined in: [utils/hook.ts:66](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 #### Parameters
 
-##### address
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `address` | `string` |
 
 #### Returns
 
 `boolean`
 
----
+***
 
 ### hasLiquidityPermissions()
 
@@ -60,15 +60,15 @@ Defined in: [utils/hook.ts:74](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 #### Parameters
 
-##### address
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `address` | `string` |
 
 #### Returns
 
 `boolean`
 
----
+***
 
 ### hasPermission()
 
@@ -78,19 +78,16 @@ Defined in: [utils/hook.ts:61](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 #### Parameters
 
-##### address
-
-`string`
-
-##### hookOption
-
-[`HookOptions`](../enums/HookOptions.md)
+| Parameter | Type |
+| ------ | ------ |
+| `address` | `string` |
+| `hookOption` | [`HookOptions`](../enumerations/HookOptions.md) |
 
 #### Returns
 
 `boolean`
 
----
+***
 
 ### hasSwapPermissions()
 
@@ -100,28 +97,28 @@ Defined in: [utils/hook.ts:85](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 #### Parameters
 
-##### address
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `address` | `string` |
 
 #### Returns
 
 `boolean`
 
----
+***
 
 ### permissions()
 
-> `static` **permissions**(`address`): [`HookPermissions`](../typeAliases/HookPermissions.md)
+> `static` **permissions**(`address`): [`HookPermissions`](../overview.md#hookpermissions)
 
 Defined in: [utils/hook.ts:41](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L41)
 
 #### Parameters
 
-##### address
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `address` | `string` |
 
 #### Returns
 
-[`HookPermissions`](../typeAliases/HookPermissions.md)
+[`HookPermissions`](../overview.md#hookpermissions)

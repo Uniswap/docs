@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / CommonAddLiquidityOptions
+[@uniswap/v4-sdk](../overview.md) / CommonAddLiquidityOptions
 
 # Interface: CommonAddLiquidityOptions
 
@@ -8,7 +8,7 @@ Options for producing the calldata to add liquidity.
 
 ## Properties
 
-### batchPermit
+### batchPermit?
 
 > `optional` **batchPermit**: [`BatchPermitOptions`](BatchPermitOptions.md)
 
@@ -16,9 +16,9 @@ Defined in: [PositionManager.ts:81](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 The optional permit2 batch permit parameters for spending token0 and token1
 
----
+***
 
-### useNative
+### useNative?
 
 > `optional` **useNative**: `NativeCurrency`
 

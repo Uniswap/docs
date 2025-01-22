@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / V4PositionManager
+[@uniswap/v4-sdk](../overview.md) / V4PositionManager
 
 # Class: `abstract` V4PositionManager
 
@@ -22,19 +22,16 @@ Defined in: [PositionManager.ts:224](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 #### Parameters
 
-##### position
-
-`Position`
-
-##### options
-
-[`AddLiquidityOptions`](../typeAliases/AddLiquidityOptions.md)
+| Parameter | Type |
+| ------ | ------ |
+| `position` | [`Position`](Position.md) |
+| `options` | [`AddLiquidityOptions`](../overview.md#addliquidityoptions) |
 
 #### Returns
 
 [`MethodParameters`](../interfaces/MethodParameters.md)
 
----
+***
 
 ### collectCallParameters()
 
@@ -46,17 +43,10 @@ Produces the calldata for collecting fees from a position
 
 #### Parameters
 
-##### position
-
-`Position`
-
-The position to collect fees from
-
-##### options
-
-[`CollectOptions`](../typeAliases/CollectOptions.md)
-
-Additional information necessary for generating the calldata
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `position` | [`Position`](Position.md) | The position to collect fees from |
+| `options` | [`CollectOptions`](../overview.md#collectoptions) | Additional information necessary for generating the calldata |
 
 #### Returns
 
@@ -64,7 +54,7 @@ Additional information necessary for generating the calldata
 
 The call parameters
 
----
+***
 
 ### createCallParameters()
 
@@ -76,19 +66,16 @@ Public methods to encode method parameters for different actions on the Position
 
 #### Parameters
 
-##### poolKey
-
-[`PoolKey`](../typeAliases/PoolKey.md)
-
-##### sqrtPriceX96
-
-`BigintIsh`
+| Parameter | Type |
+| ------ | ------ |
+| `poolKey` | [`PoolKey`](../overview.md#poolkey) |
+| `sqrtPriceX96` | `BigintIsh` |
 
 #### Returns
 
 [`MethodParameters`](../interfaces/MethodParameters.md)
 
----
+***
 
 ### encodeERC721Permit()
 
@@ -98,31 +85,19 @@ Defined in: [PositionManager.ts:435](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 #### Parameters
 
-##### spender
-
-`string`
-
-##### tokenId
-
-`BigintIsh`
-
-##### deadline
-
-`BigintIsh`
-
-##### nonce
-
-`BigintIsh`
-
-##### signature
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `spender` | `string` |
+| `tokenId` | `BigintIsh` |
+| `deadline` | `BigintIsh` |
+| `nonce` | `BigintIsh` |
+| `signature` | `string` |
 
 #### Returns
 
 `string`
 
----
+***
 
 ### encodeModifyLiquidities()
 
@@ -132,19 +107,16 @@ Defined in: [PositionManager.ts:421](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 #### Parameters
 
-##### unlockData
-
-`string`
-
-##### deadline
-
-`BigintIsh`
+| Parameter | Type |
+| ------ | ------ |
+| `unlockData` | `string` |
+| `deadline` | `BigintIsh` |
 
 #### Returns
 
 `string`
 
----
+***
 
 ### encodePermitBatch()
 
@@ -154,23 +126,17 @@ Defined in: [PositionManager.ts:426](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 #### Parameters
 
-##### owner
-
-`string`
-
-##### permitBatch
-
-[`AllowanceTransferPermitBatch`](../interfaces/AllowanceTransferPermitBatch.md)
-
-##### signature
-
-`string`
+| Parameter | Type |
+| ------ | ------ |
+| `owner` | `string` |
+| `permitBatch` | [`AllowanceTransferPermitBatch`](../interfaces/AllowanceTransferPermitBatch.md) |
+| `signature` | `string` |
 
 #### Returns
 
 `string`
 
----
+***
 
 ### getPermitData()
 
@@ -180,23 +146,17 @@ Defined in: [PositionManager.ts:452](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 #### Parameters
 
-##### permit
-
-[`NFTPermitValues`](../interfaces/NFTPermitValues.md)
-
-##### positionManagerAddress
-
-`string`
-
-##### chainId
-
-`number`
+| Parameter | Type |
+| ------ | ------ |
+| `permit` | [`NFTPermitValues`](../interfaces/NFTPermitValues.md) |
+| `positionManagerAddress` | `string` |
+| `chainId` | `number` |
 
 #### Returns
 
 [`NFTPermitData`](../interfaces/NFTPermitData.md)
 
----
+***
 
 ### removeCallParameters()
 
@@ -208,17 +168,10 @@ Produces the calldata for completely or partially exiting a position
 
 #### Parameters
 
-##### position
-
-`Position`
-
-The position to exit
-
-##### options
-
-[`RemoveLiquidityOptions`](../typeAliases/RemoveLiquidityOptions.md)
-
-Additional information necessary for generating the calldata
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `position` | [`Position`](Position.md) | The position to exit |
+| `options` | [`RemoveLiquidityOptions`](../overview.md#removeliquidityoptions) | Additional information necessary for generating the calldata |
 
 #### Returns
 

@@ -1,52 +1,57 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / Actions
+[@uniswap/v4-sdk](../overview.md) / Actions
 
 # Enumeration: Actions
 
 Defined in: [utils/v4Planner.ts:14](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L14)
 
-Constants that define what action to perform. Not all actions are supported yet.
+Actions
+
+## Description
+
+Constants that define what action to perform
+Not all actions are supported yet.
 
 ## Enumeration Members
 
-### BURN_POSITION
+### BURN\_POSITION
 
-> **BURN_POSITION**: `3`
+> **BURN\_POSITION**: `3`
 
 Defined in: [utils/v4Planner.ts:20](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L20)
 
----
+***
 
-### CLOSE_CURRENCY
+### CLOSE\_CURRENCY
 
-> **CLOSE_CURRENCY**: `18`
+> **CLOSE\_CURRENCY**: `18`
 
 Defined in: [utils/v4Planner.ts:43](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L43)
 
----
+***
 
-### DECREASE_LIQUIDITY
+### DECREASE\_LIQUIDITY
 
-> **DECREASE_LIQUIDITY**: `1`
+> **DECREASE\_LIQUIDITY**: `1`
 
 Defined in: [utils/v4Planner.ts:18](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L18)
 
----
+***
 
-### INCREASE_LIQUIDITY
+### INCREASE\_LIQUIDITY
 
-> **INCREASE_LIQUIDITY**: `0`
+> **INCREASE\_LIQUIDITY**: `0`
 
 Defined in: [utils/v4Planner.ts:17](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L17)
 
----
+***
 
-### MINT_POSITION
+### MINT\_POSITION
 
-> **MINT_POSITION**: `2`
+> **MINT\_POSITION**: `2`
 
 Defined in: [utils/v4Planner.ts:19](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L19)
 
----
+***
 
 ### SETTLE
 
@@ -54,55 +59,55 @@ Defined in: [utils/v4Planner.ts:19](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 Defined in: [utils/v4Planner.ts:34](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L34)
 
----
+***
 
-### SETTLE_ALL
+### SETTLE\_ALL
 
-> **SETTLE_ALL**: `12`
+> **SETTLE\_ALL**: `12`
 
 Defined in: [utils/v4Planner.ts:35](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L35)
 
----
+***
 
-### SETTLE_PAIR
+### SETTLE\_PAIR
 
-> **SETTLE_PAIR**: `13`
+> **SETTLE\_PAIR**: `13`
 
 Defined in: [utils/v4Planner.ts:36](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L36)
 
----
+***
 
-### SWAP_EXACT_IN
+### SWAP\_EXACT\_IN
 
-> **SWAP_EXACT_IN**: `7`
+> **SWAP\_EXACT\_IN**: `7`
 
 Defined in: [utils/v4Planner.ts:28](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L28)
 
----
+***
 
-### SWAP_EXACT_IN_SINGLE
+### SWAP\_EXACT\_IN\_SINGLE
 
-> **SWAP_EXACT_IN_SINGLE**: `6`
+> **SWAP\_EXACT\_IN\_SINGLE**: `6`
 
 Defined in: [utils/v4Planner.ts:27](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L27)
 
----
+***
 
-### SWAP_EXACT_OUT
+### SWAP\_EXACT\_OUT
 
-> **SWAP_EXACT_OUT**: `9`
+> **SWAP\_EXACT\_OUT**: `9`
 
 Defined in: [utils/v4Planner.ts:30](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L30)
 
----
+***
 
-### SWAP_EXACT_OUT_SINGLE
+### SWAP\_EXACT\_OUT\_SINGLE
 
-> **SWAP_EXACT_OUT_SINGLE**: `8`
+> **SWAP\_EXACT\_OUT\_SINGLE**: `8`
 
 Defined in: [utils/v4Planner.ts:29](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L29)
 
----
+***
 
 ### SWEEP
 
@@ -110,7 +115,7 @@ Defined in: [utils/v4Planner.ts:29](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 Defined in: [utils/v4Planner.ts:45](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L45)
 
----
+***
 
 ### TAKE
 
@@ -118,26 +123,26 @@ Defined in: [utils/v4Planner.ts:45](https://github.com/Uniswap/sdks/blob/c1c9f64
 
 Defined in: [utils/v4Planner.ts:38](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L38)
 
----
+***
 
-### TAKE_ALL
+### TAKE\_ALL
 
-> **TAKE_ALL**: `15`
+> **TAKE\_ALL**: `15`
 
 Defined in: [utils/v4Planner.ts:39](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L39)
 
----
+***
 
-### TAKE_PAIR
+### TAKE\_PAIR
 
-> **TAKE_PAIR**: `17`
+> **TAKE\_PAIR**: `17`
 
 Defined in: [utils/v4Planner.ts:41](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L41)
 
----
+***
 
-### TAKE_PORTION
+### TAKE\_PORTION
 
-> **TAKE_PORTION**: `16`
+> **TAKE\_PORTION**: `16`
 
 Defined in: [utils/v4Planner.ts:40](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L40)

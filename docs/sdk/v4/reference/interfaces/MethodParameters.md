@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / MethodParameters
+[@uniswap/v4-sdk](../overview.md) / MethodParameters
 
 # Interface: MethodParameters
 
@@ -16,7 +16,7 @@ Defined in: [utils/calldata.ts:11](https://github.com/Uniswap/sdks/blob/c1c9f64f
 
 The hex encoded calldata to perform the given operation
 
----
+***
 
 ### value
 

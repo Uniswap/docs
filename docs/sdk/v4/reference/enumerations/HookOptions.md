@@ -1,4 +1,4 @@
-[@uniswap/v4-sdk](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk) / HookOptions
+[@uniswap/v4-sdk](../overview.md) / HookOptions
 
 # Enumeration: HookOptions
 
@@ -12,7 +12,7 @@ Defined in: [utils/hook.ts:6](https://github.com/Uniswap/sdks/blob/c1c9f64f11640
 
 Defined in: [utils/hook.ts:17](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L17)
 
----
+***
 
 ### AfterAddLiquidityReturnsDelta
 
@@ -20,7 +20,7 @@ Defined in: [utils/hook.ts:17](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 Defined in: [utils/hook.ts:8](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L8)
 
----
+***
 
 ### AfterDonate
 
@@ -28,7 +28,7 @@ Defined in: [utils/hook.ts:8](https://github.com/Uniswap/sdks/blob/c1c9f64f11640
 
 Defined in: [utils/hook.ts:11](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L11)
 
----
+***
 
 ### AfterInitialize
 
@@ -36,7 +36,7 @@ Defined in: [utils/hook.ts:11](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 Defined in: [utils/hook.ts:19](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L19)
 
----
+***
 
 ### AfterRemoveLiquidity
 
@@ -44,7 +44,7 @@ Defined in: [utils/hook.ts:19](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 Defined in: [utils/hook.ts:15](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L15)
 
----
+***
 
 ### AfterRemoveLiquidityReturnsDelta
 
@@ -52,7 +52,7 @@ Defined in: [utils/hook.ts:15](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 Defined in: [utils/hook.ts:7](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L7)
 
----
+***
 
 ### AfterSwap
 
@@ -60,7 +60,7 @@ Defined in: [utils/hook.ts:7](https://github.com/Uniswap/sdks/blob/c1c9f64f11640
 
 Defined in: [utils/hook.ts:13](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L13)
 
----
+***
 
 ### AfterSwapReturnsDelta
 
@@ -68,7 +68,7 @@ Defined in: [utils/hook.ts:13](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 Defined in: [utils/hook.ts:9](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L9)
 
----
+***
 
 ### BeforeAddLiquidity
 
@@ -76,7 +76,7 @@ Defined in: [utils/hook.ts:9](https://github.com/Uniswap/sdks/blob/c1c9f64f11640
 
 Defined in: [utils/hook.ts:18](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L18)
 
----
+***
 
 ### BeforeDonate
 
@@ -84,7 +84,7 @@ Defined in: [utils/hook.ts:18](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 Defined in: [utils/hook.ts:12](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L12)
 
----
+***
 
 ### BeforeInitialize
 
@@ -92,7 +92,7 @@ Defined in: [utils/hook.ts:12](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 Defined in: [utils/hook.ts:20](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L20)
 
----
+***
 
 ### BeforeRemoveLiquidity
 
@@ -100,7 +100,7 @@ Defined in: [utils/hook.ts:20](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 Defined in: [utils/hook.ts:16](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L16)
 
----
+***
 
 ### BeforeSwap
 
@@ -108,7 +108,7 @@ Defined in: [utils/hook.ts:16](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 Defined in: [utils/hook.ts:14](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L14)
 
----
+***
 
 ### BeforeSwapReturnsDelta
 
