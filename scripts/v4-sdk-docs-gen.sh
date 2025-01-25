@@ -49,7 +49,7 @@ echo "==> Generating Markdown docs for v4-sdk..."
 (
   cd "$V4_SDK_DIR"
   yarn typedoc \
-    --out docs \
+    --out tmp/docs \
     --plugin typedoc-plugin-markdown \
     --hidePageHeader true \
     --modulesFileName overview \
@@ -63,7 +63,17 @@ echo "==> Generating Markdown docs for v4-sdk..."
 )
 
 ##############################################################################
-# 4. Remove old v4 folder & copy new docs into docs/sdk/v4/reference
+# 4. Post-processing: Remove all backslashes from *.md
+##############################################################################
+echo "==> Removing all backslashes in Markdown files..."
+# The regex removes one or more backslashes (\\+) from the file.
+# If you only have single backslashes, 's/\\//g' is enough.
+# But typedoc can sometimes escape characters with multiple \\
+find "$TYPEDOC_OUTPUT_DIR" -type f -name "*.md" -exec \
+  sed -i.bak -E 's/\\+//g' {} \; -exec rm {}.bak \;
+
+##############################################################################
+# 5. Remove old v4 folder & copy new docs into docs/sdk/v4/reference
 ##############################################################################
 echo "==> Removing old v4 folder at $DOCS_V4_ROOT..."
 rm -rf "$DOCS_V4_ROOT"
@@ -73,7 +83,7 @@ echo "==> Copying newly generated docs to $DOCS_REFERENCE_DIR..."
 cp -R "$TYPEDOC_OUTPUT_DIR/"* "$DOCS_REFERENCE_DIR/"
 
 ##############################################################################
-# 5. Rename index.md -> overview.md & remove any guides folder
+# 6. Rename index.md -> overview.md & remove any guides folder
 ##############################################################################
 if [ -f "$DOCS_REFERENCE_DIR/index.md" ]; then
   mv "$DOCS_REFERENCE_DIR/index.md" "$DOCS_REFERENCE_DIR/overview.md"
@@ -87,7 +97,7 @@ if [ -d "$DOCS_REFERENCE_DIR/guides" ]; then
 fi
 
 ##############################################################################
-# 6. Remove the sdks submodule (cleanup)
+# 7. Remove the sdks submodule (cleanup)
 ##############################################################################
 echo "==> Removing sdks submodule..."
 rm -rf "$SDKS_SUBMODULE_DIR"
