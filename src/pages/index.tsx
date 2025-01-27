@@ -5,9 +5,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 import styled from '@emotion/styled'
 import Discord from '@site/static/img/discord.svg'
 import GitHub from '@site/static/img/github.svg'
-import Npm from '@site/static/img/npm.svg'
 import UGP from '@site/static/img/UGP.png'
-
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
 import { TraceEvent } from '@uniswap/analytics'
@@ -465,7 +463,7 @@ export default function Home() {
             <Link style={{ textDecoration: 'none' }} href={'https://discord.gg/ybKVQUWb4s'}>
               <CenterCard>
                 <StyledIcon>
-                   <Discord style={{ width: '48px', height: '48px' }} />
+                  <Discord style={{ width: '48px', height: '48px' }} />
                 </StyledIcon>
                 <div>
                   <h3>Discord</h3>
@@ -530,7 +528,8 @@ export default function Home() {
             <div>
               <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Foundation Grants</h2>
               <p style={{ margin: '0rem' }}>
-              In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth, decentralization, and sustainability of the Uniswap community.{' '}
+                In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth,
+                decentralization, and sustainability of the Uniswap community.{' '}
               </p>
             </div>
           </WideCard>
