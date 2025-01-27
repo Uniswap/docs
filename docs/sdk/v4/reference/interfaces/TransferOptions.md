@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / TransferOptions
 
-# Interface: TransferOptions
-
-Defined in: [PositionManager.ts:116](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L116)
+Defined in: [PositionManager.ts:116](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L116)
 
 ## Properties
 
@@ -10,7 +8,7 @@ Defined in: [PositionManager.ts:116](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **recipient**: `string`
 
-Defined in: [PositionManager.ts:125](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L125)
+Defined in: [PositionManager.ts:125](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L125)
 
 The account that should receive the NFT.
 
@@ -20,7 +18,7 @@ The account that should receive the NFT.
 
 > **sender**: `string`
 
-Defined in: [PositionManager.ts:120](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L120)
+Defined in: [PositionManager.ts:120](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L120)
 
 The account sending the NFT.
 
@@ -30,6 +28,6 @@ The account sending the NFT.
 
 > **tokenId**: `BigintIsh`
 
-Defined in: [PositionManager.ts:130](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L130)
+Defined in: [PositionManager.ts:130](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L130)
 
 The id of the token being sent.

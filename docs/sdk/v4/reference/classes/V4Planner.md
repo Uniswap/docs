@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / V4Planner
 
-# Class: V4Planner
-
-Defined in: [utils/v4Planner.ts:167](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L167)
+Defined in: [utils/v4Planner.ts:167](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L167)
 
 ## Extended by
 
@@ -14,7 +12,7 @@ Defined in: [utils/v4Planner.ts:167](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **new V4Planner**(): [`V4Planner`](V4Planner.md)
 
-Defined in: [utils/v4Planner.ts:171](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L171)
+Defined in: [utils/v4Planner.ts:171](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L171)
 
 #### Returns
 
@@ -26,7 +24,7 @@ Defined in: [utils/v4Planner.ts:171](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **actions**: `string`
 
-Defined in: [utils/v4Planner.ts:168](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L168)
+Defined in: [utils/v4Planner.ts:168](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L168)
 
 ***
 
@@ -34,7 +32,7 @@ Defined in: [utils/v4Planner.ts:168](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **params**: `string`[]
 
-Defined in: [utils/v4Planner.ts:169](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L169)
+Defined in: [utils/v4Planner.ts:169](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L169)
 
 ## Methods
 
@@ -42,7 +40,7 @@ Defined in: [utils/v4Planner.ts:169](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **addAction**(`type`, `parameters`): [`V4Planner`](V4Planner.md)
 
-Defined in: [utils/v4Planner.ts:176](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L176)
+Defined in: [utils/v4Planner.ts:176](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L176)
 
 #### Parameters
 
@@ -61,7 +59,7 @@ Defined in: [utils/v4Planner.ts:176](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **addSettle**(`currency`, `payerIsUser`, `amount`?): [`V4Planner`](V4Planner.md)
 
-Defined in: [utils/v4Planner.ts:213](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L213)
+Defined in: [utils/v4Planner.ts:213](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L213)
 
 #### Parameters
 
@@ -81,7 +79,7 @@ Defined in: [utils/v4Planner.ts:213](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **addTake**(`currency`, `recipient`, `amount`?): [`V4Planner`](V4Planner.md)
 
-Defined in: [utils/v4Planner.ts:218](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L218)
+Defined in: [utils/v4Planner.ts:218](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L218)
 
 #### Parameters
 
@@ -101,13 +99,13 @@ Defined in: [utils/v4Planner.ts:218](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **addTrade**(`trade`, `slippageTolerance`?): [`V4Planner`](V4Planner.md)
 
-Defined in: [utils/v4Planner.ts:183](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L183)
+Defined in: [utils/v4Planner.ts:183](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L183)
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `trade` | [`Trade`](Trade.md)\<`Currency`, `Currency`, `TradeType`\> |
+| `trade` | [`Trade`](Trade.md)<`Currency`, `Currency`, `TradeType`> |
 | `slippageTolerance`? | `Percent` |
 
 #### Returns
@@ -120,7 +118,7 @@ Defined in: [utils/v4Planner.ts:183](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **finalize**(): `string`
 
-Defined in: [utils/v4Planner.ts:224](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L224)
+Defined in: [utils/v4Planner.ts:224](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L224)
 
 #### Returns
 

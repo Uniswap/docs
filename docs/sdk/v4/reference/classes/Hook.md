@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / Hook
 
-# Class: Hook
-
-Defined in: [utils/hook.ts:40](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L40)
+Defined in: [utils/hook.ts:40](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/hook.ts#L40)
 
 ## Constructors
 
@@ -20,7 +18,7 @@ Defined in: [utils/hook.ts:40](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 > `static` **hasDonatePermissions**(`address`): `boolean`
 
-Defined in: [utils/hook.ts:91](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L91)
+Defined in: [utils/hook.ts:91](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/hook.ts#L91)
 
 #### Parameters
 
@@ -38,7 +36,7 @@ Defined in: [utils/hook.ts:91](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 > `static` **hasInitializePermissions**(`address`): `boolean`
 
-Defined in: [utils/hook.ts:66](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L66)
+Defined in: [utils/hook.ts:66](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/hook.ts#L66)
 
 #### Parameters
 
@@ -56,7 +54,7 @@ Defined in: [utils/hook.ts:66](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 > `static` **hasLiquidityPermissions**(`address`): `boolean`
 
-Defined in: [utils/hook.ts:74](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L74)
+Defined in: [utils/hook.ts:74](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/hook.ts#L74)
 
 #### Parameters
 
@@ -74,7 +72,7 @@ Defined in: [utils/hook.ts:74](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 > `static` **hasPermission**(`address`, `hookOption`): `boolean`
 
-Defined in: [utils/hook.ts:61](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L61)
+Defined in: [utils/hook.ts:61](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/hook.ts#L61)
 
 #### Parameters
 
@@ -93,7 +91,7 @@ Defined in: [utils/hook.ts:61](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 > `static` **hasSwapPermissions**(`address`): `boolean`
 
-Defined in: [utils/hook.ts:85](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L85)
+Defined in: [utils/hook.ts:85](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/hook.ts#L85)
 
 #### Parameters
 
@@ -111,7 +109,7 @@ Defined in: [utils/hook.ts:85](https://github.com/Uniswap/sdks/blob/c1c9f64f1164
 
 > `static` **permissions**(`address`): [`HookPermissions`](../overview.md#hookpermissions)
 
-Defined in: [utils/hook.ts:41](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/hook.ts#L41)
+Defined in: [utils/hook.ts:41](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/hook.ts#L41)
 
 #### Parameters
 

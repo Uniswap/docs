@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / BatchPermitOptions
 
-# Interface: BatchPermitOptions
-
-Defined in: [PositionManager.ts:152](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L152)
+Defined in: [PositionManager.ts:152](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L152)
 
 ## Properties
 
@@ -10,7 +8,7 @@ Defined in: [PositionManager.ts:152](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **owner**: `string`
 
-Defined in: [PositionManager.ts:153](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L153)
+Defined in: [PositionManager.ts:153](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L153)
 
 ***
 
@@ -18,7 +16,7 @@ Defined in: [PositionManager.ts:153](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **permitBatch**: [`AllowanceTransferPermitBatch`](AllowanceTransferPermitBatch.md)
 
-Defined in: [PositionManager.ts:154](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L154)
+Defined in: [PositionManager.ts:154](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L154)
 
 ***
 
@@ -26,4 +24,4 @@ Defined in: [PositionManager.ts:154](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **signature**: `string`
 
-Defined in: [PositionManager.ts:155](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L155)
+Defined in: [PositionManager.ts:155](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L155)

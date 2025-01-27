@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / V4BaseActionsParser
 
-# Class: `abstract` V4BaseActionsParser
-
-Defined in: [utils/v4BaseActionsParser.ts:52](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4BaseActionsParser.ts#L52)
+Defined in: [utils/v4BaseActionsParser.ts:52](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4BaseActionsParser.ts#L52)
 
 ## Constructors
 
@@ -20,7 +18,7 @@ Defined in: [utils/v4BaseActionsParser.ts:52](https://github.com/Uniswap/sdks/bl
 
 > `static` **parseCalldata**(`calldata`): [`V4RouterCall`](../overview.md#v4routercall)
 
-Defined in: [utils/v4BaseActionsParser.ts:53](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4BaseActionsParser.ts#L53)
+Defined in: [utils/v4BaseActionsParser.ts:53](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4BaseActionsParser.ts#L53)
 
 #### Parameters
 

@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / NFTPermitValues
 
-# Interface: NFTPermitValues
-
-Defined in: [PositionManager.ts:167](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L167)
+Defined in: [PositionManager.ts:167](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L167)
 
 ## Extended by
 
@@ -14,7 +12,7 @@ Defined in: [PositionManager.ts:167](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **deadline**: `BigintIsh`
 
-Defined in: [PositionManager.ts:170](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L170)
+Defined in: [PositionManager.ts:170](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L170)
 
 ***
 
@@ -22,7 +20,7 @@ Defined in: [PositionManager.ts:170](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **nonce**: `BigintIsh`
 
-Defined in: [PositionManager.ts:171](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L171)
+Defined in: [PositionManager.ts:171](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L171)
 
 ***
 
@@ -30,7 +28,7 @@ Defined in: [PositionManager.ts:171](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **spender**: `string`
 
-Defined in: [PositionManager.ts:168](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L168)
+Defined in: [PositionManager.ts:168](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L168)
 
 ***
 
@@ -38,4 +36,4 @@ Defined in: [PositionManager.ts:168](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **tokenId**: `BigintIsh`
 
-Defined in: [PositionManager.ts:169](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L169)
+Defined in: [PositionManager.ts:169](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L169)

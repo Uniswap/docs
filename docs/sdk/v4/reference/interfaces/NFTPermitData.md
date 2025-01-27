@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / NFTPermitData
 
-# Interface: NFTPermitData
-
-Defined in: [PositionManager.ts:178](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L178)
+Defined in: [PositionManager.ts:178](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L178)
 
 ## Properties
 
@@ -10,15 +8,15 @@ Defined in: [PositionManager.ts:178](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **domain**: `TypedDataDomain`
 
-Defined in: [PositionManager.ts:179](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L179)
+Defined in: [PositionManager.ts:179](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L179)
 
 ***
 
 ### types
 
-> **types**: `Record`\<`string`, `TypedDataField`[]\>
+> **types**: `Record`<`string`, `TypedDataField`[]>
 
-Defined in: [PositionManager.ts:180](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L180)
+Defined in: [PositionManager.ts:180](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L180)
 
 ***
 
@@ -26,4 +24,4 @@ Defined in: [PositionManager.ts:180](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **values**: [`NFTPermitValues`](NFTPermitValues.md)
 
-Defined in: [PositionManager.ts:181](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L181)
+Defined in: [PositionManager.ts:181](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L181)

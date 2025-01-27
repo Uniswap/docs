@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / V4PositionPlanner
 
-# Class: V4PositionPlanner
-
-Defined in: [utils/v4PositionPlanner.ts:8](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L8)
+Defined in: [utils/v4PositionPlanner.ts:8](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L8)
 
 ## Extends
 
@@ -14,7 +12,7 @@ Defined in: [utils/v4PositionPlanner.ts:8](https://github.com/Uniswap/sdks/blob/
 
 > **new V4PositionPlanner**(): [`V4PositionPlanner`](V4PositionPlanner.md)
 
-Defined in: [utils/v4Planner.ts:171](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L171)
+Defined in: [utils/v4Planner.ts:171](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L171)
 
 #### Returns
 
@@ -30,7 +28,7 @@ Defined in: [utils/v4Planner.ts:171](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **actions**: `string`
 
-Defined in: [utils/v4Planner.ts:168](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L168)
+Defined in: [utils/v4Planner.ts:168](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L168)
 
 #### Inherited from
 
@@ -42,7 +40,7 @@ Defined in: [utils/v4Planner.ts:168](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **params**: `string`[]
 
-Defined in: [utils/v4Planner.ts:169](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L169)
+Defined in: [utils/v4Planner.ts:169](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L169)
 
 #### Inherited from
 
@@ -54,7 +52,7 @@ Defined in: [utils/v4Planner.ts:169](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **addAction**(`type`, `parameters`): [`V4Planner`](V4Planner.md)
 
-Defined in: [utils/v4Planner.ts:176](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L176)
+Defined in: [utils/v4Planner.ts:176](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L176)
 
 #### Parameters
 
@@ -77,7 +75,7 @@ Defined in: [utils/v4Planner.ts:176](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **addBurn**(`tokenId`, `amount0Min`, `amount1Min`, `hookData`): `void`
 
-Defined in: [utils/v4PositionPlanner.ts:58](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L58)
+Defined in: [utils/v4PositionPlanner.ts:58](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L58)
 
 #### Parameters
 
@@ -98,7 +96,7 @@ Defined in: [utils/v4PositionPlanner.ts:58](https://github.com/Uniswap/sdks/blob
 
 > **addDecrease**(`tokenId`, `liquidity`, `amount0Min`, `amount1Min`, `hookData`): `void`
 
-Defined in: [utils/v4PositionPlanner.ts:46](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L46)
+Defined in: [utils/v4PositionPlanner.ts:46](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L46)
 
 #### Parameters
 
@@ -120,7 +118,7 @@ Defined in: [utils/v4PositionPlanner.ts:46](https://github.com/Uniswap/sdks/blob
 
 > **addIncrease**(`tokenId`, `liquidity`, `amount0Max`, `amount1Max`, `hookData`): `void`
 
-Defined in: [utils/v4PositionPlanner.ts:34](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L34)
+Defined in: [utils/v4PositionPlanner.ts:34](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L34)
 
 #### Parameters
 
@@ -142,7 +140,7 @@ Defined in: [utils/v4PositionPlanner.ts:34](https://github.com/Uniswap/sdks/blob
 
 > **addMint**(`pool`, `tickLower`, `tickUpper`, `liquidity`, `amount0Max`, `amount1Max`, `owner`, `hookData`): `void`
 
-Defined in: [utils/v4PositionPlanner.ts:10](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L10)
+Defined in: [utils/v4PositionPlanner.ts:10](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L10)
 
 #### Parameters
 
@@ -167,7 +165,7 @@ Defined in: [utils/v4PositionPlanner.ts:10](https://github.com/Uniswap/sdks/blob
 
 > **addSettle**(`currency`, `payerIsUser`, `amount`?): [`V4Planner`](V4Planner.md)
 
-Defined in: [utils/v4Planner.ts:213](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L213)
+Defined in: [utils/v4Planner.ts:213](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L213)
 
 #### Parameters
 
@@ -191,7 +189,7 @@ Defined in: [utils/v4Planner.ts:213](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **addSettlePair**(`currency0`, `currency1`): `void`
 
-Defined in: [utils/v4PositionPlanner.ts:64](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L64)
+Defined in: [utils/v4PositionPlanner.ts:64](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L64)
 
 #### Parameters
 
@@ -210,7 +208,7 @@ Defined in: [utils/v4PositionPlanner.ts:64](https://github.com/Uniswap/sdks/blob
 
 > **addSweep**(`currency`, `to`): `void`
 
-Defined in: [utils/v4PositionPlanner.ts:76](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L76)
+Defined in: [utils/v4PositionPlanner.ts:76](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L76)
 
 #### Parameters
 
@@ -229,7 +227,7 @@ Defined in: [utils/v4PositionPlanner.ts:76](https://github.com/Uniswap/sdks/blob
 
 > **addTake**(`currency`, `recipient`, `amount`?): [`V4Planner`](V4Planner.md)
 
-Defined in: [utils/v4Planner.ts:218](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L218)
+Defined in: [utils/v4Planner.ts:218](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L218)
 
 #### Parameters
 
@@ -253,7 +251,7 @@ Defined in: [utils/v4Planner.ts:218](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **addTakePair**(`currency0`, `currency1`, `recipient`): `void`
 
-Defined in: [utils/v4PositionPlanner.ts:70](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L70)
+Defined in: [utils/v4PositionPlanner.ts:70](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4PositionPlanner.ts#L70)
 
 #### Parameters
 
@@ -273,13 +271,13 @@ Defined in: [utils/v4PositionPlanner.ts:70](https://github.com/Uniswap/sdks/blob
 
 > **addTrade**(`trade`, `slippageTolerance`?): [`V4Planner`](V4Planner.md)
 
-Defined in: [utils/v4Planner.ts:183](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L183)
+Defined in: [utils/v4Planner.ts:183](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L183)
 
 #### Parameters
 
 | Parameter | Type |
 | ------ | ------ |
-| `trade` | [`Trade`](Trade.md)\<`Currency`, `Currency`, `TradeType`\> |
+| `trade` | [`Trade`](Trade.md)<`Currency`, `Currency`, `TradeType`> |
 | `slippageTolerance`? | `Percent` |
 
 #### Returns
@@ -296,7 +294,7 @@ Defined in: [utils/v4Planner.ts:183](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **finalize**(): `string`
 
-Defined in: [utils/v4Planner.ts:224](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/utils/v4Planner.ts#L224)
+Defined in: [utils/v4Planner.ts:224](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/v4Planner.ts#L224)
 
 #### Returns
 

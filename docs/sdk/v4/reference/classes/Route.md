@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / Route
 
-# Class: Route\<TInput, TOutput\>
-
-Defined in: [entities/route.ts:12](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L12)
+Defined in: [entities/route.ts:12](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L12)
 
 Represents a list of pools through which a swap can occur
 
@@ -17,9 +15,9 @@ Represents a list of pools through which a swap can occur
 
 ### new Route()
 
-> **new Route**\<`TInput`, `TOutput`\>(`pools`, `input`, `output`): [`Route`](Route.md)\<`TInput`, `TOutput`\>
+> **new Route**<`TInput`, `TOutput`>(`pools`, `input`, `output`): [`Route`](Route.md)<`TInput`, `TOutput`>
 
-Defined in: [entities/route.ts:28](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L28)
+Defined in: [entities/route.ts:28](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L28)
 
 Creates an instance of route.
 
@@ -33,7 +31,7 @@ Creates an instance of route.
 
 #### Returns
 
-[`Route`](Route.md)\<`TInput`, `TOutput`\>
+[`Route`](Route.md)<`TInput`, `TOutput`>
 
 ## Properties
 
@@ -41,7 +39,7 @@ Creates an instance of route.
 
 > `readonly` **currencyPath**: `Currency`[]
 
-Defined in: [entities/route.ts:14](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L14)
+Defined in: [entities/route.ts:14](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L14)
 
 ***
 
@@ -49,7 +47,7 @@ Defined in: [entities/route.ts:14](https://github.com/Uniswap/sdks/blob/c1c9f64f
 
 > `readonly` **input**: `TInput`
 
-Defined in: [entities/route.ts:15](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L15)
+Defined in: [entities/route.ts:15](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L15)
 
 ***
 
@@ -57,7 +55,7 @@ Defined in: [entities/route.ts:15](https://github.com/Uniswap/sdks/blob/c1c9f64f
 
 > `readonly` **output**: `TOutput`
 
-Defined in: [entities/route.ts:16](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L16)
+Defined in: [entities/route.ts:16](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L16)
 
 ***
 
@@ -65,7 +63,7 @@ Defined in: [entities/route.ts:16](https://github.com/Uniswap/sdks/blob/c1c9f64f
 
 > `readonly` **pathInput**: `Currency`
 
-Defined in: [entities/route.ts:17](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L17)
+Defined in: [entities/route.ts:17](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L17)
 
 ***
 
@@ -73,7 +71,7 @@ Defined in: [entities/route.ts:17](https://github.com/Uniswap/sdks/blob/c1c9f64f
 
 > `readonly` **pathOutput**: `Currency`
 
-Defined in: [entities/route.ts:18](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L18)
+Defined in: [entities/route.ts:18](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L18)
 
 ***
 
@@ -81,7 +79,7 @@ Defined in: [entities/route.ts:18](https://github.com/Uniswap/sdks/blob/c1c9f64f
 
 > `readonly` **pools**: [`Pool`](Pool.md)[]
 
-Defined in: [entities/route.ts:13](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L13)
+Defined in: [entities/route.ts:13](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L13)
 
 ## Accessors
 
@@ -91,7 +89,7 @@ Defined in: [entities/route.ts:13](https://github.com/Uniswap/sdks/blob/c1c9f64f
 
 > **get** **chainId**(): `number`
 
-Defined in: [entities/route.ts:58](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L58)
+Defined in: [entities/route.ts:58](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L58)
 
 ##### Returns
 
@@ -103,12 +101,12 @@ Defined in: [entities/route.ts:58](https://github.com/Uniswap/sdks/blob/c1c9f64f
 
 #### Get Signature
 
-> **get** **midPrice**(): `Price`\<`TInput`, `TOutput`\>
+> **get** **midPrice**(): `Price`<`TInput`, `TOutput`>
 
-Defined in: [entities/route.ts:65](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/entities/route.ts#L65)
+Defined in: [entities/route.ts:65](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L65)
 
 Returns the mid price of the route
 
 ##### Returns
 
-`Price`\<`TInput`, `TOutput`\>
+`Price`<`TInput`, `TOutput`>

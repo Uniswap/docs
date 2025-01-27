@@ -1,8 +1,6 @@
 [@uniswap/v4-sdk](../overview.md) / AllowanceTransferPermitBatch
 
-# Interface: AllowanceTransferPermitBatch
-
-Defined in: [PositionManager.ts:146](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L146)
+Defined in: [PositionManager.ts:146](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L146)
 
 ## Properties
 
@@ -10,7 +8,7 @@ Defined in: [PositionManager.ts:146](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **details**: [`PermitDetails`](PermitDetails.md)[]
 
-Defined in: [PositionManager.ts:147](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L147)
+Defined in: [PositionManager.ts:147](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L147)
 
 ***
 
@@ -18,7 +16,7 @@ Defined in: [PositionManager.ts:147](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **sigDeadline**: `BigintIsh`
 
-Defined in: [PositionManager.ts:149](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L149)
+Defined in: [PositionManager.ts:149](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L149)
 
 ***
 
@@ -26,4 +24,4 @@ Defined in: [PositionManager.ts:149](https://github.com/Uniswap/sdks/blob/c1c9f6
 
 > **spender**: `string`
 
-Defined in: [PositionManager.ts:148](https://github.com/Uniswap/sdks/blob/c1c9f64f11640c79a680f539823458931629e6ed/sdks/v4-sdk/src/PositionManager.ts#L148)
+Defined in: [PositionManager.ts:148](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/PositionManager.ts#L148)

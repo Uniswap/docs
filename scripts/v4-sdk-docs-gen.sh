@@ -15,6 +15,9 @@ TYPEDOC_OUTPUT_DIR="${V4_SDK_DIR}/tmp/docs"
 DOCS_V4_ROOT="docs/sdk/v4"
 DOCS_REFERENCE_DIR="${DOCS_V4_ROOT}/reference"
 
+# Config added to the beginning of overview.md after generation
+OVERVIEW_DOC_CONFIG_STR="---\nid: overview\nsidebar_position: 1\ntitle: Overview\n---\n"
+
 ##############################################################################
 # 1. Add (if missing) or update the sdks submodule
 ##############################################################################
@@ -52,6 +55,7 @@ echo "==> Generating Markdown docs for v4-sdk..."
     --out tmp/docs \
     --plugin typedoc-plugin-markdown \
     --hidePageHeader true \
+    --hidePageTitle true \
     --modulesFileName overview \
     --membersWithOwnFile Class \
     --membersWithOwnFile Enum \
@@ -75,21 +79,24 @@ find "$TYPEDOC_OUTPUT_DIR" -type f -name "*.md" -exec \
 ##############################################################################
 # 5. Remove old v4 folder & copy new docs into docs/sdk/v4/reference
 ##############################################################################
-echo "==> Removing old v4 folder at $DOCS_V4_ROOT..."
-rm -rf "$DOCS_V4_ROOT"
+echo "==> Removing old v4 folder at $DOCS_REFERENCE_DIR..."
+rm -rf "$DOCS_REFERENCE_DIR"
 mkdir -p "$DOCS_REFERENCE_DIR"
 
 echo "==> Copying newly generated docs to $DOCS_REFERENCE_DIR..."
 cp -R "$TYPEDOC_OUTPUT_DIR/"* "$DOCS_REFERENCE_DIR/"
 
 ##############################################################################
-# 6. Rename index.md -> overview.md & remove any guides folder
+# 6. Append doc config to $DOCS_REFERENCE_DIR/overview.md, remove README.md & guides folder
 ##############################################################################
-if [ -f "$DOCS_REFERENCE_DIR/index.md" ]; then
-  mv "$DOCS_REFERENCE_DIR/index.md" "$DOCS_REFERENCE_DIR/overview.md"
+if [ -f "$DOCS_REFERENCE_DIR/overview.md" ]; then
+  echo "==> Append doc config to $DOCS_REFERENCE_DIR/overview.md..."
+  sed -i.bak "1s/^/$OVERVIEW_DOC_CONFIG_STR\n/" "$DOCS_REFERENCE_DIR/overview.md"
+  rm -f "$DOCS_REFERENCE_DIR/overview.md.bak"
 fi
+
 if [ -f "$DOCS_REFERENCE_DIR/README.md" ]; then
-  mv "$DOCS_REFERENCE_DIR/README.md" "$DOCS_REFERENCE_DIR/overview.md"
+  rm -f "$DOCS_REFERENCE_DIR/README.md"
 fi
 
 if [ -d "$DOCS_REFERENCE_DIR/guides" ]; then
@@ -97,7 +104,7 @@ if [ -d "$DOCS_REFERENCE_DIR/guides" ]; then
 fi
 
 ##############################################################################
-# 7. Remove the sdks submodule (cleanup)
+# 7. Clean up the sdks submodule after generation
 ##############################################################################
 echo "==> Removing sdks submodule..."
 rm -rf "$SDKS_SUBMODULE_DIR"
