@@ -30,13 +30,13 @@ export const actions = [
   {
     title: 'Integrate with Uniswap',
     icon: HelpCircle,
-    to: '/sdk/v3/overview',
+    to: '/sdk/v4/overview',
     text: `Learn how to integrate with Uniswap by building a dApp through guided examples.`,
   },
   {
     title: 'The Uniswap smart contracts',
     icon: BookOpen,
-    to: '/contracts/v3/overview',
+    to: '/contracts/v4/overview',
     text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples.`,
   },
 ]
