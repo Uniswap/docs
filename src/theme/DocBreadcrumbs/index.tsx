@@ -1,5 +1,7 @@
 import Link from '@docusaurus/Link'
-import { ThemeClassNames, useHomePageRoute, useSidebarBreadcrumbs } from '@docusaurus/theme-common'
+import { useSidebarBreadcrumbs } from '@docusaurus/plugin-content-docs/client'
+import { ThemeClassNames } from '@docusaurus/theme-common'
+import { useHomePageRoute } from '@docusaurus/theme-common/internal'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import clsx from 'clsx'
 import React, { type ReactNode } from 'react'
