@@ -35,7 +35,7 @@ The protocol is also immutable, in other words not upgradeable. No party is able
 
 For research into the economics of AMMs, game theory, or optimization research, check out our [research](./research.md) page.
 
-For new features implemented in v3 that expand and refine the AMM design, see the [v3 Concepts](./protocol/concentrated-liquidity.md) page.
+For features implemented in v3 that expand and refine the AMM design, see the [v3 Concepts](./protocol/concentrated-liquidity.md) page.
 
 For the latest innovations in v4, including singleton pools and hooks, see the [v4 Concepts](./protocol/hooks.md) page.
 
