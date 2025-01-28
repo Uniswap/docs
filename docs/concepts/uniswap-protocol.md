@@ -9,7 +9,7 @@ sidebar_position: 2
 
 The Uniswap protocol is a peer-to-peer[^1] system designed for exchanging cryptocurrencies [(ERC-20 Tokens)](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) on the [Ethereum](https://ethereum.org/) blockchain. The protocol is implemented as a set of persistent, non-upgradable smart contracts; designed to prioritize censorship resistance, security, self-custody, and to function without any trusted intermediaries who may selectively restrict access.
 
-There are currently three versions of the Uniswap protocol. v1 and v2 are open source and licensed under GPL. v3 is open source with slight modifications, which are viewable [here](https://github.com/Uniswap/uniswap-v3-core/blob/main/LICENSE). Each version of Uniswap, once deployed, will function in perpetuity, with 100% uptime, provided the continued existence of the Ethereum blockchain.
+There are currently four versions of the Uniswap protocol. [v1](/contracts/v1/overview) and [v2](/contracts/v2/overview) are open source and licensed under GPL. [v3](/contracts/v3/overview) introduced concentrated liquidity and is open source with slight modifications, which are viewable [here](https://github.com/Uniswap/uniswap-v3-core/blob/main/LICENSE). [v4](/contracts/v4/overview) introduces the singleton pool architecture and hooks system, enabling unprecedented protocol customization, and uses a dual license structure viewable [here](https://github.com/Uniswap/v4-core/tree/main/licenses). Each version of Uniswap, once deployed, will function in perpetuity, with 100% uptime, provided the continued existence of the Ethereum blockchain.
 
 ## How does the Uniswap protocol compare to a typical market?
 
@@ -19,9 +19,9 @@ To understand how the Uniswap protocol differs from a traditional exchange, it i
 
 Most publicly accessible markets use a central limit [order book](https://www.investopedia.com/terms/o/order-book.asp) style of exchange, where buyers and sellers create orders organized by price level that are progressively filled as demand shifts. Anyone who has traded stocks through brokerage firms will be familiar with an order book system.
 
-The Uniswap protocol takes a different approach, using an Automated Market Maker (AMM), sometimes referred to as a Constant Function Market Maker, in place of an order book.
+The Uniswap protocol takes a different approach, using an Automated Market Maker (AMM), sometimes referred to as a Constant Function Market Maker, in place of an order book. Through its evolution, the protocol has enhanced this model: [v3](/contracts/v3/overview) introduced concentrated liquidity for capital efficiency, and [v4](/contracts/v4/overview)'s singleton pool architecture and hooks system enable unprecedented customization of pool behavior while maintaining the core AMM principles.
 
-At a very high level, an AMM replaces the buy and sell orders in an order book market with a liquidity pool of two assets, both valued relative to each other. As one asset is traded for the other, the relative prices of the two assets shift, and a new market rate for both is determined. In this dynamic, a buyer or seller trades directly with the pool, rather than with specific orders left by other parties. The advantages and disadvantages of Automated Market Makers versus their traditional order book counterparts are under active research by a growing number of parties. We have collected some notable examples on our research page.
+At a very high level, an AMM replaces the buy and sell orders in an order book market with a liquidity pool of two assets, both valued relative to each other. As one asset is traded for the other, the relative prices of the two assets shift, and a new market rate for both is determined. In this dynamic, a buyer or seller trades directly with the pool, rather than with specific orders left by other parties. The advantages and disadvantages of Automated Market Makers versus their traditional order book counterparts are under active research by a growing number of parties. We have collected some notable examples on our [research page](./research.md).
 
 ### Permissionless Systems
 
@@ -36,5 +36,7 @@ The protocol is also immutable, in other words not upgradeable. No party is able
 For research into the economics of AMMs, game theory, or optimization research, check out our [research](./research.md) page.
 
 For new features implemented in v3 that expand and refine the AMM design, see the [v3 Concepts](./protocol/concentrated-liquidity.md) page.
+
+For the latest innovations in v4, including singleton pools and hooks, see the [v4 Concepts](./protocol/hooks.md) page.
 
 [^1]: Ethereum protocols are sometimes referred to as peer-to-contract systems as well. These are similar to a peer-to-peer systems, but with immutable, persistent programs known as smart contracts taking the place of a peer.
