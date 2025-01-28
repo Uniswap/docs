@@ -515,6 +515,18 @@ html[data-theme='dark'] .DocSearch-Hit a {
   text-align: right;
 }
 
+.footnote-backref {
+  text-decoration: none;
+}
+
+.footnote-backref:hover {
+  text-decoration: none;
+}
+
+.footnote-backref {
+  font-family: system-ui; 
+}
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *

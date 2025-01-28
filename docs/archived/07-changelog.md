@@ -1,6 +1,7 @@
 ---
 id: changelog
 title: Changelog
+hidden: true
 ---
 
 | Date            | Abstract                                                 | Transaction                                                                                             | Sybil Reference                         |
