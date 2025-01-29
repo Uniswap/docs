@@ -32,6 +32,11 @@ module.exports = {
       indexName: 'v3-docs',
       appId: 'S0IDD0YGLZ',
     },
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
     navbar: {
       /* using custom navigation */
     },

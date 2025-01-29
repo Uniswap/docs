@@ -10,6 +10,10 @@ const footerData = {
       title: 'Developers',
       links: [
         {
+          label: 'Dev Chat',
+          href: 'https://discord.com/invite/uniswap',
+        },
+        {
           label: 'Concepts',
           href: '/concepts/overview',
         },
@@ -19,7 +23,7 @@ const footerData = {
         },
         {
           label: 'SDKs',
-          href: '/sdk/v3/overview',
+          href: '/sdk/v4/overview',
         },
         {
           label: 'APIs',
@@ -27,7 +31,7 @@ const footerData = {
         },
         {
           label: 'Whitepaper',
-          href: 'https://uniswap.org/whitepaper-v3.pdf',
+          href: 'https://app.uniswap.org/whitepaper-v4.pdf',
         },
       ],
     },

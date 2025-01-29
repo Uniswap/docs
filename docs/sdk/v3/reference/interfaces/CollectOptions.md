@@ -15,7 +15,7 @@
 
 ### expectedCurrencyOwed0
 
-• **expectedCurrencyOwed0**: `CurrencyAmount`<`Currency`\>
+• **expectedCurrencyOwed0**: `CurrencyAmount`\<`Currency`\>
 
 Expected value of tokensOwed0, including as-of-yet-unaccounted-for fees/liquidity value to be burned
 
@@ -27,7 +27,7 @@ ___
 
 ### expectedCurrencyOwed1
 
-• **expectedCurrencyOwed1**: `CurrencyAmount`<`Currency`\>
+• **expectedCurrencyOwed1**: `CurrencyAmount`\<`Currency`\>
 
 Expected value of tokensOwed1, including as-of-yet-unaccounted-for fees/liquidity value to be burned
 

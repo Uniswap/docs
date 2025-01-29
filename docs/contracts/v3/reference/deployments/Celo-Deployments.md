@@ -57,4 +57,4 @@ The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native
 
 | Network | ChainId  | Wrapped Native Token | Address                                      |
 | ------- | -------- | -------------------- | -------------------------------------------- |
-| CELO    | `142220` | CELO Native Asset    | `0x471EcE3750Da237f93B8E339c536989b8978a438` |
+| CELO    | `42220` | CELO Native Asset    | `0x471EcE3750Da237f93B8E339c536989b8978a438` |

@@ -29,7 +29,7 @@ module.exports = {
     container: false,
   },
   content: ['./src/**/*.{ts,tsx}', './docusaurus.config.js'],
-  darkMode: 'class',
+  darkMode: ['class', '[data-theme="dark"]'],
   theme: {
     screens: {
       /* Tablet */

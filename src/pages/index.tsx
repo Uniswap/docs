@@ -30,40 +30,40 @@ export const actions = [
     color: 'pink',
   },
   {
-    title: 'Troubleshoot an issue',
+    title: 'Integrate with Uniswap',
     icon: 'x',
-    to: '/sdk/v3/overview',
-    text: 'Learn how to troubleshoot an issue.',
+    to: '/sdk/v4/overview',
+    text: `Learn how to integrate with Uniswap by building a dApp through guided examples.`,
     color: 'blue',
   },
   {
-    title: 'How to use Uniswap',
+    title: 'The Uniswap smart contracts',
     icon: 'hexagon',
-    to: '/contracts/v3/overview',
-    text: 'Learn how to integrate with Uniswap by building a dApp.',
+    to: '/contracts/v4/overview',
+    text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples.`,
     color: 'green',
   },
 ]
 
 export const developerLinks = [
   {
-    title: 'uniswap-v3-core',
-    href: 'https://github.com/Uniswap/uniswap-v3-core',
+    title: 'Uniswap/v4-core',
+    href: 'https://github.com/Uniswap/v4-core/',
     icon: 'github',
   },
   {
-    title: 'uniswap-v3-sdk',
-    href: 'https://github.com/Uniswap/uniswap-v3-sdk',
+    title: 'Uniswap/v4-periphery',
+    href: 'https://github.com/Uniswap/v4-periphery',
     icon: 'github',
   },
   {
-    title: 'uniswap-v3-periphery',
-    href: 'https://github.com/Uniswap/uniswap-v3-periphery',
+    title: 'Uniswap/v4-sdk',
+    href: 'https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk',
     icon: 'github',
   },
   {
     title: 'Deployment addresses',
-    href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
+    href: '/contracts/v4/deployments',
     icon: 'github',
   },
   {
@@ -104,27 +104,27 @@ export const smartContractGuides = [
   {
     title: 'Setup your environment',
     text: 'Prepare your local environment by installing the required dependencies',
-    to: '/contracts/v3/guides/local-environment',
+    to: '/contracts/v4/quickstart/hooks/setup',
   },
   {
     title: 'Implement a Swap',
     text: 'Start swapping from a smart contract in Solidity',
-    to: '/contracts/v3/guides/swaps/single-swaps',
+    to: 'contracts/v4/quickstart/swap',
   },
   {
     title: 'Provide Liquidity',
     text: 'Provide liquidity from a smart contract in Solidity',
-    to: '/contracts/v3/guides/providing-liquidity/setting-up',
-  },
-  {
-    title: 'Mine Liquidity',
-    text: 'Start Mining liquidity from a smart contract in Solidity',
-    to: '/contracts/v3/guides/liquidity-mining/overview',
+    to: 'contracts/v4/quickstart/manage-liquidity/setup-liquidity',
   },
   {
     title: 'Implement Flash Swaps',
     text: 'Implement Flash Swaps from a smart contract in Solidity',
-    to: '/contracts/v3/guides/flash-integrations/inheritance-constructors',
+    to: '/contracts/v4/guides/flash-accounting',
+  },
+  {
+    title: 'Create a Hook',
+    text: 'Create your first hook to customize pool behavior in Solidity',
+    to: '/contracts/v4/guides/hooks/your-first-hook',
   },
 ]
 
@@ -292,10 +292,10 @@ const Home = () => {
           <div className="default-grid ">
             <div className="flex flex-col md:justify-between p-8 col-span-full sm:col-span-7 md:col-span-4">
               <div>
-                <h3 className="heading-3 text-light-neutral-1 dark:text-dark-neutral-1">Uniswap Grants Program</h3>
+                <h3 className="heading-3 text-light-neutral-1 dark:text-dark-neutral-1">Uniswap Foundation Grants</h3>
                 <p className="mt-2 body-2 text-light-neutral-2 dark:text-dark-neutral-2 max-w-[28rem]">
-                  Uniswap Governance offers grant funding for people who are building apps, tools, and activities for
-                  Uniswap Protocol users, builders, and community members.
+                  In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth,
+                  decentralization, and sustainability of the Uniswap community.
                 </p>
               </div>
               <div className="flex mt-5">

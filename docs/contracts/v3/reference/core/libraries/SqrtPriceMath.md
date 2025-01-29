@@ -52,7 +52,7 @@ Gets the next sqrt price given a delta of token1
 Always rounds down, because in the exact output case (decreasing price) we need to move the price at least
 far enough to get the desired output amount, and in the exact input case (increasing price) we need to move the
 price less in order to not send too much output.
-The formula we compute is within <1 wei of the lossless version: *sqrtPX96 +- amount / liquidity*
+The formula we compute is within \<1 wei of the lossless version: *sqrtPX96 +- amount / liquidity*
 
 #### Parameters:
 

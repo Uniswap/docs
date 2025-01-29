@@ -15,12 +15,77 @@
 @import './font.css';
 @import './types.css';
 
+:root {
+  --ifm-color-primary: theme(colors.light-accent-1);
+  --ifm-font-family-base: 'Basel Grotesk', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --ifm-menu-color-active: theme(colors.light-accent-1);
+  --docsearch-muted-color: theme(colors.light-neutral-2);
+  --docsearch-searchbox-background: theme(colors.light-surface-2);
+}
+
+:root[data-theme='dark'] {
+  --ifm-color-primary: theme(colors.dark-accent-1);
+  --ifm-menu-color-active: theme(colors.dark-accent-1);
+  --docsearch-muted-color: theme(colors.dark-neutral-2);
+  --docsearch-searchbox-background: theme(colors.dark-surface-2);
+}
+
+html {
+  @apply font-basel-grotesk;
+}
+
 html:has(.theme-doc-markdown) {
   scroll-behavior: smooth;
 }
 
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+  @apply text-xl;
+}
+
 .site-max-width {
   max-width: 1440px;
+}
+
+.menu__link {
+  @apply font-basel-grotesk text-sm;
+}
+
+.menu__link--active {
+  @apply font-medium;
+}
+
+.menu__link--sublist-caret:after {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.2rem 1.2rem;
+}
+
+.DocSearch {
+  @apply !z-modal;
+}
+
+.DocSearch-Button-Container {
+  @apply sm:w-64 font-normal;
+}
+
+.DocSearch-Search-Icon {
+  color: var(--docsearch-muted-color) !important;
+}
+
+.DocSearch-Button-Key {
+  background: theme(colors.light-surface-3) !important;
+  box-shadow: none !important;
+}
+
+.DocSearch-Commands-Key {
+  background: theme(colors.light-surface-3) !important;
+  box-shadow: none !important;
+}
+
+.DocSearch-Commands,
+.DocSearch-Label,
+.DocSearch-Hit-Container,
+.DocSearch-HitsFooter > * {
+  @apply font-basel-grotesk;
 }
 
 .default-grid {
@@ -46,16 +111,23 @@ html:has(.theme-doc-markdown) {
   background: url('/img/chevron.svg') center !important;
   @apply text-light-neutral-1 dark:text-dark-neutral-1 !h-4 !opacity-100;
 }
-.docMainContainer_src-theme-DocPage-Layout-Main-styles-module {
-  @apply !mt-nav-h;
-}
 .breadcrumbs__item {
   @apply inline-flex flex-row items-center;
 }
 .Toc__title {
   @apply !body-3 text-light-neutral-1 dark:text-dark-neutral-1;
 }
-.theme-edit-this-page {
+
+.docMainContainer_src-theme-DocPage-Layout-Main-styles-module {
+  @apply !mt-nav-h;
+}
+
+/* 2025/01/28 Overflow width of doc contents fix */
+[class^='docMainContainer_'] {
+  @apply !w-min;
+}
+
+.doc .theme-edit-this-page {
   all: initial;
 }
 .theme-edit-this-page {
@@ -200,3 +272,29 @@ html:has(.theme-doc-markdown) {
 .theme-doc-markdown sup a {
   @apply !body-4;
 }
+
+.github-codeblock-reference-link {
+  margin-top: -16px;
+  padding-bottom: 13px;
+  font-size: 0.7em;
+  text-align: right;
+}
+
+.footnote-backref {
+  text-decoration: none;
+}
+
+.footnote-backref:hover {
+  text-decoration: none;
+}
+
+.footnote-backref {
+  font-family: system-ui;
+}
+
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */

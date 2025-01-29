@@ -50,7 +50,7 @@ Digital assets that are stored in a Uniswap pool contract, and are able to be tr
 
 ## Mid Price
 
-The price between the available buy and sell prices. In Uniswap V1 and V2, this is the ratio of the two ERC20 token reserves. In V3, this is the ratio of the two ERC20 token reserves available within the current active tick.
+The price between the available buy and sell prices. In Uniswap v1 and v2, this is the ratio of the two ERC20 token reserves. In V3, this is the ratio of the two ERC20 token reserves available within the current active tick.
 
 ## Observation
 
@@ -58,7 +58,7 @@ An instance of historical price and liquidity data of a given pair.
 
 ## Pair
 
-A smart contract deployed from a Uniswap V1 or V2 factory contract that enables trading between two ERC20 tokens. Pair contracts are now called Pools in V3.
+A smart contract deployed from a Uniswap v1 or v2 factory contract that enables trading between two ERC20 tokens. Pair contracts are now called Pools in v3.
 
 ## Periphery
 
