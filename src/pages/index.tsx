@@ -528,7 +528,7 @@ export default function Home() {
           >
             <img src={UGP} width={'120px'} />
             <div>
-              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Foundation Grants</h2>
+              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Foundation</h2>
               <p style={{ margin: '0rem' }}>
                 In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth,
                 decentralization, and sustainability of the Uniswap community.{' '}
