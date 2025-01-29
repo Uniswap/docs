@@ -4,6 +4,10 @@ title: Range Orders
 sidebar_position: 5
 ---
 
+:::note
+Range orders have the same implementation in both Uniswap v3 and v4, offering consistent functionality across both versions.
+:::
+
 Customizable liquidity positions, along with single-sided asset provisioning, allow for a new style of swapping with automated market makers: the range order.
 
 In typical order book markets, anyone can easily set a limit order: to buy or sell an asset at a specific predetermined price, allowing the order to be filled at an indeterminate time in the future.
