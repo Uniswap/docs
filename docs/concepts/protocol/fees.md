@@ -32,6 +32,6 @@ Similarly, we anticipate more exotic assets, or those traded rarely, will natura
 
 ## Protocol Fees
 
-Both Uniswap v3 and v4 include a protocol fee mechanism that can be activated through UNI governance. This fee structure offers greater flexibility compared to v2, allowing governance to adjust the fraction of swap fees allocated to the protocol. In v4, this mechanism has been further enhanced with additional features like dynamic fee adjustment. For detailed information about protocol fees, refer to the [v3 whitepaper](https://uniswap.org/whitepaper-v3.pdf) and [v4 whitepaper](https://uniswap.org/whitepaper-v4.pdf).
+Both Uniswap v3 and v4 include a protocol fee mechanism that can be activated through UNI governance. This fee structure offers greater flexibility compared to v2, allowing governance to adjust the fraction of swap fees allocated to the protocol. For detailed information about protocol fees, refer to the [v3 whitepaper](https://uniswap.org/whitepaper-v3.pdf) and [v4 whitepaper](https://uniswap.org/whitepaper-v4.pdf).
 
 [^1]: In-range liquidity refers to the liquidity contained in any positions which span both sides of the spot price.
