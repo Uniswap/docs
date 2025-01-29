@@ -223,3 +223,20 @@ With the environment set up ready to be built on. Jump over to the guides sectio
 forge test --rpc-url 127.0.0.1:8545
 ```
 
+# Appendix: OpenZeppelin Hooks Library
+
+> [OpenZeppelin Hooks Library](https://docs.openzeppelin.com/uniswap-hooks/1.x/), included in [v4-template](https://github.com/uniswapfoundation/v4-template), provides secure and modular reference implementations for Uniswap v4 Hooks!
+
+If you're starting from scratch, you can install the OpenZeppelin Hooks library:
+
+```bash
+$ forge install OpenZeppelin/uniswap-hooks
+```
+
+The library includes:
+- **BaseHook**: Core scaffolding with security checks and permission management
+- **BaseCustomAccounting**: For implementing hook-owned liquidity and custom token accounting
+- **BaseCustomCurve**: For replacing default concentrated liquidity math with custom swap logic
+- **BaseAsyncSwap**: For implementing non-atomic and asynchronous swaps
+- **BaseDynamicFee**: For implementing dynamic fee pools
+- **BaseOverrideFee**: For implementing dynamic fees on every swap
