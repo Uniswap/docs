@@ -13,6 +13,10 @@ sidebar_position: 6
 
 ---
 
+:::note
+Concentrated liquidity, first introduced as a native feature in Uniswap v3, maintains the same core implementation in v4, ensuring consistency in how liquidity providers can focus their capital.
+:::
+
 ## Introduction
 
 The defining idea of Uniswap v3 is concentrated liquidity: liquidity that is allocated within a custom price range.
