@@ -260,7 +260,7 @@ Let’s start with the most basic ones. We want the user to be swapping in the `
             : uint256(int256(-delta.amount0()));
 
         // And award the points!
-        _awardPoints(user, ethSpendAmount);
+        awardPoints(user, ethSpendAmount);
 
         return (BaseHook.afterSwap.selector, 0);
     }
@@ -295,7 +295,7 @@ Similar to what we did for the `afterSwap` hook, now we need to award users for 
         uint256 ethSpendAmount = uint256(int256(-delta.amount0()));
 
         // And award the points!
-        _awardPoints(user, ethSpendAmount);
+        awardPoints(user, ethSpendAmount);
 
         return (BaseHook.afterAddLiquidity.selector, delta);
     }
