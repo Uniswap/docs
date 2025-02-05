@@ -111,12 +111,12 @@ const getPoolState = async (poolId: string) => {
   // - Current price (sqrtPriceX96) in Q64.96 fixed-point format
   // - Active tick
   // - Protocol and LP fee settings
-  const {
+  const [
     sqrtPriceX96,
     tick,
     protocolFee,
     lpFee
-  } = await stateView.read.getSlot0([poolId]);
+   ] = await stateView.read.getSlot0([poolId]);
 
   return {
     price: calculatePrice(sqrtPriceX96), // implement your math logic for Q64.96
