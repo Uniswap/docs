@@ -113,10 +113,10 @@ First, let's set up our contract with the necessary imports and create a struct 
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.24;
 
-import { IPoolManager } from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
-import { PoolKey } from "@uniswap/v4-core/contracts/types/PoolKey.sol";
-import { BalanceDelta } from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
-import { Currency } from "@uniswap/v4-core/contracts/types/Currency.sol";
+import { IPoolManager } from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
+import { PoolKey } from "@uniswap/v4-core/src/types/PoolKey.sol";
+import { BalanceDelta } from "@uniswap/v4-core/src/types/BalanceDelta.sol";
+import { Currency } from "@uniswap/v4-core/src/types/Currency.sol";
 
 contract DonationRouter {
     IPoolManager public immutable poolManager;
