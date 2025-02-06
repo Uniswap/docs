@@ -23,8 +23,8 @@ npm i --save @uniswap/sdk-core
 
 ## Developer Links
 
-- [**v4 SDK Github Repo**](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk)
-- [**Core SDK Github Repo**](https://github.com/Uniswap/sdk-core)
+- [**v4 SDK GitHub Repo**](https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk)
+- [**Core SDK GitHub Repo**](https://github.com/Uniswap/sdk-core)
 - [**v4 SDK NPM Package**](https://www.npmjs.com/package/@uniswap/v4-sdk)
 
 [![Unit Tests](https://github.com/Uniswap/uniswap-v3-sdk/workflows/Unit%20Tests/badge.svg)](https://github.com/Uniswap/sdks/actions?query=workflow%3A%22%22Code+Quality+Checks%22%22++)

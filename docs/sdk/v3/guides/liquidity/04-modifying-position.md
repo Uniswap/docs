@@ -172,7 +172,7 @@ const wallet = new ethers.Wallet(privateKey, provider)
 const txRes = await wallet.sendTransaction(transaction)
 ```
 
-We can get the Contract address for the NonfungiblePositionManager from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+We can get the Contract address for the NonfungiblePositionManager from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
 
 After pressing the button, note how the balance of USDC and DAI drops and our position's liquidity increases.
 

@@ -24,8 +24,8 @@ npm i --save @uniswap/sdk-core
 
 ## Developer Links
 
-- [**v3 SDK Github Repo**](https://github.com/Uniswap/v3-sdk)
-- [**Core SDK Github Repo**](https://github.com/Uniswap/sdk-core)
+- [**v3 SDK GitHub Repo**](https://github.com/Uniswap/v3-sdk)
+- [**Core SDK GitHub Repo**](https://github.com/Uniswap/sdk-core)
 - [**v3 SDK NPM Package**](https://www.npmjs.com/package/@uniswap/v3-sdk)
 
 [![Unit Tests](https://github.com/Uniswap/uniswap-v3-sdk/workflows/Unit%20Tests/badge.svg)](https://github.com/Uniswap/uniswap-v3-sdk/actions?query=workflow%3A%22Unit+Tests%22)

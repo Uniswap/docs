@@ -6,7 +6,7 @@ title: Overview
 
 # The Uniswap Swap Widget
 
-Welcome to the Uniswap Swap Widget. To begin, we recommend looking at the [**Guides**](./guides/swap-widget.mdx) and for deeper reference see the [**Swap Widget Github**](https://github.com/Uniswap/widgets) repo.
+Welcome to the Uniswap Swap Widget. To begin, we recommend looking at the [**Guides**](./guides/swap-widget.mdx) and for deeper reference see the [**Swap Widget GitHub**](https://github.com/Uniswap/widgets) repo.
 
 # Alpha software
 
@@ -17,7 +17,7 @@ Pull requests are welcome!
 
 # Uniswap Swap Widget
 
-- [**Swap Widget Github Repo**](https://github.com/Uniswap/widgets)
+- [**Swap Widget GitHub Repo**](https://github.com/Uniswap/widgets)
 - [**Swap Widget NPM Package**](https://www.npmjs.com/package/@uniswap/widgets)
 
 [![Unit Tests](https://github.com/Uniswap/widgets/workflows/Unit%20Tests/badge.svg)](https://github.com/Uniswap/uniswap-v3-sdk/actions?query=workflow%3A%22Unit+Tests%22)
