@@ -1,7 +1,7 @@
 ---
 id: concentrated-liquidity
 title: Concentrated Liquidity
-sidebar_position: 1
+sidebar_position: 6
 ---
 
   <div>
@@ -12,6 +12,10 @@ sidebar_position: 1
   </div>
 
 ---
+
+:::note
+Concentrated liquidity, first introduced as a native feature in Uniswap v3, maintains the same core implementation in v4, ensuring consistency in how liquidity providers can focus their capital.
+:::
 
 ## Introduction
 

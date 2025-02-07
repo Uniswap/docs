@@ -155,7 +155,7 @@ We now have a lower and upper Tick for our Position, next we need to construct a
 
 ## Creating the Single Side Liquidity Position
 
-We will use the `NonfungiblePositionManager` and `Position` classes from the `v3-sdk` to construct our position. We then use an **etherJS** wallet to mint our Position on-chain.
+We will use the `NonfungiblePositionManager` and `Position` classes from the `v3-sdk` to construct our position. We then use an **etherJS** wallet to mint our Position onchain.
 
 If you are not familiar with liquidity Positions, check out the [liquidity position guides](../liquidity/01-position-data.md).
 

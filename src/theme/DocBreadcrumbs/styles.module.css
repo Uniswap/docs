@@ -1,0 +1,15 @@
+.breadcrumbsContainer {
+    margin-bottom: 0.8rem;
+  }
+  
+  .breadcrumbsItemLink {
+    text-decoration: none;
+    font-size: 0.9rem;  /* Texto más pequeño */
+    color: var(--ifm-color-primary);  /* Color del tema */
+    opacity: 0.8;  /* Un poco más sutil */
+  }
+  
+  .breadcrumbsItemLink:hover {
+    opacity: 1;
+    text-decoration: none;
+  }

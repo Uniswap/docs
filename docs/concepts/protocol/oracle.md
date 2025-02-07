@@ -1,11 +1,11 @@
 ---
 id: oracle
 title: Oracle
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 :::note
-Unfamiliar with the concept of an oracle? Check out the Ethereum Foundation's [oracle overview](https://ethereum.org/en/developers/docs/oracles/) first.
+Uniswap v4 does not include built-in oracle functionality. If you're unfamiliar with oracles, check out the Ethereum Foundation's [oracle overview](https://ethereum.org/en/developers/docs/oracles/).
 :::
 
 All Uniswap v3 pools can serve as oracles, offering access to historical price and liquidity data. This capability unlocks a wide range of on-chain use cases.

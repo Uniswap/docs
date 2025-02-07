@@ -5,7 +5,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 import styled from '@emotion/styled'
 import Discord from '@site/static/img/discord.svg'
 import GitHub from '@site/static/img/github.svg'
-import Npm from '@site/static/img/npm.svg'
 import UGP from '@site/static/img/UGP.png'
 import Layout from '@theme/Layout'
 import ThemedImage from '@theme/ThemedImage'
@@ -31,42 +30,37 @@ export const actions = [
   {
     title: 'Integrate with Uniswap',
     icon: HelpCircle,
-    to: '/sdk/v3/overview',
+    to: '/sdk/v4/overview',
     text: `Learn how to integrate with Uniswap by building a dApp through guided examples.`,
   },
   {
     title: 'The Uniswap smart contracts',
     icon: BookOpen,
-    to: '/contracts/v3/overview',
+    to: '/contracts/v4/overview',
     text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples.`,
   },
 ]
 
 export const developerLinks = [
   {
-    title: 'uniswap-v3-core',
-    href: 'https://github.com/Uniswap/uniswap-v3-core',
+    title: 'uniswap-v4-core',
+    href: 'https://github.com/Uniswap/v4-core/',
     icon: GitHub,
   },
   {
-    title: 'uniswap-v3-sdk',
-    href: 'https://github.com/Uniswap/uniswap-v3-sdk',
+    title: 'uniswap-v4-periphery',
+    href: 'https://github.com/Uniswap/v4-periphery',
     icon: GitHub,
   },
   {
-    title: 'uniswap-v3-periphery',
-    href: 'https://github.com/Uniswap/uniswap-v3-periphery',
+    title: 'uniswap-v4-sdk',
+    href: 'https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk',
     icon: GitHub,
   },
   {
     title: 'Deployment addresses',
-    href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
+    href: '/contracts/v4/deployments',
     icon: GitHub,
-  },
-  {
-    title: 'widgets',
-    href: 'https://www.npmjs.com/package/@uniswap/widgets',
-    icon: Npm,
   },
 ]
 
@@ -101,27 +95,27 @@ export const smartContractGuides = [
   {
     title: 'Setup your environment',
     text: 'Prepare your local environment by installing the required dependencies',
-    to: '/contracts/v3/guides/local-environment',
+    to: '/contracts/v4/quickstart/hooks/setup',
   },
   {
     title: 'Implement a Swap',
     text: 'Start swapping from a smart contract in Solidity',
-    to: '/contracts/v3/guides/swaps/single-swaps',
+    to: 'contracts/v4/quickstart/swap',
   },
   {
     title: 'Provide Liquidity',
     text: 'Provide liquidity from a smart contract in Solidity',
-    to: '/contracts/v3/guides/providing-liquidity/setting-up',
-  },
-  {
-    title: 'Mine Liquidity',
-    text: 'Start Mining liquidity from a smart contract in Solidity',
-    to: '/contracts/v3/guides/liquidity-mining/overview',
+    to: 'contracts/v4/quickstart/manage-liquidity/setup-liquidity',
   },
   {
     title: 'Implement Flash Swaps',
     text: 'Implement Flash Swaps from a smart contract in Solidity',
-    to: '/contracts/v3/guides/flash-integrations/inheritance-constructors',
+    to: '/contracts/v4/guides/flash-accounting',
+  },
+  {
+    title: 'Create a Hook',
+    text: 'Create your first hook to customize pool behavior in Solidity',
+    to: '/contracts/v4/guides/hooks/your-first-hook',
   },
 ]
 
@@ -348,13 +342,15 @@ export default function Home() {
             ))}
           </Row>
         </DocsHeader>
-        <TwoRow
+        <div
           style={{
-            gap: '56px',
-            marginTop: '4rem',
+            width: '100%',
+            maxWidth: '960px',
+            margin: '4rem auto',
+            padding: '0 1rem',
           }}
         >
-          <div>
+          {/* <div>
             <h2>Integrate your dApp</h2>
             <p>Explore these guided tutorials to get started integrating with Uniswap in your dApp.</p>
             <div>
@@ -382,7 +378,7 @@ export default function Home() {
                 </TraceEvent>
               ))}
             </div>
-          </div>
+          </div> */}
           <div>
             <h2>Integrate your smart contracts</h2>
             <p>Explore these guided tutorials to get started integrating with Uniswap in your smart contracts.</p>
@@ -412,7 +408,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </TwoRow>
+        </div>
         <hr />
         <TwoRow
           style={{
@@ -468,7 +464,9 @@ export default function Home() {
           >
             <Link style={{ textDecoration: 'none' }} href={'https://discord.gg/ybKVQUWb4s'}>
               <CenterCard>
-                <Discord style={{ width: '48px', height: '48px' }} />
+                <StyledIcon>
+                  <Discord style={{ width: '48px', height: '48px' }} />
+                </StyledIcon>
                 <div>
                   <h3>Discord</h3>
                   <p>Join our Developer Community.</p>
@@ -518,7 +516,7 @@ export default function Home() {
             margin: '0 auto 4rem auto',
             width: '100%',
           }}
-          href={'https://unigrants.org/'}
+          href={'https://uniswapfoundation.org/'}
         >
           <WideCard
             style={{
@@ -530,10 +528,10 @@ export default function Home() {
           >
             <img src={UGP} width={'120px'} />
             <div>
-              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Grants Program</h2>
+              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Foundation</h2>
               <p style={{ margin: '0rem' }}>
-                Uniswap Governance offers grant funding for people who are building apps, tools, and activities for
-                Uniswap Protocol users, builders, and community members.{' '}
+                In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth,
+                decentralization, and sustainability of the Uniswap community.{' '}
               </p>
             </div>
           </WideCard>

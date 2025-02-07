@@ -16,7 +16,6 @@ Let’s start by defining when users will be rewarded with these points:
 
 1. When the user swaps `ETH` into `TOKEN` they will get awarded points equal to how much `ETH` they swapped the token with.
 2. When the user adds liquidity, we award them with points equal to the amount of `ETH` they added.
-3. [todo]
 
 In order to keep track of these points, we’ll mint the `POINTS` token to the user, this has an added benefit for the user to be able to track it in their wallet.
 
@@ -26,9 +25,9 @@ Let’s figure out how our hook will work.
 
 From the Uniswap v4 Documentation, there are several hooks available for developers to integrate with. In our use case, we specifically need the ability to read swaps and figure out what amounts they are swapping for and who they are.
 
-[consider adding a callout for Universal Router here]
-
 For our hook, we’ll be using `afterSwap` and `afterAddLiquidity` hooks. Why these instead of the `before...` hooks? We’ll dig deeper into this later in this guide.
+
+_Note: To initiate the swap in the first place, this is where [`UniversalRouter`](../../../../contracts/universal-router/01-overview.md) comes into play where we will pass in the [`V4_SWAP`](https://github.com/Uniswap/universal-router/blob/main/contracts/libraries/Commands.sol#L35) command to `UniversalRouter.execute`._
 
 # Let’s create our hook!
 
@@ -36,7 +35,71 @@ We’ll call this hook `PointsHook` and create it in such a way that any pool pa
 
 ## Setting things up
 
-[todo: base this on the new template repo]
+The Uniswap [v4-template repo](https://github.com/uniswapfoundation/v4-template) provides a basic foundry environment with required imports already pre-loaded. Click on [`Use this template`](https://github.com/new?template_name=v4-template&template_owner=uniswapfoundation) to create a new repository with it.
+
+Or simply clone it and install the dependencies:
+
+```bash
+git clone https://github.com/uniswapfoundation/v4-template.git
+cd v4-template
+# requires foundry
+forge install
+forge test
+```
+
+After that let's create a new contract `PointsHook.sol` in `src` folder with the following codes:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import {BaseHook} from "v4-periphery/src/base/hooks/BaseHook.sol";
+
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {PoolId, PoolIdLibrary} from "v4-core/src/types/PoolId.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "v4-core/src/types/BeforeSwapDelta.sol";
+
+contract PointsHook is BaseHook {
+    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
+
+    function getHookPermissions()
+        public
+        pure
+        override
+        returns (Hooks.Permissions memory)
+    {
+        return
+            Hooks.Permissions({
+                beforeInitialize: false,
+                afterInitialize: false,
+                beforeAddLiquidity: false,
+                afterAddLiquidity: true,
+                beforeRemoveLiquidity: false,
+                afterRemoveLiquidity: false,
+                beforeSwap: false,
+                afterSwap: true,
+                beforeDonate: false,
+                afterDonate: false,
+                beforeSwapReturnDelta: false,
+                afterSwapReturnDelta: false,
+                afterAddLiquidityReturnDelta: false,
+                afterRemoveLiquidityReturnDelta: false
+            });
+    }
+}
+```
+
+The above code does the following:
+
+- import the relevant dependencies
+- initialize the constructor by passing in the instance of PoolManager
+- override `getHookPermissions` from `BaseHook.sol` to return a struct of permissions to signal which hook functions are to be implemented.
+  It will also be used at deployment to validate the address correctly represents the expected permissions.
+
+Awesome! Now it's all set to start building the hook!
 
 ## Basic Structure
 
@@ -94,13 +157,13 @@ contract PointsHook is BaseHook {
 }
 ```
 
-You’ll notice that both hooks return their own selector in the functions, this is pattern used by the protocol to signal “successful” invocation. We’ll talk about rest of the return parameters when we start adding the functionality.
+You’ll notice that both hooks return their own selector in the functions, this is a pattern used by the protocol to signal “successful” invocation. We’ll talk about rest of the return parameters when we start adding the functionality.
 
 Most of the code at this point should be self-explanatory. It’s not doing anything yet, but it’s a great place to start adding the functionality we need.
 
 ## Points Logic
 
-Up until here, the hook isn’t actually doing anything, so let’s add some functionality! First, let’s setup the `POINTS` token that we’ll reward people with.
+First, let’s setup the `POINTS` token that we’ll reward users with via creating another contract `PointsToken.sol` and import relevant dependencies like `ERC20` and `Owned`.
 
 ```solidity
 contract PointsToken is ERC20, Owned {
@@ -121,7 +184,7 @@ contract PointsHook is BaseHook {
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {
         pointsToken = new PointsToken();
     }
-    
+
     [...]
 }
 ```
@@ -197,7 +260,7 @@ Let’s start with the most basic ones. We want the user to be swapping in the `
             : uint256(int256(-delta.amount0()));
 
         // And award the points!
-        _awardPoints(user, ethSpendAmount);
+        awardPoints(user, ethSpendAmount);
 
         return (BaseHook.afterSwap.selector, 0);
     }
@@ -232,7 +295,7 @@ Similar to what we did for the `afterSwap` hook, now we need to award users for 
         uint256 ethSpendAmount = uint256(int256(-delta.amount0()));
 
         // And award the points!
-        _awardPoints(user, ethSpendAmount);
+        awardPoints(user, ethSpendAmount);
 
         return (BaseHook.afterAddLiquidity.selector, delta);
     }
@@ -242,15 +305,9 @@ Similar to what we did for the `afterSwap` hook, now we need to award users for 
 
 We’re using Foundry for building our hook, and we’ll continue using it to write our tests. One of the great things about Foundry is that you can write tests in Solidity itself instead of context switching between another language.
 
-### Hook Contract Address
-
-The `PositionManager` for Uniswap v4 expects the hook address to indicate supported flags.
-
-[todo: this section is completely wrong on UHI atm and needs to be rewritten, should consider moving it out of here and have a singular place explaining hook bits]
-
 ### Test Suite
 
-The starter repo you cloned already has an existing base test file, let’s start by copying it into `PointsHook.t.sol`.
+The v4-template repo you cloned already has an existing base test file, let’s start by copying it into `PointsHook.t.sol`.
 
 ```solidity
 contract PointsHookTest is Test, Fixtures {
@@ -377,7 +434,6 @@ function test_PointsHook_Liquidity() public {
                 liqToAdd
             );
 
-        // Let's swap some ETH for the token.
         posm.mint(
             key,
             tickLower,
@@ -399,6 +455,6 @@ function test_PointsHook_Liquidity() public {
 
 This test case looks very similar to the `afterSwap` one, except we’re testing based on the liquidity added. You’ll notice at the end we’re testing for approximate equality within 10 points. This is to account for minor differences in actual liquidity added due to ticks and pricing.
 
-# What’s next?
+# Next Steps
 
-[todo: explain docs and introduce advance concepts]
+Congratulations on building your very first hook! You could explore further by going to [Hook Deployment](./05-hook-deployment.mdx) to learn about how hook flags work and see how we will deploy a hook in action.
