@@ -1,0 +1,386 @@
+---
+title: Subscriber
+---
+
+# Introduction
+
+Uniswap v4 introduces Subscribers, a new mechanism in v4 that allows external contracts (aka Subscribers) to be notified by the PositionManager whenever specific events occur (e.g., liquidity changes, burns). It’s especially useful for designing **liquidity incentive** systems or reward programs.
+
+Before diving into implementation details, let's understand what makes Subscribers valuable. When a position holder subscribes their position to a Subscriber contract, that contract receives notifications about various events: liquidity changes, position burns, and subscription status changes. This flow enables protocols to accurately track and reward liquidity provision.
+
+Subscribers become of aware of the liquidity position, without needing to own the position and its underlying capital.
+
+# Interface Methods
+
+Let's explore each method that a [ISubscriber](https://github.com/Uniswap/v4-periphery/blob/main/src/interfaces/ISubscriber.sol) contract needs to implement. Understanding when and why these methods are called is crucial for building effective Subscriber contracts.
+
+## Position Subscription Handling
+
+The first two methods handle the subscription lifecycle:
+
+```solidity
+function notifySubscribe(
+    uint256 tokenId,
+    bytes memory data
+) external;
+```
+
+This method is called whenever a position subscribes to your contract. The `tokenId` parameter identifies the subscribing position, while `data` can contain additional configuration information. 
+
+For example, you might use this data parameter to specify:
+
+- Lock-up duration for rewards
+- Campaign-specific settings
+- Custom reward parameters
+
+> ***Note**: The data parameter is entirely optional and its interpretation is up to your implementation.*
+> 
+
+```solidity
+function notifyUnsubscribe(
+    uint256 tokenId
+) external;
+```
+
+When a position unsubscribes, this method is called. There's an important consideration here:
+
+> ***Important**: The gas consumption of this function must be less than unsubscribeGasLimit (set when deploying the PositionManager). This ensures users can always unsubscribe from your contract.
+
+Also note that the subscriber contract reverts, the position will still unsuccessfully subscribe*
+> 
+
+## Position Modification Notifications
+
+The next method handles liquidity changes and fee collection:
+
+```solidity
+function notifyModifyLiquidity(
+    uint256 tokenId,
+    int256 liquidityChange,
+    BalanceDelta feesAccrued
+) external;
+```
+
+This method is your window into position activity. It gets called in two scenarios:
+
+- When users modify their liquidity (increase or decrease)
+- When they collect accumulated fees
+
+Here's what each parameter tells you:
+
+- `tokenId`: The position being modified
+- `liquidityChange`: How much liquidity is being added or removed (positive for additions, negative for removals)
+- `feesAccrued`: Fees collected during this operation
+
+> ***Warning**: Be cautious with feesAccrued values. In pools with a single liquidity position, malicious users can artificially inflate these values through self-donations.*
+> 
+
+## Handling Position Burns
+
+The final method deals with position termination:
+
+```solidity
+function notifyBurn(
+    uint256 tokenId,
+    address owner,
+    PositionInfo info,
+    uint256 liquidity,
+    BalanceDelta feesAccrued
+) external;
+
+```
+
+When a position is burned (fully removed), this method provides comprehensive information about its final state:
+
+- Who owned it (`owner`)
+- Its configuration (`info`)
+- How much liquidity was removed (`liquidity`)
+- Any final fees collected (`feesAccrued`)
+
+> ***Important**: When a position is burned, you'll only receive notifyBurn - there's no separate notifyModifyLiquidity call.*
+> 
+
+# How to Use Subscribers
+
+Let's walk through the process of implementing and using a Subscriber contract. We'll break this down into four main steps that developers typically follow.
+
+## Step 1: Implement Subscriber
+
+First, create your contract implementing the ISubscriber interface:
+
+```solidity
+
+contract MySubscriber is ISubscriber {
+    // Track subscribed positions
+    mapping(uint256 => bool) public isSubscribed;
+
+    // Implementation of interface methods
+    function notifySubscribe(uint256 tokenId, bytes memory data) external {
+        // Store subscription status
+        isSubscribed[tokenId] = true;
+    }
+
+    // Other required methods...
+}
+```
+
+> ***Note**: This is a basic implementation. Your actual contract will need more sophisticated tracking depending on your reward mechanism.*
+> 
+
+## Step 2: Deploy Subscriber
+
+Once implemented, deploy your contract:
+
+```solidity
+MySubscriber subscriber = new MySubscriber();
+```
+
+Make sure to store the deployed address - users will need it to subscribe their positions.
+
+## Step 3: Mint Position
+
+Users need positions before they can subscribe. They can either use existing positions or mint new ones:
+
+```solidity
+// Using the Position Manager
+uint256 tokenId = positionManager.mint(
+    poolKey,
+    tickLower,
+    tickUpper,
+    liquidity,
+    // other parameters...
+);
+```
+
+## Step 4: Subscribe Position
+
+Finally, users can subscribe their positions to your contract:
+
+```solidity
+// Optional configuration data
+bytes memory subscriptionData = ""; // Configure based on your needs
+
+// Subscribe the position
+positionManager.subscribe(
+    tokenId,
+    subscriber,
+    subscriptionData
+);
+```
+
+> ***Important**: Make sure users understand any lock-up periods or conditions specified in your subscriptionData.*
+> 
+
+# Important Considerations
+
+When implementing and deploying Subscriber contracts, there are several crucial aspects to keep in mind. Let's explore each of these to ensure your implementation is secure and efficient.
+
+## Gas Limits and Unsubscribe Safety
+
+The most critical consideration is the unsubscribe process:
+
+> ***Critical**: Your notifyUnsubscribe function must consume less gas than the unsubscribeGasLimit defined in the PositionManager. This is not just a best practice - it's a fundamental safety requirement that ensures users can always exit your system.*
+> 
+
+For example:
+
+```solidity
+function notifyUnsubscribe(uint256 tokenId) external {
+    // Keep this function lightweight
+    delete positionData[tokenId]; // Simple state cleanup
+    emit PositionUnsubscribed(tokenId);
+}
+```
+
+## Implementation Patterns
+
+When building your Subscriber, follow these established patterns:
+
+### Liquidity Tracking
+
+It's essential to properly track liquidity changes:
+
+- Use `notifyModifyLiquidity` to update your internal accounting
+- Remember that positive changes mean liquidity is being added
+- Account for negative changes when liquidity is removed
+
+> ***Note**: During a position burn, you'll only receive notifyBurn - there won't be a separate notifyModifyLiquidity call.*
+> 
+
+### Optional Data Handling
+
+The `optionalData` parameter in subscriptions can be used for:
+
+- Additional campaign configuration
+- Lock-up duration specifications
+- Other custom parameters
+
+## Security Considerations
+
+Since Subscriber contracts often handle value distribution, security is paramount:
+
+### Value Distribution
+
+- **Custody**: Implement secure mechanisms for handling reward tokens
+- **Calculation**: Ensure reward calculations are accurate and cannot be manipulated
+
+### Protection Against Exploitation
+
+Be aware of potential attack vectors:
+
+- Users can artificially inflate `feesAccrued` in single-position pools
+- Malicious actors might attempt to claim rewards they haven't earned
+
+> ***Warning**: Always validate inputs and implement thorough checks before distributing any value.*
+> 
+
+# Implementation Example
+
+Let’s build a **minimal** Subscriber implementation that demonstrates how to handle position events. In practice, you’d likely extend these concepts to include reward calculations or more complex accounting.
+
+> ***Note**: The code below focuses on the essential mechanics of receiving notifications. A production system will need additional logic for security, reward distribution, and user interaction.*
+> 
+
+## Basic Reward Tracking
+
+First, we set up our contract with the necessary data structures and references:
+
+```solidity
+contract LiquidityRewardsSubscriber is ISubscriber {
+    // 1) Store subscription timestamps and liquidity for each position
+    struct PositionData {
+        uint256 subscriptionTime;
+        uint256 currentLiquidity;
+        bool isSubscribed;
+    }
+
+    // 2) A mapping from tokenId (position NFT) to our custom tracking data
+    mapping(uint256 => PositionData) public positions;
+
+    // 3) Reference to the PositionManager so we can authenticate notifications
+    IPositionManager public immutable positionManager;
+
+    constructor(IPositionManager _positionManager) {
+        positionManager = _positionManager;
+    }
+}
+
+```
+
+### Why This Matters
+
+- **`PositionData`**: Tracks how long the position has been subscribed (`subscriptionTime`), how much liquidity it currently has (`currentLiquidity`), and whether it’s active (`isSubscribed`).
+- **`positionManager`**: We only trust calls from this authorized contract, preventing anyone else from triggering notifications.
+
+## Handling Subscription Events
+
+Next, we implement `notifySubscribe` and `notifyUnsubscribe` to manage a position’s subscription status:
+
+```solidity
+		/// @notice Handle new position subscriptions
+		function notifySubscribe(
+		    uint256 tokenId,
+		    bytes memory /* data */
+		) external {
+		    require(msg.sender == address(positionManager), "Unauthorized");
+		
+		    positions[tokenId] = PositionData({
+		        subscriptionTime: block.timestamp,
+		        currentLiquidity: 0,
+		        isSubscribed: true
+		    });
+		}
+		
+		/// @notice Clean up on unsubscribe
+		/// @dev Keep this minimal to respect unsubscribeGasLimit
+		function notifyUnsubscribe(uint256 tokenId) external {
+		    require(msg.sender == address(positionManager), "Unauthorized");
+		
+		    // Remove all stored data for unsubscribed positions
+		    delete positions[tokenId];
+		}
+```
+
+### Key Takeaways
+
+- We store the current block timestamp on `notifySubscribe` to measure how long a position has been subscribed.
+- The `notifyUnsubscribe` method is deliberately small to ensure it remains below the `unsubscribeGasLimit`.
+
+## Listening for Liquidity Modifications
+
+Positions can add or remove liquidity, and potentially collect fees during the same transaction:
+
+```solidity
+/// @notice Track liquidity changes or fee collections
+function notifyModifyLiquidity(
+    uint256 tokenId,
+    int256 liquidityChange,
+    BalanceDelta /* feesAccrued */
+) external {
+    require(msg.sender == address(positionManager), "Unauthorized");
+
+    PositionData storage position = positions[tokenId];
+
+    if (liquidityChange > 0) {
+        // Positive value indicates added liquidity
+        position.currentLiquidity += uint256(liquidityChange);
+    } else if (liquidityChange < 0) {
+        // Negative value indicates removed liquidity
+        position.currentLiquidity -= uint256(-liquidityChange);
+    }
+}
+```
+
+### Why This Is Important
+
+- **`liquidityChange`** can be positive (liquidity added) or negative (liquidity removed). We update our internal tracking accordingly.
+- **`feesAccrued`** is provided if the user also collects fees during this action. In a more advanced version, you could track these fees for reward calculations.
+
+## Processing Position Burns
+
+When a position is completely removed (burned), Uniswap v4 calls `notifyBurn`:
+
+```solidity
+/// @notice Called when a position is fully removed
+function notifyBurn(
+    uint256 tokenId,
+    address,
+    PositionInfo,
+    uint256,
+    BalanceDelta
+) external {
+    require(msg.sender == address(positionManager), "Unauthorized");
+
+    // The position no longer exists, so remove our records
+    delete positions[tokenId];
+}
+```
+
+### Important Distinction
+
+- **No `notifyModifyLiquidity`** is triggered on a full burn—`notifyBurn` covers any final liquidity/fee changes.
+
+## Using the Subscriber
+
+To put this into practice:
+
+```solidity
+// 1. Deploy the subscriber
+LiquidityRewardsSubscriber subscriber = new LiquidityRewardsSubscriber(positionManager);
+
+// 2. Users then subscribe their positions
+positionManager.subscribe(tokenId, subscriber, "");
+
+```
+
+- **Deployment**: The developer deploying the Subscriber contract must store its address and share it with users.
+- **Subscription**: Users call `subscribe(...)` on the PositionManager, passing in the `tokenId` and the subscriber’s address (yours).
+
+## Production Considerations
+
+> This example is deliberately minimal. A real-world Subscriber would need:
+> 
+> - **Reward Distribution**: Logic that calculates and distributes incentives based on `subscriptionTime`, `currentLiquidity`, or `feesAccrued`.
+> - **Security Checks**: Safeguards against malicious actors who might inflate fees, manipulate liquidity changes, or spam subscribe/unsubscribe cycles.
+> - **Access Control**: Roles or permissions if only certain addresses are allowed to manage rewards or update parameters.
+> - **Gas Optimization**: Especially if you expect many positions to subscribe/unsubscribe frequently.
