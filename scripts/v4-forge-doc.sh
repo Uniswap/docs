@@ -71,9 +71,37 @@ process_doc() {
 copy_docs() {
     local component=$1
 
-    find "forge-docs/v4-$component/src" -type f -regex '.*\.sol/[^.]*\.[^.]*\.md' | while read file; do
+    # process type.NAME.md files
+    find "forge-docs/v4-$component/src" -type f -regex '.*\.sol/type*\.[^.]*\.md' | while read file; do
         process_doc "$file"
     done
+
+    # process struct.NAME.md files
+    find "forge-docs/v4-$component/src" -type f -regex '.*\.sol/struct*\.[^.]*\.md' | while read file; do
+        process_doc "$file"
+    done
+
+    # process enum.NAME.md files
+    find "forge-docs/v4-$component/src" -type f -regex '.*\.sol/enum*\.[^.]*\.md' | while read file; do
+        process_doc "$file"
+    done
+
+    # process library.NAME.md files
+    find "forge-docs/v4-$component/src" -type f -regex '.*\.sol/library*\.[^.]*\.md' | while read file; do
+        process_doc "$file"
+    done
+
+    # process function.NAME.md files
+    find "forge-docs/v4-$component/src" -type f -regex '.*\.sol/function*\.[^.]*\.md' | while read file; do
+        process_doc "$file"
+    done
+
+    # process the rest, excluding files that are already processed
+
+    find "forge-docs/v4-$component/src" -type f -regex '.*\.sol/[^.]*\.[^.]*\.md' ! -name 'type.*.md' ! -name 'struct.*.md' ! -name 'enum.*.md' ! -name 'library.*.md' ! -name 'function.*.md' | while read file; do
+        process_doc "$file"
+    done
+
 }
 
 copy_docs "periphery"
