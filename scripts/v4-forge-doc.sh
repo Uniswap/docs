@@ -1,4 +1,6 @@
 # Usage: ./scripts/v4-forge-doc.sh, called from the root directory
+# NOTE: This script appears to not work with WSL, and is intended to run on MacOS
+# NOTE: submodules should be updated outside of the script
 
 # regenerate docs
 forge doc --root submodules/v4-core --out forge-docs/v4-core
