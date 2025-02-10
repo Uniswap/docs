@@ -6,6 +6,10 @@ rm -rf submodules/v4-core/forge-docs
 forge doc --root submodules/v4-periphery --out forge-docs/v4-periphery
 rm -rf submodules/v4-periphery/forge-docs
 
+# recursively remove .md files from /docs/contracts/v4/reference/core and /docs/contracts/v4/reference/periphery
+find docs/contracts/v4/reference/core -type f -name "*.md" -delete
+find docs/contracts/v4/reference/periphery -type f -name "*.md" -delete
+
 copy_docs() {
     local component=$1
 
@@ -27,17 +31,24 @@ copy_docs() {
         # Create the new directory structure if it doesn't exist
         mkdir -p "docs/contracts/v4/reference/${component}/${dir_structure}"
 
-        # Copy the file to the new location
-        cp "$file" "$new_file"
+        first_file=false
+        # if the file already exists, concatenate the new file to the end of the existing file
+        if [ -f "$new_file" ]; then
+            cat "$file" >> "$new_file"
+        else
+            first_file=true
+            cp "$file" "$new_file"
+        fi
 
         # Fix the Git source link
         # replace `https://github.com/Uniswap/docs/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/IPositionManager.sol`
         # with `https://github.com/Uniswap/v4-{component}/blob/47e3c30ae8a0d7c086bf3e41bd0e7e3a854e280b/src/interfaces/IPositionManager.sol`
         sed -i '' -e "s|uniswap/docs/|uniswap/v4-${component}/|g" "$new_file"
 
-        # Add note: 
-        # sed -i '' '3i\ 
-        sed -i '' '2s|$| - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)|' "$new_file"
+        # Add note about forge doc, if its not already added
+        if $first_file; then
+            sed -i '' '2s|$| - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)|' "$new_file"
+        fi
 
 
         # Replace relative path links within the file with full paths
