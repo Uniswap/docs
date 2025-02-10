@@ -1,5 +1,19 @@
-# PathKeyLibrary
+# PathKey
 [Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/PathKey.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+
+
+```solidity
+struct PathKey {
+    Currency intermediateCurrency;
+    uint24 fee;
+    int24 tickSpacing;
+    IHooks hooks;
+    bytes hookData;
+}
+```
+
+# PathKeyLibrary
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/PathKey.sol)
 
 Functions for working with PathKeys
 
@@ -30,18 +44,4 @@ function getPoolAndSwapDirection(PathKey calldata params, Currency currencyIn)
 |`poolKey`|`PoolKey`|the pool key of the swap|
 |`zeroForOne`|`bool`|the direction of the swap, true if currency0 is being swapped for currency1|
 
-
-# PathKey
-[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/PathKey.sol)
-
-
-```solidity
-struct PathKey {
-    Currency intermediateCurrency;
-    uint24 fee;
-    int24 tickSpacing;
-    IHooks hooks;
-    bytes hookData;
-}
-```
 

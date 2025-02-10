@@ -1,13 +1,5 @@
-# greaterThanOrEqualTo
-[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
-
-
-```solidity
-function greaterThanOrEqualTo(Currency currency, Currency other) pure returns (bool);
-```
-
 # Currency
-[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 
 ```solidity
@@ -88,6 +80,14 @@ Additional context for ERC-7751 wrapped error when an ERC20 transfer fails
 
 ```solidity
 error ERC20TransferFailed();
+```
+
+# greaterThanOrEqualTo
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol)
+
+
+```solidity
+function greaterThanOrEqualTo(Currency currency, Currency other) pure returns (bool);
 ```
 
 # lessThan

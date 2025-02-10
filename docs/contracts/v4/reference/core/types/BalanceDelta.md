@@ -1,9 +1,12 @@
-# sub
+# BalanceDelta
 [Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BalanceDelta.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+
+*Two `int128` values packed into a single `int256` where the upper 128 bits represent the amount0
+and the lower 128 bits represent the amount1.*
 
 
 ```solidity
-function sub(BalanceDelta a, BalanceDelta b) pure returns (BalanceDelta);
+type BalanceDelta is int256;
 ```
 
 # BalanceDeltaLibrary
@@ -37,23 +40,20 @@ function amount0(BalanceDelta balanceDelta) internal pure returns (int128 _amoun
 function amount1(BalanceDelta balanceDelta) internal pure returns (int128 _amount1);
 ```
 
+# sub
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BalanceDelta.sol)
+
+
+```solidity
+function sub(BalanceDelta a, BalanceDelta b) pure returns (BalanceDelta);
+```
+
 # toBalanceDelta
 [Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BalanceDelta.sol)
 
 
 ```solidity
 function toBalanceDelta(int128 _amount0, int128 _amount1) pure returns (BalanceDelta balanceDelta);
-```
-
-# BalanceDelta
-[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BalanceDelta.sol)
-
-*Two `int128` values packed into a single `int256` where the upper 128 bits represent the amount0
-and the lower 128 bits represent the amount1.*
-
-
-```solidity
-type BalanceDelta is int256;
 ```
 
 # eq

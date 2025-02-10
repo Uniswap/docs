@@ -1,5 +1,28 @@
-# ActionsRouter
+# Actions
 [Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/test/ActionsRouter.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+
+
+```solidity
+enum Actions {
+    SETTLE,
+    SETTLE_NATIVE,
+    SETTLE_FOR,
+    TAKE,
+    PRANK_TAKE_FROM,
+    SYNC,
+    MINT,
+    CLEAR,
+    ASSERT_BALANCE_EQUALS,
+    ASSERT_RESERVES_EQUALS,
+    ASSERT_DELTA_EQUALS,
+    ASSERT_NONZERO_DELTA_COUNT_EQUALS,
+    TRANSFER_FROM,
+    COLLECT_PROTOCOL_FEES
+}
+```
+
+# ActionsRouter
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/test/ActionsRouter.sol)
 
 **Inherits:**
 [IUnlockCallback](/src/interfaces/callback/IUnlockCallback.sol/interface.IUnlockCallback.md), Test
@@ -147,28 +170,5 @@ error ActionNotSupported();
 
 ```solidity
 error CheckParameters();
-```
-
-# Actions
-[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/test/ActionsRouter.sol)
-
-
-```solidity
-enum Actions {
-    SETTLE,
-    SETTLE_NATIVE,
-    SETTLE_FOR,
-    TAKE,
-    PRANK_TAKE_FROM,
-    SYNC,
-    MINT,
-    CLEAR,
-    ASSERT_BALANCE_EQUALS,
-    ASSERT_RESERVES_EQUALS,
-    ASSERT_DELTA_EQUALS,
-    ASSERT_NONZERO_DELTA_COUNT_EQUALS,
-    TRANSFER_FROM,
-    COLLECT_PROTOCOL_FEES
-}
 ```
 

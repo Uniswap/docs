@@ -1,15 +1,5 @@
-# toBeforeSwapDelta
-[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BeforeSwapDelta.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
-
-
-```solidity
-function toBeforeSwapDelta(int128 deltaSpecified, int128 deltaUnspecified)
-    pure
-    returns (BeforeSwapDelta beforeSwapDelta);
-```
-
 # BeforeSwapDelta
-[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BeforeSwapDelta.sol)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BeforeSwapDelta.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 
 ```solidity
@@ -51,5 +41,15 @@ returned by beforeSwap and afterSwap
 
 ```solidity
 function getUnspecifiedDelta(BeforeSwapDelta delta) internal pure returns (int128 deltaUnspecified);
+```
+
+# toBeforeSwapDelta
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BeforeSwapDelta.sol)
+
+
+```solidity
+function toBeforeSwapDelta(int128 deltaSpecified, int128 deltaUnspecified)
+    pure
+    returns (BeforeSwapDelta beforeSwapDelta);
 ```
 
