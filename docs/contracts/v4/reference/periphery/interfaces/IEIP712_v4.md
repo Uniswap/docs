@@ -1,7 +1,7 @@
 # IEIP712_v4
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/IEIP712_v4.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/cf451c4f55f36ea64c2007d331e3a3574225fc8b/src/interfaces/IEIP712_v4.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
-This interface is used for an EIP712 implementation
+Interface for the EIP712 contract
 
 
 ## Functions

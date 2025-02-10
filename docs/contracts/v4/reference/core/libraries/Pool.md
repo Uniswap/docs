@@ -1,5 +1,5 @@
 # Pool
-[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/libraries/Pool.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/d4185626c68e29de37023e453623d44cb9c12b51/src/libraries/Pool.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 a library with all actions that can be performed on a pool
 
@@ -340,7 +340,11 @@ struct TickInfo {
 ```
 
 ### State
-*The state of a pool*
+The state of a pool
+
+*Note that feeGrowthGlobal can be artificially inflated
+For pools with a single liquidity position, actors can donate to themselves to freely inflate feeGrowthGlobal
+atomically donating and collecting fees in the same unlockCallback may make the inflated value more extreme*
 
 
 ```solidity

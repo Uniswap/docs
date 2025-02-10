@@ -1,7 +1,10 @@
 # Permit2Forwarder
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/base/Permit2Forwarder.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/cf451c4f55f36ea64c2007d331e3a3574225fc8b/src/base/Permit2Forwarder.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
-PermitForwarder allows permitting this contract as a spender on permit2
+**Inherits:**
+[IPermit2Forwarder](contracts/v4/reference/periphery/interfaces/IPermit2Forwarder.md)
+
+Permit2Forwarder allows permitting this contract as a spender on permit2
 
 *This contract does not enforce the spender to be this contract, but that is the intended use case*
 
@@ -45,6 +48,12 @@ function permit(address owner, IAllowanceTransfer.PermitSingle calldata permitSi
 |`permitSingle`|`IAllowanceTransfer.PermitSingle`|the permit data|
 |`signature`|`bytes`|the signature of the permit; abi.encodePacked(r, s, v)|
 
+**Returns**
+
+|Name|Type|Description|
+|----|----|-----------|
+|`err`|`bytes`|the error returned by a reverting permit call, empty if successful|
+
 
 ### permitBatch
 
@@ -66,5 +75,11 @@ function permitBatch(address owner, IAllowanceTransfer.PermitBatch calldata _per
 |`owner`|`address`|the owner of the tokens|
 |`_permitBatch`|`IAllowanceTransfer.PermitBatch`|a batch of approvals|
 |`signature`|`bytes`|the signature of the permit; abi.encodePacked(r, s, v)|
+
+**Returns**
+
+|Name|Type|Description|
+|----|----|-----------|
+|`err`|`bytes`|the error returned by a reverting permit call, empty if successful|
 
 

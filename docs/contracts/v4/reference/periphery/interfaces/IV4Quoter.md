@@ -1,12 +1,10 @@
-# IQuoter
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/IQuoter.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+# IV4Quoter
+[Git Source](https://github.com/uniswap/v4-periphery/blob/cf451c4f55f36ea64c2007d331e3a3574225fc8b/src/interfaces/IV4Quoter.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
-Supports quoting the delta amounts for exact input or exact output swaps.
+**Inherits:**
+[IImmutableState](contracts/v4/reference/periphery/interfaces/IImmutableState.md)
 
-For each pool also tells you the sqrt price of the pool after the swap.
-
-*These functions are not marked view because they rely on calling non-view functions and reverting
-to compute the result. They are also not gas efficient and should not be called on-chain.*
+Interface for the V4Quoter contract
 
 
 ## Functions

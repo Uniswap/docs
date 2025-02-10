@@ -1,5 +1,5 @@
 # SafeCallback
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/base/SafeCallback.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/cf451c4f55f36ea64c2007d331e3a3574225fc8b/src/base/SafeCallback.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [ImmutableState](contracts/v4/reference/periphery/base/ImmutableState.md), IUnlockCallback
@@ -13,15 +13,6 @@ A contract that only allows the Uniswap v4 PoolManager to call the unlockCallbac
 
 ```solidity
 constructor(IPoolManager _poolManager) ImmutableState(_poolManager);
-```
-
-### onlyPoolManager
-
-Only allow calls from the PoolManager contract
-
-
-```solidity
-modifier onlyPoolManager();
 ```
 
 ### unlockCallback
@@ -54,14 +45,5 @@ function unlockCallback(bytes calldata data) external onlyPoolManager returns (b
 
 ```solidity
 function _unlockCallback(bytes calldata data) internal virtual returns (bytes memory);
-```
-
-## Errors
-### NotPoolManager
-Thrown when calling unlockCallback where the caller is not PoolManager
-
-
-```solidity
-error NotPoolManager();
 ```
 

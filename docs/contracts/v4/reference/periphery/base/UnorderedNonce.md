@@ -1,5 +1,8 @@
 # UnorderedNonce
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/base/UnorderedNonce.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/cf451c4f55f36ea64c2007d331e3a3574225fc8b/src/base/UnorderedNonce.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+
+**Inherits:**
+[IUnorderedNonce](contracts/v4/reference/periphery/interfaces/IUnorderedNonce.md)
 
 Contract state and methods for using unordered nonces in signatures
 
@@ -39,17 +42,8 @@ Revoke a nonce by spending it, preventing it from being used again
 
 *Used in cases where a valid nonce has not been broadcasted onchain, and the owner wants to revoke the validity of the nonce*
 
-*payable so it can be multicalled with native-token related actions*
-
 
 ```solidity
 function revokeNonce(uint256 nonce) external payable;
-```
-
-## Errors
-### NonceAlreadyUsed
-
-```solidity
-error NonceAlreadyUsed();
 ```
 
