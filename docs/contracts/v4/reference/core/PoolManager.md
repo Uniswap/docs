@@ -1,5 +1,5 @@
 # PoolManager
-[Git Source](https://github.com/uniswap/v4-core/blob/d4185626c68e29de37023e453623d44cb9c12b51/src/PoolManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/PoolManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [IPoolManager](contracts/v4/reference/core/interfaces/IPoolManager.md), [ProtocolFees](contracts/v4/reference/core/ProtocolFees.md), [NoDelegateCall](contracts/v4/reference/core/NoDelegateCall.md), [ERC6909Claims](contracts/v4/reference/core/ERC6909Claims.md), [Extsload](contracts/v4/reference/core/Extsload.md), [Exttload](contracts/v4/reference/core/Exttload.md)

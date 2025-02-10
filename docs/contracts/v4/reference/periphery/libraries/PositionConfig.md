@@ -1,5 +1,5 @@
 # PositionConfigLibrary
-[Git Source](https://github.com/uniswap/v4-periphery/blob/cf451c4f55f36ea64c2007d331e3a3574225fc8b/src/libraries/PositionConfig.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/PositionConfig.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Library to calculate the PositionConfigId from the PositionConfig struct
 
@@ -13,7 +13,7 @@ function toId(PositionConfig calldata config) internal pure returns (bytes32 id)
 ```
 
 # PositionConfig
-[Git Source](https://github.com/uniswap/v4-periphery/blob/cf451c4f55f36ea64c2007d331e3a3574225fc8b/src/libraries/PositionConfig.sol)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/PositionConfig.sol)
 
 
 ```solidity

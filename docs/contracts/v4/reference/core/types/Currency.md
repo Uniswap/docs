@@ -1,5 +1,5 @@
 # greaterThanOrEqualTo
-[Git Source](https://github.com/uniswap/v4-core/blob/d4185626c68e29de37023e453623d44cb9c12b51/src/types/Currency.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 
 ```solidity
@@ -7,7 +7,7 @@ function greaterThanOrEqualTo(Currency currency, Currency other) pure returns (b
 ```
 
 # Currency
-[Git Source](https://github.com/uniswap/v4-core/blob/d4185626c68e29de37023e453623d44cb9c12b51/src/types/Currency.sol)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol)
 
 
 ```solidity
@@ -15,7 +15,7 @@ type Currency is address;
 ```
 
 # CurrencyLibrary
-[Git Source](https://github.com/uniswap/v4-core/blob/d4185626c68e29de37023e453623d44cb9c12b51/src/types/Currency.sol)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol)
 
 *This library allows for transferring and holding native tokens and ERC20 tokens*
 
@@ -91,7 +91,7 @@ error ERC20TransferFailed();
 ```
 
 # lessThan
-[Git Source](https://github.com/uniswap/v4-core/blob/d4185626c68e29de37023e453623d44cb9c12b51/src/types/Currency.sol)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol)
 
 
 ```solidity
@@ -99,7 +99,7 @@ function lessThan(Currency currency, Currency other) pure returns (bool);
 ```
 
 # equals
-[Git Source](https://github.com/uniswap/v4-core/blob/d4185626c68e29de37023e453623d44cb9c12b51/src/types/Currency.sol)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol)
 
 
 ```solidity
@@ -107,7 +107,7 @@ function equals(Currency currency, Currency other) pure returns (bool);
 ```
 
 # greaterThan
-[Git Source](https://github.com/uniswap/v4-core/blob/d4185626c68e29de37023e453623d44cb9c12b51/src/types/Currency.sol)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/Currency.sol)
 
 
 ```solidity
