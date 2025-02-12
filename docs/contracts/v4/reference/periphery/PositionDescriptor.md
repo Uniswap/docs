@@ -1,5 +1,5 @@
 # PositionDescriptor
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/PositionDescriptor.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/PositionDescriptor.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [IPositionDescriptor](contracts/v4/reference/periphery/interfaces/IPositionDescriptor.md)
@@ -50,10 +50,10 @@ address public immutable wrappedNative;
 ```
 
 
-### nativeCurrencyLabel
+### nativeCurrencyLabelBytes
 
 ```solidity
-string public nativeCurrencyLabel;
+bytes32 private immutable nativeCurrencyLabelBytes;
 ```
 
 
@@ -69,7 +69,16 @@ IPoolManager public immutable poolManager;
 
 
 ```solidity
-constructor(IPoolManager _poolManager, address _wrappedNative, string memory _nativeCurrencyLabel);
+constructor(IPoolManager _poolManager, address _wrappedNative, bytes32 _nativeCurrencyLabelBytes);
+```
+
+### nativeCurrencyLabel
+
+Returns the native currency label as a string
+
+
+```solidity
+function nativeCurrencyLabel() public view returns (string memory);
 ```
 
 ### tokenURI
@@ -115,13 +124,14 @@ function flipRatio(address currency0, address currency1) public view returns (bo
 
 |Name|Type|Description|
 |----|----|-----------|
-|`<none>`|`bool`|flipRatio True if currency0 has higher priority than currency1|
+|`<none>`|`bool`|True if currency0 has higher priority than currency1|
 
 
 ### currencyRatioPriority
 
 Returns the priority of a currency.
 For certain currencies on mainnet, the smaller the currency, the higher the priority
+And those with the higher priority values (more positive values) will be in the numerator of the price ratio
 
 
 ```solidity
@@ -137,13 +147,6 @@ function currencyRatioPriority(address currency) public view returns (int256);
 
 |Name|Type|Description|
 |----|----|-----------|
-|`<none>`|`int256`|priority The priority of the currency|
+|`<none>`|`int256`|The priority of the currency|
 
-
-## Errors
-### InvalidTokenId
-
-```solidity
-error InvalidTokenId(uint256 tokenId);
-```
 

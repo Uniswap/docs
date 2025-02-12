@@ -1,5 +1,81 @@
+# Action
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/test/PoolNestedActionsTest.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+
+
+```solidity
+enum Action {
+    NESTED_SELF_UNLOCK,
+    NESTED_EXECUTOR_UNLOCK,
+    SWAP_AND_SETTLE,
+    DONATE_AND_SETTLE,
+    ADD_LIQUIDITY_AND_SETTLE,
+    REMOVE_LIQUIDITY_AND_SETTLE,
+    INITIALIZE
+}
+```
+
+# PoolNestedActionsTest
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/test/PoolNestedActionsTest.sol)
+
+**Inherits:**
+Test, [IUnlockCallback](/src/interfaces/callback/IUnlockCallback.sol/interface.IUnlockCallback.md)
+
+
+## State Variables
+### manager
+
+```solidity
+IPoolManager manager;
+```
+
+
+### executor
+
+```solidity
+NestedActionExecutor public executor;
+```
+
+
+### user
+
+```solidity
+address user;
+```
+
+
+## Functions
+### constructor
+
+
+```solidity
+constructor(IPoolManager _manager);
+```
+
+### unlock
+
+
+```solidity
+function unlock(bytes calldata data) external;
+```
+
+### unlockCallback
+
+Called by the pool manager on `msg.sender` when the manager is unlocked
+
+
+```solidity
+function unlockCallback(bytes calldata data) external override returns (bytes memory);
+```
+
+### _nestedUnlock
+
+
+```solidity
+function _nestedUnlock() internal;
+```
+
 # NestedActionExecutor
-[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/test/PoolNestedActionsTest.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/test/PoolNestedActionsTest.sol)
 
 **Inherits:**
 Test, [PoolTestBase](contracts/v4/reference/core/test/PoolTestBase.md)
