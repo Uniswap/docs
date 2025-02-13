@@ -15,7 +15,7 @@ By providing a dedicated interface for offchain reads, **StateView** helps:
 - Simplify integration for frontends, dashboards, and analytics
 - Ensure a clean separation between onchain logic and offchain queries
 
-## Comparing onchain and offhain Access
+## Comparing onchain and offchain Access
 
 If you’re familiar with [Reading Pool State](/contracts/v4/guides/read-pool-state), you already know that Uniswap v4 uses **extsload** for efficient data access. For onchain usage, we rely on **StateLibrary** within contracts. However, offchain clients cannot rely on an onchain library for state reads. 
 
@@ -111,12 +111,12 @@ const getPoolState = async (poolId: string) => {
   // - Current price (sqrtPriceX96) in Q64.96 fixed-point format
   // - Active tick
   // - Protocol and LP fee settings
-  const {
+  const [
     sqrtPriceX96,
     tick,
     protocolFee,
     lpFee
-  } = await stateView.read.getSlot0([poolId]);
+   ] = await stateView.read.getSlot0([poolId]);
 
   return {
     price: calculatePrice(sqrtPriceX96), // implement your math logic for Q64.96
@@ -162,7 +162,7 @@ While **StateView** exposes many functions, here are several essential calls for
 2. **[`getLiquidity(poolId)`](/contracts/v4/reference/periphery/lens/StateView#getliquidity)**
     - Returns `uint128 liquidity` (the total active pool liquidity).
     - Used to assess trading depth and volatility.
-3. **[`getPositionInfo(positionId)`](/contracts/v4/reference/periphery/lens/StateView#getpositioninfo)**
+3. **[`getPositionInfo(poolId, positionId)`](/contracts/v4/reference/periphery/lens/StateView#getpositioninfo)**
     - Returns `(uint128 liquidity, uint256 feeGrowthInside0Last, uint256 feeGrowthInside1Last)`.
     - Critical for tracking user positions, especially to calculate earned fees over time.
 4. **[`getFeeGrowthGlobals(poolId)`](/contracts/v4/reference/periphery/lens/StateView#getfeegrowthglobals)**
