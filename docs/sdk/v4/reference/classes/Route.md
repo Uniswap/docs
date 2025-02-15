@@ -15,7 +15,7 @@ Represents a list of pools through which a swap can occur
 
 ### new Route()
 
-> **new Route**<`TInput`, `TOutput`>(`pools`, `input`, `output`): [`Route`](Route.md)<`TInput`, `TOutput`>
+> **new Route**\<`TInput`, `TOutput`\>(`pools`, `input`, `output`): [`Route`](Route.md)\<`TInput`, `TOutput`\>
 
 Defined in: [entities/route.ts:28](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L28)
 
@@ -31,7 +31,7 @@ Creates an instance of route.
 
 #### Returns
 
-[`Route`](Route.md)<`TInput`, `TOutput`>
+[`Route`](Route.md)\<`TInput`, `TOutput`\>
 
 ## Properties
 
@@ -101,7 +101,7 @@ Defined in: [entities/route.ts:58](https://github.com/Uniswap/sdks/blob/9cf6edb2
 
 #### Get Signature
 
-> **get** **midPrice**(): `Price`<`TInput`, `TOutput`>
+> **get** **midPrice**(): `Price`\<`TInput`, `TOutput`\>
 
 Defined in: [entities/route.ts:65](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/route.ts#L65)
 
@@ -109,4 +109,4 @@ Returns the mid price of the route
 
 ##### Returns
 
-`Price`<`TInput`, `TOutput`>
+`Price`\<`TInput`, `TOutput`\>

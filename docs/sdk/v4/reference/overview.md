@@ -423,7 +423,7 @@ Defined in: [utils/v4Planner.ts:82](https://github.com/Uniswap/sdks/blob/9cf6edb
 
 ### amountWithPathCurrency()
 
-> **amountWithPathCurrency**(`amount`, `pool`): `CurrencyAmount`<`Currency`>
+> **amountWithPathCurrency**(`amount`, `pool`): `CurrencyAmount`\<`Currency`\>
 
 Defined in: [utils/pathCurrency.ts:4](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/pathCurrency.ts#L4)
 
@@ -431,12 +431,12 @@ Defined in: [utils/pathCurrency.ts:4](https://github.com/Uniswap/sdks/blob/9cf6e
 
 | Parameter | Type                         |
 | --------- | ---------------------------- |
-| `amount`  | `CurrencyAmount`<`Currency`> |
+| `amount`  | `CurrencyAmount`\<`Currency`\> |
 | `pool`    | [`Pool`](classes/Pool.md)    |
 
 #### Returns
 
-`CurrencyAmount`<`Currency`>
+`CurrencyAmount`\<`Currency`\>
 
 ---
 
@@ -450,7 +450,7 @@ Defined in: [utils/encodeRouteToPath.ts:13](https://github.com/Uniswap/sdks/blob
 
 | Parameter      | Type                                                |
 | -------------- | --------------------------------------------------- |
-| `route`        | [`Route`](classes/Route.md)<`Currency`, `Currency`> |
+| `route`        | [`Route`](classes/Route.md)\<`Currency`, `Currency`\> |
 | `exactOutput`? | `boolean`                                           |
 
 #### Returns
@@ -490,7 +490,7 @@ Returns the first tick for which the given price is greater than or equal to the
 
 | Parameter | Type                            | Description                                                                                                                                                                      |
 | --------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `price`   | `Price`<`Currency`, `Currency`> | for which to return the closest tick that represents a price less than or equal to the input price, i.e. the price of the returned tick is less than or equal to the input price |
+| `price`   | `Price`\<`Currency`, `Currency`\> | for which to return the closest tick that represents a price less than or equal to the input price, i.e. the price of the returned tick is less than or equal to the input price |
 
 #### Returns
 
@@ -519,7 +519,7 @@ Defined in: [utils/sortsBefore.ts:3](https://github.com/Uniswap/sdks/blob/9cf6ed
 
 ### tickToPrice()
 
-> **tickToPrice**(`baseCurrency`, `quoteCurrency`, `tick`): `Price`<`Currency`, `Currency`>
+> **tickToPrice**(`baseCurrency`, `quoteCurrency`, `tick`): `Price`\<`Currency`, `Currency`\>
 
 Defined in: [utils/priceTickConversions.ts:20](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/utils/priceTickConversions.ts#L20)
 
@@ -536,7 +536,7 @@ Inputs must be tokens because the address order is used to interpret the price r
 
 #### Returns
 
-`Price`<`Currency`, `Currency`>
+`Price`\<`Currency`, `Currency`\>
 
 ---
 
@@ -582,7 +582,7 @@ The hex encoded calldata
 
 ### tradeComparator()
 
-> **tradeComparator**<`TInput`, `TOutput`, `TTradeType`>(`a`, `b`): `number`
+> **tradeComparator**\<`TInput`, `TOutput`, `TTradeType`\>(`a`, `b`): `number`
 
 Defined in: [entities/trade.ts:17](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/trade.ts#L17)
 
@@ -600,8 +600,8 @@ Trades comparator, an extension of the input output comparator that also conside
 
 | Parameter | Type                                                           | Description                 |
 | --------- | -------------------------------------------------------------- | --------------------------- |
-| `a`       | [`Trade`](classes/Trade.md)<`TInput`, `TOutput`, `TTradeType`> | The first trade to compare  |
-| `b`       | [`Trade`](classes/Trade.md)<`TInput`, `TOutput`, `TTradeType`> | The second trade to compare |
+| `a`       | [`Trade`](classes/Trade.md)\<`TInput`, `TOutput`, `TTradeType`\> | The first trade to compare  |
+| `b`       | [`Trade`](classes/Trade.md)\<`TInput`, `TOutput`, `TTradeType`\> | The second trade to compare |
 
 #### Returns
 

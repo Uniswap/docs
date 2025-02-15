@@ -13,7 +13,7 @@ Enables calling multiple methods in a single call to the contract
 Call multiple functions in the current contract and return the data from all of them if they all succeed
 
 *The `msg.value` is passed onto all subcalls, even if a previous subcall has consumed the ether.
-Subcalls can instead use `address(this).value` to see the available ETH, and consume it using {value: x}.*
+Subcalls can instead use `address(this).value` to see the available ETH, and consume it using \{value: x\}.*
 
 
 ```solidity

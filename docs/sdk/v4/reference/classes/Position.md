@@ -68,7 +68,7 @@ Defined in: [entities/position.ts:26](https://github.com/Uniswap/sdks/blob/9cf6e
 
 #### Get Signature
 
-> **get** **amount0**(): `CurrencyAmount`<`Currency`>
+> **get** **amount0**(): `CurrencyAmount`\<`Currency`\>
 
 Defined in: [entities/position.ts:69](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/position.ts#L69)
 
@@ -76,7 +76,7 @@ Returns the amount of token0 that this position's liquidity could be burned for 
 
 ##### Returns
 
-`CurrencyAmount`<`Currency`>
+`CurrencyAmount`\<`Currency`\>
 
 ***
 
@@ -84,7 +84,7 @@ Returns the amount of token0 that this position's liquidity could be burned for 
 
 #### Get Signature
 
-> **get** **amount1**(): `CurrencyAmount`<`Currency`>
+> **get** **amount1**(): `CurrencyAmount`\<`Currency`\>
 
 Defined in: [entities/position.ts:101](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/position.ts#L101)
 
@@ -92,7 +92,7 @@ Returns the amount of token1 that this position's liquidity could be burned for 
 
 ##### Returns
 
-`CurrencyAmount`<`Currency`>
+`CurrencyAmount`\<`Currency`\>
 
 ***
 
@@ -100,7 +100,7 @@ Returns the amount of token1 that this position's liquidity could be burned for 
 
 #### Get Signature
 
-> **get** **mintAmounts**(): `Readonly`<{ `amount0`: `JSBI`; `amount1`: `JSBI`; }>
+> **get** **mintAmounts**(): `Readonly`\<\{ `amount0`: `JSBI`; `amount1`: `JSBI`; \}\>
 
 Defined in: [entities/position.ts:272](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/position.ts#L272)
 
@@ -109,7 +109,7 @@ the current price for the pool
 
 ##### Returns
 
-`Readonly`<{ `amount0`: `JSBI`; `amount1`: `JSBI`; }>
+`Readonly`\<\{ `amount0`: `JSBI`; `amount1`: `JSBI`; \}\>
 
 ***
 
@@ -117,7 +117,7 @@ the current price for the pool
 
 #### Get Signature
 
-> **get** **token0PriceLower**(): `Price`<`Currency`, `Currency`>
+> **get** **token0PriceLower**(): `Price`\<`Currency`, `Currency`\>
 
 Defined in: [entities/position.ts:55](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/position.ts#L55)
 
@@ -125,7 +125,7 @@ Returns the price of token0 at the lower tick
 
 ##### Returns
 
-`Price`<`Currency`, `Currency`>
+`Price`\<`Currency`, `Currency`\>
 
 ***
 
@@ -133,7 +133,7 @@ Returns the price of token0 at the lower tick
 
 #### Get Signature
 
-> **get** **token0PriceUpper**(): `Price`<`Currency`, `Currency`>
+> **get** **token0PriceUpper**(): `Price`\<`Currency`, `Currency`\>
 
 Defined in: [entities/position.ts:62](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/position.ts#L62)
 
@@ -141,13 +141,13 @@ Returns the price of token0 at the upper tick
 
 ##### Returns
 
-`Price`<`Currency`, `Currency`>
+`Price`\<`Currency`, `Currency`\>
 
 ## Methods
 
 ### burnAmountsWithSlippage()
 
-> **burnAmountsWithSlippage**(`slippageTolerance`): `Readonly`<{ `amount0`: `JSBI`; `amount1`: `JSBI`; }>
+> **burnAmountsWithSlippage**(`slippageTolerance`): `Readonly`\<\{ `amount0`: `JSBI`; `amount1`: `JSBI`; \}\>
 
 Defined in: [entities/position.ts:223](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/position.ts#L223)
 
@@ -162,7 +162,7 @@ position with the given slippage tolerance
 
 #### Returns
 
-`Readonly`<{ `amount0`: `JSBI`; `amount1`: `JSBI`; }>
+`Readonly`\<\{ `amount0`: `JSBI`; `amount1`: `JSBI`; \}\>
 
 The amounts, with slippage
 
@@ -180,7 +180,7 @@ Computes a position with the maximum amount of liquidity received for a given am
 
 | Parameter | Type |
 | ------ | ------ |
-| `__namedParameters` | { `amount0`: `BigintIsh`; `pool`: [`Pool`](Pool.md); `tickLower`: `number`; `tickUpper`: `number`; `useFullPrecision`: `boolean`; } |
+| `__namedParameters` | \{ `amount0`: `BigintIsh`; `pool`: [`Pool`](Pool.md); `tickLower`: `number`; `tickUpper`: `number`; `useFullPrecision`: `boolean`; \} |
 | `__namedParameters.amount0` | `BigintIsh` |
 | `__namedParameters.pool` | [`Pool`](Pool.md) |
 | `__namedParameters.tickLower` | `number` |
@@ -207,7 +207,7 @@ Computes a position with the maximum amount of liquidity received for a given am
 
 | Parameter | Type |
 | ------ | ------ |
-| `__namedParameters` | { `amount1`: `BigintIsh`; `pool`: [`Pool`](Pool.md); `tickLower`: `number`; `tickUpper`: `number`; } |
+| `__namedParameters` | \{ `amount1`: `BigintIsh`; `pool`: [`Pool`](Pool.md); `tickLower`: `number`; `tickUpper`: `number`; \} |
 | `__namedParameters.amount1` | `BigintIsh` |
 | `__namedParameters.pool` | [`Pool`](Pool.md) |
 | `__namedParameters.tickLower` | `number` |
@@ -234,7 +234,7 @@ and the prices at the tick boundaries.
 
 | Parameter | Type |
 | ------ | ------ |
-| `__namedParameters` | { `amount0`: `BigintIsh`; `amount1`: `BigintIsh`; `pool`: [`Pool`](Pool.md); `tickLower`: `number`; `tickUpper`: `number`; `useFullPrecision`: `boolean`; } |
+| `__namedParameters` | \{ `amount0`: `BigintIsh`; `amount1`: `BigintIsh`; `pool`: [`Pool`](Pool.md); `tickLower`: `number`; `tickUpper`: `number`; `useFullPrecision`: `boolean`; \} |
 | `__namedParameters.amount0` | `BigintIsh` |
 | `__namedParameters.amount1` | `BigintIsh` |
 | `__namedParameters.pool` | [`Pool`](Pool.md) |
@@ -252,7 +252,7 @@ The amount of liquidity for the position
 
 ### mintAmountsWithSlippage()
 
-> **mintAmountsWithSlippage**(`slippageTolerance`): `Readonly`<{ `amount0`: `JSBI`; `amount1`: `JSBI`; }>
+> **mintAmountsWithSlippage**(`slippageTolerance`): `Readonly`\<\{ `amount0`: `JSBI`; `amount1`: `JSBI`; \}\>
 
 Defined in: [entities/position.ts:159](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/position.ts#L159)
 
@@ -267,7 +267,7 @@ with the given slippage tolerance
 
 #### Returns
 
-`Readonly`<{ `amount0`: `JSBI`; `amount1`: `JSBI`; }>
+`Readonly`\<\{ `amount0`: `JSBI`; `amount1`: `JSBI`; \}\>
 
 The amounts, with slippage
 
