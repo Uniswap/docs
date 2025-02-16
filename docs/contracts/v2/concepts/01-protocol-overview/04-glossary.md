@@ -18,7 +18,7 @@ ERC20 tokens are fungible tokens on Ethereum. Uniswap supports all standard ERC2
 
 ### Factory
 
-A smart contract that deploys a unique smart contract for any ERC20/ERC20 trading pair.
+A smart contract responsible for deploying unique contracts for each ERC20/ERC20 trading pair.
 
 ### Pair
 
@@ -26,15 +26,15 @@ A smart contract deployed from the Uniswap V2 Factory that enables trading betwe
 
 ### Pool
 
-Liquidity within a pair is pooled across all liquidity providers.
+Liquidity within a pair is aggregated from all liquidity providers.
 
 ### Liquidity provider / LP
 
-A liquidity provider is someone who deposits an equivalent value of two ERC20 tokens into the liquidity pool within a pair. Liquidity providers take on price risk and are compensated with fees.
+A liquidity provider deposits an equivalent value of two ERC20 tokens into a pair’s liquidity pool. Liquidity providers take on price risk and are compensated with fees.
 
 ### Mid price
 
-The price between what users can buy and sell tokens at a given moment. In Uniswap this is the ratio of the two ERC20 token reserves.
+TThe midpoint between the buy and sell prices of tokens at a given moment.
 
 ### Price impact
 
@@ -42,24 +42,24 @@ The difference between the mid-price and the execution price of a trade.
 
 ### Slippage
 
-The amount the price moves in a trading pair between when a transaction is submitted and when it is executed.
+The difference in price for a trading pair between transaction submission and execution.
 
 ### Core
 
-Smart contracts that are essential for Uniswap to exist. Upgrading to a new version of core would require a liquidity migration.
+Smart contracts that form the essential infrastructure of Uniswap. Upgrading to a new version of core would require a liquidity migration.
 
 ### Periphery
 
-External smart contracts that are useful, but not required for Uniswap to exist. New periphery contracts can always be deployed without migrating liquidity.
+External smart contracts that enhance Uniswap’s functionality but are not essential for its operation.
 
 ### Flash swap
 
-A trade that uses the tokens being purchased before paying for them.
+A trade where tokens are borrowed and used before payment is made, all within a single transaction.
 
 ### `x * y = k`
 
-The constant product formula.
+The constant product formula underlying Uniswap’s automated market-making mechanism.
 
 ### Invariant
 
-The "k" value in the constant product formula
+The constant value ('k') in the constant product formula, which remains unchanged during trades.
