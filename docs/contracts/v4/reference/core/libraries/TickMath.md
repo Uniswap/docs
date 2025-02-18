@@ -118,7 +118,7 @@ function getSqrtPriceAtTick(int24 tick) internal pure returns (uint160 sqrtPrice
 
 ### getTickAtSqrtPrice
 
-Calculates the greatest tick value such that getSqrtPriceAtTick(tick) <= sqrtPriceX96
+Calculates the greatest tick value such that getSqrtPriceAtTick(tick) \<= sqrtPriceX96
 
 *Throws in case sqrtPriceX96 < MIN_SQRT_PRICE, as MIN_SQRT_PRICE is the lowest value getSqrtPriceAtTick may
 ever return.*
