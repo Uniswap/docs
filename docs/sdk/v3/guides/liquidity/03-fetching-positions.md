@@ -42,7 +42,7 @@ const nfpmContract = new ethers.Contract(
 )
 ```
 
-We get the Contract ABI from the 'v3-periphery` package and the contract address from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md)
+We get the Contract ABI from the 'v3-periphery` package and the contract address from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md)
 
 ## Fetching the Position Ids
 

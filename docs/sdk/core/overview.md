@@ -16,7 +16,7 @@ We recommend taking a look at the [**Technical Reference**](./reference/overview
 
 # Resources
 
-- [**SDK Core Github Repo**](https://github.com/Uniswap/sdk-core)
+- [**SDK Core GitHub Repo**](https://github.com/Uniswap/sdk-core)
 - [**Core SDK NPM Package**](https://www.npmjs.com/package/@uniswap/sdk-core)
 
 [![Unit Tests](https://github.com/Uniswap/uniswap-sdk-core/workflows/Unit%20Tests/badge.svg)](https://github.com/Uniswap/uniswap-sdk-core/actions?query=workflow%3A%22Unit+Tests%22)
