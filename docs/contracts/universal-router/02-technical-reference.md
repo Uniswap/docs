@@ -15,25 +15,29 @@ The first of these functions adds the functionality to allow transactions to hav
 
 The `execute` functions work like a simplified VM - they take in a list of commands, and a list of inputs for the commands and execute them in the order specified.
 
-## Command Structure 
+## Command Structure
 
 The first parameter for the function (`bytes calldata commands`) is a list of commands for the contract to execute, in the order they should be executed. Each command is encoded in 1 byte, containing the following split of 8 bits:
 
-| 0  | 1 2 | 3 4 5 6 7 |
-| :- | :-- | :-------- |
-| f  | r   | command   |
+| 0   | 1 2 | 3 4 5 6 7 |
+| :-- | :-- | :-------- |
+| f   | r   | command   |
 
-### `f` 
+### `f`
+
 A single bit flag, that signals whether or not the command should be allowed to revert without the whole transaction failing.
- - If `f` is `0` aka `false` and the command reverts, then the entire transaction will revert and none of the commands will be executed.
- - If `f` is `1` aka `true` and the command reverts, then the transaction will continue, allowing us to achieve partial fills. If using this flag, be careful to include further commands that will remove any funds that could be left unused in the `UniversalRouter` contract.
 
-### `r` 
+- If `f` is `0` aka `false` and the command reverts, then the entire transaction will revert and none of the commands will be executed.
+- If `f` is `1` aka `true` and the command reverts, then the transaction will continue, allowing us to achieve partial fills. If using this flag, be careful to include further commands that will remove any funds that could be left unused in the `UniversalRouter` contract.
+
+### `r`
+
 2 unused bytes, reserved for future use. Leaving these 2 bits as `0` will save gas, but any value passed into the contract will be ignored. Later versions of the `UniversalRouter` will likely expand the 5 bits used for `command` to use at least 1 of these bits.
 
-### `command` 
+### `command`
+
 A 5 bit unique identifier for the command that should be carried out. The values of these commands can be found within [Commands.sol](https://github.com/Uniswap/universal-router/blob/main/contracts/libraries/Commands.sol), or can be viewed in the table below.
-    
+
 The command types that are not defined do not have an assigned command at this moment in time. Providing one of these identifiers will cause the transaction to revert with `InvalidCommandType`.
 
 A complete list of commands can be found in the table below:
@@ -52,26 +56,16 @@ A complete list of commands can be found in the table below:
 | `0x09`  | [`V2_SWAP_EXACT_OUT`](./02-technical-reference.md#v2_swap_exact_out)                     |
 | `0x0a`  | [`PERMIT2_PERMIT`](./02-technical-reference.md#permit2_permit)                           |
 | `0x0b`  | [`WRAP_ETH`](./02-technical-reference.md#wrap_eth)                                       |
-| `0x0c`  | [`UNWRAP_WETH`](./02-technical-reference.md#unwrap_weth)                                  |
+| `0x0c`  | [`UNWRAP_WETH`](./02-technical-reference.md#unwrap_weth)                                 |
 | `0x0d`  | [`PERMIT2_TRANSFER_FROM_BATCH`](./02-technical-reference.md#permit2_transfer_from_batch) |
-| `0x0e`  |                                                                                          |
+| `0x0e`  | [`BALANCE_CHECK_ERC20`](./02-technical-reference.md#balance_check_erc20)                 |
 | `0x0f`  |                                                                                          |
-| `0x10`  | [`SEAPORT`](./02-technical-reference.md#seaport)                                         |
-| `0x11`  | [`LOOKS_RARE_721`](./02-technical-reference.md#looks_rare_721)                           |
-| `0x12`  | [`NFTX`](./02-technical-reference.md#nftx)                                               |
-| `0x13`  | [`CRYPTOPUNKS`](./02-technical-reference.md#cryptopunks)                                 |
-| `0x14`  | [`LOOKS_RARE_1155`](./02-technical-reference.md#looks_rare_1155)                         |
-| `0x15`  | [`OWNER_CHECK_721`](./02-technical-reference.md#owner_check_721)                         |
-| `0x16`  | [`OWNER_CHECK_1155`](./02-technical-reference.md#owner_check_1155)                       |
-| `0x17`  | [`SWEEP_ERC721`](./02-technical-reference.md#sweep_erc721)                               |
-| `0x18`  | [`X2Y2_721`](./02-technical-reference.md#x2y2_721)                                       |
-| `0x19`  | [`SUDOSWAP`](./02-technical-reference.md#sudoswap)                                       |
-| `0x1a`  | [`NFT20`](./02-technical-reference.md#nft20)                                             |
-| `0x1b`  | [`X2Y2_1155`](./02-technical-reference.md#x2y2_1155)                                     |
-| `0x1c`  | [`FOUNDATION`](./02-technical-reference.md#foundation)                                   |
-| `0x1d`  | [`SWEEP_ERC1155`](./02-technical-reference.md#sweep_erc1155)                             |
-| `0x1e`  |                                                                                          |
-| `0x1f`  |                                                                                          |
+| `0x10`  | [`V4_SWAP`](./02-technical-reference.md#v4_swap)                                         |
+| `0x11`  | [`V3_POSITION_MANAGER_PERMIT`](./02-technical-reference.md#v3_position_manager_permit)   |
+| `0x12`  | [`V3_POSITION_MANAGER_CALL`](./02-technical-reference.md#v3_position_manager_call)       |
+| `0x13`  | [`V4_INITIALIZE_POOL`](./02-technical-reference.md#v4_initialize_pool)                   |
+| `0x14`  | [`V4_POSITION_MANAGER_CALL`](./02-technical-reference.md#v4_position_manager_call)       |
+| `0x21`  | [`EXECUTE_SUB_PLAN`](./02-technical-reference.md#execute_sub_plan)                       |
 
 ## Command Inputs
 
@@ -169,106 +163,44 @@ The individual that signed the permit must be the `msg.sender` of the transactio
 
 - `IAllowanceTransfer.AllowanceTransferDetails[]` An array of `AllowanceTransferDetails` structs that each describe a Permit2 transfer to perform
 
-### `SEAPORT`
+### `BALANCE_CHECK_ERC20`
 
-- `uint256` The ETH value to forward to the Seaport contract
-- `bytes` The calldata to use to call the Seaport contract
+- `address` The required owner of the ERC20
+- `address` The ERC20 token address
+- `uint256` The minimum required amount of the ERC20
 
-### `LOOKS_RARE_721`
+### `V4_SWAP`
 
-- `uint256` The ETH value to forward to the LooksRare contract
-- `bytes` The calldata to use to call the LooksRare contract
-- `address` The recipient of the ERC721
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC721
+- `bytes` The calldata to use to call the V4SwapRouter contract
 
-### `NFTX`
+### `V3_POSITION_MANAGER_PERMIT`
 
-- `uint256` The ETH value to forward to the NFTX contract
-- `bytes` The calldata to use to call the NFTX contract
+- `bytes` The calldata to use to call the UniswapV3 PositionManager contract with permit
 
-### `CRYPTOPUNKS`
+### `V3_POSITION_MANAGER_CALL`
 
-- `uint256` The PunkID to purchase
-- `address` The recipient for the cryptopunk
-- `uint256` The ETH value to forward to the Cryptopunks contract
+- `bytes` The calldata to use to call the UniswapV3 PositionManager contract
 
-### `LOOKS_RARE_1155`
+### `V4_INITIALIZE_POOL`
 
-- `uint256` The ETH value to forward to the LooksRare contract
-- `bytes` The calldata to use to call the LooksRare contract
-- `address` The recipient of the ERC1155
-- `address` The ERC1155 token address
-- `uint256` The ID of the ERC1155
-- `uint256` The amount of the ERC1155 to transfer
+- `PoolKey` A [`PoolKey`](../v4/reference/core/types/poolkey.mdx) struct to define the pool's characteristics
+- `uint160` The `sqrtPriceX96` for the pool to be initialized with
 
-### `OWNER_CHECK_721`
+### `V4_POSITION_MANAGER_CALL`
 
-- `address` The required owner of the ERC721
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC721
+- `bytes` The calldata to use to call the UniswapV4 PositionManager contract
 
-### `OWNER_CHECK_1155`
+### `EXECUTE_SUB_PLAN`
 
-- `address` The required owner of the ERC1155
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC1155
-- `uint256` The minimum required amount of the ERC1155
-
-### `SWEEP_ERC721`
-
-- `address` The ERC721 token address to transfer
-- `address` The recipient of the transfer
-- `uint256` The token ID to transfer
-
-### `X2Y2_721`
-
-- `uint256` The ETH value to forward to the X2Y2 contract
-- `bytes` The calldata to use to call the X2Y2 contract
-- `address` The recipient of the ERC721
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC721
-
-### `SUDOSWAP`
-
-- `uint256` The ETH value to forward to the Sudoswap contract
-- `bytes` The calldata to use to call the Sudoswap contract
-
-### `NFT20`
-
-- `uint256` The ETH value to forward to the NFT20 contract
-- `bytes` The calldata to use to call the NFT20 contract
-
-### `X2Y2_1155`
-
-- `uint256` The ETH value to forward to the X2Y2 contract
-- `bytes` The calldata to use to call the X2Y2 contract
-- `address` The recipient of the ERC1155
-- `address` The ERC1155 token address
-- `uint256` The ID of the ERC1155
-- `uint256` The amount of the ERC1155 to transfer
-
-### `FOUNDATION`
-
-- `uint256` The ETH value to forward to the Foundation contract
-- `bytes` The calldata to use to call the Foundation contract
-- `address` The recipient of the ERC721
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC721
-
-### `SWEEP_ERC1155`
-
-- `address` The ERC1155 token address to sweep
-- `address` The recipient of the sweep
-- `uint256` The token ID to sweep
-- `uint256` The minimum required tokens to receive from the sweep
+- `commands` Bytes containing a set of concatenated commands, each 1 byte in length
+- `inputs` An array of bytes containing abi encoded inputs for each command
 
 ## Example: Reverting Commands
 
-For a Sudoswap command, that should be *allowed to revert*, the following 8 bit command should be provided:
+For a `EXECUTE_SUB_PLAN` command, that should be _allowed to revert_, the following 8 bit command should be provided:
 
 ```markdown
-command = 0x80 (10000000) && 0x19 (00011001) = 0x99 (10011001)
+command = 0x80 (10000000) && 0x21 (00100001) = 0xA1 (10100001)
 ```
 
-Take care when working with reverting commands - ensure you have appended commands to deal with funds that could remain in the contract after either outcomes. For example, if the Sudoswap command reverts, a following `SWEEP` can be added to ensure that any ETH that was not spent does not get left in the router.
+Take care when working with reverting commands - ensure you have appended commands to deal with funds that could remain in the contract after either outcomes. For example, if the `EXECUTE_SUB_PLAN` command reverts when you are trying to execute swap as a sub plan, a following `SWEEP` can be added to ensure that any ETH that was not spent does not get left in the router.
