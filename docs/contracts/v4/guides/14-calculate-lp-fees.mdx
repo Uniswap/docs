@@ -10,30 +10,27 @@ While in v3 we can get the amount for the fees claimed on each liquidity operati
 
 ```solidity
 // Modify liquidity in v4
-function modifyLiquidity(
-    PoolKey memory key,
-    IPoolManager.ModifyLiquidityParams memory params,
-    bytes calldata hookData
-) external onlyWhenUnlocked noDelegateCall returns (BalanceDelta callerDelta, BalanceDelta feesAccrued) {
-...
-    BalanceDelta principalDelta;
-    (principalDelta, feesAccrued) = pool.modifyLiquidity(
-        Pool.ModifyLiquidityParams({
-            owner: msg.sender,
-            tickLower: params.tickLower,
-            tickUpper: params.tickUpper,
-            liquidityDelta: params.liquidityDelta.toInt128(),
-            tickSpacing: key.tickSpacing,
-            salt: params.salt
-        })
-    );
-...
+function modifyLiquidity(PoolKey memory key, IPoolManager.ModifyLiquidityParams memory params, bytes calldata hookData) 
+    // ... 
+    returns (BalanceDelta callerDelta, BalanceDelta feesAccrued) 
+{
+    PoolId id = key.toId();
+    {
+        // ... (other code)
+        BalanceDelta principalDelta;
+        (principalDelta, feesAccrued) = pool.modifyLiquidity(
+            // ... (the ModifyLiquidityParams)
+        );
+        callerDelta = principalDelta + feesAccrued;
+    }
 
-// event is emitted before the afterModifyLiquidity call to ensure events are always emitted in order
-emit ModifyLiquidity(id, msg.sender, params.tickLower, params.tickUpper, params.liquidityDelta, params.salt);
+    // event is emitted before the afterModifyLiquidity call to ensure events are always emitted in order
+    emit ModifyLiquidity(id, msg.sender, params.tickLower, params.tickUpper, params.liquidityDelta, params.salt);
 
-BalanceDelta hookDelta;
-(callerDelta, hookDelta) = key.hooks.afterModifyLiquidity(key, params, callerDelta, feesAccrued, hookData);
+    BalanceDelta hookDelta;
+    (callerDelta, hookDelta) = key.hooks.afterModifyLiquidity(key, params, callerDelta, feesAccrued, hookData);
+    // ... (other code)
+}
 ```
 
 In this guide we will go through how you can calculate fees earned for a LP position in v4 specifically the **uncollected fees** and **total lifetime fees**.
