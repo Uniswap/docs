@@ -81,8 +81,8 @@ function getHookPermissions() public pure override returns (Hooks.Permissions me
 Here the example shows that every time __before__ a swap is executed in a pool, `beforeSwapCount` for that pool will be incremented by one.
 
 ```solidity
-function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
-    external
+function _beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
+    internal
     override
     returns (bytes4, BeforeSwapDelta, uint24)
 {
@@ -106,8 +106,8 @@ A brief overview of the parameters:
 Similiar as above, every time __after__ a swap is executed in a pool, `afterSwapCount` for that pool will be incremented by one.
 
 ```solidity
-function afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
-    external
+function _afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
+    internal
     override
     returns (bytes4, int128)
 {
@@ -180,8 +180,8 @@ contract SwapHook is BaseHook {
     // NOTE: see IHooks.sol for function documentation
     // -----------------------------------------------
 
-    function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
-        external
+    function _beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
+        internal
         override
         returns (bytes4, BeforeSwapDelta, uint24)
     {
@@ -189,8 +189,8 @@ contract SwapHook is BaseHook {
         return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
     }
 
-    function afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
-        external
+    function _afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
+        internal
         override
         returns (bytes4, int128)
     {
