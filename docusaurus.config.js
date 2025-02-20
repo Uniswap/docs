@@ -129,7 +129,7 @@ module.exports = {
             },
             {
               label: 'Deployment addresses',
-              href: 'https://docs.uniswap.org/contracts/v4/deployments',
+              href: '/contracts/v4/deployments',
             },
           ],
         },

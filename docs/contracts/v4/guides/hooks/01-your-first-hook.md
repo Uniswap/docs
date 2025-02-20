@@ -53,7 +53,7 @@ After that let's create a new contract `PointsHook.sol` in `src` folder with the
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {BaseHook} from "v4-periphery/src/base/hooks/BaseHook.sol";
+import {BaseHook} from "v4-periphery/src/utils/BaseHook.sol";
 
 import {Hooks} from "v4-core/src/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
@@ -260,7 +260,7 @@ Let’s start with the most basic ones. We want the user to be swapping in the `
             : uint256(int256(-delta.amount0()));
 
         // And award the points!
-        _awardPoints(user, ethSpendAmount);
+        awardPoints(user, ethSpendAmount);
 
         return (BaseHook.afterSwap.selector, 0);
     }
@@ -295,7 +295,7 @@ Similar to what we did for the `afterSwap` hook, now we need to award users for 
         uint256 ethSpendAmount = uint256(int256(-delta.amount0()));
 
         // And award the points!
-        _awardPoints(user, ethSpendAmount);
+        awardPoints(user, ethSpendAmount);
 
         return (BaseHook.afterAddLiquidity.selector, delta);
     }
