@@ -138,14 +138,16 @@ First, let’s define our function signature:
 function swapExactInputSingle(
     PoolKey calldata key, // PoolKey struct that identifies the v4 pool
     uint128 amountIn, // Exact amount of tokens to swap
-    uint128 minAmountOut // Minimum amount of output tokens expected
+    uint128 minAmountOut, // Minimum amount of output tokens expected
+    uint256 deadline // Timestamp after which the transaction will revert
 ) external returns (uint256 amountOut) {
     // Implementation will follow
 }
 ```
 **Important note:**
 
-When swapping tokens involving native ETH, we use `Currency.wrap(address(0))` to represent ETH in the `PoolKey` struct.
+1. The deadline parameter allows users to specify when their transaction should expire. 
+2. When swapping tokens involving native ETH, we use `Currency.wrap(address(0))` to represent ETH in the `PoolKey` struct.
 
 ```solidity
 struct PoolKey {
@@ -243,17 +245,20 @@ These parameters work in conjunction with the actions we encoded earlier (`SWAP_
 
 ### 3.5: Executing the Swap
 
-Now we can execute the swap using the Universal Router:
+Now we can execute the swap using the Universal Router. It's crucial to allow users to specify their own deadline for transaction execution:
 
 ```solidity
 // Combine actions and params into inputs
 inputs[0] = abi.encode(actions, params);
 
 // Execute the swap
-router.execute(commands, inputs, block.timestamp);
+router.execute(commands, inputs, deadline);
 ```
 
-This prepares and executes the swap based on our encoded commands, actions, and parameters. The `block.timestamp` deadline parameter ensures the transaction will be executed in the current block.
+This prepares and executes the swap based on our encoded commands, actions, and parameters.
+
+> **Note**:  Never use block.timestamp or type(uint256).max as the deadline parameter.
+>
 
 ### 3.6: (Optional) Verifying the Swap Output
 
@@ -280,7 +285,8 @@ Here's the complete swap function that combines all the steps we've covered:
 function swapExactInputSingle(
     PoolKey calldata key,
     uint128 amountIn,
-    uint128 minAmountOut
+    uint128 minAmountOut,
+    uint256 deadline
 ) external returns (uint256 amountOut) {
 // Encode the Universal Router command
     bytes memory commands = abi.encodePacked(uint8(Commands.V4_SWAP));
@@ -312,7 +318,7 @@ function swapExactInputSingle(
     inputs[0] = abi.encode(actions, params);
 
 // Execute the swap
-    router.execute(commands, inputs, block.timestamp);
+    router.execute(commands, inputs, deadline);
 
 // Verify and return the output amount
     amountOut = IERC20(key.currency1).balanceOf(address(this));
