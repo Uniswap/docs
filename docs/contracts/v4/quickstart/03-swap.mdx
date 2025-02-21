@@ -99,8 +99,7 @@ First, let’s define our function signature:
 function swapExactInputSingle(
     PoolKey calldata key, // PoolKey struct that identifies the v4 pool
     uint128 amountIn, // Exact amount of tokens to swap
-    uint128 minAmountOut, // Minimum amount of output tokens expected
-    uint256 deadline // Deadline for the swap
+    uint128 minAmountOut // Minimum amount of output tokens expected
 ) external returns (uint256 amountOut) {
     // Implementation will follow
 }
@@ -212,7 +211,7 @@ Now we can execute the swap using the Universal Router:
 inputs[0] = abi.encode(actions, params);
 
 // Execute the swap
-router.execute(commands, inputs, deadline);
+router.execute(commands, inputs, block.timestamp);
 ```
 
 This prepares and executes the swap based on our encoded commands, actions, and parameters. The `block.timestamp` deadline parameter ensures the transaction will be executed in the current block.
@@ -242,8 +241,7 @@ Here's the complete swap function that combines all the steps we've covered:
 function swapExactInputSingle(
     PoolKey calldata key,
     uint128 amountIn,
-    uint128 minAmountOut,
-    uint256 deadline
+    uint128 minAmountOut
 ) external returns (uint256 amountOut) {
 // Encode the Universal Router command
     bytes memory commands = abi.encodePacked(uint8(Commands.V4_SWAP));
@@ -275,7 +273,7 @@ function swapExactInputSingle(
     inputs[0] = abi.encode(actions, params);
 
 // Execute the swap
-    router.execute(commands, inputs, deadline);
+    router.execute(commands, inputs, block.timestamp);
 
 // Verify and return the output amount
     amountOut = IERC20(key.currency1).balanceOf(address(this));
