@@ -96,8 +96,8 @@ function getPoolAndPositionInfo(uint256 tokenId) external view returns (PoolKey 
 
 |Name|Type|Description|
 |----|----|-----------|
-|`<none>`|`PoolKey`|PositionInfo a uint256 packed value holding information about the position including the range (tickLower, tickUpper)|
-|`<none>`|`PositionInfo`|poolKey the pool key of the position|
+|`<none>`|`PoolKey`|the pool key of the position|
+|`<none>`|`PositionInfo`|a uint256 packed value holding information about the position including the range (tickLower, tickUpper)|
 
 
 ## Errors
