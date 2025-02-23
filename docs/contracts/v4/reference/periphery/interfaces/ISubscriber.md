@@ -1,11 +1,13 @@
 # ISubscriber
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/ISubscriber.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/interfaces/ISubscriber.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Interface that a Subscriber contract should implement to receive updates from the v4 position manager
 
 
 ## Functions
 ### notifySubscribe
+
+Called when a position subscribes to this subscriber contract
 
 
 ```solidity
@@ -38,7 +40,33 @@ function notifyUnsubscribe(uint256 tokenId) external;
 |`tokenId`|`uint256`|the token ID of the position|
 
 
+### notifyBurn
+
+Called when a position is burned
+
+
+```solidity
+function notifyBurn(uint256 tokenId, address owner, PositionInfo info, uint256 liquidity, BalanceDelta feesAccrued)
+    external;
+```
+**Parameters**
+
+|Name|Type|Description|
+|----|----|-----------|
+|`tokenId`|`uint256`|the token ID of the position|
+|`owner`|`address`|the current owner of the tokenId|
+|`info`|`PositionInfo`|information about the position|
+|`liquidity`|`uint256`|the amount of liquidity decreased in the position, may be 0|
+|`feesAccrued`|`BalanceDelta`|the fees accrued by the position if liquidity was decreased|
+
+
 ### notifyModifyLiquidity
+
+Called when a position modifies its liquidity or collects fees
+
+*Note that feesAccrued can be artificially inflated by a malicious user
+Pools with a single liquidity position can inflate feeGrowthGlobal (and consequently feesAccrued) by donating to themselves;
+atomically donating and collecting fees within the same unlockCallback may further inflate feeGrowthGlobal/feesAccrued*
 
 
 ```solidity
@@ -51,20 +79,5 @@ function notifyModifyLiquidity(uint256 tokenId, int256 liquidityChange, BalanceD
 |`tokenId`|`uint256`|the token ID of the position|
 |`liquidityChange`|`int256`|the change in liquidity on the underlying position|
 |`feesAccrued`|`BalanceDelta`|the fees to be collected from the position as a result of the modifyLiquidity call|
-
-
-### notifyTransfer
-
-
-```solidity
-function notifyTransfer(uint256 tokenId, address previousOwner, address newOwner) external;
-```
-**Parameters**
-
-|Name|Type|Description|
-|----|----|-----------|
-|`tokenId`|`uint256`|the token ID of the position|
-|`previousOwner`|`address`|address of the old owner|
-|`newOwner`|`address`|address of the new owner|
 
 

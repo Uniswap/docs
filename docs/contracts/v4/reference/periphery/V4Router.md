@@ -1,5 +1,5 @@
 # V4Router
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/V4Router.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/V4Router.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
 [IV4Router](contracts/v4/reference/periphery/interfaces/IV4Router.md), [BaseActionsRouter](contracts/v4/reference/periphery/base/BaseActionsRouter.md), [DeltaResolver](contracts/v4/reference/periphery/base/DeltaResolver.md)

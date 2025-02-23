@@ -1,5 +1,5 @@
 # CurrencyRatioSortOrder
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/libraries/CurrencyRatioSortOrder.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/CurrencyRatioSortOrder.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 Provides constants for sorting currencies when displaying price ratios
 Currencies given larger values will be in the numerator of the price ratio

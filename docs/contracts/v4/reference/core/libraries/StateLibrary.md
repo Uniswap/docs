@@ -1,5 +1,5 @@
 # StateLibrary
-[Git Source](https://github.com/uniswap/v4-core/blob/b619b6718e31aa5b4fa0286520c455ceb950276d/src/libraries/StateLibrary.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/libraries/StateLibrary.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 A helper library to provide state getters that use extsload
 
@@ -184,6 +184,10 @@ function getTickFeeGrowthOutside(IPoolManager manager, PoolId poolId, int24 tick
 Retrieves the global fee growth of a pool.
 
 *Corresponds to pools[poolId].feeGrowthGlobal0X128 and pools[poolId].feeGrowthGlobal1X128*
+
+*Note that feeGrowthGlobal can be artificially inflated
+For pools with a single liquidity position, actors can donate to themselves to freely inflate feeGrowthGlobal
+atomically donating and collecting fees in the same unlockCallback may make the inflated value more extreme*
 
 
 ```solidity

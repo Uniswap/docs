@@ -1,5 +1,19 @@
+# PositionConfigId
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/PositionConfigId.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+
+A configId is set per tokenId
+The lower 255 bits are used to store the truncated hash of the corresponding PositionConfig
+The upper bit is used to signal if the tokenId has a subscriber
+
+
+```solidity
+struct PositionConfigId {
+    bytes32 id;
+}
+```
+
 # PositionConfigIdLibrary
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/libraries/PositionConfigId.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/PositionConfigId.sol)
 
 
 ## State Variables
