@@ -51,7 +51,7 @@ getPool("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "0xc02aaa39b223fe8d0a0e5c4
 
 # CELO Native Asset
 
-The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native asset like ETH (or MATIC on Polygon), the Uniswap protocol wraps these assets in an ERC20 wrapped native token contract. The protocol uses the following WETH9 addresses on Ethereum and WMATIC addresses on Polygon.
+The Uniswap Protocol supports trading of ERC20 tokens. In order to swap a native asset like ETH (or CELO on Celo), the Uniswap protocol wraps these assets in an ERC20 wrapped native token contract. The protocol uses the following CELO address on Celo.
 
 **Note: CELO is the native asset, it is a token and will work as a token, needing approval for routers to manage.*
 
