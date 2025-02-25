@@ -99,14 +99,16 @@ First, let’s define our function signature:
 function swapExactInputSingle(
     PoolKey calldata key, // PoolKey struct that identifies the v4 pool
     uint128 amountIn, // Exact amount of tokens to swap
-    uint128 minAmountOut // Minimum amount of output tokens expected
+    uint128 minAmountOut, // Minimum amount of output tokens expected
+    uint256 deadline // Timestamp after which the transaction will revert
 ) external returns (uint256 amountOut) {
     // Implementation will follow
 }
 ```
 **Important note:**
 
-When swapping tokens involving native ETH, we use `Currency.wrap(address(0))` to represent ETH in the `PoolKey` struct.
+1. The deadline parameter allows users to specify when their transaction should expire. This protects against unfavorable execution due to network delays or MEV attacks.
+2. When swapping tokens involving native ETH, we use `Currency.wrap(address(0))` to represent ETH in the `PoolKey` struct.
 
 ```solidity
 struct PoolKey {
@@ -211,10 +213,13 @@ Now we can execute the swap using the Universal Router:
 inputs[0] = abi.encode(actions, params);
 
 // Execute the swap
-router.execute(commands, inputs, block.timestamp);
+router.execute(commands, inputs, deadline);
 ```
 
-This prepares and executes the swap based on our encoded commands, actions, and parameters. The `block.timestamp` deadline parameter ensures the transaction will be executed in the current block.
+This prepares and executes the swap based on our encoded commands, actions, and parameters.
+
+> **Note**:  Never use block.timestamp or type(uint256).max as the deadline parameter.
+>
 
 ### 3.6: (Optional) Verifying the Swap Output
 
@@ -273,7 +278,7 @@ function swapExactInputSingle(
     inputs[0] = abi.encode(actions, params);
 
 // Execute the swap
-    router.execute(commands, inputs, block.timestamp);
+    router.execute(commands, inputs, deadline);
 
 // Verify and return the output amount
     amountOut = IERC20(key.currency1).balanceOf(address(this));
