@@ -109,7 +109,7 @@ PoolKey memory pool = PoolKey({
 Pools are initialized with a starting price
 ```solidity
 params[0] = abi.encodeWithSelector(
-    PositionManager.initializePool.selector,
+    IPositionManager(positionManager).initializePool.selector,
     pool,
     startingPrice
 );
