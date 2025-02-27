@@ -21,7 +21,7 @@ The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap
 | [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                                                    | `0xbe0F5544EC67e9B3b2D979aaA43f18Fd87E6257F` |
 | [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                                                        | `0xbb00FF08d01D300023C629E8fFfFcb65A5a578cE` |
 | [Permit2](https://github.com/Uniswap/permit2)                                                                                                                | `0x000000000022D473030F116dDEE9F6B43aC78BA3` |
-| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0x4Dae2f939ACf50408e13d58534Ff8c2776d45265` |
+| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0x94b75331ae8d42c1b61065089b7d48fe14aa73b7` |
 | [v3StakerAddress](https://github.com/Uniswap/v3-staker)                                                                                                      | `0xCA9D0668C600c4dd07ca54Be1615FE5CDFd76Ac3` |
 
 

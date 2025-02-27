@@ -4,7 +4,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
@@ -29,7 +29,6 @@
     "@uniswap/analytics": "1.1.0",
     "@uniswap/analytics-events": "2.0.0",
     "algoliasearch": "^4.9.1",
-    "caniuse-lite": "^1.0.30001519",
     "clsx": "^1.1.1",
     "hast-util-is-element": "1.1.0",
     "intl-locales-supported": "^1.8.12",
@@ -72,7 +71,7 @@
   },
   "engines": {
     "npm": "please-use-yarn",
-    "node": "16",
+    "node": "18.x",
     "yarn": ">=1.22"
   }
 }
