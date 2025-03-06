@@ -1,5 +1,5 @@
 # CalldataDecoder
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/libraries/CalldataDecoder.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/CalldataDecoder.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 
 ## State Variables
@@ -57,6 +57,18 @@ function decodeModifyLiquidityParams(bytes calldata params)
     returns (uint256 tokenId, uint256 liquidity, uint128 amount0, uint128 amount1, bytes calldata hookData);
 ```
 
+### decodeIncreaseLiquidityFromDeltasParams
+
+*equivalent to: abi.decode(params, (uint256, uint128, uint128, bytes)) in calldata*
+
+
+```solidity
+function decodeIncreaseLiquidityFromDeltasParams(bytes calldata params)
+    internal
+    pure
+    returns (uint256 tokenId, uint128 amount0Max, uint128 amount1Max, bytes calldata hookData);
+```
+
 ### decodeMintParams
 
 *equivalent to: abi.decode(params, (PoolKey, int24, int24, uint256, uint128, uint128, address, bytes)) in calldata*
@@ -71,6 +83,26 @@ function decodeMintParams(bytes calldata params)
         int24 tickLower,
         int24 tickUpper,
         uint256 liquidity,
+        uint128 amount0Max,
+        uint128 amount1Max,
+        address owner,
+        bytes calldata hookData
+    );
+```
+
+### decodeMintFromDeltasParams
+
+*equivalent to: abi.decode(params, (PoolKey, int24, int24, uint128, uint128, address, bytes)) in calldata*
+
+
+```solidity
+function decodeMintFromDeltasParams(bytes calldata params)
+    internal
+    pure
+    returns (
+        PoolKey calldata poolKey,
+        int24 tickLower,
+        int24 tickUpper,
         uint128 amount0Max,
         uint128 amount1Max,
         address owner,

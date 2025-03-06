@@ -1,7 +1,7 @@
 # IERC721Permit_v4
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/IERC721Permit_v4.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/interfaces/IERC721Permit_v4.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
-Extension to ERC721 that includes a permit function for signature based approvals
+Interface for the ERC721Permit_v4 contract
 
 
 ## Functions

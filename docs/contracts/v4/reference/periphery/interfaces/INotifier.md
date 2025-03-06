@@ -1,7 +1,7 @@
 # INotifier
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/INotifier.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/interfaces/INotifier.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
-This interface is used to opt in to sending updates to external contracts about position modifications or transfers
+Interface for the Notifier contract
 
 
 ## Functions
@@ -145,12 +145,12 @@ Wraps the revert message of the subscriber contract on a reverting modify liquid
 error ModifyLiquidityNotificationReverted(address subscriber, bytes reason);
 ```
 
-### TransferNotificationReverted
-Wraps the revert message of the subscriber contract on a reverting transfer notification
+### BurnNotificationReverted
+Wraps the revert message of the subscriber contract on a reverting burn notification
 
 
 ```solidity
-error TransferNotificationReverted(address subscriber, bytes reason);
+error BurnNotificationReverted(address subscriber, bytes reason);
 ```
 
 ### AlreadySubscribed
