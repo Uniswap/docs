@@ -15,6 +15,8 @@ forge install uniswap/v4-core
 forge install uniswap/v4-periphery
 forge install uniswap/permit2
 forge install uniswap/universal-router
+forge install uniswap/v3-core
+forge install uniswap/v2-core
 forge install OpenZeppelin/openzeppelin-contracts
 ```
 In the `remappings.txt`, add the following:
@@ -23,20 +25,22 @@ In the `remappings.txt`, add the following:
 @uniswap/v4-periphery/=lib/v4-periphery/
 @uniswap/permit2/=lib/permit2/
 @uniswap/universal-router/=lib/universal-router/
+@uniswap/v3-core/=lib/v3-core/
+@uniswap/v2-core/=lib/v2-core/
 @openzeppelin/contracts/=lib/openzeppelin-contracts/
 [...]
 ```
 
-## Step 1: Set Up the Project
+## Step 1: Set Up the Project
 
-First, we need to set up our project and import the necessary dependencies. We’ll create a new Solidity contract for our example.
+First, we need to set up our project and import the necessary dependencies. We'll create a new Solidity contract for our example.
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-import { UniversalRouter } from "@uniswap/universal-router/contracts/UniversalRouter.sol";
-import { Commands } from "@uniswap/universal-router/contracts/libraries/Commands.sol";
+import { UniversalRouter } from "@uniswap/universal-router/src/UniversalRouter.sol";
+import { Commands } from "@uniswap/universal-router/src/libraries/Commands.sol";
 import { IPoolManager } from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
 import { IV4Router } from "@uniswap/v4-periphery/src/interfaces/IV4Router.sol";
 import { Actions } from "@uniswap/v4-periphery/src/libraries/Actions.sol";
@@ -60,15 +64,15 @@ contract Example {
 }
 ```
 
-In this step, we’re importing the necessary contracts and interfaces:
+In this step, we're importing the necessary contracts and interfaces:
 
 - `UniversalRouter`: This will be our main interface for executing swaps. It provides a flexible way to interact with various Uniswap versions and other protocols.
 - `Commands`: This library contains the command definitions used by the UniversalRouter.
 - `IPoolManager`: This interface is needed for interacting with Uniswap v4 pools. While we don't directly use it in our simple example, it's often necessary for more complex interactions with v4 pools.
 - `IPermit2`: This interface allows us to interact with the Permit2 contract, which provides enhanced token approval functionality.
-- `StateLibrary`: This provides optimized functions for interacting with the PoolManager’s state. By using `StateLibrary`, we can more efficiently read and manipulate pool states, which is crucial for many operations in Uniswap v4.
+- `StateLibrary`: This provides optimized functions for interacting with the PoolManager's state. By using `StateLibrary`, we can more efficiently read and manipulate pool states, which is crucial for many operations in Uniswap v4.
 
-## Step 2: Implement Token Approval with Permit2
+## Step 2: Implement Token Approval with Permit2
 
 `UniversalRouter` integrates with [Permit2](https://github.com/Uniswap/permit2), to enable users to have more safety, flexibility, and control over their ERC20 token approvals.
 
@@ -142,6 +146,7 @@ Next, we encode the swap command:
 
 ```solidity
 bytes memory commands = abi.encodePacked(uint8(Commands.V4_SWAP));
+bytes[] memory inputs = new bytes[](1);
 ```
 
 Here, we're using `V4_SWAP`, which tells the Universal Router that we want to perform a swap on a Uniswap v4 pool. The specific type of swap (exact input or exact output) will be determined by the V4Router actions we encode later. As we saw earlier, we encode this as a single byte, which is how the Universal Router expects to receive commands.
@@ -209,11 +214,13 @@ The sequence of these parameters must match the sequence of actions we defined e
 Now we can execute the swap using the Universal Router:
 
 ```solidity
+bytes[] memory inputs = new bytes[](1);
+
 // Combine actions and params into inputs
 inputs[0] = abi.encode(actions, params);
 
 // Execute the swap
-router.execute(commands, inputs, deadline);
+router.execute(commands, inputs, block.timestamp);
 ```
 
 This prepares and executes the swap based on our encoded commands, actions, and parameters.
@@ -278,7 +285,7 @@ function swapExactInputSingle(
     inputs[0] = abi.encode(actions, params);
 
 // Execute the swap
-    router.execute(commands, inputs, deadline);
+    router.execute(commands, inputs, block.timestamp);
 
 // Verify and return the output amount
     amountOut = IERC20(key.currency1).balanceOf(address(this));
