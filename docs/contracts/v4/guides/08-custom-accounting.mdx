@@ -135,12 +135,12 @@ Here, we're setting up our hook with a constant fee of 0.01% and enabling the `b
 Now, let's implement our `beforeSwap` function:
 
 ```solidity
-function beforeSwap(
+function _beforeSwap(
     address,
     PoolKey calldata key,
     IPoolManager.SwapParams calldata params,
     bytes calldata
-) external override returns (bytes4, BeforeSwapDelta, uint24) {
+) internal override returns (bytes4, BeforeSwapDelta, uint24) {
     // Implementation details will be explained in the following sub-steps
 }
 
