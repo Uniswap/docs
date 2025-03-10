@@ -184,7 +184,7 @@ We get access to the contract's ABI through the [@uniswap/v3-periphery](https://
 import Quoter from '@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json'
 ```
 
-We get the QUOTE_CONTRACT_ADDRESS for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+We get the QUOTE_CONTRACT_ADDRESS for our chain from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
 
 We can now use our Quoter contract to obtain the quote.
 

@@ -176,7 +176,7 @@ const position = Position.fromAmount0({
 ```
 
 Before we mint our position, we need to give the `NonfungiblePositionManager` Contract an approval to transfer our tokens.
-We can find the Contract address on the official [Uniswap Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+We can find the Contract address on the official [Uniswap GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
 For local development, the contract address is the same as the network we are forking from.
 So if we are using a local fork of mainnet like described in the [Local development guide](../02-local-development.md), the contract address would be the same as on mainnet.
 
@@ -427,4 +427,4 @@ Executing a range order has certain limitations that may have become obvious dur
 This guide showcases everything you need to implement Range Orders on your own, but only demonstrates creating a Take Profit order in `token0` to `token1` direction.
 Consider implementing Buy Limit orders as described in the [Range Orders concept page](../../../../concepts/protocol/range-orders.md#buy-limit-orders).
 
-This is currently the last guide in the `v3-sdk` series. Consider joining the [Uniswap Discord](https://discord.com/invite/uniswap) or checkout the official [Github](https://github.com/Uniswap) to learn more about the Uniswap Protocol.
+This is currently the last guide in the `v3-sdk` series. Consider joining the [Uniswap Discord](https://discord.com/invite/uniswap) or checkout the official [GitHub](https://github.com/Uniswap) to learn more about the Uniswap Protocol.

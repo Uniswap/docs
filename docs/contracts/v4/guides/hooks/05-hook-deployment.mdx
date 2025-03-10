@@ -43,7 +43,7 @@ Because of encoded addresses, hook developers must _mine_ an address to a their 
 For local testing, `deployCodeTo` cheatcode in Foundry can be used to deploy hook contract to any address. 
 
 But when deploying hooks to an actual network, address mining is required to find the proper deployment address
-There is a helper library [`HookMiner.sol`](https://github.com/uniswapfoundation/v4-template/blob/main/test/utils/HookMiner.sol) that can be used to mine for correct addresses.
+There is a helper library [`HookMiner.sol`](https://github.com/Uniswap/v4-periphery/blob/main/src/utils/HookMiner.sol) that can be used to mine for correct addresses.
 
 Let's see it in action for a Foundry script. We will make use of the example - Points Hook from [Building Your First Hook](./01-your-first-hook.md).
 
@@ -56,10 +56,10 @@ pragma solidity ^0.8.19;
 import "forge-std/Script.sol";
 import {Hooks} from "v4-core/src/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {HookMiner} from "v4-periphery/src/utils/HookMiner.sol";
 
 import {Constants} from "./base/Constants.sol";
 import {PointsHook} from "../src/PointsHook.sol";
-import {HookMiner} from "../test/utils/HookMiner.sol";
 
 /// @notice Mines the address and deploys the PointsHook.sol Hook contract
 contract PointsHookScript is Script, Constants {
@@ -101,10 +101,10 @@ pragma solidity ^0.8.19;
 import "forge-std/Script.sol";
 import {Hooks} from "v4-core/src/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {HookMiner} from "v4-periphery/src/utils/HookMiner.sol";
 
 import {Constants} from "./base/Constants.sol";
 import {PointsHook} from "../src/PointsHook.sol";
-import {HookMiner} from "../test/utils/HookMiner.sol";
 
 /// @notice Mines the address and deploys the PointsHook.sol Hook contract
 contract PointsHookScript is Script, Constants {

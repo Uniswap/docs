@@ -83,8 +83,8 @@ This pattern is used throughout v4's operations:
 When building hooks, ERC-6909 operations help manage token movements within your hook's logic:
 
 ```solidity
-function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata params)
-    external
+function _beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata params)
+    internal
     returns (bytes4, BeforeSwapDelta, uint24)
 {
     poolManager.mint(key.currency0, address(this), amount);
@@ -113,10 +113,10 @@ First, let's set up our contract with the necessary imports and create a struct 
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.24;
 
-import { IPoolManager } from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
-import { PoolKey } from "@uniswap/v4-core/contracts/types/PoolKey.sol";
-import { BalanceDelta } from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
-import { Currency } from "@uniswap/v4-core/contracts/types/Currency.sol";
+import { IPoolManager } from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
+import { PoolKey } from "@uniswap/v4-core/src/types/PoolKey.sol";
+import { BalanceDelta } from "@uniswap/v4-core/src/types/BalanceDelta.sol";
+import { Currency } from "@uniswap/v4-core/src/types/Currency.sol";
 
 contract DonationRouter {
     IPoolManager public immutable poolManager;
