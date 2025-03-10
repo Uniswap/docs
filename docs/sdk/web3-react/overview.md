@@ -38,7 +38,7 @@ yarn add @web3-react/core
 
 ## Developer Links
 
-- [**`web3-react` on Github**](https://github.com/Uniswap/web3-react)
+- [**`web3-react` on GitHub**](https://github.com/Uniswap/web3-react)
 
 [![npm version](https://img.shields.io/npm/v/@web3-react/core/latest.svg)](https://www.npmjs.com/package/@web3-react/core/v/latest)
 [![npm bundle size (scoped version)](https://img.shields.io/bundlephobia/minzip/@web3-react/core/latest.svg)](https://bundlephobia.com/result?p=@web3-react/core@latest)

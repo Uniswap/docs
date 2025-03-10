@@ -1,10 +1,12 @@
 # StateView
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/lens/StateView.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/lens/StateView.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[ImmutableState](contracts/v4/reference/periphery/base/ImmutableState.md)
+[ImmutableState](contracts/v4/reference/periphery/base/ImmutableState.md), [IStateView](contracts/v4/reference/periphery/interfaces/IStateView.md)
 
 A view only contract wrapping the StateLibrary.sol library for reading storage in v4-core.
+
+*The contract is intended for offchain clients. Use StateLibrary.sol directly if reading state onchain.*
 
 
 ## Functions
@@ -238,7 +240,7 @@ function getPositionInfo(PoolId poolId, address owner, int24 tickLower, int24 ti
 
 ### getPositionInfo
 
-Retrieves the position information of a pool at a specific position ID.
+Retrieves the position info without needing to calculate the `positionId`.
 
 *Corresponds to pools[poolId].positions[positionId]*
 
@@ -254,7 +256,7 @@ function getPositionInfo(PoolId poolId, bytes32 positionId)
 |Name|Type|Description|
 |----|----|-----------|
 |`poolId`|`PoolId`|The ID of the pool.|
-|`positionId`|`bytes32`|The ID of the position.|
+|`positionId`|`bytes32`||
 
 **Returns**
 

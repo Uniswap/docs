@@ -113,7 +113,7 @@ module.exports = {
           ],
         },
         {
-          title: 'Github',
+          title: 'GitHub',
           items: [
             {
               label: 'uniswap-v4-core',

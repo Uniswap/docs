@@ -1,8 +1,8 @@
 # PositionManager
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/PositionManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/PositionManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[IPositionManager](contracts/v4/reference/periphery/interfaces/IPositionManager.md), [ERC721Permit_v4](contracts/v4/reference/periphery/base/ERC721Permit_v4.md), [PoolInitializer](contracts/v4/reference/periphery/base/PoolInitializer.md), [Multicall_v4](contracts/v4/reference/periphery/base/Multicall_v4.md), [DeltaResolver](contracts/v4/reference/periphery/base/DeltaResolver.md), [ReentrancyLock](contracts/v4/reference/periphery/base/ReentrancyLock.md), [BaseActionsRouter](contracts/v4/reference/periphery/base/BaseActionsRouter.md), [Notifier](contracts/v4/reference/periphery/base/Notifier.md), [Permit2Forwarder](contracts/v4/reference/periphery/base/Permit2Forwarder.md), [NativeWrapper](contracts/v4/reference/periphery/base/NativeWrapper.md)
+[IPositionManager](contracts/v4/reference/periphery/interfaces/IPositionManager.md), [ERC721Permit_v4](contracts/v4/reference/periphery/base/ERC721Permit_v4.md), [PoolInitializer_v4](contracts/v4/reference/periphery/base/PoolInitializer_v4.md), [Multicall_v4](contracts/v4/reference/periphery/base/Multicall_v4.md), [DeltaResolver](contracts/v4/reference/periphery/base/DeltaResolver.md), [ReentrancyLock](contracts/v4/reference/periphery/base/ReentrancyLock.md), [BaseActionsRouter](contracts/v4/reference/periphery/base/BaseActionsRouter.md), [Notifier](contracts/v4/reference/periphery/base/Notifier.md), [Permit2Forwarder](contracts/v4/reference/periphery/base/Permit2Forwarder.md), [NativeWrapper](contracts/v4/reference/periphery/base/NativeWrapper.md)
 
 The PositionManager (PosM) contract is responsible for creating liquidity positions on v4.
 PosM mints and manages ERC721 tokens associated with each position.
@@ -182,6 +182,17 @@ function _increase(uint256 tokenId, uint256 liquidity, uint128 amount0Max, uint1
     onlyIfApproved(msgSender(), tokenId);
 ```
 
+### _increaseFromDeltas
+
+*The liquidity delta is derived from open deltas in the pool manager.*
+
+
+```solidity
+function _increaseFromDeltas(uint256 tokenId, uint128 amount0Max, uint128 amount1Max, bytes calldata hookData)
+    internal
+    onlyIfApproved(msgSender(), tokenId);
+```
+
 ### _decrease
 
 *Calling decrease with 0 liquidity will credit the caller with any underlying fees of the position*
@@ -202,6 +213,21 @@ function _mint(
     int24 tickLower,
     int24 tickUpper,
     uint256 liquidity,
+    uint128 amount0Max,
+    uint128 amount1Max,
+    address owner,
+    bytes calldata hookData
+) internal;
+```
+
+### _mintFromDeltas
+
+
+```solidity
+function _mintFromDeltas(
+    PoolKey calldata poolKey,
+    int24 tickLower,
+    int24 tickUpper,
     uint128 amount0Max,
     uint128 amount1Max,
     address owner,
@@ -244,7 +270,8 @@ function _close(Currency currency) internal;
 ### _clearOrTake
 
 *integrators may elect to forfeit positive deltas with clear
-if the forfeit amount exceeds the user-specified max, the amount is taken instead*
+if the forfeit amount exceeds the user-specified max, the amount is taken instead
+if there is no credit, no call is made.*
 
 
 ```solidity
@@ -261,6 +288,8 @@ function _sweep(Currency currency, address to) internal;
 ```
 
 ### _modifyLiquidity
+
+*if there is a subscriber attached to the position, this function will notify the subscriber*
 
 
 ```solidity
@@ -311,6 +340,8 @@ function transferFrom(address from, address to, uint256 id) public virtual overr
 
 ### getPoolAndPositionInfo
 
+Returns the pool key and position info of a position
+
 
 ```solidity
 function getPoolAndPositionInfo(uint256 tokenId) public view returns (PoolKey memory poolKey, PositionInfo info);
@@ -326,10 +357,12 @@ function getPoolAndPositionInfo(uint256 tokenId) public view returns (PoolKey me
 |Name|Type|Description|
 |----|----|-----------|
 |`poolKey`|`PoolKey`|the pool key of the position|
-|`info`|`PositionInfo`|poolKey the pool key of the position|
+|`info`|`PositionInfo`|PositionInfo a uint256 packed value holding information about the position including the range (tickLower, tickUpper)|
 
 
 ### getPositionLiquidity
+
+Returns the liquidity of a position
 
 *this value can be processed as an amount0 and amount1 by using the LiquidityAmounts library*
 
