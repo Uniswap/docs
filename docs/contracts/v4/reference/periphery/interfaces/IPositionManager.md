@@ -1,8 +1,8 @@
 # IPositionManager
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/interfaces/IPositionManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/interfaces/IPositionManager.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[INotifier](contracts/v4/reference/periphery/interfaces/INotifier.md), [IImmutableState](contracts/v4/reference/periphery/interfaces/IImmutableState.md)
+[INotifier](contracts/v4/reference/periphery/interfaces/INotifier.md), [IImmutableState](contracts/v4/reference/periphery/interfaces/IImmutableState.md), [IERC721Permit_v4](contracts/v4/reference/periphery/interfaces/IERC721Permit_v4.md), [IEIP712_v4](contracts/v4/reference/periphery/interfaces/IEIP712_v4.md), [IMulticall_v4](contracts/v4/reference/periphery/interfaces/IMulticall_v4.md), [IPoolInitializer_v4](contracts/v4/reference/periphery/interfaces/IPoolInitializer_v4.md), [IUnorderedNonce](contracts/v4/reference/periphery/interfaces/IUnorderedNonce.md), [IPermit2Forwarder](contracts/v4/reference/periphery/interfaces/IPermit2Forwarder.md)
 
 Interface for the PositionManager contract
 
@@ -61,6 +61,8 @@ function nextTokenId() external view returns (uint256);
 
 ### getPositionLiquidity
 
+Returns the liquidity of a position
+
 *this value can be processed as an amount0 and amount1 by using the LiquidityAmounts library*
 
 
@@ -82,6 +84,8 @@ function getPositionLiquidity(uint256 tokenId) external view returns (uint128 li
 
 ### getPoolAndPositionInfo
 
+Returns the pool key and position info of a position
+
 
 ```solidity
 function getPoolAndPositionInfo(uint256 tokenId) external view returns (PoolKey memory, PositionInfo);
@@ -96,7 +100,28 @@ function getPoolAndPositionInfo(uint256 tokenId) external view returns (PoolKey 
 
 |Name|Type|Description|
 |----|----|-----------|
-|`<none>`|`PoolKey`|the pool key of the position|
+|`<none>`|`PoolKey`|poolKey the pool key of the position|
+|`<none>`|`PositionInfo`|PositionInfo a uint256 packed value holding information about the position including the range (tickLower, tickUpper)|
+
+
+### positionInfo
+
+Returns the position info of a position
+
+
+```solidity
+function positionInfo(uint256 tokenId) external view returns (PositionInfo);
+```
+**Parameters**
+
+|Name|Type|Description|
+|----|----|-----------|
+|`tokenId`|`uint256`|the ERC721 tokenId|
+
+**Returns**
+
+|Name|Type|Description|
+|----|----|-----------|
 |`<none>`|`PositionInfo`|a uint256 packed value holding information about the position including the range (tickLower, tickUpper)|
 
 

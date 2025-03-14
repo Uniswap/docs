@@ -67,7 +67,7 @@ _Note how negative values in v4 consistently represent tokens going to the PoolM
 A common pattern is checking current deltas before executing operations. The `TransientStateLibrary` helps you track these balances:
 
 ```solidity
-import {TransientStateLibrary} from "@uniswap/v4-core/contracts/libraries/TransientStateLibrary.sol";
+import {TransientStateLibrary} from "@uniswap/v4-core/src/libraries/TransientStateLibrary.sol";
 
 contract DeltaReader {
     using TransientStateLibrary for IPoolManager;
@@ -201,10 +201,10 @@ First, let’s set up a contract with the proper unlock callback implementation:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
-import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
-import {BalanceDelta} from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
-import {Currency} from "@uniswap/v4-core/contracts/types/Currency.sol";
+import {IPoolManager} from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
+import {BalanceDelta} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
+import {Currency} from "@uniswap/v4-core/src/types/Currency.sol";
 
 contract FlashAccountingExample {
     IPoolManager public immutable poolManager;

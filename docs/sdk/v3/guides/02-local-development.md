@@ -133,4 +133,4 @@ Using the above you are fully equipped to continue following the guides about ho
 going on Mainnet. You will also be able to reuse what you have learned when you develop your own protocols or dApps.
 
 You can also continue tapping into other developer tools that make smart contract development easier like [forge](https://github.com/foundry-rs/foundry/tree/master/forge) from foundry.
-To read more about foundry and their developer tooling, visit their [Github](https://github.com/foundry-rs/foundry) or the [foundry book](https://book.getfoundry.sh/).
+To read more about foundry and their developer tooling, visit their [GitHub](https://github.com/foundry-rs/foundry) or the [foundry book](https://book.getfoundry.sh/).

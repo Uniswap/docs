@@ -64,8 +64,8 @@ The funds' movements are as follows:
 contract AsyncSwapHook is BaseHook {
      // ...
 
-    function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata params, bytes calldata)
-        external
+    function _beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata params, bytes calldata)
+        internal
         override
         returns (bytes4, BeforeSwapDelta, uint24)
     {

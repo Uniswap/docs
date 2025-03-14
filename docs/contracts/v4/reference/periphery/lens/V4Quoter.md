@@ -1,8 +1,13 @@
-# Quoter
-[Git Source](https://github.com/uniswap/v4-periphery/blob/3f295d8435e4f776ea2daeb96ce1bc6d63f33fc7/src/lens/Quoter.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
+# V4Quoter
+[Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/lens/V4Quoter.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 **Inherits:**
-[IQuoter](contracts/v4/reference/periphery/interfaces/IQuoter.md), [BaseV4Quoter](contracts/v4/reference/periphery/base/BaseV4Quoter.md)
+[IV4Quoter](contracts/v4/reference/periphery/interfaces/IV4Quoter.md), [BaseV4Quoter](contracts/v4/reference/periphery/base/BaseV4Quoter.md)
+
+Supports quoting the delta amounts for exact input or exact output swaps.
+
+*These functions are not marked view because they rely on calling non-view functions and reverting
+to compute the result. They are also not gas efficient and should not be called on-chain.*
 
 
 ## Functions

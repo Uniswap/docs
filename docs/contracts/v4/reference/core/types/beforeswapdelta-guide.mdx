@@ -1,5 +1,5 @@
 ---
-title: BeforeSwapDelta
+title: BeforeSwapDelta Guide
 ---
 
 `BeforeSwapDelta` is a custom type used in Uniswap V4 hook contracts to represent balance changes during swap operations. It is specifically designed to handle the return value of the `beforeSwap` hook and to be compatible with the `afterSwap` hook.
@@ -168,12 +168,12 @@ This way, the actual amount swapped (99) reflects the fee taken by the hook, whi
 Here's how the `beforeSwap` hook might handle this:
 
 ```solidity
-function beforeSwap(
+function _beforeSwap(
     address,
     PoolKey calldata,
     IPoolManager.SwapParams calldata params,
     bytes calldata
-) external override returns (int256 amountIn, BeforeSwapDelta delta, uint24) {
+) internal override returns (int256 amountIn, BeforeSwapDelta delta, uint24) {
     int128 specifiedAmount = params.amountSpecified.toInt128();
     int128 fee = specifiedAmount / 100;  // 1% fee
     int128 adjustedAmount = specifiedAmount - fee;
@@ -320,12 +320,12 @@ When working with `BeforeSwapDelta`, consider the following best practices:
 Here's a simple example of how `BeforeSwapDelta` might be used in a `beforeSwap` hook:
 
 ```solidity
-function beforeSwap(
+function _beforeSwap(
     address,
     PoolKey calldata,
     IPoolManager.SwapParams calldata params,
     bytes calldata
-) external override returns (int256 amountIn, BeforeSwapDelta delta, uint24) {
+) internal override returns (int256 amountIn, BeforeSwapDelta delta, uint24) {
     // Convert the specified amount to int128
     int128 specifiedAmount = params.amountSpecified.toInt128();
     
@@ -357,12 +357,12 @@ This basic example doesn't modify the swap parameters or introduce any fees. It 
 For a more practical use case, here's an example that implements a simple fee mechanism:
 
 ```solidity
-function beforeSwap(
+function _beforeSwap(
     address,
     PoolKey calldata key,
     IPoolManager.SwapParams calldata params,
     bytes calldata
-) external override returns (int256 amountIn, BeforeSwapDelta delta, uint24) {
+) internal override returns (int256 amountIn, BeforeSwapDelta delta, uint24) {
     // Determine if this is a swap for token0 or token1
     bool zeroForOne = params.zeroForOne;
     

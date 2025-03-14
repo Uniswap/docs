@@ -21,7 +21,7 @@ The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap
 | [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                                                    | `0x10158D43e6cc414deE1Bd1eB0EfC6a5cBCfF244c`         |
 | [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                                                        | `0x091AD9e2e6e5eD44c1c66dB50e49A601F9f36cF6`         |
 | [Permit2](https://github.com/Uniswap/permit2)                                                                                                                | `0x000000000022D473030F116dDEE9F6B43aC78BA3`         |
-| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D`         |
+| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0x8ac7bee993bb44dab564ea4bc9ea67bf9eb5e743`         |
 
 
 These addresses are final and were deployed from these npm package versions:
@@ -33,7 +33,7 @@ These addresses are final and were deployed from these npm package versions:
 
 # Universal Router
 
-The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on Github](https://github.com/Uniswap/sdks/blob/main/sdks/universal-router-sdk/src/utils/constants.ts).
+The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/sdks/blob/main/sdks/universal-router-sdk/src/utils/constants.ts).
 
 # Uniswap Pool Deployments
 
