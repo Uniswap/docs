@@ -81,18 +81,6 @@ Key aspects of return deltas:
 
 In essence, return deltas allow for bespoke modification of an operation's result -- enabling features that were previously impossible in earlier versions of the protocol.
 
-### Interaction between protocol fee and custom accounting
-
-Some hooks that use custom accounting functionality to implement use cases such as custom curves can bypass the protocol-level fee that is built into v4
-
-This possibility was flagged during our development process, and we believe this design is in the best interest of the protocol. Our rationale is that the benefits to v4’s network effects outweigh the potential lost revenue, which is likely low anyway for reasons discussed below.
-
-- v4 has a network effect from having more AMMs using the singleton, since it makes multi-hop trades more gas-efficient. This effect is stronger for non-custom-accounting pools (since the singleton doesn’t have to track their balances at all) but still exists when a user’s trade is routed through both a regular pool and a custom accounting pool. This benefit can be seen as basically symmetrical - both the regular pool and the custom accounting pool benefit about an equal amount from being colocated with each other in this way. And these custom accounting pools only get this gas efficiency benefit when users are trading against both them and regular v4 pools (i.e. ones subject to fees) at the same time.
-- The fee revenue potential for pools that implement custom curves is low for several reasons:
-    - It is difficult to design a fee on custom accounting pools that isn’t circumventable. For example, an AMM could just be implemented as a totally separate contract, but store its reserves as balances on the singleton (as if it was a regular user). This would give them basically the same (small) gas efficiency benefits for multi-hop trades as building a custom accounting v4 pool, without subjecting them to the fee.
-    - If a pool is using custom accounting to implement a custom curve, it is not using Uniswap’s concentrated liquidity code in the first place. The only reason they’d be colocating their DEX in the singleton is to take advantage of the gas efficiency described above. Making their pool subject to a future protocol fee would discourage them from this colocation (meaning specifically that they would launch anyway with no v4 integration). In that case, not only would the protocol not generate any fees, it also would not benefit from the network effects described above.
-    - Much of the use case for custom-accounting hooks is not for DEXes, but for things like easily wrapping/unwrapping tokens like WETH, stETH, etc. These are basically convenience functions — again, there would be ways to do these external to the singleton, but putting them in the singleton is slightly more convenient for routing.
-
 # Implementing Hook Fees: A Step-by-Step Guide
 
 In this guide, we'll walk through the process of implementing a custom fee hook in Uniswap v4. We'll not only show you how to write the code but also explain what's happening under the hood at each step.
