@@ -24,7 +24,7 @@ Declare a variable `decoded` in memory and assign it to the [**decoded data**](h
         FlashCallbackData memory decoded = abi.decode(data, (FlashCallbackData));
 ```
 
-Each callback must be validated to verify that the call originated from a genuine V3 pool. Otherwise, the pool contract would be vulnerable to attack via an EOA manipulating the callback function.
+Each callback must be validated to verify that the call originated from a genuine V3 pool. Otherwise, the PairFlash contract would be vulnerable to attack via an EOA manipulating the callback function.
 
 ```solidity
         CallbackValidation.verifyCallback(factory, decoded.poolKey);
