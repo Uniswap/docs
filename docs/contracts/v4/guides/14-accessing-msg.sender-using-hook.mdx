@@ -1,0 +1,144 @@
+---
+title: Access msg.sender using hook
+---
+
+## Introduction
+In Uniswap v4, when a hook is triggered (like beforeSwap()), msg.sender is always the PoolManager contract, not the EOA or smart-account that initiated the swap. This behavior occurs because the PoolManager acts as an intermediary, executing the swap logic on behalf of the user.
+
+## Why does ```msg.sender``` return PoolManager address
+Since the PoolManager executes the swap, the sender parameter passed to beforeSwap() represents the caller of PoolManager.swap().
+
+This is typically a router contract, such as a custom swap router or the Universal Router. The challenge is distinguishing between different routers and securely obtaining the original msg.sender. 
+
+This guide explains how to securely retrieve the EOA or smart account in a hook.
+
+## Hook Overview
+To identify the true sender of a swap:
+
+* Maintain a trusted list of swap routers in the hook.
+* When a swap is initiated, check if the sender is a trusted router.
+* If trusted, call msgSender() on the router to retrieve the original EOA.
+
+# Implementing a Trusted Router Mechanism
+
+## Implement the Hook
+Let us create a Hook of type BaseHook and just set beforeSwap as true as that is what we are going to use here.
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import {BaseHook} from "v4-periphery/src/utils/BaseHook.sol";
+
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {PoolId, PoolIdLibrary} from "v4-core/src/types/PoolId.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "v4-core/src/types/BeforeSwapDelta.sol";
+import "forge-std/console.sol";
+
+contract AccessSenderHook is BaseHook {
+
+    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {
+        
+    }
+
+    function getHookPermissions()
+        public
+        pure
+        override
+        returns (Hooks.Permissions memory)
+    {
+        return
+            Hooks.Permissions({
+                beforeInitialize: false,
+                afterInitialize: false,
+                beforeAddLiquidity: false,
+                afterAddLiquidity: false,
+                beforeRemoveLiquidity: false,
+                afterRemoveLiquidity: false,
+                beforeSwap: true,
+                afterSwap: false,
+                beforeDonate: false,
+                afterDonate: false,
+                beforeSwapReturnDelta: false,
+                afterSwapReturnDelta: false,
+                afterAddLiquidityReturnDelta: false,
+                afterRemoveLiquidityReturnDelta: false
+            });
+    }
+```
+
+The above code does the following:
+
+* import the relevant dependencies
+* initialize the constructor by passing in the instance of PoolManager
+* override getHookPermissions from BaseHook.sol to return a struct of permissions to signal which hook functions are to be implemented. It will also be used at deployment to validate the address correctly represents the expected permissions.
+
+## Define an Interface for Trusted Routers
+Each trusted router should implement a standard function that exposes the original ```msg.sender```
+
+```
+interface IMsgSender {
+    function msgSender() external view returns (address);
+}
+```
+This function allows hooks to query the router for the actual sender.
+
+## Store a List of Trusted Routers
+The hook should keep track of which router contracts can be trusted to return a valid ```msgSender()```
+
+This can be done with the help of add and remove functions implemented in the hook.
+
+```
+function addRouter(address _router) external {
+        verifiedRouters[_router] = true;
+        emit RouterAdded(_router);
+    }
+```
+
+This function allows hook to add the router to the list of trusted routers.
+
+```
+function removeRouter(address _router) external {
+        verifiedRouters[_router] = false;
+        emit RouterRemoved(_router);
+    }
+```
+
+This function allows hook to remove the router from the list of trusted routers if it's no longer needed.
+
+**<Ins>NOTE:</Ins>** Make sure you include an address mapping in your hook for the routers before adding the functions.
+```
+mapping(address => bool) private verifiedRouters;
+```
+
+
+## Implementing _beforeSwap
+
+Now that we have implemented a basic hook and have added necessary functions, let us implement the beforeSwap function:
+
+```
+function _beforeSwap(
+        address sender,
+        PoolKey calldata,
+        IPoolManager.SwapParams calldata,
+        bytes calldata
+    ) internal override returns (bytes4, BeforeSwapDelta, uint24) {
+
+        if (verifiedRouters[sender]) {
+            console.log("Swap initiated by account:", IMsgSender(sender).msgSender());
+        } else {
+            console.log("Swap initiated by:", sender);
+        }
+
+        return (BaseHook.beforeSwap.selector, BeforeSwapDelta.wrap(0), 0);
+    }
+```
+
+Notice how we are implementing _beforeSwap rather than beforeSwap like in the case of [building base hook example](https://docs.uniswap.org/contracts/v4/guides/hooks/your-first-hook)?
+
+It is because ```beforeSwap``` is marked as virtual in the IHooks interface and since we have written our custom logic, using _beforeSwap will help us to not mess with Uniswap's required validation checks in ```beforeSwap```
+
+**<ins>NOTE:</ins> While developing, make sure that you verify the contracts are valid before adding them to the list of trusted routers.**
