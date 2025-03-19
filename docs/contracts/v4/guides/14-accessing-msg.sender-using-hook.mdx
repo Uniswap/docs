@@ -22,7 +22,7 @@ To identify the true sender of a swap:
 # Implementing a Trusted Router Mechanism
 
 ## Implement the Hook
-Let us create a ook of type BaseHook and just set beforeSwap as true as that is what we are going to use here.
+Lets start with a simple hook that wants to access `msg.sender` in `beforeSwap()`
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -31,11 +31,23 @@ pragma solidity ^0.8.24;
 // Import statements for a hook
 
 contract AccessSenderHook is BaseHook {
-    ...
-    }
-```
+    // constructor, state, interface, etc
+    // ...
 
-Let us start with a basic beforeSwap hook.
+    function _beforeSwap(address sender, PoolKey calldata, IPoolManager.SwapParams calldata, bytes calldata)
+        internal
+        override
+        returns (bytes4, BeforeSwapDelta, uint24)
+    {
+        // read msg.sender
+        // ...
+
+        return (BaseHook.beforeSwap.selector, BeforeSwapDelta.wrap(0), 0);
+    }
+
+    ...
+}
+```
 
 > [Refer to Building your first hook](https://docs.uniswap.org/contracts/v4/guides/hooks/your-first-hook#setting-things-up)
 
@@ -62,8 +74,8 @@ mapping(address swapRouter => bool approved) public verifiedRouters;
 
 ```solidity
 function addRouter(address _router) external {
-        verifiedRouters[_router] = true;
-        console.log("Router added:", _router);
+    verifiedRouters[_router] = true;
+    console.log("Router added:", _router);
 }
 ```
 
@@ -71,38 +83,40 @@ This function allows hook to add the router to the list of trusted routers.
 
 ```solidity
 function removeRouter(address _router) external {
-        verifiedRouters[_router] = false;
-        console.log("Router removed:", _router);
+    verifiedRouters[_router] = false;
+    console.log("Router removed:", _router);
 }
 ```
 
-This function allows hook to remove the router from the list of trusted routers if it's no longer needed.
+This function allows the hook to remove the router from the list of trusted routers if it's no longer needed.
 
 ## Implementing `beforeSwap`
 
 Now that we have implemented a basic hook and have added necessary functions, let us implement the beforeSwap function:
 
 ```solidity
-function _beforeSwap(
-        address sender,
-        PoolKey calldata,
-        IPoolManager.SwapParams calldata,
-        bytes calldata
-    ) internal override returns (bytes4, BeforeSwapDelta, uint24) {
+function _beforeSwap(address sender, PoolKey calldata, IPoolManager.SwapParams calldata, bytes calldata)
+    internal
+    override
+    returns (bytes4, BeforeSwapDelta, uint24)
+{
+    if (verifiedRouters[sender]) {
+        address swapper = IMsgSender(sender).msgSender();
+        console.log("Swap initiated by account:", swapper);
+    }
 
-        if (verifiedRouters[sender]) {
-            address swapper = IMsgSender(sender).msgSender();
-            console.log("Swap initiated by account:", swapper);
-        }
+    return (BaseHook.beforeSwap.selector, BeforeSwapDelta.wrap(0), 0);
 }
 ```
 
 > **<ins>NOTE:</ins> While developing, make sure that you verify the contracts are valid before adding them to the list of trusted routers.**
-> Here some examples of trusted routers:
-> * https://github.com/Uniswap/universal-router/tree/main
-> * https://github.com/z0r0z/v4-router
 
-Here is the full working code sample:
+
+<ins>Here are some examples of trusted routers:</ins>
+ * https://github.com/Uniswap/universal-router/tree/main
+ * https://github.com/z0r0z/v4-router
+
+**Here is the full working code sample:**
 
 ```solidity=
 // SPDX-License-Identifier: MIT
@@ -126,6 +140,21 @@ contract AccessSenderHook is BaseHook {
     mapping(address swapRouter => bool approved) public verifiedRouters;
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {
+    }
+
+    function _beforeSwap(
+        address sender,
+        PoolKey calldata,
+        IPoolManager.SwapParams calldata,
+        bytes calldata
+    ) internal override returns (bytes4, BeforeSwapDelta, uint24) {
+
+        if (verifiedRouters[sender]) {
+            address swapper = IMsgSender(sender).msgSender();
+            console.log("Swap initiated by account:", swapper);
+        }
+
+        return (BaseHook.beforeSwap.selector, BeforeSwapDelta.wrap(0), 0);
     }
 
     function addRouter(address _router) external {
@@ -167,19 +196,5 @@ contract AccessSenderHook is BaseHook {
             });
     }
     
-    function _beforeSwap(
-        address sender,
-        PoolKey calldata,
-        IPoolManager.SwapParams calldata,
-        bytes calldata
-    ) internal override returns (bytes4, BeforeSwapDelta, uint24) {
-
-        if (verifiedRouters[sender]) {
-            address swapper = IMsgSender(sender).msgSender();
-            console.log("Swap initiated by account:", swapper);
-        }
-
-        return (BaseHook.beforeSwap.selector, BeforeSwapDelta.wrap(0), 0);
-    }
 }
 ```
