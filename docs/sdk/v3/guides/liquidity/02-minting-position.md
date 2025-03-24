@@ -60,7 +60,7 @@ async function getTokenTransferApproval(address: string, amount: BigNumber) {
     const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
 
     const tokenContract = new ethers.Contract(
-        token.address,
+        address,
         ERC20_ABI,
         provider
     )
