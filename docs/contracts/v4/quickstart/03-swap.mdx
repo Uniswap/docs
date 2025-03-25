@@ -146,7 +146,6 @@ Next, we encode the swap command:
 
 ```solidity
 bytes memory commands = abi.encodePacked(uint8(Commands.V4_SWAP));
-bytes[] memory inputs = new bytes[](1);
 ```
 
 Here, we're using `V4_SWAP`, which tells the Universal Router that we want to perform a swap on a Uniswap v4 pool. The specific type of swap (exact input or exact output) will be determined by the V4Router actions we encode later. As we saw earlier, we encode this as a single byte, which is how the Universal Router expects to receive commands.
