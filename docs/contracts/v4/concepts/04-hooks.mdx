@@ -47,6 +47,14 @@ The liquidity modification hooks are extremely granular for security purposes.
 - `afterDonate`: Called after a donation is made to a pool.
 - Donate hooks provide a way to customize the behavior of token donations to liquidity providers.
 
+### ReturnDelta Hooks
+- `beforeSwapReturnDelta`: Called before calculating the delta of a swap which is executed in a pool.
+- `afterSwapReturnDelta`: Called after calculating the delta of a swap which is executed in a pool.
+- `afterAddLiquidityReturnDelta`: Called before calculating the delta of a liquidity position after liquidity is added to a pool.
+- `afterRemoveLiquidityReturnDelta`: Called before calculating the delta of a liquidity position after liquidity is removed from a pool.
+- ReturnDelta hooks are a mechanism to adjust swap and liquidity amounts and transfer deltas from the hook to the swap router, enabling precise control over how the fee affects swaps and liquidity.
+
+
 ## Innovation and Potential
 
 The introduction of hooks in Uniswap v4 opens up a world of possibilities for developers to innovate and build new DeFi protocols. Some potential use cases include:
