@@ -4,7 +4,7 @@ title: Hook Deployment
 
 ## Hook Flags
 
-As mentioned in [Concept of Hooks](../../concepts/04-hooks.mdx), hook contracts indicate their implemented functions by __encoding its behavior in the address of the contract__. The `PoolManager` uses these permissions to determine which hook functions to call for a given pool.
+As mentioned in [Concept of Hooks](../../concepts/04-hooks.mdx), hook contracts indicate their implemented functions by __encoding its behavior in the address of the contract__. The `PoolManager` uses these permissions to determine which hook functions to call for a given pool. See `PoolManager` deployment addresses [here](https://docs.uniswap.org/contracts/v4/deployments).
 
 Each hook function e.g. `beforeSwap` - corresponds to a certain _flag_. For example, the `beforeSwap` function is correlated to the [`BEFORE_SWAP_FLAG`](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol#L37) which has a value of `1 << 7`.
 
