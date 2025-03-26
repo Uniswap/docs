@@ -76,7 +76,7 @@ uint160 flags = uint160(
 );
 ```
 
-Mine the address by finding a `salt` that produces a hook address with the desired `flags`, use the Foundry deterministic deployer when deploying via Foundry script:
+Mine the address by finding a `salt` that produces a hook address with the desired `flags`, use the Foundry deterministic deployer when deploying via Foundry script. For most chains, CREATE2_DEPLOYER contract address is [0x4e59b44847b379578588920ca78fbf26c0b4956c](https://book.getfoundry.sh/guides/deterministic-deployments-using-create2#getting-started).
 
 ```solidity
 bytes memory constructorArgs = abi.encode(POOLMANAGER);
