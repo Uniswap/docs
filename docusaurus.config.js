@@ -231,7 +231,7 @@ module.exports = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          // 1/9/23 V3 SDK Guide Redirects
+          // 1/9/23 v3 SDK Guide Redirects
           {
             to: '/sdk/v3/guides/background',
             from: '/sdk/v3/guides/quick-start',
@@ -262,7 +262,7 @@ module.exports = {
           },
           {
             to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: 'docs/v2/advanced-topics/understanding-fees/',
+            from: '/docs/v2/advanced-topics/understanding-fees/',
           },
           {
             to: '/contracts/v2/concepts/core-concepts/oracles',
@@ -294,7 +294,7 @@ module.exports = {
           },
           {
             to: '/sdk/v3/guides/swaps/trading',
-            from: 'sdk/guides/creating-a-trade',
+            from: '/sdk/guides/creating-a-trade',
           },
           {
             to: '/concepts/protocol/oracle',
@@ -317,12 +317,12 @@ module.exports = {
             from: '/protocol/guides/flash-swaps',
           },
           {
-            to: 'contracts/v4/guides/hooks/hook-deployment',
+            to: '/contracts/v4/guides/hooks/hook-deployment',
             from: '/contracts/v4/concepts/hook-deployment',
           },
           {
-            to: 'contracts/v4/guides/hooks/hook-deployment',
-            from: 'contracts/v4/first-hook/hook-deployment',
+            to: '/contracts/v4/guides/hooks/hook-deployment',
+            from: '/contracts/v4/first-hook/hook-deployment',
           },
           {
             to: '/contracts/v4/overview',
@@ -333,13 +333,21 @@ module.exports = {
             from: '/guides/flash-callback',
           },
           {
-            to: '',
-            from: '',
+            to: '/contracts/v2/concepts/advanced-topics/fees',
+            from: '/contracts/v2/concepts/advanced-',
+          },
+          {
+            to: '/sdk/v1/overview',
+            from: '/sdk/1.0.0/reference/format',
+          },
+          {
+            to: '/sdk/v1/overview',
+            from: '/contracts/v4/quickstart/hooks/NoOp',
           },
           
         ],
         createRedirects(existingPath) {
-          // V3 Redirects
+          // v3 Redirects
           if (existingPath.includes('/concepts/overview')) {
             return [existingPath.replace('/concepts/overview', '/protocol/introduction')]
           }
