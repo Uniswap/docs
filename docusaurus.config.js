@@ -252,6 +252,26 @@ module.exports = {
             to: '/sdk/v3/guides/liquidity/modifying-position',
             from: ['/sdk/v3/guides/liquidity/adding', '/sdk/v3/guides/liquidity/removing'],
           },
+          {
+            to: '/contracts/v2/concepts/advanced-topics/fees',
+            from: [
+              '/docs/v2/advanced-topics/understanding-',
+              '/docs/v2/advanced-topics/understanding-fees/',
+              '/docs/v2/advanced-topics/understanding'
+            ],
+          },
+          {
+            to: '/contracts/v2/concepts/core-concepts/oracles',
+            from: '/docs/v2/core-concepts/oracles',
+          },
+          {
+            to: '/sdk/v2/overview',
+            from: '/docs/v2/SDK/getting-started/',
+          },
+          {
+            to: 'https://blog.uniswap.org/uniswap-v3-dominance',
+            from: '/TheDominanceofUniswapv3Liquidity',
+          },
         ],
         createRedirects(existingPath) {
           // V3 Redirects
