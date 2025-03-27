@@ -254,11 +254,15 @@ module.exports = {
           },
           {
             to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: [
-              '/docs/v2/advanced-topics/understanding-',
-              '/docs/v2/advanced-topics/understanding-fees/',
-              '/docs/v2/advanced-topics/understanding'
-            ],
+            from: '/docs/v2/advanced-topics/fees/',
+          },
+          {
+            to: '/contracts/v2/concepts/advanced-topics/fees',
+            from: '/docs/v2/advanced-topics/understanding-',
+          },
+          {
+            to: '/contracts/v2/concepts/advanced-topics/fees',
+            from: 'docs/v2/advanced-topics/understanding-fees/',
           },
           {
             to: '/contracts/v2/concepts/core-concepts/oracles',
@@ -272,6 +276,67 @@ module.exports = {
             to: 'https://blog.uniswap.org/uniswap-v3-dominance',
             from: '/TheDominanceofUniswapv3Liquidity',
           },
+          {
+            to: '/concepts/glossary',
+            from: '/docs/v2/glossary/',
+          },
+          {
+            to: '/contracts/v1/guides/custom-linking',
+            from: '/docs/v1/frontend-integration/custom-linking/',
+          },
+          {
+            to: 'https://app.uniswap.org/whitepaper-v4.pdf',
+            from: '/whitepaper.eps',
+          },
+          {
+            to: 'https://app.uniswap.org/whitepaper-v4.pdf',
+            from: '/whitep',
+          },
+          {
+            to: '/sdk/v3/guides/swaps/trading',
+            from: 'sdk/guides/creating-a-trade',
+          },
+          {
+            to: '/concepts/protocol/oracle',
+            from: '/protocol/concepts/V3-overview/oracle?ref=hackernoon.com',
+          },
+          {
+            to: '/sdk/web3-react/overview',
+            from: '/sdk/web3-react/overview钱包集成https://web3auth.iohttps://walletconnect.comhttps://esemonday.notion.site/GISMA-Business-School-University-of-Applied-Sciences-17a97d40f91c4310ac113c3d3dd8b5f9DeFi',
+          },
+          {
+            to: '/protocol/concepts/advanced/integration-issues',
+            from: '/protocol/concepts/advanced/integration-issues',
+          },
+          {
+            to: '/contracts/v4/guides/hooks/your-first-hook',
+            from: '/contracts/v4/first-hook/building-your-own-hook',
+          },
+          {
+            to: '/contracts/v2/guides/smart-contract-integration/using-flash-swaps',
+            from: '/protocol/guides/flash-swaps',
+          },
+          {
+            to: 'contracts/v4/guides/hooks/hook-deployment',
+            from: '/contracts/v4/concepts/hook-deployment',
+          },
+          {
+            to: 'contracts/v4/guides/hooks/hook-deployment',
+            from: 'contracts/v4/first-hook/hook-deployment',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/contracts/v4/concepts/intro-to-v4',
+          },
+          {
+            to: '/contracts/v3/guides/flash-integrations/flash-callback',
+            from: '/guides/flash-callback',
+          },
+          {
+            to: '',
+            from: '',
+          },
+          
         ],
         createRedirects(existingPath) {
           // V3 Redirects
