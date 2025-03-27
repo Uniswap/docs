@@ -341,10 +341,34 @@ module.exports = {
             from: '/sdk/1.0.0/reference/format',
           },
           {
-            to: '/sdk/v1/overview',
+            to: '/contracts/v4/quickstart/hooks/async-swap',
             from: '/contracts/v4/quickstart/hooks/NoOp',
           },
-          
+          {
+            to: '/contracts/v2/overview',
+            from: '/protocol/V2',
+          },
+          {
+            to: '/contracts/v4/guides/custom-accounting#hook-fees-inv4',
+            from: '/contracts/v4/guides/hooks/Volatility-fee-hook',
+          },
+          {
+            to: '/sdk/v3/guides/swaps/routing',
+            from: '/sdk/guides/auto-router/quick-start',
+          },
+          {
+            to: '/api/subgraph/overview',
+            from: '/protocol/reference/v3/guides/querying-data',
+          }, 
+          {
+            to: '/sdk/web3-react/guides/connect-wallet',
+            from: '/docs/wrappers/integrating-with-wallets',
+          },
+          {
+            to: '/contracts/v4/quickstart/create-pool',
+            from: '/sdk/guides/creating-a-pool',
+          },
+
         ],
         createRedirects(existingPath) {
           // v3 Redirects
