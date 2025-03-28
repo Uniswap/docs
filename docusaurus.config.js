@@ -231,7 +231,7 @@ module.exports = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          // 1/9/23 v3 SDK Guide Redirects
+          // 1/9/23 V3 SDK Guide Redirects
           {
             to: '/sdk/v3/guides/background',
             from: '/sdk/v3/guides/quick-start',
@@ -252,126 +252,9 @@ module.exports = {
             to: '/sdk/v3/guides/liquidity/modifying-position',
             from: ['/sdk/v3/guides/liquidity/adding', '/sdk/v3/guides/liquidity/removing'],
           },
-          {
-            to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: '/docs/v2/advanced-topics/fees/',
-          },
-          {
-            to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: '/docs/v2/advanced-topics/understanding-',
-          },
-          {
-            to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: '/docs/v2/advanced-topics/understanding-fees/',
-          },
-          {
-            to: '/contracts/v2/concepts/core-concepts/oracles',
-            from: '/docs/v2/core-concepts/oracles',
-          },
-          {
-            to: '/sdk/v2/overview',
-            from: '/docs/v2/SDK/getting-started/',
-          },
-          {
-            to: 'https://blog.uniswap.org/uniswap-v3-dominance',
-            from: '/TheDominanceofUniswapv3Liquidity',
-          },
-          {
-            to: '/concepts/glossary',
-            from: '/docs/v2/glossary/',
-          },
-          {
-            to: '/contracts/v1/guides/custom-linking',
-            from: '/docs/v1/frontend-integration/custom-linking/',
-          },
-          {
-            to: 'https://app.uniswap.org/whitepaper-v4.pdf',
-            from: '/whitepaper.eps',
-          },
-          {
-            to: 'https://app.uniswap.org/whitepaper-v4.pdf',
-            from: '/whitep',
-          },
-          {
-            to: '/sdk/v3/guides/swaps/trading',
-            from: '/sdk/guides/creating-a-trade',
-          },
-          {
-            to: '/concepts/protocol/oracle',
-            from: '/protocol/concepts/V3-overview/oracle?ref=hackernoon.com',
-          },
-          {
-            to: '/sdk/web3-react/overview',
-            from: '/sdk/web3-react/overview钱包集成https://web3auth.iohttps://walletconnect.comhttps://esemonday.notion.site/GISMA-Business-School-University-of-Applied-Sciences-17a97d40f91c4310ac113c3d3dd8b5f9DeFi',
-          },
-          {
-            to: '/protocol/concepts/advanced/integration-issues',
-            from: '/protocol/concepts/advanced/integration-issues',
-          },
-          {
-            to: '/contracts/v4/guides/hooks/your-first-hook',
-            from: '/contracts/v4/first-hook/building-your-own-hook',
-          },
-          {
-            to: '/contracts/v2/guides/smart-contract-integration/using-flash-swaps',
-            from: '/protocol/guides/flash-swaps',
-          },
-          {
-            to: '/contracts/v4/guides/hooks/hook-deployment',
-            from: '/contracts/v4/concepts/hook-deployment',
-          },
-          {
-            to: '/contracts/v4/guides/hooks/hook-deployment',
-            from: '/contracts/v4/first-hook/hook-deployment',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/contracts/v4/concepts/intro-to-v4',
-          },
-          {
-            to: '/contracts/v3/guides/flash-integrations/flash-callback',
-            from: '/guides/flash-callback',
-          },
-          {
-            to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: '/contracts/v2/concepts/advanced-',
-          },
-          {
-            to: '/sdk/v1/overview',
-            from: '/sdk/1.0.0/reference/format',
-          },
-          {
-            to: '/contracts/v4/quickstart/hooks/async-swap',
-            from: '/contracts/v4/quickstart/hooks/NoOp',
-          },
-          {
-            to: '/contracts/v2/overview',
-            from: '/protocol/V2',
-          },
-          {
-            to: '/contracts/v4/guides/custom-accounting#hook-fees-inv4',
-            from: '/contracts/v4/guides/hooks/Volatility-fee-hook',
-          },
-          {
-            to: '/sdk/v3/guides/swaps/routing',
-            from: '/sdk/guides/auto-router/quick-start',
-          },
-          {
-            to: '/api/subgraph/overview',
-            from: '/protocol/reference/v3/guides/querying-data',
-          }, 
-          {
-            to: '/sdk/web3-react/guides/connect-wallet',
-            from: '/docs/wrappers/integrating-with-wallets',
-          },
-          {
-            to: '/contracts/v4/quickstart/create-pool',
-            from: '/sdk/guides/creating-a-pool',
-          },
-
         ],
         createRedirects(existingPath) {
-          // v3 Redirects
+          // V3 Redirects
           if (existingPath.includes('/concepts/overview')) {
             return [existingPath.replace('/concepts/overview', '/protocol/introduction')]
           }
