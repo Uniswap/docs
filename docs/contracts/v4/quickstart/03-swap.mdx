@@ -39,8 +39,8 @@ First, we need to set up our project and import the necessary dependencies. We'l
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-import { UniversalRouter } from "@uniswap/universal-router/src/UniversalRouter.sol";
-import { Commands } from "@uniswap/universal-router/src/libraries/Commands.sol";
+import { UniversalRouter } from "@uniswap/universal-router/contracts/UniversalRouter.sol";
+import { Commands } from "@uniswap/universal-router/contracts/libraries/Commands.sol";
 import { IPoolManager } from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
 import { IV4Router } from "@uniswap/v4-periphery/src/interfaces/IV4Router.sol";
 import { Actions } from "@uniswap/v4-periphery/src/libraries/Actions.sol";
@@ -219,7 +219,8 @@ bytes[] memory inputs = new bytes[](1);
 inputs[0] = abi.encode(actions, params);
 
 // Execute the swap
-router.execute(commands, inputs, block.timestamp);
+uint256 deadline = block.timestamp + 20;
+router.execute(commands, inputs, deadline);
 ```
 
 This prepares and executes the swap based on our encoded commands, actions, and parameters.
@@ -254,18 +255,18 @@ function swapExactInputSingle(
     uint128 amountIn,
     uint128 minAmountOut
 ) external returns (uint256 amountOut) {
-// Encode the Universal Router command
+    // Encode the Universal Router command
     bytes memory commands = abi.encodePacked(uint8(Commands.V4_SWAP));
     bytes[] memory inputs = new bytes[](1);
 
-// Encode V4Router actions
+    // Encode V4Router actions
     bytes memory actions = abi.encodePacked(
         uint8(Actions.SWAP_EXACT_IN_SINGLE),
         uint8(Actions.SETTLE_ALL),
         uint8(Actions.TAKE_ALL)
     );
 
-// Prepare parameters for each action
+    // Prepare parameters for each action
     bytes[] memory params = new bytes[](3);
     params[0] = abi.encode(
         IV4Router.ExactInputSingleParams({
@@ -280,13 +281,14 @@ function swapExactInputSingle(
     params[1] = abi.encode(key.currency0, amountIn);
     params[2] = abi.encode(key.currency1, minAmountOut);
 
-// Combine actions and params into inputs
+    // Combine actions and params into inputs
     inputs[0] = abi.encode(actions, params);
 
-// Execute the swap
-    router.execute(commands, inputs, block.timestamp);
+    // Execute the swap
+    uint256 deadline = block.timestamp + 20;
+    router.execute(commands, inputs, deadline);
 
-// Verify and return the output amount
+    // Verify and return the output amount
     amountOut = IERC20(key.currency1).balanceOf(address(this));
     require(amountOut >= minAmountOut, "Insufficient output amount");
     return amountOut;
