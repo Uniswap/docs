@@ -187,7 +187,6 @@ params[0] = abi.encode(
         zeroForOne: true,            // true if we're swapping token0 for token1
         amountIn: amountIn,          // amount of tokens we're swapping
         amountOutMinimum: minAmountOut, // minimum amount we expect to receive
-        sqrtPriceLimitX96: uint160(0),  // no price limit set
         hookData: bytes("")             // no hook data needed
     })
 );
@@ -274,7 +273,6 @@ function swapExactInputSingle(
             zeroForOne: true,
             amountIn: amountIn,
             amountOutMinimum: minAmountOut,
-            sqrtPriceLimitX96: uint160(0),
             hookData: bytes("")
         })
     );
