@@ -357,7 +357,7 @@ function getPoolAndPositionInfo(uint256 tokenId) public view returns (PoolKey me
 |Name|Type|Description|
 |----|----|-----------|
 |`poolKey`|`PoolKey`|the pool key of the position|
-|`info`|`PositionInfo`|PositionInfo a uint256 packed value holding information about the position including the range (tickLower, tickUpper)|
+|`info`|`PositionInfo`|a uint256 packed value holding information about the position including the range (tickLower, tickUpper)|
 
 
 ### getPositionLiquidity
