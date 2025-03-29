@@ -91,6 +91,7 @@ Web3 development is not limited to JS. Web3 libraries for various languages incl
 * [KEthereum](https://github.com/komputing/KEthereum) - Kotlin SDK for Android development.
 * [ethers-rs](https://github.com/gakonst/ethers-rs) - Rust SDK.
 * [ethclient](https://github.com/ethereum/go-ethereum/tree/master/ethclient) - Go SDK, part of geth, the reference Ethereum node implementation.
+* [web3.py](https://github.com/ethereum/web3.py) - Python SDK.
 
 At the moment, Uniswap only offers Typescript sdks.
 
