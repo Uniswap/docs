@@ -231,7 +231,7 @@ module.exports = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          // 1/9/23 V3 SDK Guide Redirects
+          // 1/9/23 v3 SDK Guide Redirects
           {
             to: '/sdk/v3/guides/background',
             from: '/sdk/v3/guides/quick-start',
@@ -242,7 +242,7 @@ module.exports = {
           },
           {
             to: '/sdk/v3/guides/swaps/trading',
-            from: '/sdk/v3/guides/creating-a-trade',
+            from: ['/sdk/v3/guides/creating-a-trade', 'sdk/guides/creating-a-trade'],
           },
           {
             to: '/sdk/v3/guides/swaps/routing',
@@ -252,9 +252,33 @@ module.exports = {
             to: '/sdk/v3/guides/liquidity/modifying-position',
             from: ['/sdk/v3/guides/liquidity/adding', '/sdk/v3/guides/liquidity/removing'],
           },
+          // Test redirects
+          {
+            to: '/concepts/protocol/oracle',
+            from: [
+              '/protocol/concepts/V3-overview/oracle',
+              '/protocol/concepts/V3-overview/oracle?ref=hackernoon.com'
+            ],
+          },
+          {
+            to: '/concepts/protocol/integration-issues',
+            from: '/protocol/concepts/advanced/integration-issues',
+          },
+          {
+            to: '/contracts/v4/guides/hooks/your-first-hook',
+            from: '/contracts/v4/first-hook/building-your-own-hook',
+          },
+          {
+            to: '/contracts/v2/guides/smart-contract-integration/using-flash-swaps',
+            from: '/protocol/guides/flash-swaps',
+          },
+          {
+            to: '/contracts/v4/guides/hooks/hook-deployment',
+            from: '/contracts/v4/concepts/hook-deployment',
+          },
         ],
         createRedirects(existingPath) {
-          // V3 Redirects
+          // v3 Redirects
           if (existingPath.includes('/concepts/overview')) {
             return [existingPath.replace('/concepts/overview', '/protocol/introduction')]
           }
