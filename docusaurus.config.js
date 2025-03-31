@@ -242,7 +242,7 @@ module.exports = {
           },
           {
             to: '/sdk/v3/guides/swaps/trading',
-            from: ['/sdk/v3/guides/creating-a-trade', 'sdk/guides/creating-a-trade'],
+            from: ['/sdk/v3/guides/creating-a-trade', '/sdk/guides/creating-a-trade'],
           },
           {
             to: '/sdk/v3/guides/swaps/routing',
