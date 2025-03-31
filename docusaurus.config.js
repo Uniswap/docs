@@ -257,7 +257,6 @@ module.exports = {
             to: '/concepts/protocol/oracle',
             from: [
               '/protocol/concepts/V3-overview/oracle',
-              '/protocol/concepts/V3-overview/oracle?ref=hackernoon.com'
             ],
           },
           {
