@@ -327,6 +327,98 @@ module.exports = {
             to: '/contracts/v4/quickstart/create-pool',
             from: '/sdk/guides/creating-a-pool',
           },
+          {
+            to: '/sdk/v3/reference/interfaces/MintSpecificOptions',
+            from: '/sdk/reference/interfaces/MintSpecificOptions',
+          },
+          {
+            to: '/sdk/v3/reference/interfaces/IncreaseSpecificOptions',
+            from: '/sdk/reference/interfaces/IncreaseSpecificOptions',
+          },
+          {
+            to: '/sdk/v3/reference/interfaces/RemoveLiquidityOptions',
+            from: '/sdk/reference/interfaces/RemoveLiquidityOptions',
+          },
+          {
+            to: '/concepts/protocol/swaps',
+            from: '/protocol/concepts/V3-overview/swaps',
+          },
+          {
+            to: '/contracts/v2/concepts/core-concepts/pools',
+            from: '/protocol/V2/concepts/core-concepts/pools',
+          },
+          {
+            to: '/sdk/v3/reference/interfaces/CommonAddLiquidityOptions',
+            from: '/sdk/reference/interfaces/CommonAddLiquidityOptions',
+          },
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/concepts/introduction/liquidity-user-guide',
+          },
+          {
+            to: '/contracts/v2/concepts/protocol-overview/how-uniswap-works',
+            from: '/protocol/V2/concepts/core-',
+          },
+          {
+            to: '/concepts/protocol/fees',
+            from: '/protocol/concepts/V3-overview/fees',
+          },
+          {
+            to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
+            from: '/protocol/V2/reference/smart-contracts',
+          },
+          {
+            to: '/sdk/v3/guides/liquidity/swap-and-add',
+            from: '/protocol/V3/reference/smart-order-router',
+          },
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/protocol/concepts/V3-overview/concentrated-liquidity',
+          },
+          {
+            to: '/concepts/protocol/range-orders',
+            from: '/protocol/concepts/V3-overview/range-orders',
+          },
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/concepts/introduction/liquidity-user-guide',
+          },
+          {
+            to: '/contracts/v2/concepts/protocol-overview/how-uniswap-works',
+            from: '/protocol/V2/concepts/core-',
+          },
+          {
+            to: '/concepts/protocol/fees',
+            from: '/protocol/concepts/V3-overview/fees',
+          },
+          {
+            to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
+            from: '/contracts/v2/reference/smart-contracts',
+          },
+          {
+            to: '/sdk/v3/guides/liquidity/swap-and-add',
+            from: '/protocol/V3/reference/smart-order-router',
+          },
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/protocol/concepts/V3-overview/concentrated-liquidity',
+          },
+          {
+            to: '/concepts/protocol/range-orders',
+            from: '/protocol/concepts/V3-overview/range-orders',
+          },
+          {
+            to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
+            from: '/protocol/V2/reference/smart-contracts',
+          },
+          {
+            to: '/contracts/v4/concepts/PoolManager',
+            from: '/contracts/v4/concepts/pool-manager-and-pool-initialization',
+          },
+          {
+            to: '/contracts/v2/overview',
+            from: '/contracts/v2/overview.md',
+          },
         ],
         createRedirects(existingPath) {
           // v3 Redirects
