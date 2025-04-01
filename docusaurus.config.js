@@ -252,7 +252,6 @@ module.exports = {
             to: '/sdk/v3/guides/liquidity/modifying-position',
             from: ['/sdk/v3/guides/liquidity/adding', '/sdk/v3/guides/liquidity/removing'],
           },
-          // Test redirects
           {
             to: '/concepts/protocol/oracle',
             from: [
@@ -274,6 +273,59 @@ module.exports = {
           {
             to: '/contracts/v4/guides/hooks/hook-deployment',
             from: '/contracts/v4/concepts/hook-deployment',
+          },
+          // New redirects
+          {
+            to: '/contracts/v4/guides/hooks/hook-deployment',
+            from: '/contracts/v4/first-hook/hook-deployment',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/contracts/v4/concepts/intro-to-v4',
+          },
+          {
+            to: '/contracts/v3/guides/flash-integrations/flash-callback',
+            from: '/guides/flash-callback',
+          },
+          {
+            to: '/contracts/v2/concepts/advanced-topics/fees',
+            from: '/contracts/v2/concepts/advanced-',
+          },
+          {
+            to: '/sdk/v1/overview',
+            from: '/sdk/1.0.0/reference/format',
+          },
+          {
+            to: '/contracts/v4/quickstart/hooks/async-swap',
+            from: '/contracts/v4/quickstart/hooks/NoOp',
+          },
+          {
+            to: '/concepts/glossary',
+            from: '/contracts/V2/concepts/protocol-overview/glossary',
+          },
+          {
+            to: '/contracts/v2/overview',
+            from: '/protocol/V2',
+          },
+          {
+            to: '/contracts/v4/guides/custom-accounting#hook-fees-inv4',
+            from: '/contracts/v4/guides/hooks/Volatility-fee-hook',
+          },
+          {
+            to: '/sdk/v3/guides/swaps/routing',
+            from: '/sdk/guides/auto-router/quick-start',
+          },
+          {
+            to: '/sdk/web3-react/guides/connect-wallet',
+            from: '/docs/wrappers/integrating-with-wallets',
+          },
+          {
+            to: '/api/subgraph/overview',
+            from: '/protocol/reference/v3/guides/querying-data',
+          },
+          {
+            to: '/contracts/v4/quickstart/create-pool',
+            from: '/sdk/guides/creating-a-pool',
           },
         ],
         createRedirects(existingPath) {
