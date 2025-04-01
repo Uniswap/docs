@@ -308,7 +308,7 @@ module.exports = {
             from: '/protocol/V2',
           },
           {
-            to: '/contracts/v4/guides/custom-accounting#hook-fees-inv4',
+            to: '/contracts/v4/guides/custom-accounting',
             from: '/contracts/v4/guides/hooks/Volatility-fee-hook',
           },
           {
