@@ -380,10 +380,6 @@ module.exports = {
             from: '/protocol/concepts/V3-overview/range-orders',
           },
           {
-            to: '/concepts/protocol/concentrated-liquidity',
-            from: '/concepts/introduction/liquidity-user-guide',
-          },
-          {
             to: '/contracts/v2/concepts/protocol-overview/how-uniswap-works',
             from: '/protocol/V2/concepts/core-',
           },
@@ -418,6 +414,66 @@ module.exports = {
           {
             to: '/contracts/v2/overview',
             from: '/contracts/v2/overview.md',
+          },
+          {
+            to: '/contracts/v4/reference/core/interfaces/IUnlockCallback',
+            from: '/src/interfaces/callback/IUnlockCallback.sol/interface.IUnlockCallback.md',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/protocol/reference/core/',
+          },
+          {
+            to: '/sdk/v4/overview',
+            from: '/sdk',
+          },
+          {
+            to: '/sdk/v1/reference/computation',
+            from: '/sdk/1.0.0/reference/computation',
+          },
+          {
+            to: '/contracts/v2/reference/smart-contracts/Pair-ERC-20',
+            from: '/protocol/V2/reference/smart-contracts/pair-erc-20',
+          },
+          {
+            to: '/concepts/protocol/fees',
+            from: '/protocol/V2/concepts/advanced-topics/fees',
+          },
+          {
+            to: '/concepts/protocol/swaps',
+            from: '/protocol/V2/concepts/core-concepts/swaps',
+          },
+          {
+            to: '/sdk/v3/guides/background',
+            from: '/sdk/v3/guides/advanced/01-background.md',
+          },
+          {
+            to: '/contracts/v2/overview',
+            from: '/contracts/v2/concepts/protocol-overview/how-',
+          },
+          {
+            to: '/concepts/protocol/range-orders',
+            from: '/protocol/concepts/V3-overview/range-orders',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/contracts/v4/concepts/v4-architecture-overview',
+          },
+          {
+            to: '/concepts/uniswap-protocol',
+            from: '/protocol/V2/concepts/protocol-overview/how-uniswap-works',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/contracts/v4/concepts/v4-',
+          },
+          {
+            to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
+            from: '/protocol/V2/concepts/protocol-overview/smart-contracts',
+          },
+          {
+            to: '/contracts/v4/guides/position-manager',
+            from: '/contracts/v4/concepts/managing-positions',
           },
         ],
         createRedirects(existingPath) {
