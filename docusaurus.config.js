@@ -274,7 +274,6 @@ module.exports = {
             to: '/contracts/v4/guides/hooks/hook-deployment',
             from: '/contracts/v4/concepts/hook-deployment',
           },
-          // New redirects
           {
             to: '/contracts/v4/guides/hooks/hook-deployment',
             from: '/contracts/v4/first-hook/hook-deployment',
@@ -289,7 +288,7 @@ module.exports = {
           },
           {
             to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: '/contracts/v2/concepts/advanced-',
+            from: '/v2/advanced-topics/understanding-',
           },
           {
             to: '/sdk/v1/overview',
@@ -409,7 +408,7 @@ module.exports = {
           },
           {
             to: '/contracts/v4/concepts/PoolManager',
-            from: '/contracts/v4/concepts/pool-manager-and-pool-initialization',
+            from: '/contracts/v4/concepts/lock-mechanism',
           },
           {
             to: '/contracts/v2/overview',
@@ -474,6 +473,591 @@ module.exports = {
           {
             to: '/contracts/v4/guides/position-manager',
             from: '/contracts/v4/concepts/managing-positions',
+          },
+          //Last batch of redirects
+          {
+            to: '/contracts/v2/guides/interface-integration/using-the-api',
+            from: '/protocol/V2/guides/smart-',
+          },
+          {
+            to: '/concepts/governance/overview',
+            from: '/contracts/v3/reference/governance/overview.md',
+          },
+          {
+            to: '/sdk/v3/guides/liquidity/minting',
+            from: '/sdk/v3/guides/liquidity/01-minting-position.md',
+          },
+          {
+            to: '/contracts/v2/concepts/protocol-overview/how-uniswap-works',
+            from: '/protocol/V2/concepts/protocol',
+          },
+          {
+            to: '/contracts/v2/concepts/advanced-topics/understanding-returns',
+            from: '/protocol/V2/concepts/advanced-topics/understanding-returns',
+          },
+          {
+            to: '/sdk/v2/overview',
+            from: '/sdk/2.0.0/introduction',
+          },
+          {
+            to: '/concepts/overview',
+            from: '/concepts',
+          },
+          {
+            to: '/concepts/protocol/oracle',
+            from: '/v2/core-concepts/oracles/',
+          },
+          {
+            to: '/contracts/v3/reference/periphery/interfaces/IQuoter',
+            from: '/reference/periphery/interfaces/IQuoter',
+          },
+          {
+            to: '/sdk/v3/guides/web3-development-basics',
+            from: '/protocol/reference/smart-contracts',
+          },
+          {
+            to: '/contracts/v2/concepts/core-concepts/pools',
+            from: '/protocol/V2/concepts/core-concepts/pools',
+          },
+          {
+            to: '/contracts/v3/guides/providing-liquidity/collect-fees',
+            from: '/sdk/v3/guides/liquidity/04-collecting-fees.md',
+          },
+          {
+            to: '/contracts/v3/guides/providing-liquidity/collect-fees',
+            from: '/sdk/v3/guides/liquidity/03-collecting-fees.md',
+          },
+          {
+            to: '/contracts/v2/concepts/core-concepts/pools',
+            from: '/protocol/V2/concepts/core-concepts/pools',
+          },
+          {
+            to: '/contracts/v1/guides/pool-liquidity',
+            from: '/protocol/V1/guides/pool-liquidity',
+          },
+          {
+            to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
+            from: '/protocol/V2/concepts/protocol-overview/smart-contracts',
+          },
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/concepts/V3-overview/oracle',
+          },
+          {
+            to: '/concepts/uniswap-protocol',
+            from: '/contracts/v2/concepts/protocol-overview/how-uniswap-work',
+          },
+          {
+            to: '/concepts/resources',
+            from: '/protocol/concepts/advanced/resources',
+          },
+          {
+            to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
+            from: '/contracts/v2/reference/smart-co',
+          },
+          {
+            to: '/contracts/v3/reference/core/interfaces/callback/IUniswapV3SwapCallback',
+            from: '/reference/core/interfaces/callback/IUniswapV3SwapCallback',
+          },
+          {
+            to: '/contracts/v3/reference/deployments/',
+            from: '/contracts/v3/reference/deploymentsletWETHAddress',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/contracts/v4/concepts/overview',
+          },
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/concepts/V3-overview/concentrated-liquidity',
+          },
+          {
+            to: '/contracts/v3/guides/liquidity-mining/overview',
+            from: '/protocol/guides/liquidity-mining/liquidity-mining-overview',
+          },
+          {
+            to: '/contracts/v3/reference/core/interfaces/IUniswapV3Factory',
+            from: '/contracts/v3/reference/reference/core/interfaces/IUniswapV3Factory.md',
+          },
+          {
+            to: '/sdk/v3/guides/swaps/trading',
+            from: '/sdk/v3/guides/swaps/02-trading',
+          },
+          {
+            to: '/contracts/v4/guides/swap-routing',
+            from: '/contracts/universal-router/',
+          },
+          {
+            to: '/concepts/overview',
+            from: '/concepts/uniswap-',
+          },
+          {
+            to: '/sdk/v1/reference/data',
+            from: '/sdk/1.0.0/reference/data',
+          },
+          {
+            to: '/sdk/v3/reference/overview',
+            from: '/sdk/v3/reference/README.md',
+          },
+          {
+            to: '/contracts/v2/overview',
+            from: '/protocol/v2/introduction',
+          },
+          {
+            to: '/contracts/v3/reference/core/libraries/LowGasSafeMath',
+            from: '/reference/core/libraries/LowGasSafeMath',
+          },
+          {
+            to: '/sdk/v3/guides/swaps/routing',
+            from: '/sdk/v3/guides/trading/03-routing.md',
+          },
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/protocol/concepts/V3-overview/concentrated-liquidity',
+          },
+          {
+            to: '/contracts/v4/concepts/PoolManager',
+            from: '/contracts/v4/concepts/lock-mechanism',
+          },
+          {
+            to: '/sdk/v3/guides/swaps/quoting',
+            from: '/sdk/v3/guides/quoting',
+          },
+          {
+            to: '/contracts/v4/guides/hooks/hook-deployment',
+            from: '/contracts/v4/first-hook/testing-hooks',
+          },
+          {
+            to: '/sdk/v1/reference/constants',
+            from: '/sdk/1.0.0/reference/constants',
+          },
+          {
+            to: '/sdk/v4/overview',
+            from: '/sdk/guides',
+          },
+          {
+            to: '/concepts/protocol/hooks',
+            from: '/V2/concepts/protocol-overview/01-how-uniswap-works',
+          },
+          {
+            to: '/concepts/uniswap-protocol',
+            from: '/protocol/V2/concepts/protocol-overview/',
+          },
+          {
+            to: '/concepts/governance/overview',
+            from: '/contracts/v2/reference/Governance/governance-',
+          },
+          {
+            to: '/concepts/uniswap-protocol',
+            from: '/contracts/V2/concepts/protocol-overview/how-uniswap-works',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/contracts/v4/concepts/intro-to-v4',
+          },
+          {
+            to: '/concepts/protocol/range-orders',
+            from: '/protocol/concepts/V3-overview/range-orders',
+          },
+          {
+            to: '/contracts/v1/overview',
+            from: '/protocol/v1/introduction',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/concepts/overview4',
+          },
+          {
+            to: '/',
+            from: '/conce',
+          },
+          {
+            to: '/concepts/protocol/swaps',
+            from: '/protocol/V2/concepts/core-concepts/swaps/',
+          },
+          {
+            to: '/contracts/v3/reference/periphery/NonfungiblePositionManager',
+            from: '/sdk/reference/classes/NonfungiblePositionManager',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/contracts/v4/concepts/in-tro-to-v4',
+          },
+          {
+            to: '/concepts/glossary',
+            from: '/protocol/V2/concepts/protocol-overview/glossary',
+          },
+          {
+            to: '/sdk/v2/guides/pricing',
+            from: '/sdk/2.0.0/guides/pricing',
+          },
+          {
+            to: '/api/subgraph/overview',
+            from: '/sdk/subgraph/subgraph-data',
+          },
+          {
+            to: '/contracts/v1/overview',
+            from: '/protocol/V1/introduction',
+          },
+          {
+            to: '/sdk/web3-react/guides/connectors',
+            from: '/sdk/web3-react/guides/connectors.md',
+          },
+          {
+            to: '/concepts/protocol/hooks',
+            from: '/protocol/concepts/',
+          },
+          {
+            to: '/sdk/v1/reference/orchestration',
+            from: '/sdk/1.0.0/reference/orchestration',
+          },
+          {
+            to: '/contracts/v3/reference/core/UniswapV3Factory',
+            from: '/reference/core/UniswapV3Factory',
+          },
+          {
+            to: '/sdk/v1/reference/data',
+            from: '/sdk/1.0.0/reference/data/',
+          },
+          {
+            to: '/sdk/v1/reference/transact',
+            from: '/sdk/1.0.0/reference/transact',
+          },
+          {
+            to: '/sdk/v1/guides/getting-started',
+            from: '/sdk/core/reference/modules.md',
+          },
+          {
+            to: '/sdk/v2/guides/trading',
+            from: '/sdk/2.0.0/guides/trading',
+          },
+          {
+            to: '/sdk/v1/overview',
+            from: '/sdk/1.0.0/',
+          },
+          {
+            to: '/concepts/protocol/hooks',
+            from: '/concepts/protocol/',
+          },
+          {
+            to: '/contracts/v1/guides/custom-linking',
+            from: '/protocol/V1/guides/custom-linking',
+          },
+          {
+            to: '/contracts/v4/deployments',
+            from: '/arbitrum/guides/how-to-connect',
+          },
+          {
+            to: '/contracts/v4/deployments',
+            from: '/optimism/guides/how-to-connect',
+          },
+          {
+            to: '/sdk/v4/overview',
+            from: '/sdk/',
+          },
+          {
+            to: '/concepts/research',
+            from: '/protocol/concepts/advanced/research',
+          },
+          {
+            to: '/contracts/v2/overview',
+            from: '/contracts/v2/',
+          },
+          {
+            to: '/sdk/v2/guides/pricing',
+            from: '/v2/advanced-topics/pricing/',
+          },
+          {
+            to: '/contracts/v3/guides/swaps/single-swaps',
+            from: '/sdk/v3/guides/swaps/01-background.md',
+          },
+          {
+            to: '/api/subgraph/guides/examples',
+            from: '/sdk/subgraph/subgraph-examples',
+          },
+          {
+            to: '/contracts/v2/overview',
+            from: '/v2/',
+          },
+          {
+            to: '/sdk/v2/overview',
+            from: '/sdk/2.0.0/reference/getting-started',
+          },
+          {
+            to: '/contracts/v3/overview',
+            from: '/contracts/v3/overvie',
+          },
+          {
+            to: '/contracts/v2/overview',
+            from: '/protocol/V2/',
+          },
+          {
+            to: '/contracts/v1/guides/token-listing',
+            from: '/protocol/V1/guides/token-listing',
+          },
+          {
+            to: '/contracts/v4/concepts/v4-vs-v3',
+            from: '/contracts/v4/concepts/',
+          },
+          {
+            to: '/concepts/protocol/hooks',
+            from: '/protocol/reference/',
+          },
+          {
+            to: '/sdk/v2/guides/pricing',
+            from: '/sdk/2.0.0/guides/pring',
+          },
+          {
+            to: '/',
+            from: '/developers/',
+          },
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/protocol/concepts/V3-overview/concentrated-liquidity',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/protocol/',
+          },
+          {
+            to: '/contracts/v3/reference/core/interfaces/pool/IUniswapV3PoolActions',
+            from: '/reference/core/interfaces/pool/IUniswapV3PoolActions',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/v4',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/contracts/',
+          },
+          {
+            to: '/sdk/v4/overview',
+            from: '/SDK/',
+          },
+          {
+            to: '/contracts/v2/overview',
+            from: '/protocol/V2/introduction',
+          },
+          {
+            to: '/sdk/web3-react/guides/connect-wallet',
+            from: '/sdk/web3-react/guides/01-setting-up.md',
+          },
+          {
+            to: '/concepts/research',
+            from: '/protocol/V2/concepts/advanced-topics/research',
+          },
+          {
+            to: '/sdk/v2/reference/trade',
+            from: '/sdk/2.0.0/reference/trade',
+          },
+          {
+            to: '/contracts/v3/overview',
+            from: '/contracts/v3/',
+          },
+          {
+            to: '/concepts/protocol/fees',
+            from: '/protocol/concepts/V3-overview/fees',
+          },
+          {
+            to: '/concepts/protocol/oracle',
+            from: '/protocol/concepts/V3-overview/oracle',
+          },
+          {
+            to: '/contracts/v3/reference/periphery/interfaces/ISwapRouter',
+            from: '/reference/periphery/interfaces/ISwapRouter',
+          },
+          {
+            to: '/sdk/v1/reference/types',
+            from: '/sdk/1.0.0/reference/types',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/reference/smart-contracts',
+          },
+          {
+            to: '/contracts/v4/guides/hooks/your-first-hook',
+            from: '/tutorials/',
+          },
+          {
+            to: '/contracts/v4/quickstart/hooks/async-swap',
+            from: '/contracts/v4/guides/hooks/NoOp',
+          },
+          {
+            to: '/sdk/v3/guides/swaps/routing',
+            from: '/sdk/v3/guides/routing',
+          },
+          {
+            to: '/sdk/v3/guides/swaps/trading',
+            from: '/sdk/v3/guides/trading',
+          },
+          {
+            to: '/contracts/v4/quickstart/manage-liquidity/mint-position',
+            from: '/contracts/v4/guides/manage-liquidity/mint-position',
+          },
+          {
+            to: '/contracts/v4/quickstart/manage-liquidity/batch-liquidity',
+            from: '/contracts/v4/guides/manage-liquidity/batch-liquidity',
+          },
+          {
+            to: '/contracts/v4/quickstart/manage-liquidity/setup-liquidity',
+            from: '/contracts/v4/guides/manage-liquidity/setup-liquidity',
+          },
+          {
+            to: '/contracts/v4/quickstart/manage-liquidity/burn-liquidity',
+            from: '/contracts/v4/guides/manage-liquidity/burn-liquidity',
+          },
+          {
+            to: '/contracts/v3/reference/deployments/',
+            from: '/contracts/v3/reference/Deployments.md',
+          },
+          {
+            to: '/contracts/v2/overview',
+            from: '/protocol/V2/concepts/protocol-',
+          },
+          {
+            to: '/sdk/v2/guides/pricing',
+            from: '/v2/advanced-topics/pricing/',
+          },
+          {
+            to: '/sdk/v3/guides/local-development',
+            from: '/sdk/v3/guides/02-local-development',
+          },
+          {
+            to: '/sdk/v3/guides/liquidity/swap-and-add',
+            from: '/sdk/guides/liquidity/adding',
+          },
+          {
+            to: '/concepts/governance/overview',
+            from: '/protocol/V2/concepts/governance/governance-reference',
+          },
+          {
+            to: '/contracts/v4/quickstart/manage-liquidity/collect',
+            from: '/contracts/v4/guides/manage-liquidity/collect',
+          },
+          {
+            to: '/contracts/v4/guides/hooks/your-first-hook',
+            from: '/contracts/v4/guides/hooks/setup',
+          },
+          {
+            to: '/contracts/v4/concepts/subscribers',
+            from: '/contracts/v4/guides/subscriber',
+          },
+          {
+            to: '/sdk/v3/guides/liquidity/modifying-position',
+            from: '/sdk/v3/guides/liquidity/03-modifying-position.md',
+          },
+          {
+            to: '/contracts/v3/guides/providing-liquidity/decrease-liquidity',
+            from: '/contracts/v4/guides/manage-liquidity/decrease-liquidity',
+          },
+          {
+            to: '/concepts/governance/overview',
+            from: '/protocol/concepts/governance/',
+          },
+          {
+            to: '/contracts/v2/reference/API/overview',
+            from: '/protocol/V2/reference/core',
+          },
+          {
+            to: '/contracts/v4/quickstart/manage-liquidity/increase-liquidity',
+            from: '/contracts/v4/guides/manage-liquidity/increase-liquidity',
+          },
+          {
+            to: '/contracts/v3/reference/overview',
+            from: '/sdk/v3/reference/modules.md',
+          },
+          {
+            to: '/contracts/v4/quickstart/create-pool',
+            from: '/contracts/v4/guides/create-pool',
+          },
+          {
+            to: '/concepts/governance/overview',
+            from: '/protocol/reference/Governance/governance-reference',
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: '/contracts/v4/concepts/intro-to-v4',
+          },
+          {
+            to: '/concepts/protocol/swaps',
+            from: '/concepts/introduction/swaps',
+          },
+          {
+            to: '/contracts/v2/concepts/advanced-topics/fees',
+            from: '/v2/advanced-topics/understanding-fees/',
+          },
+          {
+            to: '/contracts/v2/concepts/core-concepts/oracles',
+            from: '/v2/core-concepts/oracles',
+          },
+          {
+            to: '/sdk/v2/overview',
+            from: '/v2/SDK/getting-started/',
+          },
+          {
+            to: '/concepts/glossary',
+            from: '/v2/glossary/',
+          },
+          {
+            to: '/contracts/v1/guides/custom-linking',
+            from: '/v1/frontend-integration/custom-linking/',
+          },
+          {
+            to: '/contracts/v2/concepts/advanced-topics/fees',
+            from: '/v2/advanced-topics/fees/',
+          },
+          {
+            to: '/contracts/v3/guides/providing-liquidity/decrease-liquidity',
+            from: '/contracts/v4/guides/manage-liquidity/decrease-liquidity',
+          },
+          {
+            to: '/concepts/governance/overview',
+            from: '/protocol/reference/Governance/governance-reference',
+          },
+          {
+            to: '/sdk/v2/guides/fetching-data',
+            from: '/sdk/v2/reference/fetcher',
+          },
+          {
+            to: '/sdk/v2/guides/quick-start',
+            from: '/sdk/v2/reference/token',
+          },
+          {
+            to: '/contracts/v3/guides/local-environment',
+            from: '/protocol/V3/guides/getting-started',
+          },
+          {
+            to: '/sdk/core/reference/enums/ChainId',
+            from: '/sdk/core/reference/enums/SupportedChainId',
+          },
+          {
+            to: '/concepts/protocol/swaps',
+            from: '/concepts/introduction/swaps',
+          },
+          {
+            to: '/contracts/v2/concepts/core-concepts/oracles',
+            from: '/v2/core-concepts/oracles',
+          },
+          {
+            to: '/contracts/v2/concepts/core-concepts/pools',
+            from: '/protocol/V2/concepts/core-concepts/pools.',
+          },
+          {
+            to: '/sdk/v2/guides/fetching-data',
+            from: '/sdk/v2/reference/fetcher',
+          },
+          {
+            to: '/sdk/v2/guides/quick-start',
+            from: '/sdk/v2/reference/token',
+          },
+          {
+            to: '/contracts/v3/guides/local-environment',
+            from: '/protocol/V3/guides/getting-started',
+          },
+          {
+            to: '/sdk/core/reference/enums/ChainId',
+            from: '/sdk/core/reference/enums/SupportedChainId',
           },
         ],
         createRedirects(existingPath) {
