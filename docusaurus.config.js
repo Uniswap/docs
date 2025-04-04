@@ -62,14 +62,6 @@ module.exports = {
           className: 'V3_active',
         },
         {
-          href: '/v4-llms.txt',
-          label: 'LLMs.txt',
-          position: 'left',
-          className: 'V3_active',
-          target: '_blank',
-          rel: 'noopener noreferrer',
-        },
-        {
           label: 'Give Feedback',
           to: 'https://forms.gle/13XtjmkwdXQ2jMn26',
           position: 'right',
