@@ -12,7 +12,7 @@ image: /use.png
 slug: intro-to-gas-optimization
 ---
 
-<div class="blog">
+<div class="test">
 
 
 <img src={require('./use.png').default} alt="RangeOrder1" width="100%" height="100%" />
