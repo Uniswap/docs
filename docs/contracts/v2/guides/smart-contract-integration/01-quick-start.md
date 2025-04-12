@@ -3,7 +3,7 @@ id: quick-start
 title: Smart Contract Quick start
 ---
 
-Developing smart contracts for Ethereum involves a bevy of off-chain tools used for producing and testing bytecode
+Developing smart contracts for Ethereum involves a variety of off-chain tools used for producing and testing bytecode
 that runs on the [Ethereum Virtual Machine (EVM)](<https://eth.wiki/en/concepts/evm/ethereum-virtual-machine-(evm)-awesome-list>).
 Some tools also include workflows for deploying this bytecode to the Ethereum network and testnets.
 There are many options for these tools. This guide walks you through writing and testing a simple smart contract that
@@ -30,9 +30,9 @@ npx truffle init
 ## Setting up npm
 
 In order to reference the Uniswap V2 contracts, you should use the npm artifacts we deploy containing the core and
-periphery smart contracts and interfaces. To add npm dependencies, we first initialize the npm package.
+periphery smart contracts and interfaces. To add npm dependencies, we must first initialize the npm package.
 We can run `npm init` in the same directory to create a `package.json` file. You can accept all the defaults and
-change it later.
+modify them later.
 
 ```shell script
 npm init
@@ -88,7 +88,7 @@ interface ILiquidityValueCalculator {
 
 Now let's start with the constructor. You need to know where the `UniswapV2Factory` is deployed in order to compute the
 address of the pair and look up the total supply of liquidity shares, plus the amounts for the reserves.
-We can store this as an address passed to the constructor.
+We can store this address as a parameter passed to the constructor.
 
 The factory address is constant on mainnet and all testnets, so it may be tempting to make this value a constant in your contract,
 but since we need to unit test the contract it should be an argument. You can use solidity immutables to save on gas
@@ -134,7 +134,7 @@ contract LiquidityValueCalculator is ILiquidityValueCalculator {
 }
 ```
 
-Finally we just need to compute the share value. We will leave that as an exercise to the reader.
+Finally, we just need to compute the share value. We will leave that as an exercise to the reader.
 
 ```solidity
 pragma solidity ^0.6.6;
@@ -176,7 +176,7 @@ In order to test your contract, you need to:
 
 \#1 is handled for you automatically by the `truffle test` command.
 
-Note you should only deploy the precompiled Uniswap contracts in the `build` directories for unit tests.
+Note that you should only deploy the precompiled Uniswap contracts in the `build` directories for unit tests.
 This is because solidity appends a metadata hash to compiled contract artifacts which includes the hash of the contract
 source code path, and compilations on other machines will not result in the exact same bytecode.
 This is problematic because in Uniswap V2 we use the hash of the bytecode in the v2-periphery
