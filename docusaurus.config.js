@@ -231,7 +231,6 @@ module.exports = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          // 1/9/23 v3 SDK Guide Redirects
           {
             to: '/sdk/v3/guides/background',
             from: '/sdk/v3/guides/quick-start',
@@ -253,18 +252,16 @@ module.exports = {
             from: ['/sdk/v3/guides/liquidity/adding', '/sdk/v3/guides/liquidity/removing'],
           },
           {
-            to: '/concepts/protocol/oracle',
-            from: [
-              '/protocol/concepts/V3-overview/oracle',
-            ],
-          },
-          {
             to: '/concepts/protocol/integration-issues',
             from: '/protocol/concepts/advanced/integration-issues',
           },
           {
             to: '/contracts/v4/guides/hooks/your-first-hook',
-            from: '/contracts/v4/first-hook/building-your-own-hook',
+            from: [
+                '/contracts/v4/first-hook/building-your-own-hook',
+                '/tutorials/',
+                '/contracts/v4/guides/hooks/setup'
+            ]
           },
           {
             to: '/contracts/v2/guides/smart-contract-integration/using-flash-swaps',
@@ -272,15 +269,11 @@ module.exports = {
           },
           {
             to: '/contracts/v4/guides/hooks/hook-deployment',
-            from: '/contracts/v4/concepts/hook-deployment',
-          },
-          {
-            to: '/contracts/v4/guides/hooks/hook-deployment',
-            from: '/contracts/v4/first-hook/hook-deployment',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/contracts/v4/concepts/intro-to-v4',
+            from: [
+                '/contracts/v4/concepts/hook-deployment',
+                '/contracts/v4/first-hook/hook-deployment',
+                '/contracts/v4/first-hook/testing-hooks'
+            ]
           },
           {
             to: '/contracts/v3/guides/flash-integrations/flash-callback',
@@ -288,11 +281,17 @@ module.exports = {
           },
           {
             to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: '/v2/advanced-topics/understanding-',
+            from: [
+                '/v2/advanced-topics/understanding-fees/',
+                '/v2/advanced-topics/fees'
+            ]
           },
           {
             to: '/sdk/v1/overview',
-            from: '/sdk/1.0.0/reference/format',
+            from: [
+                '/sdk/1.0.0/reference/format',
+                '/sdk/1.0.0/'
+            ]
           },
           {
             to: '/contracts/v4/quickstart/hooks/async-swap',
@@ -300,11 +299,39 @@ module.exports = {
           },
           {
             to: '/concepts/glossary',
-            from: '/contracts/V2/concepts/protocol-overview/glossary',
+            from: [
+                //'/contracts/V2/concepts/protocol-overview/glossary',
+                '/protocol/V2/concepts/protocol-overview/glossary',
+                '/v2/glossary'
+            ]
+          },
+          {
+            to: '/contracts/v4/overview',
+            from: [
+                '/contracts/v4/concepts/v4-architecture-overview',
+                '/contracts/v4/concepts/v4-',
+                '/contracts/v4/concepts/overview',
+                '/contracts/v4/concepts/intro-to-v4',
+                '/concepts/overview4',
+                '/contracts/v4/concepts/in-tro-to-v4',
+                '/protocol/reference/core',
+                '/protocol',
+                '/v4',
+                '/contracts/',
+                '/reference/smart-contracts'
+            ]
           },
           {
             to: '/contracts/v2/overview',
-            from: '/protocol/V2',
+            from: [
+                '/protocol/V2',
+                '/protocol/V2/concepts/protocol-',
+                '/v2/',
+                '/contracts/v2',
+                '/contracts/v2/overview.md',
+                '/contracts/v2/concepts/protocol-overview/how-',
+                '/protocol/v2/introduction'
+            ]
           },
           {
             to: '/contracts/v4/guides/custom-accounting',
@@ -343,20 +370,17 @@ module.exports = {
             from: '/protocol/concepts/V3-overview/swaps',
           },
           {
-            to: '/contracts/v2/concepts/core-concepts/pools',
-            from: '/protocol/V2/concepts/core-concepts/pools',
-          },
-          {
             to: '/sdk/v3/reference/interfaces/CommonAddLiquidityOptions',
             from: '/sdk/reference/interfaces/CommonAddLiquidityOptions',
           },
           {
             to: '/concepts/protocol/concentrated-liquidity',
-            from: '/concepts/introduction/liquidity-user-guide',
-          },
-          {
-            to: '/contracts/v2/concepts/protocol-overview/how-uniswap-works',
-            from: '/protocol/V2/concepts/core-',
+            from: [
+                '/concepts/introduction/liquidity-user-guide',
+                '/concepts/V3-overview/oracle',
+                '/concepts/V3-overview/concentrated-liquidity',
+                '/protocol/concepts/V3-overview/concentrated-liquidity'
+            ]
           },
           {
             to: '/concepts/protocol/fees',
@@ -371,68 +395,27 @@ module.exports = {
             from: '/protocol/V3/reference/smart-order-router',
           },
           {
-            to: '/concepts/protocol/concentrated-liquidity',
-            from: '/protocol/concepts/V3-overview/concentrated-liquidity',
-          },
-          {
             to: '/concepts/protocol/range-orders',
             from: '/protocol/concepts/V3-overview/range-orders',
-          },
-          {
-            to: '/contracts/v2/concepts/protocol-overview/how-uniswap-works',
-            from: '/protocol/V2/concepts/core-',
-          },
-          {
-            to: '/concepts/protocol/fees',
-            from: '/protocol/concepts/V3-overview/fees',
-          },
-          {
-            to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
-            from: '/contracts/v2/reference/smart-contracts',
-          },
-          {
-            to: '/sdk/v3/guides/liquidity/swap-and-add',
-            from: '/protocol/V3/reference/smart-order-router',
-          },
-          {
-            to: '/concepts/protocol/concentrated-liquidity',
-            from: '/protocol/concepts/V3-overview/concentrated-liquidity',
-          },
-          {
-            to: '/concepts/protocol/range-orders',
-            from: '/protocol/concepts/V3-overview/range-orders',
-          },
-          {
-            to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
-            from: '/protocol/V2/reference/smart-contracts',
           },
           {
             to: '/contracts/v4/concepts/PoolManager',
             from: '/contracts/v4/concepts/lock-mechanism',
           },
           {
-            to: '/contracts/v2/overview',
-            from: '/contracts/v2/overview.md',
-          },
-          {
             to: '/contracts/v4/reference/core/interfaces/IUnlockCallback',
             from: '/src/interfaces/callback/IUnlockCallback.sol/interface.IUnlockCallback.md',
           },
           {
-            to: '/contracts/v4/overview',
-            from: '/protocol/reference/core/',
-          },
-          {
             to: '/sdk/v4/overview',
-            from: '/sdk',
+            from: [
+                '/sdk',
+                '/sdk/guides'
+            ]
           },
           {
             to: '/sdk/v1/reference/computation',
             from: '/sdk/1.0.0/reference/computation',
-          },
-          {
-            to: '/contracts/v2/reference/smart-contracts/Pair-ERC-20',
-            from: '/protocol/V2/reference/smart-contracts/pair-erc-20',
           },
           {
             to: '/concepts/protocol/fees',
@@ -447,24 +430,14 @@ module.exports = {
             from: '/sdk/v3/guides/advanced/01-background.md',
           },
           {
-            to: '/contracts/v2/overview',
-            from: '/contracts/v2/concepts/protocol-overview/how-',
-          },
-          {
-            to: '/concepts/protocol/range-orders',
-            from: '/protocol/concepts/V3-overview/range-orders',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/contracts/v4/concepts/v4-architecture-overview',
-          },
-          {
             to: '/concepts/uniswap-protocol',
-            from: '/protocol/V2/concepts/protocol-overview/how-uniswap-works',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/contracts/v4/concepts/v4-',
+            from: [
+                '/protocol/V2/concepts/protocol-overview/how-uniswap-works',
+                '/protocol/V2/concepts/core-',
+                '/contracts/v2/concepts/protocol-overview/how-uniswap-work',
+                '/V2/concepts/protocol-overview/01-how-uniswap-works',
+                '/protocol/V2/concepts/protocol'
+            ]
           },
           {
             to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
@@ -474,22 +447,23 @@ module.exports = {
             to: '/contracts/v4/guides/position-manager',
             from: '/contracts/v4/concepts/managing-positions',
           },
-          //Last batch of redirects
           {
             to: '/contracts/v2/guides/interface-integration/using-the-api',
             from: '/protocol/V2/guides/smart-',
           },
           {
             to: '/concepts/governance/overview',
-            from: '/contracts/v3/reference/governance/overview.md',
+            from: [
+                '/contracts/v3/reference/governance/overview.md',
+                '/protocol/V2/concepts/governance/governance-reference',
+                '/protocol/concepts/governance',
+                '/protocol/reference/Governance/governance-reference',
+                '/contracts/v2/reference/Governance/governance-'
+            ]
           },
           {
             to: '/sdk/v3/guides/liquidity/minting',
             from: '/sdk/v3/guides/liquidity/01-minting-position.md',
-          },
-          {
-            to: '/contracts/v2/concepts/protocol-overview/how-uniswap-works',
-            from: '/protocol/V2/concepts/protocol',
           },
           {
             to: '/contracts/v2/concepts/advanced-topics/understanding-returns',
@@ -497,7 +471,11 @@ module.exports = {
           },
           {
             to: '/sdk/v2/overview',
-            from: '/sdk/2.0.0/introduction',
+            from: [
+                '/sdk/2.0.0/introduction',
+                '/sdk/2.0.0/reference/getting-started',
+                '/v2/SDK/getting-started'
+            ]
           },
           {
             to: '/concepts/overview',
@@ -516,10 +494,6 @@ module.exports = {
             from: '/protocol/reference/smart-contracts',
           },
           {
-            to: '/contracts/v2/concepts/core-concepts/pools',
-            from: '/protocol/V2/concepts/core-concepts/pools',
-          },
-          {
             to: '/contracts/v3/guides/providing-liquidity/collect-fees',
             from: '/sdk/v3/guides/liquidity/04-collecting-fees.md',
           },
@@ -528,24 +502,8 @@ module.exports = {
             from: '/sdk/v3/guides/liquidity/03-collecting-fees.md',
           },
           {
-            to: '/contracts/v2/concepts/core-concepts/pools',
-            from: '/protocol/V2/concepts/core-concepts/pools',
-          },
-          {
             to: '/contracts/v1/guides/pool-liquidity',
             from: '/protocol/V1/guides/pool-liquidity',
-          },
-          {
-            to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
-            from: '/protocol/V2/concepts/protocol-overview/smart-contracts',
-          },
-          {
-            to: '/concepts/protocol/concentrated-liquidity',
-            from: '/concepts/V3-overview/oracle',
-          },
-          {
-            to: '/concepts/uniswap-protocol',
-            from: '/contracts/v2/concepts/protocol-overview/how-uniswap-work',
           },
           {
             to: '/concepts/resources',
@@ -562,14 +520,6 @@ module.exports = {
           {
             to: '/contracts/v3/reference/deployments/',
             from: '/contracts/v3/reference/deploymentsletWETHAddress',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/contracts/v4/concepts/overview',
-          },
-          {
-            to: '/concepts/protocol/concentrated-liquidity',
-            from: '/concepts/V3-overview/concentrated-liquidity',
           },
           {
             to: '/contracts/v3/guides/liquidity-mining/overview',
@@ -592,16 +542,8 @@ module.exports = {
             from: '/concepts/uniswap-',
           },
           {
-            to: '/sdk/v1/reference/data',
-            from: '/sdk/1.0.0/reference/data',
-          },
-          {
             to: '/sdk/v3/reference/overview',
             from: '/sdk/v3/reference/README.md',
-          },
-          {
-            to: '/contracts/v2/overview',
-            from: '/protocol/v2/introduction',
           },
           {
             to: '/contracts/v3/reference/core/libraries/LowGasSafeMath',
@@ -612,80 +554,20 @@ module.exports = {
             from: '/sdk/v3/guides/trading/03-routing.md',
           },
           {
-            to: '/concepts/protocol/concentrated-liquidity',
-            from: '/protocol/concepts/V3-overview/concentrated-liquidity',
-          },
-          {
-            to: '/contracts/v4/concepts/PoolManager',
-            from: '/contracts/v4/concepts/lock-mechanism',
-          },
-          {
             to: '/sdk/v3/guides/swaps/quoting',
             from: '/sdk/v3/guides/quoting',
-          },
-          {
-            to: '/contracts/v4/guides/hooks/hook-deployment',
-            from: '/contracts/v4/first-hook/testing-hooks',
           },
           {
             to: '/sdk/v1/reference/constants',
             from: '/sdk/1.0.0/reference/constants',
           },
           {
-            to: '/sdk/v4/overview',
-            from: '/sdk/guides',
-          },
-          {
-            to: '/concepts/protocol/hooks',
-            from: '/V2/concepts/protocol-overview/01-how-uniswap-works',
-          },
-          {
             to: '/concepts/uniswap-protocol',
             from: '/protocol/V2/concepts/protocol-overview/',
           },
           {
-            to: '/concepts/governance/overview',
-            from: '/contracts/v2/reference/Governance/governance-',
-          },
-          {
-            to: '/concepts/uniswap-protocol',
-            from: '/contracts/V2/concepts/protocol-overview/how-uniswap-works',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/contracts/v4/concepts/intro-to-v4',
-          },
-          {
-            to: '/concepts/protocol/range-orders',
-            from: '/protocol/concepts/V3-overview/range-orders',
-          },
-          {
-            to: '/contracts/v1/overview',
-            from: '/protocol/v1/introduction',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/concepts/overview4',
-          },
-          {
-            to: '/',
-            from: '/conce',
-          },
-          {
-            to: '/concepts/protocol/swaps',
-            from: '/protocol/V2/concepts/core-concepts/swaps/',
-          },
-          {
             to: '/contracts/v3/reference/periphery/NonfungiblePositionManager',
             from: '/sdk/reference/classes/NonfungiblePositionManager',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/contracts/v4/concepts/in-tro-to-v4',
-          },
-          {
-            to: '/concepts/glossary',
-            from: '/protocol/V2/concepts/protocol-overview/glossary',
           },
           {
             to: '/sdk/v2/guides/pricing',
@@ -717,7 +599,7 @@ module.exports = {
           },
           {
             to: '/sdk/v1/reference/data',
-            from: '/sdk/1.0.0/reference/data/',
+            from: '/sdk/1.0.0/reference/data',
           },
           {
             to: '/sdk/v1/reference/transact',
@@ -732,12 +614,8 @@ module.exports = {
             from: '/sdk/2.0.0/guides/trading',
           },
           {
-            to: '/sdk/v1/overview',
-            from: '/sdk/1.0.0/',
-          },
-          {
             to: '/concepts/protocol/hooks',
-            from: '/concepts/protocol/',
+            from: '/concepts/protocol',
           },
           {
             to: '/contracts/v1/guides/custom-linking',
@@ -752,20 +630,12 @@ module.exports = {
             from: '/optimism/guides/how-to-connect',
           },
           {
-            to: '/sdk/v4/overview',
-            from: '/sdk/',
-          },
-          {
             to: '/concepts/research',
             from: '/protocol/concepts/advanced/research',
           },
           {
-            to: '/contracts/v2/overview',
-            from: '/contracts/v2/',
-          },
-          {
             to: '/sdk/v2/guides/pricing',
-            from: '/v2/advanced-topics/pricing/',
+            from: '/v2/advanced-topics/pricing',
           },
           {
             to: '/contracts/v3/guides/swaps/single-swaps',
@@ -776,20 +646,8 @@ module.exports = {
             from: '/sdk/subgraph/subgraph-examples',
           },
           {
-            to: '/contracts/v2/overview',
-            from: '/v2/',
-          },
-          {
-            to: '/sdk/v2/overview',
-            from: '/sdk/2.0.0/reference/getting-started',
-          },
-          {
             to: '/contracts/v3/overview',
             from: '/contracts/v3/overvie',
-          },
-          {
-            to: '/contracts/v2/overview',
-            from: '/protocol/V2/',
           },
           {
             to: '/contracts/v1/guides/token-listing',
@@ -801,7 +659,7 @@ module.exports = {
           },
           {
             to: '/concepts/protocol/hooks',
-            from: '/protocol/reference/',
+            from: '/protocol/reference',
           },
           {
             to: '/sdk/v2/guides/pricing',
@@ -809,35 +667,14 @@ module.exports = {
           },
           {
             to: '/',
-            from: '/developers/',
-          },
-          {
-            to: '/concepts/protocol/concentrated-liquidity',
-            from: '/protocol/concepts/V3-overview/concentrated-liquidity',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/protocol/',
+            from: [
+                '/developers/',
+                '/conce'
+            ]
           },
           {
             to: '/contracts/v3/reference/core/interfaces/pool/IUniswapV3PoolActions',
             from: '/reference/core/interfaces/pool/IUniswapV3PoolActions',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/v4',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/contracts/',
-          },
-          {
-            to: '/sdk/v4/overview',
-            from: '/SDK/',
-          },
-          {
-            to: '/contracts/v2/overview',
-            from: '/protocol/V2/introduction',
           },
           {
             to: '/sdk/web3-react/guides/connect-wallet',
@@ -856,10 +693,6 @@ module.exports = {
             from: '/contracts/v3/',
           },
           {
-            to: '/concepts/protocol/fees',
-            from: '/protocol/concepts/V3-overview/fees',
-          },
-          {
             to: '/concepts/protocol/oracle',
             from: '/protocol/concepts/V3-overview/oracle',
           },
@@ -870,14 +703,6 @@ module.exports = {
           {
             to: '/sdk/v1/reference/types',
             from: '/sdk/1.0.0/reference/types',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/reference/smart-contracts',
-          },
-          {
-            to: '/contracts/v4/guides/hooks/your-first-hook',
-            from: '/tutorials/',
           },
           {
             to: '/contracts/v4/quickstart/hooks/async-swap',
@@ -912,14 +737,6 @@ module.exports = {
             from: '/contracts/v3/reference/Deployments.md',
           },
           {
-            to: '/contracts/v2/overview',
-            from: '/protocol/V2/concepts/protocol-',
-          },
-          {
-            to: '/sdk/v2/guides/pricing',
-            from: '/v2/advanced-topics/pricing/',
-          },
-          {
             to: '/sdk/v3/guides/local-development',
             from: '/sdk/v3/guides/02-local-development',
           },
@@ -928,16 +745,8 @@ module.exports = {
             from: '/sdk/guides/liquidity/adding',
           },
           {
-            to: '/concepts/governance/overview',
-            from: '/protocol/V2/concepts/governance/governance-reference',
-          },
-          {
             to: '/contracts/v4/quickstart/manage-liquidity/collect',
             from: '/contracts/v4/guides/manage-liquidity/collect',
-          },
-          {
-            to: '/contracts/v4/guides/hooks/your-first-hook',
-            from: '/contracts/v4/guides/hooks/setup',
           },
           {
             to: '/contracts/v4/concepts/subscribers',
@@ -946,14 +755,6 @@ module.exports = {
           {
             to: '/sdk/v3/guides/liquidity/modifying-position',
             from: '/sdk/v3/guides/liquidity/03-modifying-position.md',
-          },
-          {
-            to: '/contracts/v3/guides/providing-liquidity/decrease-liquidity',
-            from: '/contracts/v4/guides/manage-liquidity/decrease-liquidity',
-          },
-          {
-            to: '/concepts/governance/overview',
-            from: '/protocol/concepts/governance/',
           },
           {
             to: '/contracts/v2/reference/API/overview',
@@ -972,60 +773,20 @@ module.exports = {
             from: '/contracts/v4/guides/create-pool',
           },
           {
-            to: '/concepts/governance/overview',
-            from: '/protocol/reference/Governance/governance-reference',
-          },
-          {
-            to: '/contracts/v4/overview',
-            from: '/contracts/v4/concepts/intro-to-v4',
-          },
-          {
-            to: '/concepts/protocol/swaps',
-            from: '/concepts/introduction/swaps',
-          },
-          {
-            to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: '/v2/advanced-topics/understanding-fees/',
-          },
-          {
-            to: '/contracts/v2/concepts/core-concepts/oracles',
-            from: '/v2/core-concepts/oracles',
-          },
-          {
-            to: '/sdk/v2/overview',
-            from: '/v2/SDK/getting-started/',
-          },
-          {
-            to: '/concepts/glossary',
-            from: '/v2/glossary/',
-          },
-          {
             to: '/contracts/v1/guides/custom-linking',
-            from: '/v1/frontend-integration/custom-linking/',
-          },
-          {
-            to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: '/v2/advanced-topics/fees/',
+            from: '/v1/frontend-integration/custom-linking',
           },
           {
             to: '/contracts/v3/guides/providing-liquidity/decrease-liquidity',
             from: '/contracts/v4/guides/manage-liquidity/decrease-liquidity',
           },
           {
-            to: '/concepts/governance/overview',
-            from: '/protocol/reference/Governance/governance-reference',
-          },
-          {
             to: '/sdk/v2/guides/fetching-data',
             from: '/sdk/v2/reference/fetcher',
           },
           {
             to: '/sdk/v2/guides/quick-start',
             from: '/sdk/v2/reference/token',
-          },
-          {
-            to: '/contracts/v3/guides/local-environment',
-            from: '/protocol/V3/guides/getting-started',
           },
           {
             to: '/sdk/core/reference/enums/ChainId',
@@ -1036,28 +797,12 @@ module.exports = {
             from: '/concepts/introduction/swaps',
           },
           {
-            to: '/contracts/v2/concepts/core-concepts/oracles',
-            from: '/v2/core-concepts/oracles',
-          },
-          {
             to: '/contracts/v2/concepts/core-concepts/pools',
-            from: '/protocol/V2/concepts/core-concepts/pools.',
-          },
-          {
-            to: '/sdk/v2/guides/fetching-data',
-            from: '/sdk/v2/reference/fetcher',
-          },
-          {
-            to: '/sdk/v2/guides/quick-start',
-            from: '/sdk/v2/reference/token',
+            from: '/protocol/V2/concepts/core-concepts/pools',
           },
           {
             to: '/contracts/v3/guides/local-environment',
             from: '/protocol/V3/guides/getting-started',
-          },
-          {
-            to: '/sdk/core/reference/enums/ChainId',
-            from: '/sdk/core/reference/enums/SupportedChainId',
           },
         ],
         createRedirects(existingPath) {
