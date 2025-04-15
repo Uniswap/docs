@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Introduction
 
-Uniswap v4 inherits all of the capital efficiency gains of Uniswap v3 while introducing major architectural improvements. 
+Uniswap v4 inherits all of the capital efficiency gains of Uniswap v3 while introducing major architectural improvements.
 
 The key innovations are the Hook System and Singleton Architecture, which together enable unprecedented protocol customization and gas optimization.
 
@@ -27,8 +27,8 @@ The hook system in v4 is built on top of a revolutionary architectural change kn
 - **Flash Accounting**: Token balances are tracked internally and settled at the end of transactions, minimizing transfers
 - **Native ETH Support**: Direct ETH trading without the need to wrap to WETH, improving user experience
 
-These core features are just the beginning of what's possible with Uniswap v4. 
+These core features are just the beginning of what's possible with Uniswap v4.
 
-To explore all features including flash accounting, native ETH support, dynamic fees, and custom accounting, check out the [v4 whitepaper](https://uniswap.org/whitepaper-v4.pdf). 
+To explore all features including flash accounting, native ETH support, dynamic fees, and custom accounting, check out the [v4 whitepaper](https://uniswap.org/whitepaper-v4.pdf).
 
-For technical implementations and detailed guides, visit the [v4 technical documentation](/contracts/v4/concepts/overview).
+For technical implementations and detailed guides, visit the [v4 technical documentation](/contracts/v4/overview).

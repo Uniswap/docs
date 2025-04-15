@@ -134,24 +134,24 @@ contract PointsHook is BaseHook {
             });
     }
 
-    function afterSwap(
+    function _afterSwap(
         address,
         PoolKey calldata key,
         IPoolManager.SwapParams calldata,
         BalanceDelta delta,
         bytes calldata
-    ) external override returns (bytes4, int128) {
+    ) internal override returns (bytes4, int128) {
         return (BaseHook.afterSwap.selector, 0);
     }
 
-    function afterAddLiquidity(
+    function _afterAddLiquidity(
         address sender,
         PoolKey calldata key,
         IPoolManager.ModifyLiquidityParams calldata params,
         BalanceDelta delta,
         BalanceDelta feesAccrued,
         bytes calldata hookData
-    ) external override returns (bytes4, BalanceDelta) {
+    ) internal override returns (bytes4, BalanceDelta) {
         return (BaseHook.afterAddLiquidity.selector, delta);
     }
 }
@@ -234,13 +234,13 @@ In order for us to award these points to the user, we need a few things and we a
 Let’s start with the most basic ones. We want the user to be swapping in the `ETH/TOKEN` pool and be buying the `TOKEN` in order to get awarded these `POINTS` token. Next, we need to figure out who the user is and how much ETH they are spending, and finally award the points accordingly.
 
 ```solidity
-    function afterSwap(
+    function _afterSwap(
         address,
         PoolKey calldata key,
         IPoolManager.SwapParams calldata swapParams,
         BalanceDelta delta,
         bytes calldata hookData
-    ) external override onlyPoolManager returns (bytes4, int128) {
+    ) internal override onlyPoolManager returns (bytes4, int128) {
         // We only award points in the ETH/TOKEN pools.
         if (!key.currency0.isAddressZero()) {
             return (BaseHook.afterSwap.selector, 0);
@@ -275,14 +275,14 @@ When `amountSpecified` is less than 0, it means this is an `exact input for outp
 Similar to what we did for the `afterSwap` hook, now we need to award users for adding liquidity. We’ll do the exact same thing here, except we’ll award the points based on the added liquidity.
 
 ```solidity
-    function afterAddLiquidity(
+    function _afterAddLiquidity(
         address sender,
         PoolKey calldata key,
         IPoolManager.ModifyLiquidityParams calldata params,
         BalanceDelta delta,
         BalanceDelta feesAccrued,
         bytes calldata hookData
-    ) external override onlyPoolManager returns (bytes4, BalanceDelta) {
+    ) internal override onlyPoolManager returns (bytes4, BalanceDelta) {
         // We only award points in the ETH/TOKEN pools.
         if (!key.currency0.isAddressZero()) {
             return (BaseHook.afterAddLiquidity.selector, delta);
