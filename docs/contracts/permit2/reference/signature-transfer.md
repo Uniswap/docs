@@ -181,7 +181,7 @@ struct ExampleTrade {
 }
 ```
 
-Following EIP-721, the typehash for the data would be defined by:
+Following EIP-712, the typehash for the data would be defined by:
 
 ```solidity
 bytes32 _EXAMPLE_TRADE_TYPEHASH = keccak256('ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)');
