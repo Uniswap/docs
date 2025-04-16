@@ -97,3 +97,46 @@ _settling_ afterwards
 be transferred back to the owner or used in settling negative balances
 * _clear_ - used to zero out positive token deltas, helpful to forfeit
 insignificant token amounts in order to avoid paying further transfer costs
+
+### Handling Liquidity Amount Discrepancies  
+
+This issue commonly arises when:  
+- **Building custom routers** that pre-calculate token amounts.  
+- **Estimating values** for user interfaces or simulations.  
+
+#### Why It Happens  
+- **Pre-calculated amounts** (e.g., from `LiquidityAmounts.getAmountsForLiquidity()`) use static math.  
+- **Actual deltas** (from `modifyLiquidity()`) reflect real-time pool state, including:  
+  - Tick crossings during execution.  
+  - Rounding in fixed-point arithmetic (`Q128.128`).  
+
+#### Key Impact  
+| Scenario | Risk |  
+|----------|------|  
+| **Underestimating deltas** | Transactions revert with `CurrencyNotSettled`. |  
+| **Overestimating deltas** | Users overpay and lose funds to residual dust. |  
+
+#### Best Practices for Custom Routers  
+1. **Use Deltas for Settlement**  
+   Always derive final amounts from `modifyLiquidity()` deltas:  
+   ```solidity
+        CallbackData memory _data = abi.decode(data, (CallbackData));
+
+        (BalanceDelta delta, ) = poolManager.modifyLiquidity(
+            _data.key,
+            _data.params,
+            hex""
+        );
+        
+        _data.key.currency0.settle(poolManager, _data.key.hookAddress, delta.amount0() < 0
+            ? uint256(uint128(-delta.amount0()))
+            : uint256(uint128(delta.amount0())), false);
+
+         _data.key.currency1.settle(poolManager, _data.key.hookAddress, delta.amount1() < 0
+            ? uint256(uint128(-delta.amount1()))
+            : uint256(uint128(delta.amount1())), false);
+   ```
+
+> ⚠️ **Custom Router Pitfall**  
+> When pre-calculating liquidity changes, always account for rounding differences.  
+> **Never** assume `getAmountsForLiquidity() == modifyLiquidity()` deltas.  
