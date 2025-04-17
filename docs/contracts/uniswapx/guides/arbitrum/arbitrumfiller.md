@@ -1,11 +1,11 @@
 ---
 id: arbitrumfiller
-title: Arbitrum Pilot
+title: Filling on Arbitrum
 sidebar_position: 4
 ---
 
 # Arbitrum Pilot Overview
-Starting June 19 2024, the Uniswap team began running a portion of trades on Arbitrum through UniswapX. Unlike UniswapX on mainnet, these orders will have **no RFQ portion and thus no exclusivity** during the pilot. 
+Starting June 19 2024, the Uniswap team began running a portion of trades on Arbitrum through UniswapX. Unlike UniswapX on Mainnet, these orders will have **no RFQ portion and thus no exclusivity** during the pilot. 
 
 Filling on Arbitrum, however, follows the same two steps as filling on Mainnet: 
 1. Retrieving signed orders  
@@ -20,12 +20,12 @@ GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=42161&limit=1000
 
 Use the [UniswapX SDK](https://github.com/Uniswap/sdks/tree/main/sdks/uniswapx-sdk) to parse the `encodedOrder` field returned from endpoint. Each one of these `Orders` represents a fillable user trader. 
 
-As a lower latency alternative to polling the API, fillers can also apply to register a webhook and receive a feed of all open orders. See details for registering [here](./webhooks)
+As a lower latency alternative to polling the API, fillers can also apply to register a webhook and receive a feed of all open orders. See details for registering [here](../webhooks)
 
 ## Filling Orders
 To execute a discovered order, a filler needs to call the [execute](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/BaseReactor.sol#L31) method of the Reactor specified in the retrieved `encodedOrder` body. Currently the Reactor used by the Uniswap interface is located at:  
 
-[0x1bd1aAdc9E230626C44a139d7E70d842749351eb](https://arbiscan.io/address/0x1bd1aAdc9E230626C44a139d7E70d842749351eb)
+[0xB274d5F4b833b61B340b654d600A864fB604a87c](https://arbiscan.io/address/0xb274d5f4b833b61b340b654d600a864fb604a87c)
 
 Always confirm the address from the retrieved order before submitting. 
 
@@ -70,8 +70,8 @@ The main difference between the two order types is that DutchV2 orders use a tim
 ### Order Type References
 | OrderType | Contract Address | Reactor Specification | Example Filler Implementation |
 |-----------|------------------|----------------------|------------------------------|
-| DutchV2 | `0x1bd1aAdc9E230626C44a139d7E70d842749351eb` | [V2DutchOrderReactor.sol](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V2DutchOrderReactor.sol) | [uniswapx_strategy.rs](https://github.com/Uniswap/uniswapx-artemis/blob/main/src/strategies/uniswapx_strategy.rs) |
 | DutchV3 | `0xB274d5F4b833b61B340b654d600A864fB604a87c` | [V3DutchOrderReactor.sol](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol) | [dutchv3_strategy.rs](https://github.com/Uniswap/uniswapx-artemis/blob/main/src/strategies/dutchv3_strategy.rs) |
+| DutchV2 (deprecated April 15, 2025) | `0x1bd1aAdc9E230626C44a139d7E70d842749351eb` | [V2DutchOrderReactor.sol](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V2DutchOrderReactor.sol) | [uniswapx_strategy.rs](https://github.com/Uniswap/uniswapx-artemis/blob/main/src/strategies/uniswapx_strategy.rs) |
 
 
 # Get in touch
