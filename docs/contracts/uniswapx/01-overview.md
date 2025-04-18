@@ -23,7 +23,7 @@ To trade using UniswapX, swappers create a new type of order called an Exclusive
 
 <!-- <img src={require('./images/UniswapX_graph.png').default} alt="UniswapX" width="100%%" /> -->
 
-They then sign a message that uses Permit2 to allow the transfer of tokens to complete the trade as long as the the number of tokens sent and received matched what is specified in the decay curve. These Signed Order messages are broadcast publicly and available to be executed by anyone who wants to be a “filler”.
+They then sign a message that uses Permit2 to allow the transfer of tokens to complete the trade as long as the number of tokens sent and received matched what is specified in the decay curve. These Signed Order messages are broadcast publicly and available to be executed by anyone who wants to be a “filler”.
 
 ## Fillers on UniswapX
 UniswapX introduces a new participant in the Uniswap ecosystem, the _Filler_. These agents pickup signed orders from swappers and compete to execute them using any source of liquidity they have access to.
