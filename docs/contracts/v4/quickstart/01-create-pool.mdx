@@ -108,7 +108,7 @@ PoolKey memory pool = PoolKey({
 ### 3. Encode the [`initializePool`](/contracts/v4/reference/periphery/base/PoolInitializer) parameters
 Pools are initialized with a starting price
 ```solidity
-import {IPoolInitializer_v4} from "v4-core/src/interfaces/IPoolInitializer_v4.sol";
+import {IPoolInitializer_v4} from "v4-periphery/src/interfaces/IPoolInitializer_v4.sol";
 
 params[0] = abi.encodeWithSelector(
     IPoolInitializer_v4.initializePool.selector,
