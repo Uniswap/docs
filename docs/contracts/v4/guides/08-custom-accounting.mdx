@@ -165,11 +165,7 @@ We use `poolManager.take` to collect the fee. This creates a debt for our hook i
 ```solidity
 Currency feeCurrency;
 
-if (params.zeroForOne) {
-    feeCurrency = params.amountSpecified < 0 ? key.currency0 : key.currency1;
-} else {
-    feeCurrency = params.amountSpecified < 0 ? key.currency1 : key.currency0;
-}
+feeCurrency = params.amountSpecified < 0 == params.zeroForOne ? key.currency0 : key.currency1;
 
 poolManager.take(feeCurrency, address(this), feeAmount);
 
