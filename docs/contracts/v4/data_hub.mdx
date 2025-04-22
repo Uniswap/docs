@@ -30,19 +30,19 @@ Singleton TVL refers to the portion of total liquidity held exclusively within U
 ![Singleton TVL](./guides/images/v4_singleton_tvl.png)
 
 #### External TVL
-External TVL is the total liquidity held outside the Uniswap v4 core Pool Manager contract, specifically within initialized hook contracts. A hook contract is considered "initialized" once it is registered with at least one Uniswap v4 pool.
+External TVL is the total liquidity held outside the Uniswap v4 core PoolManager contract, specifically within initialized hook contracts. A hook contract is considered "initialized" once it is registered with at least one Uniswap v4 pool.
 
 ![External TVL](./guides/images/v4_external_tvl.png)
 
 #### Hook TVL 
-Hook TVL is the total liquidity in pools that utilize hooks. It includes both regular hooked pools, where liquidity remains in the Uniswap v4 Pool Manager contract, and special hooked pools (e.g., custom curves), where liquidity resides in external hook contracts.
+Hook TVL is the total liquidity in pools that utilize hooks. It includes both regular hooked pools, where liquidity remains in the Uniswap v4 PoolManager contract, and special hooked pools (e.g., custom curves), where liquidity resides in external hook contracts. Hook TVL can be thought of as total TVL minus vanilla-pool TVL.
 
 ![Hook TVL](./guides/images/v4_hook_tvl.png)
 
 :::note 
 **Note on Advanced Hook Scenarios**
 
-Hooks can introduce more complex liquidity flows that extend beyond the simple “locked” model described above. For example, rehypothecation hooks may deploy liquidity into external lending protocols, where it earns yield rather than remaining in the v4 Pool Manager contract. Similarly, just-in-time (JIT) liquidity hooks may pull liquidity in from elsewhere only when needed for a swap. These scenarios mean that the “TVL” in v4 (both Singleton and External) may differ from the actual capital being utilized for swaps or residing in the protocol at any given moment.
+Hooks can introduce more complex liquidity flows that extend beyond the simple “locked” model described above. For example, rehypothecation hooks may deploy liquidity into external lending protocols, where it earns yield rather than remaining in the v4 PoolManager contract. Similarly, just-in-time (JIT) liquidity hooks may pull liquidity in from elsewhere only when needed for a swap. These scenarios mean that the “TVL” in v4 (both Singleton and External) may differ from the actual capital being utilized for swaps or residing in the protocol at any given moment.
 We are actively collaborating with the broader Uniswap community and hook developers to refine our TVL definitions and measurement methods for these advanced use cases. We’ll share updates on these revised TVL standards as soon as they’re finalized.
 :::
 
@@ -68,7 +68,7 @@ You can already query holistic volume from `dex.trades` on Dune and Allium, whic
 
 ## Hook Data Standards
 
-Although hooks can include any Solidity code, they all anchor on the [10 core hook functions](https://docs.uniswap.org/contracts/v4/concepts/hooks#core-hook-functions) in Uniswap v4. These functions correspond to key points in a pool’s lifecycle (for example, before/after a swap or liquidity modification) and provide clear “entry points” for customization. For reference, see the [Hooks.sol](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol) contract in the Uni v4 core library and the [BaseHook.sol](https://github.com/OpenZeppelin/uniswap-hooks/blob/master/src/base/BaseHook.sol) template made by OpenZeppelin, which defines all hook entry points.
+Although hooks can include any Solidity code, they all anchor on the [10 core hook functions](./concepts/hooks#core-hook-functions) in Uniswap v4. These functions correspond to key points in a pool’s lifecycle (for example, before/after a swap or liquidity modification) and provide clear “entry points” for customization. For reference, see the [Hooks.sol](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol) contract in the Uni v4 core library and the [BaseHook.sol](https://github.com/OpenZeppelin/uniswap-hooks/blob/master/src/base/BaseHook.sol) template made by OpenZeppelin, which defines all hook entry points.
 
 In addition to these core functions, there are 4 “delta‐returning” flags, bringing the total possible “hook flags” to 14. Each hook contract indicates which of the 14 flags it implements via the final 14 bits of its address (see our [previous v4 data guide](https://uniswapfoundation.mirror.xyz/c7LDDTWhC2ry6gp0nGqcSKHvNHosJmhPQ-ZuIxqeB2I) on how to read these bits). This allows both developers and indexers to quickly determine a hook’s properties. If you’re unfamiliar with return deltas, refer to [Custom Accounting](https://docs.uniswap.org/contracts/v4/guides/custom-accounting), [Unlock Callback & Deltas](https://docs.uniswap.org/contracts/v4/guides/unlock-callback#deltas), and [BeforeSwapDelta](https://docs.uniswap.org/contracts/v4/reference/core/types/beforeswapdelta) in the v4 doc. 
 
