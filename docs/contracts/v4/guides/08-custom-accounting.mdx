@@ -169,9 +169,9 @@ poolManager.take(feeCurrency, address(this), feeAmount);
 ```
 
 :::note
-> Using poolManager.take requires an ERC20 balance on the pool manager. For pools where tokens are not custodied by poolmanager, this is a limitation. As a workaround, use either:
->1. poolManager.mint() instead, which is cheaper
->2. A custom swap router, where input tokens are transferred to PoolManager before the router calls poolManager.swap()
+> Using `poolManager.take()` requires an ERC20 balance on the PoolManager, i.e. via other liquidity pools. If the `.take()` amount exceeds the ERC20 balance, the code will revert. As a workaround, use either:
+>1. `poolManager.mint()` to obtain ERC6909, which are also more gas efficient
+>2. A custom swap router, where input tokens are transferred to PoolManager before the router calls `poolManager.swap()`
 :::
 
 ### Step 2.3: Create the BeforeSwapDelta
