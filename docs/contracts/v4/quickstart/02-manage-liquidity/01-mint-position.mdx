@@ -34,16 +34,22 @@ To mint a position, two actions are required:
 * mint operation - the creation of the liquidity position
 * settle pair - the two tokens to be paid by msg.sender
 
+If providing ETH liquidity, a third action is required:
+* sweep - to recover excess eth sent to the position manager
+
 ```solidity
 import {Actions} from "v4-periphery/src/libraries/Actions.sol";
 
 bytes memory actions = abi.encodePacked(uint8(Actions.MINT_POSITION), uint8(Actions.SETTLE_PAIR));
+
+// For ETH liquidity positions
+bytes memory actions = abi.encodePacked(uint8(Actions.MINT_POSITION), uint8(Actions.SETTLE_PAIR), uint8(Actions.SWEEP));
 ```
 
 ### 3. Encode Parameters
 
 ```solidity
-bytes[] memory params = new bytes[](2);
+bytes[] memory params = new bytes[](2); // new bytes[](3) for ETH liquidity positions
 ```
 
 The `MINT_POSITION` action requires the following parameters:
@@ -74,6 +80,15 @@ The `SETTLE_PAIR` action requires the following parameters:
 
 ```solidity
 params[1] = abi.encode(currency0, currency1);
+```
+
+The `SWEEP` action requires the following parameters:
+
+* `currency` - _Currency_, token to sweep
+* `recipient` - _address_, where to send excess tokens
+
+```solidity
+params[2] = abi.encode(currency, recipient);
 ```
 
 ### 4. Submit Call
