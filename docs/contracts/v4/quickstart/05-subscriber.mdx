@@ -47,7 +47,7 @@ contract MySubscriber is ISubscriber {
 
 To prevent gas griefing during unsubscription, Uniswap v4 sets a fixed variable [`unsubscribeGasLimit`](/contracts/v4/reference/periphery/interfaces/INotifier#unsubscribegaslimit) when calling a subscriber’s `notifyUnsubscribe()` function.
 
-Without this limit, if a subscriber's `notifyUnsubscribe()` consumes too much gas, it could cause the unsubscription transaction to revert, preventing the liquidity provider (LP) from exiting the position.
+Without this limit, malicious subscribers could prevent liquidity providers from unsubscribing. If `notifyUnsubscribe()` were to consume too much gas, it would cause the unsubscription transaction to revert, thus leading to a denial-of-service
 
 With the gas limit in place, if the subscriber’s notification fails, the unsubscription will still succeed and only the notification to the subscriber is skipped.
 
