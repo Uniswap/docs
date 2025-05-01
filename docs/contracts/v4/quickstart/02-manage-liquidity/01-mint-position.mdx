@@ -84,7 +84,7 @@ params[1] = abi.encode(currency0, currency1);
 
 The `SWEEP` action requires the following parameters:
 
-* `currency` - _Currency_, token to sweep
+* `currency` - _Currency_, token to sweep - most commonly native Ether: `CurrencyLibrary.ADDRESS_ZERO`
 * `recipient` - _address_, where to send excess tokens
 
 ```solidity
