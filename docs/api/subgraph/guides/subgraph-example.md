@@ -12,11 +12,11 @@ This doc will teach you how to query Uniswap v3 analytics by writing GraphQL que
 - [current liquidity](#pool-data) of a pool
 - [volume on a certain day](#historical-global-data)
 
-and much more. Below are some example queries. To run a query copy and paste it into the [v3 explorer](https://thegraph.com/hosted-service/subgraph/uniswap/uniswap-v3) to get fresh data.
+and much more. Below are some example queries. To run a query copy and paste it into the [v3 explorer](https://thegraph.com/explorer/subgraphs/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV?view=Query&chain=arbitrum-one) to get fresh data.
 
 ## Global Data
 
-Global data refers to data points about the Uniswap v3 protocol as a whole. Some examples of global data points are total value locked in the protocol, total pools deployed, or total transaction counts. Thus, to query global data you must pass in the Uniswap v3 Factory address `0x1F98431c8aD98523631AE4a59f267346ea31F984` and select the desired fields. Reference the full [factory schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L1) to see all possible fields.
+Global data refers to data points about the Uniswap v3 protocol as a whole. Some examples of global data points are total value locked in the protocol, total pools deployed, or total transaction counts. Thus, to query global data you must pass in the Uniswap v3 Factory address `0x1F98431c8aD98523631AE4a59f267346ea31F984` and select the desired fields. Reference the full [factory schema](https://github.com/Uniswap/v3-subgraph/blob/main/src/v3/schema.graphql#L1) to see all possible fields.
 
 ### Current Global Data
 
@@ -50,7 +50,7 @@ You can also query historical data by specifying a block number.
 
 ## Pool Data
 
-To get data about a certain pool, pass in the pool address. Reference the full [pool schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L75) and adjust the query fields to retrieve the data points you want.
+To get data about a certain pool, pass in the pool address. Reference the full [pool schema](https://github.com/Uniswap/v3-subgraph/blob/main/src/v3/schema.graphql#L77) and adjust the query fields to retrieve the data points you want.
 
 ### General Pool Query
 
@@ -167,7 +167,7 @@ This query returns daily aggregated data for the first 10 days since the given t
 ### General Swap Data
 
 To query data about a particular swap, input the transaction hash + "#" + the index in the swaps the transaction array.R
-This is the reference for the full [swap schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L353).
+This is the reference for the full [swap schema](https://github.com/Uniswap/v3-subgraph/blob/main/src/v3/schema.graphql#L253).
 
 This query fetches data about the sender, receiver, amounts, transaction data, and timestamp for a particular swap.
 
@@ -230,7 +230,7 @@ Input the the token contract address to fetch token data. Any token that exists 
 
 ### General Token Data
 
-This queries the decimals, symbol, name, pool count, and volume in USD for the UNI token. Reference the full [token schema](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql#L38) for all possible fields you can query.
+This queries the decimals, symbol, name, pool count, and volume in USD for the UNI token. Reference the full [token schema](https://github.com/Uniswap/v3-subgraph/blob/main/src/v3/schema.graphql#L38) for all possible fields you can query.
 
 ```
 {
@@ -304,4 +304,4 @@ To get data about a specific position, input the NFT tokenId. This queries the c
 
 ## Contribute
 
-There are many more queries you can do with the Uniswap v3 subgraph including data related to ticks, mints, positions, and burns. Once again you can reference the full schema [here](https://github.com/Uniswap/v3-subgraph/blob/main/schema.graphql). If you'd like to suggest more example queries to showcase, feel free to drop some suggestions in [discord](https://discord.com/invite/uniswap) under #dev-chat or [contribute](../../../../CONTRIBUTING.md) your own queries by submitting a pull request to the docs repo.
+There are many more queries you can do with the Uniswap v3 subgraph including data related to ticks, mints, positions, and burns. Once again you can reference the full schema [here](https://github.com/Uniswap/v3-subgraph/blob/main/src/v3/schema.graphql). If you'd like to suggest more example queries to showcase, feel free to drop some suggestions in [discord](https://discord.com/invite/uniswap) under #dev-chat or [contribute](https://github.com/Uniswap/docs/blob/main/CONTRIBUTING.md) your own queries by submitting a pull request to the docs repo.
