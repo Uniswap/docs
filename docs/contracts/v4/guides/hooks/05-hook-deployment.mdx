@@ -84,6 +84,13 @@ bytes memory constructorArgs = abi.encode(POOLMANAGER);
     HookMiner.find(CREATE2_DEPLOYER, flags, type(PointsHook).creationCode, constructorArgs);
 ```
 
+:::note **CREATE2_DEPLOYER**
+- `CREATE2_DEPLOYER` is the address that will deploy the hook. In `forge test`, this will be the test contract `address(this)` or the pranking address.
+- In `forge script`, this should be `0x4e59b44847b379578588920cA78FbF26c0B4956C` (CREATE2 Deployer Proxy)
+:::
+
+Refer to this for more details on deploying contracts with CREATE2: [Deploying Contracts with CREATE2](https://docs.openzeppelin.com/cli/2.8/deploying-with-create2)
+
 Deploy the hook using CREATE2 with the `salt`, and compare the deployed address with the address mined:
 
 ```solidity
