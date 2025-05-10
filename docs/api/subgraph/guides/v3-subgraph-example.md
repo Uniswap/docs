@@ -1,7 +1,7 @@
 ---
-id: examples
-title: Query Examples
-sidebar_position: 3
+id: v3-examples
+title: v3 Protocol Query Examples
+sidebar_position: 1
 ---
 
 # Subgraph Query Examples
@@ -16,7 +16,12 @@ and much more. Below are some example queries. To run a query copy and paste it 
 
 ## Global Data
 
-Global data refers to data points about the Uniswap v3 protocol as a whole. Some examples of global data points are total value locked in the protocol, total pools deployed, or total transaction counts. Thus, to query global data you must pass in the Uniswap v3 Factory address `0x1F98431c8aD98523631AE4a59f267346ea31F984` and select the desired fields. Reference the full [factory schema](https://github.com/Uniswap/v3-subgraph/blob/main/src/v3/schema.graphql#L1) to see all possible fields.
+Global data refers to data points about the Uniswap v3 protocol as a whole. Some examples of global data points are:
+- Total value locked in the protocol,
+- Total pools deployed,
+- Total transaction counts. 
+
+Thus, to query global data you must pass in the Uniswap v3 Factory address `0x1F98431c8aD98523631AE4a59f267346ea31F984` and select the desired fields. Reference the full [factory schema](https://github.com/Uniswap/v3-subgraph/blob/main/src/v3/schema.graphql#L1) to see all possible fields.
 
 ### Current Global Data
 
@@ -39,7 +44,12 @@ You can also query historical data by specifying a block number.
 
 ```
 {
-  factory(id: "0x1F98431c8aD98523631AE4a59f267346ea31F984", block: {number: 13380584}){
+  factory(
+    id: "0x1F98431c8aD98523631AE4a59f267346ea31F984", 
+    block: { 
+      number: 13380584 
+    }
+  ) {
     poolCount
     txCount
     totalVolumeUSD
@@ -87,7 +97,7 @@ This query sets the skip value and returns the first 10 responses after the firs
 
 ```
 {
-  pools(first:10, skip:1000){
+  pools(first:10, skip:1000) {
     id
     token0 {
       id
@@ -107,26 +117,26 @@ This next query sets a skip variable. In your language and environment of choice
 
 Check out [this example](https://github.com/Uniswap/v3-info/blob/770a05dc1a191cf229432ebc43c1f2ceb3666e3b/src/data/pools/chartData.ts#L14) from our interface for poolDayData that does something similar.
 
-Note: This query will not work in the graph explorer and more resembles the structure of a query you'd pass to some graphql middleware like Apollo.
+> **Note**
+> This query will not work in the graph explorer and more resembles the structure of a query you'd pass to some GraphQL middleware like Apollo.
 
 ```
-query pools( $skip: Int!) {
-    pools(
-      first: 1000
-      skip: $skip
-      orderDirection: asc
-    ) {
+query pools($skip: Int!) {
+  pools(
+    first: 1000, 
+    skip: $skip, 
+    orderDirection: asc
+  ) {
+    id
+    sqrtPrice
+    token0 {
       id
-      sqrtPrice
-      token0 {
-        id
-      }
-      token1 {
-        id
-      }
+    }
+    token1 {
+      id
     }
   }
-
+}
 ```
 
 ### Most Liquid Pools
@@ -135,9 +145,13 @@ Retrieve the top 1000 most liquid pools. You can use this similar set up to orde
 
 ```
 {
- pools(first: 1000, orderBy: liquidity, orderDirection: desc) {
-   id
- }
+  pools(
+    first: 1000, 
+    orderBy: liquidity, 
+    orderDirection: desc
+  ) {
+    id
+  }
 }
 ```
 
@@ -147,10 +161,14 @@ This query returns daily aggregated data for the first 10 days since the given t
 
 ```
 {
-  poolDayDatas(first: 10, orderBy: date, where: {
-    pool: "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801",
-    date_gt: 1633642435
-  } ) {
+  poolDayDatas(
+    first: 10, 
+    orderBy: date, 
+    where: {
+      pool: "0x1d42064fc4beb5f8aaf85f4617ae8b3b5b8bd801", 
+      date_gt: 1633642435
+    }
+  ) {
     date
     liquidity
     sqrtPrice
@@ -166,14 +184,14 @@ This query returns daily aggregated data for the first 10 days since the given t
 
 ### General Swap Data
 
-To query data about a particular swap, input the transaction hash + "#" + the index in the swaps the transaction array.R
+To query data about a particular swap, input the transaction hash + "#" + the index in the swaps the transaction array.
 This is the reference for the full [swap schema](https://github.com/Uniswap/v3-subgraph/blob/main/src/v3/schema.graphql#L253).
 
 This query fetches data about the sender, receiver, amounts, transaction data, and timestamp for a particular swap.
 
 ```
 {
-   swap(id: "0x000007e1111cbd97f74cfc6eea2879a5b02020f26960ac06f4af0f9395372b64#66785") {
+  swap(id: "0x000007e1111cbd97f74cfc6eea2879a5b02020f26960ac06f4af0f9395372b64#66785") {
     sender
     recipient
     amount0
@@ -193,8 +211,8 @@ This query fetches data about the sender, receiver, amounts, transaction data, a
       id
       symbol
     }
-   }
- }
+  }
+}
 ```
 
 ### Recent Swaps Within a Pool
@@ -203,25 +221,30 @@ You can set the `where` field to filter swap data by pool address. This example 
 
 ```
 {
-swaps(orderBy: timestamp, orderDirection: desc, where:
- { pool: "0x7858e59e0c01ea06df3af3d20ac7b0003275d4bf" }
-) {
-  pool {
-    token0 {
-      id
-      symbol
+  swaps(
+    orderBy: timestamp, 
+    orderDirection: desc, 
+    where: { 
+      pool: "0x7858e59e0c01ea06df3af3d20ac7b0003275d4bf" 
     }
-    token1 {
-      id
-      symbol
+  ) {
+    pool {
+      token0 {
+        id
+        symbol
+      }
+      token1 {
+        id
+        symbol
+      }
     }
+    sender
+    recipient
+    amount0
+    amount1
   }
-  sender
-  recipient
-  amount0
-  amount1
- }
 }
+
 ```
 
 ## Token Data
@@ -250,7 +273,14 @@ You can fetch aggregate data about a specific token over a 24-hour period. This 
 
 ```
 {
-  tokenDayDatas(first: 10, where: {token: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"}, orderBy: date, orderDirection: asc) {
+  tokenDayDatas(
+    first: 10, 
+    where: {
+      token: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+    }, 
+    orderBy: date, 
+    orderDirection: asc
+  ) {
     date
     token {
       id
@@ -264,7 +294,9 @@ You can fetch aggregate data about a specific token over a 24-hour period. This 
 ### All Tokens
 
 Similar to retrieving all pools, you can fetch all tokens by using skip.
-Note: This query will not work in the graph sandbox and more resembles the structure of a query you'd pass to some graphql middleware like Apollo.
+
+> **Note**
+> This query will not work in the graph explorer and more resembles the structure of a query you'd pass to some GraphQL middleware like Apollo.
 
 ```
 query tokens($skip: Int!) {
@@ -284,7 +316,7 @@ To get data about a specific position, input the NFT tokenId. This queries the c
 
 ```
 {
-  position(id:3) {
+  position(id: 3) {
     id
     collectedFeesToken0
     collectedFeesToken1
