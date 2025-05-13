@@ -804,6 +804,10 @@ module.exports = {
             to: '/contracts/v3/guides/local-environment',
             from: '/protocol/V3/guides/getting-started',
           },
+          {
+            to: '/contracts/uniswapx/guides/mainnet/createfiller',
+            from: '/contracts/uniswapx/guides/createfiller',
+          },
         ],
         createRedirects(existingPath) {
           // v3 Redirects
