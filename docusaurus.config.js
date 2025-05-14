@@ -808,6 +808,18 @@ module.exports = {
             to: '/contracts/uniswapx/guides/mainnet/createfiller',
             from: '/contracts/uniswapx/guides/createfiller',
           },
+          {
+            to: '/contracts/uniswapx/guides/arbitrum/arbitrumfiller',
+            from: '/contracts/uniswapx/guides/arbitrumfiller',
+          },
+          {
+            to: '/contracts/uniswapx/guides/mainnet/becomequoter',
+            from: '/contracts/uniswapx/guides/becomequoter',
+          },
+          {
+            to: '/contracts/uniswapx/guides/priority/priorityorderreactor',
+            from: '/contracts/uniswapx/guides/priorityorderreactor',
+          },
         ],
         createRedirects(existingPath) {
           // v3 Redirects
