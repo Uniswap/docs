@@ -10,10 +10,11 @@ Welcome to the Uniswap Swap Widget. To begin, we recommend looking at the [**Gui
 
 # Alpha software
 
-The latest version of the Swap Widget is in production in the Uniswap Interface,
-but it is considered Alpha software and may contain bugs or change significantly between patch versions.
-If you have questions about how to use the SDK, please reach out in the `#dev-chat` channel of our Discord.
-Pull requests are welcome!
+The latest version of the Swap Widget is in production in the Uniswap Interface, but it is considered Alpha software and may contain bugs or change significantly between patch versions.
+
+:::info 
+There are likely to be issues and will take modification to make work as desired. This also has not been updated, and there are no current plans for working on this.
+:::
 
 # Uniswap Swap Widget
 
