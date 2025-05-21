@@ -8,8 +8,8 @@ import { getCLS, getFCP, getFID, getLCP, Metric } from 'web-vitals'
 // Add gtag to window object for TypeScript
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
+    gtag?: Gtag.Gtag
+    dataLayer?: IArguments[]
   }
 }
 
@@ -48,7 +48,7 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
       const script1 = document.createElement('script')
       script1.async = true
       script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
-      
+
       const script2 = document.createElement('script')
       script2.innerHTML = `
         window.dataLayer = window.dataLayer || [];
@@ -56,12 +56,12 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
         gtag('js', new Date());
         gtag('config', '${GA_MEASUREMENT_ID}');
       `
-      
+
       document.head.appendChild(script1)
       document.head.appendChild(script2)
-      
+
       // Make gtag available globally
-      window.gtag = function() {
+      window.gtag = function () {
         window.dataLayer.push(arguments)
       }
     }
@@ -88,7 +88,7 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
     sendAnalyticsEvent(SharedEventName.PAGE_VIEWED, {
       page: pathname,
     })
-    
+
     // Send to Google Analytics
     if (window.gtag && isProductionEnv) {
       window.gtag('event', 'page_view', {
