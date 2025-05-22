@@ -280,6 +280,44 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 
 ## 🧩 V3 & V4 Advanced
 
+## `0x10` – V4_SWAP
+
+### Parameters:
+
+- **`bytes actions`**  
+  Encoded action identifiers specifying the type of swap or payment action.  
+  For available action types, see [Uniswap V4 SDK Actions](../../sdk/v4/reference/enumerations/Actions.md).
+
+- **`bytes[] params`**
+  ABI-encoded parameters array, corresponding one-to-one with each action provided in `actions`.
+  Each action type requires its own parameter structure.
+
+### Calls:
+
+Executes actions via `V4SwapRouter._handleAction(action, params)`:
+
+- Swap-related actions call `_swapExactInput(...)` or `_swapExactOutput(...)`.
+- Payment-related actions (`settle`, `take`) call internal balance management methods (`_settle(...)`, `_take(...)`).
+- Swap actions ultimately call `_swap(...)`, executing swaps via `PoolManager.swap(...)`.
+
+**Usage:** Executes a swap on Uniswap V4 using the provided parameters.
+
+### Internal Flow:
+
+```markdown
+UniversalRouter.execute(...) receives command `0x10`
+↓ dispatch (UniversalRouter.sol)
+V4SwapRouter.\_handleAction(action, params)
+├── SWAP_EXACT_IN → \_swapExactInput(...)
+├── SWAP_EXACT_OUT → \_swapExactOutput(...)
+├── SETTLE / SETTLE_ALL → \_settle(...)
+├── TAKE / TAKE_ALL / TAKE_PORTION → \_take(...)
+↓ swap calls route to
+\_swap(...) → PoolManager.swap(...)
+```
+
+---
+
 ### `0x11` – V3_POSITION_MANAGER_PERMIT
 
 **Parameters:**
@@ -312,7 +350,7 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 - `PoolKey key`
 - `uint160 sqrtPriceX96`
 
-**Calls:** PositionManager.initializePool(...)  
+**Calls:** `PoolManager.initialize(...)`  
 **Usage:** Creates new V4 pool with specified fee, tick spacing, etc.
 
 ---
