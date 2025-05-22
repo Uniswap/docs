@@ -1,0 +1,117 @@
+---
+id: quoting
+title: Getting a Quote
+---
+
+## Introduction
+
+This guide will cover how to get the current quotes for any token pair on the Uniswap protocol.
+
+In this example we will use `quoteExactInputSingle` to get a quote for the pair **ETH - USDC**. The inputs are **poolKey**, **zeroForOne**, **exactAmount** and **hookData**.
+  
+The guide will **cover**:
+
+1. Constructing the PoolKey and Swap parameters
+2. Referencing the Quoter contract and getting a quote
+
+At the end of the guide, we should be able to fetch a quote for the given input token pair and the input token amount.
+
+For this guide, the following Uniswap packages are used:
+
+- [`@uniswap/v4-sdk`](https://www.npmjs.com/package/@uniswap/v4-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+
+## Constructing the PoolKey and Swap parameters
+
+We will first create an example configuration `CurrentConfig` in `config.ts`. It has the format:
+
+```typescript
+import { SwapExactInSingle } from '@uniswap/v4-sdk'
+
+export const CurrentConfig: SwapExactInSingle = {
+    poolKey: {
+        currency0: ETH_TOKEN.address,
+        currency1: USDC_TOKEN.address,
+        fee: FEE_AMOUNT_LOW,
+        tickSpacing: TICK_SPACING_SIXTY,
+        hooks: EMPTY_HOOK,
+    },
+    zeroForOne: true,
+    amountIn: ethers.utils.parseUnits('1', ETH_TOKEN.decimals).toString(), 
+    amountOutMinimum: "0",
+    hookData: '0x00'
+}
+```
+
+The pool used is defined by a pair of tokens in `constants.ts`.
+You can also change these two tokens and the other pool parameters in the config, just make sure a pool actually exists for your configuration.
+Check out the top pools on [Uniswap](https://app.uniswap.org/#/pools).
+
+```typescript
+import { Token } from '@uniswap/sdk-core'
+
+const ETH_TOKEN = new Token(
+  1,
+  '0x0000000000000000000000000000000000000000',
+  18,
+  'ETH',
+  'Ether'
+)
+
+const USDC_TOKEN = new Token(
+  1,
+  '0x89D9b1CD8A61D0581E22E04f1547B2Cc1232B848',
+  6,
+  'USDC',
+  'USD//C'
+)
+```
+
+## Referencing the Quoter contract and getting a quote
+
+To get quotes for trades, Uniswap has deployed a **Quoter Contract**. We will use this contract to fetch the output amount we can expect for our trade, without actually executing the trade.
+
+Now, we need to construct an instance of an **ethers** `Contract` for our Quoter contract in order to interact with it:
+
+```typescript
+const quoterContract = new ethers.Contract(
+  QUOTER_CONTRACT_ADDRESS,
+  Quoter.abi, // Import or define the ABI for Quoter contract
+  new ethers.providers.JsonRpcProvider("RPC") // Provide the right RPC address for the chain
+)
+```
+
+We get the `QUOTE_CONTRACT_ADDRESS` for our chain from [Uniswap Deployments](https://docs.uniswap.org/contracts/v4/deployments).
+
+We can now use our Quoter contract to obtain the quote.
+
+In an ideal world, the quoter functions would be `view` functions, which would make them very easy to query on-chain with minimal gas costs. However, the Uniswap V4 Quoter contracts rely on state-changing calls designed to be reverted to return the desired data. This means calling the quoter will be very expensive and should not be called on-chain.
+
+To get around this difficulty, we can use the `callStatic` method provided by the **ethers.js** `Contract` instances.
+This is a useful method that submits a state-changing transaction to an Ethereum node, but asks the node to simulate the state change, rather than to execute it. Our script can then return the result of the simulated state change:
+
+```typescript
+const quotedAmountOut = await quoterContract.callStatic.quoteExactInputSingle({
+    poolKey: CurrentConfig.poolKey,
+    zeroForOne: CurrentConfig.zeroForOne,
+    exactAmount: CurrentConfig.amountIn, 
+    hookData: CurrentConfig.hookData,
+})
+
+console.log(ethers.utils.formatUnits(quotedAmountOut, USDC_TOKEN.decimals));
+```
+
+The result of the call is the number of output tokens you'd receive for the quoted swap.
+
+It should be noted that `quoteExactInputSingle` is only 1 of 4 different methods that the quoter offers:
+
+1. `quoteExactInputSingle` - given the amount you want to swap, produces a quote for the amount out for a swap of a single pool
+2. `quoteExactInput` - given the amount you want to swap, produces a quote for the amount out for a swap over multiple pools
+3. `quoteExactOutputSingle` - given the amount you want to get out, produces a quote for the amount in for a swap over a single pool
+4. `quoteExactOutput`  - given the amount you want to get out, produces a quote for the amount in for a swap over multiple pools
+
+If we want to trade two tokens that do not share a pool with each other, we will need to make swaps over multiple pools.
+This is where the `quoteExactInput` and `quoteExactOutput` methods come in.
+
+For the `exactOutput` and `exactOutputSingle` methods, we need to keep in mind that a pool can not give us more than the amount of Tokens it holds.
+If we try to get a quote on an output of 100 ETH from a Pool that only holds 50 ETH, the function call will fail.
