@@ -393,3 +393,8 @@ Be sure to follow such commands with cleanup logic (e.g., `SWEEP`) to handle unu
 
 - [Uniswap Universal Router GitHub](https://github.com/Uniswap/universal-router)
 - [Latest Commands.sol](https://github.com/Uniswap/universal-router/blob/main/contracts/libraries/Commands.sol)
+
+## Legacy Documentation
+
+- [Universal Router (Legacy) Overview](../../universal-router-legacy/overview)
+- [Universal Router (Legacy) Technical Reference](../../universal-router-legacy/technical-reference)

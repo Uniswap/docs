@@ -15,25 +15,29 @@ The first of these functions adds the functionality to allow transactions to hav
 
 The `execute` functions work like a simplified VM - they take in a list of commands, and a list of inputs for the commands and execute them in the order specified.
 
-## Command Structure 
+## Command Structure
 
 The first parameter for the function (`bytes calldata commands`) is a list of commands for the contract to execute, in the order they should be executed. Each command is encoded in 1 byte, containing the following split of 8 bits:
 
-| 0  | 1 2 | 3 4 5 6 7 |
-| :- | :-- | :-------- |
-| f  | r   | command   |
+| 0   | 1 2 | 3 4 5 6 7 |
+| :-- | :-- | :-------- |
+| f   | r   | command   |
 
-### `f` 
+### `f`
+
 A single bit flag, that signals whether or not the command should be allowed to revert without the whole transaction failing.
- - If `f` is `0` aka `false` and the command reverts, then the entire transaction will revert and none of the commands will be executed.
- - If `f` is `1` aka `true` and the command reverts, then the transaction will continue, allowing us to achieve partial fills. If using this flag, be careful to include further commands that will remove any funds that could be left unused in the `UniversalRouter` contract.
 
-### `r` 
+- If `f` is `0` aka `false` and the command reverts, then the entire transaction will revert and none of the commands will be executed.
+- If `f` is `1` aka `true` and the command reverts, then the transaction will continue, allowing us to achieve partial fills. If using this flag, be careful to include further commands that will remove any funds that could be left unused in the `UniversalRouter` contract.
+
+### `r`
+
 2 unused bytes, reserved for future use. Leaving these 2 bits as `0` will save gas, but any value passed into the contract will be ignored. Later versions of the `UniversalRouter` will likely expand the 5 bits used for `command` to use at least 1 of these bits.
 
-### `command` 
+### `command`
+
 A 5 bit unique identifier for the command that should be carried out. The values of these commands can be found within [Commands.sol](https://github.com/Uniswap/universal-router/blob/main/contracts/libraries/Commands.sol), or can be viewed in the table below.
-    
+
 The command types that are not defined do not have an assigned command at this moment in time. Providing one of these identifiers will cause the transaction to revert with `InvalidCommandType`.
 
 A complete list of commands can be found in the table below:
@@ -52,7 +56,7 @@ A complete list of commands can be found in the table below:
 | `0x09`  | [`V2_SWAP_EXACT_OUT`](./02-technical-reference.md#v2_swap_exact_out)                     |
 | `0x0a`  | [`PERMIT2_PERMIT`](./02-technical-reference.md#permit2_permit)                           |
 | `0x0b`  | [`WRAP_ETH`](./02-technical-reference.md#wrap_eth)                                       |
-| `0x0c`  | [`UNWRAP_WETH`](./02-technical-reference.md#unwrap_weth)                                  |
+| `0x0c`  | [`UNWRAP_WETH`](./02-technical-reference.md#unwrap_weth)                                 |
 | `0x0d`  | [`PERMIT2_TRANSFER_FROM_BATCH`](./02-technical-reference.md#permit2_transfer_from_batch) |
 | `0x0e`  |                                                                                          |
 | `0x0f`  |                                                                                          |
@@ -265,7 +269,7 @@ The individual that signed the permit must be the `msg.sender` of the transactio
 
 ## Example: Reverting Commands
 
-For a Sudoswap command, that should be *allowed to revert*, the following 8 bit command should be provided:
+For a Sudoswap command, that should be _allowed to revert_, the following 8 bit command should be provided:
 
 ```markdown
 command = 0x80 (10000000) && 0x19 (00011001) = 0x99 (10011001)
