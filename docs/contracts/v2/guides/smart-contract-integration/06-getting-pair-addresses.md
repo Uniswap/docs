@@ -34,7 +34,7 @@ address factory = 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f;
 address token0 = 0xCAFE000000000000000000000000000000000000; // change me!
 address token1 = 0xF00D000000000000000000000000000000000000; // change me!
 
-address pair = address(uint(keccak256(abi.encodePacked(
+address pair = address(uint160(bytes20(keccak256(abi.encodePacked(
   hex'ff',
   factory,
   keccak256(abi.encodePacked(token0, token1)),
