@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Subgraph Query Examples
 
-This doc will teach you how to query Uniswap v4 analytics by writing GraphQL queries on the subgraph. You can fetch data points like :
+This doc will teach you how to query Uniswap v4 analytics by writing GraphQL queries on the subgraph. You can fetch data points like:
 
 - [position details](#general-position-data)
 - [current liquidity](#pool-data) of a pool
