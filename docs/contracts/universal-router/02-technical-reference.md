@@ -40,20 +40,20 @@ A 5 bit unique identifier for the command that should be carried out. The values
 
 The command types that are not defined do not have an assigned command at this moment in time. Providing one of these identifiers will cause the transaction to revert with `InvalidCommandType`.
 
-## V2 vs V1 Overview
+## v2 vs v1 Overview
 
 **Note:** For details on the previous version, see [Universal Router (Legacy)](../../universal-router-legacy/overview).
 
-| Feature                   | V1                        | V2                                       |
+| Feature                   | v1                        | v2                                       |
 | ------------------------- | ------------------------- | ---------------------------------------- |
 | NFT support               | ✅ Multiple marketplaces  | ❌ Removed                               |
-| V4 pool interaction       | ❌ Not supported          | ✅ `V4_SWAP`, `V4_POSITION_MANAGER_CALL` |
-| V3/V4 position management | ❌ Not supported          | ✅ `V3_POSITION_MANAGER_*` / `V4_*`      |
+| v4 pool interaction       | ❌ Not supported          | ✅ `V4_SWAP`, `V4_POSITION_MANAGER_CALL` |
+| v3/v4 position management | ❌ Not supported          | ✅ `V3_POSITION_MANAGER_*` / `V4_*`      |
 | Commands                  | 0x00–0x3f (dense NFT ops) | 0x00–0x21 (compact core logic)           |
 | Permit2-based transfers   | ✅                        | ✅ Extended with batch & position flows  |
 | Sub-plan execution        | ✅ `EXECUTE_SUB_PLAN`     | ✅ Still supported                       |
 
-## Supported Commands (V2)
+## Supported Commands (v2)
 
 | Command | Name                          |
 | ------: | ----------------------------- |
@@ -129,7 +129,7 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 - `bool payerIsUser`
 
 **Calls:** `v2SwapExactInput(...)` in V2SwapModule  
-**Usage:** Simple Uniswap V2-style fixed input swap using token pairs.
+**Usage:** Simple Uniswap v2-style fixed input swap using token pairs.
 
 ---
 
@@ -278,7 +278,7 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 
 ---
 
-## 🧩 V3 & V4 Advanced
+## 🧩 v3 & v4 Advanced
 
 ## `0x10` – V4_SWAP
 
@@ -286,7 +286,7 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 
 - **`bytes actions`**  
   Encoded action identifiers specifying the type of swap or payment action.  
-  For available action types, see [Uniswap V4 SDK Actions](../../sdk/v4/reference/enumerations/Actions.md).
+  For available action types, see [Uniswap v4 SDK Actions](../../sdk/v4/reference/enumerations/Actions.md).
 
 - **`bytes[] params`**
   ABI-encoded parameters array, corresponding one-to-one with each action provided in `actions`.
@@ -300,7 +300,7 @@ Executes actions via `V4SwapRouter._handleAction(action, params)`:
 - Payment-related actions (`settle`, `take`) call internal balance management methods (`_settle(...)`, `_take(...)`).
 - Swap actions ultimately call `_swap(...)`, executing swaps via `PoolManager.swap(...)`.
 
-**Usage:** Executes a swap on Uniswap V4 using the provided parameters.
+**Usage:** Executes a swap on Uniswap v4 using the provided parameters.
 
 ### Internal Flow:
 
@@ -328,7 +328,7 @@ V4SwapRouter.\_handleAction(action, params)
 - `uint8 v, bytes32 r, bytes32 s`
 
 **Calls:** NonfungiblePositionManager.permit(...)  
-**Usage:** Grants router permission to operate on a user’s V3 NFT.
+**Usage:** Grants router permission to operate on a user’s v3 NFT.
 
 ---
 
@@ -339,7 +339,7 @@ V4SwapRouter.\_handleAction(action, params)
 - `bytes callData`
 
 **Calls:** Arbitrary call to NonfungiblePositionManager  
-**Usage:** Executes V3 NFT ops like `burn`, `collect`, `decreaseLiquidity`.
+**Usage:** Executes v3 NFT ops like `burn`, `collect`, `decreaseLiquidity`.
 
 ---
 
@@ -361,7 +361,7 @@ V4SwapRouter.\_handleAction(action, params)
 
 - `bytes callData`
 
-**Calls:** Arbitrary call to V4 PositionManager  
+**Calls:** Arbitrary call to v4 PositionManager  
 **Usage:** Used for `modifyLiquidity`, `mint`, `settle`, etc. on a pool.
 
 ---
