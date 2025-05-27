@@ -86,7 +86,7 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 
 ---
 
-## 🧮 Swap Commands
+## Swap Commands
 
 ### `0x00` – V3_SWAP_EXACT_IN
 
@@ -148,7 +148,7 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 
 ---
 
-## 🔐 Permit2 Commands
+## Permit2 Commands
 
 ### `0x02` – PERMIT2_TRANSFER_FROM
 
@@ -198,7 +198,7 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 
 ---
 
-## 💸 Payment & Balance Commands
+## Payment & Balance Commands
 
 ### `0x04` – SWEEP
 
@@ -252,7 +252,7 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 
 ---
 
-## 🔁 ETH & WETH
+## ETH & WETH
 
 ### `0x0b` – WRAP_ETH
 
@@ -278,7 +278,7 @@ Each command requires its own input structure. Inputs are encoded using `abi.enc
 
 ---
 
-## 🧩 v3 & v4 Advanced
+## v3 & v4 Advanced
 
 ## `0x10` – V4_SWAP
 
@@ -366,7 +366,7 @@ V4SwapRouter.\_handleAction(action, params)
 
 ---
 
-## 🪢 Composability
+## Composability
 
 ### `0x21` – EXECUTE_SUB_PLAN
 
