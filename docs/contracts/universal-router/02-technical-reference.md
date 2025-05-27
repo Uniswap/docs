@@ -42,7 +42,7 @@ The command types that are not defined do not have an assigned command at this m
 
 ## V2 vs V1 Overview
 
-**Note:** For details on the previous version, see [Universal Router (Legacy)](./legacy/01-overview.md).
+**Note:** For details on the previous version, see [Universal Router (Legacy)](../../universal-router-legacy/overview).
 
 | Feature                   | V1                        | V2                                       |
 | ------------------------- | ------------------------- | ---------------------------------------- |

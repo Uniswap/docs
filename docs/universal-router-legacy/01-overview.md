@@ -12,8 +12,8 @@ The flexible command style allows us to provide users with:
 - Purchases of NFTs across 8 marketplaces
 - Partial fills of trades
 - Wrapping and Unwrapping of ETH
-- Time-bound, signature controlled token approvals using [Permit2](../permit2/overview.md)
+- Time-bound, signature controlled token approvals using [Permit2](../contracts/permit2/overview.md)
 
 Transactions are encoded using a string of commands, allowing users to have maximum flexibility over what they want to perform. With all of these features available in a single transaction, the possibilities available to users are endless.
 
-_Note: The `UniversalRouter` uses `Permit2` to remove the need for token approvals being provided directly to the `UniversalRouter`. The `Permit2` documentation can be found [here](../permit2/overview.md)._
+_Note: The `UniversalRouter` uses `Permit2` to remove the need for token approvals being provided directly to the `UniversalRouter`. The `Permit2` documentation can be found [here](../contracts/permit2/overview.md)._
