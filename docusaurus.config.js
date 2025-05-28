@@ -518,7 +518,7 @@ module.exports = {
             from: '/reference/core/interfaces/callback/IUniswapV3SwapCallback',
           },
           {
-            to: '/contracts/v3/reference/Deployments/',
+            to: '/contracts/v3/reference/deployments/',
             from: '/contracts/v3/reference/deploymentsletWETHAddress',
           },
           {
@@ -732,10 +732,10 @@ module.exports = {
             to: '/contracts/v4/quickstart/manage-liquidity/burn-liquidity',
             from: '/contracts/v4/guides/manage-liquidity/burn-liquidity',
           },
-          /*{
+          {
             to: '/contracts/v3/reference/deployments/',
             from: '/contracts/v3/reference/Deployments.md',
-          },*/
+          },
           {
             to: '/sdk/v3/guides/local-development',
             from: '/sdk/v3/guides/02-local-development',
