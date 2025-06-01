@@ -72,7 +72,6 @@ v4 stores position information in a packed format. Here's how to decode it:
 
 ```typescript
 interface PackedPositionInfo {
-  getPoolId(): bigint
   getTickUpper(): number
   getTickLower(): number
   hasSubscriber(): boolean
@@ -80,8 +79,6 @@ interface PackedPositionInfo {
 
 function decodePositionInfo(value: bigint): PackedPositionInfo {
   return {
-    getPoolId: () => value >> 56n,
-
     getTickUpper: () => {
       const raw = Number((value >> 32n) & 0xffffffn)
       return raw >= 0x800000 ? raw - 0x1000000 : raw
