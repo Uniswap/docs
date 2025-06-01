@@ -3,55 +3,51 @@ id: create-pool
 title: Create Pool
 ---
 
-## Context
-
-Creating a pool on Uniswap v4 is permissionless and enables the trading of an asset. Uniswap v4 is a popular destination for creating markets due to its:
+## Introduction
+In this example we will use **ethers.js** and the **Uniswap v4 SDK** to create pools on Uniswap v4. Uniswap v4 is a popular destination for creating markets due to its:
 
 - Proven track record and battle-tested codebase
-- Concentrated liquidity, unlocking capital efficiency
-- Flexibile pool design through dynamic fees and hooks
+- Concentrated liquidity, unlocks capital efficiency
+- Flexible pool design through dynamic fees and hooks
 - Gas-efficient architecture
 - Integrations with alternative trading venues
 
-For more information, developers should see [Uniswap v4 Overview](/contracts/v4/overview)
+For more information, developers should see [Uniswap v4 Overview](../../../../contracts/v4/overview.mdx)
 
-The guide covers two approaches to creating a pool:
+For this guide, the following Uniswap packages are used:
+  
+- [`@uniswap/v4-sdk`](https://www.npmjs.com/package/@uniswap/v4-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
 
-1. Create a pool only
-2. Create a pool and add initial liquidity, with one transaction
-
-### Setup
-
-Developing with Uniswap v4 _requires [foundry](https://book.getfoundry.sh)_
-
-Install the dependencies:
-
-```bash
-forge install uniswap/v4-core
-forge install uniswap/v4-periphery
-```
-
-## Guide: Create a Pool Only
+## Configuration
 
 To initialize a Uniswap v4 Pool _without initial liquidity_, developers should call [`PoolManager.initialize()`](/contracts/v4/reference/core/interfaces/IPoolManager#initialize)
 
-Creating a pool without liquidity may be useful for "reserving" a pool for future use, when initial liquidity is not available, or when external market makers would provide the starting liquidity
+Creating a pool without liquidity may be useful for "reserving" a pool for future use, when initial liquidity is not available, or when external market makers would provide the starting liquidity.
 
-### 1. Configure the Pool
+### Configure the Pool
 
-```solidity
-import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+We will first create an example configuration `CurrentConfig` in `config.ts`. It has the format:
 
-PoolKey memory pool = PoolKey({
+```typescript
+export const CurrentConfig: ExampleConfig = {
+  env: Environment.MAINNET,
+  rpc: {
+    local: 'http://localhost:8545',
+    mainnet: 'https://mainnet.infura.io/v3/YOUR_API_KEY',
+  },
+  ...
+  poolKey: {
     currency0: currency0,
     currency1: currency1,
     fee: lpFee,
     tickSpacing: tickSpacing,
-    hooks: hookContract
-});
+    hooks: HOOK_CONTRACT_ADDRESS,
+  },
+}
 ```
 
-> For native token pairs (Ether), use `CurrencyLibrary.ADDRESS_ZERO` as `currency0`
+> For native token pairs (Ether), use `ADDRESS_ZERO` as `currency0`
 
 [PoolKey](/contracts/v4/reference/core/types/PoolKey) uniquely identifies a pool
 
@@ -62,149 +58,38 @@ PoolKey memory pool = PoolKey({
 
 A note on `tickSpacing`:
 
-Lower tick spacing provides improved price precision; however, smaller tick spaces will cause swaps to cross ticks more often, incurring higher gas costs
+Lower tick spacing provides improved price precision; however, smaller tick spaces will cause swaps to cross ticks more often, incurring higher gas costs.
 
-As a reference, Uniswap v3 pools are configured with:
+## Call `initialize` of Pool Manager contract
 
-| Fee   | Fee Value | Tick Spacing |
-| ----- | --------- | ------------ |
-| 0.01% | 100       | 1            |
-| 0.05% | 500       | 10           |
-| 0.30% | 3000      | 60           |
-| 1.00% | 10_000    | 200          |
+Now to initialize the `Pool` we need to call the `initialize` function of the Pool Manager Contract.
+To construct the Pool Manager Contract we need to provide the address of the contract, its ABI and a provider connected to an [RPC endpoint](https://www.chainnodes.org/docs).
 
-### 2. Call `initialize`
+```typescript
+import { ethers } from 'ethers'
+const POOL_MANAGER_ADDRESS = '0x000000000004444c5dc75cB358380D2e3dE08A90' // Replace with actual StateView contract address
+const POOL_MANAGER_ABI = [...]; // Import or define the ABI for PoolManager contract
+
+const provider = getProvider() // Provide the right RPC address for the chain
+const signer = new ethers.Wallet(PRIVATE_KEY, provider)
+const poolManager = new ethers.Contract(
+    POOL_MANAGER_ADDRESS,
+    POOL_MANAGER_ABI,
+    signer
+)
+```
+We get the `POOL_MANAGER_ADDRESS` for our chain from [Uniswap Deployments](https://docs.uniswap.org/contracts/v4/deployments).
 
 Pools are initialized with a starting price
 
-```solidity
-IPoolManager(manager).initialize(pool, startingPrice);
+```typescript
+const result = await poolManager.initialize(
+    CurrentConfig.poolKey,
+    startingPrice
+)
 ```
 
 - the _startingPrice_ is expressed as sqrtPriceX96: `floor(sqrt(token1 / token0) * 2^96)`
   - i.e. `79228162514264337593543950336` is the starting price for a 1:1 pool
 
-## Guide: Create a Pool & Add Liquidity
-
-Uniswap v4's [PositionManager](/contracts/v4/reference/periphery/PositionManager) supports atomic creation of a pool and initial liquidity using [_multicall_](/contracts/v4/reference/periphery/base/Multicall_v4). Developers can create a trading pool, with liquidity, in a single transaction:
-
-### 1. Initialize the parameters provided to `multicall()`
-
-```solidity
-bytes[] memory params = new bytes[](2);
-```
-
-- The first call, `params[0]`, will encode `initializePool` parameters
-- The second call, `params[1]`, will encode a _mint_ operation for `modifyLiquidities`
-
-### 2. Configure the pool
-
-```solidity
-PoolKey memory pool = PoolKey({
-    currency0: currency0,
-    currency1: currency1,
-    fee: lpFee,
-    tickSpacing: tickSpacing,
-    hooks: hookContract
-});
-```
-
-> For native token pairs (Ether), use `CurrencyLibrary.ADDRESS_ZERO` as `currency0`
-
-[PoolKey](/contracts/v4/reference/core/types/PoolKey) uniquely identifies a pool
-
-- _Currencies_ should be sorted, `uint160(currency0) < uint160(currency1)`
-- _lpFee_ is the fee expressed in pips, i.e. 3000 = 0.30%
-- _tickSpacing_ is the granularity of the pool. Lower values are more precise but more expensive to trade
-- _hookContract_ is the address of the hook contract
-
-### 3. Encode the [`initializePool`](/contracts/v4/reference/periphery/base/PoolInitializer) parameters
-
-Pools are initialized with a starting price
-
-```solidity
-import {IPoolInitializer_v4} from "v4-periphery/src/interfaces/IPoolInitializer_v4.sol";
-
-params[0] = abi.encodeWithSelector(
-    IPoolInitializer_v4.initializePool.selector,
-    pool,
-    startingPrice
-);
-```
-
-- the _startingPrice_ is expressed as _sqrtPriceX96_: `floor(sqrt(token1 / token0) * 2^96)`
-  - `79228162514264337593543950336` is the starting price for a 1:1 pool
-
-### 4. Initialize the _mint-liquidity_ parameters
-
-PositionManager's `modifyLiquidities` uses an encoded command system
-
-```solidity
-bytes memory actions = abi.encodePacked(uint8(Actions.MINT_POSITION), uint8(Actions.SETTLE_PAIR));
-```
-
-- The first command `MINT_POSITION` creates a new liquidity position
-- The second command `SETTLE_PAIR` indicates that tokens are to be paid by the caller, to create the position
-
-### 5. Encode the `MINT_POSITION` parameters
-
-```solidity
-bytes[] memory mintParams = new bytes[](2);
-mintParams[0] = abi.encode(pool, tickLower, tickUpper, liquidity, amount0Max, amount1Max, recipient, hookData);
-```
-
-- _pool_ the same `PoolKey` defined above, in pool-creation
-- _tickLower_ and _tickUpper_ are the range of the position, must be a multiple of `pool.tickSpacing`
-- _liquidity_ is the amount of liquidity units to add, see `LiquidityAmounts` for converting token amounts to liquidity units
-- _amount0Max_ and _amount1Max_ are the maximum amounts of token0 and token1 the caller is willing to transfer
-- _recipient_ is the address that will receive the liquidity position (ERC-721)
-- _hookData_ is the optional hook data
-
-### 6. Encode the `SETTLE_PAIR` parameters
-
-    Creating a position on a pool requires the caller to transfer `currency0` and `currency1` tokens
-
-```solidity
-mintParams[1] = abi.encode(pool.currency0, pool.currency1);
-```
-
-### 7. Encode the [`modifyLiquidites`](/contracts/v4/reference/periphery/PositionManager#modifyliquidities) call
-
-```solidity
-uint256 deadline = block.timestamp + 60;
-params[1] = abi.encodeWithSelector(
-    posm.modifyLiquidities.selector, abi.encode(actions, mintParams), deadline
-);
-```
-
-### 8. Approve the tokens
-
-`PositionManager` uses `Permit2` for token transfers
-
-- Repeat for both tokens
-
-```solidity
-// approve permit2 as a spender
-IERC20(token).approve(address(permit2), type(uint256).max);
-
-// approve `PositionManager` as a spender
-IAllowanceTransfer(address(permit2)).approve(token, address(positionManager), type(uint160).max, type(uint48).max);
-```
-
-### 9. Execute the multicall
-
-The `multicall` is used to execute multiple calls in a single transaction
-
-```solidity
-PositionManager(posm).multicall(params);
-```
-
-For pools paired with native tokens (Ether), provide `value` in the contract call
-
-```solidity
-PositionManager(posm).multicall{value: ethToSend}(params);
-```
-
-> Excess Ether is **NOT** refunded unless developers encoded `SWEEP` in the `actions` parameter
-
-For a full end-to-end script, developers should see [v4-template's scripts](https://github.com/uniswapfoundation/v4-template/tree/main/script)
+Now the pool is initialized and you can add liquidity to it.
