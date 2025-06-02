@@ -1,6 +1,6 @@
 ---
 id: Zora-deployments
-title:  Zora Deployment Addresses
+title:  Zora Deployments
 ---
 
 # Uniswap Contract Deployments
