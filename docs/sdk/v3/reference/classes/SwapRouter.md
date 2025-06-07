@@ -52,7 +52,7 @@ Produces the on-chain method name to call and the hex encoded parameters to pass
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `trades` | [`Trade`](Trade.md)<`Currency`, `Currency`, `TradeType`\> \| [`Trade`](Trade.md)<`Currency`, `Currency`, `TradeType`\>[] | - |
+| `trades` | [`Trade`](Trade.md)<`Currency`, `Currency`, `TradeType`\> \| [`Trade`](Trade.md)<`Currency`, `Currency`, `TradeType`\>[] | the route must contain at least one pool. If there is only one pool: a/b, the exchange will take place in this pool. If there are multiple pools, these pools must be connected, for example: a/b, b/c, c/d |
 | `options` | [`SwapOptions`](../interfaces/SwapOptions.md) | options for the call parameters |
 
 #### Returns
