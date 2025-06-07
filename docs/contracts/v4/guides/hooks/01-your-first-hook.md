@@ -179,7 +179,7 @@ Let’s make it so that our hook can mint some!
 
 ```solidity
 contract PointsHook is BaseHook {
-    PointsToken pointsToken;
+    PointsToken public pointsToken;
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {
         pointsToken = new PointsToken();
@@ -350,7 +350,7 @@ contract PointsHookTest is Test, Fixtures {
             IHooks(hook)
         );
         poolId = key.toId();
-        manager.initialize(key, SQRT_PRICE_1_1, ZERO_BYTES);
+        manager.initialize(key, SQRT_PRICE_1_1);
 
         // Provide full-range liquidity to the pool
         tickLower = TickMath.minUsableTick(key.tickSpacing);
