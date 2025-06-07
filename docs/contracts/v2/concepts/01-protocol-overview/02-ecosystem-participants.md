@@ -11,7 +11,7 @@ In total, interactions between these classes create a positive feedback loop, fu
 
 # Liquidity Providers
 
-Liquidity providers, or LPs, are not a homogenous group:
+Liquidity providers, or LPs, are not a homogeneous group:
 
 - Passive LPs are token holders who wish to passively invest their assets to accumulate trading fees.
 

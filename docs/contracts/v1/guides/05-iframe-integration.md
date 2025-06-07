@@ -15,7 +15,7 @@ It can also be useful if your application requires users to acquire some token i
 
 # iframe vs. custom UI
 
-One benefit of an iframe integration is that the your site will automatically keep up with any improvements/additions to the v1.app.uniswap.org site. After the initital integration is setup no further work is needed to pull in updates as the exchange site is updated over time.
+One benefit of an iframe integration is that the your site will automatically keep up with any improvements/additions to the v1.app.uniswap.org site. After the initial integration is setup no further work is needed to pull in updates as the exchange site is updated over time.
 
 # Live Example
 
