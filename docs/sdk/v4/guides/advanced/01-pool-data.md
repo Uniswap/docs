@@ -83,7 +83,7 @@ const poolId = Pool.getPoolId(currency0, currency1, fee, tickSpacing, hooks);
 
 ## Referencing the StateView contract and fetching metadata
 
-Now that we have the `PoolId` of a **USDC - ETH** Pool, we need to call [StateView](https://docs.uniswap.org/contracts/v4/guides/state-view) contract to get the pool state. In v4 you need to use `StateLibrary` to read pool state, but offchain systems—such as frontends or analytics services—require a deployed contract with view functions. This is where `StateView` comes in.
+Now that we have the `PoolId` of a **USDC - ETH** Pool, we need to call [StateView](/contracts/v4/guides/state-view) contract to get the pool state. In v4 you need to use `StateLibrary` to read pool state, but offchain systems—such as frontends or analytics services—require a deployed contract with view functions. This is where `StateView` comes in.
 To construct the Contract we need to provide the address of the contract, its ABI and a provider connected to an [RPC endpoint](https://www.chainnodes.org/docs).
 
 ```typescript
