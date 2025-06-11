@@ -100,7 +100,7 @@ insignificant token amounts in order to avoid paying further transfer costs
 
 ### Handling Deltas for Liquidity Modifications 
 
-#### When it happens?:  
+#### When it happens  
 - **Building custom routers** that pre-calculate token amounts.  
 - **Estimating values** for user interfaces or simulations.  
 
@@ -134,6 +134,7 @@ poolManager.modifyLiquidity(
     sqrtRatioX96: 3001, // Updated price
     ...
 );
+```
 
 getAmountsForLiquidity() assumes static 3000 price
 modifyLiquidity() reflects actual 3001 price
@@ -143,7 +144,7 @@ modifyLiquidity() reflects actual 3001 price
 |----------|------|  
 | **Underestimating deltas** | Transactions revert with `CurrencyNotSettled`. |  
 | **Overestimating deltas** | Users overpay and lose funds to residual dust. |
-| **No slippage check** | Significant financial losses.
+| **No slippage check** | Significant financial losses. |
 
 #### Best Practices for Custom Routers 
 
