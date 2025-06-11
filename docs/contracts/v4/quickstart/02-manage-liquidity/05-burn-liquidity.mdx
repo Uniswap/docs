@@ -29,20 +29,21 @@ IPositionManager posm = IPositionManager(<address>);
 
 ### 2. Encode Actions
 
-To burn a position, one action is required:
+To burn a position, two actions are required:
 
 * burn operation - clears position entirely, withdrawing funds
+* take pair - sends withdrawn funds to the recipient
 
 ```solidity
 import {Actions} from "v4-periphery/src/libraries/Actions.sol";
 
-bytes memory actions = abi.encodePacked(Actions.BURN_POSITION);
+bytes memory actions = abi.encodePacked(uint8(Actions.BURN_POSITION), uint8(Actions.TAKE_PAIR));
 ```
 
 ### 3. Encode Parameters
 
 ```solidity
-bytes[] memory params = new bytes[](1);
+bytes[] memory params = new bytes[](2);
 ```
 
 The `BURN_POSITION` action requires the following parameters:
@@ -56,6 +57,18 @@ The `BURN_POSITION` action requires the following parameters:
 
 ```solidity
 params[0] = abi.encode(tokenId, amount0Min, amount1Min, hookData);
+```
+
+The `TAKE_PAIR` action requires the following parameters:
+
+| Parameter    | Type      | Description                           |
+|--------------|-----------|---------------------------------------|
+| `currency0`  | _Currency_| first token currency                  |
+| `currency1`  | _Currency_| second token currency                 |
+| `recipient`  | _address_ | address that will receive the tokens  |
+
+```solidity
+params[1] = abi.encode(currency0, currency1, recipient);
 ```
 
 ### 4. Submit Call
