@@ -98,7 +98,7 @@ const stateViewContract = new ethers.Contract(
     provider
 )
 ```
-We get the `STATE_VIEW_ADDRESS` for our chain from [Uniswap Deployments](https://docs.uniswap.org/contracts/v4/deployments).
+We get the `STATE_VIEW_ADDRESS` for our chain from [Uniswap Deployments](/contracts/v4/deployments).
 Once we have set up our reference to the contract, we can proceed to access its methods. To construct our offchain representation of the Pool, we need to fetch its liquidity, sqrtPrice, currently active tick and the full Tick data.
 We get the **liquidity**, **sqrtPrice** and **tick** directly from the blockchain by calling `getLiquidity()`and `getSlot0()` on the StateView contract:
 
