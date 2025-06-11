@@ -98,9 +98,9 @@ be transferred back to the owner or used in settling negative balances
 * _clear_ - used to zero out positive token deltas, helpful to forfeit
 insignificant token amounts in order to avoid paying further transfer costs
 
-### Handling Liquidity Amount Discrepancies  
+### Handling Deltas for Liquidity Modifications 
 
-This issue commonly arises when:  
+#### When it happens?:  
 - **Building custom routers** that pre-calculate token amounts.  
 - **Estimating values** for user interfaces or simulations.  
 
@@ -108,20 +108,64 @@ This issue commonly arises when:
 - **Pre-calculated amounts** (e.g., from `LiquidityAmounts.getAmountsForLiquidity()`) use static math.  
 - **Actual deltas** (from `modifyLiquidity()`) reflect real-time pool state, including:  
   - Tick crossings during execution.  
-  - Rounding in fixed-point arithmetic (`Q128.128`).  
+  - Rounding in fixed-point arithmetic (`Q128.128`).
+
+#### Why LiquidityAmounts ≠ Liquidity Delta
+
+The discrepancy occurs because:
+
+- **Price Movement:** The pool's price changes between pre-calculation and execution
+- **Tick Crossings:** Transactions may cross ticks, changing liquidity math
+- **Rounding:** Static calculations use idealized math while execution uses Q128.128 fixed-point
+
+#### 📊 Price Movement Example
+
+When ETH/USDC price changes during transaction execution:
+
+```solidity
+// Static math calculation
+LiquidityAmounts.getAmountsForLiquidity(
+    sqrtRatioX96: 3000, // Fixed price
+    ...
+);
+
+// Interacts with the pool and uses actual execution (reflects real-time price)
+poolManager.modifyLiquidity(
+    sqrtRatioX96: 3001, // Updated price
+    ...
+);
+
+getAmountsForLiquidity() assumes static 3000 price
+modifyLiquidity() reflects actual 3001 price
 
 #### Key Impact  
 | Scenario | Risk |  
 |----------|------|  
 | **Underestimating deltas** | Transactions revert with `CurrencyNotSettled`. |  
-| **Overestimating deltas** | Users overpay and lose funds to residual dust. |  
+| **Overestimating deltas** | Users overpay and lose funds to residual dust. |
+| **No slippage check** | Significant financial losses.
 
-#### Best Practices for Custom Routers  
-1. **Use Deltas for Settlement**  
+#### Best Practices for Custom Routers 
+
+1. **Never settle without validating against slippage**
+
+    Supposing slippage tolerance is 50 (basis point)
+
+    ```solidity
+        require(
+            actualAmount0 >= expectedAmount0 * (10_000 - slippageTolerance) / 10_000,
+            "Slippage too high (token0)"
+        );
+        require(
+            actualAmount1 >= expectedAmount1 * (10_000 - slippageTolerance) / 10_000,
+            "Slippage too high (token1)"
+        );
+    ```
+
+2. **Use Deltas for Settlement**  
    Always derive final amounts from `modifyLiquidity()` deltas:  
    ```solidity
         CallbackData memory _data = abi.decode(data, (CallbackData));
-
         (BalanceDelta delta, ) = poolManager.modifyLiquidity(
             _data.key,
             _data.params,
@@ -131,7 +175,6 @@ This issue commonly arises when:
         _data.key.currency0.settle(poolManager, _data.key.hookAddress, delta.amount0() < 0
             ? uint256(uint128(-delta.amount0()))
             : uint256(uint128(delta.amount0())), false);
-
          _data.key.currency1.settle(poolManager, _data.key.hookAddress, delta.amount1() < 0
             ? uint256(uint128(-delta.amount1()))
             : uint256(uint128(delta.amount1())), false);
@@ -139,4 +182,6 @@ This issue commonly arises when:
 
 > ⚠️ **Custom Router Pitfall**  
 > When pre-calculating liquidity changes, always account for rounding differences.  
-> **Never** assume `getAmountsForLiquidity() == modifyLiquidity()` deltas.  
+> **Never** assume `getAmountsForLiquidity() == modifyLiquidity()` deltas.
+> Enforce slippage post-execution.
+
