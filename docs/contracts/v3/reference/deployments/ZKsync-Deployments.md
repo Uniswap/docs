@@ -1,6 +1,6 @@
 ---
 id: ZKsync-deployments
-title: ZKsync Deployment Addresses
+title: ZKsync Deployments
 ---
 
 # Uniswap Contract Deployments

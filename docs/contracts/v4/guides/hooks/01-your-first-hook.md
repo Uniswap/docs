@@ -179,7 +179,7 @@ Let’s make it so that our hook can mint some!
 
 ```solidity
 contract PointsHook is BaseHook {
-    PointsToken pointsToken;
+    PointsToken public pointsToken;
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {
         pointsToken = new PointsToken();
@@ -255,9 +255,7 @@ Let’s start with the most basic ones. We want the user to be swapping in the `
         address user = parseHookData(hookData);
 
         // How much ETH are they spending?
-        uint256 ethSpendAmount = swapParams.amountSpecified < 0
-            ? uint256(-swapParams.amountSpecified)
-            : uint256(int256(-delta.amount0()));
+        uint256 ethSpendAmount = uint256(int256(-delta.amount0()));
 
         // And award the points!
         awardPoints(user, ethSpendAmount);
@@ -300,6 +298,10 @@ Similar to what we did for the `afterSwap` hook, now we need to award users for 
         return (BaseHook.afterAddLiquidity.selector, delta);
     }
 ```
+
+:::note
+It is important to note that the delta should be passed to awardPoints function as it avoids amount errors in case of partial fills.
+:::
 
 # Testing
 
@@ -348,7 +350,7 @@ contract PointsHookTest is Test, Fixtures {
             IHooks(hook)
         );
         poolId = key.toId();
-        manager.initialize(key, SQRT_PRICE_1_1, ZERO_BYTES);
+        manager.initialize(key, SQRT_PRICE_1_1);
 
         // Provide full-range liquidity to the pool
         tickLower = TickMath.minUsableTick(key.tickSpacing);

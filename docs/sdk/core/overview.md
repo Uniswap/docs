@@ -5,9 +5,9 @@ title: Overview
 ---
 # The Uniswap Core SDK
 
-> **Welcome to the V3 Core SDK!**
+> **Welcome to the v3 Core SDK!**
 
-The Uniswap Core SDK provides abstractions for other SDKs to use in a Typescript/Javascript environment. It is used throughout the Uniswap SDKs, such as the [V3 SDK](../v3/overview.md).
+The Uniswap Core SDK provides abstractions for other SDKs to use in a Typescript/Javascript environment. It is used throughout the Uniswap SDKs, such as the [v3 SDK](../v3/overview.md).
 
 This SDK is not expected to be used in isolation, but only as part of other SDKs.
 
