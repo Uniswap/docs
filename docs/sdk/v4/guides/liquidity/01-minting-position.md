@@ -5,7 +5,7 @@ title: Minting a position
 
 ## Introduction
 
-This guide will introduce us to liquidity positions in Uniswap v4 and present the v4-sdk classes and Contracts used to interact with the protocol.
+This guide will introduce us to liquidity positions in Uniswap v4 and present the v4-sdk classes and contracts used to interact with the protocol.
 
 For this guide, the following Uniswap packages are used:
 
