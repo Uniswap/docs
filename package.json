@@ -1,6 +1,7 @@
 {
   "name": "@uniswap/docs",
   "description": "Uniswap docs",
+  "license": "MIT",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "NODE_OPTIONS='--openssl-legacy-provider' docusaurus start",
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.1.0",
     "@tsconfig/docusaurus": "^1.0.6",
+    "@types/gtag.js": "^0.0.20",
     "@typescript-eslint/eslint-plugin": "^4",
     "@typescript-eslint/parser": "^4",
     "dotenv": "^16.0.3",

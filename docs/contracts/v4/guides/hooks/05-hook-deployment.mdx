@@ -4,7 +4,7 @@ title: Hook Deployment
 
 ## Hook Flags
 
-As mentioned in [Concept of Hooks](../../concepts/04-hooks.mdx), hook contracts indicate their implemented functions by __encoding its behavior in the address of the contract__. The `PoolManager` uses these permissions to determine which hook functions to call for a given pool.
+As mentioned in [Concept of Hooks](../../concepts/04-hooks.mdx), hook contracts indicate their implemented functions by __encoding its behavior in the address of the contract__. The `PoolManager` uses these permissions to determine which hook functions to call for a given pool. See `PoolManager` deployment addresses [here](/contracts/v4/deployments).
 
 Each hook function e.g. `beforeSwap` - corresponds to a certain _flag_. For example, the `beforeSwap` function is correlated to the [`BEFORE_SWAP_FLAG`](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol#L37) which has a value of `1 << 7`.
 
@@ -76,13 +76,20 @@ uint160 flags = uint160(
 );
 ```
 
-Mine the address by finding a `salt` that produces a hook address with the desired `flags`, use the Foundry deterministic deployer when deploying via Foundry script:
+Mine the address by finding a `salt` that produces a hook address with the desired `flags`, use the Foundry deterministic deployer when deploying via Foundry script. For most chains, CREATE2_DEPLOYER contract address is [0x4e59b44847b379578588920ca78fbf26c0b4956c](https://book.getfoundry.sh/guides/deterministic-deployments-using-create2#getting-started).
 
 ```solidity
 bytes memory constructorArgs = abi.encode(POOLMANAGER);
 (address hookAddress, bytes32 salt) =
     HookMiner.find(CREATE2_DEPLOYER, flags, type(PointsHook).creationCode, constructorArgs);
 ```
+
+:::note **CREATE2_DEPLOYER**
+- `CREATE2_DEPLOYER` is the address that will deploy the hook. In `forge test`, this will be the test contract `address(this)` or the pranking address.
+- In `forge script`, this should be `0x4e59b44847b379578588920cA78FbF26c0B4956C` (CREATE2 Deployer Proxy)
+:::
+
+Refer to this for more details on deploying contracts with CREATE2: [Deploying Contracts with CREATE2](https://docs.openzeppelin.com/cli/2.8/deploying-with-create2)
 
 Deploy the hook using CREATE2 with the `salt`, and compare the deployed address with the address mined:
 

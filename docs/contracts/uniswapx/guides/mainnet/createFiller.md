@@ -49,7 +49,7 @@ All signed Dutch Orders created through the Uniswap UI will be available via the
 GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&limit=1
 ```
 
-As a lower latency alternative to polling the API, fillers can also apply to register a webhook and receive a feed of all open orders. See details for registering [here](./webhooks). 
+As a lower latency alternative to polling the API, fillers can also apply to register a webhook and receive a feed of all open orders. See details for registering [here](../webhooks). 
 
 It’s up to the individual filler to architect their own systems for finding and executing profitable orders, but the basic flow is as follows:
 

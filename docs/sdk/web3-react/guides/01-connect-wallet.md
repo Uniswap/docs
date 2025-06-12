@@ -71,7 +71,7 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 
 Each one of those connectors lives within its own file, and they all follow a similar setup pattern. 
 
-An example of a connector in the list is the `InjectedConnector`, which supports wallets that inject an *Ethereum Provider* into the browser window. The most popular example of an injected connector is the *MetaMask* browser extension. To set it up, we import `initializeConnector` function from [core]((https://www.npmjs.com/package/@web3-react/core)) and the `MetaMask` type from [metamask]((https://www.npmjs.com/package/@web3-react/core)):
+An example of a connector in the list is the `InjectedConnector`, which supports wallets that inject an *Ethereum Provider* into the browser window. The most popular example of an injected connector is the *MetaMask* browser extension. To set it up, we import `initializeConnector` function from [core](https://www.npmjs.com/package/@web3-react/core) and the `MetaMask` type from [metamask](https://www.npmjs.com/package/@web3-react/core):
 
 ```typescript reference title="Importing Connector dependencies" referenceLinkText="View on GitHub" customStyling
 https://github.com/Uniswap/examples/blob/856dbb002e7f38120554ef226f4309c96ce6ea79/web3-react/src/libs/injected.ts#L1-L2

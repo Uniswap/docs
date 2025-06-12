@@ -226,7 +226,7 @@ swaps(orderBy: timestamp, orderDirection: desc, where:
 
 ## Token Data
 
-Input the the token contract address to fetch token data. Any token that exists in at least one Uniswap v3 pool can be queried. The output will aggregate data across all v3 pools that include the token.
+Input the token contract address to fetch token data. Any token that exists in at least one Uniswap v3 pool can be queried. The output will aggregate data across all v3 pools that include the token.
 
 ### General Token Data
 
