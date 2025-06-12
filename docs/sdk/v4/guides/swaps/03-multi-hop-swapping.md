@@ -47,13 +47,13 @@ const USDC_USDT_POOL_KEY: PoolKey = {
 };
 
 export const CurrentConfig: SwapExactIn = {
-    currencyIn: ETH_TOKEN_UNI_SEPOLIA.address,
+    currencyIn: ETH_TOKEN.address,
     path: encodeMultihopExactInPath(
         [ETH_USDC_POOL_KEY, USDC_USDT_POOL_KEY],
         ETH_TOKEN.address
     ),
     amountIn: ethers.utils.parseUnits('1', ETH_TOKEN.decimals).toString(), 
-    amountOutMinimum: "0",
+    amountOutMinimum: "minAmountOut", // Change according to the slippage desired
 }
 ```
 
@@ -127,9 +127,9 @@ const routePlanner = new RoutePlanner()
 
 const deadline = Math.floor(Date.now() / 1000) + 3600
 
-v4planner.addAction(Actions.SWAP_EXACT_IN, [CurrentConfig]);
-v4planner.addAction(Actions.SETTLE_ALL, [ETH_USDC_POOL_KEY.currency0, CurrentConfig.amountIn]);
-v4planner.addAction(Actions.TAKE_ALL, [USDC_USDT_POOL_KEY.currency1, CurrentConfig.amountOutMinimum]);
+v4Planner.addAction(Actions.SWAP_EXACT_IN, [CurrentConfig]);
+v4Planner.addAction(Actions.SETTLE_ALL, [ETH_USDC_POOL_KEY.currency0, CurrentConfig.amountIn]);
+v4Planner.addAction(Actions.TAKE_ALL, [USDC_USDT_POOL_KEY.currency1, CurrentConfig.amountOutMinimum]);
 
 const encodedActions = v4Planner.finalize()
 
@@ -151,7 +151,7 @@ const receipt = await tx.wait()
 console.log('Multi-hop swap completed! Transaction hash:', receipt.transactionHash)
 ```
 
-The token approvals for ERC20 token swaps remain the same as the single-hop swapping guide.
+The token approvals for ERC20 token swaps remain the same as the [single-hop swapping guide](./02-single-hop-swapping.md).
 
 ## Next Steps
 

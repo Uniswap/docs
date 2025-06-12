@@ -38,7 +38,7 @@ export const CurrentConfig: SwapExactInSingle = {
     },
     zeroForOne: true,
     amountIn: ethers.utils.parseUnits('1', ETH_TOKEN.decimals).toString(), 
-    amountOutMinimum: "0", // Change according to the slippage desired
+    amountOutMinimum: "minAmountOut", // Change according to the slippage desired
     hookData: '0x00'
 }
 ```
@@ -75,7 +75,7 @@ const universalRouter = new ethers.Contract(
 )
 ```
 
-We can get the `UNIVERSAL_ROUTER_ADDRESS` for our chain from [Uniswap Deployments](https://docs.uniswap.org/contracts/v4/deployments).
+We can get the `UNIVERSAL_ROUTER_ADDRESS` for our chain from [Uniswap Deployments](/contracts/v4/deployments).
 
 A signer object can be created like this:
 
@@ -104,9 +104,9 @@ const routePlanner = new RoutePlanner()
 // Set deadline (1 hour from now)
 const deadline = Math.floor(Date.now() / 1000) + 3600
 
-v4planner.addAction(Actions.SWAP_EXACT_IN_SINGLE, [CurrentConfig]);
-v4planner.addAction(Actions.SETTLE_ALL, [CurrentConfig.poolKey.currency0, CurrentConfig.amountIn]);
-v4planner.addAction(Actions.TAKE_ALL, [CurrentConfig.poolKey.currency1, CurrentConfig.amountOutMinimum]);
+v4Planner.addAction(Actions.SWAP_EXACT_IN_SINGLE, [CurrentConfig]);
+v4Planner.addAction(Actions.SETTLE_ALL, [CurrentConfig.poolKey.currency0, CurrentConfig.amountIn]);
+v4Planner.addAction(Actions.TAKE_ALL, [CurrentConfig.poolKey.currency1, CurrentConfig.amountOutMinimum]);
 
 const encodedActions = v4Planner.finalize()
 
