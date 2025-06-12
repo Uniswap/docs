@@ -21,7 +21,7 @@ Global data refers to data points about the Uniswap v4 protocol as a whole. Some
 - Total pools deployed,
 - Total transaction counts. 
 
-Thus, to query global data you must pass in the PoolManager address `0x000000000004444c5dc75cb358380d2e3de08a90` and select the desired fields. Reference the full [poolManager schema](https://github.com/Uniswap/v4-subgraph/blob/main/schema.graphql#L1) to see all possible fields. PoolManager addresses for all supported chains are listed in the [Deployments](https://docs.uniswap.org/contracts/v4/deployments) section.
+Thus, to query global data you must pass in the PoolManager address `0x000000000004444c5dc75cb358380d2e3de08a90` and select the desired fields. Reference the full [poolManager schema](https://github.com/Uniswap/v4-subgraph/blob/main/schema.graphql#L1) to see all possible fields. PoolManager addresses for all supported chains are listed in the [Deployments](/contracts/v4/deployments) section.
 
 ### Current Global Data
 
