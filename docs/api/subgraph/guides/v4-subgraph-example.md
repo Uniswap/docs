@@ -157,7 +157,7 @@ Retrieve the top 1000 most liquid pools. You can use this similar set up to orde
 
 ### Pool Daily Aggregated
 
-This query returns daily aggregated data for the first 10 days since the given timestamp for the UNI-ETH pool. To calculate `poolId`, refer to [Note on poolId and positionId](https://docs.uniswap.org/contracts/v4/guides/state-view#note-on-poolid-and-positionid).
+This query returns daily aggregated data for the first 10 days since the given timestamp for the UNI-ETH pool. To calculate `poolId`, refer to [PoolId Library](/contracts/v4/reference/core/types/PoolId#toid).
 
 ```
 {
