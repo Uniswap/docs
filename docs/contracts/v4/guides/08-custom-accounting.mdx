@@ -163,7 +163,10 @@ uint256 feeAmount = (swapAmount * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
 We use `poolManager.take` to collect the fee. This creates a debt for our hook in the specified currency.
 
 ```solidity
-Currency feeCurrency = params.zeroForOne ? key.currency0 : key.currency1;
+Currency feeCurrency;
+
+feeCurrency = params.amountSpecified < 0 == params.zeroForOne ? key.currency0 : key.currency1;
+
 poolManager.take(feeCurrency, address(this), feeAmount);
 
 ```
