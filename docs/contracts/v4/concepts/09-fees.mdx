@@ -1,0 +1,151 @@
+# v4 Fee Structure Guide
+
+## Overview of Fee Types
+
+In Uniswap v4, there are three main types of fees to understand:
+
+- **LP Fee**: Fees earned by liquidity providers
+- **Protocol Fee**: Fees collected by the protocol
+- **Swap Fee**: Total fee paid by swappers (calculated by applying protocol fee and LP fee sequentially)
+
+---
+
+## LP Fees
+
+LP fees are set by the pool initializer at pool creation and may be static or dynamic.
+
+**Fee Range:**
+
+- Maximum LP Fee: 100%
+- Minimum LP Fee: 0%
+- **Granularity**: Fees are set at pip-level precision
+
+### Static LP Fees
+
+- **Immutable** once set during pool initialization
+- **Unlimited fee options** in v4 (major improvement from v3)
+- In **v3**, LP fee options were limited to: 0.01%, 0.05%, 0.30%, and 1.00%
+
+### Dynamic LP Fees
+
+Dynamic fees offer more flexibility and real-time adjustability:
+
+- A dynamic fee pool signals this capability by setting its LP fee to `0x800000` (where the first bit = 1)
+- **Only the pool's hook** can update the dynamic fee—no additional permissions required
+- A hook **cannot** update fees if the pool's fee is not set to `0x800000`
+
+---
+
+## Protocol Fees
+
+Protocol fees are configured **per pool** with the following characteristics:
+
+- Controlled by the **protocol fee controller** (set by the pool manager owner)
+- **Maximum protocol fee**: 0.1% (1,000 pips)
+- **Granularity**: Fees are set at pip-level precision (not basis points)
+- **Unit conversion**: 1 basis point = 100 pips
+- **Directional fees**: Separate fees can be set for:
+    - token0 → token1 swaps
+    - token1 → token0 swaps
+
+---
+
+## Swap Fees
+
+### Key Change from v3 to v4
+
+**v3 behavior**: Swap fee = LP fee (protocol fee was a percentage taken from LP fees)
+
+**v4 behavior**: Swap fee = effective total fee after applying both protocol and LP fees sequentially
+
+### Application Order
+
+1. **Protocol fee** applied first to the input amount
+2. **LP fee** applied second to the remaining input (after protocol fee deduction)
+
+**Impact on LP Earnings:**
+
+Note that this sequential application means introducing or increasing protocol fees will reduce LP earnings even if swap volume remains constant, since LPs now earn fees on a smaller base amount.
+
+### Fee Cap
+
+- **Total swap fee capped at 100%** of input amount
+- **Important**: If swap fee = 100%, exact output swaps become impossible (entire input consumed by fees)
+
+### Fee Calculation Formula
+
+```solidity
+
+// Method 1: Sequential application
+uint256 swapFee = protocolFee + (lpFee * (1_000_000 - protocolFee)) / 1_000_000; (rounded up)
+
+// Method 2: Mathematically equivalent
+uint256 swapFee = protocolFee + lpFee - (protocolFee * lpFee) / 1_000_000;
+
+```
+
+### Mathematical Derivation
+
+Starting with input amount:
+
+```
+amountIn
+```
+
+**Step 1**: Protocol fee takes:
+
+```
+amountIn × (protocolFee / 1_000_000)
+```
+
+**Step 2**: Remaining after protocol fee:
+
+```
+
+amountIn × (1 - protocolFee / 1_000_000)
+```
+
+**Step 3**: LP fee applies to remaining:
+
+```
+lpFee × (remaining amount)
+```
+
+**Final formula**:
+
+```
+swapFee = protocolFee + (lpFee × (1 - protocolFee / 1_000_000))
+```
+
+Which simplifies to:
+
+```
+swapFee = protocolFee + lpFee - (protocolFee × lpFee) / 1_000_000
+```
+
+## Example Calculation
+
+**Given:**
+
+- `protocolFee = 50` pips → 0.005%
+- `lpFee = 3000` pips → 0.30%
+
+**Calculation:**
+
+```solidity
+swapFee = 50 + 3000 - (50 × 3000) / 1_000_000
+        = 50 + 3000 - 150 / 1_000_000
+        = 50 + 3000 - 0.15
+        = 3049.85 pips
+```
+
+**Result:** 3049.85 pips = **0.304985%** total swap fee
+
+---
+
+## Key Takeaways
+
+- **Sequential application**: Protocol fees are deducted first, then LP fees apply to the remainder
+- **Dynamic flexibility**: v4 introduces unlimited static fee tiers and dynamic fee capabilities
+- **Directional control**: Protocol fees can differ by swap direction
+- **Fee interaction**: The combined effect is slightly less than simple addition due to sequential application
