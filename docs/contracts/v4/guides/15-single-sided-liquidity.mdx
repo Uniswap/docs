@@ -26,62 +26,55 @@ This guide will **cover**:
 3. Creating a single-side liquidity position
 5. Closing the Limit Order
 
-Before working through this guide, consider checking out the Range Orders [concept page](https://docs.uniswap.org/concepts/protocol/range-orders) to understand how Limit orders can be executed with Uniswap v4.
+Before working through this guide, consider checking out the Range Orders [concept page](/concepts/protocol/range-orders) to understand how Limit orders can be executed with Uniswap v4.
 
 :::info
 This guide is built using the [v4-template repository](https://github.com/uniswapfoundation/v4-template) and utilises the Config and Constants files as imports for contract addresses.
 :::
 
+
 ## Understanding Range Orders
 
+:::info
 If you have read the [Range Order Concept page](../../../../concepts/protocol/range-orders.md), you can skip this section.
+:::
 
-Positions on a v4 Pool are always created with a Tick range in which their liquidity is accessible to swaps on the Pool.
-
-If we consider the structure of mint function in the Position Manager contract, that helps mint a new position.
-
-```solidity
-function _mint(
-    PoolKey calldata poolKey,
-    int24 tickLower,
-    int24 tickUpper,
-    uint256 liquidity,
-    uint128 amount0Max,
-    uint128 amount1Max,
-    address owner,
-    bytes calldata hookData
-)
-```
-
-We see that a position only stores a single `liquidity` value, and a `tickLower` and `tickUpper` value that define the range in which the liquidity of the Position can be utilised for Swaps.
-The actual **amount** of `token0` and `token1` that a Pool owes the Position owner is calculated from the parts of the liquidity position that are to the left and right of the current Tick.
-Liquidity left of the current Tick is denominated in `token0` and liquidity right of the current Tick is denominated in `token1`.
-
-If a new Position is created and the Tick Range of the position does not include the current Tick of the Pool, only one of the two Tokens in the Pool can be provided.
+If both of a position's ticks are less than (or greater than) the current tick of the pool, the position is entirely made up of a single token.
 
 We will call this a **Single Side Liquidity Position**.
 
+Single-sided positions are useful because they allow liquidity providers to:
+- Provide liquidity using only one token they already hold
+- Avoid having to acquire the other token
+- Set price targets for automatic token swaps
+- Manage exposure to price movements in a specific direction
+
+If we look at the structure of the [mint function](../reference/periphery/PositionManager#_mint) in the Position Manager contract, the actual **amount** of `token0` and `token1` that a Pool owes the Position owner is calculated from the parts of the liquidity position that are to the left and right of the current Tick.
+
+Liquidity right of the current Tick is denominated in `token0` and liquidity left of the current Tick is denominated in `token1`.
+
 <img src={require('../images/range-order.png').default} alt="RangeOrder" box-shadow="none"/>
 
-When the current Tick of the Pool moves across the Position, the ratio of `token0` and `token1` will change, and ultimately inverse if the current Tick moves out of the position on the other side.
+When the current Tick of the Pool moves across the Position, the ratio of token0 and token1 will change, and if the pool's tick moves entirely through a position, the underlying assets flip from one token to the other.
 
 We will utilise this behaviour to provide liquidity with `token1` and withdraw the position when it has been converted to `token0`.
 
 ## Calculating the Tick Range
 
-Our goal for this guide is to create a [Buy Limit Order](https://docs.uniswap.org/concepts/protocol/range-orders#buy-limit-orders) that trades `token1` for `token0` when the Price of `token1` decreases by 5%.
+Our goal for this guide is to create a [Buy Limit Order](/concepts/protocol/range-orders#buy-limit-orders) that trades `token1` for `token0` when the Price of `token1` decreases by 5%.
 
 To create our Position, we need to first decide the Tick Range that we want to provide liquidity in.
 
 ### Upper Tick
 
-We [create a Pool](https://docs.uniswap.org/contracts/v4/quickstart/create-pool) that represents the v4 Pool we are interacting with and get the `token1Price`.
+We [create a Pool](/contracts/v4/quickstart/create-pool) that represents the v4 Pool we are interacting with and get the `token1Price`.
 We won't need full tick data in this example.
 
 ```solidity
 import {TickMath} from "v4-core/src/libraries/TickMath.sol";
 import {Constants} from "./base/Constants.sol";
 import {Config} from "./base/Config.sol";
+import {FixedPointMathLib} from "solmate/src/utils/FixedPointMathLib.sol";
 
 uint24 public constant LP_FEE = 3000;
 int24 public constant TICK_SPACING = 60;
@@ -95,29 +88,33 @@ PoolKey memory pool = PoolKey({
     hooks: hookContract
 });
 
-// Get current pool sqrtPrice and tick
-(uint160 sqrtPriceX96,,,) = POOLMANAGER.getSlot0(pool.toId()); //POOLMANAGER is imported from Constants.sol
+(uint160 sqrtPriceX96,,,) = POOLMANAGER.getSlot0(pool.toId());
 int24 currentTick = TickMath.getTickAtSqrtPrice(sqrtPriceX96);
 ```
 
 Next we decrease the `Price` by 5%. We create a new Price with a numerator 5% lower than our current Price:
 
 ```solidity
-uint160 targetSqrtPriceX96 = uint160((uint256(sqrtPriceX96) * 974679) / 1e6); //Since we need to calculate 95% of the current sqrtprice
+// calculating sqrt(price * 0.95e18/1e18) is the same as
+// (sqrt(price) * Q96) * (sqrt(0.95e18/1e18))
+// (sqrt(price) * Q96) * (sqrt(0.95e18) / sqrt(1e18))
+uint160 targetSqrtPriceX96 = uint160(
+    FixedPointMathLib.mulDivDown(
+        uint256(sqrtPriceX96), FixedPointMathLib.sqrt(0.95e18), FixedPointMathLib.sqrt(1e18)
+    )
+);
 ```
 
-We have calculated our target Price but we still need to find the **nearest usable tick** to create our Position.
+Now we need to find the **nearest usable tick** because a position's ticks should align with the pool's tick spacing. If a pool's tick spacing is 60, the position's tickLower and tickUpper should be a multiple of 60, i.e. [-300, 180]
 
-:::info
-As Positions can only start and end at initializable Ticks of the Pool, so we can only create a Range Order to a Price that exactly matches an initializable Tick.
-:::
-
-We make use of the getTickAtSqrtPrice of TickMath contract to calculate the tick at a specific sqrtPrice value.
+The TickMath library has functions for converting between ticks and sqrtPriceX96 values.
 
 ```solidity
 import {TickMath} from "v4-core/src/libraries/TickMath.sol";
 
+// we are aligning the targetTick to an useable tick.
 int24 targetTick = TickMath.getTickAtSqrtPrice(targetSqrtPriceX96);
+// This arithmetic is round-to-zero
 int24 tickUpper = (targetTick / TICK_SPACING) * TICK_SPACING;
 ```
 
@@ -148,25 +145,7 @@ We now have a lower and upper Tick for our Position, next we need to construct a
 
 ## Creating the Single Side Liquidity Position
 
-We will first calculate the liquidity corresponding to our token1, tickLower and tickUpper.
-
-```solidity
-uint128 liquidity = LiquidityAmounts.getLiquidityForAmount1(
-    TickMath.getSqrtPriceAtTick(tickLower),
-    TickMath.getSqrtPriceAtTick(tickUpper),
-    token1Amount
-);
-```
-
-And then, we recalculate actual token1 necessary for that liquidity as we round up the liqudity to the nearest number and that could have changed the required token1.
-
-```solidity
-uint256 requiredToken1 = LiquidityAmounts.getAmount1ForLiquidity(
-    TickMath.getSqrtPriceAtTick(tickLower),
-    TickMath.getSqrtPriceAtTick(tickUpper),
-    liquidity
-);
-```
+We will calculate the liquidity corresponding to our token1, tickLower and tickUpper and the requiredToken1 necessary for that liquidity using the [LiquidityAmounts library.](../../v3/reference/periphery/libraries/LiquidityAmounts.md)
 
 Finally, we have to set up upper limits for Amount1 and Amount0 accounting for slippage.
 
@@ -178,26 +157,13 @@ bytes memory hookData = new bytes(0);
 
 ### Minting the Position
 
-We approve token transfers on behalf of msg.sender() by the PositionManager:
+You can refer to the [Mint guide](../quickstart/manage-liquidity/mint-position) for a detailed explanation on how to mint a position.
 
-```Solidity
-if (!currency1.isAddressZero()) {
-    IERC20(Currency.unwrap(currency1)).approve(address(PERMIT2), type(uint256).max);
-    PERMIT2.approve(Currency.unwrap(currency1), address(posm), type(uint160).max, type(uint48).max);
-}
-```
-
-And now mint a new position using PositionManager's mint function:
-
-```solidity
-IPositionManager(address(posm)).mint(
-    pool, tickLower, tickUpper, liquidity, amount0Max, amount1Max, msg.sender, block.timestamp + 60, hookData
-);
-```
-
-We can find the Contract address on the official [Uniswap GitHub](https://docs.uniswap.org/contracts/v4/deployments).
+:::note
+We can find the Contract address on the official [Uniswap GitHub](/contracts/v4/deployments).
 For local development, the contract address is the same as the network we are forking from.
-So if we are using a local fork of mainnet like described in the [Local development guide](https://docs.uniswap.org/sdk/v3/guides/local-development), the contract address would be the same as on mainnet.
+So if we are using a local fork of mainnet like described in the [Local development guide](/sdk/v3/guides/local-development), the contract address would be the same as on mainnet.
+:::
 
 Here is the full code example for these code snippets:
 
@@ -208,28 +174,14 @@ pragma solidity ^0.8.20;
 import "forge-std/Script.sol";
 import "forge-std/console.sol";
 
-import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
-import {PoolKey} from "v4-core/src/types/PoolKey.sol";
-import {CurrencyLibrary, Currency} from "v4-core/src/types/Currency.sol";
-import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
-import {LiquidityAmounts} from "v4-core/test/utils/LiquidityAmounts.sol";
-import {TickMath} from "v4-core/src/libraries/TickMath.sol";
-import {StateLibrary} from "v4-core/src/libraries/StateLibrary.sol";
-import {Actions} from "v4-periphery/src/libraries/Actions.sol";
-import {EasyPosm} from "../test/utils/EasyPosm.sol";
-import {Constants} from "./base/Constants.sol";
-import {Config} from "./base/Config.sol";
-
-import {IERC20} from "forge-std/interfaces/IERC20.sol";
+//Other necessary imports
 
 contract AddSingleSidedLiquidity is Script, Constants, Config {
     using CurrencyLibrary for Currency;
     using StateLibrary for IPoolManager;
     using EasyPosm for IPositionManager;
 
-    uint24 public constant LP_FEE = 3000;
-    int24 public constant TICK_SPACING = 60;
-    uint256 public constant token1Amount = 1e6;
+    //constants
 
     function run() external {
         PoolKey memory pool = PoolKey({
@@ -245,7 +197,11 @@ contract AddSingleSidedLiquidity is Script, Constants, Config {
         int24 currentTick = TickMath.getTickAtSqrtPrice(sqrtPriceX96);
 
         //Calculating new target price
-        uint160 targetSqrtPriceX96 = uint160((uint256(sqrtPriceX96) * 974679) / 1_000_000);
+        uint160 targetSqrtPriceX96 = uint160(
+            FixedPointMathLib.mulDivDown(
+                uint256(sqrtPriceX96), FixedPointMathLib.sqrt(0.95e18), FixedPointMathLib.sqrt(1e18)
+            )
+        );
         int24 targetTick = TickMath.getTickAtSqrtPrice(targetSqrtPriceX96);
         int24 alignedTick = (targetTick / TICK_SPACING) * TICK_SPACING;
 
@@ -259,35 +215,15 @@ contract AddSingleSidedLiquidity is Script, Constants, Config {
         
         // Calculate liquidity from token1 (USDC)
         uint128 liquidity = LiquidityAmounts.getLiquidityForAmount1(
-            TickMath.getSqrtPriceAtTick(tickLower),
-            TickMath.getSqrtPriceAtTick(tickUpper),
-            token1Amount
+            //sqrtPrice at tickLower, sqrtPrice at tickUpper, token1Amount
         );
 
+        // Calculate required token1 amount from the liquidity
         uint256 requiredToken1 = LiquidityAmounts.getAmount1ForLiquidity(
-        TickMath.getSqrtPriceAtTick(tickLower),
-        TickMath.getSqrtPriceAtTick(tickUpper),
-        liquidity
+            //sqrtPrice at tickLower, sqrtPrice at tickUpper, liquidity
         );
-        
-        uint256 amount1Max = requiredToken1 + 1_000; // 0.001 USDC buffer
-        uint256 amount0Max = 1e14; // small ETH buffer
-        bytes memory hookData = new bytes(0);
 
-        //Token Approval
-        vm.startBroadcast();
-        if (!currency1.isAddressZero()) {
-            IERC20(Currency.unwrap(currency1)).approve(address(PERMIT2), type(uint256).max);
-            PERMIT2.approve(Currency.unwrap(currency1), address(posm), type(uint160).max, type(uint48).max);
-        }
-        vm.stopBroadcast();
-
-        //Minting a Position
-        vm.startBroadcast();
-        IPositionManager(address(posm)).mint(
-            pool, tickLower, tickUpper, liquidity, amount0Max, amount1Max, msg.sender, block.timestamp + 60, hookData
-        );
-        vm.stopBroadcast();
+        //Token Approval and Minting a Position
 
     }
 }
@@ -307,105 +243,11 @@ We have created our Range Order Position, now we need to monitor it and close th
 
 ## Closing the Limit Order
 
-We have to call the modifyLiquidities function of Position Manager contract in order to burn a position and remove our token.
+When your limit order has been executed (when the price moves across your position's range), you'll want to withdraw your funds. You can refer to the [Burn guide](../quickstart/manage-liquidity/burn-position) for details on how to close positions.
 
-Uniswap v4 allows us to use Actions and encode multiple actions to be sent as params. For ex: 0x030x0e means burn a position and take the tokens.
-
-And for that, we initialize the burnParams:
-```solidity
-bytes memory burnParams = abi.encode(
-    tokenId,
-    uint128(0),
-    uint128(0),
-    hookData
-);
-```
-
-And then, initialize the takeParams:
-```solidity
-bytes memory takeParams = abi.encode(
-    currency1,
-    msg.sender,
-    uint256(0)
-);
-```
-
-## Burn and Take
-
-We have to encode the actions and store the burn and take params in the params array:
-
-```solidity
-bytes memory actions = abi.encodePacked(
-    bytes1(uint8(Actions.BURN_POSITION)),
-    bytes1(uint8(Actions.TAKE))
-);
-
-bytes[] memory params = new bytes[](2);
-params[0] = burnParams;
-params[1] = takeParams;
-
-bytes memory unlockData = abi.encode(actions, params);
-```
-
-The final step is to call the modifyLiquidities function in PositionManager:
-
-```solidity
-posm.modifyLiquidities(unlockData, block.timestamp + 60);
-```
-
-Full working code example for Burn and Take:
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-import "forge-std/Script.sol";
-import "forge-std/console.sol";
-
-import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
-import {Actions} from "v4-periphery/src/libraries/Actions.sol";
-import {Currency} from "v4-core/src/types/Currency.sol";
-import {Constants} from "./base/Constants.sol";
-import {Config} from "./base/Config.sol";
-
-contract BurnAndTake is Script, Constants, Config {
-    function run() external {
-        uint256 tokenId = posm.nextTokenId() - 1;
-
-        bytes memory hookData = new bytes(0);
-
-        bytes memory burnParams = abi.encode(
-            tokenId,
-            uint128(0),
-            uint128(0),
-            hookData
-        );
-
-        bytes memory takeParams = abi.encode(
-            currency1,
-            msg.sender,
-            uint256(0)
-        );
-
-        // Clubbing Burn position and take actions
-        bytes memory actions = abi.encodePacked(
-            bytes1(uint8(Actions.BURN_POSITION)),
-            bytes1(uint8(Actions.TAKE))
-        );
-
-        bytes[] memory params = new bytes[](2);
-        params[0] = burnParams;
-        params[1] = takeParams;
-
-        bytes memory unlockData = abi.encode(actions, params);
-
-        vm.startBroadcast();
-        posm.modifyLiquidities(unlockData, block.timestamp + 60);
-        vm.stopBroadcast();
-    }
-}
-
-```
+The key steps involve:
+1. Calling the `modifyLiquidities` function of the Position Manager contract
+2. Using the BURN_POSITION and TAKE actions to remove liquidity and collect tokens
 
 ## Caveats
 
@@ -418,6 +260,6 @@ Executing a range order has certain limitations that may have become obvious dur
 
 ## Next Steps
 
-This guide showcases everything you need to implement Range Orders on your own, but only demonstrates creating a Buy Limit order in `token1` to `token0` direction.
+This guide showcases everything you need to implement Single-sided Liquidity on your own, but only demonstrates creating a `token1` only position.
 
-Check out the [Take Profit Order](https://docs.uniswap.org/sdk/v3/guides/advanced/range-orders) from v3-sdk guides and try implementing it in v4.
+Try implementing a `token0` only position in v4.
