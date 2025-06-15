@@ -25,6 +25,7 @@
     "rules": {
         "simple-import-sort/imports": "error",
         "simple-import-sort/exports": "error",
+        "prefer-rest-params": "off",
         "typescript-sort-keys/string-enum": [
             "error",
             "asc",

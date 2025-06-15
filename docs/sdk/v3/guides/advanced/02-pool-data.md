@@ -99,7 +99,7 @@ Now that we have the address of a **USDC - ETH** Pool, we can construct an insta
 To construct the Contract we need to provide the address of the contract, its ABI and a provider connected to an [RPC endpoint](https://www.chainnodes.org/docs). We get access to the contract's ABI through the `@uniswap/v3-core` package, which holds the core smart contracts of the Uniswap V3 protocol:
 
 ```typescript
-import { ethers } from 'ethers
+import { ethers } from 'ethers'
 import IUniswapV3PoolABI from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
 
 const provider = getProvider()
@@ -211,7 +211,7 @@ function tickToWord(tick: number): number {
   if (tick < 0 && tick % tickSpacing !== 0) {
     compressed -= 1
   }
-  return tick >> 8
+  return compressed >> 8
 }
 
 const minWord = tickToWord(-887272)

@@ -19,7 +19,7 @@ The guide will **cover**:
 2. Creating a route
 3. Swapping using a route
 
-At the end of the guide, we should be able to create a route and and execute a swap between any two currencies tokens using the example's included UI.
+At the end of the guide, we should be able to create a route and execute a swap between any two currencies tokens using the example's included UI.
 
 For this guide, the following Uniswap packages are used:
 
