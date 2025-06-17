@@ -99,7 +99,7 @@ Now that we have the address of a **USDC - ETH** Pool, we can construct an insta
 To construct the Contract we need to provide the address of the contract, its ABI and a provider connected to an [RPC endpoint](https://www.chainnodes.org/docs). We get access to the contract's ABI through the `@uniswap/v3-core` package, which holds the core smart contracts of the Uniswap V3 protocol:
 
 ```typescript
-import { ethers } from 'ethers
+import { ethers } from 'ethers'
 import IUniswapV3PoolABI from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
 
 const provider = getProvider()
@@ -263,7 +263,7 @@ const results: bigint[] = (await multicallProvider.all(calls)).map(
   )
 ```
 
-A great visualization of what the bitMaps look like can be found in the [Uniswap V3 development book](https://uniswapv3book.com/docs/milestone_2/tick-bitmap-index/):
+A great visualization of what the bitMaps look like can be found in the [Uniswap V3 development book](https://uniswapv3book.com/milestone_2/tick-bitmap-index.html):
 
 <img src={require('./images/tickBitmap_cut.png').default} alt="TickBitmap" box-shadow="none"/>
 
