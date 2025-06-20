@@ -9,9 +9,9 @@ This guide will introduce us to liquidity positions in Uniswap v4 and present th
 
 For this guide, the following Uniswap packages are used:
 
+- [`@uniswap/v3-sdk`](https://www.npmjs.com/package/@uniswap/v3-sdk)
 - [`@uniswap/v4-sdk`](https://www.npmjs.com/package/@uniswap/v4-sdk)
 - [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
-- [`@uniswap/v4-periphery`](https://www.npmjs.com/package/@uniswap/v4-periphery)
 
 ## Overview of Uniswap v4 Position Minting
 
@@ -31,86 +31,31 @@ Before minting, you need a Pool instance reflecting the current on-chain state a
 
 ### Step 1: Define Token Information
 
-First, create type definitions and define token information:
-
 ```typescript
-// Define the structure of token information
-interface TokenInfo {
-  /** Chain ID */
-  chainId: number
-  /** Token contract address */
-  address: Address
-  /** Number of decimal places for the token */
-  decimals: number
-  /** Token symbol */
-  symbol: string
-  /** Whether it's a native token or not */
-  isNative: boolean
-}
+import { Token, ChainId, Ether } from '@uniswap/sdk-core'
 
-// Example token information
-const TOKEN_INFO = {
-  [USDC_ADDRESS]: {
-    chainId,
-    decimals: 6,
-    address: USDC_ADDRESS,
-    symbol: 'USDC',
-    isNative: false,
-  },
-  // Native ETH
-  NATIVE: {
-    chainId,
-    decimals: 18,
-    address: zeroAddress, // Ethereum's zero address for native token
-    symbol: 'ETH',
-    isNative: true,
-  },
-} as const
+const ETH_NATIVE = Ether.onChain(ChainId.Mainnet)
 
-// Assuming tokenAInfo and tokenBInfo are selected by the user
-// For example: const tokenAInfo = TOKEN_INFO.NATIVE;
-// For example: const tokenBInfo = TOKEN_INFO[USDC_ADDRESS];
-```
+const ETH_TOKEN = new Token(
+  ChainId.MAINNET,
+  '0x0000000000000000000000000000000000000000',
+  18,
+  'ETH',
+  'Ether'
+)
 
-### Step 2: Instantiate Currency/Token Objects
-
-Convert token information into SDK Currency/Token objects:
-
-```typescript
-import { Ether, Token, Currency } from '@uniswap/v4-sdk'
-import { zeroAddress } from 'viem'
-
-// Initialize Currency objects based on token info
-let tokenA: Currency
-let tokenB: Currency
-
-// Convert token info to SDK Currency objects
-if (tokenAInfo.isNative) {
-  tokenA = Ether.onChain(chainId)
-} else {
-  tokenA = new Token(chainId, tokenAInfo.address, tokenAInfo.decimals, tokenAInfo.symbol)
-}
-
-if (tokenBInfo.isNative) {
-  tokenB = Ether.onChain(chainId)
-} else {
-  tokenB = new Token(chainId, tokenBInfo.address, tokenBInfo.decimals, tokenBInfo.symbol)
-}
-
-// Simply sort by address to determine token0 and token1
-// Important: Uniswap requires tokens to be ordered by address
-const addressA = tokenAInfo.isNative ? zeroAddress : tokenAInfo.address
-const addressB = tokenBInfo.isNative ? zeroAddress : tokenBInfo.address
-
-// Simple string comparison for sorting
-const token0IsA = addressA.toLowerCase() < addressB.toLowerCase()
-const token0 = token0IsA ? tokenA : tokenB
-const token1 = token0IsA ? tokenB : tokenA
+const USDC_TOKEN = new Token(
+  ChainId.MAINNET,
+  '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+  6,
+  'USDC',
+  'USDC'
+)
 ```
 
 > **Note**: In v4, pools are identified by a PoolKey (which includes token0, token1, fee, tick spacing, and hook address). The SDK's Pool class helps manage these details. Ensure that the token order (token0 vs token1) and the hook address match the actual pool.
 
-### Step 3: Fetch Pool State
+### Step 2: Fetch Pool State
 
 Before creating a Pool instance, you need to fetch the current state from the blockchain:
 
@@ -173,26 +118,17 @@ const pool = new Pool(
 );
 ```
 
-### Step 4: Define Position Parameters
+### Step 3: Define Position Parameters
 
 Now define the parameters for your liquidity position:
 
 ```typescript
-// https://github.com/Uniswap/v3-sdk/blob/main/src/utils/nearestUsableTick.ts
-function nearestUsableTick(tick: number, tickSpacing: number) {
-  invariant(Number.isInteger(tick) && Number.isInteger(tickSpacing), 'INTEGERS')
-  invariant(tickSpacing > 0, 'TICK_SPACING')
-  invariant(tick >= TickMath.MIN_TICK && tick <= TickMath.MAX_TICK, 'TICK_BOUND')
-  const rounded = Math.round(tick / tickSpacing) * tickSpacing
-  if (rounded < TickMath.MIN_TICK) return rounded + tickSpacing
-  else if (rounded > TickMath.MAX_TICK) return rounded - tickSpacing
-  else return rounded
-}
+import { nearestUsableTick } from "@uniswap/v3-sdk";
 
 // Define position parameters
 // These typically come from user input in your interface
 const fullRange = false // Whether to create a full-range position
-const tickRange = 5 // Percentage range around current price (e.g., 5%)
+const tickRange = 500 // Tick range around current price (e.g., 5%)
 const amountA = 1.0 // Amount of token A to deposit
 const amountB = 1000.0 // Amount of token B to deposit
 
@@ -215,18 +151,14 @@ if (fullRange) {
   // Round tickUpper down (closer to the center)
   tickUpper = nearestUsableTick(MAX_TICK, poolTickSpacing)
 } else {
-  // For custom range, calculate based on percentage around current tick
-  // tickRange is the percentage range (e.g., 5%)
-  const tickRangeAmount = Math.floor((tickRange / 100) * 10000) // Convert percentage to tick count
-
   // Calculate lower and upper ticks, ensuring they align with tick spacing
-  tickLower = Math.floor((currentTick - tickRangeAmount) / tickSpacing) * tickSpacing
-  tickUpper = Math.floor((currentTick + tickRangeAmount) / tickSpacing) * tickSpacing
+  tickLower = nearestUsableTick(currentTick - tickRangeAmount, tickSpacing)
+  tickUpper = nearestUsableTick(currentTick + tickRangeAmount, tickSpacing)
 }
 
 // Convert human-readable amounts to token amounts with proper decimals
-const amountADesired = BigInt(Math.floor(amountA * 10 ** tokenAInfo.decimals))
-const amountBDesired = BigInt(Math.floor(amountB * 10 ** tokenBInfo.decimals))
+const amountADesired = BigInt(Math.floor(amountA * 10 ** ETH_TOKEN.decimals))
+const amountBDesired = BigInt(Math.floor(amountB * 10 ** USDC_TOKEN.decimals))
 
 // Ensure token amounts are in the correct order (token0, token1)
 const amount0Desired = token0IsA ? amountADesired.toString() : amountBDesired.toString()
@@ -310,10 +242,10 @@ const mintOptions: MintOptions = {
   deadline: deadline.toString(),
 
   // 4. useNative (optional): Use native ETH
-  useNative: tokenAInfo.isNative
-    ? Ether.onChain(tokenAInfo.chainId)
-    : tokenBInfo.isNative
-    ? Ether.onChain(tokenBInfo.chainId)
+  useNative: ETH_TOKEN.isNative
+    ? Ether.onChain(ETH_TOKEN.chainId)
+    : USDC_TOKEN.isNative
+    ? Ether.onChain(USDC_TOKEN.chainId)
     : undefined,
 
   // 5. batchPermit (optional): For gasless approvals via Permit2
@@ -381,20 +313,20 @@ if (usePermit2) {
   const permitDetails = [];
 
   // Process tokenA if it's not native
-  if (!tokenAInfo.isNative) {
+  if (!ETH_TOKEN.isNative) {
     // Get current nonce from Permit2 contract
     const [, , nonce] = (await publicClient.readContract({
       account: getWalletAccount(), // Your function to get the current wallet
       address: PERMIT2_ADDRESS,
       abi: PERMIT2_ABI,
       functionName: 'allowance',
-      args: [userAddress, tokenAInfo.address, POSITION_MANAGER_ADDRESS],
+      args: [userAddress, ETH_TOKEN.address, POSITION_MANAGER_ADDRESS],
     })) as [bigint, bigint, bigint];
 
     // Add permit details for this token
     // Max uint160 value is used as the amount for an unlimited allowance
     permitDetails.push({
-      token: tokenAInfo.address,
+      token: ETH_TOKEN.address,
       amount: (2n ** 160n - 1n).toString(), // Max uint160
       expiration: deadline.toString(),
       nonce: nonce.toString(),
@@ -402,17 +334,17 @@ if (usePermit2) {
   }
 
   // Do the same for tokenB if it's not native
-  if (!tokenBInfo.isNative) {
+  if (!USDC_TOKEN.isNative) {
     const [, , nonce] = (await publicClient.readContract({
       account: getWalletAccount(),
       address: PERMIT2_ADDRESS,
       abi: PERMIT2_ABI,
       functionName: 'allowance',
-      args: [userAddress, tokenBInfo.address, POSITION_MANAGER_ADDRESS],
+      args: [userAddress, USDC_TOKEN.address, POSITION_MANAGER_ADDRESS],
     })) as [bigint, bigint, bigint];
 
     permitDetails.push({
-      token: tokenBInfo.address,
+      token: USDC_TOKEN.address,
       amount: (2n ** 160n - 1n).toString(),
       expiration: deadline.toString(),
       nonce: nonce.toString(),
@@ -457,11 +389,11 @@ if (usePermit2) {
 With a Position object and MintOptions prepared, we can now use the SDK to compute the calldata and value needed for the transaction:
 
 ```typescript
-import { v4PositionManager } from '@uniswap/v4-sdk'
+import { V4PositionManager } from '@uniswap/v4-sdk'
 
 // Generate transaction parameters
 // This produces the calldata and value needed for the blockchain transaction
-const { calldata, value } = v4PositionManager.addCallParameters(position, mintOptions)
+const { calldata, value } = V4PositionManager.addCallParameters(position, mintOptions)
 
 // Log the results (for debugging)
 console.log('Calldata:', calldata)
@@ -472,7 +404,7 @@ Under the hood, `addCallParameters` builds the necessary function calls to the P
 
 - It encodes a MINT_POSITION command with your position parameters (pool key, tickLower, tickUpper, liquidity) and a SETTLE_PAIR command to pull in the tokens.
 - The slippageTolerance is applied to calculate amount0Max and amount1Max – these are the maximum token amounts the contract is allowed to take.
-- If useNative was true, it would also append a SWEEP command for the native token. In case of solidity, please read this report carefully. https://reports.electisec.com/reports/04-2025-Sickle#2-high---uniswapv4connectoraddliquidity-does-not-reclaim-excess-eth
+- If useNative was true, it would also append a SWEEP command for the native token. In case of solidity, please read this [report](https://reports.electisec.com/reports/04-2025-Sickle#2-high---uniswapv4connectoraddliquidity-does-not-reclaim-excess-eth) carefully.
 - If batchPermit is provided, the SDK will prepend the permit call using the contract's multicall capability.
 
 ## Executing the Transaction with Viem
@@ -492,12 +424,9 @@ async function executeTransaction() {
       address: POSITION_MANAGER_ADDRESS,
       abi: POSITION_MANAGER_ABI,
       functionName: 'multicall',
-      data: [[calldata]],
+      args: [[calldata]],
       value: BigInt(value),
     })
-
-    // Update UI
-    setStatus(`Transaction submitted: ${txHash}`)
 
     // Wait for transaction confirmation
     const receipt = await publicClient.waitForTransactionReceipt({

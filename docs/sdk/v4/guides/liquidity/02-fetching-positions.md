@@ -3,7 +3,7 @@ id: position-fetching
 title: Fetching Positions
 ---
 
-# Fetching Positions in Uniswap v4
+## Introduction
 
 This guide covers how to fetch and analyze liquidity positions in Uniswap v4 using the v4-sdk.
 
