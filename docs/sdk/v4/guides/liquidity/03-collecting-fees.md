@@ -16,7 +16,7 @@ In Uniswap v4, fees are not stored directly. Instead, fees must be calculated us
 
 ### feeGrowthInside Concept
 
-```
+```text
 feeGrowthInside = Cumulative fees generated in pool ÷ Active liquidity at that time
 ```
 
@@ -48,6 +48,9 @@ function calculateUnclaimedFeesV4(
   // Overflow protection: return 0 if current is less than last
   const feeGrowthDelta0 =
     feeGrowthInside0Current >= feeGrowthInside0Last ? feeGrowthInside0Current - feeGrowthInside0Last : 0n
+
+  const feeGrowthDelta1 =
+    feeGrowthInside1Current >= feeGrowthInside1Last ? feeGrowthInside1Current - feeGrowthInside1Last : 0n
 
   return {
     token0Fees: (feeGrowthDelta0 * liquidity) / Q128,
@@ -83,33 +86,9 @@ function calculateLifetimeFeesV4(
 
 **Calculation basis**:
 
-```
+```text
 Total fees = Collected + Unclaimed
 ∴ Collected = Total fees - Unclaimed
-```
-
-**Implementation**:
-
-```typescript
-interface UnclaimedFees {
-  token0Fees: bigint
-  token1Fees: bigint
-}
-
-interface LifetimeFees {
-  token0LifetimeFees: bigint
-  token1LifetimeFees: bigint
-}
-
-function calculateCollectedFeesEstimate(
-  lifetimeFees: LifetimeFees,
-  unclaimedFees: UnclaimedFees
-): CollectedFeesEstimate {
-  return {
-    token0CollectedEstimate: lifetimeFees.token0LifetimeFees - unclaimedFees.token0Fees,
-    token1CollectedEstimate: lifetimeFees.token1LifetimeFees - unclaimedFees.token1Fees,
-  }
-}
 ```
 
 ---
@@ -180,7 +159,7 @@ async function getStoredPositionInfoV4(positionDetails, tokenId, owner) {
 
 #### Step 4: Current Fee Growth Values Retrieval
 
-**Read the current fee growth in the pool for the position's range:** To compute how much fees are unclaimed, we need the **current** fee growth inside the range and compare it to the last snapshot. We could manually fetch global fee growth and subtract out-of-range values, but `StateView` provides a convenience: `getFeeGrowthInside(poolId, tickLower, tickUpper)` will calculate the up-to-date fee growth inside that tick range for each token. This function reads the latest pool state (including global fee growth) and subtracts the parts outside the range. It accounts for any new trades that happened since the last snapshot.
+**Read the current fee growth in the pool for the position's range:** To compute how much fees are unclaimed, we need the **current** fee growth inside the range and compare it to the last snapshot. We could manually fetch global fee growth and subtract out-of-range values, but `StateView` provides a convenience: [`getFeeGrowthInside(poolId, tickLower, tickUpper)`](https://docs.uniswap.org/contracts/v4/reference/periphery/interfaces/IStateView#getfeegrowthinside) will calculate the up-to-date fee growth inside that tick range for each token. This function reads the latest pool state (including global fee growth) and subtracts the parts outside the range. It accounts for any new trades that happened since the last snapshot.
 
 ```typescript
 async function getCurrentFeeGrowthV4(positionDetails) {
@@ -192,28 +171,7 @@ async function getCurrentFeeGrowthV4(positionDetails) {
 }
 ```
 
-### Phase 2: Fee Calculation Execution
-
-#### Comprehensive Fee Analysis
-
-```typescript
-function performComprehensiveFeeAnalysis(
-  liquidity,
-  feeGrowthInside0Current,
-  feeGrowthInside1Current,
-  feeGrowthInside0Last,
-  feeGrowthInside1Last
-) {
-  // Apply three methods sequentially
-  const unclaimed = calculateUnclaimedFeesV4(/*...*/)
-  const lifetime = calculateLifetimeFeesV4(/*...*/)
-  const collectedEstimate = calculateCollectedFeesEstimate(lifetime, unclaimed)
-
-  return { unclaimed, lifetime, collectedEstimate }
-}
-```
-
-### Phase 3: Submitting Our Fee Collection Transaction
+### Phase 2: Submitting Our Fee Collection Transaction
 
 Collecting fees in v4 is done via the `PositionManager` contract's `modifyLiquidities` function with a specific sequence of actions. We will use the Uniswap v4 SDK to construct the required calldata and then send the transaction.
 
@@ -260,7 +218,7 @@ Let's break this down: we created a `Position` object using the pool and positio
 
 **📘 Under the hood:** The `calldata` produced encodes exactly two actions in `modifyLiquidities`: `Actions.DECREASE_LIQUIDITY` followed by `Actions.TAKE_PAIR`. The first action includes our `tokenId` and zeros for liquidity and min amounts, and the second action includes the two token currencies and the recipient address. Using a zero liquidity decrease is a trick to trigger the pool to calculate fees owed without actually changing the liquidity. The `TAKE_PAIR` then instructs the contract to transfer both token0 and token1 fee amounts out to us. (If our pool involved native ETH, one of the `Currency` entries in this param will be `Currency.wrap(0)` as shown, which signals the contract to send ETH. No manual WETH unwrap is needed – v4 handles it natively.)
 
-### Phase 4: Verify the Fees Were Collected
+### Phase 3: Verify the Fees Were Collected
 
 Once the transaction is mined, you'll want to confirm that the fees made it to the `recipient`. There are a few ways to verify:
 

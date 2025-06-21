@@ -5,7 +5,7 @@ title: Adding and Removing Liquidity
 
 **What this guide will cover:**
 
-1. **Setting up liquidity operations** – Preparing to add/remove liquidity from v4 positions, including fetching position details, handling native ETH vs ERC20 tokens, and configuring Permit2 for gasless approvals.
+1. **Setting up liquidity operations** – Preparing to add/remove liquidity from v4 positions, including fetching position details, handling native ETH vs ERC20 tokens, and configuring Permit2 for ERC20 token approvals.
 2. **Adding liquidity to existing positions** – Using the v4 SDK to increase liquidity with `addCallParameters`, handling native ETH positions, and executing transactions via PositionManager multicall.
 3. **Removing liquidity from positions** – Using `removeCallParameters` to decrease or fully exit positions, handling proportional withdrawals, and token collection.
 
@@ -256,7 +256,7 @@ async function addLiquidityToPosition(
 
 ---
 
-## 📉 Removing Liquidity from Positions
+## Removing Liquidity from Positions
 
 ### Theory: RemoveLiquidityOptions
 
@@ -360,7 +360,7 @@ async function removeLiquidityFromPosition(
 
 ---
 
-## 📝 Complete Example: Add/Remove Workflow
+## Complete Example: Add/Remove Workflow
 
 ```typescript
 async function completeAddRemoveWorkflow() {
@@ -377,7 +377,7 @@ async function completeAddRemoveWorkflow() {
     '1000000', // 1 USDC
     0.05 // 5% slippage
   )
-  console.log(`✅ Added liquidity: ${addResult.txHash}`)
+  console.log(`Added liquidity: ${addResult.txHash}`)
 
   // 3. Wait and verify
   await new Promise((resolve) => setTimeout(resolve, 5000))
@@ -390,7 +390,7 @@ async function completeAddRemoveWorkflow() {
     0.05, // 5% slippage
     false // don't burn token
   )
-  console.log(`✅ Removed 50% liquidity: ${removeResult.txHash}`)
+  console.log(`Removed 50% liquidity: ${removeResult.txHash}`)
 
   return { addResult, removeResult }
 }
