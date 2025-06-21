@@ -4,6 +4,7 @@ title: Create Pool
 ---
 
 ## Introduction
+
 In this example we will use **ethers.js** and the **Uniswap v4 SDK** to create pools on Uniswap v4. Uniswap v4 is a popular destination for creating markets due to its:
 
 - Proven track record and battle-tested codebase
@@ -21,7 +22,7 @@ For this guide, the following Uniswap packages are used:
 
 ## Configuration
 
-To initialize a Uniswap v4 Pool _without initial liquidity_, developers should call [`PoolManager.initialize()`](/contracts/v4/reference/core/interfaces/IPoolManager#initialize)
+To initialize a Uniswap v4 Pool _without initial liquidity_, developers should call [`PoolManager.initialize()`](/docs/contracts/v4/reference/core/interfaces/IPoolManager#initialize)
 
 Creating a pool without liquidity may be useful for "reserving" a pool for future use, when initial liquidity is not available, or when external market makers would provide the starting liquidity.
 
@@ -63,7 +64,7 @@ Lower tick spacing provides improved price precision; however, smaller tick spac
 ## Call `initialize` of Pool Manager contract
 
 Now to initialize the `Pool` we need to call the `initialize` function of the Pool Manager Contract.
-To construct the Pool Manager Contract we need to provide the address of the contract, its ABI and a provider connected to an [RPC endpoint](https://www.chainnodes.org/docs).
+To construct the Pool Manager Contract we need to provide the address of the contract, its ABI and a provider connected to an RPC endpoint.
 
 ```typescript
 import { ethers } from 'ethers'
@@ -78,7 +79,8 @@ const poolManager = new ethers.Contract(
     signer
 )
 ```
-We get the `POOL_MANAGER_ADDRESS` for our chain from [Uniswap Deployments](https://docs.uniswap.org/contracts/v4/deployments).
+
+We get the `POOL_MANAGER_ADDRESS` for our chain from [Uniswap Deployments](/docs/contracts/v4/deployments.mdx).
 
 Pools are initialized with a starting price
 
@@ -93,3 +95,17 @@ const result = await poolManager.initialize(
   - i.e. `79228162514264337593543950336` is the starting price for a 1:1 pool
 
 Now the pool is initialized and you can add liquidity to it.
+
+## Important Note on Initial Liquidity
+
+When creating a new pool, it's critical to understand that initializing a pool without liquidity can be dangerous. An empty pool's spot price is freely manipulatable since there is no liquidity to resist price movements.
+
+This means that on the first liquidity provision, if proper slippage parameters are not set:
+
+1. Malicious actors can manipulate the price before the first position is minted
+2. The first position can be mispriced and have incorrect asset ratios
+
+To safely add the first liquidity to a new pool:
+
+- Always use appropriate slippage parameters when minting the first position
+- Consider adding liquidity immediately after pool creation in the same transaction. Reference our [Mint Position guide](../liquidity/01-minting-position.md) for proper liquidity addition practices.
