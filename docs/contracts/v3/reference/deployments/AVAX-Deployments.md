@@ -7,7 +7,7 @@ title: AVAX Deployments
 
 The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap/swap-router-contracts` are deployed at the addresses listed below. Integrators should **no longer assume that they are deployed to the same addresses across chains** and be extremely careful to confirm mappings below.
 
-| Contract                                                                                                                                                     | AVAX Avalanch C-Chain Addresses              |
+| Contract                                                                                                                                                     | AVAX Avalanche C-Chain Addresses              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
 | [UniswapV3Factory](https://github.com/Uniswap/uniswap-v3-core/blob/v1.0.0/contracts/UniswapV3Factory.sol)                                                    | `0x740b1c1de25031C31FF4fC9A62f554A55cdC1baD` |
 | [Multicall](https://snowtrace.io/address/0x0139141Cd4Ee88dF3Cdb65881D411bAE271Ef0C2/contract/43114/code)                                                     | `0x0139141Cd4Ee88dF3Cdb65881D411bAE271Ef0C2` |
