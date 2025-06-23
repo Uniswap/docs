@@ -7,6 +7,11 @@ title: Fetching Positions
 
 This guide covers how to fetch and analyze liquidity positions in Uniswap v4 using the v4-sdk.
 
+For this guide, the following Uniswap packages are used:
+
+- [`@uniswap/v4-sdk`](https://www.npmjs.com/package/@uniswap/v4-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+
 ## Key Differences from v3
 
 The v4 PositionManager does not implement ERC721Enumerable, so `tokenOfOwnerByIndex` is not available. This requires using the subgraph to discover position IDs. Additionally, v4 uses a packed data format for position information.
