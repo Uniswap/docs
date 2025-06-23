@@ -3,15 +3,20 @@ id: add-remove-liquidity
 title: Adding and Removing Liquidity
 ---
 
-**What this guide will cover:**
+## Introduction
+
+This guide will cover:
 
 1. **Setting up liquidity operations** – Preparing to add/remove liquidity from v4 positions, including fetching position details, handling native ETH vs ERC20 tokens, and configuring Permit2 for ERC20 token approvals.
 2. **Adding liquidity to existing positions** – Using the v4 SDK to increase liquidity with `addCallParameters`, handling native ETH positions, and executing transactions via PositionManager multicall.
 3. **Removing liquidity from positions** – Using `removeCallParameters` to decrease or fully exit positions, handling proportional withdrawals, and token collection.
 
----
+For this guide, the following Uniswap packages are used:
 
-## 🏗️ v4 Architecture and Key Changes
+- [`@uniswap/v4-sdk`](https://www.npmjs.com/package/@uniswap/v4-sdk)
+- [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core)
+
+## v4 Architecture and Key Changes
 
 ### Native ETH Handling
 
@@ -37,9 +42,7 @@ await walletClient.writeContract({
 })
 ```
 
----
-
-## 📈 Adding Liquidity to Existing Positions
+## Adding Liquidity to Existing Positions
 
 ### Theory: IncreaseLiquidityOptions
 
@@ -254,8 +257,6 @@ async function addLiquidityToPosition(
 }
 ```
 
----
-
 ## Removing Liquidity from Positions
 
 ### Theory: RemoveLiquidityOptions
@@ -357,8 +358,6 @@ async function removeLiquidityFromPosition(
   }
 }
 ```
-
----
 
 ## Complete Example: Add/Remove Workflow
 
