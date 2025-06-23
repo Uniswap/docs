@@ -642,7 +642,7 @@ module.exports = {
             from: '/sdk/v3/guides/swaps/01-background.md',
           },
           {
-            to: '/api/subgraph/guides/examples',
+            to: '/api/subgraph/guides/v4-examples',
             from: '/sdk/subgraph/subgraph-examples',
           },
           {
