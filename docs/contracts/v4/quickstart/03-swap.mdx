@@ -232,7 +232,7 @@ This prepares and executes the swap based on our encoded commands, actions, and 
 After the swap, we need to verify that we received at least the minimum amount of tokens we specified:
 
 ```solidity
-amountOut = IERC20(key.currency1).balanceOf(address(this));
+amountOut = key.currency1.balanceOf(address(this));
 require(amountOut >= minAmountOut, "Insufficient output amount");
 ```
 
@@ -287,7 +287,7 @@ function swapExactInputSingle(
     router.execute(commands, inputs, deadline);
 
     // Verify and return the output amount
-    amountOut = IERC20(key.currency1).balanceOf(address(this));
+    amountOut = key.currency1.balanceOf(address(this));
     require(amountOut >= minAmountOut, "Insufficient output amount");
     return amountOut;
 }
