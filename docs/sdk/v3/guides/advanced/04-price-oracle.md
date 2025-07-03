@@ -6,7 +6,7 @@ title: Uniswap as a Price Oracle
 ## Introduction
 
 This guide will cover how to fetch price observations from a V3 pool to get onchain asset prices.
-It is based on the [Price Oracle example](https://github.com/Uniswap/examples/tree/main/v3-sdk/oracle), found in the Uniswap code examples [repository](https://github.com/Uniswap/example).
+It is based on the [Price Oracle example](https://github.com/Uniswap/examples/tree/main/v3-sdk/oracle), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples).
 To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/oracle/README.md) and follow the setup instructions.
 
 :::info
