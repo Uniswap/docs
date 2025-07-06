@@ -130,7 +130,7 @@ Returns the information about a position by the position's key
 
 | Name                       | Type    | Description                                                                       |
 | :------------------------- | :------ | :-------------------------------------------------------------------------------- |
-| `_liquidity`               | bytes32 | The amount of liquidity in the position,                                          |
+| `_liquidity`               | uint128 | The amount of liquidity in the position,                                          |
 | `feeGrowthInside0LastX128` | uint256 | fee growth of token0 inside the tick range as of the last mint/burn/poke,         |
 | `feeGrowthInside1LastX128` | uint256 | fee growth of token1 inside the tick range as of the last mint/burn/poke,         |
 | `tokensOwed0`              | uint128 | the computed amount of token0 owed to the position as of the last mint/burn/poke, |
@@ -159,7 +159,7 @@ ago, rather than at a specific index in the array.
 
 | Name                                | Type    | Description                                                                                      |
 | :---------------------------------- | :------ | :----------------------------------------------------------------------------------------------- |
-| `blockTimestamp`                    | uint256 | The timestamp of the observation,                                                                |
+| `blockTimestamp`                    | uint32 | The timestamp of the observation,                                                                |
 | `tickCumulative`                    | int56   | the tick multiplied by seconds elapsed for the life of the pool as of the observation timestamp, |
 | `secondsPerLiquidityCumulativeX128` | uint160 | the seconds per in range liquidity for the life of the pool as of the observation timestamp      |
 | `initialized`                       | bool    | whether the observation has been initialized and the values are safe to use                      |
