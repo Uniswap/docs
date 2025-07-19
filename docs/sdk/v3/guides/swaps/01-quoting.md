@@ -184,7 +184,12 @@ We get access to the contract's ABI through the [@uniswap/v3-periphery](https://
 import Quoter from '@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json'
 ```
 
-We get the QUOTE_CONTRACT_ADDRESS for our chain from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+If using the **QuoterV2** (the v1 Quoter is not available on all chains, like Base), change use the following import statement:
+```typescript
+import Quoter from '@uniswap/v3-periphery/artifacts/contracts/lens/QuoterV2.sol/QuoterV2.json'
+```
+
+We get the QUOTE_CONTRACT_ADDRESS for our chain from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md), or from the official [Uniswap docs](https://docs.uniswap.org/contracts/v3/reference/deployments/).
 
 We can now use our Quoter contract to obtain the quote.
 
@@ -203,6 +208,22 @@ const quotedAmountOut = await quoterContract.callStatic.quoteExactInputSingle(
     CurrentConfig.tokens.in.decimals
   ).toString(),
   0
+)
+```
+
+Or, if using the **QuoterV2**, wrap the input in a single object to be converted to raw bytes:
+```typescript
+const quotedAmountOut = await quoterContract.callStatic.quoteExactInputSingle(
+  {
+    token0,
+    token1,
+    fee,
+    fromReadableAmount(
+      CurrentConfig.tokens.amountIn,
+      CurrentConfig.tokens.in.decimals
+    ).toString(),
+    0
+}
 )
 ```
 
