@@ -184,7 +184,7 @@ We get access to the contract's ABI through the [@uniswap/v3-periphery](https://
 import Quoter from '@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json'
 ```
 
-If using the **QuoterV2** (the v1 Quoter is not available on all chains, like Base), change use the following import statement:
+If using the **QuoterV2**, change use the following import statement:
 ```typescript
 import Quoter from '@uniswap/v3-periphery/artifacts/contracts/lens/QuoterV2.sol/QuoterV2.json'
 ```
