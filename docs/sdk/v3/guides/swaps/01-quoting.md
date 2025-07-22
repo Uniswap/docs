@@ -14,8 +14,8 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 In this example we will use `quoteExactInputSingle` to get a quote for the pair **USDC - WETH**.
 The inputs are the **token in**, the **token out**, the **amount in** and the **fee**.
 
-The **fee** input parameters represents the swap fee that distributed to all in range liquidity at the time of the swap. It is one of the identifiers of a Pool, the others being **tokenIn** and **tokenOut**.
-
+The **fee** input parameter represents the swap fee that is distributed to all in-range liquidity at the time of the swap. It is one of the identifiers of a Pool, along with **tokenIn** and **tokenOut**.
+  
 The guide will **cover**:
 
 1. Computing the Pool's deployment address
@@ -184,7 +184,7 @@ We get access to the contract's ABI through the [@uniswap/v3-periphery](https://
 import Quoter from '@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json'
 ```
 
-We get the QUOTE_CONTRACT_ADDRESS for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+We get the QUOTE_CONTRACT_ADDRESS for our chain from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
 
 We can now use our Quoter contract to obtain the quote.
 

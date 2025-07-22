@@ -42,6 +42,10 @@ If increasing the liquidity requires the transfer of both tokens:
 
 * _settle pair_ - pays a pair of tokens, to increase liquidity
 
+**If increasing the liquidity for ETH positions, a third action is required:**
+
+* _sweep_ - to recover excess eth sent to the position manager
+
 Otherwise:
 
 * _close currency_ - automatically determines if a currency should be settled or taken.
@@ -56,6 +60,11 @@ If both tokens need to be sent:
 bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8(Actions.SETTLE_PAIR));
 ```
 
+If increasing liquidity for ETH positions:
+```solidity
+bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8(Actions.SETTLE_PAIR), uint8(Actions.SWEEP));
+```
+
 If converting fees to liquidity, and expect excess fees to be collected
 ```solidity
 bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8(Actions.CLOSE_CURRENCY), uint8(Actions.CLOSE_CURRENCY));
@@ -68,7 +77,7 @@ bytes memory actions = abi.encodePacked(uint8(Actions.INCREASE_LIQUIDITY), uint8
 
 ### 3. Encoded Parameters
 
-When settling pair:
+When settling pair (for non-ETH positions):
 
 ```solidity
 bytes[] memory params = new bytes[](2);
@@ -105,7 +114,18 @@ In the above case, the parameter encoding is:
 Currency currency0 = Currency.wrap(<tokenAddress1>); // tokenAddress1 = 0 for native ETH
 Currency currency1 = Currency.wrap(<tokenAddress2>);
 params[1] = abi.encode(currency0, currency1);
-``` 
+```
+
+The `SWEEP` action requires the following parameters:
+
+* `currency` - _Currency_, token to sweep - most commonly native Ether: `CurrencyLibrary.ADDRESS_ZERO`
+* `recipient` - _address_, where to send excess tokens
+
+In this case, the parameter encoding is:
+
+```solidity
+params[2] = abi.encode(currency, recipient);
+```
 
 The `CLOSE_CURRENCY` action requires only one `currency` parameter
 and the encoding is:

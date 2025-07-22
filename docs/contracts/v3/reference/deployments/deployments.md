@@ -10,6 +10,7 @@ The Uniswap Protocol is made up of multiple contracts on many networks.
 Please do not assume contracts are deployed to the same addresses across chains, and be extremely careful to confirm addresses before using a contract.
 
 - [`Ethereum`](./Ethereum-Deployments.md)
+- [`Unichain`](./Unichain-Deployments.md)
 - [`Arbitrum`](./Arbitrum-Deployments.md)
 - [`Optimism`](./Optimism-Deployments.md)
 - [`Polygon`](./Polygon-Deployments.md)
@@ -31,7 +32,7 @@ These addresses are final and were deployed from these npm package versions:
 
 # Universal Router
 
-The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on Github](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
+The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
 
 # Uniswap Pool Deployments
 

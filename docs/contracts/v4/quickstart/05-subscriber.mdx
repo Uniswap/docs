@@ -6,8 +6,6 @@ title: Subscriber
 
 For developers looking to support custom _liquidity mining_, Subscriber contracts can be used to receive notifications about position modifications or transfers.
 
----
-
 # Guide
 
 ## 1. Implement the [`ISubscriber`](https://github.com/Uniswap/v4-periphery/blob/main/src/interfaces/ISubscriber.sol) interface
@@ -47,9 +45,11 @@ contract MySubscriber is ISubscriber {
 
 ## 2. A caveat on `unsubscribe()`
 
-There is a variable [`unsubscribeGasLimit`](/contracts/v4/reference/periphery/interfaces/INotifier#unsubscribegaslimit) specifically set at deployment of `PositionManager` to prevent gas griefing on `unsubscribe()` - which could result in the subscriber contract not being notified during `unsubscribe()`. 
+To prevent gas griefing during unsubscription, Uniswap v4 sets a fixed variable [`unsubscribeGasLimit`](/contracts/v4/reference/periphery/interfaces/INotifier#unsubscribegaslimit) when calling a subscriber’s `notifyUnsubscribe()` function.
 
-If notifying the subscriber contract is not necessary users can still specify a gas limit where `notifyUnsubscribe()` hits `OutOfGas` and reverts yet the unsubscription will still succeed.
+Without this limit, malicious subscribers could prevent liquidity providers from unsubscribing. If `notifyUnsubscribe()` were to consume too much gas, it would cause the unsubscription transaction to revert, thus leading to a denial-of-service
+
+With the gas limit in place, if the subscriber’s notification fails, the unsubscription will still succeed and only the notification to the subscriber is skipped.
 
 From [`_unsubscribe()`](https://github.com/Uniswap/v4-periphery/blob/main/src/base/Notifier.sol#L80) on `Notifier`:
 ```solidity

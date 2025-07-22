@@ -135,12 +135,12 @@ Here, we're setting up our hook with a constant fee of 0.01% and enabling the `b
 Now, let's implement our `beforeSwap` function:
 
 ```solidity
-function beforeSwap(
+function _beforeSwap(
     address,
     PoolKey calldata key,
     IPoolManager.SwapParams calldata params,
     bytes calldata
-) external override returns (bytes4, BeforeSwapDelta, uint24) {
+) internal override returns (bytes4, BeforeSwapDelta, uint24) {
     // Implementation details will be explained in the following sub-steps
 }
 
@@ -163,10 +163,19 @@ uint256 feeAmount = (swapAmount * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
 We use `poolManager.take` to collect the fee. This creates a debt for our hook in the specified currency.
 
 ```solidity
-Currency feeCurrency = params.zeroForOne ? key.currency0 : key.currency1;
+Currency feeCurrency;
+
+feeCurrency = params.amountSpecified < 0 == params.zeroForOne ? key.currency0 : key.currency1;
+
 poolManager.take(feeCurrency, address(this), feeAmount);
 
 ```
+
+:::note
+> Using `poolManager.take()` requires an ERC20 balance on the PoolManager, i.e. via other liquidity pools. If the `.take()` amount exceeds the ERC20 balance, the code will revert. As a workaround, use either:
+>1. `poolManager.mint()` to obtain ERC6909, which are also more gas efficient
+>2. A custom swap router, where input tokens are transferred to PoolManager before the router calls `poolManager.swap()`
+:::
 
 ### Step 2.3: Create the BeforeSwapDelta
 

@@ -19,7 +19,7 @@ The guide will **cover**:
 2. Creating a route
 3. Swapping using a route
 
-At the end of the guide, we should be able to create a route and and execute a swap between any two currencies tokens using the example's included UI.
+At the end of the guide, we should be able to create a route and execute a swap between any two currencies tokens using the example's included UI.
 
 For this guide, the following Uniswap packages are used:
 
@@ -159,7 +159,7 @@ const tokenApproval = await tokenContract.approve(
 To be able to spend the tokens of a wallet, a smart contract first needs to get an approval from that wallet. 
 ERC20 tokens have an `approve` function that accepts the address of the smart contract that we want to allow spending our tokens and the amount the smart contract should be allowed to spend.
 
-We can get the **V3_SWAP_ROUTER_ADDRESS** for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md). 
+We can get the **V3_SWAP_ROUTER_ADDRESS** for our chain from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md). 
 Keep in mind that different chains might have **different deployment addresses** for the same contracts.
 The deployment address for local forks of a network are the same as in the network you forked, so for a **fork of mainnet** it would be the address for **Mainnet**.
 

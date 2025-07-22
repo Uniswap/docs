@@ -1,0 +1,34 @@
+---
+title: PoolKey Guide
+---
+
+`PoolKey` is a crucial struct in Uniswap V4 that uniquely identifies a liquidity pool. It encapsulates all the essential parameters that define a pool's characteristics.
+
+# Structure
+
+```solidity
+struct PoolKey {
+    Currency currency0;
+    Currency currency1;
+    uint24 fee;
+    int24 tickSpacing;
+    IHooks hooks;
+}
+```
+
+# Fields
+
+| Field Name  | Type     | Description                                                                            |
+|-------------|----------|----------------------------------------------------------------------------------------|
+| currency0   | Currency | The lower currency of the pool, sorted numerically                                     |
+| currency1   | Currency | The higher currency of the pool, sorted numerically                                    |
+| fee         | uint24   | The pool swap fee, capped at 1,000,000. If the first bit is 1, the pool has a dynamic fee |
+| tickSpacing | int24    | The spacing between ticks for the pool                                                 |
+| hooks       | IHooks   | The address of the hooks contract associated with the pool                             |
+
+# Important Notes
+
+- The `currency0` and `currency1` fields are always sorted numerically, with `currency0` being the lower value. This ensures consistent pool identification regardless of the order in which tokens are provided.
+- The `fee` field can represent either a static fee or indicate that the pool uses a dynamic fee mechanism.
+- The `tickSpacing` field determines the granularity of price ranges that can be used for liquidity provision.
+- The `hooks` field is an interface of our Hooks that the PoolManager uses to call these functions

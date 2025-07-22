@@ -7,7 +7,7 @@ title: AVAX Deployments
 
 The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap/swap-router-contracts` are deployed at the addresses listed below. Integrators should **no longer assume that they are deployed to the same addresses across chains** and be extremely careful to confirm mappings below.
 
-| Contract                                                                                                                                                     | AVAX Avalanch C-Chain Addresses              |
+| Contract                                                                                                                                                     | AVAX Avalanche C-Chain Addresses              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
 | [UniswapV3Factory](https://github.com/Uniswap/uniswap-v3-core/blob/v1.0.0/contracts/UniswapV3Factory.sol)                                                    | `0x740b1c1de25031C31FF4fC9A62f554A55cdC1baD` |
 | [Multicall](https://snowtrace.io/address/0x0139141Cd4Ee88dF3Cdb65881D411bAE271Ef0C2/contract/43114/code)                                                     | `0x0139141Cd4Ee88dF3Cdb65881D411bAE271Ef0C2` |
@@ -21,7 +21,7 @@ The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap
 | [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                                                    | `0xbe0F5544EC67e9B3b2D979aaA43f18Fd87E6257F` |
 | [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                                                        | `0xbb00FF08d01D300023C629E8fFfFcb65A5a578cE` |
 | [Permit2](https://github.com/Uniswap/permit2)                                                                                                                | `0x000000000022D473030F116dDEE9F6B43aC78BA3` |
-| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0x4Dae2f939ACf50408e13d58534Ff8c2776d45265` |
+| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0x94b75331ae8d42c1b61065089b7d48fe14aa73b7` |
 | [v3StakerAddress](https://github.com/Uniswap/v3-staker)                                                                                                      | `0xCA9D0668C600c4dd07ca54Be1615FE5CDFd76Ac3` |
 
 
@@ -32,13 +32,13 @@ These addresses are final and were deployed from these npm package versions:
 - [`@uniswap/swap-router-contracts@1.1.0`](https://github.com/Uniswap/swap-router-contracts/tree/v1.1.0)
 
 
-# Uniswap V3 Staker
+# Uniswap v3 Staker
 
-An up-to-date list of [deploy addresses by chain is hosted on Github](https://github.com/Uniswap/v3-staker/releases/tag/v1.0.2) for the `UniswapV3Staker` contract.
+An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/v3-staker/releases/tag/v1.0.2) for the `UniswapV3Staker` contract.
 
 # Universal Router
 
-The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on Github](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
+The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
 
 # Uniswap Pool Deployments
 

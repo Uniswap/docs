@@ -13,5 +13,5 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
       - name: Run Scraper
         run: |
-          brew install jq
+          sudo apt-get update && sudo apt-get install -y jq
           docker run -e "APPLICATION_ID=${{ secrets.ALGOLIA_APP_ID }}" -e "API_KEY=${{ secrets.API_KEY }}" -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper

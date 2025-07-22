@@ -20,6 +20,7 @@
   "plugins": ["typescript-sort-keys", "unused-imports"],
   "rules": {
     "react/prop-types": "off",
+        "prefer-rest-params": "off",
     "typescript-sort-keys/string-enum": [
       "error",
       "asc",
