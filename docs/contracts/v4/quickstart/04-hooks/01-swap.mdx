@@ -81,8 +81,8 @@ function getHookPermissions() public pure override returns (Hooks.Permissions me
 Here the example shows that every time __before__ a swap is executed in a pool, `beforeSwapCount` for that pool will be incremented by one.
 
 ```solidity
-function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
-    external
+function _beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
+    internal
     override
     returns (bytes4, BeforeSwapDelta, uint24)
 {
@@ -99,15 +99,15 @@ A brief overview of the parameters:
 - `sender` The initial `msg.sender` for the `PoolManager.swap` call - typically a swap router
 - `key` The key for the pool
 - `params` The parameters for the swap i.e. [`SwapParams`](/contracts/v4/reference/core/interfaces/IPoolManager#swapparams) from `IPoolManager`
-- `hookData` Arbitrary data handed into the `PoolManager` by the swapper to be be passed on to the hook
+- `hookData` Arbitrary data handed into the `PoolManager` by the swapper to be passed on to the hook
 
 ## afterSwap
 
 Similiar as above, every time __after__ a swap is executed in a pool, `afterSwapCount` for that pool will be incremented by one.
 
 ```solidity
-function afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
-    external
+function _afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
+    internal
     override
     returns (bytes4, int128)
 {
@@ -125,7 +125,7 @@ A brief overview of the parameters:
 - `key` The key for the pool
 - `params` The parameters for the swap i.e. [`SwapParams`](/contracts/v4/reference/core/interfaces/IPoolManager#swapparams) from `IPoolManager`
 - `delta` The amount owed to the caller (positive) or owed to the pool (negative)
-- `hookData` Arbitrary data handed into the `PoolManager` by the swapper to be be passed on to the hook
+- `hookData` Arbitrary data handed into the `PoolManager` by the swapper to be passed on to the hook
    
 
 
@@ -180,8 +180,8 @@ contract SwapHook is BaseHook {
     // NOTE: see IHooks.sol for function documentation
     // -----------------------------------------------
 
-    function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
-        external
+    function _beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
+        internal
         override
         returns (bytes4, BeforeSwapDelta, uint24)
     {
@@ -189,8 +189,8 @@ contract SwapHook is BaseHook {
         return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
     }
 
-    function afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
-        external
+    function _afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
+        internal
         override
         returns (bytes4, int128)
     {

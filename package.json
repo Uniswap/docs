@@ -1,10 +1,11 @@
 {
   "name": "@uniswap/docs",
   "description": "Uniswap docs",
+  "license": "MIT",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
@@ -29,7 +30,6 @@
     "@uniswap/analytics": "1.1.0",
     "@uniswap/analytics-events": "2.0.0",
     "algoliasearch": "^4.9.1",
-    "caniuse-lite": "^1.0.30001519",
     "clsx": "^1.1.1",
     "hast-util-is-element": "1.1.0",
     "intl-locales-supported": "^1.8.12",
@@ -55,6 +55,7 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.6.3",
     "@docusaurus/types": "^3.6.3",
+    "@types/gtag.js": "^0.0.20",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
     "dotenv": "^16.0.3",

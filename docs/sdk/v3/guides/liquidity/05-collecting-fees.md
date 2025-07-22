@@ -122,4 +122,4 @@ After pressing the button, if someone has traded against our position, we should
 
 ## Next Steps
 
-The previous guides detail all the atomic steps needed to create and manage positions. However, these approaches may not use all of your desired currency. To ensure you are using your full funds while minimizing gas prices, check out our guide on [Swapping and Adding Liquidity](./05-swap-and-add-liquidity.md) in a single transaction!
+The previous guides detail all the atomic steps needed to create and manage positions. However, these approaches may not use all of your desired currency. To ensure you are using your full funds while minimizing gas prices, check out our guide on [Swapping and Adding Liquidity](./06-swap-and-add-liquidity.md) in a single transaction!

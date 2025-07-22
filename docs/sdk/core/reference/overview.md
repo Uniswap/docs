@@ -25,20 +25,20 @@ title: Overview
 
 ### Type Aliases
 
-- [BigintIsh](modules.md#bigintish)
-- [Currency](modules.md#currency)
+- [BigintIsh](#bigintish)
+- [Currency](#currency)
 
 ### Variables
 
-- [MaxUint256](modules.md#maxuint256)
-- [WETH9](modules.md#weth9)
+- [MaxUint256](#maxuint256)
+- [WETH9](#weth9)
 
 ### Functions
 
-- [computePriceImpact](modules.md#computepriceimpact)
-- [sortedInsert](modules.md#sortedinsert)
-- [sqrt](modules.md#sqrt)
-- [validateAndParseAddress](modules.md#validateandparseaddress)
+- [computePriceImpact](#computepriceimpact)
+- [sortedInsert](#sortedinsert)
+- [sqrt](#sqrt)
+- [validateAndParseAddress](#validateandparseaddress)
 
 ## Type Aliases
 

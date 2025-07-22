@@ -74,7 +74,7 @@ An instance of liquidity defined by upper and lower tick. And the amount of liqu
 
 ## Price Impact
 
-The difference between the mid-price and the execution price of a trade.
+The difference between the mid-price and the execution price **caused by your trade size relative to the pool’s liquidity**. This is an expected result of the constant product formula in AMMs.
 
 ## Protocol Fees
 
@@ -94,7 +94,7 @@ The liquidity available within a pair. This was more commonly referenced before 
 
 ## Slippage
 
-The amount the price moves in a trading pair between when a transaction is submitted and when it is executed.
+The total difference between the expected price at the time of submitting a transaction and the actual execution price, which may include price impact and other market movements that occur before the transaction is mined.
 
 ## Spot Price
 
