@@ -77,7 +77,7 @@ export const dAppGuides = [
   {
     title: 'Fetch token prices',
     text: 'Fetch the price of tokens in a specific Pool',
-    to: 'sdk/v3/guides/swaps/quoting',
+    to: 'sdk/v4/guides/swaps/quoting',
   },
   {
     title: 'Create a Trade',

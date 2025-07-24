@@ -22,6 +22,8 @@
   --ifm-menu-color-active: theme(colors.light-accent-1);
   --docsearch-muted-color: theme(colors.light-neutral-2);
   --docsearch-searchbox-background: theme(colors.light-surface-2);
+  --docsearch-modal-background: theme(colors.light-surface-1);
+  --docsearch-footer-background: theme(colors.light-surface-2);
 }
 
 :root[data-theme='dark'] {
@@ -29,6 +31,8 @@
   --ifm-menu-color-active: theme(colors.dark-accent-1);
   --docsearch-muted-color: theme(colors.dark-neutral-2);
   --docsearch-searchbox-background: theme(colors.dark-surface-2);
+  --docsearch-modal-background: theme(colors.dark-surface-1);
+  --docsearch-footer-background: theme(colors.dark-surface-2);
 }
 
 html {
@@ -37,6 +41,10 @@ html {
 
 html:has(.theme-doc-markdown) {
   scroll-behavior: smooth;
+}
+
+.main-wrapper {
+  @apply pt-nav-h min-h-screen flex flex-row bg-light-surface-1 dark:bg-dark-surface-1;
 }
 
 .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
@@ -122,11 +130,6 @@ html:has(.theme-doc-markdown) {
   @apply !mt-nav-h;
 }
 
-/* 2025/01/28 Overflow width of doc contents fix */
-[class^='docMainContainer_'] {
-  @apply !w-min;
-}
-
 .doc .theme-edit-this-page {
   all: initial;
 }
@@ -203,14 +206,18 @@ html:has(.theme-doc-markdown) {
 .col.docItemCol_src-theme-DocItem-Layout-styles-module {
   @apply sm:!max-w-full md:!max-w-[75%];
 }
-.container {
-  @apply sm:!pb-[3.75rem] !pb-10;
-}
+
 .theme-doc-footer-edit-meta-row {
   @apply !hidden;
 }
 .navbar {
   @apply !p-0;
+}
+
+.navbar-sidebar {
+  transform: translate3d(100%, 0, 0);
+  left: auto;
+  right: 0;
 }
 .theme-doc-markdown {
   @apply !body-2 flex flex-col space-y-6;

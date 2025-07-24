@@ -35,7 +35,7 @@ const sidebars = {
       label: 'SDKs',
       link: {
         type: 'doc',
-        id: 'sdk/v3/overview',
+        id: 'sdk/v4/overview',
       },
       items: [
         {

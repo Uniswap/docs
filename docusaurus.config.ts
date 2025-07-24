@@ -1,9 +1,13 @@
-const math = require('remark-math')
-const katex = require('rehype-katex')
-const tailwindPlugin = require('./plugins/tailwind-config.cjs')
-require('dotenv').config()
+import math from 'remark-math'
+import katex from 'rehype-katex'
+import tailwindPlugin from './plugins/tailwind-config.cjs'
+import dotenv from 'dotenv'
+import type * as Preset from '@docusaurus/preset-classic'
+import type { Config } from '@docusaurus/types'
 
-module.exports = {
+dotenv.config()
+
+const config: Config = {
   staticDirectories: ['static'],
   customFields: {
     // Analytics proxy URL
@@ -20,8 +24,8 @@ module.exports = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'ignore',
   favicon: 'img/favicon.png',
-  organizationName: 'Uniswap', // Usually your GitHub org/user name.
-  projectName: 'Uniswap-docs', // Usually your repo name.
+  organizationName: 'Uniswap',
+  projectName: 'Uniswap-docs',
   themeConfig: {
     image: 'img/twitter_card_bg.jpg',
     prism: {
@@ -38,7 +42,7 @@ module.exports = {
       },
     },
     navbar: {
-      /* using custom navigation */
+      /* using custom navbar */
     },
     footer: {
       /* using custom footer */
@@ -50,33 +54,27 @@ module.exports = {
       // using user system preferences, instead of the hardcoded defaultMode
       respectPrefersColorScheme: true,
     },
-  },
+  } satisfies Preset.ThemeConfig,
   presets: [
     [
       '@docusaurus/preset-classic',
+      /** @type {import('@docusaurus/preset-classic').Options} */
       {
         docs: {
           routeBasePath: '/',
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: './sidebars.js',
           remarkPlugins: [math],
           rehypePlugins: [katex],
           editUrl: 'https://github.com/uniswap/uniswap-docs/tree/main/',
           includeCurrentVersion: true,
         },
-        blog: {
-          remarkPlugins: [math],
-          rehypePlugins: [katex],
-          path: 'blog/',
-          blogTitle: 'Engineering Blog',
-          blogSidebarCount: 0,
-        },
+        blog: false,
         theme: {
-          customCss: [require.resolve('./src/css/custom.css')],
+          customCss: './src/css/custom.css',
         },
-      },
+      } satisfies Preset.Options,
     ],
   ],
-
   stylesheets: [
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
@@ -729,3 +727,4 @@ module.exports = {
     ],
   ],
 }
+export default config
