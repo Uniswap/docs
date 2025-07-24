@@ -108,7 +108,7 @@ ___
 
 ▸ `Static` **getTickAtSqrtRatio**(`sqrtRatioX96`): `number`
 
-Returns the tick corresponding to a given sqrt ratio, s.t. #getSqrtRatioAtTick(tick) <= sqrtRatioX96
+Returns the tick corresponding to a given sqrt ratio, s.t. #getSqrtRatioAtTick(tick) \<= sqrtRatioX96
 and #getSqrtRatioAtTick(tick + 1) > sqrtRatioX96
 
 #### Parameters

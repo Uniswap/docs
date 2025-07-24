@@ -142,7 +142,7 @@ Returns the chain ID of the currencies in the pool.
 
 #### Get Signature
 
-> **get** **currency0Price**(): `Price`<`Currency`, `Currency`>
+> **get** **currency0Price**(): `Price`\<`Currency`, `Currency`\>
 
 Defined in: [entities/pool.ts:166](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/pool.ts#L166)
 
@@ -150,7 +150,7 @@ Returns the current mid price of the pool in terms of currency0, i.e. the ratio 
 
 ##### Returns
 
-`Price`<`Currency`, `Currency`>
+`Price`\<`Currency`, `Currency`\>
 
 ***
 
@@ -158,7 +158,7 @@ Returns the current mid price of the pool in terms of currency0, i.e. the ratio 
 
 #### Get Signature
 
-> **get** **currency1Price**(): `Price`<`Currency`, `Currency`>
+> **get** **currency1Price**(): `Price`\<`Currency`, `Currency`\>
 
 Defined in: [entities/pool.ts:185](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/pool.ts#L185)
 
@@ -166,7 +166,7 @@ Returns the current mid price of the pool in terms of currency1, i.e. the ratio 
 
 ##### Returns
 
-`Price`<`Currency`, `Currency`>
+`Price`\<`Currency`, `Currency`\>
 
 ***
 
@@ -190,7 +190,7 @@ backwards compatibility with v2/3 sdks
 
 #### Get Signature
 
-> **get** **token0Price**(): `Price`<`Currency`, `Currency`>
+> **get** **token0Price**(): `Price`\<`Currency`, `Currency`\>
 
 Defined in: [entities/pool.ts:178](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/pool.ts#L178)
 
@@ -198,7 +198,7 @@ backwards compatibility with v2/3 sdks
 
 ##### Returns
 
-`Price`<`Currency`, `Currency`>
+`Price`\<`Currency`, `Currency`\>
 
 ***
 
@@ -220,7 +220,7 @@ Defined in: [entities/pool.ts:146](https://github.com/Uniswap/sdks/blob/9cf6edb2
 
 #### Get Signature
 
-> **get** **token1Price**(): `Price`<`Currency`, `Currency`>
+> **get** **token1Price**(): `Price`\<`Currency`, `Currency`\>
 
 Defined in: [entities/pool.ts:197](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/pool.ts#L197)
 
@@ -228,13 +228,13 @@ backwards compatibility with v2/3 sdks
 
 ##### Returns
 
-`Price`<`Currency`, `Currency`>
+`Price`\<`Currency`, `Currency`\>
 
 ## Methods
 
 ### getInputAmount()
 
-> **getInputAmount**(`outputAmount`, `sqrtPriceLimitX96`?): `Promise`<[`CurrencyAmount`<`Currency`>, [`Pool`](Pool.md)]>
+> **getInputAmount**(`outputAmount`, `sqrtPriceLimitX96`?): `Promise`\<[`CurrencyAmount`\<`Currency`\>, [`Pool`](Pool.md)]>
 
 Defined in: [entities/pool.ts:257](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/pool.ts#L257)
 
@@ -245,12 +245,12 @@ Works only for vanilla hookless v3 pools, otherwise throws an error
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `outputAmount` | `CurrencyAmount`<`Currency`> | the output amount for which to quote the input amount |
+| `outputAmount` | `CurrencyAmount`\<`Currency`\> | the output amount for which to quote the input amount |
 | `sqrtPriceLimitX96`? | `JSBI` | The Q64.96 sqrt price limit. If zero for one, the price cannot be less than this value after the swap. If one for zero, the price cannot be greater than this value after the swap |
 
 #### Returns
 
-`Promise`<[`CurrencyAmount`<`Currency`>, [`Pool`](Pool.md)]>
+`Promise`\<[`CurrencyAmount`\<`Currency`\>, [`Pool`](Pool.md)]>
 
 The input amount and the pool with updated state
 
@@ -258,7 +258,7 @@ The input amount and the pool with updated state
 
 ### getOutputAmount()
 
-> **getOutputAmount**(`inputAmount`, `sqrtPriceLimitX96`?): `Promise`<[`CurrencyAmount`<`Currency`>, [`Pool`](Pool.md)]>
+> **getOutputAmount**(`inputAmount`, `sqrtPriceLimitX96`?): `Promise`\<[`CurrencyAmount`\<`Currency`\>, [`Pool`](Pool.md)]>
 
 Defined in: [entities/pool.ts:219](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/pool.ts#L219)
 
@@ -268,12 +268,12 @@ Works only for vanilla hookless v3 pools, otherwise throws an error
 
 | Parameter | Type |
 | ------ | ------ |
-| `inputAmount` | `CurrencyAmount`<`Currency`> |
+| `inputAmount` | `CurrencyAmount`\<`Currency`\> |
 | `sqrtPriceLimitX96`? | `JSBI` |
 
 #### Returns
 
-`Promise`<[`CurrencyAmount`<`Currency`>, [`Pool`](Pool.md)]>
+`Promise`\<[`CurrencyAmount`\<`Currency`\>, [`Pool`](Pool.md)]>
 
 ***
 
@@ -365,7 +365,7 @@ backwards compatibility with v2/3 sdks
 
 ### priceOf()
 
-> **priceOf**(`currency`): `Price`<`Currency`, `Currency`>
+> **priceOf**(`currency`): `Price`\<`Currency`, `Currency`\>
 
 Defined in: [entities/pool.ts:206](https://github.com/Uniswap/sdks/blob/9cf6edb2df79338ae58f7ea7ca979c35a8a9bd56/sdks/v4-sdk/src/entities/pool.ts#L206)
 
@@ -379,6 +379,6 @@ Return the price of the given currency in terms of the other currency in the poo
 
 #### Returns
 
-`Price`<`Currency`, `Currency`>
+`Price`\<`Currency`, `Currency`\>
 
 The price of the given currency, in terms of the other.

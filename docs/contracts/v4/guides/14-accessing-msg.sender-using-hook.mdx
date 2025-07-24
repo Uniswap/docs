@@ -70,7 +70,9 @@ This can be done with the help of add and remove functions implemented in the ho
 mapping(address swapRouter => bool approved) public verifiedRouters;
 ```
 
-> **<Ins>NOTE:</Ins>** Make sure you include an address mapping in your hook for the routers before adding the functions.
+:::note
+Make sure you include an address mapping in your hook for the routers before adding the functions.
+:::
 
 ```solidity
 function addRouter(address _router) external {

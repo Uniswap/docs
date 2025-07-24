@@ -277,7 +277,7 @@ Defined in: [utils/v4Planner.ts:183](https://github.com/Uniswap/sdks/blob/9cf6ed
 
 | Parameter | Type |
 | ------ | ------ |
-| `trade` | [`Trade`](Trade.md)<`Currency`, `Currency`, `TradeType`> |
+| `trade` | [`Trade`](Trade.md)\<`Currency`, `Currency`, `TradeType`\> |
 | `slippageTolerance`? | `Percent` |
 
 #### Returns

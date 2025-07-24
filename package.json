@@ -10,22 +10,22 @@
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
-    "lint": "yarn eslint src"
+    "lint": "eslint src"
   },
   "dependencies": {
     "@algolia/autocomplete-preset-algolia": "^1.1.0",
     "@algolia/client-search": "^4.9.1",
-    "@babel/core": "^7.14.6",
-    "@docusaurus/core": "^2.0.0-beta.17",
-    "@docusaurus/plugin-client-redirects": "2.0.0-beta.17",
-    "@docusaurus/plugin-content-docs": "^2.0.0-beta.17",
-    "@docusaurus/preset-classic": "^2.0.0-beta.17",
-    "@docusaurus/remark-plugin-npm2yarn": "^2.0.0-beta.17",
-    "@docusaurus/theme-search-algolia": "^2.0.0-beta.17",
+    "@docusaurus/core": "^3.6.3",
+    "@docusaurus/plugin-client-redirects": "^3.6.3",
+    "@docusaurus/plugin-content-docs": "^3.6.3",
+    "@docusaurus/preset-classic": "^3.6.3",
+    "@docusaurus/remark-plugin-npm2yarn": "^3.6.3",
+    "@docusaurus/theme-search-algolia": "^3.6.3",
+    "@docusaurus/tsconfig": "^3.6.3",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@mdx-js/react": "^1.6.21",
-    "@saucelabs/theme-github-codeblock": "https://github.com/Uniswap/docusaurus-theme-github-codeblock.git#f55fe4caed9fce974c9b82bf2164f76cc5509eef",
+    "@mdx-js/react": "^3.1.0",
+    "@saucelabs/theme-github-codeblock": "^0.3.0",
     "@types/react": "^17.0.11",
     "@uniswap/analytics": "1.1.0",
     "@uniswap/analytics-events": "2.0.0",
@@ -33,8 +33,8 @@
     "clsx": "^1.1.1",
     "hast-util-is-element": "1.1.0",
     "intl-locales-supported": "^1.8.12",
-    "react": "18",
-    "react-dom": "18",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-feather": "^2.0.10",
     "rehype-katex": "5",
     "remark-math": "3",
@@ -53,11 +53,11 @@
     ]
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.1.0",
-    "@tsconfig/docusaurus": "^1.0.6",
+    "@docusaurus/module-type-aliases": "^3.6.3",
+    "@docusaurus/types": "^3.6.3",
     "@types/gtag.js": "^0.0.20",
-    "@typescript-eslint/eslint-plugin": "^4",
-    "@typescript-eslint/parser": "^4",
+    "@typescript-eslint/eslint-plugin": "6.21.0",
+    "@typescript-eslint/parser": "6.21.0",
     "dotenv": "^16.0.3",
     "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.11.0",
@@ -69,11 +69,11 @@
     "eslint-plugin-typescript-sort-keys": "^2.1.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "prettier": "2.7.1",
-    "typescript": "^4.8.4"
+    "typescript": "5.3.3"
   },
   "engines": {
     "npm": "please-use-yarn",
-    "node": "18.x",
+    "node": ">=18",
     "yarn": ">=1.22"
   }
 }
