@@ -83,6 +83,7 @@ import { IPermit2 } from "@uniswap/permit2/src/interfaces/IPermit2.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { StateLibrary } from "@uniswap/v4-core/src/libraries/StateLibrary.sol";
 import { PoolKey } from "@uniswap/v4-core/src/types/PoolKey.sol";
+import { Currency } from "@uniswap/v4-core/src/types/Currency.sol";
 
 contract Example {
     using StateLibrary for IPoolManager;
@@ -266,7 +267,7 @@ This prepares and executes the swap based on our encoded commands, actions, and 
 After the swap, we need to verify that we received at least the minimum amount of tokens we specified:
 
 ```solidity
-amountOut = IERC20(key.currency1).balanceOf(address(this));
+amountOut = IERC20(Currency.unwrap(key.currency1)).balanceOf(address(this));
 require(amountOut >= minAmountOut, "Insufficient output amount");
 ```
 
@@ -321,7 +322,7 @@ function swapExactInputSingle(
     router.execute(commands, inputs, deadline);
 
 // Verify and return the output amount
-    amountOut = IERC20(key.currency1).balanceOf(address(this));
+    amountOut = IERC20(Currency.unwrap(key.currency1)).balanceOf(address(this));
     require(amountOut >= minAmountOut, "Insufficient output amount");
     return amountOut;
 }
