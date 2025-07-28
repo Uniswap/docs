@@ -159,7 +159,7 @@ const TwoRow = styled(Row)`
 const Card = styled.div`
   display: flex;
   max-height: 250px;
-  min-width: 350px;
+  width: 100%;
   padding: 1rem;
   flex-direction: column;
   justify-content: center;
@@ -258,6 +258,11 @@ const DocsHeader = styled.div`
   overflow: hidden;
   width: 100%;
   position: relative;
+  padding: 0 1rem;
+  
+  @media (max-width: 960px) {
+    padding: 0;
+  }
 `
 
 const StyledImage = styled(ThemedImage)`
