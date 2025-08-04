@@ -310,8 +310,8 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="relative flex justify-center col-span-full md:col-span-4 min-h-[50vw] md:min-h-[25vw]">
-              <img src={UPG} className="absolute md:right-0 p-8" />
+            <div className="relative justify-center col-span-full md:col-span-4 min-h-[50vw] md:min-h-[25vw] hidden md:flex">
+              <img src={UPG} className="absolute md:right-0 p-8 max-w-[16rem]" />
             </div>
           </div>
         </div>
