@@ -42,6 +42,52 @@ const config: Config = {
       },
     },
     navbar: {
+      items: [
+        {
+          type: 'doc',
+          docId: 'concepts/overview',
+          label: 'Concepts',
+        },
+        {
+          type: 'doc',
+          docId: 'contracts/v4/overview',
+          label: 'Contracts',
+        },
+        {
+          type: 'doc',
+          docId: 'sdk/v4/overview',
+          label: 'SDKs',
+        },
+        {
+          type: 'doc',
+          docId: 'api/subgraph/overview',
+          label: 'APIs',
+        },
+        {
+          label: "Give Feedback",
+          to: 'https://docs.google.com/forms/d/e/1FAIpQLSdjSkZam8KiatL9XACRVxCHjDJjaPGbls77PCXDKFn4JwykXg/viewform',
+          target: '_blank',
+          rel: 'noreferrer',
+        },
+        {
+          label: "Uniswap Foundation",
+          to: 'https://www.uniswapfoundation.org/',
+          target: '_blank',
+          rel: 'noreferrer',
+        },
+        {
+          label: "Whitepaper",
+          to: 'https://app.uniswap.org/whitepaper-v4.pdf',
+          target: '_blank',
+          rel: 'noreferrer',
+        },
+        {
+          label: "GitHub",
+          to: 'https://github.com/Uniswap/docs/',
+          target: '_blank',
+          rel: 'noreferrer',
+        },
+      ],
       /* using custom navbar */
     },
     footer: {

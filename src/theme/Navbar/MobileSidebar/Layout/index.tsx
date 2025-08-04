@@ -6,9 +6,6 @@ import type { Props } from '@theme/Navbar/MobileSidebar/Layout'
 export default function NavbarMobileSidebarLayout({ header, primaryMenu, secondaryMenu }: Props): ReactNode {
   const { shown: secondaryMenuShown } = useNavbarSecondaryMenu()
 
-  console.log('primaryMenu', primaryMenu  )
-  console.log('secondaryMenu', secondaryMenu)
-
   return (
     <div className="navbar-sidebar">
       {header}

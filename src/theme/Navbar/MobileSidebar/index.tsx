@@ -9,11 +9,9 @@ export default function NavbarMobileSidebar(): ReactNode {
   const mobileSidebar = useNavbarMobileSidebar()
   useLockBodyScroll(mobileSidebar.shown)
 
-  console.log('mobileSidebar', mobileSidebar)
-
-  // if (!mobileSidebar.shouldRender) {
-  //   return null
-  // }
+  if (!mobileSidebar.shouldRender) {
+    return null
+  }
 
   return (
     <NavbarMobileSidebarLayout

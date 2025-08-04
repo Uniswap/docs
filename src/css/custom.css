@@ -59,9 +59,15 @@ html:has(.theme-doc-markdown) {
   @apply font-basel-grotesk text-sm;
 }
 
-.menu__link--active {
+.navbar-sidebar__items:not(.navbar-sidebar__items--show-secondary) .menu__link--active {
+  @apply font-normal !bg-transparent;
+  color: var(--ifm-menu-color) !important;
+}
+
+.navbar-sidebar__items--show-secondary > .menu__link--active {
   @apply font-medium;
 }
+
 
 .menu__link--sublist-caret:after {
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.2rem 1.2rem;
