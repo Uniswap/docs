@@ -8,91 +8,34 @@ interface CopyToAIProps {
 
 export default function CopyToAI({ className }: CopyToAIProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-  const [copied, setCopied] = useState<string | false>(false);
 
-  const generatePrompt = (provider: 'claude' | 'chatgpt') => {
-    const pageTitle = document.title || 'Uniswap Documentation';
-    
-    // Use production URL in production, otherwise use current URL
+  const generatePrompt = () => {
+    // Get the current page URL and convert to production URL if on localhost
     const currentUrl = window.location.href;
-    const isLocalhost = currentUrl.includes('localhost') || currentUrl.includes('127.0.0.1');
-    const pageUrl = isLocalhost ? currentUrl : currentUrl.replace(window.location.origin, 'https://docs.uniswap.org');
+    const isLocalhost = currentUrl.includes('localhost') || currentUrl.includes('127.0.0.1') || currentUrl.includes('159.65.47.228');
+    const pageUrl = isLocalhost 
+      ? currentUrl.replace(window.location.origin, 'https://docs.uniswap.org')
+      : currentUrl;
     
-    // Both Claude and ChatGPT now use full content for immediate feedback
-    const contentElement = document.querySelector('article[data-page-type="docs"]') || 
-                          document.querySelector('.markdown') || 
-                          document.querySelector('main');
-    
-    const pageContent = contentElement?.textContent?.trim() || 'Content not available';
-    
-    return `Here is documentation from Uniswap:
-
-**Title:** ${pageTitle}
-**Source:** ${pageUrl}
-
-**Content:**
-${pageContent}
-
-Please read this documentation so I can ask questions about it.`;
+    // Simple prompt like Privy's approach
+    return `Read from ${pageUrl} so I can ask questions about it.`;
   };
 
-  const copyToClipboard = async (provider: 'claude' | 'chatgpt') => {
-    try {
-      const prompt = generatePrompt(provider);
-      
-      if (provider === 'chatgpt') {
-        // ChatGPT supports pre-filling via URL parameters (2024 feature)
-        const encodedPrompt = encodeURIComponent(prompt);
-        const url = `https://chatgpt.com/?model=gpt-4&q=${encodedPrompt}`;
-        window.open(url, '_blank');
-        setCopied('ChatGPT will load with your content!');
-        
-        setTimeout(() => {
-          setCopied(false);
-          setIsOpen(false);
-        }, 2000);
-      } else {
-        // Claude: Try URL parameters first, fallback to clipboard if too long
-        const encodedPrompt = encodeURIComponent(prompt);
-        const claudeUrl = `https://claude.ai/new?q=${encodedPrompt}`;
-        
-        // Check if URL is too long (typical browser limit ~2000 chars)
-        if (claudeUrl.length > 2000) {
-          // Fallback: copy to clipboard and open Claude
-          await navigator.clipboard.writeText(prompt);
-          window.open('https://claude.ai/new', '_blank');
-          setCopied('✓ Content copied to clipboard!\nPaste into Claude with Ctrl+V (⌘+V)');
-          
-          setTimeout(() => {
-            setCopied(false);
-            setIsOpen(false);
-          }, 3000);
-        } else {
-          // URL is short enough, use direct URL approach
-          window.open(claudeUrl, '_blank');
-          setCopied('✓ Opening Claude with content!');
-          
-          setTimeout(() => {
-            setCopied(false);
-            setIsOpen(false);
-          }, 2000);
-        }
-      }
-    } catch (err) {
-      console.error('Failed to process request: ', err);
-      // Fallback: just copy to clipboard
-      try {
-        const prompt = generatePrompt('claude'); // Default to Claude approach for fallback
-        await navigator.clipboard.writeText(prompt);
-        setCopied('Copied to clipboard!');
-        setTimeout(() => {
-          setCopied(false);
-          setIsOpen(false);
-        }, 2000);
-      } catch (clipboardErr) {
-        console.error('Clipboard fallback failed: ', clipboardErr);
-      }
+  const openInAI = (provider: 'claude' | 'chatgpt') => {
+    const prompt = generatePrompt();
+    const encodedPrompt = encodeURIComponent(prompt);
+    
+    if (provider === 'claude') {
+      // Use Claude's URL parameter approach like Privy
+      const claudeUrl = `https://claude.ai/new?q=${encodedPrompt}`;
+      window.open(claudeUrl, '_blank');
+    } else {
+      // For ChatGPT, we'll use a similar approach
+      const chatgptUrl = `https://chatgpt.com/?q=${encodedPrompt}`;
+      window.open(chatgptUrl, '_blank');
     }
+    
+    setIsOpen(false);
   };
 
   const handleDropdownToggle = () => {
@@ -142,24 +85,18 @@ Please read this documentation so I can ask questions about it.`;
         <div className={styles.dropdown}>
           <button
             className={clsx(styles.option, styles.claude)}
-            onClick={() => copyToClipboard('claude')}
+            onClick={() => openInAI('claude')}
           >
             <span className={styles.optionIcon}>🔶</span>
             <span>Claude</span>
           </button>
           <button
             className={clsx(styles.option, styles.chatgpt)}
-            onClick={() => copyToClipboard('chatgpt')}
+            onClick={() => openInAI('chatgpt')}
           >
             <span className={styles.optionIcon}>💬</span>
             <span>ChatGPT</span>
           </button>
-        </div>
-      )}
-      
-      {copied && (
-        <div className={styles.toast}>
-          {copied}
         </div>
       )}
     </div>

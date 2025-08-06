@@ -68,14 +68,14 @@ export default function DocItemLayout({ children }: Props): ReactNode {
         )}
 
         <div className="space-y-4">
-          <CopyToAI className="mb-4" />
-          
           {editUrl && (
             <div className="flex flex-row space-x-1 items-center group/edit-icon">
               <Edit className="Toc__edit-icon h-4 w-4" />
               <EditThisPage editUrl={editUrl} />
             </div>
           )}
+          
+          <CopyToAI className="mb-4" />
         </div>
       </div>
     </div>
