@@ -129,6 +129,15 @@ const config: Config = {
       crossorigin: 'anonymous',
     },
   ],
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'referrer',
+        content: 'strict-origin-when-cross-origin',
+      },
+    },
+  ],
   plugins: [
     tailwindPlugin,
     ['@saucelabs/theme-github-codeblock', {}],

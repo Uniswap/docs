@@ -1,0 +1,94 @@
+# Uniswap Documentation
+
+Uniswap is the world's leading decentralized exchange protocol built on Ethereum. This documentation covers all versions of the Uniswap Protocol and associated SDKs, tools, and integrations.
+
+## Overview
+- [What is Uniswap](https://docs.uniswap.org/concepts/what-is-uniswap): Introduction to Uniswap and decentralized finance
+- [Uniswap Protocol](https://docs.uniswap.org/concepts/uniswap-protocol): Overview of the Uniswap protocol architecture
+
+## Uniswap v4 (Latest)
+- [v4 Overview](https://docs.uniswap.org/contracts/v4/overview): Latest version with hooks, flash accounting, and singleton architecture
+- [v4 vs v3](https://docs.uniswap.org/contracts/v4/concepts/v4-vs-v3): Key differences and improvements in v4
+- [Hooks](https://docs.uniswap.org/contracts/v4/concepts/hooks): Custom logic for pool lifecycle events
+- [Flash Accounting](https://docs.uniswap.org/contracts/v4/concepts/flash-accounting): Efficient token accounting using transient storage
+- [ERC-6909](https://docs.uniswap.org/contracts/v4/concepts/erc6909): Multi-token standard for improved gas efficiency
+- [PoolManager](https://docs.uniswap.org/contracts/v4/concepts/PoolManager): Singleton contract managing all pools
+- [Dynamic Fees](https://docs.uniswap.org/contracts/v4/concepts/dynamic-fees): Flexible fee structures via hooks
+- [Subscribers](https://docs.uniswap.org/contracts/v4/concepts/subscribers): Liquidity mining notifications system
+
+### v4 Guides
+- [Create Pool](https://docs.uniswap.org/contracts/v4/quickstart/create-pool): How to create new liquidity pools
+- [Manage Liquidity](https://docs.uniswap.org/contracts/v4/quickstart/manage-liquidity/setup-liquidity): Adding, removing, and managing liquidity positions
+- [Swap](https://docs.uniswap.org/contracts/v4/quickstart/swap): Executing swaps on v4 pools
+- [Building Hooks](https://docs.uniswap.org/contracts/v4/guides/hooks/your-first-hook): Developer guide for creating custom hooks
+- [Hook Deployment](https://docs.uniswap.org/contracts/v4/guides/hooks/hook-deployment): Deploying and configuring hook contracts
+
+## Uniswap v3
+- [v3 Overview](https://docs.uniswap.org/contracts/v3/overview): Concentrated liquidity AMM protocol
+- [Concentrated Liquidity](https://docs.uniswap.org/concepts/protocol/concentrated-liquidity): Core concept of v3
+- [Range Orders](https://docs.uniswap.org/concepts/protocol/range-orders): Limit orders using concentrated liquidity
+- [Oracles](https://docs.uniswap.org/concepts/protocol/oracle): Time-weighted average prices
+- [Fees](https://docs.uniswap.org/concepts/protocol/fees): Fee tiers and collection mechanism
+
+### v3 Guides
+- [Providing Liquidity](https://docs.uniswap.org/contracts/v3/guides/providing-liquidity/setting-up-your-contract): Smart contract integration for liquidity provision
+- [Swaps](https://docs.uniswap.org/contracts/v3/guides/swaps/single-swaps): Implementation guides for single and multi-hop swaps
+- [Flash Integrations](https://docs.uniswap.org/contracts/v3/guides/flash-integrations/calling-flash): Flash loan implementation patterns
+
+## Uniswap v2
+- [v2 Overview](https://docs.uniswap.org/contracts/v2/overview): Constant product AMM protocol
+- [Core Concepts](https://docs.uniswap.org/contracts/v2/concepts/core-concepts/swaps): Swaps, pools, and flash swaps
+- [Smart Contract Integration](https://docs.uniswap.org/contracts/v2/guides/smart-contract-integration/quick-start): Building on v2 protocol
+
+## SDKs and Tools
+
+### v4 SDK
+- [v4 SDK Overview](https://docs.uniswap.org/sdk/v4/overview): TypeScript SDK for v4 integration
+- [Swap Guides](https://docs.uniswap.org/sdk/v4/guides/swaps/quoting): Quoting and executing swaps
+- [Liquidity Management](https://docs.uniswap.org/sdk/v4/guides/liquidity/minting-position): Position minting and management
+- [Pool Data](https://docs.uniswap.org/sdk/v4/guides/advanced/pool-data): Reading and analyzing pool state
+
+### v3 SDK
+- [v3 SDK Overview](https://docs.uniswap.org/sdk/v3/overview): Comprehensive SDK for v3 interactions
+- [Trading](https://docs.uniswap.org/sdk/v3/guides/swaps/trading): Trade execution and routing
+- [Liquidity](https://docs.uniswap.org/sdk/v3/guides/liquidity/position-data): Liquidity position management
+- [Advanced Features](https://docs.uniswap.org/sdk/v3/guides/advanced/price-oracle): Oracle integration and advanced concepts
+
+### Core SDK
+- [Core SDK](https://docs.uniswap.org/sdk/core/overview): Shared utilities and types across all SDKs
+
+### Swap Widget
+- [Swap Widget](https://docs.uniswap.org/sdk/swap-widget/overview): Embeddable swap interface for applications
+
+### Web3 React
+- [Web3 React](https://docs.uniswap.org/sdk/web3-react/overview): React hooks for wallet connections and chain management
+
+## Other Protocols
+
+### UniswapX
+- [UniswapX Overview](https://docs.uniswap.org/contracts/uniswapx/overview): Dutch auction protocol for improved UX
+- [Filler Integration](https://docs.uniswap.org/contracts/uniswapx/guides/mainnet/createFiller): Building order fulfillment systems
+
+### Universal Router
+- [Universal Router](https://docs.uniswap.org/contracts/universal-router/overview): Unified interface for Uniswap protocol interactions
+
+### Smart Wallet
+- [Smart Wallet](https://docs.uniswap.org/contracts/smart-wallet/overview): Account abstraction and batched transactions
+
+### Permit2
+- [Permit2](https://docs.uniswap.org/contracts/permit2/overview): Signature-based approvals and transfers
+
+## Governance
+- [Governance Overview](https://docs.uniswap.org/concepts/governance/overview): Uniswap DAO governance process
+- [Voting](https://docs.uniswap.org/concepts/governance/guide-to-voting): How to participate in governance
+
+## API and Subgraph
+- [Subgraph Overview](https://docs.uniswap.org/api/subgraph/overview): GraphQL API for protocol data
+- [Subgraph Guides](https://docs.uniswap.org/api/subgraph/guides/v3-subgraph-example): Example queries and integration patterns
+
+## Development Resources
+- [Local Development](https://docs.uniswap.org/sdk/v3/guides/local-development): Setting up development environment
+- [Web3 Development Basics](https://docs.uniswap.org/sdk/v3/guides/web3-development-basics): Fundamentals for blockchain development
+- [Security](https://docs.uniswap.org/contracts/v4/concepts/security): Security considerations and best practices
+
+This documentation covers decentralized exchange protocols, automated market makers (AMMs), liquidity provision, token swaps, smart contract development, and DeFi integration patterns.
