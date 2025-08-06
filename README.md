@@ -118,7 +118,7 @@ See https://www.npmjs.com/package/typedoc-plugin-markdown for details.
 
 # How to Update search indices with algolia
 
-- Create an .env file with `APPLICATION_ID` and the `API_KEY` (write access). 
+- Create an .env file with `APPLICATION_ID` and the `API_KEY` (Admin API Key w/ write access, should be kept secret). 
 If you don't have those, one for the Engineering Managers should be able to help you.
 - Edit config.json file if needed:
     - Start url from updated website

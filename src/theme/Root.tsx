@@ -39,7 +39,9 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
       proxyUrl: analyticsProxyUrl,
       isProductionEnv,
     })
-  } catch {}
+  } catch {
+    // Ignore error
+  }
 
   // Initialize Google Analytics
   useEffect(() => {
@@ -78,7 +80,7 @@ export default function Root({ children }: React.PropsWithChildren<{ open: boole
     getFCP(({ delta }: Metric) => sendAnalyticsEvent(SharedEventName.WEB_VITALS, { first_contentful_paint_ms: delta }))
     getFID(({ delta }: Metric) => sendAnalyticsEvent(SharedEventName.WEB_VITALS, { first_input_delay_ms: delta }))
     getLCP(({ delta }: Metric) =>
-      sendAnalyticsEvent(SharedEventName.WEB_VITALS, { largest_contentful_paint_ms: delta })
+      sendAnalyticsEvent(SharedEventName.WEB_VITALS, { largest_contentful_paint_ms: delta }),
     )
   }, [])
 

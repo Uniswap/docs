@@ -2,6 +2,7 @@
 id: overview
 title: Uniswap Overview
 sidebar_position: 1
+pagination_next: concepts/uniswap-protocol
 ---
 
 ## Protocol, Interface, Labs
