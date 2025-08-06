@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "NODE_OPTIONS='--openssl-legacy-provider' docusaurus start",
     "build": "NODE_OPTIONS='--openssl-legacy-provider' docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -66,8 +66,8 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.6.3",
     "@docusaurus/types": "^3.6.3",
-    "@types/js-cookie": "^3.0.6",
     "@types/gtag.js": "^0.0.20",
+    "@types/js-cookie": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
     "autoprefixer": "^10.4.20",
@@ -82,10 +82,10 @@
     "eslint-plugin-typescript-sort-keys": "^2.1.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "postcss": "^8.4.47",
+    "postcss-import": "^16.1.0",
     "prettier": "3.3.3",
     "tailwindcss": "^3.4.13",
-    "typescript": "^4.8.4",
-    "postcss-import": "^16.1.0"
+    "typescript": "^4.8.4"
   },
   "engines": {
     "npm": "please-use-yarn",
