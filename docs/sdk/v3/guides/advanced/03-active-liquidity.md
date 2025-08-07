@@ -246,7 +246,7 @@ for (let i = 0; i < 100; i++) {
 ```
 
 After we are done calculating the next 100 Ticks after the current Tick, we iterate in the opposite direction for the previous Ticks. Iterating downwards, we need to subtract the net liquidity where we added it when iterating upwards.
-You can find a full code example in the [Uniswap Example repository](https://github.com/Uniswap/examples/tree/main/v3-sdk/active-liquidity).
+You can find a full code example in the [Uniswap Example repository](https://github.com/Uniswap/examples/tree/main/v3-sdk/pool-data).
 
 We are finally able to combine the previous, active and subsequent Ticks:
 
