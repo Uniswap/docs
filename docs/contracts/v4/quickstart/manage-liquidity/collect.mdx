@@ -1,0 +1,92 @@
+---
+title: Collect Fees
+sidebar_position: 4
+---
+
+### Setup
+
+See the [setup guide](./setup-liquidity.mdx)
+
+# Guide
+
+In order to collect fees, the integrator must execute encoded actions
+using the `PositionManager` contract. **Note** that there is no
+`COLLECT` command, instead developers must decrease liquidity with a zero
+liquidity change.
+
+### 1. Import and define `IPositionManager`
+
+```solidity
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+// inside a contract, test, or foundry script:
+IPositionManager posm = IPositionManager(<address>);
+```
+
+### 2. Encode actions
+
+To collect fees, the following operations are required:
+* decrease liquidity - collect fees from the core contract
+* take pair - transfer the fee revenue, as both tokens, to a recipient
+
+```solidity
+import {Actions} from "v4-periphery/src/libraries/Actions.sol";
+bytes memory actions = abi.encodePacked(uint8(Actions.DECREASE_LIQUIDITY), uint8(Actions.TAKE_PAIR));
+```
+
+### 3. Encode Parameters
+
+```solidity
+bytes[] memory params = new bytes[](2);
+```
+
+The `DECREASE_LIQUIDITY` action requires the following parameters:
+
+| Parameter    | Type      | Description                                                                   |
+|--------------|-----------|-------------------------------------------------------------------------------|
+| `tokenId`    | _uint256_ | position identifier                                                           |
+| `liquidity`  | _uint256_ | the amount of liquidity to withdraw                                           |
+| `amount0Min` | _uint128_ | the minimum amount of currency0 liquidity msg.sender is expecting to get back |
+| `amount1Min` | _uint128_ | the minimum amount of currency1 liquidity msg.sender is expecting to get back |
+| `hookData`   | _bytes_   | arbitrary data that will be forwarded to hook functions                       |
+
+**Note** that in order to collect fees we will default `liquidity`, `amount0Min` and `amount1Min` to 0.
+Because fee collection can not be manipulated in a front-run attack, it is safe to set the slippage
+values `amount0Min, amount1Min` to `0`.
+
+```solidity
+/// @dev collecting fees is achieved with liquidity=0, the second parameter
+params[0] = abi.encode(tokenId, 0, 0, 0, hookData);
+```
+
+The `TAKE_PAIR` action requires the following parameters:
+
+* `currency0` - _Currency_, one of the tokens to be paid by msg.sender
+* `currency1` - _Currency_, the other token to be paid by msg.sender
+* `recipient` - _address_, destination of the fee revenue for both tokens
+
+```solidity
+Currency currency0 = Currency.wrap(<tokenAddress1>); // tokenAddress1 = 0 for native ETH
+Currency currency1 = Currency.wrap(<tokenAddress2>);
+params[1] = abi.encode(currency0, currency1, recipient);
+```
+
+### 4. Submit Call
+
+The entrypoint for all liquidity operations is `modifyLiquidities()`.
+
+```solidity
+uint256 deadline = block.timestamp + 60;
+
+uint256 valueToPass = currency0.isAddressZero() ? amount0Max : 0;
+
+posm.modifyLiquidities{value: valueToPass}(
+    abi.encode(actions, params),
+    deadline
+);
+```
+
+## Additional notes:
+
+* To obtain the amount of fees received, callers should read
+token balances before and after the `.modifyLiquidities()` call.
+
