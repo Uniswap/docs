@@ -1,0 +1,86 @@
+---
+title: Burn Position
+sidebar_position: 5
+---
+
+### Context
+
+To liquidate a position, the _burn_ functionality can be invoked.
+The funds in the position will be withdrawn and
+all the information of the underlying token will be cleared.
+Burning the position is a cost effective way to
+exit as a liquidity provider.
+
+### Setup
+
+See the [setup guide](./00-setup-liquidity.mdx)
+
+# Guide
+
+Below is a step-by-step guide to burn a position.
+
+### 1. Import and define `IPositionManager`
+
+```solidity
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+
+// inside a contract, test, or foundry script:
+IPositionManager posm = IPositionManager(<address>);
+```
+
+### 2. Encode Actions
+
+To burn a position, two actions are required:
+
+* burn operation - clears position entirely, withdrawing funds
+* take pair - sends withdrawn funds to the recipient
+
+```solidity
+import {Actions} from "v4-periphery/src/libraries/Actions.sol";
+
+bytes memory actions = abi.encodePacked(uint8(Actions.BURN_POSITION), uint8(Actions.TAKE_PAIR));
+```
+
+### 3. Encode Parameters
+
+```solidity
+bytes[] memory params = new bytes[](2);
+```
+
+The `BURN_POSITION` action requires the following parameters:
+
+| Parameter    | Type      | Description                                                                   |
+|--------------|-----------|-------------------------------------------------------------------------------|
+| `tokenId`    | _uint256_ | position identifier                                                           |
+| `amount0Min` | _uint128_ | the minimum amount of currency0 liquidity msg.sender is expecting to get back |
+| `amount1Min` | _uint128_ | the minimum amount of currency1 liquidity msg.sender is expecting to get back |
+| `hookData`   | _bytes_   | arbitrary data that will be forwarded to hook functions                       |
+
+```solidity
+params[0] = abi.encode(tokenId, amount0Min, amount1Min, hookData);
+```
+
+The `TAKE_PAIR` action requires the following parameters:
+
+| Parameter    | Type      | Description                           |
+|--------------|-----------|---------------------------------------|
+| `currency0`  | _Currency_| first token currency                  |
+| `currency1`  | _Currency_| second token currency                 |
+| `recipient`  | _address_ | address that will receive the tokens  |
+
+```solidity
+params[1] = abi.encode(currency0, currency1, recipient);
+```
+
+### 4. Submit Call
+
+The entrypoint for all liquidity operations is `modifyLiquidities()`
+
+```solidity
+uint256 deadline = block.timestamp + 60;
+
+posm.modifyLiquidities(
+    abi.encode(actions, params),
+    deadline
+);
+```

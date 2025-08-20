@@ -1,0 +1,189 @@
+---
+title: Unlock Callback & Deltas
+sidebar_position: 1
+---
+
+### Refresher
+
+In order to have access to the liquidity inside the `PoolManager`,
+it needs to be _unlocked_ to begin with. After being unlocked, any
+number of operations can be executed, which at the end of must be _locked_
+again. At this point, if there are any _non-zero deltas_, meaning the
+PoolManager is owed or owes tokens back to some address, the whole
+execution reverts. Otherwise, both parties have paid or received
+the right amount of tokens and the operations have successfully
+carried out.
+
+# Unlocking the PoolManager
+
+### Implementing the unlock callback
+
+Prior to unlocking the PoolManager, the integrating contract must
+implement the `unlockCallback` function. This function will be
+called by the PoolManager after being unlocked. An easy way to
+do this is to inherit the `SafeCallback` abstract contract.
+
+```solidity
+import {SafeCallback} from "v4-periphery/src/base/SafeCallback.sol";
+
+contract IntegratingContract is SafeCallback {
+    constructor(IPoolManager _poolManager) SafeCallback(_poolManager) {}
+}
+```
+
+### Calling the unlock function
+
+After implementing the callback, the integrating contract can now
+invoke the `unlock()` function. It receives a _bytes_ parameter
+that is further passed to your callback function as an argument.
+This parameter is used to encode the sequence of operations to be
+executed in the context of the `PoolManager`.
+
+
+```solidity
+bytes memory unlockData = abi.encode(encode_operations_here);
+bytes memory unlockResultData = poolManager.unlock(unlockData);
+```
+
+Next, we must override the `_unlockCallback` function inherited from
+the `SafeCallback` contract. In your implementation, you should
+decode your operations and continue with the desired logic.
+
+```solidity
+function _unlockCallback(bytes calldata data) internal override returns (bytes memory) {
+    (...) = abi.decode(data, (...));
+}
+```
+
+# Operations
+
+There are **9** operations that can be done in the `PoolManager`
+which fall in two categories: _liquidity-accessing_ and _delta-resolving_.
+
+### Deltas
+
+Deltas are the `PoolManager`'s method to keep track of token amounts it
+needs to receive, respectively to distribute. A negative delta signals that
+the `PoolManager` is owed tokens, while a positive one expresses a
+token balance that needs to be paid to its user.
+
+### Liquidity-accessing
+
+_Liquidity-accessing_ operations will create non-zero _deltas_ and
+produce a state transition of the selected pool.
+They are the following:
+
+* _modify liquidity_ - used to increase or decrease liquidity; increasing
+liquidity will result in a negative token delta, while decreasing yields a positive one
+* _swap_ - used to trade one token for another; will result in a negative tokenA delta
+and a positive tokenB delta
+* _donate_ - used to provide direct token revenue to positions in range;
+will result in a negative delta for the pool's tokens the user wishes
+to provide
+
+### Delta-resolving
+
+_Delta-resolving_ operations are used to even out the deltas created
+by the _liquidity-accessing_ operations. 
+They are the following:
+
+* _settle_ - used following token transfers to the manager
+or burning of ERC6909 claims to resolve negative deltas
+* _take_ - transfer tokens from the manager, used to resolve
+positive deltas but also provide token loans, producing negative deltas
+* _mint_ - used to create ERC6909 claims, creating a negative delta
+that needs to be resolved by transferring the corresponding token and
+_settling_ afterwards
+* _burn_ - removes ERC6909 claims, creating a positive delta for tokens to
+be transferred back to the owner or used in settling negative balances
+* _clear_ - used to zero out positive token deltas, helpful to forfeit
+insignificant token amounts in order to avoid paying further transfer costs
+
+### Handling Deltas for Liquidity Modifications 
+
+#### When it happens  
+- **Building custom routers** that pre-calculate token amounts.  
+- **Estimating values** for user interfaces or simulations.  
+
+#### Why It Happens  
+- **Pre-calculated amounts** (e.g., from `LiquidityAmounts.getAmountsForLiquidity()`) use static math.  
+- **Actual deltas** (from `modifyLiquidity()`) reflect real-time pool state, including:  
+  - Tick crossings during execution.  
+  - Rounding in fixed-point arithmetic (`Q128.128`).
+
+#### Why LiquidityAmounts ≠ Liquidity Delta
+
+The discrepancy occurs because:
+
+- **Price Movement:** The pool's price changes between pre-calculation and execution
+- **Tick Crossings:** Transactions may cross ticks, changing liquidity math
+- **Rounding:** Static calculations use idealized math while execution uses Q128.128 fixed-point
+
+#### 📊 Price Movement Example
+
+When ETH/USDC price changes during transaction execution:
+
+```solidity
+// Static math calculation
+LiquidityAmounts.getAmountsForLiquidity(
+    sqrtRatioX96: 3000, // Fixed price
+    ...
+);
+
+// Interacts with the pool and uses actual execution (reflects real-time price)
+poolManager.modifyLiquidity(
+    sqrtRatioX96: 3001, // Updated price
+    ...
+);
+```
+
+getAmountsForLiquidity() assumes static 3000 price
+modifyLiquidity() reflects actual 3001 price
+
+#### Key Impact  
+| Scenario | Risk |  
+|----------|------|  
+| **Underestimating deltas** | Transactions revert with `CurrencyNotSettled`. |  
+| **Overestimating deltas** | Users overpay and lose funds to residual dust. |
+| **No slippage check** | Significant financial losses. |
+
+#### Best Practices for Custom Routers 
+
+1. **Never settle without validating against slippage**
+
+    Supposing slippage tolerance is 50 (basis point)
+
+    ```solidity
+        require(
+            actualAmount0 >= expectedAmount0 * (10_000 - slippageTolerance) / 10_000,
+            "Slippage too high (token0)"
+        );
+        require(
+            actualAmount1 >= expectedAmount1 * (10_000 - slippageTolerance) / 10_000,
+            "Slippage too high (token1)"
+        );
+    ```
+
+2. **Use Deltas for Settlement**  
+   Always derive final amounts from `modifyLiquidity()` deltas:  
+   ```solidity
+        CallbackData memory _data = abi.decode(data, (CallbackData));
+        (BalanceDelta delta, ) = poolManager.modifyLiquidity(
+            _data.key,
+            _data.params,
+            hex""
+        );
+        
+        _data.key.currency0.settle(poolManager, _data.key.hookAddress, delta.amount0() < 0
+            ? uint256(uint128(-delta.amount0()))
+            : uint256(uint128(delta.amount0())), false);
+         _data.key.currency1.settle(poolManager, _data.key.hookAddress, delta.amount1() < 0
+            ? uint256(uint128(-delta.amount1()))
+            : uint256(uint128(delta.amount1())), false);
+   ```
+
+> ⚠️ **Custom Router Pitfall**  
+> When pre-calculating liquidity changes, always account for rounding differences.  
+> **Never** assume `getAmountsForLiquidity() == modifyLiquidity()` deltas.
+> Enforce slippage post-execution.
+
