@@ -4875,10 +4875,10 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-docusaurus-plugin-llms@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/docusaurus-plugin-llms/-/docusaurus-plugin-llms-0.1.5.tgz#0d78c9710557859a5aec16d082588983d750f112"
-  integrity sha512-TKcHQG6MyTTleDdOFJL+5OpmW9Le6XGiagClgSX05GXhxD//4PQlY2Iq9HVETLBIsHVETVp8AxjZQ6e3E/fr/Q==
+docusaurus-plugin-llms@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/docusaurus-plugin-llms/-/docusaurus-plugin-llms-0.2.0.tgz#1295a35e8a51a46b5f32514d5aa6f6fee851467d"
+  integrity sha512-7z6pMWMcI+lQi8gjaXl3+aGSWCPcg29hJ0x7OABF43stN88McQQTVCpcqNVVZF2fTxg7gE1LEFoTQxcy8F5yvQ==
   dependencies:
     gray-matter "^4.0.3"
     minimatch "^9.0.3"
