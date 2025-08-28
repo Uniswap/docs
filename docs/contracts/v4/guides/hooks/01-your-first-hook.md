@@ -166,6 +166,13 @@ Most of the code at this point should be self-explanatory. It’s not doing anyt
 First, let’s setup the `POINTS` token that we’ll reward users with via creating another contract `PointsToken.sol` and import relevant dependencies like `ERC20` and `Owned`.
 
 ```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "forge-std/Script.sol";
+import {ERC20} from "solmate/src/tokens/ERC20.sol";
+import {Owned} from "solmate/src/auth/Owned.sol";
+
 contract PointsToken is ERC20, Owned {
     constructor() ERC20("Points Token", "POINTS", 18) Owned(msg.sender) {}
 
@@ -312,6 +319,27 @@ We’re using Foundry for building our hook, and we’ll continue using it to wr
 The v4-template repo you cloned already has an existing base test file, let’s start by copying it into `PointsHook.t.sol`.
 
 ```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "forge-std/Test.sol";
+import {Fixtures} from "./utils/Fixtures.sol";
+import {EasyPosm} from "./utils/EasyPosm.sol";
+
+import {StateLibrary} from "v4-core/src/libraries/StateLibrary.sol";
+import {Hooks, IHooks} from "v4-core/src/libraries/Hooks.sol";
+import {PointsHook} from "../src/PointsHook.sol";
+import {PointsToken} from "../src/PointsToken.sol";
+
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {PoolId} from "v4-core/src/types/PoolId.sol";
+import {Currency} from "v4-core/src/types/Currency.sol";
+import {TickMath} from "v4-core/src/libraries/TickMath.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {LiquidityAmounts} from "v4-core/test/utils/LiquidityAmounts.sol";
+
 contract PointsHookTest is Test, Fixtures {
     using EasyPosm for IPositionManager;
     using StateLibrary for IPoolManager;
