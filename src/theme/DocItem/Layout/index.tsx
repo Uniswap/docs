@@ -16,6 +16,7 @@ import type { Props } from '@theme/DocItem/Layout'
 
 import styles from './styles.module.css'
 import { Edit } from '@site/src/components/Icons'
+import CopyToAI from '@site/src/components/CopyToAI'
 
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -66,8 +67,13 @@ export default function DocItemLayout({ children }: Props): ReactNode {
           </div>
         )}
 
+        {/* Copy to AI Integration */}
+        <div className="mt-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+          <CopyToAI className="w-full" />
+        </div>
+
         {editUrl && (
-          <div className="flex flex-row space-x-1 items-center group/edit-icon">
+          <div className="flex flex-row space-x-1 items-center group/edit-icon mt-4">
             <Edit className="Toc__edit-icon h-4 w-4" />
             <EditThisPage editUrl={editUrl} />
           </div>
