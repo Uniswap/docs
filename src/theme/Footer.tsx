@@ -57,7 +57,7 @@ const footerData = {
       links: [
         {
           label: 'Careers',
-          href: 'https://boards.greenhouse.io/uniswaplabs',
+          href: 'https://job-boards.greenhouse.io/uniswapfoundation',
         },
         {
           label: 'Brand Assets',
@@ -92,7 +92,7 @@ const footerData = {
     },
   ],
   footerGithubLink: 'https://github.com/uniswap/uniswap-docs',
-  footerXLink: 'https://twitter.com/Uniswap',
+  footerXLink: 'https://x.com/UniswapFND',
   footerDiscordLink: 'https://discord.com/invite/uniswap',
 }
 
@@ -104,7 +104,7 @@ const Footer: FC = () => {
         <div className="mb-12 hidden items-start sm:col-span-8 sm:flex md:col-span-4 md:mb-0">
           <LinkBase href="/" className="flex flex-row items-center">
             <MiniUnicon color="neutral-1" className="mb-[0.1875rem] h-8 w-8" />
-            <p className="body-1 ml-2 text-light-neutral-1 dark:text-dark-neutral-1">Uniswap Labs</p>
+            <p className="body-1 ml-2 text-light-neutral-1 dark:text-dark-neutral-1">Uniswap Foundation</p>
           </LinkBase>
         </div>
         <div className="col-span-4 sm:col-span-8 sm:flex sm:grid-cols-8 md:col-span-4">
@@ -134,7 +134,7 @@ const Footer: FC = () => {
       </div>
       <div className="flex flex-col-reverse border-light-surface-3 dark:border-dark-surface-3 sm:flex-row sm:items-center sm:justify-between sm:border-t sm:pt-padding-large">
         <p className="body-3 my-padding-large text-light-neutral-2 dark:text-dark-neutral-2 sm:my-0">
-          @{new Date().getFullYear()} Uniswap Labs
+          @{new Date().getFullYear()} Uniswap Foundation
         </p>
         <div className="flex flex-row space-x-gap-large border-b border-light-surface-3 px-2 py-margin-web dark:border-dark-surface-3 sm:border-0 sm:px-0 sm:py-0">
           {footerData?.footerGithubLink ? (

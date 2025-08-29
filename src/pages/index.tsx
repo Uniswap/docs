@@ -66,11 +66,6 @@ export const developerLinks = [
     href: '/contracts/v4/deployments',
     icon: 'github',
   },
-  {
-    title: 'widgets',
-    href: 'https://www.npmjs.com/package/@uniswap/widgets',
-    icon: 'npm',
-  },
 ]
 
 export const dAppGuides = [
@@ -140,7 +135,7 @@ const connectBlock = {
     url: 'https://blog.uniswap.org/',
     name: 'Help center',
   },
-  newsletterTitle: 'Sign up for research and updates from the Uniswap Labs team',
+  newsletterTitle: 'Sign up for research and updates from the Uniswap Foundation',
 }
 
 const Home = () => {
