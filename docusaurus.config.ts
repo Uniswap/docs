@@ -65,7 +65,7 @@ const config: Config = {
         },
         {
           label: "Give Feedback",
-          to: 'https://docs.google.com/forms/d/e/1FAIpQLSdjSkZam8KiatL9XACRVxCHjDJjaPGbls77PCXDKFn4JwykXg/viewform',
+          to: 'https://share.hsforms.com/14XvN41xQTyC8KPamgaM8Jwsdca9',
           target: '_blank',
           rel: 'noreferrer',
         },
