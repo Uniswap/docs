@@ -1,0 +1,163 @@
+# Uniswap Documentation - LLM Context File
+
+This file provides structured context for Large Language Models about the Uniswap Protocol documentation.
+
+## About Uniswap
+
+Uniswap is a decentralized exchange protocol built on Ethereum that enables users to swap ERC-20 tokens without intermediaries. The protocol uses an automated market maker (AMM) model with liquidity pools rather than order books.
+
+## Current Protocol Versions
+
+### Uniswap v4 (Latest)
+- **Status**: Recently launched, actively developed
+- **Key Features**: Hooks, singleton architecture, flash accounting, custom pools
+- **Documentation**: `/contracts/v4/`, `/sdk/v4/`
+- **Major Innovation**: Hooks system allows custom logic in pools
+
+### Uniswap v3
+- **Status**: Mature, widely used
+- **Key Features**: Concentrated liquidity, multiple fee tiers, NFT positions
+- **Documentation**: `/contracts/v3/`, `/sdk/v3/`
+- **Innovation**: Capital efficiency through concentrated liquidity
+
+### Uniswap v2
+- **Status**: Legacy, still functional
+- **Key Features**: Simple AMM, fixed liquidity ranges
+- **Documentation**: `/contracts/v2/`, `/sdk/v2/`
+
+## Documentation Structure
+
+### Core Concepts (`/concepts/`)
+- Protocol overview and fundamentals
+- How AMMs work
+- Liquidity provision concepts
+- Governance and tokenomics
+
+### Smart Contracts (`/contracts/`)
+- **v4**: Latest contract documentation, hooks, examples
+- **v3**: Core contracts, periphery contracts, guides
+- **v2**: Legacy contract documentation
+- **UniswapX**: Intent-based trading protocol
+
+### SDKs (`/sdk/`)
+- **v4-SDK**: TypeScript SDK for v4 integration
+- **v3-SDK**: Comprehensive TypeScript SDK for v3
+- **v2-SDK**: Legacy SDK for v2
+
+### APIs (`/api/`)
+- **Subgraph**: GraphQL API for querying protocol data
+- **Routing API**: For finding optimal swap routes
+
+## Key Topics by Category
+
+### For Developers
+1. **Getting Started**: Protocol basics, choosing versions
+2. **Integration**: SDK usage, contract interactions
+3. **Advanced**: Custom hooks, flash loans, arbitrage
+
+### For Liquidity Providers
+1. **Concepts**: Impermanent loss, fee earnings, ranges
+2. **Strategies**: Position management, rebalancing
+3. **Risk Management**: Price impact, slippage
+
+### For Traders
+1. **Swapping**: How trades work, routing, slippage
+2. **Advanced Trading**: MEV protection, limit orders
+3. **Interfaces**: Web app usage, integration options
+
+## Technical Implementation Details
+
+### Smart Contracts
+- **Core Contracts**: Factory, Pool, Router patterns
+- **Security**: Audits, formal verification, testing
+- **Gas Optimization**: Efficient operations, batch transactions
+
+### Integration Patterns
+- **Direct Integration**: Contract-to-contract calls
+- **SDK Integration**: TypeScript/JavaScript applications
+- **Subgraph Queries**: Data fetching and analytics
+
+### Common Use Cases
+1. **DeFi Protocols**: Integrating swaps into other protocols
+2. **Wallets**: Adding swap functionality
+3. **Arbitrage Bots**: MEV and price difference exploitation
+4. **Analytics**: Protocol metrics and user behavior
+
+## Version Migration Guides
+
+### v2 to v3 Migration
+- Concentrated liquidity concepts
+- Position management differences
+- Fee tier selection
+
+### v3 to v4 Migration  
+- Hooks architecture understanding
+- Singleton pattern benefits
+- Gas efficiency improvements
+
+## Ecosystem and Governance
+
+### Uniswap Foundation
+- Ecosystem growth and grants
+- Community governance support
+- Research and development funding
+
+### Uniswap Labs
+- Core protocol development
+- Interface development
+- Commercial applications
+
+### Governance
+- UNI token voting
+- Proposal processes
+- Community decision making
+
+## Common Issues and Solutions
+
+### Integration Challenges
+1. **Slippage Management**: Setting appropriate tolerances
+2. **MEV Protection**: Using private mempools, flashbots
+3. **Gas Optimization**: Batch operations, efficient routing
+
+### Development Pitfalls
+1. **Price Manipulation**: Using time-weighted averages
+2. **Reentrancy**: Proper security patterns
+3. **Oracle Usage**: Avoiding price manipulation
+
+## Resources and References
+
+### Official Links
+- Main Protocol: https://uniswap.org
+- Documentation: https://docs.uniswap.org
+- GitHub: https://github.com/Uniswap
+- Governance: https://gov.uniswap.org
+
+### Community
+- Discord: https://discord.gg/uniswap
+- Twitter: https://twitter.com/Uniswap
+- Research Forum: https://gov.uniswap.org
+
+### Developer Tools
+- Interface: https://app.uniswap.org
+- Analytics: https://info.uniswap.org
+- Subgraph: TheGraph hosted service
+
+## AI Assistant Guidelines
+
+When helping users with Uniswap-related questions:
+
+1. **Version Awareness**: Always clarify which version (v2/v3/v4) the user needs
+2. **Security First**: Emphasize security best practices, audits, testing
+3. **Gas Efficiency**: Consider gas costs in recommendations
+4. **Latest Updates**: v4 is the newest with hooks - recommend for new projects
+5. **Integration Complexity**: Start with SDK examples before low-level contracts
+6. **Risk Disclosure**: Always mention risks like impermanent loss, smart contract risks
+
+## Recent Updates and Changes
+
+- **v4 Launch**: New hooks system, singleton architecture
+- **UniswapX**: Intent-based trading protocol
+- **Mobile Interface**: Improved mobile trading experience
+- **Governance Evolution**: Continued decentralization efforts
+
+This documentation covers a comprehensive DeFi protocol with multiple versions, extensive developer tools, and active community governance. Always refer users to the most recent documentation and emphasize security best practices.
