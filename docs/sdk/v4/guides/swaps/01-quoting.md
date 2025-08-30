@@ -28,6 +28,7 @@ We will first create an example configuration `CurrentConfig` in `config.ts`. Fo
 ```typescript
 import { SwapExactInSingle } from '@uniswap/v4-sdk'
 import { USDC_TOKEN, ETH_TOKEN } from './constants'
+import { ethers } from "ethers"
 
 export const CurrentConfig: SwapExactInSingle = {
     poolKey: {
