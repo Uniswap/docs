@@ -26,6 +26,15 @@ const config: Config = {
   favicon: 'img/favicon.png',
   organizationName: 'Uniswap',
   projectName: 'Uniswap-docs',
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'referrer',
+        content: 'strict-origin-when-cross-origin',
+      },
+    },
+  ],
   themeConfig: {
     image: 'img/twitter_card_bg.jpg',
     prism: {
@@ -62,6 +71,11 @@ const config: Config = {
           type: 'doc',
           docId: 'api/subgraph/overview',
           label: 'APIs',
+        },
+        {
+          type: 'doc',
+          docId: 'llms/overview',
+          label: 'LLMs',
         },
         {
           label: "Give Feedback",
