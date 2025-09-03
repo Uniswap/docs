@@ -14,20 +14,12 @@ const footerData = {
           href: 'https://discord.com/invite/uniswap',
         },
         {
-          label: 'Concepts',
-          href: '/concepts/overview',
+          label: 'Feedback',
+          href: 'https://forms.gle/13XtjmkwdXQ2jMn26',
         },
         {
-          label: 'Contracts',
-          href: '/contracts/v4/overview',
-        },
-        {
-          label: 'SDKs',
-          href: '/sdk/v4/overview',
-        },
-        {
-          label: 'APIs',
-          href: '/api/subgraph/overview',
+          label: 'Bug Bounty',
+          href: 'https://blog.uniswap.org/v4-bug-bounty',
         },
         {
           label: 'Whitepaper',
@@ -36,57 +28,65 @@ const footerData = {
       ],
     },
     {
-      title: 'Ecosystem',
+      title: 'GitHub',
       links: [
         {
-          label: 'Uniswap App',
-          href: 'https://app.uniswap.org/',
+          label: 'uniswap-v4-core',
+          href: 'https://github.com/Uniswap/v4-core',
         },
         {
-          label: 'Governance',
-          href: 'https://www.uniswapfoundation.org/governance',
+          label: 'uniswap-v4-sdk',
+          href: 'https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk',
         },
         {
-          label: 'Blog',
-          href: 'https://blog.uniswap.org/',
+          label: 'uniswap-v4-periphery',
+          href: 'https://github.com/Uniswap/v4-periphery',
+        },
+        {
+          label: 'Deployment addresses',
+          href: '/contracts/v4/deployments',
         },
       ],
     },
     {
-      title: 'Company',
+      title: 'Ecosystem',
       links: [
         {
-          label: 'Careers',
-          href: 'https://job-boards.greenhouse.io/uniswapfoundation',
+          label: 'App',
+          href: 'https://app.uniswap.org/',
+        },
+        {
+          label: 'Analytics',
+          href: 'https://info.uniswap.org/home',
+        },
+        {
+          label: 'Token Lists',
+          href: 'https://tokenlists.org/',
         },
         {
           label: 'Brand Assets',
           href: 'https://github.com/Uniswap/brand-assets/raw/main/Uniswap%20Brand%20Assets.zip',
         },
-        {
-          label: 'Terms of Service',
-          href: 'https://support.uniswap.org/hc/en-us/articles/30935100859661-Uniswap-Labs-Terms-of-Service',
-        },
-        {
-          label: 'Privacy Policy',
-          href: 'https://support.uniswap.org/hc/en-us/articles/30934457771405-Uniswap-Labs-Privacy-Policy',
-        },
-        {
-          label: 'Trademark Policy',
-          href: 'https://support.uniswap.org/hc/en-us/articles/30934762216973-Uniswap-Labs-Trademark-Guidelines',
-        },
       ],
     },
     {
-      title: 'Need Help?',
+      title: 'Community',
       links: [
         {
-          label: 'Help Center',
-          href: 'https://support.uniswap.org/',
+          label: 'Blog',
+          href: 'https://uniswapfoundation.org/blog/',
         },
         {
-          label: 'Contact Us',
-          href: 'https://support.uniswap.org/hc/en-us/requests/new',
+          label: 'Governance',
+          href: 'https://gov.uniswap.org/',
+        },
+        {
+          label: 'Uniswap Labs Twitter',
+          href: 'https://twitter.com/Uniswap',
+        },
+        {
+          label: 'Uniswap Foundation Twitter',
+          href: 'https://x.com/UniswapFND',
         },
       ],
     },

@@ -47,23 +47,24 @@ export default function NavbarContent(): ReactNode {
     <div
       className={clsx(
         'navbar__inner',
-        'w-full h-nav-h flex flex-row justify-between items-center px-4 py-[1.15625rem] sm:px-[0.9375rem] sm:py-3',
+        'w-full h-nav-h flex flex-row items-center px-4 py-[1.15625rem] sm:px-[0.9375rem] sm:py-3',
       )}
     >
-      <Link className="flex flex-row items-center" to="/" target="_self" aria-label="Uniswap Documentation Home">
+      {/* Logo - Left aligned */}
+      <Link className="flex flex-row items-center flex-shrink-0" to="/" target="_self" aria-label="Uniswap Documentation Home">
         <MiniUnicon className="w-8 h-8 mr-3" />
         <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0">Uniswap Docs</p>
       </Link>
 
       {/* Mobile menu button */}
-      <div className="flex flex-row items-center md:hidden">
+      <div className="flex flex-row items-center sm:hidden mr-2 ml-auto">
         <button className="flex items-center" onClick={mobileSidebar.toggle}>
           <Menu />
         </button>
       </div>
 
       {/* Right side - Nav Links, Search, Theme Toggle, Feedback */}
-      <div className="hidden md:flex flex-row items-center space-x-6">
+      <div className="hidden sm:flex flex-1 justify-end items-center space-x-6 mr-4">
         {/* Navigation Links */}
         <nav className="flex flex-row items-center space-x-6">
           {navLinks.map((link) => (

@@ -125,15 +125,15 @@ export const smartContractGuides = [
 
 const connectBlock = {
   title: 'Connect with us',
-  supportTitle: 'Get Support',
+  supportTitle: 'Join us on Discord to get support',
   supportButton: {
-    url: 'https://help.uniswap.org/',
-    name: 'Help center',
+    url: 'https://discord.com/invite/uniswap',
+    name: 'Dev Chat',
   },
-  socialTitle: 'Insights and news from the team',
+  socialTitle: 'Insights and news from the UF team',
   socialButton: {
-    url: 'https://blog.uniswap.org/',
-    name: 'Help center',
+    url: 'https://www.uniswapfoundation.org/blog',
+    name: 'Blog',
   },
   newsletterTitle: 'Sign up for research and updates from the Uniswap Foundation',
 }
@@ -287,7 +287,7 @@ const Home = () => {
           <div className="default-grid ">
             <div className="flex flex-col md:justify-between p-8 col-span-full sm:col-span-7 md:col-span-4">
               <div>
-                <h3 className="heading-3 text-light-neutral-1 dark:text-dark-neutral-1">Uniswap Foundation Grants</h3>
+                <h3 className="heading-3 text-light-neutral-1 dark:text-dark-neutral-1">Uniswap Foundation</h3>
                 <p className="mt-2 body-2 text-light-neutral-2 dark:text-dark-neutral-2 max-w-[28rem]">
                   In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth,
                   decentralization, and sustainability of the Uniswap community.
