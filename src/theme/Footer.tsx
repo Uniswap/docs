@@ -14,20 +14,12 @@ const footerData = {
           href: 'https://discord.com/invite/uniswap',
         },
         {
-          label: 'Concepts',
-          href: '/concepts/overview',
+          label: 'Feedback',
+          href: 'https://forms.gle/13XtjmkwdXQ2jMn26',
         },
         {
-          label: 'Contracts',
-          href: '/contracts/v4/overview',
-        },
-        {
-          label: 'SDKs',
-          href: '/sdk/v4/overview',
-        },
-        {
-          label: 'APIs',
-          href: '/api/subgraph/overview',
+          label: 'Bug Bounty',
+          href: 'https://blog.uniswap.org/v4-bug-bounty',
         },
         {
           label: 'Whitepaper',
@@ -36,63 +28,71 @@ const footerData = {
       ],
     },
     {
-      title: 'Ecosystem',
+      title: 'GitHub',
       links: [
         {
-          label: 'Uniswap App',
-          href: 'https://app.uniswap.org/',
+          label: 'uniswap-v4-core',
+          href: 'https://github.com/Uniswap/v4-core',
         },
         {
-          label: 'Governance',
-          href: 'https://www.uniswapfoundation.org/governance',
+          label: 'uniswap-v4-sdk',
+          href: 'https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk',
         },
         {
-          label: 'Blog',
-          href: 'https://blog.uniswap.org/',
+          label: 'uniswap-v4-periphery',
+          href: 'https://github.com/Uniswap/v4-periphery',
+        },
+        {
+          label: 'Deployment addresses',
+          href: '/contracts/v4/deployments',
         },
       ],
     },
     {
-      title: 'Company',
+      title: 'Ecosystem',
       links: [
         {
-          label: 'Careers',
-          href: 'https://boards.greenhouse.io/uniswaplabs',
+          label: 'App',
+          href: 'https://app.uniswap.org/',
+        },
+        {
+          label: 'Analytics',
+          href: 'https://info.uniswap.org/home',
+        },
+        {
+          label: 'Token Lists',
+          href: 'https://tokenlists.org/',
         },
         {
           label: 'Brand Assets',
           href: 'https://github.com/Uniswap/brand-assets/raw/main/Uniswap%20Brand%20Assets.zip',
         },
-        {
-          label: 'Terms of Service',
-          href: 'https://support.uniswap.org/hc/en-us/articles/30935100859661-Uniswap-Labs-Terms-of-Service',
-        },
-        {
-          label: 'Privacy Policy',
-          href: 'https://support.uniswap.org/hc/en-us/articles/30934457771405-Uniswap-Labs-Privacy-Policy',
-        },
-        {
-          label: 'Trademark Policy',
-          href: 'https://support.uniswap.org/hc/en-us/articles/30934762216973-Uniswap-Labs-Trademark-Guidelines',
-        },
       ],
     },
     {
-      title: 'Need Help?',
+      title: 'Community',
       links: [
         {
-          label: 'Help Center',
-          href: 'https://support.uniswap.org/',
+          label: 'Blog',
+          href: 'https://uniswapfoundation.org/blog/',
         },
         {
-          label: 'Contact Us',
-          href: 'https://support.uniswap.org/hc/en-us/requests/new',
+          label: 'Governance',
+          href: 'https://gov.uniswap.org/',
+        },
+        {
+          label: 'Uniswap Labs Twitter',
+          href: 'https://twitter.com/Uniswap',
+        },
+        {
+          label: 'Uniswap Foundation Twitter',
+          href: 'https://x.com/UniswapFND',
         },
       ],
     },
   ],
   footerGithubLink: 'https://github.com/uniswap/uniswap-docs',
-  footerXLink: 'https://twitter.com/Uniswap',
+  footerXLink: 'https://x.com/UniswapFND',
   footerDiscordLink: 'https://discord.com/invite/uniswap',
 }
 
@@ -104,7 +104,7 @@ const Footer: FC = () => {
         <div className="mb-12 hidden items-start sm:col-span-8 sm:flex md:col-span-4 md:mb-0">
           <LinkBase href="/" className="flex flex-row items-center">
             <MiniUnicon color="neutral-1" className="mb-[0.1875rem] h-8 w-8" />
-            <p className="body-1 ml-2 text-light-neutral-1 dark:text-dark-neutral-1">Uniswap Labs</p>
+            <p className="body-1 ml-2 text-light-neutral-1 dark:text-dark-neutral-1">Uniswap Docs</p>
           </LinkBase>
         </div>
         <div className="col-span-4 sm:col-span-8 sm:flex sm:grid-cols-8 md:col-span-4">
@@ -134,7 +134,7 @@ const Footer: FC = () => {
       </div>
       <div className="flex flex-col-reverse border-light-surface-3 dark:border-dark-surface-3 sm:flex-row sm:items-center sm:justify-between sm:border-t sm:pt-padding-large">
         <p className="body-3 my-padding-large text-light-neutral-2 dark:text-dark-neutral-2 sm:my-0">
-          @{new Date().getFullYear()} Uniswap Labs
+          @{new Date().getFullYear()} Uniswap Docs
         </p>
         <div className="flex flex-row space-x-gap-large border-b border-light-surface-3 px-2 py-margin-web dark:border-dark-surface-3 sm:border-0 sm:px-0 sm:py-0">
           {footerData?.footerGithubLink ? (
