@@ -73,6 +73,11 @@ const config: Config = {
           label: 'APIs',
         },
         {
+          type: 'doc',
+          docId: 'llms/overview',
+          label: 'LLMs',
+        },
+        {
           label: "Give Feedback",
           to: 'https://share.hsforms.com/14XvN41xQTyC8KPamgaM8Jwsdca9',
           target: '_blank',
