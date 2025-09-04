@@ -62,7 +62,7 @@ We define our GraphQL query and [send a POST request](https://axios-http.com/doc
 
 ```typescript
 axios.post(
-        "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
+        "https://gateway.thegraph.com/api/${api_key}/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV",
         {"query": `{ ticks(
               where: {poolAddress: "${poolAddress.toLowerCase()}", liquidityNet_not: "0"}
               first: 1000,
@@ -246,7 +246,7 @@ for (let i = 0; i < 100; i++) {
 ```
 
 After we are done calculating the next 100 Ticks after the current Tick, we iterate in the opposite direction for the previous Ticks. Iterating downwards, we need to subtract the net liquidity where we added it when iterating upwards.
-You can find a full code example in the [Uniswap Example repository](https://github.com/Uniswap/examples/tree/main/v3-sdk/active-liquidity).
+You can find a full code example in the [Uniswap Example repository](https://github.com/Uniswap/examples/blob/main/v3-sdk/pool-data/src/libs/active-liquidity.ts).
 
 We are finally able to combine the previous, active and subsequent Ticks:
 
@@ -289,7 +289,7 @@ Finally, we draw the Chart:
 ```
 
 In a real application, you will probably want to format the chart properly and display additional information for users.
-Check out the full [code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/active-liquidity) to this guide and the official recharts [documentation](https://recharts.org/).
+Check out the full [code example](https://github.com/Uniswap/examples/blob/main/v3-sdk/pool-data/src/libs/active-liquidity.ts) to this guide and the official recharts [documentation](https://recharts.org/).
 
 You can also take a look at the [Uniswap Info](https://github.com/Uniswap/v3-info) repository to see a similar chart used in production.
 
@@ -300,7 +300,7 @@ The total locked liqudity in the tooltip represents the sum of positions in the 
 It is calculated as the maximum token output of a swap when crossing to the next Tick.
 The V3 pool here is initialized with only the liquidity of the current Tick.
 
-Depending on your use case, it may make sense to display this value. You can find the full code in the [code example](https://github.com/Uniswap/examples/tree/main/v3-sdk/active-liquidity).
+Depending on your use case, it may make sense to display this value. You can find the full code in the [code example](https://github.com/Uniswap/examples/blob/main/v3-sdk/pool-data/src/libs/active-liquidity.ts).
 
 ## Next Steps
 

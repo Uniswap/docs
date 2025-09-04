@@ -46,7 +46,7 @@ contract PairFlash is IUniswapV3FlashCallback, PeripheryPayments {
 Declare an immutable public variable `swapRouter` of type `ISwapRouter`:
 
 ```solidity
-    ISwapRouter public Immutable swapRouter;
+    ISwapRouter public immutable swapRouter;
 ```
 
 Declare the constructor here, which is executed once when the contract is deployed. Our constructor hardcodes the address of the V3 router, factory, and the address of weth9, the [ERC-20 wrapper](https://weth.io/) for ether.
@@ -92,4 +92,5 @@ contract PairFlash is IUniswapV3FlashCallback, PeripheryPayments {
     ) PeripheryImmutableState(_factory, _WETH9) {
         swapRouter = _swapRouter;
     }
+}
 ```
