@@ -299,9 +299,9 @@ const PERMIT2_TYPES = {
   ],
   PermitDetails: [
     { name: 'token', type: 'address' },
-    { name: 'amount', type: 'uint256' },
-    { name: 'expiration', type: 'uint256' },
-    { name: 'nonce', type: 'uint256' }
+    { name: 'amount', type: 'uint160' },
+    { name: 'expiration', type: 'uint48' },
+    { name: 'nonce', type: 'uint48' }
   ]
 };
 
