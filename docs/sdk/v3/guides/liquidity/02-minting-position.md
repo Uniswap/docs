@@ -160,7 +160,7 @@ const position = Position.fromAmounts({
     nearestUsableTick(configuredPool.tickCurrent, configuredPool.tickSpacing) -
     configuredPool.tickSpacing * 2,
   tickUpper:
-    nearestUsableTick(configuredPool.tick, configuredPool.tickSpacing) +
+    nearestUsableTick(configuredPool.tickCurrent, configuredPool.tickSpacing) +
     configuredPool.tickSpacing * 2,
   amount0: amount0,
   amount1: amount1,
