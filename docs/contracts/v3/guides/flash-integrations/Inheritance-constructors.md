@@ -92,4 +92,5 @@ contract PairFlash is IUniswapV3FlashCallback, PeripheryPayments {
     ) PeripheryImmutableState(_factory, _WETH9) {
         swapRouter = _swapRouter;
     }
+}
 ```
