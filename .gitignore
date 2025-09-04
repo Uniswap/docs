@@ -33,3 +33,4 @@ package-lock.json
 
 # VSCode
 .vscode/
+.yarn/install-state.gz
