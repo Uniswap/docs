@@ -94,16 +94,16 @@ Using these options, we can now create a trade (`TradeType.EXACT_INPUT` or `Trad
 import { CurrencyAmount, TradeType } from '@uniswap/sdk-core'
 
 const rawTokenAmountIn: JSBI = fromReadableAmount(
-      CurrentConfig.currencies.amountIn,
-      CurrentConfig.currencies.in.decimals
+      CurrentConfig.tokens.amountIn,
+      CurrentConfig.tokens.in.decimals
     )
 
 const route = await router.route(
   CurrencyAmount.fromRawAmount(
-    CurrentConfig.currencies.in,
+    CurrentConfig.tokens.in,
     rawTokenAmountIn
   ),
-  CurrentConfig.currencies.out,
+  CurrentConfig.tokens.out,
   TradeType.EXACT_INPUT,
   options
 )
