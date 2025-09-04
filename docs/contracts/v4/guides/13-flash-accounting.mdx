@@ -77,7 +77,7 @@ contract DeltaReader {
         address user
     ) external view returns (int256) {
         // Important: This shows the current delta for this token/user pair
-        return poolManager.getCurrentDelta(currency, user);
+        return poolManager.currencyDelta(currency, user);
         // Negative: User owes tokens
         // Positive: User can claim tokens
         // Zero: No outstanding obligations
@@ -85,7 +85,7 @@ contract DeltaReader {
 }
 ```
 
-The `TransientStateLibrary` provides utilities to check the current state of deltas at any point in your transaction. The `getCurrentDelta` function returns an int256 where negative values indicate the user owes tokens to the PoolManager, positive values mean the user can claim tokens from the PoolManager, and zero means there are no outstanding obligations for this token/user pair.
+The `TransientStateLibrary` provides utilities to check the current state of deltas at any point in your transaction. The `currencyDelta` function returns an int256 where negative values indicate the user owes tokens to the PoolManager, positive values mean the user can claim tokens from the PoolManager, and zero means there are no outstanding obligations for this token/user pair.
 
 ## Resolving Deltas
 
