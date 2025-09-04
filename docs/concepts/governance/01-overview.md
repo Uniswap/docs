@@ -7,9 +7,13 @@ title: Overview
 
 [`governance`](https://github.com/Uniswap/governance)
 
+<!-- 
+
 ## Documentation
 
 For reference material on the Uniswap Governance system please see [Governance Reference](../../../contracts/v3/reference/governance/overview.md).
+
+ -->
 
 ## UNI Address
 
@@ -51,11 +55,11 @@ import GovernorAlpha from '@uniswap/governance/build/GovernorAlpha.json'
 
 ## GovernorAlpha v2 (Deprecated)
 
-`GovernerAlpha v2` is deployed at `0xC4e172459f1E7939D522503B81AFAaC1014CE6F6` on the Ethereum [mainnet](https://etherscan.io/address/0xC4e172459f1E7939D522503B81AFAaC1014CE6F6).
+`GovernorAlpha v2` is deployed at `0xC4e172459f1E7939D522503B81AFAaC1014CE6F6` on the Ethereum [mainnet](https://etherscan.io/address/0xC4e172459f1E7939D522503B81AFAaC1014CE6F6).
 
 ### ABI
 
-The `GovernerAlpha v2` ABI is viewable on [Etherscan](https://etherscan.io/address/0xC4e172459f1E7939D522503B81AFAaC1014CE6F6)
+The `GovernorAlpha v2` ABI is viewable on [Etherscan](https://etherscan.io/address/0xC4e172459f1E7939D522503B81AFAaC1014CE6F6)
 
 ## GovernorBravo (Current)
 

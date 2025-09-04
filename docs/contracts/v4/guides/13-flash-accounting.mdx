@@ -1,0 +1,347 @@
+---
+title: Flash Accounting
+---
+
+# Introduction
+
+Flash accounting is v4’s mechanism for tracking token movements throughout a transaction. Unlike traditional token accounting which updates balances immediately after each operation, flash accounting accumulates changes (deltas) and settles them at the end of the transaction.
+
+## How Flash Accounting Works
+
+When interacting with v4's PoolManager, all token movements follow a consistent pattern: negative values represent tokens moving from users to the PoolManager, while positive values represent tokens moving from the PoolManager to users. This pattern appears in operations like swaps and liquidity management, where:
+
+- Negative values indicate tokens going to the PoolManager
+- Positive values indicate tokens coming from the PoolManager
+
+These movements are tracked through deltas that represent token obligations:
+
+- Negative deltas indicate tokens owed to the PoolManager
+- Positive deltas indicate tokens the PoolManager owes to an address
+
+## The PoolManager Lock Pattern
+
+All operations that access pool liquidity must occur while the PoolManager is unlocked. This pattern ensures atomic execution and proper delta tracking:
+
+1. Unlock the PoolManager
+2. Execute operations (creating deltas)
+3. Resolve all deltas
+4. Context returns to the PoolManager which verifies no outstanding deltas
+
+If any deltas remain unresolved when the PoolManager locks, the entire transaction reverts. This guarantees that all token movements balance out by the end of the transaction. 
+
+# Understanding the Basics
+
+Before diving into implementation patterns, let’s look at the key concepts you’ll need to work with flash accounting. Each example includes common scenarios you’ll encounter when building on v4.
+
+## Working with Deltas
+
+Every operation in v4 that involves tokens creates deltas. These deltas track what the executor owes to the PoolManager and vice versa:
+
+```solidity
+// Example: Executing a swap
+// Note: This assumes the PoolManager has been unlocked
+function executeSwap(PoolKey calldata key) external {
+    // A swap returns a BalanceDelta
+    BalanceDelta delta = poolManager.swap(
+        key,
+        IPoolManager.SwapParams({
+            zeroForOne: true,
+            amountSpecified: -1e18,  // Negative means spending/providing 1 ETH
+            sqrtPriceLimitX96: MAX_SQRT_RATIO - 1  // Max price willing to accept
+        }),
+        ""
+    );
+
+    // Delta shows:
+    // delta.amount0() = -1e18    (executor owes 1 ETH)
+    // delta.amount1() = +2000e6  (executor receives 2000 USDC)
+}
+```
+
+When a swap is executed, the PoolManager returns a `BalanceDelta` that shows your token obligations. In this example, the negative delta (-1e18) means the executor owes 1 ETH to the PoolManager, while the positive delta (+2000e6) means the executor is entitled to receive 2000 USDC. These deltas must be resolved before the transaction completes.
+
+_Note how negative values in v4 consistently represent tokens going to the PoolManager - both in `amountSpecified` for the input amount and in the returned delta for tokens owed._
+
+## Reading Delta States
+
+A common pattern is checking current deltas before executing operations. The `TransientStateLibrary` helps you track these balances:
+
+```solidity
+import {TransientStateLibrary} from "@uniswap/v4-core/src/libraries/TransientStateLibrary.sol";
+
+contract DeltaReader {
+    using TransientStateLibrary for IPoolManager;
+
+    function checkDeltaBeforeOperation(
+        Currency currency,
+        address user
+    ) external view returns (int256) {
+        // Important: This shows the current delta for this token/user pair
+        return poolManager.currencyDelta(currency, user);
+        // Negative: User owes tokens
+        // Positive: User can claim tokens
+        // Zero: No outstanding obligations
+    }
+}
+```
+
+The `TransientStateLibrary` provides utilities to check the current state of deltas at any point in your transaction. The `currencyDelta` function returns an int256 where negative values indicate the user owes tokens to the PoolManager, positive values mean the user can claim tokens from the PoolManager, and zero means there are no outstanding obligations for this token/user pair.
+
+## Resolving Deltas
+
+You must resolve all deltas before your transaction completes. There are two main approaches:
+
+**1. Using ERC-20 Functions**
+
+When using ERC-20 tokens, settling requires a specific sequence of operations:
+
+```solidity
+function resolveWithERC20(
+    Currency currency,
+    uint256 amount
+) external {
+    // For negative deltas (you owe tokens):
+    if (!currency.isAddressZero()) {  // If not ETH
+        poolManager.sync(currency);    // Sync currency balance first
+        IERC20Minimal(Currency.unwrap(currency)).transfer(
+            address(poolManager), 
+            amount
+        );
+        poolManager.settle();          // Complete the settlement
+    }
+
+    // For positive deltas (receiving tokens):
+    poolManager.take(currency, address(this), amount);
+}
+```
+
+When resolving negative deltas with ERC-20 tokens, you need to:
+
+1. Sync the currency balance with `sync()`
+2. Transfer the tokens to the PoolManager
+3. Complete the settlement with `settle()`
+
+For positive deltas, simply use `take` to receive tokens from the PoolManager.
+
+**2. Using ERC-6909 Functions**
+
+```solidity
+function resolveWithERC6909(
+    Currency currency,
+    uint256 amount
+) external {
+    // For negative deltas (you owe tokens):
+    poolManager.burn(currency, address(this), amount);
+
+    // For positive deltas (receiving tokens):
+    poolManager.mint(currency, address(this), amount);
+}
+```
+
+ERC-6909 operations map to their ERC-20 equivalents in v4:
+
+- Use `burn` when you would use `settle` (for negative deltas)
+- Use `mint` when you would use `take` (for positive deltas)
+
+Notice how this pattern requires no additional sync operations or separate token transfers.
+
+> **Important**: *Every delta must be resolved before the transaction ends, or the entire transaction will revert. Use* `TransientStateLibrary` *to verify your balances are properly settled.*
+> 
+
+> _Delta is a net balance resulting from token movements thus not bound to a certain token type i.e. can be resolved via mix-and-match with ERC-20 functions and ERC-6909 functions._
+
+# Working with Flash Accounting
+
+To interact with the PoolManager, we first need to create the functions our users will call. Then we'll implement the unlock callback pattern required to execute these operations.
+
+## Using the Lock/Unlock Pattern
+
+Let's start by creating our external function. First, we need to implement the callback that the `PoolManager` will use:
+
+```solidity
+function unlockCallback(bytes calldata data) external returns (bytes memory) {
+    // To be implemented later
+}
+```
+
+Now let's implement our external function that users will call:
+
+```solidity
+function executeSwap(
+    PoolKey calldata key,
+    uint256 amount
+) external returns (int256, int256) {
+    // Encode operation parameters
+    bytes memory data = abi.encode(key, amount);
+
+    // Call unlock with encoded data
+    bytes memory result = poolManager.unlock(data);
+
+    // Optional: Decode any relevant return data
+    return (0, 0); // Replace with actual return values if needed
+}
+```
+
+When you call this function the flow followed is the following:
+
+1. `unlock` is called on the PoolManager
+2. PoolManager calls back to your `unlockCallback`
+3. Your callback executes the operations
+4. All deltas must be resolved before returning
+5. Execution of the logic returns to the PoolManager which verifies there are no outstanding deltas, and will relock itself
+
+> **Warning***: Always implement proper access control in your unlock callback. Only the PoolManager should be able to call it.*
+> 
+
+## Implementing the Unlock Callback
+
+First, let’s set up a contract with the proper unlock callback implementation:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import {IPoolManager} from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
+import {BalanceDelta} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
+import {Currency} from "@uniswap/v4-core/src/types/Currency.sol";
+
+contract FlashAccountingExample {
+    IPoolManager public immutable poolManager;
+
+    constructor(IPoolManager _poolManager) {
+        poolManager = _poolManager;
+    }
+    
+    function executeSwap(
+        PoolKey calldata key,
+        uint256 amount
+    ) external returns (int256, int256) {
+        ...
+    }
+
+    function unlockCallback(bytes calldata data) external returns (bytes memory) {
+        // Important: Must check caller is PoolManager
+        require(msg.sender == address(poolManager), "Not pool manager");
+
+        // Decode and call our executeOperations function which 
+        // we'll implement next
+        (bytes memory result) = executeOperations(data);
+
+        // Important: Must return bytes, even if empty
+        return result;
+    }
+}
+```
+
+This base contract sets up the foundation for working with v4’s flash accounting. The `unlockCallback` function is required for any operations that access pool liquidity - when your contract calls `poolManager.unlock()`, the PoolManager calls back to this function to execute your operations.
+
+The callback must verify it's being called by the PoolManager and return a bytes value (even if empty) to prevent transaction failures. Any actual pool operations (like swaps or liquidity changes) will be handled through the `executeOperations` function.
+
+> **Critical Note***: The most common mistake developers make is not returning a bytes value from unlockCallback. This will cause your transaction to revert. Always return a bytes value, even if it’s empty.*
+> 
+
+Let’s add functionality to execute operations:
+
+```solidity
+function executeOperations(
+    bytes calldata data
+) internal returns (bytes memory) {
+    // Decode operation parameters
+    (PoolKey memory key, uint256 amount) = abi.decode(
+        data,
+        (PoolKey, uint256)
+    );
+
+    // Execute operation (e.g. swap)
+    BalanceDelta delta = poolManager.swap(
+        key,
+        IPoolManager.SwapParams({
+            zeroForOne: true,
+            amountSpecified: -int256(amount),
+            sqrtPriceLimitX96: 0
+        }),
+        ""
+    );
+
+    // Resolve deltas
+    if (delta.amount0() < 0) {
+        poolManager.sync(key.currency0);
+        IERC20Minimal(Currency.unwrap(key.currency0)).transfer(
+            address(poolManager),
+            uint256(-delta.amount0())
+        );
+        poolManager.settle();
+    }
+    if (delta.amount1() > 0) {
+        poolManager.take(
+            key.currency1,
+            address(this),
+            uint256(delta.amount1())
+        );
+    }
+
+    return ""; // Return empty bytes if no specific result needed
+}
+```
+
+The `executeOperations` function handles the actual pool operations. It first decodes the data passed from the unlock call to get the operation parameters. 
+
+In this example, it executes a swap which creates deltas (token obligations) that must be resolved. For negative deltas (tokens we owe), we follow a specific sequence: first sync the currency state, then transfer the tokens to the PoolManager, and finally call settle. For positive deltas (tokens we receive), we use take to claim them. All deltas must be resolved before the function returns or the transaction will revert.
+
+# Managing Liquidity with Flash Accounting
+
+When adding or removing liquidity in v4, you’ll use `modifyLiquidity` which creates deltas that need to be handled through flash accounting. Let's understand how this works.
+
+## Adding Liquidity
+
+```solidity
+// Example: Adding liquidity creates negative deltas (you need to provide tokens)
+BalanceDelta delta = poolManager.modifyLiquidity(
+    key,
+    IPoolManager.ModifyLiquidityParams({
+        tickLower: tickLower,       // Lower price bound for position
+        tickUpper: tickUpper,       // Upper price bound for position
+        liquidityDelta: liquidityAmount  // Positive for adding liquidity
+    }),
+    ""  // No hook data needed
+);
+
+// Negative deltas for both tokens
+// delta.amount0() = -100  (need to provide token0)
+// delta.amount1() = -200  (need to provide token1)
+```
+
+When adding liquidity to a pool, you’ll need to provide both tokens in the pair. The `modifyLiquidity` function returns a [`BalanceDelta`](/contracts/v4/reference/core/types/balancedelta) that indicates how many tokens you need to provide. In this case:
+
+- The negative values in the delta (-100, -200) indicate you need to provide these amounts of each token
+- The values are proportional to the current pool price and your specified price range (tickLower to tickUpper)
+- These deltas must be resolved by providing the tokens before the transaction completes
+
+## Removing Liquidity
+
+```solidity
+// Example: Removing liquidity creates positive deltas (you receive tokens)
+BalanceDelta delta = poolManager.modifyLiquidity(
+    key,
+    IPoolManager.ModifyLiquidityParams({
+        tickLower: tickLower,       // Same position bounds as when added
+        tickUpper: tickUpper,
+        liquidityDelta: -liquidityAmount  // Negative for removing liquidity
+    }),
+    ""  // No hook data needed
+);
+
+// Positive deltas for both tokens
+// delta.amount0() = +100  (receive token0)
+// delta.amount1() = +200  (receive token1)
+```
+
+When removing liquidity, the process is reversed. The negative `liquidityDelta` indicates you're removing liquidity, and the function returns positive deltas representing the tokens you'll receive:
+
+- The positive values (+100, +200) indicate the amounts you’ll receive of each token
+- The amounts depend on the pool’s current state and how much liquidity you’re removing
+- These positive deltas represent tokens you can claim from the pool
+
+> **Important***: Unlike single token operations, liquidity management typically involves handling deltas for both tokens in the pool.*
+>

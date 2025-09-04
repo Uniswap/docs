@@ -1,0 +1,53 @@
+---
+id: security
+title: Security
+sidebar_position: 10
+---
+
+# Security Considerations
+
+When building on Uniswap v4, security should be a primary consideration. This section covers emergency response resources and security best practices specific to v4 implementations.
+
+## Emergency Response
+
+### SEAL 911 Emergency Hotline
+
+If you encounter a security incident (exploit, vulnerability, or other urgent security matter) while working with Uniswap v4, the SEAL 911 Emergency Hotline provides immediate access to security experts.
+
+**Emergency Contact**: https://t.me/seal_911_bot
+
+SEAL 911 is a community-operated Telegram bot that connects you directly with vetted security responders who can provide immediate assistance during security incidents.
+
+#### How It Works
+- Send a message through the bot during a security emergency
+- Automatic alert routing to a vetted group of white hat security professionals
+- Immediate response from trusted security experts in the space
+
+#### Additional Resources
+- [SEAL 911 GitHub Repository](https://github.com/security-alliance/seal-911)
+- [Security Alliance Website](https://www.securityalliance.org/seal-911)
+
+:::note
+SEAL 911 is a third-party service operated by the Security Alliance. Exercise appropriate judgment when sharing sensitive information during emergency situations.
+:::
+
+## v4-Specific Security Considerations
+
+### Hook Security
+When developing custom hooks for v4, ensure proper validation and access controls. Malicious or poorly implemented hooks can compromise pool security.
+
+### Flash Accounting
+v4's flash accounting system requires careful implementation to prevent exploitation. Always ensure proper settlement of deltas.
+
+### Pool Manager Interactions
+Direct interactions with the PoolManager require thorough understanding of the locking mechanism and callback patterns.
+
+## Bug Bounty Program
+
+For non-emergency security issues, report vulnerabilities through Uniswap's official [bug bounty program](https://uniswap.org/bug-bounty/).
+
+## Additional Security Resources
+
+- Review the [v4 Core contracts](../reference/core/) for implementation details
+- Follow security best practices outlined in the [Hooks documentation](./04-hooks.mdx)
+- Test thoroughly using the provided [test contracts](../reference/core/test/)

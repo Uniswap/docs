@@ -1,7 +1,7 @@
 ---
 id: concentrated-liquidity
 title: Concentrated Liquidity
-sidebar_position: 1
+sidebar_position: 6
 ---
 
   <div>
@@ -12,6 +12,10 @@ sidebar_position: 1
   </div>
 
 ---
+
+:::note
+Concentrated liquidity, first introduced as a native feature in Uniswap v3, maintains the same core implementation in v4, ensuring consistency in how liquidity providers can focus their capital.
+:::
 
 ## Introduction
 
@@ -30,7 +34,7 @@ As the price of an asset rises or falls, it may exit the price bounds that LPs h
 
 As price moves in one direction, LPs gain more of the one asset as swappers demand the other, until their entire liquidity consists of only one asset. (In v2, we don't typically see this behavior because LPs rarely reach the upper or lower bound of the price of two assets, i.e., 0 and ∞). If the price ever reenters the interval, the liquidity becomes active again, and in-range LPs begin earning fees once more.
 
-Importantly, LPs are free to create as many positions as they see fit, each with its own price interval. Concentrated liquidity serves as a mechanism to let the market decide what a sensible distribution of liquidity is, as rational LPs are incentivize to concentrate their liquidity while ensuring that their liquidity remains active.
+Importantly, LPs are free to create as many positions as they see fit, each with its own price interval. Concentrated liquidity serves as a mechanism to let the market decide what a sensible distribution of liquidity is, as rational LPs are incentivized to concentrate their liquidity while ensuring that their liquidity remains active.
 
 ## Ticks
 

@@ -58,10 +58,10 @@ Adds liquidity to an ERC-20⇄ERC-20 pool.
 | :------------- | :-------- | :------------------------------------------------------------------------------------------------------------- |
 | tokenA         | `address` | A pool token.                                                                                                  |
 | tokenB         | `address` | A pool token.                                                                                                  |
-| amountADesired | `uint`    | The amount of tokenA to add as liquidity if the B/A price is <= amountBDesired/amountADesired (A depreciates). |
-| amountBDesired | `uint`    | The amount of tokenB to add as liquidity if the A/B price is <= amountADesired/amountBDesired (B depreciates). |
-| amountAMin     | `uint`    | Bounds the extent to which the B/A price can go up before the transaction reverts. Must be <= amountADesired.  |
-| amountBMin     | `uint`    | Bounds the extent to which the A/B price can go up before the transaction reverts. Must be <= amountBDesired.  |
+| amountADesired | `uint`    | The amount of tokenA to add as liquidity if the B/A price is \<= amountBDesired/amountADesired (A depreciates). |
+| amountBDesired | `uint`    | The amount of tokenB to add as liquidity if the A/B price is \<= amountADesired/amountBDesired (B depreciates). |
+| amountAMin     | `uint`    | Bounds the extent to which the B/A price can go up before the transaction reverts. Must be \<= amountADesired.  |
+| amountBMin     | `uint`    | Bounds the extent to which the A/B price can go up before the transaction reverts. Must be \<= amountBDesired.  |
 | to             | `address` | Recipient of the liquidity tokens.                                                                             |
 | deadline       | `uint`    | Unix timestamp after which the transaction will revert.                                                        |
 |                |           |                                                                                                                |
@@ -93,10 +93,10 @@ Adds liquidity to an ERC-20⇄WETH pool with ETH.
 | Name                           | Type      |                                                                                                                           |
 | :----------------------------- | :-------- | :------------------------------------------------------------------------------------------------------------------------ |
 | token                          | `address` | A pool token.                                                                                                             |
-| amountTokenDesired             | `uint`    | The amount of token to add as liquidity if the WETH/token price is <= `msg.value`/amountTokenDesired (token depreciates). |
-| `msg.value` (amountETHDesired) | `uint`    | The amount of ETH to add as liquidity if the token/WETH price is <= amountTokenDesired/`msg.value` (WETH depreciates).    |
-| amountTokenMin                 | `uint`    | Bounds the extent to which the WETH/token price can go up before the transaction reverts. Must be <= amountTokenDesired.  |
-| amountETHMin                   | `uint`    | Bounds the extent to which the token/WETH price can go up before the transaction reverts. Must be <= `msg.value`.         |
+| amountTokenDesired             | `uint`    | The amount of token to add as liquidity if the WETH/token price is \<= `msg.value`/amountTokenDesired (token depreciates). |
+| `msg.value` (amountETHDesired) | `uint`    | The amount of ETH to add as liquidity if the token/WETH price is \<= amountTokenDesired/`msg.value` (WETH depreciates).    |
+| amountTokenMin                 | `uint`    | Bounds the extent to which the WETH/token price can go up before the transaction reverts. Must be \<= amountTokenDesired.  |
+| amountETHMin                   | `uint`    | Bounds the extent to which the token/WETH price can go up before the transaction reverts. Must be \<= `msg.value`.         |
 | to                             | `address` | Recipient of the liquidity tokens.                                                                                        |
 | deadline                       | `uint`    | Unix timestamp after which the transaction will revert.                                                                   |
 |                                |           |                                                                                                                           |

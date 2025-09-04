@@ -1,11 +1,11 @@
 ---
 id: oracle
 title: Oracle
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 :::note
-Unfamiliar with the concept of an oracle? Check out the Ethereum Foundation's [oracle overview](https://ethereum.org/en/developers/docs/oracles/) first.
+Uniswap v4 does not include built-in oracle functionality. If you're unfamiliar with oracles, check out the Ethereum Foundation's [oracle overview](https://ethereum.org/en/developers/docs/oracles/).
 :::
 
 All Uniswap v3 pools can serve as oracles, offering access to historical price and liquidity data. This capability unlocks a wide range of on-chain use cases.
@@ -88,6 +88,6 @@ Ticks are signed integers and can be expressed as a negative number, so for any 
 
 ## Oracles Integrations on Layer 2 Rollups
 
-### Optimism
+### Arbitrum One
 
-On Optimism, every transaction is confirmed as an individual block. The `block.timestamp` of these blocks, however, reflect the `block.timestamp` of the last L1 block ingested by the Sequencer. For this reason, Uniswap pools on Optimism are not suitable for providing oracle prices, as this high-latency `block.timestamp` update process makes the oracle much less costly to manipulate. In the future, it's possible that the Optimism `block.timestamp` will have much higher granularity (with a small trust assumption in the Sequencer), or that forced inclusion transactions will improve oracle security. For more information on these potential upcoming changes, please see the [Optimistic Specs repo](https://github.com/ethereum-optimism/optimistic-specs/discussions/23). For the time being, usage of the oracle feature on Optimism should be avoided.
+On Arbitrum One, multiple transactions can be part of a block, and [multiple blocks](https://arbiscan.io/blocks) are usually created per second (up to a maximum of 4 blocks per second). Their `block.timestamp` reflect the time at which the block was produced based on the sequencer's clock (see [Arbitrum's sequencer documentation](https://docs.arbitrum.io/sequencer) to learn more about its trust assumptions), so observations have enough granularity to make the oracle more difficult to manipulate. Thus, Uniswap pools on Arbitrum One are suitable for providing oracle prices. For more information on how block numbers and time work on Arbitrum One, please see the [Arbitrum documentation portal](https://docs.arbitrum.io/time).

@@ -171,7 +171,7 @@ ___
 
 ### TICK\_SPACINGS
 
-• `Const` **TICK\_SPACINGS**: { [amount in FeeAmount]: number }
+• `Const` **TICK\_SPACINGS**: \{ [amount in FeeAmount]: number \}
 
 The default factory tick spacings by fee amount.
 
@@ -220,7 +220,7 @@ Converts a route to a hex encoded path
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `route` | [`Route`](classes/Route.md)<`Currency`, `Currency`\> | the v3 path to convert to an encoded path |
+| `route` | [`Route`](classes/Route.md)\<`Currency`, `Currency`\> | the v3 path to convert to an encoded path |
 | `exactOutput` | `boolean` | whether the route should be encoded in reverse, for making exact output swaps |
 
 #### Returns
@@ -260,7 +260,7 @@ ___
 
 ### isSorted
 
-▸ **isSorted**<`T`\>(`list`, `comparator`): `boolean`
+▸ **isSorted**\<`T`\>(`list`, `comparator`): `boolean`
 
 Determines if a tick list is sorted
 
@@ -370,7 +370,7 @@ Returns the first tick for which the given price is greater than or equal to the
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `price` | `Price`<`Token`, `Token`\> | for which to return the closest tick that represents a price less than or equal to the input price, i.e. the price of the returned tick is less than or equal to the input price |
+| `price` | `Price`\<`Token`, `Token`\> | for which to return the closest tick that represents a price less than or equal to the input price, i.e. the price of the returned tick is less than or equal to the input price |
 
 #### Returns
 
@@ -405,7 +405,7 @@ ___
 
 ### tickToPrice
 
-▸ **tickToPrice**(`baseToken`, `quoteToken`, `tick`): `Price`<`Token`, `Token`\>
+▸ **tickToPrice**(`baseToken`, `quoteToken`, `tick`): `Price`\<`Token`, `Token`\>
 
 Returns a price object corresponding to the input tick and the base/quote token
 Inputs must be tokens because the address order is used to interpret the price represented by the tick
@@ -420,7 +420,7 @@ Inputs must be tokens because the address order is used to interpret the price r
 
 #### Returns
 
-`Price`<`Token`, `Token`\>
+`Price`\<`Token`, `Token`\>
 
 #### Defined in
 
@@ -454,7 +454,7 @@ ___
 
 ### tradeComparator
 
-▸ **tradeComparator**<`TInput`, `TOutput`, `TTradeType`\>(`a`, `b`): `number`
+▸ **tradeComparator**\<`TInput`, `TOutput`, `TTradeType`\>(`a`, `b`): `number`
 
 Trades comparator, an extension of the input output comparator that also considers other dimensions of the trade in ranking them
 
@@ -470,8 +470,8 @@ Trades comparator, an extension of the input output comparator that also conside
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `a` | [`Trade`](classes/Trade.md)<`TInput`, `TOutput`, `TTradeType`\> | The first trade to compare |
-| `b` | [`Trade`](classes/Trade.md)<`TInput`, `TOutput`, `TTradeType`\> | The second trade to compare |
+| `a` | [`Trade`](classes/Trade.md)\<`TInput`, `TOutput`, `TTradeType`\> | The first trade to compare |
+| `b` | [`Trade`](classes/Trade.md)\<`TInput`, `TOutput`, `TTradeType`\> | The second trade to compare |
 
 #### Returns
 

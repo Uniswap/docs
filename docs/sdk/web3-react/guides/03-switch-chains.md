@@ -33,34 +33,34 @@ Having [setup our application](./01-connect-wallet.md) to use `web3-react` and h
 
 Switching chains requires two parameters, the `chainId` we want to switch to, and the current `connectionType`:
 
-```typescript reference title="Defining the function" referenceLinkText="View on Github" customStyling
+```typescript reference title="Defining the function" referenceLinkText="View on GitHub" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L64
 ```
 
 Given the `ConnectionType`, we can retrieve the actual connector:
 
-```typescript reference title="Retrieving the connector" referenceLinkText="View on Github" customStyling
+```typescript reference title="Retrieving the connector" referenceLinkText="View on GitHub" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L69
 ```
 
 Then, depending on the `ConnectionType`, we determine how to switch chains. For the `Network` or `WalletConnect` cases, we call `web3-react`'s `activate` function with the supplied `chainId`:
 
-```typescript reference title="Switching chains for Network and WalletConnect" referenceLinkText="View on Github" customStyling
+```typescript reference title="Switching chains for Network and WalletConnect" referenceLinkText="View on GitHub" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L71-L74
 ```
 
 The rest of the connectors require us to build an `AddEthereumChainParameter` object and pass it to the `web3-react`'s `activate` function:
 
-```typescript reference title="Switching chains the other Connectors" referenceLinkText="View on Github" customStyling
+```typescript reference title="Switching chains the other Connectors" referenceLinkText="View on GitHub" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/connections.ts#L77-L84
 ```
 
 The metadata required to build `AddEthereumChainParameter`  are defined in our constants file:
     
-```typescript reference title="Defining the chain parameters" referenceLinkText="View on Github" customStyling
+```typescript reference title="Defining the chain parameters" referenceLinkText="View on GitHub" customStyling
 https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5c/web3-react/src/libs/constants.ts#L27-L40
 ```
 
 ## Next steps
 
-Know you know how to support `web3-react`'s most common use cases! Stay tuned for follow up guides.
+Now you know how to support `web3-react`'s most common use cases! Stay tuned for follow up guides.

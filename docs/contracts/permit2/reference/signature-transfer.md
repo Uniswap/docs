@@ -181,7 +181,7 @@ struct ExampleTrade {
 }
 ```
 
-Following EIP-721, the typehash for the data would be defined by:
+Following EIP-712, the typehash for the data would be defined by:
 
 ```solidity
 bytes32 _EXAMPLE_TRADE_TYPEHASH = keccak256('ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)');
@@ -209,7 +209,7 @@ It’s important to note that when hashing multiple typed structs, the ordering 
 
 Instead of using incrementing nonces, we introduce non-monotonic, or unordered nonces with a `nonceBitmap`. 
 
-The `nonceBitmap` maps an owner's address to a uint248 value, which we will call `wordPos` which is the index of the desired bitmap. There are $2 ^ {248}$ possible indices and this $2 ^ {248}$ possible bitmaps, where each bitmap holds 256 bits. A bit must be flipped on to prevent replays of users’ signatures. Bits that are dirtied may not be used again.
+The `nonceBitmap` maps an owner's address to a uint248 value, which we will call `wordPos` which is the index of the desired bitmap. There are 2<sup>248</sup> possible indices thus 2<sup>248</sup> possible bitmaps where each bitmap holds 256 bits. A bit must be flipped on to prevent replays of users’ signatures. Bits that are dirtied may not be used again.
 
 ```solidity
 // nonceBitmap[ownerAddress][wordPosition] retrieves a uint256 bitmap

@@ -9,7 +9,8 @@ title: Overview
 ### Enumerations
 
 - [Rounding](enums/Rounding.md)
-- [SupportedChainId](enums/SupportedChainId.md)
+- [ChainId](enums/ChainId.md)
+- [NativeCurrencyName](enums/NativeCurrencyName.md)
 - [TradeType](enums/TradeType.md)
 
 ### Classes
@@ -24,20 +25,20 @@ title: Overview
 
 ### Type Aliases
 
-- [BigintIsh](modules.md#bigintish)
-- [Currency](modules.md#currency)
+- [BigintIsh](#bigintish)
+- [Currency](#currency)
 
 ### Variables
 
-- [MaxUint256](modules.md#maxuint256)
-- [WETH9](modules.md#weth9)
+- [MaxUint256](#maxuint256)
+- [WETH9](#weth9)
 
 ### Functions
 
-- [computePriceImpact](modules.md#computepriceimpact)
-- [sortedInsert](modules.md#sortedinsert)
-- [sqrt](modules.md#sqrt)
-- [validateAndParseAddress](modules.md#validateandparseaddress)
+- [computePriceImpact](#computepriceimpact)
+- [sortedInsert](#sortedinsert)
+- [sqrt](#sqrt)
+- [validateAndParseAddress](#validateandparseaddress)
 
 ## Type Aliases
 
@@ -89,7 +90,7 @@ Known WETH9 implementation addresses, used in our implementation of Ether#wrappe
 
 ### computePriceImpact
 
-▸ **computePriceImpact**<`TBase`, `TQuote`\>(`midPrice`, `inputAmount`, `outputAmount`): [`Percent`](classes/Percent.md)
+▸ **computePriceImpact**\<`TBase`, `TQuote`\>(`midPrice`, `inputAmount`, `outputAmount`): [`Percent`](classes/Percent.md)
 
 Returns the percent difference between the mid price and the execution price, i.e. price impact.
 
@@ -104,9 +105,9 @@ Returns the percent difference between the mid price and the execution price, i.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `midPrice` | [`Price`](classes/Price.md)<`TBase`, `TQuote`\> | mid price before the trade |
-| `inputAmount` | [`CurrencyAmount`](classes/CurrencyAmount.md)<`TBase`\> | the input amount of the trade |
-| `outputAmount` | [`CurrencyAmount`](classes/CurrencyAmount.md)<`TQuote`\> | the output amount of the trade |
+| `midPrice` | [`Price`](classes/Price.md)\<`TBase`, `TQuote`\> | mid price before the trade |
+| `inputAmount` | [`CurrencyAmount`](classes/CurrencyAmount.md)\<`TBase`\> | the input amount of the trade |
+| `outputAmount` | [`CurrencyAmount`](classes/CurrencyAmount.md)\<`TQuote`\> | the output amount of the trade |
 
 #### Returns
 
@@ -120,7 +121,7 @@ ___
 
 ### sortedInsert
 
-▸ **sortedInsert**<`T`\>(`items`, `add`, `maxSize`, `comparator`): `T` \| ``null``
+▸ **sortedInsert**\<`T`\>(`items`, `add`, `maxSize`, `comparator`): `T` \| ``null``
 
 #### Type parameters
 

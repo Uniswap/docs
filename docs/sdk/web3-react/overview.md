@@ -14,7 +14,7 @@ title: Overview
 - Coinbase wallet
 - WalletConnect wallet
 
-To begin, we recommend looking at our [guides](./guides/01-setting-up.md) which include [runnable examples](https://github.com/Uniswap/examples/tree/main/web3-react) and walkthroughs of core usages. These guides will help you better understand how to use `web3-react` and integrate it into your application.
+To begin, we recommend looking at our [guides](./guides/01-connect-wallet.md) which include [runnable examples](https://github.com/Uniswap/examples/tree/main/web3-react) and walkthroughs of core usages. These guides will help you better understand how to use `web3-react` and integrate it into your application.
 
 :::info
 This guide uses `web3-react` version 8, which is a beta version.
@@ -38,7 +38,7 @@ yarn add @web3-react/core
 
 ## Developer Links
 
-- [**`web3-react` on Github**](https://github.com/Uniswap/web3-react)
+- [**`web3-react` on GitHub**](https://github.com/Uniswap/web3-react)
 
 [![npm version](https://img.shields.io/npm/v/@web3-react/core/latest.svg)](https://www.npmjs.com/package/@web3-react/core/v/latest)
 [![npm bundle size (scoped version)](https://img.shields.io/bundlephobia/minzip/@web3-react/core/latest.svg)](https://bundlephobia.com/result?p=@web3-react/core@latest)

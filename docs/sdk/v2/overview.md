@@ -4,15 +4,15 @@ sidebar_position: 1
 title: Overview
 ---
 
-# The Uniswap V2 SDK
+# The Uniswap v2 SDK
 
-Welcome to the Uniswap Protocol V2 SDK. To begin, we recommend looking at the [**Guides**](./guides/01-quick-start.md) and for deeper reference see the [**V2 SDK Github**](https://github.com/Uniswap/v2-sdk) repo.
+Welcome to the Uniswap Protocol v2 SDK. To begin, we recommend looking at the [**Guides**](./guides/01-quick-start.md) and for deeper reference see the [**v2 SDK GitHub**](https://github.com/Uniswap/v2-sdk) repo.
 
 
-# Uniswap V2 SDK
+# Uniswap v2 SDK
 
-- [**V2 SDK Github**](https://github.com/Uniswap/v2-sdk)
-- [**SDK Core Github**](https://github.com/Uniswap/sdk-core)
+- [**v2 SDK GitHub**](https://github.com/Uniswap/v2-sdk)
+- [**SDK Core GitHub**](https://github.com/Uniswap/sdk-core)
 - [**SDK NPM Package**](https://www.npmjs.com/package/@uniswap/v2-sdk)
 
 [![Unit Tests](https://github.com/Uniswap/v2-sdk/workflows/Unit%20Tests/badge.svg)](https://github.com/Uniswap/v2-sdk/actions?query=workflow%3A%22Unit+Tests%22)

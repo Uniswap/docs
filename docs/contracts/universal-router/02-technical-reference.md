@@ -6,269 +6,395 @@ sidebar_position: 1
 
 ## Functions
 
-Transactions to the `UniversalRouter` all go through the `UniversalRouter.execute` functions:
+Transactions to the `UniversalRouter` all go through the `execute` function:
 
 - `execute(bytes calldata commands, bytes[] calldata inputs, uint256 deadline)`
 - `execute(bytes calldata commands, bytes[] calldata inputs)`
 
-The first of these functions adds the functionality to allow transactions to have a transaction deadline. If the `block.timestamp` is after the `deadline` provided the transaction will revert. After that check, the 2 functions otherwise execute identically.
+Both functions behave and process the commands exactly the same, the first one with a deadline. The function without the deadline parameter will not revert based on block.timestamp.
 
-The `execute` functions work like a simplified VM - they take in a list of commands, and a list of inputs for the commands and execute them in the order specified.
+The `execute` function behaves like a minimal virtual machine. It interprets a list of 1-byte commands and their corresponding ABI-encoded inputs and executes them sequentially.
 
-## Command Structure 
+## Command Structure
 
-The first parameter for the function (`bytes calldata commands`) is a list of commands for the contract to execute, in the order they should be executed. Each command is encoded in 1 byte, containing the following split of 8 bits:
+Each command byte uses the following bit structure:
 
-| 0  | 1 2 | 3 4 5 6 7 |
-| :- | :-- | :-------- |
-| f  | r   | command   |
+| 0   | 1 2 | 3 4 5 6 7 |
+| :-- | :-- | :-------- |
+| f   | r   | command   |
 
-### `f` 
+### `f`
+
 A single bit flag, that signals whether or not the command should be allowed to revert without the whole transaction failing.
- - If `f` is `0` aka `false` and the command reverts, then the entire transaction will revert and none of the commands will be executed.
- - If `f` is `1` aka `true` and the command reverts, then the transaction will continue, allowing us to achieve partial fills. If using this flag, be careful to include further commands that will remove any funds that could be left unused in the `UniversalRouter` contract.
 
-### `r` 
+- If `f` is `0` aka `false` and the command reverts, then the entire transaction will revert and none of the commands will be executed.
+- If `f` is `1` aka `true` and the command reverts, then the transaction will continue, allowing us to achieve partial fills. If using this flag, be careful to include further commands that will remove any funds that could be left unused in the `UniversalRouter` contract.
+
+### `r`
+
 2 unused bytes, reserved for future use. Leaving these 2 bits as `0` will save gas, but any value passed into the contract will be ignored. Later versions of the `UniversalRouter` will likely expand the 5 bits used for `command` to use at least 1 of these bits.
 
-### `command` 
+### `command`
+
 A 5 bit unique identifier for the command that should be carried out. The values of these commands can be found within [Commands.sol](https://github.com/Uniswap/universal-router/blob/main/contracts/libraries/Commands.sol), or can be viewed in the table below.
-    
+
 The command types that are not defined do not have an assigned command at this moment in time. Providing one of these identifiers will cause the transaction to revert with `InvalidCommandType`.
 
-A complete list of commands can be found in the table below:
+## v2 vs v1 Overview
 
-| Command | Value                                                                                    |
-| :------ | :--------------------------------------------------------------------------------------- |
-| `0x00`  | [`V3_SWAP_EXACT_IN`](./02-technical-reference.md#v3_swap_exact_in)                       |
-| `0x01`  | [`V3_SWAP_EXACT_OUT`](./02-technical-reference.md#v3_swap_exact_out)                     |
-| `0x02`  | [`PERMIT2_TRANSFER_FROM`](./02-technical-reference.md#permit2_transfer_from)             |
-| `0x03`  | [`PERMIT2_PERMIT_BATCH`](./02-technical-reference.md#permit2_permit_batch)               |
-| `0x04`  | [`SWEEP`](./02-technical-reference.md#sweep)                                             |
-| `0x05`  | [`TRANSFER`](./02-technical-reference.md#transfer)                                       |
-| `0x06`  | [`PAY_PORTION`](./02-technical-reference.md#pay_portion)                                 |
-| `0x07`  |                                                                                          |
-| `0x08`  | [`V2_SWAP_EXACT_IN`](./02-technical-reference.md#v2_swap_exact_in)                       |
-| `0x09`  | [`V2_SWAP_EXACT_OUT`](./02-technical-reference.md#v2_swap_exact_out)                     |
-| `0x0a`  | [`PERMIT2_PERMIT`](./02-technical-reference.md#permit2_permit)                           |
-| `0x0b`  | [`WRAP_ETH`](./02-technical-reference.md#wrap_eth)                                       |
-| `0x0c`  | [`UNWRAP_WETH`](./02-technical-reference.md#unwrap_eth)                                  |
-| `0x0d`  | [`PERMIT2_TRANSFER_FROM_BATCH`](./02-technical-reference.md#permit2_transfer_from_batch) |
-| `0x0e`  |                                                                                          |
-| `0x0f`  |                                                                                          |
-| `0x10`  | [`SEAPORT`](./02-technical-reference.md#seaport)                                         |
-| `0x11`  | [`LOOKS_RARE_721`](./02-technical-reference.md#looks_rare_721)                           |
-| `0x12`  | [`NFTX`](./02-technical-reference.md#nftx)                                               |
-| `0x13`  | [`CRYPTOPUNKS`](./02-technical-reference.md#cryptopunks)                                 |
-| `0x14`  | [`LOOKS_RARE_1155`](./02-technical-reference.md#looks_rare_1155)                         |
-| `0x15`  | [`OWNER_CHECK_721`](./02-technical-reference.md#owner_check_721)                         |
-| `0x16`  | [`OWNER_CHECK_1155`](./02-technical-reference.md#owner_check_1155)                       |
-| `0x17`  | [`SWEEP_ERC721`](./02-technical-reference.md#sweep_erc721)                               |
-| `0x18`  | [`X2Y2_721`](./02-technical-reference.md#x2y2_721)                                       |
-| `0x19`  | [`SUDOSWAP`](./02-technical-reference.md#sudoswap)                                       |
-| `0x1a`  | [`NFT20`](./02-technical-reference.md#nft20)                                             |
-| `0x1b`  | [`X2Y2_1155`](./02-technical-reference.md#x2y2_1155)                                     |
-| `0x1c`  | [`FOUNDATION`](./02-technical-reference.md#foundation)                                   |
-| `0x1d`  | [`SWEEP_ERC1155`](./02-technical-reference.md#sweep_erc1155)                             |
-| `0x1e`  |                                                                                          |
-| `0x1f`  |                                                                                          |
+**Note:** For details on the previous version, see [Universal Router (Legacy)](../../universal-router-legacy/overview).
+
+| Feature                   | v1                        | v2                                       |
+| ------------------------- | ------------------------- | ---------------------------------------- |
+| NFT support               | ✅ Multiple marketplaces  | ❌ Removed                               |
+| v4 pool interaction       | ❌ Not supported          | ✅ `V4_SWAP`, `V4_POSITION_MANAGER_CALL` |
+| v3/v4 position management | ❌ Not supported          | ✅ `V3_POSITION_MANAGER_*` / `V4_*`      |
+| Commands                  | 0x00–0x3f (dense NFT ops) | 0x00–0x21 (compact core logic)           |
+| Permit2-based transfers   | ✅                        | ✅ Extended with batch & position flows  |
+| Sub-plan execution        | ✅ `EXECUTE_SUB_PLAN`     | ✅ Still supported                       |
+
+## Supported Commands (v2)
+
+| Command | Name                          |
+| ------: | ----------------------------- |
+|  `0x00` | `V3_SWAP_EXACT_IN`            |
+|  `0x01` | `V3_SWAP_EXACT_OUT`           |
+|  `0x02` | `PERMIT2_TRANSFER_FROM`       |
+|  `0x03` | `PERMIT2_PERMIT_BATCH`        |
+|  `0x04` | `SWEEP`                       |
+|  `0x05` | `TRANSFER`                    |
+|  `0x06` | `PAY_PORTION`                 |
+|  `0x08` | `V2_SWAP_EXACT_IN`            |
+|  `0x09` | `V2_SWAP_EXACT_OUT`           |
+|  `0x0a` | `PERMIT2_PERMIT`              |
+|  `0x0b` | `WRAP_ETH`                    |
+|  `0x0c` | `UNWRAP_WETH`                 |
+|  `0x0d` | `PERMIT2_TRANSFER_FROM_BATCH` |
+|  `0x0e` | `BALANCE_CHECK_ERC20`         |
+|  `0x10` | `V4_SWAP`                     |
+|  `0x11` | `V3_POSITION_MANAGER_PERMIT`  |
+|  `0x12` | `V3_POSITION_MANAGER_CALL`    |
+|  `0x13` | `V4_INITIALIZE_POOL`          |
+|  `0x14` | `V4_POSITION_MANAGER_CALL`    |
+|  `0x21` | `EXECUTE_SUB_PLAN`            |
+
+Commands not listed are placeholders and will revert if called.
 
 ## Command Inputs
 
-The second parameter for the function is an array of bytes strings. Each element in the array is the abi-encoded input that will be used for the respective command.
+Each command requires its own input structure. Inputs are encoded using `abi.encode(...)` and placed in `inputs[i]` to match `commands[i]`. For example:
 
-`commands[i]` is the command that will use `inputs[i]` as its encoded input parameters.
+---
 
-The router uses the command type to know how to decode the encoded input parameters - depending on the command chosen, the required inputs is different.
+## Swap Commands
 
-The input parameters required for each command are outlined below:
+### `0x00` – V3_SWAP_EXACT_IN
 
-### `V3_SWAP_EXACT_IN`
+**Parameters:**
 
-- `address` The recipient of the output of the trade
-- `uint256` The amount of input tokens for the trade
-- `uint256` The minimum amount of output tokens the user wants
-- `bytes` The UniswapV3 encoded path to trade along
-- `bool` A flag for whether the input tokens should come from the `msg.sender` (through Permit2) or whether the funds are already in the `UniversalRouter`
+- `address recipient`
+- `uint256 amountIn`
+- `uint256 amountOutMin`
+- `bytes path`
+- `bool payerIsUser`
 
-### `V3_SWAP_EXACT_OUT`
+**Calls:** `v3SwapExactInput(...)` in V3SwapModule  
+**Usage:** Ideal for deterministic trades where the input amount is fixed.
 
-- `address` The recipient of the output of the trade
-- `uint256` The amount of output tokens to receive
-- `uint256` The maximum number of input tokens that should be spent
-- `bytes` The UniswapV3 encoded path to trade along
-- `bool` A flag for whether the input tokens should come from the `msg.sender` (through Permit2) or whether the funds are already in the `UniversalRouter`
+---
 
-### `PERMIT2_TRANSFER_FROM`
+### `0x01` – V3_SWAP_EXACT_OUT
 
-- `address` The token to fetch from Permit2
-- `address` The recipient of the tokens fetched
-- `uint256` The amount of token to fetch
+**Parameters:**
 
-The individual that the tokens are fetched from is always the `msg.sender` of the transaction
+- `address recipient`
+- `uint256 amountOut`
+- `uint256 amountInMax`
+- `bytes path`
+- `bool payerIsUser`
 
-### `PERMIT2_PERMIT_BATCH`
+**Calls:** `v3SwapExactOutput(...)`  
+**Usage:** When the user wants to receive a precise amount of output tokens, regardless of price volatility, within a max budget.
 
-- `IAllowanceTransfer.PermitBatch` A `PermitBatch` struct outlining all of the Permit2 permits to execute.
-- `bytes` The signature to provide to Permit2
+---
 
-The individual that signed the permits must be the `msg.sender` of the transaction
+### `0x08` – V2_SWAP_EXACT_IN
 
-### `SWEEP`
+**Parameters:**
 
-- `address` The ERC20 token to sweep (or Constants.ETH for ETH)
-- `address` The recipient of the sweep
-- `uint256` The minimum required tokens to receive from the sweep
+- `address recipient`
+- `uint256 amountIn`
+- `uint256 amountOutMin`
+- `address[] path`
+- `bool payerIsUser`
 
-### `TRANSFER`
+**Calls:** `v2SwapExactInput(...)` in V2SwapModule  
+**Usage:** Simple Uniswap v2-style fixed input swap using token pairs.
 
-- `address` The ERC20 token to transfer (or Constants.ETH for ETH)
-- `address` The recipient of the transfer
-- `uint256` The amount to transfer
+---
 
-### `PAY_PORTION`
+### `0x09` – V2_SWAP_EXACT_OUT
 
-- `address` The ERC20 token to transfer (or Constants.ETH for ETH)
-- `address` The recipient of the transfer
-- `uint256` In basis points, the percentage of the contract’s balance to transfer
+**Parameters:**
 
-### `V2_SWAP_EXACT_IN`
+- `address recipient`
+- `uint256 amountOut`
+- `uint256 amountInMax`
+- `address[] path`
+- `bool payerIsUser`
 
-- `address` The recipient of the output of the trade
-- `uint256` The amount of input tokens for the trade
-- `uint256` The minimum amount of output tokens the user wants
-- `address[]` The UniswapV2 token path to trade along
-- `bool` A flag for whether the input tokens should come from the `msg.sender` (through Permit2) or whether the funds are already in the `UniversalRouter`
+**Calls:** `v2SwapExactOutput(...)`  
+**Usage:** Swaps to get an exact output amount with limited token budget.
 
-### `V2_SWAP_EXACT_OUT`
+---
 
-- `address` The recipient of the output of the trade
-- `uint256` The amount of output tokens to receive
-- `uint256` The maximum number of input tokens that should be spent
-- `address[]` The UniswapV2 token path to trade along
-- `bool` A flag for whether the input tokens should come from the `msg.sender` (through Permit2) or whether the funds are already in the `UniversalRouter`
+## Permit2 Commands
 
-### `PERMIT2_PERMIT`
+### `0x02` – PERMIT2_TRANSFER_FROM
 
-- `IAllowanceTransfer.PermitSingle` A `PermitSingle` struct outlining the Permit2 permit to execute
-- `bytes` The signature to provide to Permit2
+**Parameters:**
 
-The individual that signed the permit must be the `msg.sender` of the transaction
+- `address token`
+- `address recipient`
+- `uint160 amount`
 
-### `WRAP_ETH`
+**Calls:** `permit2TransferFrom(...)`  
+**Usage:** Transfers a single token using Permit2 allowances. Always pulls from `msg.sender`.
 
-- `address` The recipient of the WETH
-- `uint256` The amount of ETH to wrap
+---
 
-### `UNWRAP_ETH`
+### `0x03` – PERMIT2_PERMIT_BATCH
 
-- `address` The recipient of the ETH
-- `uint256` The minimum required ETH to receive from the unwrapping
+**Parameters:**
 
-### `PERMIT2_TRANSFER_FROM_BATCH`
+- `PermitBatch permitBatch`
+- `bytes signature`
 
-- `IAllowanceTransfer.AllowanceTransferDetails[]` An array of `AllowanceTransferDetails` structs that each describe a Permit2 transfer to perform
+**Calls:** `PERMIT2.permit(...)`  
+**Usage:** Sets approval for multiple tokens in one signature.
 
-### `SEAPORT`
+---
 
-- `uint256` The ETH value to forward to the Seaport contract
-- `bytes` The calldata to use to call the Seaport contract
+### `0x0a` – PERMIT2_PERMIT
 
-### `LOOKS_RARE_721`
+**Parameters:**
 
-- `uint256` The ETH value to forward to the LooksRare contract
-- `bytes` The calldata to use to call the LooksRare contract
-- `address` The recipient of the ERC721
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC721
+- `PermitSingle permitSingle`
+- `bytes signature`
 
-### `NFTX`
+**Calls:** `PERMIT2.permit(...)`  
+**Usage:** Sets approval for one token, often before `PERMIT2_TRANSFER_FROM`.
 
-- `uint256` The ETH value to forward to the NFTX contract
-- `bytes` The calldata to use to call the NFTX contract
+---
 
-### `CRYPTOPUNKS`
+### `0x0d` – PERMIT2_TRANSFER_FROM_BATCH
 
-- `uint256` The PunkID to purchase
-- `address` The recipient for the cryptopunk
-- `uint256` The ETH value to forward to the Cryptopunks contract
+**Parameters:**
 
-### `LOOKS_RARE_1155`
+- `AllowanceTransferDetails[] batch`
 
-- `uint256` The ETH value to forward to the LooksRare contract
-- `bytes` The calldata to use to call the LooksRare contract
-- `address` The recipient of the ERC1155
-- `address` The ERC1155 token address
-- `uint256` The ID of the ERC1155
-- `uint256` The amount of the ERC1155 to transfer
+**Calls:** `permit2TransferFrom(...)`  
+**Usage:** Transfers many tokens in one call from a user to one or more destinations.
 
-### `OWNER_CHECK_721`
+---
 
-- `address` The required owner of the ERC721
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC721
+## Payment & Balance Commands
 
-### `OWNER_CHECK_1155`
+### `0x04` – SWEEP
 
-- `address` The required owner of the ERC1155
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC1155
-- `uint256` The minimum required amount of the ERC1155
+**Parameters:**
 
-### `SWEEP_ERC721`
+- `address token`
+- `address recipient`
+- `uint256 amountMin`
 
-- `address` The ERC721 token address to transfer
-- `address` The recipient of the transfer
-- `uint256` The token ID to transfer
+**Calls:** `Payments.sweep(...)`  
+**Usage:** Clears out all router-held ETH or ERC20 tokens to a destination address.
 
-### `X2Y2_721`
+---
 
-- `uint256` The ETH value to forward to the X2Y2 contract
-- `bytes` The calldata to use to call the X2Y2 contract
-- `address` The recipient of the ERC721
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC721
+### `0x05` – TRANSFER
 
-### `SUDOSWAP`
+**Parameters:**
 
-- `uint256` The ETH value to forward to the Sudoswap contract
-- `bytes` The calldata to use to call the Sudoswap contract
+- `address token`
+- `address recipient`
+- `uint256 amount`
 
-### `NFT20`
+**Calls:** `Payments.pay(...)`  
+**Usage:** Transfers a specific amount (not full balance) from the router.
 
-- `uint256` The ETH value to forward to the NFT20 contract
-- `bytes` The calldata to use to call the NFT20 contract
+---
 
-### `X2Y2_1155`
+### `0x06` – PAY_PORTION
 
-- `uint256` The ETH value to forward to the X2Y2 contract
-- `bytes` The calldata to use to call the X2Y2 contract
-- `address` The recipient of the ERC1155
-- `address` The ERC1155 token address
-- `uint256` The ID of the ERC1155
-- `uint256` The amount of the ERC1155 to transfer
+**Parameters:**
 
-### `FOUNDATION`
+- `address token`
+- `address recipient`
+- `uint256 bips`
 
-- `uint256` The ETH value to forward to the Foundation contract
-- `bytes` The calldata to use to call the Foundation contract
-- `address` The recipient of the ERC721
-- `address` The ERC721 token address
-- `uint256` The ID of the ERC721
+**Calls:** `Payments.payPortion(...)`  
+**Usage:** Sends a % of the token balance (e.g., 2500 = 25%).
 
-### `SWEEP_ERC1155`
+---
 
-- `address` The ERC1155 token address to sweep
-- `address` The recipient of the sweep
-- `uint256` The token ID to sweep
-- `uint256` The minimum required tokens to receive from the sweep
+### `0x0e` – BALANCE_CHECK_ERC20
 
-## Example: Reverting Commands
+**Parameters:**
 
-For a Sudoswap command, that should be *allowed to revert*, the following 8 bit command should be provided:
+- `address owner`
+- `address token`
+- `uint256 minBalance`
+
+**Calls:** view-only `balanceOf(...)`  
+**Usage:** Ensures required token balance exists; useful for conditional workflows.
+
+---
+
+## ETH & WETH
+
+### `0x0b` – WRAP_ETH
+
+**Parameters:**
+
+- `address recipient`
+- `uint256 amount`
+
+**Calls:** `Payments.wrapETH(...)` → WETH.deposit()  
+**Usage:** Converts ETH held by router into WETH and optionally sends it.
+
+---
+
+### `0x0c` – UNWRAP_WETH
+
+**Parameters:**
+
+- `address recipient`
+- `uint256 amountMin`
+
+**Calls:** `Payments.unwrapWETH9(...)`  
+**Usage:** Converts all router-held WETH into ETH and sends it.
+
+---
+
+## v3 & v4 Advanced
+
+## `0x10` – V4_SWAP
+
+### Parameters:
+
+- **`bytes actions`**  
+  Encoded action identifiers specifying the type of swap or payment action.  
+  For available action types, see [Uniswap v4 SDK Actions](../../sdk/v4/reference/enumerations/Actions.md).
+
+- **`bytes[] params`**
+  ABI-encoded parameters array, corresponding one-to-one with each action provided in `actions`.
+  Each action type requires its own parameter structure.
+
+### Calls:
+
+Executes actions via `V4SwapRouter._handleAction(action, params)`:
+
+- Swap-related actions call `_swapExactInput(...)` or `_swapExactOutput(...)`.
+- Payment-related actions (`settle`, `take`) call internal balance management methods (`_settle(...)`, `_take(...)`).
+- Swap actions ultimately call `_swap(...)`, executing swaps via `PoolManager.swap(...)`.
+
+**Usage:** Executes a swap on Uniswap v4 using the provided parameters.
+
+### Internal Flow:
 
 ```markdown
-command = 0x80 (10000000) && 0x19 (00011001) = 0x99 (10011001)
+UniversalRouter.execute(...) receives command `0x10`
+↓ dispatch (UniversalRouter.sol)
+V4SwapRouter.\_handleAction(action, params)
+├── SWAP_EXACT_IN → \_swapExactInput(...)
+├── SWAP_EXACT_OUT → \_swapExactOutput(...)
+├── SETTLE / SETTLE_ALL → \_settle(...)
+├── TAKE / TAKE_ALL / TAKE_PORTION → \_take(...)
+↓ swap calls route to
+\_swap(...) → PoolManager.swap(...)
 ```
 
-Take care when working with reverting commands - ensure you have appended commands to deal with funds that could remain in the contract after either outcomes. For example, if the Sudoswap command reverts, a following `SWEEP` can be added to ensure that any ETH that was not spent does not get left in the router.
+---
+
+### `0x11` – V3_POSITION_MANAGER_PERMIT
+
+**Parameters:**
+
+- `address spender`
+- `uint256 tokenId`
+- `uint256 deadline`
+- `uint8 v, bytes32 r, bytes32 s`
+
+**Calls:** NonfungiblePositionManager.permit(...)  
+**Usage:** Grants router permission to operate on a user’s v3 NFT.
+
+---
+
+### `0x12` – V3_POSITION_MANAGER_CALL
+
+**Parameters:**
+
+- `bytes callData`
+
+**Calls:** Arbitrary call to NonfungiblePositionManager  
+**Usage:** Executes v3 NFT ops like `burn`, `collect`, `decreaseLiquidity`.
+
+---
+
+### `0x13` – V4_INITIALIZE_POOL
+
+**Parameters:**
+
+- `PoolKey key`
+- `uint160 sqrtPriceX96`
+
+**Calls:** `PoolManager.initialize(...)`  
+**Usage:** Creates new V4 pool with specified fee, tick spacing, etc.
+
+---
+
+### `0x14` – V4_POSITION_MANAGER_CALL
+
+**Parameters:**
+
+- `bytes callData`
+
+**Calls:** Arbitrary call to v4 PositionManager  
+**Usage:** Used for `modifyLiquidity`, `mint`, `settle`, etc. on a pool.
+
+---
+
+## Composability
+
+### `0x21` – EXECUTE_SUB_PLAN
+
+**Parameters:**
+
+- `bytes subCommands`
+- `bytes[] subInputs`
+
+**Calls:** `execute(...)` (reentrantly)
+
+**Usage:** Nested command execution for conditional or fallback logic. Used to group steps or allow selective reverts (via `f` flag).
+
+## Reverting Command Example
+
+To allow a command to fail without reverting the entire transaction, set the high bit:
+
+```solidity
+command = 0x80 | 0x00; // V3_SWAP_EXACT_IN with ALLOW_REVERT
+```
+
+Be sure to follow such commands with cleanup logic (e.g., `SWEEP`) to handle unused ETH or tokens.
+
+## References
+
+- [Uniswap Universal Router GitHub](https://github.com/Uniswap/universal-router)
+- [Latest Commands.sol](https://github.com/Uniswap/universal-router/blob/main/contracts/libraries/Commands.sol)
+
+## Legacy Documentation
+
+- [Universal Router (Legacy) Overview](../../universal-router-legacy/overview)
+- [Universal Router (Legacy) Technical Reference](../../universal-router-legacy/technical-reference)
