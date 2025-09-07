@@ -169,4 +169,4 @@ This command generates static content into the `build` directory and can be serv
 
 
 ## Deployment
-The application automatically deployed to production using [Vercel](https://vercel.com/uniswap/docs) upon merge into **main**.
+The application automatically deployed to production using [Vercel](https://uniswap-v3-subgraph-docs.vercel.app) upon merge into **main**.
