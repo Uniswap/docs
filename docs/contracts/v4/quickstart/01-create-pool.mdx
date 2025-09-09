@@ -108,7 +108,7 @@ PoolKey memory pool = PoolKey({
 ### 3. Encode the [`initializePool`](/contracts/v4/reference/periphery/base/PoolInitializer) parameters
 Pools are initialized with a starting price
 ```solidity
-import {IPoolInitializer_v4} from "v4-core/src/interfaces/IPoolInitializer_v4.sol";
+import {IPoolInitializer_v4} from "v4-periphery/src/interfaces/IPoolInitializer_v4.sol";
 
 params[0] = abi.encodeWithSelector(
     IPoolInitializer_v4.initializePool.selector,
@@ -147,7 +147,9 @@ mintParams[1] = abi.encode(pool.currency0, pool.currency1);
 
 ### 7. Encode the [`modifyLiquidites`](/contracts/v4/reference/periphery/PositionManager#modifyliquidities) call
 ```solidity
-uint256 deadline = block.timestamp + 60;
+// Note: In production, deadlines should be calculated off-chain using real time
+// For example: uint256 deadline = block.timestamp + 3600; // 1 hour from now
+uint256 deadline = block.timestamp + 3600; // 1 hour deadline
 params[1] = abi.encodeWithSelector(
     posm.modifyLiquidities.selector, abi.encode(actions, mintParams), deadline
 );

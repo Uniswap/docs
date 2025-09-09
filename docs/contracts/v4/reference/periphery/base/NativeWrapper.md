@@ -27,7 +27,7 @@ constructor(IWETH9 _weth9);
 
 ### _wrap
 
-*The amount should already be <= the current balance in this contract.*
+*The amount should already be \<= the current balance in this contract.*
 
 
 ```solidity
@@ -36,7 +36,7 @@ function _wrap(uint256 amount) internal;
 
 ### _unwrap
 
-*The amount should already be <= the current balance in this contract.*
+*The amount should already be \<= the current balance in this contract.*
 
 
 ```solidity

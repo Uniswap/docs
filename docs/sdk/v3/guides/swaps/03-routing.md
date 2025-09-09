@@ -19,7 +19,7 @@ The guide will **cover**:
 2. Creating a route
 3. Swapping using a route
 
-At the end of the guide, we should be able to create a route and and execute a swap between any two currencies tokens using the example's included UI.
+At the end of the guide, we should be able to create a route and execute a swap between any two currencies tokens using the example's included UI.
 
 For this guide, the following Uniswap packages are used:
 
@@ -94,16 +94,16 @@ Using these options, we can now create a trade (`TradeType.EXACT_INPUT` or `Trad
 import { CurrencyAmount, TradeType } from '@uniswap/sdk-core'
 
 const rawTokenAmountIn: JSBI = fromReadableAmount(
-      CurrentConfig.currencies.amountIn,
-      CurrentConfig.currencies.in.decimals
+      CurrentConfig.tokens.amountIn,
+      CurrentConfig.tokens.in.decimals
     )
 
 const route = await router.route(
   CurrencyAmount.fromRawAmount(
-    CurrentConfig.currencies.in,
+    CurrentConfig.tokens.in,
     rawTokenAmountIn
   ),
-  CurrentConfig.currencies.out,
+  CurrentConfig.tokens.out,
   TradeType.EXACT_INPUT,
   options
 )

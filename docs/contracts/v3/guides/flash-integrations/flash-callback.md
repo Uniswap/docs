@@ -24,7 +24,7 @@ Declare a variable `decoded` in memory and assign it to the [**decoded data**](h
         FlashCallbackData memory decoded = abi.decode(data, (FlashCallbackData));
 ```
 
-Each callback must be validated to verify that the call originated from a genuine V3 pool. Otherwise, the pool contract would be vulnerable to attack via an EOA manipulating the callback function.
+Each callback must be validated to verify that the call originated from a genuine V3 pool. Otherwise, the PairFlash contract would be vulnerable to attack via an EOA manipulating the callback function.
 
 ```solidity
         CallbackValidation.verifyCallback(factory, decoded.poolKey);
@@ -53,7 +53,7 @@ Call the first of two swaps, calling `exactInputSingle` on the [**router interfa
 
 Most of These function arguments have already been discussed, except for two new introductions:
 
-`sqrtPriceLimitX96`: This value limits the price that the swap can change the pool to. Remember that price is always expressed in the pool contract as `token1` in terms of `token0`. This is useful for circumstances where the user wants to swap _up until_ a specific price. For this example, we will set it to 0, which makes to make the argument inactive.
+`sqrtPriceLimitX96`: This value limits the price that the swap can change the pool to. Remember that price is always expressed in the pool contract as `token1` in terms of `token0`. This is useful for circumstances where the user wants to swap _up until_ a specific price. For this example, we will set it to 0, which makes the argument inactive.
 
 `deadline`: this is the timestamp after which the transaction will revert, to protect the transaction from dramatic changes in price environment that can happen if the transaction is pending for too long. For this example, we will set it far in the future for the sake of simplicity.
 

@@ -70,7 +70,9 @@ This can be done with the help of add and remove functions implemented in the ho
 mapping(address swapRouter => bool approved) public verifiedRouters;
 ```
 
-> **<Ins>NOTE:</Ins>** Make sure you include an address mapping in your hook for the routers before adding the functions.
+:::note
+Make sure you include an address mapping in your hook for the routers before adding the functions.
+:::
 
 ```solidity
 function addRouter(address _router) external {
@@ -100,19 +102,22 @@ function _beforeSwap(address sender, PoolKey calldata, IPoolManager.SwapParams c
     override
     returns (bytes4, BeforeSwapDelta, uint24)
 {
-    if (verifiedRouters[sender]) {
-        address swapper = IMsgSender(sender).msgSender();
+    try IMsgSender(sender).msgSender() returns (address swapper) {
         console.log("Swap initiated by account:", swapper);
+    } catch {
+        revert("Router does not implement msgSender()");
     }
 
     return (BaseHook.beforeSwap.selector, BeforeSwapDelta.wrap(0), 0);
 }
 ```
 
-> **<ins>NOTE:</ins> While developing, make sure that you verify the contracts are valid before adding them to the list of trusted routers.**
+:::note
+While developing, make sure that you verify the contracts are valid before adding them to the list of trusted routers.
+:::
 
 
-<ins>Here are some examples of trusted routers:</ins>
+> **Here are some examples of trusted routers:**
  * https://github.com/Uniswap/universal-router/tree/main
  * https://github.com/z0r0z/v4-router
 
@@ -137,7 +142,6 @@ interface IMsgSender {
 }
 
 contract AccessSenderHook is BaseHook {
-    mapping(address swapRouter => bool approved) public verifiedRouters;
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {
     }
@@ -149,26 +153,13 @@ contract AccessSenderHook is BaseHook {
         bytes calldata
     ) internal override returns (bytes4, BeforeSwapDelta, uint24) {
 
-        if (verifiedRouters[sender]) {
-            address swapper = IMsgSender(sender).msgSender();
+        try IMsgSender(sender).msgSender() returns (address swapper) {
             console.log("Swap initiated by account:", swapper);
+        } catch {
+            revert("Router does not implement msgSender()");
         }
 
         return (BaseHook.beforeSwap.selector, BeforeSwapDelta.wrap(0), 0);
-    }
-
-    function addRouter(address _router) external {
-        verifiedRouters[_router] = true;
-        console.log("Router added:", _router);
-    }
-
-    function removeRouter(address _router) external {
-        verifiedRouters[_router] = false;
-        console.log("Router removed:", _router);
-    }
-
-    function isVerifiedRouter(address _router) external view returns (bool) {
-        return verifiedRouters[_router];
     }
 
     function getHookPermissions()

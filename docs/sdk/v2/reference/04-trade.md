@@ -55,7 +55,7 @@ For exact input trades, this value should be passed as amountIn to router functi
 outputAmount: CurrencyAmount
 ```
 
-For exact output trades, this value should be passed as amountOut to router functions. For exact input trades, this value should be multiplied by a factor <1, representing slippage tolerance, and passed as amountOutMin to router functions.
+For exact output trades, this value should be passed as amountOut to router functions. For exact input trades, this value should be multiplied by a factor \<1, representing slippage tolerance, and passed as amountOutMin to router functions.
 
 ## executionPrice
 

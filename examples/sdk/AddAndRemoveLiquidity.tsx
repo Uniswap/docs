@@ -1,8 +1,7 @@
-import { Pool, Position, NonfungiblePositionManager, nearestUsableTick } from '@uniswap/v3-sdk'
-
-import { ethers } from 'ethers'
-import { Percent, Token, CurrencyAmount } from '@uniswap/sdk-core'
+import { CurrencyAmount, Percent, Token } from '@uniswap/sdk-core'
 import { abi as IUniswapV3PoolABI } from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
+import { nearestUsableTick, NonfungiblePositionManager, Pool, Position } from '@uniswap/v3-sdk'
+import { ethers } from 'ethers'
 
 // default uses “http://localhost:8545”
 // can also input your own connection with "https://mainnet.infura.io/v3/<YOUR-ENDPOINT-HERE>" as an input
@@ -75,7 +74,7 @@ async function liquidityExamples(sender: string, exampleType: number) {
     immutables.fee,
     state.sqrtPriceX96.toString(),
     state.liquidity.toString(),
-    state.tick
+    state.tick,
   )
 
   // create a position with the pool

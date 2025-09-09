@@ -1,66 +1,70 @@
-import './styles.module.css'
+import React, { FC } from 'react'
 
 import Link from '@docusaurus/Link'
-import useBaseUrl from '@docusaurus/useBaseUrl'
-import styled from '@emotion/styled'
-import Discord from '@site/static/img/discord.svg'
-import GitHub from '@site/static/img/github.svg'
-import UGP from '@site/static/img/UGP.png'
 import Layout from '@theme/Layout'
-import ThemedImage from '@theme/ThemedImage'
-import { TraceEvent } from '@uniswap/analytics'
-import {
-  BrowserEvent,
-  DocsHomepageElementName as ElementName,
-  DocsSectionName as SectionName,
-  SharedEventName,
-} from '@uniswap/analytics-events'
-import React from 'react'
-import { ArrowUpRight as LinkIcon, BookOpen, HelpCircle, Info, MessageCircle } from 'react-feather'
+import cn from 'classnames'
+// eslint-disable-next-line
+const UPG = require('../../static/img/UGP.png').default
 
-import SearchBarWithAnalytics from '../theme/SearchBar'
+import {
+  Emblem1,
+  Emblem2,
+  ThickX,
+  Hexagon,
+  BookOpen,
+  ArrowRight,
+  Github,
+  Npm,
+  HelpCircle,
+  Chat,
+  Globe,
+} from '../components/Icons'
+import NewsletterForm from '../components/NewsletterForm'
 
 export const actions = [
   {
-    title: 'What is Uniswap',
-    icon: Info,
+    title: 'What is Uniswap?',
+    icon: 'book-open',
     to: '/concepts/overview',
-    text: `Learn about the core concepts of the Uniswap Protocol, Swaps, Pools, Concentrated Liquidity and more.`,
+    text: 'Learn about the core concepts of the Uniswap Protocol, Swaps, Pools, Liquidity, and more.',
+    color: 'pink',
   },
   {
     title: 'Integrate with Uniswap',
-    icon: HelpCircle,
+    icon: 'x',
     to: '/sdk/v4/overview',
     text: `Learn how to integrate with Uniswap by building a dApp through guided examples.`,
+    color: 'blue',
   },
   {
     title: 'The Uniswap smart contracts',
-    icon: BookOpen,
+    icon: 'hexagon',
     to: '/contracts/v4/overview',
     text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples.`,
+    color: 'green',
   },
 ]
 
 export const developerLinks = [
   {
-    title: 'uniswap-v4-core',
+    title: 'Uniswap/v4-core',
     href: 'https://github.com/Uniswap/v4-core/',
-    icon: GitHub,
+    icon: 'github',
   },
   {
-    title: 'uniswap-v4-periphery',
+    title: 'Uniswap/v4-periphery',
     href: 'https://github.com/Uniswap/v4-periphery',
-    icon: GitHub,
+    icon: 'github',
   },
   {
-    title: 'uniswap-v4-sdk',
+    title: 'Uniswap/v4-sdk',
     href: 'https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk',
-    icon: GitHub,
+    icon: 'github',
   },
   {
     title: 'Deployment addresses',
     href: '/contracts/v4/deployments',
-    icon: GitHub,
+    icon: 'github',
   },
 ]
 
@@ -68,7 +72,7 @@ export const dAppGuides = [
   {
     title: 'Fetch token prices',
     text: 'Fetch the price of tokens in a specific Pool',
-    to: 'sdk/v3/guides/swaps/quoting',
+    to: 'sdk/v4/guides/swaps/quoting',
   },
   {
     title: 'Create a Trade',
@@ -119,424 +123,247 @@ export const smartContractGuides = [
   },
 ]
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-`
+const connectBlock = {
+  title: 'Connect with us',
+  supportTitle: 'Join us on Discord to get support',
+  supportButton: {
+    url: 'https://discord.com/invite/uniswap',
+    name: 'Dev Chat',
+  },
+  socialTitle: 'Insights and news from the UF team',
+  socialButton: {
+    url: 'https://www.uniswapfoundation.org/blog',
+    name: 'Blog',
+  },
+  newsletterTitle: 'Sign up for research and updates from the Uniswap Foundation',
+}
 
-const Row = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 1rem 0;
-  max-width: 960px;
-
-  @media (max-width: 960px) {
-    grid-template-columns: 1fr;
-    padding: 1rem;
-    max-width: 100%;
-    margin: 0 1rem;
-  }
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
-`
-
-const TwoRow = styled(Row)`
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 48px;
-
-  @media (max-width: 960px) {
-    grid-template-columns: 1fr;
-  }
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
-`
-
-const Card = styled.div`
-  display: flex;
-  max-height: 250px;
-  min-width: 350px;
-  padding: 1rem;
-  flex-direction: column;
-  justify-content: center;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 20px;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  /* flex: 1 1 0px; */
-
-  &:hover {
-    border: 1px solid var(--ifm-color-emphasis-400);
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
-  }
-
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`
-
-const CenterCard = styled(Card)`
-  min-width: 250px;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 24px;
-
-  h3 {
-    margin-bottom: 0.25rem;
-  }
-
-  p {
-    margin-bottom: 0px;
-  }
-`
-
-const ShadowCard = styled(Card)`
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
-  background-color: #ffffff10;
-  backdrop-filter: blur(10px);
-  min-height: 200px;
-  /* background-color: var(--ifm-color-emphasis-0); */
-`
-
-const WideCard = styled(ShadowCard)`
-  max-height: auto;
-
-  @media (max-width: 960px) {
-    margin: 0 2rem;
-    max-height: fit-content;
-    width: fit-content;
-  }
-`
-
-const IconWrapper = styled.div`
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  margin-right: 0.5rem;
-`
-
-const LinkIconWrapper = styled.div`
-  opacity: 0.25;
-`
-
-const TopSection = styled.div`
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 1rem;
-`
-
-const LinkRow = styled.div`
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: row;
-  a h3 {
-    color: black !important;
-  }
-`
-
-const DocsHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-`
-
-const StyledImage = styled(ThemedImage)`
-  position: relative;
-  z-index: -1;
-  width: 100%;
-  object-fit: cover;
-`
-
-const StyledTitleImage = styled(StyledImage)`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  position: absolute;
-  opacity: 0.2;
-  mask-image: linear-gradient(rgba(0, 0, 0, 1), transparent);
-`
-
-const HideMedium = styled.div`
-  @media (max-width: 960px) {
-    display: none;
-  }
-`
-
-const StyledIcon = styled.div`
-  svg {
-    fill: var(--ifm-font-color-base);
-  }
-`
-
-export default function Home() {
+const Home = () => {
   return (
-    <Layout title={`Uniswap Docs`} description="Technical Documentation For The Uniswap Protocol">
-      <Container>
-        <DocsHeader>
-          <div
-            style={{
-              padding: '4rem 0  ',
-              textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <h1 style={{ fontWeight: 600 }}> Welcome to Uniswap Docs</h1>
-            <HideMedium>
-              <SearchBarWithAnalytics />
-            </HideMedium>
-          </div>
-          <StyledTitleImage
-            sources={{
-              light: useBaseUrl('/img/grow.png'),
-              dark: useBaseUrl('/img/grow2.png'),
-            }}
-          />
-          <Row>
-            {actions.map((action) => (
-              <TraceEvent
-                key={action.to}
-                element={action.to}
-                events={[BrowserEvent.onClick]}
-                name={SharedEventName.PAGE_CLICKED}
-                section={SectionName.WELCOME_LINKS}
+    <Layout title="Uniswap Docs" description="Technical Documentation For The Uniswap Protocol">
+      <div className="content-page-padding w-full flex flex-col">
+        <div className="w-full flex flex-col items-center px-6 py-20 sm:py-16 rounded-large bg-light-surface-2 dark:bg-dark-surface-2">
+          <h1 className="text-center serif-heading-0 text-light-neutral-1 dark:text-dark-neutral-1 flex flex-row items-center flex-wrap justify-center">
+            <span>Build</span>
+            <Emblem1 className="mx-2" />
+            <span>with</span>
+            <Emblem2 className="mx-2" />
+            <span>Uniswap</span>
+          </h1>
+          <p className="mt-2 text-center subheading-2 text-light-neutral-2 dark:text-dark-neutral-2">
+            Dive into the world of DeFi apps, integrations, and developer tooling built on top of the Uniswap Protocol.
+          </p>
+        </div>
+
+        <div className="default-grid py-padding-x-large">
+          {actions.map((action, i) => {
+            return (
+              <Link
+                key={action.title}
+                to={action.to}
+                className={cn('col-span-full rounded-medium p-padding-medium', {
+                  'md:col-span-4': i === 0,
+                  'sm:col-span-4 md:col-span-2': i > 0,
+                  'bg-light-accent-2 dark:bg-dark-accent-2': action.color === 'pink',
+                  'bg-light-blue dark:bg-dark-blue': action.color === 'blue',
+                  'bg-light-green dark:bg-dark-green': action.color === 'green',
+                })}
               >
-                <Link style={{ textDecoration: 'none' }} to={action.to}>
-                  <ShadowCard key={action.title}>
-                    <TopSection>
-                      <IconWrapper>
-                        <action.icon style={{ width: '24px' }} />
-                      </IconWrapper>
-                      <LinkIconWrapper>
-                        <LinkIcon />
-                      </LinkIconWrapper>
-                    </TopSection>
-                    <h3 style={{ marginBottom: '.75rem', fontWeight: 500 }}>{action.title}</h3>
-                    <p style={{ marginBottom: '0.5rem', fontWeight: 300 }}>{action.text}</p>
-                  </ShadowCard>
-                </Link>
-              </TraceEvent>
+                <div>
+                  <div className="mb-8 flex">
+                    {action.icon === 'book-open' ? (
+                      <div className="flex flex-row items-center py-2 px-3 bg-light-surface-1 dark:bg-dark-surface-1 rounded-small">
+                        <BookOpen />
+                        <span className="ml-1 button-label-4 text-light-accent-1 dark:text-dark-accent-1">
+                          Getting started
+                        </span>
+                      </div>
+                    ) : null}
+                    {action.icon === 'x' ? <ThickX /> : null}
+                    {action.icon === 'hexagon' ? <Hexagon /> : null}
+                  </div>
+                  <div>
+                    <h3
+                      className={cn('subheading-1', {
+                        'text-light-accent-1 dark:text-dark-accent-1': action.color === 'pink',
+                        'text-blue-base': action.color === 'blue',
+                        'text-green-base dark:text-green-vibrant': action.color === 'green',
+                      })}
+                    >
+                      {action.title}
+                    </h3>
+                    <p className="mt-1 body-3 text-light-neutral-2 dark:text-dark-neutral-2">{action.text}</p>
+                  </div>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+
+        <div className="divider"></div>
+
+        <div className="py-padding-x-large">
+          <h3 className="text-light-neutral-1 dark:text-dark-neutral-1 heading-2">Integrate your Smart Contracts</h3>
+          <div className="default-grid mt-6">
+            {dAppGuides.map((card) => (
+              <ArticleLinkCard key={card.title} title={card.title} description={card.text} url={card.to} />
             ))}
-          </Row>
-        </DocsHeader>
-        <div
-          style={{
-            width: '100%',
-            maxWidth: '960px',
-            margin: '4rem auto',
-            padding: '0 1rem',
-          }}
-        >
-          {/* <div>
-            <h2>Integrate your dApp</h2>
-            <p>Explore these guided tutorials to get started integrating with Uniswap in your dApp.</p>
-            <div>
-              {dAppGuides.map((action) => (
-                <TraceEvent
-                  key={action.to}
-                  element={action.to}
-                  events={[BrowserEvent.onClick]}
-                  name={SharedEventName.PAGE_CLICKED}
-                  section={SectionName.DAPP_LINKS}
+          </div>
+        </div>
+
+        <div className="divider" />
+
+        <div className="py-padding-x-large">
+          <h3 className="text-light-neutral-1 dark:text-dark-neutral-1 heading-2">Integrate your dApp</h3>
+          <div className="default-grid mt-6">
+            {smartContractGuides.map((card) => (
+              <ArticleLinkCard key={card.title} title={card.title} description={card.text} url={card.to} />
+            ))}
+          </div>
+        </div>
+
+        <div className="divider" />
+
+        <div className="py-padding-x-large">
+          <h3 className="text-light-neutral-1 dark:text-dark-neutral-1 heading-2">Quick Links</h3>
+          <div className="flex flex-wrap">
+            {developerLinks.map((devLink) => {
+              return (
+                <Link
+                  key={devLink.title}
+                  to={devLink.href}
+                  className="mt-6 mr-4 group flex flex-row items-center transition rounded-medium py-padding-small px-padding-medium bg-light-surface-2 dark:bg-dark-surface-2 hover:bg-light-accent-2 hover:dark:bg-dark-accent-2"
                 >
-                  <Link style={{ textDecoration: 'none' }} key={action.title} to={action.to}>
-                    <Card key={action.title} style={{ marginBottom: '1rem' }}>
-                      <LinkRow>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                          <h3 style={{ marginBottom: '0rem' }}>{action.title}</h3>
-                        </div>
-                        <LinkIconWrapper>
-                          <LinkIcon />
-                        </LinkIconWrapper>
-                      </LinkRow>
-                      <p style={{ marginBottom: '0rem', fontWeight: 300 }}>{action.text}</p>
-                    </Card>
-                  </Link>
-                </TraceEvent>
-              ))}
+                  <>
+                    {devLink.icon === 'github' ? <Github className="w-6 h-6" /> : null}
+                    {devLink.icon === 'npm' ? <Npm className="w-5 h-5" /> : null}
+                    <p className="transition group-hover:text-light-accent-1 group-hover:dark:text-dark-accent-1 ml-3 subheading-2 text-light-neutral-1 dark:text-dark-neutral-1">
+                      {devLink.title}
+                    </p>
+                  </>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+
+        <div className="divider" />
+
+        <div className="ConnectBlock pt-padding-x-large">
+          <h3 className="heading-2 text-light-neutral-1 dark:text-dark-neutral-1">{connectBlock.title}</h3>
+          <div className="default-grid mt-margin-mobile sm:mt-padding-x-large">
+            <div className="col-span-4 flex flex-col justify-between rounded-large bg-light-orange-fade p-8 dark:bg-dark-orange-fade-80 sm:min-h-[15.625rem] sm:pt-[1.8125rem] md:col-span-2">
+              <h3 className="heading-3 dark:dark-orange-vibrant max-w-[17rem] text-light-orange-vibrant">
+                {connectBlock.supportTitle}
+              </h3>
+              <IconButton
+                href={connectBlock.supportButton.url}
+                label={connectBlock.supportButton.name}
+                color="orange-vibrant"
+              />
             </div>
-          </div> */}
-          <div>
-            <h2>Integrate your smart contracts</h2>
-            <p>Explore these guided tutorials to get started integrating with Uniswap in your smart contracts.</p>
-            <div>
-              {smartContractGuides.map((action) => (
-                <TraceEvent
-                  key={action.to}
-                  element={action.to}
-                  events={[BrowserEvent.onClick]}
-                  name={SharedEventName.PAGE_CLICKED}
-                  section={SectionName.SMART_CONTRACT_LINKS}
-                >
-                  <Link style={{ textDecoration: 'none' }} key={action.title} to={action.to}>
-                    <Card key={action.title} style={{ marginBottom: '1rem' }}>
-                      <LinkRow>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                          <h3 style={{ marginBottom: '0rem' }}>{action.title}</h3>
-                        </div>
-                        <LinkIconWrapper>
-                          <LinkIcon />
-                        </LinkIconWrapper>
-                      </LinkRow>
-                      <p style={{ marginBottom: '0rem', fontWeight: 300 }}>{action.text}</p>
-                    </Card>
-                  </Link>
-                </TraceEvent>
-              ))}
+            <div className="col-span-4 flex flex-col justify-between rounded-large bg-light-brown-fade p-8 dark:bg-dark-brown-fade-80 sm:min-h-[15.625rem] sm:pt-[1.8125rem] md:col-span-2">
+              <h3 className="heading-3 dark:dark-brown-vibrant max-w-[17rem] text-light-brown-vibrant">
+                {connectBlock.socialTitle}
+              </h3>
+              <IconButton
+                href={connectBlock.socialButton.url}
+                label={connectBlock.socialButton.name}
+                color="brown-vibrant"
+              />
+            </div>
+            <div className="col-span-4 flex min-h-[15.625rem] flex-col justify-between space-y-12 rounded-large bg-light-pink-fade p-8 dark:bg-dark-pink-fade-80 sm:col-span-8 sm:space-y-0 sm:pt-[1.8125rem] md:col-span-4">
+              <NewsletterForm
+                inputClass="bg-light-surface-1 p-3 pl-[2.1875rem] text-light-accent-1 placeholder:text-light-accent-1 dark:bg-dark-surface-1 dark:text-dark-accent-1 dark:placeholder:text-dark-accent-1 border-none"
+                globeColorClass="pink-vibrant"
+                headerTextClass="dark:text-dark-accent-1 max-w-[25rem] text-light-accent-1"
+                headerText={connectBlock.newsletterTitle}
+              />
             </div>
           </div>
         </div>
-        <hr />
-        <TwoRow
-          style={{
-            gap: '48px',
-            alignItems: 'center',
-          }}
-        >
-          <StyledImage
-            style={{ maxHeight: '400px' }}
-            sources={{
-              light: useBaseUrl('/img/use.png'),
-              dark: useBaseUrl('/img/use2.png'),
-            }}
-          />
-          <div>
-            <h2>Developer Links</h2>
-            {developerLinks.map((action) => (
-              <TraceEvent
-                key={action.href}
-                element={action.href}
-                name={SharedEventName.PAGE_CLICKED}
-                events={[BrowserEvent.onClick]}
-                section={SectionName.DEVELOPER_LINKS}
-              >
-                <Link key={action.href} to={action.href}>
-                  <Card key={action.href} style={{ marginBottom: '0.5rem' }}>
-                    <LinkRow>
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <IconWrapper>
-                          <StyledIcon>
-                            <action.icon style={{ width: '24px' }} />
-                          </StyledIcon>
-                        </IconWrapper>
-                        {action.title}
-                      </div>
-                      <LinkIconWrapper>
-                        <LinkIcon />
-                      </LinkIconWrapper>
-                    </LinkRow>
-                  </Card>
+
+        <div className="relative overflow-hidden bg-light-surface-2 dark:bg-dark-surface-2 rounded-large mt-4">
+          <div className="default-grid ">
+            <div className="flex flex-col md:justify-between p-8 col-span-full sm:col-span-7 md:col-span-4">
+              <div>
+                <h3 className="heading-3 text-light-neutral-1 dark:text-dark-neutral-1">Uniswap Foundation</h3>
+                <p className="mt-2 body-2 text-light-neutral-2 dark:text-dark-neutral-2 max-w-[28rem]">
+                  In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth,
+                  decentralization, and sustainability of the Uniswap community.
+                </p>
+              </div>
+              <div className="flex mt-5">
+                <Link
+                  className="group flex items-center justify-center rounded-large bg-light-surface-3 p-3 transition hover:bg-light-surface-3-hovered dark:bg-dark-surface-3 dark:hover:bg-dark-surface-3-hovered"
+                  to="https://unigrants.org/"
+                >
+                  <Globe className="mr-2 h-6 w-6" color="neutral-1" />
+                  <span className={cn('button-label-1 transition text-light-neutral-1 dark:text-dark-neutral-1')}>
+                    Learn more
+                  </span>
                 </Link>
-              </TraceEvent>
-            ))}
-          </div>
-        </TwoRow>
-        <hr />
-        <Row>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            element={ElementName.DISCORD}
-            section={SectionName.BOTTOM_MENU_LINKS}
-            name={SharedEventName.PAGE_CLICKED}
-          >
-            <Link style={{ textDecoration: 'none' }} href={'https://discord.gg/ybKVQUWb4s'}>
-              <CenterCard>
-                <StyledIcon>
-                  <Discord style={{ width: '48px', height: '48px' }} />
-                </StyledIcon>
-                <div>
-                  <h3>Discord</h3>
-                  <p>Join our Developer Community.</p>
-                </div>
-              </CenterCard>
-            </Link>
-          </TraceEvent>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            element={ElementName.GRANTS}
-            section={SectionName.BOTTOM_MENU_LINKS}
-            name={SharedEventName.PAGE_CLICKED}
-          >
-            <Link style={{ textDecoration: 'none' }} href={'https://gov.uniswap.org/'}>
-              <CenterCard>
-                <MessageCircle style={{ width: '48px', height: '48px' }} />
-                <div>
-                  <h3>Forum</h3>
-                  <p>Discuss governance and more.</p>
-                </div>
-              </CenterCard>
-            </Link>
-          </TraceEvent>
-          <TraceEvent
-            events={[BrowserEvent.onClick]}
-            section={SectionName.BOTTOM_MENU_LINKS}
-            element={ElementName.GITHUB}
-            name={SharedEventName.PAGE_CLICKED}
-          >
-            <Link style={{ textDecoration: 'none' }} href={'https://github.com/Uniswap'}>
-              <CenterCard>
-                <StyledIcon>
-                  <GitHub style={{ width: '48px', height: '48px' }} />
-                </StyledIcon>
-                <div>
-                  <h3>GitHub</h3>
-                  <p>View all Uniswap repositories.</p>
-                </div>
-              </CenterCard>
-            </Link>
-          </TraceEvent>
-        </Row>
-        <Link
-          style={{
-            textDecoration: 'none',
-            maxWidth: '960px',
-            margin: '0 auto 4rem auto',
-            width: '100%',
-          }}
-          href={'https://uniswapfoundation.org/'}
-        >
-          <WideCard
-            style={{
-              alignItems: 'center',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              gap: '24px',
-            }}
-          >
-            <img src={UGP} width={'120px'} />
-            <div>
-              <h2 style={{ marginBottom: '0.5rem' }}>Uniswap Foundation</h2>
-              <p style={{ margin: '0rem' }}>
-                In pursuit of a more open and fair financial system, the Uniswap Foundation supports the growth,
-                decentralization, and sustainability of the Uniswap community.{' '}
-              </p>
+              </div>
             </div>
-          </WideCard>
-        </Link>
-      </Container>
+            <div className="relative justify-center col-span-full md:col-span-4 min-h-[50vw] md:min-h-[25vw] hidden md:flex">
+              <img src={UPG} className="absolute md:right-0 p-8 max-w-[16rem]" />
+            </div>
+          </div>
+        </div>
+      </div>
     </Layout>
+  )
+}
+
+export default Home
+
+const IconButton: FC<{
+  href: string
+  ariaLabel?: string
+  label: string
+  color: 'orange-vibrant' | 'brown-vibrant'
+}> = ({ href, label, color }) => {
+  return (
+    <div className="mt-12 flex">
+      <Link
+        className="group flex items-center justify-center rounded-large bg-light-surface-1 p-3 hover:bg-light-surface-3-hovered dark:bg-dark-surface-1 transition dark:hover:bg-dark-surface-3-hovered"
+        to={href}
+      >
+        {color === 'orange-vibrant' && <HelpCircle className="mr-2 h-6 w-6" color={color} />}
+        {color === 'brown-vibrant' && <Chat className="mr-2 h-6 w-6" color={color} />}
+        <span
+          className={cn('button-label-1 transition', {
+            'text-light-orange-vibrant dark:text-dark-orange-vibrant': color === 'orange-vibrant',
+            'text-light-brown-vibrant dark:text-dark-brown-vibrant': color === 'brown-vibrant',
+          })}
+        >
+          {label}
+        </span>
+      </Link>
+    </div>
+  )
+}
+
+const ArticleLinkCard: FC<{
+  title: string
+  description: string
+  url: string
+}> = ({ title, description, url }) => {
+  return (
+    <Link
+      href={url}
+      className="col-span-full sm:col-span-4 md:col-span-2 group flex flex-row transition rounded-medium py-padding-small px-padding-medium bg-light-surface-2 dark:bg-dark-surface-2 hover:bg-light-accent-2 hover:dark:bg-dark-accent-2"
+      target="_self"
+    >
+      <div className="flex flex-col w-full space-y-1">
+        <h4 className="transition subheading-2 text-light-neutral-1 dark:text-dark-neutral-1 group-hover:text-light-pink-vibrant dark:group-hover:text-dark-pink-vibrant">
+          {title}
+        </h4>
+        <p className="body-3 text-light-neutral-2 dark:text-dark-neutral-2">{description}</p>
+      </div>
+      <div className="transition opacity-0 group-hover:opacity-100">
+        <ArrowRight className="my-1 w-5 h-5" />
+      </div>
+    </Link>
   )
 }

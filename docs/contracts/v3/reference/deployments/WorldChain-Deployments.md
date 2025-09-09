@@ -1,6 +1,6 @@
 ---
 id: WorldChain-deployments
-title: WorldChain Deployment Addresses
+title: WorldChain Deployments
 ---
 
 # Uniswap Contract Deployments

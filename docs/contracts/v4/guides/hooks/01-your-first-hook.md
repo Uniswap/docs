@@ -134,24 +134,24 @@ contract PointsHook is BaseHook {
             });
     }
 
-    function afterSwap(
+    function _afterSwap(
         address,
         PoolKey calldata key,
         IPoolManager.SwapParams calldata,
         BalanceDelta delta,
         bytes calldata
-    ) external override returns (bytes4, int128) {
+    ) internal override returns (bytes4, int128) {
         return (BaseHook.afterSwap.selector, 0);
     }
 
-    function afterAddLiquidity(
+    function _afterAddLiquidity(
         address sender,
         PoolKey calldata key,
         IPoolManager.ModifyLiquidityParams calldata params,
         BalanceDelta delta,
         BalanceDelta feesAccrued,
         bytes calldata hookData
-    ) external override returns (bytes4, BalanceDelta) {
+    ) internal override returns (bytes4, BalanceDelta) {
         return (BaseHook.afterAddLiquidity.selector, delta);
     }
 }
@@ -166,6 +166,13 @@ Most of the code at this point should be self-explanatory. It’s not doing anyt
 First, let’s setup the `POINTS` token that we’ll reward users with via creating another contract `PointsToken.sol` and import relevant dependencies like `ERC20` and `Owned`.
 
 ```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "forge-std/Script.sol";
+import {ERC20} from "solmate/src/tokens/ERC20.sol";
+import {Owned} from "solmate/src/auth/Owned.sol";
+
 contract PointsToken is ERC20, Owned {
     constructor() ERC20("Points Token", "POINTS", 18) Owned(msg.sender) {}
 
@@ -179,7 +186,7 @@ Let’s make it so that our hook can mint some!
 
 ```solidity
 contract PointsHook is BaseHook {
-    PointsToken pointsToken;
+    PointsToken public pointsToken;
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {
         pointsToken = new PointsToken();
@@ -234,13 +241,13 @@ In order for us to award these points to the user, we need a few things and we a
 Let’s start with the most basic ones. We want the user to be swapping in the `ETH/TOKEN` pool and be buying the `TOKEN` in order to get awarded these `POINTS` token. Next, we need to figure out who the user is and how much ETH they are spending, and finally award the points accordingly.
 
 ```solidity
-    function afterSwap(
+    function _afterSwap(
         address,
         PoolKey calldata key,
         IPoolManager.SwapParams calldata swapParams,
         BalanceDelta delta,
         bytes calldata hookData
-    ) external override onlyPoolManager returns (bytes4, int128) {
+    ) internal override onlyPoolManager returns (bytes4, int128) {
         // We only award points in the ETH/TOKEN pools.
         if (!key.currency0.isAddressZero()) {
             return (BaseHook.afterSwap.selector, 0);
@@ -255,9 +262,7 @@ Let’s start with the most basic ones. We want the user to be swapping in the `
         address user = parseHookData(hookData);
 
         // How much ETH are they spending?
-        uint256 ethSpendAmount = swapParams.amountSpecified < 0
-            ? uint256(-swapParams.amountSpecified)
-            : uint256(int256(-delta.amount0()));
+        uint256 ethSpendAmount = uint256(int256(-delta.amount0()));
 
         // And award the points!
         awardPoints(user, ethSpendAmount);
@@ -275,14 +280,14 @@ When `amountSpecified` is less than 0, it means this is an `exact input for outp
 Similar to what we did for the `afterSwap` hook, now we need to award users for adding liquidity. We’ll do the exact same thing here, except we’ll award the points based on the added liquidity.
 
 ```solidity
-    function afterAddLiquidity(
+    function _afterAddLiquidity(
         address sender,
         PoolKey calldata key,
         IPoolManager.ModifyLiquidityParams calldata params,
         BalanceDelta delta,
         BalanceDelta feesAccrued,
         bytes calldata hookData
-    ) external override onlyPoolManager returns (bytes4, BalanceDelta) {
+    ) internal override onlyPoolManager returns (bytes4, BalanceDelta) {
         // We only award points in the ETH/TOKEN pools.
         if (!key.currency0.isAddressZero()) {
             return (BaseHook.afterAddLiquidity.selector, delta);
@@ -301,6 +306,10 @@ Similar to what we did for the `afterSwap` hook, now we need to award users for 
     }
 ```
 
+:::note
+It is important to note that the delta should be passed to awardPoints function as it avoids amount errors in case of partial fills.
+:::
+
 # Testing
 
 We’re using Foundry for building our hook, and we’ll continue using it to write our tests. One of the great things about Foundry is that you can write tests in Solidity itself instead of context switching between another language.
@@ -310,6 +319,27 @@ We’re using Foundry for building our hook, and we’ll continue using it to wr
 The v4-template repo you cloned already has an existing base test file, let’s start by copying it into `PointsHook.t.sol`.
 
 ```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "forge-std/Test.sol";
+import {Fixtures} from "./utils/Fixtures.sol";
+import {EasyPosm} from "./utils/EasyPosm.sol";
+
+import {StateLibrary} from "v4-core/src/libraries/StateLibrary.sol";
+import {Hooks, IHooks} from "v4-core/src/libraries/Hooks.sol";
+import {PointsHook} from "../src/PointsHook.sol";
+import {PointsToken} from "../src/PointsToken.sol";
+
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {PoolId} from "v4-core/src/types/PoolId.sol";
+import {Currency} from "v4-core/src/types/Currency.sol";
+import {TickMath} from "v4-core/src/libraries/TickMath.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {LiquidityAmounts} from "v4-core/test/utils/LiquidityAmounts.sol";
+
 contract PointsHookTest is Test, Fixtures {
     using EasyPosm for IPositionManager;
     using StateLibrary for IPoolManager;
@@ -348,7 +378,7 @@ contract PointsHookTest is Test, Fixtures {
             IHooks(hook)
         );
         poolId = key.toId();
-        manager.initialize(key, SQRT_PRICE_1_1, ZERO_BYTES);
+        manager.initialize(key, SQRT_PRICE_1_1);
 
         // Provide full-range liquidity to the pool
         tickLower = TickMath.minUsableTick(key.tickSpacing);

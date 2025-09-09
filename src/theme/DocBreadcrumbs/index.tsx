@@ -1,12 +1,14 @@
+import React, { type ReactNode } from 'react'
 import Link from '@docusaurus/Link'
-import { ThemeClassNames, useHomePageRoute, useSidebarBreadcrumbs } from '@docusaurus/theme-common'
+import { useSidebarBreadcrumbs } from '@docusaurus/plugin-content-docs/client'
+import { ThemeClassNames } from '@docusaurus/theme-common'
+import { useHomePageRoute } from '@docusaurus/theme-common/internal'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import clsx from 'clsx'
-import React, { type ReactNode } from 'react'
 
 import styles from './styles.module.css'
 
-function BreadcrumbsItemLink({ children, href }: { children: ReactNode; href?: string }): JSX.Element {
+function BreadcrumbsItemLink({ children, href }: { children: ReactNode; href?: string }): ReactNode {
   const className = clsx('breadcrumbs__link', styles.breadcrumbsItemLink)
   return href ? (
     <Link className={className} href={href}>
@@ -17,7 +19,7 @@ function BreadcrumbsItemLink({ children, href }: { children: ReactNode; href?: s
   )
 }
 
-function BreadcrumbsItem({ children, active }: { children: ReactNode; active?: boolean }): JSX.Element {
+function BreadcrumbsItem({ children, active }: { children: ReactNode; active?: boolean }): ReactNode {
   return (
     <li
       className={clsx('breadcrumbs__item', {
@@ -38,7 +40,7 @@ function HomeBreadcrumbItem() {
   )
 }
 
-export default function DocBreadcrumbs(): JSX.Element | null {
+export default function DocBreadcrumbs(): ReactNode | null {
   const breadcrumbs = useSidebarBreadcrumbs()
   const homePageRoute = useHomePageRoute()
 

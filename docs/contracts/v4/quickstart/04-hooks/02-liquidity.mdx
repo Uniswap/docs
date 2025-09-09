@@ -84,12 +84,12 @@ function getHookPermissions() public pure override returns (Hooks.Permissions me
 Here the example shows that every time __before__ liquidity is added to a pool, `beforeAddLiquidityCount` for that pool will be incremented by one.
 
 ```solidity
-function beforeAddLiquidity(
+function _beforeAddLiquidity(
     address,
     PoolKey calldata key,
     IPoolManager.ModifyLiquidityParams calldata,
     bytes calldata
-) external override returns (bytes4) {
+) internal override returns (bytes4) {
     beforeAddLiquidityCount[key.toId()]++;
     return BaseHook.beforeAddLiquidity.selector;
 }
@@ -110,12 +110,12 @@ A brief overview of the parameters:
 Similiar as above, every time __before__ liquidity is removed from a pool, `beforeRemoveLiquidityCount` for that pool will be incremented by one.
 
 ```solidity
-function beforeRemoveLiquidity(
+function _beforeRemoveLiquidity(
     address,
     PoolKey calldata key,
     IPoolManager.ModifyLiquidityParams calldata,
     bytes calldata
-) external override returns (bytes4) {
+) internal override returns (bytes4) {
     beforeRemoveLiquidityCount[key.toId()]++;
     return BaseHook.beforeRemoveLiquidity.selector;
 }
@@ -182,22 +182,22 @@ contract LiquidityHook is BaseHook {
     // NOTE: see IHooks.sol for function documentation
     // -----------------------------------------------
 
-    function beforeAddLiquidity(
+    function _beforeAddLiquidity(
         address,
         PoolKey calldata key,
         IPoolManager.ModifyLiquidityParams calldata,
         bytes calldata
-    ) external override returns (bytes4) {
+    ) internal override returns (bytes4) {
         beforeAddLiquidityCount[key.toId()]++;
         return BaseHook.beforeAddLiquidity.selector;
     }
 
-    function beforeRemoveLiquidity(
+    function _beforeRemoveLiquidity(
         address,
         PoolKey calldata key,
         IPoolManager.ModifyLiquidityParams calldata,
         bytes calldata
-    ) external override returns (bytes4) {
+    ) internal override returns (bytes4) {
         beforeRemoveLiquidityCount[key.toId()]++;
         return BaseHook.beforeRemoveLiquidity.selector;
     }

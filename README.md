@@ -67,7 +67,7 @@ Contributing to the docs site is a great way to get involved in the dev communit
 - Did I include Guides of the product under *<category_name>/<product_name>/guides* ?
 - Did I include Technical Reference of the product under *<category_name>/<product_name>/reference* ?
 - Did I give a descriptive name/id to each document? This is important because that shows up in the URL
-- Did I open a PR using the the [contributing](./CONTRIBUTING.md) guidelines?
+- Did I open a PR using the [contributing](./CONTRIBUTING.md) guidelines?
 - Did I [update the search indices](#how-to-update-search-indices-with-algolia) after my change was deployed?
 
 ## Checklist example
@@ -85,7 +85,7 @@ Let's walk through an example by considering the *Permit2* smart contract:
     - No, they should be added [here](./docs/contracts/permit2/guides)
 - Did I include Technical Reference of the product under *contracts/permit2/reference* ?
     - Yes I added them [here](./docs/contracts/permit2/reference)
-- Did I open a PR using the the [Contributing](./CONTRIBUTING.md) guidelines?
+- Did I open a PR using the [Contributing](./CONTRIBUTING.md) guidelines?
     - Yes
 - Did I update the search indices after my change was deployed?
     - Yes I did using the [guides below](#how-to-update-search-indices-with-algolia)
@@ -96,12 +96,23 @@ Let's walk through an example by considering the *Permit2* smart contract:
 Install solidity doc gen
 `npm install solidity-docgen`
 
-Get the correct compiler version
-`npm install -D solc-0.7@npm:solc@0.7.6`
+Configure solidity-docgen in your `hardhat.config.js` file:
+```javascript
+require('solidity-docgen');
 
-Put the updated template `contract.hbs` in a /templates folder under the same directory as /contracts that you want to generate
+module.exports = {
+  docgen: {
+    path: './docs',
+    clear: true,
+    runOnCompile: false,
+    templates: './templates', // optional custom templates
+  }
+};
+```
 
-Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
+Put the updated template `contract.hbs` in a /templates folder (optional)
+
+Run `npx hardhat docgen` to generate documentation
 
 # How to generate markdown files from typescript comments
 
@@ -118,7 +129,7 @@ See https://www.npmjs.com/package/typedoc-plugin-markdown for details.
 
 # How to Update search indices with algolia
 
-- Create an .env file with `APPLICATION_ID` and the `API_KEY` (write access). 
+- Create an .env file with `APPLICATION_ID` and the `API_KEY` (Admin API Key w/ write access, should be kept secret). 
 If you don't have those, one for the Engineering Managers should be able to help you.
 - Edit config.json file if needed:
     - Start url from updated website
