@@ -90,7 +90,7 @@ contract LiquidityExamples is IERC721Receiver {
             });
 
         // Note that the pool defined by DAI/USDC and fee tier 0.3% must already be created and initialized in order to mint
-        (tokenId, liquidity, amount0, amount1) = nonfungiblePositionManager.mint(params);
+        (tokenId, liquidity, amount0, amount1) = INonfungiblePositionManager(nonfungiblePositionManager).mint(params);
 
         // Create a deposit
         _createDeposit(msg.sender, tokenId);
@@ -126,7 +126,7 @@ contract LiquidityExamples is IERC721Receiver {
                 amount1Max: type(uint128).max
             });
 
-        (amount0, amount1) = nonfungiblePositionManager.collect(params);
+        (amount0, amount1) = INonfungiblePositionManager(nonfungiblePositionManager).collect(params);
 
         // send collected fees back to owner
         _sendToOwner(tokenId, amount0, amount1);
@@ -154,7 +154,7 @@ contract LiquidityExamples is IERC721Receiver {
                 deadline: block.timestamp
             });
 
-        (amount0, amount1) = nonfungiblePositionManager.decreaseLiquidity(params);
+        (amount0, amount1) = INonfungiblePositionManager(nonfungiblePositionManager).decreaseLiquidity(params);
 
         // send liquidity back to owner
         _sendToOwner(tokenId, amount0, amount1);
@@ -195,7 +195,7 @@ contract LiquidityExamples is IERC721Receiver {
                 deadline: block.timestamp
             });
 
-        (liquidity, amount0, amount1) = nonfungiblePositionManager.increaseLiquidity(params);
+        (liquidity, amount0, amount1) = INonfungiblePositionManager(nonfungiblePositionManager).increaseLiquidity(params);
         
         // Remove allowance and refund in both assets.
         if (amount0 < amountAdd0) {
@@ -238,6 +238,6 @@ contract LiquidityExamples is IERC721Receiver {
         // remove information related to tokenId
         delete deposits[tokenId];
         // transfer ownership to original owner
-        nonfungiblePositionManager.safeTransferFrom(address(this), msg.sender, tokenId);
+        INonfungiblePositionManager(nonfungiblePositionManager).safeTransferFrom(address(this), msg.sender, tokenId);
     }
 }
