@@ -146,7 +146,7 @@ An exact output swap will swap a variable amount of the input token for a fixed 
         // If the swap did not require the full amountInMaximum to achieve the exact amountOut then we refund msg.sender and approve the router to spend 0.
         if (amountIn < amountInMaximum) {
             TransferHelper.safeApprove(DAI, address(swapRouter), 0);
-            TransferHelper.safeTransferFrom(DAI, address(this), msg.sender, amountInMaximum - amountIn);
+            TransferHelper.safeTransfer(DAI, msg.sender, amountInMaximum - amountIn);
         }
     }
 ```
@@ -244,7 +244,7 @@ contract SwapExamples {
         // If the swap did not require the full amountInMaximum to achieve the exact amountOut then we refund msg.sender and approve the router to spend 0.
         if (amountIn < amountInMaximum) {
             TransferHelper.safeApprove(DAI, address(swapRouter), 0);
-            TransferHelper.safeTransferFrom(DAI, address(this), msg.sender, amountInMaximum - amountIn);
+            TransferHelper.safeTransfer(DAI, msg.sender, amountInMaximum - amountIn);
         }
     }
 }
