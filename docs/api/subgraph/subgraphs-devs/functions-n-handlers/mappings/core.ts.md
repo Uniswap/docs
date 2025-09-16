@@ -16,7 +16,7 @@ Params:
 ReturnType: void
 ```
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth Mainnet">
 
 - Handles the initialization of a new pool by setting it's `price` and current `tick` value.
 - Updates the pools daily and hourly metrics using `updatePoolDayData()` and `updatePoolHourData()`.
@@ -38,12 +38,12 @@ ReturnType: void
 1. [Initialize Event (Handler)](../../events)
 
 </TabItem>
-<TabItem value="Polygon, Optimism" lable="Polygon, Optimism">
+<TabItem value="Polygon, Optimism" label="Polygon, Optimism">
 
 - Follows the logic of update, but doesn't save the `pool` entity.
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Doesn't save the pool entity
 - Doesn't update the Eth's USD price, or the token prices relative to ETh.
@@ -97,7 +97,7 @@ Params:
 ReturnType: void
 ```
 <Tabs>
-    <TabItem value="Other-Chains" lable="Other-Chains">
+    <TabItem value="Other-Chains" label="Other-Chains">
 
 - updates `txCount`, `totalValueLockedETH` and `totalValueLockedUSD` metrics for `pool`, `factory` and `token` entities.
 - Decreases `pool.liquidity` by `event.params.amount` if the current `pool.tick` value is within the burnt tick range.
@@ -130,7 +130,7 @@ ReturnType: void
 1. [Burn Event (Handler)](../../events)
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 Most of the logic is same as mainnet subgraph with following changes:
 - While loading the `Tick` entities, if either one is not found, invokes `createTickBurn()` to create ticks and then proceeds with updating the liquidity values and metrics.
@@ -153,7 +153,7 @@ The following pool address is ignored by the function: [0x9663f2ca0454accad3e094
 :::
 
 <Tabs>
-<TabItem value="Eth Mainnet" lable="Eth Mainnet">
+<TabItem value="Eth Mainnet" label="Eth Mainnet">
 
 - Calculates the tracked and untracked USD amount for the swap. `tracked` amount is the USD amount calculated only for tokens present in `WHITELIST_TOKEN` using `getTrackedAmountUSD`. `untracked` amount is calculated using `token.derivedETH * bundle.ethPriceUSD`. 
 - Calculates the fee in `ETH` & `USD` using the formula `amountTracked * (pool.feeTier/1,000,000)`.
@@ -209,12 +209,12 @@ The following pool address is ignored by the function: [0x9663f2ca0454accad3e094
 1. [Swap Event (Handler)](../../events)
 
 </TabItem>
-<TabItem value="Polygon" lable="Polygon">
+<TabItem value="Polygon" label="Polygon">
 
 - Follows the logic of mainnet except doesn't save the `token0HourData`, `token1HourData` and `poolHourData` entities.
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Follows the logic of mainnet except doesn't save the `token0HourData`, `token1HourData` and `poolHourData` entities.
 - Doesn't update the `pool.feeGrowthGlobal0X128` and `pool.feeGrowthGlobal1X128` values.
@@ -231,7 +231,7 @@ ReturnType: void
 ```
 
 <Tabs>
-<TabItem value="Eth Mainnet, Polygon" lable="Eth Mainnet, Polygon">
+<TabItem value="Eth Mainnet, Polygon" label="Eth Mainnet, Polygon">
 
 - Sets `pool.feeGrowthGlobal0X128` and `pool.feeGrowthGlobal1X128` by reading the them from pool contract's blockchain state using the ABI.
 
@@ -245,7 +245,7 @@ ReturnType: void
 1. [Flash Event (Handler)](../../events)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 - Doesn't update anything. Only loads the pool entity and immediately saves it.
 </TabItem>
 </Tabs>
@@ -260,7 +260,7 @@ ReturnType: void
 ```
 
 <Tabs>
-<TabItem value="Eth Mainnet, Polygon" lable="Eth Mainnet, Polygon">
+<TabItem value="Eth Mainnet, Polygon" label="Eth Mainnet, Polygon">
 
 - Sets `tick.feeGrowthOutside0X128` and `tick.feeGrowthOutside1X128` by reading the tick from pool contract's blockchain state using the ABI.
 - Triggers update to tick day metrics by invoking `updateTickDayData()`.
@@ -280,7 +280,7 @@ ReturnType: void
 3. [loadTickUpdateFeeVarsAndSave](#loadtickupdatefeevarsandsave)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 - Doesn't update anything. Only loads the ticks from pool contract and invokes save on the tick entity passed as parameter.
 </TabItem>
 </Tabs>

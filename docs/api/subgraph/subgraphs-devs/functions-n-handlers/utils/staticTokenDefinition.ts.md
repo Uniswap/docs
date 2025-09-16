@@ -32,7 +32,7 @@ The class exposes two static functions:
 Returns an `Array<StaticTokenDefinition>` object with the token definitions defined with the function:
 
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 |Address|Symbol|Name|Decimals|
 |-|-|-|-|
@@ -44,7 +44,7 @@ Returns an `Array<StaticTokenDefinition>` object with the token definitions defi
 |0x38c6a68304cdefb9bec48bbfaaba5c5b47818bb2|HPB|HPBCoin|18|
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 |Address|Symbol|Name|Decimals|
 |-|-|-|-|
@@ -52,7 +52,7 @@ Returns an `Array<StaticTokenDefinition>` object with the token definitions defi
 |0xff970a61a04b1ca14834a43f5de4533ebddb5cc8|USDC|USD Coin|6|
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 |Address|Symbol|Name|Decimals|
 |-|-|-|-|

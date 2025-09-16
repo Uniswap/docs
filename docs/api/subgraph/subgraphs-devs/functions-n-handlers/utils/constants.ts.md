@@ -39,7 +39,7 @@ Represents the null address in ethereum.
 - value: 0
 ```
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 #### Referenced at:
 1. [updatePoolDayData()](./intervalUpdates.ts#updatepooldaydata)
@@ -56,7 +56,7 @@ Represents the null address in ethereum.
 12. [handleSwap()](../mappings/core.ts#handleswap)
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 #### Additionally Invoked At:
 1. [populateToken()](./backfill.ts#populatetoken)
@@ -83,7 +83,7 @@ Represents the null address in ethereum.
 
 ### TWO_BI
 <Tabs>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 ```
 - type: BigInt
@@ -94,7 +94,7 @@ Represents the null address in ethereum.
 1. [bigDecimalExponated()](./index.ts#bigdecimalexponated)
 
 </TabItem>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 	The Value is not present in any other chain.
 </TabItem>
 </Tabs>   
@@ -107,7 +107,7 @@ Represents the null address in ethereum.
 ```
 
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 #### Referenced at:
 1. [updatePoolDayData()](./intervalUpdates.ts#updatepooldaydata)
@@ -125,7 +125,7 @@ Represents the null address in ethereum.
 13. [handleSwap()](../mappings/core.ts#handleswap)
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 #### Additionally Invoked At:
 1. [populateToken()](./backfill.ts#populatetoken)

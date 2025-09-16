@@ -21,7 +21,7 @@ Params:
 ReturnType: Position | null
 ```
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth Mainnet">
 
 - Returns a `Position` entity for the given `tokenId` if found.
 - If not found, retrieves a position by directly querying the `NonfungiblePositionManager` contract using the ABI. Invokes `factoryContract.getPool()` and passing it the `position`'s parameters `token0`, `token1` and `fee` to find the `pool` contract address.
@@ -51,7 +51,7 @@ In certain scenarios, the position is minted and burnt within the same block. Th
 4. [handleTransfer()](#handletransfer)
 
 </TabItem>
-<TabItem value="Polygon, Optimism" lable="Polygon, Optimism">
+<TabItem value="Polygon, Optimism" label="Polygon, Optimism">
 In addition to mainnet:
 
 - initializes `position.collectedToken0` and `position.collectedToken1` values.
@@ -111,7 +111,7 @@ Params:
 ReturnType: void
 ```
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth Mainnet">
 
 :::info Ignored Blocks and Addresses
  - Block 14317993 is ignored by the function.
@@ -136,7 +136,7 @@ ReturnType: void
 1. [IncreaseLiquidity Event (Handler)](../../events)
 
 </TabItem>
-<TabItem value="Polygon" lable="Polygon">
+<TabItem value="Polygon" label="Polygon">
 
 Follows most of the logic of mainnet except the following points:
 
@@ -147,7 +147,7 @@ Follows most of the logic of mainnet except the following points:
 1. [Bundle](../../schemas/bundle) - Read
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 Follows most of the logic of mainnet except the following points:
 
@@ -168,7 +168,7 @@ Params:
 ReturnType: void
 ```
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth Mainnet">
 
 :::info Ignored Blocks and Addresses
  - Block 14317993 is ignored by the function.
@@ -193,7 +193,7 @@ ReturnType: void
 1. [DecreaseLiquidity Event (Handler)](../../events)
 
 </TabItem>
-<TabItem value="Polygon" lable="Polygon">
+<TabItem value="Polygon" label="Polygon">
 
 Follows most of the logic of mainnet except the following points:
 
@@ -204,7 +204,7 @@ Follows most of the logic of mainnet except the following points:
 1. [Bundle](../../schemas/bundle) - Read
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 Follows most of the logic of mainnet except the following points:
 
@@ -229,7 +229,7 @@ ReturnType: void
 :::
 
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth Mainnet">
 
 - Fetches the position entity using `getPosition()`, passing `event.params.tokenId` and `event` as parameters.
 - Updates fields `position.collectedFeesToken0` and `position.collectedFeesToken1` by adding the `event.params.amount0` after adjusting it with `token.decimals`.
@@ -253,7 +253,7 @@ ReturnType: void
 1. [Collect Event (Handler)](../../events)
 
 </TabItem>
-<TabItem value="Polygon" lable="Polygon">
+<TabItem value="Polygon" label="Polygon">
 
 Differs from mainnet at the following areas:
 - Updates fields `position.collectedToken0` and `position.collectedToken1` by adding the `event.params.amount0` and `event.params.amount1` after adjusting them with `token.decimals`.
@@ -264,7 +264,7 @@ Differs from mainnet at the following areas:
 1. [Bundle](../../schemas/bundle) - Read
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 Differs from mainnet at the following areas:
 - Returns without any changes if token0 or token1 entities are null.

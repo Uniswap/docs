@@ -42,7 +42,7 @@ ReturnType: PoolDayData
 ```
 
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 Using `event.block.timestamp.toI32()/86400` and `event.address.toHexString()` to get the `dayID` and `poolID` respectively. Together also give the `poolDayDataID`.
 
@@ -69,7 +69,7 @@ Note: Currently updates `poolDayData.close` only when a new entity is created.
 4. [handleSwap()](../mappings/core.ts#handleswap)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Uses the logic of mainnet but doesn't initialize or update `poolDayData.feeGrowthGlobal0X128` and `poolDayData.feeGrowthGlobal1X128` values.
 
@@ -84,7 +84,7 @@ Params:
 ReturnType: PoolHourData
 ```
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 Using `event.block.timestamp.toI32()/3600` and `event.address.toHexString()` to get the `hourIndex` and `poolID` respectively. Together also give the `hourPoolID`.
 
@@ -109,7 +109,7 @@ Updates the rest of the metrics using values from `Pool` entity.
 4. [handleSwap()](../mappings/core.ts#handleswap)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Uses the logic of mainnet but doesn't initialize or update `poolHourData.feeGrowthGlobal0X128` and `poolHourData.feeGrowthGlobal1X128` values.
 
@@ -185,7 +185,7 @@ Params:
 ReturnType: TickDayData
 ```
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 Uses `event.block.timestamp.toI32() / 86400` to determine the `dayID`. Uses `dayId` and `tick.id` to get the `tickDayDataID`.
 
@@ -200,7 +200,7 @@ Sets the `TickDayData` entity's field values using corresponding fields from `ti
 1. [updateTickFeeVarsAndSave()](../mappings/core.ts#updatetickfeevarsandsave)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Uses the logic of mainnet but doesn't initialize or update `tickDayData.feeGrowthOutside0X128` and `tickDayData.feeGrowthOutside1X128` values.
 

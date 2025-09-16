@@ -16,7 +16,7 @@ Params:
 ReturnType: void
 ```
 <Tabs>
-<TabItem value="Eth Mainnet, Polygon" lable="Eth Mainnet, Polygon">
+<TabItem value="Eth Mainnet, Polygon" label="Eth Mainnet, Polygon">
 
 :::info Ignored Pool
 The following pool address is ignored by the function: [0x8fe8d9bb8eeba3ed688069c3d6b556c9ca258248](https://etherscan.io/address/0x8fe8d9bb8eeba3ed688069c3d6b556c9ca258248) (MULAN-USDT)
@@ -58,12 +58,12 @@ While creating either of the tokens, if the decimals value is not available, the
 1. [PoolCreated Event (Handler)](../../events)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Same logic as mainnet, but doesn't initialize `pool.feeGrowthGlobal0X128` and `pool.feeGrowthGlobal1X128` values.
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 - If factory doesn't exists, initializes poolCount to `104` instead of `ZERO_BI` and `factory.populated` to `false`
 - Before saving the pool entity, if `factory.populated` is false, invokes `populateEmptyPools()` to load the pool before regenisis and sets `factory.populated = true`.

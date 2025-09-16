@@ -58,7 +58,7 @@ Params:
 ReturnType: BigDecimal
 ```
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 If `power` is `ZERO_BI`, `ONE_BD` is returned. `value` is multipled by itself in a simple for loop executed `abs(power)` number of times. If the `power` is negative, uses `safeDiv` to divide `ONE_BD` with the result of the previous calculation. Returns the result in BigDecimal.
 
@@ -73,7 +73,7 @@ If `power` is `ZERO_BI`, `ONE_BD` is returned. `value` is multipled by itself in
 1. [createTick()](./tick.ts#createtick)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Differs in logic to compute the exponent from other chains.
 - Instead of looping and multiplying `value` through `power` loop iterations, performs [simple exponentiation by squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring)
@@ -165,7 +165,7 @@ Params:
 ReturnType: BigDecimal
 ```
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 If exchangeDecimals is `ZERO_BI`, returns tokenAmount after converting to BigDecimal. Else divides the BigDecimal tokenAmount using 10 raised to `exchangeDecimals` as the denominator.
 
@@ -182,7 +182,7 @@ If exchangeDecimals is `ZERO_BI`, returns tokenAmount after converting to BigDec
 6. [handleCollect()](../mappings/position-manager.ts#handlecollect)
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 #### Additionally Invoked At:
 1. [populateEmptyPools()](./backfill.ts#populateemptypools)

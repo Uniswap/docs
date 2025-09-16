@@ -19,7 +19,7 @@ Params:
 ReturnType: Tick
 ```
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 Initializes a new Tick to store the liquidity present at the specific tick.
 
@@ -43,7 +43,7 @@ All the other parameters are initialized to `ZERO_BD` or `ZERO_BI`.
 1. [handleMint()](../mappings/core.ts#handlemint)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Logic same as mainnet, except doesn't initialize the variables `tick.feeGrowthOutside0X128` and  `tick.feeGrowthOutside1X128`
 
@@ -94,7 +94,7 @@ Params:
 ReturnType: BigInt
 ```
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 Given a specific fee tier, returns a BigInt value for the respective tick spacing used in the pool contract.
 
@@ -110,7 +110,7 @@ Given a specific fee tier, returns a BigInt value for the respective tick spacin
 1. [handleSwap()](../mappings/core.ts#handleswap)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Doesn't have the Fee Tier `100`, Tick Space `1` entry.
 

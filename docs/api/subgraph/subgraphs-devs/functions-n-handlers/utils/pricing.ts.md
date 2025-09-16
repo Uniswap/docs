@@ -10,28 +10,28 @@ path: [`/src/utils/pricing.ts`](https://github.com/Uniswap/v3-subgraph/blob/main
 
 ### WETH_ADDRESS
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth Mainnet">
 
 ```
 - type: string
 - value: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
 ```
 </TabItem>
-<TabItem value="Polygon" lable="Polygon">
+<TabItem value="Polygon" label="Polygon">
 
 ```
 - type: string
 - value: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619'
 ```
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-one">
+<TabItem value="Arbitrum-One" label="Arbitrum-one">
 
 ```
 - type: string
 - value: '0x82af49447d8a07e3bd95bd0d56f35241523fbab1'
 ```
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 ```
 - type: string
@@ -47,7 +47,7 @@ Address of wrapped-ETH (WETH) contract on ethereum mainnet.
 
 ### USDC_WETH_03_POOL
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth-Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth-Mainnet">
 
 ```
 - type: string
@@ -60,21 +60,21 @@ Address of Uniswap V3 pool contract between `USDC` and `WETH` `ERC-20` tokens on
 1. [getEthPriceInUSD](#getethpriceinusd)
 
 </TabItem>
-<TabItem value="Polygon" lable="Polygon">
+<TabItem value="Polygon" label="Polygon">
 
 ```
 - type: string
 - value: '0x0e44ceb592acfc5d3f09d996302eb4c499ff8c10'
 ```
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-one">
+<TabItem value="Arbitrum-One" label="Arbitrum-one">
 
 ```
 - type: string
 - value: '0x17c14d2c404d167802b16c450d3c99f88f2c4f4d'
 ```
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 - Not present. Instead refer [DAI_WETH_03_POOL](#dai_weth_03_pool)
 
@@ -84,7 +84,7 @@ Address of Uniswap V3 pool contract between `USDC` and `WETH` `ERC-20` tokens on
 ### DAI_WETH_03_POOL
 
 <Tabs>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 ```
 - type: string
@@ -97,7 +97,7 @@ Address of Uniswap V3 pool contract between `DAI` and `WETH` `ERC-20` tokens on 
 1. [getEthPriceInUSD](#getethpriceinusd)
 
 </TabItem>
-<TabItem value="Other-Chains" lable="Other-Chains">
+<TabItem value="Other-Chains" label="Other-Chains">
 
 - Not present. Instead refer [USDC_WETH_03_POOL](#usdc_weth_03_pool)
 
@@ -111,7 +111,7 @@ A list of tokens which have considerable usage and are likely to have pool pairi
 The following token addresses are present in the list:
 
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth-Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth-Mainnet">
 
 |Symbol|Address|
 |-|-|
@@ -145,7 +145,7 @@ The following token addresses are present in the list:
 2. [handlePoolCreated()](../mappings/factory.ts#handlepoolcreated)
 
 </TabItem>
-<TabItem value="Polygon" lable="Polygon">
+<TabItem value="Polygon" label="Polygon">
 
 |Symbol|Address|
 |-|-|
@@ -154,7 +154,7 @@ The following token addresses are present in the list:
 |USDC|[0x2791bca1f2de4661ed88a30c99a7a9449aa84174](https://polygonscan.com/address/0x2791bca1f2de4661ed88a30c99a7a9449aa84174)|
 |DAI|[0x8f3cf7ad23cd3cadbd9735aff958023239c6a063](https://polygonscan.com/address/0x8f3cf7ad23cd3cadbd9735aff958023239c6a063)|
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-one">
+<TabItem value="Arbitrum-One" label="Arbitrum-one">
 
 |Symbol|Address|
 |-|-|
@@ -163,7 +163,7 @@ The following token addresses are present in the list:
 |DAI|[0xda10009cbd5d07dd0cecc66161fc93d7c9000da1](https://arbiscan.io/address/0xda10009cbd5d07dd0cecc66161fc93d7c9000da1)|
 |USDT|[0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9](https://arbiscan.io/address/0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9)|
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 |Symbol|Address|
 |-|-|
@@ -187,7 +187,7 @@ The following token addresses are present in the list:
 ### STABLE_COINS
 A list of ERC20 token contract addresses which have stable coin prices, i.e., 1 token expected to be valued at 1 USD.
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth-Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth-Mainnet">
 
 ||Address|
 |-|-|
@@ -202,19 +202,19 @@ A list of ERC20 token contract addresses which have stable coin prices, i.e., 1 
 1. [findEthPertoken()](#findethpertoken)
 
 </TabItem>
-<TabItem value="Polygon" lable="Polygon">
+<TabItem value="Polygon" label="Polygon">
 
 ||Address|
 |-|-|
 |USDC|[0x2791bca1f2de4661ed88a30c99a7a9449aa84174](https://polygonscan.com/address/0x2791bca1f2de4661ed88a30c99a7a9449aa84174)|
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - `STABLE_COINS` is not defined for arbitrum-one subgraph.
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 - `STABLE_COINS` is not defined for optimism subgraph.
 
@@ -223,7 +223,7 @@ A list of ERC20 token contract addresses which have stable coin prices, i.e., 1 
 
 ### MINIMUM_ETH_LOCKED
 <Tabs>
-    <TabItem value="Eth Mainnet" lable="Eth-Mainnet">
+    <TabItem value="Eth Mainnet" label="Eth-Mainnet">
 
 ```
  - type: BigDecimal
@@ -235,14 +235,14 @@ While calculating token price in USD, the value of other token locked in the poo
 1. [findEthPertoken()](#findethpertoken)
 
 </TabItem>
-<TabItem value="Polygon" lable="Polygon">
+<TabItem value="Polygon" label="Polygon">
 
 ```
  - type: BigDecimal
  - value: 5
 ```
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-one">
+<TabItem value="Arbitrum-One" label="Arbitrum-one">
 
 ```
  - type: BigDecimal
@@ -253,7 +253,7 @@ While calculating token price in USD, the value of other token locked in the poo
 1. [getEthPriceInUSD()](#getethpriceinusd)
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 ```
  - type: BigDecimal
@@ -297,7 +297,7 @@ Params: none
 ReturnType: BigDecimal
 ```
 <Tabs>
-<TabItem value="Other Chains" lable="Other-Chains">
+<TabItem value="Other Chains" label="Other-Chains">
 
 Returns the Price of ETH in terms of USD, based on the stable coin pools.
 Currently, the `token0Price` for the `pool` represented by `USDC_WETH_03_POOL`. When `pool` entity is not found, returns `ZERO_BD`.
@@ -314,7 +314,7 @@ Currently, the `token0Price` for the `pool` represented by `USDC_WETH_03_POOL`. 
 2. [handleSwap()](../mappings/core.ts#handleSwap)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 
 - Logic same as mainnet, except returns `ZERO_BD` if eth locked is not greated than `MINIMUM_ETH_LOCKED`.
 
@@ -322,7 +322,7 @@ Currently, the `token0Price` for the `pool` represented by `USDC_WETH_03_POOL`. 
 1. [MINIMUM_ETH_LOCKED](#minimum_eth_locked)
 
 </TabItem>
-<TabItem value="Optimism" lable="Optimism">
+<TabItem value="Optimism" label="Optimism">
 
 - Uses [DAI_WETH_03_POOL](#dai_weth_03_pool) instead of USDC
 
@@ -340,7 +340,7 @@ Params:
 ReturnType: BigDecimal
 ```
 <Tabs>
-<TabItem value="Eth Mainnet, Polygon" lable="Eth Mainnet, Polygon">
+<TabItem value="Eth Mainnet, Polygon" label="Eth Mainnet, Polygon">
 
 If token is weth, returns 1. If token in `STABLE_COINS`, returns `1/bundle.ethPriceUSD`.
 
@@ -364,7 +364,7 @@ If there's no whitelisted pool with `MINIMUM_ETH_LOCKED`, returns `ZERO_BD`.
 2. [handleSwap()](../mappings/core.ts#handleSwap)
 
 </TabItem>
-<TabItem value="Arbitrum-One" lable="Arbitrum-One">
+<TabItem value="Arbitrum-One" label="Arbitrum-One">
 - Doesn't check if token is present in `STABLE_COINS`. Rest of the logic is same as mainnet.
 </TabItem>
 </Tabs>
