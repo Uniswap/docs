@@ -77,7 +77,7 @@ contract DeltaReader {
         address user
     ) external view returns (int256) {
         // Important: This shows the current delta for this token/user pair
-        return poolManager.currencyDelta(currency, user);
+        return poolManager.currencyDelta(user, currency);
         // Negative: User owes tokens
         // Positive: User can claim tokens
         // Zero: No outstanding obligations
