@@ -10,7 +10,7 @@ It is based on the [Price Oracle example](https://github.com/Uniswap/examples/tr
 To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/oracle/README.md) and follow the setup instructions.
 
 :::info
-If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
+If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](../01-background.md) page!
 :::
 
 In this example we will use **ethers JS** to observe the development of a Pool's current tick over several blocks.

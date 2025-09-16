@@ -739,6 +739,11 @@ const config: Config = {
             to: '/contracts/uniswapx/guides/priority/priorityorderreactor',
             from: '/contracts/uniswapx/guides/priorityorderreactor',
           },
+          // Missing concept page redirects
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/concepts/protocol/liquidity',
+          },
         ],
         createRedirects(existingPath) {
           // v3 Redirects
