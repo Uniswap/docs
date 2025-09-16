@@ -12,7 +12,7 @@ Already familiar with web3 development and/or the basics of our SDK and want to 
 
 ## Providers
 
-Communication with the blockchain is typically done through a provider and local models of smart contracts and their [ABIs](./01-background.md#abis).
+Communication with the blockchain is typically done through a provider and local models of smart contracts and their [ABIs](#abis).
 
 To achieve this, our examples use the [ethers.js](https://docs.ethers.io/v5/) library. To instantiate a provider you will need a data source. Our examples offer two options:
 

@@ -39,3 +39,6 @@ package-lock.json
 CLAUDE.md
 claude.md
 v4-sdk-baseline-assessment.md
+
+# Ignore external repositories
+v4-subgraph/
