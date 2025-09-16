@@ -93,7 +93,7 @@ First, let's create our basic hook structure:
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-import {BaseHook} from "v4-periphery/src/BaseHook.sol";
+import {BaseHook} from "v4-periphery/src/utils/BaseHook.sol";
 import {Hooks} from "v4-core/src/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
 import {PoolKey} from "v4-core/src/types/PoolKey.sol";
@@ -241,6 +241,173 @@ swapDelta = (-99 USDC, 98 USDT) - (1 USDC, 0)
     - The router (on behalf of the user) must pay 100 USDC (original amount including fee) and receives 98 USDT.
 
 This process demonstrates how `BeforeSwapDelta` effectively "transfers" the hook's outstanding delta to the swap router, ensuring that the user pays the fee while the hook collects it, all within a single atomic transaction.
+
+## Alternative: Charging Hook Fees in `afterSwap`
+
+Charging hook fees in `afterSwap` is different from charging them in `beforeSwap` because `afterSwap` allows the hook to compute a fee on the actual output and collect it.
+This is best used in case of partial swaps, as `afterSwap` charges a fee on the **actual output** observed from `BalanceDelta` without overcharging the user.
+
+### When to prefer `afterSwap`
+- You want fees to reflect **what actually transferred** (not the requested amount).
+- Your swaps frequently **hit price limits** or **liquidity ceilings**.
+
+Step 1: Setting the permission flags
+
+Enable `afterSwap` and `afterSwapReturnDelta` permissions in the hook:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import {BaseHook} from "v4-periphery/src/utils/BaseHook.sol";
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {Currency} from "v4-core/src/types/Currency.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {SwapParams} from "v4-core/src/types/PoolOperation.sol";
+
+contract HookFeeAfterSwap is BaseHook {
+    uint256 public constant HOOK_FEE_PERCENTAGE = 10;
+    uint256 public constant FEE_DENOMINATOR     = 100_000;
+
+    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
+
+function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+    return Hooks.Permissions({
+        beforeInitialize: false,
+        afterInitialize: false,
+        beforeAddLiquidity: false,
+        beforeRemoveLiquidity: false,
+        afterAddLiquidity: false,
+        afterRemoveLiquidity: false,
+        beforeSwap: false,
+        afterSwap: true,
+        beforeDonate: false,
+        afterDonate: false,
+        beforeSwapReturnDelta: false,
+        afterSwapReturnDelta: true,
+        afterAddLiquidityReturnDelta: false,
+        afterRemoveLiquidityReturnDelta: false
+    });
+}
+}
+```
+
+Step 2: Implementing `afterSwap` function:
+
+In afterSwap, you do not build a BeforeSwapDelta. Instead, we read actual output from **BalanceDelta** and compute fee on that amount.
+
+:::tip Unspecified currency (afterSwap)
+The `int128` you return is for the **unspecified currency**. Map it like this:
+
+- **exactIn** → unspecified = **output** token → take the fee in **output**; user receives less output.
+- **exactOut** → unspecified = **input** token  → take the fee in **input**; user must pay more input.
+
+```solidity
+function _afterSwap(
+        address,
+        PoolKey calldata key,
+        SwapParams calldata params,
+        BalanceDelta delta,
+        bytes calldata
+    ) internal override returns (bytes4, int128) {
+        bool outputIsToken0 = params.zeroForOne ? false : true;
+
+        int256 outputAmount = outputIsToken0 ? delta.amount0() : delta.amount1();
+        if (outputAmount <= 0) {
+            return (BaseHook.afterSwap.selector, 0);
+        }
+
+        uint256 feeAmount = (uint256(outputAmount) * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
+
+        require(feeAmount <= ((uint256(1) << 127) - 1), "fee too large");
+
+        bool isExactIn = (params.amountSpecified < 0);
+
+        Currency feeCurrency;
+        if (isExactIn) {
+            feeCurrency = outputIsToken0 ? key.currency0 : key.currency1;
+        } else {
+            bool inputIsToken0 = params.zeroForOne ? true : false;
+            feeCurrency = inputIsToken0 ? key.currency0 : key.currency1;
+        }
+
+        poolManager.take(feeCurrency, address(this), feeAmount);
+
+        return (BaseHook.afterSwap.selector, int128(int256(feeAmount)));
+```
+
+## Complete afterSwap contract:
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import {BaseHook} from "v4-periphery/src/utils/BaseHook.sol";
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {Currency} from "v4-core/src/types/Currency.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {SwapParams} from "v4-core/src/types/PoolOperation.sol";
+
+contract HookFeeAfterSwap is BaseHook {
+    uint256 public constant HOOK_FEE_PERCENTAGE = 10;
+    uint256 public constant FEE_DENOMINATOR     = 100_000;
+
+    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
+
+    function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+        return Hooks.Permissions({
+            beforeInitialize: false,
+            afterInitialize: false,
+            beforeAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterAddLiquidity: false,
+            afterRemoveLiquidity: false,
+            beforeSwap: false,
+            afterSwap: true,
+            beforeDonate: false,
+            afterDonate: false,
+            beforeSwapReturnDelta: false,
+            afterSwapReturnDelta: true,
+            afterAddLiquidityReturnDelta: false,
+            afterRemoveLiquidityReturnDelta: false
+        });
+    }
+
+    function _afterSwap(
+        address ,
+        PoolKey calldata key,
+        SwapParams calldata params,
+        BalanceDelta delta,
+        bytes calldata
+    ) internal override returns (bytes4, int128) {
+        bool outputIsToken0 = params.zeroForOne ? false : true;
+
+        int256 outputAmount = outputIsToken0 ? delta.amount0() : delta.amount1();
+        if (outputAmount <= 0) {
+            return (BaseHook.afterSwap.selector, 0);
+        }
+
+        uint256 feeAmount = (uint256(outputAmount) * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
+
+        require(feeAmount <= ((uint256(1) << 127) - 1), "fee too large");
+
+        bool isExactIn = (params.amountSpecified < 0);
+
+        Currency feeCurrency;
+        if (isExactIn) {
+            feeCurrency = outputIsToken0 ? key.currency0 : key.currency1;
+        } else {
+            bool inputIsToken0 = params.zeroForOne ? true : false;
+            feeCurrency = inputIsToken0 ? key.currency0 : key.currency1;
+        }
+
+        poolManager.take(feeCurrency, address(this), feeAmount);
+
+        return (BaseHook.afterSwap.selector, int128(int256(feeAmount)));
+    }
+}
 
 ## Conclusion
 
