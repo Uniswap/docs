@@ -34,3 +34,8 @@ package-lock.json
 # VSCode
 .vscode/
 .yarn/install-state.gz
+
+# Claude files - prevent accidental commits
+CLAUDE.md
+claude.md
+v4-sdk-baseline-assessment.md
