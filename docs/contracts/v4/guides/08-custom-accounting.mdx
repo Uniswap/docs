@@ -339,6 +339,8 @@ function _afterSwap(
 ```
 
 ## Complete afterSwap contract:
+
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
@@ -408,6 +410,7 @@ contract HookFeeAfterSwap is BaseHook {
         return (BaseHook.afterSwap.selector, int128(int256(feeAmount)));
     }
 }
+```
 
 ## Conclusion
 
