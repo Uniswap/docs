@@ -133,10 +133,10 @@ As an alternative to signing EIP-712 payloads, compacts can be registered direct
 ### Register Functions
 ```solidity
 // Register a single compact
-function register(bytes32 claimHash, bytes32 typehash) external
+function register(bytes32 claimHash, bytes32 typehash) external;
 
 // Register multiple compacts
-function registerMultiple(bytes32[] calldata claimHashes, bytes32[] calldata typehashes) external
+function registerMultiple(bytes32[] calldata claimHashes, bytes32[] calldata typehashes) external;
 
 // Register on behalf of sponsor
 function registerFor(
@@ -144,8 +144,22 @@ function registerFor(
     bytes32 claimHash,
     bytes32 typehash,
     bytes memory sponsorSignature
-) external
+) external;
 ```
+
+### Registration Event
+
+When a compact is registered, the following event is emitted:
+
+```solidity
+event CompactRegistered(
+    address indexed sponsor,
+    bytes32 claimHash,
+    bytes32 typehash
+);
+```
+
+This event is emitted when a compact is registered via `register`, `registerMultiple`, or any of the combined deposit-and-register functions.
 
 ### Check Registration Status
 ```solidity
@@ -153,7 +167,7 @@ function isRegistered(
     address sponsor,
     bytes32 claimHash,
     bytes32 typehash
-) external view returns (bool)
+) external view returns (bool);
 ```
 
 ## Signature Verification
@@ -164,15 +178,3 @@ When a claim is submitted for a non-registered compact, The Compact verifies the
 2. **ECDSA Signature**: Attempt standard ECDSA signature verification
 3. **EIP-1271 `isValidSignature`**: If ECDSA fails, call `isValidSignature` on the sponsor's address
 4. **Emissary `verifyClaim`**: If EIP-1271 fails, call the emissary's `verifyClaim` function
-
-## Key Events
-
-```solidity
-event CompactRegistered(
-    address indexed sponsor,
-    bytes32 claimHash,
-    bytes32 typehash
-)
-```
-
-Emitted when a compact is registered via `register`, `registerMultiple`, or combined deposit-and-register functions.

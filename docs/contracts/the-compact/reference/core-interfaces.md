@@ -447,69 +447,69 @@ event Claim(
     address indexed arbiter,
     bytes32 claimHash,
     uint256 nonce
-)
+);
 
 event NonceConsumedDirectly(
     address indexed allocator,
     uint256 nonce
-)
+);
 
 event ForcedWithdrawalStatusUpdated(
     address indexed account,
     uint256 indexed id,
     bool activating,
     uint256 withdrawableAt
-)
+);
 
 event CompactRegistered(
     address indexed sponsor,
     bytes32 claimHash,
     bytes32 typehash
-)
+);
 
 event AllocatorRegistered(
     uint96 allocatorId,
     address allocator
-)
+);
 
 event EmissaryAssigned(
     address indexed sponsor,
     bytes12 indexed lockTag,
     address indexed emissary
-)
+);
 
 event EmissaryAssignmentScheduled(
     address indexed sponsor,
     bytes12 indexed lockTag,
     uint256 assignableAt
-)
+);
 ```
 
 ## Key Errors
 
 ```solidity
-error InvalidToken(address token)
-error Expired(uint256 expiration)
-error InvalidSignature()
-error PrematureWithdrawal(uint256 id)
-error ForcedWithdrawalFailed()
-error ForcedWithdrawalAlreadyDisabled(address account, uint256 id)
-error UnallocatedTransfer(address operator, address from, address to, uint256 id, uint256 amount)
-error InvalidBatchAllocation()
-error InvalidRegistrationProof(address allocator)
-error InvalidBatchDepositStructure()
-error AllocatedAmountExceeded(uint256 allocatedAmount, uint256 providedAmount)
-error InvalidScope(uint256 id)
-error InvalidDepositTokenOrdering()
-error InvalidDepositBalanceChange()
-error Permit2CallFailed()
-error ReentrantCall(address existingCaller)
-error InconsistentAllocators()
-error InvalidAllocation(address allocator)
-error ChainIndexOutOfRange()
-error InvalidEmissaryAssignment()
-error EmissaryAssignmentUnavailable(uint256 assignableAt)
-error InvalidLockTag()
+error InvalidToken(address token);
+error Expired(uint256 expiration);
+error InvalidSignature();
+error PrematureWithdrawal(uint256 id);
+error ForcedWithdrawalFailed();
+error ForcedWithdrawalAlreadyDisabled(address account, uint256 id);
+error UnallocatedTransfer(address operator, address from, address to, uint256 id, uint256 amount);
+error InvalidBatchAllocation();
+error InvalidRegistrationProof(address allocator);
+error InvalidBatchDepositStructure();
+error AllocatedAmountExceeded(uint256 allocatedAmount, uint256 providedAmount);
+error InvalidScope(uint256 id);
+error InvalidDepositTokenOrdering();
+error InvalidDepositBalanceChange();
+error Permit2CallFailed();
+error ReentrantCall(address existingCaller);
+error InconsistentAllocators();
+error InvalidAllocation(address allocator);
+error ChainIndexOutOfRange();
+error InvalidEmissaryAssignment();
+error EmissaryAssignmentUnavailable(uint256 assignableAt);
+error InvalidLockTag();
 ```
 
 ## ERC6909 Metadata
