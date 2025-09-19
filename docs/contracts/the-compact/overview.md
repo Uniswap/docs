@@ -48,6 +48,20 @@ The Compact operates on a trust-minimized model where:
 
 The Compact V1 has undergone two independent security reviews by [OpenZeppelin](https://openzeppelin.com) and [Spearbit Cantina](https://cantina.xyz).
 
+## Deployments
+
+The Compact is deployed at the same address across multiple chains:
+
+| Network | Address | 
+|---------|---------|
+| Ethereum Mainnet | `0x00000000000018DF021Ff2467dF97ff846E09f48` |
+| Base | `0x00000000000018DF021Ff2467dF97ff846E09f48` |
+| Unichain | `0x00000000000018DF021Ff2467dF97ff846E09f48` |
+
+> The Compact uses a deterministic deployment address, ensuring the same address across all supported networks.
+
+The Compact uses a permissionless deployment process. Anyone can deploy the protocol to a new EVM chain by submitting a transaction with the same `to` and `data` arguments. This ensures the same deterministic address across all chains and enables the creation of compacts that commit resource locks across multiple chains.
+
 ## Resources
 
 - [GitHub Repository](https://github.com/Uniswap/the-compact)
