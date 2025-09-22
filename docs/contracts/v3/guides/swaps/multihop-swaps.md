@@ -228,7 +228,7 @@ contract SwapExamples {
         // The parameter path is encoded as (tokenOut, fee, tokenIn/tokenOut, fee, tokenIn)
         // The tokenIn/tokenOut field is the shared token between the two pools used in the multiple pool swap. In this case USDC is the "shared" token.
         // For an exactOutput swap, the first swap that occurs is the swap which returns the eventual desired token.
-        // In this case, our desired output token is WETH9 so that swap happpens first, and is encoded in the path accordingly.
+        // In this case, our desired output token is WETH9 so that swap happens first, and is encoded in the path accordingly.
         ISwapRouter.ExactOutputParams memory params =
             ISwapRouter.ExactOutputParams({
                 path: abi.encodePacked(WETH9, poolFee, USDC, poolFee, DAI),

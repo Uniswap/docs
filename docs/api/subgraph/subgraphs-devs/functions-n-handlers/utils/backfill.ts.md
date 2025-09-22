@@ -46,7 +46,7 @@ Create entities for each pool and token before regenesis of optimism chain.
 - Iterates through the pools present in `POOL_MAPPINGS` list. Fow each of the items, does the below mentioned steps.
 - Using PoolABI, loads the pool contract. Creates a new `Pool` entity and sets it's `token0`, `token1` values from POOL_MAPPING and liquidity from the contract read. Iniitalizes all the metrics to `ZERO_BD` or `ZERO_BI`.
 - set `pool.feeTier` by reading it from the contract.
-- Invokes `populateToken()` for the the two tokens.
+- Invokes `populateToken()` for the two tokens.
 - For each token, adds pool to `token.whitelistPool` if the other token is present in `WHITELIST_TOKENS` list.
 - Sets `pool.totalValueLockedToken` and `token.totalValueLocked` by reading the ERC20 contract and invoking `balanceOf()`.
 - Saves the token and pool entities.
