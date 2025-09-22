@@ -73,6 +73,23 @@ When the `lockTag` is non-zero but different from the original, the tokens are c
 #### 3. Withdraw to Underlying Token
 When the `lockTag` is `bytes12(0)`, the ERC6909 tokens are burned and the underlying tokens (native or ERC20) are withdrawn to the recipient. This fully exits The Compact system.
 
+:::important
+To prevent griefing attacks (e.g., via malicious receive hooks or intentionally underpaying gas), The Compact implements a withdrawal fallback mechanism:  
+
+1. The protocol first attempts withdrawals with half the available gas
+2. If this fails (and sufficient gas remains above a benchmarked stipend), it falls back to a direct ERC6909 transfer to the recipient
+<br/>
+This mechanism ensures that claims cannot be maliciously blocked through receive hook manipulation, while still preserving the intended withdrawal functionality under normal conditions.
+<br/>
+The required gas stipends for this fallback are determined through benchmarking, which measures:
+
+- Cold account access costs
+- Typical ERC20 transfer gas requirements
+- Native token transfer gas requirements
+
+The benchmark can be re-run at any time through a call to `__benchmark`.
+:::
+
 ### Example
 ```solidity
 // Example: Arbiter specifying three different destinations
