@@ -303,6 +303,7 @@ The `int128` you return is for the **unspecified currency**. Map it like this:
 
 - **exactIn** → unspecified = **output** token → take the fee in **output**; user receives less output.
 - **exactOut** → unspecified = **input** token  → take the fee in **input**; user must pay more input.
+:::
 
 ```solidity
 function _afterSwap(
