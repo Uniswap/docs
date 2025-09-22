@@ -179,11 +179,11 @@ To protect sponsors from unresponsive or malicious allocators, The Compact imple
 
 ### How It Works
 
-1. **Initiation**: A sponsor calls `enableForcedWithdrawal(uint256 id)` to signal their intent to withdraw without allocator approval
-2. **Timelock Period**: The protocol enforces a waiting period equal to the resource lock's `resetPeriod` 
-3. **Execution**: After the timelock expires, the sponsor can call `forcedWithdrawal(uint256 id, address recipient, uint256 amount)` to withdraw the underlying tokens
+1. **Initiation**: A sponsor calls `enableForcedWithdrawal(uint256 id)` to signal their intent to withdraw without allocator approval.
+2. **Timelock Period**: The protocol enforces a waiting period equal to the resource lock's `resetPeriod`.
+3. **Execution**: After the timelock expires, the sponsor can call `forcedWithdrawal(uint256 id, address recipient, uint256 amount)` to withdraw the underlying tokens.
 
-A sponsor can call `disableForcedWithdrawal(uint256 id)` at any time before execution to cancel the process
+A sponsor can call `disableForcedWithdrawal(uint256 id)` at any time before execution to cancel the process. Once their withdrawal status has been set as enabled, that state will persist until it is explicitly disabled; should they wish to utilize the underlying resource lock again, the withdrawal status will first need to be disabled.
 
 ### Functions
 
