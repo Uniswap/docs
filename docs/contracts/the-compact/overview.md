@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # The Compact
 
-The Compact is an ownerless ERC6909 contract that facilitates the voluntary formation and mediation of reusable **resource locks**. It enables tokens to be credibly committed to be spent in exchange for performing actions across arbitrary, asynchronous environments, and claimed once the specified conditions have been met.
+[The Compact 🤝](https://github.com/Uniswap/the-compact) is an ownerless ERC6909 contract that facilitates the voluntary formation and mediation of reusable **resource locks**. It enables tokens to be credibly committed to be spent in exchange for performing actions across arbitrary, asynchronous environments, and claimed once the specified conditions have been met.
 
 ## Key Components
 
@@ -62,11 +62,3 @@ The Compact is deployed at the same address across multiple chains:
 
 The Compact uses a permissionless deployment process. Anyone can deploy the protocol to a new EVM chain by submitting a transaction with the same `to` and `data` arguments. This ensures the same deterministic address across all chains and enables the creation of compacts that commit resource locks across multiple chains.
 
-## Resources
-
-- [GitHub Repository](https://github.com/Uniswap/the-compact)
-- [ITheCompact Interface](https://github.com/Uniswap/the-compact/blob/main/src/interfaces/ITheCompact.sol)
-- [ITheCompactClaims Interface](https://github.com/Uniswap/the-compact/blob/main/src/interfaces/ITheCompactClaims.sol)
-- [Sample Allocator: Smallocator](https://github.com/uniswap/smallocator)
-- [Sample Allocator: Autocator](https://github.com/uniswap/autocator)
-- [License](https://github.com/Uniswap/the-compact/blob/main/LICENSE.md) (MIT)
