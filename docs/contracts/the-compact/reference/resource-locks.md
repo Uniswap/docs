@@ -99,6 +99,17 @@ function depositERC20ViaPermit2(
 
 ## Token Handling
 
+### Native Tokens
+For native tokens, The Compact mints an amount of ERC6909 tokens equal to the msg.value. For example, a native deposit with a value of 1e18 wei would result in exactly 1e18 ERC6909 tokens being minted to the caller (or specified recipient). A withdrawal of native underlying tokens from a resource lock causes a native value equal to the number of burned ERC6909 tokens to be transferred out of the contract.
+
+### ERC20 Tokens
+For ERC20 tokens, The Compact mints an amount of ERC6909 tokens equal to the actual balance change observed by the protocol as a result of an ERC20 deposit, accounting for the token's precision. In most cases, this is equal to the `amount` parameter passed to the token's `transfer`/`transferFrom` function, which is analogous to `msg.value`. One notable exception is fee-on-transfer tokens, where the actual and intended balance changes differ.
+
+Deposits and withdrawals against an ERC20 resource lock are handled by:
+
+- Checking the contract's balance before and after the token transfer
+- Minting (or burning) an amount of ERC6909 tokens exactly equal to the observed balance change
+
 ### Fee-on-Transfer Tokens
 The Compact correctly handles fee-on-transfer tokens for both deposits and withdrawals. The amount of ERC6909 tokens minted or burned is based on the *actual balance change* in The Compact contract, not just the specified amount.
 
