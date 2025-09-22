@@ -21,12 +21,44 @@ Each unique combination of these four properties is represented by a fungible ER
 
 ## Lock Tag
 
-The `scope`, `resetPeriod`, and the `allocatorId` (obtained when an allocator is registered) are packed into a `bytes12 lockTag`. A resource lock's specific ID (the ERC6909 `tokenId`) is a concatenation of this `lockTag` and the underlying `token` address, represented as a `uint256` for ERC6909 compatibility.
+Each resource lock is uniquely identified by a combination of:
+
+1. **Underlying Token**: The address of the ERC20 token or native token held in the lock
+2. **Allocator ID**: The ID of the entity responsible for authorizing uses of the lock, which consists of the 4-bit compact flag (shifted left by 88 bits) with the lowest 88 bits of the allocator address, resulting in a 92-bit value
+3. **Scope**: Whether the lock can be spent on any chain (Multichain) or only on the same chain where the deposit occurred (Chain-specific)
+4. **Reset Period**: The time that must elapse before a forced withdrawal can be completed. The reset period is one of eight predefined values, detailed in the section below.
+
+The allocator ID, scope and reset period are encoded into a bytes12 lockTag, and the resource lock's unique ID (the ERC6909 tokenId) is derived by combining this lockTag with the underlying token address.
 
 ```solidity
-// lockTag structure (bytes12):
-// [allocatorId: 96 bits][scope: 1 bit][resetPeriod: 95 bits]
+lockTag = scope << 255 | resetPeriod << 252 | allocatorId << 160
+lockId  = lockTag | tokenAddress
 ```
+
+### Allocator ID Details
+
+The compact flag is a 4-bit value (0-15) that represents how "compact" an allocator address is, based on the number of leading zero nibbles:
+- If address has 0-3 leading zero nibbles: flag = 0
+- If address has 4-17 leading zero nibbles: flag = (number of leading zeros - 3)
+- If address has 18+ leading zero nibbles: flag = 15
+
+Mathematically, the allocator ID can be represented as:
+
+```solidity
+compactFlag = min(max(0, leadingZeroNibbles - 3), 15)
+id = (compactFlag << 88) | (allocator & 0x00000000000000000000FFFFFFFFFFFFFFFFFFFF)
+```
+
+### Reset Period Details
+
+ The reset period is one of eight predefined values:
+
+| Index | Reset Period Value        | Index | Reset Period Value        |
+|-------|---------------------------|-------|---------------------------|
+| 0     | `OneSecond`              | 4     | `OneHourAndFiveMinutes`  |
+| 1     | `FifteenSeconds`         | 5     | `OneDay`                 |
+| 2     | `OneMinute`              | 6     | `SevenDaysAndOneHour`    |
+| 3     | `TenMinutes`             | 7     | `ThirtyDays`             |
 
 ## Creating Resource Locks
 
