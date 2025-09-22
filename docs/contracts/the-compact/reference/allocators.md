@@ -173,6 +173,57 @@ Two basic sample implementations are available:
 - Allocators are sound and won't allow resource locks to become underfunded
 - Allocators will properly track and enforce balance constraints
 
+## Forced Withdrawal Mechanism
+
+To protect sponsors from unresponsive or malicious allocators, The Compact implements a forced withdrawal mechanism that allows sponsors to bypass allocator authorization after a waiting period.
+
+### How It Works
+
+1. **Initiation**: A sponsor calls `enableForcedWithdrawal(uint256 id)` to signal their intent to withdraw without allocator approval
+2. **Timelock Period**: The protocol enforces a waiting period equal to the resource lock's `resetPeriod` 
+3. **Execution**: After the timelock expires, the sponsor can call `forcedWithdrawal(uint256 id, address recipient, uint256 amount)` to withdraw the underlying tokens
+
+A sponsor can call `disableForcedWithdrawal(uint256 id)` at any time before execution to cancel the process
+
+### Functions
+
+```solidity
+// Enable forced withdrawal for a resource lock
+function enableForcedWithdrawal(uint256 id) external
+
+// Disable a pending forced withdrawal
+function disableForcedWithdrawal(uint256 id) external
+
+// Execute forced withdrawal after timelock expires
+function forcedWithdrawal(
+    uint256 id,
+    address recipient,
+    uint256 amount
+) external
+```
+
+### Security Considerations
+
+- The timelock period provides adequate notice to all parties about the withdrawal intent
+- This prevents sudden balance changes that could lead to equivocation
+- The reset period is chosen by the sponsor when creating the resource lock
+- Shorter reset periods provide faster exit but may offer less security to claimants
+
+### Checking Withdrawal Status
+
+```solidity
+function getForcedWithdrawalStatus(
+    address account,
+    uint256 id
+) external view returns (ForcedWithdrawalStatus status, uint256 withdrawableAt)
+```
+
+Status can be:
+- `Disabled`: No forced withdrawal is pending
+- `Pending`: Withdrawal initiated but timelock not expired
+- `Enabled`: Timelock expired and withdrawal can be executed
+
+
 ## Events
 
 ```solidity
