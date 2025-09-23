@@ -1,7 +1,7 @@
 ---
 id: Periphery Contracts
 title: Periphery Contracts
-sidebar_position: 7
+sidebar_position: 6
 ---
 
 # Peripheral Contracts
