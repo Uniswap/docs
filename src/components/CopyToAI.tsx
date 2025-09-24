@@ -13,7 +13,7 @@ const CopyToAI: React.FC<CopyToAIProps> = ({ className = '' }) => {
   const getCurrentPageContent = (): string => {
     // Get the main content area
     const contentElement = document.querySelector('.markdown') || document.querySelector('main')
-    if (!contentElement) return 'Content not available'
+    if (!contentElement) { return 'Content not available' }
 
     // Extract text content and clean it up
     const textContent = contentElement.textContent || ''

@@ -45,7 +45,7 @@ For this guide, the following `web3-react` packages are used:
 This guide uses `web3-react` version 8, which is a beta version.
 :::
 
-The core code of this guide can be found in the top level of our [examples repository](https://github.com/Uniswap/examples/tree/main/web3-react), under each connectors' name. For example, the code for the Coinbase Wallet connector can be found in the the [coinbase file](https://github.com/Uniswap/examples/blob/main/web3-react/src/libs/coinbase.ts).
+The core code of this guide can be found in the top level of our [examples repository](https://github.com/Uniswap/examples/tree/main/web3-react), under each connectors' name. For example, the code for the Coinbase Wallet connector can be found in the [coinbase file](https://github.com/Uniswap/examples/blob/main/web3-react/src/libs/coinbase.ts).
 
 ## Building a Coinbase Wallet connector
 
