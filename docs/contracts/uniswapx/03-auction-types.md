@@ -29,53 +29,67 @@ The following is an overview of the different types of auction mechanisms on eac
 
 ## Ethereum: RFQ + Exclusive Dutch Auction 
 
-**Two-phase auction system with exclusive filling rights for winning quoters.**
+TL;DR — **Two-phase auction system with exclusive filling rights for winning quoters.**
 
-### How It Works
+UniswapX on Ethereum uses a sophisticated two-phase auction system that balances execution quality with gas efficiency. Due to Ethereum's higher gas costs and 12-second block time, the system employs a Request for Quote (RFQ) process to ensure competitive pricing before committing users to on-chain execution. This approach grants exclusive filling rights to winning quoters during an initial period, then falls back to an open Dutch auction if the exclusive filler cannot execute. The two-phase design minimizes failed transactions while maintaining competitive pricing through both permissioned quoters and permissionless fillers.
 
+<ins>**Quote Discovery (Steps 1-3)**</ins>
 1. User goes into the interface and inputs a swap.
 2. Uniswap Labs fetches two quotes in parallel:
     - **Classic Quote**: This quote reflects the best price the user can get from classic Uniswap Protocol pools.
     - **UniswapX Quote**: A quote determined via a Request for Quote (RFQ) process with quoters. Because of the nature of the system, this set of market makers is permissioned and known to Labs.
 3. Uniswap Labs selects the best quote (soft quote) returned and compares it to the Classic Quote. If the UniswapX quote is better, the user is shown a purple lightning bolt, indicating that they will be swapping through X.
-4. The UniswapX Quote contains auction parameters, which the user signs to create a gasless offchain message. The signed message commits to the auction parameters, and defines a slippage tolerance, which is the minimum amount the swapper commits to recieving as part of the process. 
-5. This gets sent to Uniswap Labs server which requests a final “hard quote” from the group of quoters. Whichever quote (hard-quote) is highest wins exclusivity and gives the quoter a fixed amount of time to "fill" the order (which means sending users their tokens/settling the transaction).
+
+<ins>**Order Execution (Steps 4-5)**</ins>
+
+4. The UniswapX Quote contains auction parameters, which the user signs to create a gasless off-chain message. This signed message commits to the auction parameters and defines a slippage tolerance, representing the minimum amount the swapper will accept.
+5. This gets sent to Uniswap Labs' server, which requests a final "hard quote" from the group of quoters. Whichever quote (hard quote) is highest wins exclusivity and gives the quoter a fixed amount of time to fill the order (sending users their tokens and settling the transaction).
     - If no quoter provides the amount that the swapper had signed for (e.g. prices moved), then the order is sent out without exclusivity, meaning anyone can fill the order.
-6. Sometimes the market maker who won the RFQ doesn't want to fill the order anymore (e.g. price moved against the filler). This is called 'fading' and we penalize the filler by ignoring their quotes for a period of time if they fade too much.
-7. If the exclusive filler fades or there is no exclusive filler, the system proceeds to what's called a Dutch Auction, where we post the user's transactions for *anyone* to permissionlessly fill the order.
-    - A "Dutch Auction" is a type of auction that descends in price.
-    - We start the auction at or a bit below the quote price that the quoter faded.
-    - Every block, we move the price a small amount below that price.
-    - This achieves a great price to users because market makers are incentivized to fill the user's order the second the price is profitable for them to do so. Because they are competing with each other, best price is achieved, assuming just two competitive actors.
 
-In this system, we call the market makers in step #3 "Quoters" because they respond to our request for a quote. We call the market makers in step #6 "Fillers." The difference is that the set of Quoters is permissioned while the set of Fillers is permissionless.
+<ins>**Fallback Mechanisms (Steps 6-7)**</ins>
+
+6. Sometimes the market maker who won the RFQ doesn't want to fill the order anymore (e.g., price moved against them). This is called "fading." The system penalizes quoters who fade too frequently by ignoring their quotes for a period of time.
+7. If the exclusive filler fades or there is no exclusive filler, the system proceeds to a Dutch Auction (a descending price auction), where the user's transaction is posted for anyone to permissionlessly fill the order.
+    - The auction starts at or slightly below the quote price that the quoter faded.
+    - Every block, the price decreases by a small amount.
+    - This achieves a great price for users because market makers are incentivized to fill the user's order the moment the price becomes profitable for them. Because they are competing with each other, the best price is achieved, assuming at least two competitive actors.
 
 
-add content
+:::note Quoter vs. Filler 
+In this system, we call the market makers in step 2 "Quoters" because they respond to our request for a quote. We call the market makers in step 6 "Fillers." The difference is that the set of Quoters is permissioned while the set of Fillers is permissionless.
+:::
+
+<p align="center">
+  <img src={require('./images/mainnet_flowchart.png').default} alt="UniswapX" width="60%" />
+</p>
+
 
 ## Arbitrum: Dutch Auction
 
-**Direct Dutch auction without RFQ, leveraging fast block times for price discovery.**
+TL;DR — **Direct Dutch auction without RFQ, leveraging fast block times for on-chain price discovery.**
 
-### How It Works
+Because Arbitrum's block frequency is much higher than Ethereum's, the Dutch auction can decay through more price points in the same amount of time. For example, exploring 5 price points takes 60 seconds on Ethereum (5 × 12-second blocks) but only 1.25 seconds on Arbitrum (5 × 0.25-second blocks). This speed advantage eliminates the need for an RFQ process since the auction can open directly to all fillers without exclusivity and still deliver excellent price discovery within an acceptable timeframe.
 
+
+1. Based on the token pair and AMM liquidity, Uniswap Labs determines whether the swap will likely benefit from UniswapX.
+2. If not, the user is routed to the AMM.
+3. If so, an algorithm (called Unimind) sets the auction start and end prices (auction parameters) based on the historical performance of this pair.
+    - Unimind is a gradient descent algorithm developed by the research team to optimize both the amount given to the swapper and auction speed.
+4. The user signs the auction parameters and sends them to Uniswap Labs.
+5. Uniswap Labs updates the auction parameters to set the auction start block and sends the auction to fillers.
+6. Fillers compete to fill the auction on-chain.
 
 ## Base & Unichain: Priority Gas Auctions
 
-**Priority fee bidding system leveraging OP Stack's Priority Gas Auction (PGA) transaction ordering.**
+TL;DR — **Priority fee bidding system leveraging OP Stack's transaction ordering mechanism.**
 
-### How It Works
+OP Stack rollups use Priority Ordering, a method for determining the order of transactions in a block based on the priority gas fees included in each transaction. This contrasts with Arbitrum, which uses first-come-first-serve ordering. Priority Gas Auctions (PGA) are a type of UniswapX auction that take advantage of this priority ordering  mechanism to decide the winner. 
 
+Unlike a Dutch auction that decays over time, Priority Orders function more like a traditional English auction, where the auction starts at the user's max slippage tolerance. At a specified start block, the auction opens and fillers simultaneously submit their bids by including priority fees with their transactions. The highest priority fee wins the right to fill the order, while competing transactions revert.
 
-
-
-OLDOLDOLDOLDOLDOLDOLDOLDOLD
-
-## Parametizing UniswapX Orders on Mainnet
-The UniswapX protocol on Mainnet does not explicitly parameterize the pricing of orders like the Exclusive Dutch Order, rather order parameterization is left to be configured by the order constructor. 
-
-In the current Uniswap Labs interface implementation of UniswapX, some fillers may choose to help parameterize orders on Mainnet by participating as quoters. These fillers can *only* win a quote if they guarantee improved swapper execution over Uniswap v3 or v2 liquidity pools. Fillers who win a quote will receive execution priority for a limited period of time to fill orders they submitted wining quotes for. 
-
-To ensure a smooth swapping experience for traders, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch, with plans to make the quoting system fully permissionless in the near future.
-
-If you are interested in participating as a Quoter, please reach out [here](mailto:quoters@uniswap.org).
+1. Based on the token pair and AMM liquidity, Uniswap Labs determines whether the swap will likely benefit from UniswapX.
+2. If not, the user is routed to the AMM.
+3. If so, the auction is created using the classic price and max slippage provided by the user.
+4. The user signs the auction parameters and sends them to Uniswap Labs.
+5. Uniswap Labs updates the auction parameters to set the auction start block and sends the auction to fillers.
+6. Fillers compete to fill the auction on-chain by submitting transactions with varying priority fees at the target block.
