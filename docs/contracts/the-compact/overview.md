@@ -54,9 +54,9 @@ The Compact is deployed at the same address across multiple chains:
 
 | Network | Address | 
 |---------|---------|
-| Ethereum Mainnet | `0x00000000000018DF021Ff2467dF97ff846E09f48` |
-| Base | `0x00000000000018DF021Ff2467dF97ff846E09f48` |
-| Unichain | `0x00000000000018DF021Ff2467dF97ff846E09f48` |
+| Ethereum Mainnet | `0x00000000000000171ede64904551eeDF3C6C9788` |
+| Base | `0x00000000000000171ede64904551eeDF3C6C9788` |
+| Unichain | `0x00000000000000171ede64904551eeDF3C6C9788` |
 
 > The Compact uses a deterministic deployment address, ensuring the same address across all supported networks.
 
