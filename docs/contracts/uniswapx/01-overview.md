@@ -20,7 +20,7 @@ To trade using UniswapX, swappers create orders that define their auction parame
 
 For example, the graphic below illustrates a Dutch Auction, one type of auction used in UniswapX. In this auction, the order starts at a maximum price and decays down to a minimum price over time. Note that orders technically specify output token amounts, but the documentation will sometimes use 'price' interchangeably for simplicity.
 
- <img src={require('./images/UniswapX_graph.png').default} alt="UniswapX" width="100%%" /> 
+ <img src={require('./images/Uniswapx_graph.png').default} alt="UniswapX" width="100%%" /> 
 
 Instead of submitting these orders directly onchain, swappers sign a message that uses Permit2 to allow the transfer of tokens to complete the trade as long as the number of tokens sent and received matches what is specified in the decay curve. These signed order messages are broadcast publicly and available to be executed by anyone who wants to be a "filler."
 
