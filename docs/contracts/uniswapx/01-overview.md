@@ -16,9 +16,9 @@ UniswapX is a permissionless, open source, auction-based swapping protocol for t
 Swappers generate signed orders which specify the outputs of their swap, and fillers compete to satisfy these orders using their own filling strategies.
 
 # Trading on UniswapX
-To trade using UniswapX, swappers create orders that specify parameters for an auction, as well as the maximum and minimum outputs they are willing to receive during a trade over a certain time period. Different chains implement different auction mechanisms optimized for their specific characteristics.
+To trade using UniswapX, swappers create orders that define their auction parameters and price tolerance. Each supported chain uses different auction mechanisms optimized for its specific characteristics.
 
-The graphic below illustrates how one version of an auction, called a Dutch Auction, works in UniswapX. The swapper's order specifies a maximum output amount, which decays down to a minimum output amount over a specified amount of time.
+For example, the graphic below illustrates a Dutch Auction, one type of auction used in UniswapX. In this auction, the order starts at a maximum price and decays down to a minimum price over time. Note that orders technically specify output amounts, but the documentation will sometimes use 'price' interchangeably for simplicity.
 
  <img src={require('./images/UniswapX_graph.png').default} alt="UniswapX" width="100%%" /> 
 
