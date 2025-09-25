@@ -12,7 +12,6 @@ This overview covers:
 - Common questions and troubleshooting
 
 **Getting Started:**
-- Fill out the [Onboarding Form](https://forms.gle/FtqVhSinod9fZDNH8) to register your webhook endpoint
 - Join our [Announcements Channel](https://t.me/uniswapx_fillers) on Telegram for updates
 - Join our [Fillers Group](https://t.me/UniswapXdiscussion) on Telegram for discussion
 - To quote on Ethereum, join the [waitlist](https://uniswap.typeform.com/to/UiPDKgY6) or [email](mailto:quoters@uniswap.org)
@@ -49,8 +48,7 @@ This documentation contains specific integration guides for each chain. Choose y
 To learn about the different auction mechanics, please see the [Auction Types Overview](../03-auction-types.md) page. 
 :::
 
-Also, please see our [Webhook Support](contracts/uniswapx/fillers/webhooks.md) to learn about registering your webhook for orders. 
-
+Fillers should start with polling for orders and rate limit at 6rps. If after polling, a filler's performance is degraded due to the polling rate limit, please see the [Webhook Support](contracts/uniswapx/fillers/webhooks.md) documentation to learn about registering webhooks for orders.
 
 ## Filler FAQ
 
@@ -73,7 +71,7 @@ Also, please see our [Webhook Support](contracts/uniswapx/fillers/webhooks.md) t
 <details>
   <summary>Why don’t I get quote requests for Unichain/Base/Arbitrum?</summary>
 
-    On Ethereum, we use RFQ to accurately parameterize the order which often results in exclusive orders. On L2s, we don’t use RFQ and instead parameterize the auction solely based on the AMM price. As a result, we will only notify fillers of orders that are ready to be executed via the orders API or your registered webhook endpoint. Fill out this [onboarding form](https://forms.gle/FtqVhSinod9fZDNH8) if you would like your endpoint to be notified via webhook.
+    On Ethereum, we use RFQ to accurately parameterize the order which often results in exclusive orders. On L2s, we don’t use RFQ and instead parameterize the auction solely based on the AMM price. As a result, we will only notify fillers of orders that are ready to be executed via the orders API or your registered webhook endpoint. Fill out this [onboarding form](https://forms.gle/FtqVhSinod9fZDNH8) if you would like your endpoint to be notified via webhook, but it is recommended that fillers try polling first and only pursue a webhook as needed. 
     <br/>
     For more information, please see our [Webhook Support Page](./webhooks.md).
 
