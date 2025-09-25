@@ -18,7 +18,7 @@ Swappers generate signed orders which specify the outputs of their swap, and fil
 # Trading on UniswapX
 To trade using UniswapX, swappers create orders that define their auction parameters and price tolerance. Each supported chain uses different auction mechanisms optimized for its specific characteristics.
 
-For example, the graphic below illustrates a Dutch Auction, one type of auction used in UniswapX. In this auction, the order starts at a maximum price and decays down to a minimum price over time. Note that orders technically specify output amounts, but the documentation will sometimes use 'price' interchangeably for simplicity.
+For example, the graphic below illustrates a Dutch Auction, one type of auction used in UniswapX. In this auction, the order starts at a maximum price and decays down to a minimum price over time. Note that orders technically specify output token amounts, but the documentation will sometimes use 'price' interchangeably for simplicity.
 
  <img src={require('./images/UniswapX_graph.png').default} alt="UniswapX" width="100%%" /> 
 
@@ -34,5 +34,5 @@ Different chains use different auction mechanisms. See our [Auction Types Overvi
 As mentioned above, UniswapX introduces a new participant in the Uniswap ecosystem, the Filler. Fillers are sophisticated entities who perform complex calculations and employ MEV-protected strategies to pick up signed orders and execute them to achieve the most profitable fill. 
 
 :::info Getting Started as a Filler
-Anyone can fill orders on UniswapX. Get started by reading our [Filler Integration Guide](/contracts/uniswapx/guides/mainnet/createfiller).
+Anyone can fill orders on UniswapX. Get started by reading our [Filler Integration Overview](/contracts/uniswapx/fillers/filleroverview.md).
 :::

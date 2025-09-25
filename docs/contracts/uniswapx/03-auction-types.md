@@ -53,16 +53,17 @@ UniswapX on Ethereum uses a sophisticated two-phase auction system that balances
     - The auction starts at or slightly below the quote price that the quoter faded.
     - Every block, the price decreases by a small amount.
     - This achieves a great price for users because market makers are incentivized to fill the user's order the moment the price becomes profitable for them. Because they are competing with each other, the best price is achieved, assuming at least two competitive actors.
-
-
-:::note Quoter vs. Filler 
-In this system, we call the market makers in step 2 "Quoters" because they respond to our request for a quote. We call the market makers in step 6 "Fillers." The difference is that the set of Quoters is permissioned while the set of Fillers is permissionless.
-:::
+    - In this system, we call the market makers in step 2 "Quoters" because they respond to our request for a quote. We call the market makers in step 6 "Fillers." The difference is that the set of Quoters is permissioned while the set of Fillers is permissionless.
 
 <p align="center">
   <img src={require('./images/mainnet_flowchart.png').default} alt="UniswapX" width="60%" />
 </p>
 
+:::note Cosigners
+Cosigners update auction parameters to reflect real-time prices, compensating for the delay between quoting and signing (which can be up to 30 seconds). They set the auction start block and adjust pricing within the user's signed parameters, while never exceeding the user's slippage tolerance. If you'd like to see how the Cosigner works in practice, please see the technical overview of [UniswapX V2 on Mainnet](/contracts/uniswapx/fillers/mainnet/02-v1-vs-v2.md). 
+<br/>
+Currently, the Trading API sets the cosigner to Uniswap Labs, though this could be updated in the future.
+:::
 
 ## Arbitrum: Dutch Auction
 

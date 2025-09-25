@@ -4,7 +4,7 @@ title: Filling on Arbitrum
 sidebar_position: 4
 ---
 
-# Arbitrum Pilot Overview
+# Filling on Arbitrum
 Starting June 19 2024, the Uniswap team began running a portion of trades on Arbitrum through UniswapX. Unlike UniswapX on Mainnet, these orders will have **no RFQ portion and thus no exclusivity** during the pilot. 
 
 Filling on Arbitrum, however, follows the same two steps as filling on Mainnet: 

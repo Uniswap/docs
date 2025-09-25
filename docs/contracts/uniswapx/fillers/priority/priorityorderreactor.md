@@ -1,9 +1,9 @@
 ---
 id: priorityorderreactor
-title: Priority Order Reactor
+title: Filling on Priority Chains
 sidebar_position: 6
 ---
-# What is the Priority Order Reactor?
+# Filling on Priority Ordered Chains
 The [Priority Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) is a new, experimental UniswapX reactor built specifically for optimal execution chains that utilize Priority Gas Auctions (PGA) for ordering transactions. This new reactor type, which is based on research presented in [Priority is All you Need](https://www.paradigm.xyz/2024/06/priority-is-all-you-need), allows fillers to bid on orders during fulfillment through setting custom priority fees. 
 
 ## Example Implementation

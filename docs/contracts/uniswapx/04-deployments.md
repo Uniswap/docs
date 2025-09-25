@@ -1,7 +1,7 @@
 ---
 id: deployment
 title: Deployments
-sidebar_position: 5
+sidebar_position: 4
 ---
 # Deployment Addresses
 
