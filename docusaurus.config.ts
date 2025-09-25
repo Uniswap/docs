@@ -724,19 +724,19 @@ const config: Config = {
             from: '/protocol/V3/guides/getting-started',
           },
           {
-            to: '/contracts/uniswapx/guides/mainnet/createfiller',
+            to: '/contracts/uniswapx/fillers/mainnet/createfiller',
             from: '/contracts/uniswapx/guides/createfiller',
           },
           {
-            to: '/contracts/uniswapx/guides/arbitrum/arbitrumfiller',
+            to: '/contracts/uniswapx/fillers/arbitrum/arbitrumfiller',
             from: '/contracts/uniswapx/guides/arbitrumfiller',
           },
           {
-            to: '/contracts/uniswapx/guides/mainnet/becomequoter',
+            to: '/contracts/uniswapx/fillers/mainnet/becomequoter',
             from: '/contracts/uniswapx/guides/becomequoter',
           },
           {
-            to: '/contracts/uniswapx/guides/priority/priorityorderreactor',
+            to: '/contracts/uniswapx/fillers/priority/priorityorderreactor',
             from: '/contracts/uniswapx/guides/priorityorderreactor',
           },
           // Missing concept page redirects
