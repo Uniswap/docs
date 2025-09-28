@@ -295,11 +295,18 @@ const Home = () => {
               </div>
               <div className="flex mt-5">
                 <Link
-                  className="group flex items-center justify-center rounded-large bg-light-surface-3 p-3 transition hover:bg-light-surface-3-hovered dark:bg-dark-surface-3 dark:hover:bg-dark-surface-3-hovered"
+                  className="group flex items-center justify-center rounded-large bg-light-surface-3 p-3 transition hover:bg-dark-accent-2 dark:bg-dark-surface-3 hover:dark:bg-light-accent-2"
                   to="https://unigrants.org/"
                 >
-                  <Globe className="mr-2 h-6 w-6" color="neutral-1" />
-                  <span className={cn('button-label-1 transition text-light-neutral-1 dark:text-dark-neutral-1')}>
+                  <div className="mr-2 h-6 w-6 transition text-light-neutral-1 dark:text-dark-neutral-1 group-hover:text-dark-accent-1 group-hover:dark:text-light-accent-1">
+                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M4.55351 8.50001C4.65351 10.5533 5.34684 12.6467 6.55351 14.5067C3.72684 13.88 1.57352 11.46 1.35352 8.50001H4.55351ZM6.55351 1.49334C3.72684 2.12 1.57352 4.54001 1.35352 7.50001H4.55351C4.65351 5.44668 5.34684 3.35334 6.55351 1.49334ZM8.13352 1.33334H7.86684L7.66685 1.62001C6.40018 3.42001 5.66017 5.48668 5.55351 7.50001H10.4469C10.3402 5.48668 9.60018 3.42001 8.33352 1.62001L8.13352 1.33334ZM5.55351 8.50001C5.66017 10.5133 6.40018 12.58 7.66685 14.38L7.86684 14.6667H8.13352L8.33352 14.38C9.60018 12.58 10.3402 10.5133 10.4469 8.50001H5.55351ZM11.4469 8.50001C11.3469 10.5533 10.6535 12.6467 9.44686 14.5067C12.2735 13.88 14.4269 11.46 14.6469 8.50001H11.4469ZM14.6469 7.50001C14.4269 4.54001 12.2735 2.12 9.44686 1.49334C10.6535 3.35334 11.3469 5.44668 11.4469 7.50001H14.6469Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <span className={cn('button-label-1 transition text-light-neutral-1 dark:text-dark-neutral-1 group-hover:text-dark-accent-1 group-hover:dark:text-light-accent-1')}>
                     Learn more
                   </span>
                 </Link>
@@ -326,13 +333,13 @@ const IconButton: FC<{
   return (
     <div className="mt-12 flex">
       <Link
-        className="group flex items-center justify-center rounded-large bg-light-surface-1 p-3 hover:bg-light-surface-3-hovered dark:bg-dark-surface-1 transition dark:hover:bg-dark-surface-3-hovered"
+        className="group flex items-center justify-center rounded-large bg-light-surface-1 p-3 transition hover:bg-dark-accent-2 dark:bg-dark-surface-1 hover:dark:bg-light-accent-2"
         to={href}
       >
         {color === 'orange-vibrant' && <HelpCircle className="mr-2 h-6 w-6" color={color} />}
         {color === 'brown-vibrant' && <Chat className="mr-2 h-6 w-6" color={color} />}
         <span
-          className={cn('button-label-1 transition', {
+          className={cn('button-label-1 transition group-hover:text-dark-accent-1 group-hover:dark:text-light-accent-1', {
             'text-light-orange-vibrant dark:text-dark-orange-vibrant': color === 'orange-vibrant',
             'text-light-brown-vibrant dark:text-dark-brown-vibrant': color === 'brown-vibrant',
           })}

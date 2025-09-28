@@ -11,6 +11,7 @@ export default function NavbarMobilePrimaryMenu(): ReactNode {
     { label: 'Contracts', to: '/contracts/v4/overview' },
     { label: 'SDKs', to: '/sdk/v4/overview' },
     { label: 'APIs', to: '/api/subgraph/overview' },
+    { label: 'LLMs', to: '/llms/overview' },
   ];
 
   return (
