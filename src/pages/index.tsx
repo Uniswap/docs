@@ -17,7 +17,6 @@ import {
   Npm,
   HelpCircle,
   Chat,
-  Globe,
 } from '../components/Icons'
 import NewsletterForm from '../components/NewsletterForm'
 
