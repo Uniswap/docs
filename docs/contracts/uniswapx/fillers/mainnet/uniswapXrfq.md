@@ -1,24 +1,15 @@
 ---
-id: v1vsv2
-title: UniswapX V2
+id: uniswapXrfq
+title: UniswapX RFQ
 sidebar_position: 3
 ---
-# **UniswapX V2 Overview**
+# **UniswapX RFQ Overview**
 
-UniswapX V2 improves price execution and minimizes quoter gaming by redesigning the flow of order quote information. The primary goal is to make trading on UniswapX more efficient and more reliable. 
+UniswapX RFQ V2 is designed to improve price execution and minimize quoter gaming by redesigning the flow of order quote information. The primary goal is to make trading on Mainnet Ethereum more efficient and more reliable.
 
-## **V1 Overview**
+## **RFQ Overview**
 
-In V1, the RFQ flow operates entirely pre-signature. Users request a swap quote, which is parameterized using an RFQ quote. If they accept the quote, they sign the order. This approach is straightforward but causes quoters in the network to be uncertain about when a quote request will convert into a signed order. This uncertainty leads to occasional unfilled orders and degraded performance.
-
-<p align="center">
-  <img width="599" alt="image" src={require('../../images/v1-flow.png').default} />
-
-</p>
-
-## **V2 Overview**
-
-V2 rearchitects the flow such that the time between a quoter submitting their quote and being required to fill the order is minimized. This enforces a near 100% fill rate and causes most orders to fill almost instantly.
+UniswapX RFQ is architected such that the time between a quoter submitting their quote and being required to fill the order is minimized. This enforces a near 100% fill rate and causes most orders to fill almost instantly.
 
 To achieve this, the quoting flow is divided into two phases:
 
@@ -47,7 +38,7 @@ To prevent gaming, quoters cannot distinguish between indicative and hard quotes
 
 ## Why is a cosigner needed? 
 
-In UniswapX V2, users commit to a range of prices when signing their order. Without safeguards, a malicious auctioneer could provide users the worst price within their range.
+In UniswapX RFQ, users commit to a range of prices when signing their order. Without safeguards, a malicious auctioneer could provide users the worst price within their range.
 <p align="center">
   <img width="599" alt="image" src={require('../../images/cosigner.png').default} />
 </p>
@@ -55,7 +46,19 @@ In UniswapX V2, users commit to a range of prices when signing their order. With
 The cosigner field allows users to designate an auctioneer they trust to run the auction fairly, ensuring the best executable price within the signed parameters. Currently, the trading API sets the cosigner to Uniswap Labs, though this could be updated in the future.
 
 # Current Status
-UniswapX V2 is currently the default version of the protocol running on Mainnet across Uniswap's interfaces.
+UniswapX RFQ V2 is currently the default version of the protocol running on Mainnet across Uniswap's interfaces.
+
+
+<details>
+  <summary>How did previous versions of UniswapX RFQ work?</summary>
+
+    In V1, the RFQ flow operated entirely pre-signature. Users requested a swap quote, which was parameterized using an RFQ quote. If they accepted the quote, they signed the order. This approach was straightforward but caused quoters in the network to be uncertain about when a quote request would convert into a signed order. This uncertainty led to occasional unfilled orders and degraded performance.
+    <br/>
+    <img width="599" alt="image" src={require('../../images/v1-flow.png').default} />
+    
+
+</details>
+
 
 # Smart Contracts
 
