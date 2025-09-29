@@ -99,7 +99,7 @@ Fillers should start with polling for orders and rate limit at 6rps. If after po
   
   - **Order Size**: Very small orders may not be economical to fill through UniswapX due to gas costs. Similarly, extremely large orders might exceed available liquidity from quoters.
   
-  - **Response Latency**: If your filler responds but takes longer than 500ms, your quote will be rejected. Ensure your infrastructure can consistently respond within this latency requirement.
+  - **Response Latency**: If your filler responds but takes longer than 500ms, your quote will be rejected. Ensure your infrastructure can consistently respond within this latency requirement. The quote server is located in AWS `US-EAST-2` if you wish to co-locate to reduce latency.
 
 </details>
 
