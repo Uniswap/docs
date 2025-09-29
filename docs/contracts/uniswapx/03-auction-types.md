@@ -17,6 +17,8 @@ The following is an overview of the different types of auction mechanisms on eac
 | **Arbitrum** | Dutch Auction | Open competition | Block-based decay |
 | **Base, Unichain** | Priority Gas Auction | Priority fee bidding | Target block activation, then priority fee bidding |
 
+Regardless of their differences, all auctions do not require users to pay gas. Gas fees are wrapped into the final price and are paid by the filler, and failed swaps do not incur any fees at all.
+
 ### Reference Terminology
 
 - **Request for Quote (RFQ)** — A process of crowdsourcing quotes for price discovery.
@@ -38,16 +40,14 @@ UniswapX on Ethereum uses a sophisticated two-phase auction system that balances
 2. Uniswap Labs fetches two quotes in parallel:
     - **Classic Quote**: This quote reflects the best price the user can get from classic Uniswap Protocol pools.
     - **UniswapX Quote**: A quote determined via a Request for Quote (RFQ) process with quoters. Because of the nature of the system, this set of market makers is permissioned and known to Labs.
-3. Uniswap Labs selects the best quote (soft quote) returned and compares it to the Classic Quote. If the UniswapX quote is better, the user is shown a purple lightning bolt, indicating that they will be swapping through X.
+3. Uniswap Labs selects the best quote (soft quote) returned and compares it to the Classic Quote. If the UniswapX quote is better, the user is shown a purple lightning bolt <img src="/img/bolt.svg" alt="Bolt icon" style={{height: "1em", width: "1em", display: "inline", verticalAlign: "middle", margin: "0 0.2em"}} />, indicating that they will be swapping through X.
 
 <ins>**Order Execution (Steps 4-5)**</ins>
-
 4. The UniswapX Quote contains auction parameters, which the user signs to create a gasless off-chain message. This signed message commits to the auction parameters and defines a slippage tolerance, representing the minimum amount the swapper will accept.
 5. This gets sent to Uniswap Labs' server, which requests a final "hard quote" from the group of quoters. Whichever quote (hard quote) is highest wins exclusivity and gives the quoter a fixed amount of time to fill the order (sending users their tokens and settling the transaction).
     - If no quoter provides the amount that the swapper had signed for (e.g. prices moved), then the order is sent out without exclusivity, meaning anyone can fill the order.
 
 <ins>**Fallback Mechanisms (Steps 6-7)**</ins>
-
 6. Sometimes the market maker who won the RFQ doesn't want to fill the order anymore (e.g., price moved against them). This is called "fading." The system penalizes quoters who fade too frequently by ignoring their quotes for a period of time.
 7. If the exclusive filler fades or there is no exclusive filler, the system proceeds to a Dutch Auction (a descending price auction), where the user's transaction is posted for anyone to permissionlessly fill the order.
     - The auction starts at or slightly below the quote price that the quoter faded.
@@ -62,7 +62,7 @@ UniswapX on Ethereum uses a sophisticated two-phase auction system that balances
 :::note Cosigners
 Cosigners update auction parameters to reflect real-time prices, compensating for the delay between quoting and signing (which can be up to 30 seconds). They set the auction start block and adjust pricing within the user's signed parameters, while never exceeding the user's slippage tolerance. If you'd like to see how the Cosigner works in practice, please see the technical overview of [UniswapX V2 on Mainnet](/contracts/uniswapx/fillers/mainnet/02-v1-vs-v2.md). 
 <br/>
-Currently, the Trading API sets the cosigner to Uniswap Labs, though this could be updated in the future.
+Currently, the Uniswap Interface and Trading API sets the cosigner to Uniswap Labs, though this could be updated in the future.
 :::
 
 ## Arbitrum: Dutch Auction
@@ -75,7 +75,7 @@ Because Arbitrum's block frequency is much higher than Ethereum's, the Dutch auc
 1. Based on the token pair and AMM liquidity, Uniswap Labs determines whether the swap will likely benefit from UniswapX.
 2. If not, the user is routed to the AMM.
 3. If so, an algorithm (called Unimind) sets the auction start and end prices (auction parameters) based on the historical performance of this pair.
-    - Unimind is a gradient descent algorithm developed by the research team to optimize both the amount given to the swapper and auction speed.
+    - Unimind is a gradient descent algorithm developed by Uniswap Labs to optimize both the amount given to the swapper and auction speed.
 4. The user signs the auction parameters and sends them to Uniswap Labs.
 5. Uniswap Labs updates the auction parameters to set the auction start block and sends the auction to fillers.
 6. Fillers compete to fill the auction on-chain.

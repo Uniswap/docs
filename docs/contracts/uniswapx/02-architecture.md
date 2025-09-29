@@ -24,8 +24,8 @@ Reactors implement the [IReactor](https://github.com/Uniswap/UniswapX/blob/main/
 
 Current reactor implementations:
 - [PriorityOrderReactor.sol](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol): A reactor that settles orders via a filler competitions that use priority gas fees
-- [V3DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol): The latest version of the Dutch Order Reactor, which settles linear decay Dutch orders. Unlike V2 orders, these orders specify auction decay in blocks instead of using the block timestamp. Given that the block timestamp only has 1-second resolution, using the block number in this reactor is advantageous on chains like Arbitrum, which have a block resolution of 250ms.
 - [V2DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V2DutchOrderReactor.sol): A Dutch Order Reactor that settles V2 linear decay Dutch orders. This version uses the block timestamp for auction decay.
+- [V3DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol): The latest version of the Dutch Order Reactor, which settles linear decay Dutch orders. Unlike V2 orders, these orders specify auction decay in blocks instead of using the block timestamp. Given that the block timestamp only has 1-second resolution, using the block number in this reactor is advantageous on chains like Arbitrum, which have a block resolution of 250ms.
 - [ExclusiveDutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/ExclusiveDutchOrderReactor.sol): A reactor that settles linear-decay dutch orders with a period of exclusivity before decay begins
 - [LimitOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol): A reactor that settles simple static limit orders
 
