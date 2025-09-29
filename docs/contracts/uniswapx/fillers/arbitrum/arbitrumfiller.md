@@ -5,9 +5,7 @@ sidebar_position: 4
 ---
 
 # Filling on Arbitrum
-Unlike UniswapX on Mainnet, orders on Arbitrum will have **no RFQ portion and thus no exclusivity** during the pilot. 
-
-Filling on Arbitrum, however, follows the same two steps as filling on Mainnet: 
+Unlike UniswapX on Mainnet, orders on Arbitrum have **no RFQ portion and thus no exclusivity**. Filling on Arbitrum, however, follows the same two steps as filling on Mainnet: 
 1. Retrieving signed orders  
 2. Filling orders
 
