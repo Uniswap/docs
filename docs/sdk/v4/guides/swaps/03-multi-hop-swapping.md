@@ -107,7 +107,7 @@ export function encodeMultihopExactInPath(
 We'll use the same contract addresses and ABIs from the single-hop guide and construct the **ethers** `Contract` for them:
 
 ```typescript
-const UNIVERSAL_ROUTER_ADDRESS = "0xf70536B3bcC1bD1a972dc186A2cf84cC6da6Be5D"
+const UNIVERSAL_ROUTER_ADDRESS = "0x66a9893cC07D91D95644AEDD05D03f95e1dBA8Af"
 const PERMIT2_ADDRESS = "0x000000000022D473030F116dDEE9F6B43aC78BA3"
 
 // ABIs remain the same as in single-hop guide
