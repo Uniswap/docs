@@ -26,14 +26,14 @@ Regardless of their differences, all auctions do not require users to pay gas. G
 - **Quoters** — A subset of fillers that provide quotes in the RFQ process.
 - **Classic Quote** — The quote from the AMM route.
 - **Soft Quote** — An indicative quote used to show users their expected swap result.
-- **Hard Quote** — The final quote collected to parameterize the auction before posting on-chain.
+- **Hard Quote** — The final quote collected to parameterize the auction before posting onchain.
 
 
 ## Ethereum: RFQ + Exclusive Dutch Auction 
 
 TL;DR — **Two-phase auction system with exclusive filling rights for winning quoters.**
 
-UniswapX on Ethereum uses a sophisticated two-phase auction system that balances execution quality with gas efficiency. Due to Ethereum's higher gas costs and 12-second block time, the system employs a Request for Quote (RFQ) process to ensure competitive pricing before committing users to on-chain execution. This approach grants exclusive filling rights to winning quoters during an initial period, then falls back to an open Dutch auction if the exclusive filler cannot execute. The two-phase design minimizes failed transactions while maintaining competitive pricing through both permissioned quoters and permissionless fillers.
+UniswapX on Ethereum uses a sophisticated two-phase auction system that balances execution quality with gas efficiency. Due to Ethereum's higher gas costs and 12-second block time, the system employs a Request for Quote (RFQ) process to ensure competitive pricing before committing users to onchain execution. This approach grants exclusive filling rights to winning quoters during an initial period, then falls back to an open Dutch auction if the exclusive filler cannot execute. The two-phase design minimizes failed transactions while maintaining competitive pricing through both permissioned quoters and permissionless fillers.
 
 <ins>**Quote Discovery (Steps 1-3)**</ins>
 1. User goes into the interface and inputs a swap.
@@ -67,7 +67,7 @@ Currently, the Uniswap Interface and Trading API sets the cosigner to Uniswap La
 
 ## Arbitrum: Dutch Auction
 
-TL;DR — **Direct Dutch auction without RFQ, leveraging fast block times for on-chain price discovery.**
+TL;DR — **Direct Dutch auction without RFQ, leveraging fast block times for onchain price discovery.**
 
 Because Arbitrum's block frequency is much higher than Ethereum's, the Dutch auction can decay through more price points in the same amount of time. For example, exploring 5 price points takes 60 seconds on Ethereum (5 × 12-second blocks) but only 1.25 seconds on Arbitrum (5 × 0.25-second blocks). This speed advantage eliminates the need for an RFQ process since the auction can open directly to all fillers without exclusivity and still deliver excellent price discovery within an acceptable timeframe.
 
@@ -78,7 +78,7 @@ Because Arbitrum's block frequency is much higher than Ethereum's, the Dutch auc
     - Unimind is a gradient descent algorithm developed by Uniswap Labs to optimize both the amount given to the swapper and auction speed.
 4. The user signs the auction parameters and sends them to Uniswap Labs.
 5. Uniswap Labs updates the auction parameters to set the auction start block and sends the auction to fillers.
-6. Fillers compete to fill the auction on-chain.
+6. Fillers compete to fill the auction onchain.
 
 ## Base & Unichain: Priority Gas Auctions
 
@@ -93,4 +93,4 @@ Unlike a Dutch auction that decays over time, Priority Orders function more like
 3. If so, the auction is created using the classic price and max slippage provided by the user.
 4. The user signs the auction parameters and sends them to Uniswap Labs.
 5. Uniswap Labs updates the auction parameters to set the auction start block and sends the auction to fillers.
-6. Fillers compete to fill the auction on-chain by submitting transactions with varying priority fees at the target block.
+6. Fillers compete to fill the auction onchain by submitting transactions with varying priority fees at the target block.

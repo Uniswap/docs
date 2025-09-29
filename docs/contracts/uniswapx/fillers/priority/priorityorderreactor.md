@@ -59,4 +59,4 @@ The PriorityOrderReactor is deployed on the following chains:
 
 
 # Timeline
-The Priority Order Reactor has been live on Base since August 2024 and is now live on Unichain. Join the [UniswapX Fillers Channel](https://t.me/UniswapXdiscussion) for more details. 
+The Priority Order Reactor is live on Unichain and Base. Join the [UniswapX Fillers Channel](https://t.me/UniswapXdiscussion) for more details. 
