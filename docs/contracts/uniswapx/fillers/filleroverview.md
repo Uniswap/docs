@@ -20,7 +20,7 @@ This overview covers:
 
 Ethereum Mainnet uses a two-role system (Quoters + Fillers) due to its 12-second blocks and high gas costs, while L2 chains use only Fillers thanks to their fast block times.
 
-- On Ethereum 
+- On Ethereum Mainnet
     - **Quoters** (Permissioned): Provide off-chain quotes through RFQ and compete for exclusive fill rights
     - **Fillers** (Permissionless): Execute orders during Dutch auction if quoters fade or decline
 - On L2 Chains  
