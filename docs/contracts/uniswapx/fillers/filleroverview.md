@@ -31,11 +31,9 @@ This design ensures optimal price discovery: Ethereum needs off-chain quoting to
 ## Become a Quoter or Filler
 
 ### Become a Quoter
-In the current Uniswap Labs interface implementation of UniswapX, some fillers may choose to help parameterize orders on Ethereum by participating as quoters. These fillers can *only* win a quote if they guarantee improved swap execution over Uniswap v3 or v2 liquidity pools. Fillers who win a quote will receive execution priority for a limited period to fill orders for which they submitted winning quotes. 
+In the current Uniswap Labs interface implementation of UniswapX, some fillers may choose to help parameterize orders on Ethereum by participating as quoters. These fillers can *only* win a quote if they guarantee improved swap execution over Uniswap v2, v3 or v4 liquidity pools. Fillers who win a quote will receive execution priority for a limited period to fill orders for which they submitted winning quotes.
 
-To ensure a smooth swapping experience for traders, the set of quoters are vetted by Uniswap Labs, with plans to make the quoting system fully permissionless in the near future. To read about expectations for quoters, please see [Become a Quoter](docs/contracts/uniswapx/fillers/mainnet/becomeQuoter.md).
-
-If you are interested in participating as a quoter, please reach out [here](mailto:quoters@uniswap.org) or join the [waitlist](https://uniswap.typeform.com/to/UiPDKgY6).
+To ensure a smooth swapping experience for traders, the set of quoters are vetted by Uniswap Labs. To read about expectations for quoters, please see [Become a Quoter](docs/contracts/uniswapx/fillers/mainnet/becomeQuoter.md). If you are interested in participating as a quoter, please reach out [here](mailto:quoters@uniswap.org) or join the [waitlist](https://uniswap.typeform.com/to/UiPDKgY6).
 
 ### Become a Filler 
 This documentation contains specific integration guides for each chain. Choose your chain to see specific integration details:
@@ -85,9 +83,9 @@ Fillers should start with polling for orders and rate limit at 6rps. If after po
 </details>
 
 <details>
-  <summary>Which tokens are currently not supported in RFQ?</summary>
+  <summary>Which tokens are supported in RFQ?</summary>
 
-    Please see the [unsupported token list](https://unsupportedtokens.uniswap.org/) for that information. 
+    All tokens are supported, except those on the [unsupported token list](https://unsupportedtokens.uniswap.org/). 
 
 </details>
 
@@ -144,7 +142,7 @@ Fillers should start with polling for orders and rate limit at 6rps. If after po
 </details>
 
 <details>
-  <summary>How are OrderHash, RequestId, and QuoteId generated? Are they guaranteed to be unique?</summary>
+  <summary>How is the OrderHash generated? Is it guaranteed to be unique?</summary>
     
     OrderHashes are generated from the hash of the witness information from the order, and are thus guarenteed to be cryptographically unique. 
 
