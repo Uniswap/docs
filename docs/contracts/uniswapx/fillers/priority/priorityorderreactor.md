@@ -4,7 +4,7 @@ title: Filling on Priority Chains
 sidebar_position: 6
 ---
 # Filling on Priority Ordered Chains
-The [Priority Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) is a new, experimental UniswapX reactor built specifically for optimal execution chains that utilize Priority Gas Auctions (PGA) for ordering transactions. This new reactor type, which is based on research presented in [Priority is All you Need](https://www.paradigm.xyz/2024/06/priority-is-all-you-need), allows fillers to bid on orders during fulfillment through setting custom priority fees. 
+The [Priority Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) is a UniswapX reactor built specifically for chains that utilize Priority Gas Auctions (PGA) for ordering transactions. This reactor type, which is based on research presented in [Priority is All you Need](https://www.paradigm.xyz/2024/06/priority-is-all-you-need), allows fillers to bid on orders during fulfillment through setting custom priority fees. 
 
 ## Example Implementation
 Alice submits a PriorityOrder offering 1 ETH in exchange for a minimum of 1000 USDC. The fair market rate for the order is 1100 USDC, resulting in around 100 USDC in potential profit. 
@@ -19,12 +19,13 @@ If we assume a filler has a desired margin of 10% of the total profit, the best 
 - To minimize the gas used on reverting transactions, we revert early if the order is already filled or is not fillable yet.
 - For every wei of priority fee above a certain threshold (an optional value specified in the order), the user is owed 1 milli-bps more of their output token (or less of their input token). 
 - Milli-bps (or MPS) are one-thousandth of a basis point.
+- Unichain supports specifying a target block and has revert protection. For more information, please see the [Unichain Docs](https://docs.unichain.org/docs/technical-information/advanced-txn).
 
 ## Retrieving and Executing Signed Orders
 All signed Priority Orders created through the Uniswap UI will be available via the UniswapX Orders Endpoint. We have [swagger documentation](https://api.uniswap.org/v2/uniswapx/docs) but see below for a quick example curl.
 
 ```
-GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=8453&orderType=Priority
+GET https://api.uniswap.org/v2/orders?orderStatus=open&orderType=Priority
 ```
 
 As a lower latency alternative to polling the API, fillers can also apply to register a webhook and receive a feed of all open orders. See details for registering [here](../webhooks). 
@@ -36,7 +37,7 @@ After fetching orders, use the latest version of the [UniswapX SDK](https://gith
 import { CosignedPriorityOrder, Order } from '@uniswap/uniswapx-sdk';
 
 const serializedOrder = '0x1111222233334444555500000000234300234...';
-const chainId = 1; 
+const chainId = 130; 
 
 const order: Order = CosignedPriorityOrder.parse(serializedOrder, chainId);
 
