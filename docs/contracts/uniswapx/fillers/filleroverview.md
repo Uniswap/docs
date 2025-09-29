@@ -76,7 +76,7 @@ Fillers should start with polling for orders and rate limit at 6rps. If after po
 </details>
 
 <details>
-  <summary>What's expected RPS for quoting on Ethereum?</summary>
+  <summary>What's the expected RPS for quoting on Ethereum?</summary>
 
     1 RPS. 
 
