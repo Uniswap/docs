@@ -21,7 +21,7 @@ Use the [UniswapX SDK](https://github.com/Uniswap/sdks/tree/main/sdks/uniswapx-s
 As a lower latency alternative to polling the API, fillers can also apply to register a webhook and receive a feed of all open orders. See details for registering [here](../webhooks)
 
 ## Filling Orders
-To execute a discovered order, a filler needs to call the [execute](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/BaseReactor.sol#L31) method of the Reactor specified in the retrieved `encodedOrder` body. Currently the Reactor used by the Uniswap interface is located at:  
+To execute a discovered order, a filler needs to call the [execute](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/BaseReactor.sol#L31) method of the Reactor specified in the retrieved `encodedOrder` body. The Reactor used by the Uniswap interface is located at:  
 
 [0xB274d5F4b833b61B340b654d600A864fB604a87c](https://arbiscan.io/address/0xb274d5f4b833b61b340b654d600a864fb604a87c)
 
@@ -57,13 +57,13 @@ executor.execute(order, fillData);
 For convenience, we’ve provided an [example Executor Contract](https://github.com/Uniswap/UniswapX/blob/v2.0.0-deploy/src/sample-executors/SwapRouter02Executor.sol) which demonstrates how a filler could implement a strategy that executes a UniswapX order against a Uniswap V3 pool. These contracts should be deployed to each chain that the filler would like to support.
 
 ## Order Types
-On Arbitrum, both DutchV2 and DutchV3 order types are supported. You may query for a specific type by specifying the `orderType` query string parameter:
+On Arbitrum, DutchV3 order types are supported. You may query for a specific type by specifying the `orderType` query string parameter:
 
 ```
 GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=42161&limit=1000&orderType={Dutch_V2 | Dutch_V3}
 ```
 
-The main difference between the two order types is that DutchV2 orders use a time-based decay while DutchV3 use a block-based decay. Because the `block.timestamp` of the EVM does not allow for millisecond-level granularity, all decay in DutchV2 must happen in seconds which does not take advantage of Arbitrum's 250 ms block frequency. For this reason, we will migrate Arbitrum to DutchV3 orders over time.
+DutchV3 orders use a block-based decay mechanism. This design takes advantage of Arbitrum's 250 ms block frequency, allowing for more granular price updates compared to time-based decay systems that are limited by the `block.timestamp`'s second-level granularity in the EVM. 
 
 ### Order Type References
 | OrderType | Contract Address | Reactor Specification | Example Filler Implementation |
