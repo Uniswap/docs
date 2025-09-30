@@ -52,7 +52,7 @@ Fillers should start with polling for orders and rate limit at 6rps. If after po
 
 ### Getting Started
 <details>
-  <summary>What IPs do I need to whitelist?</summary>
+  <summary>Which IPs do I need to whitelist?</summary>
 
     IPs to whitelist:
     <br/>
