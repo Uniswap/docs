@@ -3,10 +3,11 @@ id: becomequoter
 title: Become a Quoter
 sidebar_position: 2
 ---
+
 # Quoting on UniswapX
 This guide provides step-by-step instructions for integrating as a Quoter on UniswapX. It is intended for experienced defi teams that have experience running similar systems on other protocols.
 
-To ensure a smooth swapping experience for traders, the set of Quoters will be vetted by Uniswap Labs following UniswapX’s launch. There are plans to make the quoting system fully permissionless in the near future.
+To ensure a smooth swapping experience for traders, the set of Quoters is vetted by Uniswap Labs. There are plans to make the quoting system fully permissionless in the future.
 
 Once you've been approved to be a quoter by the Uniswap Labs team, follow the instructions below to complete your integration. If you have not been approved, please join the waitlist by filling out our [intake form](https://uniswap.typeform.com/to/UiPDKgY6).
 
