@@ -2281,16 +2281,11 @@ const NotFound: FC = () => {
         </div>
         <div className="flex flex-col items-center">
         <p className="text-center my-4 body-1 text-light-neutral-2 dark:text-dark-neutral-2">
-  This page can't be found. If you think this is a mistake, please{" "}
-  <a
-    href="https://github.com/Uniswap/docs/issues"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="body-1 text-light-neutral-2 dark:text-dark-neutral-2 underline hover:opacity-70"
-  >
-    report it on GitHub
-  </a>.
-</p>
+          This page can't be found. If you think this is a mistake, please{" "}
+          <a href="https://github.com/Uniswap/docs/issues" target="_blank" rel="noopener noreferrer" className="inherit underline hover:opacity-70">
+            report it on GitHub.
+          </a>
+        </p>
           <Link to="/">
             <div className="transition py-2 px-3 rounded-small bg-light-surface-3 dark:bg-dark-surface-3 hover:bg-light-surface-3-hovered hover:dark:bg-dark-surface-3-hovered">
               <span className="button-label-3 text-light-neutral-1 dark:text-dark-neutral-1">Back to Home</span>
