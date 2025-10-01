@@ -57,8 +57,11 @@ export default function NavbarContent(): ReactNode {
         <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0">Uniswap Docs</p>
       </Link>
 
-      {/* Mobile menu button */}
-      <div className="flex flex-row items-center sm:hidden mr-2 ml-auto">
+      {/* Mobile search and menu */}
+      <div className="flex flex-row items-center sm:hidden gap-3 ml-auto">
+        <div className="flex-1 min-w-0">
+          <SearchBar />
+        </div>
         <button className="flex items-center" onClick={mobileSidebar.toggle}>
           <Menu />
         </button>
