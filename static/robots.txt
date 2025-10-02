@@ -12,6 +12,7 @@ Disallow: /.docusaurus/
 Disallow: /build/
 Disallow: /node_modules/
 Disallow: /src/
+Disallow: /static/
 
 # Allow CSS and JavaScript for proper rendering
 Allow: /*.css

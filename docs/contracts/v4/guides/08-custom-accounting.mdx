@@ -242,12 +242,12 @@ swapDelta = (-99 USDC, 98 USDT) - (1 USDC, 0)
 
 This process demonstrates how `BeforeSwapDelta` effectively "transfers" the hook's outstanding delta to the swap router, ensuring that the user pays the fee while the hook collects it, all within a single atomic transaction.
 
-## Alternative: Charging Hook Fees in `afterSwap`
+## Alternative: Charging Hook Fees in afterSwap
 
 Charging hook fees in `afterSwap` is different from charging them in `beforeSwap` because `afterSwap` allows the hook to compute a fee on the actual output and collect it.
 This is best used in case of partial swaps, as `afterSwap` charges a fee on the **actual output** observed from `BalanceDelta` without overcharging the user.
 
-### When to prefer `afterSwap`
+### When to prefer afterSwap?
 - You want fees to reflect **what actually transferred** (not the requested amount).
 - Your swaps frequently **hit price limits** or **liquidity ceilings**.
 
