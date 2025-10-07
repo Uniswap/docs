@@ -1,0 +1,40 @@
+---
+title: Token Mint
+sidebar_position: 3
+---
+# Token Mint
+
+As part of the initial deployments, a minting contract `UNIMinter` will deployed to handle the minting and distribution of UNI tokens.
+
+Please note the original `UNI` mint mechanics are still enforced:
+
+1. Mints can only be performed once every 365 days
+2. Mints are capped at 2% of the total UNI supply, inclusive of the supply held by `address(0xdead)` (the recipient of UNI on `Firepit.release()`)
+
+The `owner` (Uniswap Governance) will be able to:
+
+* Designate multiple recipients of minted tokens, with varying allocations
+* Remove and revoke allocations, with a delay
+* Appoint a new minting contract, replacing the current implementation
+
+Altruistic actors will be responsible for:
+
+* Minting & distributing tokens to the designated recipients
+* Executing the revocation of an allocation after the delay period
+
+---
+
+### Governance Calls
+
+To add a recipient for the next token mint, governance should call [`UNIMinter.grantShares()`](/technical-reference/UNIMinter#grantShares)
+* The receiving address of the minted tokens
+* The number of shares (out of 10,000 total) to allocate to the recipient
+  - The number of shares are proportional to the total number of shares allocated:
+    - A single recipient of 1000 shares will receive the entirety of the 10% of maximum mint
+    - Two recipients of 4000 shares and 4000 shares will equally split 80% of the maximum mint
+* The number of days notice before shares are entirely revocable
+
+To remove a recipient, governance should call [`UNIMinter.initiateRevokeShares()`](/technical-reference/UNIMinter#initiateRevokeShares)
+* The index of the recipient in the `shares` array
+* If the revocation extends into the next mint, shares will be proportionally reduced for the next mint
+* If the revocation completes before the next mint, shares will be entirely removed for the next mint
