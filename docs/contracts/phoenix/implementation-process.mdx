@@ -1,0 +1,28 @@
+---
+title: Implementation Process
+sidebar_position: 2
+---
+# Implementation Process
+
+To enable fees for v2 and v3 on mainnet, the [Deployer](/technical-reference/Deployer) handles the entire set up in one transaction. Subsequent transactions
+will be required to set the initial fee values.
+
+The `Deployer` contract performs the following steps, in its constructor:
+
+1. Deploys the `AssetSink` contract
+2. Deploys the `Firepit` contract, with the initial UNI-threshold requirement as a parameter
+3. Set the `Firepit` as the releaser on the `AssetSink`
+4. Transfers ownership of the `AssetSink` to the [Uniswap Governance Timelock’s address](https://etherscan.io/address/0x1a9c8182c09f50c8318d769245bea52c32be35bc)
+5. Sets the [Uniswap Governance Timelock’s address](https://etherscan.io/address/0x1a9c8182c09f50c8318d769245bea52c32be35bc) as the initial `thresholdSetter`, 
+giving the Governance Timelock the ability to update the UNI-threshold requirement
+6. Transfers ownership of the `Firepit` to the [Uniswap Governance Timelock’s address](https://etherscan.io/address/0x1a9c8182c09f50c8318d769245bea52c32be35bc).
+Uniswap Governance can appoint a different `thresholdSetter` at a later time.
+7. Deploys the `V3FeeController` contract, with the `AssetSink` as the destination for collected fees
+8. Sets the [Uniswap Governance Timelock’s address](https://etherscan.io/address/0x1a9c8182c09f50c8318d769245bea52c32be35bc) as the initial `feeSetter`, giving the Governance Timelock
+the ability to set fee values at a later date
+9. Transfers ownership of the `V3FeeController` to the [Uniswap Governance Timelock’s address](https://etherscan.io/address/0x1a9c8182c09f50c8318d769245bea52c32be35bc),
+giving the Governance Timelock the ability to appoint a different `feeSetter` at a later time
+
+Enabling fee values themselves will require a Uniswap Governance vote, which will involve:
+  - calling [`setFeeTo`](https://github.com/Uniswap/v2-core/blob/ee547b17853e71ed4e0101ccfd52e70d5acded58/contracts/UniswapV2Factory.sol#L40) on the mainnet [UniswapV2Factory](https://etherscan.io/address/0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f) and passes the `AssetSink` address as the parameter
+  - calling [`setMerkleRoot`](https://github.com/Uniswap/phoenix-fees/blob/6f39580d36a75a1ed1f34daf7d3262ced4b9df3f/src/feeControllers/V3FeeController.sol#L93C12-L93C25) on the V3FeeController contract and passes a properly constructed Merkle root as a parameter

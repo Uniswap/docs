@@ -1,0 +1,110 @@
+# Best Practices
+
+Below, please find a list of best practices when interacting with the Phoenix system.
+
+## Calldata Nonce
+
+Recall [`Firepit.release()`](/technical-reference/IReleaser#release) requires a `_nonce` parameter that matches the contract storage [`Firepit.nonce()`](/technical-reference/INonce#nonce). 
+
+The nonce mechanism prevents front-running attacks, where a successful front-run would cause the victim 
+to burn a substantial amount of UNI in exchange for little to no assets. The nonce mechanism ensures sequencing, so **if two competing transactions
+use the same nonce, only one will succeed**
+
+:::danger
+Integrating *contracts* should **NEVER** read the `nonce` at the time of the transaction
+
+```solidity [Vulnerability.sol]
+contract Vulnerable {
+    IFirepit public firepit;
+
+    function vulnerable(Currency[] memory assets) external {
+        // ❌ THIS IS VULNERABLE TO FRONT RUNNING ❌ //
+        uint256 nonce = firepit.nonce();
+        firepit.release(nonce, assets, address(this));
+    }
+}
+```
+:::
+
+```solidity [Safe.sol]
+contract SafeRelease {
+    IFirepit public firepit;
+
+    function vulnerable(Currency[] memory assets) external { // [!code --]
+    // ✅ THIS IS SAFE FROM FRONT RUNNING ✅ // [!code ++]
+    function safeRelease(uint256 _nonce, Currency[] memory assets) external { // [!code ++]
+        uint256 nonce = firepit.nonce(); // [!code --]
+        firepit.release(_nonce, assets, address(this));
+    }
+}
+```
+In the safe pattern, the caller is responsible for reading the `Firepit.nonce()` offchain, assocating it with releasable assets, and passing it as a parameter.
+
+## Collect Uniswap v3 Fees
+
+For further reading, please see [Read Asset Balance](/guides/read-asset-balance)
+
+In the Phoenix system, Uniswap v3 fees *must be collected* to the `AssetSink` before they are eligible for release.
+
+:::tip
+We recommend that integrators check and collect Uniswap v3 fees before calling `Firepit.release()`, to ensure the maximum assets are released.
+
+[IV3FeeController.collect()](/technical-reference/IV3FeeController#collect)
+
+```solidity
+IV3FeeController v3FeeController;
+
+function collectAndRelease(
+    IV3FeeController.CollectParams memory collectParams,
+    uint256 _nonce,
+    Currency[] memory assets,
+    address recipient
+) external {
+    v3FeeController.collect(collectParams);
+    firepit.release(_nonce, assets, recipient);
+}
+```
+:::
+
+## UNI Approvals
+
+The Phoenix system allows for an *updatable* [`Firepit.threshold()`](/technical-reference/IResourceManager#threshold)
+
+While the system does not intend to maliciously front-run `.release()` calls, max-approving UNI allowances may lead to an unexpectedly higher burn of UNI.
+The risk only appears if and only if the `thresholdSetter` increases the `threshold` amount while there is a pending `.release()` call.
+
+Integrators can avoid this risk by:
+
+* only holding an amount of UNI they are willing to burn
+* approving only the amount of UNI they intend to burn
+* perform balance checks before and after calling `.release()`, comparing the burned amount against a calldata value
+
+## Payable Contracts
+
+Because the Phoenix system can release native tokens (Ether), recipients of the tokens should be `payable`
+
+## Pricing Uniswap v2 ERC-20 Tokens
+
+For further reading, please see [Read Asset Balance](/guides/read-asset-balance#uniswap-v2-pool-protocol-fees)
+
+Uniswap v2 Protocol Fees are automatically pushed to the `AssetSink` contract, but are represented as ERC-20 LP tokens. These ERC-20 LP tokens represent a combination of `token0` and `token1`
+
+To compute the underlying amount of `token0` and `token1` represented by the LP tokens, integrators can use the following formula:
+
+```solidity
+IUniswapV2Pair pair;
+
+function getUnderlyingAmounts(uint256 lpTokens) external view returns (uint256 amount0, uint256 amount1) {
+    uint256 totalSupply = pair.totalSupply();
+    uint256 poolBalance0 = IERC20(pair.token0()).balanceOf(address(pair));
+    uint256 poolBalance1 = IERC20(pair.token1()).balanceOf(address(pair));
+
+    amount0 = (lpTokens * poolBalance0) / totalSupply;
+    amount1 = (lpTokens * poolBalance1) / totalSupply;
+}
+```
+
+:::note
+Integrators should perform additional validation, i.e. pool price and slippage checks as to not
+misrepresent the LP token's underlying token amounts
+:::
