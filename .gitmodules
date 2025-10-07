@@ -1,0 +1,6 @@
+[submodule "submodules/v4-core"]
+	path = submodules/v4-core
+	url = https://github.com/uniswap/v4-core
+[submodule "submodules/v4-periphery"]
+	path = submodules/v4-periphery
+	url = https://github.com/uniswap/v4-periphery

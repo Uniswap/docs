@@ -1,6 +1,6 @@
 [@uniswap/v3-sdk](../README.md) / [Exports](../modules.md) / Route
 
-# Class: Route<TInput, TOutput\>
+# Class: Route\<TInput, TOutput\>
 
 Represents a list of pools through which a swap can occur
 
@@ -34,7 +34,7 @@ Represents a list of pools through which a swap can occur
 
 ### constructor
 
-• **new Route**<`TInput`, `TOutput`\>(`pools`, `input`, `output`)
+• **new Route**\<`TInput`, `TOutput`\>(`pools`, `input`, `output`)
 
 Creates an instance of route.
 
@@ -61,7 +61,7 @@ Creates an instance of route.
 
 ### \_midPrice
 
-• `Private` **\_midPrice**: ``null`` \| `Price`<`TInput`, `TOutput`\> = `null`
+• `Private` **\_midPrice**: ``null`` \| `Price`\<`TInput`, `TOutput`\> = `null`
 
 #### Defined in
 
@@ -125,13 +125,13 @@ ___
 
 ### midPrice
 
-• `get` **midPrice**(): `Price`<`TInput`, `TOutput`\>
+• `get` **midPrice**(): `Price`\<`TInput`, `TOutput`\>
 
 Returns the mid price of the route
 
 #### Returns
 
-`Price`<`TInput`, `TOutput`\>
+`Price`\<`TInput`, `TOutput`\>
 
 #### Defined in
 

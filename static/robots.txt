@@ -1,0 +1,54 @@
+# Robots.txt for Uniswap Documentation
+# https://docs.uniswap.org
+
+# Default: Allow all crawlers to index all content
+User-agent: *
+Allow: /
+
+# Block common crawler traps and unnecessary paths
+Disallow: /search*
+Disallow: /*?*
+Disallow: /.docusaurus/
+Disallow: /build/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /static/
+
+# Allow CSS and JavaScript for proper rendering
+Allow: /*.css
+Allow: /*.js
+
+# AI Crawlers - Documentation sites generally want to be crawlable by AI
+# GPTBot (OpenAI)
+User-agent: GPTBot
+Allow: /
+
+# ClaudeBot (Anthropic)
+User-agent: ClaudeBot
+Allow: /
+
+# Bard/Gemini (Google)
+User-agent: Bard
+Allow: /
+
+User-agent: Gemini
+Allow: /
+
+# Block aggressive or abusive bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://docs.uniswap.org/sitemap.xml
+
+# Crawl delay for courtesy (1 second)
+Crawl-delay: 1

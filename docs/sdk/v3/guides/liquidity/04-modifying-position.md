@@ -135,7 +135,7 @@ const addLiquidityOptions: AddLiquidityOptions = {
 }
 ```
 
-Compared to minting, we have we have omitted the `recipient` parameter and instead passed in the `tokenId` of the position we previously minted.
+Compared to minting, we have omitted the `recipient` parameter and instead passed in the `tokenId` of the position we previously minted.
 As the Position already exists, the recipient doesn't change, instead the NonfungiblePositionManager contract can modify the existing Position by accessing it with its id.
 
 The tokenId can be fetched with the tokenOfOwnerByIndex function of the NonfungiblePositionManager Contract as described [here](./01-position-data.md#fetching-positions).
@@ -172,7 +172,7 @@ const wallet = new ethers.Wallet(privateKey, provider)
 const txRes = await wallet.sendTransaction(transaction)
 ```
 
-We can get the Contract address for the NonfungiblePositionManager from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+We can get the Contract address for the NonfungiblePositionManager from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
 
 After pressing the button, note how the balance of USDC and DAI drops and our position's liquidity increases.
 
@@ -219,7 +219,7 @@ Just as with adding liquidity, we have we have omitted the `recipient` parameter
 We have also provide two additional parameters:
 
 - `liquidityPercentage` determines how much liquidity is removed from our initial position (as a `Percentage`), and transfers the removed liquidity back to our address. We set this percentage from our guide configuration ranging from 0 (0%) to 1 (100%). In this example we would remove 50% of the liquidity.
-- [`collectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) gives us the option to collect the fees, if any, that we have accrued for this position. In this example, we won't collect any fees, so we provide zero values. If you'd like to see how to collect fees without modifying your position, check out our [collecting fees](./03-collecting-fees.md) guide!
+- [`collectOptions`](https://github.com/Uniswap/v3-sdk/blob/08a7c050cba00377843497030f502c05982b1c43/src/nonfungiblePositionManager.ts#L105) gives us the option to collect the fees, if any, that we have accrued for this position. In this example, we won't collect any fees, so we provide zero values. If you'd like to see how to collect fees without modifying your position, check out our [collecting fees](./05-collecting-fees.md) guide!
 
 ```typescript
 import { CurrencyAmount } from '@uniswap/sdk-core'

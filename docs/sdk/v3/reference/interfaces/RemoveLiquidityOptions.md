@@ -32,7 +32,7 @@ ___
 
 ### collectOptions
 
-• **collectOptions**: `Omit`<[`CollectOptions`](CollectOptions.md), ``"tokenId"``\>
+• **collectOptions**: `Omit`\<[`CollectOptions`](CollectOptions.md), ``"tokenId"``\>
 
 Parameters to be passed on to collect
 

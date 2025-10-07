@@ -48,7 +48,7 @@ You can get a free archival RPC that you can use to follow this guide and fork M
 ## Using Foundry and Anvil
 
 There are several developer tools to fork Mainnet.
-[Anvil](https://github.com/foundry-rs/foundry/blob/master/anvil/README.md) by foundry is a newcomer that's fast and easy to setup.
+[Anvil](https://github.com/foundry-rs/foundry/tree/master/crates/anvil) by foundry is a newcomer that's fast and easy to setup.
 This guide focuses on Anvil.
 
 As a first step, follow the [installation guide](https://book.getfoundry.sh/getting-started/installation) in the foundry book.
@@ -92,7 +92,7 @@ POST `http://127.0.0.1:8545`
 
 Body:
 
-```JSON
+```json
 {
     "jsonrpc": "2.0",
     "method": "eth_chainId",
@@ -103,7 +103,7 @@ Body:
 
 The result should look like the below (see image below as well):
 
-```JSON
+```json
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -132,5 +132,5 @@ Check out one of the [guides about swapping](./swaps/02-trading.md) and replace 
 Using the above you are fully equipped to continue following the guides about how to use Uniswap while testing everything locally before
 going on Mainnet. You will also be able to reuse what you have learned when you develop your own protocols or dApps.
 
-You can also continue tapping into other developer tools that make smart contract development easier like [forge](https://github.com/foundry-rs/foundry/tree/master/forge) from foundry.
-To read more about foundry and their developer tooling, visit their [Github](https://github.com/foundry-rs/foundry) or the [foundry book](https://book.getfoundry.sh/).
+You can also continue tapping into other developer tools that make smart contract development easier like [forge](https://github.com/foundry-rs/foundry/tree/master/crates/forge) from foundry.
+To read more about foundry and their developer tooling, visit their [GitHub](https://github.com/foundry-rs/foundry) or the [foundry book](https://book.getfoundry.sh/).

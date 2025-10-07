@@ -60,7 +60,7 @@ async function getTokenTransferApproval(address: string, amount: BigNumber) {
     const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
 
     const tokenContract = new ethers.Contract(
-        token.address,
+        address,
         ERC20_ABI,
         provider
     )
@@ -72,7 +72,7 @@ async function getTokenTransferApproval(address: string, amount: BigNumber) {
 }
 ```
 
-We can get the Contract address for the NonfungiblePositionManager from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+We can get the Contract address for the NonfungiblePositionManager from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
 For Ethereum mainnet or a local fork of mainnet, we see that the contract address is `0xC36442b4a4522E871399CD717aBDD847Ab11FE88`.
 In our example, this is defined in the [`constants.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/src/libs/constants.ts) file.
 
@@ -100,7 +100,7 @@ const currentPoolAddress = computePoolAddress({
 })
 ```
 
-Again, we can get the factory contract address from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md). 
+Again, we can get the factory contract address from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md). 
 For Ethereum mainnet, or a local fork of mainnet, it is `0x1F98431c8aD98523631AE4a59f267346ea31F984`. 
 In our example, it is defined in [`constants.ts`](https://github.com/Uniswap/examples/blob/main/v3-sdk/minting-position/src/libs/constants.ts)
 
@@ -160,7 +160,7 @@ const position = Position.fromAmounts({
     nearestUsableTick(configuredPool.tickCurrent, configuredPool.tickSpacing) -
     configuredPool.tickSpacing * 2,
   tickUpper:
-    nearestUsableTick(configuredPool.tick, configuredPool.tickSpacing) +
+    nearestUsableTick(configuredPool.tickCurrent, configuredPool.tickSpacing) +
     configuredPool.tickSpacing * 2,
   amount0: amount0,
   amount1: amount1,
@@ -231,4 +231,4 @@ The effect of the transaction is to mint a new Position NFT. We should see a new
 
 ## Next Steps
 
-Once you have minted a position, our next guide ([Adding and Removing Liquidity](./03-modifying-position.md)) will demonstrate how you can add and remove liquidity from that minted position!
+Once you have minted a position, our next guide [Adding and Removing Liquidity](./04-modifying-position.md) will demonstrate how you can add and remove liquidity from that minted position!

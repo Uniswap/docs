@@ -1,7 +1,7 @@
 ---
 id: integration-issues
 title: Token Integration Issues
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 Fee-on-transfer and rebasing tokens will not function correctly on v3.

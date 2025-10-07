@@ -14,8 +14,8 @@ If you need a briefer on the SDK and to learn more about how these guides connec
 In this example we will use `quoteExactInputSingle` to get a quote for the pair **USDC - WETH**.
 The inputs are the **token in**, the **token out**, the **amount in** and the **fee**.
 
-The **fee** input parameters represents the swap fee that distributed to all in range liquidity at the time of the swap. It is one of the identifiers of a Pool, the others being **tokenIn** and **tokenOut**.
-
+The **fee** input parameter represents the swap fee that is distributed to all in-range liquidity at the time of the swap. It is one of the identifiers of a Pool, along with **tokenIn** and **tokenOut**.
+  
 The guide will **cover**:
 
 1. Computing the Pool's deployment address
@@ -184,7 +184,7 @@ We get access to the contract's ABI through the [@uniswap/v3-periphery](https://
 import Quoter from '@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json'
 ```
 
-We get the QUOTE_CONTRACT_ADDRESS for our chain from [Github](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
+We get the QUOTE_CONTRACT_ADDRESS for our chain from [GitHub](https://github.com/Uniswap/v3-periphery/blob/main/deploys.md).
 
 We can now use our Quoter contract to obtain the quote.
 
@@ -223,6 +223,48 @@ We will dive deeper into routing in the [routing guide](03-routing.md).
 
 For the `exactOutput` and `exactOutputSingle` methods, we need to keep in mind that a pool can not give us more than the amount of Tokens it holds.
 If we try to get a quote on an output of 100 WETH from a Pool that only holds 50 WETH, the function call will fail.
+
+## Referencing the QuoterV2 contract and getting a quote
+
+```typescript
+const quoterV2Contract = new ethers.Contract(
+  QUOTER_V2_CONTRACT_ADDRESS,
+  QuoterV2.abi,
+  getProvider()
+)
+```
+
+We get the QUOTE_V2_CONTRACT_ADDRESS for our chain from [V3 refrence deployments](../reference/deployments).
+
+We get access to the contract's ABI through the [@uniswap/v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) package, which holds the periphery smart contracts of the Uniswap V3 protocol:
+
+```typescript
+import Quoter as QuoterV2 from '@uniswap/v3-periphery/artifacts/contracts/lens/QuoterV2.sol/QuoterV2.json'
+```
+Let's get the quote for our tokens, where "Quoter" takes multiple arguments in quoteExactInputSingle(), QuoterV2 takes only one argument in the form of an object
+
+```typescript
+const quote = await quoterContract.callStatic.quoteExactInputSingle(
+  {
+    tokenIn: tokenIn.address, // tokenIn is of type Token
+    tokenOut: tokenOut.address, // tokenOut is of type Token
+    fee: fee, // eg. 3000
+    amountIn: fromReadableAmount(amountIn, tokenIn.decimals).toString(),
+    sqrtPriceLimitX96: 0,
+  }
+);
+console.log(quote.amountOut);
+```
+
+This will return "amountOut" , "gasEstimate", "initializedTicksCrossed" and "sqrtPriceX96After"
+1. **AmountOut**: The tokens or cryptocurrency received in a Uniswap swap transaction.
+
+2. **Gas Estimate**: Estimated amount of gas required for executing a Uniswap transaction on the Ethereum network.
+
+3. **InitializedTicksCrossed**: In Uniswap V3, indicates whether liquidity has crossed certain price thresholds within a liquidity range.
+
+4. **SqrtPriceX96After**: Square root of the price after a Uniswap V3 transaction, essential for determining pricing accuracy.
+
 
 ## Next Steps
 

@@ -83,7 +83,7 @@ Exact input multi hop swaps will swap a fixed amount on a given input token for 
         TransferHelper.safeApprove(DAI, address(swapRouter), amountIn);
 
         // Multiple pool swaps are encoded through bytes called a `path`. A path is a sequence of token addresses and poolFees that define the pools used in the swaps.
-        // The format for pool encoding is (tokenIn, fee, tokenOut/tokenIn, fee, tokenOut) where tokenIn/tokenOut parameter is the shared token across the pools.
+        // The format for pool encoding is (tokenIn, fee, tokenOut/tokenIn, fee, tokenOut) where tokenOut/tokenIn parameter is the shared token across the pools.
         // Since we are swapping DAI to USDC and then USDC to WETH9 the path encoding is (DAI, 0.3%, USDC, 0.3%, WETH9).
         ISwapRouter.ExactInputParams memory params =
             ISwapRouter.ExactInputParams({
@@ -146,7 +146,7 @@ An exact output swap will swap a variable amount of the input token for a fixed 
         // If the swap did not require the full amountInMaximum to achieve the exact amountOut then we refund msg.sender and approve the router to spend 0.
         if (amountIn < amountInMaximum) {
             TransferHelper.safeApprove(DAI, address(swapRouter), 0);
-            TransferHelper.safeTransferFrom(DAI, address(this), msg.sender, amountInMaximum - amountIn);
+            TransferHelper.safeTransfer(DAI, msg.sender, amountInMaximum - amountIn);
         }
     }
 ```
@@ -197,7 +197,7 @@ contract SwapExamples {
         TransferHelper.safeApprove(DAI, address(swapRouter), amountIn);
 
         // Multiple pool swaps are encoded through bytes called a `path`. A path is a sequence of token addresses and poolFees that define the pools used in the swaps.
-        // The format for pool encoding is (tokenIn, fee, tokenOut/tokenIn, fee, tokenOut) where tokenIn/tokenOut parameter is the shared token across the pools.
+        // The format for pool encoding is (tokenIn, fee, tokenOut/tokenIn, fee, tokenOut) where tokenOut/tokenIn parameter is the shared token across the pools.
         // Since we are swapping DAI to USDC and then USDC to WETH9 the path encoding is (DAI, 0.3%, USDC, 0.3%, WETH9).
         ISwapRouter.ExactInputParams memory params =
             ISwapRouter.ExactInputParams({
@@ -228,7 +228,7 @@ contract SwapExamples {
         // The parameter path is encoded as (tokenOut, fee, tokenIn/tokenOut, fee, tokenIn)
         // The tokenIn/tokenOut field is the shared token between the two pools used in the multiple pool swap. In this case USDC is the "shared" token.
         // For an exactOutput swap, the first swap that occurs is the swap which returns the eventual desired token.
-        // In this case, our desired output token is WETH9 so that swap happpens first, and is encoded in the path accordingly.
+        // In this case, our desired output token is WETH9 so that swap happens first, and is encoded in the path accordingly.
         ISwapRouter.ExactOutputParams memory params =
             ISwapRouter.ExactOutputParams({
                 path: abi.encodePacked(WETH9, poolFee, USDC, poolFee, DAI),
@@ -244,7 +244,7 @@ contract SwapExamples {
         // If the swap did not require the full amountInMaximum to achieve the exact amountOut then we refund msg.sender and approve the router to spend 0.
         if (amountIn < amountInMaximum) {
             TransferHelper.safeApprove(DAI, address(swapRouter), 0);
-            TransferHelper.safeTransferFrom(DAI, address(this), msg.sender, amountInMaximum - amountIn);
+            TransferHelper.safeTransfer(DAI, msg.sender, amountInMaximum - amountIn);
         }
     }
 }

@@ -8,7 +8,7 @@ title: Fetching Pool Data
 This guide will cover how to initialize a Pool with full tick data to allow offchain calculations. It is based on the [Fetching Pool data example](https://github.com/Uniswap/examples/tree/main/v3-sdk/pool-data), found in the Uniswap code examples [repository](https://github.com/Uniswap/examples). To run this example, check out the guide's [README](https://github.com/Uniswap/examples/blob/main/v3-sdk/pool-data/README.md) and follow the setup instructions.
 
 :::info
-If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](./01-background.md) page!
+If you need a briefer on the SDK and to learn more about how these guides connect to the examples repository, please visit our [background](../01-background.md) page!
 :::
 
 In this example we will use **ethers JS** and **ethers-multicall** to construct a `Pool` object that we can use in the following guides.
@@ -99,7 +99,7 @@ Now that we have the address of a **USDC - ETH** Pool, we can construct an insta
 To construct the Contract we need to provide the address of the contract, its ABI and a provider connected to an [RPC endpoint](https://www.chainnodes.org/docs). We get access to the contract's ABI through the `@uniswap/v3-core` package, which holds the core smart contracts of the Uniswap V3 protocol:
 
 ```typescript
-import { ethers } from 'ethers
+import { ethers } from 'ethers'
 import IUniswapV3PoolABI from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json'
 
 const provider = getProvider()
@@ -211,7 +211,7 @@ function tickToWord(tick: number): number {
   if (tick < 0 && tick % tickSpacing !== 0) {
     compressed -= 1
   }
-  return tick >> 8
+  return compressed >> 8
 }
 
 const minWord = tickToWord(-887272)
@@ -263,7 +263,7 @@ const results: bigint[] = (await multicallProvider.all(calls)).map(
   )
 ```
 
-A great visualization of what the bitMaps look like can be found in the [Uniswap V3 development book](https://uniswapv3book.com/docs/milestone_2/tick-bitmap-index/):
+A great visualization of what the bitMaps look like can be found in the [Uniswap V3 development book](https://uniswapv3book.com/milestone_2/tick-bitmap-index.html):
 
 <img src={require('./images/tickBitmap_cut.png').default} alt="TickBitmap" box-shadow="none"/>
 

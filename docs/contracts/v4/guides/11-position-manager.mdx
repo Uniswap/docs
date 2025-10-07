@@ -1,0 +1,765 @@
+---
+title: Position Manager
+---
+
+# Introduction
+
+The Position Manager in v4 provides a streamlined way to manage liquidity positions through a command-based interface. Unlike previous versions where each operation required separate function calls, v4’s Position Manager uses a batched command pattern that allows multiple operations to be executed in a single transaction.
+
+## Command-Based Design
+
+At its core, the Position Manager works by executing a sequence of commands:
+
+```solidity
+// Example: Minting a new position requires two commands
+bytes memory actions = abi.encodePacked(
+    Actions.MINT_POSITION,  // Create the position
+    Actions.SETTLE_PAIR     // Provide the tokens
+);
+```
+
+Each command (or action) represents a specific operation, and these actions can be:
+
+- Liquidity Operations: Creating, modifying, or removing positions
+- Delta-Resolving Operations: Handling token transfers and settlements
+
+## How Commands Work Together
+
+When executing operations through the Position Manager, you’ll always:
+
+1. Define what actions to perform
+2. Provide the parameters for each action
+3. Execute them through a single function call
+
+```solidity
+// 1. Define actions
+bytes memory actions = abi.encodePacked(action1, action2);
+
+// 2. Encode parameters for each action
+bytes[] memory params = new bytes[](2);
+params[0] = abi.encode(/* parameters for action1 */);
+params[1] = abi.encode(/* parameters for action2 */);
+
+// 3. Execute through modifyLiquidities
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    deadline
+);
+```
+
+This design enables efficient operations by:
+
+- Minimizing transaction costs through batching
+- Allowing complex position management in single transactions
+- Providing flexibility in how operations are combined
+
+In the following sections, we’ll explore how to work with these commands and implement common liquidity management operations.
+
+# Core Concepts
+
+Before diving into specific operations, let’s understand the key concepts that make up the Position Manager’s architecture.
+
+## Action Types
+
+The Position Manager operates through a system of actions that work in pairs: when you perform a liquidity operation that changes position balances, you must also include actions to handle the resulting token movements.
+
+## Understanding the Flow
+
+When you execute a liquidity operation:
+
+1. The operation creates deltas (token obligations)
+2. These deltas represent tokens that need to be paid or received
+3. Delta-resolving operations are then used to handle these token movements
+
+## Liquidity Operations
+
+[Actions](/contracts/v4/reference/periphery/libraries/Actions) that modify positions in the pool:
+
+```solidity
+// Common liquidity operations
+uint256 constant MINT_POSITION = 0x02;       // Creates negative deltas (tokens needed for position)
+uint256 constant INCREASE_LIQUIDITY = 0x00;  // Creates negative deltas (tokens to add)
+uint256 constant DECREASE_LIQUIDITY = 0x01;  // Creates positive deltas (tokens to receive)
+uint256 constant BURN_6909 = 0x18;           // Creates positive deltas (tokens to receive)
+```
+
+Each operation creates specific deltas that must be resolved:
+
+- Negative deltas when you need to provide tokens (mint, increase)
+- Positive deltas when you’re receiving tokens (decrease, burn)
+
+## Delta-Resolving Operations
+
+Actions that handle the token transfers needed to resolve deltas:
+
+```solidity
+// Common delta-resolving operations
+uint256 constant SETTLE_PAIR = 0x0d;    // For negative deltas: Pay two tokens to the pool
+uint256 constant TAKE_PAIR = 0x11;      // For positive deltas: Receive two tokens from the pool
+uint256 constant CLOSE_CURRENCY = 0x12; // Handles either direction based on final delta
+uint256 constant CLEAR_OR_TAKE = 0x13;  // For small amounts: Take if worth it, else ignore
+```
+
+## Operation Order
+
+Understanding how operations create and resolve deltas helps in ordering them efficiently:
+
+```solidity
+// Efficient: Group operations that create deltas, then resolve them together
+bytes memory actions = abi.encodePacked(
+    Actions.MINT_POSITION,      // First delta: -100 tokens
+    Actions.INCREASE_LIQUIDITY, // Second delta: -50 tokens
+    Actions.SETTLE_PAIR        // Resolve total: -150 tokens at once
+);
+
+// Less efficient: Resolving deltas multiple times
+bytes memory actions = abi.encodePacked(
+    Actions.MINT_POSITION,      // Delta: -100 tokens
+    Actions.SETTLE_PAIR,        // Resolve: -100 tokens
+    Actions.INCREASE_LIQUIDITY, // New delta: -50 tokens
+    Actions.SETTLE_PAIR        // Resolve again: -50 tokens
+);
+```
+
+Best practices for ordering:
+
+1. Group liquidity operations that create similar deltas (e.g., all negative or all positive)
+2. Resolve all deltas together at the end when possible
+3. Use `CLOSE_CURRENCY` when you can't predict the final delta
+
+# Working with Liquidity Positions
+
+When building on v4, you’ll need to manage liquidity positions through the Position Manager. Let’s walk through each operation, starting with creating new positions.
+
+## Minting New Positions
+
+To create a new liquidity position in v4, you’ll need to:
+
+1. Define your position parameters (pool, price range, amount)
+2. Mint the position NFT
+3. Provide the initial tokens
+
+### **Understanding Position Parameters**
+
+Before minting, you need to determine:
+
+- Which pool you’re providing liquidity to
+- Your price range (defined by tick bounds)
+- How much liquidity to provide
+- Maximum amounts of tokens you’re willing to spend
+
+```solidity
+// Example position parameters
+PoolKey poolKey = // Your pool key
+int24 tickLower = -887272;   // Price range lower bound
+int24 tickUpper = 887272;    // Price range upper bound
+uint128 liquidity = 1000000; // Liquidity amount
+uint256 amount0Max = 1e18;   // Max 1 token0
+uint256 amount1Max = 1e18;   // Max 1 token1
+```
+
+### **Implementation**
+
+Let’s implement a function to mint new liquidity positions step by step:
+
+```solidity
+/// @notice Mints a new liquidity position
+/// @param poolKey The pool to provide liquidity to
+/// @param tickLower Lower bound of the price range
+/// @param tickUpper Upper bound of the price range
+/// @param liquidity Amount of liquidity to provide
+/// @param amount0Max Maximum amount of token0 to spend
+/// @param amount1Max Maximum amount of token1 to spend
+/// @param recipient Address that will own the position
+function mintNewPosition(
+    PoolKey calldata poolKey,
+    int24 tickLower,
+    int24 tickUpper,
+    uint256 liquidity,
+    uint128 amount0Max,
+    uint128 amount1Max,
+    address recipient
+) external returns (uint256 tokenId) {
+```
+
+Define the sequence of operations needed for minting:
+
+```solidity
+// Define the sequence of operations:
+// 1. MINT_POSITION - Creates the position and calculates token requirements
+// 2. SETTLE_PAIR - Provides the tokens needed
+bytes memory actions = abi.encodePacked(
+    Actions.MINT_POSITION,
+    Actions.SETTLE_PAIR
+);
+```
+
+Set up parameters for each action:
+
+```solidity
+bytes[] memory params = new bytes[](2);
+
+// Parameters for MINT_POSITION
+params[0] = abi.encode(
+    poolKey,     // Which pool to mint in
+    tickLower,   // Position's lower price bound
+    tickUpper,   // Position's upper price bound
+    liquidity,   // Amount of liquidity to mint
+    amount0Max,  // Maximum amount of token0 to use
+    amount1Max,  // Maximum amount of token1 to use
+    recipient,   // Who receives the NFT
+    ""           // No hook data needed
+);
+
+// Parameters for SETTLE_PAIR - specify tokens to provide
+params[1] = abi.encode(
+    poolKey.currency0,  // First token to settle
+    poolKey.currency1   // Second token to settle
+);
+```
+
+Finally, execute the mint operation:
+
+```solidity
+// Execute the mint operation
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60  // 60 second deadline
+);
+```
+
+## Increasing Liquidity
+
+After a position is created, you might want to add more liquidity to it. This operation requires understanding how fee accumulation works since fees are credited to your position during an increase.
+
+### **Understanding the Operation**
+
+When increasing liquidity:
+
+1. The operation calculates the tokens needed based on current prices
+2. Any accumulated fees are **automatically credited** to your position
+3. In some cases, fee revenue might partially or fully cover the tokens needed
+
+### **Choosing the Right Delta Resolution**
+
+Unlike minting where we always use SETTLE_PAIR, increasing liquidity has different delta-resolving options depending on your scenario:
+
+1. **Standard Case**: When you’re providing new tokens
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    Actions.INCREASE_LIQUIDITY,
+    Actions.SETTLE_PAIR
+);
+```
+
+**2. Fee Conversion**: When converting accumulated fees to liquidity
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    Actions.INCREASE_LIQUIDITY,
+    Actions.CLOSE_CURRENCY,  // For token0
+    Actions.CLOSE_CURRENCY   // For token1
+);
+```
+
+### **Implementation**
+
+Here’s how to implement a flexible increase liquidity function:
+
+```solidity
+/// @notice Increases liquidity in an existing position
+/// @param tokenId The ID of the position
+/// @param liquidityIncrease Amount of liquidity to add
+/// @param amount0Max Maximum amount of token0 to spend
+/// @param amount1Max Maximum amount of token1 to spend
+/// @param useFeesAsLiquidity Whether to use accumulated fees
+function increaseLiquidity(
+    uint256 tokenId,
+    uint128 liquidityIncrease,
+    uint256 amount0Max,
+    uint256 amount1Max,
+    bool useFeesAsLiquidity
+) external {
+```
+
+Choose the appropriate delta resolution based on whether we’re using fees:
+
+```solidity
+// Define the sequence of operations:
+// If using fees: Handle potential fee conversion
+// If not: Standard liquidity addition
+bytes memory actions;
+if (useFeesAsLiquidity) {
+    actions = abi.encodePacked(
+        Actions.INCREASE_LIQUIDITY,  // Add liquidity
+        Actions.CLOSE_CURRENCY,      // Handle token0 (might need to pay or receive)
+        Actions.CLOSE_CURRENCY       // Handle token1 (might need to pay or receive)
+    );
+} else {
+    actions = abi.encodePacked(
+        Actions.INCREASE_LIQUIDITY,  // Add liquidity
+        Actions.SETTLE_PAIR          // Provide tokens
+    );
+}
+```
+
+Prepare parameters based on our chosen strategy:
+
+```solidity
+// Number of parameters depends on our strategy
+bytes[] memory params = new bytes[](
+    useFeesAsLiquidity ? 3 : 2
+);
+
+// Parameters for INCREASE_LIQUIDITY
+params[0] = abi.encode(
+    tokenId,           // Position to increase
+    liquidityIncrease, // Amount to add
+    amount0Max,        // Maximum token0 to spend
+    amount1Max,        // Maximum token1 to spend
+    ""                // No hook data needed
+);
+```
+
+Set up delta resolution parameters:
+
+```solidity
+if (useFeesAsLiquidity) {
+    // Using CLOSE_CURRENCY for automatic handling of each token
+    params[1] = abi.encode(currency0);  // Handle token0
+    params[2] = abi.encode(currency1);  // Handle token1
+} else {
+    // Standard SETTLE_PAIR for providing tokens
+    params[1] = abi.encode(currency0, currency1);
+}
+```
+
+Execute the operation:
+
+```solidity
+// Execute the increase
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60  // 60 second deadline
+);
+}
+```
+
+## Decreasing Liquidity
+
+When you want to remove liquidity from a position, you’ll need to handle both the liquidity reduction and any accumulated fees. Let’s understand how to implement this effectively.
+
+### **Understanding the Operation**
+
+Decreasing liquidity involves:
+
+1. Specifying how much liquidity to remove
+2. Setting minimum amounts to receive (slippage protection)
+3. Collecting both the removed liquidity and any accumulated fees
+
+### **Delta Resolution Options**
+
+When decreasing liquidity, you’ll receive tokens, so it's most common to receive a pair of tokens:
+
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    Actions.DECREASE_LIQUIDITY,
+    Actions.TAKE_PAIR
+);
+```
+
+### **Implementation**
+
+When removing liquidity from a position, you’ll be able to receive tokens and any accumulated fees. Let’s break down the implementation step by step.
+
+```solidity
+/// @notice Removes liquidity from a position
+/// @param tokenId The ID of the position
+/// @param liquidityDecrease Amount of liquidity to remove
+/// @param amount0Min Minimum amount of token0 to receive
+/// @param amount1Min Minimum amount of token1 to receive
+/// @param recipient Address to receive the tokens
+function decreaseLiquidity(
+    uint256 tokenId,
+    uint128 liquidityDecrease,
+    uint256 amount0Min,
+    uint256 amount1Min,
+    address recipient
+) external {
+```
+
+Prepare the parameters array:
+
+```solidity
+// Number of parameters depends on our strategy
+bytes[] memory params = new bytes[](2);
+
+// Parameters for DECREASE_LIQUIDITY
+params[0] = abi.encode(
+    tokenId,           // Position to decrease
+    liquidityDecrease, // Amount to remove
+    amount0Min,        // Minimum token0 to receive
+    amount1Min,        // Minimum token1 to receive
+    ""                // No hook data needed
+);
+```
+
+Set up delta resolution parameters:
+
+```solidity
+// Parameters for TAKE_PAIR
+params[1] = abi.encode(
+    currency0,
+    currency1,
+    recipient
+);
+```
+
+Execute the operation:
+
+```solidity
+// Execute the decrease
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60  // 60 second deadline
+);
+```
+
+## Collecting Fees
+
+In v4’s Position Manager, there isn’t a dedicated COLLECT command. Instead, **fees are collected by using DECREASE_LIQUIDITY with zero liquidity**. This pattern leverages the fact that fees are automatically credited during liquidity operations.
+
+### **Understanding Fee Collection**
+
+When collecting fees, you need to:
+
+1. Perform a DECREASE_LIQUIDITY operation with zero liquidity
+2. Handle the positive deltas (the fees you’re collecting)
+3. Specify where the fees should go
+
+### **Implementation**
+
+```solidity
+/// @notice Collects accumulated fees from a position
+/// @param tokenId The ID of the position to collect fees from
+/// @param recipient Address that will receive the fees
+function collectFees(
+    uint256 tokenId,
+    address recipient
+) external {
+    // Define the sequence of operations
+    bytes memory actions = abi.encodePacked(
+        Actions.DECREASE_LIQUIDITY, // Remove liquidity
+        Actions.TAKE_PAIR           // Receive both tokens
+    );
+
+    // Prepare parameters array
+    bytes[] memory params = new bytes[](2);
+
+    // Parameters for DECREASE_LIQUIDITY
+    // All zeros since we're only collecting fees
+    params[0] = abi.encode(
+        tokenId,    // Position to collect from
+        0,          // No liquidity change
+        0,          // No minimum for token0 (fees can't be manipulated)
+        0,          // No minimum for token1
+        ""          // No hook data needed
+    );
+```
+
+When collecting fees, we use a zero-liquidity decrease operation - this means we're not actually removing any liquidity from the position, we're just collecting accumulated fees.
+
+And note that we set minimums to 0 for fee collection because fees cannot be manipulated in a front-run attack. This is different from other liquidity operations where setting appropriate minimum amounts is crucial for slippage protection.
+
+Set up the fee collection parameters:
+
+```solidity
+    // Standard TAKE_PAIR for receiving all fees
+    params[1] = abi.encode(
+        currency0,
+        currency1,
+        recipient
+    );
+}
+```
+
+Execute the fee collection:
+
+```solidity
+// Execute fee collection
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60  // 60 second deadline
+);
+```
+
+## Burning Positions
+
+When you want to completely exit a position, burning is more efficient than removing liquidity and collecting fees separately. The BURN_POSITION command handles everything in a single operation.
+
+### **Understanding Position Burning**
+
+A burn operation:
+
+- Removes all remaining liquidity from the pool
+- Collects any accumulated fees
+- Burns the position NFT
+- Settles all tokens to a specified recipient
+
+### **Implementation**
+
+Let’s implement a position burning function step by step:
+
+```solidity
+/// @notice Burns a position and receives all tokens
+/// @param tokenId The ID of the position to burn
+/// @param recipient Address that will receive the tokens
+/// @param amount0Min Minimum amount of token0 to receive
+/// @param amount1Min Minimum amount of token1 to receive
+function burnPosition(
+    uint256 tokenId,
+    address recipient,
+    uint256 amount0Min,
+    uint256 amount1Min
+) external {
+    // Define the sequence of operations:
+    // 1. BURN_POSITION - Removes the position and creates positive deltas
+    // 2. TAKE_PAIR - Sends all tokens to the recipient
+    bytes memory actions = abi.encodePacked(
+        Actions.BURN_POSITION,
+        Actions.TAKE_PAIR
+    );
+```
+
+The burn operation requires two sets of parameters:
+
+```solidity
+bytes[] memory params = new bytes[](2);
+
+// Parameters for BURN_POSITION
+params[0] = abi.encode(
+    tokenId,      // Position to burn
+    amount0Min,   // Minimum token0 to receive
+    amount1Min,   // Minimum token1 to receive
+    ""            // No hook data needed
+);
+
+// Parameters for TAKE_PAIR - where tokens will go
+params[1] = abi.encode(
+    currency0,   // First token
+    currency1,   // Second token
+    recipient    // Who receives the tokens
+);
+```
+
+Finally, execute the operation:
+
+```solidity
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60
+);
+```
+
+# Batch-Operating Liquidity
+
+The Position Manager’s command-based design enables you to perform multiple liquidity operations in a single transaction. This is particularly valuable when managing multiple positions or performing complex liquidity management strategies, such as taking tokens from one position to increase liquidity of another position.
+
+## Benefits of Batch Operations
+
+When managing liquidity across multiple positions, batching operations provides significant advantages:
+
+- Reduced gas costs by combining token settlements
+- Atomic execution of related operations
+- Simplified token handling through combined delta resolution
+
+## Implementation Guide
+
+Let’s implement a common scenario: rebalancing liquidity by creating a new position while closing an old one and collecting its fees. We’ll go through it step by step.
+
+First, let’s define our parameters:
+
+```solidity
+/// @notice Rebalances liquidity by creating a new position and closing an old one
+/// @param newPositionParams Parameters for the new position
+/// @param oldPositionId Position to close and collect fees from
+/// @param recipient Address to receive tokens from closed position
+struct NewPositionParams {
+    PoolKey poolKey;
+    int24 tickLower;
+    int24 tickUpper;
+    uint128 liquidity;
+    uint256 amount0Max;
+    uint256 amount1Max;
+}
+```
+
+In this example, we will rebalance liquidity by closing the old position and opening a new position. For the sake of example, let's assume the user will have to transfer additional tokens. Note that capital from the first position is automatically used towards the second position through flash accounting.
+
+```solidity
+function rebalanceLiquidity(
+    NewPositionParams calldata newPositionParams,
+    uint256 oldPositionId,
+    address recipient
+) external {
+    // Group liquidity operations first, then delta resolutions
+    bytes memory actions = abi.encodePacked(
+        Actions.BURN_POSITION,    // Remove old position
+        Actions.MINT_POSITION,    // Create new position
+        Actions.SETTLE_PAIR       // Provide tokens for new position
+    );
+```
+
+Notice how we order our operations: liquidity operations first (MINT and BURN), followed by delta resolutions (SETTLE and TAKE). This ordering is crucial for gas efficiency.
+
+Next, let’s prepare our parameters array:
+
+```solidity
+// We need one parameter set for each action
+bytes[] memory params = new bytes[](3);
+```
+
+Now, let’s encode parameters for the old position:
+
+```solidity
+// Parameters for BURN_POSITION
+params[0] = abi.encode(
+    oldPositionId,
+    0,  // No minimum for token0 (consider adding slippage protection)
+    0,  // No minimum for token1
+    ""  // No hook data
+);
+```
+
+Then for minting the new position:
+
+```solidity
+// Parameters for MINT_POSITION
+params[1] = abi.encode(
+    newPositionParams.poolKey,
+    newPositionParams.tickLower,
+    newPositionParams.tickUpper,
+    newPositionParams.liquidity,
+    newPositionParams.amount0Max,
+    newPositionParams.amount1Max,
+    address(this),  // New position owner
+    ""              // No hook data
+);
+```
+
+Next, we handle token settlements. First for the new position:
+
+```solidity
+// Parameters for SETTLE_PAIR (providing tokens for new position)
+params[2] = abi.encode(
+  newPositionParams.poolKey.currency0,
+  newPositionParams.poolKey.currency1
+);
+```
+
+With everything prepared, we can execute our batch operation:
+
+```solidity
+// Execute all operations atomically
+positionManager.modifyLiquidities(
+    abi.encode(actions, params),
+    block.timestamp + 60
+);
+    positionManager.modifyLiquidities(
+        abi.encode(actions, params),
+        block.timestamp + 60
+    );
+}
+```
+
+# Delta-Resolving Operations
+
+While we’ve seen basic delta resolution using SETTLE_PAIR and TAKE_PAIR in previous sections, v4’s Position Manager provides additional operations for handling more complex scenarios. Let’s understand when and how to use each one.
+
+## **CLOSE_CURRENCY: Handling Unknown Deltas**
+
+When you can’t predict whether you’ll need to pay or receive tokens, CLOSE_CURRENCY automatically handles either case.
+
+```solidity
+// Example scenario: Converting fees to liquidity
+bytes memory actions = abi.encodePacked(
+    Actions.INCREASE_LIQUIDITY,
+    Actions.CLOSE_CURRENCY  // Will automatically settle or take based on final delta
+);
+
+bytes[] memory params = new bytes[](2);
+
+// Parameters for INCREASE_LIQUIDITY
+params[0] = abi.encode(
+    tokenId,
+    liquidityIncrease,
+    amount0Max,
+    amount1Max,
+    ""
+);
+
+// CLOSE_CURRENCY only needs the currency
+params[1] = abi.encode(currency0);
+```
+
+This is particularly useful when:
+
+- Converting fees to liquidity (fees might fully cover the increase)
+- Complex operations where final deltas are uncertain
+- Reducing code complexity by letting the protocol handle the direction
+
+## **CLEAR_OR_TAKE: Optimizing for Dust**
+
+Sometimes receiving small token amounts costs more in gas than they’re worth. CLEAR_OR_TAKE lets you specify a threshold:
+
+```solidity
+// Parameters for CLEAR_OR_TAKE
+params[0] = abi.encode(
+    currency,     // The token to handle
+    threshold     // Minimum amount worth taking
+);
+```
+
+If the amount to receive is:
+
+- Above threshold: Tokens are taken (like TAKE_PAIR)
+- Below threshold: Amount is forfeited, saving gas
+
+This is valuable for:
+
+- Operations where dust amounts can be ignored
+- Gas optimization in production systems
+
+## **SWEEP: Handling Excess Payments**
+
+SWEEP helps recover any excess tokens sent to the PoolManager:
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    Actions.YOUR_MAIN_OPERATION,
+    Actions.SWEEP  // Add at the end to collect any excess
+);
+
+// Parameters for SWEEP
+params[1] = abi.encode(
+    currency,   // Token to sweep
+    recipient   // Where to send excess tokens
+);
+```
+
+Use SWEEP when:
+
+- **Dealing with native ETH operations**
+- Conservative token approvals might result in excess
+- Need to ensure all tokens are properly accounted for
+
+## **Understanding modifyLiquiditiesWithoutUnlock**
+
+This function follows the same encoding and command patterns as `modifyLiquidity`, but serves a specific purpose: it's used when the PoolManager is already unlocked. This is particularly useful in certain scenarios:
+
+- When called from hooks that are already executing within the PoolManager's lock/unlock cycle
+- For operations like automatic fee compounding, where a hook might want to reinvest fees for users
+
+For example, a hook that automatically compounds fees for users would use `modifyLiquiditiesWithoutUnlock` because the hook is already executing within the PoolManager's unlock context, and cannot re-unlock the PoolManager

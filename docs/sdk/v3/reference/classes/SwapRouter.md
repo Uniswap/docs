@@ -52,7 +52,7 @@ Produces the on-chain method name to call and the hex encoded parameters to pass
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `trades` | [`Trade`](Trade.md)<`Currency`, `Currency`, `TradeType`\> \| [`Trade`](Trade.md)<`Currency`, `Currency`, `TradeType`\>[] | - |
+| `trades` | [`Trade`](Trade.md)\<`Currency`, `Currency`, `TradeType`\> \| [`Trade`](Trade.md)\<`Currency`, `Currency`, `TradeType`\>[] | - |
 | `options` | [`SwapOptions`](../interfaces/SwapOptions.md) | options for the call parameters |
 
 #### Returns

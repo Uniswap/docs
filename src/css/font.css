@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap');
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src:
+    url('/font/baselGrotesk/Basel-Grotesk-Regular.woff2') format('woff2'),
+    url('/font/baselGrotesk/Basel-Grotesk-Regular.woff') format('woff'),
+    url('/font/baselGrotesk/Basel-Grotesk-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src:
+    url('/font/baselGrotesk/Basel-Grotesk-Regular-Italic.woff2') format('woff2'),
+    url('/font/baselGrotesk/Basel-Grotesk-Regular-Italic.woff') format('woff'),
+    url('/font/baselGrotesk/Basel-Grotesk-Regular-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src:
+    url('/font/baselGrotesk/Basel-Grotesk-Book.woff2') format('woff2'),
+    url('/font/baselGrotesk/Basel-Grotesk-Book.woff') format('woff'),
+    url('/font/baselGrotesk/Basel-Grotesk-Book.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src:
+    url('/font/baselGrotesk/Basel-Grotesk-Book-Italic.woff2') format('woff2'),
+    url('/font/baselGrotesk/Basel-Grotesk-Book-Italic.woff') format('woff'),
+    url('/font/baselGrotesk/Basel-Grotesk-Book-Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src:
+    url('/font/baselGrotesk/Basel-Grotesk-Medium.woff2') format('woff2'),
+    url('/font/baselGrotesk/Basel-Grotesk-Medium.woff') format('woff'),
+    url('/font/baselGrotesk/Basel-Grotesk-Medium.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Basel Grotesk';
+  src:
+    url('/font/baselGrotesk/Basel-Grotesk-Medium-Italic.woff2') format('woff2'),
+    url('/font/baselGrotesk/Basel-Grotesk-Medium-Italic.woff') format('woff'),
+    url('/font/baselGrotesk/Basel-Grotesk-Medium-Italic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Riegraf';
+  src: url('/font/riegraf/Riegraf-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Riegraf';
+  src: url('/font/riegraf/Riegraf-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Riegraf';
+  src: url('/font/riegraf/Riegraf-Regular-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Riegraf';
+  src: url('/font/riegraf/Riegraf-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Riegraf';
+  src: url('/font/riegraf/Riegraf-Bold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}

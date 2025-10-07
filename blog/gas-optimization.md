@@ -84,7 +84,7 @@ This test allows us to see [every change](https://github.com/Uniswap/v3-core/pu
 
 Now that the basics of the concepts are covered, how do you decide where to spend your time optimizing?
 
-First, it’s important to understand what changes are relevant and what changes are not. A gas difference of 50 gas on a call that costs 100k gas is typically below the bar of relevance. However, several 50 gas optimizations, called multiple times per transaction, can add up to a 1% savings for a user action. The important thing here is the context: if you are saving 50 gas in a function that typically costs 1000 gas, you are saving 5% in that function. You should separate your code into function boundaries and measure at those boundaries. We do this with the many libraries in the Uniswap V3 codebase.
+First, it’s important to understand what changes are relevant and what changes are not. A gas difference of 50 on a call that costs 100k gas is typically below the bar of relevance. However, several 50 gas optimizations, called multiple times per transaction, can add up to a 1% savings for a user action. The important thing here is the context: if you are saving 50 gas in a function that typically costs 1000 gas, you are saving 5% in that function. You should separate your code into function boundaries and measure at those boundaries. We do this with the many libraries in the Uniswap V3 codebase.
 
 Context is also relevant for where to spend your time in a codebase. For example, we know the majority of users will interact with Uniswap via calls to swap. So we should focus our energy primarily on the swap function.
 
@@ -99,7 +99,7 @@ When optimizing smart contracts, it’s important to identify areas of the code 
 The most expensive operations on Ethereum (and most other L1 blockchains) typically involve storing and fetching data that must persist across transactions and blocks. The totality of this data is referred to as the blockchain’s *state*. If we zoom in to the subset of that state associated with a particular smart contract, we refer to it as the contract’s *storage*.
 
 :::note Disk vs Memory
-A quick aside: storing and retrieving state is so expensive because it must reside on [disk](https://en.wikipedia.org/wiki/Disk_storage), as it’s too large to fit in [memory](https://en.wikipedia.org/wiki/Random-access_memory). For more information on these types of tradeoffs in blockchain settings, see [The Limits to Blockchain Scalability](https://vitalik.ca/general/2021/05/23/scaling.html).
+A quick aside: storing and retrieving state is so expensive because it must reside on [disk](https://en.wikipedia.org/wiki/Disk_storage), as it’s too large to fit in [memory](https://en.wikipedia.org/wiki/Random-access_memory). For more information on these types of tradeoffs in blockchain settings, see [The Limits to Blockchain Scalability](https://vitalik.eth.limo/general/2021/05/23/scaling.html).
 :::
 
 So, returning to optimization, it’s clear that one of our primary goals should be to minimize our contract’s use of storage, as this can lead to massive savings for end-users.

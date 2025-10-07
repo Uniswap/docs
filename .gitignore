@@ -16,6 +16,10 @@ typechain/
 
 .env
 
+# ignore forge-doc artifacts as they are copied to the proper location
+forge-docs/v4-core/*
+forge-docs/v4-periphery/*
+
 # Debugging logs
 npm-debug.log*
 yarn-debug.log*
@@ -29,3 +33,12 @@ package-lock.json
 
 # VSCode
 .vscode/
+.yarn/install-state.gz
+
+# Claude files - prevent accidental commits
+CLAUDE.md
+claude.md
+v4-sdk-baseline-assessment.md
+
+# Ignore external repositories
+v4-subgraph/

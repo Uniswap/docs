@@ -16,9 +16,9 @@ The scope of work includes:
 - Numerical error analysis
 - Code review of periphery smart contracts (during ongoing development)
 
-The report also has a "Design Comments" section that we highly recommend for gaining a deep technical understanding of some of the choices made in Uniswap V2.
+The report also has a "Design Comments" section that provided a deep technical understanding of some of the choices made in Uniswap V2.
 
-> [Read the report](https://uniswap.org/audit.html)
+> Note: The audit report is no longer available at its original URL. The audit was completed by a team of six engineers between January and April 2020.
 
 # Bug Bounty
 

@@ -21,7 +21,7 @@ The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap
 | [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                                                    | `0x6Cdcd65e03c1CEc3730AeeCd45bc140D57A25C77` |
 | [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                                                        | `0x549FEB8c9bd4c12Ad2AB27022dA12492aC452B66` |
 | [Permit2](https://github.com/Uniswap/permit2)                                                                                                                | `0x000000000022d473030f116ddee9f6b43ac78ba3` |
-| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0x643770E279d5D0733F21d6DC03A8efbABf3255B4` |
+| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0xeabbcb3e8e415306207ef514f660a3f820025be3` |
 | [v3StakerAddress](https://github.com/Uniswap/v3-staker)                                                                                                      | `0xEcAF7c276f746170642e97De961f2f0361e1aCc8` |
 
 
@@ -34,13 +34,13 @@ These addresses are final and were deployed from these npm package versions:
 
 # Universal Router
 
-The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on Github](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
+The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
 
 # Uniswap Pool Deployments
 
 Every Uniswap pool is a unique instance of the `UniswapV3Pool` contract and is deployed at its own unique address. The contract source code of the pool will be auto-verified on etherscan. For example, here is the [ETH/USDC 0.3% pool](https://etherscan.io/address/0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8) on Ethereum mainnet.
 
-You can look up the address of an existing pool on [Uniswap Info](https://info.uniswap.org/#/) or by calling the [`getPool`](../reference/core/interfaces/IUniswapV3Factory.md#getpool) function on the `UniswapV3Factory` contract.
+You can look up the address of an existing pool on [Uniswap Info](https://info.uniswap.org/#/) or by calling the [`getPool`](../core/interfaces/IUniswapV3Factory.md#getpool) function on the `UniswapV3Factory` contract.
 
 ```solidity
 getPool("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", 3000)
