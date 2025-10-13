@@ -5,13 +5,13 @@ title: Pools
 
 ![](./images/anatomy.jpg)
 
-# Introduction
+## Introduction
 
 Each Uniswap liquidity pool is a trading venue for a pair of ERC20 tokens. When a pool contract is created, its balances of each token are 0; in order for the pool to begin facilitating trades, someone must seed it with an initial deposit of each token. This first liquidity provider is the one who sets the initial price of the pool. They are incentivized to deposit an equal _value_ of both tokens into the pool. To see why, consider the case where the first liquidity provider deposits tokens at a ratio different from the current market rate. This immediately creates a profitable arbitrage opportunity, which is likely to be taken by an external party.
 
 When other liquidity providers add to an existing pool, they must deposit pair tokens proportional to the current price. If they don’t, the liquidity they added is at risk of being arbitraged as well. If they believe the current price is not correct, they may arbitrage it to the level they desire, and add liquidity at that price.
 
-# Pool tokens
+## Pool tokens
 
 ![](./images/lp.jpg)
 
@@ -28,7 +28,7 @@ As liquidity tokens are themselves tradable assets, liquidity providers may sell
 - [Understanding Returns](../../concepts/advanced-topics/understanding-returns)
 - [Fees](../../concepts/advanced-topics/fees)
 
-# Why pools?
+## Why pools?
 
 Uniswap is unique in that it doesn’t use an order book to derive the price of an asset or to match buyers and sellers of tokens. Instead, Uniswap uses what are called Liquidity Pools.
 
@@ -44,6 +44,6 @@ It is important to reiterate that a Pool is just a smart contract, operated by u
 
 Just how end-users can interact with the Uniswap protocol through the Interface (which in turn interacts with the underlying contracts), developers can interact directly with the smart contracts and integrate Uniswap functionality into their own applications without relying on intermediaries or needing permission.
 
-# Developer resources
+## Developer resources
 
 - To see how to pool tokens in a smart contract read [Providing Liquidity](../../guides/smart-contract-integration/providing-liquidity).

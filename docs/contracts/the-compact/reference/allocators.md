@@ -4,8 +4,6 @@ title: Allocators
 sidebar_position: 4
 ---
 
-# Allocators
-
 Allocators are crucial infrastructure components in The Compact protocol that ensure resource lock integrity and prevent double-spending.
 
 ## Role and Responsibilities

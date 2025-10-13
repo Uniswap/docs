@@ -10,9 +10,9 @@ Uniswap flash swaps allow you to withdraw up to the full reserves of any ERC20 
 
 Flash swaps are incredibly useful because they obviate upfront capital requirements and unnecessary order-of-operations constraints for multi-step transactions involving Uniswap.
 
-# Examples
+## Examples
 
-## Capital Free Arbitrage
+### Capital Free Arbitrage
 
 One particularly interesting use case for flash swaps is capital-free arbitrage. It's well-known that an integral part of Uniswap's design is to create incentives for arbitrageurs to trade the Uniswap price to a "fair" market price. While game-theoretically sound, this strategy is accessible only to those with sufficient capital to take advantage of arbitrage opportunities. Flash swaps remove this barrier entirely, effectively democratizing arbitrage.
 
@@ -43,6 +43,6 @@ It's quite simple to use Uniswap as a liquidity source for the DAI-to-ETH compon
 
 Luckily, flash swaps enable us to withdraw the _full_ ETH amount upfront. If we wanted 2x leverage against our 3 ETH principal, we could simply request 3 ETH in a flash swap and deposit 6 ETH into Maker. This gives us the ability to mint 800 DAI. If we mint as much as we need to cover our flash swap (say 605), the remainder serves as a safety margin against price movements.
 
-# Developer resources
+## Developer resources
 
 - To see how to integrate a flash swap in your smart contract read [Using Flash Swaps](../../guides/smart-contract-integration/using-flash-swaps).

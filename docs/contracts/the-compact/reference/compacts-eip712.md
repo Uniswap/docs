@@ -4,8 +4,6 @@ title: Compacts & EIP-712
 sidebar_position: 2
 ---
 
-# Compacts & EIP-712
-
 A **compact** is an agreement created by a sponsor that allows their locked resources to be claimed under specified conditions. The Compact protocol uses EIP-712 typed structured data for creating and verifying signatures for these agreements.
 
 ## Compact Types

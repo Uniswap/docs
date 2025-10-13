@@ -3,18 +3,18 @@ id: pricing
 title: Pricing
 ---
 
-# How are prices determined?
+## How are prices determined?
 
 As we learned in [Protocol Overview](../protocol-overview/how-uniswap-works), each pair on Uniswap is actually underpinned by a liquidity pool. Liquidity pools are smart contracts that hold balances of two unique tokens and enforces rules around depositing and withdrawing them. The primary rule is the [constant product formula](../protocol-overview/glossary#constant-product-formula). When a token is withdrawn (bought), a proportional amount must be deposited (sold) to maintain the constant. The ratio of tokens in the pool, in combination with the constant product formula, ultimately determine the price that a swap executes at.
 
-# How Uniswap handles prices
+## How Uniswap handles prices
 
 In Uniswap V1, trades are always executed at the "best possible" price, calculated at execution time. Somewhat confusingly, this calculation is actually accomplished with one of two different formulas, depending on whether the trade specifies an exact _input_ or _output_ amount. Functionally, the difference between these two functions is miniscule, but the very existence of a difference increases conceptual complexity. Initial attempts to support both functions in V2 proved inelegant, and the decision was made to **not provide any pricing functions in the core**. Instead, pairs directly check whether the invariant was satisfied (accounting for fees) after every trade. This means that rather than relying on a pricing function to _also_ enforce the invariant, V2 pairs simply and transparently ensure their own safety, a nice separation of concerns. One downstream benefit is that V2 pairs will more naturally support other flavors of trades which may emerge, (e.g. trading to a specific price at execution time).
 
 At a high level, in Uniswap V2, _trades must be priced in the periphery_. The good news is that the [library](../../reference/smart-contracts/library)
 provides a variety of functions designed to make this quite simple, and all swapping functions in the [router](../../reference/smart-contracts/router-02) are designed with this in mind.
 
-# Pricing Trades
+### Pricing Trades
 
 When swapping tokens on Uniswap, it's common to want to receive as many output tokens as possible for an _exact input amount_, or to pay as few input tokens as possible for an _exact output amount_. In order to calculate these amounts, a contract must look up the _current reserves_ of a pair, in order to understand what the current price is. However, it is _not safe to perform this lookup and rely on the results without access to an external price_.
 
@@ -24,14 +24,14 @@ To prevent these types of attacks, it's vital to submit swaps _that have access 
 
 There are, of course, other options for oracles, including [native V2 oracles](../core-concepts/oracles).
 
-## Exact Input
+### Exact Input
 
 If you'd like to send an exact amount of input tokens in exchange for as many output tokens as possible, you'll want to use [getAmountsOut](../../reference/smart-contracts/router-02#getamountout). The equivalent SDK function is [getOutputAmount](../../../../sdk/2.0.0/reference/pair#getoutputamount), or [minimumAmountOut](../../../../sdk/2.0.0/reference/trade#minimumamountout-since-204) for slippage calculations.
 
-## Exact Output
+### Exact Output
 
 If you'd like to receive an exact amount of output tokens for as few input tokens as possible, you'll want to use [getAmountsIn](../../reference/smart-contracts/router-02#getamountsin). The equivalent SDK function is [getInputAmount](../../../../sdk/2.0.0/reference/pair#getinputamount), or [maximumAmountIn](../../../../sdk/2.0.0/reference/trade#maximumamountin-since-204) for slippage calculations.
 
-## Swap to Price
+### Swap to Price
 
 For this more advanced use case, see [ExampleSwapToPrice.sol](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleSwapToPrice.sol).

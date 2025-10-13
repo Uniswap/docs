@@ -13,7 +13,7 @@ This means developers can replace Uniswap's internal core logic for how to handl
 
 Note: The flexibility of AsyncSwap means hook developers can implement harmful behavior (such as taking all swap amounts for themselves, charging extra fees, etc.). Hooks with AsyncSwap behavior should be examined very closely by both developers and users.
 
-# Configure a AsyncSwap Hook
+## Configure a AsyncSwap Hook
 
 To enable AsyncSwap, developers will need the hook permission `BEFORE_SWAP_RETURNS_DELTA_FLAG`
 
@@ -47,7 +47,7 @@ contract AsyncSwapHook is BaseHook {
 }
 ```
 
-# beforeSwap
+## beforeSwap
 
 AsyncSwap only works on exact-input swaps and the *beforeSwap* **must** take the input currency and return [`BeforeSwapDelta`](/contracts/v4/reference/core/types/beforeswapdelta). The hook should `IPoolManager.mint` itself the corresponding tokens equal to the amount of the input (`amountSpecified`). It should then return a `BeforeSwapDelta` where `deltaSpecified = -amountSpecified` (the positive amount).
 
@@ -87,7 +87,7 @@ contract AsyncSwapHook is BaseHook {
 }
 ```
 
-# Testing
+## Testing
 
 To verify the AsyncSwap behaved properly, developers should test the swap and that token balances match expected behavior.
 

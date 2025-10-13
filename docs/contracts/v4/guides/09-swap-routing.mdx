@@ -2,7 +2,7 @@
 title: Swap routing
 ---
 
-# Introduction to Universal Router for Uniswap v4 Swaps
+## Introduction to Universal Router for Uniswap v4 Swaps
 
 Uniswap v4 introduces a new architecture where all pools are managed by a single PoolManager contract. While the underlying architecture uses a callback system for swaps, developers can still use the Universal Router to execute swaps on v4 pools, just as you would for v2 or v3.
 
@@ -36,9 +36,9 @@ Each command is encoded as a single byte (`bytes1`) with a specific structure:
 - The second bit (`r`) is reserved for future use, providing flexibility for potential upgrades.
 - The remaining 6 bits represent the specific command to be executed.
 
-# Configuring Universal Router for Uniswap v4 Swaps
+## Configuring Universal Router for Uniswap v4 Swaps
 
-## Use Cases
+### Use Cases
 
 Developers might need to configure the Universal Router for swapping on Uniswap v4 pools in several scenarios:
 
@@ -48,7 +48,7 @@ Developers might need to configure the Universal Router for swapping on Uniswap 
 
 This guide focuses on how to interact with Universal Router from an on-chain contract.
 
-## Step 1: Set Up the Project
+### Step 1: Set Up the Project
 
 First, we need to set up our project and install the necessary dependencies.
 ```bash
@@ -110,7 +110,7 @@ In this step, we’re importing the necessary contracts and interfaces:
 - `IPermit2`: This interface allows us to interact with the Permit2 contract, which provides enhanced token approval functionality.
 - `StateLibrary`: This provides optimized functions for interacting with the PoolManager’s state. By using `StateLibrary`, we can more efficiently read and manipulate pool states, which is crucial for many operations in Uniswap v4.
 
-## Step 2: Implement Token Approval with Permit2
+### Step 2: Implement Token Approval with Permit2
 
 `UniversalRouter` integrates with [Permit2](https://github.com/Uniswap/permit2), to enable users to have more safety, flexibility, and control over their ERC20 token approvals.
 
@@ -131,9 +131,9 @@ function approveTokenWithPermit2(
 
 This function first approves Permit2 to spend the token, then uses Permit2 to approve the UniversalRouter with a specific amount and expiration time.
 
-## Step 3: Implementing a Swap Function
+### Step 3: Implementing a Swap Function
 
-### 3.1: Function Signature
+#### 3.1: Function Signature
 
 First, let’s define our function signature:
 
@@ -168,7 +168,7 @@ struct PoolKey {
 }
 ```
 
-### 3.2: Encoding the Swap Command
+#### 3.2: Encoding the Swap Command
 
 When encoding a swap command for the Universal Router, we need to choose between two types of swaps:
 
@@ -190,7 +190,7 @@ Here, we're using `V4_SWAP`, which tells the Universal Router that we want to pe
 
 Check the complete list of [commands](https://docs.uniswap.org/contracts/universal-router/technical-reference#command).
 
-### 3.3: Action Encoding
+#### 3.3: Action Encoding
 
 Now, let’s encode the actions for the swap:
 
@@ -211,7 +211,7 @@ These actions define the sequence of operations that will be performed in our v4
 
 The sequence of these actions is important as they define the complete flow of our swap operation from start to finish.
 
-### 3.4: Preparing the Swap Inputs
+#### 3.4: Preparing the Swap Inputs
 
 For our v4 swap, we need to prepare three parameters that correspond to our encoded actions:
 
@@ -245,7 +245,7 @@ Each encoded parameter serves a specific purpose:
 
 These parameters work in conjunction with the actions we encoded earlier (`SWAP_EXACT_IN_SINGLE`, `SETTLE_ALL`, and `TAKE_ALL`) to execute our swap operation.
 
-### 3.5: Executing the Swap
+#### 3.5: Executing the Swap
 
 Now we can execute the swap using the Universal Router. It's crucial to allow users to specify their own deadline for transaction execution:
 
@@ -262,7 +262,7 @@ This prepares and executes the swap based on our encoded commands, actions, and 
 > **Note**:  Never use block.timestamp or type(uint256).max as the deadline parameter.
 >
 
-### 3.6: (Optional) Verifying the Swap Output
+#### 3.6: (Optional) Verifying the Swap Output
 
 After the swap, we need to verify that we received at least the minimum amount of tokens we specified:
 
@@ -271,7 +271,7 @@ amountOut = IERC20(Currency.unwrap(key.currency1)).balanceOf(address(this));
 require(amountOut >= minAmountOut, "Insufficient output amount");
 ```
 
-### 3.7: Returning the Result
+#### 3.7: Returning the Result
 
 Finally, we return the amount of tokens we received:
 

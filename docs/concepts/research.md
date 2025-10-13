@@ -6,7 +6,7 @@ sidebar_position: 4
 
 The [Uniswap Foundation](https://www.uniswapfoundation.org/) supports the protocol's growth and decentralization through strategic research initiatives, empowering our community with grants and resources to conduct groundbreaking research and develop practical implementations that advance the frontier DeFi. Featured research from our community:
 
-# Layer 2 be or Layer not 2 be: Scaling on Uniswap v3
+## Layer 2 be or Layer not 2 be: Scaling on Uniswap v3
 
 Authors: Austin Adams
 
@@ -14,7 +14,7 @@ Authors: Austin Adams
 
 - [Layer 2 be or Layer not 2 be: Scaling on Uniswap v3 [Mar 2024]](https://arxiv.org/abs/2403.09494)
 
-# Who Wins Ethereum Block Building Auctions and Why?
+## Who Wins Ethereum Block Building Auctions and Why?
 
 Authors: Burak Öz, Danning Sui, Thomas Thiery, Florian Matthes
 
@@ -22,7 +22,7 @@ Authors: Burak Öz, Danning Sui, Thomas Thiery, Florian Matthes
 
 - [Who Wins Ethereum Block Building Auctions and Why? [Jul 2024]](https://arxiv.org/abs/2407.13931)
 
-# MEV Capture and Decentralization in Execution Tickets
+## MEV Capture and Decentralization in Execution Tickets
 
 Authors: Jonah Burian, Davide Crapis, Fahad Saleh
 
@@ -30,7 +30,7 @@ Authors: Jonah Burian, Davide Crapis, Fahad Saleh
 
 - [MEV Capture and Decentralization in Execution Tickets [Aug 2024]](https://arxiv.org/abs/2408.11255)
 
-# What Drives Liquidity on Decentralized Exchanges? Evidence from the Uniswap Protocol
+## What Drives Liquidity on Decentralized Exchanges? Evidence from the Uniswap Protocol
 
 Authors: Alex Evans
 
@@ -38,7 +38,7 @@ Authors: Alex Evans
 
 - [What Drives Liquidity on Decentralized Exchanges? Evidence from the Uniswap Protocol [Oct 2024]](https://arxiv.org/abs/2410.19107)
 
-# The Evolution of Decentralized Exchange: Risks, Benefits, and Oversight
+## The Evolution of Decentralized Exchange: Risks, Benefits, and Oversight
 
 Authors: Campbell R. Harvey, Joel Hasbrouck, Fahad Saleh
 
@@ -47,7 +47,7 @@ Authors: Campbell R. Harvey, Joel Hasbrouck, Fahad Saleh
 - [The Evolution of Decentralized Exchange: Risks, Benefits, and Oversight [Oct 2024]](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4861942)
 
 
-# Research Initiatives: Get Involved
+## Research Initiatives: Get Involved
 
 - [TLDR (The Latest in DeFi Research):](https://www.thelatestindefi.org/) empowers engineers, academics, and students through research fellowships with grants and expert mentorship, culminating in an annual conference to showcase groundbreaking work.
 

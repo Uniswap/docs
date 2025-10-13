@@ -1,4 +1,14 @@
-# Actions
+# ActionsRouter
+[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/test/ActionsRouter.sol)
+
+**Inherits:**
+[IUnlockCallback](/src/interfaces/callback/IUnlockCallback.sol/interface.IUnlockCallback.md), Test
+
+A router that handles an arbitrary input of actions.
+TODO: Can continue to add functions per action.
+
+
+## Actions
 [Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/test/ActionsRouter.sol) - Generated with [forge doc](https://book.getfoundry.sh/reference/forge/forge-doc)
 
 
@@ -20,16 +30,6 @@ enum Actions {
     COLLECT_PROTOCOL_FEES
 }
 ```
-
-# ActionsRouter
-[Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/test/ActionsRouter.sol)
-
-**Inherits:**
-[IUnlockCallback](/src/interfaces/callback/IUnlockCallback.sol/interface.IUnlockCallback.md), Test
-
-A router that handles an arbitrary input of actions.
-TODO: Can continue to add functions per action.
-
 
 ## State Variables
 ### manager

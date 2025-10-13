@@ -3,27 +3,27 @@ id: exchange
 title: Exchange
 ---
 
-# setup
+## setup
 
 | Parameter  |                        Description |
 | :--------- | ---------------------------------: |
 | token_addr | Ethereum address of an ERC20 Token |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 # Can only be called by factory contract during createExchange()
 setup(token_addr: address):
 ```
 
-## Web3
+### Web3
 
 ```javascript
 // Can only be called by factory contract during createExchange()
 exchangeContract.methods.setup((token: String)).send()
 ```
 
-# addLiquidity
+## addLiquidity
 
 | Parameter     | Type    |                Description |
 | :------------ | :------ | -------------------------: |
@@ -36,7 +36,7 @@ exchangeContract.methods.setup((token: String)).send()
 | :------ | --------------------------------: |
 | uint256 | Amount of liquidity tokens minted |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @payable
@@ -47,13 +47,13 @@ addLiquidity(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.addLiquidity(min_liquidity, max_tokens, deadline).send({ value: ethValue })
 ```
 
-# removeLiquidity
+## removeLiquidity
 
 | Parameter  | Type    |                  Description |
 | :--------- | :------ | ---------------------------: |
@@ -67,7 +67,7 @@ exchangeContract.methods.addLiquidity(min_liquidity, max_tokens, deadline).send(
 | uint256 |           Amount of ETH removed |
 | uint256 | Amount of ERC20 tokens removed. |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 removeLiquidity(
@@ -78,19 +78,19 @@ removeLiquidity(
 ): (uint256, uint256)
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.removeLiquidity(amount, min_eth, min_tokens, deadline).send()
 ```
 
-# default
+## default
 
 | Parameter | Type    |        Description |
 | :-------- | :------ | -----------------: |
 | msg.value | uint256 | Amount of ETH sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 # Default function in Vyper replaces the "fallback" function in Solidity
@@ -98,13 +98,13 @@ exchangeContract.methods.removeLiquidity(amount, min_eth, min_tokens, deadline).
 __default__():
 ```
 
-## Web3
+### Web3
 
 ```javascript
 web3.eth.sendTransaction({ value: ethAmount })
 ```
 
-# ethToTokenSwapInput
+## ethToTokenSwapInput
 
 | Parameter  | Type    |                 Description |
 | :--------- | :------ | --------------------------: |
@@ -116,7 +116,7 @@ web3.eth.sendTransaction({ value: ethAmount })
 | :------ | ----------------------------: |
 | uint256 | Amount of ERC20 tokens bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @payable
@@ -126,13 +126,13 @@ ethToTokenSwapInput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.ethToTokenSwapInput(min_liquidity, max_tokens, deadline).send({ value: ethValue })
 ```
 
-# ethToTokenTransferInput
+## ethToTokenTransferInput
 
 | Parameter  | Type    |                        Description |
 | :--------- | :------ | ---------------------------------: |
@@ -145,7 +145,7 @@ exchangeContract.methods.ethToTokenSwapInput(min_liquidity, max_tokens, deadline
 | :------ | ----------------------------: |
 | uint256 | Amount of ERC20 tokens bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @payable
@@ -156,7 +156,7 @@ ethToTokenTransferInput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -164,7 +164,7 @@ exchangeContract.methods
   .send({ value: ethValue })
 ```
 
-# ethToTokenSwapOutput
+## ethToTokenSwapOutput
 
 | Parameter     | Type    |                   Description |
 | :------------ | :------ | ----------------------------: |
@@ -176,7 +176,7 @@ exchangeContract.methods
 | :------ | -----------------: |
 | uint256 | Amount of ETH sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @payable
@@ -186,13 +186,13 @@ ethToTokenSwapOutput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.ethToTokenSwapOutput(tokens_bought, deadline).send({ value: ethValue })
 ```
 
-# ethToTokenTransferOutput
+## ethToTokenTransferOutput
 
 | Parameter     | Type    |                        Description |
 | :------------ | :------ | ---------------------------------: |
@@ -205,7 +205,7 @@ exchangeContract.methods.ethToTokenSwapOutput(tokens_bought, deadline).send({ va
 | :------ | -----------------: |
 | uint256 | Amount of ETH sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @payable
@@ -216,7 +216,7 @@ ethToTokenTransferOutput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -224,7 +224,7 @@ exchangeContract.methods
   .send({ value: ethValue })
 ```
 
-# tokenToEthSwapInput
+## tokenToEthSwapInput
 
 | Parameter   | Type    |                 Description |
 | :---------- | :------ | --------------------------: |
@@ -236,7 +236,7 @@ exchangeContract.methods
 | :------ | -------------------: |
 | uint256 | Amount of ETH bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToEthSwapInput(
@@ -246,13 +246,13 @@ tokenToEthSwapInput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.tokenToEthSwapInput(tokens_sold, min_eth, deadline).send()
 ```
 
-# tokenToEthTransferInput
+## tokenToEthTransferInput
 
 | Parameter   | Type    |                 Description |
 | :---------- | :------ | --------------------------: |
@@ -265,7 +265,7 @@ exchangeContract.methods.tokenToEthSwapInput(tokens_sold, min_eth, deadline).sen
 | :------ | -------------------: |
 | uint256 | Amount of ETH bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToEthTransferInput(
@@ -276,13 +276,13 @@ tokenToEthTransferInput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.tokenToEthTransferInput(tokens_sold, min_eth, deadline, recipient).send()
 ```
 
-# tokenToEthSwapOutput
+## tokenToEthSwapOutput
 
 | Parameter  | Type    |               Description |
 | :--------- | :------ | ------------------------: |
@@ -294,7 +294,7 @@ exchangeContract.methods.tokenToEthTransferInput(tokens_sold, min_eth, deadline,
 | :------ | --------------------------: |
 | uint256 | Amount of ERC20 tokens sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToEthSwapOutput(
@@ -304,13 +304,13 @@ tokenToEthSwapOutput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.tokenToEthSwapOutput(eth_bought, max_tokens, (deadline: Integer)).send()
 ```
 
-# tokenToEthTransferOutput
+## tokenToEthTransferOutput
 
 | Parameter  | Type    |               Description |
 | :--------- | :------ | ------------------------: |
@@ -323,7 +323,7 @@ exchangeContract.methods.tokenToEthSwapOutput(eth_bought, max_tokens, (deadline:
 | :------ | --------------------------: |
 | uint256 | Amount of ERC20 tokens sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToEthTransferOutput(
@@ -334,7 +334,7 @@ tokenToEthTransferOutput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -342,7 +342,7 @@ exchangeContract.methods
   .send()
 ```
 
-# tokenToTokenSwapInput
+## tokenToTokenSwapInput
 
 | Parameter         | Type    |                        Description |
 | :---------------- | :------ | ---------------------------------: |
@@ -356,7 +356,7 @@ exchangeContract.methods
 | :------ | -----------------------------------: |
 | uint256 | Amount of output ERC20 tokens bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToTokenSwapInput(
@@ -368,7 +368,7 @@ tokenToTokenSwapInput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -376,7 +376,7 @@ exchangeContract.methods
   .send()
 ```
 
-# tokenToTokenTransferInput
+## tokenToTokenTransferInput
 
 | Parameter         | Type    |                               Description |
 | :---------------- | :------ | ----------------------------------------: |
@@ -391,7 +391,7 @@ exchangeContract.methods
 | :------ | -----------------------------------: |
 | uint256 | Amount of output ERC20 tokens bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToTokenTransferInput(
@@ -404,7 +404,7 @@ tokenToTokenTransferInput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -412,7 +412,7 @@ exchangeContract.methods
   .send()
 ```
 
-# tokenToTokenSwapOutput
+## tokenToTokenSwapOutput
 
 | Parameter       | Type    |                          Description |
 | :-------------- | :------ | -----------------------------------: |
@@ -426,7 +426,7 @@ exchangeContract.methods
 | :------ | --------------------------------: |
 | uint256 | Amount of input ERC20 tokens sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToTokenSwapOutput(
@@ -438,7 +438,7 @@ tokenToTokenSwapOutput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -446,7 +446,7 @@ exchangeContract.methods
   .send()
 ```
 
-# tokenToTokenTransferOutput
+## tokenToTokenTransferOutput
 
 | Parameter       | Type    |                               Description |
 | :-------------- | :------ | ----------------------------------------: |
@@ -461,7 +461,7 @@ exchangeContract.methods
 | :------ | --------------------------------: |
 | uint256 | Amount of input ERC20 tokens sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToTokenTransferOutput(
@@ -474,7 +474,7 @@ tokenToTokenTransferOutput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -482,7 +482,7 @@ exchangeContract.methods
   .send()
 ```
 
-# tokenToExchangeSwapInput
+## tokenToExchangeSwapInput
 
 | Parameter         | Type    |                            Description |
 | :---------------- | :------ | -------------------------------------: |
@@ -496,7 +496,7 @@ exchangeContract.methods
 | :------ | -----------------------------------: |
 | uint256 | Amount of output ERC20 tokens bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToTokenSwapInput(
@@ -508,7 +508,7 @@ tokenToTokenSwapInput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -516,7 +516,7 @@ exchangeContract.methods
   .send()
 ```
 
-# tokenToExchangeTransferInput
+## tokenToExchangeTransferInput
 
 | Parameter         | Type    |                               Description |
 | :---------------- | :------ | ----------------------------------------: |
@@ -531,7 +531,7 @@ exchangeContract.methods
 | :------ | -----------------------------------: |
 | uint256 | Amount of output ERC20 tokens bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToExchangeTransferInput(
@@ -544,7 +544,7 @@ tokenToExchangeTransferInput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -552,7 +552,7 @@ exchangeContract.methods
   .send()
 ```
 
-# tokenToExchangeSwapOutput
+## tokenToExchangeSwapOutput
 
 | Parameter       | Type    |                            Description |
 | :-------------- | :------ | -------------------------------------: |
@@ -566,7 +566,7 @@ exchangeContract.methods
 | :------ | --------------------------------: |
 | uint256 | Amount of input ERC20 tokens sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToExchangeSwapOutput(
@@ -578,7 +578,7 @@ tokenToExchangeSwapOutput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -586,7 +586,7 @@ exchangeContract.methods
   .send()
 ```
 
-# tokenToExchangeTransferOutput
+## tokenToExchangeTransferOutput
 
 | Parameter       | Type    |                               Description |
 | :-------------- | :------ | ----------------------------------------: |
@@ -601,7 +601,7 @@ exchangeContract.methods
 | :------ | --------------------------------: |
 | uint256 | Amount of input ERC20 tokens sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 tokenToExchangeTransferOutput(
@@ -614,7 +614,7 @@ tokenToExchangeTransferOutput(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods
@@ -622,7 +622,7 @@ exchangeContract.methods
   .send()
 ```
 
-# getEthToTokenInputPrice
+## getEthToTokenInputPrice
 
 | Parameter | Type    |        Description |
 | :-------- | :------ | -----------------: |
@@ -632,20 +632,20 @@ exchangeContract.methods
 | :------ | ----------------------------------------: |
 | uint256 | Amount of ERC20 tokens that can be bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 getEthToTokenInputPrice(eth_sold: uint256): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.getEthToTokenInputPrice(eth_sold).call()
 ```
 
-# getEthToTokenOutputPrice
+## getEthToTokenOutputPrice
 
 | Parameter     | Type    |                   Description |
 | :------------ | :------ | ----------------------------: |
@@ -655,20 +655,20 @@ exchangeContract.methods.getEthToTokenInputPrice(eth_sold).call()
 | :------ | ------------------------------: |
 | uint256 | Amount of ETH that must be sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 getEthToTokenOutputPrice(tokens_bought: uint256): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.getEthToTokenOutputPrice(tokens_bought).call()
 ```
 
-# getTokenToEthInputPrice
+## getTokenToEthInputPrice
 
 | Parameter   | Type    |                 Description |
 | :---------- | :------ | --------------------------: |
@@ -678,20 +678,20 @@ exchangeContract.methods.getEthToTokenOutputPrice(tokens_bought).call()
 | :------ | -------------------------------: |
 | uint256 | Amount of ETH that can be bought |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 getTokenToEthInputPrice(tokens_sold: uint256): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.getTokenToEthInputPrice(tokens_sold).call()
 ```
 
-# getTokenToEthOutputPrice
+## getTokenToEthOutputPrice
 
 | Parameter  | Type    |          Description |
 | :--------- | :------ | -------------------: |
@@ -701,64 +701,64 @@ exchangeContract.methods.getTokenToEthInputPrice(tokens_sold).call()
 | :------ | ---------------------------------------: |
 | uint256 | Amount of ERC20 tokens that must be sold |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 getTokenToEthOutputPrice(eth_bought: uint256): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.getTokenToEthOutputPrice(eth_bought).call()
 ```
 
-# tokenAddress
+## tokenAddress
 
 | Returns |                                         |
 | :------ | --------------------------------------: |
 | address | Address of ERC20 token sold on exchange |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 tokenAddress(): address
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.tokenAddress().call()
 ```
 
-# factoryAddress
+## factoryAddress
 
 | Returns |                                          |
 | :------ | ---------------------------------------: |
 | address | Address of factory that created exchange |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 factoryAddress(): address
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.factoryAddress().call()
 ```
 
-# name
+## name
 
 | Returns |                         |
 | :------ | ----------------------: |
 | bytes32 | Name of liquidity token |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 # all exchange contracts have the same name
@@ -766,19 +766,19 @@ exchangeContract.methods.factoryAddress().call()
 name(): bytes32 // Uniswap V1
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.tokenAddress().call()
 ```
 
-# symbol
+## symbol
 
 | Returns |                           |
 | :------ | ------------------------: |
 | bytes32 | Symbol of liquidity token |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 # all exchange contracts have the same symbol
@@ -786,19 +786,19 @@ exchangeContract.methods.tokenAddress().call()
 symbol(): bytes32 // UNI-V1
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.tokenAddress().call()
 ```
 
-# decimals
+## decimals
 
 | Returns |                             |
 | :------ | --------------------------: |
 | uint256 | Decimals of liquidity token |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 # all exchange contracts have the same decimals
@@ -806,13 +806,13 @@ exchangeContract.methods.tokenAddress().call()
 decimals(): uint256 // 18
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.decimals().call()
 ```
 
-# balanceOf
+## balanceOf
 
 | Parameter | Type    |      Description |
 | :-------- | :------ | ---------------: |
@@ -822,20 +822,20 @@ exchangeContract.methods.decimals().call()
 | :------ | ---------------------------------: |
 | uint256 | Liquidity token balance of address |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 balanceOf(_owner: address): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.balanceOf(_owner).call()
 ```
 
-# transfer
+## transfer
 
 | Parameter | Type    |        Description |
 | :-------- | :------ | -----------------: |
@@ -846,7 +846,7 @@ exchangeContract.methods.balanceOf(_owner).call()
 | :------ | ----------------------------------------------: |
 | bool    | True if successful. Reverts or false on failure |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 transfer(
@@ -855,13 +855,13 @@ transfer(
 ): bool
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.transfer(_to, _value).send()
 ```
 
-# transferFrom
+## transferFrom
 
 | Parameter | Type    |        Description |
 | :-------- | :------ | -----------------: |
@@ -873,7 +873,7 @@ exchangeContract.methods.transfer(_to, _value).send()
 | :------ | ----------------------------------------------: |
 | bool    | True if successful. Reverts or false on failure |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 transferFrom(
@@ -883,13 +883,13 @@ transferFrom(
 ): bool
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.transferFrom(_from, _to, _value).send()
 ```
 
-# approve
+## approve
 
 | Parameter | Type    |                 Description |
 | :-------- | :------ | --------------------------: |
@@ -900,7 +900,7 @@ exchangeContract.methods.transferFrom(_from, _to, _value).send()
 | :------ | ----------------------------------------------: |
 | bool    | True if successful. Reverts or false on failure |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 approve(
@@ -909,13 +909,13 @@ approve(
 ): bool
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.approve(_spender, _value).send()
 ```
 
-# allowance
+## allowance
 
 | Parameter | Type    |                      Description |
 | :-------- | :------ | -------------------------------: |
@@ -926,7 +926,7 @@ exchangeContract.methods.approve(_spender, _value).send()
 | :------ | ----------------: |
 | uint256 | Spender allowance |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 allowance(
@@ -935,7 +935,7 @@ allowance(
 ): uint256
 ```
 
-## Web3
+### Web3
 
 ```javascript
 exchangeContract.methods.allowance(_owner, _spender).call()

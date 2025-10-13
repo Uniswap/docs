@@ -4,8 +4,6 @@ title: Arbiters
 sidebar_position: 5
 ---
 
-# Arbiters
-
 Arbiters are entities responsible for verifying and submitting claims against resource locks in The Compact protocol. When a sponsor creates a compact, they assign an arbiter per chain. That arbiter is the sole account that can trigger a claim against the compact on the respective chain and determines which accounts receive the locked balances and in what amounts.
 
 ## Role and Responsibilities

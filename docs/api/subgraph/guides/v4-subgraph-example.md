@@ -4,7 +4,7 @@ title: v4 Protocol Query Examples
 sidebar_position: 2
 ---
 
-# Subgraph Query Examples
+## Subgraph Query Examples
 
 This doc will teach you how to query Uniswap v4 analytics by writing GraphQL queries on the subgraph. You can fetch data points like:
 

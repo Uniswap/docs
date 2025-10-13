@@ -9,7 +9,7 @@ constructor(pairs: Pair[], input: Token, output: Token)
 
 The Route entity represents one or more ordered Uniswap pairs with a fully specified path from input token to output token.
 
-# Example
+## Example
 
 ```typescript
 import { ChainId, Token, CurrencyAmount } from '@uniswap/sdk-core'
@@ -22,9 +22,9 @@ const HOT_NOT = new Pair(CurrencyAmount.fromRawAmount(HOT, '2000000000000000000'
 const route = new Route([HOT_NOT], NOT, HOT)
 ```
 
-# Properties
+## Properties
 
-## pairs
+### pairs
 
 ```typescript
 pairs: Pair[]
@@ -32,7 +32,7 @@ pairs: Pair[]
 
 The ordered pairs that the route is comprised of.
 
-## path
+### path
 
 ```typescript
 path: Token[]
@@ -40,7 +40,7 @@ path: Token[]
 
 The full path from input token to output token.
 
-## input
+### input
 
 ```typescript
 input: Token
@@ -48,7 +48,7 @@ input: Token
 
 The input token.
 
-## output
+### output
 
 ```typescript
 output: Token
@@ -56,7 +56,7 @@ output: Token
 
 The output token.
 
-## midPrice
+### midPrice
 
 ```typescript
 midPrice: Price

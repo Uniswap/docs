@@ -5,7 +5,7 @@ title: Iframe Integration
 
 Uniswap can be used within other sites as an iframe. An iframe shows an exact version of the app.uniswap.org site and can have custom prefilled settings.
 
-# Why You May Want This
+## Why You May Want This
 
 Integrating the Uniswap site directly into your web application can be useful for a variety of reasons.
 
@@ -13,17 +13,17 @@ v1.app.uniswap.org allows users to buy, sell, send, or provide liquidity for ERC
 
 It can also be useful if your application requires users to acquire some token in order to use some service \(For example, allow users to buy "REP" token so they can engage in prediction markets on the Augur Dapp\).
 
-# iframe vs. custom UI
+## iframe vs. custom UI
 
 One benefit of an iframe integration is that the your site will automatically keep up with any improvements/additions to the v1.app.uniswap.org site. After the initial integration is setup no further work is needed to pull in updates as the exchange site is updated over time.
 
-# Live Example
+## Live Example
 
 An example of an Iframe integration can be found on the FOAM site [https://map.foam.space/](https://map.foam.space/#/at/?lng=-74.0045300&lat=40.6771800&zoom=5.00)
 
 To see the Iframe click the dropdown in the top right and click "get foam".
 
-# Add To Your Site
+## Add To Your Site
 
 To include a Uniswap iframe within your site just add an iframe element within your website code and link to the Uniswap exchange.
 
