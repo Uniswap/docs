@@ -8,7 +8,7 @@ sidebar_position: 3
 
 The UNI token contract has a `mint` function, which is callable by the address defined as the `minter`. Since the token's deployment, Uniswap Governance has held the `minter` role. You can view the current `minter` [here](https://etherscan.io/address/0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984#readContract).
 
-UNIMinter is designed to coordinate the minting and distribution of UNI tokens to one or more recipients when it has been granted the `minter` role. Please note the original `UNI` mint mechanics are still enforced:
+UNIMinter is designed to coordinate the minting and distribution of UNI tokens to one or more recipients when the contract has been granted UNI's `minter` role. Please note the original `UNI` mint mechanics are still enforced:
 
 1. Mints can only be performed once every 365 days
 2. Mints are capped at 2% of the total UNI supply, inclusive of the supply held by `address(0xdead)` (the recipient of UNI on `Firepit.release()`)
@@ -24,37 +24,37 @@ Altruistic actors will be responsible for:
 * Minting & distributing tokens to the designated recipients
 * Revoking allocations, after the delay period, for recipients that are no longer eligible for minted tokens
 
-## Shares System
+## Splits
 
-The UNIMinter contract implements a shares-based allocation system that allows for proportional distribution of minted UNI tokens among multiple recipients.
+The UNIMinter contract implements a split-based allocation system that allows for proportional distribution of minted UNI tokens among multiple recipients.
 
-### Share Structure
+### Split Structure
 
-Each share allocation is represented by a `Share` struct containing:
+Each split is represented by a `Split` struct containing:
 
 - **`recipient`**: The address that will receive minted UNI tokens
-- **`amount`**: The number of shares allocated (out of 10,000 total shares)
+- **`units`**: The number of units allocated (out of 10,000 total units)
 - **`revocationDelayDays`**: The number of days notice required for revocation
 - **`pendingRevocationTime`**: Timestamp when revocation can be completed (0 if not pending)
-- **`adjustedForRevocation`**: Whether the share has been adjusted for partial revocation
+- **`adjustedForRevocation`**: Whether the split has been adjusted for partial revocation
 
-### Share Allocation Mechanics
+### Split Allocation Mechanics
 
-- **Total Shares**: The system uses 10,000 shares to represent 100% of mintable tokens
-- **Proportional Distribution**: When tokens are minted, they are distributed proportionally based on each recipient's share amount
-- **Unallocated Shares**: Any unallocated shares result in reduced inflation, as only allocated shares participate in minting
-- **Maximum Allocation**: The sum of all granted shares cannot exceed 10,000
+- **Total Units**: The system uses 10,000 units to represent 100% of mintable tokens
+- **Proportional Distribution**: When tokens are minted, they are distributed proportionally based on each recipient's split
+- **Unallocated Units**: Any unallocated units result in reduced inflation, as only allocated units participate in minting
+- **Maximum Allocation**: The sum of all granted units cannot exceed 10,000
 
-### Granting Shares
+### Granting Splits
 
-The owner can grant shares to recipients using `grantShares()`:
+The owner can grant splits to recipients using `grantSplit()`:
 
 ```solidity
-function grantShares(address _recipient, uint16 _amount, uint16 _revocationDelayDays)
+function grantSplit(address _recipient, uint16 _amount, uint16 _revocationDelayDays)
 ```
 
 - **`_recipient`**: Address to receive the allocation
-- **`_amount`**: Number of shares to allocate (0-10,000)
+- **`_unit`**: Number of units to allocate (0-10,000)
 - **`_revocationDelayDays`**: Days of notice required before revocation can be completed
 
 ## Revocation Dynamics
@@ -65,36 +65,36 @@ The UNIMinter implements a revocation system that ensures fair treatment of reci
 
 The revocation process consists of two distinct phases:
 
-1. **Initiation**: Owner calls `initiateRevokeShares()` to start the revocation process
-2. **Completion**: Anyone can call `revokeShares()` after the delay period (defined in the `share` struct) to complete the revocation
+1. **Initiation**: Owner calls `initiateRevokeSplit()` to start the revocation process
+2. **Completion**: Anyone can call `revokeSplit()` after the delay period (defined in the `Split` struct) to complete the revocation
 
 ### What Happens Between Initiation and Completion
 
-After `initiateRevokeShares()` is called but before `revokeShares()` can be executed:
+After `initiateRevokeSplit()` is called but before `revokeSplit()` can be executed:
 
-- **Share remains active**: The recipient continues to receive their full allocation from any mints that occur during this period
+- **Split remains active**: The recipient continues to receive their full allocation from any mints that occur during this period
 - **Pending revocation timestamp is set**: The contract calculates when revocation can be completed (`block.timestamp + revocationDelayDays * 1 days`)
-- **No immediate effect**: The share allocation remains unchanged until `revokeShares()` is called
-- **Anyone can complete**: Once the delay period expires, anyone can call `revokeShares()` to finalize the revocation
+- **No immediate effect**: The split allocation remains unchanged until `revokeSplit()` is called
+- **Anyone can complete**: Once the delay period expires, anyone can call `revokeSplit()` to finalize the revocation
 
 ### Revocation Timing Logic
 
-The contract implements intelligent timing logic based on when `revokeShares()` is called relative to the next mint:
+The contract implements intelligent timing logic based on when `revokeSplit()` is called relative to the next mint:
 
 #### Early Revocation (Before Next Mint)
-If `revokeShares()` is called at a point greater than 365 days since the last time the `mint()` function was called but before anyone calls the `mint()` function:
-- The share is **entirely removed** from the system
+If `revokeSplit()` is called at a point greater than 365 days since the last time the `mint()` function was called but before anyone calls the `mint()` function:
+- The split is **entirely removed** from the system
 - The recipient receives no tokens from the next mint
-- Total shares are reduced immediately
+- Total splits are reduced immediately
 
 #### Partial Revocation (During Next Mint Period)
-If `revokeShares()` is called after the next mint but before the subsequent mint:
-- The share amount is **reduced proportionally** to the remaining time
+If `revokeSplit()` is called after the next mint but before the subsequent mint:
+- The split amount is **reduced proportionally** to the remaining time
 - Example: If revocation occurs 90 days into a 365-day period, the recipient gets ~25% of their original allocation
-- The share is marked as `adjustedForRevocation` to prevent double-adjustment
+- The split is marked as `adjustedForRevocation` to prevent double-adjustment
 
 #### Invalid Revocation
-If `revokeShares()` is called too early (before the delay period expires):
+If `revokeSplit()` is called too early (before the delay period expires):
 - The transaction reverts with `InvalidRevocation` error
 - The recipient continues to receive their full allocation
 
@@ -102,21 +102,22 @@ If `revokeShares()` is called too early (before the delay period expires):
 
 Let's walk through a concrete example:
 
-1. **Day 0**: Governance grants 1000 shares to Alice with a 30-day revocation delay
-2. **Day 100**: Governance calls `initiateRevokeShares()` for Alice's allocation
+1. **Day 0**: Governance grants 1000 units to Alice with a 30-day revocation delay
+2. **Day 100**: Governance calls `initiateRevokeSplit()` for Alice's allocation
    - Alice's `pendingRevocationTime` is set to Day 130 (100 + 30 days)
-   - Alice continues to receive her full 1000-share allocation
-3. **Day 120**: Next mint occurs - Alice receives tokens based on her full 1000 shares
-4. **Day 130**: The delay period expires - anyone can now call `revokeShares()`
-5. **Day 200**: Someone calls `revokeShares()` for Alice
-   - Since this is after the mint (Day 120) but before the next mint period ends (Day 485), Alice gets a partial allocation
-   - Her shares are reduced proportionally: `(485 - 200) / 365 * 1000 = ~780 shares`
-   - Alice will receive ~78% of her original allocation in future mints
+   - The next mint is scheduled for Day 120
+3. **Day 111**: Someone calls `revokeSplit()` for Alice
+   - Because Alice's split is "active" until Day 130, after the Day 120 mint, her units are adjusted proportionally
+   - (130 - 120) / 365 * 1000 = ~27 units
+4. **Day 120**: Next mint occurs - Alice receives tokens based on her 27 units
+5. **Day 130**: The delay period expires - anyone can now call `revokeSplit()` again
+   - Alice is removed entirely from future mints
+
 
 ### Revocation Delay
 
-Each share allocation includes a configurable revocation delay:
-- Set when shares are granted via `grantShares()`
+Each unit allocation includes a configurable revocation delay:
+- Set when units are granted via `grantSplit()`
 - Provides notice period before revocation can be completed
 - Ensures recipients have time to adjust to allocation changes
 
@@ -128,9 +129,9 @@ The UNIMinter contract implements several governance controls that allow the own
 
 The contract owner has exclusive control over:
 
-#### Share Management
-- **`grantShares()`**: Allocate new shares to recipients
-- **`initiateRevokeShares()`**: Start the revocation process for existing shares
+#### Unit Management
+- **`grantSplit()`**: Allocate new units to recipients
+- **`initiateRevokeSplit()`**: Start the revocation process for existing units
 
 #### Minter Role Management
 - **`setMinter()`**: Transfer the UNI minter role to a new address
@@ -144,11 +145,11 @@ Certain functions are callable by anyone to ensure the system operates fairly:
 #### Minting
 - **`mint()`**: Execute the annual mint and distribute tokens
   - Can be called by anyone once per year
-  - Automatically distributes tokens proportionally to all active share holders
+  - Automatically distributes tokens proportionally to desiginated recipients in the `Splits` list
   - Respects the 2% annual inflation cap and 365-day minting period
 
 #### Revocation Completion
-- **`revokeShares()`**: Complete or update share revocations
+- **`revokeSplit()`**: Complete or update split revocations
   - Can be called by anyone after the delay period
   - Implements the intelligent timing logic described above
   - Ensures the system remains fair and transparent
