@@ -1,5 +1,5 @@
 # VestingLib
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/c991c8625e12bb19b2a7f4f51eca9f542351e095/src/libraries/VestingLib.sol)
+[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/libraries/VestingLib.sol)
 
 Library for vesting calculations
 
