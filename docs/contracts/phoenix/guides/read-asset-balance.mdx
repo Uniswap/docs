@@ -1,17 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Reading Asset Balance
 
-As noted in [Best Practices](/guides/best-practices), the `AssetSink's` available asset balance is observed into two places:
+As noted in [Best Practices](/guides/best-practices), the `AssetSink's` available asset balance is observed in three places:
 
-* contract address of the `AssetSink` itself
+* the contract address of the `AssetSink` itself
 * the `UniswapV3Pool` contract addresses
+* the `UniswapV2Pair` liquidity tokens
 
-For example, the *releasable* USDC balance is `USDC.balanceOf(address(assetSink)) + sum of UniswapV3Pool.protocolFees()` for each USDC-paired pool
+For example, the *releasable* USDC balance is `USDC.balanceOf(address(assetSink)) + sum of UniswapV3Pool.protocolFees() + sum of UniswapV2Pair.burn()` for each USDC-paired pool
 
 ---
 
 ## Uniswap v3 Pool Protocol Fees
 
-Reading Unswap v3 Pool unclaimed protocol fees requires calling `.protocolFees()` on each `UniswapV3Pool` contract
+Reading available Uniswap v3 Pool protocol fees requires calling `.protocolFees()` on each `UniswapV3Pool` contract
 
 ```solidity
 import {IERC20} from "forge-std/interfaces/IERC20.sol";
@@ -51,7 +55,7 @@ contract Example {
 }
 ```
 :::note
-Uniswap v3 does not support native Ether tokens. Protocol fees in "eth" are accrued as Wrapped Ether (WETH)
+Uniswap v3 does not support native Ether tokens. Protocol fees in ETH are accrued as [Wrapped Ether (WETH)](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2).
 :::
 
 Because unclaimed tokens are stored in Uniswap v3 Pool contracts, integrators should use offchain indexing to track 
@@ -72,16 +76,21 @@ Uniswap v2 protocol fees are automatically "pushed" to the `AssetSink` so no add
 However, Uniswap v2 protocol fees are accrued in the form of liquidity tokens (LP tokens) which are redeemable for underlying assets. Ownership of the LP
 token represents the proportional share of the pool's assets.
 
+<Tabs>
+<TabItem value="math" label="Math">
 ```
 (LP Token Balance / LP Token Total Supply) * Pool Reserves
 ```
-
+</TabItem>
+<TabItem value="solidity" label="Solidity">
 ```solidity
 IERC20 lpToken;
 
 uint256 amount0 = (lpToken.balanceOf(address(assetSink)) * IERC20(lpToken.token0()).balanceOf(address(lpToken))) / lpToken.totalSupply();
 uint256 amount1 = (lpToken.balanceOf(address(assetSink)) * IERC20(lpToken.token1()).balanceOf(address(lpToken))) / lpToken.totalSupply();
 ```
+</TabItem>
+</Tabs>
 
 :::note
 To access the underlying assets, integrators should call [IUniswapV2Pair.burn()](https://github.com/Uniswap/v2-core/blob/ee547b17853e71ed4e0101ccfd52e70d5acded58/contracts/UniswapV2Pair.sol#L134)

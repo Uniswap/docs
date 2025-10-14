@@ -13,7 +13,7 @@ use the same nonce, only one will succeed**
 :::danger
 Integrating *contracts* should **NEVER** read the `nonce` at the time of the transaction
 
-```solidity [Vulnerability.sol]
+```solidity
 contract Vulnerable {
     IFirepit public firepit;
 
@@ -26,19 +26,19 @@ contract Vulnerable {
 ```
 :::
 
-```solidity [Safe.sol]
+:::tip
+```solidity
 contract SafeRelease {
     IFirepit public firepit;
 
-    function vulnerable(Currency[] memory assets) external { // [!code --]
-    // ✅ THIS IS SAFE FROM FRONT RUNNING ✅ // [!code ++]
-    function safeRelease(uint256 _nonce, Currency[] memory assets) external { // [!code ++]
-        uint256 nonce = firepit.nonce(); // [!code --]
+    // ✅ THIS IS SAFE FROM FRONT RUNNING ✅ //
+    function safeRelease(uint256 _nonce, Currency[] memory assets) external {
         firepit.release(_nonce, assets, address(this));
     }
 }
 ```
-In the safe pattern, the caller is responsible for reading the `Firepit.nonce()` offchain, assocating it with releasable assets, and passing it as a parameter.
+In the safe pattern, the caller is responsible for reading the `Firepit.nonce()` offchain, assocating it with releasable assets, and passing it as a **calldata** parameter
+:::
 
 ## Collect Uniswap v3 Fees
 
@@ -49,6 +49,7 @@ In the Phoenix system, Uniswap v3 fees *must be collected* to the `AssetSink` be
 :::tip
 We recommend that integrators check and collect Uniswap v3 fees before calling `Firepit.release()`, to ensure the maximum assets are released.
 
+Collection is available via 
 [IV3FeeController.collect()](/technical-reference/IV3FeeController#collect)
 
 ```solidity
