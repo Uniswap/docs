@@ -23,7 +23,7 @@ It is possible to interact with the `Firepit` contract via a custom smart contra
 
 ## Acquire a sufficient amount of UNI
 The `Firepit` contract requires integrators to hold a minimum amount of UNI to call `release()`.
-Participants can view the `threshold` by calling [`Firepit.threshold()`](/technical-reference/IResourceManager#threshold)
+Participants can view the `threshold` by calling [`Firepit.threshold()`](../technical-reference/IResourceManager#threshold)
 
 <Tabs>
 <TabItem value="solidity" label="solidity">
@@ -85,7 +85,7 @@ cast call 0x1 "nonce()(uint256)" --rpc-url <RPC_URL>
 
 ## Call `Firepit.release()`
 
-Once the value of the assets exceeds the value of the UNI tokens, integrators should call [`Firepit.release()`](/technical-reference/IReleaser#release)
+Once the value of the assets exceeds the value of the UNI tokens, integrators should call [`Firepit.release()`](../technical-reference/IReleaser#release)
 
 <Tabs>
 <TabItem value="solidity" label="solidity">
