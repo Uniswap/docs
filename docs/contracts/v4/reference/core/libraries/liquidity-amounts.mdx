@@ -4,13 +4,13 @@ title: LiquidityAmounts
 
 The `LiquidityAmounts` library provides functions for computing liquidity amounts from token amounts and prices in Uniswap V4.
 
-# Key Concept: sqrtPriceX96
+## Key Concept: sqrtPriceX96
 
 `sqrtPriceX96` represents the square root of the price ratio of token1 to token0, multiplied by 2^96. This representation allows for precise price calculations across a wide range of values while using fixed-point arithmetic. It's more efficient than using ticks for intermediate calculations, as it avoids frequent conversions between prices and ticks.
 
-# Functions
+## Functions
 
-## getLiquidityForAmount0
+### getLiquidityForAmount0
 
 ```solidity
 function getLiquidityForAmount0(uint160 sqrtPriceAX96, uint160 sqrtPriceBX96, uint256 amount0)
@@ -29,7 +29,7 @@ Computes the amount of liquidity received for a given amount of token0 and price
 
 Returns the amount of liquidity received.
 
-## getLiquidityForAmount1
+### getLiquidityForAmount1
 
 ```solidity
 function getLiquidityForAmount1(uint160 sqrtPriceAX96, uint160 sqrtPriceBX96, uint256 amount1)
@@ -48,7 +48,7 @@ Computes the amount of liquidity received for a given amount of token1 and price
 
 Returns the amount of liquidity received.
 
-## getLiquidityForAmounts
+### getLiquidityForAmounts
 
 ```solidity
 function getLiquidityForAmounts(
@@ -72,7 +72,7 @@ Computes the maximum amount of liquidity received for given amounts of token0 an
 
 Returns the maximum amount of liquidity received.
 
-## getAmount0ForLiquidity
+### getAmount0ForLiquidity
 
 ```solidity
 function getAmount0ForLiquidity(uint160 sqrtPriceAX96, uint160 sqrtPriceBX96, uint128 liquidity)
@@ -91,7 +91,7 @@ Computes the amount of token0 for a given amount of liquidity and a price range.
 
 Returns the amount of token0.
 
-## getAmount1ForLiquidity
+### getAmount1ForLiquidity
 
 ```solidity
 function getAmount1ForLiquidity(uint160 sqrtPriceAX96, uint160 sqrtPriceBX96, uint128 liquidity)
@@ -110,7 +110,7 @@ Computes the amount of token1 for a given amount of liquidity and a price range.
 
 Returns the amount of token1.
 
-## getAmountsForLiquidity
+### getAmountsForLiquidity
 
 ```solidity
 function getAmountsForLiquidity(

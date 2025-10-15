@@ -8,7 +8,7 @@ The [Uniswap SDK](https://github.com/Uniswap/uniswap-sdk/tree/v1) is meant to si
 
 The SDK was built to be extremely easy to use, but also feature-rich. It offers various levels of abstraction that make it suitable for use nearly anywhere, from hackathon projects to production applications.
 
-# Overview
+## Overview
 
 The SDK is divided into several modular components that perform tightly scoped tasks:
 
@@ -23,7 +23,7 @@ Additionally, it exports a number of custom types:
 
 - [Types](/sdk/1.0.0/reference/types) - Exports all types used by the SDK
 
-# Installation
+## Installation
 
 To start using the SDK, simply install it into your project...
 

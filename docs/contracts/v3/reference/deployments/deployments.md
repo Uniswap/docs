@@ -3,7 +3,7 @@ id: deployments
 title: Deployment Addresses
 ---
 
-# Uniswap Contract Deployments
+## Uniswap v3 Contract Deployments
 
 The Uniswap Protocol is made up of multiple contracts on many networks.
 
@@ -30,11 +30,11 @@ These addresses are final and were deployed from these npm package versions:
 - [`@uniswap/swap-router-contracts@1.1.0`](https://github.com/Uniswap/swap-router-contracts/tree/v1.1.0)
 
 
-# Universal Router
+## Universal Router
 
 The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
 
-# Uniswap Pool Deployments
+## Uniswap Pool Deployments
 
 Every Uniswap pool is a unique instance of the `UniswapV3Pool` contract and is deployed at its own unique address. The contract source code of the pool will be auto-verified on etherscan. For example, here is the [ETH/USDC 0.3% pool](https://etherscan.io/address/0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8) on Ethereum mainnet.
 

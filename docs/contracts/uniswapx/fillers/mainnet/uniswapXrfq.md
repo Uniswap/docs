@@ -3,7 +3,6 @@ id: uniswapXrfq
 title: UniswapX RFQ
 sidebar_position: 3
 ---
-# **UniswapX RFQ Overview**
 
 UniswapX RFQ V2 is designed to improve price execution and minimize quoter gaming by redesigning the flow of order quote information. The primary goal is to make trading on Mainnet Ethereum more efficient and more reliable.
 
@@ -45,7 +44,7 @@ In UniswapX RFQ, users commit to a range of prices when signing their order. Wit
 
 The cosigner field allows users to designate an auctioneer they trust to run the auction fairly, ensuring the best executable price within the signed parameters. Currently, the trading API sets the cosigner to Uniswap Labs, though this could be updated in the future.
 
-# Current Status
+## Current Status
 UniswapX RFQ V2 is currently the default version of the protocol running on Mainnet across Uniswap's interfaces.
 
 
@@ -60,6 +59,6 @@ UniswapX RFQ V2 is currently the default version of the protocol running on Main
 </details>
 
 
-# Smart Contracts
+## Smart Contracts
 
 * [V2DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V2DutchOrderReactor.sol)

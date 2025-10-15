@@ -4,8 +4,6 @@ title: Collecting Fees
 sidebar_position: 3
 ---
 
-## Collect Fees
-
 - Make sure to go through the [first guide](./setting-up-your-contract.md) before continuing to this section.
 
 - For each of these liquidity interaction examples, our contract must be in possession of the liquidity position NFT. Therefore, in any example where the NFT deposit is not coded into a function, the contract is assumed to already be in possession of it.

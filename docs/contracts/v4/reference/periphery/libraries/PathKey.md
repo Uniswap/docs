@@ -12,7 +12,7 @@ struct PathKey {
 }
 ```
 
-# PathKeyLibrary
+## PathKeyLibrary
 [Git Source](https://github.com/uniswap/v4-periphery/blob/ea2bf2e1ba6863bb809fc2ff791744f308c4a26d/src/libraries/PathKey.sol)
 
 Functions for working with PathKeys

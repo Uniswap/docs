@@ -3,7 +3,7 @@ id: custom-interface-linking
 title: Custom Linking
 ---
 
-# Query Parameters
+## Query Parameters
 
 The Uniswap front-end supports URL query parameters to allow for custom linking to the Uniswap frontend. Users and developers can use these query parameters to link to the Uniswap frontend with custom prefilled settings.
 

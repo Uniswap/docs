@@ -4,8 +4,6 @@ title: Resource Locks
 sidebar_position: 1
 ---
 
-# Resource Locks
-
 Resource locks are the fundamental building blocks of The Compact protocol. They are created when a depositor places tokens (either native tokens or ERC20 tokens) into The Compact.
 
 ## Structure
