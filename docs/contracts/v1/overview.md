@@ -4,7 +4,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-# The Uniswap V1 Smart Contracts
+## The Uniswap V1 Smart Contracts
 
 Uniswap V1 is the first version of the protocol, [launched in November 2018](https://twitter.com/haydenzadams/status/1058376395108376577) at Devcon 4. Because of its permissionless nature, it will exist for as long as Ethereum does.
 
@@ -14,7 +14,7 @@ Uniswap is open source and functions as a public good. There is no central token
 
 This site will serve as a project overview for Uniswap - explaining how it works, how to use it, and how to build on top of it. These docs are actively being worked on and more information will be added on an ongoing basis.
 
-# V1 Features
+## V1 Features
 
 - Add support for any ERC20 token using the Uniswap [factory](https://github.com/Uniswap/uniswap-v1/blob/master/contracts/uniswap_factory.vy)
 - Join liquidity pools to collect fees on ETH-ERC20 pairs
@@ -29,7 +29,7 @@ This site will serve as a project overview for Uniswap - explaining how it works
 - Mobile-optimized open source [frontend implementation](https://github.com/Uniswap/uniswap-interface)
 - Funded through an [Ethereum Foundation grant](https://blog.ethereum.org/2018/08/17/ethereum-foundation-grants-update-wave-3/)
 
-# Resources
+## Resources
 
 - [Website](https://uniswap.org)
 - [GitHub](https://github.com/Uniswap)
@@ -38,7 +38,7 @@ This site will serve as a project overview for Uniswap - explaining how it works
 - [Email](mailto:contact@uniswap.org)
 - [Whitepaper](https://hackmd.io/s/HJ9jLsfTz)
 
-# How it works
+## How it works
 
 Uniswap is made up of a series of ETH-ERC20 exchange contracts. There is exactly one exchange contract per ERC20 token. If a token does not yet have an exchange it can be created by anyone using the Uniswap factory contract. The factory serves as a public registry and is used to look up all token and exchange addresses added to the system.
 
@@ -56,7 +56,7 @@ The reason only one exchange per token can be registered to the factory is to en
 
 Upgrading censorship resistant, decentralized smart contracts is difficult. If significant improvements are made to the system a new version will be released. Liquidity providers can choose between moving to the new system or staying in the old one. If possible, new versions will be backwards compatible and able to trade ERC20-to-ERC20 with the old versions similar to a custom pool.
 
-# How to use it
+## How to use it
 
 [uniswap.org](https://uniswap.org) is the landing page for the Uniswap protocol. It describes the project and directs users where they need to go.
 

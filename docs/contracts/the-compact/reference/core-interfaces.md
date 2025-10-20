@@ -4,8 +4,6 @@ title: Core Interfaces
 sidebar_position: 3
 ---
 
-# Core Interfaces
-
 The Compact protocol is composed of several key interfaces that define its functionality.
 
 ## ITheCompact

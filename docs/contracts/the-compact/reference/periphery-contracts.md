@@ -4,8 +4,6 @@ title: Periphery Contracts
 sidebar_position: 6
 ---
 
-# Peripheral Contracts
-
 ## Emissaries
 Emissaries provide a fallback verification mechanism for sponsors when authorizing claims. This is particularly useful for:
 1.  Smart contract accounts that might update their EIP-1271 signature verification logic.

@@ -10,7 +10,7 @@ variable from the pair as often as necessary, and computing
 the average price using two or more observations of the
 cumulative price variables.
 
-# Understanding requirements
+## Understanding requirements
 
 To understand your requirements, you should first research the answer to the
 following questions:
@@ -22,9 +22,9 @@ following questions:
 
 Note your answers for the following discussion.
 
-# Oracle Strategies
+## Oracle Strategies
 
-## Fixed windows
+### Fixed windows
 
 In the case where data freshness is not important and recent prices
 are weighted equally with historical prices, it is enough to
@@ -38,7 +38,7 @@ an example oracle of this kind
 This example does not limit the maximum size of the fixed window, i.e.
 it only requires that the window size is greater than 1 period (e.g. 24 hours).
 
-## Moving averages
+### Moving averages
 
 In the case where data freshness is important, you can use a sliding
 window in which the cumulative price variable is measured more often
@@ -61,7 +61,7 @@ are more important than historical prices, e.g. in case of liquidations. However
 putting more weight on recent prices makes the oracle cheaper to manipulate
 than weighting all price measurements equally.
 
-## Computing average prices
+### Computing average prices
 
 To compute the average price given two cumulative price observations, take the difference between
 the cumulative price at the beginning and end of the period, and
@@ -74,7 +74,7 @@ Pairs contain both `price0CumulativeLast` and `price1CumulativeLast`, which are 
 of `token1`/`token0` and `token0`/`token1` respectively. I.e. the price of `token0` is expressed in terms of
 `token1`/`token0`, while the price of `token1` is expressed in terms of `token0`/`token1`.
 
-# Getting the latest cumulative price
+## Getting the latest cumulative price
 
 If you wish to compute the average price between a historical price cumulative observation and the current cumulative
 price, you should use the cumulative price values from the current block. If the cumulative price has not been updated
@@ -88,7 +88,7 @@ The current cumulative price returned by this method is computed _counterfactual
 the relative gas-expensive `#sync` method on the pair.
 It is correct regardless of whether a swap has already executed in the current block.
 
-# Notes on overflow
+## Notes on overflow
 
 The `UniswapV2Pair` cumulative price variables are designed to eventually overflow,
 i.e. `price0CumulativeLast` and `price1CumulativeLast` and `blockTimestampLast` will overflow through 0.

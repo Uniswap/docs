@@ -3,25 +3,25 @@ id: factory
 title: Factory
 ---
 
-# initializeFactory
+## initializeFactory
 
 | Parameter |                           Description |
 | :-------- | ------------------------------------: |
 | template  | Ethereum address of exchange template |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 initializeFactory(template: address)
 ```
 
-## Web3
+### Web3
 
 ```javascript
 factoryContract.methods.initializeFactory(template).send()
 ```
 
-# createExchange
+## createExchange
 
 | Parameter | Type    |                        Description |
 | :-------- | :------ | ---------------------------------: |
@@ -31,19 +31,19 @@ factoryContract.methods.initializeFactory(template).send()
 | :------ | -------------------------------------: |
 | address | Ethereum address of a Uniswap exchange |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 createExchange(token: address): address
 ```
 
-## Web3
+### Web3
 
 ```javascript
 factoryContract.methods.createExchange(token).send()
 ```
 
-# getExchange
+## getExchange
 
 | Parameter | Type    |                        Description |
 | :-------- | :------ | ---------------------------------: |
@@ -53,20 +53,20 @@ factoryContract.methods.createExchange(token).send()
 | :------ | -------------------------------------: |
 | address | Ethereum address of a Uniswap exchange |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 getExchange(token: address): address
 ```
 
-## Web3
+### Web3
 
 ```javascript
 factoryContract.methods.getExchange(token).call()
 ```
 
-# getToken
+## getToken
 
 | Parameter | Type    |                            Description |
 | :-------- | :------ | -------------------------------------: |
@@ -76,20 +76,20 @@ factoryContract.methods.getExchange(token).call()
 | :------ | ---------------------------------: |
 | address | Ethereum address of an ERC20 token |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 getToken(exchange: address): address
 ```
 
-## Web3
+### Web3
 
 ```javascript
 factoryContract.methods.getToken(exchange).call()
 ```
 
-# getTokenWithId
+## getTokenWithId
 
 | Parameter | Type    |                   Description |
 | :-------- | :------ | ----------------------------: |
@@ -99,14 +99,14 @@ factoryContract.methods.getToken(exchange).call()
 | :------ | ---------------------------------: |
 | address | Ethereum address of an ERC20 token |
 
-## Smart Contract
+### Smart Contract
 
 ```python
 @constant
 getTokenWithId(token_id: uint256): address
 ```
 
-## Web3
+### Web3
 
 ```javascript
 factoryContract.methods.getTokenWithId(token_id).call()

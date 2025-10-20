@@ -2,7 +2,7 @@
 title: Subscriber
 ---
 
-# Introduction
+## Introduction
 
 Uniswap v4 introduces Subscribers, a new mechanism in v4 that allows external contracts (aka Subscribers) to be notified by the PositionManager whenever specific events occur (e.g., liquidity changes, burns). It’s especially useful for designing **liquidity incentive** systems or reward programs.
 
@@ -10,11 +10,11 @@ Before diving into implementation details, let's understand what makes Subscribe
 
 Subscribers become of aware of the liquidity position, without needing to own the position and its underlying capital.
 
-# Interface Methods
+## Interface Methods
 
 Let's explore each method that a [ISubscriber](https://github.com/Uniswap/v4-periphery/blob/main/src/interfaces/ISubscriber.sol) contract needs to implement. Understanding when and why these methods are called is crucial for building effective Subscriber contracts.
 
-## Position Subscription Handling
+### Position Subscription Handling
 
 The first two methods handle the subscription lifecycle:
 
@@ -49,7 +49,7 @@ When a position unsubscribes, this method is called. There's an important consid
 Also note that the subscriber contract reverts, the position will still unsuccessfully subscribe*
 > 
 
-## Position Modification Notifications
+### Position Modification Notifications
 
 The next method handles liquidity changes and fee collection:
 
@@ -75,7 +75,7 @@ Here's what each parameter tells you:
 > ***Warning**: Be cautious with feesAccrued values. In pools with a single liquidity position, malicious users can artificially inflate these values through self-donations.*
 > 
 
-## Handling Position Burns
+### Handling Position Burns
 
 The final method deals with position termination:
 
@@ -100,11 +100,11 @@ When a position is burned (fully removed), this method provides comprehensive in
 > ***Important**: When a position is burned, you'll only receive notifyBurn - there's no separate notifyModifyLiquidity call.*
 > 
 
-# How to Use Subscribers
+## How to Use Subscribers
 
 Let's walk through the process of implementing and using a Subscriber contract. We'll break this down into four main steps that developers typically follow.
 
-## Step 1: Implement Subscriber
+### Step 1: Implement Subscriber
 
 First, create your contract implementing the ISubscriber interface:
 
@@ -127,7 +127,7 @@ contract MySubscriber is ISubscriber {
 > ***Note**: This is a basic implementation. Your actual contract will need more sophisticated tracking depending on your reward mechanism.*
 > 
 
-## Step 2: Deploy Subscriber
+### Step 2: Deploy Subscriber
 
 Once implemented, deploy your contract:
 
@@ -137,7 +137,7 @@ MySubscriber subscriber = new MySubscriber();
 
 Make sure to store the deployed address - users will need it to subscribe their positions.
 
-## Step 3: Mint Position
+### Step 3: Mint Position
 
 Users need positions before they can subscribe. They can either use existing positions or mint new ones:
 
@@ -152,7 +152,7 @@ uint256 tokenId = positionManager.mint(
 );
 ```
 
-## Step 4: Subscribe Position
+### Step 4: Subscribe Position
 
 Finally, users can subscribe their positions to your contract:
 
@@ -171,11 +171,11 @@ positionManager.subscribe(
 > ***Important**: Make sure users understand any lock-up periods or conditions specified in your subscriptionData.*
 > 
 
-# Important Considerations
+### Important Considerations
 
 When implementing and deploying Subscriber contracts, there are several crucial aspects to keep in mind. Let's explore each of these to ensure your implementation is secure and efficient.
 
-## Gas Limits and Unsubscribe Safety
+### Gas Limits and Unsubscribe Safety
 
 The most critical consideration is the unsubscribe process:
 
@@ -234,14 +234,14 @@ Be aware of potential attack vectors:
 > ***Warning**: Always validate inputs and implement thorough checks before distributing any value.*
 > 
 
-# Implementation Example
+## Implementation Example
 
 Let’s build a **minimal** Subscriber implementation that demonstrates how to handle position events. In practice, you’d likely extend these concepts to include reward calculations or more complex accounting.
 
 > ***Note**: The code below focuses on the essential mechanics of receiving notifications. A production system will need additional logic for security, reward distribution, and user interaction.*
 > 
 
-## Basic Reward Tracking
+### Basic Reward Tracking
 
 First, we set up our contract with the necessary data structures and references:
 

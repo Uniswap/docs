@@ -2,7 +2,7 @@
 title: Calculate LP fees
 ---
 
-# Introduction
+## Introduction
 
 With hook introduced in v4, [Dynamic Fees](../concepts/07-dynamic-fees.mdx) is now possible and allow v4 pools to have a flexible and responsive fee structure comparing to v3 pools with static fee tiers(0.05%, 0.3%, 1%). 
 
@@ -35,7 +35,7 @@ function modifyLiquidity(PoolKey memory key, IPoolManager.ModifyLiquidityParams 
 
 In this guide we will go through how you can calculate fees earned for a LP position in v4 specifically the **uncollected fees** and **total lifetime fees**.
 
-# Contract Setup
+## Contract Setup
 
 Import the necessary dependencies and prepare the function signature for `getUncollectedFees` and `getLifetimeFees`.
 
@@ -74,7 +74,7 @@ contract CalculateFeeExample {
 }
 ```
 
-## Calculate uncollected fees for a LP position
+### Calculate uncollected fees for a LP position
 
 In `getUncollectedFees(PositionConfig config, uint256 tokenId)`:
 
@@ -100,7 +100,7 @@ uint128 tokenAmount =
     (FullMath.mulDiv(feeGrowthInsideX128 - feeGrowthInsideLastX128, liquidity, FixedPoint128.Q128)).toUint128();
 ```
 
-## Calculate lifetime fees earned for a LP range
+### Calculate lifetime fees earned for a LP range
 
 Create a new function `getLifetimeFee(PositionConfig config, uint256 tokenId)`:
 
@@ -118,7 +118,7 @@ uint128 tokenAmount =
     (FullMath.mulDiv(feeGrowthInsideX128, liquidity, FixedPoint128.Q128)).toUint128();
 ```
 
-# Full Contract
+## Full Contract
 
 ```solidity
 pragma solidity ^0.8.24;

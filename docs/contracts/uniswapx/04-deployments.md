@@ -1,9 +1,8 @@
 ---
 id: deployment
-title: Deployments
+title: Deployments Addresses
 sidebar_position: 4
 ---
-# Deployment Addresses
 
 ## Mainnet
 
