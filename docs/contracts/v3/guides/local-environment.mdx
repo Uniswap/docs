@@ -10,7 +10,7 @@ At the end of this guide you’ll have a development environment set up that you
 
 To get you started as quickly as possible, we have provided the `Quick Start` section below where you can clone some boiler plate and get building. To start from scratch and learn the underlying concepts, jump to the `Start from Scratch` section.
 
-# Quick Start
+## Quick Start
 
 The Uniswap [boilerplate repo](https://github.com/Uniswap/uniswap-first-contract-example) provides a basic Hardhat environment with required imports already pre-loaded for you. You can simply clone it and install the dependencies:
 
@@ -22,11 +22,11 @@ npm install
 
 Then hop to the `Local Node with a Mainnet Fork` to complete your set up and start developing.
 
-# Start from Scratch
+## Start from Scratch
 
 In the following sections, we’ll walk through the steps to create the same environment set up as the boiler plate from scratch and learn the underlying concepts.
 
-## Set Up Dependencies
+### Set Up Dependencies
 
 Node is one of the most common Javascript runtimes. For our purposes it will provide scripting we can use to compile and test our contracts. If you haven’t already, install NodeJS and its package manager NPM ([instructions](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)). Once those dependencies are set up, we can initialize our project:
 
@@ -126,7 +126,7 @@ If the environment is compiled correctly you should see the message:
 Compiled { x } Solidity files successfully
 ```
 
-# Local Node with a Mainnet Fork
+## Local Node with a Mainnet Fork
 
 When building and testing integrations with on chain protocols, developers often hit a problem: the liquidity on the live chain is critical to thoroughly testing their code but testing against a live network like Mainnet can be extremely expensive.
 
@@ -138,7 +138,7 @@ With your local node up and running, you can use the `--network localhost` flag 
 $ npx hardhat test --network localhost
 ```
 
-# Next Steps
+## Next Steps
 
 With your environment set up you’re ready to start building. Jump over to the guides section to learn about the Uniswap functions you can integrate with. Remember to add all contracts (.sol files) to the `./contracts` folder and their subsequent tests to the `./tests` folder. You can then test them against your local forked node by running:
 

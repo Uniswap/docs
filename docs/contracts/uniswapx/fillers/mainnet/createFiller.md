@@ -4,8 +4,6 @@ title: Filling on Mainnet
 sidebar_position: 1
 ---
 
-# Filling on Mainnet
-
 There are two components to integrating as a filler: defining a filler execution strategy and retrieving & executing discovered orders.
 
 ## 1. Defining a Filler Execution Strategy

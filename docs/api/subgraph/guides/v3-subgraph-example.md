@@ -4,7 +4,7 @@ title: v3 Protocol Query Examples
 sidebar_position: 1
 ---
 
-# Subgraph Query Examples
+## Subgraph Query Examples
 
 This doc will teach you how to query Uniswap v3 analytics by writing GraphQL queries on the subgraph. You can fetch data points like :
 

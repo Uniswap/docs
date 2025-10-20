@@ -9,7 +9,7 @@ and the lower 128 bits represent the amount1.*
 type BalanceDelta is int256;
 ```
 
-# BalanceDeltaLibrary
+## BalanceDeltaLibrary
 [Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BalanceDelta.sol)
 
 Library for getting the amount0 and amount1 deltas from the BalanceDelta type

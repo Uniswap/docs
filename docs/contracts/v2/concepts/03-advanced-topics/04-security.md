@@ -3,7 +3,7 @@ id: security
 title: Security
 ---
 
-# Audit & Formal Verification
+## Audit & Formal Verification
 
 Between January 8 and April 30, a team of six engineers reviewed and formally verified crucial components of the smart contracts for Uniswap V2.
 
@@ -20,11 +20,11 @@ The report also has a "Design Comments" section that provided a deep technical u
 
 > Note: The audit report is no longer available at its original URL. The audit was completed by a team of six engineers between January and April 2020.
 
-# Bug Bounty
+## Bug Bounty
 
-Uniswap has an open and ongoing bug [bounty program](https://uniswap.org/bug-bounty/).
+Uniswap has an open and ongoing bug [bounty program](https://cantina.xyz/bounties/f9df94db-c7b1-434b-bb06-d1360abdd1be) on Cantina.
 
-# Considerations when building on Uniswap
+## Considerations when building on Uniswap
 
 When integrating Uniswap V2 into another on-chain system, particular care must be taken to avoid security vulnerabilities, avenues for manipulations, and the potential loss of funds.
 

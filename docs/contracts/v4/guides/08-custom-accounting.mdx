@@ -2,16 +2,16 @@
 title: Custom Accounting
 ---
 
-# Introduction
+## Introduction
 Uniswap v4 introduces a set of powerful, interconnected features that proposes a new way automated market makers (AMMs) can function. Custom accounting, hook fees, custom curves, and return deltas might seem like distinct concepts, but they form a cohesive system that enables unprecedented flexibility in decentralized exchange mechanisms.
 
 These features are grouped together because they collectively represent the core of Uniswap v4’s customizability. They all relate to how pool state is managed and modified, working in tandem to allow developers to create highly tailored AMM experiences. From dynamic fee structures to unique bonding curves.
 
-# Brief Overview of Concepts
+## Brief Overview of Concepts
 
 Before we dive into the details of custom accounting, hook fees, custom curves, and return deltas, let’s explore how these features work in Uniswap v4.
 
-## Delta Accounting in v4
+### Delta Accounting in v4
 
 As described in [Flash Accounting](/contracts/v4/concepts/flash-accounting) Uniswap v4 tracks net token transfers with transient storage. Unlike previous versions that tracked absolute token balances, v4 records changes to these balances (*deltas*). This approach is at the core of v4’s enhanced flexibility and efficiency.
 
@@ -25,7 +25,7 @@ Delta accounting provides several key benefits:
 
 This system forms the foundation upon which other v4 features, such as hook fees and custom curves, are built. It allows for more complex pool behaviors while maintaining efficiency and flexibility.
 
-## Hook Fees in v4
+### Hook Fees in v4
 
 Hook fees are a feature in Uniswap v4 that allow hook developers to monetize their hooks or implement custom value distribution mechanisms. Unlike pool fees or dynamic fees, hook fees are entirely separate and are implemented through custom logic in the hook itself.
 
@@ -55,7 +55,7 @@ Developers have full control over how hook fees are calculated, collected, and d
 
 Keep reading because at the bottom we are providing a step by step guide on how to implement hook fees.
 
-## Custom Curves in v4
+### Custom Curves in v4
 
 Custom Curves in Uniswap v4 represent a big change in AMM design flexibility. Unlike [Uniswap v2](/contracts/v2/concepts/protocol-overview/how-uniswap-works) where the x*y=k formula was hardcoded, v4 allows developers to implement a wide variety of pricing models.
 
@@ -68,7 +68,7 @@ For example, creating a custom curve for a stable swap pool would involve design
 
 This type of custom curve could significantly improve capital efficiency for stable asset pairs, reducing slippage for traders and potentially attracting more liquidity to the pool. It showcases how Uniswap v4's flexible architecture allows for tailored solutions to specific trading scenarios, opening up new possibilities in decentralized exchange design.
 
-## Return Deltas in v4
+### Return Deltas in v4
 
 Return deltas are a fundamental mechanism in Uniswap v4's custom accounting system. They allow for precise, programmatic adjustments to the outcomes of operations within the protocol.
 
@@ -81,11 +81,11 @@ Key aspects of return deltas:
 
 In essence, return deltas allow for bespoke modification of an operation's result -- enabling features that were previously impossible in earlier versions of the protocol.
 
-# Implementing Hook Fees: A Step-by-Step Guide
+## Implementing Hook Fees: A Step-by-Step Guide
 
 In this guide, we'll walk through the process of implementing a custom fee hook in Uniswap v4. We'll not only show you how to write the code but also explain what's happening under the hood at each step.
 
-## Step 1: Setting Up the Hook
+### Step 1: Setting Up the Hook
 
 First, let's create our basic hook structure:
 
@@ -130,7 +130,7 @@ contract HookFeeExample is BaseHook {
 
 Here, we're setting up our hook with a constant fee of 0.01% and enabling the `beforeSwap` and `beforeSwapReturnDelta` permissions.
 
-## Step 2: Implementing the beforeSwap Function
+### Step 2: Implementing the beforeSwap Function
 
 Now, let's implement our `beforeSwap` function:
 
@@ -146,7 +146,7 @@ function _beforeSwap(
 
 ```
 
-### Step 2.1: Calculate the swap amount and fee
+#### Step 2.1: Calculate the swap amount and fee
 
 We determine the absolute swap amount and calculate our fee based on it.
 
@@ -158,7 +158,7 @@ uint256 feeAmount = (swapAmount * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
 
 ```
 
-### Step 2.2: Collect the fee
+#### Step 2.2: Collect the fee
 
 We use `poolManager.take` to collect the fee. This creates a debt for our hook in the specified currency.
 
@@ -177,7 +177,7 @@ poolManager.take(feeCurrency, address(this), feeAmount);
 >2. A custom swap router, where input tokens are transferred to PoolManager before the router calls `poolManager.swap()`
 :::
 
-### Step 2.3: Create the BeforeSwapDelta
+#### Step 2.3: Create the BeforeSwapDelta
 
 This is where the magic happens. We create a `BeforeSwapDelta` that represents our fee. The `toBeforeSwapDelta` function takes two parameters:
 
@@ -192,7 +192,7 @@ BeforeSwapDelta returnDelta = toBeforeSwapDelta(
 
 ```
 
-### Step 2.4: Return values
+#### Step 2.4: Return values
 
 We return the function selector, our `returnDelta`, and 0 for the fee override.
 
@@ -200,7 +200,7 @@ We return the function selector, our `returnDelta`, and 0 for the fee override.
 return (BaseHook.beforeSwap.selector, returnDelta, 0);
 ```
 
-## Step 3: Understanding the BeforeSwapDelta Mechanism
+### Step 3: Understanding the BeforeSwapDelta Mechanism
 
 Now, let's dive deeper into how the `BeforeSwapDelta` works and how it affects the overall swap process.
 
@@ -251,7 +251,7 @@ This is best used in case of partial swaps, as `afterSwap` charges a fee on the 
 - You want fees to reflect **what actually transferred** (not the requested amount).
 - Your swaps frequently **hit price limits** or **liquidity ceilings**.
 
-Step 1: Setting the permission flags
+### Step 1: Setting the permission flags
 
 Enable `afterSwap` and `afterSwapReturnDelta` permissions in the hook:
 
@@ -294,7 +294,7 @@ function getHookPermissions() public pure override returns (Hooks.Permissions me
 }
 ```
 
-Step 2: Implementing `afterSwap` function:
+### Step 2: Implementing `afterSwap` function:
 
 In afterSwap, you do not build a BeforeSwapDelta. Instead, we read actual output from **BalanceDelta** and compute fee on that amount.
 
@@ -339,7 +339,7 @@ function _afterSwap(
         return (BaseHook.afterSwap.selector, int128(int256(feeAmount)));
 ```
 
-## Complete afterSwap contract:
+### Complete afterSwap contract:
 
 ```solidity
 // SPDX-License-Identifier: MIT

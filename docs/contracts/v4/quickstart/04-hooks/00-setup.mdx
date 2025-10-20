@@ -8,7 +8,7 @@ At the end of this guide a development environment will be set up to be used to 
 
 To get started as quickly as possible for building Uniswap v4 hooks, there is a `Quick Start` section below to clone a boilerplate and get building. To start from scratch and learn the underlying concepts, jump to the `Start from Scratch` section.
 
-# Quick Start
+## Quick Start
 
 The Uniswap [v4-template repo](https://github.com/uniswapfoundation/v4-template) provides a basic foundry environment with required imports already pre-loaded. Click on [`Use this template`](https://github.com/new?template_name=v4-template&template_owner=uniswapfoundation) to create a new repository with it.
 
@@ -26,11 +26,11 @@ Then hop to the [Local Node via Anvil](#local-node-via-anvil) to complete the se
 
 ---
 
-# Start from Scratch
+## Start from Scratch
 
 In the following sections, let's walk through the steps to create the same environment set up as the boilerplate from scratch and learn the underlying concepts.
 
-## Setting up Foundry
+### Setting up Foundry
 
 First thing is to set up a new Foundry project. 
 
@@ -87,7 +87,7 @@ ffi = true
 
 Awesome! Now it's all set to start building the hook! Let’s run a quick test to confirm everything is set up properly.
 
-## Compile a Basic Hook Contract
+### Compile a Basic Hook Contract
 
 To confirm that the environment is configured correctly let's write a basic Counter Hook contract. Create a new file, `./src/CounterHook.sol` and paste the following code into it:
 
@@ -195,7 +195,7 @@ If the environment is compiled correctly it will display a message:
 Compiler run successful!
 ```
 
-## Local Node via Anvil
+### Local Node via Anvil
 
 Other than writing unit tests, [Anvil](https://book.getfoundry.sh/anvil/) can be used to deploy and test hooks.
 
@@ -216,14 +216,14 @@ forge script script/Anvil.s.sol \
 forge test --rpc-url 127.0.0.1:8545
 ```
 
-# Next Steps
+## Next Steps
 With the environment set up ready to be built on. Jump over to the guides section to learn about the Uniswap functions that can be integrated with Hook. Remember to add all contracts (.sol files) to the `./src` folder and their subsequent tests to the `./test` folder. Then test them against the local anvil node by running:
 
 ```bash
 forge test --rpc-url 127.0.0.1:8545
 ```
 
-# Appendix: OpenZeppelin Hooks Library
+## Appendix: OpenZeppelin Hooks Library
 
 > [OpenZeppelin Hooks Library](https://docs.openzeppelin.com/uniswap-hooks/1.x/), included in [v4-template](https://github.com/uniswapfoundation/v4-template), provides secure and modular reference implementations for Uniswap v4 Hooks!
 

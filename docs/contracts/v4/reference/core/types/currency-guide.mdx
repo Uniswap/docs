@@ -76,11 +76,11 @@ Checks if one `Currency` value is greater than or equal to another, based on the
 
 Returns `true` if the underlying address of `currency` is numerically greater than or equal to the underlying address of `other`, `false` otherwise.
 
-# CurrencyLibrary
+## CurrencyLibrary
 
 The `CurrencyLibrary` provides utility functions for handling both native currency (ETH) and ERC20 tokens.
 
-## Constants
+### Constants
 
 ```solidity
 Currency public constant NATIVE = Currency.wrap(address(0));
@@ -88,9 +88,9 @@ Currency public constant NATIVE = Currency.wrap(address(0));
 
 `NATIVE` represents the native currency (ETH). It is defined as a `Currency` with the underlying address of `address(0)`.
 
-## Functions
+### Functions
 
-### transfer
+#### transfer
 
 ```solidity
 function transfer(Currency currency, address to, uint256 amount) internal
@@ -104,7 +104,7 @@ Transfers `amount` of `currency` to the `to` address.
 | to         | address  | The recipient address                 |
 | amount     | uint256  | The amount of currency to transfer    |
 
-### balanceOfSelf
+#### balanceOfSelf
 
 ```solidity
 function balanceOfSelf(Currency currency) internal view returns (uint256)
@@ -118,7 +118,7 @@ Returns the balance of `currency` held by the contract itself.
 
 Returns the balance of the specified currency.
 
-### balanceOf
+#### balanceOf
 
 ```solidity
 function balanceOf(Currency currency, address owner) internal view returns (uint256)
@@ -133,7 +133,7 @@ Returns the balance of `currency` held by the `owner` address.
 
 Returns the balance of the specified currency for the given address.
 
-### isNative
+#### isNative
 
 ```solidity
 function isNative(Currency currency) internal pure returns (bool)
@@ -147,7 +147,7 @@ Checks if the given `currency` is the native currency (ETH).
 
 Returns `true` if the currency is native (ETH), `false` otherwise.
 
-### toId
+#### toId
 
 ```solidity
 function toId(Currency currency) internal pure returns (uint256)
@@ -161,7 +161,7 @@ Converts a `Currency` to its corresponding ID.
 
 Returns the ID of the currency.
 
-### fromId
+#### fromId
 
 ```solidity
 function fromId(uint256 id) internal pure returns (Currency)

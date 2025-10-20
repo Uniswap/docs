@@ -1,15 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import Link from '@docusaurus/Link'
 
-import { ThemeManager } from '../../../utils/storage'
-
 const NotFound: FC = () => {
-  useEffect(() => {
-    const currentTheme = ThemeManager.get()
-
-    document.documentElement.setAttribute('data-theme', currentTheme)
-    document.documentElement.setAttribute('class', currentTheme)
-  }, [])
 
   return (
     <div className="ErrorPage bg-light-surface-1 dark:bg-dark-surface-1">

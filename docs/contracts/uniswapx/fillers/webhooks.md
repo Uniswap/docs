@@ -4,8 +4,6 @@ title: Webhook Support
 sidebar_position: 5
 ---
 
-# Signed Order Webhook Notifications
-
 Signed open orders can always be fetched via the UniswapX API, but to provide improved latency there is the option to register for webhook notifications. Fillers can register an endpoint and receive notifications for every newly posted order that matches their desired filter. It is recommended that fillers try polling first and only pursue a webhook if they feel their performance is degraded by the rate limit.
 
 ## Notifications

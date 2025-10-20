@@ -5,7 +5,7 @@ title: Common Errors
 
 This document covers a few error codes frequently encountered while building on Uniswap V2.
 
-# UniswapV2: K
+## UniswapV2: K
 
 This is an error that is frequently encountered, and requires a bit of context to understand it.
 

@@ -9,7 +9,7 @@ The Uniswap ecosystem is primarily comprised of three types of users: liquidity 
 
 In total, interactions between these classes create a positive feedback loop, fueling digital economies by defining a common language through which tokens can be pooled, traded and used.
 
-# Liquidity Providers
+## Liquidity Providers
 
 Liquidity providers, or LPs, are not a homogeneous group:
 
@@ -21,7 +21,7 @@ Liquidity providers, or LPs, are not a homogeneous group:
 
 - Finally, some DeFi pioneers are exploring complex liquidity provision interactions like incentivized liquidity, liquidity as collateral, and other experimental strategies. Uniswap is the perfect protocol for projects to experiment with these kinds of ideas.
 
-# Traders
+## Traders
 
 There are a several categories of traders in the protocol ecosystem:
 
@@ -35,7 +35,7 @@ There are a several categories of traders in the protocol ecosystem:
 
 In all cases, trades are subject to the same flat fee for trading on the protocol. Each is important for increasing the accuracy of prices and incentivizing liquidity.
 
-# Developers/Projects
+## Developers/Projects
 
 There are far too many ways Uniswap is used in the wider Ethereum ecosystem to count, but some examples include:
 
@@ -47,6 +47,6 @@ There are far too many ways Uniswap is used in the wider Ethereum ecosystem to c
 
 - Smart contract developers use the suite of functions available to invent new DeFi tools and other various experimental ideas. See projects like [Unisocks](https://unisocks.exchange/) or [Zora](https://ourzora.com/), among many, many others.
 
-# Uniswap Team and Community
+## Uniswap Team and Community
 
 The Uniswap team along with the broader Uniswap community drives development of the protocol and ecosystem.

@@ -5,7 +5,7 @@ title: Research
 
 The automated market maker is a new concept, and as such, new research comes out frequently. We've selected some of the most thoughtful here.
 
-# Uniswap's Financial Alchemy
+## Uniswap's Financial Alchemy
 
 Authors: Dave White, Martin Tassy, Charlie Noyes, and Dan Robinson
 
@@ -13,7 +13,7 @@ Authors: Dave White, Martin Tassy, Charlie Noyes, and Dan Robinson
 
 - [Uniswap's Financial Alchemy](https://research.paradigm.xyz/uniswaps-alchemy)
 
-# An analysis of Uniswap markets
+## An analysis of Uniswap markets
 
 Authors: Guillermo Angeris, Hsien-Tang Kao, Rei Chiang, Charlie Noyes, Tarun Chitra
 
@@ -21,7 +21,7 @@ Authors: Guillermo Angeris, Hsien-Tang Kao, Rei Chiang, Charlie Noyes, Tarun Chi
 
 - [An analysis of Uniswap markets](https://arxiv.org/abs/1911.03380)
 
-# Improved Price Oracles: Constant Function Market Makers
+## Improved Price Oracles: Constant Function Market Makers
 
 Authors: Guillermo Angeris, Tarun Chitra
 
@@ -29,14 +29,14 @@ Authors: Guillermo Angeris, Tarun Chitra
 
 - [Improved Price Oracles: Constant Function Market Makers](https://arxiv.org/abs/2003.10001)
 
-# Pintail research
+## Pintail research
 
 Published [medium](https://medium.com/@pintail) articles by Pintail.
 
 - [Understanding Uniswap Returns](https://medium.com/@pintail/understanding-uniswap-returns-cc593f3499ef)
 - [Uniswap: A Good Deal for Liquidity Providers?](https://medium.com/@pintail/uniswap-a-good-deal-for-liquidity-providers-104c0b6816f2)
 
-# Liquidity Provider Returns in Geometric Mean Markets
+## Liquidity Provider Returns in Geometric Mean Markets
 
 Authors: Alex Evans
 
@@ -44,7 +44,7 @@ Authors: Alex Evans
 
 - [Liquidity Provider Returns in Geometric Mean Markets](https://arxiv.org/abs/2006.08806)
 
-# The Replicating Portfolio of a Constant Product Market
+## The Replicating Portfolio of a Constant Product Market
 
 Authors: Joseph Clark
 

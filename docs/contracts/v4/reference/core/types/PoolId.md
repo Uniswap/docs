@@ -6,7 +6,7 @@
 type PoolId is bytes32;
 ```
 
-# PoolIdLibrary
+## PoolIdLibrary
 [Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/PoolId.sol)
 
 Library for computing the ID of a pool
