@@ -19,7 +19,7 @@ The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap
 | [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                                                    | `0x3d4e44Eb1374240CE5F1B871ab261CD16335B76a` | `0xC5290058841028F1614F3A6F0F5816cAd0df5E27` |
 | [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                                                        | `0x2626664c2603336E57B271c5C0b26F421741e481` | `0x94cC0AaC535CCDB3C01d6787D6413C739ae12bc4` |
 | [Permit2](https://github.com/Uniswap/permit2)                                                                                                                | `0x000000000022D473030F116dDEE9F6B43aC78BA3` | `0x000000000022D473030F116dDEE9F6B43aC78BA3` |
-| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0x6ff5693b99212da76ad316178a184ab56d299b43` | `0x492e6456d9528771018deb9e87ef7750ef184104` |
+| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                                               | `0x6fF5693b99212Da76ad316178A184AB56D299b43` | `0x492E6456D9528771018DeB9E87ef7750EF184104` |
 | [v3StakerAddress](https://github.com/Uniswap/v3-staker)                                                                                                      | `0x42bE4D6527829FeFA1493e1fb9F3676d2425C3C1` | ``                                           |
 
 
