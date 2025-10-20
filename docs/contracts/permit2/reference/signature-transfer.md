@@ -224,7 +224,7 @@ uint8 bitPos = uint8(nonce);
 ```
 
 ```solidity
-uint256 bitmap = nonceBitmap[wordPos][bitPos]
+uint256 bitmap = nonceBitmap[ownerAddress][wordPos] ^ (1 << bitPos)
 ```
 
 ## Security Considerations

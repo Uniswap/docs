@@ -3,7 +3,7 @@ title: Building Your First Hook
 sidebar_position: 1
 ---
 
-# Introduction
+## Introduction
 
 Uniswap introduced the v4 of their protocol introducing several new concepts such as hooks, flash accounting, singleton architecture and more. The most interesting of these for developers is hooks, and that’s what we’ll be learning about today.
 
@@ -20,7 +20,7 @@ Let’s start by defining when users will be rewarded with these points:
 
 In order to keep track of these points, we’ll mint the `POINTS` token to the user, this has an added benefit for the user to be able to track it in their wallet.
 
-# Hook Design
+## Hook Design
 
 Let’s figure out how our hook will work.
 
@@ -30,11 +30,11 @@ For our hook, we’ll be using `afterSwap` and `afterAddLiquidity` hooks. Why th
 
 _Note: To initiate the swap in the first place, this is where [`UniversalRouter`](../../../../contracts/universal-router/01-overview.md) comes into play where we will pass in the [`V4_SWAP`](https://github.com/Uniswap/universal-router/blob/main/contracts/libraries/Commands.sol#L35) command to `UniversalRouter.execute`._
 
-# Let’s create our hook!
+## Let’s create our hook!
 
 We’ll call this hook `PointsHook` and create it in such a way that any pool paired with `TOKEN` can use it.
 
-## Setting things up
+### Setting things up
 
 The Uniswap [v4-template repo](https://github.com/uniswapfoundation/v4-template) provides a basic foundry environment with required imports already pre-loaded. Click on [`Use this template`](https://github.com/new?template_name=v4-template&template_owner=uniswapfoundation) to create a new repository with it.
 
@@ -102,7 +102,7 @@ The above code does the following:
 
 Awesome! Now it's all set to start building the hook!
 
-## Basic Structure
+### Basic Structure
 
 So far, we’ve created the file named `PointsHook.sol` which only contains the outline of a hook contract. Let’s add our `afterSwap` and `afterAddLiquidity` hooks to it.
 
@@ -162,11 +162,18 @@ You’ll notice that both hooks return their own selector in the functions, this
 
 Most of the code at this point should be self-explanatory. It’s not doing anything yet, but it’s a great place to start adding the functionality we need.
 
-## Points Logic
+### Points Logic
 
 First, let’s setup the `POINTS` token that we’ll reward users with via creating another contract `PointsToken.sol` and import relevant dependencies like `ERC20` and `Owned`.
 
 ```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "forge-std/Script.sol";
+import {ERC20} from "solmate/src/tokens/ERC20.sol";
+import {Owned} from "solmate/src/auth/Owned.sol";
+
 contract PointsToken is ERC20, Owned {
     constructor() ERC20("Points Token", "POINTS", 18) Owned(msg.sender) {}
 
@@ -204,11 +211,11 @@ Next, we need to calculate how many points to assign based on the `ETH` value of
     }
 ```
 
-## Hook Logic
+### Hook Logic
 
 Now we need to actually get the value that the user is swapping or adding liquidity with. We’ll be using the two hooks to achieve that functionality.
 
-### Getting the user address
+#### Getting the user address
 
 Before we go into the logic for the hook, we have a side quest! How do we actually get the address of the user? The `PositionManager` doesn’t pass the user address directly to the hook, mainly because of the complexity of getting that data in the first place.
 
@@ -228,7 +235,7 @@ Let’s create some helper functions to encode and decode this data:
     }
 ```
 
-### Hook Logic: `afterSwap`
+#### Hook Logic: `afterSwap`
 
 In order for us to award these points to the user, we need a few things and we also need to create a few conditions.
 
@@ -269,7 +276,7 @@ That middle section about figuring out how much `ETH` the user spent seems a lit
 
 When `amountSpecified` is less than 0, it means this is an `exact input for output` swap, essentially where the user is coming in with an exact amount of ETH. In the other case, it’s an `exact output for input` swap, where the user is expecting a specific amount out. In our case, we get this from the precalculated `delta` that Uniswap V4 gives us as a part of the `afterSwap` hook.
 
-### Hook Logic: `afterAddLiquidity`
+#### Hook Logic: `afterAddLiquidity`
 
 Similar to what we did for the `afterSwap` hook, now we need to award users for adding liquidity. We’ll do the exact same thing here, except we’ll award the points based on the added liquidity.
 
@@ -304,7 +311,7 @@ Similar to what we did for the `afterSwap` hook, now we need to award users for 
 It is important to note that the delta should be passed to awardPoints function as it avoids amount errors in case of partial fills.
 :::
 
-# Testing
+## Testing
 
 We’re using Foundry for building our hook, and we’ll continue using it to write our tests. One of the great things about Foundry is that you can write tests in Solidity itself instead of context switching between another language.
 
@@ -313,6 +320,27 @@ We’re using Foundry for building our hook, and we’ll continue using it to wr
 The v4-template repo you cloned already has an existing base test file, let’s start by copying it into `PointsHook.t.sol`.
 
 ```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "forge-std/Test.sol";
+import {Fixtures} from "./utils/Fixtures.sol";
+import {EasyPosm} from "./utils/EasyPosm.sol";
+
+import {StateLibrary} from "v4-core/src/libraries/StateLibrary.sol";
+import {Hooks, IHooks} from "v4-core/src/libraries/Hooks.sol";
+import {PointsHook} from "../src/PointsHook.sol";
+import {PointsToken} from "../src/PointsToken.sol";
+
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {PoolId} from "v4-core/src/types/PoolId.sol";
+import {Currency} from "v4-core/src/types/Currency.sol";
+import {TickMath} from "v4-core/src/libraries/TickMath.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {LiquidityAmounts} from "v4-core/test/utils/LiquidityAmounts.sol";
+
 contract PointsHookTest is Test, Fixtures {
     using EasyPosm for IPositionManager;
     using StateLibrary for IPoolManager;
@@ -458,6 +486,6 @@ function test_PointsHook_Liquidity() public {
 
 This test case looks very similar to the `afterSwap` one, except we’re testing based on the liquidity added. You’ll notice at the end we’re testing for approximate equality within 10 points. This is to account for minor differences in actual liquidity added due to ticks and pricing.
 
-# Next Steps
+## Next Steps
 
 Congratulations on building your very first hook! You could explore further by going to [Hook Deployment](./05-hook-deployment.mdx) to learn about how hook flags work and see how we will deploy a hook in action.

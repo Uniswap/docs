@@ -17,7 +17,7 @@ ERC-6909 offers several advantages over ERC-1155:
 
 However, it's worth noting that ERC-6909 does introduce a `totalSupply` variable, which leads to an additional disk write on mint and burn operations.
 
-# How it works
+## How it works
 
 Instead of choosing to move tokens in/out of the `PoolManager`, developers can opt-in and leave the ERC-20 tokens within the `PoolManager`. In exchange, the `PoolManager` can **mint them an ERC-6909 token representing their claim**. In subsequent interactions requiring _paying_ tokens, users will not need to transfer ERC-20 tokens into the `PoolManager` - users can simply _burn_ some (or all) of their claim tokens they have
 
@@ -26,14 +26,13 @@ Doing _real_ ERC-20 token transfers requires calls to external smart contracts -
 
 This mechanism therefore helps further reduce gas costs. All these gas cost reductions overall make pools much more competitive based on the fees they charge.
 
-# Examples
+## Examples
 
-## High-frequency traders / MEV bots
+### High-frequency traders / MEV bots
 
 These users are often conducting a lot of swaps in relatively short durations of time, while staying within the Uniswap Protocol. These power-users can trade using ERC-6909 tokens for improved gas-efficiency.
 
-
-## Liquidity management
+### Liquidity management
 
 ERC-6909 does not only benefit swappers. For power-users that may be opening and closing liquidity positions frequently, liquidity managers can opt-in and receive their capital as ERC-6909. 
 

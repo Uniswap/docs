@@ -1,5 +1,5 @@
 ---
-id: liscense-modifications
+id: license-modifications
 title: License Modifications
 ---
 

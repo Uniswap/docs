@@ -3,9 +3,9 @@ id: interfaces
 title: Interfaces
 ---
 
-# Factory
+## Factory
 
-## Solidity
+### Solidity
 
 ```solidity
 interface UniswapFactoryInterface {
@@ -23,7 +23,7 @@ interface UniswapFactoryInterface {
 }
 ```
 
-## Vyper
+### Vyper
 
 ```python
 contract UniswapFactoryInterface():
@@ -40,9 +40,9 @@ contract UniswapFactoryInterface():
     def initializeFactory(template: address): modifying
 ```
 
-# Exchange
+## Exchange
 
-## Solidity
+### Solidity
 
 ```solidity
 interface UniswapExchangeInterface {
@@ -93,7 +93,7 @@ interface UniswapExchangeInterface {
 }
 ```
 
-## Vyper
+### Vyper
 
 ```python
 contract UniswapExchangeInterface():
@@ -135,9 +135,9 @@ contract UniswapExchangeInterface():
     def setup(token_addr: address): modifying
 ```
 
-# ERC20 Token
+## ERC20 Token
 
-## Solidity
+### Solidity
 
 ```solidity
 interface ERC20Interface {
@@ -157,7 +157,7 @@ interface ERC20Interface {
 }
 ```
 
-## Vyper
+### Vyper
 
 ```python
 contract ERC20Interface():

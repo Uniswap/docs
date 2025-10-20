@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Envelope } from '../../components/Icons'
+import React from 'react'
+// import { Envelope } from '../../components/Icons'
 import cn from 'classnames'
 import Link from '@docusaurus/Link'
 
@@ -13,8 +13,6 @@ interface NewsletterFormProps {
 const NewsletterForm: React.FC<NewsletterFormProps> = ({
   headerText,
   headerTextClass,
-  inputClass,
-  globeColorClass,
 }) => {
 
   return (

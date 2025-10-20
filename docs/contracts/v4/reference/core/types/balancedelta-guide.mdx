@@ -4,19 +4,19 @@ title: BalanceDelta Guide
 
 `BalanceDelta` is a type used in Uniswap V4 to represent the balance changes of two tokens (token0 and token1). It tightly packs the two values in a single 256 bits. It is designed to efficiently store and manipulate these balance deltas, with the upper 128 bits representing the change in token0 (`amount0`) and the lower 128 bits representing the change in token1 (`amount1`).
 
-# Purpose
+## Purpose
 
 The main purpose of `BalanceDelta` is to keep track of the net balance changes in the two tokens of a pool after various operations such as swaps, liquidity modifications, and interactions with hooks. It provides a compact and efficient way to store and update these balance deltas throughout the execution flow of the pool.
 
 In the context of hooks, `BalanceDelta` is used to ensure that the net balance change for each token is zero after the hook's functionality is executed. This is important for maintaining the integrity of the pool's balances and ensuring that the hooks do not introduce any unexpected or unauthorized balance changes.
 
-# Type Definition
+## Type Definition
 
 ```solidity
 type BalanceDelta is int256;
 ```
 
-# Using Directives
+## Using Directives
 
 ```solidity
 using {add as +, sub as -, eq as ==, neq as !=} for BalanceDelta global;
@@ -26,9 +26,9 @@ using SafeCast for int256;
 
 These using directives enable arithmetic operations, equality comparisons, and library functions to be used directly on `BalanceDelta` values.
 
-# Functions
+## Functions
 
-## toBalanceDelta
+### toBalanceDelta
 
 ```solidity
 function toBalanceDelta(int128 amount0, int128 amount1) pure returns (BalanceDelta balanceDelta);
@@ -43,7 +43,7 @@ Creates a `BalanceDelta` value from two `int128` values representing `amount0` a
 
 Returns the created `BalanceDelta` value.
 
-## add
+### add
 
 ```solidity
 function add(BalanceDelta a, BalanceDelta b) pure returns (BalanceDelta);
@@ -58,7 +58,7 @@ Adds two `BalanceDelta` values.
 
 Returns the sum of the two `BalanceDelta` values.
 
-## sub
+### sub
 
 ```solidity
 function sub(BalanceDelta a, BalanceDelta b) pure returns (BalanceDelta);
@@ -73,7 +73,7 @@ Subtracts one `BalanceDelta` value from another.
 
 Returns the difference of the two `BalanceDelta` values.
 
-## eq
+### eq
 
 ```solidity
 function eq(BalanceDelta a, BalanceDelta b) pure returns (bool);
@@ -88,7 +88,7 @@ Checks if two `BalanceDelta` values are equal.
 
 Returns `true` if the values are equal, `false` otherwise.
 
-## neq
+### neq
 
 ```solidity
 function neq(BalanceDelta a, BalanceDelta b) pure returns (bool);
@@ -103,9 +103,9 @@ Checks if two `BalanceDelta` values are not equal.
 
 Returns `true` if the values are not equal, `false` otherwise.
 
-# Library Functions
+## Library Functions
 
-## amount0
+### amount0
 
 ```solidity
 function amount0(BalanceDelta balanceDelta) internal pure returns (int128 _amount0);
@@ -119,7 +119,7 @@ Extracts the `amount0` value from a `BalanceDelta`.
 
 Returns the extracted `amount0` value as an `int128`.
 
-## amount1
+### amount1
 
 ```solidity
 function amount1(BalanceDelta balanceDelta) internal pure returns (int128 _amount1);
@@ -133,12 +133,12 @@ Extracts the `amount1` value from a `BalanceDelta`.
 
 Returns the extracted `amount1` value as an `int128`.
 
-# Usage in Hooks
+## Usage in Hooks
 
 When a hook is called during a swap or liquidity modification, it can perform custom logic and interact with the pool's balances. However, to maintain the correctness of the pool's state, the hook must ensure that any balance changes it introduces are properly accounted for and net to zero at the end of its execution.
 The BalanceDelta is forwarded to the `afterSwap` & `afterAddliquidity`, `afterRemoveLiquidity` hooks.  
 
-# Usage in the Pool Library
+## Usage in the Pool Library
 
 In the `Pool` library, `BalanceDelta` is used extensively to track balance changes during various operations such as swaps, liquidity modifications, and donations. The library functions `swap`, `modifyLiquidity`, and `donate` all return `BalanceDelta` values representing the net balance changes resulting from these operations.
 

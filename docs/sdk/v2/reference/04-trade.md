@@ -9,7 +9,7 @@ constructor(route: Route, amount: CurrencyAmount, tradeType: TradeType)
 
 The Trade entity represents a fully specified trade along a route. This entity supplies all the information necessary to craft a router transaction.
 
-# Example
+## Example
 
 ```typescript
 import { ChainId, Token, CurrencyAmount, TradeType } from '@uniswap/sdk-core'
@@ -23,9 +23,9 @@ const NOT_TO_HOT = new Route([HOT_NOT], NOT, HOT)
 const trade = new Trade(NOT_TO_HOT, CurrencyAmount.fromRawAmount(NOT, '1000000000000000'), TradeType.EXACT_INPUT)
 ```
 
-# Properties
+## Properties
 
-## route
+### route
 
 ```typescript
 route: Route
@@ -33,7 +33,7 @@ route: Route
 
 The [path](route#path) property of the route should be passed as the path parameter to router functions.
 
-## tradeType
+### tradeType
 
 ```typescript
 tradeType: TradeType
@@ -41,7 +41,7 @@ tradeType: TradeType
 
 `TradeType.EXACT_INPUT` corresponds to `swapExact*For*` router functions. `TradeType.EXACT_OUTPUT` corresponds to `swap*ForExact*` router functions.
 
-## inputAmount
+### inputAmount
 
 ```typescript
 inputAmount: CurrencyAmount
@@ -49,7 +49,7 @@ inputAmount: CurrencyAmount
 
 For exact input trades, this value should be passed as amountIn to router functions. For exact output trades, this value should be multiplied by a factor >1, representing slippage tolerance, and passed as amountInMax to router functions.
 
-## outputAmount
+### outputAmount
 
 ```typescript
 outputAmount: CurrencyAmount
@@ -57,7 +57,7 @@ outputAmount: CurrencyAmount
 
 For exact output trades, this value should be passed as amountOut to router functions. For exact input trades, this value should be multiplied by a factor \<1, representing slippage tolerance, and passed as amountOutMin to router functions.
 
-## executionPrice
+### executionPrice
 
 ```typescript
 executionPrice: Price
@@ -65,7 +65,7 @@ executionPrice: Price
 
 The average price that the trade would execute at.
 
-## priceImpact
+### priceImpact
 
 ```typescript
 priceImpact: Percent
@@ -73,11 +73,11 @@ priceImpact: Percent
 
 The percent difference between the mid price before the trade and the trade execution price.
 
-# Methods
+## Methods
 
 In the context of the following two methods, slippage refers to the percent difference between the actual price and the trade `executionPrice`.
 
-## minimumAmountOut (since 2.0.4)
+### minimumAmountOut (since 2.0.4)
 
 ```typescript
 minimumAmountOut(slippageTolerance: Percent): CurrencyAmount
@@ -87,7 +87,7 @@ Returns the minimum amount of the output token that should be received from a tr
 
 Useful when constructing a transaction for a trade of type `EXACT_INPUT`.
 
-## maximumAmountIn (since 2.0.4)
+### maximumAmountIn (since 2.0.4)
 
 ```typescript
 maximumAmountIn(slippageTolerance: Percent): CurrencyAmount
@@ -97,7 +97,7 @@ Returns the maximum amount of the input token that should be spent on the trade,
 
 Useful when constructing a transaction for a trade of type `EXACT_OUTPUT`.
 
-## worstExecutionPrice
+### worstExecutionPrice
 
 Return the execution price after accounting for slippage tolerance
 
@@ -105,14 +105,14 @@ Return the execution price after accounting for slippage tolerance
 worstExecutionPrice(slippageTolerance: Percent): Price
 ```
 
-# Static methods
+## Static methods
 
 These static methods provide ways to construct ideal trades from lists of pairs.
 Note these methods do not perform any aggregation across routes, as routes are linear.
 It's possible that a better price can be had by combining multiple trades across
 different routes.
 
-## exactIn
+### exactIn
 
 Constructs an exact in trade with the given amount in and route.
 
@@ -120,7 +120,7 @@ Constructs an exact in trade with the given amount in and route.
 Trade.exactIn(route: Route, amountIn: CurrencyAmount): Trade
 ```
 
-## exactOut
+### exactOut
 
 Constructs an exact out trade with the given amount out and route
 
@@ -128,7 +128,7 @@ Constructs an exact out trade with the given amount out and route
 Trade.exactOut(route: Route, amountOut: CurrencyAmount): Trade
 ```
 
-## bestTradeExactIn
+### bestTradeExactIn
 
 Given a list of pairs, and a fixed amount in, returns the top `maxNumResults` trades that go from an input token
 amount to an output token, making at most `maxHops` hops.
@@ -143,7 +143,7 @@ Trade.bestTradeExactIn(
     { maxNumResults = 3, maxHops = 3 }: BestTradeOptions = {}): Trade[]
 ```
 
-## bestTradeExactOut
+### bestTradeExactOut
 
 Similar to the above method but instead targets a fixed output amount given a list of pairs,
 and a fixed amount out, returns the top `maxNumResults` trades that go from an input token to an output token amount,

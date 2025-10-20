@@ -3,7 +3,7 @@ id: custom-linking
 title: Custom Linking
 ---
 
-# Query Parameters
+## Query Parameters
 
 The Uniswap front-end supports URL query parameters to allow for custom linking to the Uniswap exchange. Users and developers can use these query parameters to link to the Uniswap exchange with custom prefilled settings.
 
@@ -32,8 +32,8 @@ Theme can be set as `light` or `dark`.
 | inputCurrency  | `address`        | Input currency that will be swapped for output currency.               |
 | outputCurrency | `address or ETH` | Output currency that input currency will be swapped for.               |
 | slippage       | `number`         | Max slippage to be used during transaction \(in bips\)                 |
-| exactAmount    | `number`         | The custom token amount to buy or sell.                                |
-| exactField     | `string`         | The field to set custom token amount for. Must be `input` or `output`. |
+| value          | `number`         | The custom token amount to buy or sell.                                |
+| field          | `string`         | The field to set custom token amount for. Must be `input` or `output`. |
 
 ### Defaults
 
@@ -47,11 +47,11 @@ When selecting ETH as the output currency a user must also choose an inputCurren
 
 ### Setting Amounts
 
-Two parameters, exactField and exactAmount can be used to set specific token amounts to be sold or bought. Both fields must be set in the URL or there will be no effect on the settings.
+Two parameters, field and value can be used to set specific token amounts to be sold or bought. Both fields must be set in the URL or there will be no effect on the settings.
 
 ### Example Usage
 
-`https://app.uniswap.org/#/swap?exactField=input&exactAmount=10&inputCurrency=0x0F5D2fB29fb7d3CFeE444a200298f468908cC942?use=v1`
+`https://app.uniswap.org/#/swap?field=input&value=10&inputCurrency=0x0F5D2fB29fb7d3CFeE444a200298f468908cC942?use=v1`
 
 ## Send Page
 
@@ -108,4 +108,4 @@ Custom token routes can still be used in combination with URL parameters. URL pa
 
 An example using custom token route and URL parameters.
 
-`https://app.uniswap.org/#/swap/0x0F5D2fB29fb7d3CFeE444a200298f468908cC942?exactField=input&exactAmount=10&use=v1`
+`https://app.uniswap.org/#/swap/0x0F5D2fB29fb7d3CFeE444a200298f468908cC942?field=input&value=10&use=v1`

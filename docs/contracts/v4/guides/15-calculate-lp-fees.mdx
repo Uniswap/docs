@@ -1,0 +1,186 @@
+---
+title: Calculate LP fees
+---
+
+## Introduction
+
+With hook introduced in v4, [Dynamic Fees](../concepts/07-dynamic-fees.mdx) is now possible and allow v4 pools to have a flexible and responsive fee structure comparing to v3 pools with static fee tiers(0.05%, 0.3%, 1%). 
+
+While in v3 we can get the amount for the fees claimed on each liquidity operation in the `Collect` event, in v4 with dynamic fees, swap fees are directly accrued to liquidity positions and can be further handled by hooks at *`afterModifyLiquidity`* - thus we should not emit `feesAccrued` in the event `ModifiyLiquidity`. This not only saves gas on event emission but more importantly avoid causing confusion since the amount of `feesAccrued` could be changed as a result of hook execution.
+
+```solidity
+// Modify liquidity in v4
+function modifyLiquidity(PoolKey memory key, IPoolManager.ModifyLiquidityParams memory params, bytes calldata hookData) 
+    // ... 
+    returns (BalanceDelta callerDelta, BalanceDelta feesAccrued) 
+{
+    PoolId id = key.toId();
+    {
+        // ... (other code)
+        BalanceDelta principalDelta;
+        (principalDelta, feesAccrued) = pool.modifyLiquidity(
+            // ... (the ModifyLiquidityParams)
+        );
+        callerDelta = principalDelta + feesAccrued;
+    }
+
+    // event is emitted before the afterModifyLiquidity call to ensure events are always emitted in order
+    emit ModifyLiquidity(id, msg.sender, params.tickLower, params.tickUpper, params.liquidityDelta, params.salt);
+
+    BalanceDelta hookDelta;
+    (callerDelta, hookDelta) = key.hooks.afterModifyLiquidity(key, params, callerDelta, feesAccrued, hookData);
+    // ... (other code)
+}
+```
+
+In this guide we will go through how you can calculate fees earned for a LP position in v4 specifically the **uncollected fees** and **total lifetime fees**.
+
+## Contract Setup
+
+Import the necessary dependencies and prepare the function signature for `getUncollectedFees` and `getLifetimeFees`.
+
+```solidity
+pragma solidity ^0.8.24;
+
+import {FullMath} from "@uniswap/v4-core/src/libraries/FullMath.sol";
+import {FixedPoint128} from "@uniswap/v4-core/src/libraries/FixedPoint128.sol";
+import {Position} from "@uniswap/v4-core/src/libraries/Position.sol";
+import {SafeCast} from "@uniswap/v4-core/src/libraries/SafeCast.sol";
+import {IPoolManager} from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
+import {StateLibrary} from "@uniswap/v4-core/src/libraries/StateLibrary.sol";
+import {BalanceDelta, toBalanceDelta} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
+import {PoolId} from "@uniswap/v4-core/src/types/PoolId.sol";
+import {PoolKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
+
+import {IPositionManager} from "src/interfaces/IPositionManager.sol";
+import {PositionConfig} from "src/types/PositionConfig.sol";
+
+contract CalculateFeeExample {
+    using SafeCast for uint256;
+    using StateLibrary for IPoolManager;
+
+    IPositionManager posm = IPositionManager(<POSM_ADDRESS>);
+    IPoolManager manager = IPoolManager(<POOL_MANAGER_ADDRESS>);
+
+    function getUncollectedFees(PositionConfig memory config, uint256 tokenId)
+        external
+        view
+        returns (BalanceDelta uncollectedFees) {}
+
+    function getLifetimeFees(PositionConfig memory config, uint256 tokenId)
+        external
+        view
+        returns (BalanceDelta lifetimeFees) {}
+}
+```
+
+### Calculate uncollected fees for a LP position
+
+In `getUncollectedFees(PositionConfig config, uint256 tokenId)`:
+
+1. Get the last recorded fee growth in `currency0` and `currency1` per unit of liquidity from `tickLower` to `tickUpper`
+```solidity
+PoolId poolId = config.poolKey.toId();
+
+// getPositionInfo(poolId, owner, tL, tU, salt)
+// owner is the position manager, salt is the tokenId
+(uint128 liquidity, uint256 feeGrowthInside0LastX128, uint256 feeGrowthInside1LastX128) =
+    manager.getPositionInfo(poolId, address(posm), config.tickLower, config.tickUpper, bytes32(tokenId));
+```
+
+2. Get the all-time fee growth in `currency0` and `currency1` per unit of liquidity from `tickLower` to `tickUpper`
+```solidity
+(uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128) = 
+    manager.getFeeGrowthInside(poolId, config.tickLower, config.tickUpper);
+```
+
+3. Compare the _all-time feeGrowthInside_ from step 2 against the _last recorded feeGrowthInside_ from step 1, and convert it to token amount
+```solidity
+uint128 tokenAmount =
+    (FullMath.mulDiv(feeGrowthInsideX128 - feeGrowthInsideLastX128, liquidity, FixedPoint128.Q128)).toUint128();
+```
+
+### Calculate lifetime fees earned for a LP range
+
+Create a new function `getLifetimeFee(PositionConfig config, uint256 tokenId)`:
+
+1. Get the all-time fee growth in `currency0` and `currency1` per unit of liquidity from `tickLower` to `tickUpper`
+
+```solidity
+(uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128) = 
+    manager.getFeeGrowthInside(poolId, config.tickLower, config.tickUpper);
+```
+
+2. Convert it to token amount
+
+```solidity
+uint128 tokenAmount =
+    (FullMath.mulDiv(feeGrowthInsideX128, liquidity, FixedPoint128.Q128)).toUint128();
+```
+
+## Full Contract
+
+```solidity
+pragma solidity ^0.8.24;
+
+import {FullMath} from "@uniswap/v4-core/src/libraries/FullMath.sol";
+import {FixedPoint128} from "@uniswap/v4-core/src/libraries/FixedPoint128.sol";
+import {Position} from "@uniswap/v4-core/src/libraries/Position.sol";
+import {SafeCast} from "@uniswap/v4-core/src/libraries/SafeCast.sol";
+import {IPoolManager} from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
+import {StateLibrary} from "@uniswap/v4-core/src/libraries/StateLibrary.sol";
+import {BalanceDelta, toBalanceDelta} from "@uniswap/v4-core/src/types/BalanceDelta.sol";
+import {PoolId} from "@uniswap/v4-core/src/types/PoolId.sol";
+import {PoolKey} from "@uniswap/v4-core/src/types/PoolKey.sol";
+
+import {IPositionManager} from "src/interfaces/IPositionManager.sol";
+import {PositionConfig} from "src/types/PositionConfig.sol";
+
+contract CalculateFeeExample {
+    using SafeCast for uint256;
+    using StateLibrary for IPoolManager;
+
+    IPositionManager posm = IPositionManager(<POSM_ADDRESS>);
+    IPoolManager manager = IPoolManager(<POOL_MANAGER_ADDRESS>);
+
+    function getUncollectedFees(PositionConfig memory config, uint256 tokenId)
+        external
+        view
+        returns (BalanceDelta uncollectedFees) {
+
+        PoolId poolId = config.poolKey.toId();
+
+        (uint128 liquidity, uint256 feeGrowthInside0LastX128, uint256 feeGrowthInside1LastX128) =
+            manager.getPositionInfo(poolId, address(posm), config.tickLower, config.tickUpper, bytes32(tokenId));
+        (uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128) =
+            manager.getFeeGrowthInside(poolId, config.tickLower, config.tickUpper);
+
+        uncollectedFees = _convertFeesToBalanceDelta(
+            feeGrowthInside0X128 - feeGrowthInside0LastX128, feeGrowthInside1X128 - feeGrowthInside1LastX128, liquidity);
+    }
+
+    function getLifetimeFees(PositionConfig memory config, uint256 tokenId)
+        external
+        view
+        returns (BalanceDelta lifetimeFees) {
+
+        PoolId poolId = config.poolKey.toId();
+
+        (uint128 liquidity,,) = manager.getPositionInfo(poolId, address(posm), config.tickLower, config.tickUpper, bytes32(tokenId));
+        (uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128) =
+            manager.getFeeGrowthInside(poolId, config.tickLower, config.tickUpper);
+
+        lifetimeFees = _convertFeesToBalanceDelta(feeGrowthInside0X128, feeGrowthInside1X128, liquidity);
+    }
+
+    function _convertFeesToBalanceDelta(uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128, uint256 liquidity) 
+        internal
+        view 
+        returns (BalanceDelta feesInBalanceDelta) {
+            
+        uint128 token0Amount = (FullMath.mulDiv(feeGrowthInside0X128, liquidity, FixedPoint128.Q128)).toUint128();
+        uint128 token1Amount = (FullMath.mulDiv(feeGrowthInside1X128, liquidity, FixedPoint128.Q128)).toUint128();
+        feesInBalanceDelta = toBalanceDelta(uint256(token0Amount).toInt128(), uint256(token1Amount).toInt128());
+    }
+}
+```

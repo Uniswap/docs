@@ -10,13 +10,29 @@ export class StorageManager<T> {
   set(value: T): void {
     const valueToSet = JSON.stringify(value)
     Cookies.set(this.key, valueToSet, { expires: 365 })
+    localStorage.setItem('theme', value as string)
   }
 
   get(): T | undefined {
-    const value = Cookies.get(this.key)
+    const cookieValue = Cookies.get(this.key)
+    if (cookieValue) {
+      try {
+        return JSON.parse(cookieValue)
+      } catch {
+        return cookieValue as unknown as T
+      }
+    }
 
-    if (value) {
-      return JSON.parse(value)
+    const lsValue = localStorage.getItem('theme')
+    if (lsValue) {
+      try {
+        const parsed = JSON.parse(lsValue)
+        this.set(parsed as T)
+        return parsed
+      } catch {
+        this.set(lsValue as unknown as T)
+        return lsValue as unknown as T
+      }
     }
 
     return undefined
@@ -24,6 +40,7 @@ export class StorageManager<T> {
 
   remove(): void {
     Cookies.remove(this.key)
+    localStorage.removeItem('theme')
   }
 }
 

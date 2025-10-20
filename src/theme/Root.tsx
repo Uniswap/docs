@@ -8,7 +8,7 @@ import { getCLS, getFCP, getFID, getLCP, Metric } from 'web-vitals'
 // Add gtag to window object for TypeScript
 declare global {
   interface Window {
-    gtag?: Gtag.Gtag
+    gtag?: (...args: unknown[]) => void
     dataLayer?: IArguments[]
   }
 }

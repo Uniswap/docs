@@ -2,6 +2,7 @@
     "extends": "@docusaurus/tsconfig",
     "compilerOptions": {
         "baseUrl": ".",
+        "moduleResolution": "node"
     },
   "exclude": [".docusaurus", "build"]
 }

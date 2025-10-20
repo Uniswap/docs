@@ -3,11 +3,11 @@ id: transact
 title: Transact
 ---
 
-# getExecutionDetails
+### getExecutionDetails
 
 The function formats trade data for execution against the relevant Uniswap exchange.
 
-## Function Signature
+### Function Signature
 
 ```typescript
 export function getExecutionDetails(
@@ -18,7 +18,7 @@ export function getExecutionDetails(
 ): ExecutionDetails
 ```
 
-## Input Parameters
+### Input Parameters
 
 | Parameter    | Type           | Description                                                             |
 | :----------- | :------------- | :---------------------------------------------------------------------- |
@@ -27,7 +27,7 @@ export function getExecutionDetails(
 | deadline?    | `number`       | When the transaction will expire. Defaults to 10 minutes in the future. |
 | recipient?   | `number`       | An optional recipient address. Defaults to the `msg.sender`             |
 
-## Example Usage
+### Example Usage
 
 Method arguments are returned as one of: `BigNumber`, `number`, or `string`. `BigNumber`s are large number objects, `numbers` are small numbers in base 10, and `string`s are addresses.
 

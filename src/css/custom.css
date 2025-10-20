@@ -43,6 +43,11 @@ html:has(.theme-doc-markdown) {
   scroll-behavior: smooth;
 }
 
+.inherit {
+  font: inherit;
+  color: inherit;
+}
+
 .main-wrapper {
   @apply pt-nav-h min-h-screen flex flex-row bg-light-surface-1 dark:bg-dark-surface-1;
 }

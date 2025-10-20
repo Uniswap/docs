@@ -96,12 +96,23 @@ Let's walk through an example by considering the *Permit2* smart contract:
 Install solidity doc gen
 `npm install solidity-docgen`
 
-Get the correct compiler version
-`npm install -D solc-0.7@npm:solc@0.7.6`
+Configure solidity-docgen in your `hardhat.config.js` file:
+```javascript
+require('solidity-docgen');
 
-Put the updated template `contract.hbs` in a /templates folder under the same directory as /contracts that you want to generate
+module.exports = {
+  docgen: {
+    path: './docs',
+    clear: true,
+    runOnCompile: false,
+    templates: './templates', // optional custom templates
+  }
+};
+```
 
-Run `npx solidity-docgen --solc-module solc-0.7 -t ./templates`
+Put the updated template `contract.hbs` in a /templates folder (optional)
+
+Run `npx hardhat docgen` to generate documentation
 
 # How to generate markdown files from typescript comments
 

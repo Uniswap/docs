@@ -37,7 +37,7 @@ export const CurrentConfig: SwapExactInSingle = {
         tickSpacing: 10,
         hooks: "0x0000000000000000000000000000000000000000",
     },
-    zeroForOne: true,
+    zeroForOne: true, // The direction of swap is ETH to USDC. Change it to 'false' for the reverse direction
     amountIn: ethers.utils.parseUnits('1', ETH_TOKEN.decimals).toString(), 
     amountOutMinimum: "minAmountOut", // Change according to the slippage desired
     hookData: '0x00'
@@ -135,7 +135,7 @@ The actions in the planner define the sequence of operations that will be perfor
 - `SETTLE_ALL`: This action ensures all input tokens involved in the swap are properly paid. This is part of v4's settlement pattern for handling token transfers.
 - `TAKE_ALL`: This final action collects all output tokens after the swap is complete.
 
-The sequence of these actions is important as they define the complete flow of our swap operation from start to finish.
+The sequence of these actions is important as they define the complete flow of our swap operation from start to finish. The input and output currencies should be exchanged for the `SETTLE_ALL` and `TAKE_ALL` actions if the direction of the swap is reversed.
 
 The `V4_SWAP` command tells the Universal Router that we want to perform a swap on a Uniswap v4 pool.
 
@@ -167,4 +167,4 @@ The rest of the swap process remains the same.
 
 ## Next Steps
 
-Now that you understand single-hop swaps, you might want to explore [multi-hop swaps](./03-multihop-swap.md) for trading between tokens without direct pools or enough liquidity.
+Now that you understand single-hop swaps, you might want to explore [multi-hop swaps](./03-multi-hop-swapping.md) for trading between tokens without direct pools or enough liquidity.

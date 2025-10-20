@@ -4,7 +4,7 @@ title: v4 Protocol Query Examples
 sidebar_position: 2
 ---
 
-# Subgraph Query Examples
+## Subgraph Query Examples
 
 This doc will teach you how to query Uniswap v4 analytics by writing GraphQL queries on the subgraph. You can fetch data points like:
 
@@ -245,7 +245,7 @@ You can set the `where` field to filter swap data by pool address. This example 
 
 ## Token Data
 
-Input the the token contract address to fetch token data. Any token that exists in at least one Uniswap v4 pool can be queried. The output will aggregate data across all v4 pools that include the token.
+Input the token contract address to fetch token data. Any token that exists in at least one Uniswap v4 pool can be queried. The output will aggregate data across all v4 pools that include the token.
 
 ### General Token Data
 

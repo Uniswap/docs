@@ -14,7 +14,7 @@ execution reverts. Otherwise, both parties have paid or received
 the right amount of tokens and the operations have successfully
 carried out.
 
-# Unlocking the PoolManager
+## Unlocking the PoolManager
 
 ### Implementing the unlock callback
 
@@ -55,7 +55,7 @@ function _unlockCallback(bytes calldata data) internal override returns (bytes m
 }
 ```
 
-# Operations
+## Operations
 
 There are **9** operations that can be done in the `PoolManager`
 which fall in two categories: _liquidity-accessing_ and _delta-resolving_.

@@ -74,7 +74,7 @@ echo "==> Removing all backslashes in Markdown files..."
 # If you only have single backslashes, 's/\\//g' is enough.
 # But typedoc can sometimes escape characters with multiple \\
 find "$TYPEDOC_OUTPUT_DIR" -type f -name "*.md" -exec \
-  sed -i.bak -E 's/\\+//g' {} \; -exec rm {}.bak \;
+  sed -i.bak -E 's/\\+//g' {} + && find "$TYPEDOC_OUTPUT_DIR" -type f -name "*.md.bak" -delete
 
 ##############################################################################
 # 5. Remove old v4 folder & copy new docs into docs/sdk/v4/reference

@@ -3,11 +3,11 @@ title: ERC-6909
 sidebar_position: 5
 ---
 
-# Introduction
+## Introduction
 
 Uniswap v4 uses [ERC-6909](/contracts/v4/concepts/erc6909), a token standard that works alongside the protocol’s flash accounting system. This guide explains how ERC-6909 functions within v4, when to use mint versus burn operations, and how developers can implement them effectively.
 
-# What is ERC-6909?
+## What is ERC-6909?
 
 ERC-6909 is a token standard that enables efficient token management within a single contract through multiple token balances per user. Where ERC-20 requires separate approve and transfer calls for token interactions, ERC-6909 provides native support for multi-token operations through mint/burn mechanics that integrate with v4’s flash accounting system.
 
@@ -21,7 +21,7 @@ IERC20(tokenA).transferFrom(owner, poolManager, amount);
 poolManager.burn(owner, currency.toId(), amount);
 ```
 
-## Integration with Flash Accounting
+### Integration with Flash Accounting
 
 While flash accounting tracks balance changes as deltas throughout a transaction, ERC-6909 provides an additional primitive to resolve  deltas. 
 
@@ -31,7 +31,7 @@ This enables:
 2. Efficient handling of multi-step operations
 3. Streamlined token management when using the PoolManager
 
-## Gas Efficiency
+### Gas Efficiency
 
 ERC-6909 provides gas savings compared to ERC-20 tokens, making it particularly valuable for use cases requiring frequent token transfers like:
 
@@ -41,7 +41,7 @@ ERC-6909 provides gas savings compared to ERC-20 tokens, making it particularly 
 
 This efficiency is especially beneficial when performing multiple token operations in rapid succession.
 
-## Simplified Token Management
+### Simplified Token Management
 
 The traditional ERC-20 workflow requires careful management of allowances and transfers, often leading to complex transaction sequences and potential security concerns.
 
@@ -49,11 +49,11 @@ ERC-6909 takes a different approach by providing direct balance modifications th
 
 By working through the PoolManager, all token operations are consolidated into a single interface. This means you don’t need to worry about managing multiple token approvals or keeping track of allowances across different contracts. Instead, you can focus on the core logic of your application while the PoolManager handles the token management aspects.
 
-# Understanding ERC-6909 in v4
+## Understanding ERC-6909 in v4
 
 Let's explore how ERC-6909 is used across different v4 operations and understand when to use each of its operations.
 
-## Operations and Token Movement
+### Operations and Token Movement
 
 Different pool operations create different types of deltas that need to be resolved:
 
@@ -62,7 +62,7 @@ Different pool operations create different types of deltas that need to be resol
 - **Removing Liquidity**: Creates positive deltas (tokens you receive)
 - **Donations**: Creates negative deltas (tokens you're donating)
 
-## Using Mint and Burn
+### Using Mint and Burn
 
 The choice between mint and burn operations depends on your token movement needs:
 
@@ -79,7 +79,7 @@ This pattern is used throughout v4's operations:
 - Use mint when withdrawing value from the pool (like receiving tokens from swaps)
 - Use burn when transferring value to the pool (like providing tokens)
 
-## Hook Integration
+### Hook Integration
 
 When building hooks, ERC-6909 operations help manage token movements within your hook's logic:
 
@@ -100,7 +100,7 @@ function _beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams call
 
 Other common cases would be to use `mint` for fee collection or `burn` for token distribution.
 
-# Implementation
+## Implementation
 
 Let's build a contract that handles donations in v4 using ERC-6909. We'll create a donation router that follows this flow:
 

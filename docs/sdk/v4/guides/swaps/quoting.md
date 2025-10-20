@@ -29,6 +29,7 @@ We will first create an example configuration `CurrentConfig` in `config.ts`. Fo
 ```typescript
 import { SwapExactInSingle } from '@uniswap/v4-sdk'
 import { USDC_TOKEN, ETH_TOKEN } from './constants'
+import { parseUnits, JsonRpcProvider, formatUnits } from 'ethers'
 
 export const CurrentConfig: SwapExactInSingle = {
     poolKey: {
@@ -39,7 +40,7 @@ export const CurrentConfig: SwapExactInSingle = {
         hooks: "0x0000000000000000000000000000000000000000",
     },
     zeroForOne: true,
-    amountIn: ethers.utils.parseUnits('1', ETH_TOKEN.decimals).toString(), 
+    amountIn: parseUnits('1', ETH_TOKEN.decimals).toString(), 
     amountOutMinimum: "0",
     hookData: '0x00'
 }
@@ -52,7 +53,7 @@ Check out the top pools on [Uniswap](https://app.uniswap.org/#/pools).
 ```typescript
 import { Token, ChainId } from '@uniswap/sdk-core'
 
-const ETH_TOKEN = new Token(
+export const ETH_TOKEN = new Token(
   ChainId.MAINNET,
   '0x0000000000000000000000000000000000000000',
   18,
@@ -60,7 +61,7 @@ const ETH_TOKEN = new Token(
   'Ether'
 )
 
-const USDC_TOKEN = new Token(
+export const USDC_TOKEN = new Token(
   ChainId.MAINNET,
   '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
   6,
@@ -79,7 +80,7 @@ Now, we need to construct an instance of an **ethers** `Contract` for our Quoter
 const quoterContract = new ethers.Contract(
   QUOTER_CONTRACT_ADDRESS,
   QUOTER_ABI, // Import or define the ABI for Quoter contract
-  new ethers.providers.JsonRpcProvider("RPC") // Provide the right RPC address for the chain
+  new JsonRpcProvider("RPC") // Provide the right RPC address for the chain
 )
 ```
 
@@ -100,7 +101,7 @@ const quotedAmountOut = await quoterContract.callStatic.quoteExactInputSingle({
     hookData: CurrentConfig.hookData,
 })
 
-console.log(ethers.utils.formatUnits(quotedAmountOut.amountOut, USDC_TOKEN.decimals));
+console.log(formatUnits(quotedAmountOut.amountOut, USDC_TOKEN.decimals));
 ```
 
 The result of the call is the number of output tokens you would receive for the quoted swap.

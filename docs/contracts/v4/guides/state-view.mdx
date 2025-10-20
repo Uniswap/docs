@@ -3,7 +3,7 @@ title: StateView
 sidebar_position: 7
 ---
 
-# Introduction
+## Introduction
 
 When building on **Uniswap v4**, you will often need to read pool state for both onchain and offchain use cases. Onchain contracts can directly invoke the [**StateLibrary**](https://github.com/Uniswap/v4-core/blob/main/src/libraries/StateLibrary.sol) to execute these reads during transactions, but offchain systems—such as frontends or analytics services—require a deployed contract with view functions. This is where [**StateView**](https://github.com/Uniswap/v4-periphery/blob/main/src/lens/StateView.sol) comes in.
 
@@ -55,11 +55,11 @@ const { sqrtPriceX96 } = await stateView.read.getSlot0([poolId]);
 
 This separation ensures that each context (onchain vs. offchain) uses the most efficient data reading pattern.
 
-# Usage With Frontend Clients
+## Usage With Frontend Clients
 
 Frontend applications frequently display real-time information about pools, positions, and other market data—without incurring transaction costs. **StateView** addresses these requirements by exposing read-only functions tailored for offchain integrations.
 
-## Setting Up With Viem
+### Setting Up With Viem
 
 We’ll use [**viem**](https://viem.sh/), a TypeScript library for Ethereum, to demonstrate how to connect to **StateView**.
 
@@ -97,11 +97,11 @@ When calling `stateView.read.<function>([poolId])`, be mindful that:
 - If you pass an invalid `poolId` (typically a [`bytes32`](https://github.com/Uniswap/v4-core/blob/main/src/types/PoolId.sol#L6) in Uniswap v4), the call may revert or return unexpected data.
 - Consider adding try-catch (or equivalent error handling in your framework) to gracefully handle failures if the pool does not exist or if the call fails onchain.
 
-# Reading Pool Data
+## Reading Pool Data
 
 Here are common examples of how to retrieve pool data using **StateView**.
 
-## Getting Pool State
+### Getting Pool State
 
 A pool’s core state, such as its current price or fees, is often necessary for frontends. Use `getSlot0`:
 
@@ -134,7 +134,7 @@ const getPoolState = async (poolId: string) => {
 - **`tick`**: The current tick in which the pool is operating.
 - **`protocolFee`** and **`lpFee`**: Fee parameters for protocol and LP fee tiers.
 
-## Getting Pool Liquidity
+### Getting Pool Liquidity
 
 To understand how much liquidity a pool holds:
 
@@ -153,7 +153,7 @@ const getPoolLiquidity = async (poolId: string) => {
 - Influences price impact calculations in trading
 - Provides context for the pool’s capacity to absorb trades
 
-# Core Functions and Return Types
+## Core Functions and Return Types
 
 While **StateView** exposes many functions, here are several essential calls for most offchain applications. Each function typically takes a `poolId` (of type `bytes32`) as the key input, identifying which pool to query.
 
@@ -181,13 +181,13 @@ While **StateView** exposes many functions, here are several essential calls for
   - hooks: The hooks contract address
 - A `positionId` may also be a `bytes32` or other unique identifier that references a specific position.
 
-# Security and Gas Considerations
+## Security and Gas Considerations
 
 - **Offchain Reads**: Calls to `StateView` are purely read-only, so they cost no gas. This makes them ideal for frequently refreshing UI/analytics data.
 - **Onchain vs. Offchain**: Remember that if you need to integrate pool data into a live transaction, you must use `StateLibrary` within your smart contract.
 - **Edge Cases**: Always verify the returned data before using it in your application. Network or contract errors could lead to unexpected values.
 
-# Conclusion
+## Conclusion
 
 **StateView** is a powerful and efficient way to read Uniswap v4 pool data offchain. By separating onchain logic (using `StateLibrary`) and offchain reads (using `StateView`), Uniswap ensures the best developer experience for both contexts.
 

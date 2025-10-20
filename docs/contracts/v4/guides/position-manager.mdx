@@ -3,7 +3,7 @@ title: Position Manager
 sidebar_position: 6
 ---
 
-# Introduction
+## Introduction
 
 The Position Manager in v4 provides a streamlined way to manage liquidity positions through a command-based interface. Unlike previous versions where each operation required separate function calls, v4’s Position Manager uses a batched command pattern that allows multiple operations to be executed in a single transaction.
 
@@ -56,15 +56,15 @@ This design enables efficient operations by:
 
 In the following sections, we’ll explore how to work with these commands and implement common liquidity management operations.
 
-# Core Concepts
+## Core Concepts
 
 Before diving into specific operations, let’s understand the key concepts that make up the Position Manager’s architecture.
 
-## Action Types
+### Action Types
 
 The Position Manager operates through a system of actions that work in pairs: when you perform a liquidity operation that changes position balances, you must also include actions to handle the resulting token movements.
 
-## Understanding the Flow
+### Understanding the Flow
 
 When you execute a liquidity operation:
 
@@ -72,7 +72,7 @@ When you execute a liquidity operation:
 2. These deltas represent tokens that need to be paid or received
 3. Delta-resolving operations are then used to handle these token movements
 
-## Liquidity Operations
+### Liquidity Operations
 
 [Actions](/contracts/v4/reference/periphery/libraries/Actions) that modify positions in the pool:
 
@@ -89,7 +89,7 @@ Each operation creates specific deltas that must be resolved:
 - Negative deltas when you need to provide tokens (mint, increase)
 - Positive deltas when you’re receiving tokens (decrease, burn)
 
-## Delta-Resolving Operations
+### Delta-Resolving Operations
 
 Actions that handle the token transfers needed to resolve deltas:
 
@@ -101,7 +101,7 @@ uint256 constant CLOSE_CURRENCY = 0x12; // Handles either direction based on fin
 uint256 constant CLEAR_OR_TAKE = 0x13;  // For small amounts: Take if worth it, else ignore
 ```
 
-## Operation Order
+### Operation Order
 
 Understanding how operations create and resolve deltas helps in ordering them efficiently:
 
@@ -128,11 +128,11 @@ Best practices for ordering:
 2. Resolve all deltas together at the end when possible
 3. Use `CLOSE_CURRENCY` when you can't predict the final delta
 
-# Working with Liquidity Positions
+## Working with Liquidity Positions
 
 When building on v4, you’ll need to manage liquidity positions through the Position Manager. Let’s walk through each operation, starting with creating new positions.
 
-## Minting New Positions
+### Minting New Positions
 
 To create a new liquidity position in v4, you’ll need to:
 
@@ -564,11 +564,11 @@ positionManager.modifyLiquidities(
 );
 ```
 
-# Batch-Operating Liquidity
+## Batch-Operating Liquidity
 
 The Position Manager’s command-based design enables you to perform multiple liquidity operations in a single transaction. This is particularly valuable when managing multiple positions or performing complex liquidity management strategies, such as taking tokens from one position to increase liquidity of another position.
 
-## Benefits of Batch Operations
+### Benefits of Batch Operations
 
 When managing liquidity across multiple positions, batching operations provides significant advantages:
 
@@ -576,7 +576,7 @@ When managing liquidity across multiple positions, batching operations provides 
 - Atomic execution of related operations
 - Simplified token handling through combined delta resolution
 
-## Implementation Guide
+### Implementation Guide
 
 Let’s implement a common scenario: rebalancing liquidity by creating a new position while closing an old one and collecting its fees. We’ll go through it step by step.
 
@@ -675,11 +675,11 @@ positionManager.modifyLiquidities(
 }
 ```
 
-# Delta-Resolving Operations
+## Delta-Resolving Operations
 
 While we’ve seen basic delta resolution using SETTLE_PAIR and TAKE_PAIR in previous sections, v4’s Position Manager provides additional operations for handling more complex scenarios. Let’s understand when and how to use each one.
 
-## **CLOSE_CURRENCY: Handling Unknown Deltas**
+### **CLOSE_CURRENCY: Handling Unknown Deltas**
 
 When you can’t predict whether you’ll need to pay or receive tokens, CLOSE_CURRENCY automatically handles either case.
 
@@ -711,7 +711,7 @@ This is particularly useful when:
 - Complex operations where final deltas are uncertain
 - Reducing code complexity by letting the protocol handle the direction
 
-## **CLEAR_OR_TAKE: Optimizing for Dust**
+### **CLEAR_OR_TAKE: Optimizing for Dust**
 
 Sometimes receiving small token amounts costs more in gas than they’re worth. CLEAR_OR_TAKE lets you specify a threshold:
 
@@ -733,7 +733,7 @@ This is valuable for:
 - Operations where dust amounts can be ignored
 - Gas optimization in production systems
 
-## **SWEEP: Handling Excess Payments**
+### **SWEEP: Handling Excess Payments**
 
 SWEEP helps recover any excess tokens sent to the PoolManager:
 
@@ -756,7 +756,7 @@ Use SWEEP when:
 - Conservative token approvals might result in excess
 - Need to ensure all tokens are properly accounted for
 
-## **Understanding modifyLiquiditiesWithoutUnlock**
+### **Understanding modifyLiquiditiesWithoutUnlock**
 
 This function follows the same encoding and command patterns as `modifyLiquidity`, but serves a specific purpose: it's used when the PoolManager is already unlocked. This is particularly useful in certain scenarios:
 

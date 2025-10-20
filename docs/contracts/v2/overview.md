@@ -4,8 +4,6 @@ title: Overview
 sidebar_position: 1
 ---
 
-# The Uniswap v2 Smart Contracts
-
 Welcome to the Uniswap protocol v2 docs.
 
 The pages here contain conceptual and technical documentation of the Uniswap v2 protocol.
@@ -14,7 +12,7 @@ If you are new to Uniswap, you might want to check out the [Protocol overview](.
 
 You can also take a look at the v2 Protocol <a href='/whitepaper.pdf' target='_blank' rel='noopener noreferrer'>Whitepaper</a>.
 
-# Developer links
+## Developer links
 
 The v2 Uniswap protocol is separated across two repositories
 

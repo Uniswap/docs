@@ -5,17 +5,17 @@ title: Router02
 
 Because routers are stateless and do not hold token balances, they can be replaced safely and trustlessly, if necessary. This may happen if more efficient smart contract patterns are discovered, or if additional functionality is desired. For this reason, routers have _release numbers_, starting at `01`. This is currently recommended release, `02`.
 
-# Code
+## Code
 
 [`UniswapV2Router02.sol`](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/UniswapV2Router02.sol)
 
-# Address
+## Address
 
 `UniswapV2Router02` is deployed at `0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D` on the Ethereum [mainnet](https://etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D), and the [Ropsten](https://ropsten.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D), [Rinkeby](https://rinkeby.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D), [Görli](https://goerli.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D), and [Kovan](https://kovan.etherscan.io/address/0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D) testnets. It was built from commit [6961711](https://github.com/Uniswap/uniswap-v2-periphery/tree/69617118cda519dab608898d62aaa79877a61004).
 
-# Read-Only Functions
+## Read-Only Functions
 
-## factory
+### factory
 
 ```solidity
 function factory() external pure returns (address);
@@ -23,7 +23,7 @@ function factory() external pure returns (address);
 
 Returns [factory address](../smart-contracts/factory#address).
 
-## WETH
+### WETH
 
 ```solidity
 function WETH() external pure returns (address);
@@ -31,19 +31,19 @@ function WETH() external pure returns (address);
 
 Returns the [canonical WETH address](https://blog.0xproject.com/canonical-weth-a9aa7d0279dd) on the Ethereum [mainnet](https://etherscan.io/address/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2), or the [Ropsten](https://ropsten.etherscan.io/address/0xc778417e063141139fce010982780140aa0cd5ab), [Rinkeby](https://rinkeby.etherscan.io/address/0xc778417e063141139fce010982780140aa0cd5ab), [Görli](https://goerli.etherscan.io/address/0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6), or [Kovan](https://kovan.etherscan.io/address/0xd0a1e359811322d97991e03f863a0c30c2cf029c) testnets.
 
-## quote
+### quote
 
 See [quote](../smart-contracts/library#quote).
 
-## getAmountOut
+### getAmountOut
 
 See [getAmountOut](../smart-contracts/library#getamountout).
 
-## getAmountIn
+### getAmountIn
 
 See [getAmountIn](../smart-contracts/library#getamountin).
 
-## getAmountsOut
+### getAmountsOut
 
 ```solidity
 function getAmountsOut(uint amountIn, address[] memory path) public view returns (uint[] memory amounts);
@@ -51,7 +51,7 @@ function getAmountsOut(uint amountIn, address[] memory path) public view returns
 
 See [getAmountsOut](../smart-contracts/library#getamountsout).
 
-## getAmountsIn
+### getAmountsIn
 
 ```solidity
 function getAmountsIn(uint amountOut, address[] memory path) public view returns (uint[] memory amounts);
@@ -59,9 +59,9 @@ function getAmountsIn(uint amountOut, address[] memory path) public view returns
 
 See [getAmountsIn](../smart-contracts/library#getamountsin).
 
-# State-Changing Functions
+## State-Changing Functions
 
-## addLiquidity
+### addLiquidity
 
 ```solidity
 function addLiquidity(
@@ -97,7 +97,7 @@ Adds liquidity to an ERC-20⇄ERC-20 pool.
 | amountB        | `uint`    | The amount of tokenB sent to the pool.                                                                         |
 | liquidity      | `uint`    | The amount of liquidity tokens minted.                                                                         |
 
-## addLiquidityETH
+### addLiquidityETH
 
 ```solidity
 function addLiquidityETH(
@@ -132,7 +132,7 @@ Adds liquidity to an ERC-20⇄WETH pool with ETH.
 | amountETH                      | `uint`    | The amount of ETH converted to WETH and sent to the pool.                                                                 |
 | liquidity                      | `uint`    | The amount of liquidity tokens minted.                                                                                    |
 
-## removeLiquidity
+### removeLiquidity
 
 ```solidity
 function removeLiquidity(
@@ -163,7 +163,7 @@ Removes liquidity from an ERC-20⇄ERC-20 pool.
 | amountA    | `uint`    | The amount of tokenA received.                                                        |
 | amountB    | `uint`    | The amount of tokenB received.                                                        |
 
-## removeLiquidityETH
+### removeLiquidityETH
 
 ```solidity
 function removeLiquidityETH(
@@ -192,7 +192,7 @@ Removes liquidity from an ERC-20⇄WETH pool and receive ETH.
 | amountToken    | `uint`    | The amount of token received.                                                        |
 | amountETH      | `uint`    | The amount of ETH received.                                                          |
 
-## removeLiquidityWithPermit
+### removeLiquidityWithPermit
 
 ```solidity
 function removeLiquidityWithPermit(
@@ -226,7 +226,7 @@ Removes liquidity from an ERC-20⇄ERC-20 pool without pre-approval, thanks to [
 | amountA    | `uint`    | The amount of tokenA received.                                                        |
 | amountB    | `uint`    | The amount of tokenB received.                                                        |
 
-## removeLiquidityETHWithPermit
+### removeLiquidityETHWithPermit
 
 ```solidity
 function removeLiquidityETHWithPermit(
@@ -258,7 +258,7 @@ Removes liquidity from an ERC-20⇄WETTH pool and receive ETH without pre-approv
 | amountToken    | `uint`    | The amount of token received.                                                        |
 | amountETH      | `uint`    | The amount of ETH received.                                                          |
 
-## removeLiquidityETHSupportingFeeOnTransferTokens
+### removeLiquidityETHSupportingFeeOnTransferTokens
 
 ```solidity
 function removeLiquidityETHSupportingFeeOnTransferTokens(
@@ -286,7 +286,7 @@ Identical to [removeLiquidityETH](#removeliquidityeth), but succeeds for tokens 
 |                |           |                                                                                      |
 | amountETH      | `uint`    | The amount of ETH received.                                                          |
 
-## removeLiquidityETHWithPermitSupportingFeeOnTransferTokens
+### removeLiquidityETHWithPermitSupportingFeeOnTransferTokens
 
 ```solidity
 function removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
@@ -317,7 +317,7 @@ Identical to [removeLiquidityETHWithPermit](#removeliquidityethwithpermit), but 
 |                |           |                                                                                      |
 | amountETH      | `uint`    | The amount of ETH received.                                                          |
 
-## swapExactTokensForTokens
+### swapExactTokensForTokens
 
 ```solidity
 function swapExactTokensForTokens(
@@ -343,7 +343,7 @@ Swaps an exact amount of input tokens for as many output tokens as possible, alo
 |              |                      |                                                                                                                                      |
 | amounts      | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapTokensForExactTokens
+### swapTokensForExactTokens
 
 ```solidity
 function swapTokensForExactTokens(
@@ -369,7 +369,7 @@ Receive an exact amount of output tokens for as few input tokens as possible, al
 |             |                      |                                                                                                                                      |
 | amounts     | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapExactETHForTokens
+### swapExactETHForTokens
 
 ```solidity
 function swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
@@ -390,7 +390,7 @@ Swaps an exact amount of ETH for as many output tokens as possible, along the ro
 |                        |                      |                                                                                                                                      |
 | amounts                | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapTokensForExactETH
+### swapTokensForExactETH
 
 ```solidity
 function swapTokensForExactETH(uint amountOut, uint amountInMax, address[] calldata path, address to, uint deadline)
@@ -413,7 +413,7 @@ Receive an exact amount of ETH for as few input tokens as possible, along the ro
 |             |                      |                                                                                                                                      |
 | amounts     | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapExactTokensForETH
+### swapExactTokensForETH
 
 ```solidity
 function swapExactTokensForETH(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline)
@@ -435,7 +435,7 @@ Swaps an exact amount of tokens for as much ETH as possible, along the route det
 |              |                      |                                                                                                                                      |
 | amounts      | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapETHForExactTokens
+### swapETHForExactTokens
 
 ```solidity
 function swapETHForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
@@ -458,7 +458,7 @@ Receive an exact amount of tokens for as little ETH as possible, along the route
 |                           |                      |                                                                                                                                      |
 | amounts                   | `uint[] memory`      | The input token amount and all subsequent output token amounts.                                                                      |
 
-## swapExactTokensForTokensSupportingFeeOnTransferTokens
+### swapExactTokensForTokensSupportingFeeOnTransferTokens
 
 ```solidity
 function swapExactTokensForTokensSupportingFeeOnTransferTokens(
@@ -482,7 +482,7 @@ Identical to [swapExactTokensForTokens](#swapexacttokensfortokens), but succeeds
 | to           | `address`            | Recipient of the output tokens.                                                                                                      |
 | deadline     | `uint`               | Unix timestamp after which the transaction will revert.                                                                              |
 
-## swapExactETHForTokensSupportingFeeOnTransferTokens
+### swapExactETHForTokensSupportingFeeOnTransferTokens
 
 ```solidity
 function swapExactETHForTokensSupportingFeeOnTransferTokens(
@@ -503,7 +503,7 @@ Identical to [swapExactETHForTokens](#swapexactethfortokens), but succeeds for t
 | to                     | `address`            | Recipient of the output tokens.                                                                                                      |
 | deadline               | `uint`               | Unix timestamp after which the transaction will revert.                                                                              |
 
-## swapExactTokensForETHSupportingFeeOnTransferTokens
+### swapExactTokensForETHSupportingFeeOnTransferTokens
 
 ```solidity
 function swapExactTokensForETHSupportingFeeOnTransferTokens(
@@ -527,7 +527,7 @@ Identical to [swapExactTokensForETH](#swapexacttokensforeth), but succeeds for t
 | to           | `address`            | Recipient of the ETH.                                                                                                                |
 | deadline     | `uint`               | Unix timestamp after which the transaction will revert.                                                                              |
 
-# Interface
+## Interface
 
 ```solidity
 import '@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol';
@@ -672,7 +672,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
 }
 ```
 
-# ABI
+## ABI
 
 ```typescript
 import IUniswapV2Router02 from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'

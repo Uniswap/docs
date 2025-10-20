@@ -3,7 +3,7 @@ id: computation
 title: Computation
 ---
 
-# getMarketDetails
+## getMarketDetails
 
 This function computes market details for the passed reserves data. Markets are defined as ETH&lt;&gt;ERC20, ERC20&lt;&gt;ETH, or ERC20&lt;&gt;ERC20 pairs, where the first currency is the input and the second is the output. Reserves must be specified for both the input and output currency.
 
@@ -11,7 +11,7 @@ This function computes market details for the passed reserves data. Markets are 
 
 - Rates are calculated to 18 decimal places of precision.
 
-## Function Signature
+### Function Signature
 
 ```typescript
 export function getMarketDetails(
@@ -20,14 +20,14 @@ export function getMarketDetails(
 ): MarketDetails
 ```
 
-## Input Parameters
+### Input Parameters
 
 | Parameter              | Type               | Description                            |
 | :--------------------- | :----------------- | :------------------------------------- |
 | optionalReservesInput  | `OptionalReserves` | Reserves data for the input currency.  |
 | optionalReservesOutput | `OptionalReserves` | Reserves data for the output currency. |
 
-## Example Usage
+### Example Usage
 
 ```typescript
 const reserves: ChainIdOrProvider = await getTokenReserves(tokenAddress)
@@ -60,7 +60,7 @@ const marketDetails: MarketDetails = getMarketDetails(undefined, reserves) // ET
 */
 ```
 
-# getTradeDetails
+## getTradeDetails
 
 This function computes trade details for the passed market data.
 
@@ -68,7 +68,7 @@ This function computes trade details for the passed market data.
 
 - Trade amounts must be passed in non-decimal form \(where e.g. 1 ETH is represented as 1000000000000000000 wei\).
 
-## Function Signature
+### Function Signature
 
 ```typescript
 export function getTradeDetails(
@@ -78,7 +78,7 @@ export function getTradeDetails(
 ): TradeDetails
 ```
 
-## Input Parameters
+### Input Parameters
 
 | Parameter     | Type            | Description                                                                      |
 | :------------ | :-------------- | :------------------------------------------------------------------------------- |
@@ -86,7 +86,7 @@ export function getTradeDetails(
 | \_tradeAmount | `BigNumberish`  | The amount to buy/sell \(of the output/input currency, depending on tradeExact\) |
 | marketDetails | `MarketDetails` | Market details.                                                                  |
 
-## Example Usage
+### Example Usage
 
 ```typescript
 const _purchaseAmount: BigNumber = new BigNumber('2.5')

@@ -64,4 +64,4 @@ https://github.com/Uniswap/examples/blob/8c0e36ca8d2ba4718af944094191f39da62a9c5
 
 ## Next steps
 
-Know you know how to support `web3-react`'s most common use cases! Stay tuned for follow up guides.
+Now you know how to support `web3-react`'s most common use cases! Stay tuned for follow up guides.

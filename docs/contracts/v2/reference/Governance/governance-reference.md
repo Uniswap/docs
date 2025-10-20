@@ -9,15 +9,15 @@ The Uniswap protocol is governed and upgraded by UNI token holders, using three 
 
 Any addresses with more than 2.5M UNI delegated to it may propose governance actions, which contain finished, executable code. When a proposal is created, the community can cast their votes during a 3 day voting period. If a majority, and at least 4M votes are cast for the proposal, it is queued in the Timelock, and may be executed in a minimum of 2 days.
 
-## Timelock
+### Timelock
 
 The Timelock contract can modify system parameters, logic, and contracts in a 'time-delayed, opt-out' upgrade pattern. Timelock has a hard-coded minimum delay of 2 days, which is the least amount of notice possible for a governance action. Each proposed action will be published at a minimum of 2 days in the future from the time of announcement. Major upgrades, such as changing the risk system, may have up to a 30 day delay. Timelock is controlled by the governance module; pending and completed governance actions can be monitored on the Timelock Dashboard.
 
 ![](./images/gov_diagram-1.png)
 
-# Key Events
+## Key Events
 
-## DelegateChanged
+### DelegateChanged
 
 ```solidity
 DelegateChanged(address indexed delegator, address indexed fromDelegate, address indexed toDelegate)
@@ -25,7 +25,7 @@ DelegateChanged(address indexed delegator, address indexed fromDelegate, address
 
 Emitted when an account changes its delegate.
 
-## DelegateVotesChanged
+### DelegateVotesChanged
 
 ```solidity
 DelegateVotesChanged(address indexed delegate, uint previousBalance, uint newBalance)
@@ -33,7 +33,7 @@ DelegateVotesChanged(address indexed delegate, uint previousBalance, uint newBal
 
 Emitted when a delegate account's vote balance changes.
 
-## ProposalCreated
+### ProposalCreated
 
 ```solidity
 ProposalCreated(uint id, address proposer, address[] targets, uint[] values, string[] signatures, bytes[] calldatas, uint startBlock, uint endBlock, string description)
@@ -41,7 +41,7 @@ ProposalCreated(uint id, address proposer, address[] targets, uint[] values, str
 
 Emitted when a new proposal is created.
 
-## VoteCast
+### VoteCast
 
 ```solidity
 VoteCast(address voter, uint proposalId, bool support, uint votes)
@@ -49,7 +49,7 @@ VoteCast(address voter, uint proposalId, bool support, uint votes)
 
 Emitted when a vote has been cast on a proposal.
 
-## ProposalCanceled
+### ProposalCanceled
 
 ```solidity
 ProposalCanceled(uint id)
@@ -57,7 +57,7 @@ ProposalCanceled(uint id)
 
 Emitted when a proposal has been canceled.
 
-## ProposalQueued
+### ProposalQueued
 
 ```solidity
 ProposalQueued(uint id, uint eta)
@@ -65,7 +65,7 @@ ProposalQueued(uint id, uint eta)
 
 Emitted when a proposal has been queued in the Timelock.
 
-## ProposalExecuted
+### ProposalExecuted
 
 ```solidity
 ProposalExecuted(uint id)
@@ -73,9 +73,9 @@ ProposalExecuted(uint id)
 
 Emitted when a proposal has been executed in the Timelock.
 
-# Read-Only Functions: UNI
+## Read-Only Functions: UNI
 
-## Get Current Votes
+### Get Current Votes
 
 ```solidity
 function getCurrentVotes(address account) returns (uint96)
@@ -87,7 +87,7 @@ Returns the balance of votes for an account as of the current block.
 | :------ | :-------- | :--------------------------------------------------------------- |
 | account | `address` | Address of the account of which to retrieve the number of votes. |
 
-## Get Prior Votes
+### Get Prior Votes
 
 ```solidity
 function getPriorVotes(address account, uint blockNumber) returns (uint96)
@@ -102,9 +102,9 @@ Returns the prior number of votes for an account at a specific block number. The
 |             |           |                                                                        |
 | unnamed     | `uint96`  | The number of prior votes                                              |
 
-# State-Changing Functions: UNI
+## State-Changing Functions: UNI
 
-## Delegate
+### Delegate
 
 ```solidity
 function delegate(address delegatee)
@@ -116,7 +116,7 @@ Delegate votes from the sender to the delegatee. Users can delegate to 1 address
 | :-------- | :-------- | :----------------------------------------------------------------- |
 | delegatee | `address` | The address to which msg.sender wishes to delegate their votes to. |
 
-## Delegate By Signature
+### Delegate By Signature
 
 ```solidity
 function delegateBySig(address delegatee, uint nonce, uint expiry, uint8 v, bytes32 r, bytes32 s)
@@ -126,16 +126,16 @@ Delegate votes from the sender to the delegatee. Users can delegate to 1 address
 
 | Name      | Type      |                                                                                                                     |
 | :-------- | :-------- | :------------------------------------------------------------------------------------------------------------------ |
-| delegatee | `address` | The address to which msg.sender wishis to delegate their vote to                                                    |
+| delegatee | `address` | The address to which msg.sender wishes to delegate their vote to                                                    |
 | nonce     | `uint`    | The contract state required to match the signature. This can be retrieved from the contract’s public nonces mapping |
 | expiry    | `uint`    | The time when the signature expires. A block timestamp in seconds since the unix epoch.                             |
 | v         | `uint`    | The recovery byte of the signature.                                                                                 |
 | r         | `bytes32` | Half of the ECDSA signature pair.                                                                                   |
 | s         | `bytes32` | Half of the ECDSA signature pair.                                                                                   |
 
-# Read-Only Functions: Governor Alpha
+## Read-Only Functions: Governor Alpha
 
-## Quorum Votes
+### Quorum Votes
 
 ```solidity
 function quorumVotes() public pure returns (uint)
@@ -143,7 +143,7 @@ function quorumVotes() public pure returns (uint)
 
 Returns the minimum number of votes required for a proposal to succeed.
 
-## Proposal Threshold
+### Proposal Threshold
 
 ```solidity
 function proposalThreshold() returns (uint)
@@ -151,7 +151,7 @@ function proposalThreshold() returns (uint)
 
 Returns the minimum number of votes required for an account to create a proposal.
 
-## Proposal Max Operations
+### Proposal Max Operations
 
 ```solidity
 function proposalMaxOperations() returns (uint)
@@ -159,7 +159,7 @@ function proposalMaxOperations() returns (uint)
 
 Returns the maximum number of actions that can be included in a proposal. Actions are functions calls that will be made when a proposal succeeds and executes.
 
-## Voting Delay
+### Voting Delay
 
 ```solidity
 function votingDelay() returns (uint)
@@ -167,7 +167,7 @@ function votingDelay() returns (uint)
 
 Returns the number of blocks to wait before voting on a proposal may begin. This value is added to the current block number when a proposal is created.
 
-## Voting Period
+### Voting Period
 
 ```solidity
 function votingPeriod() returns (uint)
@@ -175,7 +175,7 @@ function votingPeriod() returns (uint)
 
 Returns the duration of voting on a proposal, in blocks.
 
-## Get Actions
+### Get Actions
 
 ```solidity
 function getActions(uint proposalId) returns (uint proposalId) public view returns (address[] memory targets, uint[] memory values, string[] memory signatures, bytes[] memory calldatas)
@@ -194,7 +194,7 @@ Returns:
 - Array of strings of the proposal’s signatures.
 - Array of calldata bytes of the proposal.
 
-## Get Receipt
+### Get Receipt
 
 ```solidity
 function getReceipt(uint proposalId, address voter) returns (Receipt memory)
@@ -209,7 +209,7 @@ Returns a proposal ballot receipt of a given voter.
 |            |           |                                                              |
 | Receipt    | `struct`  | A Receipt struct for the ballot of the voter address.        |
 
-## State
+### State
 
 ```solidity
 function state(uint proposalId) returns (ProposalState)
@@ -229,9 +229,9 @@ Returns enum of type ProposalState, possible types are:
 | :--------- | :----- | :----------------- |
 | proposalId | `uint` | ID of the proposal |
 
-# State-Changing Functions: Governor Alpha
+## State-Changing Functions: Governor Alpha
 
-## Propose
+### Propose
 
 ```solidity
 function propose(address[] memory targets, uint[] memory values, string[] memory signatures, bytes[] memory calldatas, string memory description) returns (uint)
@@ -255,7 +255,7 @@ The proposer cannot create another proposal if they currently have a pending or 
 |             |           |                                                                                                                                                                                         |
 | Unnamed     | `uint`    | Returns ID of the new proposal                                                                                                                                                          |
 
-## Queue
+### Queue
 
 ```solidity
 function queue(uint proposalId)
@@ -267,7 +267,7 @@ After a proposal has succeeded, any address can call the queue method to move th
 | :--------- | :----- | :-------------------------------- |
 | proposalId | `uint` | ID of a given successful proposal |
 
-## Execute
+### Execute
 
 ```solidity
 function execute(uint proposalId) payable
@@ -280,7 +280,7 @@ This function is payable so the Timelock contract can invoke payable functions t
 | :--------- | :----- | :-------------------------------- |
 | proposalId | `uint` | ID of a given successful proposal |
 
-## Cancel
+### Cancel
 
 ```solidity
 function queue(uint proposalId)
@@ -292,7 +292,7 @@ Cancel a proposal that has not yet been executed. The Guardian is the only one w
 | :--------- | :----- | :------------------------- |
 | proposalId | `uint` | ID of a proposal to cancel |
 
-## Cast Vote
+### Cast Vote
 
 ```solidity
 function castVote(uint proposalId, bool support)
@@ -305,7 +305,7 @@ Cast a vote on a proposal. The account's voting weight is determined by it's num
 | proposalId | `uint` | ID of a given successful proposal                                   |
 | support    | `bool` | A boolean of true for 'yes' or false for 'no' on the proposal vote. |
 
-## Cast Vote By Signature
+### Cast Vote By Signature
 
 ```solidity
 function castVoteBySig(uint proposalId, bool support, uint8 v, bytes32 r, bytes32 s)

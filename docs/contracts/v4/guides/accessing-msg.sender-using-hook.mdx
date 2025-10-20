@@ -3,7 +3,6 @@ title: Access msg.sender Inside a Hook
 sidebar_position: 9
 ---
 
-## Introduction
 In Uniswap v4, when a hook is triggered, `msg.sender` is always the PoolManager contract, not the EOA or smart-account that initiated the swap. This behavior occurs because the PoolManager acts as an intermediary, executing the swap logic on behalf of the user.
 
 ## Securely Retrieving the Original `msg.sender` address in a Hook

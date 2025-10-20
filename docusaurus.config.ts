@@ -26,6 +26,15 @@ const config: Config = {
   favicon: 'img/favicon.png',
   organizationName: 'Uniswap',
   projectName: 'Uniswap-docs',
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'referrer',
+        content: 'strict-origin-when-cross-origin',
+      },
+    },
+  ],
   themeConfig: {
     image: 'img/twitter_card_bg.jpg',
     prism: {
@@ -64,8 +73,13 @@ const config: Config = {
           label: 'APIs',
         },
         {
+          type: 'doc',
+          docId: 'llms/overview',
+          label: 'LLMs',
+        },
+        {
           label: "Give Feedback",
-          to: 'https://docs.google.com/forms/d/e/1FAIpQLSdjSkZam8KiatL9XACRVxCHjDJjaPGbls77PCXDKFn4JwykXg/viewform',
+          to: 'https://share.hsforms.com/14XvN41xQTyC8KPamgaM8Jwsdca9',
           target: '_blank',
           rel: 'noreferrer',
         },
@@ -710,20 +724,25 @@ const config: Config = {
             from: '/protocol/V3/guides/getting-started',
           },
           {
-            to: '/contracts/uniswapx/guides/mainnet/createfiller',
+            to: '/contracts/uniswapx/fillers/mainnet/createfiller',
             from: '/contracts/uniswapx/guides/createfiller',
           },
           {
-            to: '/contracts/uniswapx/guides/arbitrum/arbitrumfiller',
+            to: '/contracts/uniswapx/fillers/arbitrum/arbitrumfiller',
             from: '/contracts/uniswapx/guides/arbitrumfiller',
           },
           {
-            to: '/contracts/uniswapx/guides/mainnet/becomequoter',
+            to: '/contracts/uniswapx/fillers/mainnet/becomequoter',
             from: '/contracts/uniswapx/guides/becomequoter',
           },
           {
-            to: '/contracts/uniswapx/guides/priority/priorityorderreactor',
+            to: '/contracts/uniswapx/fillers/priority/priorityorderreactor',
             from: '/contracts/uniswapx/guides/priorityorderreactor',
+          },
+          // Missing concept page redirects
+          {
+            to: '/concepts/protocol/concentrated-liquidity',
+            from: '/concepts/protocol/liquidity',
           },
         ],
         createRedirects(existingPath) {
