@@ -4,8 +4,6 @@ title: Overview
 sidebar_position: 1
 ---
 
-# UniswapX
-
 UniswapX is a permissionless, open source, auction-based swapping protocol for trading across AMMs and other liquidity sources. It improves swapping in several ways:
 
 - Better prices by aggregating liquidity sources
@@ -15,7 +13,7 @@ UniswapX is a permissionless, open source, auction-based swapping protocol for t
 
 Swappers generate signed orders which specify the outputs of their swap, and fillers compete to satisfy these orders using their own filling strategies.
 
-# Trading on UniswapX
+## Trading on UniswapX
 To trade using UniswapX, swappers create orders that define their auction parameters and price tolerance. Each supported chain uses different auction mechanisms optimized for its specific characteristics.
 
 For example, the graphic below illustrates a Dutch Auction, one type of auction used in UniswapX. In this auction, the order starts at a maximum price and decays down to a minimum price over time. Note that orders technically specify output token amounts, but the documentation will sometimes use 'price' interchangeably for simplicity.

@@ -4,8 +4,6 @@ title: Overview
 sidebar_position: 1
 ---
 
-# The Compact
-
 [The Compact 🤝](https://github.com/Uniswap/the-compact) is an ownerless ERC6909 contract that facilitates the voluntary formation and mediation of reusable **resource locks**. It enables tokens to be credibly committed to be spent in exchange for performing actions across arbitrary, asynchronous environments, and claimed once the specified conditions have been met.
 
 ## Key Components

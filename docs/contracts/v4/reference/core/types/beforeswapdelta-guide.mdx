@@ -9,7 +9,7 @@ Before explaining `BeforeSwapDelta` in detail, it is worth noting that in the co
 - The **specified** token is the one for which the user specifies an exact input or output amount.
 - The **unspecified** token is the counterpart in the swap, whose amount is determined by the pool's pricing mechanism.
 
-# Purpose
+## Purpose
 
 The main purpose of `BeforeSwapDelta` is to efficiently encode and decode balance changes for both specified and unspecified tokens in a single 256-bit value. This compact representation allows for gas-efficient operations and seamless integration with Uniswap V4's hook system.
 
@@ -22,7 +22,7 @@ The main purpose of `BeforeSwapDelta` is to efficiently encode and decode balanc
 
 To summarise, `BeforeSwapDelta` is used to ensure that the net balance change for each token is zero after the hook's functionality is executed. This is important for maintaining the integrity of the pool's balances and ensuring that the hooks do not introduce any unexpected or unauthorized balance changes.
 
-# Type Definition
+## Type Definition
 
 ```solidity
 type BeforeSwapDelta is int256;
@@ -33,7 +33,7 @@ The `BeforeSwapDelta` type is an alias for int256, where:
 - The upper 128 bits represent the delta in specified tokens
 - The lower 128 bits represent the delta in unspecified tokens
 
-# Using Directives
+## Using Directives
 
 ```solidity
 using BeforeSwapDeltaLibrary for BeforeSwapDelta global;
@@ -42,9 +42,9 @@ using SafeCast for int256;
 
 These using directives enable library functions to be used directly on `BeforeSwapDelta` values and provide safe casting operations for int256 values.
 
-# Functions
+## Functions
 
-## toBeforeSwapDelta
+### toBeforeSwapDelta
 
 ```solidity
 function toBeforeSwapDelta(int128 deltaSpecified, int128 deltaUnspecified) pure returns (BeforeSwapDelta beforeSwapDelta);
@@ -67,9 +67,9 @@ assembly ("memory-safe") {
 }
 ```
 
-# Library Functions
+## Library Functions
 
-## ZERO_DELTA
+### ZERO_DELTA
 
 ```solidity
 BeforeSwapDelta public constant ZERO_DELTA = BeforeSwapDelta.wrap(0);
@@ -77,7 +77,7 @@ BeforeSwapDelta public constant ZERO_DELTA = BeforeSwapDelta.wrap(0);
 
 A constant representing a zero delta (no balance changes). It should be used as a default return value. It is most commonly used for hooks that are *not* implementing custom accounting.
 
-## getSpecifiedDelta
+### getSpecifiedDelta
 
 ```solidity
 function getSpecifiedDelta(BeforeSwapDelta delta) internal pure returns (int128 deltaSpecified);
@@ -91,7 +91,7 @@ Extracts the specified token delta from a `BeforeSwapDelta` value.
 
 Returns the extracted specified token delta as an `int128`.
 
-## getUnspecifiedDelta
+### getUnspecifiedDelta
 
 ```solidity
 function getUnspecifiedDelta(BeforeSwapDelta delta) internal pure returns (int128 deltaUnspecified);
@@ -105,11 +105,11 @@ Extracts the unspecified token delta from a BeforeSwapDelta value.
 
 Returns the extracted unspecified token delta as an `int128`.
 
-# Usage in Hooks
+## Usage in Hooks
 
 When a hook is called during a swap operation, it can perform custom logic and interact with the pool's balances. The `beforeSwap` hook returns a `BeforeSwapDelta` value to indicate any balance changes the *hook* introduces. For example, hooks taking fees should return the value it took as a `BeforeSwapDelta`.
 
-# Usage in PoolManager.sol
+## Usage in PoolManager.sol
 
 `BeforeSwapDelta` plays a crucial role in Uniswap V4's PoolManager contract, particularly in the swap process. Here's an overview of how it's used:
 
@@ -139,7 +139,7 @@ function swap(PoolKey memory key, IPoolManager.SwapParams memory params, bytes c
 
 The `beforeSwap` hook returns a `BeforeSwapDelta` value along with other parameters.
 
-## Interaction between `beforeSwapDelta` and `amountToSwap`
+### Interaction between `beforeSwapDelta` and `amountToSwap`
 
 The `beforeSwapDelta` returned by the hook is used in conjunction with `params.amountSpecified` to determine the final `amountToSwap`. This allows hooks to modify the swap amount based on their custom logic. Here's a more detailed explanation of how this works:
 
@@ -223,7 +223,7 @@ For example, if a fee was taken on the specified token in `beforeSwap`, the `aft
 
 Developers implementing custom hooks should be aware of this relationship and ensure their `beforeSwap` and `afterSwap` implementations work together coherently, especially when implementing features like fees or rebates that affect token balances.
 
-# Key Purposes of BeforeSwapDelta
+## Key Purposes of BeforeSwapDelta
 
 The `BeforeSwapDelta` serves several important purposes in the Uniswap V4 swap process:
 
@@ -262,7 +262,7 @@ delta = BeforeSwapDelta.from(-adjustedAmount, 0);
 
 This flexibility in fee implementation allows developers to create sophisticated economic models within their Uniswap V4 hooks, tailoring the behavior to specific use cases while maintaining the efficiency and standardization provided by the `BeforeSwapDelta` structure.
 
-# Perspective
+## Perspective
 
 It's important to note that the `BeforeSwapDelta` is from the perspective of the hook itself, not the user. For example, if a user swaps 1 USDC for 1 USDT:
 
@@ -271,7 +271,7 @@ It's important to note that the `BeforeSwapDelta` is from the perspective of the
 
 This perspective is key to correctly interpreting and manipulating the delta values within hook implementations.
 
-# Implementation Details
+## Implementation Details
 
 The `BeforeSwapDelta` type and its associated functions use low-level assembly code for efficient bit manipulation and gas optimization:
 
@@ -283,7 +283,7 @@ The `toBeforeSwapDelta` function combines the specified and unspecified deltas i
 
 By leveraging this compact representation and efficient arithmetic operations, Uniswap V4 can perform complex balance calculations and updates in a gas-optimized manner, reducing the overall cost of executing pool-related operations.
 
-# Implementation Considerations
+## Implementation Considerations
 
 When working with `BeforeSwapDelta`, especially for implementing hook fees, consider the following:
 
@@ -292,14 +292,14 @@ When working with `BeforeSwapDelta`, especially for implementing hook fees, cons
 - **Consistency:** Ensure that your fee implementation is consistent across both `beforeSwap` and `afterSwap` hooks to maintain the integrity of the swap process.
 - **Gas Efficiency:** When implementing fees, consider the gas costs of your calculations. The compact nature of `BeforeSwapDelta` can help in optimizing gas usage, but complex fee structures might increase gas costs.
 
-# Comparison with BalanceDelta
+## Comparison with BalanceDelta
 
 `BeforeSwapDelta` shares a similar structure with `BalanceDelta`, both packing two `int128` values into a single `int256`. However, there are key differences:
 
 - `BalanceDelta` represents amount0 and amount1.
 - `BeforeSwapDelta` represents specified and unspecified amounts, which may not directly correspond to token0 and token1, depending on the swap direction.
 
-# Best Practices
+## Best Practices
 
 When working with `BeforeSwapDelta`, consider the following best practices:
 
@@ -307,15 +307,15 @@ When working with `BeforeSwapDelta`, consider the following best practices:
 - Ensure that the signs of the delta values are correct from the hook's perspective.
 - Use `SafeCast` when converting between different integer types to prevent overflow/underflow errors.
 
-# Error Handling and Edge Cases
+## Error Handling and Edge Cases
 
 - **Overflow/Underflow:** Ensure that the input int128 values do not exceed their range when packing into BeforeSwapDelta.
 - **Zero Values:** ZERO_DELTA represents no balance changes. Be cautious when interpreting zero values in specific contexts.
 - **Sign Mismatch:** Ensure that the signs of the delta values correctly represent the intended balance changes from the hook's perspective.
 
-# Example Usage in a Hook
+## Example Usage in a Hook
 
-## Basic Example
+### Basic Example
 
 Here's a simple example of how `BeforeSwapDelta` might be used in a `beforeSwap` hook:
 

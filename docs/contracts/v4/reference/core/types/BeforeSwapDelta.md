@@ -6,7 +6,7 @@
 type BeforeSwapDelta is int256;
 ```
 
-# BeforeSwapDeltaLibrary
+## BeforeSwapDeltaLibrary
 [Git Source](https://github.com/uniswap/v4-core/blob/80311e34080fee64b6fc6c916e9a51a437d0e482/src/types/BeforeSwapDelta.sol)
 
 Library for getting the specified and unspecified deltas from the BeforeSwapDelta type

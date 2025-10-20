@@ -3,19 +3,17 @@ id: factory
 title: Factory
 ---
 
-# Factory
-
 ## Code
 
 [`UniswapV2Factory.sol`](https://github.com/Uniswap/uniswap-v2-core/blob/master/contracts/UniswapV2Factory.sol)
 
-# Address
+## Address
 
 `UniswapV2Factory` is deployed at `0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f` on the Ethereum [mainnet](https://etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f), and the [Ropsten](https://ropsten.etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f), [Rinkeby](https://rinkeby.etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f), [Görli](https://goerli.etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f), and [Kovan](https://kovan.etherscan.io/address/0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f) testnets. It was built from commit [8160750](https://github.com/Uniswap/uniswap-v2-core/tree/816075049f811f1b061bca81d5d040b96f4c07eb).
 
-# Events
+## Events
 
-## PairCreated
+### PairCreated
 
 ```solidity
 event PairCreated(address indexed token0, address indexed token1, address pair, uint);
@@ -26,9 +24,9 @@ Emitted each time a pair is created via [createPair](#createpair).
 - `token0` is guaranteed to be strictly less than `token1` by sort order.
 - The final `uint` log value will be `1` for the first pair created, `2` for the second, etc. (see [allPairs](#allpairs)/[getPair](#getpair)).
 
-# Read-Only Functions
+## Read-Only Functions
 
-## getPair
+### getPair
 
 ```solidity
 function getPair(address tokenA, address tokenB) external view returns (address pair);
@@ -39,7 +37,7 @@ Returns the address of the pair for `tokenA` and `tokenB`, if it has been create
 - `tokenA` and `tokenB` are interchangeable.
 - Pair addresses can also be calculated deterministically via the SDK.
 
-## allPairs
+### allPairs
 
 ```solidity
 function allPairs(uint) external view returns (address pair);
@@ -49,7 +47,7 @@ Returns the address of the `n`th pair (`0`-indexed) created through the factory,
 
 - Pass `0` for the address of the first pair created, `1` for the second, etc.
 
-## allPairsLength
+### allPairsLength
 
 ```solidity
 function allPairsLength() external view returns (uint);
@@ -57,7 +55,7 @@ function allPairsLength() external view returns (uint);
 
 Returns the total number of pairs created through the factory so far.
 
-## feeTo
+### feeTo
 
 ```solidity
 function feeTo() external view returns (address);
@@ -65,7 +63,7 @@ function feeTo() external view returns (address);
 
 See [Protocol Charge Calculation](../../concepts/advanced-topics/fees).
 
-## feeToSetter
+### feeToSetter
 
 ```solidity
 function feeToSetter() external view returns (address);
@@ -73,9 +71,9 @@ function feeToSetter() external view returns (address);
 
 The address allowed to change [feeTo](#feeto).
 
-# State-Changing Functions
+## State-Changing Functions
 
-## createPair
+### createPair
 
 ```solidity
 function createPair(address tokenA, address tokenB) external returns (address pair);
@@ -86,7 +84,7 @@ Creates a pair for `tokenA` and `tokenB` if one doesn't exist already.
 - `tokenA` and `tokenB` are interchangeable.
 - Emits [PairCreated](#paircreated).
 
-# Interface
+## Interface
 
 ```solidity
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
@@ -109,7 +107,7 @@ interface IUniswapV2Factory {
 }
 ```
 
-# ABI
+## ABI
 
 ```typescript
 import IUniswapV2Factory from '@uniswap/v2-core/build/IUniswapV2Factory.json'

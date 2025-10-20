@@ -19,7 +19,7 @@ The following is an overview of the different types of auction mechanisms on eac
 
 Regardless of their differences, all auctions do not require users to pay gas. Gas fees are wrapped into the final price and are paid by the filler, and failed swaps do not incur any fees at all.
 
-### Reference Terminology
+## Reference Terminology
 
 - **Request for Quote (RFQ)** — A process of crowdsourcing quotes for price discovery.
 - **Fillers** — Parties who execute trades programmatically using sophisticated operations. These participants may also be called market makers, searchers, solvers, or MEV bots.

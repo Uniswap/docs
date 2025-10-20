@@ -3,7 +3,7 @@ id: pool-liquidity
 title: Pool Liquidity
 ---
 
-# Formalized Model
+## Formalized Model
 
 Uniswap liquidity pools are autonomous and use the Constant Product Market Maker \(`x * y = k`\). This model was formalized and the smart contract implementation passed a lightweight formal verification.
 

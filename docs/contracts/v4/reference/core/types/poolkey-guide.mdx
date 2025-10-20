@@ -4,7 +4,7 @@ title: PoolKey Guide
 
 `PoolKey` is a crucial struct in Uniswap V4 that uniquely identifies a liquidity pool. It encapsulates all the essential parameters that define a pool's characteristics.
 
-# Structure
+## Structure
 
 ```solidity
 struct PoolKey {
@@ -16,7 +16,7 @@ struct PoolKey {
 }
 ```
 
-# Fields
+## Fields
 
 | Field Name  | Type     | Description                                                                            |
 |-------------|----------|----------------------------------------------------------------------------------------|
@@ -26,7 +26,7 @@ struct PoolKey {
 | tickSpacing | int24    | The spacing between ticks for the pool                                                 |
 | hooks       | IHooks   | The address of the hooks contract associated with the pool                             |
 
-# Important Notes
+## Important Notes
 
 - The `currency0` and `currency1` fields are always sorted numerically, with `currency0` being the lower value. This ensures consistent pool identification regardless of the order in which tokens are provided.
 - The `fee` field can represent either a static fee or indicate that the pool uses a dynamic fee mechanism.

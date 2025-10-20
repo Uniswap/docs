@@ -3,7 +3,7 @@ id: oracles
 title: Oracles
 ---
 
-# Introduction
+## Introduction
 
 A price oracle is any tool used to view price information about a given asset. When you look at stock prices on your phone, you are using your phone as a price oracle. Similarly, the app on your phone relies on devices to retrieve price information - likely several, which are aggregated and then displayed to you, the end-user. These are price oracles as well.
 
@@ -14,7 +14,7 @@ Some of these vulnerabilities are discussed [here](https://samczsun.com/taking-u
 
 While there is no one size fits all solution, Uniswap V2 enables developers to build highly decentralized and manipulation-resistant on-chain price oracles, which may solve many of the demands necessary for building robust protocols.
 
-# Uniswap V2 solution
+## Uniswap V2 solution
 
 Uniswap V2 includes several improvements for supporting manipulation-resistant public price feeds. First, every pair measures (but does not store) the market price at the beginning of each block, before any trades take place. This price is expensive to manipulate because it is set by the last transaction, whether it is a mint, swap, or burn, in a previous block.
 
@@ -44,12 +44,12 @@ There are some nuances that are good to be aware of when using Uniswap V2 as an 
 
 In the meantime, check out our [example implementation](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleOracleSimple.sol) of a 24 hr TWAP Oracle built on Uniswap V2!
 
-## Manipulation resistance
+### Manipulation resistance
 
 The cost of manipulating the price for a specific time period can be roughly estimated as the amount lost to arbitrage and fees every block for the entire period. For larger liquidity pools and over longer time periods, this attack is impractical, as the cost of manipulation typically exceeds the value at stake.
 
 Other factors, such as network congestion, can reduce the cost of attack. For more information about Uniswap V2 security considerations, see the [Security](../advanced-topics/security) documentation.
 
-# Building an oracle
+## Building an oracle
 
 To learn more about building oracles check out [building an Oracle](../../guides/smart-contract-integration/building-an-oracle) in the developer guides.

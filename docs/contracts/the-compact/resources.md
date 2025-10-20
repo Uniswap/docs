@@ -4,8 +4,6 @@ title: Resources
 sidebar_position: 3
 ---
 
-# The Compact Protocol
-
 ## Core Contracts
 
 The foundation of The Compact protocol - an ERC6909-based system for reusable resource locks.

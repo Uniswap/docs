@@ -13,7 +13,7 @@ function swap(uint amount0Out, uint amount1Out, address to, bytes calldata data)
 
 For the sake of example, let's assume that we're dealing with a DAI/WETH pair, where DAI is `token0` and WETH is `token1`. `amount0Out` and `amount1Out` specify the amount of DAI and WETH that the `msg.sender` wants the pair to send to the `to` address (one of these amounts may be 0). At this point you may be wondering how the contract _receives_ tokens. For a typical (non-flash) swap, it's actually the responsibility of `msg.sender` to ensure that enough WETH or DAI has _already been sent_ to the pair before `swap` is called (in the context of trading, this is all handled neatly by a router contract). But when executing a flash swap, _tokens do not need to be sent to the contract before calling `swap`_. Instead, they must be sent from within a _callback function_ that the pair triggers on the `to` address.
 
-# Triggering a Flash Swap
+## Triggering a Flash Swap
 
 To differentiate between the "typical" trading case and the flash swap case, pairs use the `data` parameter. Specifically, if `data.length` equals 0, the contract assumes that payment has already been received, and simply transfers the tokens to the `to` address. But, if `data.length` is greater than 0, the contract transfers the tokens and then calls the following function on the `to` address:
 
@@ -25,7 +25,7 @@ The logic behind this identification strategy is simple: the vast majority of va
 
 Pairs call `uniswapV2Call` with the `sender` argument set to the `msg.sender` of the `swap`. `amount0` and `amount1` are simply `amount0Out` and `amount1Out`.
 
-# Using uniswapV2Call
+## Using uniswapV2Call
 
 There are several conditions that should be checked in all `uniswapV2Call` functions:
 
@@ -40,7 +40,7 @@ function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldat
 
 The first 2 lines simply fetch the token addresses from the pair, and the 3rd ensures that the `msg.sender` is an actual Uniswap V2 pair address.
 
-# Repayment
+## Repayment
 
 At the end of `uniswapV2Call`, contracts must return enough tokens to the pair to make it whole. Specifically, this means that the product of the pair reserves after the swap, discounting all token amounts sent by 0.3% LP fee, must be greater than before.
 
@@ -64,15 +64,15 @@ It may be more intuitive to rewrite this formula in terms of a "fee" levied on t
 
 So, the effective fee on the withdrawn amount is `.003 / .997 ≈ 0.3009027%`.
 
-# Resources
+## Resources
 
 For further exploration of flash swaps, see the <a href='/whitepaper.pdf' target='_blank' rel='noopener noreferrer'>whitepaper</a>.
 
-# Example
+## Example
 
 A fully functional example of flash swaps is available: [`ExampleFlashSwap.sol`](https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/examples/ExampleFlashSwap.sol).
 
-# Interface
+## Interface
 
 ```solidity
 import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Callee.sol';

@@ -3,7 +3,7 @@ id: priorityorderreactor
 title: Filling on Priority Chains
 sidebar_position: 6
 ---
-# Filling on Priority Ordered Chains
+
 The [Priority Order Reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) is a UniswapX reactor built specifically for chains that utilize Priority Gas Auctions (PGA) for ordering transactions. This reactor type, which is based on research presented in [Priority is All you Need](https://www.paradigm.xyz/2024/06/priority-is-all-you-need), allows fillers to bid on orders during fulfillment through setting custom priority fees. 
 
 ## Example Implementation
@@ -11,7 +11,7 @@ Alice submits a PriorityOrder offering 1 ETH in exchange for a minimum of 1000 U
 
 If we assume a filler has a desired margin of 10% of the total profit, the best price is 1090 USDC. This would be 900 bps of improvement. This filler would convert bps to mps (see below for details) to get 900 * 1000 = 900,000 mps of improvement. Thus they would set priorityFee of 900,000 wei on their fill transaction. Keep in mind that this is additional to the base fee.
 
-# Important considerations
+## Important considerations
 - The PriorityOrderReactor is only meant to be used on chains which order transactions by priority fee. 
 - We do not plan to run any preliminary auctions for the start price of these orders, rather we set a minimum price that each order must be executed at.
 - Each order is only executable after a certain block specified by the user. This block will be a few blocks in the future from when the order is made available through the UniswapX orders endpoint. To ensure the best UX for our users, Uniswap Labs has the ability to make the start block earlier by cosigning the order.
@@ -50,7 +50,7 @@ The existing `UniswapXOrderQuoter` can also be used to quote priority orders, ho
 ## Executing an order
 The [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) shares the same interface as all other existing UniswapX reactors. Orders are executed against the `execute` and `executeBatch` functions, and optionally a callback is available via `executeWithCallback` and `executeBatchWithCallback`.
 
-# Deployment addresses
+## Deployment addresses
 The PriorityOrderReactor is deployed on the following chains:
 
 | Chain | Source                                                                                                        | Address                                                                                                               |
@@ -59,5 +59,5 @@ The PriorityOrderReactor is deployed on the following chains:
 | Base  | [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol)   | [0x000000001Ec5656dcdB24D90DFa42742738De729](https://basescan.org/address/0x000000001Ec5656dcdB24D90DFa42742738De729) |
 
 
-# Timeline
+## Timeline
 The Priority Order Reactor is live on Unichain and Base. Join the [UniswapX Fillers Channel](https://t.me/UniswapXdiscussion) for more details. 

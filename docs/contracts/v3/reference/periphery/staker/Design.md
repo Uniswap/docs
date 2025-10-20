@@ -3,8 +3,6 @@ sidebar_label: Uniswap V3 Staker Design
 sidebar_position: 1
 ---
 
-# Uniswap V3 Staker Design
-
 The liquidity mining staker design is comprised of one canonical position staking contract, Staker. The technical reference for this contract is [here](../../periphery/staker/UniswapV3Staker.md) and the source code is [here](https://github.com/Uniswap/uniswap-v3-staker).
 
 ## Data Structures

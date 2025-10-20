@@ -4,12 +4,10 @@ title: Architecture
 sidebar_position: 2
 ---
 
-# UniswapX Protocol Architecture
-
 <!-- ![Architecture](./assets/uniswapx-architecture.png) -->
 <img src={require('./images/UniswapX.png').default} alt="UniswapX" width="100%%" />
 
-### Reactors
+## Reactors
 
 Order Reactors _settle_ UniswapX orders. They are responsible for validating orders of a specific type, resolving them into inputs and outputs, executing them against the filler's strategy, and verifying that the order was successfully fulfilled.
 
@@ -29,16 +27,16 @@ Current reactor implementations:
 - [ExclusiveDutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/ExclusiveDutchOrderReactor.sol): A reactor that settles linear-decay dutch orders with a period of exclusivity before decay begins
 - [LimitOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/LimitOrderReactor.sol): A reactor that settles simple static limit orders
 
-### Fill Contracts
+## Fill Contracts
 
 Order fillContracts _fill_ UniswapX orders. They specify the filler's strategy for fulfilling orders and are called by the reactor with `reactorCallback`.
 
 Some sample fillContract implementations are provided in this repository:
 - [SwapRouter02Executor](https://github.com/Uniswap/UniswapX/blob/main/src/sample-executors/SwapRouter02Executor.sol): A fillContract that uses UniswapV2 and UniswapV3 via the SwapRouter02 router
 
-### Direct Fill
+## Direct Fill
 
 If a filler wants to fill orders using funds on-hand rather than a fillContract, they can do so gas efficiently using the `directFill` macro by specifying `address(1)` as the fillContract. This will pull tokens from the filler using `msg.sender` to satisfy the order outputs.
 
-# Whitepaper
+## Whitepaper
 More details on the UniswapX protocol are available in the [UniswapX Whitepaper](https://uniswap.org/whitepaper-uniswapx.pdf) and in the [UniswapX Repo](https://github.com/Uniswap/UniswapX).

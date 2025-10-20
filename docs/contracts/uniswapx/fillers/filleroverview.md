@@ -3,7 +3,7 @@ id: filleroverview
 title: Filler Overview
 sidebar_position: 1
 ---
-# Filler Overview
+
 UniswapX is a permissionless auction-based protocol where fillers compete to execute user swaps at the best prices. Anyone can participate as a filler by winning these auctions.
 
 This overview covers:

@@ -3,8 +3,6 @@ id: modules
 title: Type Definitions
 ---
 
-# @uniswap/sdk-core Type Definitions
-
 This page documents the core type definitions and interfaces used throughout the Uniswap SDK Core.
 
 ## Core Types

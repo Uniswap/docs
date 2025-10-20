@@ -4,9 +4,9 @@ title: TransientStateLibrary
 
 The `TransientStateLibrary` is a crucial component of Uniswap V4, providing utility functions for managing transient state in the PoolManager contract. This library handles operations related to reserves, delta counts, and locking state, which are essential for the efficient and secure operation of the Uniswap V4 protocol.
 
-# Key Concepts
+## Key Concepts
 
-## Transient Storage
+### Transient Storage
 
 Uniswap V4 uses transient storage to optimize gas costs and improve efficiency. Transient storage, introduced in EIP-1153, is a way to store data that is only needed for the duration of a transaction, without persisting it to the blockchain's state trie. This is achieved using the `TLOAD` and `TSTORE` opcodes.
 
@@ -25,9 +25,9 @@ Common operations that involve transient state include:
 
 This architecture allows Uniswap V4 to benefit from the gas efficiency of transient storage while maintaining a clean and standardized interface for interacting with this temporary data.
 
-# Functions
+## Functions
 
-## getReserves
+### getReserves
 
 ```solidity
 function getReserves(IPoolManager manager, Currency currency) internal view returns (uint256)
@@ -47,7 +47,7 @@ Retrieves the reserves of a specific currency from the PoolManager's transient s
 - Returns `0` if the reserves are not synced
 - Returns `type(uint256).max` if the reserves are synced but the value is `0`
 
-## getNonzeroDeltaCount
+### getNonzeroDeltaCount
 
 ```solidity
 function getNonzeroDeltaCount(IPoolManager manager) internal view returns (uint256)
@@ -63,7 +63,7 @@ Retrieves the count of nonzero deltas that must be zeroed out before the contrac
 
 - `uint256`: The number of nonzero deltas
 
-## currencyDelta
+### currencyDelta
 
 ```solidity
 function currencyDelta(IPoolManager manager, address caller_, Currency currency) internal view returns (int256)
@@ -86,7 +86,7 @@ Fetches the current delta for a specific caller and currency from the PoolManage
 - A **negative** delta indicates an amount that must be **paid or settled** by the caller. In other words, a negative delta means the caller owes that amount and needs to pay or settle it.
 - A **positive** delta indicates an amount that is owed to the caller. This delta amount must be **taken or claimed** by the caller.
 
-## isUnlocked
+### isUnlocked
 
 ```solidity
 function isUnlocked(IPoolManager manager) internal view returns (bool)
@@ -102,7 +102,7 @@ Checks if the PoolManager contract is currently unlocked.
 
 - `bool`: `true` if the contract is unlocked, `false` otherwise
 
-# Usage and Importance
+## Usage and Importance
 
 The `TransientStateLibrary` plays a critical role in Uniswap V4's operation:
 
@@ -111,7 +111,7 @@ The `TransientStateLibrary` plays a critical role in Uniswap V4's operation:
 3. **Flexibility:** The library allows for efficient management of currency-specific data, such as reserves and deltas, which is essential for Uniswap V4's multi-currency pools.
 4. **Encapsulation:** By centralizing these utility functions in a library, the code promotes better organization and reusability across the Uniswap V4 codebase.
 
-# Integration with PoolManager
+## Integration with PoolManager
 
 The `TransientStateLibrary` is designed to work closely with the `PoolManager` contract. The `TransientStateLibrary` can be easily integrated with the `PoolManager` contract using the `using` keyword for syntactic sugar. This allows you to call the library functions as if they were methods of the `IPoolManager` instance. Here's an example:
 

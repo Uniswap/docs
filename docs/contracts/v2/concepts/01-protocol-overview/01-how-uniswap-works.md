@@ -25,7 +25,7 @@ In practice, Uniswap applies a 0.30% fee to trades, which is added to reserves. 
 
 Because the relative price of the two pair assets can only be changed through trading, divergences between the Uniswap price and external prices create arbitrage opportunities. This mechanism ensures that Uniswap prices always trend toward the market-clearing price.
 
-# Further reading
+## Further reading
 
 To see how token swaps work in practice, and to walk through the lifecycle of a swap, check out [Swaps](../core-concepts/swaps). Or, to see how liquidity pools work, see [Pools](../core-concepts/pools).
 

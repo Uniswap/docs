@@ -3,8 +3,6 @@ id: readme
 title: SDK Core Reference
 ---
 
-# @uniswap/sdk-core
-
 The Uniswap SDK Core provides the foundational classes and utilities for working with the Uniswap protocol. This package contains essential primitives like currencies, amounts, and mathematical utilities that are used across all Uniswap SDK packages.
 
 ## Overview

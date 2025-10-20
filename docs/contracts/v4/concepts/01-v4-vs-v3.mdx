@@ -5,7 +5,7 @@ title: v4 vs v3
 While Uniswap v4's underlying concentrated liquidity is the same as Uniswap v3,
 there are some key differences in the architecture and accounting.
 
-# Singleton Design
+## Singleton Design
 
 ### Pool Creation
 
@@ -26,7 +26,7 @@ and only needs to perform token transfers at the very end of the sequence.
 **v3**: Because flash accounting is missing from v3, it is the responsibility
 of the integrating contract to perform token transfers, after each individual call, to each individual pool contract
 
-# Liquidity Fee Accounting 
+## Liquidity Fee Accounting 
 
 **v4**: Accrued fees act like a credit when modifying liquidity.
 Increasing liquidity will convert the fee revenue to liquidity
@@ -43,7 +43,7 @@ fees
 be more gas efficient at the time, integrating contracts will need to handle fee management since
 the state is shared on the core pool contract
 
-# Native ETH
+## Native ETH
 
 **v4**: Pool pairs support native tokens, in doing so ETH swappers and
 liquidity providers benefit from gas cost reductions from cheaper
@@ -53,7 +53,7 @@ transfers and removal of additional wrapping costs.
 This results in higher gas costs because of wrapping and transferring
 a wrapped native token.
 
-# Subscribers
+## Subscribers
 
 Only v4: Owners can now set a subscriber for their positions.
 A subscriber contract will get notified every time the position's liquidity
