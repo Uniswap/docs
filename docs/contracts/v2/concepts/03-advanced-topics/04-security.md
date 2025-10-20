@@ -22,7 +22,7 @@ The report also has a "Design Comments" section that provided a deep technical u
 
 ## Bug Bounty
 
-Uniswap has an open and ongoing bug [bounty program](https://uniswap.org/bug-bounty/).
+Uniswap has an open and ongoing bug [bounty program](https://cantina.xyz/bounties/f9df94db-c7b1-434b-bb06-d1360abdd1be) on Cantina.
 
 ## Considerations when building on Uniswap
 
