@@ -39,6 +39,7 @@
     "caniuse-lite": "^1.0.30001519",
     "classnames": "^2.5.1",
     "clsx": "^1.1.1",
+    "docusaurus-plugin-llms": "^0.2.0",
     "hast-util-is-element": "1.1.0",
     "intl-locales-supported": "^1.8.12",
     "js-cookie": "^3.0.5",

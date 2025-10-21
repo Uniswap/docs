@@ -794,6 +794,66 @@ const config: Config = {
         },
       },
     ],
+    ['docusaurus-plugin-llms',
+    {
+      // Options here
+      generateLLMsTxt: true,
+      generateLLMsFullTxt: true,
+      docsDir: 'docs',
+      ignoreFiles: [
+        'examples/*',
+        'plugins/*',
+        'scripts/*',
+        'src/*',
+        'static/*',
+        'submodules/*',
+        'CONTRIBUTING.md',
+        '02-overview.mdx',
+        'docs/api/subgraph/guides/v3-subgraph-example.md',
+        'docs/archived',
+        'docs/concepts',
+        'docs/contracts/permit2',
+        'docs/contracts/smart-wallet',
+        'docs/contracts/uniswapx',
+        'docs/contracts/universal-router',
+        'docs/contracts/v1',
+        'docs/contracts/v2',
+        'docs/contracts/v3',
+        'docs/sdk/core',
+        'docs/sdk/swap-widget',
+        'docs/sdk/v1',
+        'docs/sdk/v2',
+        'docs/sdk/v3',
+        'docs/sdk/web3-react',
+        'docs/universal-router-legacy',
+      ],
+      title: 'LLMs.txt for Uniswap v4 Documentation',
+      description: 'Complete reference documentation for Uniswap v4',
+      llmsTxtFilename: 'v4-llms.txt',
+      llmsFullTxtFilename: 'v4-llms-full.txt',
+      includeBlog: false,
+      // Content cleaning options
+      excludeImports: true,
+      removeDuplicateHeadings: true,
+      // Control documentation order
+      includeOrder: [
+        // 'docs/contracts/v4/*',
+        // 'docs/sdk/v4/*',
+        // 'docs/api/*',
+      ],
+      includeUnmatchedLast: true,
+      // Path transformation options
+      pathTransformation: {
+        // Paths to ignore when constructing URLs (will be removed if found)
+        ignorePaths: ['docs'],
+        // Paths to add when constructing URLs (will be prepended if not already present)
+        addPaths: [],
+      },
+      // Custom LLM files for specific documentation sections
+      customLLMFiles: [
+      ],
+    }
+    ]
   ],
 }
 export default config
