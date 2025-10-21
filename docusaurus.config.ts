@@ -22,7 +22,11 @@ const config: Config = {
   url: 'https://docs.uniswap.org',
   baseUrl: '/',
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'ignore',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'ignore',
+    },
+  },
   favicon: 'img/favicon.png',
   organizationName: 'Uniswap',
   projectName: 'Uniswap-docs',
