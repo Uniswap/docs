@@ -88,11 +88,6 @@ export const dAppGuides = [
     text: "Contribute to a Pool's liquidity by using tokens to earn fees",
     to: '/sdk/v3/guides/liquidity/minting',
   },
-  {
-    title: 'UI Component',
-    text: 'Integrate with the Swap Widget, a React component that works out of the box ',
-    to: '/sdk/swap-widget/overview',
-  },
 ]
 export const smartContractGuides = [
   {
