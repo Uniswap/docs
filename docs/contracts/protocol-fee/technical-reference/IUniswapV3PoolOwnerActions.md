@@ -1,5 +1,5 @@
 # IUniswapV3PoolOwnerActions
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUniswapV3PoolOwnerActions.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUniswapV3PoolOwnerActions.sol)
 
 Contains pool methods that may only be called by the factory owner
 
@@ -18,10 +18,10 @@ function setFeeProtocol(uint8 feeProtocol0, uint8 feeProtocol1) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`feeProtocol0`|`uint8`|new protocol fee for token0 of the pool|
-|`feeProtocol1`|`uint8`|new protocol fee for token1 of the pool|
+| Name           | Type    | Description                             |
+| -------------- | ------- | --------------------------------------- |
+| `feeProtocol0` | `uint8` | new protocol fee for token0 of the pool |
+| `feeProtocol1` | `uint8` | new protocol fee for token1 of the pool |
 
 
 ### collectProtocol
@@ -36,17 +36,17 @@ function collectProtocol(address recipient, uint128 amount0Requested, uint128 am
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`recipient`|`address`|The address to which collected protocol fees should be sent|
-|`amount0Requested`|`uint128`|The maximum amount of token0 to send, can be 0 to collect fees in only token1|
-|`amount1Requested`|`uint128`|The maximum amount of token1 to send, can be 0 to collect fees in only token0|
+| Name               | Type      | Description                                                                   |
+| ------------------ | --------- | ----------------------------------------------------------------------------- |
+| `recipient`        | `address` | The address to which collected protocol fees should be sent                   |
+| `amount0Requested` | `uint128` | The maximum amount of token0 to send, can be 0 to collect fees in only token1 |
+| `amount1Requested` | `uint128` | The maximum amount of token1 to send, can be 0 to collect fees in only token0 |
 
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`amount0`|`uint128`|The protocol fee collected in token0|
-|`amount1`|`uint128`|The protocol fee collected in token1|
+| Name      | Type      | Description                          |
+| --------- | --------- | ------------------------------------ |
+| `amount0` | `uint128` | The protocol fee collected in token0 |
+| `amount1` | `uint128` | The protocol fee collected in token1 |
 
 

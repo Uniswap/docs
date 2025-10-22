@@ -1,5 +1,5 @@
 # IUniswapV3FactoryOwnerActions
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUniswapV3FactoryOwnerActions.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUniswapV3FactoryOwnerActions.sol)
 
 The Uniswap V3 Factory facilitates creation of Uniswap V3 pools and control over the
 protocol fees
@@ -21,9 +21,9 @@ function owner() external view returns (address);
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`address`|The address of the factory owner|
+| Name     | Type      | Description                      |
+| -------- | --------- | -------------------------------- |
+| `<none>` | `address` | The address of the factory owner |
 
 
 ### setOwner
@@ -38,9 +38,9 @@ function setOwner(address _owner) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_owner`|`address`|The new owner of the factory|
+| Name     | Type      | Description                  |
+| -------- | --------- | ---------------------------- |
+| `_owner` | `address` | The new owner of the factory |
 
 
 ### enableFeeAmount
@@ -55,10 +55,10 @@ function enableFeeAmount(uint24 fee, int24 tickSpacing) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`fee`|`uint24`|The fee amount to enable, denominated in hundredths of a bip (i.e. 1e-6)|
-|`tickSpacing`|`int24`|The spacing between ticks to be enforced for all pools created with the given fee amount|
+| Name          | Type     | Description                                                                              |
+| ------------- | -------- | ---------------------------------------------------------------------------------------- |
+| `fee`         | `uint24` | The fee amount to enable, denominated in hundredths of a bip (i.e. 1e-6)                 |
+| `tickSpacing` | `int24`  | The spacing between ticks to be enforced for all pools created with the given fee amount |
 
 
 ### feeAmountTickSpacing
@@ -74,14 +74,14 @@ function feeAmountTickSpacing(uint24 fee) external view returns (int24);
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`fee`|`uint24`|The enabled fee, denominated in hundredths of a bip. Returns 0 in case of unenabled fee|
+| Name  | Type     | Description                                                                             |
+| ----- | -------- | --------------------------------------------------------------------------------------- |
+| `fee` | `uint24` | The enabled fee, denominated in hundredths of a bip. Returns 0 in case of unenabled fee |
 
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`int24`|The tick spacing|
+| Name     | Type    | Description      |
+| -------- | ------- | ---------------- |
+| `<none>` | `int24` | The tick spacing |
 
 

@@ -1,5 +1,5 @@
 # ExchangeReleaser
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/releasers/ExchangeReleaser.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/releasers/ExchangeReleaser.sol)
 
 **Inherits:**
 [IReleaser](/technical-reference/IReleaser), [ResourceManager](/technical-reference/ResourceManager), [Nonce](/technical-reference/Nonce)
@@ -35,12 +35,12 @@ constructor(address _resource, uint256 _threshold, address _assetSink, address _
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_resource`|`address`|The address of the resource token that must be transferred|
-|`_threshold`|`uint256`||
-|`_assetSink`|`address`|The address of the AssetSink contract holding the assets|
-|`_recipient`|`address`|The address that will receive the resource tokens|
+| Name         | Type      | Description                                                |
+| ------------ | --------- | ---------------------------------------------------------- |
+| `_resource`  | `address` | The address of the resource token that must be transferred |
+| `_threshold` | `uint256` |                                                            |
+| `_assetSink` | `address` | The address of the AssetSink contract holding the assets   |
+| `_recipient` | `address` | The address that will receive the resource tokens          |
 
 
 ### release
@@ -53,11 +53,11 @@ function release(uint256 _nonce, Currency[] calldata assets, address recipient) 
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_nonce`|`uint256`|The nonce for the release, must equal to the contract nonce otherwise revert|
-|`assets`|`Currency[]`|The list of assets (addresses) to release, which may have length limits Native tokens (Ether) are represented as the zero address|
-|`recipient`|`address`|The address to receive the released assets, paid out by Asset Sink|
+| Name        | Type         | Description                                                                                                                       |
+| ----------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| `_nonce`    | `uint256`    | The nonce for the release, must equal to the contract nonce otherwise revert                                                      |
+| `assets`    | `Currency[]` | The list of assets (addresses) to release, which may have length limits Native tokens (Ether) are represented as the zero address |
+| `recipient` | `address`    | The address to receive the released assets, paid out by Asset Sink                                                                |
 
 
 ### _release

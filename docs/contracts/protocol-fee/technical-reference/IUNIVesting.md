@@ -1,5 +1,5 @@
 # IUNIVesting
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUNIVesting.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUNIVesting.sol)
 
 Interface for the UNIVesting contract
 
@@ -109,9 +109,9 @@ function claim(address recipient) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`recipient`|`address`|The address to claim the tokens to.|
+| Name        | Type      | Description                         |
+| ----------- | --------- | ----------------------------------- |
+| `recipient` | `address` | The address to claim the tokens to. |
 
 
 ### claimable

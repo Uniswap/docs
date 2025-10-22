@@ -1,5 +1,5 @@
 # IUNI
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUNI.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUNI.sol)
 
 **Inherits:**
 IERC20
@@ -20,9 +20,9 @@ function minter() external view returns (address);
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`address`|The address of the current minter|
+| Name     | Type      | Description                       |
+| -------- | --------- | --------------------------------- |
+| `<none>` | `address` | The address of the current minter |
 
 
 ### mintingAllowedAfter
@@ -35,9 +35,9 @@ function mintingAllowedAfter() external view returns (uint256);
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`uint256`|The timestamp after which the next mint is allowed|
+| Name     | Type      | Description                                        |
+| -------- | --------- | -------------------------------------------------- |
+| `<none>` | `uint256` | The timestamp after which the next mint is allowed |
 
 
 ### mint
@@ -52,10 +52,10 @@ function mint(address dst, uint256 rawAmount) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`dst`|`address`|The address to receive the newly minted tokens|
-|`rawAmount`|`uint256`|The amount of tokens to mint (in wei)|
+| Name        | Type      | Description                                    |
+| ----------- | --------- | ---------------------------------------------- |
+| `dst`       | `address` | The address to receive the newly minted tokens |
+| `rawAmount` | `uint256` | The amount of tokens to mint (in wei)          |
 
 
 ### setMinter
@@ -70,9 +70,9 @@ function setMinter(address minter) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`minter`|`address`|The address of the new minter|
+| Name     | Type      | Description                   |
+| -------- | --------- | ----------------------------- |
+| `minter` | `address` | The address of the new minter |
 
 
 ### minimumTimeBetweenMints
@@ -87,8 +87,8 @@ function minimumTimeBetweenMints() external view returns (uint32);
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`uint32`|The minimum time between mints in seconds|
+| Name     | Type     | Description                               |
+| -------- | -------- | ----------------------------------------- |
+| `<none>` | `uint32` | The minimum time between mints in seconds |
 
 

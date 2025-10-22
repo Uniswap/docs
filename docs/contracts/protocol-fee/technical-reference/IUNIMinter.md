@@ -1,5 +1,5 @@
 # IUNIMinter
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUNIMinter.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IUNIMinter.sol)
 
 
 ## Functions
@@ -33,13 +33,13 @@ function splits(uint256 index) external view returns (address, uint16, uint16, u
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`address`|Split unpacked: recipient, units, revocationDelayDays, pendingRevocationTime, adjustedForRevocation|
-|`<none>`|`uint16`||
-|`<none>`|`uint16`||
-|`<none>`|`uint48`||
-|`<none>`|`bool`||
+| Name     | Type      | Description                                                                                         |
+| -------- | --------- | --------------------------------------------------------------------------------------------------- |
+| `<none>` | `address` | Split unpacked: recipient, units, revocationDelayDays, pendingRevocationTime, adjustedForRevocation |
+| `<none>` | `uint16`  |                                                                                                     |
+| `<none>` | `uint16`  |                                                                                                     |
+| `<none>` | `uint48`  |                                                                                                     |
+| `<none>` | `bool`    |                                                                                                     |
 
 
 ### mint
@@ -68,11 +68,11 @@ function grantSplit(address _recipient, uint16 _unit, uint16 _revocationDelayDay
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_recipient`|`address`|The address that will receive the minted UNI tokens|
-|`_unit`|`uint16`|The number of splits to allocate (out of MAX_UNITS total)|
-|`_revocationDelayDays`|`uint16`|The number of days notice required for a revocation of this split|
+| Name                   | Type      | Description                                                       |
+| ---------------------- | --------- | ----------------------------------------------------------------- |
+| `_recipient`           | `address` | The address that will receive the minted UNI tokens               |
+| `_unit`                | `uint16`  | The number of splits to allocate (out of MAX_UNITS total)         |
+| `_revocationDelayDays` | `uint16`  | The number of days notice required for a revocation of this split |
 
 
 ### initiateRevokeSplit
@@ -87,9 +87,9 @@ function initiateRevokeSplit(uint256 _index) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_index`|`uint256`|The index in the splits array of the allocation to revoke|
+| Name     | Type      | Description                                               |
+| -------- | --------- | --------------------------------------------------------- |
+| `_index` | `uint256` | The index in the splits array of the allocation to revoke |
 
 
 ### revokeSplit
@@ -108,9 +108,9 @@ function revokeSplit(uint256 _index) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_index`|`uint256`|The index in the splits array of the allocation to revoke or update|
+| Name     | Type      | Description                                                         |
+| -------- | --------- | ------------------------------------------------------------------- |
+| `_index` | `uint256` | The index in the splits array of the allocation to revoke or update |
 
 
 ### setMinter
@@ -127,9 +127,9 @@ function setMinter(address _minter) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_minter`|`address`|The address of the new minter contract or EOA|
+| Name      | Type      | Description                                   |
+| --------- | --------- | --------------------------------------------- |
+| `_minter` | `address` | The address of the new minter contract or EOA |
 
 
 ## Errors
@@ -183,11 +183,11 @@ struct Split {
 
 **Properties**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`recipient`|`address`|The address that will receive minted UNI tokens|
-|`units`|`uint16`|The number of units allocated to this recipient (out of MAX_UNITS)|
-|`revocationDelayDays`|`uint16`|The number of days notice required for a revocation of this split|
-|`pendingRevocationTime`|`uint48`|The timestamp when revocation can be completed, or 0 if not pending|
-|`adjustedForRevocation`|`bool`|Whether the split units have already been adjusted for revocation|
+| Name                    | Type      | Description                                                         |
+| ----------------------- | --------- | ------------------------------------------------------------------- |
+| `recipient`             | `address` | The address that will receive minted UNI tokens                     |
+| `units`                 | `uint16`  | The number of units allocated to this recipient (out of MAX_UNITS)  |
+| `revocationDelayDays`   | `uint16`  | The number of days notice required for a revocation of this split   |
+| `pendingRevocationTime` | `uint48`  | The timestamp when revocation can be completed, or 0 if not pending |
+| `adjustedForRevocation` | `bool`    | Whether the split units have already been adjusted for revocation   |
 

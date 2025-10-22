@@ -1,5 +1,5 @@
 # V4FeeController
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/feeControllers/V4FeeController.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/feeControllers/V4FeeController.sol)
 
 **Inherits:**
 Owned
@@ -51,11 +51,11 @@ function collect(
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`currency`|`Currency[]`|The currencies to collect fees for.|
-|`amountRequested`|`uint256[]`|The amount of each currency to request.|
-|`amountExpected`|`uint256[]`|The amount of each currency that is expected to be collected.|
+| Name              | Type         | Description                                                   |
+| ----------------- | ------------ | ------------------------------------------------------------- |
+| `currency`        | `Currency[]` | The currencies to collect fees for.                           |
+| `amountRequested` | `uint256[]`  | The amount of each currency to request.                       |
+| `amountExpected`  | `uint256[]`  | The amount of each currency that is expected to be collected. |
 
 
 ### setMerkleRoot
@@ -70,9 +70,9 @@ function setMerkleRoot(bytes32 _merkleRoot) external onlyOwner;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_merkleRoot`|`bytes32`|The merkle root to set.|
+| Name          | Type      | Description             |
+| ------------- | --------- | ----------------------- |
+| `_merkleRoot` | `bytes32` | The merkle root to set. |
 
 
 ### triggerFeeUpdate
@@ -89,11 +89,11 @@ function triggerFeeUpdate(
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_poolKey`|`PoolKey`|The pool key to update the fee for.|
-|`newProtocolFee`|`uint24`|The new protocol fee to set.|
-|`proof`|`bytes32[]`|The merkle proof corresponding to the set merkle root. Merkle root is generated from leaves of keccak256(abi.encode(poolKey, protocolFee)).|
+| Name             | Type        | Description                                                                                                                                 |
+| ---------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `_poolKey`       | `PoolKey`   | The pool key to update the fee for.                                                                                                         |
+| `newProtocolFee` | `uint24`    | The new protocol fee to set.                                                                                                                |
+| `proof`          | `bytes32[]` | The merkle proof corresponding to the set merkle root. Merkle root is generated from leaves of keccak256(abi.encode(poolKey, protocolFee)). |
 
 
 ## Errors

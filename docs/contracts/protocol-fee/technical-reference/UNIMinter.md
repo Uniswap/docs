@@ -1,5 +1,5 @@
 # UNIMinter
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/UNIMinter.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/UNIMinter.sol)
 
 **Inherits:**
 [IUNIMinter](/technical-reference/IUNIMinter), Owned
@@ -86,9 +86,9 @@ constructor(address _owner) Owned(_owner);
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_owner`|`address`|The initial admin address (UNI DAO) that can manage split allocations|
+| Name     | Type      | Description                                                           |
+| -------- | --------- | --------------------------------------------------------------------- |
+| `_owner` | `address` | The initial admin address (UNI DAO) that can manage split allocations |
 
 
 ### mint
@@ -117,11 +117,11 @@ function grantSplit(address _recipient, uint16 _units, uint16 _revocationDelayDa
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_recipient`|`address`|The address that will receive the minted UNI tokens|
-|`_units`|`uint16`||
-|`_revocationDelayDays`|`uint16`|The number of days notice required for a revocation of this split|
+| Name                   | Type      | Description                                                       |
+| ---------------------- | --------- | ----------------------------------------------------------------- |
+| `_recipient`           | `address` | The address that will receive the minted UNI tokens               |
+| `_units`               | `uint16`  |                                                                   |
+| `_revocationDelayDays` | `uint16`  | The number of days notice required for a revocation of this split |
 
 
 ### initiateRevokeSplit
@@ -136,9 +136,9 @@ function initiateRevokeSplit(uint256 _index) external onlyOwner;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_index`|`uint256`|The index in the splits array of the allocation to revoke|
+| Name     | Type      | Description                                               |
+| -------- | --------- | --------------------------------------------------------- |
+| `_index` | `uint256` | The index in the splits array of the allocation to revoke |
 
 
 ### revokeSplit
@@ -157,9 +157,9 @@ function revokeSplit(uint256 _index) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_index`|`uint256`|The index in the splits array of the allocation to revoke or update|
+| Name     | Type      | Description                                                         |
+| -------- | --------- | ------------------------------------------------------------------- |
+| `_index` | `uint256` | The index in the splits array of the allocation to revoke or update |
 
 
 ### setMinter
@@ -176,8 +176,8 @@ function setMinter(address _minter) external onlyOwner;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_minter`|`address`|The address of the new minter contract or EOA|
+| Name      | Type      | Description                                   |
+| --------- | --------- | --------------------------------------------- |
+| `_minter` | `address` | The address of the new minter contract or EOA |
 
 

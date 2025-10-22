@@ -1,5 +1,5 @@
 # IV3FeeController
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IV3FeeController.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IV3FeeController.sol)
 
 
 ## Functions
@@ -11,9 +11,9 @@ function ASSET_SINK() external view returns (address);
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`address`|The address where collected fees are sent.|
+| Name     | Type      | Description                                |
+| -------- | --------- | ------------------------------------------ |
+| `<none>` | `address` | The address where collected fees are sent. |
 
 
 ### FACTORY
@@ -24,9 +24,9 @@ function FACTORY() external view returns (IUniswapV3Factory);
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`IUniswapV3Factory`|The Uniswap V3 Factory contract.|
+| Name     | Type                | Description                      |
+| -------- | ------------------- | -------------------------------- |
+| `<none>` | `IUniswapV3Factory` | The Uniswap V3 Factory contract. |
 
 
 ### merkleRoot
@@ -37,9 +37,9 @@ function merkleRoot() external view returns (bytes32);
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`bytes32`|The current merkle root used to designate which pools have a fee enabled|
+| Name     | Type      | Description                                                              |
+| -------- | --------- | ------------------------------------------------------------------------ |
+| `<none>` | `bytes32` | The current merkle root used to designate which pools have a fee enabled |
 
 
 ### feeSetter
@@ -50,9 +50,9 @@ function feeSetter() external view returns (address);
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`address`|The authorized address to set fees-by-fee-tier AND the merkle root|
+| Name     | Type      | Description                                                        |
+| -------- | --------- | ------------------------------------------------------------------ |
+| `<none>` | `address` | The authorized address to set fees-by-fee-tier AND the merkle root |
 
 
 ### feeTiers
@@ -63,9 +63,9 @@ function feeTiers(uint256 i) external view returns (uint24);
 ```
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`<none>`|`uint24`|The fee tiers enabled on the factory|
+| Name     | Type     | Description                          |
+| -------- | -------- | ------------------------------------ |
+| `<none>` | `uint24` | The fee tiers enabled on the factory |
 
 
 ### storeFeeTier
@@ -80,9 +80,9 @@ function storeFeeTier(uint24 feeTier) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`feeTier`|`uint24`|The fee tier to store.|
+| Name      | Type     | Description            |
+| --------- | -------- | ---------------------- |
+| `feeTier` | `uint24` | The fee tier to store. |
 
 
 ### defaultFees
@@ -95,15 +95,15 @@ function defaultFees(uint24 feeTier) external view returns (uint8 defaultFeeValu
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`feeTier`|`uint24`|The fee tier to query.|
+| Name      | Type     | Description            |
+| --------- | -------- | ---------------------- |
+| `feeTier` | `uint24` | The fee tier to query. |
 
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`defaultFeeValue`|`uint8`|The default fee value expressed as the denominator on the inclusive interval [4, 10]. The fee value is packed (token1Fee \<\< 4 \| token0Fee)|
+| Name              | Type    | Description                                                                                                                                   |
+| ----------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `defaultFeeValue` | `uint8` | The default fee value expressed as the denominator on the inclusive interval [4, 10]. The fee value is packed (token1Fee \<\< 4 \| token0Fee) |
 
 
 ### enableFeeAmount
@@ -118,10 +118,10 @@ function enableFeeAmount(uint24 newFeeTier, int24 tickSpacing) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`newFeeTier`|`uint24`|The fee tier to enable.|
-|`tickSpacing`|`int24`|The corresponding tick spacing for the new fee tier.|
+| Name          | Type     | Description                                          |
+| ------------- | -------- | ---------------------------------------------------- |
+| `newFeeTier`  | `uint24` | The fee tier to enable.                              |
+| `tickSpacing` | `int24`  | The corresponding tick spacing for the new fee tier. |
 
 
 ### setFactoryOwner
@@ -136,9 +136,9 @@ function setFactoryOwner(address newOwner) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`newOwner`|`address`|The new owner of the Uniswap V3 Factory.|
+| Name       | Type      | Description                              |
+| ---------- | --------- | ---------------------------------------- |
+| `newOwner` | `address` | The new owner of the Uniswap V3 Factory. |
 
 
 ### collect
@@ -153,15 +153,15 @@ function collect(CollectParams[] calldata collectParams)
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`collectParams`|`CollectParams[]`|Array of collection parameters for each pool.|
+| Name            | Type              | Description                                   |
+| --------------- | ----------------- | --------------------------------------------- |
+| `collectParams` | `CollectParams[]` | Array of collection parameters for each pool. |
 
 **Returns**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`amountsCollected`|`Collected[]`|Array of collected amounts for each pool.|
+| Name               | Type          | Description                               |
+| ------------------ | ------------- | ----------------------------------------- |
+| `amountsCollected` | `Collected[]` | Array of collected amounts for each pool. |
 
 
 ### setMerkleRoot
@@ -176,9 +176,9 @@ function setMerkleRoot(bytes32 _merkleRoot) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_merkleRoot`|`bytes32`|The new merkle root to set.|
+| Name          | Type      | Description                 |
+| ------------- | --------- | --------------------------- |
+| `_merkleRoot` | `bytes32` | The new merkle root to set. |
 
 
 ### setDefaultFeeByFeeTier
@@ -191,10 +191,10 @@ function setDefaultFeeByFeeTier(uint24 feeTier, uint8 defaultFeeValue) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`feeTier`|`uint24`|The fee tier, expressed in pips, to set the default fee for.|
-|`defaultFeeValue`|`uint8`|The default fee value to set, expressed as the denominator on the inclusive interval [4, 10]. The fee value is packed (token1Fee \<\< 4 \| token0Fee)|
+| Name              | Type     | Description                                                                                                                                           |
+| ----------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `feeTier`         | `uint24` | The fee tier, expressed in pips, to set the default fee for.                                                                                          |
+| `defaultFeeValue` | `uint8`  | The default fee value to set, expressed as the denominator on the inclusive interval [4, 10]. The fee value is packed (token1Fee \<\< 4 \| token0Fee) |
 
 
 ### triggerFeeUpdate
@@ -207,10 +207,10 @@ function triggerFeeUpdate(address pool, bytes32[] calldata merkleProof) external
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`pool`|`address`|The pool address to update the fee for.|
-|`merkleProof`|`bytes32[]`|The merkle proof corresponding to the set merkle root.|
+| Name          | Type        | Description                                            |
+| ------------- | ----------- | ------------------------------------------------------ |
+| `pool`        | `address`   | The pool address to update the fee for.                |
+| `merkleProof` | `bytes32[]` | The merkle proof corresponding to the set merkle root. |
 
 
 ### triggerFeeUpdate
@@ -226,11 +226,11 @@ function triggerFeeUpdate(address token0, address token1, bytes32[] calldata pro
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`token0`|`address`|The first token of the pair.|
-|`token1`|`address`|The second token of the pair.|
-|`proof`|`bytes32[]`|The merkle proof corresponding to the set merkle root.|
+| Name     | Type        | Description                                            |
+| -------- | ----------- | ------------------------------------------------------ |
+| `token0` | `address`   | The first token of the pair.                           |
+| `token1` | `address`   | The second token of the pair.                          |
+| `proof`  | `bytes32[]` | The merkle proof corresponding to the set merkle root. |
 
 
 ### batchTriggerFeeUpdate
@@ -250,11 +250,11 @@ function batchTriggerFeeUpdate(
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`pairs`|`Pair[]`|The pair of two tokens. There may be multiple pools initialized from the same pair.|
-|`proof`|`bytes32[]`|The merkle proof corresponding to the set merkle root.|
-|`proofFlags`|`bool[]`|The flags for the merkle proof verification.|
+| Name         | Type        | Description                                                                         |
+| ------------ | ----------- | ----------------------------------------------------------------------------------- |
+| `pairs`      | `Pair[]`    | The pair of two tokens. There may be multiple pools initialized from the same pair. |
+| `proof`      | `bytes32[]` | The merkle proof corresponding to the set merkle root.                              |
+| `proofFlags` | `bool[]`    | The flags for the merkle proof verification.                                        |
 
 
 ### setFeeSetter
@@ -267,9 +267,9 @@ function setFeeSetter(address newFeeSetter) external;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`newFeeSetter`|`address`|The new address authorized to set fees and merkle roots.|
+| Name           | Type      | Description                                              |
+| -------------- | --------- | -------------------------------------------------------- |
+| `newFeeSetter` | `address` | The new address authorized to set fees and merkle roots. |
 
 
 ## Errors

@@ -25,4 +25,4 @@ giving the Governance Timelock the ability to appoint a different `feeSetter` at
 
 Enabling fee values themselves will require a Uniswap Governance vote, which will involve:
   - calling [`setFeeTo`](https://github.com/Uniswap/v2-core/blob/ee547b17853e71ed4e0101ccfd52e70d5acded58/contracts/UniswapV2Factory.sol#L40) on the mainnet [UniswapV2Factory](https://etherscan.io/address/0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f) and passing the `AssetSink` address as the parameter
-  - calling [`setMerkleRoot`](https://github.com/Uniswap/phoenix-fees/blob/6f39580d36a75a1ed1f34daf7d3262ced4b9df3f/src/feeControllers/V3FeeController.sol#L93C12-L93C25) on the V3FeeController contract and passing a properly constructed Merkle root as a parameter
+  - calling [`setMerkleRoot`](https://github.com/Uniswap/protocol-fees/blob/6f39580d36a75a1ed1f34daf7d3262ced4b9df3f/src/feeControllers/V3FeeController.sol#L93C12-L93C25) on the V3FeeController contract and passing a properly constructed Merkle root as a parameter

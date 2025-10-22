@@ -1,5 +1,5 @@
 # AssetSink
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/AssetSink.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/AssetSink.sol)
 
 **Inherits:**
 Owned, [IAssetSink](/technical-reference/IAssetSink)
@@ -59,7 +59,7 @@ function release(Currency[] calldata assets, address recipient) external onlyRel
 
 Set the address of the IReleaser contract
 
-*only callabe by `owner`*
+*only callable by `owner`*
 
 
 ```solidity

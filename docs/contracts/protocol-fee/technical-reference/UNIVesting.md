@@ -1,5 +1,5 @@
 # UNIVesting
-[Git Source](https://github.com/Uniswap/phoenix-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/UNIVesting.sol)
+[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/UNIVesting.sol)
 
 **Inherits:**
 [IUNIVesting](/technical-reference/IUNIVesting), Owned
@@ -103,10 +103,10 @@ constructor(address _uni, uint256 _periodDuration) Owned(msg.sender);
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`_uni`|`address`|The address of the UNI token contract|
-|`_periodDuration`|`uint256`|The duration of each vesting period in seconds (e.g., 30 days)|
+| Name              | Type      | Description                                                    |
+| ----------------- | --------- | -------------------------------------------------------------- |
+| `_uni`            | `address` | The address of the UNI token contract                          |
+| `_periodDuration` | `uint256` | The duration of each vesting period in seconds (e.g., 30 days) |
 
 
 ### start
@@ -133,9 +133,9 @@ function claim(address recipient) external onlyOwner;
 ```
 **Parameters**
 
-|Name|Type|Description|
-|----|----|-----------|
-|`recipient`|`address`|The address to claim the tokens to.|
+| Name        | Type      | Description                         |
+| ----------- | --------- | ----------------------------------- |
+| `recipient` | `address` | The address to claim the tokens to. |
 
 
 ### claimable
