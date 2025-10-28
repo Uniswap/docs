@@ -118,7 +118,7 @@ const USDC_TOKEN = new Token(
 
 These constants are used in the `config.ts` file, as mentioned in the Introduction.
 
-We can find the Pool Factory Contract address for our chain [here](../../../../contracts/v3/reference/Deployments.md).
+We can find the Pool Factory Contract address for our chain [here](../../../../contracts/v3/reference/deployments/deployments.md).
 
 ## Referencing the Pool contract and fetching metadata
 
@@ -234,7 +234,7 @@ const quoterV2Contract = new ethers.Contract(
 )
 ```
 
-We get the QUOTE_V2_CONTRACT_ADDRESS for our chain from [V3 refrence deployments](../reference/deployments).
+We get the QUOTE_V2_CONTRACT_ADDRESS for our chain from [V3 reference deployments](../../../../contracts/v3/reference/deployments/deployments.md).
 
 We get access to the contract's ABI through the [@uniswap/v3-periphery](https://www.npmjs.com/package/@uniswap/v3-periphery) package, which holds the periphery smart contracts of the Uniswap V3 protocol:
 
