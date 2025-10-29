@@ -11,9 +11,6 @@ amount of a resource token
 *Inherits from ResourceManager for resource transferring functionality and Nonce for replay
 protection*
 
-**Note:**
-security-contact: security@uniswap.org
-
 
 ## State Variables
 ### ASSET_SINK

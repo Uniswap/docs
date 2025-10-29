@@ -9,9 +9,6 @@ Sink for protocol fees
 *Fees accumulate passively in this contract from external sources.
 Stored fees can be released by an authorized releaser contract.*
 
-**Note:**
-security-contact: security@uniswap.org
-
 
 ## State Variables
 ### releaser

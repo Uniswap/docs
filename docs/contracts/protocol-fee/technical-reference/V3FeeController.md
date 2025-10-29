@@ -11,9 +11,6 @@ new fee tiers to the Uniswap V3 Factory.
 amounts per pool, set new fee tiers on Uniswap V3, and change the owner of this contract.
 Note that this contract will be the set owner on the Uniswap V3 Factory.*
 
-**Note:**
-security-contact: security@uniswap.org
-
 
 ## State Variables
 ### FACTORY

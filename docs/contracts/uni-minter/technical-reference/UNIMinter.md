@@ -12,9 +12,6 @@ distribution to multiple recipients
 
 *This contract holds the minter role and allows annual minting with configurable allocations*
 
-**Note:**
-security-contact: security@uniswap.org
-
 
 ## State Variables
 ### MINT_CAP_PERCENT

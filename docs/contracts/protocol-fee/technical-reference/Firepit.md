@@ -7,9 +7,6 @@
 An ExchangeReleaser with recipient set to the burn address address(0xdead) and a limit
 on the number of currencies that can be released at any time.
 
-**Note:**
-security-contact: security@uniswap.org
-
 
 ## State Variables
 ### MAX_RELEASE_LENGTH
