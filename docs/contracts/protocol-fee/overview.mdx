@@ -4,7 +4,7 @@ sidebar_position: 1
 ---
 # Overview
 
-The Uniswap Protocol Fee System enables the permissionless collection and flexible conversion of any arbitrary fee sources, including but not limited to Uniswap protocol fees. The mechanism uses competitive economic incentives to ensure efficient fee collection while maintaining decentralized governance through immutable smart contracts.
+The Uniswap Protocol Fee System enables the permissionless collection and flexible conversion of any arbitrary fee sources, including but not limited to Uniswap Protocol fees. The mechanism uses competitive economic incentives to ensure efficient fee collection while maintaining decentralized governance through immutable smart contracts.
 
 ## Why This Design?
 
@@ -63,11 +63,11 @@ Releasers are smart contracts that serve in the `releaser` role for Asset Sinks.
 
 #### Governance
 
-Permissions and controls are specific to individual Releaser implementations. Releasers are  immutable and their core logic is not subject to change. Certain parameters related to that logic's execution may be adjustable to allow for system optimization..
+Permissions and controls are specific to individual Releaser implementations. Releasers are  immutable and their core logic is not subject to change. Certain parameters related to that logic's execution may be adjustable to allow for system optimization.
 
 ## Initial Deployment Configuration
 
-Our first deployment will focus on Ethereum mainnet with Uniswap v3 fee collection and UNI token burning:
+The first deployment of this system will enable Uniswap v2 and v3 fee collection on Ethereum mainnet. The contracts required for this deployment are:
 
 ### V3FeeController
 

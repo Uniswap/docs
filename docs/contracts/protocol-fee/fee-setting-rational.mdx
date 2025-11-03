@@ -2,4 +2,22 @@
 title: Fee Setting Rationale
 sidebar_position: 3
 ---
-# Fee Setting Rationale
+# **Protocol Fee Configuration and Rationale**
+
+## **Goals**
+
+The proposed fee configuration is guided by balancing revenue generation against liquidity migration minimization. For v2, fees are hardcoded and can only be enabled or disabled across all pools at once. For v3, we propose turning on protocol fees first for token pairs where the Uniswap Protocol currently accounts for over 90% of total DEX volume.
+
+Future pool selection and fee levels will continue to be refined through governance using a data-driven, iterative process.
+
+## **Proposed Fee Configuration**
+
+A full list of v3 pools included in the initial rollout is available [here](https://github.com/Uniswap/protocol-fees/blob/main/merkle-generator/data/merkle-tree.json).
+
+| Version | Fee Tier | LP Fee | Protocol Fee |
+| ----- | ----- | ----- | ----- |
+| v2 | All pools | 0.25% | 0.05% |
+| v3 | 0.01% | 0.0075% | 0.0025% |
+| v3 | 0.05% | 0.0375% | 0.0125% |
+| v3 | 0.30% | 0.25% | 0.05% |
+| v3 | 1.00% | 0.8334% | 0.1666% |
