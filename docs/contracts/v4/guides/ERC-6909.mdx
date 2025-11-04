@@ -1,0 +1,232 @@
+---
+title: ERC-6909
+sidebar_position: 5
+---
+
+## Introduction
+
+Uniswap v4 uses [ERC-6909](/contracts/v4/concepts/erc6909), a token standard that works alongside the protocol’s flash accounting system. This guide explains how ERC-6909 functions within v4, when to use mint versus burn operations, and how developers can implement them effectively.
+
+## What is ERC-6909?
+
+ERC-6909 is a token standard that enables efficient token management within a single contract through multiple token balances per user. Where ERC-20 requires separate approve and transfer calls for token interactions, ERC-6909 provides native support for multi-token operations through mint/burn mechanics that integrate with v4’s flash accounting system.
+
+Here’s how the approaches differ:
+
+```solidity
+// Traditional ERC-20 approach
+IERC20(tokenA).transferFrom(owner, poolManager, amount);
+
+// ERC-6909 approach in v4
+poolManager.burn(owner, currency.toId(), amount);
+```
+
+### Integration with Flash Accounting
+
+While flash accounting tracks balance changes as deltas throughout a transaction, ERC-6909 provides an additional primitive to resolve  deltas. 
+
+This enables:
+
+1. Simplified transaction flows through direct mint/burn operations
+2. Efficient handling of multi-step operations
+3. Streamlined token management when using the PoolManager
+
+### Gas Efficiency
+
+ERC-6909 provides gas savings compared to ERC-20 tokens, making it particularly valuable for use cases requiring frequent token transfers like:
+
+- Day trading operations
+- MEV bot transactions
+- Active liquidity management
+
+This efficiency is especially beneficial when performing multiple token operations in rapid succession.
+
+### Simplified Token Management
+
+The traditional ERC-20 workflow requires careful management of allowances and transfers, often leading to complex transaction sequences and potential security concerns.
+
+ERC-6909 takes a different approach by providing direct balance modifications through mint and burn operations.
+
+By working through the PoolManager, all token operations are consolidated into a single interface. This means you don’t need to worry about managing multiple token approvals or keeping track of allowances across different contracts. Instead, you can focus on the core logic of your application while the PoolManager handles the token management aspects.
+
+## Understanding ERC-6909 in v4
+
+Let's explore how ERC-6909 is used across different v4 operations and understand when to use each of its operations.
+
+### Operations and Token Movement
+
+Different pool operations create different types of deltas that need to be resolved:
+
+- **Swaps**: Create negative deltas for input tokens and positive deltas for output tokens
+- **Adding Liquidity**: Creates negative deltas (tokens you need to provide)
+- **Removing Liquidity**: Creates positive deltas (tokens you receive)
+- **Donations**: Creates negative deltas (tokens you're donating)
+
+### Using Mint and Burn
+
+The choice between mint and burn operations depends on your token movement needs:
+
+```solidity
+// When you have positive deltas (withdrawing value from PoolManager):
+poolManager.mint(currency, address(this), amount);
+
+// When you have negative deltas (transferring value to PoolManager):
+poolManager.burn(currency, address(this), amount);
+```
+
+This pattern is used throughout v4's operations:
+
+- Use mint when withdrawing value from the pool (like receiving tokens from swaps)
+- Use burn when transferring value to the pool (like providing tokens)
+
+### Hook Integration
+
+When building hooks, ERC-6909 operations help manage token movements within your hook's logic:
+
+```solidity
+function _beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata params)
+    internal
+    returns (bytes4, BeforeSwapDelta, uint24)
+{
+    poolManager.mint(key.currency0, address(this), amount);
+    
+    return (
+      BaseHook.beforeSwap.selector,
+      BeforeSwapDeltaLibrary.ZERO_DELTA,
+      0
+    );
+}
+```
+
+Other common cases would be to use `mint` for fee collection or `burn` for token distribution.
+
+## Implementation
+
+Let's build a contract that handles donations in v4 using ERC-6909. We'll create a donation router that follows this flow:
+
+1. Users call our donation function with their desired amounts
+2. Our contract packages this data and uses the PoolManager's unlock pattern
+3. In the callback, we unpack the data and execute the donation, handling token movements using ERC-6909
+
+First, let's set up our contract with the necessary imports and create a struct to help us pass data between functions:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.24;
+
+import { IPoolManager } from "@uniswap/v4-core/src/interfaces/IPoolManager.sol";
+import { PoolKey } from "@uniswap/v4-core/src/types/PoolKey.sol";
+import { BalanceDelta } from "@uniswap/v4-core/src/types/BalanceDelta.sol";
+import { Currency } from "@uniswap/v4-core/src/types/Currency.sol";
+
+contract DonationRouter {
+    IPoolManager public immutable poolManager;
+
+    // This struct helps us pack donation parameters to pass through
+    // the unlock/callback pattern
+    struct CallbackData {
+        PoolKey key;
+        uint256 amount0;
+        uint256 amount1;
+        bytes hookData;
+    }
+
+    constructor(IPoolManager _poolManager) {
+        poolManager = _poolManager;
+    }
+}
+```
+
+Now let's implement the external donation function. Here we'll pack our parameters into the CallbackData struct and start the unlock process:
+
+```solidity
+/// @notice Donates tokens to a pool
+/// @param key The pool to donate to
+/// @param amount0 Amount of token0 to donate
+/// @param amount1 Amount of token1 to donate
+/// @param hookData Optional data to pass to hooks
+function donate(
+    PoolKey memory key,
+    uint256 amount0,
+    uint256 amount1,
+    bytes memory hookData
+) external returns (BalanceDelta delta) {
+    // 1. Create a CallbackData struct with all our parameters
+    CallbackData memory data = CallbackData({
+        key: key,
+        amount0: amount0,
+        amount1: amount1,
+        hookData: hookData
+    });
+
+    // 2. Encode our struct into bytes to pass through unlock
+    bytes memory encodedData = abi.encode(data);
+    
+    // 3. Call unlock with our encoded data
+    // 4. unlock will call our callback, which returns encoded delta
+    // 5. Decode the returned bytes back into a BalanceDelta
+    delta = abi.decode(
+        poolManager.unlock(encodedData),
+        (BalanceDelta)
+    );
+}
+```
+
+When the PoolManager calls our callback, we need to decode our data:
+
+```solidity
+function unlockCallback(
+    bytes calldata rawData
+) external returns (bytes memory) {
+    // Only the PoolManager can trigger our callback
+    require(msg.sender == address(poolManager));
+
+    // Decode the bytes back into our CallbackData struct
+    // (CallbackData) tells abi.decode what type to expect
+    CallbackData memory data = abi.decode(rawData, (CallbackData));
+```
+
+Now `data` contains the same values we packed in donate():
+    - `data.key`: The pool to donate to
+    - `data.amount0`: Amount of first token
+    - `data.amount1`: Amount of second token
+    - `data.hookData`: Any hook data
+
+And we can execute the donation:
+
+```solidity
+    // Execute the donation through PoolManager
+    // This creates negative deltas for the tokens we're donating
+    BalanceDelta delta = poolManager.donate(
+        data.key,
+        data.amount0,
+        data.amount1,
+        data.hookData
+    );
+```
+
+After executing the donation through the PoolManager, we need to handle the token transfers. The donation creates negative deltas, which represent tokens that we owe to the PoolManager. This is where ERC-6909's burn operation comes into play.
+
+Instead of using traditional token transfers, we can use ERC-6909's burn operation to settle this debt. We check each token's delta and, if negative, burn the corresponding amount of ERC-6909 tokens. And finally return the encoded delta. Let’s see how:
+
+```solidity
+ // Handle any negative deltas by burning ERC-6909 tokens
+    if (delta.amount0() < 0) {
+        poolManager.burn(
+            data.key.currency0,
+            address(this),
+            uint256(-delta.amount0())
+        );
+    }
+    if (delta.amount1() < 0) {
+        poolManager.burn(
+            data.key.currency1,
+            address(this),
+            uint256(-delta.amount1())
+        );
+    }
+
+    // Encode and return the delta so donate() can decode it
+    return abi.encode(delta);
+}
+```
