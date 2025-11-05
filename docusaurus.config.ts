@@ -78,6 +78,11 @@ const config: Config = {
         },
         {
           type: 'doc',
+          docId: 'builder-support/get-funded',
+          label: 'Support',
+        },
+        {
+          type: 'doc',
           docId: 'llms/overview',
           label: 'LLMs',
         },
