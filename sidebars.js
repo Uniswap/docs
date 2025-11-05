@@ -60,7 +60,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Builder Support',
+      label: 'Support',
       link: {
         type: 'doc',
         id: 'builder-support/get-funded',

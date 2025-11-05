@@ -79,7 +79,7 @@ const config: Config = {
         {
           type: 'doc',
           docId: 'builder-support/get-funded',
-          label: 'Builder Support',
+          label: 'Support',
         },
         {
           type: 'doc',
