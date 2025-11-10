@@ -1,22 +1,22 @@
 # IReleaser
-[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IReleaser.sol)
+[Git Source](https://github.com/Uniswap/phoenix-fees/blob/f7ccbcc4f1be2c8485a362f78f4f1ea34145b2b0/src/interfaces/IReleaser.sol)
 
 **Inherits:**
-[IResourceManager](/technical-reference/IResourceManager), [INonce](/technical-reference/INonce)
+[IResourceManager](/home/toda/dev/phoenix-fees/forge-docs/src/src/interfaces/base/IResourceManager.sol/interface.IResourceManager.md), [INonce](/home/toda/dev/phoenix-fees/forge-docs/src/src/interfaces/base/INonce.sol/interface.INonce.md)
 
 
 ## Functions
-### ASSET_SINK
+### TOKEN_JAR
 
 
 ```solidity
-function ASSET_SINK() external view returns (IAssetSink);
+function TOKEN_JAR() external view returns (ITokenJar);
 ```
 **Returns**
 
-| Name     | Type         | Description                                                     |
-| -------- | ------------ | --------------------------------------------------------------- |
-| `<none>` | `IAssetSink` | Address of the Asset Sink contract that will release the assets |
+|Name|Type|Description|
+|----|----|-----------|
+|`<none>`|`ITokenJar`|Address of the Token Jar contract that will release the assets|
 
 
 ### release
@@ -29,10 +29,10 @@ function release(uint256 _nonce, Currency[] calldata assets, address recipient) 
 ```
 **Parameters**
 
-| Name        | Type         | Description                                                                                                                       |
-| ----------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| `_nonce`    | `uint256`    | The nonce for the release, must equal to the contract nonce otherwise revert                                                      |
-| `assets`    | `Currency[]` | The list of assets (addresses) to release, which may have length limits Native tokens (Ether) are represented as the zero address |
-| `recipient` | `address`    | The address to receive the released assets, paid out by Asset Sink                                                                |
+|Name|Type|Description|
+|----|----|-----------|
+|`_nonce`|`uint256`|The nonce for the release, must equal to the contract nonce otherwise revert|
+|`assets`|`Currency[]`|The list of assets (addresses) to release, which may have length limits Native tokens (Ether) are represented as the zero address|
+|`recipient`|`address`|The address to receive the released assets, paid out by Token Jar|
 
 

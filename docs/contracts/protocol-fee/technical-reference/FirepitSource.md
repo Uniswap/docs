@@ -1,15 +1,15 @@
 # FirepitSource
-[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/crosschain/FirepitSource.sol)
+[Git Source](https://github.com/Uniswap/phoenix-fees/blob/f7ccbcc4f1be2c8485a362f78f4f1ea34145b2b0/src/crosschain/FirepitSource.sol)
 
 **Inherits:**
-[ResourceManager](/technical-reference/ResourceManager), [Nonce](/technical-reference/Nonce)
+[ResourceManager](/home/toda/dev/phoenix-fees/forge-docs/src/src/base/ResourceManager.sol/abstract.ResourceManager.md), [Nonce](/home/toda/dev/phoenix-fees/forge-docs/src/src/base/Nonce.sol/abstract.Nonce.md)
 
 
 ## State Variables
 ### DEFAULT_BRIDGE_ID
 
 ```solidity
-uint256 public constant DEFAULT_BRIDGE_ID = 0;
+uint256 public constant DEFAULT_BRIDGE_ID = 0
 ```
 
 

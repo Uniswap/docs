@@ -1,5 +1,5 @@
 # IResourceManager
-[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/base/IResourceManager.sol)
+[Git Source](https://github.com/Uniswap/phoenix-fees/blob/f7ccbcc4f1be2c8485a362f78f4f1ea34145b2b0/src/interfaces/base/IResourceManager.sol)
 
 The interface for managing the resource token and its threshold value
 
@@ -45,7 +45,7 @@ function thresholdSetter() external view returns (address);
 
 Set the address authorized to set the `threshold` value
 
-*only callable by `owner`*
+only callable by `owner`
 
 
 ```solidity
@@ -56,11 +56,11 @@ function setThresholdSetter(address newThresholdSetter) external;
 
 Set the minimum threshold of `RESOURCE` tokens required to perform a release
 
-*only callable by `thresholdSetter`
+only callable by `thresholdSetter`
 the `thresholdSetter` should take explicit care when updating the threshold
 * lowering the threshold may create instantaneous value leakage
 * front-running a release with an increased threshold may cause economic loss
-to the releaser/searcher*
+to the releaser/searcher
 
 
 ```solidity

@@ -1,5 +1,5 @@
-# IAssetSink
-[Git Source](https://github.com/Uniswap/protocol-fees/blob/38e66458d36a90d45d2da802d97629a7d8137a57/src/interfaces/IAssetSink.sol)
+# ITokenJar
+[Git Source](https://github.com/Uniswap/phoenix-fees/blob/f7ccbcc4f1be2c8485a362f78f4f1ea34145b2b0/src/interfaces/ITokenJar.sol)
 
 The interface for releasing assets from the contract
 
@@ -7,7 +7,7 @@ The interface for releasing assets from the contract
 ## Functions
 ### releaser
 
-*The releaser has exclusive access to the `release()` function*
+The releaser has exclusive access to the `release()` function
 
 
 ```solidity
@@ -15,16 +15,16 @@ function releaser() external view returns (address);
 ```
 **Returns**
 
-| Name     | Type      | Description                      |
-| -------- | --------- | -------------------------------- |
-| `<none>` | `address` | Address of the current IReleaser |
+|Name|Type|Description|
+|----|----|-----------|
+|`<none>`|`address`|Address of the current IReleaser|
 
 
 ### setReleaser
 
 Set the address of the IReleaser contract
 
-*only callabe by `owner`*
+only callabe by `owner`
 
 
 ```solidity
@@ -35,7 +35,7 @@ function setReleaser(address _releaser) external;
 
 Release assets to a specified recipient
 
-*only callable by `releaser`*
+only callable by `releaser`
 
 
 ```solidity
