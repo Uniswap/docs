@@ -36,11 +36,13 @@ data: {
     requestId: "string uuid - a unique identifier for swapper's request",
     tokenInChainId: "number - the `tokenIn` chainId",
     tokenOutChainId: "number - the `tokenOut` chainId",
-    swapper: "string address - The swapper’s EOA address that will sign the order",
+    swapper: "string address - This will be the 0x000 address to obfuscate the swapper",
     tokenIn: "string address - The ERC20 token that the swapper will provide",
     tokenOut: "string address - The ERC20 token that the swapper will receive",
     amount: "string number - If the trade type is exact input then this is amount of `tokenIn` the user wants to swap otherwise this is amount of tokenOut the user wants to receive",
-    type: "number - This is either `EXACT_INPUT` or `EXACT_OUTPUT`",
+    type: "string - This is either `EXACT_INPUT` or `EXACT_OUTPUT`",
+    protocol: "string - UniswapX protocol version (e.g. v1)",
+    numOutputs: "number - the number of outputs in this request",
     quoteId: "string uuid - a unique identifier for the quote an integrator is sending back"
 }
 ```
