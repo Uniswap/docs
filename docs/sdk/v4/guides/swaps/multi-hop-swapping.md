@@ -152,8 +152,8 @@ const receipt = await tx.wait()
 console.log('Multi-hop swap completed! Transaction hash:', receipt.transactionHash)
 ```
 
-The token approvals for ERC20 token swaps remain the same as the [single-hop swapping guide](./02-single-hop-swapping.md).
+The token approvals for ERC20 token swaps remain the same as the [single-hop swapping guide](./single-hop-swapping.md).
 
 ## Next Steps
 
-Now that you're familiar with trading, consider checking out our next guides on [pooling liquidity](../liquidity/01-pool-data.md) to Uniswap!
+Now that you're familiar with trading, consider checking out our next guides on [pooling liquidity](../advanced/pool-data.md) to Uniswap!
