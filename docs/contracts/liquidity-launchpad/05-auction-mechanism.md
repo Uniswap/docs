@@ -21,56 +21,29 @@ Bootstrapping initial liquidity for new tokens is challenging. Traditional appro
 
 CCA addresses these issues through a unique approach: **automatic bid spreading over time** combined with **continuous price discovery**.
 
-### Key Innovation: Bid Spreading
+## Deployment Addresses
 
-Every bid submitted to a CCA is automatically divided across all remaining auction intervals according to the token release schedule. This means:
+### ContinuousClearingAuctionFactory
+
+| Network  | Address                                    | Commit Hash                              | Version          |
+| -------- | ------------------------------------------ | ---------------------------------------- | ---------------- |
+| Mainnet  | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
+| Unichain | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
+| Base     | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
+| Sepolia  | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
+
+### Mechanism overview
+
+For a detailed overview, please read the [whitepaper](/whitepaper_cca.pdf).
+
+The most important element to understand about a Continuous Clearing Auction (CCA) is that tokens are sold over time to the current set of active participants. Every bid submitted to a CCA auction is automatically divided across all remaining intervals according to the token release schedule, such that:
 
 - No participant can concentrate demand at a single moment
 - Timing of bid submission matters less than valuation
 - Early bidders naturally gain more exposure to lower prices
 - Sniping and last-minute gaming become ineffective
 
-### How It Works
-
-The CCA process for liquidity bootstrapping follows these steps:
-
-1. **Configure Liquidity Bootstrap**
-
-   The project team sets up the price discovery parameters:
-   - Supply release schedule Q(t) defining how tokens are released over time
-   - Price floor to protect against selling below minimum valuation
-   - Duration specified by start and end blocks
-   - Graduation threshold that must be met for successful liquidity deployment
-
-2. **Price Discovery Through Bidding**
-
-   Participants establish market price by:
-   - Specifying the maximum price they're willing to pay
-   - Committing a fixed amount of currency to spend (exact-in bids)
-   - Their bid automatically spreads over all remaining auction intervals according to the release schedule
-
-3. **Continuous Price Clearing**
-
-   As the auction progresses:
-   - Each block with new bids creates a checkpoint
-   - The clearing price is calculated from aggregate demand versus available supply
-   - The price can only increase or stay the same (never decrease)
-   - All participants active in that interval pay the same uniform clearing price
-
-4. **Auction Completion & Price Established**
-
-   When price discovery concludes:
-   - The system checks if the graduation threshold was met
-   - If graduated: the final clearing price becomes the pool initialization price
-   - If not graduated: all bidders receive full refunds and no pool is created
-
-5. **Liquidity Deployment**
-
-   After the auction succeeds:
-   - Bidders exit to calculate their final fills and claim tokens
-   - The raised currency + remaining tokens are deployed as liquidity in a Uniswap V4 pool
-   - The pool initializes at the discovered clearing price
-   - Deep, sustainable liquidity is established from day one
+## Technical overview
 
 ### Auction Configuration
 
@@ -343,12 +316,3 @@ event TokensClaimed(uint256 indexed bidId, address indexed owner, uint256 tokens
 ```
 
 Anyone can call this function for any valid bid id.
-
-## Deployment Addresses
-
-### ContinuousClearingAuctionFactory
-
-| Network | Address | Commit Hash | Version |
-|---------|---------|------------|---------|
-| Mainnet | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
-| Sepolia | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |

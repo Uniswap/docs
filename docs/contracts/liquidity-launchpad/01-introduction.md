@@ -14,15 +14,16 @@ The Uniswap Liquidity Launchpad is a comprehensive framework for bootstrapping i
 2. **Liquidity Bootstrapping** - Automatically seed Uniswap V4 pools with auction proceeds at the discovered price
 3. **Token Creation** (Optional) - Deploy new ERC-20 tokens with rich metadata and optional cross-chain capabilities
 
-Unlike traditional approaches that rely on centralized market makers or expose participants to timing games and manipulation, the Uniswap Liquidity Launchpad provides a decentralized, mechanism-design-driven approach for establishing deep, sustainable liquidity from day one.
+Unlike traditional approaches that rely on centralized market makers or expose participants to timing games and manipulation, the Uniswap Liquidity Launchpad provides an open mechanism for boostrapping deep liquidity on decentralized exchanges.
 
+The system is composable - it is not limited to the intial set of implementation contracts. Other auction and LBPStrategy implementations are welcome!
 
 ### Key Benefits
 
 - **Fair Price Discovery** - Continuous clearing auctions eliminate timing games and establish credible market prices
 - **Immediate Deep Liquidity** - Seamless transition from price discovery to active Uniswap V4 trading with substantial initial depth
 - **Permissionless** - Anyone can bootstrap liquidity or participate in price discovery without gatekeepers
-- **Transparent** - All parameters set upfront; real-time visibility into price discovery progress
+- **Transparent** - All parameters are immutable after they are set
 - **Composable** - Modular architecture supports multiple auction formats and distribution strategies
 - **Gas Efficient** - Optimized implementations using Permit2, multicall, and efficient data structures
 
@@ -40,50 +41,51 @@ Each component is designed to be composable and extensible, allowing you to cust
 
 ![Token Launcher Architecture](./images/TokenLauncherOverview.png)
 
-### Typical Liquidity Bootstrapping Flow
+### Example Flow
 
-The liquidity bootstrapping process follows a straightforward sequence from price discovery to active trading:
+The following is a high level overview of how the [LBP Strategy Basic](https://github.com/Uniswap/liquidity-launcher) contracts interface and work with the [Continuous Clearing Auction](https://github.com/Uniswap/continuous-clearing-auction/).
+
+The following actions must be performed atomically within one transaction.
 
 1. **Prepare Token** (Optional)
 
-   Launch a new token using `LiquidityLauncher.createToken()` via the factory, which deploys a UERC20 or UERC20Superchain token and mints the initial supply to the launcher. Alternatively, use an existing token and approve the launcher to distribute it.
+   Launch a new token using `LiquidityLauncher.createToken()` via the [UERC20Factory](https://github.com/Uniswap/liquidity-launcher/blob/96860d8239785e717cff1e4189643b9acee925ff/src/token-factories/uerc20-factory), which deploys a UERC20 or UERC20Superchain token and mints the initial supply to the launcher. Alternatively, use an existing token and approve the launcher to distribute it.
 
-2. **Configure Liquidity Bootstrap**
+2. **Deploy Strategies**
 
-   Set up your bootstrapping parameters:
-   - **Auction parameters**: Supply release schedule, price floor, duration & timing, and graduation threshold
-   - **Pool parameters**: Token split (max 50% to auction), fee tier & tick spacing, migration delay, and optional hooks
+   Call `LiquidityLauncher.distributeToken()` to deploy a new LBPStrategy instance via factory. The strategy will validate that the auction parameters and eventual pool configuraiton are valid, and if so, it will deploy a CCA auction with the desired amount of tokens to sell. The `LiquidityLauncher` contract will transfer tokens to the LBPStrategy and then they will be transferred into the auction. 
 
-3. **Start Price Discovery**
+   We use an optimistic transfer then call pattern throughout the contracts to trigger an action after performing an ERC20 transfer. 
 
-   Call `LiquidityLauncher.distributeToken()` to allocate tokens to the LBP Strategy. This deploys a CCA auction with the allocated tokens, and price discovery begins as participants submit bids.
+3. **Auction Completion**
 
-4. **Fair Price Discovery**
+   When the auction ends, all of the raised funds will be swept to a specified `fundsRecipient`. The LBPStrategy will ensure that it is the recipient of both the raised funds and any leftover unsold tokens. 
 
-   As bids arrive, the auction continuously clears orders with automatic bid spreading, ensuring a uniform clearing price and real-time transparency for all participants. This establishes the fair market price for the token.
+   The LBPStrategy will also read the following data from the `IAuction` interface:
+   ```solidity
+   interface IContinuousClearingAuction {
+      function currencyRaised() external view returns (uint256);
+      function clearingPrice() external view returns (uint256);
+   }
+   ```
 
-5. **Auction Completion**
+4. **Seeding Liquidity**
 
-   When the auction ends, the system checks if the graduation threshold was met. If graduated, the process proceeds to liquidity migration. If not, all bidders receive refunds.
+   Anyone can call the `migrate()` function on the `LBPStrategy` after a configured block. This does the following:
+   - Initialize a new Uniswap V4 pool at the price from the auction
+   - Deploy a full-range LP position using the auction proceeds + reserve tokens
+   - (Optionally) deploy a one-sided position with remaining tokens
+   - Mint the LP NFT to the a specified `positionRecipient`
+   - Sweep any leftover tokens or raised funds to a configured `operator` 
 
-6. **Liquidity Deployment**
+5. **After Migration**
 
-   After the migration block delay, anyone can trigger `migrate()` to:
-   - Initialize the Uniswap V4 pool at the discovered price
-   - Deploy full-range liquidity using auction proceeds + reserve tokens
-   - Deploy a one-sided position (if remaining tokens exist)
-   - Mint the LP NFT to the position recipient
-
-7. **Active Liquid Market**
-
-   The pool is now live on Uniswap V4 with deep initial liquidity, making the token immediately tradable across the entire ecosystem with sustainable market depth.
-
+   The pool will be live on Uniswap V4 with deep liquidity around the discovered price. Participants in the auction can claim their purchased tokens on the auction after `claimBlock`, and these instances of the LBPStrategy + Auction contracts should hold no funds after all bids are withdrawn and all actions performed.
 
 ## Next Steps
 
 - Learn about the [Continous Clearing Auction](./05-auction-mechanism.md) mechanism
 - Read the <a href='/whitepaper_cca.pdf' target='_blank' rel='noopener noreferrer'>whitepaper</a> to learn more about the mechanism
-- Dive into the repos below to see the code and start building
 
 ## Smart Contracts
 
