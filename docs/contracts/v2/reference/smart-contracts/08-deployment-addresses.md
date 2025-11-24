@@ -19,3 +19,4 @@ Contract addresses for the [`Uniswap V2 Factory`](https://github.com/Uniswap/v2-
 | Blast                                                | `0x5C346464d33F90bABaf70dB6388507CC889C1070` | `0xBB66Eb1c5e875933D44DAe661dbD80e5D9B03035` |
 | Zora                                                 | `0x0F797dC7efaEA995bB916f268D919d0a1950eE3C` | `0xa00F34A632630EFd15223B1968358bA4845bEEC7` |
 | WorldChain                                           | `0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f` | `0x541aB7c31A119441eF3575F6973277DE0eF460bd` |
+| Monad                                                | `0x182a927119d56008d921126764bf884221b10f59` | `0x4b2ab38dbf28d31d467aa8993f6c2585981d6804` |
