@@ -38,9 +38,9 @@ For a detailed overview, please read the [whitepaper](/whitepaper_cca.pdf).
 
 The most important element to understand about a Continuous Clearing Auction (CCA) is that tokens are sold over time to the current set of active participants. Participants are comprised of two things, a budget and a max price. 
 
-The price of the auction (also called clearingPrice) in a block is the price which all bidders in that block pay. This is the same concept as in uniform price auctions. But in CCA this price is gradually discovered over time. Every block, some number of tokens (as defined by the configured release schedule) are allocated to bids with higher max prices, then those with lower max prices. 
+The clearing price of the auction in a block is the price which all bidders in that block pay. This is the same concept as in uniform price auctions. But in CCA this price is gradually discovered over time. Every block, some number of tokens (as defined by the configured release schedule) are allocated to bids with higher max prices, then those with lower max prices. 
 
-Because we require users to specify a maximum price, there exists a price for which there are not enough "active" participants in the auction to purchase all of the tokens that are being sold, since a bid is removed from the auction once it falls below the clearingPrice. The current price of the auction will always be just below this price, ensuring that all of the supply can be sold to the current set of bids.
+Because we require users to specify a maximum price, there exists a clearing price for which there are not enough "active" participants in the auction to purchase all of the tokens that are being sold, since a bid is removed from the auction once it falls below the clearingPrice. The current price of the auction will always be just below this price, ensuring that all of the supply can be sold to the current set of bids.
 
 At a high level it has these benefits:
 - No participant can concentrate demand at a single moment

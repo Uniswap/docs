@@ -71,7 +71,7 @@ The following actions must be performed atomically within one transaction.
 
 4. **Seeding Liquidity**
 
-   Anyone can call the `migrate()` function on the `LBPStrategy` after a configured block. This does the following:
+   Anyone can call the `migrate()` function on the `LBPStrategy` after the configured `migrationBlock`. This does the following:
    - Initialize a new Uniswap V4 pool at the price from the auction
    - Deploy a full-range LP position using the auction proceeds + reserve tokens
    - (Optionally) deploy a one-sided position with remaining tokens
