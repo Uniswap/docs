@@ -5266,3 +5266,208 @@ contract GasBenchmark is Test, Deployers {
 }
 ```
 
+**Run gas benchmarks:**
+
+```bash
+# Foundry
+forge test --match-test testGas -vvv --gas-report
+
+# Hardhat
+REPORT_GAS=true npx hardhat test
+```
+
+---
+
+### Deployment Strategies
+
+#### Strategy 1: Fresh Deployment (New Projects)
+
+```solidity
+// scripts/Deploy.s.sol
+pragma solidity ^0.8.20;
+
+import "forge-std/Script.sol";
+import {MySwapper} from "../src/MySwapper.sol";
+import {MyLiquidityManager} from "../src/MyLiquidityManager.sol";
+
+contract DeployScript is Script {
+    function run() external {
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        address poolManager = vm.envAddress("POOL_MANAGER_ADDRESS");
+        
+        vm.startBroadcast(deployerPrivateKey);
+        
+        // Deploy contracts
+        MySwapper swapper = new MySwapper(poolManager);
+        MyLiquidityManager liquidityManager = new MyLiquidityManager(poolManager);
+        
+        console.log("Swapper deployed at:", address(swapper));
+        console.log("LiquidityManager deployed at:", address(liquidityManager));
+        
+        vm.stopBroadcast();
+    }
+}
+```
+
+**Execute deployment:**
+
+```bash
+# Testnet
+forge script script/Deploy.s.sol:DeployScript \
+  --rpc-url $SEPOLIA_RPC_URL \
+  --broadcast \
+  --verify
+
+# Mainnet (with simulation first)
+forge script script/Deploy.s.sol:DeployScript \
+  --rpc-url $MAINNET_RPC_URL \
+  --slow
+
+# If simulation successful, broadcast
+forge script script/Deploy.s.sol:DeployScript \
+  --rpc-url $MAINNET_RPC_URL \
+  --broadcast \
+  --verify \
+  --slow
+```
+
+---
+
+#### Strategy 2: Gradual Migration (Existing Systems)
+
+**Phase 1: Deploy V4 Alongside V3**
+
+```solidity
+contract HybridRouter {
+    ISwapRouter public immutable v3Router;
+    IPoolManager public immutable v4PoolManager;
+    
+    bool public v4Enabled = false;
+    address public owner;
+    
+    constructor(address _v3Router, address _v4PoolManager) {
+        v3Router = ISwapRouter(_v3Router);
+        v4PoolManager = IPoolManager(_v4PoolManager);
+        owner = msg.sender;
+    }
+    
+    function swap(
+        bool useV4,
+        bytes calldata swapData
+    ) external returns (uint256 amountOut) {
+        if (useV4 && v4Enabled) {
+            return swapV4(swapData);
+        } else {
+            return swapV3(swapData);
+        }
+    }
+    
+    function enableV4() external {
+        require(msg.sender == owner, "Not owner");
+        v4Enabled = true;
+    }
+    
+    function swapV3(bytes calldata data) internal returns (uint256) {
+        // V3 swap logic
+    }
+    
+    function swapV4(bytes calldata data) internal returns (uint256) {
+        // V4 swap logic
+    }
+}
+```
+
+**Phase 2: A/B Testing**
+
+```solidity
+contract ABTestRouter {
+    uint256 public v4Percentage = 10; // Start with 10% on V4
+    
+    function swap(bytes calldata data) external returns (uint256) {
+        // Random selection weighted by percentage
+        uint256 random = uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender))) % 100;
+        
+        if (random < v4Percentage) {
+            emit RoutedToV4(msg.sender);
+            return swapV4(data);
+        } else {
+            emit RoutedToV3(msg.sender);
+            return swapV3(data);
+        }
+    }
+    
+    function increaseV4Percentage(uint256 newPercentage) external onlyOwner {
+        require(newPercentage <= 100, "Invalid percentage");
+        require(newPercentage > v4Percentage, "Must increase");
+        
+        v4Percentage = newPercentage;
+        emit V4PercentageUpdated(newPercentage);
+    }
+}
+```
+
+**Phase 3: Full Migration**
+
+```solidity
+contract MigrationScript is Script {
+    function run() external {
+        // 1. Pause V3 contract
+        v3Contract.pause();
+        
+        // 2. Withdraw all V3 liquidity
+        withdrawAllV3Liquidity();
+        
+        // 3. Deploy V4 contracts
+        deployV4Contracts();
+        
+        // 4. Add liquidity to V4
+        addV4Liquidity();
+        
+        // 5. Update frontend to use V4
+        // 6. Deprecate V3 contract
+    }
+}
+```
+
+---
+
+### Monitoring and Alerts
+
+**Event Monitoring Setup:**
+
+```typescript
+import { ethers } from "ethers";
+
+const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
+const poolManager = new ethers.Contract(POOL_MANAGER_ADDRESS, ABI, provider);
+
+// Monitor swaps
+poolManager.on("Swap", (poolId, sender, amount0, amount1, sqrtPriceX96, liquidity, tick, fee) => {
+  console.log(`Swap detected in pool ${poolId}`);
+  
+  // Alert on large swaps
+  if (Math.abs(Number(amount0)) > LARGE_SWAP_THRESHOLD) {
+    sendAlert(`Large swap detected: ${amount0}`);
+  }
+  
+  // Log to database
+  logSwapToDatabase({poolId, sender, amount0, amount1, tick});
+});
+
+// Monitor failed transactions
+provider.on("block", async (blockNumber) => {
+  const block = await provider.getBlock(blockNumber, true);
+  
+  for (const tx of block.prefetchedTransactions) {
+    if (tx.to === POOL_MANAGER_ADDRESS) {
+      const receipt = await provider.getTransactionReceipt(tx.hash);
+      
+      if (receipt.status === 0) {
+        sendAlert(`Failed transaction: ${tx.hash}`);
+      }
+    }
+  }
+});
+```
+
+---
