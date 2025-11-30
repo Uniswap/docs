@@ -5766,3 +5766,443 @@ contract SwapDAppV4 is IUnlockCallback {
             return handleMultiHopSwap(data);
         }
     }
+  
+    function decodeSingleSwap(bytes calldata data) 
+        external 
+        pure 
+        returns (SwapCallbackData memory) 
+    {
+        return abi.decode(data, (SwapCallbackData));
+    }
+    
+    function handleSingleSwap(SwapCallbackData memory data) 
+        internal 
+        returns (bytes memory) 
+    {
+        // Execute swap
+        BalanceDelta delta = poolManager.swap(data.poolKey, data.params, "");
+        
+        // Extract amounts
+        bool zeroForOne = data.params.zeroForOne;
+        uint256 amountIn = zeroForOne
+            ? uint256(int256(-delta.amount0()))
+            : uint256(int256(-delta.amount1()));
+        uint256 amountOut = zeroForOne
+            ? uint256(int256(-delta.amount1()))
+            : uint256(int256(-delta.amount0()));
+        
+        require(amountOut >= data.amountOutMinimum, "Insufficient output");
+        
+        // Settle input currency
+        Currency currencyIn = zeroForOne ? data.poolKey.currency0 : data.poolKey.currency1;
+        if (currencyIn.isNative()) {
+            poolManager.settle{value: amountIn}(currencyIn);
+        } else {
+            IERC20(Currency.unwrap(currencyIn)).transferFrom(
+                data.sender,
+                address(poolManager),
+                amountIn
+            );
+            poolManager.settle(currencyIn);
+        }
+        
+        // Take output currency
+        Currency currencyOut = zeroForOne ? data.poolKey.currency1 : data.poolKey.currency0;
+        poolManager.take(currencyOut, data.recipient, amountOut);
+        
+        return abi.encode(amountOut);
+    }
+    
+    function handleMultiHopSwap(MultiHopData memory data) 
+        internal 
+        returns (bytes memory) 
+    {
+        int256 currentAmount = -int256(data.amountIn);
+        
+        for (uint i = 0; i < data.poolKeys.length; i++) {
+            PoolKey memory poolKey = data.poolKeys[i];
+            
+            // Determine swap direction
+            bool zeroForOne = i == 0 
+                ? true  // First swap direction
+                : false; // Subsequent swaps alternate
+            
+            IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+                zeroForOne: zeroForOne,
+                amountSpecified: currentAmount,
+                sqrtPriceLimitX96: zeroForOne
+                    ? TickMath.MIN_SQRT_PRICE + 1
+                    : TickMath.MAX_SQRT_PRICE - 1
+            });
+            
+            BalanceDelta delta = poolManager.swap(poolKey, params, "");
+            
+            // Update amount for next swap
+            currentAmount = zeroForOne ? delta.amount1() : delta.amount0();
+        }
+        
+        uint256 finalAmount = uint256(-currentAmount);
+        require(finalAmount >= data.amountOutMinimum, "Insufficient output");
+        
+        // Settle input (first pool's input currency)
+        Currency inputCurrency = data.poolKeys[0].currency0;
+        if (inputCurrency.isNative()) {
+            poolManager.settle{value: data.amountIn}(inputCurrency);
+        } else {
+            IERC20(Currency.unwrap(inputCurrency)).transferFrom(
+                data.sender,
+                address(poolManager),
+                data.amountIn
+            );
+            poolManager.settle(inputCurrency);
+        }
+        
+        // Take output (last pool's output currency)
+        Currency outputCurrency = data.poolKeys[data.poolKeys.length - 1].currency1;
+        poolManager.take(outputCurrency, data.recipient, finalAmount);
+        
+        return abi.encode(finalAmount);
+    }
+    
+    receive() external payable {}
+}
+```
+
+---
+
+### Example 2: Complete Liquidity Manager with Rebalancing
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
+import {IUnlockCallback} from "@uniswap/v4-core/contracts/interfaces/callback/IUnlockCallback.sol";
+import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
+import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/contracts/types/PoolId.sol";
+import {Currency} from "@uniswap/v4-core/contracts/types/Currency.sol";
+import {BalanceDelta} from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
+import {Position} from "@uniswap/v4-core/contracts/libraries/Position.sol";
+import {TickMath} from "@uniswap/v4-core/contracts/libraries/TickMath.sol";
+import {LiquidityAmounts} from "@uniswap/v4-core/contracts/libraries/LiquidityAmounts.sol";
+
+contract AutoRebalancingLiquidityManager is IUnlockCallback {
+    using PoolIdLibrary for PoolKey;
+    
+    IPoolManager public immutable poolManager;
+    
+    struct UserPosition {
+        PoolKey poolKey;
+        int24 tickLower;
+        int24 tickUpper;
+        bytes32 salt;
+        uint128 liquidity;
+        int24 rebalanceThreshold; // Ticks away from range to trigger rebalance
+    }
+    
+    mapping(address => mapping(uint256 => UserPosition)) public userPositions;
+    mapping(address => uint256) public positionCount;
+    
+    enum ActionType {
+        ADD_LIQUIDITY,
+        REMOVE_LIQUIDITY,
+        COLLECT_FEES,
+        REBALANCE
+    }
+    
+    struct CallbackData {
+        ActionType actionType;
+        bytes data;
+    }
+    
+    event PositionCreated(address indexed user, uint256 indexed positionId);
+    event PositionRebalanced(address indexed user, uint256 indexed positionId, int24 newTickLower, int24 newTickUpper);
+    event FeesCollected(address indexed user, uint256 indexed positionId, uint256 amount0, uint256 amount1);
+    
+    constructor(address _poolManager) {
+        poolManager = IPoolManager(_poolManager);
+    }
+    
+    function createPosition(
+        PoolKey memory poolKey,
+        int24 tickLower,
+        int24 tickUpper,
+        uint256 amount0Desired,
+        uint256 amount1Desired,
+        int24 rebalanceThreshold
+    ) external returns (uint256 positionId) {
+        positionId = positionCount[msg.sender]++;
+        bytes32 salt = bytes32(positionId);
+        
+        // Calculate liquidity
+        PoolId poolId = poolKey.toId();
+        (uint160 sqrtPriceX96, , , ) = poolManager.getSlot0(poolId);
+        
+        uint160 sqrtRatioAX96 = TickMath.getSqrtPriceAtTick(tickLower);
+        uint160 sqrtRatioBX96 = TickMath.getSqrtPriceAtTick(tickUpper);
+        
+        uint128 liquidity = LiquidityAmounts.getLiquidityForAmounts(
+            sqrtPriceX96,
+            sqrtRatioAX96,
+            sqrtRatioBX96,
+            amount0Desired,
+            amount1Desired
+        );
+        
+        // Store position
+        userPositions[msg.sender][positionId] = UserPosition({
+            poolKey: poolKey,
+            tickLower: tickLower,
+            tickUpper: tickUpper,
+            salt: salt,
+            liquidity: liquidity,
+            rebalanceThreshold: rebalanceThreshold
+        });
+        
+        // Add liquidity
+        IPoolManager.ModifyLiquidityParams memory params = IPoolManager
+            .ModifyLiquidityParams({
+                tickLower: tickLower,
+                tickUpper: tickUpper,
+                liquidityDelta: int256(uint256(liquidity)),
+                salt: salt
+            });
+        
+        bytes memory encodedData = abi.encode(
+            msg.sender,
+            poolKey,
+            params,
+            amount0Desired,
+            amount1Desired
+        );
+        
+        CallbackData memory callbackData = CallbackData({
+            actionType: ActionType.ADD_LIQUIDITY,
+            data: encodedData
+        });
+        
+        poolManager.unlock(abi.encode(callbackData));
+        
+        emit PositionCreated(msg.sender, positionId);
+    }
+    
+    function checkAndRebalance(uint256 positionId) external {
+        UserPosition storage position = userPositions[msg.sender][positionId];
+        require(position.liquidity > 0, "Position does not exist");
+        
+        // Check if rebalance is needed
+        PoolId poolId = position.poolKey.toId();
+        (, int24 currentTick, , ) = poolManager.getSlot0(poolId);
+        
+        bool needsRebalance = 
+            currentTick < position.tickLower - position.rebalanceThreshold ||
+            currentTick >= position.tickUpper + position.rebalanceThreshold;
+        
+        require(needsRebalance, "Rebalance not needed");
+        
+        // Calculate new range centered on current price
+        int24 tickSpacing = position.poolKey.tickSpacing;
+        int24 rangeSize = (position.tickUpper - position.tickLower) / 2;
+        
+        int24 newTickLower = currentTick - rangeSize;
+        int24 newTickUpper = currentTick + rangeSize;
+        
+        // Round to tick spacing
+        newTickLower = (newTickLower / tickSpacing) * tickSpacing;
+        newTickUpper = (newTickUpper / tickSpacing) * tickSpacing;
+        
+        // Execute rebalance
+        bytes memory encodedData = abi.encode(
+            msg.sender,
+            positionId,
+            newTickLower,
+            newTickUpper
+        );
+        
+        CallbackData memory callbackData = CallbackData({
+            actionType: ActionType.REBALANCE,
+            data: encodedData
+        });
+        
+        poolManager.unlock(abi.encode(callbackData));
+        
+        emit PositionRebalanced(msg.sender, positionId, newTickLower, newTickUpper);
+    }
+    
+    function collectFees(uint256 positionId) external {
+        UserPosition memory position = userPositions[msg.sender][positionId];
+        require(position.liquidity > 0, "Position does not exist");
+        
+        bytes memory encodedData = abi.encode(msg.sender, position);
+        
+        CallbackData memory callbackData = CallbackData({
+            actionType: ActionType.COLLECT_FEES,
+            data: encodedData
+        });
+        
+        poolManager.unlock(abi.encode(callbackData));
+    }
+    
+    function unlockCallback(bytes calldata rawData) 
+        external 
+        override 
+        returns (bytes memory) 
+    {
+        require(msg.sender == address(poolManager), "Only PoolManager");
+        
+        CallbackData memory callbackData = abi.decode(rawData, (CallbackData));
+        
+        if (callbackData.actionType == ActionType.ADD_LIQUIDITY) {
+            return handleAddLiquidity(callbackData.data);
+        } else if (callbackData.actionType == ActionType.REMOVE_LIQUIDITY) {
+            return handleRemoveLiquidity(callbackData.data);
+        } else if (callbackData.actionType == ActionType.COLLECT_FEES) {
+            return handleCollectFees(callbackData.data);
+        } else if (callbackData.actionType == ActionType.REBALANCE) {
+            return handleRebalance(callbackData.data);
+        }
+        
+        revert("Unknown action type");
+    }
+    
+    function handleAddLiquidity(bytes memory data) internal returns (bytes memory) {
+        (
+            address sender,
+            PoolKey memory poolKey,
+            IPoolManager.ModifyLiquidityParams memory params,
+            uint256 amount0Max,
+            uint256 amount1Max
+        ) = abi.decode(data, (address, PoolKey, IPoolManager.ModifyLiquidityParams, uint256, uint256));
+        
+        BalanceDelta delta = poolManager.modifyLiquidity(poolKey, params, "");
+        
+        uint256 amount0 = uint256(uint128(-delta.amount0()));
+        uint256 amount1 = uint256(uint128(-delta.amount1()));
+        
+        require(amount0 <= amount0Max && amount1 <= amount1Max, "Exceeds max");
+        
+        // Settle currencies
+        if (amount0 > 0) {
+            IERC20(Currency.unwrap(poolKey.currency0)).transferFrom(
+                sender,
+                address(poolManager),
+                amount0
+            );
+            poolManager.settle(poolKey.currency0);
+        }
+        
+        if (amount1 > 0) {
+            IERC20(Currency.unwrap(poolKey.currency1)).transferFrom(
+                sender,
+                address(poolManager),
+                amount1
+            );
+            poolManager.settle(poolKey.currency1);
+        }
+        
+        return abi.encode(amount0, amount1);
+    }
+    
+    function handleRemoveLiquidity(bytes memory data) internal returns (bytes memory) {
+        // Implementation similar to handleAddLiquidity
+        // ... (omitted for brevity)
+        return "";
+    }
+    
+    function handleCollectFees(bytes memory data) internal returns (bytes memory) {
+        (address sender, UserPosition memory position) = abi.decode(
+            data,
+            (address, UserPosition)
+        );
+        
+        // Collect fees with zero liquidity delta
+        IPoolManager.ModifyLiquidityParams memory params = IPoolManager
+            .ModifyLiquidityParams({
+                tickLower: position.tickLower,
+                tickUpper: position.tickUpper,
+                liquidityDelta: 0,
+                salt: position.salt
+            });
+        
+        BalanceDelta delta = poolManager.modifyLiquidity(position.poolKey, params, "");
+        
+        uint256 amount0 = uint256(int256(delta.amount0()));
+        uint256 amount1 = uint256(int256(delta.amount1()));
+        
+        if (amount0 > 0) {
+            poolManager.take(position.poolKey.currency0, sender, amount0);
+        }
+        if (amount1 > 0) {
+            poolManager.take(position.poolKey.currency1, sender, amount1);
+        }
+        
+        emit FeesCollected(sender, 0, amount0, amount1);
+        
+        return abi.encode(amount0, amount1);
+    }
+    
+    function handleRebalance(bytes memory data) internal returns (bytes memory) {
+        (
+            address sender,
+            uint256 positionId,
+            int24 newTickLower,
+            int24 newTickUpper
+        ) = abi.decode(data, (address, uint256, int24, int24));
+        
+        UserPosition storage position = userPositions[sender][positionId];
+        
+        // Remove old position
+        IPoolManager.ModifyLiquidityParams memory removeParams = IPoolManager
+            .ModifyLiquidityParams({
+                tickLower: position.tickLower,
+                tickUpper: position.tickUpper,
+                liquidityDelta: -int256(uint256(position.liquidity)),
+                salt: position.salt
+            });
+        
+        BalanceDelta removeDelta = poolManager.modifyLiquidity(
+            position.poolKey,
+            removeParams,
+            ""
+        );
+        
+        // Calculate new liquidity
+        uint256 amount0 = uint256(int256(removeDelta.amount0()));
+        uint256 amount1 = uint256(int256(removeDelta.amount1()));
+        
+        PoolId poolId = position.poolKey.toId();
+        (uint160 sqrtPriceX96, , , ) = poolManager.getSlot0(poolId);
+        
+        uint160 sqrtRatioAX96 = TickMath.getSqrtPriceAtTick(newTickLower);
+        uint160 sqrtRatioBX96 = TickMath.getSqrtPriceAtTick(newTickUpper);
+        
+        uint128 newLiquidity = LiquidityAmounts.getLiquidityForAmounts(
+            sqrtPriceX96,
+            sqrtRatioAX96,
+            sqrtRatioBX96,
+            amount0,
+            amount1
+        );
+        
+        // Add new position
+        IPoolManager.ModifyLiquidityParams memory addParams = IPoolManager
+            .ModifyLiquidityParams({
+                tickLower: newTickLower,
+                tickUpper: newTickUpper,
+                liquidityDelta: int256(uint256(newLiquidity)),
+                salt: position.salt
+            });
+        
+        poolManager.modifyLiquidity(position.poolKey, addParams, "");
+        
+        // Update stored position
+        position.tickLower = newTickLower;
+        position.tickUpper = newTickUpper;
+        position.liquidity = newLiquidity;
+        
+        return "";
+    }
+}
+```
+
+---
