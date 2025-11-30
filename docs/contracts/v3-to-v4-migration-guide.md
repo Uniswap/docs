@@ -4760,3 +4760,122 @@ sepolia = "${SEPOLIA_RPC_URL}"
 ```
 
 ---
+
+### Basic Foundry Test Template
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "forge-std/Test.sol";
+import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
+import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
+import {Currency} from "@uniswap/v4-core/contracts/types/Currency.sol";
+import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/contracts/types/PoolId.sol";
+import {Deployers} from "@uniswap/v4-core/test/utils/Deployers.sol";
+
+import {MySwapper} from "../src/MySwapper.sol";
+
+contract MySwapperTest is Test, Deployers {
+    using PoolIdLibrary for PoolKey;
+
+    MySwapper public swapper;
+    PoolKey public poolKey;
+    PoolId public poolId;
+
+    function setUp() public {
+        // Deploy V4 core contracts
+        deployFreshManagerAndRouters();
+        
+        // Deploy test tokens
+        (Currency currency0, Currency currency1) = deployMintAndApprove2Currencies();
+        
+        // Initialize pool
+        poolKey = PoolKey({
+            currency0: currency0,
+            currency1: currency1,
+            fee: 3000,
+            tickSpacing: 60,
+            hooks: IHooks(address(0))
+        });
+        
+        poolId = poolKey.toId();
+        initializeRouter.initialize(poolKey, SQRT_PRICE_1_1, ZERO_BYTES);
+        
+        // Deploy swapper contract
+        swapper = new MySwapper(manager);
+        
+        // Approve swapper to use tokens
+        approveTokens(address(swapper));
+    }
+
+    function testSwapExactInput() public {
+        uint256 amountIn = 1e18;
+        uint256 amountOutMinimum = 0.99e18;
+
+        // Get balance before swap
+        uint256 balanceBefore = currency1.balanceOf(address(this));
+
+        // Execute swap
+        uint256 amountOut = swapper.swapExactInputSingle(
+            poolKey.currency0,
+            poolKey.currency1,
+            poolKey.fee,
+            poolKey.tickSpacing,
+            address(0),
+            amountIn,
+            amountOutMinimum
+        );
+
+        // Verify swap executed
+        assertGt(amountOut, 0, "No tokens received");
+        assertGe(amountOut, amountOutMinimum, "Insufficient output");
+        
+        // Verify balance changed
+        uint256 balanceAfter = currency1.balanceOf(address(this));
+        assertEq(balanceAfter, balanceBefore + amountOut, "Balance mismatch");
+    }
+
+    function testSwapRevertsOnInsufficientOutput() public {
+        uint256 amountIn = 1e18;
+        uint256 amountOutMinimum = 10e18; // Unrealistic minimum
+
+        // Expect revert
+        vm.expectRevert("Insufficient output");
+        
+        swapper.swapExactInputSingle(
+            poolKey.currency0,
+            poolKey.currency1,
+            poolKey.fee,
+            poolKey.tickSpacing,
+            address(0),
+            amountIn,
+            amountOutMinimum
+        );
+    }
+
+    function testFuzzSwapAmounts(uint256 amountIn) public {
+        // Bound inputs to reasonable range
+        amountIn = bound(amountIn, 1e15, 100e18);
+
+        // Execute swap with 5% slippage tolerance
+        uint256 amountOutMinimum = 0;
+
+        uint256 amountOut = swapper.swapExactInputSingle(
+            poolKey.currency0,
+            poolKey.currency1,
+            poolKey.fee,
+            poolKey.tickSpacing,
+            address(0),
+            amountIn,
+            amountOutMinimum
+        );
+
+        // Verify output is reasonable
+        assertGt(amountOut, 0, "Zero output");
+        assertLt(amountOut, amountIn * 2, "Output too large");
+    }
+}
+```
+
+---
