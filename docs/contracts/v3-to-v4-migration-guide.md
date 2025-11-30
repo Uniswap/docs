@@ -6286,3 +6286,108 @@ function unlockCallback(bytes calldata data) external returns (bytes memory) {
     return "";
 }
 ```
+
+---
+
+### Issue 3: "Pool not initialized"
+
+**Symptom:**
+```
+Error: Pool does not exist or is not initialized
+```
+
+**Cause:** Trying to interact with pool before initialization.
+
+**Solution:**
+```solidity
+// Check if pool exists before operations
+function safeSwap(PoolKey memory poolKey, ...) external {
+    PoolId poolId = poolKey.toId();
+    
+    // Check if pool is initialized
+    (uint160 sqrtPriceX96, , , ) = poolManager.getSlot0(poolId);
+    require(sqrtPriceX96 != 0, "Pool not initialized");
+    
+    // Proceed with swap
+    // ...
+}
+
+// Or initialize pool if it doesn't exist
+function initializePoolIfNeeded(PoolKey memory poolKey, uint160 sqrtPriceX96) external {
+    PoolId poolId = poolKey.toId();
+    
+    try poolManager.getSlot0(poolId) returns (uint160 price, int24, uint16, uint24) {
+        if (price == 0) {
+            poolManager.initialize(poolKey, sqrtPriceX96, "");
+        }
+    } catch {
+        poolManager.initialize(poolKey, sqrtPriceX96, "");
+    }
+}
+```
+
+---
+
+### Issue 4: Incorrect PoolKey Construction
+
+**Symptom:**
+```
+Pool operations fail silently or return unexpected results
+```
+
+**Cause:** Currencies not ordered correctly in PoolKey.
+
+**Solution:**
+```solidity
+// ALWAYS order currencies correctly
+function createPoolKey(
+    Currency currencyA,
+    Currency currencyB,
+    uint24 fee,
+    int24 tickSpacing,
+    address hooks
+) internal pure returns (PoolKey memory) {
+    // Order currencies: currency0 < currency1
+    (Currency currency0, Currency currency1) = currencyA < currencyB
+        ? (currencyA, currencyB)
+        : (currencyB, currencyA);
+    
+    return PoolKey({
+        currency0: currency0,
+        currency1: currency1,
+        fee: fee,
+        tickSpacing: tickSpacing,
+        hooks: IHooks(hooks)
+    });
+}
+```
+
+---
+
+### Issue 5: Gas Estimation Failures
+
+**Symptom:**
+```
+Error: Transaction may fail or may require manual gas limit
+```
+
+**Cause:** Gas estimation doesn't account for unlock callback complexity.
+
+**Solution:**
+```typescript
+// Frontend: Always set manual gas limit
+const gasEstimate = await contract.swapExactInputSingle.estimateGas(...args);
+const gasLimit = gasEstimate * 120n / 100n; // Add 20% buffer
+
+const tx = await contract.swapExactInputSingle(...args, {
+  gasLimit: gasLimit
+});
+```
+
+---
+
+---
+
+*That is the End for Now Built and curated For easy Migration and V4 understanding .*
+
+---
