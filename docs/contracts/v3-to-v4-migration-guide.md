@@ -3940,3 +3940,119 @@ When migrating frontend applications:
 
 *Continue to [Hooks System Integration](#hooks-integration) for implementing custom hook logic.*
 
+---
+
+## Hooks System Integration
+
+Hooks are V4's most powerful new feature, enabling custom logic at specific points in pool operations. This section covers when to use hooks, how to implement them, and common patterns.
+
+---
+
+### Understanding Hooks
+
+**What Are Hooks?**
+
+Hooks are smart contracts that implement callback functions called by PoolManager during pool operations. They allow customization without forking the core protocol.
+
+**Hook Lifecycle:**
+
+```
+User calls PoolManager
+    ↓
+PoolManager calls beforeHook (if implemented)
+    ↓
+PoolManager executes core logic
+    ↓
+PoolManager calls afterHook (if implemented)
+    ↓
+Result returned to user
+```
+
+**Available Hook Points:**
+
+- `beforeInitialize` / `afterInitialize` - Pool creation
+- `beforeAddLiquidity` / `afterAddLiquidity` - Adding liquidity
+- `beforeRemoveLiquidity` / `afterRemoveLiquidity` - Removing liquidity
+- `beforeSwap` / `afterSwap` - Executing swaps
+- `beforeDonate` / `afterDonate` - Donating to pool
+
+---
+
+### When to Use Hooks vs Traditional Contracts
+
+**Use Hooks When:**
+- You need to modify pool behavior (fees, limits, logic)
+- You want to react to pool events automatically
+- You need access to pool state during operations
+- You want to integrate tightly with a specific pool
+
+**Use Traditional Contracts When:**
+- Logic is independent of pool operations
+- You need to work across multiple pools
+- You don't need pool state access
+- Complexity would exceed hook gas limits
+
+**V3 to V4 Migration Scenarios:**
+
+| V3 Pattern | V4 Solution |
+|------------|-------------|
+| Custom router with logic | beforeSwap / afterSwap hook |
+| Fee-on-transfer wrapper | beforeSwap hook to adjust amounts |
+| Time-locked liquidity | beforeRemoveLiquidity hook with checks |
+| Oracle integration | afterSwap hook to update price feeds |
+| Whitelist for LPs | beforeAddLiquidity hook with access control |
+| Custom fee distribution | afterSwap hook to redirect fees |
+
+---
+
+### Basic Hook Implementation
+
+**Minimal Hook Template:**
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import {BaseHook} from "@uniswap/v4-core/contracts/BaseHook.sol";
+import {Hooks} from "@uniswap/v4-core/contracts/libraries/Hooks.sol";
+import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
+import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
+import {BalanceDelta} from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
+
+contract MyBasicHook is BaseHook {
+    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
+
+    // Define which hooks this contract implements
+    function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+        return Hooks.Permissions({
+            beforeInitialize: false,
+            afterInitialize: false,
+            beforeAddLiquidity: false,
+            afterAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterRemoveLiquidity: false,
+            beforeSwap: true,  // We implement beforeSwap
+            afterSwap: false,
+            beforeDonate: false,
+            afterDonate: false,
+            beforeSwapReturnDelta: false,
+            afterSwapReturnDelta: false,
+            afterAddLiquidityReturnDelta: false,
+            afterRemoveLiquidityReturnDelta: false
+        });
+    }
+
+    // Implement the hook
+    function beforeSwap(
+        address sender,
+        PoolKey calldata key,
+        IPoolManager.SwapParams calldata params,
+        bytes calldata hookData
+    ) external override returns (bytes4, BeforeSwapDelta, uint24) {
+        // Custom logic here
+        
+        // Return selector to indicate success
+        return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
+    }
+}
+```
