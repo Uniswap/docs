@@ -4976,3 +4976,54 @@ contract MyLiquidityManagerTest is Test, Deployers {
 
 ---
 
+### Testing Hooks
+
+```solidity
+contract MyHookTest is Test, Deployers {
+    using PoolIdLibrary for PoolKey;
+
+    MyDynamicFeeHook public hook;
+    PoolKey public poolKey;
+
+    function setUp() public {
+        deployFreshManagerAndRouters();
+        
+        // Deploy hook at valid address (mining salt off-chain)
+        hook = new MyDynamicFeeHook{salt: VALID_SALT}(manager);
+        
+        (Currency currency0, Currency currency1) = deployMintAndApprove2Currencies();
+        
+        // Create pool with hook
+        poolKey = PoolKey({
+            currency0: currency0,
+            currency1: currency1,
+            fee: 3000,
+            tickSpacing: 60,
+            hooks: IHooks(address(hook))
+        });
+        
+        initializeRouter.initialize(poolKey, SQRT_PRICE_1_1, ZERO_BYTES);
+    }
+
+    function testHookModifiesFee() public {
+        // Execute swap
+        swap(poolKey, true, 1e18, ZERO_BYTES);
+
+        // Verify hook was called
+        // Check hook state or events
+        assertTrue(hook.wasCalledFor(poolKey.toId()), "Hook not called");
+    }
+
+    function testHookRevertsOnCondition() public {
+        // Set condition that should cause revert
+        hook.setRevertCondition(true);
+
+        // Expect revert
+        vm.expectRevert("Hook condition failed");
+        swap(poolKey, true, 1e18, ZERO_BYTES);
+    }
+}
+```
+
+---
+
