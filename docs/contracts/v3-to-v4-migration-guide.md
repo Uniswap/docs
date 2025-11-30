@@ -5027,3 +5027,82 @@ contract MyHookTest is Test, Deployers {
 
 ---
 
+
+### Mainnet Fork Testing
+
+```solidity
+contract ForkTest is Test {
+    IPoolManager public poolManager;
+    
+    uint256 mainnetFork;
+    address constant POOL_MANAGER_ADDRESS = 0x...; // Actual mainnet address
+
+    function setUp() public {
+        // Create mainnet fork
+        mainnetFork = vm.createFork(vm.envString("MAINNET_RPC_URL"));
+        vm.selectFork(mainnetFork);
+        
+        poolManager = IPoolManager(POOL_MANAGER_ADDRESS);
+    }
+
+    function testSwapOnMainnetFork() public {
+        // Test against real mainnet state
+        address user = address(0x123);
+        
+        vm.startPrank(user);
+        
+        // Execute operations
+        // ...
+        
+        vm.stopPrank();
+    }
+
+    function testMigrationScenario() public {
+        // Simulate full migration from V3 to V4
+        // 1. Remove V3 liquidity
+        // 2. Add V4 liquidity
+        // 3. Verify state is correct
+    }
+}
+```
+
+---
+
+### Hardhat Testing Setup
+
+**hardhat.config.ts:**
+
+```typescript
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-toolbox";
+
+const config: HardhatUserConfig = {
+  solidity: {
+    version: "0.8.20",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 1000000,
+      },
+    },
+  },
+  networks: {
+    hardhat: {
+      forking: {
+        url: process.env.MAINNET_RPC_URL || "",
+        enabled: process.env.FORK === "true",
+      },
+    },
+    sepolia: {
+      url: process.env.SEPOLIA_RPC_URL || "",
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+    },
+  },
+  gasReporter: {
+    enabled: true,
+    currency: "USD",
+  },
+};
+
+export default config;
+```
