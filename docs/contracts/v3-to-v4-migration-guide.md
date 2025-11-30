@@ -488,3 +488,475 @@ Outcome: Added V4 support when 20% of pools migrated
 ---
 
 *Once you've completed this evaluation, proceed to [Key Architectural Changes](#architectural-changes) to understand what's different in V4.*
+
+---
+
+## Key Architectural Changes
+
+This section provides a comprehensive technical overview of the fundamental differences between Uniswap V3 and V4 architectures. Understanding these changes is essential before beginning any migration work.
+
+### Core Architectural Shift: Multiple Contracts to Singleton
+
+The most significant change in V4 is the move from multiple independent pool contracts to a single `PoolManager` contract.
+
+#### V3 Architecture
+
+```
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│  Pool A     │  │  Pool B     │  │  Pool C     │
+│  (USDC/ETH) │  │  (DAI/USDC) │  │  (WBTC/ETH) │
+└─────────────┘  └─────────────┘  └─────────────┘
+      │                 │                 │
+      └─────────────────┴─────────────────┘
+               Individual Deployments
+        Each pool is a separate contract
+```
+
+#### V4 Architecture
+
+```
+┌───────────────────────────────────────────────┐
+│         PoolManager (Singleton)                │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
+│  │ Pool A   │  │ Pool B   │  │ Pool C   │   │
+│  │ State    │  │ State    │  │ State    │   │
+│  └──────────┘  └──────────┘  └──────────┘   │
+└───────────────────────────────────────────────┘
+            All pools in one contract
+         State stored in mapping structures
+```
+
+**Implications:**
+- Pool creation is now a state change, not a contract deployment
+- Gas costs for creating pools significantly reduced
+- All pool interactions go through PoolManager
+- Enables flash accounting across multiple pools
+- Simplifies multi-hop swap logic
+
+---
+
+### Contract Structure Comparison
+
+#### V3 Core Contracts
+
+```
+UniswapV3Factory
+├── Creates: UniswapV3Pool instances
+└── Manages: Pool registry
+
+UniswapV3Pool (per pool pair)
+├── Manages: Pool state
+├── Handles: Swaps
+├── Handles: Liquidity provision
+└── Handles: Fee collection
+
+NonfungiblePositionManager
+├── Wraps: Pool positions as NFTs
+└── Manages: LP position lifecycle
+```
+
+#### V4 Core Contracts
+
+```
+PoolManager (Singleton)
+├── Manages: All pool states
+├── Handles: All swaps across all pools
+├── Handles: All liquidity operations
+├── Coordinates: Hook callbacks
+└── Implements: Flash accounting
+
+Hooks (Optional, per pool)
+├── beforeInitialize / afterInitialize
+├── beforeAddLiquidity / afterAddLiquidity
+├── beforeRemoveLiquidity / afterRemoveLiquidity
+├── beforeSwap / afterSwap
+└── beforeDonate / afterDonate
+
+PositionManager (Separate contract)
+├── Similar to V3 NonfungiblePositionManager
+└── Interacts with PoolManager
+```
+
+---
+
+### Key Concept 1: Singleton Pattern
+
+**Definition:** All pools exist within a single `PoolManager` contract rather than as individual deployed contracts.
+
+**V3 Pattern:**
+```solidity
+// V3: Each pool is a separate contract
+IUniswapV3Pool pool = IUniswapV3Pool(poolAddress);
+pool.swap(recipient, zeroForOne, amountSpecified, sqrtPriceLimitX96, data);
+```
+
+**V4 Pattern:**
+```solidity
+// V4: All pools accessed through PoolManager
+IPoolManager poolManager = IPoolManager(POOL_MANAGER_ADDRESS);
+poolManager.swap(poolKey, params, hookData);
+```
+
+**Benefits:**
+1. **Gas Efficiency:** No contract creation costs for new pools
+2. **Flash Accounting:** Settle net balances across multiple operations
+3. **Simplified Multi-Hop:** Internal accounting for complex routes
+4. **Reduced Fragmentation:** One contract to interact with
+
+**Trade-offs:**
+1. **Larger Contract:** More complex single point of interaction
+2. **Different Security Model:** All pools share contract security
+3. **State Management:** More complex storage patterns
+
+---
+
+### Key Concept 2: Hooks System
+
+**Definition:** Hooks are optional smart contracts that execute custom logic at specific points in pool operations.
+
+**Hook Lifecycle:**
+
+```
+User Action → PoolManager → beforeHook → Core Logic → afterHook → Result
+```
+
+**Available Hook Points:**
+
+```solidity
+interface IHooks {
+    function beforeInitialize(address sender, PoolKey calldata key, uint160 sqrtPriceX96) 
+        external returns (bytes4);
+    
+    function afterInitialize(address sender, PoolKey calldata key, uint160 sqrtPriceX96, int24 tick) 
+        external returns (bytes4);
+    
+    function beforeAddLiquidity(address sender, PoolKey calldata key, 
+        IPoolManager.ModifyLiquidityParams calldata params, bytes calldata hookData) 
+        external returns (bytes4);
+    
+    function afterAddLiquidity(address sender, PoolKey calldata key, 
+        IPoolManager.ModifyLiquidityParams calldata params, BalanceDelta delta, bytes calldata hookData) 
+        external returns (bytes4, BalanceDelta);
+    
+    function beforeRemoveLiquidity(address sender, PoolKey calldata key, 
+        IPoolManager.ModifyLiquidityParams calldata params, bytes calldata hookData) 
+        external returns (bytes4);
+    
+    function afterRemoveLiquidity(address sender, PoolKey calldata key, 
+        IPoolManager.ModifyLiquidityParams calldata params, BalanceDelta delta, bytes calldata hookData) 
+        external returns (bytes4, BalanceDelta);
+    
+    function beforeSwap(address sender, PoolKey calldata key, 
+        IPoolManager.SwapParams calldata params, bytes calldata hookData) 
+        external returns (bytes4, BeforeSwapDelta, uint24);
+    
+    function afterSwap(address sender, PoolKey calldata key, 
+        IPoolManager.SwapParams calldata params, BalanceDelta delta, bytes calldata hookData) 
+        external returns (bytes4, int128);
+    
+    function beforeDonate(address sender, PoolKey calldata key, uint256 amount0, uint256 amount1) 
+        external returns (bytes4);
+    
+    function afterDonate(address sender, PoolKey calldata key, uint256 amount0, uint256 amount1) 
+        external returns (bytes4);
+}
+```
+
+**Hook Use Cases:**
+- Time-weighted average price (TWAP) oracles
+- Dynamic fee adjustment based on volatility
+- Limit orders implemented as hooks
+- MEV protection mechanisms
+- Custom access control (whitelist/blacklist)
+- Liquidity mining rewards distribution
+- Automated position rebalancing
+- On-chain stop-loss mechanisms
+
+---
+
+### Key Concept 3: Pool Identification
+
+**V3: Pool Addresses**
+```solidity
+// V3: Pools identified by contract address
+address poolAddress = factory.getPool(tokenA, tokenB, fee);
+IUniswapV3Pool pool = IUniswapV3Pool(poolAddress);
+```
+
+**V4: PoolKey Struct**
+```solidity
+// V4: Pools identified by PoolKey struct
+struct PoolKey {
+    Currency currency0;           // Token 0
+    Currency currency1;           // Token 1
+    uint24 fee;                   // Fee tier
+    int24 tickSpacing;            // Tick spacing
+    IHooks hooks;                 // Hooks contract (or address(0))
+}
+
+PoolId poolId = poolKey.toId();  // Deterministic ID from PoolKey
+```
+
+**Key Differences:**
+- V4 pools identified by hash of PoolKey
+- Hooks contract address is part of pool identity
+- Same token pair can have multiple pools with different hooks
+- PoolKey is passed to all PoolManager functions
+
+---
+
+### Key Concept 4: Flash Accounting
+
+**Definition:** Net settlement of balances at the end of a transaction rather than immediate token transfers.
+
+**V3 Behavior:**
+```
+User initiates swap
+  → Transfer tokens IN
+  → Pool updates state
+  → Transfer tokens OUT
+  → Check balances
+```
+
+**V4 Behavior:**
+```
+User locks PoolManager
+  → Operation 1 (records delta)
+  → Operation 2 (records delta)
+  → Operation N (records delta)
+  → Settle net balances at end
+  → Single transfer per token
+```
+
+**Benefits:**
+1. **Gas Savings:** Fewer token transfers
+2. **Complex Operations:** Multi-hop swaps more efficient
+3. **Atomic Batching:** Multiple operations in one transaction
+4. **MEV Opportunities:** More efficient arbitrage
+
+**Example Scenario:**
+```
+Multi-hop swap: USDC → ETH → WBTC
+V3: 4 token transfers (2 per hop)
+V4: 2 token transfers (net USDC in, net WBTC out)
+```
+
+---
+
+### Key Concept 5: Native ETH Support
+
+**V3 Limitation:**
+```solidity
+// V3: Must wrap ETH to WETH first
+IWETH(WETH).deposit{value: msg.value}();
+IWETH(WETH).approve(router, amount);
+router.exactInputSingle(params);
+```
+
+**V4 Improvement:**
+```solidity
+// V4: Direct ETH support in pools
+poolManager.swap{value: msg.value}(
+    poolKey,  // Can use address(0) for ETH
+    params,
+    hookData
+);
+```
+
+**Benefits:**
+- One fewer transaction for users
+- Lower gas costs (no WETH wrap/unwrap)
+- Better UX (native ETH handling)
+- Reduced contract interactions
+
+---
+
+### Data Structure Changes
+
+#### Position Data
+
+**V3 Position:**
+```solidity
+struct Position {
+    uint128 liquidity;
+    uint256 feeGrowthInside0LastX128;
+    uint256 feeGrowthInside1LastX128;
+    uint128 tokensOwed0;
+    uint128 tokensOwed1;
+}
+```
+
+**V4 Position:**
+```solidity
+// Similar structure, accessed differently
+mapping(bytes32 => Position.Info) internal positions;
+
+// Position key derived from:
+// keccak256(abi.encodePacked(owner, tickLower, tickUpper, salt))
+```
+
+#### Pool State
+
+**V3:**
+```solidity
+// Each pool contract stores its own state
+contract UniswapV3Pool {
+    uint160 public slot0.sqrtPriceX96;
+    int24 public slot0.tick;
+    uint128 public liquidity;
+    // ... other state variables
+}
+```
+
+**V4:**
+```solidity
+// PoolManager stores all pool states in mappings
+contract PoolManager {
+    mapping(PoolId => Pool.State) internal pools;
+    
+    struct State {
+        uint160 sqrtPriceX96;
+        int24 tick;
+        uint128 liquidity;
+        // ... other state
+    }
+}
+```
+
+---
+
+### Event Structure Changes
+
+#### V3 Events
+
+```solidity
+event Swap(
+    address indexed sender,
+    address indexed recipient,
+    int256 amount0,
+    int256 amount1,
+    uint160 sqrtPriceX96,
+    uint128 liquidity,
+    int24 tick
+);
+```
+
+#### V4 Events
+
+```solidity
+event Swap(
+    PoolId indexed poolId,
+    address indexed sender,
+    int128 amount0,
+    int128 amount1,
+    uint160 sqrtPriceX96,
+    uint128 liquidity,
+    int24 tick,
+    uint24 fee
+);
+```
+
+**Changes:**
+- `PoolId` instead of implicit pool address
+- `int128` instead of `int256` for amounts (gas optimization)
+- Additional `fee` field
+- Emitted from PoolManager, not individual pools
+
+---
+
+### Gas Cost Comparison
+
+Approximate gas costs for common operations:
+
+| Operation | V3 Gas Cost | V4 Gas Cost | Savings |
+|-----------|-------------|-------------|---------|
+| Create Pool | ~5,000,000 | ~75,000 | 98% |
+| Simple Swap | ~125,000 | ~95,000 | 24% |
+| Multi-hop (2 pools) | ~245,000 | ~135,000 | 45% |
+| Add Liquidity | ~165,000 | ~145,000 | 12% |
+| Remove Liquidity | ~150,000 | ~130,000 | 13% |
+
+Note: Actual costs vary based on pool state and hook complexity.
+
+---
+
+### Security Model Changes
+
+#### V3 Security
+
+```
+Security Perimeter = Individual Pool Contract
+
+Each pool is isolated:
+- Separate contract = separate attack surface
+- Pool exploit doesn't affect other pools
+- Upgrade affects only that pool
+```
+
+#### V4 Security
+
+```
+Security Perimeter = PoolManager Contract
+
+All pools share security:
+- Single contract = single attack surface
+- PoolManager exploit affects all pools
+- Hooks add additional attack vectors
+- More complex to audit
+```
+
+**Important Considerations:**
+- V4 has been extensively audited
+- Hooks must be carefully reviewed
+- PoolManager is immutable (no upgrade mechanism)
+- Stronger focus on formal verification
+
+---
+
+### Breaking Changes Summary
+
+**Not Compatible:**
+- Direct pool contract calls (must use PoolManager)
+- Pool address-based identification (use PoolKey)
+- NFT position token IDs (different encoding)
+- Event listening (different event sources)
+- WETH-only pools (now supports native ETH)
+
+**Migration Required For:**
+- All smart contract integrations
+- All SDK/frontend code
+- Event monitoring systems
+- Position tracking logic
+- Multi-hop routing algorithms
+
+**Similar Concepts:**
+- Concentrated liquidity (same mechanism)
+- Tick math (unchanged)
+- Fee tiers (similar, but more flexible)
+- Position NFTs (similar concept, different implementation)
+
+---
+
+### Architecture Decision Rationale
+
+**Why Singleton?**
+- Gas efficiency for pool creation
+- Enables flash accounting
+- Simplifies cross-pool operations
+- Reduces contract deployment overhead
+
+**Why Hooks?**
+- Customization without forking
+- Innovation at pool level
+- Maintain core simplicity
+- Enable new DeFi primitives
+
+**Why Native ETH?**
+- Better user experience
+- Lower gas costs
+- Eliminate WETH dependency
+- Simpler mental model
+
+---
+
+*Now that you understand the architectural differences, proceed to [Smart Contract Migration](#smart-contract-migration) to see how to update your code.*
