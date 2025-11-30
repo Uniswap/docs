@@ -2209,4 +2209,104 @@ function increaseLiquidityV4(
 
 ---
 
+#### Complete Liquidity Manager Example
 
+```solidity
+contract CompleteLiquidityManagerV4 is IUnlockCallback {
+    IPoolManager public immutable poolManager;
+    
+    // Track user positions
+    struct PositionInfo {
+        PoolKey poolKey;
+        int24 tickLower;
+        int24 tickUpper;
+        bytes32 salt;
+        uint128 liquidity;
+    }
+    
+    mapping(address => PositionInfo[]) public userPositions;
+    
+    constructor(address _poolManager) {
+        poolManager = IPoolManager(_poolManager);
+    }
+    
+    // Unified callback router
+    enum CallbackType {
+        ADD_LIQUIDITY,
+        REMOVE_LIQUIDITY,
+        COLLECT_FEES
+    }
+    
+    struct CallbackData {
+        CallbackType callbackType;
+        bytes data;
+    }
+    
+    function unlockCallback(bytes calldata rawData) 
+        external 
+        returns (bytes memory) 
+    {
+        require(msg.sender == address(poolManager), "Not PoolManager");
+        
+        CallbackData memory callback = abi.decode(rawData, (CallbackData));
+        
+        if (callback.callbackType == CallbackType.ADD_LIQUIDITY) {
+            return handleAddLiquidity(callback.data);
+        } else if (callback.callbackType == CallbackType.REMOVE_LIQUIDITY) {
+            return handleRemoveLiquidity(callback.data);
+        } else if (callback.callbackType == CallbackType.COLLECT_FEES) {
+            return handleCollectFees(callback.data);
+        }
+        
+        revert("Invalid callback type");
+    }
+    
+    function handleAddLiquidity(bytes memory data) 
+        private 
+        returns (bytes memory) 
+    {
+        // Implementation from earlier examples
+        // ...
+    }
+    
+    function handleRemoveLiquidity(bytes memory data) 
+        private 
+        returns (bytes memory) 
+    {
+        // Implementation from earlier examples
+        // ...
+    }
+    
+    function handleCollectFees(bytes memory data) 
+        private 
+        returns (bytes memory) 
+    {
+        // Implementation from earlier examples
+        // ...
+    }
+}
+```
+
+---
+
+#### Migration Checklist for Liquidity Management
+
+When migrating liquidity functionality:
+
+- [ ] Replace `INonfungiblePositionManager` with `IPoolManager`
+- [ ] Implement `IUnlockCallback` interface
+- [ ] Convert position tracking from tokenId to position hash
+- [ ] Update liquidity calculations to use `liquidityDelta` directly
+- [ ] Implement position tracking system (positions not auto-NFTs)
+- [ ] Update fee collection to use zero-delta modification
+- [ ] Add salt parameter for position identification
+- [ ] Handle native ETH in settlement logic
+- [ ] Update increase/decrease liquidity functions
+- [ ] Implement proper callback routing for different operations
+- [ ] Test position lifecycle (create, modify, remove, collect)
+- [ ] Verify slippage protection works correctly
+- [ ] Consider implementing optional NFT wrapper if needed
+
+---
+
+*Continue to [Position Management](#position-management) for advanced position handling patterns.*
