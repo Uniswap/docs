@@ -4690,3 +4690,25 @@ When implementing hooks for V3 custom logic:
 ---
 
 *Continue to [Testing & Deployment](#testing-deployment) for safe migration strategies.*
+
+---
+
+## Testing & Deployment
+
+Safe migration requires comprehensive testing and careful deployment planning. This section covers testing strategies, deployment approaches, and risk mitigation.
+
+---
+
+### Testing Strategy Overview
+
+**Testing Phases:**
+
+1. **Unit Tests** - Individual function testing
+2. **Integration Tests** - Full workflow testing
+3. **Fork Tests** - Mainnet simulation
+4. **Gas Benchmarking** - Performance validation
+5. **Security Audits** - Professional review
+6. **Testnet Deployment** - Live environment testing
+7. **Staged Mainnet** - Gradual rollout
+
+---
