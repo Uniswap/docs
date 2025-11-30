@@ -1,6 +1,6 @@
 # Migrating from Uniswap V3 to V4: Complete Developer Guide
 
-> **Last Updated:** December 2024  
+> **Last Updated:** November 2025  
 > **Target Audience:** Developers with existing V3 integrations  
 > **Difficulty:** Intermediate to Advanced  
 > **Estimated Migration Time:** 2-6 weeks depending on complexity
