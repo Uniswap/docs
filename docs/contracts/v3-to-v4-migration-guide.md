@@ -31,11 +31,11 @@ Uniswap V4 represents the most significant architectural evolution since V2. Whi
 
 This guide provides practical, code-level migration patterns for:
 
-- ✅ **Smart Contract Integration** - Migrating Solidity code that interacts with Uniswap
-- ✅ **SDK Usage** - Updating TypeScript/JavaScript applications
-- ✅ **Frontend Integration** - React/Web3 dApp migrations
-- ✅ **Testing Strategies** - Ensuring safe migrations
-- ✅ **Hooks Integration** - Leveraging V4's new capabilities
+-  **Smart Contract Integration** - Migrating Solidity code that interacts with Uniswap
+-  **SDK Usage** - Updating TypeScript/JavaScript applications
+-  **Frontend Integration** - React/Web3 dApp migrations
+-  **Testing Strategies** - Ensuring safe migrations
+-  **Hooks Integration** - Leveraging V4's new capabilities
 
 ### What You Need
 
@@ -53,7 +53,7 @@ This guide provides practical, code-level migration patterns for:
 ### Why Migrate to V4?
 
 **Key Benefits:**
-1. **Gas Efficiency** - Singleton pattern reduces deployment and swap costs
+1. **Gas Efficiency** - Singleton pattern reduces deployment and swap cost
 2. **Composability** - Hooks enable custom pool logic without forking
 3. **Flash Accounting** - More efficient multi-hop swaps
 4. **Native ETH Support** - No more WETH wrapping overhead
@@ -226,9 +226,9 @@ Do you have bandwidth for 2-6 weeks of migration + testing?
 Migration Priority: MEDIUM
 Reason: Both V3 and V4 work well for basic swaps
 Consider: 
-  ✅ Migrate if gas savings matter to users
-  ✅ Migrate if you want to support V4 pools
-  ⚠️  Can support both V3 and V4 simultaneously
+   Migrate if gas savings matter to users
+   Migrate if you want to support V4 pools
+   Can support both V3 and V4 simultaneously
 ```
 
 ##### B. Liquidity Management Protocol
@@ -236,9 +236,9 @@ Consider:
 Migration Priority: HIGH
 Reason: V4 hooks enable advanced LP strategies
 Consider:
-  ✅ Hooks can automate rebalancing
-  ✅ Custom fee structures possible
-  ✅ Better composability with other protocols
+   Hooks can automate rebalancing
+   Custom fee structures possible
+   Better composability with other protocols
 ```
 
 ##### C. Trading Bot / Arbitrage Tool
@@ -246,9 +246,9 @@ Consider:
 Migration Priority: HIGH
 Reason: Gas efficiency directly impacts profitability
 Consider:
-  ✅ Lower gas = more profitable trades
-  ✅ Flash accounting helps multi-pool arbs
-  ✅ Faster execution with singleton
+   Lower gas = more profitable trades
+   Flash accounting helps multi-pool arbs
+   Faster execution with singleton
 ```
 
 ##### D. Analytics / Read-Only Integration
@@ -256,9 +256,9 @@ Consider:
 Migration Priority: LOW
 Reason: No execution means no gas benefits
 Consider:
-  ⚠️  May need to support both V3 and V4 data
-  ⚠️  Different event structures to monitor
-  ✅ Migrate when user demand increases
+    May need to support both V3 and V4 data
+    Different event structures to monitor
+   Migrate when user demand increases
 ```
 
 ##### E. DeFi Protocol Integration
@@ -266,9 +266,9 @@ Consider:
 Migration Priority: HIGH
 Reason: Hooks enable deep protocol integration
 Consider:
-  ✅ Can build custom hooks for your protocol
-  ✅ Better composability patterns
-  ✅ More flexible pool configurations
+   Can build custom hooks for your protocol
+   Better composability patterns
+   More flexible pool configurations
 ```
 
 ##### F. Educational / Learning Project
@@ -276,9 +276,9 @@ Consider:
 Migration Priority: HIGH
 Reason: V4 is the future, learn modern patterns
 Consider:
-  ✅ Better architecture to learn from
-  ✅ More opportunities for innovation
-  ✅ Growing ecosystem of hooks
+   Better architecture to learn from
+   More opportunities for innovation
+   Growing ecosystem of hooks
 ```
 
 ---
@@ -288,22 +288,22 @@ Consider:
 **Evaluate these risk factors:**
 
 ##### Technical Risks
-- ⚠️ **Breaking Changes**: V4 is NOT backward compatible
-- ⚠️ **Learning Curve**: New patterns require understanding
-- ⚠️ **Testing Required**: Extensive testing needed before production
-- ✅ **Mitigation**: This guide + comprehensive test suite
+-  **Breaking Changes**: V4 is NOT backward compatible
+-  **Learning Curve**: New patterns require understanding
+-  **Testing Required**: Extensive testing needed before production
+-  **Mitigation**: This guide + comprehensive test suite
 
 ##### Business Risks
-- ⚠️ **Development Time**: 2-6 weeks of engineering resources
-- ⚠️ **Opportunity Cost**: Could build new features instead
-- ⚠️ **User Disruption**: Potential downtime during migration
-- ✅ **Mitigation**: Gradual rollout + V3 fallback option
+-  **Development Time**: 2-6 weeks of engineering resources
+-  **Opportunity Cost**: Could build new features instead
+-  **User Disruption**: Potential downtime during migration
+-  **Mitigation**: Gradual rollout + V3 fallback option
 
 ##### Ecosystem Risks
-- ⚠️ **V4 Adoption Rate**: Will liquidity migrate to V4?
-- ⚠️ **Tooling Maturity**: Some V4 tools still maturing
-- ⚠️ **Auditor Familiarity**: Fewer auditors know V4 deeply
-- ✅ **Mitigation**: V4 is production-ready, ecosystem growing
+-  **V4 Adoption Rate**: Will liquidity migrate to V4?
+-  **Tooling Maturity**: Some V4 tools still maturing
+-  **Auditor Familiarity**: Fewer auditors know V4 deeply
+-  **Mitigation**: V4 is production-ready, ecosystem growing
 
 ---
 
@@ -466,24 +466,24 @@ Outcome: Added V4 support when 20% of pools migrated
 ### Final Recommendation
 
 **Migrate to V4 if:**
-- ✅ You need custom pool logic (hooks)
-- ✅ Gas costs significantly impact your users
-- ✅ You're building something new
-- ✅ You have resources for proper migration
-- ✅ Your integration is actively maintained
+-  You need custom pool logic (hooks)
+-  Gas costs significantly impact your users
+-  You're building something new
+-  You have resources for proper migration
+-  Your integration is actively maintained
 
 **Stay on V3 if:**
-- ⚠️ Your current integration works perfectly
-- ⚠️ You lack resources for migration
-- ⚠️ You don't need V4-specific features
-- ⚠️ You can't afford testing time
-- ⚠️ Your project is in maintenance mode
+-  Your current integration works perfectly
+-  You lack resources for migration
+-  You don't need V4-specific features
+-  You can't afford testing time
+-  Your project is in maintenance mode
 
 **Support Both if:**
-- 🔄 You're a DEX aggregator
-- 🔄 You need maximum liquidity access
-- 🔄 You can maintain dual integrations
-- 🔄 Your users benefit from choice
+- You're a DEX aggregator
+- You need maximum liquidity access
+- You can maintain dual integrations
+- Your users benefit from choice
 
 ---
 
