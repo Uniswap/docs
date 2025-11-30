@@ -4472,3 +4472,221 @@ contract WhitelistHook is BaseHook {
 }
 ```
 
+---
+
+#### Pattern 4: TWAP Oracle Hook
+
+Maintain time-weighted average price oracle.
+
+```solidity
+contract TWAPOracleHook is BaseHook {
+    struct Observation {
+        uint32 timestamp;
+        int56 tickCumulative;
+        uint128 liquidityCumulative;
+    }
+    
+    mapping(PoolId => Observation[]) public observations;
+    mapping(PoolId => uint16) public observationIndex;
+    
+    uint16 public constant OBSERVATION_CARDINALITY = 100;
+    
+    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
+    
+    function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+        return Hooks.Permissions({
+            beforeInitialize: false,
+            afterInitialize: true,  // Initialize observations
+            beforeAddLiquidity: false,
+            afterAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterRemoveLiquidity: false,
+            beforeSwap: false,
+            afterSwap: true,  // Record observation after swap
+            beforeDonate: false,
+            afterDonate: false,
+            beforeSwapReturnDelta: false,
+            afterSwapReturnDelta: false,
+            afterAddLiquidityReturnDelta: false,
+            afterRemoveLiquidityReturnDelta: false
+        });
+    }
+    
+    function afterInitialize(
+        address,
+        PoolKey calldata key,
+        uint160,
+        int24 tick
+    ) external override returns (bytes4) {
+        PoolId poolId = key.toId();
+        
+        // Initialize observations array
+        observations[poolId] = new Observation[](OBSERVATION_CARDINALITY);
+        observations[poolId][0] = Observation({
+            timestamp: uint32(block.timestamp),
+            tickCumulative: 0,
+            liquidityCumulative: 0
+        });
+        
+        return BaseHook.afterInitialize.selector;
+    }
+    
+    function afterSwap(
+        address,
+        PoolKey calldata key,
+        IPoolManager.SwapParams calldata,
+        BalanceDelta,
+        bytes calldata
+    ) external override returns (bytes4, int128) {
+        PoolId poolId = key.toId();
+        
+        // Record new observation
+        recordObservation(poolId);
+        
+        return (BaseHook.afterSwap.selector, 0);
+    }
+    
+    function recordObservation(PoolId poolId) internal {
+        uint16 index = observationIndex[poolId];
+        Observation memory last = observations[poolId][index];
+        
+        // Only record if time has passed
+        if (block.timestamp == last.timestamp) return;
+        
+        // Get current pool state
+        (, int24 tick, , ) = poolManager.getSlot0(poolId);
+        uint128 liquidity = poolManager.getLiquidity(poolId);
+        
+        // Calculate cumulative values
+        uint32 timeElapsed = uint32(block.timestamp) - last.timestamp;
+        int56 tickCumulative = last.tickCumulative + (int56(tick) * int56(uint56(timeElapsed)));
+        uint128 liquidityCumulative = last.liquidityCumulative + (liquidity * timeElapsed);
+        
+        // Store new observation
+        uint16 nextIndex = (index + 1) % OBSERVATION_CARDINALITY;
+        observations[poolId][nextIndex] = Observation({
+            timestamp: uint32(block.timestamp),
+            tickCumulative: tickCumulative,
+            liquidityCumulative: liquidityCumulative
+        });
+        
+        observationIndex[poolId] = nextIndex;
+    }
+    
+    // Query TWAP
+    function getTWAP(PoolKey calldata key, uint32 secondsAgo) 
+        external 
+        view 
+        returns (int24 twapTick) 
+    {
+        PoolId poolId = key.toId();
+        
+        uint16 index = observationIndex[poolId];
+        Observation memory latest = observations[poolId][index];
+        
+        require(block.timestamp >= latest.timestamp, "Invalid timestamp");
+        
+        // Find observation from secondsAgo
+        uint32 targetTime = uint32(block.timestamp) - secondsAgo;
+        Observation memory old = findObservation(poolId, targetTime);
+        
+        // Calculate TWAP
+        int56 tickCumulativeDelta = latest.tickCumulative - old.tickCumulative;
+        uint32 timeDelta = latest.timestamp - old.timestamp;
+        
+        twapTick = int24(tickCumulativeDelta / int56(uint56(timeDelta)));
+    }
+    
+    function findObservation(PoolId poolId, uint32 targetTime) 
+        internal 
+        view 
+        returns (Observation memory) 
+    {
+        // Binary search or linear search to find closest observation
+        // Simplified version returns first observation
+        return observations[poolId][0];
+    }
+}
+```
+
+---
+
+### Hook Security Considerations
+
+**Common Vulnerabilities:**
+
+1. **Reentrancy**: Hooks are called mid-transaction
+```solidity
+// Bad: Vulnerable to reentrancy
+function beforeSwap(...) external override {
+    externalCall(); // Could reenter
+    state = newValue;
+}
+
+// Good: Use checks-effects-interactions
+function beforeSwap(...) external override {
+    state = newValue;
+    externalCall();
+}
+```
+
+2. **Gas Limits**: Hooks must execute quickly
+```solidity
+// Bad: Unbounded loop
+function afterSwap(...) external override {
+    for (uint i = 0; i < unboundedArray.length; i++) {
+        // expensive operation
+    }
+}
+
+// Good: Bounded operations
+function afterSwap(...) external override {
+    // Fixed cost operations only
+    singleUpdate();
+}
+```
+
+3. **Access Control**: Validate callers
+```solidity
+// Always verify caller is PoolManager
+function beforeSwap(...) external override {
+    require(msg.sender == address(poolManager), "Not PoolManager");
+    // ... hook logic
+}
+```
+
+4. **Return Value Validation**: Must return correct selector
+```solidity
+// Bad: Wrong return value
+function beforeSwap(...) external override returns (bytes4, BeforeSwapDelta, uint24) {
+    return (bytes4(0), BeforeSwapDeltaLibrary.ZERO_DELTA, 0); // Wrong!
+}
+
+// Good: Correct selector
+function beforeSwap(...) external override returns (bytes4, BeforeSwapDelta, uint24) {
+    return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
+}
+```
+
+---
+
+### Migration Checklist for Hooks
+
+When implementing hooks for V3 custom logic:
+
+- [ ] Identify V3 custom logic that can become hooks
+- [ ] Design hook architecture (which hook points needed)
+- [ ] Implement BaseHook inheritance
+- [ ] Set correct permissions in getHookPermissions()
+- [ ] Deploy hook at valid address (mine salt if needed)
+- [ ] Implement security measures (reentrancy, access control)
+- [ ] Test hook behavior thoroughly
+- [ ] Verify gas costs are reasonable
+- [ ] Audit hook contract before mainnet deployment
+- [ ] Document hook behavior for pool users
+- [ ] Consider upgradeability if needed
+- [ ] Test integration with PoolManager
+
+---
+
+*Continue to [Testing & Deployment](#testing-deployment) for safe migration strategies.*
