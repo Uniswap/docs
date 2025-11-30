@@ -3138,3 +3138,552 @@ When migrating position management:
 ---
 
 *Continue to [SDK & Frontend Migration](#sdk-migration) for client-side integration patterns.*
+
+
+---
+
+## SDK & Frontend Migration
+
+This section covers migrating client-side applications, including SDK usage, React components, and Web3 integrations from V3 to V4.
+
+---
+
+### SDK Installation and Setup
+
+**V3 SDK Installation:**
+
+```bash
+npm install @uniswap/v3-sdk @uniswap/sdk-core ethers@5
+```
+
+**V4 SDK Installation:**
+
+```bash
+npm install @uniswap/v4-sdk @uniswap/sdk-core ethers@6
+```
+
+**Key Changes:**
+- New `@uniswap/v4-sdk` package
+- Ethers v6 required (V3 used Ethers v5)
+- `@uniswap/sdk-core` still used for common types
+
+---
+
+### Basic SDK Imports
+
+**V3 Imports:**
+
+```typescript
+import { Token, CurrencyAmount, Percent } from '@uniswap/sdk-core';
+import { Pool, Route, Trade, SwapRouter } from '@uniswap/v3-sdk';
+import { ethers } from 'ethers';
+
+// V3 Contract addresses
+const SWAP_ROUTER_ADDRESS = '0xE592427A0AEce92De3Edee1F18E0157C05861564';
+const QUOTER_ADDRESS = '0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6';
+```
+
+**V4 Imports:**
+
+```typescript
+import { Token, CurrencyAmount, Percent } from '@uniswap/sdk-core';
+import { Pool, PoolKey, Route, Trade } from '@uniswap/v4-sdk';
+import { ethers } from 'ethers';
+
+// V4 Contract addresses (chain-specific)
+const POOL_MANAGER_ADDRESS = '0x...'; // Deploy address for your chain
+const POSITION_MANAGER_ADDRESS = '0x...';
+```
+
+**Key Differences:**
+- `SwapRouter` removed (use PoolManager)
+- `PoolKey` added for pool identification
+- Contract addresses different
+
+---
+
+### Creating Pool Instances
+
+**V3 Pool Creation:**
+
+```typescript
+import { Pool, FeeAmount } from '@uniswap/v3-sdk';
+import { Token } from '@uniswap/sdk-core';
+
+async function createPoolV3(
+  tokenA: Token,
+  tokenB: Token,
+  fee: FeeAmount,
+  provider: ethers.Provider
+): Promise<Pool> {
+  // Get pool address
+  const poolAddress = Pool.getAddress(tokenA, tokenB, fee);
+  
+  // Create pool contract
+  const poolContract = new ethers.Contract(
+    poolAddress,
+    [
+      'function slot0() view returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, uint8 feeProtocol, bool unlocked)',
+      'function liquidity() view returns (uint128)',
+    ],
+    provider
+  );
+  
+  // Fetch pool state
+  const [slot0, liquidity] = await Promise.all([
+    poolContract.slot0(),
+    poolContract.liquidity(),
+  ]);
+  
+  // Create Pool instance
+  return new Pool(
+    tokenA,
+    tokenB,
+    fee,
+    slot0.sqrtPriceX96.toString(),
+    liquidity.toString(),
+    slot0.tick
+  );
+}
+```
+
+**V4 Pool Creation:**
+
+```typescript
+import { Pool, PoolKey } from '@uniswap/v4-sdk';
+import { Token, Currency } from '@uniswap/sdk-core';
+
+async function createPoolV4(
+  currency0: Currency,
+  currency1: Currency,
+  fee: number,
+  tickSpacing: number,
+  hooks: string,
+  provider: ethers.Provider
+): Promise<{ pool: Pool; poolKey: PoolKey }> {
+  // Create PoolKey
+  const poolKey: PoolKey = {
+    currency0,
+    currency1,
+    fee,
+    tickSpacing,
+    hooks,
+  };
+  
+  // Get pool ID
+  const poolId = getPoolId(poolKey);
+  
+  // Create PoolManager contract
+  const poolManager = new ethers.Contract(
+    POOL_MANAGER_ADDRESS,
+    [
+      'function getSlot0(bytes32 poolId) view returns (uint160 sqrtPriceX96, int24 tick, uint16 protocolFee, uint24 lpFee)',
+      'function getLiquidity(bytes32 poolId) view returns (uint128)',
+    ],
+    provider
+  );
+  
+  // Fetch pool state
+  const [slot0, liquidity] = await Promise.all([
+    poolManager.getSlot0(poolId),
+    poolManager.getLiquidity(poolId),
+  ]);
+  
+  // Create Pool instance
+  const pool = new Pool(
+    currency0,
+    currency1,
+    fee,
+    tickSpacing,
+    hooks,
+    slot0.sqrtPriceX96.toString(),
+    liquidity.toString(),
+    slot0.tick
+  );
+  
+  return { pool, poolKey };
+}
+
+// Helper function to calculate pool ID
+function getPoolId(poolKey: PoolKey): string {
+  return ethers.keccak256(
+    ethers.AbiCoder.defaultAbiCoder().encode(
+      ['address', 'address', 'uint24', 'int24', 'address'],
+      [
+        poolKey.currency0.isNative ? ethers.ZeroAddress : poolKey.currency0.address,
+        poolKey.currency1.isNative ? ethers.ZeroAddress : poolKey.currency1.address,
+        poolKey.fee,
+        poolKey.tickSpacing,
+        poolKey.hooks,
+      ]
+    )
+  );
+}
+```
+
+**Key Differences:**
+1. **PoolKey Required**: Must construct PoolKey with all pool parameters
+2. **Pool ID Calculation**: Need to hash PoolKey to get pool identifier
+3. **PoolManager Contract**: All queries go through PoolManager singleton
+4. **Native Currency Support**: Can use native ETH directly
+
+---
+
+### Fetching Quote for Swap
+
+**V3 Quote Fetching:**
+
+```typescript
+import { Trade, Route } from '@uniswap/v3-sdk';
+import { TradeType, CurrencyAmount } from '@uniswap/sdk-core';
+
+async function getQuoteV3(
+  pool: Pool,
+  tokenIn: Token,
+  amountIn: string,
+  provider: ethers.Provider
+): Promise<CurrencyAmount<Token>> {
+  // Create quoter contract
+  const quoter = new ethers.Contract(
+    QUOTER_ADDRESS,
+    [
+      'function quoteExactInputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, uint160 sqrtPriceLimitX96) view returns (uint256 amountOut)',
+    ],
+    provider
+  );
+  
+  const tokenOut = pool.token0.equals(tokenIn) ? pool.token1 : pool.token0;
+  
+  // Get quote
+  const amountOut = await quoter.quoteExactInputSingle(
+    tokenIn.address,
+    tokenOut.address,
+    pool.fee,
+    ethers.parseUnits(amountIn, tokenIn.decimals),
+    0
+  );
+  
+  return CurrencyAmount.fromRawAmount(tokenOut, amountOut.toString());
+}
+```
+
+**V4 Quote Fetching:**
+
+```typescript
+import { Pool, PoolKey } from '@uniswap/v4-sdk';
+import { CurrencyAmount, Currency } from '@uniswap/sdk-core';
+
+async function getQuoteV4(
+  poolKey: PoolKey,
+  pool: Pool,
+  currencyIn: Currency,
+  amountIn: string,
+  provider: ethers.Provider
+): Promise<CurrencyAmount<Currency>> {
+  // Create PoolManager contract for quotes
+  const poolManager = new ethers.Contract(
+    POOL_MANAGER_ADDRESS,
+    [
+      'function getQuote(tuple(address currency0, address currency1, uint24 fee, int24 tickSpacing, address hooks) poolKey, bool zeroForOne, int256 amountSpecified) view returns (int256 amount)',
+    ],
+    provider
+  );
+  
+  const currencyOut = pool.currency0.equals(currencyIn) ? pool.currency1 : pool.currency0;
+  const zeroForOne = pool.currency0.equals(currencyIn);
+  
+  // Parse amount (negative for exact input)
+  const amountSpecified = -BigInt(
+    ethers.parseUnits(amountIn, currencyIn.decimals).toString()
+  );
+  
+  // Get quote
+  const amountOut = await poolManager.getQuote(
+    [
+      currencyIn.isNative ? ethers.ZeroAddress : poolKey.currency0.address,
+      currencyOut.isNative ? ethers.ZeroAddress : poolKey.currency1.address,
+      poolKey.fee,
+      poolKey.tickSpacing,
+      poolKey.hooks,
+    ],
+    zeroForOne,
+    amountSpecified
+  );
+  
+  return CurrencyAmount.fromRawAmount(
+    currencyOut,
+    Math.abs(Number(amountOut)).toString()
+  );
+}
+```
+
+---
+
+### Building and Executing Swaps
+
+**V3 Swap Execution:**
+
+```typescript
+import { Trade, SwapRouter } from '@uniswap/v3-sdk';
+import { Percent, TradeType } from '@uniswap/sdk-core';
+
+async function executeSwapV3(
+  trade: Trade<Currency, Currency, TradeType>,
+  signer: ethers.Signer,
+  slippageTolerance: Percent
+): Promise<ethers.TransactionResponse> {
+  // Generate swap parameters
+  const options = {
+    slippageTolerance,
+    deadline: Math.floor(Date.now() / 1000) + 60 * 20, // 20 minutes
+    recipient: await signer.getAddress(),
+  };
+  
+  const methodParameters = SwapRouter.swapCallParameters([trade], options);
+  
+  // Create contract
+  const swapRouter = new ethers.Contract(
+    SWAP_ROUTER_ADDRESS,
+    ['function multicall(bytes[] data) payable returns (bytes[] results)'],
+    signer
+  );
+  
+  // Execute swap
+  return await swapRouter.multicall(methodParameters.calldata, {
+    value: methodParameters.value,
+  });
+}
+```
+
+**V4 Swap Execution:**
+
+```typescript
+import { PoolKey } from '@uniswap/v4-sdk';
+import { CurrencyAmount, Currency, Percent } from '@uniswap/sdk-core';
+
+async function executeSwapV4(
+  poolKey: PoolKey,
+  currencyIn: Currency,
+  currencyOut: Currency,
+  amountIn: CurrencyAmount<Currency>,
+  minAmountOut: CurrencyAmount<Currency>,
+  signer: ethers.Signer
+): Promise<ethers.TransactionResponse> {
+  // Create swap router contract (periphery contract)
+  const swapRouter = new ethers.Contract(
+    SWAP_ROUTER_V4_ADDRESS,
+    [
+      'function swap(tuple(address currency0, address currency1, uint24 fee, int24 tickSpacing, address hooks) poolKey, bool zeroForOne, int256 amountSpecified, uint160 sqrtPriceLimitX96, bytes hookData) payable returns (int256 amount0, int256 amount1)',
+    ],
+    signer
+  );
+  
+  const zeroForOne = currencyIn.equals(poolKey.currency0);
+  
+  // Calculate price limit (no limit = min/max sqrt price)
+  const sqrtPriceLimitX96 = zeroForOne
+    ? '4295128739' // MIN_SQRT_RATIO + 1
+    : '1461446703485210103287273052203988822378723970342'; // MAX_SQRT_RATIO - 1
+  
+  // Execute swap
+  const tx = await swapRouter.swap(
+    [
+      poolKey.currency0.isNative ? ethers.ZeroAddress : poolKey.currency0.address,
+      poolKey.currency1.isNative ? ethers.ZeroAddress : poolKey.currency1.address,
+      poolKey.fee,
+      poolKey.tickSpacing,
+      poolKey.hooks,
+    ],
+    zeroForOne,
+    -amountIn.quotient.toString(), // Negative for exact input
+    sqrtPriceLimitX96,
+    '0x', // No hook data
+    {
+      value: currencyIn.isNative ? amountIn.quotient.toString() : '0',
+    }
+  );
+  
+  return tx;
+}
+```
+
+**Key Differences:**
+- V4 uses PoolManager-based router
+- PoolKey passed as tuple
+- Native ETH handled directly
+- Hook data parameter added
+
+---
+
+### React Component Examples
+
+**V3 Swap Component:**
+
+```typescript
+import React, { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+import { Token, CurrencyAmount } from '@uniswap/sdk-core';
+import { Pool, FeeAmount } from '@uniswap/v3-sdk';
+
+function SwapComponentV3() {
+  const [pool, setPool] = useState<Pool | null>(null);
+  const [amountIn, setAmountIn] = useState('');
+  const [amountOut, setAmountOut] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  // Initialize tokens
+  const USDC = new Token(1, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD Coin');
+  const WETH = new Token(1, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped Ether');
+
+  useEffect(() => {
+    async function loadPool() {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const poolInstance = await createPoolV3(USDC, WETH, FeeAmount.MEDIUM, provider);
+      setPool(poolInstance);
+    }
+    loadPool();
+  }, []);
+
+  async function handleSwap() {
+    if (!pool || !amountIn) return;
+    
+    setLoading(true);
+    try {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      
+      // Get quote
+      const quote = await getQuoteV3(pool, USDC, amountIn, provider);
+      setAmountOut(quote.toExact());
+      
+      // Execute swap (simplified)
+      // ... swap execution logic
+      
+    } catch (error) {
+      console.error('Swap failed:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="swap-container">
+      <h2>Swap Tokens (V3)</h2>
+      <input
+        type="text"
+        value={amountIn}
+        onChange={(e) => setAmountIn(e.target.value)}
+        placeholder="Amount in USDC"
+      />
+      <div>Expected output: {amountOut} WETH</div>
+      <button onClick={handleSwap} disabled={loading}>
+        {loading ? 'Swapping...' : 'Swap'}
+      </button>
+    </div>
+  );
+}
+
+export default SwapComponentV3;
+```
+
+**V4 Swap Component:**
+
+```typescript
+import React, { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+import { Token, CurrencyAmount } from '@uniswap/sdk-core';
+import { Pool, PoolKey } from '@uniswap/v4-sdk';
+
+function SwapComponentV4() {
+  const [pool, setPool] = useState<Pool | null>(null);
+  const [poolKey, setPoolKey] = useState<PoolKey | null>(null);
+  const [amountIn, setAmountIn] = useState('');
+  const [amountOut, setAmountOut] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  // Initialize tokens
+  const USDC = new Token(1, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD Coin');
+  const WETH = new Token(1, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped Ether');
+
+  useEffect(() => {
+    async function loadPool() {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      
+      const { pool: poolInstance, poolKey: key } = await createPoolV4(
+        USDC,
+        WETH,
+        3000, // 0.3% fee
+        60,   // tick spacing
+        ethers.ZeroAddress, // no hooks
+        provider
+      );
+      
+      setPool(poolInstance);
+      setPoolKey(key);
+    }
+    loadPool();
+  }, []);
+
+  async function handleSwap() {
+    if (!pool || !poolKey || !amountIn) return;
+    
+    setLoading(true);
+    try {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      
+      // Get quote
+      const quote = await getQuoteV4(poolKey, pool, USDC, amountIn, provider);
+      setAmountOut(quote.toExact());
+      
+      // Execute swap
+      const amountInCurrency = CurrencyAmount.fromRawAmount(
+        USDC,
+        ethers.parseUnits(amountIn, USDC.decimals).toString()
+      );
+      
+      const minAmountOut = quote.multiply(95).divide(100); // 5% slippage
+      
+      const tx = await executeSwapV4(
+        poolKey,
+        USDC,
+        WETH,
+        amountInCurrency,
+        minAmountOut,
+        signer
+      );
+      
+      await tx.wait();
+      alert('Swap successful!');
+      
+    } catch (error) {
+      console.error('Swap failed:', error);
+      alert('Swap failed');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="swap-container">
+      <h2>Swap Tokens (V4)</h2>
+      <input
+        type="text"
+        value={amountIn}
+        onChange={(e) => setAmountIn(e.target.value)}
+        placeholder="Amount in USDC"
+      />
+      <div>Expected output: {amountOut} WETH</div>
+      <button onClick={handleSwap} disabled={loading}>
+        {loading ? 'Swapping...' : 'Swap'}
+      </button>
+    </div>
+  );
+}
+
+export default SwapComponentV4;
+```
+
+---
+
+
