@@ -5106,3 +5106,163 @@ const config: HardhatUserConfig = {
 
 export default config;
 ```
+**Hardhat Test Example:**
+
+```typescript
+import { expect } from "chai";
+import { ethers } from "hardhat";
+import { MySwapper, IPoolManager } from "../typechain-types";
+
+describe("MySwapper", function () {
+  let swapper: MySwapper;
+  let poolManager: IPoolManager;
+
+  beforeEach(async function () {
+    // Deploy PoolManager (or use existing)
+    const PoolManager = await ethers.getContractFactory("PoolManager");
+    poolManager = await PoolManager.deploy();
+    
+    // Deploy swapper
+    const Swapper = await ethers.getContractFactory("MySwapper");
+    swapper = await Swapper.deploy(await poolManager.getAddress());
+  });
+
+  it("Should execute swap correctly", async function () {
+    const [signer] = await ethers.getSigners();
+    
+    // Setup pool and tokens
+    // ...
+
+    const amountIn = ethers.parseEther("1");
+    const amountOutMin = ethers.parseEther("0.99");
+
+    const tx = await swapper.swapExactInputSingle(
+      currency0,
+      currency1,
+      3000,
+      60,
+      ethers.ZeroAddress,
+      amountIn,
+      amountOutMin
+    );
+
+    await expect(tx).to.emit(swapper, "SwapExecuted");
+  });
+
+  it("Should revert on insufficient output", async function () {
+    const amountIn = ethers.parseEther("1");
+    const amountOutMin = ethers.parseEther("10"); // Too high
+
+    await expect(
+      swapper.swapExactInputSingle(
+        currency0,
+        currency1,
+        3000,
+        60,
+        ethers.ZeroAddress,
+        amountIn,
+        amountOutMin
+      )
+    ).to.be.revertedWith("Insufficient output");
+  });
+});
+```
+
+---
+
+### Gas Optimization Testing
+
+**Gas Benchmark Script:**
+
+```solidity
+contract GasBenchmark is Test, Deployers {
+    using PoolIdLibrary for PoolKey;
+
+    MySwapper public swapper;
+    PoolKey public poolKey;
+
+    function setUp() public {
+        deployFreshManagerAndRouters();
+        (Currency currency0, Currency currency1) = deployMintAndApprove2Currencies();
+        
+        poolKey = PoolKey({
+            currency0: currency0,
+            currency1: currency1,
+            fee: 3000,
+            tickSpacing: 60,
+            hooks: IHooks(address(0))
+        });
+        
+        initializeRouter.initialize(poolKey, SQRT_PRICE_1_1, ZERO_BYTES);
+        swapper = new MySwapper(manager);
+        approveTokens(address(swapper));
+    }
+
+    function testGas_SingleSwap() public {
+        uint256 amountIn = 1e18;
+
+        uint256 gasBefore = gasleft();
+        
+        swapper.swapExactInputSingle(
+            poolKey.currency0,
+            poolKey.currency1,
+            poolKey.fee,
+            poolKey.tickSpacing,
+            address(0),
+            amountIn,
+            0
+        );
+        
+        uint256 gasUsed = gasBefore - gasleft();
+        
+        emit log_named_uint("Gas used for single swap", gasUsed);
+        
+        // Assert gas is within expected range
+        assertLt(gasUsed, 150000, "Gas too high");
+    }
+
+    function testGas_MultiHopSwap() public {
+        // Setup second pool
+        // ... 
+
+        uint256 gasBefore = gasleft();
+        
+        // Execute multi-hop swap
+        // ...
+        
+        uint256 gasUsed = gasBefore - gasleft();
+        
+        emit log_named_uint("Gas used for multi-hop swap", gasUsed);
+        
+        // V4 multi-hop should be significantly cheaper than V3
+        assertLt(gasUsed, 200000, "Gas too high for multi-hop");
+    }
+
+    function testGas_AddLiquidity() public {
+        MyLiquidityManager liquidityManager = new MyLiquidityManager(manager);
+        approveTokens(address(liquidityManager));
+
+        uint256 gasBefore = gasleft();
+        
+        liquidityManager.addLiquidityV4(
+            poolKey.currency0,
+            poolKey.currency1,
+            poolKey.fee,
+            poolKey.tickSpacing,
+            address(0),
+            -600,
+            600,
+            1e18,
+            type(uint256).max,
+            type(uint256).max,
+            0,
+            0
+        );
+        
+        uint256 gasUsed = gasBefore - gasleft();
+        
+        emit log_named_uint("Gas used for add liquidity", gasUsed);
+    }
+}
+```
+
