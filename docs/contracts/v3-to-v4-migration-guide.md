@@ -4380,4 +4380,95 @@ contract LimitOrderHook is BaseHook {
 ```
 
 ---
+#### Pattern 3: Access Control Hook
+
+Restrict who can provide liquidity or swap.
+
+```solidity
+contract WhitelistHook is BaseHook {
+    mapping(PoolId => mapping(address => bool)) public whitelist;
+    mapping(PoolId => address) public poolAdmin;
+    
+    event AddressWhitelisted(PoolId indexed poolId, address indexed account);
+    event AddressRemovedFromWhitelist(PoolId indexed poolId, address indexed account);
+    
+    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
+    
+    function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+        return Hooks.Permissions({
+            beforeInitialize: true,  // Set admin on pool creation
+            afterInitialize: false,
+            beforeAddLiquidity: true,  // Check whitelist
+            afterAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterRemoveLiquidity: false,
+            beforeSwap: true,  // Check whitelist
+            afterSwap: false,
+            beforeDonate: false,
+            afterDonate: false,
+            beforeSwapReturnDelta: false,
+            afterSwapReturnDelta: false,
+            afterAddLiquidityReturnDelta: false,
+            afterRemoveLiquidityReturnDelta: false
+        });
+    }
+    
+    function beforeInitialize(
+        address sender,
+        PoolKey calldata key,
+        uint160
+    ) external override returns (bytes4) {
+        PoolId poolId = key.toId();
+        
+        // Set pool creator as admin
+        poolAdmin[poolId] = sender;
+        whitelist[poolId][sender] = true;
+        
+        return BaseHook.beforeInitialize.selector;
+    }
+    
+    function beforeSwap(
+        address sender,
+        PoolKey calldata key,
+        IPoolManager.SwapParams calldata,
+        bytes calldata
+    ) external override returns (bytes4, BeforeSwapDelta, uint24) {
+        PoolId poolId = key.toId();
+        
+        require(whitelist[poolId][sender], "Not whitelisted for swaps");
+        
+        return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
+    }
+    
+    function beforeAddLiquidity(
+        address sender,
+        PoolKey calldata key,
+        IPoolManager.ModifyLiquidityParams calldata,
+        bytes calldata
+    ) external override returns (bytes4) {
+        PoolId poolId = key.toId();
+        
+        require(whitelist[poolId][sender], "Not whitelisted for liquidity");
+        
+        return BaseHook.beforeAddLiquidity.selector;
+    }
+    
+    // Admin functions
+    function addToWhitelist(PoolKey calldata key, address account) external {
+        PoolId poolId = key.toId();
+        require(msg.sender == poolAdmin[poolId], "Not pool admin");
+        
+        whitelist[poolId][account] = true;
+        emit AddressWhitelisted(poolId, account);
+    }
+    
+    function removeFromWhitelist(PoolKey calldata key, address account) external {
+        PoolId poolId = key.toId();
+        require(msg.sender == poolAdmin[poolId], "Not pool admin");
+        
+        whitelist[poolId][account] = false;
+        emit AddressRemovedFromWhitelist(poolId, account);
+    }
+}
+```
 
