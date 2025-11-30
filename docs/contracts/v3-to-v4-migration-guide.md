@@ -5542,3 +5542,227 @@ Before deploying to mainnet:
 ---
 
 *Continue to [Complete Examples & Troubleshooting](#complete-examples) for end-to-end implementations and common issues.*
+
+---
+
+## Complete Working Examples
+
+This section provides complete, production-ready implementations demonstrating full V3 to V4 migrations.
+
+---
+
+### Example 1: Complete Swap dApp Migration
+
+**V3 Complete Implementation:**
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+contract SwapDAppV3 {
+    ISwapRouter public immutable swapRouter;
+    
+    event SwapExecuted(
+        address indexed user,
+        address tokenIn,
+        address tokenOut,
+        uint256 amountIn,
+        uint256 amountOut
+    );
+    
+    constructor(address _swapRouter) {
+        swapRouter = ISwapRouter(_swapRouter);
+    }
+    
+    function swapExactInputSingle(
+        address tokenIn,
+        address tokenOut,
+        uint24 fee,
+        uint256 amountIn,
+        uint256 amountOutMinimum,
+        address recipient
+    ) external returns (uint256 amountOut) {
+        // Transfer tokens from user
+        IERC20(tokenIn).transferFrom(msg.sender, address(this), amountIn);
+        
+        // Approve router
+        IERC20(tokenIn).approve(address(swapRouter), amountIn);
+        
+        // Execute swap
+        ISwapRouter.ExactInputSingleParams memory params = ISwapRouter
+            .ExactInputSingleParams({
+                tokenIn: tokenIn,
+                tokenOut: tokenOut,
+                fee: fee,
+                recipient: recipient,
+                deadline: block.timestamp,
+                amountIn: amountIn,
+                amountOutMinimum: amountOutMinimum,
+                sqrtPriceLimitX96: 0
+            });
+        
+        amountOut = swapRouter.exactInputSingle(params);
+        
+        emit SwapExecuted(msg.sender, tokenIn, tokenOut, amountIn, amountOut);
+    }
+    
+    function swapExactInputMultihop(
+        bytes memory path,
+        uint256 amountIn,
+        uint256 amountOutMinimum,
+        address recipient
+    ) external returns (uint256 amountOut) {
+        address tokenIn = extractTokenIn(path);
+        
+        IERC20(tokenIn).transferFrom(msg.sender, address(this), amountIn);
+        IERC20(tokenIn).approve(address(swapRouter), amountIn);
+        
+        ISwapRouter.ExactInputParams memory params = ISwapRouter
+            .ExactInputParams({
+                path: path,
+                recipient: recipient,
+                deadline: block.timestamp,
+                amountIn: amountIn,
+                amountOutMinimum: amountOutMinimum
+            });
+        
+        amountOut = swapRouter.exactInput(params);
+        
+        emit SwapExecuted(msg.sender, tokenIn, address(0), amountIn, amountOut);
+    }
+    
+    function extractTokenIn(bytes memory path) internal pure returns (address) {
+        return address(uint160(bytes20(path)));
+    }
+}
+```
+
+**V4 Complete Implementation:**
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
+import {IUnlockCallback} from "@uniswap/v4-core/contracts/interfaces/callback/IUnlockCallback.sol";
+import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
+import {Currency, CurrencyLibrary} from "@uniswap/v4-core/contracts/types/Currency.sol";
+import {BalanceDelta} from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
+import {TickMath} from "@uniswap/v4-core/contracts/libraries/TickMath.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+contract SwapDAppV4 is IUnlockCallback {
+    using CurrencyLibrary for Currency;
+    
+    IPoolManager public immutable poolManager;
+    
+    event SwapExecuted(
+        address indexed user,
+        Currency currencyIn,
+        Currency currencyOut,
+        uint256 amountIn,
+        uint256 amountOut
+    );
+    
+    struct SwapCallbackData {
+        address sender;
+        PoolKey poolKey;
+        IPoolManager.SwapParams params;
+        uint256 amountOutMinimum;
+        address recipient;
+    }
+    
+    struct MultiHopData {
+        address sender;
+        PoolKey[] poolKeys;
+        uint256 amountIn;
+        uint256 amountOutMinimum;
+        address recipient;
+    }
+    
+    constructor(address _poolManager) {
+        poolManager = IPoolManager(_poolManager);
+    }
+    
+    function swapExactInputSingle(
+        Currency currencyIn,
+        Currency currencyOut,
+        uint24 fee,
+        int24 tickSpacing,
+        address hooks,
+        uint256 amountIn,
+        uint256 amountOutMinimum,
+        address recipient
+    ) external payable returns (uint256 amountOut) {
+        // Construct PoolKey
+        PoolKey memory poolKey = PoolKey({
+            currency0: currencyIn < currencyOut ? currencyIn : currencyOut,
+            currency1: currencyIn < currencyOut ? currencyOut : currencyIn,
+            fee: fee,
+            tickSpacing: tickSpacing,
+            hooks: IHooks(hooks)
+        });
+        
+        bool zeroForOne = currencyIn < currencyOut;
+        
+        // Prepare swap parameters
+        IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+            zeroForOne: zeroForOne,
+            amountSpecified: -int256(amountIn),
+            sqrtPriceLimitX96: zeroForOne
+                ? TickMath.MIN_SQRT_PRICE + 1
+                : TickMath.MAX_SQRT_PRICE - 1
+        });
+        
+        // Execute swap through unlock
+        SwapCallbackData memory callbackData = SwapCallbackData({
+            sender: msg.sender,
+            poolKey: poolKey,
+            params: params,
+            amountOutMinimum: amountOutMinimum,
+            recipient: recipient
+        });
+        
+        bytes memory result = poolManager.unlock(abi.encode(callbackData));
+        amountOut = abi.decode(result, (uint256));
+        
+        emit SwapExecuted(msg.sender, currencyIn, currencyOut, amountIn, amountOut);
+    }
+    
+    function swapExactInputMultihop(
+        PoolKey[] memory poolKeys,
+        uint256 amountIn,
+        uint256 amountOutMinimum,
+        address recipient
+    ) external payable returns (uint256 amountOut) {
+        MultiHopData memory data = MultiHopData({
+            sender: msg.sender,
+            poolKeys: poolKeys,
+            amountIn: amountIn,
+            amountOutMinimum: amountOutMinimum,
+            recipient: recipient
+        });
+        
+        bytes memory result = poolManager.unlock(abi.encode(data));
+        amountOut = abi.decode(result, (uint256));
+    }
+    
+    function unlockCallback(bytes calldata rawData) 
+        external 
+        override 
+        returns (bytes memory) 
+    {
+        require(msg.sender == address(poolManager), "Only PoolManager");
+        
+        // Try to decode as single swap first
+        try this.decodeSingleSwap(rawData) returns (SwapCallbackData memory data) {
+            return handleSingleSwap(data);
+        } catch {
+            // Must be multi-hop
+            MultiHopData memory data = abi.decode(rawData, (MultiHopData));
+            return handleMultiHopSwap(data);
+        }
+    }
