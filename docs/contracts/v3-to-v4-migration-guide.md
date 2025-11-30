@@ -4879,3 +4879,100 @@ contract MySwapperTest is Test, Deployers {
 ```
 
 ---
+
+### Testing Liquidity Operations
+
+```solidity
+contract MyLiquidityManagerTest is Test, Deployers {
+    using PoolIdLibrary for PoolKey;
+
+    MyLiquidityManager public liquidityManager;
+    PoolKey public poolKey;
+
+    function setUp() public {
+        deployFreshManagerAndRouters();
+        (Currency currency0, Currency currency1) = deployMintAndApprove2Currencies();
+        
+        poolKey = PoolKey({
+            currency0: currency0,
+            currency1: currency1,
+            fee: 3000,
+            tickSpacing: 60,
+            hooks: IHooks(address(0))
+        });
+        
+        initializeRouter.initialize(poolKey, SQRT_PRICE_1_1, ZERO_BYTES);
+        
+        liquidityManager = new MyLiquidityManager(manager);
+        approveTokens(address(liquidityManager));
+    }
+
+    function testAddLiquidity() public {
+        int24 tickLower = -600;
+        int24 tickUpper = 600;
+        uint256 liquidityDelta = 1e18;
+
+        (uint128 liquidity, uint256 amount0, uint256 amount1) = 
+            liquidityManager.addLiquidityV4(
+                poolKey.currency0,
+                poolKey.currency1,
+                poolKey.fee,
+                poolKey.tickSpacing,
+                address(0),
+                tickLower,
+                tickUpper,
+                liquidityDelta,
+                type(uint256).max,
+                type(uint256).max,
+                0,
+                0
+            );
+
+        // Verify liquidity was added
+        assertEq(liquidity, uint128(liquidityDelta), "Liquidity mismatch");
+        assertGt(amount0, 0, "No amount0 deposited");
+        assertGt(amount1, 0, "No amount1 deposited");
+    }
+
+    function testRemoveLiquidity() public {
+        // First add liquidity
+        int24 tickLower = -600;
+        int24 tickUpper = 600;
+        uint256 liquidityDelta = 1e18;
+        bytes32 salt = bytes32(0);
+
+        (uint128 liquidityAdded, , ) = liquidityManager.addLiquidityV4(
+            poolKey.currency0,
+            poolKey.currency1,
+            poolKey.fee,
+            poolKey.tickSpacing,
+            address(0),
+            tickLower,
+            tickUpper,
+            liquidityDelta,
+            type(uint256).max,
+            type(uint256).max,
+            0,
+            0
+        );
+
+        // Then remove it
+        (uint256 amount0, uint256 amount1) = liquidityManager.removeLiquidityV4(
+            poolKey,
+            tickLower,
+            tickUpper,
+            liquidityDelta,
+            salt,
+            0,
+            0
+        );
+
+        // Verify tokens were returned
+        assertGt(amount0, 0, "No amount0 returned");
+        assertGt(amount1, 0, "No amount1 returned");
+    }
+}
+```
+
+---
+
