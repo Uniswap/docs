@@ -2310,3 +2310,710 @@ When migrating liquidity functionality:
 ---
 
 *Continue to [Position Management](#position-management) for advanced position handling patterns.*
+
+---
+
+### Position Management
+
+Advanced position management includes querying position state, implementing range orders, rebalancing strategies, and batch operations. This section covers patterns for migrating these operations from V3 to V4.
+
+---
+
+#### Querying Position Information
+
+**V3 Position Queries:**
+
+```solidity
+contract PositionQueriesV3 {
+    INonfungiblePositionManager public immutable positionManager;
+    
+    // Get complete position information
+    function getPositionInfoV3(uint256 tokenId) 
+        external 
+        view 
+        returns (
+            address token0,
+            address token1,
+            uint24 fee,
+            int24 tickLower,
+            int24 tickUpper,
+            uint128 liquidity,
+            uint256 feeGrowthInside0LastX128,
+            uint256 feeGrowthInside1LastX128,
+            uint128 tokensOwed0,
+            uint128 tokensOwed1
+        ) 
+    {
+        (
+            ,
+            ,
+            token0,
+            token1,
+            fee,
+            tickLower,
+            tickUpper,
+            liquidity,
+            feeGrowthInside0LastX128,
+            feeGrowthInside1LastX128,
+            tokensOwed0,
+            tokensOwed1
+        ) = positionManager.positions(tokenId);
+    }
+    
+    // Check if position is in range
+    function isPositionInRangeV3(
+        address poolAddress,
+        int24 tickLower,
+        int24 tickUpper
+    ) external view returns (bool) {
+        IUniswapV3Pool pool = IUniswapV3Pool(poolAddress);
+        (, int24 currentTick, , , , , ) = pool.slot0();
+        
+        return currentTick >= tickLower && currentTick < tickUpper;
+    }
+    
+    // Get position token amounts
+    function getPositionAmountsV3(
+        address poolAddress,
+        int24 tickLower,
+        int24 tickUpper,
+        uint128 liquidity
+    ) external view returns (uint256 amount0, uint256 amount1) {
+        IUniswapV3Pool pool = IUniswapV3Pool(poolAddress);
+        (uint160 sqrtPriceX96, , , , , , ) = pool.slot0();
+        
+        uint160 sqrtRatioAX96 = TickMath.getSqrtPriceAtTick(tickLower);
+        uint160 sqrtRatioBX96 = TickMath.getSqrtPriceAtTick(tickUpper);
+        
+        (amount0, amount1) = LiquidityAmounts.getAmountsForLiquidity(
+            sqrtPriceX96,
+            sqrtRatioAX96,
+            sqrtRatioBX96,
+            liquidity
+        );
+    }
+}
+```
+
+**V4 Position Queries:**
+
+```solidity
+contract PositionQueriesV4 {
+    IPoolManager public immutable poolManager;
+    
+    // Get complete position information
+    function getPositionInfoV4(
+        PoolKey memory poolKey,
+        address owner,
+        int24 tickLower,
+        int24 tickUpper,
+        bytes32 salt
+    ) external view returns (
+        uint128 liquidity,
+        uint256 feeGrowthInside0LastX128,
+        uint256 feeGrowthInside1LastX128
+    ) {
+        // Calculate position ID
+        bytes32 positionId = keccak256(
+            abi.encodePacked(owner, tickLower, tickUpper, salt)
+        );
+        
+        // Get position from PoolManager
+        PoolId poolId = poolKey.toId();
+        Position.Info memory position = poolManager.getPosition(
+            poolId,
+            positionId
+        );
+        
+        liquidity = position.liquidity;
+        feeGrowthInside0LastX128 = position.feeGrowthInside0LastX128;
+        feeGrowthInside1LastX128 = position.feeGrowthInside1LastX128;
+    }
+    
+    // Check if position is in range
+    function isPositionInRangeV4(
+        PoolKey memory poolKey,
+        int24 tickLower,
+        int24 tickUpper
+    ) external view returns (bool) {
+        PoolId poolId = poolKey.toId();
+        (uint160 sqrtPriceX96, int24 currentTick, , ) = poolManager.getSlot0(poolId);
+        
+        return currentTick >= tickLower && currentTick < tickUpper;
+    }
+    
+    // Get position token amounts
+    function getPositionAmountsV4(
+        PoolKey memory poolKey,
+        int24 tickLower,
+        int24 tickUpper,
+        uint128 liquidity
+    ) external view returns (uint256 amount0, uint256 amount1) {
+        PoolId poolId = poolKey.toId();
+        (uint160 sqrtPriceX96, , , ) = poolManager.getSlot0(poolId);
+        
+        uint160 sqrtRatioAX96 = TickMath.getSqrtPriceAtTick(tickLower);
+        uint160 sqrtRatioBX96 = TickMath.getSqrtPriceAtTick(tickUpper);
+        
+        (amount0, amount1) = LiquidityAmounts.getAmountsForLiquidity(
+            sqrtPriceX96,
+            sqrtRatioAX96,
+            sqrtRatioBX96,
+            liquidity
+        );
+    }
+    
+    // Get uncollected fees for position
+    function getUnclaimedFeesV4(
+        PoolKey memory poolKey,
+        address owner,
+        int24 tickLower,
+        int24 tickUpper,
+        bytes32 salt
+    ) external view returns (uint256 fees0, uint256 fees1) {
+        bytes32 positionId = keccak256(
+            abi.encodePacked(owner, tickLower, tickUpper, salt)
+        );
+        
+        PoolId poolId = poolKey.toId();
+        
+        // Get position info
+        Position.Info memory position = poolManager.getPosition(poolId, positionId);
+        
+        // Get current fee growth
+        (uint256 feeGrowthGlobal0X128, uint256 feeGrowthGlobal1X128) = 
+            poolManager.getFeeGrowthGlobals(poolId);
+        
+        // Calculate fees (simplified - actual calculation more complex)
+        fees0 = uint256(position.liquidity) * 
+            (feeGrowthGlobal0X128 - position.feeGrowthInside0LastX128) / 
+            (2 ** 128);
+        
+        fees1 = uint256(position.liquidity) * 
+            (feeGrowthGlobal1X128 - position.feeGrowthInside1LastX128) / 
+            (2 ** 128);
+    }
+}
+```
+
+**Key Differences:**
+1. **Position ID Calculation**: V4 uses hash of parameters instead of tokenId
+2. **Direct PoolManager Queries**: All queries go through PoolManager
+3. **PoolKey Required**: Must construct PoolKey for all operations
+4. **Fee Growth Tracking**: Similar concept but accessed differently
+
+---
+
+#### Range Orders (Limit Orders)
+
+Range orders are concentrated liquidity positions used as limit orders. When price moves through the range, the position is automatically filled.
+
+**V3 Range Order Implementation:**
+
+```solidity
+contract RangeOrderV3 {
+    INonfungiblePositionManager public immutable positionManager;
+    
+    struct RangeOrder {
+        uint256 tokenId;
+        address owner;
+        bool isFilled;
+    }
+    
+    mapping(uint256 => RangeOrder) public orders;
+    
+    // Create a range order (limit order)
+    function createRangeOrderV3(
+        address token0,
+        address token1,
+        uint24 fee,
+        int24 tickLower,
+        int24 tickUpper,
+        uint256 amount0,
+        uint256 amount1
+    ) external returns (uint256 tokenId) {
+        // Transfer tokens
+        if (amount0 > 0) {
+            IERC20(token0).transferFrom(msg.sender, address(this), amount0);
+            IERC20(token0).approve(address(positionManager), amount0);
+        }
+        if (amount1 > 0) {
+            IERC20(token1).transferFrom(msg.sender, address(this), amount1);
+            IERC20(token1).approve(address(positionManager), amount1);
+        }
+        
+        // Create position
+        INonfungiblePositionManager.MintParams memory params = 
+            INonfungiblePositionManager.MintParams({
+                token0: token0,
+                token1: token1,
+                fee: fee,
+                tickLower: tickLower,
+                tickUpper: tickUpper,
+                amount0Desired: amount0,
+                amount1Desired: amount1,
+                amount0Min: 0,
+                amount1Min: 0,
+                recipient: address(this),
+                deadline: block.timestamp
+            });
+        
+        (tokenId, , , ) = positionManager.mint(params);
+        
+        // Track order
+        orders[tokenId] = RangeOrder({
+            tokenId: tokenId,
+            owner: msg.sender,
+            isFilled: false
+        });
+    }
+    
+    // Close range order when filled
+    function closeRangeOrderV3(uint256 tokenId) external {
+        RangeOrder storage order = orders[tokenId];
+        require(order.owner == msg.sender, "Not owner");
+        require(!order.isFilled, "Already filled");
+        
+        // Get position info
+        (, , , , , , , uint128 liquidity, , , , ) = 
+            positionManager.positions(tokenId);
+        
+        // Remove all liquidity
+        if (liquidity > 0) {
+            INonfungiblePositionManager.DecreaseLiquidityParams memory params =
+                INonfungiblePositionManager.DecreaseLiquidityParams({
+                    tokenId: tokenId,
+                    liquidity: liquidity,
+                    amount0Min: 0,
+                    amount1Min: 0,
+                    deadline: block.timestamp
+                });
+            
+            positionManager.decreaseLiquidity(params);
+        }
+        
+        // Collect tokens
+        INonfungiblePositionManager.CollectParams memory collectParams =
+            INonfungiblePositionManager.CollectParams({
+                tokenId: tokenId,
+                recipient: msg.sender,
+                amount0Max: type(uint128).max,
+                amount1Max: type(uint128).max
+            });
+        
+        positionManager.collect(collectParams);
+        
+        order.isFilled = true;
+    }
+}
+```
+
+**V4 Range Order Implementation:**
+
+```solidity
+contract RangeOrderV4 is IUnlockCallback {
+    IPoolManager public immutable poolManager;
+    
+    struct RangeOrder {
+        PoolKey poolKey;
+        int24 tickLower;
+        int24 tickUpper;
+        bytes32 salt;
+        address owner;
+        uint128 liquidity;
+        bool isFilled;
+    }
+    
+    mapping(bytes32 => RangeOrder) public orders;
+    uint256 private nextSalt;
+    
+    // Create a range order
+    function createRangeOrderV4(
+        PoolKey memory poolKey,
+        int24 tickLower,
+        int24 tickUpper,
+        uint256 liquidity
+    ) external returns (bytes32 orderId) {
+        bytes32 salt = bytes32(nextSalt++);
+        orderId = keccak256(abi.encodePacked(msg.sender, salt));
+        
+        // Add liquidity through unlock callback
+        IPoolManager.ModifyLiquidityParams memory params =
+            IPoolManager.ModifyLiquidityParams({
+                tickLower: tickLower,
+                tickUpper: tickUpper,
+                liquidityDelta: int256(liquidity),
+                salt: salt
+            });
+        
+        bytes memory callbackData = abi.encode(
+            msg.sender,
+            poolKey,
+            params,
+            orderId
+        );
+        
+        poolManager.unlock(callbackData);
+        
+        // Track order
+        orders[orderId] = RangeOrder({
+            poolKey: poolKey,
+            tickLower: tickLower,
+            tickUpper: tickUpper,
+            salt: salt,
+            owner: msg.sender,
+            liquidity: uint128(liquidity),
+            isFilled: false
+        });
+    }
+    
+    // Close range order
+    function closeRangeOrderV4(bytes32 orderId) external {
+        RangeOrder storage order = orders[orderId];
+        require(order.owner == msg.sender, "Not owner");
+        require(!order.isFilled, "Already filled");
+        
+        // Remove liquidity through unlock callback
+        IPoolManager.ModifyLiquidityParams memory params =
+            IPoolManager.ModifyLiquidityParams({
+                tickLower: order.tickLower,
+                tickUpper: order.tickUpper,
+                liquidityDelta: -int256(uint256(order.liquidity)),
+                salt: order.salt
+            });
+        
+        bytes memory callbackData = abi.encode(
+            msg.sender,
+            order.poolKey,
+            params,
+            orderId
+        );
+        
+        poolManager.unlock(callbackData);
+        
+        order.isFilled = true;
+    }
+    
+    function unlockCallback(bytes calldata rawData) 
+        external 
+        returns (bytes memory) 
+    {
+        require(msg.sender == address(poolManager), "Not PoolManager");
+        
+        (
+            address sender,
+            PoolKey memory poolKey,
+            IPoolManager.ModifyLiquidityParams memory params,
+            bytes32 orderId
+        ) = abi.decode(rawData, (address, PoolKey, IPoolManager.ModifyLiquidityParams, bytes32));
+        
+        // Execute liquidity modification
+        BalanceDelta delta = poolManager.modifyLiquidity(poolKey, params, "");
+        
+        // Handle settlement based on whether adding or removing
+        if (params.liquidityDelta > 0) {
+            // Adding liquidity - settle input tokens
+            uint256 amount0 = uint256(uint128(-delta.amount0()));
+            uint256 amount1 = uint256(uint128(-delta.amount1()));
+            
+            // Settle currencies
+            if (amount0 > 0) {
+                IERC20(Currency.unwrap(poolKey.currency0)).transferFrom(
+                    sender,
+                    address(poolManager),
+                    amount0
+                );
+                poolManager.settle(poolKey.currency0);
+            }
+            
+            if (amount1 > 0) {
+                IERC20(Currency.unwrap(poolKey.currency1)).transferFrom(
+                    sender,
+                    address(poolManager),
+                    amount1
+                );
+                poolManager.settle(poolKey.currency1);
+            }
+        } else {
+            // Removing liquidity - take output tokens
+            uint256 amount0 = uint256(int256(delta.amount0()));
+            uint256 amount1 = uint256(int256(delta.amount1()));
+            
+            if (amount0 > 0) {
+                poolManager.take(poolKey.currency0, sender, amount0);
+            }
+            if (amount1 > 0) {
+                poolManager.take(poolKey.currency1, sender, amount1);
+            }
+        }
+        
+        return "";
+    }
+}
+```
+
+**V4 Advantages for Range Orders:**
+- Lower gas costs for creation and closing
+- Can batch multiple orders in single transaction via flash accounting
+- Hooks can automate order execution
+- Better composability with other protocols
+
+---
+
+#### Position Rebalancing
+
+Automatically adjusting position ranges based on price movements.
+
+**V3 Rebalancing Strategy:**
+
+```solidity
+contract RebalancerV3 {
+    INonfungiblePositionManager public immutable positionManager;
+    
+    // Rebalance position to new range
+    function rebalanceV3(
+        uint256 tokenId,
+        int24 newTickLower,
+        int24 newTickUpper
+    ) external returns (uint256 newTokenId) {
+        // Get current position info
+        (
+            ,
+            ,
+            address token0,
+            address token1,
+            uint24 fee,
+            int24 oldTickLower,
+            int24 oldTickUpper,
+            uint128 liquidity,
+            ,
+            ,
+            ,
+        ) = positionManager.positions(tokenId);
+        
+        // Remove liquidity from old position
+        INonfungiblePositionManager.DecreaseLiquidityParams memory decreaseParams =
+            INonfungiblePositionManager.DecreaseLiquidityParams({
+                tokenId: tokenId,
+                liquidity: liquidity,
+                amount0Min: 0,
+                amount1Min: 0,
+                deadline: block.timestamp
+            });
+        
+        positionManager.decreaseLiquidity(decreaseParams);
+        
+        // Collect tokens
+        INonfungiblePositionManager.CollectParams memory collectParams =
+            INonfungiblePositionManager.CollectParams({
+                tokenId: tokenId,
+                recipient: address(this),
+                amount0Max: type(uint128).max,
+                amount1Max: type(uint128).max
+            });
+        
+        (uint256 amount0, uint256 amount1) = positionManager.collect(collectParams);
+        
+        // Create new position with collected tokens
+        IERC20(token0).approve(address(positionManager), amount0);
+        IERC20(token1).approve(address(positionManager), amount1);
+        
+        INonfungiblePositionManager.MintParams memory mintParams =
+            INonfungiblePositionManager.MintParams({
+                token0: token0,
+                token1: token1,
+                fee: fee,
+                tickLower: newTickLower,
+                tickUpper: newTickUpper,
+                amount0Desired: amount0,
+                amount1Desired: amount1,
+                amount0Min: 0,
+                amount1Min: 0,
+                recipient: msg.sender,
+                deadline: block.timestamp
+            });
+        
+        (newTokenId, , , ) = positionManager.mint(mintParams);
+    }
+}
+```
+
+**V4 Rebalancing Strategy:**
+
+```solidity
+contract RebalancerV4 is IUnlockCallback {
+    IPoolManager public immutable poolManager;
+    
+    struct RebalanceData {
+        address owner;
+        PoolKey poolKey;
+        int24 oldTickLower;
+        int24 oldTickUpper;
+        int24 newTickLower;
+        int24 newTickUpper;
+        bytes32 oldSalt;
+        bytes32 newSalt;
+    }
+    
+    // Rebalance position in single transaction
+    function rebalanceV4(
+        PoolKey memory poolKey,
+        int24 oldTickLower,
+        int24 oldTickUpper,
+        bytes32 oldSalt,
+        int24 newTickLower,
+        int24 newTickUpper,
+        bytes32 newSalt
+    ) external {
+        RebalanceData memory data = RebalanceData({
+            owner: msg.sender,
+            poolKey: poolKey,
+            oldTickLower: oldTickLower,
+            oldTickUpper: oldTickUpper,
+            newTickLower: newTickLower,
+            newTickUpper: newTickUpper,
+            oldSalt: oldSalt,
+            newSalt: newSalt
+        });
+        
+        poolManager.unlock(abi.encode(data));
+    }
+    
+    function unlockCallback(bytes calldata rawData) 
+        external 
+        returns (bytes memory) 
+    {
+        require(msg.sender == address(poolManager), "Not PoolManager");
+        
+        RebalanceData memory data = abi.decode(rawData, (RebalanceData));
+        
+        // Step 1: Get current position liquidity
+        bytes32 oldPositionId = keccak256(
+            abi.encodePacked(data.owner, data.oldTickLower, data.oldTickUpper, data.oldSalt)
+        );
+        
+        Position.Info memory oldPosition = poolManager.getPosition(
+            data.poolKey.toId(),
+            oldPositionId
+        );
+        
+        uint128 liquidity = oldPosition.liquidity;
+        
+        // Step 2: Remove liquidity from old position
+        IPoolManager.ModifyLiquidityParams memory removeParams =
+            IPoolManager.ModifyLiquidityParams({
+                tickLower: data.oldTickLower,
+                tickUpper: data.oldTickUpper,
+                liquidityDelta: -int256(uint256(liquidity)),
+                salt: data.oldSalt
+            });
+        
+        BalanceDelta removeDelta = poolManager.modifyLiquidity(
+            data.poolKey,
+            removeParams,
+            ""
+        );
+        
+        // Step 3: Calculate amounts received
+        uint256 amount0 = uint256(int256(removeDelta.amount0()));
+        uint256 amount1 = uint256(int256(removeDelta.amount1()));
+        
+        // Step 4: Calculate new liquidity for new range
+        PoolId poolId = data.poolKey.toId();
+        (uint160 sqrtPriceX96, , , ) = poolManager.getSlot0(poolId);
+        
+        uint160 sqrtRatioAX96 = TickMath.getSqrtPriceAtTick(data.newTickLower);
+        uint160 sqrtRatioBX96 = TickMath.getSqrtPriceAtTick(data.newTickUpper);
+        
+        uint128 newLiquidity = LiquidityAmounts.getLiquidityForAmounts(
+            sqrtPriceX96,
+            sqrtRatioAX96,
+            sqrtRatioBX96,
+            amount0,
+            amount1
+        );
+        
+        // Step 5: Add liquidity to new position
+        IPoolManager.ModifyLiquidityParams memory addParams =
+            IPoolManager.ModifyLiquidityParams({
+                tickLower: data.newTickLower,
+                tickUpper: data.newTickUpper,
+                liquidityDelta: int256(uint256(newLiquidity)),
+                salt: data.newSalt
+            });
+        
+        BalanceDelta addDelta = poolManager.modifyLiquidity(
+            data.poolKey,
+            addParams,
+            ""
+        );
+        
+        // Step 6: Net settlement
+        // Flash accounting means we only settle the difference
+        int256 netAmount0 = removeDelta.amount0() + addDelta.amount0();
+        int256 netAmount1 = removeDelta.amount1() + addDelta.amount1();
+        
+        // Settle only net amounts
+        if (netAmount0 < 0) {
+            // Need to send more token0
+            IERC20(Currency.unwrap(data.poolKey.currency0)).transferFrom(
+                data.owner,
+                address(poolManager),
+                uint256(-netAmount0)
+            );
+            poolManager.settle(data.poolKey.currency0);
+        } else if (netAmount0 > 0) {
+            // Receive token0
+            poolManager.take(data.poolKey.currency0, data.owner, uint256(netAmount0));
+        }
+        
+        if (netAmount1 < 0) {
+            // Need to send more token1
+            IERC20(Currency.unwrap(data.poolKey.currency1)).transferFrom(
+                data.owner,
+                address(poolManager),
+                uint256(-netAmount1)
+            );
+            poolManager.settle(data.poolKey.currency1);
+        } else if (netAmount1 > 0) {
+            // Receive token1
+            poolManager.take(data.poolKey.currency1, data.owner, uint256(netAmount1));
+        }
+        
+        return "";
+    }
+}
+```
+
+**V4 Rebalancing Advantages:**
+- Single transaction for entire rebalance
+- Flash accounting eliminates intermediate token transfers
+- Significantly lower gas costs
+- Can rebalance multiple positions atomically
+
+---
+
+#### Batch Operations
+
+**V3 Batch Collect Fees:**
+
+```solidity
+function batchCollectV3(uint256[] calldata tokenIds) 
+    external 
+    returns (uint256 totalAmount0, uint256 totalAmount1) 
+{
+    for (uint i = 0; i < tokenIds.length; i++) {
+        INonfungiblePositionManager.CollectParams memory params =
+            INonfungiblePositionManager.CollectParams({
+                tokenId: tokenIds[i],
+                recipient: msg.sender,
+                amount0Max: type(uint128).max,
+                amount1Max: type(uint128).max
+            });
+        
+        (uint256 amount0, uint256 amount1) = positionManager.collect(params);
+        totalAmount0 += amount0;
+        totalAmount1 += amount1;
+    }
+}
+```
