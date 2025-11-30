@@ -5471,3 +5471,74 @@ provider.on("block", async (blockNumber) => {
 ```
 
 ---
+
+### Rollback Plan
+
+**Emergency Pause Contract:**
+
+```solidity
+contract EmergencyPausable {
+    bool public paused = false;
+    address public admin;
+    address public fallbackContract;
+    
+    modifier whenNotPaused() {
+        require(!paused, "Contract paused");
+        _;
+    }
+    
+    function pause() external {
+        require(msg.sender == admin, "Not admin");
+        paused = true;
+        emit Paused(block.timestamp);
+    }
+    
+    function unpause() external {
+        require(msg.sender == admin, "Not admin");
+        paused = false;
+        emit Unpaused(block.timestamp);
+    }
+    
+    function setFallback(address _fallback) external {
+        require(msg.sender == admin, "Not admin");
+        fallbackContract = _fallback;
+    }
+    
+    fallback() external {
+        if (paused && fallbackContract != address(0)) {
+            // Redirect to fallback (V3)
+            (bool success, bytes memory data) = fallbackContract.call(msg.data);
+            require(success, "Fallback failed");
+            
+            assembly {
+                return(add(data, 32), mload(data))
+            }
+        }
+        revert("Contract paused");
+    }
+}
+```
+
+---
+
+### Migration Checklist
+
+Before deploying to mainnet:
+
+- [ ] All unit tests passing
+- [ ] Integration tests completed
+- [ ] Fork tests against mainnet successful
+- [ ] Gas benchmarks within acceptable range
+- [ ] Security audit completed
+- [ ] Testnet deployment successful
+- [ ] Monitoring and alerts configured
+- [ ] Rollback plan tested
+- [ ] Documentation updated
+- [ ] Team trained on new system
+- [ ] Gradual rollout plan defined
+- [ ] Emergency contacts established
+- [ ] Insurance/bug bounty considered
+
+---
+
+*Continue to [Complete Examples & Troubleshooting](#complete-examples) for end-to-end implementations and common issues.*
