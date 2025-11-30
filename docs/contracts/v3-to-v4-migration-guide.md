@@ -3017,3 +3017,124 @@ function batchCollectV3(uint256[] calldata tokenIds)
     }
 }
 ```
+
+**V4 Batch Operations:**
+
+```solidity
+contract BatchOperationsV4 is IUnlockCallback {
+    IPoolManager public immutable poolManager;
+    
+    struct BatchCollectData {
+        address owner;
+        PositionParams[] positions;
+    }
+    
+    struct PositionParams {
+        PoolKey poolKey;
+        int24 tickLower;
+        int24 tickUpper;
+        bytes32 salt;
+    }
+    
+    // Collect fees from multiple positions in one transaction
+    function batchCollectV4(PositionParams[] calldata positions) 
+        external 
+        returns (uint256 totalAmount0, uint256 totalAmount1) 
+    {
+        BatchCollectData memory data = BatchCollectData({
+            owner: msg.sender,
+            positions: positions
+        });
+        
+        bytes memory result = poolManager.unlock(abi.encode(data));
+        (totalAmount0, totalAmount1) = abi.decode(result, (uint256, uint256));
+    }
+    
+    function unlockCallback(bytes calldata rawData) 
+        external 
+        returns (bytes memory) 
+    {
+        require(msg.sender == address(poolManager), "Not PoolManager");
+        
+        BatchCollectData memory data = abi.decode(rawData, (BatchCollectData));
+        
+        uint256 totalAmount0;
+        uint256 totalAmount1;
+        
+        // Collect from each position
+        for (uint i = 0; i < data.positions.length; i++) {
+            PositionParams memory pos = data.positions[i];
+            
+            // Collect fees with zero liquidity delta
+            IPoolManager.ModifyLiquidityParams memory params =
+                IPoolManager.ModifyLiquidityParams({
+                    tickLower: pos.tickLower,
+                    tickUpper: pos.tickUpper,
+                    liquidityDelta: 0,
+                    salt: pos.salt
+                });
+            
+            BalanceDelta delta = poolManager.modifyLiquidity(
+                pos.poolKey,
+                params,
+                ""
+            );
+            
+            // Accumulate amounts
+            if (delta.amount0() > 0) {
+                totalAmount0 += uint256(int256(delta.amount0()));
+            }
+            if (delta.amount1() > 0) {
+                totalAmount1 += uint256(int256(delta.amount1()));
+            }
+        }
+        
+        // Take all collected fees in one operation
+        if (totalAmount0 > 0) {
+            poolManager.take(
+                data.positions[0].poolKey.currency0,
+                data.owner,
+                totalAmount0
+            );
+        }
+        if (totalAmount1 > 0) {
+            poolManager.take(
+                data.positions[0].poolKey.currency1,
+                data.owner,
+                totalAmount1
+            );
+        }
+        
+        return abi.encode(totalAmount0, totalAmount1);
+    }
+}
+```
+
+**V4 Batch Advantages:**
+- Flash accounting across all operations
+- Single unlock for entire batch
+- Much lower gas per operation
+- Can mix different operation types
+
+---
+
+#### Migration Checklist for Position Management
+
+When migrating position management:
+
+- [ ] Update position tracking from tokenId to hash-based IDs
+- [ ] Implement position query functions using PoolManager
+- [ ] Migrate range order logic to use V4 patterns
+- [ ] Update rebalancing strategies to leverage flash accounting
+- [ ] Convert batch operations to use single unlock pattern
+- [ ] Add salt management for multiple positions per range
+- [ ] Update fee calculation and collection logic
+- [ ] Implement proper position state tracking
+- [ ] Test position lifecycle thoroughly
+- [ ] Verify gas savings for batch operations
+- [ ] Add proper access control for position modifications
+- [ ] Consider implementing position NFT wrapper if needed
+
+---
+
+*Continue to [SDK & Frontend Migration](#sdk-migration) for client-side integration patterns.*
