@@ -3685,5 +3685,258 @@ export default SwapComponentV4;
 ```
 
 ---
+### Liquidity Position Management UI
 
+**V3 Position Display:**
+
+```typescript
+import React, { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+
+interface PositionV3 {
+  tokenId: string;
+  token0: string;
+  token1: string;
+  fee: number;
+  tickLower: number;
+  tickUpper: number;
+  liquidity: string;
+}
+
+function PositionListV3() {
+  const [positions, setPositions] = useState<PositionV3[]>([]);
+
+  useEffect(() => {
+    async function loadPositions() {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const address = await signer.getAddress();
+      
+      const positionManager = new ethers.Contract(
+        NFT_POSITION_MANAGER_ADDRESS,
+        [
+          'function balanceOf(address owner) view returns (uint256)',
+          'function tokenOfOwnerByIndex(address owner, uint256 index) view returns (uint256)',
+          'function positions(uint256 tokenId) view returns (uint96, address, address, address, uint24, int24, int24, uint128, uint256, uint256, uint128, uint128)',
+        ],
+        provider
+      );
+      
+      const balance = await positionManager.balanceOf(address);
+      const positionPromises = [];
+      
+      for (let i = 0; i < balance; i++) {
+        positionPromises.push(
+          positionManager.tokenOfOwnerByIndex(address, i).then(async (tokenId) => {
+            const position = await positionManager.positions(tokenId);
+            return {
+              tokenId: tokenId.toString(),
+              token0: position[2],
+              token1: position[3],
+              fee: position[4],
+              tickLower: position[5],
+              tickUpper: position[6],
+              liquidity: position[7].toString(),
+            };
+          })
+        );
+      }
+      
+      const loadedPositions = await Promise.all(positionPromises);
+      setPositions(loadedPositions);
+    }
+    
+    loadPositions();
+  }, []);
+
+  return (
+    <div>
+      <h2>My Positions (V3)</h2>
+      {positions.map((pos) => (
+        <div key={pos.tokenId} className="position-card">
+          <div>Token ID: {pos.tokenId}</div>
+          <div>Range: {pos.tickLower} to {pos.tickUpper}</div>
+          <div>Liquidity: {pos.liquidity}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default PositionListV3;
+```
+
+**V4 Position Display:**
+
+```typescript
+import React, { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+import { PoolKey } from '@uniswap/v4-sdk';
+
+interface PositionV4 {
+  poolKey: PoolKey;
+  tickLower: number;
+  tickUpper: number;
+  salt: string;
+  liquidity: string;
+}
+
+function PositionListV4() {
+  const [positions, setPositions] = useState<PositionV4[]>([]);
+
+  useEffect(() => {
+    async function loadPositions() {
+      // V4 doesn't have automatic NFTs, so positions must be tracked
+      // by your application or through a separate position manager contract
+      
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const address = await signer.getAddress();
+      
+      // Option 1: Load from your tracking contract
+      const tracker = new ethers.Contract(
+        YOUR_POSITION_TRACKER_ADDRESS,
+        [
+          'function getUserPositions(address user) view returns (tuple(address currency0, address currency1, uint24 fee, int24 tickSpacing, address hooks, int24 tickLower, int24 tickUpper, bytes32 salt, uint128 liquidity)[])',
+        ],
+        provider
+      );
+      
+      const userPositions = await tracker.getUserPositions(address);
+      
+      const formattedPositions = userPositions.map((pos) => ({
+        poolKey: {
+          currency0: pos.currency0,
+          currency1: pos.currency1,
+          fee: pos.fee,
+          tickSpacing: pos.tickSpacing,
+          hooks: pos.hooks,
+        },
+        tickLower: pos.tickLower,
+        tickUpper: pos.tickUpper,
+        salt: pos.salt,
+        liquidity: pos.liquidity.toString(),
+      }));
+      
+      setPositions(formattedPositions);
+    }
+    
+    loadPositions();
+  }, []);
+
+  return (
+    <div>
+      <h2>My Positions (V4)</h2>
+      {positions.map((pos, idx) => (
+        <div key={idx} className="position-card">
+          <div>Pool: {pos.poolKey.currency0.address} / {pos.poolKey.currency1.address}</div>
+          <div>Fee: {pos.poolKey.fee / 10000}%</div>
+          <div>Range: {pos.tickLower} to {pos.tickUpper}</div>
+          <div>Liquidity: {pos.liquidity}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default PositionListV4;
+```
+
+**Key Differences:**
+- V4 requires custom position tracking
+- No automatic NFT enumeration
+- Must store position parameters in separate contract or database
+- Can optionally use Position NFT wrapper contract
+
+---
+
+### Event Listening and Monitoring
+
+**V3 Event Monitoring:**
+
+```typescript
+async function monitorSwapsV3(poolAddress: string) {
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  
+  const pool = new ethers.Contract(
+    poolAddress,
+    [
+      'event Swap(address indexed sender, address indexed recipient, int256 amount0, int256 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick)',
+    ],
+    provider
+  );
+  
+  pool.on('Swap', (sender, recipient, amount0, amount1, sqrtPriceX96, liquidity, tick) => {
+    console.log('Swap detected:', {
+      sender,
+      recipient,
+      amount0: amount0.toString(),
+      amount1: amount1.toString(),
+      tick,
+    });
+  });
+}
+```
+
+**V4 Event Monitoring:**
+
+```typescript
+async function monitorSwapsV4(poolKey: PoolKey) {
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  
+  const poolManager = new ethers.Contract(
+    POOL_MANAGER_ADDRESS,
+    [
+      'event Swap(bytes32 indexed poolId, address indexed sender, int128 amount0, int128 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick, uint24 fee)',
+    ],
+    provider
+  );
+  
+  // Calculate pool ID to filter events
+  const poolId = getPoolId(poolKey);
+  
+  // Filter for specific pool
+  const filter = poolManager.filters.Swap(poolId);
+  
+  poolManager.on(filter, (poolId, sender, amount0, amount1, sqrtPriceX96, liquidity, tick, fee) => {
+    console.log('Swap detected:', {
+      poolId,
+      sender,
+      amount0: amount0.toString(),
+      amount1: amount1.toString(),
+      tick,
+      fee,
+    });
+  });
+}
+```
+
+**Key Differences:**
+- V4 events emitted from PoolManager, not individual pools
+- Must filter by poolId
+- Event structure includes poolId and fee fields
+- All pools share same event source
+
+---
+
+### Migration Checklist for SDK & Frontend
+
+When migrating frontend applications:
+
+- [ ] Update package dependencies (@uniswap/v4-sdk, ethers@6)
+- [ ] Replace pool address lookups with PoolKey construction
+- [ ] Update contract addresses (PoolManager instead of SwapRouter)
+- [ ] Modify quote fetching to use PoolManager
+- [ ] Update swap execution to pass PoolKey tuple
+- [ ] Implement custom position tracking system
+- [ ] Update event listeners to filter by poolId
+- [ ] Handle native ETH support in currency types
+- [ ] Add hook data parameter to relevant functions
+- [ ] Update React components with new patterns
+- [ ] Test with mainnet fork or testnet
+- [ ] Update user documentation and tooltips
+
+---
+
+*Continue to [Hooks System Integration](#hooks-integration) for implementing custom hook logic.*
 
