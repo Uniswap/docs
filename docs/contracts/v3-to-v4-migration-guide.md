@@ -4056,3 +4056,328 @@ contract MyBasicHook is BaseHook {
     }
 }
 ```
+
+**Key Components:**
+
+1. **Inherit from BaseHook**: Provides base functionality
+2. **getHookPermissions()**: Declares which hooks are implemented
+3. **Implement hook functions**: Add custom logic
+4. **Return correct selector**: Indicates successful execution
+
+---
+
+### Hook Address Requirements
+
+Hook contracts must be deployed at specific addresses where certain bits match the enabled hooks.
+
+**Address Validation:**
+
+```solidity
+// Hook address validation
+// The address bits must match the enabled hook flags
+
+contract HookAddressValidator {
+    // Compute valid hook address using CREATE2
+    function getHookAddress(
+        address deployer,
+        bytes32 salt,
+        bytes memory bytecode,
+        Hooks.Permissions memory permissions
+    ) public pure returns (address) {
+        bytes32 hash = keccak256(
+            abi.encodePacked(
+                bytes1(0xff),
+                deployer,
+                salt,
+                keccak256(bytecode)
+            )
+        );
+        
+        address hookAddress = address(uint160(uint256(hash)));
+        
+        // Verify address matches permissions
+        require(
+            validateHookAddress(hookAddress, permissions),
+            "Invalid hook address"
+        );
+        
+        return hookAddress;
+    }
+    
+    function validateHookAddress(
+        address hookAddress,
+        Hooks.Permissions memory permissions
+    ) public pure returns (bool) {
+        uint160 addr = uint160(hookAddress);
+        
+        // Check each permission bit matches address bit
+        if (permissions.beforeInitialize && (addr & (1 << 159)) == 0) return false;
+        if (permissions.afterInitialize && (addr & (1 << 158)) == 0) return false;
+        if (permissions.beforeAddLiquidity && (addr & (1 << 157)) == 0) return false;
+        // ... check other permissions
+        
+        return true;
+    }
+}
+```
+
+**Deploying with Correct Address:**
+
+```solidity
+contract HookDeployer {
+    // Mine for correct salt to get valid hook address
+    function deployHook(
+        bytes memory bytecode,
+        Hooks.Permissions memory permissions
+    ) external returns (address hookAddress) {
+        bytes32 salt = 0;
+        
+        // Mine for valid salt (this would typically be done off-chain)
+        while (true) {
+            address predicted = predictAddress(bytecode, salt);
+            
+            if (validateHookAddress(predicted, permissions)) {
+                // Found valid address, deploy
+                assembly {
+                    hookAddress := create2(0, add(bytecode, 0x20), mload(bytecode), salt)
+                }
+                return hookAddress;
+            }
+            
+            salt = bytes32(uint256(salt) + 1);
+        }
+    }
+    
+    function predictAddress(bytes memory bytecode, bytes32 salt) 
+        internal 
+        view 
+        returns (address) 
+    {
+        bytes32 hash = keccak256(
+            abi.encodePacked(
+                bytes1(0xff),
+                address(this),
+                salt,
+                keccak256(bytecode)
+            )
+        );
+        return address(uint160(uint256(hash)));
+    }
+}
+```
+
+---
+
+### Common Hook Patterns
+
+#### Pattern 1: Dynamic Fee Hook
+
+Adjust fees based on volatility or other conditions.
+
+```solidity
+contract DynamicFeeHook is BaseHook {
+    using FixedPoint96 for uint256;
+    
+    mapping(PoolId => uint256) public lastUpdateTime;
+    mapping(PoolId => uint256) public volatility;
+    
+    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
+    
+    function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+        return Hooks.Permissions({
+            beforeInitialize: false,
+            afterInitialize: false,
+            beforeAddLiquidity: false,
+            afterAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterRemoveLiquidity: false,
+            beforeSwap: true,  // Calculate fee before swap
+            afterSwap: true,   // Update volatility after swap
+            beforeDonate: false,
+            afterDonate: false,
+            beforeSwapReturnDelta: false,
+            afterSwapReturnDelta: false,
+            afterAddLiquidityReturnDelta: false,
+            afterRemoveLiquidityReturnDelta: false
+        });
+    }
+    
+    function beforeSwap(
+        address,
+        PoolKey calldata key,
+        IPoolManager.SwapParams calldata,
+        bytes calldata
+    ) external override returns (bytes4, BeforeSwapDelta, uint24) {
+        PoolId poolId = key.toId();
+        
+        // Calculate dynamic fee based on volatility
+        uint24 dynamicFee = calculateFee(volatility[poolId]);
+        
+        // Return new fee (overrides pool's base fee)
+        return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, dynamicFee);
+    }
+    
+    function afterSwap(
+        address,
+        PoolKey calldata key,
+        IPoolManager.SwapParams calldata params,
+        BalanceDelta delta,
+        bytes calldata
+    ) external override returns (bytes4, int128) {
+        PoolId poolId = key.toId();
+        
+        // Update volatility based on price movement
+        updateVolatility(poolId, delta);
+        
+        return (BaseHook.afterSwap.selector, 0);
+    }
+    
+    function calculateFee(uint256 vol) internal pure returns (uint24) {
+        // Base fee: 0.3% (3000)
+        // Add 0.01% (100) per volatility unit
+        uint24 baseFee = 3000;
+        uint24 volatilityFee = uint24(vol * 100);
+        
+        // Cap at 1% (10000)
+        uint24 totalFee = baseFee + volatilityFee;
+        return totalFee > 10000 ? 10000 : totalFee;
+    }
+    
+    function updateVolatility(PoolId poolId, BalanceDelta delta) internal {
+        // Simplified volatility calculation
+        uint256 timeDelta = block.timestamp - lastUpdateTime[poolId];
+        
+        if (timeDelta > 0) {
+            int256 priceChange = delta.amount0() + delta.amount1();
+            uint256 vol = uint256(priceChange < 0 ? -priceChange : priceChange) / timeDelta;
+            
+            // Exponential moving average
+            volatility[poolId] = (volatility[poolId] * 9 + vol) / 10;
+        }
+        
+        lastUpdateTime[poolId] = block.timestamp;
+    }
+}
+```
+
+---
+
+#### Pattern 2: Limit Order Hook
+
+Implement limit orders using hooks.
+
+```solidity
+contract LimitOrderHook is BaseHook {
+    struct LimitOrder {
+        address owner;
+        bool zeroForOne;
+        int24 tickThreshold;
+        uint256 amountIn;
+        bool filled;
+    }
+    
+    mapping(PoolId => mapping(uint256 => LimitOrder)) public orders;
+    mapping(PoolId => uint256) public orderCount;
+    
+    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
+    
+    function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+        return Hooks.Permissions({
+            beforeInitialize: false,
+            afterInitialize: false,
+            beforeAddLiquidity: false,
+            afterAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterRemoveLiquidity: false,
+            beforeSwap: false,
+            afterSwap: true,  // Check and fill orders after swaps
+            beforeDonate: false,
+            afterDonate: false,
+            beforeSwapReturnDelta: false,
+            afterSwapReturnDelta: false,
+            afterAddLiquidityReturnDelta: false,
+            afterRemoveLiquidityReturnDelta: false
+        });
+    }
+    
+    // Place a limit order
+    function placeLimitOrder(
+        PoolKey calldata key,
+        bool zeroForOne,
+        int24 tickThreshold,
+        uint256 amountIn
+    ) external returns (uint256 orderId) {
+        PoolId poolId = key.toId();
+        orderId = orderCount[poolId]++;
+        
+        orders[poolId][orderId] = LimitOrder({
+            owner: msg.sender,
+            zeroForOne: zeroForOne,
+            tickThreshold: tickThreshold,
+            amountIn: amountIn,
+            filled: false
+        });
+        
+        // Transfer tokens from user
+        Currency currency = zeroForOne ? key.currency0 : key.currency1;
+        // ... transfer logic
+    }
+    
+    function afterSwap(
+        address,
+        PoolKey calldata key,
+        IPoolManager.SwapParams calldata,
+        BalanceDelta,
+        bytes calldata
+    ) external override returns (bytes4, int128) {
+        PoolId poolId = key.toId();
+        
+        // Get current tick
+        (, int24 currentTick, , ) = poolManager.getSlot0(poolId);
+        
+        // Check and execute limit orders
+        for (uint256 i = 0; i < orderCount[poolId]; i++) {
+            LimitOrder storage order = orders[poolId][i];
+            
+            if (!order.filled && shouldFillOrder(order, currentTick)) {
+                fillOrder(key, poolId, i);
+            }
+        }
+        
+        return (BaseHook.afterSwap.selector, 0);
+    }
+    
+    function shouldFillOrder(LimitOrder memory order, int24 currentTick) 
+        internal 
+        pure 
+        returns (bool) 
+    {
+        if (order.zeroForOne) {
+            // Selling token0: fill when price drops below threshold
+            return currentTick <= order.tickThreshold;
+        } else {
+            // Selling token1: fill when price rises above threshold
+            return currentTick >= order.tickThreshold;
+        }
+    }
+    
+    function fillOrder(PoolKey calldata key, PoolId poolId, uint256 orderId) internal {
+        LimitOrder storage order = orders[poolId][orderId];
+        
+        // Execute swap through PoolManager
+        IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+            zeroForOne: order.zeroForOne,
+            amountSpecified: -int256(order.amountIn),
+            sqrtPriceLimitX96: 0
+        });
+        
+        // Swap would need to be executed in unlock callback
+        // ... swap execution logic
+        
+        order.filled = true;
+    }
+}
+```
+
+---
+
