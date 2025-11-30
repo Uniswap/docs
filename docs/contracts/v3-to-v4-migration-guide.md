@@ -1554,3 +1554,659 @@ When migrating swap functionality:
 ---
 
 *Continue to [Liquidity Management](#liquidity-management) for migrating liquidity provision code.*
+
+---
+
+### Liquidity Management
+
+Liquidity provision in V4 follows similar principles to V3 but requires different contract interactions. This section covers adding liquidity, removing liquidity, and collecting fees.
+
+---
+
+#### Adding Liquidity: Overview
+
+**Key Differences V3 to V4:**
+- V3 uses `NonfungiblePositionManager` contract
+- V4 uses `PoolManager.modifyLiquidity()` function
+- V4 requires lock/unlock pattern
+- Position identification changes
+- Settlement process differs
+
+---
+
+#### V3 Add Liquidity Pattern
+
+```solidity
+import "@uniswap/v3-periphery/contracts/interfaces/INonfungiblePositionManager.sol";
+
+contract LiquidityProviderV3 {
+    INonfungiblePositionManager public immutable positionManager;
+    
+    constructor(address _positionManager) {
+        positionManager = INonfungiblePositionManager(_positionManager);
+    }
+    
+    function addLiquidityV3(
+        address token0,
+        address token1,
+        uint24 fee,
+        int24 tickLower,
+        int24 tickUpper,
+        uint256 amount0Desired,
+        uint256 amount1Desired,
+        uint256 amount0Min,
+        uint256 amount1Min
+    ) external returns (
+        uint256 tokenId,
+        uint128 liquidity,
+        uint256 amount0,
+        uint256 amount1
+    ) {
+        // Transfer tokens to this contract
+        IERC20(token0).transferFrom(msg.sender, address(this), amount0Desired);
+        IERC20(token1).transferFrom(msg.sender, address(this), amount1Desired);
+        
+        // Approve position manager
+        IERC20(token0).approve(address(positionManager), amount0Desired);
+        IERC20(token1).approve(address(positionManager), amount1Desired);
+        
+        // Prepare mint parameters
+        INonfungiblePositionManager.MintParams memory params = 
+            INonfungiblePositionManager.MintParams({
+                token0: token0,
+                token1: token1,
+                fee: fee,
+                tickLower: tickLower,
+                tickUpper: tickUpper,
+                amount0Desired: amount0Desired,
+                amount1Desired: amount1Desired,
+                amount0Min: amount0Min,
+                amount1Min: amount1Min,
+                recipient: msg.sender,
+                deadline: block.timestamp
+            });
+        
+        // Mint position (creates NFT)
+        (tokenId, liquidity, amount0, amount1) = positionManager.mint(params);
+        
+        // Refund unused tokens
+        if (amount0 < amount0Desired) {
+            IERC20(token0).transfer(msg.sender, amount0Desired - amount0);
+        }
+        if (amount1 < amount1Desired) {
+            IERC20(token1).transfer(msg.sender, amount1Desired - amount1);
+        }
+    }
+}
+```
+
+---
+
+#### V4 Add Liquidity Pattern
+
+```solidity
+import "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
+import "@uniswap/v4-core/contracts/interfaces/callback/IUnlockCallback.sol";
+import "@uniswap/v4-core/contracts/types/PoolKey.sol";
+import "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
+
+contract LiquidityProviderV4 is IUnlockCallback {
+    IPoolManager public immutable poolManager;
+    
+    constructor(address _poolManager) {
+        poolManager = IPoolManager(_poolManager);
+    }
+    
+    struct AddLiquidityCallbackData {
+        address sender;
+        PoolKey poolKey;
+        IPoolManager.ModifyLiquidityParams params;
+        uint256 amount0Max;
+        uint256 amount1Max;
+        uint256 amount0Min;
+        uint256 amount1Min;
+    }
+    
+    function addLiquidityV4(
+        Currency currency0,
+        Currency currency1,
+        uint24 fee,
+        int24 tickSpacing,
+        address hooks,
+        int24 tickLower,
+        int24 tickUpper,
+        uint256 liquidityDelta,
+        uint256 amount0Max,
+        uint256 amount1Max,
+        uint256 amount0Min,
+        uint256 amount1Min
+    ) external returns (
+        uint128 liquidity,
+        uint256 amount0,
+        uint256 amount1
+    ) {
+        // Construct PoolKey
+        PoolKey memory poolKey = PoolKey({
+            currency0: currency0,
+            currency1: currency1,
+            fee: fee,
+            tickSpacing: tickSpacing,
+            hooks: IHooks(hooks)
+        });
+        
+        // Prepare modify liquidity parameters
+        IPoolManager.ModifyLiquidityParams memory params = 
+            IPoolManager.ModifyLiquidityParams({
+                tickLower: tickLower,
+                tickUpper: tickUpper,
+                liquidityDelta: int256(liquidityDelta),  // Positive to add
+                salt: bytes32(0)  // Used for position identification
+            });
+        
+        // Encode callback data
+        AddLiquidityCallbackData memory callbackData = AddLiquidityCallbackData({
+            sender: msg.sender,
+            poolKey: poolKey,
+            params: params,
+            amount0Max: amount0Max,
+            amount1Max: amount1Max,
+            amount0Min: amount0Min,
+            amount1Min: amount1Min
+        });
+        
+        // Execute through unlock
+        bytes memory result = poolManager.unlock(abi.encode(callbackData));
+        
+        // Decode results
+        (liquidity, amount0, amount1) = abi.decode(
+            result, 
+            (uint128, uint256, uint256)
+        );
+    }
+    
+    function unlockCallback(bytes calldata rawData) 
+        external 
+        returns (bytes memory) 
+    {
+        require(msg.sender == address(poolManager), "Not PoolManager");
+        
+        AddLiquidityCallbackData memory data = abi.decode(
+            rawData,
+            (AddLiquidityCallbackData)
+        );
+        
+        // Execute liquidity modification
+        BalanceDelta delta = poolManager.modifyLiquidity(
+            data.poolKey,
+            data.params,
+            ""  // Hook data
+        );
+        
+        // Extract amounts from delta
+        uint256 amount0 = uint256(uint128(-delta.amount0()));
+        uint256 amount1 = uint256(uint128(-delta.amount1()));
+        
+        // Verify amounts are within acceptable range
+        require(amount0 <= data.amount0Max, "Amount0 exceeds maximum");
+        require(amount1 <= data.amount1Max, "Amount1 exceeds maximum");
+        require(amount0 >= data.amount0Min, "Amount0 below minimum");
+        require(amount1 >= data.amount1Min, "Amount1 below minimum");
+        
+        // Settle currency0
+        if (data.poolKey.currency0.isNative()) {
+            poolManager.settle{value: amount0}(data.poolKey.currency0);
+        } else {
+            IERC20(Currency.unwrap(data.poolKey.currency0)).transferFrom(
+                data.sender,
+                address(poolManager),
+                amount0
+            );
+            poolManager.settle(data.poolKey.currency0);
+        }
+        
+        // Settle currency1
+        if (data.poolKey.currency1.isNative()) {
+            poolManager.settle{value: amount1}(data.poolKey.currency1);
+        } else {
+            IERC20(Currency.unwrap(data.poolKey.currency1)).transferFrom(
+                data.sender,
+                address(poolManager),
+                amount1
+            );
+            poolManager.settle(data.poolKey.currency1);
+        }
+        
+        // Calculate liquidity added (approximation)
+        uint128 liquidity = uint128(data.params.liquidityDelta);
+        
+        return abi.encode(liquidity, amount0, amount1);
+    }
+}
+```
+
+**Key Changes:**
+1. **No NFT Creation**: V4 positions aren't automatically minted as NFTs
+2. **liquidityDelta**: Specify liquidity amount directly, not token amounts
+3. **Salt Parameter**: Used for position identification (can be used for multiple positions in same range)
+4. **Settlement**: Manual settlement of both currencies
+5. **Native ETH**: Direct support without WETH wrapping
+
+---
+
+#### Calculating Liquidity Amount
+
+In V4, you specify liquidity directly rather than token amounts. Here's how to calculate it:
+
+```solidity
+import "@uniswap/v4-core/contracts/libraries/LiquidityAmounts.sol";
+import "@uniswap/v4-core/contracts/libraries/TickMath.sol";
+
+function getLiquidityForAmounts(
+    uint160 sqrtPriceX96,
+    int24 tickLower,
+    int24 tickUpper,
+    uint256 amount0,
+    uint256 amount1
+) public pure returns (uint128 liquidity) {
+    uint160 sqrtRatioAX96 = TickMath.getSqrtPriceAtTick(tickLower);
+    uint160 sqrtRatioBX96 = TickMath.getSqrtPriceAtTick(tickUpper);
+    
+    liquidity = LiquidityAmounts.getLiquidityForAmounts(
+        sqrtPriceX96,
+        sqrtRatioAX96,
+        sqrtRatioBX96,
+        amount0,
+        amount1
+    );
+}
+
+// Use this when adding liquidity
+function addLiquidityWithAmounts(
+    PoolKey memory poolKey,
+    int24 tickLower,
+    int24 tickUpper,
+    uint256 amount0Desired,
+    uint256 amount1Desired
+) external {
+    // Get current pool state
+    (uint160 sqrtPriceX96, , , ) = poolManager.getSlot0(poolKey.toId());
+    
+    // Calculate liquidity
+    uint128 liquidity = getLiquidityForAmounts(
+        sqrtPriceX96,
+        tickLower,
+        tickUpper,
+        amount0Desired,
+        amount1Desired
+    );
+    
+    // Now call addLiquidityV4 with calculated liquidity
+    // ...
+}
+```
+
+---
+
+#### Removing Liquidity
+
+**V3 Remove Liquidity:**
+
+```solidity
+function removeLiquidityV3(
+    uint256 tokenId,
+    uint128 liquidity,
+    uint256 amount0Min,
+    uint256 amount1Min
+) external returns (uint256 amount0, uint256 amount1) {
+    // Prepare decrease liquidity parameters
+    INonfungiblePositionManager.DecreaseLiquidityParams memory params =
+        INonfungiblePositionManager.DecreaseLiquidityParams({
+            tokenId: tokenId,
+            liquidity: liquidity,
+            amount0Min: amount0Min,
+            amount1Min: amount1Min,
+            deadline: block.timestamp
+        });
+    
+    // Decrease liquidity
+    (amount0, amount1) = positionManager.decreaseLiquidity(params);
+    
+    // Collect tokens
+    INonfungiblePositionManager.CollectParams memory collectParams =
+        INonfungiblePositionManager.CollectParams({
+            tokenId: tokenId,
+            recipient: msg.sender,
+            amount0Max: uint128(amount0),
+            amount1Max: uint128(amount1)
+        });
+    
+    positionManager.collect(collectParams);
+}
+```
+
+**V4 Remove Liquidity:**
+
+```solidity
+struct RemoveLiquidityCallbackData {
+    address sender;
+    PoolKey poolKey;
+    IPoolManager.ModifyLiquidityParams params;
+    uint256 amount0Min;
+    uint256 amount1Min;
+}
+
+function removeLiquidityV4(
+    PoolKey memory poolKey,
+    int24 tickLower,
+    int24 tickUpper,
+    uint256 liquidityDelta,
+    bytes32 salt,
+    uint256 amount0Min,
+    uint256 amount1Min
+) external returns (uint256 amount0, uint256 amount1) {
+    // Prepare parameters (negative liquidityDelta to remove)
+    IPoolManager.ModifyLiquidityParams memory params =
+        IPoolManager.ModifyLiquidityParams({
+            tickLower: tickLower,
+            tickUpper: tickUpper,
+            liquidityDelta: -int256(liquidityDelta),  // Negative to remove
+            salt: salt
+        });
+    
+    RemoveLiquidityCallbackData memory callbackData = RemoveLiquidityCallbackData({
+        sender: msg.sender,
+        poolKey: poolKey,
+        params: params,
+        amount0Min: amount0Min,
+        amount1Min: amount1Min
+    });
+    
+    bytes memory result = poolManager.unlock(abi.encode(callbackData));
+    (amount0, amount1) = abi.decode(result, (uint256, uint256));
+}
+
+// In unlockCallback, handle removal
+function unlockCallbackRemove(bytes calldata rawData) 
+    external 
+    returns (bytes memory) 
+{
+    require(msg.sender == address(poolManager), "Not PoolManager");
+    
+    RemoveLiquidityCallbackData memory data = abi.decode(
+        rawData,
+        (RemoveLiquidityCallbackData)
+    );
+    
+    // Execute liquidity removal
+    BalanceDelta delta = poolManager.modifyLiquidity(
+        data.poolKey,
+        data.params,
+        ""
+    );
+    
+    // Delta is positive when removing liquidity (tokens owed to user)
+    uint256 amount0 = uint256(int256(delta.amount0()));
+    uint256 amount1 = uint256(int256(delta.amount1()));
+    
+    // Verify minimum amounts
+    require(amount0 >= data.amount0Min, "Amount0 below minimum");
+    require(amount1 >= data.amount1Min, "Amount1 below minimum");
+    
+    // Take tokens from PoolManager
+    poolManager.take(data.poolKey.currency0, data.sender, amount0);
+    poolManager.take(data.poolKey.currency1, data.sender, amount1);
+    
+    return abi.encode(amount0, amount1);
+}
+```
+
+**Key Differences:**
+1. **Negative liquidityDelta**: Use negative value to remove liquidity
+2. **Positive Delta**: When removing, delta is positive (tokens owed)
+3. **Take Instead of Collect**: Use `poolManager.take()` to withdraw tokens
+4. **Salt Tracking**: Must use same salt as when position was created
+
+---
+
+#### Collecting Fees
+
+**V3 Fee Collection:**
+
+```solidity
+function collectFeesV3(uint256 tokenId) 
+    external 
+    returns (uint256 amount0, uint256 amount1) 
+{
+    INonfungiblePositionManager.CollectParams memory params =
+        INonfungiblePositionManager.CollectParams({
+            tokenId: tokenId,
+            recipient: msg.sender,
+            amount0Max: type(uint128).max,  // Collect all fees
+            amount1Max: type(uint128).max
+        });
+    
+    (amount0, amount1) = positionManager.collect(params);
+}
+```
+
+**V4 Fee Collection:**
+
+In V4, fees are collected automatically when you modify liquidity or can be collected separately:
+
+```solidity
+struct CollectFeesCallbackData {
+    address sender;
+    PoolKey poolKey;
+    int24 tickLower;
+    int24 tickUpper;
+    bytes32 salt;
+}
+
+function collectFeesV4(
+    PoolKey memory poolKey,
+    int24 tickLower,
+    int24 tickUpper,
+    bytes32 salt
+) external returns (uint256 amount0, uint256 amount1) {
+    CollectFeesCallbackData memory callbackData = CollectFeesCallbackData({
+        sender: msg.sender,
+        poolKey: poolKey,
+        tickLower: tickLower,
+        tickUpper: tickUpper,
+        salt: salt
+    });
+    
+    bytes memory result = poolManager.unlock(abi.encode(callbackData));
+    (amount0, amount1) = abi.decode(result, (uint256, uint256));
+}
+
+// In callback, modify with zero liquidity delta to collect fees
+function unlockCallbackCollectFees(bytes calldata rawData) 
+    external 
+    returns (bytes memory) 
+{
+    require(msg.sender == address(poolManager), "Not PoolManager");
+    
+    CollectFeesCallbackData memory data = abi.decode(
+        rawData,
+        (CollectFeesCallbackData)
+    );
+    
+    // Modify with zero liquidityDelta to collect fees
+    IPoolManager.ModifyLiquidityParams memory params =
+        IPoolManager.ModifyLiquidityParams({
+            tickLower: data.tickLower,
+            tickUpper: data.tickUpper,
+            liquidityDelta: 0,  // Zero delta = just collect fees
+            salt: data.salt
+        });
+    
+    BalanceDelta delta = poolManager.modifyLiquidity(
+        data.poolKey,
+        params,
+        ""
+    );
+    
+    // Positive delta = fees collected
+    uint256 amount0 = uint256(int256(delta.amount0()));
+    uint256 amount1 = uint256(int256(delta.amount1()));
+    
+    // Take collected fees
+    if (amount0 > 0) {
+        poolManager.take(data.poolKey.currency0, data.sender, amount0);
+    }
+    if (amount1 > 0) {
+        poolManager.take(data.poolKey.currency1, data.sender, amount1);
+    }
+    
+    return abi.encode(amount0, amount1);
+}
+```
+
+**Key Points:**
+- V4 collects fees by calling `modifyLiquidity` with `liquidityDelta = 0`
+- Fees are automatically accumulated in position accounting
+- Can collect fees without modifying liquidity amount
+
+---
+
+#### Position Tracking
+
+**V3 Position Tracking:**
+```solidity
+// V3 positions identified by NFT tokenId
+function getPositionV3(uint256 tokenId) 
+    external 
+    view 
+    returns (
+        address token0,
+        address token1,
+        uint24 fee,
+        int24 tickLower,
+        int24 tickUpper,
+        uint128 liquidity
+    ) 
+{
+    (
+        ,
+        ,
+        token0,
+        token1,
+        fee,
+        tickLower,
+        tickUpper,
+        liquidity,
+        ,
+        ,
+        ,
+    ) = positionManager.positions(tokenId);
+}
+```
+
+**V4 Position Tracking:**
+```solidity
+// V4 positions identified by hash of parameters
+function getPositionIdV4(
+    address owner,
+    int24 tickLower,
+    int24 tickUpper,
+    bytes32 salt
+) public pure returns (bytes32) {
+    return keccak256(abi.encodePacked(owner, tickLower, tickUpper, salt));
+}
+
+function getPositionV4(
+    PoolKey memory poolKey,
+    address owner,
+    int24 tickLower,
+    int24 tickUpper,
+    bytes32 salt
+) external view returns (uint128 liquidity) {
+    bytes32 positionId = getPositionIdV4(owner, tickLower, tickUpper, salt);
+    
+    // Get position info from PoolManager
+    Position.Info memory position = poolManager.getPosition(
+        poolKey.toId(),
+        positionId
+    );
+    
+    liquidity = position.liquidity;
+}
+```
+
+**Important V4 Tracking Notes:**
+1. **No Automatic NFT**: Positions aren't automatically NFTs
+2. **Salt for Multiple Positions**: Use different salts for multiple positions in same range
+3. **Manual Tracking**: Your contract should track position parameters
+4. **Optional NFT Wrapper**: Can use separate Position NFT contract if desired
+
+---
+
+#### Increasing Liquidity in Existing Position
+
+**V3 Increase Liquidity:**
+```solidity
+function increaseLiquidityV3(
+    uint256 tokenId,
+    uint256 amount0Desired,
+    uint256 amount1Desired,
+    uint256 amount0Min,
+    uint256 amount1Min
+) external returns (
+    uint128 liquidity,
+    uint256 amount0,
+    uint256 amount1
+) {
+    IERC20(token0).transferFrom(msg.sender, address(this), amount0Desired);
+    IERC20(token1).transferFrom(msg.sender, address(this), amount1Desired);
+    
+    IERC20(token0).approve(address(positionManager), amount0Desired);
+    IERC20(token1).approve(address(positionManager), amount1Desired);
+    
+    INonfungiblePositionManager.IncreaseLiquidityParams memory params =
+        INonfungiblePositionManager.IncreaseLiquidityParams({
+            tokenId: tokenId,
+            amount0Desired: amount0Desired,
+            amount1Desired: amount1Desired,
+            amount0Min: amount0Min,
+            amount1Min: amount1Min,
+            deadline: block.timestamp
+        });
+    
+    (liquidity, amount0, amount1) = positionManager.increaseLiquidity(params);
+}
+```
+
+**V4 Increase Liquidity:**
+```solidity
+// V4: Just call addLiquidityV4 with same tickLower, tickUpper, and salt
+// The liquidity will be added to the existing position
+
+function increaseLiquidityV4(
+    PoolKey memory poolKey,
+    int24 tickLower,
+    int24 tickUpper,
+    bytes32 salt,  // Must match original position
+    uint256 additionalLiquidity,
+    uint256 amount0Max,
+    uint256 amount1Max
+) external returns (uint256 amount0, uint256 amount1) {
+    // Same as addLiquidityV4, but using existing position parameters
+    // PoolManager automatically adds to existing position with matching salt
+    
+    IPoolManager.ModifyLiquidityParams memory params =
+        IPoolManager.ModifyLiquidityParams({
+            tickLower: tickLower,
+            tickUpper: tickUpper,
+            liquidityDelta: int256(additionalLiquidity),
+            salt: salt  // Same salt = same position
+        });
+    
+    // Execute through standard add liquidity flow
+    // ...
+}
+```
+
+---
+
+
