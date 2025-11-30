@@ -960,3 +960,597 @@ All pools share security:
 ---
 
 *Now that you understand the architectural differences, proceed to [Smart Contract Migration](#smart-contract-migration) to see how to update your code.*
+
+
+---
+
+## Smart Contract Migration
+
+This section provides detailed code examples for migrating smart contract integrations from V3 to V4. Each subsection includes side-by-side comparisons with inline explanations.
+
+### Basic Swaps
+
+Swaps are the most common operation to migrate. The fundamental differences are:
+- V3 uses SwapRouter contract
+- V4 uses PoolManager singleton
+- V4 requires PoolKey instead of pool address
+- V4 uses lock/unlock pattern for accounting
+
+---
+
+#### Setup and Imports
+
+**V3 Imports:**
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol";
+import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+```
+
+**V4 Imports:**
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
+import "@uniswap/v4-core/contracts/types/PoolKey.sol";
+import "@uniswap/v4-core/contracts/types/Currency.sol";
+import "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
+import "@uniswap/v4-periphery/contracts/base/PeripheryPayments.sol";
+```
+
+**Key Changes:**
+- `ISwapRouter` → `IPoolManager`
+- Added `PoolKey` for pool identification
+- Added `Currency` type (replaces address for tokens)
+- Added `BalanceDelta` for tracking balance changes
+- `PeripheryPayments` for handling settlements
+
+---
+
+#### Contract State Variables
+
+**V3 State:**
+```solidity
+contract MySwapperV3 {
+    ISwapRouter public immutable swapRouter;
+    
+    constructor(address _swapRouter) {
+        swapRouter = ISwapRouter(_swapRouter);
+    }
+}
+```
+
+**V4 State:**
+```solidity
+contract MySwapperV4 {
+    IPoolManager public immutable poolManager;
+    
+    constructor(address _poolManager) {
+        poolManager = IPoolManager(_poolManager);
+    }
+}
+```
+
+**Explanation:**
+- V4 stores reference to PoolManager instead of SwapRouter
+- PoolManager address is chain-specific (check deployment docs)
+
+---
+
+#### Exact Input Single Swap
+
+This is the most common swap pattern: swap an exact amount of input tokens for a minimum amount of output tokens.
+
+**V3 Implementation:**
+```solidity
+function swapExactInputSingleV3(
+    address tokenIn,
+    address tokenOut,
+    uint24 fee,
+    uint256 amountIn,
+    uint256 amountOutMinimum
+) external returns (uint256 amountOut) {
+    // Step 1: Transfer tokens from caller to this contract
+    IERC20(tokenIn).transferFrom(msg.sender, address(this), amountIn);
+    
+    // Step 2: Approve SwapRouter to spend tokens
+    IERC20(tokenIn).approve(address(swapRouter), amountIn);
+    
+    // Step 3: Configure swap parameters
+    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
+        tokenIn: tokenIn,
+        tokenOut: tokenOut,
+        fee: fee,
+        recipient: msg.sender,
+        deadline: block.timestamp,
+        amountIn: amountIn,
+        amountOutMinimum: amountOutMinimum,
+        sqrtPriceLimitX96: 0  // No price limit
+    });
+    
+    // Step 4: Execute swap
+    amountOut = swapRouter.exactInputSingle(params);
+}
+```
+
+**V4 Implementation:**
+```solidity
+function swapExactInputSingleV4(
+    Currency currencyIn,
+    Currency currencyOut,
+    uint24 fee,
+    int24 tickSpacing,
+    address hookAddress,
+    uint256 amountIn,
+    uint256 amountOutMinimum
+) external returns (uint256 amountOut) {
+    // Step 1: Construct PoolKey to identify the pool
+    PoolKey memory poolKey = PoolKey({
+        currency0: currencyIn < currencyOut ? currencyIn : currencyOut,
+        currency1: currencyIn < currencyOut ? currencyOut : currencyIn,
+        fee: fee,
+        tickSpacing: tickSpacing,
+        hooks: IHooks(hookAddress)  // Use address(0) if no hooks
+    });
+    
+    // Step 2: Determine swap direction
+    bool zeroForOne = currencyIn < currencyOut;
+    
+    // Step 3: Configure swap parameters
+    IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+        zeroForOne: zeroForOne,
+        amountSpecified: -int256(amountIn),  // Negative for exact input
+        sqrtPriceLimitX96: zeroForOne 
+            ? TickMath.MIN_SQRT_PRICE + 1 
+            : TickMath.MAX_SQRT_PRICE - 1
+    });
+    
+    // Step 4: Execute swap through PoolManager
+    // Note: Actual implementation requires lock/unlock pattern
+    // This is simplified - see complete implementation below
+    BalanceDelta delta = poolManager.swap(poolKey, params, "");
+    
+    // Step 5: Extract output amount from delta
+    amountOut = zeroForOne 
+        ? uint256(int256(-delta.amount1())) 
+        : uint256(int256(-delta.amount0()));
+    
+    // Step 6: Verify minimum output
+    require(amountOut >= amountOutMinimum, "Insufficient output");
+}
+```
+
+**Key Differences:**
+1. **PoolKey Construction**: Must build PoolKey struct with all pool parameters
+2. **Currency Ordering**: Currencies must be ordered (currency0 < currency1)
+3. **Negative Amount**: Exact input uses negative `amountSpecified`
+4. **BalanceDelta**: Return value is delta struct, not uint256
+5. **Lock Pattern**: Real implementation needs lock/unlock (shown next)
+
+---
+
+#### Complete V4 Swap with Lock Pattern
+
+V4 requires using the lock/unlock pattern for proper accounting:
+
+```solidity
+import "@uniswap/v4-core/contracts/interfaces/callback/IUnlockCallback.sol";
+
+contract MySwapperV4Complete is IUnlockCallback {
+    IPoolManager public immutable poolManager;
+    
+    constructor(address _poolManager) {
+        poolManager = IPoolManager(_poolManager);
+    }
+    
+    // Storage for passing swap parameters to callback
+    struct SwapCallbackData {
+        address sender;
+        PoolKey poolKey;
+        IPoolManager.SwapParams params;
+        uint256 amountOutMinimum;
+    }
+    
+    function swapExactInputSingle(
+        Currency currencyIn,
+        Currency currencyOut,
+        uint24 fee,
+        int24 tickSpacing,
+        address hookAddress,
+        uint256 amountIn,
+        uint256 amountOutMinimum
+    ) external returns (uint256 amountOut) {
+        // Construct PoolKey
+        PoolKey memory poolKey = PoolKey({
+            currency0: currencyIn < currencyOut ? currencyIn : currencyOut,
+            currency1: currencyIn < currencyOut ? currencyOut : currencyIn,
+            fee: fee,
+            tickSpacing: tickSpacing,
+            hooks: IHooks(hookAddress)
+        });
+        
+        bool zeroForOne = currencyIn < currencyOut;
+        
+        // Prepare swap parameters
+        IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+            zeroForOne: zeroForOne,
+            amountSpecified: -int256(amountIn),
+            sqrtPriceLimitX96: zeroForOne 
+                ? TickMath.MIN_SQRT_PRICE + 1 
+                : TickMath.MAX_SQRT_PRICE - 1
+        });
+        
+        // Encode callback data
+        SwapCallbackData memory callbackData = SwapCallbackData({
+            sender: msg.sender,
+            poolKey: poolKey,
+            params: params,
+            amountOutMinimum: amountOutMinimum
+        });
+        
+        // Lock PoolManager and execute swap in callback
+        bytes memory result = poolManager.unlock(
+            abi.encode(callbackData)
+        );
+        
+        // Decode result
+        amountOut = abi.decode(result, (uint256));
+    }
+    
+    // Callback function called by PoolManager during unlock
+    function unlockCallback(bytes calldata rawData) 
+        external 
+        returns (bytes memory) 
+    {
+        require(msg.sender == address(poolManager), "Not PoolManager");
+        
+        // Decode callback data
+        SwapCallbackData memory data = abi.decode(
+            rawData, 
+            (SwapCallbackData)
+        );
+        
+        // Execute the swap
+        BalanceDelta delta = poolManager.swap(
+            data.poolKey,
+            data.params,
+            ""  // No hook data
+        );
+        
+        // Determine amounts based on swap direction
+        bool zeroForOne = data.params.zeroForOne;
+        uint256 amountIn;
+        uint256 amountOut;
+        
+        if (zeroForOne) {
+            amountIn = uint256(int256(-delta.amount0()));
+            amountOut = uint256(int256(-delta.amount1()));
+        } else {
+            amountIn = uint256(int256(-delta.amount1()));
+            amountOut = uint256(int256(-delta.amount0()));
+        }
+        
+        // Verify minimum output
+        require(amountOut >= data.amountOutMinimum, "Insufficient output");
+        
+        // Settle balances with PoolManager
+        if (data.poolKey.currency0.isNative()) {
+            poolManager.settle{value: amountIn}(data.poolKey.currency0);
+        } else {
+            IERC20(Currency.unwrap(data.poolKey.currency0)).transferFrom(
+                data.sender,
+                address(poolManager),
+                amountIn
+            );
+            poolManager.settle(data.poolKey.currency0);
+        }
+        
+        // Take output tokens
+        poolManager.take(
+            data.poolKey.currency1,
+            data.sender,
+            amountOut
+        );
+        
+        // Return amount out
+        return abi.encode(amountOut);
+    }
+}
+```
+
+**Lock/Unlock Pattern Explanation:**
+1. **Lock**: `poolManager.unlock()` begins transaction
+2. **Callback**: PoolManager calls `unlockCallback()` on your contract
+3. **Operations**: Perform swaps and other operations inside callback
+4. **Settlement**: Settle net balances before callback returns
+5. **Unlock**: PoolManager verifies balances and completes transaction
+
+---
+
+#### Exact Output Single Swap
+
+Swap to receive an exact amount of output tokens.
+
+**V3 Implementation:**
+```solidity
+function swapExactOutputSingleV3(
+    address tokenIn,
+    address tokenOut,
+    uint24 fee,
+    uint256 amountOut,
+    uint256 amountInMaximum
+) external returns (uint256 amountIn) {
+    IERC20(tokenIn).transferFrom(msg.sender, address(this), amountInMaximum);
+    IERC20(tokenIn).approve(address(swapRouter), amountInMaximum);
+    
+    ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter.ExactOutputSingleParams({
+        tokenIn: tokenIn,
+        tokenOut: tokenOut,
+        fee: fee,
+        recipient: msg.sender,
+        deadline: block.timestamp,
+        amountOut: amountOut,
+        amountInMaximum: amountInMaximum,
+        sqrtPriceLimitX96: 0
+    });
+    
+    amountIn = swapRouter.exactOutputSingle(params);
+    
+    // Refund excess tokens
+    if (amountIn < amountInMaximum) {
+        IERC20(tokenIn).transfer(msg.sender, amountInMaximum - amountIn);
+    }
+}
+```
+
+**V4 Implementation:**
+```solidity
+function swapExactOutputSingle(
+    Currency currencyIn,
+    Currency currencyOut,
+    uint24 fee,
+    int24 tickSpacing,
+    address hookAddress,
+    uint256 amountOut,
+    uint256 amountInMaximum
+) external returns (uint256 amountIn) {
+    PoolKey memory poolKey = PoolKey({
+        currency0: currencyIn < currencyOut ? currencyIn : currencyOut,
+        currency1: currencyIn < currencyOut ? currencyOut : currencyIn,
+        fee: fee,
+        tickSpacing: tickSpacing,
+        hooks: IHooks(hookAddress)
+    });
+    
+    bool zeroForOne = currencyIn < currencyOut;
+    
+    // Positive amountSpecified for exact output
+    IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+        zeroForOne: zeroForOne,
+        amountSpecified: int256(amountOut),  // Positive for exact output
+        sqrtPriceLimitX96: zeroForOne 
+            ? TickMath.MIN_SQRT_PRICE + 1 
+            : TickMath.MAX_SQRT_PRICE - 1
+    });
+    
+    SwapCallbackData memory callbackData = SwapCallbackData({
+        sender: msg.sender,
+        poolKey: poolKey,
+        params: params,
+        amountOutMinimum: 0  // Not used for exact output
+    });
+    
+    bytes memory result = poolManager.unlock(abi.encode(callbackData));
+    amountIn = abi.decode(result, (uint256));
+    
+    require(amountIn <= amountInMaximum, "Excessive input");
+}
+```
+
+**Key Difference:**
+- **Positive Amount**: Exact output uses positive `amountSpecified`
+- V3 handles refunds automatically
+- V4 requires explicit refund logic in callback
+
+---
+
+#### Multi-Hop Swaps
+
+Swapping through multiple pools for better prices.
+
+**V3 Multi-Hop:**
+```solidity
+function swapMultiHopV3(
+    bytes memory path,  // Encoded path: tokenA, fee1, tokenB, fee2, tokenC
+    uint256 amountIn,
+    uint256 amountOutMinimum
+) external returns (uint256 amountOut) {
+    IERC20(tokenIn).transferFrom(msg.sender, address(this), amountIn);
+    IERC20(tokenIn).approve(address(swapRouter), amountIn);
+    
+    ISwapRouter.ExactInputParams memory params = ISwapRouter.ExactInputParams({
+        path: path,
+        recipient: msg.sender,
+        deadline: block.timestamp,
+        amountIn: amountIn,
+        amountOutMinimum: amountOutMinimum
+    });
+    
+    amountOut = swapRouter.exactInput(params);
+}
+```
+
+**V4 Multi-Hop:**
+```solidity
+function swapMultiHopV4(
+    PoolKey[] memory poolKeys,  // Array of pool keys for route
+    uint256 amountIn,
+    uint256 amountOutMinimum
+) external returns (uint256 amountOut) {
+    // Store route data for callback
+    MultiHopCallbackData memory callbackData = MultiHopCallbackData({
+        sender: msg.sender,
+        poolKeys: poolKeys,
+        amountIn: amountIn,
+        amountOutMinimum: amountOutMinimum
+    });
+    
+    // Execute multi-hop in single lock
+    bytes memory result = poolManager.unlock(abi.encode(callbackData));
+    amountOut = abi.decode(result, (uint256));
+}
+
+// Callback handles multiple swaps with flash accounting
+function unlockCallbackMultiHop(bytes calldata rawData) 
+    external 
+    returns (bytes memory) 
+{
+    require(msg.sender == address(poolManager), "Not PoolManager");
+    
+    MultiHopCallbackData memory data = abi.decode(
+        rawData, 
+        (MultiHopCallbackData)
+    );
+    
+    // Execute swaps sequentially
+    // Flash accounting means only net balance settled at end
+    int256 currentAmount = -int256(data.amountIn);
+    
+    for (uint i = 0; i < data.poolKeys.length; i++) {
+        bool zeroForOne = /* determine direction */;
+        
+        IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+            zeroForOne: zeroForOne,
+            amountSpecified: currentAmount,
+            sqrtPriceLimitX96: /* set limit */
+        });
+        
+        BalanceDelta delta = poolManager.swap(data.poolKeys[i], params, "");
+        
+        // Update current amount for next swap
+        currentAmount = zeroForOne ? delta.amount1() : delta.amount0();
+    }
+    
+    // Final amount is the last swap output
+    uint256 finalAmount = uint256(-currentAmount);
+    require(finalAmount >= data.amountOutMinimum, "Insufficient output");
+    
+    // Settle only net balances
+    // ... settlement logic ...
+    
+    return abi.encode(finalAmount);
+}
+```
+
+**V4 Advantage:**
+- Flash accounting means intermediate tokens never transferred
+- Single settlement for entire route
+- Significantly lower gas costs for multi-hop
+
+---
+
+#### Native ETH Handling
+
+**V3 ETH Swap (requires WETH):**
+```solidity
+function swapETHForTokensV3(
+    address tokenOut,
+    uint24 fee,
+    uint256 amountOutMinimum
+) external payable returns (uint256 amountOut) {
+    // Must wrap ETH to WETH first
+    IWETH(WETH).deposit{value: msg.value}();
+    IWETH(WETH).approve(address(swapRouter), msg.value);
+    
+    ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
+        tokenIn: WETH,
+        tokenOut: tokenOut,
+        fee: fee,
+        recipient: msg.sender,
+        deadline: block.timestamp,
+        amountIn: msg.value,
+        amountOutMinimum: amountOutMinimum,
+        sqrtPriceLimitX96: 0
+    });
+    
+    amountOut = swapRouter.exactInputSingle(params);
+}
+```
+
+**V4 Native ETH Swap:**
+```solidity
+function swapETHForTokensV4(
+    Currency tokenOut,
+    uint24 fee,
+    int24 tickSpacing,
+    address hookAddress,
+    uint256 amountOutMinimum
+) external payable returns (uint256 amountOut) {
+    // Use CurrencyLibrary.NATIVE for ETH (address(0))
+    Currency ethCurrency = CurrencyLibrary.NATIVE;
+    
+    PoolKey memory poolKey = PoolKey({
+        currency0: ethCurrency < tokenOut ? ethCurrency : tokenOut,
+        currency1: ethCurrency < tokenOut ? tokenOut : ethCurrency,
+        fee: fee,
+        tickSpacing: tickSpacing,
+        hooks: IHooks(hookAddress)
+    });
+    
+    bool zeroForOne = ethCurrency < tokenOut;
+    
+    IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+        zeroForOne: zeroForOne,
+        amountSpecified: -int256(msg.value),
+        sqrtPriceLimitX96: zeroForOne 
+            ? TickMath.MIN_SQRT_PRICE + 1 
+            : TickMath.MAX_SQRT_PRICE - 1
+    });
+    
+    // Callback handles ETH settlement automatically
+    // Use poolManager.settle{value: amount}() for ETH
+    
+    SwapCallbackData memory callbackData = SwapCallbackData({
+        sender: msg.sender,
+        poolKey: poolKey,
+        params: params,
+        amountOutMinimum: amountOutMinimum
+    });
+    
+    bytes memory result = poolManager.unlock(abi.encode(callbackData));
+    amountOut = abi.decode(result, (uint256));
+}
+```
+
+**Key Differences:**
+- V4 uses `CurrencyLibrary.NATIVE` (address(0)) for ETH
+- No WETH wrapping needed
+- Settlement uses `settle{value: amount}()` for ETH
+- More gas efficient
+
+---
+
+#### Migration Checklist for Swaps
+
+When migrating swap functionality:
+
+- [ ] Replace `ISwapRouter` with `IPoolManager` imports
+- [ ] Change pool identification from address to `PoolKey`
+- [ ] Implement `IUnlockCallback` interface
+- [ ] Add lock/unlock pattern around operations
+- [ ] Convert token addresses to `Currency` type
+- [ ] Handle `BalanceDelta` return values
+- [ ] Update settlement logic for native ETH if needed
+- [ ] Adjust amount sign (negative for exact input, positive for exact output)
+- [ ] Update price limit calculations
+- [ ] Add proper error handling for new patterns
+- [ ] Test with various token pairs and amounts
+- [ ] Verify gas cost improvements
+
+---
+
+*Continue to [Liquidity Management](#liquidity-management) for migrating liquidity provision code.*
