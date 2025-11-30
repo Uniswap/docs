@@ -6206,3 +6206,83 @@ contract AutoRebalancingLiquidityManager is IUnlockCallback {
 ```
 
 ---
+  
+## Troubleshooting
+
+Common issues encountered during migration and their solutions.
+
+---
+
+### Issue 1: "Hook address invalid"
+
+**Symptom:**
+```
+Error: Hook address does not match permissions
+```
+
+**Cause:** Hook contract deployed at address that doesn't match enabled hook flags.
+
+**Solution:**
+```solidity
+// Use CREATE2 with salt mining to get valid address
+contract HookMiner {
+    function findSalt(
+        address deployer,
+        bytes memory bytecode,
+        Hooks.Permissions memory permissions
+    ) external view returns (bytes32 salt) {
+        for (uint256 i = 0; i < type(uint256).max; i++) {
+            salt = bytes32(i);
+            address predicted = predictAddress(deployer, salt, bytecode);
+            
+            if (validateHookAddress(predicted, permissions)) {
+                return salt;
+            }
+        }
+        revert("No valid salt found");
+    }
+}
+
+// Deploy with found salt
+new MyHook{salt: foundSalt}(poolManager);
+```
+
+---
+
+### Issue 2: "Delta not settled"
+
+**Symptom:**
+```
+Error: NonzeroNativeBalance / CurrencyNotSettled
+```
+
+**Cause:** Didn't settle all currency deltas before unlock callback returns.
+
+**Solution:**
+```solidity
+function unlockCallback(bytes calldata data) external returns (bytes memory) {
+    // Execute operations
+    BalanceDelta delta = poolManager.swap(poolKey, params, "");
+    
+    // MUST settle all non-zero deltas
+    if (delta.amount0() != 0) {
+        if (delta.amount0() < 0) {
+            // Owe tokens to pool
+            settleTokens(poolKey.currency0, uint256(-delta.amount0()));
+        } else {
+            // Pool owes tokens to us
+            takeTokens(poolKey.currency0, uint256(delta.amount0()));
+        }
+    }
+    
+    if (delta.amount1() != 0) {
+        if (delta.amount1() < 0) {
+            settleTokens(poolKey.currency1, uint256(-delta.amount1()));
+        } else {
+            takeTokens(poolKey.currency1, uint256(delta.amount1()));
+        }
+    }
+    
+    return "";
+}
+```
