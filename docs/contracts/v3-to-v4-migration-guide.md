@@ -4712,3 +4712,51 @@ Safe migration requires comprehensive testing and careful deployment planning. T
 7. **Staged Mainnet** - Gradual rollout
 
 ---
+
+
+### Foundry Testing Setup
+
+**Project Structure:**
+
+```
+my-v4-project/
+├── src/
+│   ├── MySwapper.sol
+│   ├── MyLiquidityManager.sol
+│   └── hooks/
+│       └── MyHook.sol
+├── test/
+│   ├── MySwapper.t.sol
+│   ├── MyLiquidityManager.t.sol
+│   ├── hooks/
+│   │   └── MyHook.t.sol
+│   └── helpers/
+│       └── TestHelper.sol
+├── script/
+│   └── Deploy.s.sol
+└── foundry.toml
+```
+
+**foundry.toml Configuration:**
+
+```toml
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.20"
+optimizer = true
+optimizer_runs = 1000000
+
+[profile.default.fuzz]
+runs = 256
+
+[profile.ci]
+fuzz_runs = 10000
+
+[rpc_endpoints]
+mainnet = "${MAINNET_RPC_URL}"
+sepolia = "${SEPOLIA_RPC_URL}"
+```
+
+---
