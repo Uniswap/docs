@@ -9,36 +9,36 @@ Fees from protocol versions (v2, v3, v4, UniswapX, Unichain) flow into a single 
 
 ## Flow of Assets
 
-1. **Fee Sources**  
+1. **Fee Sources**
 Each protocol component that generates fees (v2, v3, v4, UniswapX, Unichain, and others) routes those fees through an associated Fee Adapter contract. Adapters define how and when fees are collected and send them to the TokenJar on the same chain.
 
-2. **TokenJar**  
+2. **TokenJar**
    Each chain has one immutable contract called the **TokenJar**. All fee sources send tokens here. It’s the unified collection point for raw tokens.
 
-3. **Releasers**  
+3. **Releasers**
    Releasers define how tokens in the TokenJar are accessed. The simplest version burns UNI in exchange for the collected tokens. Other Releasers could handle cross-chain conversions or alternative value flows.
 
-4. **Governance Control**  
-   Governance can update which Releaser a Sink uses or adjust configuration on Fee Controllers, but the core contracts themselves are immutable.
+4. **Governance Control**
+   Governance can update which Releaser a TokenJar uses or adjust configuration on Fee Adapters, but the core contracts themselves are immutable.
 
 ## Components
 
 ### TokenJar
 
-Immutable contract that receives all tokens from fee sources on a given chain. Only the active Releaser can withdraw from it.  
+Immutable contract that receives all tokens from fee sources on a given chain. Only the active Releaser can withdraw from it.
 
 See [TokenJar](technical-reference/AssetSink.md) for more.
 
 ### Fee Adapters
 
-Adapters that connect specific protocol versions or products to the TokenJar. They define how and when fees are collected.  
+Adapters that connect specific protocol versions or products to the TokenJar. They define how and when fees are collected.
 
 See [Fee Adapters](technical-reference/V3FeeController.md).
 
 ### Releasers
 
-Contracts that convert collected fees into protocol value according to defined logic.  
-Examples include the Firepit Releaser, which burns UNI in return for assets.  
+Contracts that convert collected fees into protocol value according to defined logic.
+Examples include the Firepit Releaser, which burns UNI in return for assets.
 
 See [Releasers](technical-reference/IReleaser.md).
 
