@@ -1,5 +1,5 @@
 ---
-id: CCA
+id: setup
 title: Setup
 sidebar_position: 1
 ---
@@ -37,3 +37,8 @@ pre-commit run --all-files
 
 Remappings
 Remappings are already set up in `foundry.toml` file but you may need to adjust if importing CCA into an existing foundry project.
+
+Start an anvil node on localhost:8545
+```bash
+anvil
+```
