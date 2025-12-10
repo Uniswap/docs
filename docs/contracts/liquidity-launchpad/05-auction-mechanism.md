@@ -321,3 +321,49 @@ event TokensClaimed(uint256 indexed bidId, address indexed owner, uint256 tokens
 ```
 
 Anyone can call this function for any valid bid id.
+
+## Integration risks
+
+### Incorrect configuration of the auction parameters
+
+CCA auctions are highly configurable. As such, it is important to ensure that the configurations of each auction instance are not only correct but protect against known risks.
+
+Ensure that the following parameters are correctly set:
+
+- `token` and `currency`
+- `totalSupply` is not too large (see [note on total supply and maximum bid price](#note-on-total-supply-and-maximum-bid-price) below)
+- `startBlock`, `endBlock`, and `claimBlock`
+- `tickSpacing` is not too small (see [note on ticks](#note-on-ticks) below)
+- `floorPrice` is correctly set
+- `requiredCurrencyRaised` is not set too high where the auction will never graduate
+- `auctionStepsData` avoids common pitfalls (see [note on auction steps](#note-on-auction-steps) below)
+
+### Note on total supply and maximum bid price
+
+The following limitations regarding total supply and maximum bid prices should be considered:
+
+- The maximum total supply that can be sold in the auction is 1e30 wei of `token`. For a token with 18 decimals, this is 1 trillion tokens.
+- The auction also ensures that the total currency raised does not exceed the maximum allowable liquidity for a Uniswap v4 liquidity position. The lowest bound for this is 2^107 wei (given the smallest possible tick spacing of 1).
+
+Given a total supply of:
+
+- 1 trillion 18 decimal tokens (1e30), the maximum bid price is 2^110. The max ratio of currency to token is 2^(110-96) = 2^14 = 16384.
+- 1 billion 6 decimal tokens (1e15), the maximum bid price is 2^160. The max ratio of currency to token is 2^(160-96) = 2^64 = 18446744073709551616.
+
+We strongly recommend that the `currency` is chosen to be more valuable than `token`, and that the total supply is not excessively large.
+
+### Note on ticks
+
+Ticks in the auction govern where bids can be placed. They have no impact on the potential clearingPrices of the auction and merely serve to prevent users from being outbid by others by infinitesimally small amounts and for gas efficiency in finding new clearing prices.
+
+Generally integrators should choose a tick spacing of AT LEAST 1 basis point of the floor price. 1% or 10% is also reasonable.
+
+Setting too small of a tick spacing will make the auction extremely gas inefficient, and in specific cases, can result in a DoS attack where the auction cannot finish.
+
+### Note on auction steps
+
+Steps in the auction create the supply issuance schedule. Generally each step should be monotonically increasing in the amount of tokens sold, and the last block of the auction MUST sell a significant amount of tokens.
+
+This is because the final clearing price of the auction is used to initialize a Uniswap v4 liquidity pool, and if only a small number of tokens are sold at the end, the final price will be easy to manipulate.
+
+See the [whitepaper](./docs/assets/whitepaper.pdf) for more details.
