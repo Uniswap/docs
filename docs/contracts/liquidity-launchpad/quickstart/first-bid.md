@@ -122,5 +122,5 @@ Additionally we see the auction initializing a new tick at the price which we pl
 
 Finally we see the `BidSubmitted` event, which contains the bid ID, the owner of the bid, the price at which the bid was placed, and the amount of currency that was bid.
 
-### Next steps
+## Next steps
 In the next section we'll modify our script to show how the price of the auction can change over time. We'll also cover exiting and claiming the tokens from a bid.
