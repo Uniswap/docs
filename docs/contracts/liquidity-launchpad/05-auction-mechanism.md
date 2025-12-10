@@ -300,7 +300,7 @@ Note:
 - For graduated auctions: sweeps all tokens that were not sold per the supply issuance schedule
 - For non-graduated auctions: sweeps total supply of tokens
 
-## Integration risks
+## Integration guidelines
 
 ### Incorrect configuration of the auction parameters
 
