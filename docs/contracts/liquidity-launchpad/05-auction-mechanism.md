@@ -88,22 +88,6 @@ constructor(
 
 The factory decodes `configData` into `AuctionParameters` and deploys the Auction contract via CREATE2.
 
-## Warnings
-
-It is imperative that bidders and users of the Auction carefully validate the parameters of the auction before participating. An auction can be configured to have an excessively high floor price which would result in a loss of funds.
-
-Auction launchers should be aware of the following limitations regarding total supply and maximum bid prices:
-
-- The maximum total supply that can be sold in the auction is 1e30 wei of `token`. For a token with 18 decimals, this is 1 trillion tokens.
-- The auction also ensures that the total currency raised does not exceed the maximum allowable liquidity for a Uniswap v4 liquidity position. The lowest bound for this is 2^107 wei (given the smallest possible tick spacing of 1).
-
-Given a total supply of:
-
-- 1 trillion 18 decimal tokens (1e30), the maximum bid price is 2^110. The max ratio of currency to token is 2^(110-96) = 2^14 = 16384.
-- 1 billion 6 decimal tokens (1e15), the maximum bid price is 2^160. The max ratio of currency to token is 2^(160-96) = 2^64 = 18446744073709551616.
-
-We strongly recommend that the `currency` is chosen to be more valuable than `token`, and that the total supply is not excessively large.
-
 ## Types
 
 ### Q96 Fixed-Point Math
