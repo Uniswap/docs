@@ -245,11 +245,23 @@ Exiting partially filled bids is more complex than fully filled ones. The `exitP
 
 Checkpoints also store a cumulative value (`currencyRaisedAtClearingPriceQ96_X7`) which tracks the amount of currency raised from bids at the clearing price. This is reset every time the clearing price changes, but this is used to determine the user's pro-rata share of the tokens sold at the clearing price.
 
-### Decision tree for determining when to use `exitBid` vs `exitPartiallyFilledBid`:
+**Decision tree for determining when to use `exitBid` vs `exitPartiallyFilledBid`:**
 
 ![Exit Bid Diagram](./images/exitBidDiagram.png)
 
-## View functions / getters
+### claimTokens()
+
+Users can claim purchased tokens after the auction's claim block. The bid must be exited before claiming tokens, and the auction must have graduated.
+
+```solidity
+interface IContinuousClearingAuction {
+    function claimTokens(uint256 bidId) external;
+}
+
+event TokensClaimed(uint256 indexed bidId, address indexed owner, uint256 tokensFilled);
+```
+
+Anyone can call this function for any valid bid id.
 
 ### isGraduated()
 
@@ -288,24 +300,6 @@ Note:
 - For graduated auctions: sweeps all tokens that were not sold per the supply issuance schedule
 - For non-graduated auctions: sweeps total supply of tokens
 
-### Warning
-
-Do NOT send more tokens than intended in `totalSupply` to the auction. They will not be recoverable.
-
-### claimTokens()
-
-Users can claim purchased tokens after the auction's claim block. The bid must be exited before claiming tokens, and the auction must have graduated.
-
-```solidity
-interface IContinuousClearingAuction {
-    function claimTokens(uint256 bidId) external;
-}
-
-event TokensClaimed(uint256 indexed bidId, address indexed owner, uint256 tokensFilled);
-```
-
-Anyone can call this function for any valid bid id.
-
 ## Integration risks
 
 ### Incorrect configuration of the auction parameters
@@ -321,6 +315,11 @@ Ensure that the following parameters are correctly set:
 - `floorPrice` is correctly set
 - `requiredCurrencyRaised` is not set too high where the auction will never graduate
 - `auctionStepsData` avoids common pitfalls (see [note on auction steps](#note-on-auction-steps) below)
+
+### Extra funds sent to the auction are not recoverable
+Do NOT send more tokens than intended in `totalSupply` to the auction. They will not be recoverable.
+
+Likewise, any `currency` sent directly to the auction and not through `submitBid` will not be lost.
 
 ### Note on total supply and maximum bid price
 
