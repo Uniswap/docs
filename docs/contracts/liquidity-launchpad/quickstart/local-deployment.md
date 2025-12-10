@@ -128,7 +128,7 @@ contract ExampleCCADeploymentScript is Script {
 
 Then, you can run the script:
 ```bash
-forge script script/ExampleCCADeploymentScript.s.sol:ExampleCCADeploymentScript --rpc-url http://localhost:8545 --private-key <your-private-key> --broadcast
+forge script scripts/ExampleCCADeploymentScript.s.sol:ExampleCCADeploymentScript --rpc-url http://localhost:8545 --private-key <your-private-key> --broadcast
 ```
 
 This will deploy the factory contract.
