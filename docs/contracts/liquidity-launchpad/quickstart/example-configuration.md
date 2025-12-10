@@ -1,7 +1,7 @@
 ---
 id: example-configuration
 title: Example configuration
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Configuring a CCA auction
@@ -155,7 +155,7 @@ parameters.auctionStepsData = auctionStepsData;
 
 You can leverage the `AuctionStepsBuilder` helper library to build the auction steps data.
 
-Before we can finish the script we need to deploy a MockERC20 token to use in the auction. You can use the `ERC20Mock` contract in `openzeppelin-contracts/contracts/mocks/token/ERC20Mock.sol`, or any other MockERC20 token you prefer.
+Before we can finish the script we need to deploy a MockERC20 token to use in the auction. You can use the `ERC20Mock` contract in `@openzeppelin/contracts/mocks/token/ERC20Mock.sol`, or any other MockERC20 token you prefer.
 
 ```solidity
 import {ERC20Mock} from '@openzeppelin/contracts/mocks/token/ERC20Mock.sol';
