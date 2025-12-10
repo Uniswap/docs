@@ -20,9 +20,9 @@ Currently we have a CCA contract deployed which we can interact with. It has the
 | startBlock            | `uint64(block.number)`                     | Start the auction on the current block                                                                         |
 | endBlock              | `uint64(block.number + 100)`               | End the auction after 100 blocks                                                                               |
 | claimBlock            | `uint64(block.number + 100)`               | Allow claims at the end of the auction                                                                         |
-| tickSpacing           | `1 << 96`                                  | Use a tick spacing equal to the floor price. Next possible bid prices: 2:1, 3:1, etc.                         |
+| tickSpacing           | `7922816251426434048`                      | Use a tick spacing equal to the floor price                                                                    |
 | validationHook        | `address(0)`                               | Use no validation hook                                                                                         |
-| floorPrice            | `1 << 96`                                  | Use a floor price representing a ratio of 1:1                                                                  |
+| floorPrice            | `7922816251426434048`                      | Use a floor price representing a ratio of 1:1_000_000                                                          |
 | requiredCurrencyRaised| `0`                                        | No graduation threshold                                                                                        |
 
 We also added a token supply schedule of 10% in the first 50 blocks, 49% in the next 49 blocks, and 41% in the last block.
@@ -88,7 +88,6 @@ Let's add this to our script:
 
         vm.stopBroadcast();
     }
-}
 ```
 
 You can use the public anvil private key (`0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`) when running the script as it has an existing balance of ETH:
@@ -107,18 +106,18 @@ Congratulations! You've submitted your first bid on a CCA auction.
 If you look through the logs you'll see quite a few events emitted by the auction contract.
 
 ```
-    ├─ emit ClearingPriceUpdated(blockNumber: 3, clearingPrice: 79228162514264337593543950336 [7.922e28])
-    ├─ emit CheckpointUpdated(blockNumber: 3, clearingPrice: 79228162514264337593543950336 [7.922e28], cumulativeMps: 60000 [6e4])
-    ├─ emit NextActiveTickUpdated(price: 158456325028528675187087900672 [1.584e29])
-    ├─ emit TickInitialized(price: 158456325028528675187087900672 [1.584e29])
-    ├─ emit BidSubmitted(id: 0, owner: RIPEMD-160: [0x0000000000000000000000000000000000000003], price: 158456325028528675187087900672 [1.584e29], amount: 1000000000000000000 [1e18])
+    ├─ emit ClearingPriceUpdated(blockNumber: 3, clearingPrice: 7922816251426434048 [7.922e18])
+    ├─ emit CheckpointUpdated(blockNumber: 3, clearingPrice: 7922816251426434048 [7.922e18], cumulativeMps: 60000 [6e4])
+    ├─ emit NextActiveTickUpdated(price: 15845632502852868096 [1.584e19])
+    ├─ emit TickInitialized(price: 15845632502852868096 [1.584e19])
+    ├─ emit BidSubmitted(id: 0, owner: RIPEMD-160: [0x0000000000000000000000000000000000000003], price: 15845632502852868096 [1.584e19], amount: 1000000000000000000 [1e18])
 ```
 
 Clearly a lot more is happening that just submitting a bid.
 
-The first thing we see happening is the auction creating a new checkpoint for the current block (in this case, block 3). At this point in time the auction has already started (remember how we used `block.number` for the start block?) and you can see that the `cumulativeMps` field, which tracks the percentage of auction which has passed, is at 60_000, or 6%. We also see that the auction updates the clearing price to the floor price (79228162514264337593543950336). This is equal to `1 << 96` as expected.
+The first thing we see happening is the auction creating a new checkpoint for the current block (in this case, block 3). At this point in time the auction has already started (remember how we used `block.number` for the start block?) and you can see that the `cumulativeMps` field, which tracks the percentage of auction which has passed, is at 60_000, or 6%. We also see that the auction updates the clearing price to the floor price (7922816251426434048). This is equal to the expected ratio of 1 ETH to 1 million tokens.
 
-Additionally we see the auction initializing a new tick at the price which we placed our bid at (158456325028528675187087900672). This value is equal to `floorPrice + tickSpacing` as expected (for simplicity we set tickSpacing equal to the floor price so this is 2 * floorPrice).
+Additionally we see the auction initializing a new tick at the price which we placed our bid at (15845632502852868096). This value is equal to `floorPrice + tickSpacing` as expected (for simplicity we set tickSpacing equal to the floor price so this is 2 * floorPrice).
 
 Finally we see the `BidSubmitted` event, which contains the bid ID, the owner of the bid, the price at which the bid was placed, and the amount of currency that was bid.
 

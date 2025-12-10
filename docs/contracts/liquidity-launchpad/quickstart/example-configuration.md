@@ -114,17 +114,17 @@ Then, we can configure the auction parameters:
 address deployer = vm.envAddress("DEPLOYER");
 
 AuctionParameters memory parameters = AuctionParameters({
-    currency: address(0),                   // We'll use the native token for this example
+    currency: address(0),                       // We'll use the native token for this example
     tokensRecipient: deployer,
     fundsRecipient: deployer,
-    startBlock: uint64(block.number),       // Start the auction on the current block
-    endBlock: uint64(block.number + 100),   // End the auction after 100 blocks
-    claimBlock: uint64(block.number + 100), // Allow claims at the end of the auction
-    tickSpacing: 1 << 96,                   // Use a tick spacing equal to the floor price. The next possible bids prices will be 2 currency:1 token, 3:1 token, etc.
-    validationHook: address(0),             // Use no validation hook
-    floorPrice: 1 << 96,                    // Use a floor price representing a ratio of 1:1
-    requiredCurrencyRaised: 0,              // No graduation threshold 
-    auctionStepsData: bytes("")             // Leave this blank for now
+    startBlock: uint64(block.number),           // Start the auction on the current block
+    endBlock: uint64(block.number + 100),       // End the auction after 100 blocks
+    claimBlock: uint64(block.number + 100),     // Allow claims at the end of the auction
+    tickSpacing: 79228162514264337593543950,    // Use a tick spacing equal to the floor price. The next possible bid prices will be 1:2000, 1:3000, etc.
+    validationHook: address(0),                 // Use no validation hook
+    floorPrice: 79228162514264337593543950,     // Use a floor price representing a ratio of 1:1000 (1 ETH for 1000 tokens)
+    requiredCurrencyRaised: 0,                  // No graduation threshold 
+    auctionStepsData: bytes("")                 // Leave this blank for now
 });
 ```
 
@@ -246,9 +246,9 @@ contract ExampleCCADeploymentScript is Script {
             startBlock: uint64(block.number),
             endBlock: uint64(block.number + 100),
             claimBlock: uint64(block.number + 100),
-            tickSpacing: 1 << 96,
+            tickSpacing: 7922816251426434048,
             validationHook: address(0),
-            floorPrice: 1 << 96,
+            floorPrice: 7922816251426434048,
             requiredCurrencyRaised: 0,
             auctionStepsData: auctionStepsData
         });
