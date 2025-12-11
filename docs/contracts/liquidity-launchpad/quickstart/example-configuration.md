@@ -66,7 +66,7 @@ All prices in the auction are represented as the ratio of `currency` to `token`.
 Using the above example, a floor price of 1000 would be represented as `1000 << 96` or `1000 * 2^96`.
 
 ### requiredCurrencyRaised
-The `requiredCurrencyRaised` parameter is the amount of `currency` required to be raised for the auction to graduate. If the auction does not raise this amount, the auction will not graduate and all bidders will be refunded their initial bid amounts. No tokens will be sold and the `totalSupply` will be swept back to the `tokensRecipient`.
+The `requiredCurrencyRaised` parameter is the amount of `currency` required to be raised for the auction to graduate. If the auction does not raise this amount, the auction will not graduate and all bidders will be able to withdraw their initial bid amounts. No tokens will be sold and the `totalSupply` will be swept back to the `tokensRecipient`.
 
 ### auctionStepsData
 The `auctionStepsData` parameter is a packed bytes array that describes the token issuance schedule. It is used to determine the amount of tokens that will be sold in each block. It is a series of `uint64` values that represent the per-block issuance rate in MPS (milli-bips), and the number of blocks to sell over.
@@ -128,7 +128,7 @@ AuctionParameters memory parameters = AuctionParameters({
 });
 ```
 
-Let's build the auction steps data. For simplicity, we'll sell tokens following a monotonically increasing schedule. We'll sell 10% over 50 blocks, 49% over 49 blocks, and the final 41% in the last block.
+Let's build the auction steps data. For simplicity, we'll sell tokens following a monotonically increasing schedule. We'll sell 10% over 50 blocks, 49% over 49 blocks, and the final 41% in the last block. See the [note about auction steps](/docs/contracts/liquidity-launchpad/05-auction-mechanism.md#note-on-auction-steps) for more details about the rationale behind this example schedule.
 
 To derive the steps:
 - First tranche: 10% over 50 blocks
@@ -153,7 +153,7 @@ bytes memory auctionStepsData = abi.encodePacked(firstTranche, secondTranche, th
 parameters.auctionStepsData = auctionStepsData;
 ```
 
-You can leverage the `AuctionStepsBuilder` helper library to build the auction steps data.
+You can leverage the [AuctionStepsBuilder](https://github.com/Uniswap/continuous-clearing-auction/blob/main/test/utils/AuctionStepsBuilder.sol) helper library to build the auction steps data.
 
 Before we can finish the script we need to deploy a MockERC20 token to use in the auction. You can use the `ERC20Mock` contract in `@openzeppelin/contracts/mocks/token/ERC20Mock.sol`, or any other MockERC20 token you prefer.
 
