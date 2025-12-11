@@ -99,7 +99,7 @@ Great! We've successfully submitted two bids to the auction and the clearing pri
 ### Partially vs. fully filled bids
 Bids in the auction can have periods where they are partially and fully filled. 
 
-At a high level, a bid is considered "partially filled" whenever the clearing price is equal to the bid's max price. When the clearing price is strictly lower than the bid's max price, the bid is considered "fully filled". Once the clearingPrice moves above the bid's max price, the bid is outbid and stops purchasing tokens.
+At a high level, a bid is considered "partially filled" whenever the clearingPrice is equal to the bid's max price. When the clearing price is strictly lower than the bid's max price, the bid is considered "fully filled". Once the clearingPrice moves above the bid's max price, the bid is outbid and stops purchasing tokens.
 
 Let's take a look at the state of the two bids in the auction at this point in time:
 | Checkpoint     | Bid 0 (max price: 1:1e6)          | Bid 1 (max price: 1:2e6) |
@@ -144,7 +144,7 @@ Running this script gives the following output:
   Bid 0 exitedBlock: 5
 ```
 
-The first bid is exited successfully and the remainder of its ETH can be refunded back to the `owner`. It purchased `2000000000000000000000000` wei of tokens (2,000,000) and was exited at block `5`. These funds can be used to re-bid on the auction at a later time if desired.
+The first bid is exited successfully and the remainder of its ETH can be refunded back to the `owner`. It purchased `2000000000000000000000000` wei of tokens (2,000,000) and was exited at block `5`.
 
 As the auction has not completed yet, the second bid is not exitable yet since its maxPrice is higher than the clearing price of the auction.
 
