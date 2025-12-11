@@ -14,7 +14,7 @@ cd continuous-clearing-auction
 ```
 
 ## Quickstart
-Currently, developing with CCA locally _requires [foundry](https://book.getfoundry.sh)_
+Currently, developing with CCA locally _requires [foundry](https://getfoundry.sh/)_
 ```bash
 curl -L https://foundry.paradigm.xyz | bash
 ```

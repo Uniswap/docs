@@ -8,8 +8,8 @@ sidebar_position: 2
 This guide will walk you through deploying a Continuous Clearing Auction (CCA) instance locally.
 
 ## Prerequisites
-- [Foundry](https://book.getfoundry.sh/getting-started/installation)
-- [Anvil](https://book.getfoundry.sh/anvil/)
+- [Foundry](https://getfoundry.sh/introduction/installation)
+- [Anvil](https://getfoundry.sh/anvil/overview)
 
 Also, please check out the [setup guide](./setup.md) for installation instructions.
 
