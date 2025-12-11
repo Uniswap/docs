@@ -144,7 +144,7 @@ Running this script gives the following output:
   Bid 0 exitedBlock: 5
 ```
 
-The first bid is exited successfully and the remainder of its ETH can be refunded back to the `owner`. It purchased `2000000000000000000000000` wei of tokens (2000000) and was exited at block `5`. These funds can be used to re-bid on the auction at a later time if desired.
+The first bid is exited successfully and the remainder of its ETH can be refunded back to the `owner`. It purchased `2000000000000000000000000` wei of tokens (2,000,000) and was exited at block `5`. These funds can be used to re-bid on the auction at a later time if desired.
 
 As the auction has not completed yet, the second bid is not exitable yet since its maxPrice is higher than the clearing price of the auction.
 
