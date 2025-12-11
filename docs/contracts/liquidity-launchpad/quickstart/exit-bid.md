@@ -1,10 +1,10 @@
 ---
 id: exit-bid
-title: Exiting a bid and claiming tokens
+title: Exit and claim tokens
 sidebar_position: 6
 ---
 
-# Exiting a bid and claiming tokens
+# Exit and claim tokens
 This section will walk you through exiting a bid and claiming purchased tokens on a CCA auction.
 
 ## Prerequisites
