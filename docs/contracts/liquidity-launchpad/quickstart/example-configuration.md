@@ -120,9 +120,9 @@ AuctionParameters memory parameters = AuctionParameters({
     startBlock: uint64(block.number),           // Start the auction on the current block
     endBlock: uint64(block.number + 100),       // End the auction after 100 blocks
     claimBlock: uint64(block.number + 100),     // Allow claims at the end of the auction
-    tickSpacing: 79228162514264337593543950,    // Use a tick spacing equal to the floor price. The next possible bid prices will be 1:2000, 1:3000, etc.
+    tickSpacing: 79228162514264334008320,           // Use a tick spacing equal to the floor price
     validationHook: address(0),                 // Use no validation hook
-    floorPrice: 79228162514264337593543950,     // Use a floor price representing a ratio of 1:1000 (1 ETH for 1000 tokens)
+    floorPrice: 79228162514264334008320,            // Use a floor price representing a ratio of 1:1,000,000 (1 ETH for 1 million tokens)
     requiredCurrencyRaised: 0,                  // No graduation threshold 
     auctionStepsData: bytes("")                 // Leave this blank for now
 });
@@ -185,9 +185,9 @@ Now let's finish the script:
             startBlock: uint64(block.number),
             endBlock: uint64(block.number + 100),
             claimBlock: uint64(block.number + 100),
-            tickSpacing: 1 << 96,
+            tickSpacing: 79228162514264334008320,
             validationHook: address(0),
-            floorPrice: 1 << 96,
+            floorPrice: 79228162514264334008320,
             requiredCurrencyRaised: 0,
             auctionStepsData: auctionStepsData
         });
@@ -246,9 +246,9 @@ contract ExampleCCADeploymentScript is Script {
             startBlock: uint64(block.number),
             endBlock: uint64(block.number + 100),
             claimBlock: uint64(block.number + 100),
-            tickSpacing: 7922816251426434048,
+            tickSpacing: 79228162514264334008320,
             validationHook: address(0),
-            floorPrice: 7922816251426434048,
+            floorPrice: 79228162514264334008320,
             requiredCurrencyRaised: 0,
             auctionStepsData: auctionStepsData
         });
