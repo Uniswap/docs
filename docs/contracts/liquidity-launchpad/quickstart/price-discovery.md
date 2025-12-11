@@ -67,7 +67,8 @@ contract ExampleCCABidScript is Script {
 
 You can run the script with the following command (the --slow is important!)
 ```bash
-AUCTION_ADDRESS=<auction address> forge script scripts/ExampleCCABidScript.s.sol:ExampleCCABidScript --rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --broadcast -vvvv --slow
+AUCTION_ADDRESS=<auction address> forge script scripts/ExampleCCABidScript.s.sol:ExampleCCABidScript \
+--rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --broadcast -vvvv --slow
 ```
 
 The output should look like this:

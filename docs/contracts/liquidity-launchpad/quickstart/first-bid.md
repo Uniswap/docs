@@ -53,7 +53,8 @@ contract ExampleCCABidScript is Script {
 
 You can run this with the following command:
 ```bash
-AUCTION_ADDRESS=<auction-contract-address> forge script scripts/ExampleCCABidScript.s.sol:ExampleCCABidScript --rpc-url http://localhost:8545 --private-key <your-private-key>
+AUCTION_ADDRESS=<auction-contract-address> forge script scripts/ExampleCCABidScript.s.sol:ExampleCCABidScript \
+--rpc-url http://localhost:8545 --private-key <your-private-key>
 ```
 
 ## Submitting a bid
@@ -92,7 +93,8 @@ Let's add this to our script:
 
 You can use the public anvil private key (`0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80`) when running the script as it has an existing balance of ETH:
 ```bash
-AUCTION_ADDRESS=<auction-contract-address> forge script scripts/ExampleCCABidScript.s.sol:ExampleCCABidScript --rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 -vvvv
+AUCTION_ADDRESS=<auction-contract-address> forge script scripts/ExampleCCABidScript.s.sol:ExampleCCABidScript \
+--rpc-url http://localhost:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 -vvvv
 ```
 
 The output should look like this:

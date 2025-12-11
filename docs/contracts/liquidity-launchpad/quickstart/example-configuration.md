@@ -266,7 +266,8 @@ contract ExampleCCADeploymentScript is Script {
 
 Let's run the script:
 ```bash
-forge script scripts/ExampleCCADeploymentScript.s.sol:ExampleCCADeploymentScript --rpc-url http://localhost:8545 --private-key <your-private-key> --broadcast
+forge script scripts/ExampleCCADeploymentScript.s.sol:ExampleCCADeploymentScript \
+--rpc-url http://localhost:8545 --private-key <your-private-key> --broadcast
 ```
 
 The deployment should be successful and you should see the factory and auction contract addresses logged to the console.
