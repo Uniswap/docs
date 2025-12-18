@@ -136,13 +136,13 @@ Express 10% in MPS as 1e6 (1,000,000). Over 50 blocks this is 1e6 / 50 = 20,000 
 Pack this into a bytes8 value:
 
 ```solidity
-bytes8 firstTranche = uint64(20_000) | (uint64(50) << 24);
+bytes8 firstTranche = uint64(50) | (uint64(20_000) << 40);
 ```
 
 Repeat this for the rest of the tranches to get the final auction steps data:
 ```solidity
-bytes8 secondTranche = uint64(100_000) | (uint64(49) << 24); // 49e6 / 49 = 100_000 MPS per block
-bytes8 thirdTranche = uint64(4_100_000) | (uint64(1) << 24); // 41e6 / 1 = 4_100_000 MPS per block
+bytes8 secondTranche = bytes8(uint64(49) | (uint64(100_000) << 40)); // 49e6 / 49 = 100_000 MPS per block
+bytes8 thirdTranche =  bytes8(uint64(1) | (uint64(4_100_000) << 40)); // 41e6 / 1 = 4_100_000 MPS per block
 ```
 
 Finally, pack the auction steps data into a bytes array:
@@ -266,7 +266,7 @@ contract ExampleCCADeploymentScript is Script {
 
 Let's run the script:
 ```bash
-forge script scripts/ExampleCCADeploymentScript.s.sol:ExampleCCADeploymentScript \
+DEPLOYER=<your-address> forge script scripts/ExampleCCADeploymentScript.s.sol:ExampleCCADeploymentScript \
 --rpc-url http://localhost:8545 --private-key <your-private-key> --broadcast
 ```
 
