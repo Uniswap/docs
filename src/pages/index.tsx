@@ -290,7 +290,7 @@ const Home = () => {
               <div className="flex mt-5">
                 <Link
                   className="group flex items-center justify-center rounded-large bg-light-surface-3 p-3 transition hover:bg-dark-accent-2 dark:bg-dark-surface-3 hover:dark:bg-light-accent-2"
-                  to="https://unigrants.org/"
+                  to="https://www.uniswapfoundation.org/"
                 >
                   <div className="mr-2 h-6 w-6 transition text-light-neutral-1 dark:text-dark-neutral-1 group-hover:text-dark-accent-1 group-hover:dark:text-light-accent-1">
                     <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
