@@ -284,7 +284,8 @@ html:has(.theme-doc-markdown) {
 }
 
 .theme-doc-markdown ol a {
-  @apply !mono-body-5 !text-light-neutral-2 dark:!text-dark-neutral-2;
+  @apply !body-2 !font-semibold text-light-accent-1 dark:text-dark-accent-1 
+          hover:text-light-accent-1-hovered hover:dark:text-dark-accent-1-hovered;
 }
 
 .theme-doc-markdown sup a {
