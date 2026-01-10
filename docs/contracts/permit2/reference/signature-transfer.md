@@ -181,7 +181,7 @@ struct ExampleTrade {
 }
 ```
 
-Following EIP-712, the typehash for the data would be defined by:
+Following [EIP-712](https://eips.ethereum.org/EIPS/eip-712), the typehash for the data would be defined by:
 
 ```solidity
 bytes32 _EXAMPLE_TRADE_TYPEHASH = keccak256('ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)');
@@ -200,7 +200,7 @@ And the `witnessTypeString` to be passed in should be:
 string constant witnessTypeString = "ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)TokenPermissions(address token,uint256 amount)"
 ```
 
-It’s important to note that when hashing multiple typed structs, the ordering of the structs in the type string matters. Referencing EIP-721:
+It’s important to note that when hashing multiple typed structs, the ordering of the structs in the type string matters. Referencing [EIP-712](https://eips.ethereum.org/EIPS/eip-712):
 
 > If the struct type references other struct types (and these in turn reference even more struct types), then the set of referenced struct types is collected, sorted by name and appended to the encoding. An example encoding is `Transaction(Person from,Person to,Asset tx)Asset(address token,uint256 amount)Person(address wallet,string name)`
 > 
