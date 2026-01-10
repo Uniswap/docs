@@ -197,7 +197,7 @@ The `witness` that should be passed along with the permit message should be:
 And the `witnessTypeString` to be passed in should be:
 
 ```solidity
-string constant witnessTypeString = "ExampleTrade witness)ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)TokenPermissions(address token,uint256 amount)"
+string constant witnessTypeString = "ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)TokenPermissions(address token,uint256 amount)"
 ```
 
 It’s important to note that when hashing multiple typed structs, the ordering of the structs in the type string matters. Referencing EIP-721:
