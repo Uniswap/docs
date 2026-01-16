@@ -21,17 +21,6 @@ Bootstrapping initial liquidity for new tokens is challenging. Traditional appro
 
 CCA addresses these issues through a unique approach: **automatic bid spreading over time** combined with **continuous price discovery**.
 
-## Deployment Addresses
-
-### ContinuousClearingAuctionFactory
-
-| Network  | Address                                    | Commit Hash                              | Version          |
-| -------- | ------------------------------------------ | ---------------------------------------- | ---------------- |
-| Mainnet  | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
-| Unichain | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
-| Base     | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
-| Sepolia  | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
-
 ### Mechanism overview
 
 For a detailed overview, please read the [whitepaper](/whitepaper_cca.pdf).
