@@ -86,13 +86,3 @@ The following actions must be performed atomically within one transaction.
 
 - Learn about the [Continous Clearing Auction](./05-auction-mechanism.md) mechanism
 - Read the <a href='/whitepaper_cca.pdf' target='_blank' rel='noopener noreferrer'>whitepaper</a> to learn more about the mechanism
-
-## Smart Contracts
-
-| Contract | Description | Source | Mainnet Address | Unichain |
-|----------|-------------|--------|-----------------|----------|
-| **LiquidityLauncher** | Central orchestration contract | [liquidity-launcher](https://github.com/Uniswap/liquidity-launcher) | [0x00000008412db3394C91A5CbD01635c6d140637C](https://etherscan.io/address/0x00000008412db3394C91A5CbD01635c6d140637C) | Coming soon |
-| **UERC20Factory** | Standard ERC-20 token factory | [uerc20-factory](https://github.com/Uniswap/uerc20-factory) | [0x0cde87c11b959e5eb0924c1abf5250ee3f9bd1b5](https://etherscan.io/address/0x0cde87c11b959e5eb0924c1abf5250ee3f9bd1b5) | Coming soon |
-| **LBPStrategyBasicFactory** | LBP strategy factory | [liquidity-launcher](https://github.com/Uniswap/liquidity-launcher) | [0x00000010F37b6524617b17e66796058412bbC487](https://etherscan.io/address/0x00000010F37b6524617b17e66796058412bbC487) | Coming soon |
-| **ContinuousClearingAuction** | Continuous clearing auction factory | [continuous-clearing-auction](https://github.com/Uniswap/continuous-clearing-auction) |[0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D](https://etherscan.io/address/0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D) | Coming soon |
-| **Permit2** | Token approval manager | [Uniswap](https://github.com/Uniswap/permit2) | [0x000000000022D473030F116dDEE9F6B43aC78BA3](https://etherscan.io/address/0x000000000022D473030F116dDEE9F6B43aC78BA3) | [0x000000000022D473030F116dDEE9F6B43aC78BA3](https://etherscan.io/address/0x000000000022D473030F116dDEE9F6B43aC78BA3) |
