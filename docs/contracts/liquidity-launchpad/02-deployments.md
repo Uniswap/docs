@@ -19,26 +19,30 @@ The CCA factory has no constructor parameters so it can be deployed to the same 
 ## LiquidityLauncher
 The LiquidityLauncher is a singleton contract which is delployed to the same address across all compatible chains.
 
-| Version                                     | Address                                    | Commit Hash                              |
+| Version  | Address | Commit Hash |
 | -------- | ------------------------------------------ | ---------------------------------------- |
 | v1.0.0  | 0x00000008412db3394C91A5CbD01635c6d140637C | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d |
 
 ## LBP Strategies
-LBP strategies are deployed via factory contracts which are deployed to the same address across all compatible chains.
+LBP strategies are deployed via factory contracts which are deployed to different addresses on different chains. Make sure to use the correct factory contract for the chain in question.
 
 ### FullRangeLBPStrategyFactory
 The FullRangeLBPStrategyFactory is a factory contract for the [FullRangeLBPStrategy]().
 
-| Version                                     | Address                                    | Commit Hash                              |
-| -------- | ------------------------------------------ | ---------------------------------------- |
-| v2.0.0  |  |  |
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v2.0.0 | Mainnet | 0x65aF3B62EE79763c704f04238080fBADD005B332 |  |
+| v2.0.0 | Base | 0x39E5eB34dD2c8082Ee1e556351ae660F33B04252 |  |
+| v2.0.0 | Sepolia | 0x89Dd5691e53Ea95d19ED2AbdEdCf4cBbE50da1ff |  |
 
 ### AdvancedLBPStrategyFactory
 The AdvancedLBPStrategyFactory is a factory contract for the [AdvancedLBPStrategy]().
 
-| Version                                     | Address                                    | Commit Hash                              |
-| -------- | ------------------------------------------ | ---------------------------------------- |
-| v2.0.0  |  |  |
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v2.0.0 | Mainnet | 0x982DC187cbeB4E21431C735B01Ecbd8A606129C5 |  |
+| v2.0.0 | Base | 0x9C5A6fb9B0D9A60e665d93a3e6923bDe428c389a |  |
+| v2.0.0 | Sepolia | 0xdC3553B7Cea1ad3DAB35cBE9d40728C4198BCBb6 |  |
 
 ## Previous Deployments
 The following contracts are deprecated and are not recommended for production use. See the [Changelog](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md) for more details.
