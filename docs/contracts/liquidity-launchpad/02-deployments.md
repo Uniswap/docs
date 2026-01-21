@@ -41,14 +41,23 @@ The AdvancedLBPStrategyFactory is a factory contract for the [AdvancedLBPStrateg
 | v2.0.0  |  |  |
 
 ## Older LBP Strategies
-The following contracts are deprecated and should not be used in production.
+The following contracts are deprecated and are not recommended for production use. See the [Changelog](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md) for more details.
 
 ### LBPStrategyBasicFactory
 The LBPStrategyBasicFactory is a factory contract for the [LBPStrategyBasic]().
 
-| Version                                     | Address                                    | Commit Hash                              |
-| -------- | ------------------------------------------ | ---------------------------------------- |
-| v1.0.0  |  |  |
+| Network | Address | Commit Hash | Version |
+|---------|---------|------------|---------|
+| Mainnet | 0xbbbb6FFaBCCb1EaFD4F0baeD6764d8aA973316B6 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
+| Base | 0xC46143aE2801b21B8C08A753f9F6b52bEaD9C134 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
+| Unichain | 0x435DDCFBb7a6741A5Cc962A95d6915EbBf60AE24 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
+
+### VirtualLBPStrategyFactory
+
+| Network | Address | Commit Hash | Version |
+|---------|---------|------------|---------|
+| Mainnet | 0x00000010F37b6524617b17e66796058412bbC487 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
+| Sepolia | 0xC695ee292c39Be6a10119C70Ed783d067fcecfA4 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
 
 
 ## UERC20Factory
