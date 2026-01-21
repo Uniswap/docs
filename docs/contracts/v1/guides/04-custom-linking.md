@@ -55,15 +55,18 @@ Two parameters, field and value can be used to set specific token amounts to be 
 
 ## Send Page
 
-The send page has the same options available as the Swap page, plus one additional parameter, `recipient`.
+The send page has the these options available.
 
 | Parameter | Type      | Description                                     |
-| :-------- | :-------- | :---------------------------------------------- |
-| recipient | `address` | Address of the recipient of a send transaction. |
+| :------------ | :-------- | :---------------------------------------------- |
+| sendChain     | `network` | Network in lowercase (EX: bnb, ethereum, base). |
+| sendCurrency  | `address` | Address of the token desired to send.           |
+| sendRecipient | `address` | Address of the recipient of a send transaction. |
 
 ### Example Usage
 
-`https://app.uniswap.org/#/send?recipient=0x74Aa01d162E6dC6A657caC857418C403D48E2D77?use=v1`
+`https://app.uniswap.org/send?sendChain=unichain&sendCurrency=0x078D782b760474a361dDA0AF3839290b0EF57AD6&sendRecipient=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`
+
 
 ## Pool Page
 
