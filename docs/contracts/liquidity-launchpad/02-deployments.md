@@ -32,6 +32,7 @@ The FullRangeLBPStrategyFactory is a factory contract for the [FullRangeLBPStrat
 | Version | Chain | Address | Commit Hash |
 |---------|-------|---------|------------|
 | v2.0.0 | Mainnet | 0x65aF3B62EE79763c704f04238080fBADD005B332 |  |
+| v2.0.0 | Unichain | 0xAa56d4d68646B4858A5A3a99058169D0100b38e2 | |
 | v2.0.0 | Base | 0x39E5eB34dD2c8082Ee1e556351ae660F33B04252 |  |
 | v2.0.0 | Sepolia | 0x89Dd5691e53Ea95d19ED2AbdEdCf4cBbE50da1ff |  |
 
@@ -41,6 +42,7 @@ The AdvancedLBPStrategyFactory is a factory contract for the [AdvancedLBPStrateg
 | Version | Chain | Address | Commit Hash |
 |---------|-------|---------|------------|
 | v2.0.0 | Mainnet | 0x982DC187cbeB4E21431C735B01Ecbd8A606129C5 |  |
+| v2.0.0 | Unichain | 0xeB44195e1847F23D4ff411B7d501b726C7620529 | |
 | v2.0.0 | Base | 0x9C5A6fb9B0D9A60e665d93a3e6923bDe428c389a |  |
 | v2.0.0 | Sepolia | 0xdC3553B7Cea1ad3DAB35cBE9d40728C4198BCBb6 |  |
 
