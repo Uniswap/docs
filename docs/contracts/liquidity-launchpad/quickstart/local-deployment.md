@@ -40,12 +40,15 @@ interface IDistributionStrategy {
 ```
 
 The factory contract is deployed to the same address across the following networks:
-| Network  | Address                                    | Commit Hash                              | Version          |
+
+| Network | Address | Commit Hash | Version |
 | -------- | ------------------------------------------ | ---------------------------------------- | ---------------- |
-| Mainnet  | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
-| Unichain | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
-| Base     | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
-| Sepolia  | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
+| Mainnet | 0xcca1101C61cF5cb44C968947985300DF945C3565 | 95d7da7a2d25cf60f14eaccd6ab5fb24d393a452 | v1.1.0 |
+| Unichain | 0xcca1101C61cF5cb44C968947985300DF945C3565 | 95d7da7a2d25cf60f14eaccd6ab5fb24d393a452 | v1.1.0 |
+| Base | 0xcca1101C61cF5cb44C968947985300DF945C3565 | 95d7da7a2d25cf60f14eaccd6ab5fb24d393a452 | v1.1.0 |
+| Sepolia | 0xcca1101C61cF5cb44C968947985300DF945C3565 | 95d7da7a2d25cf60f14eaccd6ab5fb24d393a452 | v1.1.0 |
+
+See the [Deployments Guide](https://github.com/Uniswap/continuous-clearing-auction/blob/main/docs/DeploymentGuide.md) for more details on deploying the factory contract to other networks.
 
 ### Deploying a new `ContinuousClearingAuction` contract directly
 CCA auctions can be deployed directly by calling the constructor:
