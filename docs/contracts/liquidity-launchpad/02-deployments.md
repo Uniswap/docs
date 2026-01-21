@@ -40,7 +40,7 @@ The AdvancedLBPStrategyFactory is a factory contract for the [AdvancedLBPStrateg
 | -------- | ------------------------------------------ | ---------------------------------------- |
 | v2.0.0  |  |  |
 
-## Older LBP Strategies
+## Previous Deployments
 The following contracts are deprecated and are not recommended for production use. See the [Changelog](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md) for more details.
 
 ### LBPStrategyBasicFactory
