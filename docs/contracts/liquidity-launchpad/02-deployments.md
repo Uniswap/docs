@@ -27,30 +27,30 @@ The LiquidityLauncher is a singleton contract which is delployed to the same add
 LBP strategies are deployed via factory contracts which are deployed to different addresses on different chains. Make sure to use the correct factory contract for the chain in question.
 
 ### FullRangeLBPStrategyFactory
-The FullRangeLBPStrategyFactory is a factory contract for the [FullRangeLBPStrategy]().
+The FullRangeLBPStrategyFactory is a factory contract for the [FullRangeLBPStrategy](https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/lbp/FullRangeLBPStrategy.sol).
 
 | Version | Chain | Address | Commit Hash |
 |---------|-------|---------|------------|
-| v2.0.0 | Mainnet | 0x65aF3B62EE79763c704f04238080fBADD005B332 |  |
-| v2.0.0 | Unichain | 0xAa56d4d68646B4858A5A3a99058169D0100b38e2 | |
-| v2.0.0 | Base | 0x39E5eB34dD2c8082Ee1e556351ae660F33B04252 |  |
-| v2.0.0 | Sepolia | 0x89Dd5691e53Ea95d19ED2AbdEdCf4cBbE50da1ff |  |
+| v2.0.0 | Mainnet | 0x65aF3B62EE79763c704f04238080fBADD005B332 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Unichain | 0xAa56d4d68646B4858A5A3a99058169D0100b38e2 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Base | 0x39E5eB34dD2c8082Ee1e556351ae660F33B04252 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Sepolia | 0x89Dd5691e53Ea95d19ED2AbdEdCf4cBbE50da1ff | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
 
 ### AdvancedLBPStrategyFactory
-The AdvancedLBPStrategyFactory is a factory contract for the [AdvancedLBPStrategy]().
+The AdvancedLBPStrategyFactory is a factory contract for the [AdvancedLBPStrategy](https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/lbp/AdvancedLBPStrategy.sol).
 
 | Version | Chain | Address | Commit Hash |
 |---------|-------|---------|------------|
-| v2.0.0 | Mainnet | 0x982DC187cbeB4E21431C735B01Ecbd8A606129C5 |  |
-| v2.0.0 | Unichain | 0xeB44195e1847F23D4ff411B7d501b726C7620529 | |
-| v2.0.0 | Base | 0x9C5A6fb9B0D9A60e665d93a3e6923bDe428c389a |  |
-| v2.0.0 | Sepolia | 0xdC3553B7Cea1ad3DAB35cBE9d40728C4198BCBb6 |  |
+| v2.0.0 | Mainnet | 0x982DC187cbeB4E21431C735B01Ecbd8A606129C5 | 610603eed7c35ff504e23ec87cd18ec3f701e746   |
+| v2.0.0 | Unichain | 0xeB44195e1847F23D4ff411B7d501b726C7620529 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Base | 0x9C5A6fb9B0D9A60e665d93a3e6923bDe428c389a | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Sepolia | 0xdC3553B7Cea1ad3DAB35cBE9d40728C4198BCBb6 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
 
 ## Previous Deployments
 The following contracts are deprecated and are not recommended for production use. See the [Changelog](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md) for more details.
 
 ### LBPStrategyBasicFactory
-The LBPStrategyBasicFactory is a factory contract for the [LBPStrategyBasic]().
+The LBPStrategyBasicFactory is a factory contract for the [LBPStrategyBasic](https://github.com/Uniswap/liquidity-launcher/blob/v1.0.0-candidate/src/distributionContracts/LBPStrategyBasic.sol).
 
 | Network | Address | Commit Hash | Version |
 |---------|---------|------------|---------|
