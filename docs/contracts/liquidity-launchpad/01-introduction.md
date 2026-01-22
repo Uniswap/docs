@@ -58,20 +58,9 @@ The following actions must be performed atomically in one transaction. `Liquidit
 
 3. **Auction Completion**
 
-   When the auction ends, all of the raised funds will be swept to a specified `fundsRecipient`. The LBPStrategy will ensure that it is the recipient of both the raised funds and any leftover unsold tokens. The configured `initializer` on the LBPStrategy must implement the `ILBPInitializer` interface to return the necessary data for the pool migration and liquidity creation.
+   When the auction ends, all of the raised funds will be swept to a specified `fundsRecipient`. The LBPStrategy will ensure that it is the recipient of both the raised funds and any leftover unsold tokens. The configured `initializer` on the LBPStrategy must implement the [ILBPInitializer](https://github.com/Uniswap/liquidity-launcher/blob/main/src/interfaces/ILBPInitializer.sol) interface to return the necessary data for the pool migration and liquidity creation. 
 
-   ```solidity
-   // from: https://github.com/Uniswap/liquidity-launcher/blob/main/src/interfaces/ILBPInitializer.sol
-   struct LBPInitializationParams {
-      uint256 initialPriceX96; // the price discovered by the contract
-      uint256 tokensSold; // the number of tokens sold by the contract
-      uint256 currencyRaised; // the amount of currency raised by the contract
-   }
-
-   interface ILBPInitializer {
-      function lbpInitializationParams() external view returns (LBPInitializationParams memory params);
-   }
-   ```
+   The `initializer` returns parameters like the initial price, tokens sold, and currency raised which are used to initialize the pool.
 
 4. **Migrating Liquidity**
 
