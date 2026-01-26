@@ -8,7 +8,7 @@ sidebar_position: 2
 View the changelogs for more details on differences between contract deployments: [continuous-clearing-auction](https://github.com/Uniswap/continuous-clearing-auction/blob/main/CHANGELOG.md) and [liquidity-launcher](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md).
 
 ## ContinuousClearingAuctionFactory
-The CCA factory has no constructor parameters so it can be deployed to the same address across all compatible chains.
+The CCA factory has no constructor parameters so it can be deployed to the same address across all compatible chains. It is currently deployed to Ethereum Mainnet, Unichain, Base, Arbitrum, and Sepolia testnet.
 
 | Network  | Address                                    | Commit Hash                              | Version          |
 | -------- | ------------------------------------------ | ---------------------------------------- | ---------------- |
