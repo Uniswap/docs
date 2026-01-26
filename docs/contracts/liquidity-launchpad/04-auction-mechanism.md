@@ -38,7 +38,7 @@ At a high level it has these benefits:
 - Sniping and last-minute gaming become ineffective
 
 ## Technical overview
-Check out the full [technical reference](TODO)
+Check out the full [technical reference](https://github.com/Uniswap/continuous-clearing-auction/blob/main/docs/TechnicalDocumentation.md)
 
 ## Integration guidelines
 
