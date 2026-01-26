@@ -12,7 +12,7 @@ The CCA factory has no constructor parameters so it can be deployed to the same 
 
 | Network  | Address                                    | Commit Hash                              | Version          |
 | -------- | ------------------------------------------ | ---------------------------------------- | ---------------- |
-| v1.1.0   | 0xcca1101C61cF5cb44C968947985300DF945C3565 | 95d7da7a2d25cf60f14eaccd6ab5fb24d393a452 | v1.1.0           |
+| v1.1.0   | 0xCCccCcCAE7503Cac057829BF2811De42E16e0bD5 | 87b2546a298f691c095b06ec077ceef25ba56007 | v1.1.0           |
 | v1.0.0\* | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate |
 > \*v1.0.0-candidate is the initial version of CCA and is NOT recommended for production use. See the [Changelog](https://github.com/Uniswap/continuous-clearing-auction/blob/main/CHANGELOG.md) for more details.
 
