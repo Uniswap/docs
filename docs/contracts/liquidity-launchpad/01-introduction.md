@@ -5,6 +5,7 @@ sidebar_position: 1
 ---
 
 # Introduction & Overview
+Looking to participate in active auctions? Check them out on the [Uniswap Frontend](https://app.uniswap.org/explore/auctions/).
 
 ## What is the Uniswap Liquidity Launchpad?
 
@@ -25,6 +26,7 @@ The system is composable - it is not limited to the intial set of implementation
 - **Permissionless** - Anyone can bootstrap liquidity or participate in price discovery without gatekeepers
 - **Transparent** - All parameters are immutable after they are set
 - **Composable** - Modular architecture supports multiple auction formats and distribution strategies
+- **Distribution** - Users can participate in auctions via interfaces acros the ecosystem including the [Uniswap Frontend](https://app.uniswap.org/explore/auctions/) and custom interfaces
 
 ## Components
 
