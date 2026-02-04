@@ -31,6 +31,16 @@ This reference documentation covers:
 - Network-specific configurations and constants
 
 ## Getting Started
+## Local Setup Tips
+
+- Recommended Node.js version: **v18+** (LTS)
+- Package manager: **pnpm** for faster installs and better monorepo workspace filtering
+
+### Example
+
+```bash
+pnpm install
+pnpm --filter @uniswap/sdk-core build
 
 ```typescript
 import { Token, CurrencyAmount, TradeType } from '@uniswap/sdk-core'
