@@ -314,26 +314,31 @@ function _afterSwap(
         BalanceDelta delta,
         bytes calldata
     ) internal override returns (bytes4, int128) {
-        bool outputIsToken0 = params.zeroForOne ? false : true;
+        bool isExactIn = (params.amountSpecified < 0);
 
-        int256 outputAmount = outputIsToken0 ? delta.amount0() : delta.amount1();
-        if (outputAmount <= 0) {
+        // Determine the unspecified currency and amount
+        // exactIn: unspecified is output; exactOut: unspecified is input
+        bool unspecifiedIsToken0;
+        if (isExactIn) {
+            unspecifiedIsToken0 = params.zeroForOne ? false : true;  // output token
+        } else {
+            unspecifiedIsToken0 = params.zeroForOne ? true : false;  // input token
+        }
+
+        int256 unspecifiedAmount = unspecifiedIsToken0 ? delta.amount0() : delta.amount1();
+
+        // For exactIn, unspecifiedAmount (output) is positive
+        // For exactOut, unspecifiedAmount (input) is negative, so we negate it
+        int256 amountForFee = isExactIn ? unspecifiedAmount : -unspecifiedAmount;
+        if (amountForFee <= 0) {
             return (BaseHook.afterSwap.selector, 0);
         }
 
-        uint256 feeAmount = (uint256(outputAmount) * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
+        uint256 feeAmount = (uint256(amountForFee) * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
 
         require(feeAmount <= ((uint256(1) << 127) - 1), "fee too large");
 
-        bool isExactIn = (params.amountSpecified < 0);
-
-        Currency feeCurrency;
-        if (isExactIn) {
-            feeCurrency = outputIsToken0 ? key.currency0 : key.currency1;
-        } else {
-            bool inputIsToken0 = params.zeroForOne ? true : false;
-            feeCurrency = inputIsToken0 ? key.currency0 : key.currency1;
-        }
+        Currency feeCurrency = unspecifiedIsToken0 ? key.currency0 : key.currency1;
 
         poolManager.take(feeCurrency, address(this), feeAmount);
 
@@ -380,32 +385,37 @@ contract HookFeeAfterSwap is BaseHook {
     }
 
     function _afterSwap(
-        address ,
+        address,
         PoolKey calldata key,
         SwapParams calldata params,
         BalanceDelta delta,
         bytes calldata
     ) internal override returns (bytes4, int128) {
-        bool outputIsToken0 = params.zeroForOne ? false : true;
+        bool isExactIn = (params.amountSpecified < 0);
 
-        int256 outputAmount = outputIsToken0 ? delta.amount0() : delta.amount1();
-        if (outputAmount <= 0) {
+        // Determine the unspecified currency and amount
+        // exactIn: unspecified is output; exactOut: unspecified is input
+        bool unspecifiedIsToken0;
+        if (isExactIn) {
+            unspecifiedIsToken0 = params.zeroForOne ? false : true;  // output token
+        } else {
+            unspecifiedIsToken0 = params.zeroForOne ? true : false;  // input token
+        }
+
+        int256 unspecifiedAmount = unspecifiedIsToken0 ? delta.amount0() : delta.amount1();
+
+        // For exactIn, unspecifiedAmount (output) is positive
+        // For exactOut, unspecifiedAmount (input) is negative, so we negate it
+        int256 amountForFee = isExactIn ? unspecifiedAmount : -unspecifiedAmount;
+        if (amountForFee <= 0) {
             return (BaseHook.afterSwap.selector, 0);
         }
 
-        uint256 feeAmount = (uint256(outputAmount) * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
+        uint256 feeAmount = (uint256(amountForFee) * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
 
         require(feeAmount <= ((uint256(1) << 127) - 1), "fee too large");
 
-        bool isExactIn = (params.amountSpecified < 0);
-
-        Currency feeCurrency;
-        if (isExactIn) {
-            feeCurrency = outputIsToken0 ? key.currency0 : key.currency1;
-        } else {
-            bool inputIsToken0 = params.zeroForOne ? true : false;
-            feeCurrency = inputIsToken0 ? key.currency0 : key.currency1;
-        }
+        Currency feeCurrency = unspecifiedIsToken0 ? key.currency0 : key.currency1;
 
         poolManager.take(feeCurrency, address(this), feeAmount);
 
