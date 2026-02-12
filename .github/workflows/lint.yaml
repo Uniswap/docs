@@ -2,6 +2,8 @@ name: Lint
 
 on: push
 
+permissions: {}
+
 jobs:
   lint:
     name: Run linters
@@ -10,6 +12,8 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
 
       - name: Set up node
         uses: actions/setup-node@v3

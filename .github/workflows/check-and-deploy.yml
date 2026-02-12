@@ -5,6 +5,8 @@ env:
 on:
   push:
 
+permissions: {}
+
 jobs:
   check-uniswap-benchmarks:
     name: Check uniswap Benchmarks
@@ -14,6 +16,8 @@ jobs:
         working-directory: ./
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-node@v3
         with:
@@ -69,6 +73,8 @@ jobs:
           poll-interval: 15
 
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
       - name: Audit preview URL with Lighthouse (mobile)
         id: lighthouse_audit_mobile
         uses: treosh/lighthouse-ci-action@v9
