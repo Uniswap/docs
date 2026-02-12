@@ -130,3 +130,36 @@ Notes on differences between home chain and other superchain networks:
 
 For more details, see the [Superchain ERC20 documentation](https://docs.optimism.io/app-developers/tutorials/tokens/custom-superchain-erc20).
 
+# Creating a token within the Liquidity Launchpad
+The [LiquidityLauncher](https://github.com/Uniswap/liquidity-launcher/blob/main/src/LiquidityLauncher.sol) contract supports creating a new token in the same flow as creating a new CCA auction or liquidity strategy.
+
+This is done via the `createToken` function:
+```solidity
+/// @inheritdoc ILiquidityLauncher
+    function createToken(
+        address factory,
+        string calldata name,
+        string calldata symbol,
+        uint8 decimals,
+        uint128 initialSupply,
+        address recipient,
+        bytes calldata tokenData
+    ) external override returns (address tokenAddress) {
+        if (recipient == address(0)) {
+            revert RecipientCannotBeZeroAddress();
+        }
+        tokenAddress = ITokenFactory(factory)
+            .createToken(name, symbol, decimals, initialSupply, recipient, tokenData, getGraffiti(msg.sender));
+
+        emit TokenCreated(tokenAddress);
+    }
+
+    /// @inheritdoc ILiquidityLauncher
+    function getGraffiti(address originalCreator) public pure returns (bytes32 graffiti) {
+        graffiti = keccak256(abi.encode(originalCreator));
+    }
+```
+
+The `factory` is the address of the token factory to use. The `name`, `symbol`, `decimals`, `initialSupply`, and `recipient` are the same as the parameters passed to the `createToken` function of the token factory. The `tokenData` is the data to pass to the token factory. By default, the `graffiti` is set to the msg.sender of the transaction to prevent frontrunning of token deploys.
+
+It is recommended to use the built in `multicall` function to deploy and distribute a token in a single transaction.
