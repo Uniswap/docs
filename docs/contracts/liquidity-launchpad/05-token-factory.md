@@ -130,7 +130,7 @@ Notes on differences between home chain and other superchain networks:
 
 For more details, see the [Superchain ERC20 documentation](https://docs.optimism.io/app-developers/tutorials/tokens/custom-superchain-erc20).
 
-# Creating a token within the Liquidity Launchpad
+## Creating a token within the Liquidity Launchpad
 The [LiquidityLauncher](https://github.com/Uniswap/liquidity-launcher/blob/main/src/LiquidityLauncher.sol) contract supports creating a new token in the same flow as creating a new CCA auction or liquidity strategy.
 
 This is done via the `createToken` function:
