@@ -1,10 +1,10 @@
 ---
-id: token-factory
-title: Token factory
+id: token-factories
+title: Token Factories
 sidebar_position: 5
 ---
 
-# Token factory
+# Token Factories
 The Liquidity Launchpad supports creating a new token in the same flow as creating a new CCA auction or liquidity strategy.
 
 Two token factories are included in the [uerc20-factory](https://github.com/Uniswap/uerc20-factory) repository: UERC20Factory and USUPERC20Factory.
