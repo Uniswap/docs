@@ -17,7 +17,7 @@ The CCA factory has no constructor parameters so it can be deployed to the same 
 > \*v1.0.0-candidate is the initial version of CCA and is NOT recommended for production use. See the [Changelog](https://github.com/Uniswap/continuous-clearing-auction/blob/main/CHANGELOG.md) for more details.
 
 ## LiquidityLauncher
-The LiquidityLauncher is a singleton contract which is delployed to the same address across all compatible chains.
+The LiquidityLauncher is a singleton contract which is deployed to the same address across all compatible chains.
 
 | Version  | Address | Commit Hash |
 | -------- | ------------------------------------------ | ---------------------------------------- |
@@ -69,13 +69,15 @@ The LBPStrategyBasicFactory is a factory contract for the [LBPStrategyBasic](htt
 ## UERC20Factory
 The UERC20Factory is a factory contract for new UERC20 tokens.
 
-| Version                                     | Address                                    | Commit Hash                              |
-| -------- | ------------------------------------------ | ---------------------------------------- |
-| v1.0.0  | 0x0cde87c11b959e5eb0924c1abf5250ee3f9bd1b5 | 9705debfea9e6a641bc04352398f9e549055ac44 |
+| Network | Address                                    | Commit Hash                              | Version          |
+| ------- | ------------------------------------------ | ---------------------------------------- | ---------------- |
+| Mainnet | 0x0cde87c11b959e5eb0924c1abf5250ee3f9bd1b5 | 9705debfea9e6a641bc04352398f9e549055ac44 | v1.0.0-candidate |
+| Sepolia | 0x0cde87c11b959e5eb0924c1abf5250ee3f9bd1b5 | 9705debfea9e6a641bc04352398f9e549055ac44 | v1.0.0-candidate |
 
 ## USUPERC20Factory
 The USUPERC20Factory is a factory contract for new Superchain compatible UERC20 tokens. It is deployed to the same address across all Superchain compatible L2s.
 
-| Version                                     | Address                                    | Commit Hash                              |
-| -------- | ------------------------------------------ | ---------------------------------------- |
-| v1.0.0  |  | 9705debfea9e6a641bc04352398f9e549055ac44 |
+| Network          | Address                                    | Commit Hash                              | Version          |
+| ---------------- | ------------------------------------------ | ---------------------------------------- | ---------------- |
+| Unichain         | 0x24016ed99a69e9b86d16d84351e1661266b7ac6a | 9705debfea9e6a641bc04352398f9e549055ac44 | v1.0.0-candidate |
+| Unichain Sepolia | 0x24016ed99a69e9b86d16d84351e1661266b7ac6a | 9705debfea9e6a641bc04352398f9e549055ac44 | v1.0.0-candidate |

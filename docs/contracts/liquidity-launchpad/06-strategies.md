@@ -1,7 +1,7 @@
 ---
 id: Strategies
 title: Strategies
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Understanding liquidity strategies
@@ -128,3 +128,4 @@ Implement the `_createPositionPlan` function to create the calldata for the Unis
 Be aware of the following considerations:
 - `LBPStrategyBase` does not require that `migrate()` is called before `sweepToken()` or `sweepCurrency()`. Any strategy written should ensure there is ample time between the end of the auction and the migration so the pool can be initialized and the tokens can be transferred to the position recipient before amounts are sent to the operator.
 - `migrate()` can fail to create a full range position in rare cases. Be sure to validate the returned values from the auction.
+
