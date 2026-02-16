@@ -170,9 +170,9 @@ function permitWitnessTransferFrom(
 - witnessTypeString - a string derived from the [EIP-712](https://eips.ethereum.org/EIPS/eip-712) encoding of a struct type that extends the above `PermitBatchTransferFrom` by adding a final member field for the data whose hash is in the `witness` parameter, starting from the representation of that final member and including `TokenPermissions` in correctly sorted position. See an example below.
 - signature - the signature over the permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)
 
-**Example `permitWitnessTransferFrom` parameters**
+## Example `permitWitnessTransferFrom` parameters
 
-If an integrating contract would also like the signer to verify information about a trade, an integrating contract may ask the signer to also sign an `ExampleTrade` object that we define below:
+If an integrating contract would also like the signer to verify information about a trade, it may ask the signer to also sign an `ExampleTrade` object that we define below:
 
 ```solidity
 struct ExampleTrade {
