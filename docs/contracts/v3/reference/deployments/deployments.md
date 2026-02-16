@@ -23,6 +23,7 @@ Please do not assume contracts are deployed to the same addresses across chains,
 - [`Zora`](./Zora-Deployments.md)
 - [`WorldChain`](./WorldChain-Deployments.md)
 - [`Monad`](./Monad-Deployments.md)
+- [`MegaETH`](./MegaETH-Deployments.md)
 
 These addresses are final and were deployed from these npm package versions:
 
