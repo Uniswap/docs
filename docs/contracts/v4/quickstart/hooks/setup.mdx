@@ -3,7 +3,7 @@ title:  Set Up Local Environment
 sidebar_position: 0
 ---
 
-Before writing the hook let's first have a local environment properly configured e.g. deploying pool manager, utility routers and test tokens. 
+Before writing the hook let's first have a local environment properly configured e.g. deploying pool manager, utility routers and test tokens.
 
 At the end of this guide a development environment will be set up to be used to build the rest of the examples in the Guides section of the docs.
 
@@ -33,7 +33,7 @@ In the following sections, let's walk through the steps to create the same envir
 
 ### Setting up Foundry
 
-First thing is to set up a new Foundry project. 
+First thing is to set up a new Foundry project.
 
 If there is no Foundry installed - follow the [Foundry Book](https://book.getfoundry.sh/getting-started/installation) for installation.
 
@@ -47,7 +47,7 @@ cd counter-hook
 Then install the Uniswap `v4-core` and `v4-periphery` contracts as dependencies:
 
 ```bash
-forge install Uniswap/v4-core && forge install Uniswap/v4-periphery
+forge install Uniswap/v4-core && forge install Uniswap/v4-periphery && forge install https://github.com/Uniswap/v4-hooks-public
 ```
 
 Next, set up the remappings so that the shorthand syntax for importing contracts from the dependencies work nicely:
@@ -66,6 +66,7 @@ permit2/=lib/v4-periphery/lib/permit2/
 solmate/=lib/v4-core/lib/solmate/
 v4-core/=lib/v4-core/
 v4-periphery/=lib/v4-periphery/
+v4-hooks/=lib/v4-hooks-public/
 ```
 
 After that, remove the default Counter contract and its associated test and script file that Foundry initially set up. To do that, either manually delete those files, or just run the following:
@@ -74,7 +75,7 @@ After that, remove the default Counter contract and its associated test and scri
 rm ./**/Counter*.sol
 ```
 
-Finally, since v4 uses transient storage which is only available after Ethereum's cancun hard fork and on Solidity versions >= 0.8.24 - some config must be set in `foundry.toml` config file. 
+Finally, since v4 uses transient storage which is only available after Ethereum's cancun hard fork and on Solidity versions >= 0.8.24 - some config must be set in `foundry.toml` config file.
 
 To do that, add the following lines to `foundry.toml`:
 
@@ -96,7 +97,7 @@ To confirm that the environment is configured correctly let's write a basic Coun
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {BaseHook} from "v4-periphery/src/utils/BaseHook.sol";
+import {BaseHook} from "v4-hooks/src/base/BaseHook.sol";
 
 import {Hooks} from "v4-core/src/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
