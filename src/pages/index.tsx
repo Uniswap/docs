@@ -129,7 +129,7 @@ const connectBlock = {
     url: 'https://blog.uniswap.org/',
     name: 'Blog',
   },
-  newsletterTitle: 'Sign up for research and updates from the Uniswap Foundation',
+  newsletterTitle: 'Sign up for developer updates',
 }
 
 const Home = () => {
@@ -318,7 +318,7 @@ const ArticleLinkCard: FC<{
   return (
     <Link
       href={url}
-      className="group flex items-center justify-center rounded-large bg-light-surface-1/70 p-3 transition-colors duration-150 hover:bg-light-surface-1 dark:bg-dark-surface-1/70 dark:hover:bg-dark-surface-1"
+      className="col-span-full sm:col-span-4 md:col-span-2 group flex flex-row transition rounded-medium py-padding-small px-padding-medium bg-light-surface-2 dark:bg-dark-surface-2 hover:bg-light-accent-2 hover:dark:bg-dark-accent-2"
       target="_self"
     >
       <div className="flex flex-col w-full space-y-1">

@@ -21,7 +21,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
         <div className="flex flex-col sm:flex-row">
           <div className="relative w-full">
            
-          <Link to="https://share.hsforms.com/1-5C0iYu9TN2nvz2tz7_5xQsdca9" target="_blank" className="group mt-2 flex items-center justify-center rounded-large bg-light-pink-vibrant p-3 sm:w-32 transition-colors duration-150 hover:bg-light-pink-vibrant/70 dark:bg-dark-pink-vibrant dark:hover:bg-dark-pink-vibrant/70 sm:ml-2 sm:mt-0 w-full !px-0 sm:!px-3">
+          <Link to="https://uniswap.substack.com/" target="_blank" className="group mt-2 flex items-center justify-center rounded-large bg-light-pink-vibrant p-3 sm:w-32 transition-colors duration-150 hover:bg-light-pink-vibrant/70 dark:bg-dark-pink-vibrant dark:hover:bg-dark-pink-vibrant/70 sm:ml-2 sm:mt-0 w-full !px-0 sm:!px-3">
             <span className="button-label-1 text-white transition-colors">
               Sign up
             </span>
