@@ -88,13 +88,13 @@ const config: Config = {
         },
         {
           label: "Give Feedback",
-          to: 'https://share.hsforms.com/14XvN41xQTyC8KPamgaM8Jwsdca9',
+          to: 'https://share.hsforms.com/1gMemq5uWQS-UaaorwU-qGAs8pgg',
           target: '_blank',
           rel: 'noreferrer',
         },
         {
-          label: "Uniswap Foundation",
-          to: 'https://www.uniswapfoundation.org/',
+          label: "Uniswap Labs",
+          to: 'https://app.uniswap.org/',
           target: '_blank',
           rel: 'noreferrer',
         },

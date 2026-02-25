@@ -86,7 +86,7 @@ export default function NavbarContent(): ReactNode {
         <NavbarColorModeToggle />
         <Link
           className="button-label-4 py-2 px-3 bg-light-accent-2 dark:bg-dark-accent-2 hover:bg-light-accent-2-hovered hover:dark:bg-dark-accent-2-hovered transition rounded-small"
-          to="https://share.hsforms.com/14XvN41xQTyC8KPamgaM8Jwsdca9"
+          to="https://share.hsforms.com/1gMemq5uWQS-UaaorwU-qGAs8pgg"
           target="_blank"
           rel="noreferrer"
         >
