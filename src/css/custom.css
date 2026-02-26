@@ -311,7 +311,6 @@ html:has(.theme-doc-markdown) {
   font-family: system-ui;
 }
 
-/* App-like navbar search bar */
 .navbar .DocSearch-Button {
   width: 172px;
   height: 32px;
@@ -365,6 +364,25 @@ html:has(.theme-doc-markdown) {
   color: theme(colors.dark-neutral-2);
 }
 
+@media (max-width: 639px) {
+  .navbar .DocSearch-Button {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    height: 36px;
+    padding: 0 8px;
+  }
+  
+  .navbar .DocSearch-Button-Container {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  
+  .navbar .DocSearch-Button-Key {
+    display: none;
+  }
+}
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *

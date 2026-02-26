@@ -53,25 +53,27 @@ export default function NavbarContent(): ReactNode {
       )}
     >
       {/* Logo - Left aligned */}
-      <Link className="flex flex-row items-center flex-shrink-0" to="/" target="_self" aria-label="Uniswap Documentation Home">
+      <Link className="flex min-w-0 flex-row items-center" to="/" target="_self" aria-label="Uniswap Documentation Home">
         <MiniUnicon className="w-8 h-8 mr-3" />
-        <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0">Uniswap Docs</p>
+        <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0 whitespace-nowrap max-[380px]:hidden">
+          Uniswap Docs
+        </p>
       </Link>
 
       {/* Mobile search and menu */}
-      <div className="flex flex-row items-center sm:hidden gap-3 ml-auto">
-      <div className="min-w-0 w-[420px] lg:w-[520px] xl:w-[560px]">
-        <SearchBar />
-      </div>
-        <button className="flex items-center" onClick={mobileSidebar.toggle}>
+      <div className="ml-auto flex shrink-0 flex-row items-center gap-2 sm:hidden">
+        <div className="w-[168px] max-[390px]:w-[148px]">
+          <SearchBar />
+        </div>
+        <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-small" onClick={mobileSidebar.toggle}>
           <Menu />
         </button>
       </div>
 
       {/* Right side - Nav Links, Search, Theme Toggle, Feedback */}
-      <div className="hidden sm:flex flex-1 justify-end items-center space-x-6 mr-4">
+      <div className="hidden sm:flex flex-1 justify-end items-center gap-3 mr-4">
         {/* Navigation Links */}
-        <nav className="flex flex-row items-center space-x-6">
+        <nav className="flex flex-row items-center gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -82,10 +84,8 @@ export default function NavbarContent(): ReactNode {
             </Link>
           ))}
         </nav>
-        <div className="mr-3">
+        <div className="flex items-center gap-2">
           <SearchBar />
-        </div>
-        <div className="mr-3">
           <NavbarColorModeToggle />
         </div>
         <Link
