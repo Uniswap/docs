@@ -311,6 +311,60 @@ html:has(.theme-doc-markdown) {
   font-family: system-ui;
 }
 
+/* App-like navbar search bar */
+.navbar .DocSearch-Button {
+  width: 172px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  border-radius: 9999px;
+  background: theme(colors.light-surface-2) !important;
+  border: 1px solid theme(colors.light-surface-3) !important;
+  box-shadow: none !important;
+  padding: 0 12px;
+}
+
+:root[data-theme='dark'] .navbar .DocSearch-Button {
+  background: theme(colors.dark-surface-2) !important;
+  border-color: theme(colors.dark-surface-3) !important;
+}
+
+.navbar .DocSearch-Button-Container {
+  width: 100%;
+  font-weight: 400;
+}
+
+.navbar .DocSearch-Search-Icon {
+  width: 16px;
+  height: 16px;
+  color: var(--docsearch-muted-color) !important;
+}
+
+.navbar .DocSearch-Button-Placeholder {
+  font-family: 'Basel Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  color: theme(colors.light-neutral-2);
+}
+
+:root[data-theme='dark'] .navbar .DocSearch-Button-Placeholder {
+  color: theme(colors.dark-neutral-2);
+}
+
+.navbar .DocSearch-Button-Key {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: theme(colors.light-surface-3) !important;
+  box-shadow: none !important;
+  color: theme(colors.light-neutral-2);
+}
+
+:root[data-theme='dark'] .navbar .DocSearch-Button-Key {
+  background: theme(colors.dark-surface-3) !important;
+  color: theme(colors.dark-neutral-2);
+}
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *

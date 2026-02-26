@@ -60,9 +60,9 @@ export default function NavbarContent(): ReactNode {
 
       {/* Mobile search and menu */}
       <div className="flex flex-row items-center sm:hidden gap-3 ml-auto">
-        <div className="flex-1 min-w-0">
-          <SearchBar />
-        </div>
+      <div className="min-w-0 w-[420px] lg:w-[520px] xl:w-[560px]">
+        <SearchBar />
+      </div>
         <button className="flex items-center" onClick={mobileSidebar.toggle}>
           <Menu />
         </button>
@@ -82,10 +82,14 @@ export default function NavbarContent(): ReactNode {
             </Link>
           ))}
         </nav>
-        <SearchBar />
-        <NavbarColorModeToggle />
+        <div className="mr-3">
+          <SearchBar />
+        </div>
+        <div className="mr-3">
+          <NavbarColorModeToggle />
+        </div>
         <Link
-          className="button-label-4 py-2 px-3 bg-light-accent-2 dark:bg-dark-accent-2 hover:bg-light-accent-2-hovered hover:dark:bg-dark-accent-2-hovered transition rounded-small"
+          className="button-label-4 inline-flex h-8 items-center px-3 bg-light-accent-2 dark:bg-dark-accent-2 hover:bg-light-accent-2-hovered hover:dark:bg-dark-accent-2-hovered transition rounded-small"
           to="/feedback"
           target="_self"
         >
