@@ -60,15 +60,7 @@ export default function FeedbackForm() {
 
   if (status === 'success') {
     return (
-      <div className="rounded-large bg-light-surface-2 dark:bg-dark-surface-2 p-6 space-y-5">
-        <div className="rounded-large overflow-hidden bg-light-pink-fade dark:bg-dark-pink-fade-80 mb-2">
-          <img
-            src="/img/feedback-banner.webp"
-            alt="Developers banner"
-            className="block w-full h-auto"
-            loading="lazy"
-          />
-        </div>
+      <div className="p-0 space-y-8">
   
         <h2 className="heading-3 text-light-neutral-1 dark:text-dark-neutral-1">
           Thanks for submitting your feedback
@@ -92,31 +84,26 @@ export default function FeedbackForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-large bg-light-surface-2 dark:bg-dark-surface-2 p-6 space-y-5">
-
-      <div className="rounded-large overflow-hidden bg-light-pink-fade dark:bg-dark-pink-fade-80 mb-6">
-        <img
-          src="/img/feedback-banner.webp"
-          alt="Developers banner"
-          className="block w-full h-auto"
-          loading="lazy"
-        />
-      </div>
+    <form onSubmit={onSubmit} className="space-y-8">
 
 
       <div>
-        <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">Email*</label>
+      <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
+        Email<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
+      </label>
         <input
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-2 w-full rounded-large bg-light-surface-1 dark:bg-dark-surface-1 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
+          className="mt-2 w-full rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
         />
       </div>
 
       <div>
-        <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">Type of feedback*</label>
+        <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
+          Type of feedback<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
+        </label>
         <div className="mt-2 space-y-2">
           {FEEDBACK_TYPES.map((type) => (
             <label key={type} className="flex items-center gap-2 body-2 text-light-neutral-1 dark:text-dark-neutral-1">
@@ -135,17 +122,21 @@ export default function FeedbackForm() {
       </div>
 
       <div>
-        <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">What's the issue, idea, or question?*</label>
+      <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
+        What's the issue, idea, or question?<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
+      </label>
         <textarea
           required
           value={issue}
           onChange={(e) => setIssue(e.target.value)}
-          className="mt-2 w-full min-h-[120px] rounded-large bg-light-surface-1 dark:bg-dark-surface-1 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
+          className="mt-2 w-full rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
         />
       </div>
 
       <div>
-        <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">Can we follow up with you about your feedback?*</label>
+      <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
+        Can we follow up with you about your feedback?<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
+      </label>
         <div className="mt-2 flex gap-4">
           <label className="flex items-center gap-2 body-2 text-light-neutral-1 dark:text-dark-neutral-1">
           <input
@@ -172,23 +163,23 @@ export default function FeedbackForm() {
 
       <div>
         <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
-          What has been the most challenging part of building on or integrating with Uniswap? (Optional)
+          What has been the most challenging part of building on or integrating with Uniswap?
         </label>
         <textarea
           value={challenges}
           onChange={(e) => setChallenges(e.target.value)}
-          className="mt-2 w-full min-h-[100px] rounded-large bg-light-surface-1 dark:bg-dark-surface-1 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
+          className="mt-2 w-full rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
         />
       </div>
 
       <div>
         <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
-          Have you found Uniswap docs to be useful? (Optional)
+          Have you found Uniswap docs to be useful?
         </label>
         <textarea
           value={docsUsefulness}
           onChange={(e) => setDocsUsefulness(e.target.value)}
-          className="mt-2 w-full min-h-[100px] rounded-large bg-light-surface-1 dark:bg-dark-surface-1 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
+          className="mt-2 w-full rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
           placeholder="What sections have been most helpful? Are there any that felt confusing, incomplete, or missing?"
         />
       </div>
