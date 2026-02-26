@@ -10,7 +10,7 @@ export default function NavbarMobilePrimaryMenu(): ReactNode {
     { label: 'Concepts', to: '/concepts/overview' },
     { label: 'Contracts', to: '/contracts/v4/overview' },
     { label: 'SDKs', to: '/sdk/v4/overview' },
-    { label: 'APIs', to: '/api/subgraph/overview' },
+    { label: 'APIs', to: '/api/overview' },
     { label: 'Support', to: '/builder-support/get-funded' },
     { label: 'LLMs', to: '/llms/overview' },
   ];

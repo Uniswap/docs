@@ -36,7 +36,7 @@ export default function NavbarMobileSidebarHeader(): ReactNode {
           onClick={() => mobileSidebar.toggle()}
           className="button-label-4 inline-flex h-8 items-center px-3 rounded-small bg-light-accent-2 dark:bg-dark-accent-2 hover:bg-light-accent-2-hovered hover:dark:bg-dark-accent-2-hovered transition"
         >
-          <span className="text-light-accent-1 dark:text-dark-accent-1">Submit Feedback</span>
+          <span className="text-light-accent-1 dark:text-dark-accent-1">Feedback</span>
         </Link>
 
         <div className="ml-auto">

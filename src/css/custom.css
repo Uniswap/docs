@@ -83,7 +83,7 @@ html:has(.theme-doc-markdown) {
 }
 
 .DocSearch-Button-Container {
-  @apply sm:w-64 font-normal;
+  @apply font-normal;
 }
 
 .DocSearch-Search-Icon {
@@ -221,15 +221,40 @@ html:has(.theme-doc-markdown) {
 .theme-doc-footer-edit-meta-row {
   @apply !hidden;
 }
+
 .navbar {
   @apply !p-0;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  background-color: theme(colors.light-surface-1) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.navbar .navbar__inner {
+  background-color: theme(colors.light-surface-1) !important;
+  box-shadow: inset 0 -1px 0 theme(colors.light-surface-3);
+}
+
+:root[data-theme='dark'] .navbar {
+  background-color: theme(colors.dark-surface-1) !important;
+}
+
+:root[data-theme='dark'] .navbar .navbar__inner {
+  background-color: theme(colors.dark-surface-1) !important;
+  box-shadow: none !important;
 }
 
 .navbar-sidebar {
-  transform: translate3d(100%, 0, 0);
   left: auto;
   right: 0;
 }
+
+.navbar-sidebar--show .navbar-sidebar {
+  transform: translate3d(0, 0, 0) !important;
+}
+
 .theme-doc-markdown {
   @apply !body-2 flex flex-col space-y-6;
 }
@@ -311,8 +336,19 @@ html:has(.theme-doc-markdown) {
   font-family: system-ui;
 }
 
+.navbar .DocSearch {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  margin: 0 !important;
+}
+
 .navbar .DocSearch-Button {
-  width: 172px;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
   height: 32px;
   display: flex;
   align-items: center;
@@ -364,7 +400,17 @@ html:has(.theme-doc-markdown) {
   color: theme(colors.dark-neutral-2);
 }
 
-@media (max-width: 639px) {
+@media (min-width: 768px) and (max-width: 1099px) {
+  .navbar .DocSearch-Button {
+    padding: 0 10px;
+  }
+
+  .navbar .DocSearch-Button-Key {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
   .navbar .DocSearch-Button {
     width: 100% !important;
     min-width: 0 !important;
@@ -375,8 +421,9 @@ html:has(.theme-doc-markdown) {
   }
   
   .navbar .DocSearch-Button-Container {
-    width: 100% !important;
+    width: 100%;
     min-width: 0 !important;
+    font-weight: 400;
   }
   
   .navbar .DocSearch-Button-Key {

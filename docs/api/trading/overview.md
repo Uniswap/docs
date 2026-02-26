@@ -10,7 +10,7 @@ The Uniswap Trading API provides quote generation and transaction building for t
 
 ## Get your API key
 
-Create an account in the [Trading API Developer Portal](https://developers.uniswap.org/dashboard/) to generate your API key.
+Create an account in the [Trading API Developer Platform](https://developers.uniswap.org/dashboard/) to generate your API key.
 
 :::info
 For complete endpoint coverage, authentication requirements, and implementation patterns, see the [API Integration Guide](https://api-docs.uniswap.org/guides/integration_guide).
@@ -18,17 +18,17 @@ For complete endpoint coverage, authentication requirements, and implementation 
 
 ## Quick Start
 
-Get started with the Uniswap Agent CLI skill, or send a direct request using the cURL example below.
+Choose the setup that fits your workflow: AI-assisted integration with Uniswap Skills, or direct API calls via cURL.
 
-### Agent CLI
+### AI Setup (Uniswap Skills)
 
-If you are using Agent CLI:
+Install the Uniswap AI skills package with the swap integration skill:
 
 ```bash
 npx skills add uniswap/uniswap-ai --skill swap-integration
 ```
 
-### cURL Reference
+### Direct API Request (cURL)
 
 > Never commit real API keys to the repository. Use environment variables or placeholders.
 

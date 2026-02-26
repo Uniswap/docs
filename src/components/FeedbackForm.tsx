@@ -2,6 +2,12 @@ import React, { useState } from 'react'
 
 const FEEDBACK_TYPES = ['Bug', 'Feature request', 'Question', 'Other'] as const
 
+const DISALLOWED_CHARS_REGEX = /[<>&"']/g
+
+function sanitizeInput(value: string, maxLength: number): string {
+  return value.replace(DISALLOWED_CHARS_REGEX, '').slice(0, maxLength)
+}
+
 export default function FeedbackForm() {
   const [email, setEmail] = useState('')
   const [feedbackType, setFeedbackType] = useState<(typeof FEEDBACK_TYPES)[number] | ''>('')
@@ -45,9 +51,9 @@ export default function FeedbackForm() {
 
       setStatus('success')
       setEmail('')
-      setFeedbackType('Bug')
+      setFeedbackType('')
       setIssue('')
-      setFollowUp(true)
+      setFollowUp(null)
       setChallenges('')
       setDocsUsefulness('')
     } catch {
@@ -60,13 +66,16 @@ export default function FeedbackForm() {
 
   if (status === 'success') {
     return (
-      <div className="p-0 space-y-8">
+      <div className="p-0 space-y-5">
   
         <h2 className="heading-3 text-light-neutral-1 dark:text-dark-neutral-1">
           Thanks for submitting your feedback
         </h2>
         <p className="body-2 text-light-neutral-2 dark:text-dark-neutral-2">
-          We appreciate it. Your input helps us improve Uniswap Docs.
+          We really appreciate you taking the time to share your thoughts.
+        </p>
+        <p className="body-2 text-light-neutral-2 dark:text-dark-neutral-2">
+          If you left your contact info, we'll follow up with updates or questions as we make improvements.
         </p>
   
         <button
@@ -84,7 +93,7 @@ export default function FeedbackForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8">
+    <form onSubmit={onSubmit} className="space-y-5">
 
 
       <div>
@@ -95,7 +104,8 @@ export default function FeedbackForm() {
           type="email"
           required
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmail(sanitizeInput(e.target.value, 254))}
+          maxLength={254}
           className="mt-2 w-full rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
         />
       </div>
@@ -125,12 +135,13 @@ export default function FeedbackForm() {
       <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
         What's the issue, idea, or question?<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
       </label>
-        <textarea
-          required
-          value={issue}
-          onChange={(e) => setIssue(e.target.value)}
-          className="mt-2 w-full rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
-        />
+      <textarea
+        required
+        value={issue}
+        onChange={(e) => setIssue(sanitizeInput(e.target.value, 2000))}
+        maxLength={2000}
+        className="mt-2 w-full resize-none rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
+      />
       </div>
 
       <div>
@@ -167,8 +178,9 @@ export default function FeedbackForm() {
         </label>
         <textarea
           value={challenges}
-          onChange={(e) => setChallenges(e.target.value)}
-          className="mt-2 w-full rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
+          onChange={(e) => setChallenges(sanitizeInput(e.target.value, 1000))}
+          maxLength={1000}
+          className="mt-2 w-full resize-none rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
         />
       </div>
 
@@ -178,8 +190,9 @@ export default function FeedbackForm() {
         </label>
         <textarea
           value={docsUsefulness}
-          onChange={(e) => setDocsUsefulness(e.target.value)}
-          className="mt-2 w-full rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
+          onChange={(e) => setDocsUsefulness(sanitizeInput(e.target.value, 1000))}
+          maxLength={1000}
+          className="mt-2 w-full resize-none rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
           placeholder="What sections have been most helpful? Are there any that felt confusing, incomplete, or missing?"
         />
       </div>
@@ -227,19 +240,6 @@ export default function FeedbackForm() {
         {loading ? 'Submitting...' : 'Submit'}
       </button>
 
-      {status === 'success' && (
-        <div className="space-y-2">
-          <p className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
-            Thank you for your feedback!
-          </p>
-          <p className="body-2 text-light-neutral-2 dark:text-dark-neutral-2">
-            We really appreciate you taking the time to share your thoughts.
-          </p>
-          <p className="body-2 text-light-neutral-2 dark:text-dark-neutral-2">
-            If you left your contact info, we’ll follow up with updates or questions as we make improvements.
-          </p>
-        </div>
-      )}
       {status === 'error' && <p className="body-2 text-light-orange-vibrant">{errorMsg}</p>}
 
     </form>

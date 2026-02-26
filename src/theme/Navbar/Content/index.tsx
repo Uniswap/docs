@@ -40,7 +40,7 @@ export default function NavbarContent(): ReactNode {
     { label: 'Concepts', to: '/concepts/overview' },
     { label: 'Contracts', to: '/contracts/v4/overview' },
     { label: 'SDKs', to: '/sdk/v4/overview' },
-    { label: 'APIs', to: '/api/subgraph/overview' },
+    { label: 'APIs', to: '/api/overview' },
     { label: 'Support', to: '/builder-support/get-funded' },
     { label: 'LLMs', to: '/llms/overview' },
   ]
@@ -49,11 +49,11 @@ export default function NavbarContent(): ReactNode {
     <div
       className={clsx(
         'navbar__inner',
-        'w-full h-nav-h flex flex-row items-center px-4 py-[1.15625rem] sm:px-[0.9375rem] sm:py-3',
+        'w-full h-nav-h flex flex-row items-center px-4 py-0 sm:px-[0.9375rem] sm:py-0',
       )}
     >
       {/* Logo - Left aligned */}
-      <Link className="flex min-w-0 flex-row items-center" to="/" target="_self" aria-label="Uniswap Documentation Home">
+      <Link className="flex h-8 min-w-0 flex-row items-center" to="/" target="_self" aria-label="Uniswap Documentation Home">
         <MiniUnicon className="w-8 h-8 mr-3" />
         <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0 whitespace-nowrap max-[380px]:hidden">
           Uniswap Docs
@@ -61,8 +61,8 @@ export default function NavbarContent(): ReactNode {
       </Link>
 
       {/* Mobile search and menu */}
-      <div className="ml-auto flex shrink-0 flex-row items-center gap-2 sm:hidden">
-        <div className="w-[168px] max-[390px]:w-[148px]">
+      <div className="ml-auto flex shrink-0 flex-row items-center gap-3 min-[997px]:hidden">
+        <div className="w-[clamp(148px,34vw,196px)] min-w-[148px] max-w-[196px]">
           <SearchBar />
         </div>
         <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-small" onClick={mobileSidebar.toggle}>
@@ -71,29 +71,32 @@ export default function NavbarContent(): ReactNode {
       </div>
 
       {/* Right side - Nav Links, Search, Theme Toggle, Feedback */}
-      <div className="hidden sm:flex flex-1 justify-end items-center gap-3 mr-4">
-        {/* Navigation Links */}
-        <nav className="flex flex-row items-center gap-4">
+      <div className="hidden min-[997px]:flex min-w-0 flex-1 justify-end items-center gap-4 md:gap-5 mr-2 md:mr-4 h-8">
+      <nav className="flex h-8 flex-row items-center gap-5">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               to={link.to}
-              className="body-2 text-light-neutral-2 dark:text-dark-neutral-2 hover:text-light-accent-1 hover:dark:text-dark-accent-1 transition-colors"
+              className="inline-flex h-8 items-center body-2 text-light-neutral-2 dark:text-dark-neutral-2 hover:text-light-accent-1 hover:dark:text-dark-accent-1 transition-colors shrink-0"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
-          <SearchBar />
+
+        <div className="flex h-8 items-center gap-3 shrink-0">
+        <div className="w-[190px]">
+            <SearchBar />
+          </div>
           <NavbarColorModeToggle />
         </div>
+
         <Link
-          className="button-label-4 inline-flex h-8 items-center px-3 bg-light-accent-2 dark:bg-dark-accent-2 hover:bg-light-accent-2-hovered hover:dark:bg-dark-accent-2-hovered transition rounded-small"
+          className="button-label-4 inline-flex h-8 items-center px-3 bg-light-accent-2 dark:bg-dark-accent-2 hover:bg-light-accent-2-hovered hover:dark:bg-dark-accent-2-hovered transition rounded-small shrink-0"
           to="/feedback"
           target="_self"
         >
-          <span className="text-light-accent-1 dark:text-dark-accent-1">Submit Feedback</span>
+          <span className="text-light-accent-1 dark:text-dark-accent-1">Feedback</span>
         </Link>
       </div>
     </div>
