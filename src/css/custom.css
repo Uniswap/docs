@@ -383,6 +383,15 @@ html:has(.theme-doc-markdown) {
     display: none;
   }
 }
+
+@media (max-width: 767px) {
+  .navbar-sidebar__brand,
+  .navbar-sidebar__items {
+    padding-left: 0.5rem;
+    padding-right: 0.75rem;
+  }
+}
+
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
