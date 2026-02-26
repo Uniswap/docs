@@ -132,11 +132,6 @@ Uniswap is a decentralized exchange protocol built on Ethereum that enables user
 - GitHub: https://github.com/Uniswap
 - Governance: https://gov.uniswap.org
 
-### AI and API Resources
-- Uniswap API Docs (Introduction): https://api-docs.uniswap.org/introduction
-- Uniswap Developer Portal (API keys and onboarding): https://developers.uniswap.org/
-- Uniswap AI toolkit and skills: https://github.com/Uniswap/uniswap-ai
-
 ### Community
 - Discord: https://discord.gg/uniswap
 - Twitter: https://twitter.com/Uniswap

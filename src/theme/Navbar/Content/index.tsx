@@ -53,27 +53,25 @@ export default function NavbarContent(): ReactNode {
       )}
     >
       {/* Logo - Left aligned */}
-      <Link className="flex min-w-0 flex-row items-center" to="/" target="_self" aria-label="Uniswap Documentation Home">
+      <Link className="flex flex-row items-center flex-shrink-0" to="/" target="_self" aria-label="Uniswap Documentation Home">
         <MiniUnicon className="w-8 h-8 mr-3" />
-        <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0 whitespace-nowrap max-[380px]:hidden">
-          Uniswap Docs
-        </p>
+        <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0">Uniswap Docs</p>
       </Link>
 
       {/* Mobile search and menu */}
-      <div className="ml-auto flex shrink-0 flex-row items-center gap-2 sm:hidden">
-        <div className="w-[168px] max-[390px]:w-[148px]">
+      <div className="flex flex-row items-center sm:hidden gap-3 ml-auto">
+        <div className="flex-1 min-w-0">
           <SearchBar />
         </div>
-        <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-small" onClick={mobileSidebar.toggle}>
+        <button className="flex items-center" onClick={mobileSidebar.toggle}>
           <Menu />
         </button>
       </div>
 
       {/* Right side - Nav Links, Search, Theme Toggle, Feedback */}
-      <div className="hidden sm:flex flex-1 justify-end items-center gap-3 mr-4">
+      <div className="hidden sm:flex flex-1 justify-end items-center space-x-6 mr-4">
         {/* Navigation Links */}
-        <nav className="flex flex-row items-center gap-4">
+        <nav className="flex flex-row items-center space-x-6">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -84,14 +82,13 @@ export default function NavbarContent(): ReactNode {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
-          <SearchBar />
-          <NavbarColorModeToggle />
-        </div>
+        <SearchBar />
+        <NavbarColorModeToggle />
         <Link
-          className="button-label-4 inline-flex h-8 items-center px-3 bg-light-accent-2 dark:bg-dark-accent-2 hover:bg-light-accent-2-hovered hover:dark:bg-dark-accent-2-hovered transition rounded-small"
-          to="/feedback"
-          target="_self"
+          className="button-label-4 py-2 px-3 bg-light-accent-2 dark:bg-dark-accent-2 hover:bg-light-accent-2-hovered hover:dark:bg-dark-accent-2-hovered transition rounded-small"
+          to="https://share.hsforms.com/14XvN41xQTyC8KPamgaM8Jwsdca9"
+          target="_blank"
+          rel="noreferrer"
         >
           <span className="text-light-accent-1 dark:text-dark-accent-1">Submit Feedback</span>
         </Link>

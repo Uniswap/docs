@@ -3,9 +3,10 @@ id: overview
 sidebar_position: 1
 title: Overview
 ---
+
 ## Uniswap APIs
 
-Uniswap provides several APIs and data sources to help developers integrate with and build on top of the Uniswap protocol.
+Welcome to the Uniswap API documentation. Uniswap provides several APIs and data sources to help developers integrate with and build on top of the Uniswap protocol.
 
 ## Available APIs
 
@@ -13,7 +14,7 @@ Uniswap provides several APIs and data sources to help developers integrate with
 The Uniswap Trading API provides quote generation and transaction building for token swaps across 25+ chains.
 
 - **[Trading API Overview](./trading/overview)** - Get started with the Trading API
-- **[Integration Guide](https://api-docs.uniswap.org/guides/integration_guide)** - Complete implementation guide with schemas and best practices
+- **[Integration Guide](./trading/integration-guide)** - Complete implementation guide with schemas and best practices
 - **Quote & Swap Endpoints** - Generate quotes and build unsigned transactions
 - **Permit2 Support** - Gasless approvals via EIP-712 signatures
 - **Cross-Chain Swaps** - Multi-step cross-chain swap support
@@ -43,10 +44,10 @@ Get real-time and historical price data for tokens on Uniswap.
 
 ### For Developers
 If you're building applications that need to:
-- Execute token swaps - Use the **[Trading API](https://developers.uniswap.org/dashboard/)**
-- Query historical trading data - Use the **Subgraph API**
-- Get optimal swap routes - Use the **Routing API**
-- Display token prices - Use the **Price APIs**
+- Execute token swaps → Use the **[Trading API](./trading/overview)**
+- Query historical trading data → Use the **Subgraph API**
+- Get optimal swap routes → Use the **Routing API**
+- Display token prices → Use the **Price APIs**
 
 ### For Data Analysis
 The Subgraph API is perfect for:
@@ -60,3 +61,11 @@ The Subgraph API is perfect for:
 - **Subgraph API**: Generous rate limits via The Graph
 - **Routing API**: Production-ready with caching
 - **Price APIs**: Real-time updates with historical data
+
+## Support and Resources
+
+- **Discord**: Join the Uniswap developer community
+- **GitHub**: Explore code examples and integrations
+- **Documentation**: Comprehensive guides and references
+
+Ready to start building? Choose the API that fits your needs from the navigation menu.

@@ -6,51 +6,122 @@ title: Overview
 
 # Trading API
 
-The Uniswap Trading API provides quote generation and transaction building for token swaps across 25+ chains. It handles route optimization, gas estimation, and transaction encoding, while your application manages balances, signing, and transaction broadcasting.
-
-## Get your API key
-
-Create an account in the [Trading API Developer Portal](https://developers.uniswap.org/dashboard/) to generate your API key.
-
-:::info
-For complete endpoint coverage, authentication requirements, and implementation patterns, see the [API Integration Guide](https://api-docs.uniswap.org/guides/integration_guide).
-:::
+The Uniswap Trading API provides quote generation and transaction building for token swaps across 25+ chains. This API handles route optimization, gas estimation, and transaction encoding - you handle balance checks, transaction signing, and broadcasting.
 
 ## Quick Start
 
-Get started with the Uniswap Agent CLI skill, or send a direct request using the cURL example below.
+### Authentication
 
-### Agent CLI
-
-If you are using Agent CLI:
+All requests require an API key:
 
 ```bash
-npx skills add uniswap/uniswap-ai --skill swap-integration
+curl -X POST https://trade.api.uniswap.org/v1/quote \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"tokenIn":"0x...","tokenOut":"0x...","amount":"1000000",...}'
 ```
 
-### cURL Reference
+### Basic Quote Request
 
-> Never commit real API keys to the repository. Use environment variables or placeholders.
+```typescript
+const response = await fetch('https://trade.api.uniswap.org/v1/quote', {
+  method: 'POST',
+  headers: {
+    'x-api-key': 'YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    tokenIn: '0x0000000000000000000000000000000000000000', // ETH
+    tokenOut: '0xdAC17F958D2ee523a2206206994597C13D831ec7', // USDT
+    tokenInChainId: 1,
+    tokenOutChainId: 1,
+    type: 'EXACT_INPUT',
+    amount: '1000000000000000000', // 1 ETH in wei
+    swapper: '0x...', // User's wallet address
+    slippageTolerance: 0.5 // 0.5%
+  })
+});
 
-```bash
-curl --request POST \
-  --url https://trade-api.gateway.uniswap.org/v1/quote \
-  --header 'Content-Type: application/json' \
-  --header 'x-api-key: YOUR_API_KEY' \
-  --header 'x-universal-router-version: 2.0' \
-  --data '{
-  "generatePermitAsTransaction": false,
-  "autoSlippage": "DEFAULT",
-  "routingPreference": "BEST_PRICE",
-  "spreadOptimization": "EXECUTION",
-  "urgency": "urgent",
-  "permitAmount": "FULL",
-  "type": "EXACT_INPUT",
-  "amount": "1000000000000000000",
-  "tokenInChainId": "1",
-  "tokenOutChainId": "1",
-  "tokenIn": "0x0000000000000000000000000000000000000000",
-  "tokenOut": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-  "swapper": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
-}'
+const quote = await response.json();
 ```
+
+## Architecture
+
+### Client-Side Responsibilities
+
+The Trading API is a quote and transaction building service. Your application handles:
+
+1. **Balance Checks**: Verify token balances before requesting quotes
+2. **Allowance Management**: Check and request token approvals (ERC-20 `approve` or Permit2)
+3. **Nonce Management**: Track transaction nonces for the user's wallet
+4. **Gas Estimation**: Verify gas estimates before broadcasting
+5. **Transaction Broadcasting**: Sign and submit transactions via your RPC provider
+6. **Transaction Monitoring**: Track confirmations and handle reverts
+
+### Required Infrastructure
+
+Your integration must include:
+
+- **RPC Provider**: Connection to blockchain nodes (Infura, Alchemy, or self-hosted)
+- **Web3 Library**: ethers.js, viem, or web3.js for transaction signing
+- **Wallet Integration**: WalletConnect, MetaMask, or similar for user signing
+
+### Data Flow
+
+```
+User Request
+    |
+Your Application
+    |-- Check balances (via your RPC)
+    |-- Request quote (Trading API)
+    |-- Build transaction (Trading API response)
+    |-- Check allowances (via your RPC)
+    |-- Get user signature (Wallet)
+    |-- Manage nonce (your tracking)
+    +-- Broadcast transaction (via your RPC)
+         |
+    Blockchain
+```
+
+## Available Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| [POST /quote](./quote) | Generate a quote for a token swap |
+| [POST /swap](./swap) | Convert a quote into an unsigned transaction |
+| [POST /check_approval](./check-approval) | Check if token approval is required |
+| [POST /swap_5792](./swap-5792) | Generate batch transactions for EIP-5792 |
+| [POST /swap_7702](./swap-7702) | Generate transaction with EIP-7702 delegation |
+| [Cross-Chain Plans](./cross-chain) | Multi-step cross-chain swap endpoints |
+
+## Routing Types
+
+The API returns different quote types based on the optimal routing strategy:
+
+| Value | Type | Description |
+|-------|------|-------------|
+| 0 | CLASSIC | Standard AMM swap through Uniswap pools |
+| 1 | DUTCH_LIMIT | Dutch auction order (UniswapX) |
+| 2 | DUTCH_V2 | Dutch auction V2 |
+| 3 | LIMIT_ORDER | Limit order |
+| 4 | WRAP | ETH to WETH wrap |
+| 5 | UNWRAP | WETH to ETH unwrap |
+| 6 | BRIDGE | Cross-chain bridge |
+| 7 | PRIORITY | MEV-protected priority order |
+| 8 | DUTCH_V3 | Dutch auction V3 |
+| 9 | QUICKROUTE | Fast approximation quote |
+| 10 | CHAINED | Multi-step cross-chain swap |
+
+## Getting Started
+
+1. **Get an API Key**: Contact the Uniswap team to request API access
+2. **Set Up Infrastructure**: Configure your RPC provider and wallet integration
+3. **Implement the Flow**: Follow the [integration guide](./integration-guide) for step-by-step implementation
+4. **Test on Testnet**: Validate your integration before going live
+
+## Next Steps
+
+- [Integration Guide](./integration-guide) - Complete step-by-step implementation guide
+- [Quote Endpoint](./quote) - Detailed quote request/response documentation
+- [Permit2 Flow](./permit2) - Gasless approvals via EIP-712 signatures
+- [Error Handling](./errors) - Common errors and troubleshooting

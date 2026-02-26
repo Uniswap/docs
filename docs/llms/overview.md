@@ -4,97 +4,52 @@ sidebar_position: 1
 title: Overview
 ---
 
-# Uniswap AI Tools for Developers
+# LLMs and AI Integration
 
-Uniswap provides AI-powered development tools that help you integrate swaps, build v4 hooks, provide liquidity, and interact with the EVM from within your editor.
+Large Language Models (LLMs) and AI tools can help developers better understand and work with the Uniswap Protocol. This section provides resources and guidance for leveraging AI assistance when building on Uniswap.
 
-## Quick links
+## AI-Powered Documentation
 
-- [Uniswap AI](#uniswap-ai)
-- [LLM Context Files](#llm-context-files)
-- [Code Editor Setup](#code-editor-setup)
+The Uniswap documentation is designed to work seamlessly with modern AI tools to provide enhanced developer support and assistance.
 
-## Uniswap AI
+### Getting AI Help
 
-[Uniswap AI](https://github.com/Uniswap/uniswap-ai) is an open-source collection of plugins and skills that gives AI coding agents up-to-date, protocol-specific guidance across Uniswap protocols, APIs, and smart contracts.
+Use the built-in AI integration features throughout the documentation:
 
-### Available plugins
+- **Copy to AI**: Use the dropdown button on any documentation page to quickly get AI assistance
+- **Context-Aware**: AI tools receive relevant documentation context for better responses
+- **Multiple Platforms**: Integrate with popular AI assistants like Claude and ChatGPT
 
-| Plugin | Description |
-| --- | --- |
-| **uniswap-trading** | Integrate swaps via [Trading API](https://developers.uniswap.org/dashboard), Universal Router SDK, or direct contract calls. |
-| **uniswap-hooks** | Security-first guidance for building Uniswap v4 hooks. |
-| **uniswap-viem** | EVM integration with viem and wagmi. |
-| **uniswap-driver** | Token discovery and swap/liquidity planning with deep links. |
-| **uniswap-cca** | Configure and deploy CCA contracts for token distribution. |
+## LLMs.txt
 
-### Install with the Skills CLI
+This documentation includes an [LLMs.txt file](/llms.txt) that provides comprehensive context about Uniswap for AI systems. This file helps ensure AI assistants can provide accurate and up-to-date information about:
 
-Uniswap AI is available through [skills.sh](https://github.com/Uniswap/uniswap-ai). This works with any AI coding agent that supports skill files:
+- Protocol architecture and concepts
+- Smart contract interfaces and functionality
+- SDK usage and integration patterns
+- Development best practices
 
-```bash
-npx skills add uniswap/uniswap-ai
-```
+## Best Practices for AI-Assisted Development
 
-### Install as a Claude Code plugin
+When using AI tools for Uniswap development:
 
-If you use [Claude Code](https://claude.ai/code), first add the Uniswap marketplace, then install individual plugins:
+1. **Provide Context**: Always include relevant protocol version (v2, v3, v4) in your queries
+2. **Verify Code**: Always test and verify AI-generated code before deployment
+3. **Reference Documentation**: Cross-check AI responses against official documentation
+4. **Security First**: Have AI-generated smart contracts audited before production use
 
-```bash
-# Add the Uniswap marketplace
-/plugin marketplace add uniswap/uniswap-ai
+## Supported AI Platforms
 
-# Install individual plugins
-claude plugin add uniswap-hooks     # v4 hook development
-claude plugin add uniswap-trading   # Swap integration
-claude plugin add uniswap-viem      # EVM / viem / wagmi
-claude plugin add uniswap-driver    # Token discovery & deep links
-claude plugin add uniswap-cca       # CCA auction configuration
-```
+The documentation provides optimized integration with:
 
-Once installed, the plugins activate automatically when relevant to your task. You can also invoke specific skills directly. For example, **/uniswap-hooks:v4-security-foundations** for a security-first walkthrough of hook development.
+- **Claude**: Advanced reasoning for complex DeFi concepts
+- **ChatGPT**: Code generation and debugging assistance
+- **Other LLMs**: Compatible with any AI tool that supports context injection
 
-## LLM Context Files
+## Contributing AI Resources
 
-If you prefer to give your AI agent raw documentation context rather than structured skills, Uniswap publishes LLM-optimized text files that summarize the protocol documentation.
+Help improve AI assistance for the Uniswap community by:
 
-### llms.txt and llms-full.txt
-
-AI models have a context window (the amount of text they can process at once). Providing relevant documentation upfront helps the model give better answers without hallucinating.
-
-Uniswap offers two context files:
-- **[llms.txt](https://docs.uniswap.org/v4-llms.txt)**: A compact summary with links to documentation sections. Works well with most models (100K+ token context windows).
-- **[llms-full.txt](https://docs.uniswap.org/v4-llms-full.txt)**: A verbose version with more inline content. Use this if your model has a larger context window or you want more detail without following links.
-
-## Code Editor Setup
-
-### Cursor
-
-1. Navigate to **Cursor Settings > Features > Docs**
-2. Select **Add new doc** and paste one of the following URLs:
-
-```
-https://docs.uniswap.org/v4-llms.txt
-```
-
-```
-https://docs.uniswap.org/v4-llms-full.txt
-```
-
-3. Use `@docs` → **Uniswap** to reference the documentation in your chat.
-
-### Windsurf
-
-Windsurf requires referencing documentation in each conversation. Add it to the Cascade window (`CMD+L`):
-
-```
-@docs:https://docs.uniswap.org/v4-llms.txt
-```
-
-```
-@docs:https://docs.uniswap.org/v4-llms-full.txt
-```
-
-### Claude Code
-
-Install the Uniswap AI plugins (see [above](#install-as-a-claude-code-plugin)) for the richest integration. The plugins provide structured skills, expert agents, and protocol-specific tools that go beyond static documentation context.
+- Reporting AI-generated errors or inaccuracies
+- Suggesting improvements to the LLMs.txt context file
+- Contributing examples of effective AI prompts for Uniswap development
