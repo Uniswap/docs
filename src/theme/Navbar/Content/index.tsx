@@ -49,11 +49,11 @@ export default function NavbarContent(): ReactNode {
     <div
       className={clsx(
         'navbar__inner',
-        'w-full h-nav-h flex flex-row items-center px-4 py-3 sm:px-[0.9375rem] sm:py-3',
+        'w-full h-nav-h flex flex-row items-center px-4 py-0 sm:px-[0.9375rem] sm:py-0',
       )}
     >
       {/* Logo - Left aligned */}
-      <Link className="flex min-w-0 flex-row items-center" to="/" target="_self" aria-label="Uniswap Documentation Home">
+      <Link className="flex h-8 min-w-0 flex-row items-center" to="/" target="_self" aria-label="Uniswap Documentation Home">
         <MiniUnicon className="w-8 h-8 mr-3" />
         <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0 whitespace-nowrap max-[380px]:hidden">
           Uniswap Docs
@@ -71,8 +71,8 @@ export default function NavbarContent(): ReactNode {
       </div>
 
       {/* Right side - Nav Links, Search, Theme Toggle, Feedback */}
-      <div className="hidden min-[997px]:flex min-w-0 flex-1 justify-end items-center gap-2 md:gap-3 mr-2 md:mr-4 h-8">
-      <nav className="flex h-8 flex-row items-center gap-3">
+      <div className="hidden min-[997px]:flex min-w-0 flex-1 justify-end items-center gap-4 md:gap-5 mr-2 md:mr-4 h-8">
+      <nav className="flex h-8 flex-row items-center gap-5">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -96,7 +96,7 @@ export default function NavbarContent(): ReactNode {
           to="/feedback"
           target="_self"
         >
-          <span className="text-light-accent-1 dark:text-dark-accent-1">Submit Feedback</span>
+          <span className="text-light-accent-1 dark:text-dark-accent-1">Feedback</span>
         </Link>
       </div>
     </div>
