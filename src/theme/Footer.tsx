@@ -92,7 +92,7 @@ const footerData = {
     },
   ],
   footerGithubLink: 'https://github.com/uniswap/uniswap-docs',
-  footerXLink: 'https://x.com/UniswapFND',
+  footerXLink: 'https://x.com/Uniswap',
   footerDiscordLink: 'https://discord.com/invite/uniswap',
 }
 
