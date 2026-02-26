@@ -15,7 +15,7 @@ const footerData = {
         },
         {
           label: 'Feedback',
-          href: 'https://share.hsforms.com/1gMemq5uWQS-UaaorwU-qGAs8pgg',
+          href: '/feedback',
         },
         {
           label: 'Bug Bounty',
