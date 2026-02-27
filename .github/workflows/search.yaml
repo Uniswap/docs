@@ -4,11 +4,15 @@ on:
   schedule:
     - cron: '0 10 * * *'
 
+permissions: {}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
       - name: Run Scraper
