@@ -101,7 +101,7 @@ Total fees = Collected + Unclaimed
 
 ### Fee Accrual and Credit Changes
 
-**Fee Accrual and Credit:** Uniswap v4 changes how fee accrual is handled when modifying liquidity. In v3, adding or removing liquidity didn't automatically claim fees – you had to call a separate `collect` function to pull out accrued fees. In v4, **accrued fees act like a credit** that is automatically applied or required depending on liquidity changes. Increasing a position's liquidity will **roll any unclaimed fees into the position's liquidity**, and decreasing liquidity will **automatically withdraw** the proportional unclaimed fees for that position. This means that partially removing liquidity in v4 will force-claim the fees earned by that liquidity portion. However, if you want to claim fees without changing liquidity, you can perform a liquidity change of zero (as we'll do in this guide).
+**Fee Accrual and Credit:** Uniswap v4 changes how fee accrual is handled when modifying liquidity. In v3, adding or removing liquidity didn't automatically claim fees – you had to call a separate `collect` function to pull out accrued fees. In v4, **accrued fees act like a credit** that is automatically applied or required depending on liquidity changes. Increasing a position's liquidity will **roll any unclaimed fees into the position's liquidity**, and decreasing liquidity will **automatically withdraw** the position's unclaimed fees. However, if you want to claim fees without changing liquidity, you can perform a liquidity change of zero (as we'll do in this guide).
 
 ### Why StateView is Required
 
