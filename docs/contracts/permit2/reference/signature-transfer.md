@@ -143,7 +143,7 @@ function permitWitnessTransferFrom(
 - transferDetails constructed with same type as defined above in the single permitTransferFrom case
 - owner - the signer of the permit message and owner of the tokens
 - witness - arbitrary data passed through that was signed by the user. Is used to reconstruct the signature. Pass through this data if you want the permit signature recovery also to validate other data.
-- witnessTypeString - a string that defines the typed data that the witness was hashed from. It must also include the `TokenPermissions` struct and comply with [EIP-712](https://eips.ethereum.org/EIPS/eip-712) struct ordering. See an example below.
+- witnessTypeString - a string derived from the [EIP-712](https://eips.ethereum.org/EIPS/eip-712) encoding of a struct type that extends the above `PermitTransferFrom` by adding a final member field for the data whose hash is in the `witness` parameter, starting from the representation of that final member and including `TokenPermissions` in correctly sorted position. See an example below.
 - signature - the signature over the permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)
 
 ### Batch `permitWitnessTransferFrom`
@@ -167,12 +167,12 @@ function permitWitnessTransferFrom(
 - transferDetails - constructed with the same type in the batched case of `permitTransferFrom`
 - owner - the signer of the permit message and owner of the tokens
 - witness - arbitrary data passed through that was signed by the user. Is used to reconstruct the signature. Pass through this data if you want the permit signature recovery to also validate other data.
-- witnessTypeString - a string that defines the typed data that the witness was hashed from. It must also include the `TokenPermissions` struct and comply with [EIP-712](https://eips.ethereum.org/EIPS/eip-712) struct ordering. See an example below.
+- witnessTypeString - a string derived from the [EIP-712](https://eips.ethereum.org/EIPS/eip-712) encoding of a struct type that extends the above `PermitBatchTransferFrom` by adding a final member field for the data whose hash is in the `witness` parameter, starting from the representation of that final member and including `TokenPermissions` in correctly sorted position. See an example below.
 - signature - the signature over the permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271)
 
-**Example `permitWitnessTransferFrom` parameters**
+## Example `permitWitnessTransferFrom` parameters
 
-If an integrating contract would also like the signer to verify information about a trade, an integrating contract may ask the signer to also sign an `ExampleTrade` object that we define below:
+If an integrating contract would also like the signer to verify information about a trade, it may ask the signer to also sign an `ExampleTrade` object that we define below:
 
 ```solidity
 struct ExampleTrade {
@@ -181,7 +181,7 @@ struct ExampleTrade {
 }
 ```
 
-Following EIP-712, the typehash for the data would be defined by:
+Following [EIP-712](https://eips.ethereum.org/EIPS/eip-712), the typehash for ExampleTrade data would be defined by:
 
 ```solidity
 bytes32 _EXAMPLE_TRADE_TYPEHASH = keccak256('ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)');
@@ -194,13 +194,18 @@ The `witness` that should be passed along with the permit message should be:
             abi.encode(_EXAMPLE_TRADE_TYPEHASH, exampleTrade.exampleTokenAddress, exampleTrade.exampleMinimumAmountOut));
 ```
 
-And the `witnessTypeString` to be passed in should be:
+The encoding of the struct type containing that witness would be something like
+```solidity
+string constant fullTypeString = "PermitWitnessTransferFrom(TokenPermissions permitted,uint256 nonce,uint256 deadline,ExampleTrade witness)ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)TokenPermissions(address token,uint256 amount)"
+```
+
+And the `witnessTypeString` to be passed in should be the suffix of that encoding starting with the final top-level member:
 
 ```solidity
 string constant witnessTypeString = "ExampleTrade witness)ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)TokenPermissions(address token,uint256 amount)"
 ```
 
-It’s important to note that when hashing multiple typed structs, the ordering of the structs in the type string matters. Referencing EIP-721:
+It’s important to note that when hashing multiple typed structs, the ordering of the structs in the type string matters. Referencing [EIP-712](https://eips.ethereum.org/EIPS/eip-712):
 
 > If the struct type references other struct types (and these in turn reference even more struct types), then the set of referenced struct types is collected, sorted by name and appended to the encoding. An example encoding is `Transaction(Person from,Person to,Asset tx)Asset(address token,uint256 amount)Person(address wallet,string name)`
 > 
