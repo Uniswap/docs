@@ -109,7 +109,7 @@ The result of the call is the number of output tokens you would receive for the 
 It should be noted that `quoteExactInputSingle` is only 1 of 4 different methods that the quoter offers:
 
 1. `quoteExactInputSingle` - given an input amount, produce a quote of the output amount for a swap on a single pool
-2. `quoteExactInput` - given an input amount, produce a quote for the output amount a swap over multiple pools
+2. `quoteExactInput` - given an input amount, produce a quote for the output amount for a swap over multiple pools
 3. `quoteExactOutputSingle` - given a desired output amount, produce a quote for the input amount on a swap over a single pool
 4. `quoteExactOutput`  - given a desired output amount, produce a quote for the input amount in for a swap over multiple pools
 
