@@ -40,8 +40,8 @@ export const CurrentConfig: ExampleConfig = {
   },
   ...
   poolKey: {
-    currency0: USDC_TOKEN.address,
-    currency1: ETH_TOKEN.address,
+    currency0: ETH_TOKEN.address,
+    currency1: USDC_TOKEN.address,
     fee: FEE_AMOUNT_LOW,
     tickSpacing: TICK_SPACING_TEN,
     hooks: EMPTY_HOOK,
@@ -73,7 +73,7 @@ export const USDC_TOKEN = new Token(
 
 ## Computing the PoolId out of PoolKey
 
-In this example, we will construct the **USDC - ETH** Pool with **LOW** fees and without hooks. The SDK provides a method to compute the `PoolId` for this pool:
+In this example, we will construct the **ETH - USDC** Pool with **LOW** fees and without hooks. The SDK provides a method to compute the `PoolId` for this pool:
 
 ```typescript
 import { Pool } from '@uniswap/v4-sdk';
