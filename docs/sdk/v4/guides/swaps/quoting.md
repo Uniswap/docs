@@ -84,7 +84,7 @@ const quoterContract = new ethers.Contract(
 )
 ```
 
-We get the `QUOTE_CONTRACT_ADDRESS` for our chain from [Uniswap Deployments](https://docs.uniswap.org/contracts/v4/deployments).
+We get the `QUOTER_CONTRACT_ADDRESS` for our chain from [Uniswap Deployments](https://docs.uniswap.org/contracts/v4/deployments).
 
 We can now use our Quoter contract to obtain the quote.
 
