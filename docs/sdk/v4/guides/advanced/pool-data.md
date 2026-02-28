@@ -85,7 +85,7 @@ const poolId = Pool.getPoolId(currency0, currency1, fee, tickSpacing, hooks);
 
 ## Referencing the StateView contract and fetching metadata
 
-Now that we have the `PoolId` of a **USDC - ETH** Pool, we need to call [StateView](/contracts/v4/guides/state-view) contract to get the pool state. In v4 you need to use `StateLibrary` to read pool state, but offchain systems—such as frontends or analytics services—require a deployed contract with view functions. This is where `StateView` comes in.
+Now that we have the `PoolId` of a **ETH - USDC** Pool, we need to call [StateView](/contracts/v4/guides/state-view) contract to get the pool state. In v4 you need to use `StateLibrary` to read pool state, but offchain systems—such as frontends or analytics services—require a deployed contract with view functions. This is where `StateView` comes in.
 To construct the Contract we need to provide the address of the contract, its ABI and a provider connected to an RPC endpoint.
 
 ```typescript
@@ -103,7 +103,7 @@ const stateViewContract = new ethers.Contract(
 
 We get the `STATE_VIEW_ADDRESS` for our chain from [Uniswap Deployments](/contracts/v4/deployments).
 Once we have set up our reference to the contract, we can proceed to access its methods. To construct our offchain representation of the Pool, we need to fetch its liquidity, sqrtPrice, currently active tick and the full Tick data.
-We get the **liquidity**, **sqrtPrice** and **tick** directly from the blockchain by calling `getLiquidity()`and `getSlot0()` on the StateView contract:
+We get the **liquidity**, **sqrtPrice** and **tick** directly from the blockchain by calling `getLiquidity()` and `getSlot0()` on the StateView contract:
 
 ```typescript
   const [slot0, liquidity] = await Promise.all([
@@ -127,12 +127,12 @@ For our use case, we only need the `sqrtPriceX96` and the currently active `tick
 ## Fetching all Ticks
 
 v4 pools use ticks to [concentrate liquidity](/concepts/protocol/concentrated-liquidity) in price ranges and allow for better pricing of trades.
-Even though most Pools only have a couple of **initialized ticks**, it is possible that a pools liquidity is defined by thousands of **initialized ticks**.
+Even though most Pools only have a couple of **initialized ticks**, it is possible that a pool's liquidity is defined by thousands of **initialized ticks**.
 In that case, it can be very expensive or slow to get all of them with normal RPC calls.
 
 If you are not familiar with the concept of ticks, check out the [`introduction`](/concepts/protocol/concentrated-liquidity#ticks).
 
-To access tick data, we will use the `getTickInfo` function of the State View contract:
+To access tick data, we will use the `getTickInfo` function of the StateView contract:
 
 ```solidity
   function getTickInfo(PoolId poolId, int24 tick)
@@ -148,7 +148,7 @@ To access tick data, we will use the `getTickInfo` function of the State View co
 
 The `tick` parameter that we provide the function with is the **index** (memory position) of the Tick we are trying to fetch.
 To get the indices of all initialized Ticks of the Pool, we can calculate them from the **tickBitmaps**.
-To fetch a `tickBitmap` we use a `getTickBitmap` function of the State View contract:
+To fetch a `tickBitmap` we use a `getTickBitmap` function of the StateView contract:
 
 ```solidity
   function getTickBitmap(
@@ -159,7 +159,7 @@ To fetch a `tickBitmap` we use a `getTickBitmap` function of the State View cont
 
 A pool stores lots of bitmaps, each of which contain the status of 256 Ticks.
 The parameter `int16 wordPosition` the function accepts is the position of the bitMap we want to fetch.
-We can calculate all the position of bitMaps (or words as they are sometimes called) from the `tickSpacing` of the Pool, which is in turn dependant on the Fee tier.
+We can calculate all the position of bitMaps (or words as they are sometimes called) from the `tickSpacing` of the Pool, which is in turn dependent on the Fee tier.
 
 So to summarise we need 4 steps to fetch all initialized ticks:
 
@@ -176,7 +176,7 @@ Multicall contracts **aggregate results** from multiple contract calls and there
 This can improve the **speed** of fetching large amounts of data significantly and ensures that the data fetched is all from the **same block**.
 
 We will use the Multicall2 contract by MakerDAO.
-We use the `ethers-muticall` npm package to easily interact with the Contract.
+We use the `ethers-multicall` npm package to easily interact with the Contract.
 
 ## Calculating all bitMap positions
 
@@ -207,7 +207,7 @@ One word contains 256 ticks, so we can compress the ticks by right shifting 8 bi
 
 Knowing the positions of words, we can now fetch them using multicall.
 
-First we initialize our multicall providers and State View Contract:
+First we initialize our multicall providers and StateView Contract:
 
 ```typescript
 import { ethers } from 'ethers'
@@ -245,7 +245,7 @@ const results: bigint[] = (await multicallProvider.all(calls)).map(
   )
 ```
 
-A great visualization of what the bitMaps look like can be found in the [Uniswap v3 development book](https://uniswapv3book.com/docs/milestone_2/tick-bitmap-index/](https://uniswapv3book.com/milestone_2/tick-bitmap-index.html):
+A great visualization of what the bitMaps look like can be found in the [Uniswap v3 development book](https://uniswapv3book.com/milestone_2/tick-bitmap-index.html):
 
 <img src={require('./images/tickBitmap_cut.png').default} alt="TickBitmap" box-shadow="none"/>
 
@@ -262,7 +262,7 @@ const bit = 1n
 const initialized = (bitmap & (bit << BigInt(i))) !== 0n
 ```
 
-If the tick is **initialized**, we revert the compression from tick to word we made earlier by multiplying the word index with 256, which is the same as left shifting by 8 bit, adding the position we are currently at, and multiplying with the tickSpacing:
+If the tick is **initialized**, we revert the compression from tick to word we made earlier by multiplying the word index with 256, which is the same as left shifting by 8 bits, adding the position we are currently at, and multiplying with the tickSpacing:
 
 ```typescript
 const tickIndex = (ind * 256 + i) * tickSpacing
@@ -333,9 +333,9 @@ We need to parse the response from our RPC provider to JSBI values that the v4-s
 We have everything to construct our `Pool` now:
 
 ```typescript
-const usdcWethPool = new Pool(
-    USDC,
-    WETH,
+const usdcEthPool = new Pool(
+    USDC_TOKEN,
+    ETH_TOKEN,
     feeAmount,
     slot0.sqrtPriceX96,
     liquidity,
