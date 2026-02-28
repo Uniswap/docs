@@ -167,4 +167,4 @@ The rest of the swap process remains the same.
 
 ## Next Steps
 
-Now that you understand single-hop swaps, you might want to explore [multi-hop swaps](./03-multi-hop-swapping.md) for trading between tokens without direct pools or enough liquidity.
+Now that you understand single-hop swaps, you might want to explore [multi-hop swaps](./multi-hop-swapping.md) for trading between tokens without direct pools or enough liquidity.
