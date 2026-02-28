@@ -14,8 +14,8 @@ At its core, the Position Manager works by executing a sequence of commands:
 ```solidity
 // Example: Minting a new position requires two commands
 bytes memory actions = abi.encodePacked(
-    Actions.MINT_POSITION,  // Create the position
-    Actions.SETTLE_PAIR     // Provide the tokens
+    uint8(Actions.MINT_POSITION),  // Create the position
+    uint8(Actions.SETTLE_PAIR)     // Provide the tokens
 );
 ```
 
@@ -108,17 +108,17 @@ Understanding how operations create and resolve deltas helps in ordering them ef
 ```solidity
 // Efficient: Group operations that create deltas, then resolve them together
 bytes memory actions = abi.encodePacked(
-    Actions.MINT_POSITION,      // First delta: -100 tokens
-    Actions.INCREASE_LIQUIDITY, // Second delta: -50 tokens
-    Actions.SETTLE_PAIR        // Resolve total: -150 tokens at once
+    uint8(Actions.MINT_POSITION),      // First delta: -100 tokens
+    uint8(Actions.INCREASE_LIQUIDITY), // Second delta: -50 tokens
+    uint8(Actions.SETTLE_PAIR)         // Resolve total: -150 tokens at once
 );
 
 // Less efficient: Resolving deltas multiple times
 bytes memory actions = abi.encodePacked(
-    Actions.MINT_POSITION,      // Delta: -100 tokens
-    Actions.SETTLE_PAIR,        // Resolve: -100 tokens
-    Actions.INCREASE_LIQUIDITY, // New delta: -50 tokens
-    Actions.SETTLE_PAIR        // Resolve again: -50 tokens
+    uint8(Actions.MINT_POSITION),      // Delta: -100 tokens
+    uint8(Actions.SETTLE_PAIR),        // Resolve: -100 tokens
+    uint8(Actions.INCREASE_LIQUIDITY), // New delta: -50 tokens
+    uint8(Actions.SETTLE_PAIR)         // Resolve again: -50 tokens
 );
 ```
 
@@ -190,8 +190,8 @@ Define the sequence of operations needed for minting:
 // 1. MINT_POSITION - Creates the position and calculates token requirements
 // 2. SETTLE_PAIR - Provides the tokens needed
 bytes memory actions = abi.encodePacked(
-    Actions.MINT_POSITION,
-    Actions.SETTLE_PAIR
+    uint8(Actions.MINT_POSITION),
+    uint8(Actions.SETTLE_PAIR)
 );
 ```
 
@@ -249,8 +249,8 @@ Unlike minting where we always use SETTLE_PAIR, increasing liquidity has differe
 
 ```solidity
 bytes memory actions = abi.encodePacked(
-    Actions.INCREASE_LIQUIDITY,
-    Actions.SETTLE_PAIR
+    uint8(Actions.INCREASE_LIQUIDITY),
+    uint8(Actions.SETTLE_PAIR)
 );
 ```
 
@@ -258,9 +258,9 @@ bytes memory actions = abi.encodePacked(
 
 ```solidity
 bytes memory actions = abi.encodePacked(
-    Actions.INCREASE_LIQUIDITY,
-    Actions.CLOSE_CURRENCY,  // For token0
-    Actions.CLOSE_CURRENCY   // For token1
+    uint8(Actions.INCREASE_LIQUIDITY),
+    uint8(Actions.CLOSE_CURRENCY),  // For token0
+    uint8(Actions.CLOSE_CURRENCY)   // For token1
 );
 ```
 
@@ -293,14 +293,14 @@ Choose the appropriate delta resolution based on whether we’re using fees:
 bytes memory actions;
 if (useFeesAsLiquidity) {
     actions = abi.encodePacked(
-        Actions.INCREASE_LIQUIDITY,  // Add liquidity
-        Actions.CLOSE_CURRENCY,      // Handle token0 (might need to pay or receive)
-        Actions.CLOSE_CURRENCY       // Handle token1 (might need to pay or receive)
+        uint8(Actions.INCREASE_LIQUIDITY),  // Add liquidity
+        uint8(Actions.CLOSE_CURRENCY),      // Handle token0 (might need to pay or receive)
+        uint8(Actions.CLOSE_CURRENCY)       // Handle token1 (might need to pay or receive)
     );
 } else {
     actions = abi.encodePacked(
-        Actions.INCREASE_LIQUIDITY,  // Add liquidity
-        Actions.SETTLE_PAIR          // Provide tokens
+        uint8(Actions.INCREASE_LIQUIDITY),  // Add liquidity
+        uint8(Actions.SETTLE_PAIR)          // Provide tokens
     );
 }
 ```
@@ -366,8 +366,8 @@ When decreasing liquidity, you’ll receive tokens, so it's most common to recei
 
 ```solidity
 bytes memory actions = abi.encodePacked(
-    Actions.DECREASE_LIQUIDITY,
-    Actions.TAKE_PAIR
+    uint8(Actions.DECREASE_LIQUIDITY),
+    uint8(Actions.TAKE_PAIR)
 );
 ```
 
@@ -452,8 +452,8 @@ function collectFees(
 ) external {
     // Define the sequence of operations
     bytes memory actions = abi.encodePacked(
-        Actions.DECREASE_LIQUIDITY, // Remove liquidity
-        Actions.TAKE_PAIR           // Receive both tokens
+        uint8(Actions.DECREASE_LIQUIDITY), // Remove liquidity
+        uint8(Actions.TAKE_PAIR)           // Receive both tokens
     );
 
     // Prepare parameters array
@@ -529,8 +529,8 @@ function burnPosition(
     // 1. BURN_POSITION - Removes the position and creates positive deltas
     // 2. TAKE_PAIR - Sends all tokens to the recipient
     bytes memory actions = abi.encodePacked(
-        Actions.BURN_POSITION,
-        Actions.TAKE_PAIR
+        uint8(Actions.BURN_POSITION),
+        uint8(Actions.TAKE_PAIR)
     );
 ```
 
@@ -607,9 +607,9 @@ function rebalanceLiquidity(
 ) external {
     // Group liquidity operations first, then delta resolutions
     bytes memory actions = abi.encodePacked(
-        Actions.BURN_POSITION,    // Remove old position
-        Actions.MINT_POSITION,    // Create new position
-        Actions.SETTLE_PAIR       // Provide tokens for new position
+        uint8(Actions.BURN_POSITION),    // Remove old position
+        uint8(Actions.MINT_POSITION),    // Create new position
+        uint8(Actions.SETTLE_PAIR)       // Provide tokens for new position
     );
 ```
 
@@ -686,8 +686,8 @@ When you can’t predict whether you’ll need to pay or receive tokens, CLOSE_C
 ```solidity
 // Example scenario: Converting fees to liquidity
 bytes memory actions = abi.encodePacked(
-    Actions.INCREASE_LIQUIDITY,
-    Actions.CLOSE_CURRENCY  // Will automatically settle or take based on final delta
+    uint8(Actions.INCREASE_LIQUIDITY),
+    uint8(Actions.CLOSE_CURRENCY)  // Will automatically settle or take based on final delta
 );
 
 bytes[] memory params = new bytes[](2);
@@ -739,8 +739,8 @@ SWEEP helps recover any excess tokens sent to the PoolManager:
 
 ```solidity
 bytes memory actions = abi.encodePacked(
-    Actions.YOUR_MAIN_OPERATION,
-    Actions.SWEEP  // Add at the end to collect any excess
+    uint8(Actions.YOUR_MAIN_OPERATION),
+    uint8(Actions.SWEEP)  // Add at the end to collect any excess
 );
 
 // Parameters for SWEEP
