@@ -66,7 +66,7 @@ Returns the minimum _input_ asset amount required to buy the given _output_ asse
 ### getAmountsOut
 
 ```solidity
-function getAmountsOut(uint amountIn, address[] memory path) internal view returns (uint[] memory amounts);
+function getAmountsOut(address factory, uint amountIn, address[] memory path) internal view returns (uint[] memory amounts);
 ```
 
 Given an _input_ asset amount and an array of token addresses, calculates all subsequent maximum _output_ token amounts by calling [getReserves](#getreserves) for each pair of token addresses in the path in turn, and using these to call [getAmountOut](#getamountout).
