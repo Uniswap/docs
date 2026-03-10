@@ -1,7 +1,7 @@
 {
-    "extends": "@docusaurus/tsconfig",
-    "compilerOptions": {
-        "baseUrl": "."
-    },
+  "extends": "@docusaurus/tsconfig",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
   "exclude": [".docusaurus", "build", "examples"]
 }

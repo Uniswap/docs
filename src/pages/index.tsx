@@ -300,7 +300,11 @@ const Home = () => {
                       />
                     </svg>
                   </div>
-                  <span className={cn('button-label-1 transition text-light-neutral-1 dark:text-dark-neutral-1 group-hover:text-dark-accent-1 group-hover:dark:text-light-accent-1')}>
+                  <span
+                    className={cn(
+                      'button-label-1 transition text-light-neutral-1 dark:text-dark-neutral-1 group-hover:text-dark-accent-1 group-hover:dark:text-light-accent-1',
+                    )}
+                  >
                     Learn more
                   </span>
                 </Link>
@@ -333,10 +337,13 @@ const IconButton: FC<{
         {color === 'orange-vibrant' && <HelpCircle className="mr-2 h-6 w-6" color={color} />}
         {color === 'brown-vibrant' && <Chat className="mr-2 h-6 w-6" color={color} />}
         <span
-          className={cn('button-label-1 transition group-hover:text-dark-accent-1 group-hover:dark:text-light-accent-1', {
-            'text-light-orange-vibrant dark:text-dark-orange-vibrant': color === 'orange-vibrant',
-            'text-light-brown-vibrant dark:text-dark-brown-vibrant': color === 'brown-vibrant',
-          })}
+          className={cn(
+            'button-label-1 transition group-hover:text-dark-accent-1 group-hover:dark:text-light-accent-1',
+            {
+              'text-light-orange-vibrant dark:text-dark-orange-vibrant': color === 'orange-vibrant',
+              'text-light-brown-vibrant dark:text-dark-brown-vibrant': color === 'brown-vibrant',
+            },
+          )}
         >
           {label}
         </span>

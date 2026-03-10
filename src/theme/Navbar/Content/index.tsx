@@ -53,7 +53,12 @@ export default function NavbarContent(): ReactNode {
       )}
     >
       {/* Logo - Left aligned */}
-      <Link className="flex flex-row items-center flex-shrink-0" to="/" target="_self" aria-label="Uniswap Documentation Home">
+      <Link
+        className="flex flex-row items-center flex-shrink-0"
+        to="/"
+        target="_self"
+        aria-label="Uniswap Documentation Home"
+      >
         <MiniUnicon className="w-8 h-8 mr-3" />
         <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0">Uniswap Docs</p>
       </Link>
