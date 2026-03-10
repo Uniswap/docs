@@ -87,7 +87,7 @@ const footerData = {
         {
           label: 'Governance',
           href: 'https://gov.uniswap.org/',
-        }
+        },
       ],
     },
   ],
