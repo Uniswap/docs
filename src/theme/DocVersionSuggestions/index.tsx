@@ -85,7 +85,7 @@ function DocVersionSuggestions() {
   const { pluginId } = useActivePlugin({
     failfast: true,
   })
-  const { savePreferredVersionName } = useDocsPreferredVersion(pluginId)
+  const { savePreferredVersionName } = useDocsPreferredVersion(pluginId) as { savePreferredVersionName: (versionName: string) => void }
   const activeVersion = useActiveVersion(pluginId)
   const { latestDocSuggestion, latestVersionSuggestion } = useDocVersionSuggestions(pluginId) // No suggestion to be made
 
