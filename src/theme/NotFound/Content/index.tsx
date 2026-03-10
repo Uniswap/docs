@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import Link from '@docusaurus/Link'
 
 const NotFound: FC = () => {
@@ -2273,7 +2273,7 @@ const NotFound: FC = () => {
         </div>
         <div className="flex flex-col items-center">
         <p className="text-center my-4 body-1 text-light-neutral-2 dark:text-dark-neutral-2">
-          This page can't be found. If you think this is a mistake, please{" "}
+          This page can&apos;t be found. If you think this is a mistake, please{" "}
           <a href="https://github.com/Uniswap/docs/issues" target="_blank" rel="noopener noreferrer" className="inherit underline hover:opacity-70">
             report it on GitHub.
           </a>
