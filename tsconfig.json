@@ -1,9 +1,7 @@
 {
     "extends": "@docusaurus/tsconfig",
     "compilerOptions": {
-        "baseUrl": ".",
-        "moduleResolution": "node",
-        "skipLibCheck": true
+        "baseUrl": "."
     },
   "exclude": [".docusaurus", "build"]
 }
