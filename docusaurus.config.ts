@@ -87,25 +87,25 @@ const config: Config = {
           label: 'LLMs',
         },
         {
-          label: "Give Feedback",
+          label: 'Give Feedback',
           to: 'https://share.hsforms.com/1gMemq5uWQS-UaaorwU-qGAs8pgg',
           target: '_blank',
           rel: 'noreferrer',
         },
         {
-          label: "Uniswap Labs",
+          label: 'Uniswap Labs',
           to: 'https://app.uniswap.org/',
           target: '_blank',
           rel: 'noreferrer',
         },
         {
-          label: "Whitepaper",
+          label: 'Whitepaper',
           to: 'https://app.uniswap.org/whitepaper-v4.pdf',
           target: '_blank',
           rel: 'noreferrer',
         },
         {
-          label: "GitHub",
+          label: 'GitHub',
           to: 'https://github.com/Uniswap/docs/',
           target: '_blank',
           rel: 'noreferrer',
@@ -186,10 +186,10 @@ const config: Config = {
           {
             to: '/contracts/v4/guides/hooks/your-first-hook',
             from: [
-                '/contracts/v4/first-hook/building-your-own-hook',
-                '/tutorials/',
-                '/contracts/v4/guides/hooks/setup'
-            ]
+              '/contracts/v4/first-hook/building-your-own-hook',
+              '/tutorials/',
+              '/contracts/v4/guides/hooks/setup',
+            ],
           },
           {
             to: '/contracts/v2/guides/smart-contract-integration/using-flash-swaps',
@@ -198,10 +198,10 @@ const config: Config = {
           {
             to: '/contracts/v4/guides/hooks/hook-deployment',
             from: [
-                '/contracts/v4/concepts/hook-deployment',
-                '/contracts/v4/first-hook/hook-deployment',
-                '/contracts/v4/first-hook/testing-hooks'
-            ]
+              '/contracts/v4/concepts/hook-deployment',
+              '/contracts/v4/first-hook/hook-deployment',
+              '/contracts/v4/first-hook/testing-hooks',
+            ],
           },
           {
             to: '/contracts/v3/guides/flash-integrations/flash-callback',
@@ -209,17 +209,11 @@ const config: Config = {
           },
           {
             to: '/contracts/v2/concepts/advanced-topics/fees',
-            from: [
-                '/v2/advanced-topics/understanding-fees/',
-                '/v2/advanced-topics/fees'
-            ]
+            from: ['/v2/advanced-topics/understanding-fees/', '/v2/advanced-topics/fees'],
           },
           {
             to: '/sdk/v1/overview',
-            from: [
-                '/sdk/1.0.0/reference/format',
-                '/sdk/1.0.0/'
-            ]
+            from: ['/sdk/1.0.0/reference/format', '/sdk/1.0.0/'],
           },
           {
             to: '/contracts/v4/quickstart/hooks/async-swap',
@@ -228,38 +222,38 @@ const config: Config = {
           {
             to: '/concepts/glossary',
             from: [
-                //'/contracts/V2/concepts/protocol-overview/glossary',
-                '/protocol/V2/concepts/protocol-overview/glossary',
-                '/v2/glossary'
-            ]
+              //'/contracts/V2/concepts/protocol-overview/glossary',
+              '/protocol/V2/concepts/protocol-overview/glossary',
+              '/v2/glossary',
+            ],
           },
           {
             to: '/contracts/v4/overview',
             from: [
-                '/contracts/v4/concepts/v4-architecture-overview',
-                '/contracts/v4/concepts/v4-',
-                '/contracts/v4/concepts/overview',
-                '/contracts/v4/concepts/intro-to-v4',
-                '/concepts/overview4',
-                '/contracts/v4/concepts/in-tro-to-v4',
-                '/protocol/reference/core',
-                '/protocol',
-                '/v4',
-                '/contracts/',
-                '/reference/smart-contracts'
-            ]
+              '/contracts/v4/concepts/v4-architecture-overview',
+              '/contracts/v4/concepts/v4-',
+              '/contracts/v4/concepts/overview',
+              '/contracts/v4/concepts/intro-to-v4',
+              '/concepts/overview4',
+              '/contracts/v4/concepts/in-tro-to-v4',
+              '/protocol/reference/core',
+              '/protocol',
+              '/v4',
+              '/contracts/',
+              '/reference/smart-contracts',
+            ],
           },
           {
             to: '/contracts/v2/overview',
             from: [
-                '/protocol/V2',
-                '/protocol/V2/concepts/protocol-',
-                '/v2/',
-                '/contracts/v2',
-                '/contracts/v2/overview.md',
-                '/contracts/v2/concepts/protocol-overview/how-',
-                '/protocol/v2/introduction'
-            ]
+              '/protocol/V2',
+              '/protocol/V2/concepts/protocol-',
+              '/v2/',
+              '/contracts/v2',
+              '/contracts/v2/overview.md',
+              '/contracts/v2/concepts/protocol-overview/how-',
+              '/protocol/v2/introduction',
+            ],
           },
           {
             to: '/contracts/v4/guides/custom-accounting',
@@ -304,11 +298,11 @@ const config: Config = {
           {
             to: '/concepts/protocol/concentrated-liquidity',
             from: [
-                '/concepts/introduction/liquidity-user-guide',
-                '/concepts/V3-overview/oracle',
-                '/concepts/V3-overview/concentrated-liquidity',
-                '/protocol/concepts/V3-overview/concentrated-liquidity'
-            ]
+              '/concepts/introduction/liquidity-user-guide',
+              '/concepts/V3-overview/oracle',
+              '/concepts/V3-overview/concentrated-liquidity',
+              '/protocol/concepts/V3-overview/concentrated-liquidity',
+            ],
           },
           {
             to: '/concepts/protocol/fees',
@@ -336,10 +330,7 @@ const config: Config = {
           },
           {
             to: '/sdk/v4/overview',
-            from: [
-                '/sdk',
-                '/sdk/guides'
-            ]
+            from: ['/sdk', '/sdk/guides'],
           },
           {
             to: '/sdk/v1/reference/computation',
@@ -360,12 +351,12 @@ const config: Config = {
           {
             to: '/concepts/uniswap-protocol',
             from: [
-                '/protocol/V2/concepts/protocol-overview/how-uniswap-works',
-                '/protocol/V2/concepts/core-',
-                '/contracts/v2/concepts/protocol-overview/how-uniswap-work',
-                '/V2/concepts/protocol-overview/01-how-uniswap-works',
-                '/protocol/V2/concepts/protocol'
-            ]
+              '/protocol/V2/concepts/protocol-overview/how-uniswap-works',
+              '/protocol/V2/concepts/core-',
+              '/contracts/v2/concepts/protocol-overview/how-uniswap-work',
+              '/V2/concepts/protocol-overview/01-how-uniswap-works',
+              '/protocol/V2/concepts/protocol',
+            ],
           },
           {
             to: '/contracts/v2/concepts/protocol-overview/smart-contracts',
@@ -382,12 +373,12 @@ const config: Config = {
           {
             to: '/concepts/governance/overview',
             from: [
-                '/contracts/v3/reference/governance/overview.md',
-                '/protocol/V2/concepts/governance/governance-reference',
-                '/protocol/concepts/governance',
-                '/protocol/reference/Governance/governance-reference',
-                '/contracts/v2/reference/Governance/governance-'
-            ]
+              '/contracts/v3/reference/governance/overview.md',
+              '/protocol/V2/concepts/governance/governance-reference',
+              '/protocol/concepts/governance',
+              '/protocol/reference/Governance/governance-reference',
+              '/contracts/v2/reference/Governance/governance-',
+            ],
           },
           {
             to: '/sdk/v3/guides/liquidity/minting',
@@ -399,11 +390,7 @@ const config: Config = {
           },
           {
             to: '/sdk/v2/overview',
-            from: [
-                '/sdk/2.0.0/introduction',
-                '/sdk/2.0.0/reference/getting-started',
-                '/v2/SDK/getting-started'
-            ]
+            from: ['/sdk/2.0.0/introduction', '/sdk/2.0.0/reference/getting-started', '/v2/SDK/getting-started'],
           },
           {
             to: '/concepts/overview',
@@ -595,10 +582,7 @@ const config: Config = {
           },
           {
             to: '/',
-            from: [
-                '/developers/',
-                '/conce'
-            ]
+            from: ['/developers/', '/conce'],
           },
           {
             to: '/contracts/v3/reference/core/interfaces/pool/IUniswapV3PoolActions',
@@ -799,66 +783,66 @@ const config: Config = {
         },
       },
     ],
-    ['docusaurus-plugin-llms',
-    {
-      // Options here
-      generateLLMsTxt: true,
-      generateLLMsFullTxt: true,
-      docsDir: 'docs',
-      ignoreFiles: [
-        'examples/*',
-        'plugins/*',
-        'scripts/*',
-        'src/*',
-        'static/*',
-        'submodules/*',
-        'CONTRIBUTING.md',
-        '02-overview.mdx',
-        'docs/api/subgraph/guides/v3-subgraph-example.md',
-        'docs/archived',
-        'docs/concepts',
-        'docs/contracts/permit2',
-        'docs/contracts/smart-wallet',
-        'docs/contracts/uniswapx',
-        'docs/contracts/universal-router',
-        'docs/contracts/v1',
-        'docs/contracts/v2',
-        'docs/contracts/v3',
-        'docs/sdk/core',
-        'docs/sdk/swap-widget',
-        'docs/sdk/v1',
-        'docs/sdk/v2',
-        'docs/sdk/v3',
-        'docs/sdk/web3-react',
-        'docs/universal-router-legacy',
-      ],
-      title: 'LLMs.txt for Uniswap v4 Documentation',
-      description: 'Complete reference documentation for Uniswap v4',
-      llmsTxtFilename: 'v4-llms.txt',
-      llmsFullTxtFilename: 'v4-llms-full.txt',
-      includeBlog: false,
-      // Content cleaning options
-      excludeImports: true,
-      removeDuplicateHeadings: true,
-      // Control documentation order
-      includeOrder: [
-        // 'docs/contracts/v4/*',
-        // 'docs/sdk/v4/*',
-        // 'docs/api/*',
-      ],
-      includeUnmatchedLast: true,
-      // Path transformation options
-      pathTransformation: {
-        // Paths to ignore when constructing URLs (will be removed if found)
-        ignorePaths: ['docs'],
-        // Paths to add when constructing URLs (will be prepended if not already present)
-        addPaths: [],
+    [
+      'docusaurus-plugin-llms',
+      {
+        // Options here
+        generateLLMsTxt: true,
+        generateLLMsFullTxt: true,
+        docsDir: 'docs',
+        ignoreFiles: [
+          'examples/*',
+          'plugins/*',
+          'scripts/*',
+          'src/*',
+          'static/*',
+          'submodules/*',
+          'CONTRIBUTING.md',
+          '02-overview.mdx',
+          'docs/api/subgraph/guides/v3-subgraph-example.md',
+          'docs/archived',
+          'docs/concepts',
+          'docs/contracts/permit2',
+          'docs/contracts/smart-wallet',
+          'docs/contracts/uniswapx',
+          'docs/contracts/universal-router',
+          'docs/contracts/v1',
+          'docs/contracts/v2',
+          'docs/contracts/v3',
+          'docs/sdk/core',
+          'docs/sdk/swap-widget',
+          'docs/sdk/v1',
+          'docs/sdk/v2',
+          'docs/sdk/v3',
+          'docs/sdk/web3-react',
+          'docs/universal-router-legacy',
+        ],
+        title: 'LLMs.txt for Uniswap v4 Documentation',
+        description: 'Complete reference documentation for Uniswap v4',
+        llmsTxtFilename: 'v4-llms.txt',
+        llmsFullTxtFilename: 'v4-llms-full.txt',
+        includeBlog: false,
+        // Content cleaning options
+        excludeImports: true,
+        removeDuplicateHeadings: true,
+        // Control documentation order
+        includeOrder: [
+          // 'docs/contracts/v4/*',
+          // 'docs/sdk/v4/*',
+          // 'docs/api/*',
+        ],
+        includeUnmatchedLast: true,
+        // Path transformation options
+        pathTransformation: {
+          // Paths to ignore when constructing URLs (will be removed if found)
+          ignorePaths: ['docs'],
+          // Paths to add when constructing URLs (will be prepended if not already present)
+          addPaths: [],
+        },
+        // Custom LLM files for specific documentation sections
+        customLLMFiles: [],
       },
-      // Custom LLM files for specific documentation sections
-      customLLMFiles: [
-      ],
-    }
-    ]
+    ],
   ],
 }
 export default config

@@ -38,7 +38,7 @@ export default function FeedbackForm() {
           challenges,
           docsUsefulness,
           pageUrl: typeof window !== 'undefined' ? window.location.href : '',
-          website: '', 
+          website: '',
         }),
       })
 
@@ -67,17 +67,14 @@ export default function FeedbackForm() {
   if (status === 'success') {
     return (
       <div className="p-0 space-y-5">
-  
-        <h2 className="heading-3 text-light-neutral-1 dark:text-dark-neutral-1">
-          Thanks for submitting your feedback
-        </h2>
+        <h2 className="heading-3 text-light-neutral-1 dark:text-dark-neutral-1">Thanks for submitting your feedback</h2>
         <p className="body-2 text-light-neutral-2 dark:text-dark-neutral-2">
           We really appreciate you taking the time to share your thoughts.
         </p>
         <p className="body-2 text-light-neutral-2 dark:text-dark-neutral-2">
-          If you left your contact info, we'll follow up with updates or questions as we make improvements.
+          If you left your contact info, we&apos;ll follow up with updates or questions as we make improvements.
         </p>
-  
+
         <button
           type="button"
           onClick={() => {
@@ -94,12 +91,10 @@ export default function FeedbackForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-5">
-
-
       <div>
-      <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
-        Email<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
-      </label>
+        <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
+          Email<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
+        </label>
         <input
           type="email"
           required
@@ -112,7 +107,8 @@ export default function FeedbackForm() {
 
       <div>
         <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
-          Type of feedback<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
+          Type of feedback
+          <span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
         </label>
         <div className="mt-2 space-y-2">
           {FEEDBACK_TYPES.map((type) => (
@@ -132,41 +128,43 @@ export default function FeedbackForm() {
       </div>
 
       <div>
-      <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
-        What's the issue, idea, or question?<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
-      </label>
-      <textarea
-        required
-        value={issue}
-        onChange={(e) => setIssue(sanitizeInput(e.target.value, 2000))}
-        maxLength={2000}
-        className="mt-2 w-full resize-none rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
-      />
+        <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
+          What&apos;s the issue, idea, or question?
+          <span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
+        </label>
+        <textarea
+          required
+          value={issue}
+          onChange={(e) => setIssue(sanitizeInput(e.target.value, 2000))}
+          maxLength={2000}
+          className="mt-2 w-full resize-none rounded-large bg-light-surface-2 dark:bg-dark-surface-2 border border-light-surface-3 dark:border-dark-surface-3 p-3 text-light-neutral-1 dark:text-dark-neutral-1"
+        />
       </div>
 
       <div>
-      <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
-        Can we follow up with you about your feedback?<span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
-      </label>
+        <label className="body-2 text-light-neutral-1 dark:text-dark-neutral-1">
+          Can we follow up with you about your feedback?
+          <span className="text-light-pink-vibrant dark:text-dark-pink-vibrant ml-1 font-normal">*</span>
+        </label>
         <div className="mt-2 flex gap-4">
           <label className="flex items-center gap-2 body-2 text-light-neutral-1 dark:text-dark-neutral-1">
-          <input
-            type="radio"
-            name="follow-up"
-            checked={followUp === true}
-            onChange={() => setFollowUp(true)}
-            required
-          />
+            <input
+              type="radio"
+              name="follow-up"
+              checked={followUp === true}
+              onChange={() => setFollowUp(true)}
+              required
+            />
             Yes
           </label>
           <label className="flex items-center gap-2 body-2 text-light-neutral-1 dark:text-dark-neutral-1">
-          <input
-            type="radio"
-            name="follow-up"
-            checked={followUp === false}
-            onChange={() => setFollowUp(false)}
-            required
-          />
+            <input
+              type="radio"
+              name="follow-up"
+              checked={followUp === false}
+              onChange={() => setFollowUp(false)}
+              required
+            />
             No
           </label>
         </div>
@@ -199,16 +197,14 @@ export default function FeedbackForm() {
 
       <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
 
-      
-
       <label className="flex items-start gap-2 body-2 text-light-neutral-2 dark:text-dark-neutral-2">
-  <input
-    type="checkbox"
-    checked={acceptedTerms}
-    onChange={(e) => setAcceptedTerms(e.target.checked)}
-    className="mt-1"
-    required
-  />
+        <input
+          type="checkbox"
+          checked={acceptedTerms}
+          onChange={(e) => setAcceptedTerms(e.target.checked)}
+          className="mt-1"
+          required
+        />
         <span>
           By submitting, I agree to{' '}
           <a
@@ -241,7 +237,6 @@ export default function FeedbackForm() {
       </button>
 
       {status === 'error' && <p className="body-2 text-light-orange-vibrant">{errorMsg}</p>}
-
     </form>
   )
 }

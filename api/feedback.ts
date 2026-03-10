@@ -25,7 +25,6 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
 
-  
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {}
 
@@ -39,7 +38,6 @@ export default async function handler(req: any, res: any) {
     const docsUsefulness = sanitizeText(body.docsUsefulness, MAX_DOCS_USEFULNESS_LENGTH)
     const pageUrl = sanitizeText(body.pageUrl, MAX_PAGE_URL_LENGTH)
     const followUp = body.followUp
-
 
     if (!email || !isValidEmail(email)) {
       return res.status(400).json({ success: false, error: 'Invalid email' })
@@ -62,7 +60,14 @@ export default async function handler(req: any, res: any) {
       { name: 'type_of_feedback', value: feedbackType },
       { name: 'whats_the_issue_idea_or_question', value: issue },
       { name: 'can_we_follow_up_with_you_about_your_feedback', value: followUp ? 'Yes' : 'No' },
-      ...(challenges ? [{ name: 'what_has_been_the_most_challenging_part_of_building_on_or_integrating_with_uniswap', value: challenges }] : []),
+      ...(challenges
+        ? [
+            {
+              name: 'what_has_been_the_most_challenging_part_of_building_on_or_integrating_with_uniswap',
+              value: challenges,
+            },
+          ]
+        : []),
       ...(docsUsefulness ? [{ name: 'have_you_found_uniswap_docs_to_be_useful', value: docsUsefulness }] : []),
     ]
 

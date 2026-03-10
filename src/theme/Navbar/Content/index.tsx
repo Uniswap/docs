@@ -47,13 +47,15 @@ export default function NavbarContent(): ReactNode {
 
   return (
     <div
-      className={clsx(
-        'navbar__inner',
-        'w-full h-nav-h flex flex-row items-center px-4 py-0 sm:px-[0.9375rem] sm:py-0',
-      )}
+      className={clsx('navbar__inner', 'w-full h-nav-h flex flex-row items-center px-4 py-0 sm:px-[0.9375rem] sm:py-0')}
     >
       {/* Logo - Left aligned */}
-      <Link className="flex h-8 min-w-0 flex-row items-center" to="/" target="_self" aria-label="Uniswap Documentation Home">
+      <Link
+        className="flex h-8 min-w-0 flex-row items-center"
+        to="/"
+        target="_self"
+        aria-label="Uniswap Documentation Home"
+      >
         <MiniUnicon className="w-8 h-8 mr-3" />
         <p className="Navbar__logo-text body-1 text-light-accent-1 dark:text-dark-accent-1 mb-0 whitespace-nowrap max-[380px]:hidden">
           Uniswap Docs
@@ -65,14 +67,17 @@ export default function NavbarContent(): ReactNode {
         <div className="w-[clamp(148px,34vw,196px)] min-w-[148px] max-w-[196px]">
           <SearchBar />
         </div>
-        <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-small" onClick={mobileSidebar.toggle}>
+        <button
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-small"
+          onClick={mobileSidebar.toggle}
+        >
           <Menu />
         </button>
       </div>
 
       {/* Right side - Nav Links, Search, Theme Toggle, Feedback */}
       <div className="hidden min-[997px]:flex min-w-0 flex-1 justify-end items-center gap-4 md:gap-5 mr-2 md:mr-4 h-8">
-      <nav className="flex h-8 flex-row items-center gap-5">
+        <nav className="flex h-8 flex-row items-center gap-5">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -85,7 +90,7 @@ export default function NavbarContent(): ReactNode {
         </nav>
 
         <div className="flex h-8 items-center gap-3 shrink-0">
-        <div className="w-[190px]">
+          <div className="w-[190px]">
             <SearchBar />
           </div>
           <NavbarColorModeToggle />

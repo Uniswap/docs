@@ -1,8 +1,7 @@
 {
-    "extends": "@docusaurus/tsconfig",
-    "compilerOptions": {
-        "baseUrl": ".",
-        "moduleResolution": "node"
-    },
-  "exclude": [".docusaurus", "build"]
+  "extends": "@docusaurus/tsconfig",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "exclude": [".docusaurus", "build", "examples"]
 }
