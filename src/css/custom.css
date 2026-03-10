@@ -418,13 +418,13 @@ html:has(.theme-doc-markdown) {
     height: 36px;
     padding: 0 8px;
   }
-  
+
   .navbar .DocSearch-Button-Container {
     width: 100%;
     min-width: 0 !important;
     font-weight: 400;
   }
-  
+
   .navbar .DocSearch-Button-Key {
     display: none;
   }
