@@ -15,7 +15,7 @@ const footerData = {
         },
         {
           label: 'Feedback',
-          href: 'https://forms.gle/13XtjmkwdXQ2jMn26',
+          href: '/feedback',
         },
         {
           label: 'Bug Bounty',
@@ -31,19 +31,19 @@ const footerData = {
       title: 'GitHub',
       links: [
         {
-          label: 'uniswap-v4-core',
+          label: 'v4-core',
           href: 'https://github.com/Uniswap/v4-core',
         },
         {
-          label: 'uniswap-v4-sdk',
+          label: 'v4-sdk',
           href: 'https://github.com/Uniswap/sdks/tree/main/sdks/v4-sdk',
         },
         {
-          label: 'uniswap-v4-periphery',
+          label: 'v4-periphery',
           href: 'https://github.com/Uniswap/v4-periphery',
         },
         {
-          label: 'Deployment addresses',
+          label: 'Deployments',
           href: '/contracts/v4/deployments',
         },
       ],
@@ -61,7 +61,7 @@ const footerData = {
         },
         {
           label: 'Token Lists',
-          href: 'https://tokenlists.org/',
+          href: 'https://tokenlists.org/token-list?url=https://ipfs.io/ipns/tokens.uniswap.org',
         },
         {
           label: 'Brand Assets',
@@ -73,26 +73,26 @@ const footerData = {
       title: 'Community',
       links: [
         {
+          label: 'X',
+          href: 'https://twitter.com/Uniswap',
+        },
+        {
           label: 'Blog',
-          href: 'https://uniswapfoundation.org/blog/',
+          href: 'https://docs.uniswap.org/blog/',
+        },
+        {
+          label: 'Help Center',
+          href: 'https://support.uniswap.org/hc/en-us',
         },
         {
           label: 'Governance',
           href: 'https://gov.uniswap.org/',
-        },
-        {
-          label: 'Uniswap Labs Twitter',
-          href: 'https://twitter.com/Uniswap',
-        },
-        {
-          label: 'Uniswap Foundation Twitter',
-          href: 'https://x.com/UniswapFND',
-        },
+        }
       ],
     },
   ],
   footerGithubLink: 'https://github.com/uniswap/uniswap-docs',
-  footerXLink: 'https://x.com/UniswapFND',
+  footerXLink: 'https://x.com/Uniswap',
   footerDiscordLink: 'https://discord.com/invite/uniswap',
 }
 

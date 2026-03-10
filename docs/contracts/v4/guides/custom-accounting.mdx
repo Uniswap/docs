@@ -314,26 +314,36 @@ function _afterSwap(
         BalanceDelta delta,
         bytes calldata
     ) internal override returns (bytes4, int128) {
-        bool outputIsToken0 = params.zeroForOne ? false : true;
-
-        int256 outputAmount = outputIsToken0 ? delta.amount0() : delta.amount1();
-        if (outputAmount <= 0) {
-            return (BaseHook.afterSwap.selector, 0);
-        }
-
-        uint256 feeAmount = (uint256(outputAmount) * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
-
-        require(feeAmount <= ((uint256(1) << 127) - 1), "fee too large");
-
         bool isExactIn = (params.amountSpecified < 0);
 
+        // Fee is taken in the unspecified currency:
+        //   exactIn  -> unspecified = output token
+        //   exactOut -> unspecified = input token
+        int256 unspecifiedAmount;
         Currency feeCurrency;
+
         if (isExactIn) {
+            // output is the unspecified currency
+            bool outputIsToken0 = params.zeroForOne ? false : true;
+            unspecifiedAmount = outputIsToken0 ? delta.amount0() : delta.amount1();
             feeCurrency = outputIsToken0 ? key.currency0 : key.currency1;
         } else {
+            // input is the unspecified currency
             bool inputIsToken0 = params.zeroForOne ? true : false;
+            unspecifiedAmount = inputIsToken0 ? delta.amount0() : delta.amount1();
             feeCurrency = inputIsToken0 ? key.currency0 : key.currency1;
         }
+
+        // For exactIn the output is positive; for exactOut the input is negative
+        // In both cases we take the absolute value of the unspecified amount
+        if (unspecifiedAmount == 0) {
+            return (BaseHook.afterSwap.selector, 0);
+        }
+        uint256 absAmount = unspecifiedAmount > 0 ? uint256(unspecifiedAmount) : uint256(-unspecifiedAmount);
+
+        uint256 feeAmount = (absAmount * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
+
+        require(feeAmount <= ((uint256(1) << 127) - 1), "fee too large");
 
         poolManager.take(feeCurrency, address(this), feeAmount);
 
@@ -380,32 +390,38 @@ contract HookFeeAfterSwap is BaseHook {
     }
 
     function _afterSwap(
-        address ,
+        address,
         PoolKey calldata key,
         SwapParams calldata params,
         BalanceDelta delta,
         bytes calldata
     ) internal override returns (bytes4, int128) {
-        bool outputIsToken0 = params.zeroForOne ? false : true;
-
-        int256 outputAmount = outputIsToken0 ? delta.amount0() : delta.amount1();
-        if (outputAmount <= 0) {
-            return (BaseHook.afterSwap.selector, 0);
-        }
-
-        uint256 feeAmount = (uint256(outputAmount) * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
-
-        require(feeAmount <= ((uint256(1) << 127) - 1), "fee too large");
-
         bool isExactIn = (params.amountSpecified < 0);
 
+        // Fee is taken in the unspecified currency:
+        //   exactIn  -> unspecified = output token
+        //   exactOut -> unspecified = input token
+        int256 unspecifiedAmount;
         Currency feeCurrency;
+
         if (isExactIn) {
+            bool outputIsToken0 = params.zeroForOne ? false : true;
+            unspecifiedAmount = outputIsToken0 ? delta.amount0() : delta.amount1();
             feeCurrency = outputIsToken0 ? key.currency0 : key.currency1;
         } else {
             bool inputIsToken0 = params.zeroForOne ? true : false;
+            unspecifiedAmount = inputIsToken0 ? delta.amount0() : delta.amount1();
             feeCurrency = inputIsToken0 ? key.currency0 : key.currency1;
         }
+
+        if (unspecifiedAmount == 0) {
+            return (BaseHook.afterSwap.selector, 0);
+        }
+        uint256 absAmount = unspecifiedAmount > 0 ? uint256(unspecifiedAmount) : uint256(-unspecifiedAmount);
+
+        uint256 feeAmount = (absAmount * HOOK_FEE_PERCENTAGE) / FEE_DENOMINATOR;
+
+        require(feeAmount <= ((uint256(1) << 127) - 1), "fee too large");
 
         poolManager.take(feeCurrency, address(this), feeAmount);
 

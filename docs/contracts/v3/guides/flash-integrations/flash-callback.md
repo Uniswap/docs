@@ -4,6 +4,10 @@ title: The Flash Callback
 sidebar_position: 3
 ---
 
+:::caution Security Warning
+The example contract inherits from `PeripheryPayments`, which exposes a public `sweepToken` function that allows **anyone** to withdraw ERC-20 tokens held by the contract. Do not leave token balances in the contract between transactions. Ensure all fund movements (deposit, swap, repay, profit withdrawal) happen atomically within the flash callback so that no tokens remain in the contract after execution. In a production contract, consider overriding `sweepToken` with access control or removing it entirely.
+:::
+
 ## Setting Up The Callback
 
 Here we will override the flash callback with our custom logic to execute the desired swaps and pay the profits to the original `msg.sender`.

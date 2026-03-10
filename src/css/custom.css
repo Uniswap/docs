@@ -82,7 +82,7 @@ html:has(.theme-doc-markdown) {
 }
 
 .DocSearch-Button-Container {
-  @apply sm:w-64 font-normal;
+  @apply font-normal;
 }
 
 .DocSearch-Search-Icon {
@@ -220,15 +220,40 @@ html:has(.theme-doc-markdown) {
 .theme-doc-footer-edit-meta-row {
   @apply !hidden;
 }
+
 .navbar {
   @apply !p-0;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  background-color: theme(colors.light-surface-1) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.navbar .navbar__inner {
+  background-color: theme(colors.light-surface-1) !important;
+  box-shadow: inset 0 -1px 0 theme(colors.light-surface-3);
+}
+
+:root[data-theme='dark'] .navbar {
+  background-color: theme(colors.dark-surface-1) !important;
+}
+
+:root[data-theme='dark'] .navbar .navbar__inner {
+  background-color: theme(colors.dark-surface-1) !important;
+  box-shadow: none !important;
 }
 
 .navbar-sidebar {
-  transform: translate3d(100%, 0, 0);
   left: auto;
   right: 0;
 }
+
+.navbar-sidebar--show .navbar-sidebar {
+  transform: translate3d(0, 0, 0) !important;
+}
+
 .theme-doc-markdown {
   @apply !body-2 flex flex-col space-y-6;
 }
@@ -308,6 +333,109 @@ html:has(.theme-doc-markdown) {
 
 .footnote-backref {
   font-family: system-ui;
+}
+
+.navbar .DocSearch {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  margin: 0 !important;
+}
+
+.navbar .DocSearch-Button {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  border-radius: 9999px;
+  background: theme(colors.light-surface-2) !important;
+  border: 1px solid theme(colors.light-surface-3) !important;
+  box-shadow: none !important;
+  padding: 0 12px;
+}
+
+:root[data-theme='dark'] .navbar .DocSearch-Button {
+  background: theme(colors.dark-surface-2) !important;
+  border-color: theme(colors.dark-surface-3) !important;
+}
+
+.navbar .DocSearch-Button-Container {
+  width: 100%;
+  font-weight: 400;
+}
+
+.navbar .DocSearch-Search-Icon {
+  width: 16px;
+  height: 16px;
+  color: var(--docsearch-muted-color) !important;
+}
+
+.navbar .DocSearch-Button-Placeholder {
+  font-family: 'Basel Grotesk', ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  color: theme(colors.light-neutral-2);
+}
+
+:root[data-theme='dark'] .navbar .DocSearch-Button-Placeholder {
+  color: theme(colors.dark-neutral-2);
+}
+
+.navbar .DocSearch-Button-Key {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: theme(colors.light-surface-3) !important;
+  box-shadow: none !important;
+  color: theme(colors.light-neutral-2);
+}
+
+:root[data-theme='dark'] .navbar .DocSearch-Button-Key {
+  background: theme(colors.dark-surface-3) !important;
+  color: theme(colors.dark-neutral-2);
+}
+
+@media (min-width: 768px) and (max-width: 1099px) {
+  .navbar .DocSearch-Button {
+    padding: 0 10px;
+  }
+
+  .navbar .DocSearch-Button-Key {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar .DocSearch-Button {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    height: 36px;
+    padding: 0 8px;
+  }
+  
+  .navbar .DocSearch-Button-Container {
+    width: 100%;
+    min-width: 0 !important;
+    font-weight: 400;
+  }
+  
+  .navbar .DocSearch-Button-Key {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-sidebar__brand,
+  .navbar-sidebar__items {
+    padding-left: 0.5rem;
+    padding-right: 0.75rem;
+  }
 }
 
 /**

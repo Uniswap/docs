@@ -53,7 +53,8 @@ export const CurrentConfig: SwapExactIn = {
         [ETH_USDC_POOL_KEY, USDC_USDT_POOL_KEY],
         ETH_TOKEN.address
     ),
-    amountIn: ethers.utils.parseUnits('1', ETH_TOKEN.decimals).toString(), 
+    maxHopSlippage: [], // Optional: per-hop slippage limits (one entry per hop). Empty array disables per-hop checks.
+    amountIn: ethers.utils.parseUnits('1', ETH_TOKEN.decimals).toString(),
     amountOutMinimum: "minAmountOut", // Change according to the slippage desired
 }
 ```

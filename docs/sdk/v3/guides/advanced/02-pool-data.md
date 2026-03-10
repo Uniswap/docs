@@ -207,10 +207,7 @@ We can calculate the minimum and maximum word from these indices and the Pool's 
 
 ```typescript
 function tickToWord(tick: number): number {
-  let compressed = Math.floor(tick / tickSpacing)
-  if (tick < 0 && tick % tickSpacing !== 0) {
-    compressed -= 1
-  }
+  const compressed = Math.floor(tick / tickSpacing)
   return compressed >> 8
 }
 
