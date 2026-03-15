@@ -246,7 +246,7 @@ async function verifyFeeCollection(receipt, userAddress, positionDetails, ethBal
 
 ### Check Your Token Balances
 
-You can simply measuring the balance change in your wallet before vs. after the call. For example, read your token balances (and ETH balance) prior to calling, then after the transaction confirm the increases. Because v4 might auto-wrap or unwrap ETH, if one of the tokens was ETH you should check your ETH balance difference. In ETH pools, no ERC-20 transfer event will fire for the ETH – the ETH will be sent directly to you (as an internal transfer), which is why checking the balance or the transaction's internal traces is necessary to confirm the amount.
+You can simply measure the balance change in your wallet before vs. after the call. For example, read your token balances (and ETH balance) prior to calling, then after the transaction confirm the increases. Because v4 might auto-wrap or unwrap ETH, if one of the tokens was ETH you should check your ETH balance difference. In ETH pools, no ERC-20 transfer event will fire for the ETH – the ETH will be sent directly to you (as an internal transfer), which is why checking the balance or the transaction's internal traces is necessary to confirm the amount.
 
 ```typescript
 // Check native ETH balance changes
