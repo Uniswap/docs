@@ -22,7 +22,7 @@ Uniswap provides AI-powered development tools that help you integrate swaps, bui
 
 | Plugin | Description |
 | --- | --- |
-| **uniswap-trading** | Integrate swaps via [Trading API](https://developers.uniswap.org/dashboard), Universal Router SDK, or direct contract calls. |
+| **uniswap-trading** | Integrate swaps via the [Uniswap API](https://developers.uniswap.org/dashboard), Universal Router SDK, or direct contract calls. Includes the `pay-with-any-token` skill for 402 challenge (supports x402 and MPP). |
 | **uniswap-hooks** | Security-first guidance for building Uniswap v4 hooks. |
 | **uniswap-viem** | EVM integration with viem and wagmi. |
 | **uniswap-driver** | Token discovery and swap/liquidity planning with deep links. |
@@ -46,7 +46,7 @@ If you use [Claude Code](https://claude.ai/code), first add the Uniswap marketpl
 
 # Install individual plugins
 claude plugin add uniswap-hooks     # v4 hook development
-claude plugin add uniswap-trading   # Swap integration
+claude plugin add uniswap-trading   # Swap integration (+ pay-with-any-token skill)
 claude plugin add uniswap-viem      # EVM / viem / wagmi
 claude plugin add uniswap-driver    # Token discovery & deep links
 claude plugin add uniswap-cca       # CCA auction configuration
