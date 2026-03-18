@@ -12,6 +12,7 @@ Please do not assume contracts are deployed to the same addresses across chains,
 - [`Ethereum`](./Ethereum-Deployments.md)
 - [`Unichain`](./Unichain-Deployments.md)
 - [`Arbitrum`](./Arbitrum-Deployments.md)
+- [`Tempo`](./Tempo-Deployments.md)
 - [`Optimism`](./Optimism-Deployments.md)
 - [`Polygon`](./Polygon-Deployments.md)
 - [`Base`](./Base-Deployments.md)
