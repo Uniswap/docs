@@ -15,11 +15,11 @@ jobs:
       run:
         working-directory: ./
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
           persist-credentials: false
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
         with:
           node-version: 20
           cache: 'yarn'
@@ -54,7 +54,7 @@ jobs:
     steps:
       # Step 1: Retrieve the Vercel Preview URL
       - name: vercel-preview-url
-        uses: zentered/vercel-preview-url@v1.1.9
+        uses: zentered/vercel-preview-url@e5fb141da2e3d62692b38e6c7c17477aad214165 # v1.1.9
         id: vercel_preview_url
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -63,7 +63,7 @@ jobs:
           vercel_team_id: ${{ secrets.VERCEL_ORG_ID }}
 
       # Step 2: Wait for the Vercel deployment to be ready
-      - uses: UnlyEd/github-action-await-vercel@v1
+      - uses: UnlyEd/github-action-await-vercel@3d536f03d951e603b21701814ba211dcbbafaf93 # v1
         id: await-vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -72,12 +72,12 @@ jobs:
           timeout: 420
           poll-interval: 15
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
           persist-credentials: false
       - name: Audit preview URL with Lighthouse (mobile)
         id: lighthouse_audit_mobile
-        uses: treosh/lighthouse-ci-action@v9
+        uses: treosh/lighthouse-ci-action@2e159d989f91bb9e399801b3e1ad90bcd4749f75 # v9
         with:
           urls: |
             https://${{ steps.vercel_preview_url.outputs.preview_url }}
@@ -86,7 +86,7 @@ jobs:
 
       - name: Audit preview URL with Lighthouse (desktop)
         id: lighthouse_audit
-        uses: treosh/lighthouse-ci-action@v9
+        uses: treosh/lighthouse-ci-action@2e159d989f91bb9e399801b3e1ad90bcd4749f75 # v9
         with:
           urls: |
             https://${{ steps.vercel_preview_url.outputs.preview_url }}
@@ -96,7 +96,7 @@ jobs:
 
       - name: Format Lighthouse score
         id: format_lighthouse_score
-        uses: actions/github-script@v3
+        uses: actions/github-script@ffc2c79a5b2490bd33e0a41c1de74b877714d736 # v3
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -131,7 +131,7 @@ jobs:
             ].join('\n');
             core.setOutput("comment", comment);
       - name: Add comment to PR
-        uses: mshick/add-pr-comment@v1
+        uses: mshick/add-pr-comment@a96c578acba98b60f16c6866d5f20478dc4ef68b # v1
         with:
           message: |
             ${{ steps.format_lighthouse_score.outputs.comment }}
