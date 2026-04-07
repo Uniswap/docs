@@ -34,7 +34,7 @@ The Uniswap Liquidity Launchpad framework is built on three coordinated componen
 
 1. **[Liquidity Launcher →](https://github.com/Uniswap/liquidity-launcher)** Central orchestration contract that coordinates distribution and liquidity deployment
 2. **[Token Factory →](https://github.com/Uniswap/uerc20-factory)** (Optional) Creates new ERC-20 tokens with metadata, or integrates existing tokens
-3. **Liquidity Strategies** - Modular contracts for different price discovery and liquidity mechanisms (prebuilt [LBP Strategy](https://github.com/Uniswap/liquidity-launcher) or [custom strategies](./05-strategies.md#writing-a-custom-strategy))
+3. **Liquidity Strategies** - Modular contracts for different price discovery and liquidity mechanisms (prebuilt [LBP Strategy](./06-strategies.md#lbpstrategybase) or [custom strategies](./06-strategies.md#writing-a-custom-strategy))
 
 Each component is designed to be composable and extensible, allowing you to customize your liquidity bootstrapping while maintaining security and fairness guarantees.
 
