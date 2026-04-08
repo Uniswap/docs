@@ -120,9 +120,7 @@ The entrypoint for all liquidity operations is `modifyLiquidities()`.
 ```solidity
 uint256 deadline = block.timestamp + 60;
 
-uint256 valueToPass = currency0.isAddressZero() ? amount0Max : 0;
-
-posm.modifyLiquidities{value: valueToPass}(
+posm.modifyLiquidities(
     abi.encode(actions, params),
     deadline
 );
