@@ -19,7 +19,7 @@ const config: Config = {
   },
   title: 'Uniswap',
   tagline: 'Documentation and Guides',
-  url: 'https://docs.uniswap.org',
+  url: 'https://developers.uniswap.org',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   markdown: {
@@ -839,8 +839,40 @@ const config: Config = {
           // Paths to add when constructing URLs (will be prepended if not already present)
           addPaths: [],
         },
-        // Custom LLM files for specific documentation sections
-        customLLMFiles: [],
+        // Custom LLM files for specific documentation sections.
+        // Generates a site-wide /llms-full.txt with full content for AI agents,
+        // alongside the v4-scoped files above. Pairs with /static/llms.txt
+        // (manually-curated link index following https://llmstxt.org).
+        customLLMFiles: [
+          {
+            filename: 'llms-full.txt',
+            includePatterns: ['**/*.md', '**/*.mdx'],
+            ignorePatterns: [
+              'examples/*',
+              'plugins/*',
+              'scripts/*',
+              'src/*',
+              'static/*',
+              'submodules/*',
+              'CONTRIBUTING.md',
+              'docs/archived/**',
+              'docs/contracts/v1/**',
+              'docs/contracts/v2/**',
+              'docs/contracts/v3/**',
+              'docs/sdk/v1/**',
+              'docs/sdk/v2/**',
+              'docs/sdk/v3/**',
+              'docs/sdk/swap-widget/**',
+              'docs/sdk/web3-react/**',
+              'docs/universal-router-legacy/**',
+            ],
+            fullContent: true,
+            title: 'Uniswap Documentation — Full Content',
+            description:
+              'Complete reference for the current Uniswap Protocol (v4), SDKs, APIs, and integration guides, concatenated as plain markdown for AI agents.',
+            includeUnmatchedLast: true,
+          },
+        ],
       },
     ],
   ],
