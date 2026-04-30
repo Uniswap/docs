@@ -1,168 +1,74 @@
-# Uniswap Documentation - LLM Context File
+# Uniswap Documentation
 
-This file provides structured context for Large Language Models about the Uniswap Protocol documentation.
+> Developer documentation for the Uniswap Protocol — the largest decentralized exchange on Ethereum and other EVM chains. Covers the v4, v3, v2, and v1 protocols, the official SDKs, the subgraph and trading APIs, and integration guides for swapping, providing liquidity, and building hooks.
 
-## About Uniswap
+This file follows the [llms.txt](https://llmstxt.org) convention to give LLMs a curated index of the documentation served at https://developers.uniswap.org. A full-content companion file is available at [/llms-full.txt](https://developers.uniswap.org/llms-full.txt). The latest protocol version is **Uniswap v4** (singleton `PoolManager`, hooks, flash accounting, ERC-6909). Treat v4 as the default unless the user specifies otherwise.
 
-Uniswap is a decentralized exchange protocol built on Ethereum that enables users to swap ERC-20 tokens without intermediaries. The protocol uses an automated market maker (AMM) model with liquidity pools rather than order books.
+## Concepts
 
-## Current Protocol Versions
+- [Concepts overview](https://developers.uniswap.org/concepts/overview): Entry point to how the Uniswap Protocol works, the AMM model, and protocol terminology.
+- [The Uniswap Protocol](https://developers.uniswap.org/concepts/uniswap-protocol): High-level explanation of the protocol across versions.
+- [Concentrated liquidity](https://developers.uniswap.org/concepts/protocol/concentrated-liquidity): How v3+ liquidity providers concentrate capital within price ranges.
+- [Hooks](https://developers.uniswap.org/concepts/protocol/hooks): Custom logic that extends pool behavior in v4.
+- [Swaps](https://developers.uniswap.org/concepts/protocol/swaps): How trades execute through the protocol.
+- [Fees](https://developers.uniswap.org/concepts/protocol/fees): Pool fee tiers and protocol-level fee mechanics.
+- [Oracles](https://developers.uniswap.org/concepts/protocol/oracle): Time-weighted average price (TWAP) oracles in v3 and v4.
+- [Governance](https://developers.uniswap.org/concepts/governance/overview): UNI token, voting, and the Uniswap DAO.
+- [Glossary](https://developers.uniswap.org/concepts/glossary): Definitions of common protocol and AMM terminology.
 
-### Uniswap v4 (Latest)
-- **Status**: Recently launched, actively developed
-- **Key Features**: Hooks, singleton architecture, flash accounting, custom pools
-- **Documentation**: `/contracts/v4/`, `/sdk/v4/`
-- **Major Innovation**: Hooks system allows custom logic in pools
+## Smart contracts
 
-### Uniswap v3
-- **Status**: Mature, widely used
-- **Key Features**: Concentrated liquidity, multiple fee tiers, NFT positions
-- **Documentation**: `/contracts/v3/`, `/sdk/v3/`
-- **Innovation**: Capital efficiency through concentrated liquidity
+- [v4 overview](https://developers.uniswap.org/contracts/v4/overview): Architecture of the v4 protocol, including the singleton `PoolManager`, hooks, and flash accounting.
+- [v4 quickstart: create a pool](https://developers.uniswap.org/contracts/v4/quickstart/create-pool): Permissionless pool creation in v4.
+- [v4 quickstart: swap](https://developers.uniswap.org/contracts/v4/quickstart/swap): Execute swaps via the Universal Router.
+- [v4 quickstart: manage liquidity](https://developers.uniswap.org/contracts/v4/quickstart/manage-liquidity/setup-liquidity): Mint, increase, decrease, collect, and burn liquidity positions.
+- [v4 hooks: your first hook](https://developers.uniswap.org/contracts/v4/guides/hooks/your-first-hook): End-to-end walkthrough of building and deploying a hook contract.
+- [v4 hook deployment](https://developers.uniswap.org/contracts/v4/guides/hooks/hook-deployment): Address-encoded hook permissions and the `HookMiner` flow.
+- [v4 custom accounting](https://developers.uniswap.org/contracts/v4/guides/custom-accounting): Build pools with non-standard accounting, dynamic fees, and bonding curves.
+- [v4 PoolManager reference](https://developers.uniswap.org/contracts/v4/reference/core/PoolManager): Full reference for the singleton pool contract.
+- [v4 deployments](https://developers.uniswap.org/contracts/v4/deployments): Canonical contract addresses across supported chains.
+- [v3 overview](https://developers.uniswap.org/contracts/v3/overview): Concentrated-liquidity AMM contracts.
+- [v3 reference](https://developers.uniswap.org/contracts/v3/reference/overview): Core, periphery, and library reference.
+- [v2 overview](https://developers.uniswap.org/contracts/v2/overview): Constant-product AMM contracts.
+- [v1 overview](https://developers.uniswap.org/contracts/v1/overview): Original Uniswap contracts (legacy).
+- [Universal Router](https://developers.uniswap.org/contracts/universal-router/overview): Single-entry contract for executing swaps and NFT trades across protocols.
+- [UniswapX](https://developers.uniswap.org/contracts/uniswapx/overview): Intent-based, off-chain auction trading protocol.
+- [Permit2](https://developers.uniswap.org/contracts/permit2/overview): Token approval and transfer system used across Uniswap contracts.
 
-### Uniswap v2
-- **Status**: Legacy, still functional
-- **Key Features**: Simple AMM, fixed liquidity ranges
-- **Documentation**: `/contracts/v2/`, `/sdk/v2/`
+## SDKs
 
-## Documentation Structure
+- [v4 SDK overview](https://developers.uniswap.org/sdk/v4/overview): TypeScript SDK for integrating v4 pools and hooks.
+- [v3 SDK overview](https://developers.uniswap.org/sdk/v3/overview): TypeScript SDK for v3 swaps and liquidity.
+- [v2 SDK overview](https://developers.uniswap.org/sdk/v2/overview): TypeScript SDK for v2 trading and pricing.
+- [v1 SDK overview](https://developers.uniswap.org/sdk/v1/overview): Legacy SDK for v1 contracts.
+- [SDK core reference](https://developers.uniswap.org/sdk/core/reference/overview): Shared primitives (`Token`, `CurrencyAmount`, `Price`, etc.) used across SDKs.
+- [Swap widget](https://developers.uniswap.org/sdk/swap-widget/overview): Embeddable React component for swaps.
+- [web3-react](https://developers.uniswap.org/sdk/web3-react/overview): Wallet connection helpers.
 
-### Core Concepts (`/concepts/`)
-- Protocol overview and fundamentals
-- How AMMs work
-- Liquidity provision concepts
-- Governance and tokenomics
+## APIs
 
-### Smart Contracts (`/contracts/`)
-- **v4**: Latest contract documentation, hooks, examples
-- **v3**: Core contracts, periphery contracts, guides
-- **v2**: Legacy contract documentation
-- **UniswapX**: Intent-based trading protocol
+- [Subgraph overview](https://developers.uniswap.org/api/subgraph/overview): GraphQL API for protocol data, pools, swaps, and liquidity.
+- [v4 subgraph examples](https://developers.uniswap.org/api/subgraph/guides/v4-examples): Common GraphQL queries against the v4 subgraph.
+- [Uniswap Trading API](https://developers.uniswap.org/api/trading/overview): Hosted swap-routing and quoting API.
 
-### SDKs (`/sdk/`)
-- **v4-SDK**: TypeScript SDK for v4 integration
-- **v3-SDK**: Comprehensive TypeScript SDK for v3
-- **v2-SDK**: Legacy SDK for v2
+## Builder support
 
-### APIs (`/api/`)
-- **Subgraph**: GraphQL API for querying protocol data
-- **Routing API**: For finding optimal swap routes
+- [Get funded](https://developers.uniswap.org/builder-support/get-funded): Grants and funding programs from the Uniswap Foundation.
+- [Security resources](https://developers.uniswap.org/builder-support/security-resources): Audit subsidies, safe harbor protections, and other security resources for builders.
 
-## Key Topics by Category
+## LLMs and AI
 
-### For Developers
-1. **Getting Started**: Protocol basics, choosing versions
-2. **Integration**: SDK usage, contract interactions
-3. **Advanced**: Custom hooks, flash loans, arbitrage
+- [LLMs overview](https://developers.uniswap.org/llms/overview): How to use the Uniswap docs with large language models.
+- [Uniswap v4 full reference (markdown)](https://developers.uniswap.org/v4-llms-full.txt): Concatenated v4 documentation in plain text for direct ingestion.
+- [Uniswap v4 link index (markdown)](https://developers.uniswap.org/v4-llms.txt): Link-only index of v4 documentation.
+- [Full-site reference (markdown)](https://developers.uniswap.org/llms-full.txt): Concatenated documentation across all current sections in plain text.
 
-### For Liquidity Providers
-1. **Concepts**: Impermanent loss, fee earnings, ranges
-2. **Strategies**: Position management, rebalancing
-3. **Risk Management**: Price impact, slippage
+## Optional
 
-### For Traders
-1. **Swapping**: How trades work, routing, slippage
-2. **Advanced Trading**: MEV protection, limit orders
-3. **Interfaces**: Web app usage, integration options
-
-## Technical Implementation Details
-
-### Smart Contracts
-- **Core Contracts**: Factory, Pool, Router patterns
-- **Security**: Audits, formal verification, testing
-- **Gas Optimization**: Efficient operations, batch transactions
-
-### Integration Patterns
-- **Direct Integration**: Contract-to-contract calls
-- **SDK Integration**: TypeScript/JavaScript applications
-- **Subgraph Queries**: Data fetching and analytics
-
-### Common Use Cases
-1. **DeFi Protocols**: Integrating swaps into other protocols
-2. **Wallets**: Adding swap functionality
-3. **Arbitrage Bots**: MEV and price difference exploitation
-4. **Analytics**: Protocol metrics and user behavior
-
-## Version Migration Guides
-
-### v2 to v3 Migration
-- Concentrated liquidity concepts
-- Position management differences
-- Fee tier selection
-
-### v3 to v4 Migration  
-- Hooks architecture understanding
-- Singleton pattern benefits
-- Gas efficiency improvements
-
-## Ecosystem and Governance
-
-### Uniswap Foundation
-- Ecosystem growth and grants
-- Community governance support
-- Research and development funding
-
-### Uniswap Labs
-- Core protocol development
-- Interface development
-- Commercial applications
-
-### Governance
-- UNI token voting
-- Proposal processes
-- Community decision making
-
-## Common Issues and Solutions
-
-### Integration Challenges
-1. **Slippage Management**: Setting appropriate tolerances
-2. **MEV Protection**: Using private mempools, flashbots
-3. **Gas Optimization**: Batch operations, efficient routing
-
-### Development Pitfalls
-1. **Price Manipulation**: Using time-weighted averages
-2. **Reentrancy**: Proper security patterns
-3. **Oracle Usage**: Avoiding price manipulation
-
-## Resources and References
-
-### Official Links
-- Main Protocol: https://uniswap.org
-- Documentation: https://docs.uniswap.org
-- GitHub: https://github.com/Uniswap
-- Governance: https://gov.uniswap.org
-
-### AI and API Resources
-- Uniswap API Docs (Introduction): https://api-docs.uniswap.org/introduction
-- Uniswap Developer Portal (API keys and onboarding): https://developers.uniswap.org/
-- Uniswap AI toolkit and skills: https://github.com/Uniswap/uniswap-ai
-
-### Community
-- Discord: https://discord.gg/uniswap
-- Twitter: https://twitter.com/Uniswap
-- Research Forum: https://gov.uniswap.org
-
-### Developer Tools
-- Interface: https://app.uniswap.org
-- Analytics: https://info.uniswap.org
-- Subgraph: TheGraph hosted service
-
-## AI Assistant Guidelines
-
-When helping users with Uniswap-related questions:
-
-1. **Version Awareness**: Always clarify which version (v2/v3/v4) the user needs
-2. **Security First**: Emphasize security best practices, audits, testing
-3. **Gas Efficiency**: Consider gas costs in recommendations
-4. **Latest Updates**: v4 is the newest with hooks - recommend for new projects
-5. **Integration Complexity**: Start with SDK examples before low-level contracts
-6. **Risk Disclosure**: Always mention risks like impermanent loss, smart contract risks
-
-## Recent Updates and Changes
-
-- **v4 Launch**: New hooks system, singleton architecture
-- **UniswapX**: Intent-based trading protocol
-- **Mobile Interface**: Improved mobile trading experience
-- **Governance Evolution**: Continued decentralization efforts
-
-This documentation covers a comprehensive DeFi protocol with multiple versions, extensive developer tools, and active community governance. Always refer users to the most recent documentation and emphasize security best practices.
+- [Whitepaper (v4)](https://app.uniswap.org/whitepaper-v4.pdf): Formal protocol description for Uniswap v4.
+- [Constant Custodial Account whitepaper](https://developers.uniswap.org/whitepaper_cca.pdf): Custodial account research paper hosted on the docs site.
+- [GitHub: Uniswap/docs](https://github.com/Uniswap/docs): Source for this documentation site.
+- [GitHub: Uniswap organization](https://github.com/Uniswap): Protocol, SDK, and tooling repositories.
+- [Uniswap app](https://app.uniswap.org): Reference web interface to the protocol.
+- [Governance forum](https://gov.uniswap.org): Community discussion and proposal threads.
+- [Discord](https://discord.gg/uniswap): Developer community and support.

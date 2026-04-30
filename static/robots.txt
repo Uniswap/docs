@@ -1,40 +1,125 @@
 # Robots.txt for Uniswap Documentation
-# https://docs.uniswap.org
+# https://developers.uniswap.org
 
-# Default: Allow all crawlers to index all content
+# Default: allow all crawlers to index all content.
 User-agent: *
 Allow: /
 
-# Block common crawler traps and unnecessary paths
+# Block crawler traps and unhelpful paths.
 Disallow: /search*
-Disallow: /*?*
 Disallow: /.docusaurus/
 Disallow: /build/
 Disallow: /node_modules/
 Disallow: /src/
-Disallow: /static/
 
-# Allow CSS and JavaScript for proper rendering
+# Allow CSS and JavaScript so renderers can hydrate pages.
 Allow: /*.css
 Allow: /*.js
 
-# AI Crawlers - Documentation sites generally want to be crawlable by AI
-# GPTBot (OpenAI)
+# AI crawlers — documentation is meant to be read by agents.
+
+# OpenAI (training, search, and on-demand crawl).
 User-agent: GPTBot
 Allow: /
 
-# ClaudeBot (Anthropic)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude).
 User-agent: ClaudeBot
 Allow: /
 
-# Bard/Gemini (Google)
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google AI (Gemini, Bard, AI Overview).
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
 User-agent: Bard
 Allow: /
 
 User-agent: Gemini
 Allow: /
 
-# Block aggressive or abusive bots
+# Apple Intelligence.
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Perplexity.
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Common Crawl (open dataset used widely by LLMs).
+User-agent: CCBot
+Allow: /
+
+# Cohere.
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Cohere-AI
+Allow: /
+
+# Meta AI (LLaMA training and Meta's external agents).
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Amazon (Alexa+, Rufus, etc).
+User-agent: Amazonbot
+Allow: /
+
+# Microsoft (Bing AI, Copilot).
+User-agent: bingbot
+Allow: /
+
+# DuckDuckGo Assist.
+User-agent: DuckAssistBot
+Allow: /
+
+# Mistral.
+User-agent: MistralAI-User
+Allow: /
+
+# xAI / Grok.
+User-agent: xAI
+Allow: /
+
+# Other established AI crawlers.
+User-agent: Diffbot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# Block aggressive or abusive SEO crawlers.
 User-agent: SemrushBot
 Disallow: /
 
@@ -47,8 +132,11 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
-# Sitemap location
-Sitemap: https://docs.uniswap.org/sitemap.xml
+User-agent: Bytespider
+Disallow: /
 
-# Crawl delay for courtesy (1 second)
+# Sitemap.
+Sitemap: https://developers.uniswap.org/sitemap.xml
+
+# Crawl delay for courtesy (1 second).
 Crawl-delay: 1
