@@ -54,7 +54,7 @@ This file follows the [llms.txt](https://llmstxt.org) convention to give LLMs a 
 ## Builder support
 
 - [Get funded](https://developers.uniswap.org/builder-support/get-funded): Grants and funding programs from the Uniswap Foundation.
-- [Hooks ecosystem](https://developers.uniswap.org/builder-support/hooks-ecosystem): Resources for hook developers, including audits and reusable templates.
+- [Security resources](https://developers.uniswap.org/builder-support/security-resources): Audit subsidies, safe harbor protections, and other security resources for builders.
 
 ## LLMs and AI
 
