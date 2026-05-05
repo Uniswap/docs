@@ -106,7 +106,7 @@ Fillers should start with polling for orders and rate limit at 6rps. If after po
 <details>
   <summary>The transaction is reverting for a certain reason (e.g. `InvalidOrderFields`). What does this mean?</summary>
 
-    Check the [KNOWN_ERRORS](https://github.com/Uniswap/sdks/blob/a7fb8d7b8eecdc8a29d386420339da86b0361a77/sdks/uniswapx-sdk/src/utils/OrderQuoter.ts#L70) in the SDK to see what the likely causes are.
+    Check the [Revert Reasons](/contracts/uniswapx/revert-reasons) reference page to see what the likely causes are.
 
 </details>
 
