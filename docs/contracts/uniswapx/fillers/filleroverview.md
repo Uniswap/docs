@@ -110,6 +110,8 @@ Fillers should start with polling for orders and rate limit at 6rps. If after po
 
 </details>
 
+See [Simulation Failures and Settlement Decisions](./priority/simulation-and-settlement.md) for guidance on handling failed simulations.
+
 <details>
   <summary>Why did my server stop receiving quote requests?</summary>
 
