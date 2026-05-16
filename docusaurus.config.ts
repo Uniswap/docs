@@ -154,6 +154,7 @@ const config: Config = {
   ],
   plugins: [
     tailwindPlugin,
+    'docusaurus-plugin-copy-page-button',
     ['@saucelabs/theme-github-codeblock', {}],
     [
       '@docusaurus/plugin-client-redirects',
