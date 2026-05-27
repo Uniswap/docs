@@ -1,0 +1,21 @@
+{
+  "chainId": 138,
+  "chainName": "DeFi Oracle Meta Mainnet",
+  "nativeCurrency": {
+    "name": "Ether",
+    "symbol": "ETH",
+    "decimals": 18
+  },
+  "contracts": {
+    "factory": "0x0C30F6e67Ab3667fCc2f5CEA8e274ef1FB920279",
+    "router02": "0x3019A7fDc76ba7F64F18d78e66842760037ee638",
+    "weth": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+  },
+  "pairs": {
+    "wethUsdt": "0xda2A5AC9F4892EAd47093A374779Ba790f23DC84",
+    "wethUsdc": "0xCD255F4f6c4E861490b3C7E0300613318B870f36",
+    "cusdtCusdc": "0x7bd707294AACb47ab109780be8a096700741886d"
+  },
+  "deployedAtBlock": 4041469,
+  "source": "smom-dbis-138 vendor uniswap-v2-core/periphery official bytecode"
+}
