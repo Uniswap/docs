@@ -37,3 +37,23 @@ sidebar_position: 4
 | PriorityOrderReactor  | [0x000000001Ec5656dcdB24D90DFa42742738De729](https://basescan.org/address/0x000000001Ec5656dcdB24D90DFa42742738De729) | [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) | [priority_strategy](https://github.com/Uniswap/uniswapx-artemis/blob/main/src/strategies/priority_strategy.rs) |
 | OrderQuoter| [0x88440407634f89873c5d9439987ac4be9725fea8](https://basescan.org/address/0x88440407634f89873c5d9439987ac4be9725fea8) | [OrderQuoter](https://github.com/Uniswap/UniswapX/blob/v1.0.0/src/OrderQuoter.sol)| N/A |
 | Permit2| [0x000000000022D473030F116dDEE9F6B43aC78BA3](https://basescan.org/address/0x000000000022D473030F116dDEE9F6B43aC78BA3) | [Permit2](https://github.com/Uniswap/permit2)| N/A|
+
+## Robinhood
+
+| Contract | Contract Address | Source Code | Example Filler Implementation |
+|-----------|------------------|----------------------|------------------------------|
+| DutchV3OrderReactor | `0x000000007A1C8e570011EeDF86A2A35593013cBA` | [V3DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol) | [dutchv3_strategy](https://github.com/Uniswap/uniswapx-artemis/blob/main/src/strategies/dutchv3_strategy.rs) |
+| OrderQuoter | `0x00000000a3db63Df9078cBF3dF88B4CAdD5a7F58` | [OrderQuoter](https://github.com/Uniswap/UniswapX/blob/v1.0.0/src/OrderQuoter.sol) | N/A |
+| Permit2 | `0x000000000022D473030F116dDEE9F6B43aC78BA3` | [Permit2](https://github.com/Uniswap/permit2) | N/A |
+
+## Arc
+
+Arc (Circle's stablechain) uses USDC as its gas token, surfaced as a 6-decimal ERC-20 at `0x3600000000000000000000000000000000000000`. Orders must reference that ERC-20 address; the native sentinel (`0x0000000000000000000000000000000000000000`) is not used for trading.
+
+| Contract | Contract Address | Source Code | Example Filler Implementation |
+|-----------|------------------|----------------------|------------------------------|
+| DutchV3OrderReactor | `0x0000000015134054eA82AE0bb9fda66b36402C36` | [V3DutchOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol) | [dutchv3_strategy](https://github.com/Uniswap/uniswapx-artemis/blob/main/src/strategies/dutchv3_strategy.rs) |
+| OrderQuoter | `0x00000000a3db63Df9078cBF3dF88B4CAdD5a7F58` | [OrderQuoter](https://github.com/Uniswap/UniswapX/blob/v1.0.0/src/OrderQuoter.sol) | N/A |
+| Permit2 | `0x000000000022D473030F116dDEE9F6B43aC78BA3` | [Permit2](https://github.com/Uniswap/permit2) | N/A |
+
+> Addresses for Robinhood and Arc are shown as plain values pending public block explorers for these chains; verify on-chain via RPC. Explorer links will be added once available.
