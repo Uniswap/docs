@@ -1,32 +1,49 @@
 # Uniswap Developer Docs
 
-This repository contains the source content for the Uniswap developer documentation published at [developers.uniswap.org](https://developers.uniswap.org).
-
-## Contributing
-
-Pull requests are welcome. See the [contribution guidelines](CONTRIBUTING.md) for how to get started. The docs team reviews each contribution and ports accepted changes into the publishing pipeline, so your change may land on the site before this repository reflects it. Content here is updated periodically rather than on every deploy.
-
-Accepted contributions are credited: when your change is included in a content update, you are listed as a co-author on the commit, so it counts on your GitHub profile and in this repository's contributor graph.
-
-By submitting a pull request you agree that your contribution is licensed under this repository's [MIT license](LICENSE).
+Source content for the Uniswap developer documentation published at [developers.uniswap.org](https://developers.uniswap.org).
 
 ## Repository structure
 
 ```
-├── get-started/        # Concepts and quickstart
-├── trading/            # Trading and Swapping API
-├── liquidity/          # Liquidity provisioning, UniswapX, Liquidity Launchpad
-├── protocols/          # v2, v3, v4, Universal Router, Permit2, smart wallet
-├── sdks/               # SDK documentation
-├── uniswap-ai/         # Uniswap AI skills and plugins
-├── unichain/           # Unichain documentation
-├── ecosystem/          # Governance, subgraphs, builder support
-├── community/          # Community tooling and learning resources
-├── changelog/          # API and protocol change notifications
-├── examples/           # Example contracts and SDK snippets
-├── archive/            # Previous version of this repository, kept for reference
-└── meta.json           # Root navigation configuration
+├── get-started/                    # Core concepts and quickstart
+│   └── concepts/                   # AMMs, liquidity, swaps, fees, price impact
+├── trading/                        # Trading integrations
+│   └── swapping-api/               # Swapping API guides and reference
+├── liquidity/                      # Liquidity integrations
+│   ├── liquidity-launchpad/        # Token launch tooling
+│   ├── liquidity-provisioning-api/ # Liquidity Provisioning API
+│   └── uniswapx/                   # UniswapX: quoting, filling, concepts
+├── protocols/                      # Protocol documentation
+│   ├── v2/ v3/ v4/                 # Core protocol versions, concepts, guides
+│   ├── universal-router/           # Universal Router
+│   ├── permit2/                    # Permit2 approvals
+│   ├── smart-wallet/               # Smart wallet
+│   ├── the-compact/                # The Compact
+│   └── protocol-fee/               # Protocol fee
+├── sdks/                           # SDK documentation
+│   └── v2/ v3/ v4/                 # Per-version SDK guides and reference
+├── uniswap-ai/                     # Uniswap AI skills and plugins
+├── unichain/                       # Unichain
+│   ├── getting-started/            # Connect, bridge, deploy
+│   ├── guides/                     # Builder guides
+│   ├── technical-information/      # Contracts, network details
+│   └── tools/                      # Ecosystem tooling
+├── ecosystem/                      # Ecosystem resources
+│   ├── governance/                 # Governance processes and reference
+│   ├── subgraphs/                  # Subgraph data and queries
+│   └── builder-support/            # Support programs for builders
+├── community/                      # Community tooling and learning resources
+├── changelog/                      # API and protocol change notifications
+├── examples/                       # Example contracts and SDK snippets
+│   ├── smart-contracts/            # Solidity examples
+│   └── sdk/                        # SDK examples
+├── archive/                        # Previous version of this repository, kept for reference
+└── meta.json                       # Root navigation configuration
 ```
+
+## Contributing
+
+Contributions are welcome, and our team reviews every PR. See the [contribution guidelines](CONTRIBUTING.md) for how the process works and how to get started.
 
 ## Content conventions
 
