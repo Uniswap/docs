@@ -1,0 +1,5 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Keep archived site code out of language stats and diffs by default
+archive/** linguist-vendored
