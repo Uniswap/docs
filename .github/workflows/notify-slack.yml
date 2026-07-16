@@ -1,0 +1,23 @@
+name: Notify Slack
+
+on:
+  pull_request_target:
+    types: [opened]
+
+permissions: {}
+
+jobs:
+  notify:
+    if: github.event.pull_request.author_association != 'MEMBER' && github.event.pull_request.author_association != 'OWNER'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post new PR to Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: |
+          jq -n --arg pr_title "$PR_TITLE" --arg pr_url "$PR_URL" --arg pr_author "$PR_AUTHOR" \
+            '{pr_title: $pr_title, pr_url: $pr_url, pr_author: $pr_author}' \
+            | curl -sS --fail-with-body -X POST -H "Content-Type: application/json" -d @- "$SLACK_WEBHOOK_URL"
