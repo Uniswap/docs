@@ -4,7 +4,7 @@ This repository contains the source content for the Uniswap developer documentat
 
 ## Contributing
 
-Pull requests are welcome. The docs team reviews each contribution and ports accepted changes into the publishing pipeline, so your change may land on the site before this repository reflects it. Content here is updated periodically rather than on every deploy.
+Pull requests are welcome. See the [contribution guidelines](CONTRIBUTING.md) for how to get started. The docs team reviews each contribution and ports accepted changes into the publishing pipeline, so your change may land on the site before this repository reflects it. Content here is updated periodically rather than on every deploy.
 
 Accepted contributions are credited: when your change is included in a content update, you are listed as a co-author on the commit, so it counts on your GitHub profile and in this repository's contributor graph.
 
