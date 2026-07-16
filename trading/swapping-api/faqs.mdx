@@ -1,0 +1,661 @@
+---
+title: Swapping FAQ
+description: Find answers to common Uniswap API integration questions about authentication, quotes, routing, rate limits, Permit2 approvals, UniswapX, error handling, fees, and support.
+keywords:
+  - uniswap-api
+  - swapping
+  - permit2
+  - uniswapx
+  - gasless
+  - integration
+  - authentication
+  - error-handling
+type: faq
+faqs:
+  - question: How long does it take to integrate the API?
+    answer: Integration of the API can be done in less than two weeks. Sample code is available in the swapping code examples guide. To get started, request an API key through the Uniswap Developer Platform.
+  - question: What are the API rate limits?
+    answer: By default, each API key is rate limited to 6 requests per second. If a higher rate is needed, reach out through the help button in the Uniswap Developer Platform.
+  - question: How do I authenticate API requests?
+    answer: "All requests require an API key, which must be provided in the x-api-key header of each request along with Content-Type: application/json and Accept: application/json."
+  - question: Is there an OpenAPI / OAS specification I can use to build a client?
+    answer: "Yes. AI builders can consume the full Open API Specification (OAS) at https://trade-api.gateway.uniswap.org/v1/api.json."
+  - question: What Permit2 address do I need to whitelist for approvals?
+    answer: "The Permit2 address for all chains we support EXCEPT zkSync is: 0x000000000022D473030F116dDEE9F6B43aC78BA3. The Permit2 address for zkSync is: 0x0000000000225e31D15943971F47aD3022F714Fa."
+  - question: What parameter determines if I receive a gasless quote?
+    answer: |-
+      When the /quote endpoint's routingPreference is set to BEST_PRICE, the endpoint will attempt to find a quote that nets users the best execution price for a trade. Assuming the protocols are not limited, the endpoint will attempt to get a gasless order and a Uniswap Protocol swap quote, calculate which is currently providing the best price to the user including transaction costs, and return that quote. Integrators of the API who only want gasless quotes may limit the protocols considered to just gasless options (for example UniswapX). There are some scenarios where the API will not be able to get a gasless quote, even if the integrator attempts to force it. The most common reason for this (on chains where UniswapX is supported) is that the gas price of the swap is too high relative to the value of the trade. In cases where the gas cost is 20% or more of the total trade value, the API will always return Uniswap Protocol swap quotes (if permitted by protocols) or fail.
+  - question: How often are quotes refreshed?
+    answer: Whenever you request a quote from the APIs, a new check is performed to get the freshest pricing.
+  - question: How do you recommend setting slippage?
+    answer: We recommend using our automatic slippage option in the /quote request. However, you may use your own slippage algorithm and directly populate your preferred slippage in the /quote request. When setting your own slippage, we recommend setting a low slippage for stable-to-stable swaps (for example 20bps) and a higher slippage for stable-to-non-stable swaps and non-stable-to-non-stable swaps (since there is more price volatility between these pairs).
+  - question: How should I handle failed quotes?
+    answer: If a quote fails, the response includes helpful information to understand the problem with the request. The most common quote failure reason is that no route can be found for the quoted pair. This can occur for various reasons, including all available routes would exceed the slippage tolerance, insufficient liquidity for the requested quote size, or no available route through the specified protocols. We recommend retrying the quote but modifying one or more parameters of the requested quote (protocols used, slippage allowed, or the size of the swap).
+  - question: How do I quote the native token?
+    answer: See the Supported Chains guide for native-token swap details. To quote the native token via UniswapX you must set the x-erc20eth-enabled header in your quote request to true.
+  - question: Why am I getting "No Quotes Available" as a response?
+    answer: |-
+      A quote response with "No Quotes Available" means that the Uniswap router was unable to find a route for the proposed swap. This can happen for a number of reasons, many of which can be easily avoided by understanding the API constraints. While not exhaustive, some of the most common issues are: there is insufficient liquidity to fill the swap; if making a bridge request, the selected token cannot be bridged between the two selected networks; if making a UniswapX-only request, the amount is below 300 USDC equivalent and the UniswapX quote does not improve on the AMM route by at least 0.2%; the request is requesting a bridge and swap (currently not supported).
+  - question: What are the valid values for the protocols field?
+    answer: "The possible values are V2, V3, V4, UNISWAPX_V2, and UNISWAPX_V3. To perform a swap using only UniswapX protocol liquidity, specify protocols as UNISWAPX_V2 or UNISWAPX_V3. Multiple UniswapX protocols may not be specified in the same request. For more information, please visit Swap Routing."
+  - question: Can I do a wrap/unwrap through UniswapX?
+    answer: "No. Wrapping/unwrapping is not supported through UniswapX protocols at all, and a request to wrap/unwrap when protocols is set to any UniswapX protocol will fail. To perform a wrap/unwrap or bridge action, do not specify values for protocols or routingPreference. Please also note, UniswapX only supports WETH right now and ETH is not supported. You will never get a UniswapX response if ETH is the input token."
+  - question: How fresh do quotes need to be before broadcasting?
+    answer: Quotes are time-sensitive due to price volatility and token pairs. Uniswap recommends refreshing quotes if they are more than 30 seconds old before broadcasting, and using the deadline parameter to prevent execution of stale quotes.
+  - question: How can I simulate a swap before submitting it?
+    answer: Whenever you request a quote from our endpoints we will automatically simulate the quote to ensure that the result will be a viable route should you decide to proceed to the swap step. Further, when you make a request to the /swap endpoint, you may request that the calldata we generate be simulated to further ensure that it is valid and will be processed. Note that simulation is not a guarantee that a swap will be successful onchain as factors including gas and slippage may change between the time of the /swap response and you placing the transaction onchain.
+  - question: After /quote, when do I call /swap versus /order?
+    answer: |-
+      Check the top-level routing field in the /quote response. If routing is DUTCH_V2, DUTCH_V3, or PRIORITY, call POST /order (UniswapX). If routing is CLASSIC, WRAP, UNWRAP, or BRIDGE, call POST /swap (AMM).
+  - question: What values can the routing field in a /quote response take?
+    answer: |-
+      The possible values are CLASSIC (Standard AMM swap through Uniswap pools), DUTCH_V2 (UniswapX Dutch auction V2), DUTCH_V3 (UniswapX Dutch auction V3), PRIORITY (UniswapX MEV-protected priority order), WRAP (ETH to WETH wrap), UNWRAP (WETH to ETH unwrap), and BRIDGE (Cross-chain bridge).
+  - question: What are the /swap_5792 and /swap_7702 endpoints?
+    answer: POST /swap_5792 generates batch transactions for EIP-5792. POST /swap_7702 generates swap calldata which can be executed by a Uniswap 7702 delegation contract (not necessarily any EIP-7702 delegation contract). If you know your end user has a Uniswap 7702 wallet delegation, you can use this to get a calldata which will provide the swapper with a smoother experience including batched/chained transactions.
+  - question: Why should I never modify the data field of the swap response?
+    answer: 'The data field contains the encoded contract call and must always be present as a non-empty hex string (not "" or "0x"). The API endpoints return pre-validated and correct data; modifying its value may cause funds to be lost or onchain transaction reverts.'
+  - question: When is permitData returned in the /quote response?
+    answer: 'The API will return a permitData in the /quote response when one must be signed in order to perform the swap. The API will return "permitData": null in the /quote response when no permit needs to be signed.'
+  - question: What values does the permitAmount parameter accept?
+    answer: "The permitAmount parameter accepts 'FULL' or 'EXACT'. 'FULL' is the maximum uint256 amount of the token, and 'EXACT' is a limited amount of the token scoped for just this swap. (On exact-in swaps the 'EXACT' amount is exactly how much you will spend, whereas on exact-out it will be a bit more than what you need to account for slippage.)"
+  - question: Can I reuse a Permit2 signature from a previous quote?
+    answer: No. A Permit2 signature returned in /quote applies only to that specific quote. If you fetch a new quote, you must also use the new Permit2 message. Reusing an older signature will cause the swap to fail. Always use the Permit2 signature from the /quote response which you are submitting to the /swap endpoint.
+  - question: What HTTP status codes does the API return?
+    answer: "200: Request succeeded. 400: Invalid request (validation error). 401: Invalid API key. 429: Rate limit exceeded. 500: API error (retry with backoff). 503: Temporary unavailability (retry)."
+  - question: What does an HTTP 400 "Request validation error" mean?
+    answer: "Request validation errors are returned when a request does not contain the minimum required set of fields or has other syntactical errors. Some examples are a required field (ex. autoSlippage in the /quote endpoint) is not populated, or an address is missing a character (eg. is 39 characters long instead of 40). These errors typically include a specific error message which describes the field which could not be interpreted."
+  - question: What does an HTTP 401 Unauthorized error mean?
+    answer: "All API requests must be authenticated through the inclusion of a valid API key in the header of the request. If you do not have an API key, you may create one through the Uniswap Developer Platform. 401 errors may also be returned if the request has malformed or missing required headers, or if headers contain unsupported values. The API is specific about request header validation. In particular, ensure that your accept and content-type headers only include the value application/json."
+  - question: Can I query all tokens available to trade?
+    answer: No, at this time we do not offer an endpoint to query all tokens which are tradable. For more information on tradable tokens, see our guide on Supported Chains and Tokens.
+  - question: Which Universal Router address do I whitelist for my wallet or application?
+    answer: "The full list of Universal Router addresses per chain (which you may need to whitelist for your wallet(s)/application) is published in Supported Chains & Tokens. For the avoidance of any doubt, the most up to date list of routers is also maintained in GitHub."
+  - question: How often are new tokens added, and are they immediately tradeable?
+    answer: As new tokens are created they are automatically detected and made available for swapping within minutes of creation. New tokens may not be immediately swappable as it is dependent on there being sufficient liquidity in a pool for swapping to take place. The Verified tokens list is updated periodically as new tokens are supported by major centralized exchanges.
+  - question: Where can I find the list of unsupported tokens?
+    answer: "Uniswap Labs maintains a list of \"unsupported\" tokens, for which swapping is not permitted through any method due to legal or regulatory restrictions, at https://unsupportedtokens.uniswap.org/. If one or both tokens in the swap pair are on the unsupported token list, no quote will be returned."
+  - question: Which testnets are supported?
+    answer: "The supported testnets are Unichain Sepolia (chain ID 1301), Base Sepolia (84532), and Ethereum Sepolia (11155111). All listed testnets are accessible via the API; only Ethereum Sepolia and Unichain Sepolia are available as testnets on the Uniswap web interface. See Supported Chains & Tokens for the corresponding Universal Router addresses."
+  - question: Why do UniswapX quotes have more slippage than the tolerance I set?
+    answer: |-
+      Quotes in UniswapX work differently than they do in the Uniswap AMMs. While AMM quotes return the market price with some buffer for slippage, UniswapX works to get users price improvement over the market price. The difference between the best and worst price in a UniswapX order is called its spread. When you set a Slippage Tolerance in your quote request, you're only setting the amount below the market price you are willing to accept. UniswapX will still return a spread larger than your slippage tolerance when it's able to find a price above the market price.
+  - question: What is a priority quote?
+    answer: |-
+      A Priority quote comes from the PriorityOrderReactor, an older UniswapX auction type that is not currently returned by the API. Today the API returns DutchV2 on Mainnet and DutchV3 on the other supported chains, and it notifies you of the auction type in the quote response. For more information on different auction types, see the auction-types docs.
+  - question: Which chains and protocol versions does UniswapX support?
+    answer: "UniswapX v2 is supported on Mainnet (chain ID 1), Arbitrum (42161), and Base (8453). UniswapX v3 is supported on Arbitrum (42161), Avalanche (43114), Base (8453), BNB Smart Chain (56), Robinhood Chain (4663), Tempo (4217), and Unichain (130). If you submit a quote request with protocols set to UNISWAPX_V2 or UNISWAPX_V3 on a chain not listed above, the request will fail. Most integrators do not need to set protocols and can let the API select the best route."
+  - question: Are there restrictions on how I can integrate the API?
+    answer: The API is free to integrate into any application including whitelabeled swap experiences, wallets, mobile apps, and more. You are responsible for ensuring that your integration complies with the API Terms of Use. We are flexible regarding how you decide to offer the API through your application. Developers may create a whitelabel swap experience, add swapping to a custodial wallet, integrate the APIs into a mobile application, and more.
+  - question: Can I restrict token pairs available to my users?
+    answer: The APIs do not offer a way to restrict which tokens may be requested to the API, but your application may apply rules to restrict the list of tokens which your end users can access.
+  - question: Can I trial the API?
+    answer: Yes, sign up for a free developer account at the Uniswap Developer Platform. From there you can generate API keys and test at your own speed.
+  - question: Is there a cost to use the API?
+    answer: No, the API is free to use.
+  - question: How can I set my own fees?
+    answer: API integrators can set their own fee by providing the fee they will take from the swapper in their /quote request. See the integratorFees fields. The integratorFees field does not permit setting a fee greater than 5% of the swap value.
+  - question: Does Uniswap take positive slippage as fees?
+    answer: No. Uniswap Labs never takes positive slippage. All price improvement achieved at execution is for the benefit of the end swapper.
+  - question: How do I submit a ticket?
+    answer: Use the Uniswap API help form to reach the team without leaving this page. Note that we are unable to provide technical assistance with troubleshooting your code, deployment, or workflow.
+  - question: What information should I include when reporting an API issue to support?
+    answer: "When reporting issues, include: Request ID from API response, Full request/response payloads (sanitize sensitive data), Chain ID and transaction hash (if applicable), Timestamp of the request."
+  - question: Is there a sandbox environment?
+    answer: No, we do not offer a sandbox environment. Tests can be performed against our supported testnets through the production endpoints.
+  - question: Do you offer any developer dashboards, metrics, monitoring, or usage?
+    answer: At this time we do not provide any developer dashboards, metrics, monitoring, or usage reports. We hope to bring these to you soon as we continue to improve our API service offerings.
+---
+
+Use this page to find answers to the questions Uniswap API integrators ask most often, grouped by integration phase: enabling your API key, requesting quotes, executing swaps, handling Permit2 and errors, looking up reference data, and reaching support without leaving the docs.
+
+## API Enablement
+
+<details>
+  <summary>How long does it take to integrate the API?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Integration of the API can be done in less than two weeks. We provide [sample code](/docs/trading/swapping-api/swapping-code-examples) to help get you off the ground quickly. To get started, reach out to request an API key. If you are not yet in touch with Uniswap Labs, register your interest in integrating the API through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What are the API rate limits?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  By default, each API key is rate limited to 6 requests per second. If a higher rate is needed, please reach out through the help button in the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>How do I authenticate API requests?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  All requests require an API key, which must be provided in the `x-api-key` header of each request along with `Content-Type: application/json` and `Accept: application/json`. Example:
+
+  ```bash
+  curl -X POST https://trade-api.gateway.uniswap.org/v1/quote \
+    -H "x-api-key: YOUR_API_KEY" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"tokenIn":"0x...","tokenOut":"0x...","amount":"1000000",...}'
+  ```
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Is there an OpenAPI / OAS specification I can use to build a client?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Yes. AI builders can consume the full Open API Specification (OAS) at [https://trade-api.gateway.uniswap.org/v1/api.json](https://trade-api.gateway.uniswap.org/v1/api.json).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What Permit2 address do I need to whitelist for approvals?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The Permit2 address for all chains we support **EXCEPT** zkSync is: `0x000000000022D473030F116dDEE9F6B43aC78BA3`.
+
+  The Permit2 address for zkSync is: `0x0000000000225e31D15943971F47aD3022F714Fa`.
+
+  </div>
+
+</details>
+
+## Quotes and Quoting
+
+<details>
+  <summary>What parameter determines if I receive a gasless quote?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  When the [/quote](/docs/api-reference/aggregator_quote) endpoint's `routingPreference` is set to `BEST_PRICE`, the endpoint will attempt to find a quote that nets users the best execution price for a trade. Assuming the `protocols` are not limited, the endpoint will attempt to get a gasless order and a Uniswap Protocol swap quote, calculate which is currently providing the best price to the user including transaction costs, and return that quote.
+
+  Integrators of the API who only want gasless quotes may limit the `protocols` considered to just gasless options (e.g. UniswapX - see [Swap Routing](/docs/trading/swapping-api/concepts/swap-routing) for more details).
+
+  There are some scenarios where the API will not be able to get a gasless quote, even if the integrator attempts to force it. The most common reason for this (on chains where UniswapX is supported) is that the gas price of the swap is too high relative to the value of the trade. In cases where the gas cost is 20% or more of the total trade value, the API will always return Uniswap Protocol swap quotes (if permitted by `protocols`) or fail.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>How often are quotes refreshed?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Whenever you request a quote from the APIs, a new check is performed to get the freshest pricing.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>How do you recommend setting slippage?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  We recommend using our automatic slippage option in the /quote request. However, you may use your own slippage algorithm and directly populate your preferred slippage in the /quote request. When setting your own slippage, we recommend setting a low slippage for stable-to-stable swaps (ex. 20bps) and a higher slippage for stable-to-non-stable swaps and non-stable-to-non-stable swaps (since there is more price volatility between these pairs).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>How should I handle failed quotes?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  If a quote fails, the response includes helpful information to understand the problem with the request. The most common quote failure reason is that no route can be found for the quoted pair. This can occur for various reasons, including: all available routes would exceed the slippage tolerance, insufficient liquidity for the requested quote size, or no available route through the specified protocols. We recommend retrying the quote but modifying one or more parameters of the requested quote (ex. protocols used, slippage allowed, or the size of the swap).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>How do I quote the native token?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  See [How Do I Swap Native Tokens?](/docs/trading/swapping-api/supported-chains#how-do-i-swap-native-tokens). Note, to quote the native token via UniswapX you must set the [`x-erc20eth-enabled` header](/docs/api-reference/aggregator_quote) in your quote request to `true`.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Why am I getting "No Quotes Available" as a response?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  A quote response with "No Quotes Available" means that the Uniswap router was unable to find a route for the proposed swap. This can happen for a number of reasons, many of which can be easily avoided by understanding the API constraints. While not exhaustive, some of the most common issues are:
+  * There is insufficient liquidity to fill the swap
+  * If making a bridge request, the selected token cannot be bridged between the two selected networks (check [Supported Bridges](/docs/api-reference/get_swappable_tokens))
+  * If making a UniswapX-only request, the amount is below 300 USDC equivalent and the UniswapX quote does not improve on the AMM route by at least 0.2% (see [Supported Chains](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support))
+  * The request is requesting a bridge and swap (currently not supported)
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What are the valid values for the `protocols` field?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The possible values are `V2`, `V3`, `V4`, `UNISWAPX_V2`, and `UNISWAPX_V3`. To perform a swap using only UniswapX protocol liquidity, specify `protocols` as `UNISWAPX_V2` **or** `UNISWAPX_V3`. Multiple UniswapX protocols may not be specified in the same request.
+
+  For more information, please visit [Swap Routing](/docs/trading/swapping-api/concepts/swap-routing).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Can I do a wrap/unwrap through UniswapX?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  No. Wrapping/unwrapping is not supported through UniswapX protocols at all, and a request to wrap/unwrap when `protocols` is set to any UniswapX protocol will fail. To perform a wrap/unwrap or bridge action, do not specify values for `protocols` or `routingPreference`.
+
+  Please also note, UniswapX only supports WETH right now and ETH is not supported. You will never get a UniswapX response if ETH is the input token.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>How fresh do quotes need to be before broadcasting?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Quotes are time-sensitive due to price volatility and token pairs. Uniswap recommends refreshing quotes if they are more than 30 seconds old before broadcasting, and using the `deadline` parameter to prevent execution of stale quotes.
+
+  </div>
+
+</details>
+
+## Swapping
+
+<details>
+  <summary>How can I simulate a swap before submitting it?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Whenever you request a quote from our endpoints we will automatically simulate the quote to ensure that the result will be a viable route should you decide to proceed to the swap step. Further, when you make a request to the [`/swap`](/docs/api-reference/create_swap_transaction) endpoint, you may request that the calldata we generate be simulated to further ensure that it is valid and will be processed. (Note that simulation is not a guarantee that a swap will be successful onchain as factors including gas and slippage may change between the time of the /swap response and you placing the transaction onchain).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>After /quote, when do I call /swap versus /order?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Check the top-level `routing` field in the `/quote` response:
+
+  * If `routing` is `DUTCH_V2`, `DUTCH_V3`, or `PRIORITY` → call `POST /order` (UniswapX).
+  * If `routing` is `CLASSIC`, `WRAP`, `UNWRAP`, or `BRIDGE` → call `POST /swap` (AMM).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What values can the `routing` field in a /quote response take?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The possible values are:
+
+  * `CLASSIC`: Standard AMM swap through Uniswap pools
+  * `DUTCH_V2`: UniswapX Dutch auction V2
+  * `DUTCH_V3`: UniswapX Dutch auction V3
+  * `PRIORITY`: UniswapX MEV-protected priority order
+  * `WRAP`: ETH to WETH wrap
+  * `UNWRAP`: WETH to ETH unwrap
+  * `BRIDGE`: Cross-chain bridge
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What are the /swap_5792 and /swap_7702 endpoints?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  `POST /swap_5792` generates batch transactions for EIP-5792. `POST /swap_7702` generates swap calldata which can be executed by a Uniswap 7702 delegation contract (not necessarily any EIP-7702 delegation contract).
+
+  If you know your end user has a Uniswap 7702 wallet delegation, you can use this to get a calldata which will provide the swapper with a smoother experience including batched/chained transactions.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Why should I never modify the `data` field of the swap response?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The `data` field contains the encoded contract call and must always be present as a non-empty hex string (not `""` or `"0x"`). The API endpoints return pre-validated and correct data; modifying its value may cause funds to be lost or onchain transaction reverts.
+
+  </div>
+
+</details>
+
+## Permit2
+
+<details>
+  <summary>When is `permitData` returned in the /quote response?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The API will return a `permitData` in the `/quote` response when one must be signed in order to perform the swap. The API will return `"permitData": null` in the `/quote` response when no permit needs to be signed.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What values does the `permitAmount` parameter accept?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The `permitAmount` parameter accepts `'FULL'` or `'EXACT'`. `'FULL'` is the maximum `uint256` amount of the token, and `'EXACT'` is a limited amount of the token scoped for just this swap.
+
+  (On exact-in swaps the `'EXACT'` amount is exactly how much you will spend, whereas on exact-out it will be a bit more than what you need to account for slippage.)
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Can I reuse a Permit2 signature from a previous quote?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  No. A Permit2 signature returned in `/quote` applies only to that specific quote. If you fetch a new quote, you must also use the new Permit2 message. Reusing an older signature will cause the swap to fail. Always use the Permit2 signature from the `/quote` response which you are submitting to the `/swap` endpoint.
+
+  </div>
+
+</details>
+
+## Error Handling
+
+<details>
+  <summary>What HTTP status codes does the API return?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  * `200`: Request succeeded
+  * `400`: Invalid request (validation error)
+  * `401`: Invalid API key
+  * `429`: Rate limit exceeded
+  * `500`: API error (retry with backoff)
+  * `503`: Temporary unavailability (retry)
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What does an HTTP 400 "Request validation error" mean?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Request validation errors are returned when a request does not contain the minimum required set of fields or has other syntactical errors. Some examples are a required field (ex. `autoSlippage` in the `/quote` endpoint) is not populated, or an address is missing a character (eg. is 39 characters long instead of 40). These errors typically include a specific error message which describes the field which could not be interpreted.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What does an HTTP 401 Unauthorized error mean?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  All API requests must be authenticated through the inclusion of a valid API key in the header of the request. If you do not have an API key, you may create one through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard). 401 errors may also be returned if the request has malformed or missing required headers, or if headers contain unsupported values.
+
+  The API is specific about request header validation. In particular, ensure that your `accept` and `content-type` headers only include the value `application/json`.
+
+  </div>
+
+</details>
+
+## Reference Data
+
+<details>
+  <summary>Can I query all tokens available to trade?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  No, at this time we do not offer an endpoint to query all tokens which are tradable. For more information on tradable tokens, see our guide on [Supported Chains and Tokens](/docs/trading/swapping-api/supported-chains).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Which Universal Router address do I whitelist for my wallet or application?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The full list of Universal Router addresses per chain (which you may need to whitelist for your wallet(s)/application) is published in [Supported Chains & Tokens](/docs/trading/swapping-api/supported-chains#supported-chains-for-swapping). For the avoidance of any doubt, the most up to date list of routers is also maintained in [GitHub](https://github.com/Uniswap/sdks/blob/main/sdks/universal-router-sdk/src/utils/constants.ts).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>How often are new tokens added, and are they immediately tradeable?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  As new tokens are created they are automatically detected and made available for swapping within minutes of creation. New tokens may not be immediately swappable as it is dependent on there being sufficient liquidity in a pool for swapping to take place. The [Verified tokens list](https://tokens.uniswap.org/) is updated periodically as new tokens are supported by major centralized exchanges.
+
+  </div>
+
+</details>
+
+<details id="unsupported-tokens-list">
+  <summary>Where can I find the list of unsupported tokens?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Uniswap Labs maintains a list of "unsupported" tokens, for which swapping is not permitted through any method due to legal or regulatory restrictions, at [https://unsupportedtokens.uniswap.org/](https://unsupportedtokens.uniswap.org/). If one or both tokens in the swap pair are on the unsupported token list, no quote will be returned.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Which testnets are supported?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The supported testnets are Unichain Sepolia (chain ID 1301), Base Sepolia (84532), and Ethereum Sepolia (11155111). All listed testnets are accessible via the API; only Ethereum Sepolia and Unichain Sepolia are available as testnets on the Uniswap web interface. See [Supported Chains & Tokens](/docs/trading/swapping-api/supported-chains#supported-chains-for-swapping) for the corresponding Universal Router addresses.
+
+  </div>
+
+</details>
+
+## Mechanics of UniswapX
+
+<details>
+  <summary>Why do UniswapX quotes have more slippage than the tolerance I set?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Quotes in UniswapX work differently than they do in the Uniswap AMMs. While AMM quotes return the market price with some buffer for slippage, UniswapX works to get users price improvement _over the market price._ The difference between the best and worst price in a UniswapX order is called its **spread**.
+
+  When you set a Slippage Tolerance in your quote request, you're only setting the amount below the market price you are willing to accept. UniswapX will still return a spread larger than your slippage tolerance when it's able to find a price above the market price.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What is a priority quote?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  When you request a UniswapX quote, the API returns the auction type for that chain:
+  - Mainnet: DutchV2
+  - All other supported chains: DutchV3
+
+  A Priority quote comes from the `PriorityOrderReactor`, an older UniswapX auction type that is not currently returned by the API. Uniswap will notify you of the auction type being used in the quote response. For more information on different auction types, see [UniswapX Auction Types](/docs/liquidity/uniswapx/concepts/auction-types).
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Which chains and protocol versions does UniswapX support?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  UniswapX v2 is supported on Mainnet (chain ID 1), Arbitrum (42161), and Base (8453). UniswapX v3 is supported on Arbitrum (42161), Avalanche (43114), Base (8453), BNB Smart Chain (56), Robinhood Chain (4663), Tempo (4217), and Unichain (130).
+
+  If you submit a quote request with `protocols` set to `UNISWAPX_V2` or `UNISWAPX_V3` on a chain not listed above, the request will fail. Most integrators do not need to set `protocols` and can let the API select the best route.
+
+  </div>
+
+</details>
+
+## Commercial
+
+<details>
+  <summary>Are there restrictions on how I can integrate the API?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The API is free to integrate into any application including whitelabeled swap experiences, wallets, mobile apps, and more. However, you are responsible for ensuring that your integration complies with our [API Terms of Use](https://support.uniswap.org/hc/en-us/articles/43018872248589-API-Terms-of-Use).
+
+  We are very flexible regarding how you decide to offer the API through your application. Developers may create a whitelabel swap experience, add swapping to a custodial wallet, integrate the APIs into a mobile application, and more.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Can I restrict token pairs available to my users?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The APIs do not offer a way to restrict which tokens may be requested to the API, but your application may apply rules to restrict the list of tokens which your end users can access.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Can I trial the API?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Yes, sign up for a free developer account at [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome). From there you can generate API keys and test at your own speed.
+
+  </div>
+
+</details>
+
+## Fees
+
+<details>
+  <summary>Is there a cost to use the API?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  No, the API is free to use.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>How can I set my own fees?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  API Integrators can set their own fee by providing the fee they will take from the swapper in their `/quote` request. See the [`integratorFees` fields](/docs/api-reference/aggregator_quote). The `integratorFees` field does not permit setting a fee greater than 5% of the swap value.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Does Uniswap take positive slippage as fees?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  No. Uniswap Labs never takes positive slippage. All price improvement achieved at execution is for the benefit of the end swapper.
+
+  </div>
+
+</details>
+
+## Support
+
+<details>
+  <summary>How do I submit a ticket?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Use the <HelpCenter topic="uniswap-api">Uniswap API help form</HelpCenter> to reach the team without leaving this page. Note that we are unable to provide technical assistance with troubleshooting your code, deployment, or workflow.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What information should I include when reporting an API issue to support?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  When reporting issues, include:
+
+  * Request ID from API response
+  * Full request/response payloads (sanitize sensitive data)
+  * Chain ID and transaction hash (if applicable)
+  * Timestamp of the request
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Is there a sandbox environment?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  No, we do not offer a sandbox environment. Tests can be performed against our [supported testnets](/docs/trading/swapping-api/supported-chains) through the production endpoints.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Do you offer any developer dashboards, metrics, monitoring, or usage?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  At this time we do not provide any developer dashboards, metrics, monitoring, or usage reports. However, we hope to bring these to you soon as we continue to improve our API service offerings.
+
+  </div>
+
+</details>

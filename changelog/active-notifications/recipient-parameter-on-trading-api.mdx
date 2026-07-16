@@ -1,0 +1,26 @@
+---
+title: 'Custom Recipient on Trading API'
+description: 'Posted: May 5, 2026 | Effective: May 6, 2026'
+type: changelog
+datePublished: '2026-05-05'
+---
+
+The Uniswap Trading API now supports an optional `recipient` parameter that routes swap output tokens to a different address than the swapper.
+
+**What changed?**
+
+The `/quote`, `/swap`, and `/order` endpoints now accept an optional `recipient` field. When provided, the output of the swap is delivered to the `recipient` address instead of the original swapper. Input tokens are still pulled from `swapper`.
+
+The new field is supported across all routing types currently offered by the Trading API, including UniswapX (DutchV2 and DutchV3 orders) and onchain AMM swaps via the Universal Router.
+
+**Why did this change?**
+
+This is a first step toward enabling payment flows through the Trading API, where an integrator may want the swap output to land on an address other than the wallet performing the swap. Beyond payments, it unlocks use cases such as funding a smart account, settling to a treasury address, or routing proceeds to a contract.
+
+**What do I need to do?**
+
+Nothing. The `recipient` field is optional and fully backwards-compatible. When omitted, swap output continues to go to the `swapper` address as before, so existing integrations require no changes.
+
+To use the new behavior, include `recipient` in your `/quote` request and the field will flow through the rest of the swap pipeline. See the [API reference](/docs/api-reference) for the updated request schema.
+
+The `/send` endpoint is unaffected because it already accepts a recipient.

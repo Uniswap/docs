@@ -1,0 +1,663 @@
+---
+title: Swapping API Integration Guide
+description: Build swapping integrations with the Uniswap API using this practical step-by-step guide.
+---
+
+<Callout title="Cross-chain and multi-step trades" type="info">
+
+This guide covers single-transaction swaps. When `/quote` returns `"routing": "CHAINED"` (a trade that crosses chains or needs more than one step), drive execution through the `/plan` endpoints instead. See the [Chained Actions Integration Guide](/docs/trading/swapping-api/chained-actions-integration).
+
+</Callout>
+
+### Authentication
+
+All requests require an API key:
+
+```bash
+curl -X POST https://trade-api.gateway.uniswap.org/v1/quote \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"tokenIn":"0x...","tokenOut":"0x...","amount":"1000000",...}'
+```
+
+### Basic quote request
+
+```typescript
+const response = await fetch('https://trade-api.gateway.uniswap.org/v1/quote', {
+  method: 'POST',
+  headers: {
+    'x-api-key': 'YOUR_API_KEY',
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
+  body: JSON.stringify({
+    tokenIn: '0x0000000000000000000000000000000000000000', // ETH
+    tokenOut: '0xdAC17F958D2ee523a2206206994597C13D831ec7', // USDT
+    tokenInChainId: 1,
+    tokenOutChainId: 1,
+    type: 'EXACT_INPUT',
+    amount: '1000000000000000000', // 1 ETH in wei
+    swapper: '0x...', // User's wallet address
+    slippageTolerance: 0.5 // 0.5%
+  })
+});
+
+const quote = await response.json();
+```
+
+AI builders can consume the full Open API Specification (OAS) at [https://trade-api.gateway.uniswap.org/v1/api.json](https://trade-api.gateway.uniswap.org/v1/api.json).
+
+Full code examples for completing a basic swap workflow are available in [Swapping Code Examples](/docs/trading/swapping-api/swapping-code-examples).
+
+## Architecture
+
+### Client-side responsibilities
+
+The Uniswap API swapping endpoints are a quote and transaction building service augmented with useful validation checks. The API handles:
+
+- **Route Finding**: Identifying the most efficient route using Uniswap AMM and UniswapX liquidity
+- **Transaction Creation**: Generation of validated transaction calldata, ready for signature by the user's wallet
+- **Balance Checks**: Verify token balances before requesting quotes (checked during simulation)
+- **Allowance Management**: Check and request token approvals (via [Permit2](/docs/trading/swapping-api/concepts/permit2))
+- **Gas Estimation**: Suggested gas usage
+- **Transaction Monitoring**: Track confirmations (see [Swap Status](/docs/api-reference/get_swaps) and [UniswapX Order Status](/docs/api-reference/get_order))
+
+Your application handles:
+
+- **Nonce Management**: Track transaction nonces for the user's wallet
+- **Transaction Broadcasting**: Sign and submit transactions via your RPC provider
+- **Gas Payment**: Actual gas usage
+- **Transaction Error Handling**: Handle reverts
+
+### Required infrastructure
+
+Your integration must include:
+
+- **RPC Provider**: Connection to blockchain nodes (ex. Infura, Alchemy, or self-hosted)
+- **Web3 Library**: ethers.js, viem, or web3.js for transaction signing
+- **Wallet Integration**: Uniswap Wallet, MetaMask, or similar for user signing
+
+See the [Build Prerequisites](/docs/trading/swapping-api/building-prerequisites) for more details.
+
+### Data flow
+
+```
+User Request
+    |
+Your Application
+    |-- (Optionally) Check balances (via your RPC)
+    |-- Checks wallet approval for Permit2 (Uniswap API)
+    |-- Get user signature for Permit2 approval (Wallet)
+    |-- Request quote (Uniswap API)
+    |-- Approve Permit2 spending (Wallet)
+    |-- Build transaction (Uniswap API)
+    |-- Get user signature for swap (Wallet)
+    |-- Manage nonce (your tracking)
+    +-- Broadcast transaction (via your RPC)
+         |
+    Blockchain
+```
+
+## Available Endpoints
+
+### Core endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| [POST /check_approval](/docs/api-reference/check_approval) | Check if token approval is required |
+| [POST /quote](/docs/api-reference/aggregator_quote) | Generate a quote for a token swap |
+| [POST /swap](/docs/api-reference/create_swap_transaction) | Convert an AMM quote into an unsigned transaction |
+| [POST /order](/docs/api-reference/post_order) | Create a UniswapX order (gasless) |
+| [GET /swaps](/docs/api-reference/get_swaps) | Check status of an AMM transaction |
+| [GET /orders](/docs/api-reference/get_order) | Check status of a UniswapX order |
+
+### Special case endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| [POST /swap_5792](/docs/api-reference/create_swap_5792_transaction) | Generate batch transactions for EIP-5792 |
+| [POST /swap_7702](/docs/api-reference/create_swap_7702_transaction) | Generate transaction with EIP-7702 delegation |
+
+## Routing Types
+
+The API returns different quote types based on the optimal routing strategy. The quote type is provided in the top-level `routing` field of the response from the /quote endpoint:
+
+| Type | Description |
+|------|-------------|
+| CLASSIC | Standard AMM swap through Uniswap pools |
+| DUTCH_V2 | UniswapX Dutch auction V2 |
+| DUTCH_V3 | UniswapX Dutch auction V3 |
+| PRIORITY | UniswapX MEV-protected priority order |
+| WRAP | ETH to WETH wrap |
+| UNWRAP | WETH to ETH unwrap |
+| BRIDGE | Cross-chain bridge |
+
+After receiving a /quote response, check the `routing` field:
+- If routing is "DUTCH_V2", "DUTCH_V3", or "PRIORITY" → call POST /order
+- If routing is "CLASSIC", "WRAP", "UNWRAP", or "BRIDGE" → call POST /swap
+
+### Native ETH input for UniswapX
+
+By default, UniswapX quotes cannot use native ETH balances when `tokenIn` is the native currency address (`0x0000000000000000000000000000000000000000`). To use native ETH in UniswapX, set `x-erc20eth-enabled` to `true` on the `/quote` request.
+
+If the quote response returns a UniswapX routing type (`DUTCH_V2`, `DUTCH_V3`, or `PRIORITY`), include the `x-erc20eth-enabled: true` header when you submit the signed order to `/order`.
+
+```typescript
+const nativeEthQuoteResponse = await fetch('https://trade-api.gateway.uniswap.org/v1/quote', {
+  method: 'POST',
+  headers: {
+    'x-api-key': 'YOUR_API_KEY',
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'x-erc20eth-enabled': 'true',
+  },
+  body: JSON.stringify({
+    tokenIn: '0x0000000000000000000000000000000000000000',
+    tokenOut: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    tokenInChainId: 1,
+    tokenOutChainId: 1,
+    type: 'EXACT_INPUT',
+    amount: '1000000000000000000',
+    swapper: '0x...',
+  }),
+});
+```
+
+## Schema Reference
+
+### TransactionRequest
+
+The `TransactionRequest` object returned by `/check_approval` and `/swap` contains all fields needed to broadcast a transaction:
+
+```typescript
+interface TransactionRequest {
+  to: string;           // Contract address to call
+  from: string;         // User's wallet address
+  data: string;         // Encoded function call (hex string)
+  value: string;        // Native token amount (wei)
+  chainId: number;
+  gasLimit?: string;
+  maxFeePerGas?: string;
+  maxPriorityFeePerGas?: string;
+  gasPrice?: string;    // Legacy gas price
+}
+```
+
+#### Critical Field: `data`
+
+The `data` field contains the encoded contract call and **must always be present** in swap transactions.
+
+<Callout title="Validation Requirements" type="warn">
+
+- **Never Empty**: The `data` field must be a non-empty hex string (not `""` or `"0x"`).
+- **Never Modify**: The API endpoints return pre-validated and correct data. Modifying its value may cause funds to be lost or onchain transaction reverts.
+- **Always Validate**: Check `data` exists before broadcasting.
+
+</Callout>
+
+### PermitSingleData
+
+For Permit2-based approvals:
+
+```typescript
+interface PermitSingleData {
+  domain: TypedDataDomain;
+  values: PermitSingle;
+  types: Record<string, TypedDataField[]>;
+}
+
+interface PermitSingle {
+  details: {
+    token: string;
+    amount: string;
+    expiration: string;
+    nonce: string;
+  };
+  spender: string;
+  sigDeadline: string;
+}
+```
+
+## Permit2 Flow
+
+Permit2 is a token approval system which uses an offchain (gasless) EIP-712 signed message to allow an onchain contract to spend tokens from a wallet within pre-defined bounds. The API will return a `permitData` in the /quote response when one must be signed in order to perform the swap. The API will return `"permitData": null` in the /quote response when no permit needs to be signed.
+
+### Implementation steps
+
+#### Get quote with permit data
+
+```typescript
+const quoteResponse = await fetch('/quote', {
+  method: 'POST',
+  headers: {
+    'x-api-key': API_KEY,
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
+  body: JSON.stringify({
+    tokenIn: '0x...',
+    tokenOut: '0x...',
+    amount: '1000000',
+    type: 'EXACT_INPUT',
+    swapper: '0x...',
+    tokenInChainId: 1,
+    tokenOutChainId: 1,
+    permitAmount: 'FULL',  // or 'EXACT'
+    slippageTolerance: 0.5
+  })
+});
+
+const {quote, permitData, routing} = await quoteResponse.json();
+```
+
+#### Sign the permit
+
+```typescript
+let signature: string | undefined;
+
+if (permitData) {
+  signature = await wallet._signTypedData(
+    permitData.domain,
+    permitData.types,
+    permitData.values
+  );
+}
+```
+
+#### Submit to /swap
+```typescript
+// CORRECT - Both fields provided
+const swapRequest = {
+  quote: quote,
+  signature: signature,
+  permitData: permitData
+};
+
+// CORRECT - No permit (both fields omitted), ONLY when no permitData is returned in the /quote response
+const swapRequest = {
+  quote: quote
+  // signature and permitData omitted entirely
+};
+
+// WRONG - Missing permitData
+const swapRequest = {
+  quote: quote,
+  signature: signature      // Will fail validation
+};
+
+// WRONG - Missing signature
+const swapRequest = {
+  quote: quote,
+  permitData: permitData    // Will fail validation
+};
+```
+
+#### Broadcast transaction
+
+```typescript
+const {swap} = await swapResponse.json();
+
+validateTransaction(swap);
+
+const signedTx = await wallet.signTransaction(swap);
+const txReceipt = await provider.sendTransaction(signedTx);
+```
+
+## Error Handling
+
+### HTTP status codes
+
+| Code | Meaning |
+|------|---------|
+| 200 | Request succeeded |
+| 400 | Invalid request (validation error) |
+| 401 | Invalid API key |
+| 429 | Rate limit exceeded |
+| 500 | API error (retry with backoff) |
+| 503 | Temporary unavailability (retry) |
+
+### Error response format
+
+```typescript
+interface ErrorResponse {
+  error: string;
+  message: string;
+  details?: Record<string, any>;
+}
+```
+
+### Common errors
+
+#### No quotes available
+
+**Cause**: No route found for the requested swap
+
+**Solutions**:
+- Verify token addresses are correct and on the specified chain
+- Check chains are available for selected protocol (note [limited chain support for UniswapX](/docs/trading/swapping-api/supported-chains))
+- Try different protocols or routing preferences
+- Reduce trade size
+
+#### Validation error
+
+**Cause**: Invalid request parameters
+
+**Solutions**:
+- Check all required fields are present
+- Verify addresses are valid checksummed addresses
+- Ensure amount is in correct units (wei, not ether)
+- Validate chain IDs are supported
+
+#### Authentication error
+
+**Cause**: Invalid or missing authentication header
+
+**Solutions**:
+- Include the authentication header with a valid API key
+- Check that API key was copied correctly (must match exact capitalization)
+
+### Transaction revert scenarios
+
+If a transaction reverts onchain, check the onchain revert error. Additionally check:
+
+1. **Check `data` field**: Verify it's not empty
+2. **Verify token balance**: User has sufficient tokens at broadcast time
+3. **Check allowance**: Token approval is sufficient
+4. **Check slippage**: Price moved beyond slippage tolerance
+5. **Check deadline**: Quote expired before broadcast
+6. **Nonce collision**: Another transaction used the same nonce
+
+**Recommended Client-Side Checks:**
+
+```typescript
+async function validateBeforeBroadcast(
+  tx: TransactionRequest,
+  provider: Provider,
+  token: string,
+  amount: string
+): Promise<void> {
+  // 1. Validate transaction structure
+  if (!tx.data || tx.data === '' || tx.data === '0x') {
+    throw new Error('Invalid transaction: empty data field');
+  }
+
+  // 2. Check native balance
+  const balance = await provider.getBalance(tx.from);
+  if (balance.lt(tx.value)) {
+    throw new Error('Insufficient native token balance');
+  }
+
+  // 3. Check ERC-20 balance (if applicable)
+  if (token !== NATIVE_TOKEN_ADDRESS) {
+    const tokenContract = new Contract(token, ERC20_ABI, provider);
+    const tokenBalance = await tokenContract.balanceOf(tx.from);
+    if (tokenBalance.lt(amount)) {
+      throw new Error('Insufficient token balance');
+    }
+  }
+
+  // 4. Simulate transaction (optional but recommended)
+  try {
+    await provider.call(tx);
+  } catch (error) {
+    throw new Error(`Transaction simulation failed: ${error.message}`);
+  }
+}
+```
+
+## Best Practices
+
+### Quote freshness
+
+Quotes are time-sensitive due to price volatility:
+
+- **Refresh quotes** if more than 30 seconds old before broadcasting
+- **Use `deadline`** parameter to prevent execution of stale quotes
+- **Monitor price impact** and warn users of significant changes
+
+```typescript
+const QUOTE_EXPIRY_MS = 30000; // 30 seconds
+
+const quoteTimestamp = Date.now();
+// ... user reviews and signs ...
+if (Date.now() - quoteTimestamp > QUOTE_EXPIRY_MS) {
+  quote = await fetchQuote(params);  // Fetch fresh quote
+}
+```
+
+### Transaction validation
+
+Always validate transaction payloads before broadcasting:
+
+```typescript
+function validateSwapTransaction(tx: TransactionRequest): void {
+  if (!tx.data || tx.data === '' || tx.data === '0x') {
+    throw new Error('Transaction data is empty');
+  }
+
+  if (!tx.to || !isAddress(tx.to)) {
+    throw new Error('Invalid recipient address');
+  }
+
+  if (!tx.from || !isAddress(tx.from)) {
+    throw new Error('Invalid sender address');
+  }
+
+  if (tx.maxFeePerGas && tx.gasPrice) {
+    throw new Error('Cannot set both maxFeePerGas and gasPrice');
+  }
+
+  if (tx.value && BigNumber.from(tx.value).lt(0)) {
+    throw new Error('Invalid transaction value');
+  }
+}
+```
+
+### Gas management
+
+The API provides gas estimates, but clients should:
+
+- **Update gas prices**: Use `refreshGasPrice: true` for fresh estimates or check your own RPC
+- **Handle gas spikes**: Warn users when gas is unusually high
+- **EIP-1559 vs Legacy**: Use EIP-1559 on supported chains
+
+### Slippage configuration
+
+Balance protection vs execution success:
+
+| Setting | Slippage | Use Case |
+|---------|----------|----------|
+| Conservative | 0.05-0.5% | Stable pairs, low volatility |
+| Moderate | 0.5-1% | Most swaps |
+| Aggressive | 1-5% | Large trades, volatile markets, low liquidity |
+
+### Error recovery
+
+If a quote fails, read the error message to address the specific error cause. If the quote fails due to no quotes available, implement retry logic with exponential backoff:
+
+```typescript
+async function fetchQuoteWithRetry(
+  params: QuoteRequest,
+  maxRetries = 3
+): Promise<QuoteResponse> {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const response = await fetch('/quote', {
+        method: 'POST',
+        headers: {
+          'x-api-key': API_KEY,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(params)
+      });
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          await sleep(Math.pow(2, attempt) * 1000);
+          continue;
+        }
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (attempt === maxRetries - 1) throw error;
+      await sleep(Math.pow(2, attempt) * 1000);
+    }
+  }
+  throw new Error('Max retries exceeded');
+}
+```
+
+### Monitoring & logging
+
+We highly recommend that you track key metrics for production reliability:
+
+```typescript
+// Example metrics to track
+interface SwapMetrics {
+  quoteLatency: number;
+  swapLatency: number;
+  revertRate: number;
+}
+
+function logSwapAttempt(
+  params: QuoteRequest,
+  quoteResponse: QuoteResponse,
+  txHash?: string,
+  error?: Error
+): void {
+  const metrics = {
+    timestamp: Date.now(),
+    chainId: params.tokenInChainId,
+    tokenIn: params.tokenIn,
+    tokenOut: params.tokenOut,
+    amount: params.amount,
+    routing: quoteResponse.routing,
+    txHash,
+    success: !!txHash && !error,
+    error: error?.message
+  };
+
+  analytics.track('swap_attempt', metrics);
+}
+```
+
+## Troubleshooting
+
+### Quote issues
+
+**Problem**: No quotes returned
+
+- Verify token addresses are valid for the specified chains
+- Confirm liquidity exists for the trading pair
+- Ensure the amount is within reasonable bounds
+- Verify chain IDs are [supported](/docs/trading/swapping-api/supported-chains)
+- Check that specified protocols (if any) are available on the target chain
+
+**Problem**: Quote price seems incorrect
+
+- Verify the amount is in the correct units (wei, not ether)
+- Confirm token decimals match the onchain contract
+- Review slippage tolerance for appropriateness
+- Evaluate price impact relative to trade size
+
+
+### Transaction issues
+
+**Problem**: Transaction reverts onchain
+
+- Verify the `data` field is not empty (see [Transaction Validation](#transaction-validation))
+- Confirm the token balance is sufficient at broadcast time
+- Ensure token approval is in place (if not using Permit2)
+- Check that the quote has not expired
+- Review slippage tolerance and adjust (tighten or loosen) as needed
+- Verify gas limit is sufficient
+- Confirm nonce has no collisions with pending transactions
+
+**Problem**: Transaction takes too long to confirm
+
+- Use `refreshGasPrice: true` to get competitive gas pricing or check your own RPC
+- Check network congestion on the target chain
+- Verify the transaction nonce is not blocked by a pending transaction
+
+### API issues
+
+**Problem**: 429 Rate Limit Exceeded
+
+**Solution**: Implement exponential backoff and request caching:
+
+```typescript
+const cache = new Map<string, {data: any, timestamp: number}>();
+
+async function fetchWithCache(
+  url: string,
+  params: any,
+  cacheDuration = 30000
+): Promise<any> {
+  const cacheKey = `${url}:${JSON.stringify(params)}`;
+  const cached = cache.get(cacheKey);
+
+  if (cached && Date.now() - cached.timestamp < cacheDuration) {
+    return cached.data;
+  }
+
+  const data = await fetchWithRetry(url, params);
+  cache.set(cacheKey, {data, timestamp: Date.now()});
+  return data;
+}
+```
+
+**Problem**: Inconsistent responses
+
+- Review slippage tolerance and adjust (tighten or loosen) as needed
+- Confirm liquidity exists for the trading pair
+
+
+### Integration issues
+
+**Problem**: Permit2 validation errors
+
+**Solution**: Check that permit signature is built correctly.
+
+```typescript
+let signature
+if (permitData) {
+  signature = await signer._signTypedData(permitData.domain, permitData.types, permitData.values)
+}
+```
+
+<Callout title="EIP-712" type="warn">
+
+The API does not return every field that some libraries expect to generate an EIP-712 signature. You may need to add EIP712Domain or other fields in the function call to the signature library you are using.
+
+</Callout>
+
+## Limitations
+
+<Callout title="UniswapX Constraints" type="warn">
+
+- **`UNISWAPX_V2`**: Mainnet, Arbitrum, Base only
+- **`UNISWAPX_V3`**: Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, Unichain
+- **UniswapX minimum**: 300 USDC equivalent on all supported chains
+- **Native token swaps**: UniswapX for native token input only when the `x-erc20eth-enabled` header is set to `true` on `/quote` and `/order`
+
+Requests below the minimum threshold will return "No quotes available." See [Supported Chains](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support) for details.
+
+</Callout>
+
+## API Reference
+
+For full request and response schemas, see the [API Reference](/docs/api-reference).
+
+## Support
+
+For support, reach out via the help link in the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard).
+
+When reporting issues, include:
+- Request ID from API response
+- Full request/response payloads (sanitize sensitive data)
+- Chain ID and transaction hash (if applicable)
+- Timestamp of the request

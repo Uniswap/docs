@@ -1,0 +1,84 @@
+---
+id: fillingondutchv3chains
+title: Filling Dutch V3 Auctions
+description: Fill UniswapX orders on chains that use the DutchV3 reactor, where exclusivity and decay are measured in block numbers.
+---
+
+Ethereum uses the Dutch V2 reactor. Every other UniswapX chain that runs a Dutch auction uses the [DutchV3 reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol), so the execution flow is the same across them. This guide covers:
+
+- **Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, and Unichain**: RFQ with exclusive filling, the same model as [Ethereum mainnet](/docs/liquidity/uniswapx/filling/mainnet/filling-on-mainnet) but with block-based timing.
+
+Find reactor, quoter, and Permit2 addresses on the [Deployments](/docs/liquidity/uniswapx/deployments) page.
+
+## When can I fill orders?
+
+On these chains, a winning [quoter](/docs/liquidity/uniswapx/filling/mainnet/become-a-quoter) from an RFQ has priority to fill during an exclusivity window. Permissionless fillers become eligible in two cases:
+
+- **Soft exclusivity override**: When an order's `exclusivityOverrideBps` is greater than zero, non-exclusive fillers can fill during the exclusivity window by providing extra tokens to the swapper. Each output amount is scaled up by the override threshold. For example, with `exclusivityOverrideBps` of `25`, a non-exclusive filler must deliver 0.25% more output than the exclusive price, so the swapper is never worse off. If you attempt to fill during exclusivity without meeting that increase, the reactor reverts with `NoExclusiveOverride`.
+- **Exclusivity expiration**: After the window ends, the order enters an open Dutch auction for all fillers with no penalty.
+
+On all of these chains, the exclusivity window and the auction decay are measured in **block numbers** rather than timestamps. This takes advantage of faster block times for more granular price updates than the second-level granularity of time-based decay.
+
+## Retrieving signed orders
+
+All signed Dutch orders created through the Uniswap interface are available via the UniswapX Orders Endpoint. [Swagger documentation](https://api.uniswap.org/v2/uniswapx/docs) is available. Pass the chain ID of the chain you want to fill:
+
+```bash
+GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=42161&limit=1000&orderType=Dutch_V3
+```
+
+Use one of the following chain IDs: Arbitrum `42161`, Avalanche `43114`, Base `8453`, BNB Smart Chain `56`, Robinhood Chain `4663`, Tempo `4217`, Unichain `130`. Quote requests include a `tokenInChainId` field that identifies the chain of the intent. If you are not interested in quoting for a given chain, respond with HTTP status code `204`.
+
+Decode the `encodedOrder` field returned from the endpoint with the [UniswapX SDK](https://github.com/Uniswap/sdks/tree/main/sdks/uniswapx-sdk). Each order represents a fillable user trade.
+
+## Filling orders
+
+To execute a discovered order, call the [`execute`](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/BaseReactor.sol#L31) method of the reactor specified in the retrieved `encodedOrder` body. Always confirm the reactor address from the retrieved order before submitting.
+
+### Direct filler strategy
+
+The simplest fill strategy is `Direct Filler`, where the trade is executed directly against tokens held in the filler's address. Approve the order's output tokens to the reactor and call `execute` or `executeBatch`:
+
+```solidity
+// Execute direct filler order
+outputToken.approve(reactor, type(uint256).max);
+reactor.execute(order);
+```
+
+### Custom executor strategy
+
+More sophisticated fillers can deploy their own `Executor` contracts implementing the [`IReactorCallback`](https://github.com/Uniswap/UniswapX/blob/v2.0.0-deploy/src/interfaces/IReactorCallback.sol) interface. The contract takes in an order with input tokens and acquires the allotted number of output tokens for the caller. It must approve the output tokens to the reactor, which then transfers them to the order output recipients to settle the order. `Executor` contracts must call `reactor.executeWithCallback` or `reactor.executeBatchWithCallback`, and can specify arbitrary callback data passed into the `reactorCallback` call.
+
+```solidity
+contract Executor {
+  function execute(Order calldata order, bytes calldata callbackData) {
+    reactor.executeWithCallback(order, callbackData)
+  }
+
+  function reactorCallback(ResolvedOrder[] calldata orders, bytes calldata callbackData) {
+    // implement strategy here
+  }
+}
+
+// Execute custom fill strategy
+address executor = /* Address of deployed executor contract */ ;
+bytes fillData = /* Call data to be sent to your executor contract */;
+executor.execute(order, fillData);
+```
+
+For convenience, an [example Executor contract](https://github.com/Uniswap/UniswapX/blob/v2.0.0-deploy/src/sample-executors/SwapRouter02Executor.sol) demonstrates how to fill a UniswapX order against a Uniswap v3 pool. Deploy these contracts on each chain you want to support.
+
+## How DutchV3 differs from mainnet
+
+If you already fill on mainnet, the integration is the same with the following adjustments. Per-chain reference implementations live in the [UniswapX SDK](https://github.com/Uniswap/sdks/tree/main/sdks/uniswapx-sdk).
+
+- **Block-based timing**: The reactor uses block numbers for both exclusivity and decay. Cosigner data carries only `decayStartBlock`; there is no separate end time, since the decay end is implied by the curve. See [`dutchBlockDecay.ts`](https://github.com/Uniswap/sdks/blob/main/sdks/uniswapx-sdk/src/utils/dutchBlockDecay.ts).
+- **Cosignature digest includes the chain ID**: The digest hashes in `chainid` as `orderHash || chainid || cosignerData`. See `cosignerDigest()` in [`V3DutchOrder.ts`](https://github.com/Uniswap/sdks/blob/main/sdks/uniswapx-sdk/src/order/V3DutchOrder.ts).
+- **Base fee adjustment is unused for now**: DutchV3 supports a dynamic base fee adjustment on inputs and outputs. It is not used today, so set `startingBaseFee` and `adjustmentPerGweiBaseFee` to zero on every input and output to keep it a no-op.
+- **Faster quote responses**: Quote responses for any chain other than Ethereum must be returned within 250ms (compared to 500ms on Ethereum).
+
+Build orders with [`V3DutchOrderBuilder.ts`](https://github.com/Uniswap/sdks/blob/main/sdks/uniswapx-sdk/src/builder/V3DutchOrderBuilder.ts) (compare against `V2DutchOrderBuilder.ts`).
+
+The fade-rate circuit breaker works the same way as on mainnet, and it is universal across chains: if you fade on one chain, you can be temporarily blocked from receiving requests on every chain.
+
+For common RFQ and execution issues, see the [Filler FAQ](/docs/liquidity/uniswapx/filling/faq).

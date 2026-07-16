@@ -1,0 +1,864 @@
+---
+title: LP API Integration Guide
+description: A practical guide to building liquidity provisioning with the Uniswap API
+---
+
+### Base URL
+
+All LP endpoints are served from `https://liquidity.api.uniswap.org`. There is no version prefix in the path. The full URL is the host followed by the endpoint, for example `https://liquidity.api.uniswap.org/lp/create`.
+
+### Authentication
+
+All requests require an API key:
+
+```bash
+curl -X POST https://liquidity.api.uniswap.org/lp/create \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -d '{"protocol":"V4","walletAddress":"0x...","chainId":1,...}'
+```
+
+### Basic create position request
+
+```ts
+const response = await fetch('https://liquidity.api.uniswap.org/lp/create', {
+  method: 'POST',
+  headers: {
+    'x-api-key': 'YOUR_API_KEY',
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
+  body: JSON.stringify({
+    walletAddress: '0x...',
+    protocol: 'V3',
+    chainId: 1,
+    existingPool: {
+      token0Address: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984',
+      token1Address: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+      poolReference: '0x3470447f3cecffac709d3e783a307790b0208d60'
+    },
+    independentToken: {
+      tokenAddress: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984',
+      amount: '198251669183062942'
+    },
+    priceBounds: {
+      minPrice: '0.000000000003248988534520805528430529',
+      maxPrice: '0.000000000003936665827581813550758959'
+    },
+    simulateTransaction: false
+  })
+});
+
+const result = await response.json();
+```
+
+Full code examples are available in [LP Code Examples](/docs/api-reference/create_position).
+
+## Architecture
+
+### Client-side responsibilities
+
+The Uniswap API lp endpoints are a transaction-building service for liquidity provisioning operations. The API handles:
+
+- **Pool State Fetching**: Retrieves current reserves, ticks, sqrtRatioX96, and position data onchain
+- **Dependent Amount Computation**: Given one token amount, computes the required amount of the other token using the Uniswap SDK
+- **Transaction Creation**: Generates validated, fully-formed calldata for each LP action, ready for signature
+- **Fee Computation**: Derives uncollected fee amounts from the Data API for claim transactions
+- **Gas Estimation**: Optionally simulates transactions to provide gas fee estimates
+
+Your application handles:
+
+- **Transaction Broadcasting**: Sign and submit transactions via your RPC provider
+- **Gas Payment**: Actual gas costs
+- **Transaction Error Handling**: Handle reverts and surface errors to users
+
+See the [Build Prerequisites](/docs/trading/swapping-api/building-prerequisites) for more details.
+
+### Required infrastructure
+
+Your integration must include:
+
+- **RPC Provider**: Connection to blockchain nodes (e.g. Infura, Alchemy, or self-hosted)
+- **Web3 Library**: ethers.js, viem, or web3.js for transaction signing
+- **Wallet Integration**: Uniswap Wallet, MetaMask, or similar for user signing
+
+### Data flow
+
+```
+User Request (Create / Increase / Decrease / Claim)
+    |
+Your Application
+    |-- Check & request token approvals (/lp/check_approval)
+    |-- Get permit signature (if permit data returned) (Wallet)
+    |-- Request LP transaction (/lp/create, /lp/increase, etc.)
+    |-- Validate returned transaction payload
+    |-- Get user signature for transaction (Wallet)
+    +-- Broadcast transaction (via your RPC)
+         |
+    Blockchain
+```
+
+## Available Endpoints
+
+| Endpoint | Description |
+| --- | --- |
+| [POST /lp/check_approval](/docs/api-reference/check_lp_approval) | Check token approvals and return approval transactions |
+| [POST /lp/create](/docs/api-reference/create_position) | Create a new Uniswap v3 or Uniswap v4 liquidity position |
+| [POST /lp/create_classic](/docs/api-reference/create_classic_position) | Create a new Uniswap v2 liquidity position |
+| [POST /lp/increase](/docs/api-reference/increase_position) | Add liquidity to an existing Uniswap v2, v3, or v4 position |
+| [POST /lp/decrease](/docs/api-reference/decrease_position) | Remove liquidity from an existing Uniswap v2, v3, or v4 position |
+| [POST /lp/claim_fees](/docs/api-reference/claim_fees) | Collect accumulated fees from a Uniswap v3 or Uniswap v4 position |
+| [POST /lp/pool_info](/docs/api-reference/pool_info) | Get current pool state for a token pair |
+
+## Protocol Versions
+
+The LP API supports three Uniswap protocol versions. Pass the appropriate `protocol` field in each request:
+
+| Protocol | Positions | Fee Claiming | Full-Range Only |
+| --- | --- | --- | --- |
+| `V2` | ✓ (via `/create_classic`) | ✗ (via LP token - `/decrease`) | ✓ |
+| `V3` | ✓ (via `/create`) | ✓ (via `/claim_fees`) | ✗ |
+| `V4` | ✓ (via `/create`) | ✓ (via `/claim_fees`) | ✗ |
+
+> **Note**: Uniswap v2 fees are embedded in LP token value and realized when liquidity is removed. Calling `/lp/claim_fees` with `protocol: "V2"` returns a validation error.
+
+## Approval Flow
+
+Before any LP transaction can be executed, tokens must be approved for spending. Always call `/lp/check_approval` first and execute any returned transactions before proceeding.
+
+### Check approvals
+
+```ts
+const approvalResponse = await fetch('https://liquidity.api.uniswap.org/lp/check_approval', {
+  method: 'POST',
+  headers: {
+    'x-api-key': API_KEY,
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
+  body: JSON.stringify({
+    walletAddress: '0x...',
+    protocol: 'V4',
+    chainId: 1,
+    lpTokens: [
+      { tokenAddress: '0x...', amount: '1000000000000000000' },
+      { tokenAddress: '0x...', amount: '500000000' }
+    ],
+    action: 'CREATE'
+  })
+});
+
+const { transactions } = await approvalResponse.json();
+```
+
+### Execute approval transactions
+
+```ts
+// transactions is a list of ApprovalTransactionRequest objects.
+// If empty, all approvals are already in place — proceed to the LP action.
+for (const item of transactions) {
+  validateTransaction(item.transaction);
+  const signedTx = await wallet.signTransaction(item.transaction);
+  await provider.sendTransaction(signedTx);
+}
+```
+
+### Permit-based approvals (Uniswap v4)
+
+For Uniswap v4 positions, `/lp/check_approval` may return `v4BatchPermitData` (a permit2 message object) instead of an onchain transaction, enabling a gasless approval flow.
+
+```ts
+const { v4BatchPermitData } = await approvalResponse.json();
+let permitSignature: string | undefined;
+
+if (v4BatchPermitData) {
+  permitSignature = await wallet._signTypedData(
+    v4BatchPermitData.domain,
+    v4BatchPermitData.types,
+    v4BatchPermitData.values
+  );
+}
+
+// Pass the signature into the subsequent /lp/create or /lp/increase call:
+const createBody = {
+  ...positionParams,
+  batchPermitData: v4BatchPermitData,
+  signature: permitSignature
+};
+```
+
+If `generatePermitAsTransaction: true` is passed to `/lp/check_approval`, permit data is returned as a standard executable transaction instead of typed data.
+
+### Uniswap v3 NFT permit
+
+For Uniswap v3 positions, `/lp/check_approval` may return `v3NftPermitData` for the `NonfungiblePositionManager`. Sign and pass it through in the same pattern as Uniswap v4 permit data above.
+
+### Approval key parameters
+
+| Parameter | Description |
+| --- | --- |
+| `protocol` | `V2`, `V3`, or `V4` |
+| `chainId` | The blockchain network |
+| `lpTokens` | Array of `{ tokenAddress, amount }` objects |
+| `action` | `CREATE`, `INCREASE`, `DECREASE`, or `MIGRATE` |
+| `generatePermitAsTransaction` | If `true`, returns permit as a transaction instead of typed data |
+
+## Creating a Position
+
+### Uniswap v3 and Uniswap v4 — `/lp/create`
+
+The caller specifies a price range and the amount of one token. The API computes the corresponding amount of the second token based on current pool state.
+
+#### Pool specification
+
+Provide exactly one of:
+
+- **`existingPool`** — For an existing pool. Includes `token0address`, `token1address`, and `poolReference` (pool address for Uniswap v3, pool ID for Uniswap v4). The API fetches live pool state to compute the dependent token amount.
+- **`newPool`** — For initializing a new pool. Includes token addresses, `fee`, `tickSpacing`, optional `hooks` (Uniswap v4 only), and `initialPrice` as a `sqrtRatioX96` string. The API uses the initial price to compute the dependent amount.
+
+#### Price range
+
+Provide exactly one of:
+
+- **`priceBounds`** — Human-readable decimal price strings (`minPrice`, `maxPrice`). The API converts to ticks, snaps to valid tick spacing, and returns the adjusted prices in the response.
+- **`tickBounds`** — Raw tick integers (`tickLower`, `tickUpper`). Skips price conversion. The API computes the corresponding decimal prices for the response.
+
+#### Example request
+
+```bash
+curl --location 'https://liquidity.api.uniswap.org/lp/create' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'x-api-key: XXXXX' \
+--data '{
+    "walletAddress": "XXXX",
+    "existingPool": {
+        "token0Address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+        "token1Address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        "poolReference": "0x3470447f3cecffac709d3e783a307790b0208d60"
+    },
+    "chainId": 1,
+    "protocol": "V3",
+    "independentToken": {
+        "tokenAddress": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+        "amount": "198251669183062942"
+    },
+    "priceBounds": {
+        "minPrice": "0.000000000003248988534520805528430529",
+        "maxPrice": "0.000000000003936665827581813550758959"
+    },
+    "simulateTransaction": false
+}'
+```
+
+#### Response
+
+```ts
+interface CreatePositionResponse {
+  requestId: string;
+  token0: LPToken;
+  token1: LPToken;
+  tickLower: number;
+  tickUpper: number;
+  adjustedMinPrice: string; // actual min price after tick adjustment
+  adjustedMaxPrice: string; // actual max price after tick adjustment
+  create: TransactionRequest;
+  gasFee?: string; // total estimated gas cost (string), present when simulateTransaction: true
+}
+```
+
+### Uniswap v2 — `/lp/create_classic`
+
+Uniswap v2 positions always span the full price range (0 to ∞). The caller provides an `independentToken` amount; the API computes the `dependentToken` amount from current pair reserves. If creating a new pool, the `independentToken` and `dependentToken` fields are both required.
+
+```bash
+curl --location 'https://liquidity.api.uniswap.org/lp/create_classic' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'x-api-key: XXXXX' \
+--data '{
+    "walletAddress": "XXXX",
+    "poolParameters": {
+        "token0Address": "0xc02fe7317d4eb8753a02c35fe019786854a92001",
+        "token1Address": "0x0000000000000000000000000000000000000000",
+        "chainId": 130
+    },
+    "independentToken": {
+        "tokenAddress": "0xc02fe7317d4eb8753a02c35fe019786854a92001",
+        "amount": "1000000000000000"
+    },
+    "dependentToken": {
+        "tokenAddress": "0x0000000000000000000000000000000000000000",
+        "amount": "1227700073369630"
+    },
+    "simulateTransaction": false
+}'
+```
+
+If `dependentToken` is omitted, the API computes the optimal amount from current pool reserves.
+
+## Increasing Liquidity — `/lp/increase`
+
+Adds liquidity to an existing Uniswap v2, v3, or v4 position. Provide one token amount; the API computes the other.
+
+```bash
+curl --location 'https://liquidity.api.uniswap.org/lp/increase' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'x-api-key: XXXXX' \
+--data '{
+    "walletAddress": "XXXX",
+    "chainId": 130,
+    "protocol": "V4",
+    "token0Address": "0x0000000000000000000000000000000000000000",
+    "token1Address": "0x078D782b760474a361dDA0AF3839290b0EF57AD6",
+    "nftTokenId": "1833079",
+    "independentToken": {
+        "tokenAddress": "0x078D782b760474a361dDA0AF3839290b0EF57AD6",
+        "amount": "8223"
+    },
+    "simulateTransaction": false
+}'
+```
+
+> **Native ETH**: Use `0x0000000000000000000000000000000000000000` for native ETH token addresses. The API will generate a multicall that includes `refundETH` to return any excess ETH to the caller.
+
+For Uniswap v4 permit-based approvals, include `v4BatchPermitData` and `signature` from the [approval flow](#permit-based-approvals-uniswap-v4).
+
+#### Key parameters
+
+| Parameter | Description |
+| --- | --- |
+| `protocol` | `V2`, `V3`, or `V4` |
+| `chainId` | The blockchain network |
+| `token0Address` / `token1Address` | The token pair addresses |
+| `nftTokenId` | Required for Uniswap v3 and Uniswap v4. NFT token ID identifying the position. |
+| `independentToken` | Token address and amount the user wants to add |
+| `slippageTolerance` | Optional. Decimal slippage tolerance (e.g., `0.5` for 0.5%) |
+
+## Decreasing Liquidity — `/lp/decrease`
+
+Removes a percentage of liquidity from a Uniswap v2, v3, or v4 position. The API computes the token amounts to be returned and generates the withdrawal transaction.
+
+```bash
+curl --location 'https://liquidity.api.uniswap.org/lp/decrease' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: XXXXX' \
+--data '{
+    "walletAddress": "XXXX",
+    "chainId": 130,
+    "protocol": "V4",
+    "token0Address": "0x0000000000000000000000000000000000000000",
+    "token1Address": "0x078D782b760474a361dDA0AF3839290b0EF57AD6",
+    "nftTokenId": "1833079",
+    "liquidityPercentageToDecrease": 25,
+    "simulateTransaction": false
+}'
+```
+
+#### Key parameters
+
+| Parameter | Description |
+| --- | --- |
+| `liquidityPercentageToDecrease` | Integer from 1–100. Percentage of the position to withdraw. |
+| `withdrawAsWeth` | Uniswap v3 only. If `false`, unwraps WETH to native ETH in the withdrawal. Not applicable to Uniswap v4. |
+| `slippageTolerance` | Optional. Decimal slippage tolerance. |
+
+> **v3 fee collection**: For Uniswap v3, uncollected fees are included in the withdrawal automatically via the SDK's `removeCallParameters`. You do not need to call `/lp/claim_fees` separately.
+
+## Collecting Fees — `/lp/claim_fees`
+
+Collects accumulated trading fees from a Uniswap v3 or Uniswap v4 position. Not available for Uniswap v2; Uniswap v2 fees are embedded in LP token value and are realized upon liquidity removal.
+
+```bash
+curl --location 'https://liquidity.api.uniswap.org/lp/claim_fees' \
+--header 'Content-Type: application/json' \
+--header 'x-api-key: XXXXX' \
+--data '{
+    "protocol": "V4",
+    "walletAddress": "XXXX",
+    "chainId": 130,
+    "tokenId": "1833079",
+    "simulateTransaction": false
+}'
+```
+
+#### How it works
+
+- **Uniswap v3**: Generates a `collect` call via the `NonfungiblePositionManager`. For positions involving native ETH (when `collectAsWeth` is `false`), generates a multicall of `collect`, `unwrapWETH9`, and `sweepToken`. Uncollected fee amounts from the Data API are used as minimum amounts for sandwich protection.
+- **Uniswap v4**: Generates a zero-liquidity decrease via the v4 `PositionManager` followed by `TAKE_PAIR` to sweep all collected fees.
+
+#### Key parameters
+
+| Parameter | Description |
+| --- | --- |
+| `protocol` | `V3` or `V4`. Sending `V2` returns a validation error. |
+| `tokenId` | NFT token ID identifying the Uniswap v3 or Uniswap v4 position. |
+| `collectAsWeth` | Uniswap v3 only. If `false`, unwraps WETH to native ETH. Not applicable to Uniswap v4. |
+| `simulateTransaction` | If `true`, includes gas fee estimates in the response. |
+
+#### Response
+
+```ts
+interface ClaimFeesResponse {
+  requestId: string;
+  token0: LPToken;
+  token1: LPToken;
+  claim: TransactionRequest;
+  gasFee?: string; // total estimated gas cost (string), present when simulateTransaction: true
+}
+```
+
+## Schema Reference
+
+### TransactionRequest
+
+All LP endpoints return a fully-formed `TransactionRequest` object ready for signing and broadcasting:
+
+```ts
+interface TransactionRequest {
+  to: string;                    // Contract address to call
+  from: string;                  // User's wallet address
+  data: string;                  // Encoded calldata (hex string)
+  value: string;                 // Native token amount (wei)
+  chainId: number;
+  gasLimit?: string;
+  maxFeePerGas?: string;
+  maxPriorityFeePerGas?: string;
+  gasPrice?: string;             // Legacy gas price
+}
+```
+
+#### Critical field: `data`
+
+The `data` field contains the encoded contract call and **must always be present** in LP transactions.
+
+- **Never Empty**: The `data` field must be a non-empty hex string (not `""` or `"0x"`).
+- **Never Modify**: The API returns pre-validated calldata. Modifying it may cause funds to be lost or onchain reverts.
+- **Always Validate**: Check `data` exists before broadcasting.
+
+### LPToken
+
+```ts
+interface LPToken {
+  tokenAddress: string;
+  amount: string; // in wei / smallest token unit
+}
+```
+
+### ApprovalTransactionRequest
+
+Each entry in the `transactions` array returned by `/lp/check_approval`:
+
+```ts
+interface ApprovalTransactionRequest {
+  transaction: TransactionRequest; // sign and broadcast this field, not the object itself
+  cancelApproval: boolean;         // whether this transaction cancels a previous approval
+  action: 'CREATE' | 'INCREASE' | 'DECREASE' | 'MIGRATE';
+  gasFee?: string;                 // estimated gas cost (string)
+}
+```
+
+### Permit data (Uniswap v3 / v4)
+
+The permit2 message object returned in `v4BatchPermitData` or `v3NftPermitData`:
+
+```ts
+interface PermitData {
+  domain: Record<string, unknown>;
+  types: Record<string, unknown>;
+  values: Record<string, unknown>;
+}
+```
+
+## Error Handling
+
+### HTTP status codes
+
+| Code | Meaning |
+| --- | --- |
+| 200 | Request succeeded |
+| 400 | Invalid request (validation error) |
+| 401 | Invalid API key |
+| 429 | Rate limit exceeded |
+| 500 | API error (retry with backoff) |
+| 503 | Temporary unavailability (retry) |
+
+### Error response format
+
+```ts
+interface ErrorResponse {
+  error: string;
+  message: string;
+  details?: Record<string, any>;
+}
+```
+
+### Common errors
+
+#### v2 fee claim attempt
+
+**Cause**: Calling `/lp/claim_fees` with `protocol: "V2"`
+
+**Solution**: Uniswap v2 fees are realized by calling `/lp/decrease`. Use `/lp/claim_fees` only for Uniswap v3 and Uniswap v4 positions.
+
+#### Pool not found
+
+**Cause**: The specified pool does not exist onchain for the given token pair, fee tier, and chain
+
+**Solutions**:
+- Verify token addresses are correct and checksummed
+- Confirm the `poolReference` (pool address or pool ID) is correct for the target protocol
+- Use `newPool` instead of `existingPool` to initialize a new pool
+
+#### Insufficient liquidity
+
+**Cause**: The computed dependent token amount exceeds available balances or position bounds
+
+**Solutions**:
+- Verify token balances before calling the LP endpoint
+- Adjust the `independentToken` amount
+- Widen the price range for concentrated liquidity positions
+
+#### Validation error
+
+**Cause**: Invalid or missing request parameters
+
+**Solutions**:
+- Ensure all required fields are present for the chosen `protocol`
+- Verify addresses are valid checksummed hex strings
+- Confirm amounts are in the correct units (wei, not ether)
+- Ensure `liquidityPercentageToDecrease` is an integer between 1 and 100
+
+#### Authentication error
+
+**Cause**: Invalid or missing `x-api-key` header
+
+**Solutions**:
+- Include the `x-api-key` header in every request
+- Confirm the API key was copied correctly (case-sensitive)
+
+### Transaction revert scenarios
+
+If a transaction reverts onchain:
+
+1. **Check `data` field**: Verify it is not empty before broadcasting
+2. **Verify token balances**: User has sufficient token balances at broadcast time
+3. **Check approvals**: Run `/lp/check_approval` again — a prior approval may have been consumed or revoked
+4. **Check slippage**: Pool price moved beyond the slippage tolerance between quote and broadcast
+5. **Check deadline**: Transaction was not broadcast before the deadline encoded in the calldata
+6. **Nonce collision**: Another transaction used the same nonce
+
+#### Recommended pre-broadcast validation
+
+```ts
+async function validateBeforeBroadcast(
+  tx: TransactionRequest,
+  provider: Provider,
+  token: string,
+  amount: string
+): Promise<void> {
+  // 1. Validate transaction structure
+  if (!tx.data || tx.data === '' || tx.data === '0x') {
+    throw new Error('Invalid transaction: empty data field');
+  }
+
+  // 2. Check native balance
+  const balance = await provider.getBalance(tx.from);
+  if (balance.lt(tx.value)) {
+    throw new Error('Insufficient native token balance');
+  }
+
+  // 3. Check ERC-20 balance (if applicable)
+  if (token !== NATIVE_TOKEN_ADDRESS) {
+    const tokenContract = new Contract(token, ERC20_ABI, provider);
+    const tokenBalance = await tokenContract.balanceOf(tx.from);
+    if (tokenBalance.lt(amount)) {
+      throw new Error('Insufficient token balance');
+    }
+  }
+
+  // 4. Simulate transaction (recommended)
+  try {
+    await provider.call(tx);
+  } catch (error) {
+    throw new Error(`Transaction simulation failed: ${error.message}`);
+  }
+}
+```
+
+## Best Practices
+
+### Always check approvals first
+
+Call `/lp/check_approval` before every LP action — even for positions where approvals were previously granted, since allowances can be revoked or consumed.
+
+```ts
+async function approveAndExecute(
+  approvalParams: ApprovalRequest,
+  lpAction: () => Promise<TransactionRequest>
+): Promise<string> {
+  const { transactions, v4BatchPermitData } = await fetchApprovals(approvalParams);
+
+  // Execute any onchain approval transactions
+  for (const item of transactions) {
+    const signedApproval = await wallet.signTransaction(item.transaction);
+    await provider.sendTransaction(signedApproval);
+  }
+
+  // Sign permit offchain if returned
+  let permitSignature: string | undefined;
+  if (v4BatchPermitData) {
+    permitSignature = await wallet._signTypedData(
+      v4BatchPermitData.domain, v4BatchPermitData.types, v4BatchPermitData.values
+    );
+  }
+
+  const lpTx = await lpAction(); // e.g. /lp/create with permitSignature included
+  validateTransaction(lpTx);
+  const signedTx = await wallet.signTransaction(lpTx);
+  return provider.sendTransaction(signedTx);
+}
+```
+
+### Price range guidance
+
+When using `priceBounds`, note that the API snaps prices to valid tick spacing boundaries. Always display the **adjusted prices** returned in the response to the user — not the original input values.
+
+```ts
+const { adjustedMinPrice, adjustedMaxPrice, tickLower, tickUpper } = createResponse;
+// Show adjustedMinPrice / adjustedMaxPrice to the user, not the original priceBounds input
+```
+
+### Slippage configuration
+
+| Setting | Tolerance | Use Case |
+| --- | --- | --- |
+| Conservative | 0.05–0.5% | Stable pairs, low volatility |
+| Moderate | 0.5–1% | Most LP actions |
+| Aggressive | 1–5% | Volatile pairs, wide price ranges, large positions |
+
+### Transaction freshness
+
+LP transactions are time-sensitive due to pool price movement:
+
+```ts
+const TX_EXPIRY_MS = 30_000; // 30 seconds
+
+const txTimestamp = Date.now();
+// ... user reviews amounts ...
+if (Date.now() - txTimestamp > TX_EXPIRY_MS) {
+  lpTx = await refetchLpTransaction(params); // Fetch a fresh transaction
+}
+```
+
+### Gas management
+
+Use `simulateTransaction: true` on `/lp/create`, `/lp/increase`, `/lp/decrease`, and `/lp/claim_fees` to receive a `gasFee` estimate (a string) from the API. Additionally:
+
+- **Update gas prices**: Fetch fresh gas prices from your RPC before broadcasting
+- **Handle gas spikes**: Warn users when gas is unusually high
+- **EIP-1559 vs Legacy**: Prefer EIP-1559 (`maxFeePerGas` / `maxPriorityFeePerGas`) on supported chains
+
+### Transaction validation
+
+Always validate the transaction payload before broadcasting:
+
+```ts
+function validateLpTransaction(tx: TransactionRequest): void {
+  if (!tx.data || tx.data === '' || tx.data === '0x') {
+    throw new Error('Transaction data is empty');
+  }
+  if (!tx.to || !isAddress(tx.to)) {
+    throw new Error('Invalid recipient address');
+  }
+  if (!tx.from || !isAddress(tx.from)) {
+    throw new Error('Invalid sender address');
+  }
+  if (tx.maxFeePerGas && tx.gasPrice) {
+    throw new Error('Cannot set both maxFeePerGas and gasPrice');
+  }
+}
+```
+
+### Error recovery
+
+Implement retry logic with exponential backoff for transient failures:
+
+```ts
+async function fetchLpTxWithRetry(
+  endpoint: string,
+  params: object,
+  maxRetries = 3
+): Promise<any> {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const response = await fetch(`https://liquidity.api.uniswap.org${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'x-api-key': API_KEY,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(params)
+      });
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          await sleep(Math.pow(2, attempt) * 1000);
+          continue;
+        }
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (attempt === maxRetries - 1) throw error;
+      await sleep(Math.pow(2, attempt) * 1000);
+    }
+  }
+  throw new Error('Max retries exceeded');
+}
+```
+
+### Monitoring & logging
+
+Track key metrics to maintain production reliability:
+
+```ts
+function logLpAttempt(
+  endpoint: string,
+  params: object,
+  response: object,
+  txHash?: string,
+  error?: Error
+): void {
+  analytics.track('lp_attempt', {
+    timestamp: Date.now(),
+    endpoint,
+    protocol: (params as any).protocol,
+    chainId: (params as any).chainId,
+    txHash,
+    success: !!txHash && !error,
+    error: error?.message
+  });
+}
+```
+
+## Troubleshooting
+
+### Position creation issues
+
+**Problem**: API returns unexpected token amounts
+
+- Verify the amount is in the correct units (wei, not ether)
+- Confirm token decimals match the onchain contract
+- If using `priceBounds`, check the returned `adjustedMinPrice` / `adjustedMaxPrice` in the response — the server may have snapped to different tick boundaries than expected
+- For new pools, confirm `initialPrice` is a valid `sqrtRatioX96` value
+
+**Problem**: Transaction reverts after a successful create response
+
+- Re-check token approvals via `/lp/check_approval` — another transaction may have consumed the allowance
+- Confirm the quote has not gone stale (price moved significantly since the transaction was built)
+- Verify slippage tolerance is appropriate for the pair's volatility
+
+### Liquidity management issues
+
+**Problem**: `/lp/increase` returns a mismatched dependent token amount
+
+- Confirm the `nftTokenId` is correct and belongs to the specified wallet
+- Verify pool state has not changed significantly between the quote and the time amounts are displayed to the user
+- Ensure `token0Address` / `token1Address` match the order in the existing position
+
+**Problem**: `/lp/decrease` does not return expected amounts
+
+- Confirm `liquidityPercentageToDecrease` is between 1 and 100
+- For Uniswap v3, note that uncollected fees are bundled into the withdrawal — the returned amounts may be higher than the pro-rata liquidity alone
+
+### Fee collection issues
+
+**Problem**: `/lp/claim_fees` returns zero amounts
+
+- Confirm the position has accumulated fees since the last collection
+- Verify `tokenId` corresponds to an active Uniswap v3 or Uniswap v4 position
+- Check that the Data API has indexed the latest onchain state for the position
+
+**Problem**: Uniswap v2 claim attempt returns a validation error
+
+- This is expected behavior. Uniswap v2 fees are not claimable independently — use `/lp/decrease` to realize accumulated fees along with liquidity.
+
+### Approval issues
+
+**Problem**: Permit signature rejected onchain
+
+- Some signing libraries require an explicit `EIP712Domain` type in the types object. Add it if your library does not inject it automatically:
+
+```ts
+const typesWithDomain = {
+  EIP712Domain: [
+    { name: 'name', type: 'string' },
+    { name: 'version', type: 'string' },
+    { name: 'chainId', type: 'uint256' },
+    { name: 'verifyingContract', type: 'address' }
+  ],
+  ...permitData.types
+};
+
+signature = await wallet._signTypedData(
+  permitData.domain,
+  typesWithDomain,
+  permitData.values
+);
+```
+
+**Problem**: Onchain approval transaction reverts
+
+- Check that `gasLimit` is sufficient for the approval
+- Confirm the token contract supports the standard ERC-20 `approve` interface
+- For fee-on-transfer tokens, verify the spender contract handles them correctly
+
+### API issues
+
+**Problem**: 429 Rate Limit Exceeded
+
+Implement request caching for repeated queries on the same position:
+
+```ts
+const cache = new Map<string, { data: any; timestamp: number }>();
+
+async function fetchWithCache(
+  endpoint: string,
+  params: object,
+  cacheDuration = 15_000
+): Promise<any> {
+  const key = `${endpoint}:${JSON.stringify(params)}`;
+  const cached = cache.get(key);
+  if (cached && Date.now() - cached.timestamp < cacheDuration) {
+    return cached.data;
+  }
+  const data = await fetchLpTxWithRetry(endpoint, params);
+  cache.set(key, { data, timestamp: Date.now() });
+  return data;
+}
+```
+
+## Limitations
+
+- **Uniswap v2 fee claiming**: Not supported. Fees are embedded in LP tokens and realized via `/lp/decrease`.
+- **Uniswap v4 hooks**: Supported in `/lp/create` via the `hooks` field in `newPool`. Hook compatibility is the caller's responsibility.
+- **UniswapX**: Not applicable. The LP API operates exclusively on AMM positions.
+- **Migrate action**: `MIGRATE` is a supported `action` value on `/lp/check_approval`, which returns the approvals needed to migrate a position (for example, approval of the Uniswap v3 NFT). There is no standalone `/lp/migrate` endpoint.
+- **Chain support**: See [Supported Chains](/docs/trading/swapping-api/supported-chains) for the full list of available networks per protocol version.
+
+## Support
+
+For support, reach out via the help link in the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard).
+
+When reporting issues, include:
+
+- Request ID from the API response
+- Full request/response payloads (sanitize sensitive data such as wallet addresses if needed)
+- Protocol version and chain ID
+- Transaction hash (if the transaction was broadcast)
+- Timestamp of the request

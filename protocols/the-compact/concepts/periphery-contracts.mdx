@@ -1,0 +1,143 @@
+---
+id: Periphery Contracts
+title: Periphery Contracts
+description: Understand emissaries and Tribunal as peripheral patterns that integrate with Uniswap The Compact claim verification flows.
+---
+
+## Emissaries
+Emissaries provide a fallback verification mechanism for sponsors when authorizing claims. This is particularly useful for:
+
+| Use case | Why emissaries help |
+|---|---|
+| Smart contract accounts with upgradable EIP-1271 logic | Keeps claim verification behavior stable across signature-validation upgrades. |
+| Accounts using EIP-7702 delegation with EIP-1271 | Provides a fallback verifier when delegation or account behavior changes. |
+| Sponsors delegating claim verification to third parties | Allows explicit trust delegation for claim authorization. |
+
+A sponsor assigns an emissary for a specific `lockTag` using [`assignEmissary`](https://github.com/Uniswap/the-compact/blob/main/src/interfaces/ITheCompact.sol#L556). The emissary must implement the [`IEmissary`](https://github.com/Uniswap/the-compact/blob/main/src/interfaces/IEmissary.sol) interface, specifically the `verifyClaim` function.
+
+To change an emissary after one has been assigned, the sponsor must first call [`scheduleEmissaryAssignment`](https://github.com/Uniswap/the-compact/blob/main/src/interfaces/ITheCompact.sol#L566), wait for the `resetPeriod` associated with the `lockTag` to elapse, and then call `assignEmissary` again with the new emissary address (or `address(0)` to remove).
+
+### IEmissary interface
+
+Emissaries must implement the `IEmissary` interface to integrate with The Compact:
+
+#### Function signature
+
+```solidity
+interface IEmissary {
+    function verifyClaim(
+        address sponsor,
+        bytes32 digest,
+        bytes32 claimHash,
+        bytes calldata signature,
+        bytes12 lockTag
+    ) external view returns (bytes4)
+}
+```
+
+The function must return `IEmissary.verifyClaim.selector` on successful verification.
+
+### Assignment and management
+
+Sponsors assign emissaries for specific lock tags:
+
+```solidity
+function assignEmissary(
+    bytes12 lockTag,
+    address emissary
+) external
+```
+
+| Parameter | Description |
+|---|---|
+| `lockTag` | Specific resource lock tag this emissary is authorized for. |
+| `emissary` | Emissary contract address, or `address(0)` to remove. |
+
+The emissary assignment is scoped to a specific `lockTag`, meaning sponsors can have different emissaries for different resource locks.
+
+#### Changing an emissary
+
+The emissary mechanism includes security timelocks to prevent sudden authorization changes:
+
+| Step | Action |
+|---|---|
+| 1 | Call `scheduleEmissaryAssignment` with the new emissary address. |
+| 2 | Wait for the `resetPeriod` associated with the `lockTag` to elapse. |
+| 3 | Call `assignEmissary` again with the new address. |
+
+```solidity
+function scheduleEmissaryAssignment(
+    bytes12 lockTag,
+    address newEmissary
+) external
+```
+
+#### Removing an emissary
+
+To remove an emissary, assign `address(0)`:
+
+```solidity
+assignEmissary(lockTag, address(0))
+```
+
+#### Security rationale
+
+This timelock mechanism ensures that emissary changes cannot suddenly alter the authorization logic for outstanding compacts without providing adequate notice. This protects claimants who may have already begun fulfilling compact conditions based on the existing emissary.
+
+### Role in claim verification
+
+When a claim is submitted for a non-registered compact, The Compact verifies the sponsor's authorization in the following order:
+
+| Order | Verification path |
+|---|---|
+| 1 | **Caller is sponsor**: if `msg.sender == sponsor`, authorization is granted. |
+| 2 | **ECDSA signature**: attempt standard ECDSA signature verification. |
+| 3 | **EIP-1271 `isValidSignature`**: if ECDSA fails, call `isValidSignature` on the sponsor's address (if it is a contract) with half the remaining gas. |
+| 4 | **Emissary `verifyClaim`**: if EIP-1271 fails or is not applicable and an emissary is assigned for sponsor + `lockTag`, call emissary `verifyClaim`. |
+
+### Events
+
+```solidity
+event EmissaryAssigned(
+    address indexed sponsor,
+    bytes12 indexed lockTag,
+    address emissary
+)
+```
+
+Emitted when a sponsor assigns or changes an emissary via `assignEmissary`.
+
+### Trust assumptions
+
+**Sponsors** must trust that emissaries will not authorize claims maliciously, as emissaries effectively have the same authorization power as the sponsor for claim verification.
+
+**Claimants** must trust that emissaries (if assigned) will faithfully authorize valid claims. For EIP-7702 sponsors and smart contracts with upgradeable EIP-1271 logic, claimants should require the use of known, canonical emissaries that enforce delays before allowing key rotation.
+
+
+## Tribunal
+
+Tribunal is a framework for processing cross-chain swap settlements against PGA (priority gas auction) blockchains. It ensures that tokens are transferred according to the mandate specified by the originating sponsor and enforces that a single party is able to perform the settlement in the event of a dispute.
+
+<Callout title="About Tribunal" type="note">
+Tribunal is a reference implementation, not part of The Compact core protocol. The Compact itself is an unopinionated primitive that doesn't depend on or have awareness of any specific settlement engine. Tribunal is included in this documentation as an example that demonstrates how developers can build cross-chain settlement systems on top of The Compact.
+
+Other teams can (and should) build their own settlement engines with different trust assumptions, auction mechanisms, or cross-chain messaging approaches. Tribunal simply shows one proven pattern for orchestrating cross-chain fills and settlements using The Compact's resource locks.
+
+Tribunal is actively under development. For the latest updates and implementation details, see the [Tribunal repository](https://github.com/Uniswap/Tribunal).
+</Callout>
+
+### How Tribunal works
+
+Fillers call `fill` and provide any native value necessary to pay for cross-chain messaging. Tribunal verifies expiry, chain IDs, validity conditions, computes hashes and amounts, and then executes the settlement:
+
+| Settlement path | Behavior |
+|---|---|
+| Transfer | Sends filled tokens to the intended recipient. |
+| Same-chain fill | Claims tokens via The Compact and calls back into the arbiter or recipient. |
+| Cross-chain fill | Emits or processes directives that instruct remote arbiters to pull the claim. |
+
+By enforcing a single settlement path, Tribunal reduces settlement ambiguity and ensures deterministic outcomes even in the presence of multiple fillers.
+
+### Extending Tribunal
+
+External bridge protocols can extend Tribunal by overriding internal functions to implement the relevant directive processing logic for passing a message to the arbiter on the claim chain (or ensure that the necessary state is updated to allow for the arbiter to "pull" the message themselves).

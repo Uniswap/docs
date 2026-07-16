@@ -1,0 +1,460 @@
+---
+title: Integrating Flashblocks
+description: Integrate Flashblocks on Unichain to use preconfirmation data and reduce transaction confirmation latency.
+---
+
+Flashblocks provide transaction preconfirmations on Unichain in about 200 milliseconds, so apps can show faster transaction feedback.
+
+## What Are Flashblocks?
+
+Flashblocks enable ultra-fast transaction confirmations on Unichain by providing **preconfirmations** - instant signals that arrive before the next block is finalized. Instead of waiting up to 1 second for block confirmation, users receive transaction feedback in just **200 milliseconds**.
+
+### Key benefits
+
+- **5x faster confirmations**: Reduce perceived latency from 1 second to 200 milliseconds
+- **Seamless Integration**: Works with many existing Ethereum JSON-RPC methods using the `pending` tag
+- **No Protocol Changes**: Built as an "out-of-protocol" extension that doesn't modify Unichain's core consensus
+- **Incremental Updates**: Receive partial block updates as transactions are processed
+- **Backward Compatible**: Existing applications continue to work without modifications
+
+### How it works
+
+Flashblocks work by streaming partial block updates called "Flashblocks" every 200 milliseconds. Each Flashblock contains:
+
+- **Transaction Batches**: Groups of transactions processed together
+- **State Updates**: Account balances, nonces, and storage changes
+- **Execution Results**: Transaction receipts and status information
+
+These updates are propagated to RPC providers who maintain a preconfirmation cache, allowing applications to query the latest state immediately.
+
+### Perfect for
+
+- **DeFi Applications**: Instant swap confirmations and liquidity updates
+- **Marketplaces**: Immediate purchase confirmations
+- **Payment Systems**: Instant payment verification
+- **Apps**: Deliver more responsive UX without typical blockchain wait times
+
+## Integrating Flashblocks (Apps)
+
+Flashblocks integration is designed to be seamless for application developers. Most existing applications can benefit from Flashblocks with minimal code changes.
+
+### RPC endpoints
+
+Use these Flashblocks-aware RPC endpoints for development and testing:
+
+| Network | URL |
+| :------ | :-- |
+| Unichain Mainnet | `https://mainnet.unichain.org` |
+| Unichain Sepolia | `https://sepolia.unichain.org` |
+
+> **Production note**: These public endpoints are rate-limited. For production applications, see [node providers](#using-flashblocks-with-a-node-provider) that support Flashblocks.
+
+### Supported RPC methods
+
+The following standard Ethereum JSON-RPC methods support Flashblocks data when using the `pending` tag:
+
+#### `eth_getBlockByNumber`
+
+Get the latest Flashblock with all preconfirmed transactions:
+
+```bash
+curl https://sepolia.unichain.org \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockByNumber",
+    "params": ["pending", true],
+    "id": 1
+  }'
+```
+
+**Response**:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "number": "0x1234",
+    "hash": "0x0", // Placeholder during preconfirmation
+    "transactions": [...], // All preconfirmed transactions
+    "stateRoot": "0x...",
+    "gasUsed": "0x...",
+    "timestamp": "0x..."
+  }
+}
+```
+
+#### `eth_call`
+Use the preconfirmation cache state to return the call result:
+```bash
+curl https://sepolia.unichain.org \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_call",
+    "params": [{"to": "0x...", "data": "0x..."}, "pending"],  // Transaction call object and block parameter
+    "id": 1
+  }'
+```
+
+#### `eth_getTransactionReceipt`
+
+Get receipts for preconfirmed transactions immediately. Notice, no pending tag is needed:
+
+```bash
+curl https://sepolia.unichain.org \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionReceipt",
+    "params": ["0x..."],
+    "id": 1
+  }'
+```
+
+#### `eth_getBalance`
+
+Get the latest balance including preconfirmed transactions:
+
+```bash
+curl https://sepolia.unichain.org \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBalance",
+    "params": ["0x742d35Cc6634C0532925a3b8D23bb7e67E1b6e0", "pending"],
+    "id": 1
+  }'
+```
+
+#### `eth_getTransactionCount`
+
+Get the latest nonce for sending transactions:
+
+```bash
+curl https://sepolia.unichain.org \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionCount",
+    "params": ["0x742d35Cc6634C0532925a3b8D23bb7e67E1b6e0", "pending"],
+    "id": 1
+  }'
+```
+
+### Library integration
+
+#### Ethers.js
+
+```javascript
+import { ethers } from 'ethers';
+
+const provider = new ethers.JsonRpcProvider(
+  "https://sepolia.unichain.org"
+);
+
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+
+async function sendFastTransaction() {
+  const tx = {
+    to: "0x742d35Cc6634C0532925a3b8D23bb7e67E1b6e0",
+    value: ethers.parseEther("0.001"),
+  };
+
+  const submissionTime = Date.now();
+  const transaction = await wallet.sendTransaction(tx);
+
+  console.log(`Transaction hash: ${transaction.hash}`);
+
+  // Wait for preconfirmation (0 confirmations)
+  await transaction.wait(0);
+
+  const confirmTime = Date.now();
+  console.log(`Preconfirmed in ${confirmTime - submissionTime}ms`);
+}
+```
+
+#### Viem
+
+```javascript
+import { createWalletClient, createPublicClient, http, parseEther } from 'viem';
+import { privateKeyToAccount } from 'viem/accounts';
+import { unichain } from 'viem/chains';
+
+const account = privateKeyToAccount(`0x${process.env.PRIVATE_KEY}`);
+
+const walletClient = createWalletClient({
+  account,
+  chain: unichain,
+  transport: http('https://sepolia.unichain.org'),
+});
+
+const publicClient = createPublicClient({
+  chain: unichain,
+  transport: http('https://sepolia.unichain.org'),
+});
+
+async function sendFastTransaction() {
+  const submissionTime = Date.now();
+
+  const hash = await walletClient.sendTransaction({
+    to: '0x742d35Cc6634C0532925a3b8D23bb7e67E1b6e0',
+    value: parseEther('0.001'),
+  });
+
+  // Wait for preconfirmation
+  const receipt = await publicClient.waitForTransactionReceipt({ hash });
+
+  const confirmTime = Date.now();
+  console.log(`Preconfirmed in ${confirmTime - submissionTime}ms`);
+}
+```
+
+## Integrating Flashblocks (Wallet Providers)
+
+Wallet providers can integrate Flashblocks to provide instant transaction feedback to users.
+
+### User experience benefits
+
+- **Instant Confirmations**: Show users their transaction succeeded immediately
+- **Real-time Balance Updates**: Update balances as soon as transactions are preconfirmed
+- **Reduced Anxiety**: Users don't wait wondering if their transaction went through
+- **Better UX**: Feels like Web2 application responsiveness
+
+### Implementation guidelines
+
+#### Transaction status updates
+
+```javascript
+class WalletProvider {
+  async sendTransaction(tx) {
+    const hash = await this.submitTransaction(tx);
+
+    // Show immediate pending status
+    this.updateTransactionStatus(hash, 'pending');
+
+    // Wait for preconfirmation
+    try {
+      const receipt = await this.waitForPreconfirmation(hash);
+      this.updateTransactionStatus(hash, 'preconfirmed');
+
+      // Optional: Wait for full confirmation
+      await this.waitForFullConfirmation(hash);
+      this.updateTransactionStatus(hash, 'confirmed');
+    } catch (error) {
+      this.updateTransactionStatus(hash, 'failed');
+    }
+  }
+
+  async waitForPreconfirmation(hash) {
+    return new Promise((resolve, reject) => {
+      const checkReceipt = async () => {
+        try {
+          const receipt = await this.provider.getTransactionReceipt(hash);
+          if (receipt) {
+            resolve(receipt);
+          } else {
+            setTimeout(checkReceipt, 100); // Check every 100ms
+          }
+        } catch (error) {
+          reject(error);
+        }
+      };
+      checkReceipt();
+    });
+  }
+}
+```
+
+#### Balance updates
+
+```javascript
+class WalletProvider {
+  async getBalance(address) {
+    // Get preconfirmed balance
+    const balance = await this.provider.getBalance(address, 'pending');
+    return balance;
+  }
+
+  async subscribeToBalanceUpdates(address, callback) {
+    // Poll for balance changes (or use WebSocket)
+    setInterval(async () => {
+      const newBalance = await this.getBalance(address);
+      callback(newBalance);
+    }, 200); // Check every 200ms
+  }
+}
+```
+
+## Using Flashblocks with a Node Provider
+
+For production use cases, consider using a node provider that supports Flashblocks on Unichain.
+
+- **Alchemy:** https://www.alchemy.com/docs/reference/unichain-flashblocks-api-quickstart
+- **Quicknode:** https://www.quicknode.com/docs/Unichain/flashblocks/overview
+
+## Integrating Flashblocks (Node Operators)
+
+Flashblocks are published via a WebSocket API. Any `op-reth` node can subscribe to the WebSocket
+stream and serve pending data. [Supported RPC Methods](#supported-rpc-methods).
+
+Run the docker image `ghcr.io/base/node-reth:latest` with the binary name `./base-node-reth` like a typical
+op-reth node with the additional flag `--websocket-url=wss://mainnet-flashblocks.unichain.org/ws`
+(or the Unichain Sepolia URL if you are running a Unichain Sepolia node).
+
+### WebSocket API
+
+You can subscribe to Flashblocks data on the following URLs. The content is Brotli-compressed.
+
+| Network | URL |
+| :------ | :-- |
+| Unichain Mainnet | `wss://mainnet-flashblocks.unichain.org/ws` |
+| Unichain Sepolia | `wss://sepolia-flashblocks.unichain.org/ws` |
+
+#### Example initial response
+
+The initial response contains the base block. Diff responses only contain the transactions that occurred in that
+flashblock to reduce how much data is sent in each response.
+
+```json
+{
+  "base": {
+    "base_fee_per_gas": "0xa581a9",
+    "block_number": "0x1ff5744",
+    "extra_data": "0x000000003200000003",
+    "fee_recipient": "0x4200000000000000000000000000000000000011",
+    "gas_limit": "0x8f0d180",
+    "parent_beacon_block_root": "0x6d475c589e1e129ffbdf2518422a4f751221be47b03ee02cc7c0017de7c42cc5",
+    "parent_hash": "0x0a6bdd716f4ae846fb0dce22ab2dde4043277c1c69dcb3ce203ae6153ad0d17a",
+    "prev_randao": "0xb39a7a9cd133af89a600b98844af7d26b59008b77dadfc7301dcaa470225030c",
+    "timestamp": "0x68890b6b"
+  },
+  "diff": {
+    "block_hash": "0xfde1f5d00058b6804aab2298ab8a6137bd736141cc778ed10ee2c2dd92c2e25d",
+    "gas_used": "0xb44c",
+    "logs_bloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "receipts_root": "0x095d9004dd9ac3f1c8a3a09d58a67b8cc6a733a1096a635fa18653564872363f",
+    "state_root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "transactions": [
+      "0x7ef90104a04496c450bf25202f5e7ff98ced76e395abe923ec29d8240ea916d47e84db1d6594deaddeaddeaddeaddeaddeaddeaddeaddead00019442000000000000000000000000000000000000158080830f424080b8b0098999be000008dd00101c1200000000000000090000000068890aab00000000015f5ae700000000000000000000000000000000000000000000000000000000760d9ba500000000000000000000000000000000000000000000000000000000000000012d75f34dc6082e101bca0c1084df5e22ef49bde26df171d9e36bfa0fada9f1690000000000000000000000005050f69a9786f081509234f1a7f4684b5e5b76c9000000000000000000000000"
+    ],
+    "withdrawals": [],
+    "withdrawals_root": "0x8bab76e96357f11502327a43179ae1430bf5510aecf9306714359514a1ad5447"
+  },
+  "index": 0,
+  "metadata": {
+    "block_number": 33511236,
+    "new_account_balances": {
+      "0x0000f90827f1c53a10cb7a02335b175320002935": "0x0",
+      "0x000f3df6d732807ef1319fb7b8bb8522d0beac02": "0x0",
+      "0x4200000000000000000000000000000000000015": "0x0",
+      "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0001": "0x69076b18a41d8"
+    },
+    "receipts": {
+      "0x24e20e8a269a497255d19694493edb4fabf239d0d951db06056fc02f62fb3200": {
+        "Deposit": {
+          "cumulativeGasUsed": "0xb44c",
+          "depositNonce": "0x1ff5746",
+          "depositReceiptVersion": "0x1",
+          "logs": [],
+          "status": "0x1"
+        }
+      }
+    }
+  },
+  "payload_id": "0x032d2c3f8a9826a0"
+}
+```
+
+#### Example diff response
+
+```json
+{
+  "diff": {
+    "block_hash": "0xd7cad1e127fc967c9454d56aa7d97e862ccb7eff83405d79e2be371cb1b6e9d8",
+    "gas_used": "0x9d04ea",
+    "logs_bloom": "0x22200141108c138963401130a601180014684214028212418e8d30001212210500080c000010040004028011009299491238e004420020024612020460b7308214b418181061c46884400489610101a40146202c644c0891627404c0842880da258202228a6b0040271c18151b040841192c200bc814150c5ea0405650191000a004590049a01009408164810042885a04c48a4b0823200b010b85520040191822000022b60ac9042244d84028c1083332000018051a312a03431aa1210560cb00a0991b4a0100c1011b0c3880100299895040d8061c02b81aa492a2808962a40415aa2068a48020608a028200020624b00292800000a9600248088542018c01",
+    "receipts_root": "0xa6b611e8baa1097b5689d9cd106b8288aadde4b24fd4e818346c57199e5b05ac",
+    "state_root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "transactions": [
+      "0x02f8b282210581fe849502f90084965ac7f682b11c9485e90a5430af45776548adb82ee4cd9e33b0807780b844095ea7b3000000000000000000000000c9740f40d201a349959263acdbd4fbff6dd0e53700000000000000000000000000000000000000000000021e19e0c9bab2400000c001a0dc2a0b293fd334cb393a3471ccd98e92d00e1602202bea1a2b066549c362cf90a0449017bb7f9170936e62451d8db932b7b22a1531c9867cf4530bae965f0ca0ce",
+      "0x02f904d5822105820b63840998aa40840ae6c24c830322f69426759dbb201afba361bec78e097aa3942b0b4ab880b90464b4206dd2000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000003e00000000000000000c2db89b2bd434ceac6c74fbc0b2ad3a280e66db01ecf4a5700000000000000000000000000000000000000000000000000000000000001600000000000000000000000000000000000000000000000000000000000000280000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005f9d660fb31380000000000000000000000000000000000000000000000000000000068890b8300000000000000000000000000000000000000000000000000000000000004b00000000000000000000000000000000000000000000000000000000000001398000000000000000000000000000000000000000000000000000000000000298800000000000000000000000000000000000000000000000000000000003567e034a5c9394fb2fd3298ece07c16ec2ed009f6029a360f90f4e93933b55e2184d40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000203b9cf0f6c26f3f86d4bed347520ceabc29872df03a96580be6b1ca67d27d115f000000000000000000000000000000000000000000000000000000000000005268747470733a2f2f647765622e6c696e6b2f697066732f6261666b726569636d776b33786c78626f7a627035683633787979776f636337646c7474333736686e346d6e6d686b376f6a71646362726b717a6900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000230181a5737464696edc00100000ccd01d00000000ccc0ccb2ccadcca5ccd574cc89ccd100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000041161ac94b4ec55455abd60a0ce4dc64c6ac84e5d34083a803bd6437b3957f9b2f55d975ae81496d5271cb4e69085eddf638ed6def5b0f64c1476692d15204d9c51c00000000000000000000000000000000000000000000000000000000000000c001a0ec961c159e336dc12854bd277c78ea2456baa4059032b431095ed45176202684a04dee750b6435b09d2c8acc52ea3920c309bbe92a210637ccee0fc802937fac7a",
+      // more raw transactions
+    ],
+    "withdrawals": [],
+    "withdrawals_root": "0x8bab76e96357f11502327a43179ae1430bf5510aecf9306714359514a1ad5447"
+  },
+  "index": 1,
+  "metadata": {
+    "block_number": 33511236,
+    "new_account_balances": {
+      "0x000000000022d473030f116ddee9f6b43ac78ba3": "0x0",
+      "0x0000000071727de22e5e9d8baf0edac6f37da032": "0x2fa696d47dd7f3320",
+      // More new balances
+    },
+    "receipts": {
+      "0x02637c55345acb7539a506ba3ed7b1b9bf34dff25495a7554f5f3b7c3fa82c3a": {
+        "Eip1559": {
+          "cumulativeGasUsed": "0x6e0c96",
+          "logs": [],
+          "status": "0x1"
+        }
+      },
+      "0x059a9da66abd293fadea0fedad5cfa5e02d8ad44d1a36b16df30fe3dd451fdc2": {
+        "Eip1559": {
+          "cumulativeGasUsed": "0x822a2b",
+          "logs": [
+            {
+              "address": "0x2a6c106ae13b558bb9e2ec64bd2f1f7beff3a5e0",
+              "data": "0xaf73855d4174841d51644d202ecd810eb45916837c087656a308aedf04ac7d5c000000000000000000000000ff5d4f2013563d06a6fd4930fd48ee0ff9c5e622",
+              "topics": [
+                "0x44d83729a43f9c6046446df014d073dd242e0ad672071e9b292f31b669c25b09"
+              ]
+            },
+            {
+              "address": "0x9a593475d9c42d63c117bab7337843b3c0017b3d",
+              "data": "0x0000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000024ee8ca3b5af73855d4174841d51644d202ecd810eb45916837c087656a308aedf04ac7d5c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+              "topics": [
+                "0x8f8f4d49bbb03ffac818a5d588ec1786a4d2d17269871cbf5b1745f58b64c15d",
+                "0x0000000000000000000000002a6c106ae13b558bb9e2ec64bd2f1f7beff3a5e0"
+              ]
+            },
+            {
+              "address": "0x2a6c106ae13b558bb9e2ec64bd2f1f7beff3a5e0",
+              "data": "0xaf73855d4174841d51644d202ecd810eb45916837c087656a308aedf04ac7d5c000000000000000000000000ff5d4f2013563d06a6fd4930fd48ee0ff9c5e622",
+              "topics": [
+                "0x44d83729a43f9c6046446df014d073dd242e0ad672071e9b292f31b669c25b09"
+              ]
+            },
+            {
+              "address": "0x2a6c106ae13b558bb9e2ec64bd2f1f7beff3a5e0",
+              "data": "0xaf73855d4174841d51644d202ecd810eb45916837c087656a308aedf04ac7d5c78b4356abb078cdc094ed57916001faac8620301a832170438f98917d256b2c80000000000000000000000000000000000000000000000000000000000000001",
+              "topics": [
+                "0x6bc93adab97dd835bee818087939b726558bc8d9177650a0018dd05eb00e56c8"
+              ]
+            },
+            {
+              "address": "0x08efb6d315c7e74c39620c9aaea289730f43a429",
+              "data": "0x78b4356abb078cdc094ed57916001faac8620301a832170438f98917d256b2c80000000000000000000000002a6c106ae13b558bb9e2ec64bd2f1f7beff3a5e0000000000000000000000000df8f2aeea963803140df7b4ddd11216e584577b4000000000000000000000000620d7e459cffcdc56a874536dc19147de801a4a1",
+              "topics": [
+                "0xc6cfec28363edf86fe132edcedb30ccc6dbb89a7ec5f428aaeeb8ae5d901537d"
+              ]
+            }
+          ],
+          "status": "0x1"
+        }
+      },
+      // More receipts
+  },
+  "payload_id": "0x032d2c3f8a9826a0"
+}
+```
+
+
+## Getting Help
+[Join the Uniswap Discord](https://discord.com/invite/uniswap) and look for the Unichain channel.

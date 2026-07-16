@@ -1,0 +1,91 @@
+---
+title: "AMM vs UniswapX Routing"
+description: "Understand how the Uniswap API evaluates Uniswap AMM and UniswapX routes when returning swap quotes."
+---
+
+The Uniswap API can return routes from Uniswap AMM liquidity, UniswapX liquidity, or both depending on the request inputs and route availability. This guide explains how routing works and which request fields control route selection.
+
+## How Uniswap AMM Routing Works
+
+AMM routing refers to swap paths that use onchain AMM liquidity. It is one of the default routing options used by the Uniswap API when computing quotes.
+
+In the Uniswap API, AMM routes:
+
+- Rely on onchain liquidity only (for example, Uniswap v2, Uniswap v3, and Uniswap v4 pools, depending on chain availability)
+- Return AMM quotes when supported liquidity exists
+- Do not involve solvers
+- May use split routes, multi-hop routes, or both to improve output
+
+## How UniswapX Routing Works
+
+UniswapX is an intent-based swap system where solvers compete to fill a swap. Solvers are third parties that can use proprietary routing strategies and token inventories to fill intents. For a broader overview, see [UniswapX Filling Overview](/docs/liquidity/uniswapx/filling/overview).
+
+In the Uniswap API, UniswapX routes behave as follows:
+
+- A `/quote` response may include a UniswapX route when the swap is eligible and a solver can fill it
+- The API response returns a UniswapX path rather than AMM split-route details
+- The solver submits the onchain order fill, and the swapper signs the required approval or order signature
+
+A UniswapX quote is produced in two phases. While the user is browsing, the API returns a soft quote, which is an indicative price. When the user signs the Permit2 order, the API requests a hard quote, and that hard quote becomes the posted order.
+
+## How the Uniswap API Chooses Between Uniswap AMM and UniswapX
+
+The Uniswap API selects routing based on the request configuration and live route availability.
+
+### Routing preferences
+
+Set routing behavior with the `routingPreference` field. Supported values are `BEST_PRICE` and `FASTEST`. Legacy values are deprecated.
+
+- Use `BEST_PRICE` to search for the most efficient route based on current inputs, either across all protocols or within the `protocols` you specify
+- Use `FASTEST` to prioritize quote response speed, either across all protocols or within the `protocols` you specify
+
+`FASTEST` controls quote response speed, not settlement complexity. When `routingPreference` is `FASTEST`, UniswapX routes are not considered.
+
+For field-level details, see the [POST `/quote` API reference](/docs/api-reference/aggregator_quote).
+
+### Protocol restrictions
+
+The `protocols` field is applied when `routingPreference` is `BEST_PRICE`.
+
+- If `protocols` is omitted, the API considers both Uniswap AMM and UniswapX protocols and returns the most efficient route based on current inputs
+- If `protocols` contains only `V2`, `V3`, or `V4`, routing is restricted to Uniswap AMM routes
+- If `protocols` includes `UNISWAPX_V2` (or other supported UniswapX values), UniswapX routes are also considered
+
+### UniswapX availability
+
+If UniswapX is unavailable for a request, the API falls back to Uniswap AMM routing when allowed by your `protocols` selection.
+
+UniswapX quotes may be unavailable when solvers cannot or choose not to fill a swap. The API includes UniswapX in routing when the order is worth more than 300 USDC equivalent, or when the UniswapX quote improves on the AMM route by at least 0.2%. For orders at or below 300 USDC equivalent, UniswapX is included only when it meets that 0.2% improvement.
+
+### Chain coverage
+
+Solver activity varies across chains, so UniswapX route frequency can differ by network. UniswapX is available only on selected chains, and constraints can vary by chain.
+
+See [Supported Chains](/docs/trading/swapping-api/supported-chains) for current coverage and constraints.
+
+## Routing Best Practices for Uniswap API Integrators
+
+- **Always inspect `/quote` responses:** Do not assume route type in advance. Use the route returned by the API response.
+- **Avoid unnecessary protocol restrictions:** If your goal is broad route coverage, leave `protocols` unset.
+- **Plan for Uniswap AMM fallback:** Even when UniswapX is enabled, solver availability can vary.
+- **Make route behavior visible to users:** If your product exposes route type, clarify that route availability changes by chain and market conditions.
+
+## Common Integration Issues and Solutions
+
+### UniswapX support enabled but no quotes on some chains
+
+If you support both Uniswap AMM and UniswapX, set `routingPreference` to `BEST_PRICE` (or omit it, which defaults to `BEST_PRICE`) and omit `protocols` to maximize available liquidity sources.
+
+If you specify `UNISWAPX_V2` in `protocols`, include at least one AMM protocol (`V2`, `V3`, or `V4`) as fallback.
+
+### Quote differs from app.uniswap.org
+
+Depending on your `/quote` request fields, the API may return a different route than the Uniswap web app for the same pair at a given moment.
+
+The web app typically considers all available protocols unless the user changes routing options. A `BEST_PRICE` request performs a fresh route search based on current inputs and market conditions, so the result can differ from prior quotes.
+
+### Small trades return only Uniswap AMM routes
+
+This is expected in some cases. On some chains, UniswapX quotes are subject to minimum notional thresholds, and solver participation may vary by trade size and market conditions.
+
+For route behavior and configuration details, see [Swap Routing](/docs/trading/swapping-api/concepts/swap-routing) and the [POST `/quote` API reference](/docs/api-reference/aggregator_quote).

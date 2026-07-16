@@ -1,0 +1,185 @@
+---
+id: allowance-transfer
+title: Allowance Transfer
+description: Understand Uniswap Permit2 allowance-based approvals, permits, and `transferFrom` flows with nonce safety.
+---
+
+<Callout type="info" title="Source Code">
+Read the implementation on GitHub: [AllowanceTransfer.sol](https://github.com/Uniswap/permit2/blob/main/src/AllowanceTransfer.sol)
+</Callout>
+
+## Overview
+
+`AllowanceTransfer` lets you grant time-bounded token allowances and spend them safely through Permit2.
+Use this model when you need reusable approvals instead of one-time signature spending.
+
+## Core Entry Points
+
+| Entry point | Purpose |
+|---|---|
+| `approve` | Set token permissions onchain without signature validation. |
+| `permit` | Set token permissions through signature validation. |
+| `transferFrom` | Transfer tokens when valid permissions already exist. |
+
+## Permit and Approval Functions
+
+### `approve`
+
+#### Function signature
+
+```solidity
+function approve(address token, address spender, uint160 amount, uint48 expiration) external
+```
+
+#### Parameters
+
+| Parameter | Description |
+|---|---|
+| `token` | Token address to approve. |
+| `spender` | Spender address to approve. |
+| `amount` | Approved token amount. `type(uint160).max` is treated as unlimited allowance. |
+| `expiration` | Timestamp when approval becomes invalid. Passing `0` expires permissions at `block.timestamp`. |
+
+### Single `permit`
+
+#### Function signature
+
+```solidity
+function permit(address owner, PermitSingle memory permitSingle, bytes calldata signature) external;
+```
+
+#### Parameters
+
+| Parameter | Description |
+|---|---|
+| `owner` | Address of the token owner. |
+| `permitSingle` | Permit payload for a single token allowance. See struct definition below. |
+| `signature` | Signature over permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). |
+
+```solidity
+struct PermitSingle {
+        // the permit data for a single token allowance
+        PermitDetails details;
+        // address permissioned on the allowed tokens
+        address spender;
+        // deadline on the permit signature
+        uint256 sigDeadline;
+    }
+
+struct PermitDetails {
+        // ERC20 token address
+        address token;
+        // the maximum amount allowed to spend
+        uint160 amount;
+        // timestamp at which a spender's token allowances become invalid
+        uint48 expiration;
+        // an incrementing value indexed per owner,token,and spender for each signature
+        uint48 nonce;
+    }
+```
+
+### Batched `permit`
+
+#### Function signature
+
+```solidity
+function permit(address owner, PermitBatch memory permitBatch, bytes calldata signature) external;
+```
+
+#### Parameters
+
+| Parameter | Description |
+|---|---|
+| `owner` | Address of the token owner. |
+| `permitBatch` | Permit payload for multiple token allowances. See struct definition below. |
+| `signature` | Signature over permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). |
+
+```solidity
+struct PermitBatch {
+        // the permit data for multiple token allowances
+        PermitDetails[] details;
+        // address permissioned on the allowed tokens
+        address spender;
+        // deadline on the permit signature
+        uint256 sigDeadline;
+    }
+struct PermitDetails {
+        // ERC20 token address
+        address token;
+        // the maximum amount allowed to spend
+        uint160 amount;
+        // timestamp at which a spender's token allowances become invalid
+        uint48 expiration;
+        // an incrementing value indexed per owner,token,and spender for each signature
+        uint48 nonce;
+    }
+```
+
+## Transfer Functions
+
+### Single `transferFrom`
+
+#### Function signature
+
+```solidity
+function transferFrom(address from, address to, uint160 amount, address token) external;
+```
+
+#### Parameters
+
+| Parameter | Description |
+|---|---|
+| `from` | Address to transfer tokens from. |
+| `to` | Recipient address. |
+| `amount` | Amount to transfer. Maximum value is `type(uint160).max`. |
+| `token` | Token address to transfer. |
+
+### Batched `transferFrom`
+
+#### Function signature
+
+```solidity
+function transferFrom(AllowanceTransferDetails[] calldata transferDetails) external;
+```
+
+#### Parameters
+
+| Parameter | Description |
+|---|---|
+| `transferDetails` | Array of batched transfer details. See struct definition below. |
+
+```solidity
+struct AllowanceTransferDetails {
+        // the owner of the token
+        address from;
+        // the recipient of the token
+        address to;
+        // the amount of the token
+        uint160 amount;
+        // the token to be transferred
+        address token;
+    }
+```
+
+## Nonce Schema
+
+The nonces used to protect against replay attacks of signatures are similar to standard incrementing nonces. However, we pack nonces with an allowed amount, and an allowed duration. This means that nonces are incremented *per owner*, *per token*, and *per spender.* Which further implies that you could sign two different permits at the same time with the same nonces and they *won’t* cancel each other out so long as the token or spender differ.
+
+The mapping nonces are packed in is defined as follows:
+
+```solidity
+mapping(address => mapping(address => mapping(address => PackedAllowance))) public allowance;
+```
+
+and indexed as follows:
+
+```solidity
+PackedAllowance allowanceInformation = allowance[ownerAddress][tokenAddress][spenderAddress];
+uint48 nonce = allowanceInformation.nonce;
+```
+
+## Security Considerations
+
+Similar to the security considerations outlined in SignatureTransfer, integrating contracts need to perform valid safety checks on the caller and pass in correct addresses for the `from` argument in any transfer calls.
+
+All amounts on the `AllowanceTransfer` contract are of type `uint160` so make sure integrating contracts safely downcast if they have to. See how Permit2Lib downcasts safely.

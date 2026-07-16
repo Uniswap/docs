@@ -1,0 +1,98 @@
+---
+id: Deployments
+title: Deployments
+description: Find Uniswap Liquidity Launchpad, CCA, and strategy contract deployments across supported chains.
+---
+View the changelogs for more details on differences between contract deployments: [continuous-clearing-auction](https://github.com/Uniswap/continuous-clearing-auction/blob/main/CHANGELOG.md) and [liquidity-launcher](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md).
+
+## ContinuousClearingAuctionFactory
+The CCA factory has no constructor parameters so it can be deployed to the same address across all compatible chains. v2.0.0 is deployed on all currently supported chains.
+
+| Address                                    | Commit Hash                              | Version           |
+| ------------------------------------------ | ---------------------------------------- | ----------------- |
+| 0x00cCa200BF124dBfA848937c553864f4B4CE0632 |                                          | v2.0.0            |
+| 0xCCccCcCAE7503Cac057829BF2811De42E16e0bD5 | 87b2546a298f691c095b06ec077ceef25ba56007 | v1.1.0            |
+| 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate\* |
+
+<Callout type="warn">
+  \*v1.0.0-candidate is the initial version of CCA and is NOT recommended for production use. See the [Changelog](https://github.com/Uniswap/continuous-clearing-auction/blob/main/CHANGELOG.md) for more details.
+</Callout>
+
+## LiquidityLauncher
+The LiquidityLauncher is a singleton contract deployed to the same address across all networks with the canonical Permit2 deployment address (0x000000000022D473030F116dDEE9F6B43aC78BA3).
+
+| Version  | Address | Commit Hash |
+| -------- | ------------------------------------------ | ---------------------------------------- |
+| v3.0.0  | 0x00004c4ccc709Ef590F7C81102C0689F0263D4e9 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
+| v1.0.0  | 0x00000008412db3394C91A5CbD01635c6d140637C | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d |
+
+## LBP Strategies
+LBP strategies are deployed via factory contracts which are deployed to different addresses on different chains. Make sure to use the correct factory contract for the chain in question.
+
+### FullRangeLBPStrategyFactory
+The FullRangeLBPStrategyFactory is a factory contract for the [FullRangeLBPStrategy](https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/lbp/FullRangeLBPStrategy.sol).
+
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v2.0.0 | Mainnet | 0x65aF3B62EE79763c704f04238080fBADD005B332 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Unichain | 0xAa56d4d68646B4858A5A3a99058169D0100b38e2 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Base | 0x39E5eB34dD2c8082Ee1e556351ae660F33B04252 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Sepolia | 0x89Dd5691e53Ea95d19ED2AbdEdCf4cBbE50da1ff | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+
+### AdvancedLBPStrategyFactory
+The AdvancedLBPStrategyFactory is a factory contract for the [AdvancedLBPStrategy](https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/lbp/AdvancedLBPStrategy.sol).
+
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v2.0.0 | Mainnet | 0x982DC187cbeB4E21431C735B01Ecbd8A606129C5 | 610603eed7c35ff504e23ec87cd18ec3f701e746   |
+| v2.0.0 | Unichain | 0xeB44195e1847F23D4ff411B7d501b726C7620529 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Base | 0x9C5A6fb9B0D9A60e665d93a3e6923bDe428c389a | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+| v2.0.0 | Sepolia | 0xdC3553B7Cea1ad3DAB35cBE9d40728C4198BCBb6 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
+
+### LBPStrategy
+The LBPStrategy contract is deployed to a different address on each chain. It must be deployed to a valid v4 hook address.
+
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v3.0.0 | Mainnet | 0xb98766A35cdc28415be0767D4EA41e39fBA3e000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
+| v3.0.0 | Base | 0x5bB4bAfafEc57BEd50D864AAA9D1ef992611e000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
+| v3.0.0 | Unichain | 0x824A3eCDe463DD45cC156b64CEfA132596C9A000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
+| v3.0.0 | Arbitrum | 0x18608AD558dcD233F7854242bbAef73988Bee000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
+| v3.0.0 | Sepolia | 0x3f37838651B5AD71D4e01Ec9745862A5D9DF2000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
+| v3.0.0 | Base Sepolia | 0x0e1793a989c682117fcBfB3a9aA8e451D37D2000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
+
+## Previous Deployments
+The following contracts are deprecated and are not recommended for production use. See the [Changelog](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md) for more details.
+
+### LBPStrategyBasicFactory
+The LBPStrategyBasicFactory is a factory contract for the [LBPStrategyBasic](https://github.com/Uniswap/liquidity-launcher/blob/v1.0.0-candidate/src/distributionContracts/LBPStrategyBasic.sol).
+
+| Network | Address | Commit Hash | Version |
+|---------|---------|------------|---------|
+| Mainnet | 0xbbbb6FFaBCCb1EaFD4F0baeD6764d8aA973316B6 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
+| Base | 0xC46143aE2801b21B8C08A753f9F6b52bEaD9C134 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
+| Unichain | 0x435DDCFBb7a6741A5Cc962A95d6915EbBf60AE24 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
+
+### VirtualLBPStrategyFactory
+
+| Network | Address | Commit Hash | Version |
+|---------|---------|------------|---------|
+| Mainnet | 0x00000010F37b6524617b17e66796058412bbC487 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
+| Sepolia | 0xC695ee292c39Be6a10119C70Ed783d067fcecfA4 | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d | v1.0.0-candidate |
+
+
+## UERC20Factory
+The UERC20Factory is a factory contract for new UERC20 tokens.
+
+| Network | Address                                    | Commit Hash                              | Version          |
+| ------- | ------------------------------------------ | ---------------------------------------- | ---------------- |
+| Mainnet | 0x0cde87c11b959e5eb0924c1abf5250ee3f9bd1b5 | 9705debfea9e6a641bc04352398f9e549055ac44 | v1.0.0-candidate |
+| Sepolia | 0x0cde87c11b959e5eb0924c1abf5250ee3f9bd1b5 | 9705debfea9e6a641bc04352398f9e549055ac44 | v1.0.0-candidate |
+
+## USUPERC20Factory
+The USUPERC20Factory is a factory contract for new Superchain compatible UERC20 tokens. It is deployed to the same address across all Superchain compatible L2s.
+
+| Network          | Address                                    | Commit Hash                              | Version          |
+| ---------------- | ------------------------------------------ | ---------------------------------------- | ---------------- |
+| Unichain         | 0x24016ed99a69e9b86d16d84351e1661266b7ac6a | 9705debfea9e6a641bc04352398f9e549055ac44 | v1.0.0-candidate |
+| Unichain Sepolia | 0x24016ed99a69e9b86d16d84351e1661266b7ac6a | 9705debfea9e6a641bc04352398f9e549055ac44 | v1.0.0-candidate |

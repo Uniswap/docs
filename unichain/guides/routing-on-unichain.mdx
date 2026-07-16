@@ -1,0 +1,69 @@
+---
+title: Routing on Unichain
+description: Route liquidity across Unichain with Tycho and simulate swaps across Uniswap v2, v3, and v4.
+---
+
+## Access Liquidity
+
+Indexing, simulating, and encoding swaps across the [many liquidity sources](https://www.unichain.org/explore) on Unichain can be challenging.
+
+Tycho, built on Substreams, gives you simulation and routing logic for Unichain liquidity in a convenient open source library.
+
+## Quickstart: Trade on Unichain Liquidity
+
+Clone the [Tycho Simulation repository](https://github.com/propeller-heads/tycho-simulation); you'll find the [quickstart code](https://github.com/propeller-heads/tycho-simulation/blob/main/examples/quickstart/main.rs) there.
+
+```bash
+git clone https://github.com/propeller-heads/tycho-simulation.git && cd tycho-simulation
+```
+
+Then run:
+
+```bash
+export RPC_URL=https://unichain-rpc.publicnode.com
+export TYCHO_URL=tycho-unichain-beta.propellerheads.xyz
+export TYCHO_API_KEY=sampletoken
+export PRIVATE_KEY=YOUR_TEST_WALLET_PRIVATE_KEY
+cargo run --release --example quickstart -- --sell-token "0x078D782b760474a361dDA0AF3839290b0EF57AD6" --buy-token "0x4200000000000000000000000000000000000006" --sell-amount 10 --chain "unichain" --swapper-pk $PRIVATE_KEY
+```
+<Callout type="info">
+  More options for [public RPCs](https://chainlist.org/chain/130).
+</Callout>
+
+In the example above, you're selling 10 USDC for WETH at the most competitive price available across Uniswap pools on Unichain (v2, v3, and v4).
+
+## How It Works
+
+Tycho:
+
+- Fetches all protocol states and finds all WETH/USDC Uniswap pools.
+- Simulates a swap of 10 USDC to WETH on every pool.
+- Encodes a swap for the pool that has the most competitive price at that moment.
+- If you approve, it submits the required approval and then submits the swap transaction with your signer.
+
+Example output:
+
+```bash
+Loading tokens from Tycho... tycho-unichain-beta.propellerheads.xyz
+Tokens loaded: 7333
+Looking for pool with best price for 10 USDC -> WETH
+==================== Received block 14142597 ====================
+The best swap (out of 1 possible pools) is:
+Protocol: "uniswap_v3"
+Pool address: "0x65081cb48d74a32e9ccfed75164b8c09972dbcf1"
+Swap: 10.000000 USDC -> 0.006268 WETH
+Price: 0.000627 WETH per USDC, 1595.468182 USDC per WETH
+Would you like to simulate or execute this swap?
+✔ What would you like to do? · Execute the swap
+Executing by performing an approval (for permit2) and a swap transaction...
+Approval transaction sent with hash: 0x091f973337b77202c62baa97e81207882a4d93903fc21a4061e3b0d6fb5c0ab1 and status: true
+Swap transaction sent with hash: 0xe8f5f73023c46080eb59efce5535228f19cafdc5f8ff01cba91678eee550b589 and status: true
+```
+
+<Callout type="info">
+  For a more detailed quickstart to start trading on Unichain, you can visit [Tycho Docs](https://docs.propellerheads.xyz/tycho)
+</Callout>
+
+If you develop a hook, lending market, stablecoin, or any protocol that needs to be accessible to professional routers, you can freely integrate with Tycho and receive orderflow from all solvers, fillers, and market makers.
+
+To integrate your protocol, you can self-integrate by following the [integration guide](https://docs.propellerheads.xyz/tycho/for-dexs/protocol-integration) and submit a PR (requires Rust experience).

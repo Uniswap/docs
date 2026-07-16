@@ -1,0 +1,232 @@
+---
+id: example-configuration
+title: Example Configuration
+description: Configure Uniswap Continuous Clearing Auction parameters and deploy an example auction with a local script.
+---
+
+This section will walk you through each parameter of a CCA auction and an example configuration. For more details please refer to the [CCA auction mechanism](/docs/liquidity/liquidity-launchpad/concepts/cca).
+
+## Prerequisites
+Basic understanding of the CCA auction mechanism and Solidity is assumed. This guide continues from the [previous section](/docs/liquidity/liquidity-launchpad/guides/local-deployment).
+
+## Step 1: Define Auction Parameters
+The `AuctionParameters` struct parameterizes a new CCA auction. It is encoded and passed to the `ContinuousClearingAuctionFactory` contract when deploying a new auction. The struct definition is as follows:
+
+```solidity
+/// from: https://github.com/Uniswap/continuous-clearing-auction/blob/main/src/interfaces/IContinuousClearingAuction.sol
+struct AuctionParameters {
+    address currency; // token to raise funds in. Use address(0) for ETH
+    address tokensRecipient; // address to receive leftover tokens
+    address fundsRecipient; // address to receive all raised funds
+    uint64 startBlock; // Block which the first step starts
+    uint64 endBlock; // When the auction finishes
+    uint64 claimBlock; // Block when the auction can claimed
+    uint256 tickSpacing; // Fixed granularity for prices
+    address validationHook; // Optional hook called before a bid
+    uint256 floorPrice; // Starting floor price for the auction
+    uint128 requiredCurrencyRaised; // Amount of currency required to be raised for the auction to graduate
+    bytes auctionStepsData; // Packed bytes describing token issuance schedule
+}
+```
+
+We'll cover each parameter group below.
+
+### Auction participants and recipients
+
+- **`currency`**: token address used to raise funds. Use `address(0)` for native ETH.
+- **`tokensRecipient`**: address that receives leftover tokens after the auction.
+- **`fundsRecipient`**: address that receives raised funds.
+
+### Auction timing and pricing
+
+- **`startBlock`**: inclusive block where bidding and supply schedule begin.
+- **`endBlock`**: exclusive block where bidding stops.
+- **`claimBlock`**: block when purchased tokens can be claimed; must be at or after `endBlock`.
+- **`tickSpacing`**: minimum bid-price increment. It reduces infinitesimal outbids and improves pricing loop efficiency.
+- **`floorPrice`**: minimum accepted price at auction start.
+
+Prices are represented as a `currency/token` ratio in Q96 fixed-point format. For example, a floor price of 1000 is represented as `1000 << 96` or `1000 * 2^96`.
+
+### Validation and distribution controls
+
+- **`validationHook`**: optional contract used to validate bids before acceptance. Use `address(0)` to disable hook-based checks.
+- **`requiredCurrencyRaised`**: graduation threshold. If unmet, bidders can withdraw and no tokens are sold.
+- **`auctionStepsData`**: packed bytes schedule describing token issuance per block (`uint64` rate + block span).
+
+For more details about auction steps, refer to [CCA auction mechanism](/docs/liquidity/liquidity-launchpad/concepts/cca).
+
+## Step 2: Build and Run an Example Configuration
+Let's create an example configuration for a CCA auction. We'll use the script from the [previous section](/docs/liquidity/liquidity-launchpad/guides/local-deployment).
+
+First, make sure to import the `AuctionParameters` struct from the `IContinuousClearingAuction` interface:
+
+```solidity
+import {AuctionParameters} from "../src/interfaces/IContinuousClearingAuction.sol";
+```
+
+Then, we can configure the auction parameters:
+
+```solidity
+address deployer = vm.envAddress("DEPLOYER");
+
+AuctionParameters memory parameters = AuctionParameters({
+    currency: address(0),                       // We'll use the native token for this example
+    tokensRecipient: deployer,
+    fundsRecipient: deployer,
+    startBlock: uint64(block.number),           // Start the auction on the current block
+    endBlock: uint64(block.number + 100),       // End the auction after 100 blocks
+    claimBlock: uint64(block.number + 100),     // Allow claims at the end of the auction
+    tickSpacing: 79228162514264334008320,           // Use a tick spacing equal to the floor price
+    validationHook: address(0),                 // Use no validation hook
+    floorPrice: 79228162514264334008320,            // Use a floor price representing a ratio of 1:1,000,000 (1 ETH for 1 million tokens)
+    requiredCurrencyRaised: 0,                  // No graduation threshold 
+    auctionStepsData: bytes("")                 // Leave this blank for now
+});
+```
+
+Let's build the auction steps data. For simplicity, we'll sell tokens following a monotonically increasing schedule. We'll sell 10% over 50 blocks, 49% over 49 blocks, and the final 41% in the last block. See the [CCA auction mechanism](/docs/liquidity/liquidity-launchpad/concepts/cca) for more details about this schedule design.
+
+To derive the steps:
+- First tranche: 10% over 50 blocks
+Express 10% in MPS as 1e6 (1,000,000). Over 50 blocks this is 1e6 / 50 = 20,000 MPS per block.
+Pack this into a bytes8 value:
+
+```solidity
+bytes8 firstTranche = uint64(20_000) | (uint64(50) << 24);
+```
+
+Repeat this for the rest of the tranches to get the final auction steps data:
+```solidity
+bytes8 secondTranche = uint64(100_000) | (uint64(49) << 24); // 49e6 / 49 = 100_000 MPS per block
+bytes8 thirdTranche = uint64(4_100_000) | (uint64(1) << 24); // 41e6 / 1 = 4_100_000 MPS per block
+```
+
+Finally, pack the auction steps data into a bytes array:
+```solidity
+bytes memory auctionStepsData = abi.encodePacked(firstTranche, secondTranche, thirdTranche);
+
+// Set the auction steps data
+parameters.auctionStepsData = auctionStepsData;
+```
+
+Before finishing the script, deploy a MockERC20 token. You can use `ERC20Mock` from `@openzeppelin/contracts/mocks/token/ERC20Mock.sol`.
+
+```solidity
+import {ERC20Mock} from '@openzeppelin/contracts/mocks/token/ERC20Mock.sol';
+```
+
+Now let's finish the script:
+
+```solidity
+    using AuctionStepsBuilder for bytes;
+
+    function run() public {
+        address deployer = vm.envAddress("DEPLOYER");
+
+        vm.startBroadcast();
+        ContinuousClearingAuctionFactory factory = new ContinuousClearingAuctionFactory();
+        console2.log("Factory deployed to:", address(factory));
+
+        ERC20Mock token = new ERC20Mock();
+        uint256 totalSupply = 1_000_000_000e18; // 1 billion tokens
+
+        bytes memory auctionStepsData = AuctionStepsBuilder.init().addStep(20_000, 50).addStep(100_000, 49).addStep(4_100_000, 1);
+
+        AuctionParameters memory parameters = AuctionParameters({
+            currency: address(0),
+            tokensRecipient: deployer,
+            fundsRecipient: deployer,
+            startBlock: uint64(block.number),
+            endBlock: uint64(block.number + 100),
+            claimBlock: uint64(block.number + 100),
+            tickSpacing: 79228162514264334008320,
+            validationHook: address(0),
+            floorPrice: 79228162514264334008320,
+            requiredCurrencyRaised: 0,
+            auctionStepsData: auctionStepsData
+        });
+
+        IDistributionContract auction = IDistributionContract(factory.initializeDistribution(address(token), totalSupply, abi.encode(parameters), bytes32(0)));
+        token.mint(address(auction), totalSupply);
+        console2.log("Auction deployed to:", address(auction));
+
+        vm.stopBroadcast();
+    }
+```
+
+This will deploy the mock token, deploy the auction contract, and mint the total supply (1 billion tokens) to the auction contract.
+
+The final step in the script is to ensure that we call `onTokensReceived()` on the auction contract to register the receipt of the tokens.
+
+```solidity
+    token.mint(address(auction), totalSupply);
+    auction.onTokensReceived();
+```
+
+The complete script should look like this:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import {Script} from "forge-std/Script.sol";
+import {ContinuousClearingAuctionFactory} from "../src/ContinuousClearingAuctionFactory.sol";
+import {AuctionParameters} from "../src/interfaces/IContinuousClearingAuction.sol";
+import {IDistributionContract} from "../src/interfaces/external/IDistributionContract.sol";
+import {AuctionStepsBuilder} from "../test/utils/AuctionStepsBuilder.sol";
+import {ERC20Mock} from '@openzeppelin/contracts/mocks/token/ERC20Mock.sol';
+import {console2} from "forge-std/console2.sol";
+
+contract ExampleCCADeploymentScript is Script {
+    using AuctionStepsBuilder for bytes;
+    function setUp() public {}
+
+    function run() public {
+        address deployer = vm.envAddress("DEPLOYER");
+
+        vm.startBroadcast();
+        ContinuousClearingAuctionFactory factory = new ContinuousClearingAuctionFactory();
+        console2.log("Factory deployed to:", address(factory));
+
+        ERC20Mock token = new ERC20Mock();
+        uint256 totalSupply = 1_000_000_000e18; // 1 billion tokens
+
+        bytes memory auctionStepsData = AuctionStepsBuilder.init().addStep(20_000, 50).addStep(100_000, 49).addStep(4_100_000, 1);
+
+        AuctionParameters memory parameters = AuctionParameters({
+            currency: address(0),
+            tokensRecipient: deployer,
+            fundsRecipient: deployer,
+            startBlock: uint64(block.number),
+            endBlock: uint64(block.number + 100),
+            claimBlock: uint64(block.number + 100),
+            tickSpacing: 79228162514264334008320,
+            validationHook: address(0),
+            floorPrice: 79228162514264334008320,
+            requiredCurrencyRaised: 0,
+            auctionStepsData: auctionStepsData
+        });
+
+        IDistributionContract auction = IDistributionContract(factory.initializeDistribution(address(token), totalSupply, abi.encode(parameters), bytes32(0)));
+
+        token.mint(address(auction), totalSupply);
+        auction.onTokensReceived();
+
+        console2.log("Auction deployed to:", address(auction));
+        vm.stopBroadcast();
+    }
+}
+```
+
+Let's run the script:
+```bash
+forge script scripts/ExampleCCADeploymentScript.s.sol:ExampleCCADeploymentScript \
+--rpc-url http://localhost:8545 --private-key <your-private-key> --broadcast
+```
+
+## Verification
+
+The deployment should be successful and you should see the factory and auction contract addresses logged to the console.
+
+## Next Steps
+In the next section we'll write some scripts to interact with the deployed auction contract.

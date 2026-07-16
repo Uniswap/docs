@@ -1,0 +1,12 @@
+{
+  "title": "Guides",
+  "pages": [
+    "getting-started",
+    "swapping",
+    "providing-liquidity",
+    "flash-swaps",
+    "getting-pair-addresses",
+    "building-an-oracle",
+    "troubleshooting"
+  ]
+}

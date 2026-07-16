@@ -1,0 +1,151 @@
+---
+title: Reading Pool Reserves
+description: Read a Uniswap v4 pool's total reserves in one eth_call with ReservesLens.
+---
+
+## Return Values
+
+`getPoolTVL` returns a `PoolTVL` struct:
+
+| Field | Meaning |
+|---|---|
+| `coreAmount0`, `coreAmount1` | The pool's reserves: token amounts represented by the liquidity curve at the current price. **Fee-excluded principal**: uncollected LP fees, protocol fees, and donations are not included. |
+| `sqrtPriceX96`, `tick`, `activeLiquidity` | Pool price state at the same snapshot, so you don't need a second call. |
+| `blockNumber` | Block the snapshot was evaluated at. |
+| `hookPermissions` | The pool hook's 14 permission bits, decoded from its address. |
+| `hasCustomAccounting` | True if the hook has any return-delta permission, meaning it can hold value outside the curve. **If true, treat `coreAmount0/1` as approximate swappable depth.** |
+| `hookReserves0/1`, `hookEffective0/1`, `statsProvider`, `statsStatus` | Optional hook-self-reported reserves (see below). |
+
+It cannot silently return wrong numbers: the lens reconstructs the liquidity curve from `PoolManager` storage and reverts (`LiquidityInvariantFailed`) unless the reconstruction exactly matches the pool's own stored liquidity.
+
+## Quickstart
+
+You need: the ReservesLens address (same on every chain), the chain's canonical PoolManager address (differs per chain, see the deployments page), and the pool's full `PoolKey` (currency0, currency1, fee, tickSpacing, hooks), which you get from the PoolManager's `Initialize` event. Note the lens takes the PoolKey, not the poolId; the poolId is `keccak256(abi.encode(key))` if you need it elsewhere.
+
+### viem
+
+```typescript
+const result = await client.readContract({
+  address: RESERVES_LENS,
+  abi: reservesLensAbi,
+  functionName: 'getPoolTVL',
+  args: [POOL_MANAGER, {
+    currency0: '0x0000000000000000000000000000000000000000', // native ETH
+    currency1: '0xdAC17F958D2ee523a2206206994597C13D831ec7', // USDT
+    fee: 500,
+    tickSpacing: 10,
+    hooks: '0x0000000000000000000000000000000000000000',
+  }],
+  blockNumber, // pin when storing or comparing results over time
+})
+// result.coreAmount0, result.coreAmount1 = reserves in raw token units
+```
+
+### ethers
+
+`getPoolTVL` is overloaded (a 2-arg and a 3-arg form), so ethers requires the full signature:
+
+```typescript
+const result = await lens["getPoolTVL(address,(address,address,uint24,int24,address))"](
+  POOL_MANAGER, poolKey, { blockTag }
+)
+```
+
+### cast
+
+```bash
+cast call $LENS "getPoolTVL(address,(address,address,uint24,int24,address))\
+((uint256,uint256,uint256,uint256,uint256,uint256,uint160,int24,uint128,uint256,address,uint16,bool,uint8))" \
+  $POOL_MANAGER "(0x...,0x...,500,10,0x...)" --rpc-url $RPC
+```
+
+## Gas and Pagination
+
+One call covers essentially every real pool. In live testing, the worst mainnet pool (tickSpacing=1 USDC/USDT, ~32M gas) succeeded single-shot on a default public geth node (50M `eth_call` cap). Pagination exists for providers that cap `eth_call` below ~35M and for pools with extreme initialized-tick counts.
+
+```typescript
+async function getReserves(manager, key) {
+  try {
+    return await lens.read.getPoolTVL([manager, key])
+  } catch {
+    // paginate: default budget is 512 reads (~2M gas/page, fits any provider cap)
+    let cursor = '0x', result, done = false
+    while (!done) {
+      ;[result, cursor, done] = await lens.read.getPoolTVLPaged([manager, key, cursor],
+        { blockNumber }) // REQUIRED: all pages must use the same block tag
+    }
+    return result
+  }
+}
+```
+
+Pagination rules: pass every page the **same explicit block number** (a cursor from block N reverts with `CursorBlockMismatch` at block N+1, and `CursorStateMismatch` if pool state doesn't match, e.g. a `pending` tag); pass the returned cursor back unchanged; intermediate results are incomplete, only the `done == true` result is the answer. Never trust a result resumed from someone else's cursor. Typical page counts: 1-2 pages even for tickSpacing=1 pools at the default budget with `maxReads` raised to 4096; ~16 pages at the 512 default.
+
+`getPoolTVLBatch(manager, keys)` reads many pools in one call, but one expensive pool reverts the whole batch, so prefer it only for known-cheap pools.
+
+## Hook Pools
+
+1. **`hasCustomAccounting`**: if true, the hook can move value outside the curve, and `coreAmount0/1` may understate (or misstate) real depth. Display these pools as approximate.
+2. **`statsStatus`**: whether hook-self-reported reserves ([URC-3](https://gov.uniswap.org/t/urc-3-hook-tvl-and-effective-liquidity-reporting/26155) / `IHookStats`) are available:
+
+| Status | Meaning | Hook fields valid? |
+|---|---|---|
+| `NO_HOOK` | Vanilla pool | n/a: core amounts are exact (up to uncollected fees) |
+| `DIRECT` / `EXTERNAL` | Hook (or a designated provider) reported its reserves | Yes: `hookReserves0/1` = hook-managed assets, `hookEffective0/1` = immediately swappable |
+| `NOT_SUPPORTED` | Hook doesn't implement URC-3 (the common case today) | No |
+| `INVALID_PROVIDER` / `CALL_FAILED` / `INVALID_RESPONSE` | Provider misbehaved; lens is hardened against this (gas-capped, return-bomb-safe) | No |
+| `INSUFFICIENT_GAS` | Not enough gas remained to query the hook. **Core amounts are still valid.** Retry with more gas if you want hook stats. | No |
+
+Hook-reported numbers are self-reported: the lens verifies the provider claims the right hook and sanity-checks the values, but cannot verify honesty. Display them as the hook's claim, not as onchain fact.
+
+## Reserve Semantics
+
+- **Reserves are fee-excluded principal**, i.e. "current liquidity value", the definition the official v4-subgraph also adopted (Uniswap/v4-subgraph#88). A pool's actual token balance is principal + not-yet-collected fees; the core amounts are the honest swappable-depth number. Subgraph data indexed before that fix carried "principal + all fees ever accrued" and reads high on busy pools (see appendix).
+- v2 `pool_info`-style reserves are balance-based and fee-inclusive; don't expect v4 numbers from the lens to be constructed identically.
+- The lens is stateless and view-only, intended for offchain `eth_call` use. Do not compose on it from another contract: its gas cost grows with the pool's tick count and is unbounded for adversarially-filled pools.
+- The `PoolManager` is a parameter, which makes one lens address work on every chain. Passing a wrong or non-canonical manager yields invalid data or reverts; always use the canonical `PoolManager` from the [deployments page](/docs/protocols/v4/deployments).
+
+## Errors
+
+| Error | Cause |
+|---|---|
+| `PoolNotInitialized` | The PoolKey doesn't correspond to an initialized pool on this manager (check field ordering: currency0 &lt; currency1) |
+| `InvalidTickSpacing` | Malformed key |
+| `CursorBlockMismatch` / `CursorStateMismatch` / `CursorContextMismatch` / `InvalidCursor` | Pagination misuse: pin one block for all pages, don't edit cursors, don't reuse across pools/chains |
+| `LiquidityInvariantFailed` / `TickInvariantFailed` | The lens's self-check failed: state read is inconsistent (wrong manager, non-canonical fork, or reorg mid-read). Retry at a pinned block; report if persistent. |
+| `ManagerBatchReadFailed` | The supplied manager isn't a conforming PoolManager |
+
+## Addresses
+
+- [ReservesLens](https://github.com/Uniswap/v4-periphery/blob/main/src/lens/ReservesLens.sol): `0x0000001b173C3bbF3984D417d8614E3eed34865B` (same address on all supported chains) (deployed via the canonical CREATE2 deployer; verify with `cast code` before hardcoding)
+- `PoolManager` per chain: [Uniswap v4 deployments](/docs/protocols/v4/deployments)
+
+## Event-Based Accounting
+
+The lens answers "what are this pool's reserves right now" in one call. If you instead need reserves for tens of thousands of pools updated every block (a screener's indexer), maintain them incrementally from `PoolManager` events and use the lens as your reconciliation anchor. This is the method the official v4-subgraph uses (post Uniswap/v4-subgraph#88, see history note below).
+
+### Event method
+
+Track three events per pool, keeping running totals of token0/token1:
+
+1. **`Swap`**: the event's `amount0`/`amount1` are the swapper's deltas; negate them for the pool's perspective. **Subtract the fee portion of the input side before applying** (fee rate is in the event's `fee` field; fees accrue to LPs, not to swappable principal). Without this subtraction your totals become "principal + all fees ever accrued," which inflates forever with volume.
+2. **`ModifyLiquidity`**: the event carries only `liquidityDelta`, not token amounts. Convert it using standard concentrated-liquidity math at the pool's current `sqrtPriceX96`/tick (`getAmount0Delta`/`getAmount1Delta` over `[tickLower, tickUpper]`, split at the current price). Reference implementation: `src/mappings/modifyLiquidity.ts` + `src/utils/liquidityMath/` in Uniswap/v4-subgraph.
+3. **`Donate`**: donations accrue to fee growth, not to curve principal; exclude them for lens-equivalent semantics.
+
+Fee-collection calls appear as `ModifyLiquidity` with `liquidityDelta = 0` and are correctly a no-op under this accounting (the fees were never in your totals to begin with).
+
+### Which TVL you are computing
+
+- **Current liquidity value (this method, and the lens):** tokens on the curve, i.e. actual swappable depth. This is the definition the Uniswap subgraph standardized on for v4 in #88.
+- **v3 subgraph legacy semantics:** principal + accrued-but-uncollected fees (v3 has a `Collect` event that subtracts on collection; v4 has no such event, which is why v4 must exclude fees at swap time instead).
+- v2 has no distinction (fees auto-compound into reserves).
+
+Historical data is corrected only by a full re-index under the fixed code: check that the deployment you query is a post-#88 version that has completed its resync (the pre-fix deployments remain queryable at their old IDs and permanently carry the inflation).
+
+### Reconcile against ReservesLens
+
+Even correct event accounting drifts slightly: per-event rounding (parts-per-million per event, validated by replaying full pool history against onchain state), missed blocks, and reorgs. Periodically (top pools hourly, tail daily, and on any anomaly like a negative total) call `getPoolTVL` at a pinned block and reset your accumulator to it. The lens's self-verifying property makes it safe to treat as authoritative: it reverts rather than returning inconsistent data.
+
+### Event accounting limits
+
+Custom-accounting hook pools (`hasCustomAccounting = true`) can move value outside the core events entirely; neither event replay nor the lens's core amounts capture hook-held balances. For those pools, use the lens's URC-3 fields (`hookReserves0/1`) when the hook reports them, and label the pool approximate when it doesn't.

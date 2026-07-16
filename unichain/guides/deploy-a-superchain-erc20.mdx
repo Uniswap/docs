@@ -1,0 +1,162 @@
+---
+title: Deploy a SuperchainERC20 Token
+description: Deploy a SuperchainERC20 contract on Unichain and prepare it for trading on Uniswap v4.
+---
+
+Deploying a `SuperchainERC20` token on Unichain is as simple as deploying a smart contract. For additional reading, see [Deploy a Smart Contract](/docs/unichain/guides/deploy-a-smart-contract).
+
+Unichain's cross-chain interoperability standard is built on `SuperchainERC20`, a token implementation that extends traditional ERC20 functionality with cross-chain capabilities. While maintaining full ERC20 compatibility, it enables seamless token movement across the OP Stack ecosystem.
+
+## Summary
+
+Deploy a SuperchainERC20 token contract, minting 1,000,000 tokens to the deployer
+
+<Callout type="info">
+
+While the `SuperchainERC20` is a trust-minimized way to enable for giving your token Superchain interop capabilities, other token implementations can also benefit from Superchain interop. If you choose a token standard other than `SuperchainERC20` here are a few things to consider:
+
+- **xERC20 (ERC-7281)**: Cross-chain ERC-20 with bridge approval and rate limiting
+- **OFT**: LayerZero's cross-chain token standard
+- **NTT**: Wormhole's cross-chain token standard
+
+These alternatives can also benefit from Superchain interop by giving cross-chain mint/burn permissions to the `SuperchainTokenBridge` or `L2ToL2CrossDomainMessenger`.
+
+For more information about compatible tokens and implementations, see <a href="https://docs.optimism.io/interop/compatible-tokens" target="_"> superchain compatible tokens documentation</a>.
+</Callout>
+
+## Requirements
+
+<Callout type="info">
+ETH on Unichain is required. See [Get Funds on Unichain](/docs/unichain/getting-started/get-funds-on-unichain).
+</Callout>
+
+1. The guide uses [foundry](https://book.getfoundry.sh) for deployments. Install it by running:
+
+    ```bash
+    curl -L https://foundry.paradigm.xyz | bash
+    ```
+
+2. Initialize a new forge project:
+
+    ```bash
+    forge init superchain_erc20
+    ```
+
+3. Add Unichain to your `foundry.toml`
+
+    ```toml
+    [rpc_endpoints]
+    unichain = "https://sepolia.unichain.org"
+    ```
+
+4. Install SuperchainERC20 implementation from [Optimism's Interop-lib](https://github.com/ethereum-optimism/interop-lib)
+
+    ```bash
+    forge install ethereum-optimism/interop-lib
+    ```
+
+Other community ERC20 implementations are available such as:
+
+- [Solmate](https://github.com/transmissions11/solmate)
+- [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)
+- [Solady](https://github.com/Vectorized/solady)
+
+## Steps
+
+### 1. Define the token contract
+
+Most tokens _inherit_ an existing ERC-20 implementation. This guide uses Optimism's SuperchainERC20 implementation to deploy a token with cross-chain interoperability.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import {SuperchainERC20} from "interop-lib/src/SuperchainERC20.sol";
+
+contract ExampleToken is SuperchainERC20 {
+
+    constructor(address owner_, uint256 initialSupplyChainId_) {
+        if (initialSupplyChainId_ == block.chainid) {
+            _mint(owner_, 1_000_000e18);
+        }
+    }
+
+    function name() public pure override returns (string memory) {
+        return "MyExampleToken";
+    }
+
+    function symbol() public pure override returns (string memory) {
+        return "MET";
+    }
+}
+```
+
+In the example, tokens are only minted if deployed on the specified chain ID. Developers can configure:
+
+- Token name, i.e. `ExampleToken`
+- Token symbol, i.e. `MET`
+- Initial supply chain ID to prevent unintended minting
+- Owner address who receives the initial supply
+
+### 2. Deploy the token
+
+Create a deployment script to deploy a token with deterministic address:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+import {Script} from "forge-std/Script.sol";
+import {console} from "forge-std/console.sol";
+import {ExampleToken} from "../src/ExampleToken.sol";
+
+contract Deploy is Script {
+    function run() external {
+        string memory saltStr = "{YOUR_SALT_HERE}";
+        bytes32 salt = bytes32(abi.encodePacked(saltStr));
+
+        vm.startBroadcast();
+        // msg.sender here is the private key used to run the script
+        // unichain sepolia chain id is 1301
+        ExampleToken myToken = new ExampleToken{salt: salt}(msg.sender, 1301);
+        console.log("Token deployed at:", address(myToken));
+
+        vm.stopBroadcast();
+    }
+}
+```
+
+Deploy the token (smart contract) with foundry using this script:
+
+```bash
+forge script script/Deploy.s.sol:Deploy \
+    --rpc-url unichain \
+    --private-key YOUR_PRIVATE_KEY \
+    --broadcast
+```
+
+> See [Deploy a Smart Contract](/docs/unichain/guides/deploy-a-smart-contract) for more information.
+
+### 3. Transferring tokens (optional)
+
+Upon creation of the token, the deployer is the owner of all 1,000,000 tokens. To transfer the tokens, use the `transfer` function:
+
+```solidity
+/// @notice Moves `amount` tokens from the caller's account to `to`
+function transfer(address to, uint256 amount) external returns (bool);
+```
+
+The `transfer` function is callable from a block explorer, a web framework, or a backend language such as typescript, python, or rust. To transfer tokens using [cast](https://book.getfoundry.sh/reference/cast):
+
+```bash
+cast send {TOKEN_ADDRESS} "transfer(address,uint256)" {RECIPIENT_ADDRESS} {AMOUNT} \
+    --rpc-url unichain \
+    --private-key {YourPrivateKey}
+```
+
+### 4. Create a trading pool on Uniswap v4
+
+This step is also optional, but developers enable trading of their new token on Uniswap v4:
+
+- [Create a Pool and Add Liquidity](/docs/unichain/guides/create-a-pool#create-a-pool--add-liquidity)
+- [Create a Pool Only](/docs/unichain/guides/create-a-pool#create-a-pool-only)

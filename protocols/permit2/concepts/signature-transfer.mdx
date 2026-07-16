@@ -1,0 +1,250 @@
+---
+title: Signature Transfer
+description: Learn Uniswap Permit2 signature-based transfer flows, witness signing, and unordered nonce bitmap protection.
+---
+
+<Callout type="info" title="Source Code">
+Read the implementation on GitHub: [SignatureTransfer.sol](https://github.com/Uniswap/permit2/blob/main/src/SignatureTransfer.sol)
+</Callout>
+
+## Overview
+
+`SignatureTransfer` enables one-time, signature-based token movement without long-lived ERC-20 allowances.
+Use it when your integration needs explicit signer authorization per transfer.
+
+## Core Entry Points
+
+| Entry point | Purpose |
+|---|---|
+| `permitTransferFrom` | Transfer tokens from an owner through signature validation. |
+| `permitWitnessTransferFrom` | Transfer through signature validation and include extra signed context via `witness`. |
+
+Each of these functions is overloaded with a batched version that allows users to transfer multiple tokens with 1 transaction.
+
+## Functions
+
+### Single `permitTransferFrom`
+
+Use the `permitTransferFrom` to transfer just one token.
+
+#### Function signature
+
+```solidity
+function permitTransferFrom(
+        PermitTransferFrom memory permit,
+        SignatureTransferDetails calldata transferDetails,
+        address owner,
+        bytes calldata signature
+    ) external
+```
+
+#### Parameters
+
+| Parameter | Description |
+|---|---|
+| `permit` | Construct `PermitTransferFrom` with the struct below. |
+| `transferDetails` | Recipient and amount details for the transfer. See struct below. |
+| `owner` | Signer of the permit message and owner of the tokens. |
+| `signature` | Signature over permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). |
+
+```solidity
+struct PermitTransferFrom {
+        TokenPermissions permitted;
+        // a unique value for every token owner's signature to prevent signature replays
+        uint256 nonce;
+        // deadline on the permit signature
+        uint256 deadline;
+    }
+
+struct TokenPermissions {
+        // ERC20 token address
+        address token;
+        // the maximum amount that can be spent
+        uint256 amount;
+    }
+```
+
+```solidity
+struct SignatureTransferDetails {
+        // recipient address
+        address to;
+        // spender requested amount
+        uint256 requestedAmount;
+    }
+```
+
+### Batched `permitTransferFrom`
+
+Use `permitTransferFrom` with the batched parameters when you want to transfer multiple tokens from an owner.
+
+#### Function signature
+
+```solidity
+function permitTransferFrom(
+        PermitBatchTransferFrom memory permit,
+        SignatureTransferDetails[] calldata transferDetails,
+        address owner,
+        bytes calldata signature
+    ) external
+```
+
+#### Parameters
+
+| Parameter | Description |
+|---|---|
+| `permit` | Construct `PermitBatchTransferFrom` with the struct below. |
+| `transferDetails` | Spender-parameterized transfer details. Array length must match `TokenPermissions[]` length in `permit`. Use `requestedAmount = 0` to skip a permitted token transfer. |
+| `owner` | Signer of the permit message and owner of the tokens. |
+| `signature` | Signature over permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). |
+
+```solidity
+struct PermitBatchTransferFrom {
+        // the tokens and corresponding amounts permitted for a transfer
+        TokenPermissions[] permitted;
+        // a unique value for every token owner's signature to prevent signature replays
+        uint256 nonce;
+        // deadline on the permit signature
+        uint256 deadline;
+    }
+
+struct TokenPermissions {
+        // ERC20 token address
+        address token;
+        // the maximum amount that can be spent
+        uint256 amount;
+    }
+```
+
+```solidity
+struct SignatureTransferDetails {
+        // recipient address
+        address to;
+        // spender requested amount
+        uint256 requestedAmount;
+    }
+```
+
+### Single `permitWitnessTransferFrom`
+
+#### Function signature
+
+```solidity
+function permitWitnessTransferFrom(
+        PermitTransferFrom memory permit,
+        SignatureTransferDetails calldata transferDetails,
+        address owner,
+        bytes32 witness,
+        string calldata witnessTypeString,
+        bytes calldata signature
+    ) external
+```
+
+#### Parameters
+
+| Parameter | Description |
+|---|---|
+| `permit` | Same type as the single `permitTransferFrom` case. |
+| `transferDetails` | Same type as the single `permitTransferFrom` case. |
+| `owner` | Signer of the permit message and owner of the tokens. |
+| `witness` | Arbitrary signed data used to reconstruct signature data and optionally validate additional context. |
+| `witnessTypeString` | EIP-712 type string for `witness` hashing. Must include `TokenPermissions` and follow [EIP-712](https://eips.ethereum.org/EIPS/eip-712) struct ordering. |
+| `signature` | Signature over permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). |
+
+### Batch `permitWitnessTransferFrom`
+
+#### Function signature
+
+```solidity
+function permitWitnessTransferFrom(
+        PermitBatchTransferFrom memory permit,
+        SignatureTransferDetails[] calldata transferDetails,
+        address owner,
+        bytes32 witness,
+        string calldata witnessTypeString,
+        bytes calldata signature
+    ) external
+```
+
+#### Parameters
+
+| Parameter | Description |
+|---|---|
+| `permit` | Same type as the batched `permitTransferFrom` case. |
+| `transferDetails` | Same type as the batched `permitTransferFrom` case. |
+| `owner` | Signer of the permit message and owner of the tokens. |
+| `witness` | Arbitrary signed data used to reconstruct signature data and optionally validate additional context. |
+| `witnessTypeString` | EIP-712 type string for `witness` hashing. Must include `TokenPermissions` and follow [EIP-712](https://eips.ethereum.org/EIPS/eip-712) struct ordering. |
+| `signature` | Signature over permit data. Supports EOA signatures, compact signatures defined by [EIP-2098](https://eips.ethereum.org/EIPS/eip-2098), and contract signatures defined by [EIP-1271](https://eips.ethereum.org/EIPS/eip-1271). |
+
+#### Example `permitWitnessTransferFrom` parameters
+
+If an integrating contract would also like the signer to verify information about a trade, an integrating contract may ask the signer to also sign an `ExampleTrade` object that we define below:
+
+```solidity
+struct ExampleTrade {
+	address exampleTokenAddress;
+	uint256 exampleMinimumAmountOut;
+}
+```
+
+Following EIP-712, the typehash for the data would be defined by:
+
+```solidity
+bytes32 _EXAMPLE_TRADE_TYPEHASH = keccak256('ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)');
+```
+
+The `witness` that should be passed along with the permit message should be:
+
+```solidity
+ bytes32 witness = keccak256(
+            abi.encode(_EXAMPLE_TRADE_TYPEHASH, exampleTrade.exampleTokenAddress, exampleTrade.exampleMinimumAmountOut));
+```
+
+And the `witnessTypeString` to be passed in should be:
+
+```solidity
+string constant witnessTypeString = "ExampleTrade witness)ExampleTrade(address exampleTokenAddress,uint256 exampleMinimumAmountOut)TokenPermissions(address token,uint256 amount)"
+```
+
+It’s important to note that when hashing multiple typed structs, the ordering of the structs in the type string matters. Referencing EIP-712:
+
+> If the struct type references other struct types (and these in turn reference even more struct types), then the set of referenced struct types is collected, sorted by name and appended to the encoding. An example encoding is `Transaction(Person from,Person to,Asset tx)Asset(address token,uint256 amount)Person(address wallet,string name)`
+> 
+
+## Nonce Schema
+
+Instead of using incrementing nonces, we introduce non-monotonic, or unordered nonces with a `nonceBitmap`. 
+
+The `nonceBitmap` maps an owner's address to a uint248 value, which we will call `wordPos` which is the index of the desired bitmap. There are 2<sup>248</sup> possible indices thus 2<sup>248</sup> possible bitmaps where each bitmap holds 256 bits. A bit must be flipped on to prevent replays of users’ signatures. Bits that are dirtied may not be used again.
+
+```solidity
+// nonceBitmap[ownerAddress][wordPosition] retrieves a uint256 bitmap
+mapping(address => mapping(uint248 => uint256)) public nonceBitmap;
+```
+
+Users will sign a `uint256 nonce` value where the first 248 bits correspond to the word position of the bitmap to dirty and the last 8 bits correspond to the actual bit position being flipped on.
+
+```solidity
+uint248 wordPos = uint248(nonce >> 8);
+uint8 bitPos = uint8(nonce);
+```
+
+```solidity
+uint256 bitmap = nonceBitmap[ownerAddress][wordPos] ^ (1 << bitPos)
+```
+
+## Security Considerations
+
+Integrating contracts must ensure signatures can only be used in the intended caller context.
+
+### Common failure mode
+
+A user signs a permit for a router as the permissioned spender. If the router does not validate caller context and spends any valid Permit2 message, an attacker can replay that signature and redirect funds.
+
+### Recommended validation pattern
+
+- Bind permit usage to the expected caller context.
+- Pass `msg.sender` as the `owner` parameter in permit calls when appropriate.
+- Pass `msg.sender` as the `from` parameter in transfer calls when appropriate.
+
+Universal Router applies this pattern by checking `msg.sender` during routing and using `msg.sender` in both permit and transfer parameterization.

@@ -1,0 +1,67 @@
+---
+id: fees
+title: Fees
+description: Learn how swap fees, protocol fees, and fee tiers work across Uniswap v2, v3, and v4.
+---
+
+<Callout type="note">
+Every Uniswap swap pays a fee. That fee compensates liquidity providers (LPs) for the capital they deposit into pools, and in some cases a portion goes to the protocol itself. How fees are set, collected, and distributed varies by protocol version.
+</Callout>
+
+## Swap Fees
+
+A **swap fee** is charged on every trade and accrues to the LPs whose liquidity is active at the time of the swap. Fees are distributed pro-rata: the more liquidity you provide in the active price range, the larger your share.
+
+In Uniswap v2, every pool charges a flat 0.30% fee that is automatically added to pool reserves. In v3 and v4, fees are collected separately and must be manually redeemed by the position owner.
+
+Key difference: in v2, fees compound automatically because they increase `k` (the constant product invariant). In v3 and v4, fees accumulate as claimable balances tied to each position.
+
+## Pool Fee Tiers
+
+Uniswap v2 has a single fee: 0.30% on every pool. 
+
+Uniswap v3 introduced **fee tiers**, allowing multiple pools for the same token pair, each with a different fee. The standard v3 tiers are 0.05%, 0.30%, and 1%. Additional fee tiers can be enabled by UNI [governance](https://vote.uniswapfoundation.org/proposals/9).
+
+Uniswap v4 removes fixed tiers entirely. Pool creators can set any fee from 0% to 100% in 0.0001% increments (hundredths of a bip), and pools can use [dynamic fees](/docs/protocols/v4/concepts/dynamic-fees) that adjust in real time through [hooks](/docs/protocols/v4/concepts/hooks).
+
+## In-Range Liquidity and Fee Accrual
+
+In v3 and v4, LPs choose a price range for their position. Only **in-range liquidity**, positions whose range spans both sides of the current spot price, earns fees. If the price moves outside a position's range, that position stops accruing fees until the price re-enters.
+
+This means LP fee income depends on two factors: how much liquidity you provide, and how well your chosen range tracks the market price.
+
+## Protocol Fees
+
+Protocol fees are a portion of swap fees directed to the protocol rather than to LPs. They are distinct from the swap fee that accrues to liquidity providers.
+
+With the passage of the [UNIfication governance proposal](https://vote.uniswapfoundation.org/proposals/93) in December 2025, protocol fees are now active on all v2 pools and select v3 pools. v4 fee adapter flows are part of the broader protocol-fees architecture and can be enabled through governance. Collected fees accumulate in onchain collection contracts. Independent searchers can claim these assets by burning a required amount of UNI tokens, creating an economic incentive that converts protocol revenue into UNI burns.
+
+At launch, protocol fees are set to approximately 1/6 of the swap fee on enabled pools. These values are governance-configurable and may change over time.
+
+| Version | Fee tier | LP fee | Protocol fee |
+|---------|----------|--------|--------------|
+| v2      | All pools | 0.25% | 0.05%       |
+| v3      | 0.01%    | 0.0075% | 0.0025%    |
+| v3      | 0.05%    | 0.0375% | 0.0125%    |
+| v3      | 0.30%    | 0.25%  | 0.05%       |
+| v3      | 1.00%    | 0.8334% | 0.1666%   |
+
+For v2, the protocol fee rate is fixed in the pair contracts at 1/6 of the swap fee (0.05% of the 0.30% total). Protocol fees are enabled or disabled globally by setting the `feeTo` address on the v2 factory through governance. A full list of v3 pools included in the initial rollout is available [here](https://github.com/Uniswap/protocol-fees/blob/main/merkle-generator/data/merkle-tree.json).
+
+For technical details on how protocol fees are collected and converted, see the [protocol fee contracts](https://github.com/Uniswap/protocol-fees). 
+
+## Dynamic Fees (v4)
+
+Uniswap v4 supports **dynamic fees**: swap fees that adjust based on market conditions, implemented through hooks. Unlike the static tiers in v3, dynamic fees can change per swap or on a schedule (per block, daily, weekly, etc.).
+
+Dynamic fees are set at pool creation and managed by the hook contract attached to that pool. Two update methods are available: calling `updateDynamicLPFee` on the `PoolManager`, or returning a fee override from the `beforeSwap` hook.
+
+Dynamic fees are distinct from protocol fees and [hook fees](/docs/protocols/v4/guides/custom-accounting). All three can coexist on the same pool.
+
+## Hook Fees (v4)
+
+**Hook fees** are custom fees implemented entirely within a hook contract. They are separate from swap fees and protocol fees and don't interfere with the core fee structure.
+
+Hook developers can use hook fees to monetize their hooks, redistribute value, or implement use-case-specific pricing. Hook fees are typically applied in `beforeSwap` using the `BeforeSwapDelta` mechanism.
+
+For implementation details, see [custom accounting](/docs/protocols/v4/guides/custom-accounting).

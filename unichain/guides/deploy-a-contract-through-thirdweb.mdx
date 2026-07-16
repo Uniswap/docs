@@ -1,0 +1,106 @@
+---
+title: Deploy SuperchainERC20 with thirdweb
+description: Deploy a SuperchainERC20 token on Unichain with thirdweb and prepare it for Uniswap trading.
+---
+
+Modular contracts is a framework that enables the creation of highly customizable and upgradeable smart contracts. Designed to encompass a broad number of use cases without compromising on the ease and security of creating smart contracts with thirdweb.
+
+![Modular Contracts Overview](https://portal.thirdweb.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Foverview-image.92535d7a.png&w=3840&q=75)
+
+Modular contracts are composed of two components:
+
+- **Core Contract**: smart contracts that serve as the foundation of the modular contract
+- **Module Contract**: smart contracts that are installed on top of the core contract
+
+You can think of Modular Contracts like building bricks. Pick a core, install modules, and swap them out to enable different functionality.
+
+Use this guide to deploy a SuperchainERC20-enabled token contract.
+
+## Prerequisites
+
+- **thirdweb account**: You can create an account [here](https://thirdweb.com/login)
+- **thirdweb Project**: You can create a Project by following the guide [here](https://portal.thirdweb.com/account/api-keys/create)
+
+## Steps to Deploy
+
+### 1. Go to the thirdweb Explore page
+
+![Explore Page](/unichain/Explore.png)
+
+- **Log into your thirdweb account**: Use the same login used when creating your account to log into the thirdweb dashboard
+- **Visit the thirdweb Explore page**: You can access the contract deployment page in the following ways
+    - Clicking into your project -> Selecting Contracts Tab -> Selecting Deploy Contract at the top right
+    - Direct through the link [here](https://thirdweb.com/explore)
+
+### 2. Select the modular Superchain token contract
+
+- **Locating the contract in Explore**: You can deploy either the Modular Token Drop or Modular Token contract from this section. Click on view all if your preferred contract is not listed
+
+![Explore Modular Contracts](/unichain/explore-modular.png)
+
+- **Understanding the difference between Token and Token Drop**: Deploying a token on Unichain with thirdweb is as simple as deploying a smart contract. You can choose between two approaches, dependent on how the token intends to be distributed
+
+- Use the **Token** contract when:
+    1. You need full control over token minting and distribution
+    2. You want to reward users with tokens for specific actions
+
+The Token contract is great for when you don't need pre-defined claim conditions or public distribution mechanisms.
+
+- Use the **Token Drop** contract when:
+    1. You have a known distribution plan
+    2. You want users to claim their distribution
+
+The Token Drop contract offers more structured and controlled token distribution, allowing you to set up complex release strategies.
+
+### 3. Configure contract metadata
+
+- Setting contract metadata as well as owner information:
+    1. You can set the contract metadata to anything you would like
+    2. The owner information should be a wallet you have access to as this will be set as the admin for this contract. By default it is prefilled to the currently logged in wallet address
+    3. Primary sales are where funds from sales minus any fees are sent
+
+![Contract Metadata](/unichain/contract-metadata.png)
+
+- Select a Project to add this contract to:
+
+![Project Add](/unichain/project-add.png)
+
+### 4. Choose the deployment network
+
+- Selecting the Unichain Network you wish to deploy to:
+	- Click on the chain to bring up the Chain Search Modal
+	- Search for "Unichain"
+
+![Unichain Search](/unichain/unichain-search.png)
+
+- Select your desired network to deploy on
+
+![Deploy Unichain](/unichain/deploy-unichain.png)
+
+### 5. Deploy the contract
+
+- **Initiating deployment**: Click on "Deploy Now" to deploy the contract
+- **Signing the transaction (for EOA wallets)**: If using an EOA wallet for thirdweb login you will be prompted to sign a deploy transaction in your wallet. Once this is approved your contract will deploy
+- Once complete you will have the ability to view your contract which should look similar to below
+
+![Contract Overview](/unichain/contract-overview.png)
+
+### 6. Mint tokens
+
+- **Accessing the Modules view**: Click on the "Modules" section on the left hand side
+
+![Modules View](/unichain/modules-view.png)
+
+- **Minting your tokens**:
+
+1. Click on the "Mint NFT" dropdown
+
+2. Enter the amount of tokens you wish to mint along with the recipient address
+
+![Mint Tokens](/unichain/mint-tokens.png)
+
+3. Click on the "Mint" button to mint your tokens
+
+You have now successfully set up your contract to work with SuperchainERC20 functionality.
+
+![Final Setup](/unichain/final-setup.png)

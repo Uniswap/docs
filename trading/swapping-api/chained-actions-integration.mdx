@@ -1,0 +1,223 @@
+---
+title: Chained Actions Integration Guide
+description: Build cross-chain and multi-step swaps with the Uniswap Trading API plan endpoints, with cURL examples and the full execution loop.
+---
+
+This guide is the operational counterpart to [Swapping with Chained Actions](/docs/trading/swapping-api/chained-actions). When `/quote` returns `"routing": "CHAINED"`, you drive the trade through the `/plan` endpoints as an ordered sequence of steps under one `planId`.
+
+For conceptual background (plans, steps, the state machine, and routing patterns), read the [concepts page](/docs/trading/swapping-api/chained-actions). For full request and response schemas, see the [API Reference](/docs/api-reference). AI builders can consume the full OpenAPI Specification at [https://trade-api.gateway.uniswap.org/v1/api.json](https://trade-api.gateway.uniswap.org/v1/api.json).
+
+## Endpoints
+
+| Endpoint | Purpose |
+| --- | --- |
+| `POST /plan` | Create a plan from a `CHAINED` quote. Returns a `planId` and the ordered steps. |
+| `PATCH /plan/:planId` | Submit proof of a completed step to advance the plan. |
+| `GET /plan/:planId` | Retrieve the current state of the plan and its steps. Pass `?forceRefresh=true` to re-check step statuses and re-quote the remaining steps. |
+
+All requests use the base URL `https://trade-api.gateway.uniswap.org/v1` and require an API key. See the [API Reference](/docs/api-reference) for the complete schema of each endpoint.
+
+A plan is owned by the credential that created it. Reuse the same API key on the later `PATCH` and `GET` calls for a plan, or the request returns `403`.
+
+## Execution loop
+
+The plan is a state machine. Execute the active step, submit proof to advance it, and poll until it confirms. Repeat until every step reaches `COMPLETE`.
+
+### 1. Get a chained quote
+
+A trade that crosses chains or needs more than one step returns `"routing": "CHAINED"`. The `/quote` request format is unchanged. Chained Actions support `EXACT_INPUT` only.
+
+```bash
+curl -X POST https://trade-api.gateway.uniswap.org/v1/quote \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tokenIn": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "tokenOut": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+    "tokenInChainId": 1,
+    "tokenOutChainId": 42161,
+    "amount": "1000000000",
+    "swapper": "0x3e5E7b5565331B5B891fE4293B4bc6164687B705",
+    "type": "EXACT_INPUT",
+    "slippageTolerance": 0.5
+  }'
+```
+
+The response carries `"routing": "CHAINED"` and a `quote` object. `permitData` is always `null` for a chained quote.
+
+```json
+{
+  "requestId": "36f53002-bac2-4b2c-a1d1-770def0dd0a4",
+  "routing": "CHAINED",
+  "quote": {
+    "quoteId": "a9fb962c-13dd-41ba-88cd-0722593464fc",
+    "swapper": "0x3e5E7b5565331B5B891fE4293B4bc6164687B705",
+    "tradeType": "EXACT_INPUT",
+    "tokenInChainId": 1,
+    "tokenOutChainId": 42161,
+    "input": { "amount": "1000000000", "token": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" },
+    "output": { "amount": "994370397", "token": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9", "recipient": "0x3e5E7b5565331B5B891fE4293B4bc6164687B705" }
+  },
+  "permitData": null
+}
+```
+
+This example is abbreviated. The chained `quote` also carries gas and time estimates. The ordered steps are returned by `POST /plan`, not by `/quote`.
+
+### 2. Create the plan
+
+Send a top-level `routing: "CHAINED"` together with the full `quote` object returned by `/quote`. Both fields are required.
+
+```bash
+curl -X POST https://trade-api.gateway.uniswap.org/v1/plan \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "routing": "CHAINED",
+    "quote": {
+      "quoteId": "a9fb962c-13dd-41ba-88cd-0722593464fc",
+      "swapper": "0x3e5E7b5565331B5B891fE4293B4bc6164687B705",
+      "tradeType": "EXACT_INPUT",
+      "tokenInChainId": 1,
+      "tokenOutChainId": 42161,
+      "input": { "amount": "1000000000", "token": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" },
+      "output": { "amount": "994370397", "token": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9", "recipient": "0x3e5E7b5565331B5B891fE4293B4bc6164687B705" }
+    }
+  }'
+```
+
+Pass the `quote` object through unchanged. There is no `type` field on the quote: the top-level `routing` value is what marks the plan as chained.
+
+The response returns a `planId`, a `currentStepIndex`, and the ordered `steps`. Store the `planId`: you need it for every later call, and it is how you resume a plan. The first step starts at `AWAITING_ACTION` and every other step at `NOT_READY`.
+
+```json
+{
+  "planId": "plan-uuid",
+  "status": "AWAITING_ACTION",
+  "currentStepIndex": 0,
+  "expectedOutput": "985050000",
+  "steps": [
+    {
+      "stepIndex": 0,
+      "stepType": "APPROVAL_TXN",
+      "method": "SEND_TX",
+      "payloadType": "TX",
+      "status": "AWAITING_ACTION",
+      "payload": { "...": "..." }
+    },
+    {
+      "stepIndex": 1,
+      "stepType": "CLASSIC",
+      "method": "SEND_TX",
+      "payloadType": "TX",
+      "status": "NOT_READY"
+    }
+  ]
+}
+```
+
+This response is abbreviated: each step also carries token, amount, and gas fields, and the remaining steps are omitted here. See the [API Reference](/docs/api-reference) for the full `PlanStep` schema.
+
+### 3. Execute the active step
+
+Find the active step with `currentStepIndex` (its status is `AWAITING_ACTION`). Its `method` and `payloadType` tell you how to execute it:
+
+| `method` | `payloadType` | Action |
+| --- | --- | --- |
+| `SEND_TX` | `TX` | On-chain transaction (ERC-20 approval, AMM swap, or bridge). Broadcast the transaction in the payload and capture the `txHash`. |
+| `SIGN_MSG` | `EIP_712` | Off-chain EIP-712 signature (Permit2 or a UniswapX order). Sign the payload and capture the `signature`. Nothing goes on-chain at this step. |
+| `SEND_CALLS` | `EIP_5792` | EIP-5792 batched calls. |
+
+`method` and `payloadType` are uppercase enum values, so branch on `SEND_TX`, `SIGN_MSG`, and `SEND_CALLS`. Only the active and completed steps carry a populated payload. UniswapX order steps use `SIGN_MSG` with an `EIP_712` payload that carries the order's domain, types, and message; see the [API Reference](/docs/api-reference) for the full payload shape.
+
+### 4. Submit proof
+
+Advance the plan by submitting proof of the completed step to `PATCH /plan`. Identify the step by its `stepIndex` (a 0-based number), and submit `txHash` for a `SEND_TX` step or `signature` for a `SIGN_MSG` step.
+
+```bash
+curl -X PATCH https://trade-api.gateway.uniswap.org/v1/plan/plan-uuid \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "steps": [
+      {
+        "stepIndex": 0,
+        "proof": { "txHash": "0x05e5a61cb4b26f4b5b7005d5bc1e7a26a6a66bda51450a8723c3e858a4d77867" }
+      }
+    ]
+  }'
+```
+
+When the step finalizes, it is marked `COMPLETE` and the next step advances to `AWAITING_ACTION`. If your proof is still awaiting confirmation, `PATCH` may not return the next step immediately. Poll `GET /plan` until it does. If the proof fails validation, the call returns a `4xx` and rejects the proof; the step stays `AWAITING_ACTION` so you can fix the transaction and retry it.
+
+<Callout title="Proof validation" type="warn">
+
+On proof submission, the server validates the transaction against the step: the `from` address must match the expected `swapper`, and the calldata must match what the step specified. Any change to the transaction before submission fails validation. Permit2 signatures are validated server-side, and UniswapX signatures are verified by UniswapX.
+
+</Callout>
+
+### 5. Poll for confirmation
+
+Use `GET /plan` to read the current state and wait for the active step to reach `COMPLETE` or `STEP_ERROR`. Bridge steps can take several minutes to confirm.
+
+```bash
+curl https://trade-api.gateway.uniswap.org/v1/plan/plan-uuid \
+  -H "x-api-key: YOUR_API_KEY"
+```
+
+A plain `GET /plan` re-quotes the remaining steps when the active step is `IN_PROGRESS`, not on every call.
+
+#### Force a refresh
+
+To force a status check and re-quote between state changes, for example to show the user current amounts right before a wallet prompt, add the `forceRefresh` query parameter:
+
+```bash
+curl "https://trade-api.gateway.uniswap.org/v1/plan/plan-uuid?forceRefresh=true" \
+  -H "x-api-key: YOUR_API_KEY"
+```
+
+A refresh re-quotes the remaining steps and regenerates the plan from the last `COMPLETE` step when something has changed: a step completed, a step failed, or market conditions moved. Completed plans cannot be refreshed.
+
+Repeat steps 3 through 5 until every step is `COMPLETE`. The trade is then settled.
+
+## Error handling and recovery
+
+There are two distinct failure paths:
+
+- **Proof rejected at submission.** If a `PATCH /plan` proof fails validation (for example, mismatched calldata), the call returns a `4xx` and rejects the proof. The step stays `AWAITING_ACTION`, so you can fix the transaction and retry it. Nothing moves to `STEP_ERROR`.
+- **On-chain failure during polling.** If the active step fails on-chain, polling moves that step to `STEP_ERROR`, and it stays in the plan for history.
+
+Scan the steps array for `STEP_ERROR` rather than assuming which index failed. To recover, refresh the plan with `GET /plan/:planId?forceRefresh=true`. The server regenerates the plan from the last `COMPLETE` step automatically; there is no empty-`PATCH` recovery call.
+
+**Intermediary state.** If a step fails mid-chain, the user can hold a token that is neither their input nor their intended output. For a `USDC (Mainnet)` to `PEPE (Base)` trade routed as S→B→S, a failed bridge can leave the user with ETH on Mainnet, and a failed final swap can leave them with ETH on Base. Read `tokenOut` and `tokenOutChainId` from the last `COMPLETE` step to determine what the user holds.
+
+## Slippage
+
+`slippageTolerance` is the value set on the `/quote` request, or the API default if you omit it. It governs the AMM swap steps in a plan. It is fixed at quote time and applied to each swap step independently, not as a single end-to-end guarantee. For an S→B→S plan at 0.5%, each swap applies 0.5% on its own, so the combined deviation across both swaps can exceed 0.5%. Slippage cannot be changed after a plan is created. If no valid swap route exists within tolerance, the step fails with no automatic recovery.
+
+The bridge step is not an AMM swap. It is quoted through the bridge provider (Across Protocol) when the plan is built, so `slippageTolerance` does not apply to it. The bridge runs as a `SEND_TX` step alongside approvals and swaps (see the [execution flow](/docs/trading/swapping-api/chained-actions#execution-flow)), but only the swap steps have a slippage tolerance band.
+
+## Gas
+
+Gas applies only to `SEND_TX` steps (approvals, swaps, and bridges). `SIGN_MSG` steps (Permit2 and UniswapX orders) do not incur gas. Each `SEND_TX` payload carries its own gas fields, and the trade response includes a top-level `gasFee`: the total estimated gas cost across all `SEND_TX` steps in the plan.
+
+## Constraints
+
+- **Exact-input behavior**: Chained Actions operate as exact-input. An `EXACT_OUTPUT` request is treated as per-leg exact-input rather than rejected, so do not rely on exact-output behavior.
+- **Solana chain is not supported**.
+- **Longest plan shape**: three quote-generating steps (as in an S→B→S route), plus any approval steps. This is the longest shape the router produces, not an enforced cap.
+- **`permitData` is always `null`** on a chained quote. Any required approval appears as an explicit step inside the plan.
+
+## API Reference
+
+For full request and response schemas, see the [API Reference](/docs/api-reference). For conceptual background, see [Swapping with Chained Actions](/docs/trading/swapping-api/chained-actions).
+
+## Support
+
+For support, reach out via the help link in the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard).
+
+When reporting issues, include:
+- `requestId` and `planId`
+- Full request and response payloads (sanitize sensitive data)
+- Chain IDs and transaction hash (if applicable)
+- Timestamp of the request

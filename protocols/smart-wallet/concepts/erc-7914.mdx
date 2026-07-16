@@ -1,0 +1,18 @@
+---
+title: ERC-7914
+description: Learn how ERC-7914 enables ETH transfer allowances in Uniswap smart wallet contract account flows.
+---
+
+ERC-7914 is a standard that adds native Ether `transferFrom` functionality to smart contract wallets.
+
+## What It Adds
+
+In Uniswap smart wallet, ERC-7914 allows approved accounts or contracts to spend ETH under explicit wallet permissions, which EOAs do not support natively.
+
+## Current Status
+
+Uniswap Labs contributes to the [ERC draft](https://github.com/ethereum/ERCs/blob/8380220418521ff1995445cff5ca1d0e496a3d2d/ERCS/erc-7914.md).
+
+## Reference Implementation
+
+Calibur’s reference implementation is [here](https://github.com/Uniswap/calibur/blob/main/src/ERC7914.sol).

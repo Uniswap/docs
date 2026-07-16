@@ -1,0 +1,61 @@
+---
+id: priorityorderreactor
+title: Filling Priority Auctions
+description: Fill UniswapX Priority orders using priority-fee bidding and reactor execution patterns.
+---
+
+<Callout type="warn" title="Deprecated">
+UniswapX has moved to the RFQ and exclusive Dutch auction model on all chains. Priority gas auctions are no longer a recommended integration path. New fillers should follow [Filling Dutch V3 Auctions](/docs/liquidity/uniswapx/filling/dutch-v3-chains/filling-on-dutch-v3-chains). This page is kept for reference while existing Priority integrations wind down.
+</Callout>
+
+The [`PriorityOrderReactor`](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) is a UniswapX reactor built specifically for chains that utilize Priority Gas Auctions (PGA) for ordering transactions. This reactor type, which is based on research presented in [Priority is All you Need](https://www.paradigm.xyz/2024/06/priority-is-all-you-need), allows fillers to bid on orders during fulfillment through setting custom priority fees.
+
+## Example Implementation
+Alice submits a `PriorityOrder` offering 1 ETH in exchange for a minimum of 1000 USDC. The fair market rate for the order is 1100 USDC, resulting in around 100 USDC in potential profit.
+
+If a filler assumes a desired margin of 10% of the total profit, a competitive price is 1090 USDC. This would be 900 bps of improvement. The filler would convert bps to mps (see below for details) to get 900 * 1000 = 900,000 mps of improvement. Thus they would set `priorityFee` of 900,000 wei on their fill transaction. Keep in mind that this is additional to the base fee.
+
+## Important Considerations
+- The `PriorityOrderReactor` is only meant to be used on chains which order transactions by priority fee.
+- Preliminary auctions for the start price of these orders are not planned. Instead, a minimum price is set at which each order must be executed.
+- Each order is only executable after a certain block specified by the user. This block will be a few blocks in the future from when the order is made available through the UniswapX orders endpoint. To improve user experience, Uniswap Labs can make the start block earlier by cosigning the order.
+- Only the fill transaction with the highest priority fee will win the order, all other transactions will revert onchain.
+- To minimize the gas used on reverting transactions, reversion happens early if the order is already filled or is not fillable yet.
+- For every wei of priority fee above a certain threshold (an optional value specified in the order), the user is owed 1 milli-bps more of their output token (or less of their input token). 
+- Milli-bps (or MPS) are one-thousandth of a basis point.
+- Unichain supports specifying a target block and has revert protection. For more information, please see the [Unichain Docs](/docs/unichain/technical-information/advanced-txn).
+
+## Retrieving and Executing Signed Orders
+All signed `PriorityOrder` messages created through the Uniswap UI are available via the UniswapX Orders Endpoint. [Swagger documentation](https://api.uniswap.org/v2/uniswapx/docs) is available, but see below for a quick example curl.
+
+```bash
+GET https://api.uniswap.org/v2/orders?orderStatus=open&orderType=Priority
+```
+
+After fetching orders, use the latest version of the [UniswapX SDK](https://github.com/Uniswap/sdks/tree/main/sdks/uniswapx-sdk#parsing-orders). Requires [2.1.0-beta.13](https://www.npmjs.com/package/@uniswap/uniswapx-sdk/v/2.1.0-beta.13) or later.
+
+### Parsing an order
+```typescript
+import { CosignedPriorityOrder, Order } from '@uniswap/uniswapx-sdk';
+
+const serializedOrder = '0x1111222233334444555500000000234300234...';
+const chainId = 130; 
+
+const order: Order = CosignedPriorityOrder.parse(serializedOrder, chainId);
+
+const orderData = order.info;
+const orderHash = order.hash();
+```
+
+The existing `UniswapXOrderQuoter` can also be used to quote priority orders, however, you must use a `JsonRpcProvider` that supports block overrides. Without block overrides, the SDK quoter cannot validate the entire order as the block number is checked first in the contract.
+
+## Executing an Order
+The [`PriorityOrderReactor`](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) shares the same interface as all other existing UniswapX reactors. Orders are executed against the `execute` and `executeBatch` functions, and optionally a callback is available via `executeWithCallback` and `executeBatchWithCallback`.
+
+## Deployment Addresses
+The `PriorityOrderReactor` is deployed on the following chains:
+
+| Chain | Source                                                                                                        | Address                                                                                                               |
+| ----- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------|
+| Unichain | [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol) | [0x00000006021a6Bce796be7ba509BBBA71e956e37](https://uniscan.xyz/address/0x00000006021a6Bce796be7ba509BBBA71e956e37#code) |
+| Base  | [PriorityOrderReactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/PriorityOrderReactor.sol)   | [0x000000001Ec5656dcdB24D90DFa42742738De729](https://basescan.org/address/0x000000001Ec5656dcdB24D90DFa42742738De729#code) |

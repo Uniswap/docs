@@ -1,0 +1,51 @@
+---
+title: RPC Calls
+description: Review supported and unsupported JSON-RPC methods on Unichain public RPC endpoints.
+---
+
+## Supported RPC Calls on Unichain Public RPCs
+
+The Unichain Public RPCs support a subset of the standard Ethereum JSON-RPC API methods.
+
+| **RPC Method**               | **Description**                                      |
+| ---------------------------- | ---------------------------------------------------- |
+| `eth_chainId`                | Returns the currently configured chain ID            |
+| `eth_blockNumber`            | Returns the number of the most recent block          |
+| `eth_getBlockByNumber`       | Returns information about a block by block number     |
+| `eth_getBlockByHash`         | Returns information about a block by block hash       |
+| `eth_getTransactionByHash`   | Returns the information about a transaction by hash    |
+| `eth_getTransactionReceipt`  | Returns the receipt of a transaction by transaction hash |
+| `eth_getBalance`             | Returns the balance of an account at a given block number |
+| `eth_getCode`                | Returns the code at a given address                  |
+| `eth_getStorageAt`           | Returns the value from a storage position at a given address |
+| `eth_call`                   | Executes a new message call immediately without creating an onchain transaction |
+| `eth_estimateGas`            | Estimates the gas necessary to complete a transaction without creating one |
+| `eth_gasPrice`               | Returns the current price per gas in wei              |
+| `eth_feeHistory`             | Returns historical gas fee data                      |
+| `eth_getLogs`                | Returns an array of all logs matching a given filter object |
+| `eth_maxPriorityFeePerGas`   | Returns the max priority fee per gas for the latest block |
+| `eth_getProof`               | Returns the account and storage values of the specified account including the Merkle proof |
+| `eth_getTransactionCount`    | Returns the number of transactions sent from an address |
+| `eth_accounts`               | Returns a list of addresses owned by the client       |
+| `eth_getBlockReceipts`       | Returns the receipts of a block by block hash or number |
+| `eth_sendRawTransaction`     | Submits a pre-signed transaction for broadcast to the Ethereum network |
+
+## Unsupported RPC Calls on Unichain Public RPCs
+
+The Unichain Public RPCs do not support the following Ethereum JSON-RPC API methods:
+| **RPC Method**               | **Description**                                      |
+| ---------------------------- | ---------------------------------------------------- |
+| `eth_blobBaseFee`            | Returns the base fee per blob gas in wei             |
+| `eth_getBlockTransactionCountByNumber` | Returns the number of transactions in the block with the given block number |
+| `eth_getBlockTransactionCountByHash` | Returns the number of transactions in the block with the given block hash |
+| `eth_getUncleCountByBlockNumber` | Returns the number of uncles in a block from a block matching the given block number |
+| `eth_getUncleCountByBlockHash` | Returns the number of uncles in a block from a block matching the given block hash |
+| `eth_getTransactionByBlockNumberAndIndex` | Returns the information about a transaction by block number and transaction index position |
+| `eth_getTransactionByBlockHashAndIndex` | Returns the information about a transaction by block hash and transaction index position |
+| `eth_getUncleByBlockNumberAndIndex` | Returns information about an uncle of a block by number and uncle index position |
+| `eth_getUncleByBlockHashAndIndex` | Returns information about an uncle of a block by hash and uncle index position |
+| `eth_syncing`                | Returns an object with data about the sync status or false |
+| `eth_mining`                 | Returns whether the client is actively mining new blocks |
+| `eth_hashrate`               | Returns the number of hashes per second that the node is mining with |
+| `eth_subscribe`              | Creates a new subscription for particular events                     |
+| `eth_getWork`                | Returns the hash of the current block, the seedHash, and the boundary condition to be met ("target") |

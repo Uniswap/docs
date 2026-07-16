@@ -1,0 +1,24 @@
+---
+title: 'Proxy Approval'
+description: 'Posted: March 11, 2026 | Effective: March 17, 2026'
+type: changelog
+datePublished: '2026-03-11'
+---
+
+We are introducing a new swap approval workflow that requires just two signatures.
+
+**What is changing?**
+
+Today, swap approval through Permit2 can require up to three signatures. Proxy Approval reduces that to two signatures.
+
+How it works: the user approves spending to a proxy contract (a thin wrapper around Universal Router), then signs the swap. Tokens move from the user's wallet to the proxy contract and are forwarded to Universal Router to complete the swap.
+
+**Why is this changing?**
+
+This swap approval workflow is being introduced as a compatibility option for integrators with workflows that expect the swapper to directly approve the router contract to spend the swapper's tokens.
+
+**What do I need to do?**
+
+If you already have a workflow using Permit2, you do not need to make any change. If you have struggled to integrate Permit2 approval, this new workflow may be for you. Read the full [integration guide](/docs/trading/swapping-api/concepts/no-permit2-workflow).
+
+We still highly recommend using Permit2 approval for maximum security for your end users.

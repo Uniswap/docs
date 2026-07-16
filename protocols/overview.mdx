@@ -1,0 +1,87 @@
+---
+id: overview
+title: Protocols Overview
+description: Navigate the Uniswap protocol documentation, from the core AMM versions to supporting infrastructure contracts.
+---
+
+## Protocols
+
+Uniswap is a suite of onchain protocols. At its core are the automated market maker (AMM) contracts, the pool contracts that hold liquidity and execute swaps. Surrounding them are supporting protocols that handle routing, token approvals, resource locking, smart wallet delegation, and fee distribution.
+
+This page helps you orient within the protocol documentation and find the right starting point for your integration.
+
+### AMM Protocols
+
+The AMM is the heart of Uniswap. Each version introduced architectural changes that improved capital efficiency, composability, and gas costs. **Uniswap v4 is the current and recommended version for new integrations.**
+
+### Uniswap v4
+
+v4 consolidates all pools into a single `PoolManager` contract and introduces [hooks](/docs/get-started/concepts/hooks), external contracts that can customize pool behavior at every stage of its lifecycle (initialization, swaps, liquidity changes, fee logic). It uses [flash accounting](/docs/protocols/v4/concepts/flash-accounting) to defer token transfers until the end of a transaction, enabling significant gas savings for multi-step operations.
+
+v4 is the most flexible and gas-efficient version of the protocol. If you are building a new integration, start here.
+
+| Resource | Link |
+| :--- | :--- |
+| Concepts | [Hooks](/docs/protocols/v4/concepts/hooks), [Flash Accounting](/docs/protocols/v4/concepts/flash-accounting), [Dynamic Fees](/docs/protocols/v4/concepts/dynamic-fees) |
+| Guides | [Set Up Environment](/docs/protocols/v4/guides/hooks/getting-started), [Build Your First Hook](/docs/protocols/v4/guides/hooks/your-first-hook), [Security Framework](/docs/protocols/v4/security) |
+| SDK | [Uniswap v4 SDK docs](/docs/sdks/v4/overview) |
+| Deployments | [Uniswap v4 addresses](/docs/protocols/v4/deployments) |
+| Repositories | [v4-core](https://github.com/Uniswap/v4-core), [v4-periphery](https://github.com/Uniswap/v4-periphery) |
+| Audits | [Core audits](https://github.com/Uniswap/v4-core/tree/main/docs/security/audits), [Periphery audits](https://github.com/Uniswap/v4-periphery/tree/main/audits) |
+
+### Other AMM Versions
+
+<Cards>
+  <Card
+    title="Uniswap v3"
+    href="/docs/protocols/v3/overview"
+    description="Concentrated liquidity with NFT positions. Use for existing integrations and v3-specific workflows."
+  />
+  <Card
+    title="Uniswap v2"
+    href="/docs/protocols/v2/overview"
+    description="Original constant-product AMM. Good for fundamentals and legacy integrations."
+  />
+</Cards>
+
+## Supporting Protocols
+
+Beyond the AMM, Uniswap relies on a set of infrastructure contracts that handle routing, approvals, fee distribution, and more. These protocols are used across multiple AMM versions and are important for production integrations.
+
+### Universal Router
+
+The Universal Router is an unowned, non-upgradeable contract that composes swaps across Uniswap v2, Uniswap v3, and Uniswap v4 in a single transaction. It uses a command-based encoding system and integrates with Permit2 for signature-controlled token approvals.
+
+If you are executing swaps programmatically, the Universal Router is the recommended entry point.
+
+[Universal Router documentation](/docs/protocols/universal-router/overview)
+
+### Permit2
+
+Permit2 unifies signature-based token transfers and time-bound allowances into a single contract. It is used by the Universal Router, the `PositionManager`, and other Uniswap contracts to reduce repeated approval transactions and improve security.
+
+[Permit2 documentation](/docs/protocols/permit2/overview)
+
+#### Protocol Fees
+
+[Fees](/docs/get-started/concepts/fees#protocol-fees) from all Uniswap protocol versions flow through Fee Adapter contracts into a per-chain TokenJar. Releaser contracts define how collected fees are accessed, for example, the Firepit Releaser burns UNI in exchange for collected assets.
+
+[Protocol Fees documentation](/docs/protocols/protocol-fee/overview)
+
+### The Compact
+
+The Compact is an ownerless ERC-6909 contract that enables [resource locks](/docs/protocols/the-compact/concepts/resource-locks), tokens that are credibly committed for asynchronous conditions and claimed once those conditions are met. It supports single-chain and multichain flows and is used in cross-chain coordination.
+
+[The Compact documentation](/docs/protocols/the-compact/overview)
+
+### Smart wallet (Calibur)
+
+Uniswap smart wallet features are powered by Calibur, a non-upgradeable contract implementation for EIP-7702 delegation. Users delegate to the implementation while keeping their existing EOA address.
+
+[Smart Wallet documentation](/docs/protocols/smart-wallet/overview)
+
+## Security
+
+Uniswap Labs maintains an active bug bounty program on Cantina for eligible vulnerability disclosures. 
+
+[Uniswap Bug Bounty Program](https://cantina.xyz/bounties/f9df94db-c7b1-434b-bb06-d1360abdd1be)

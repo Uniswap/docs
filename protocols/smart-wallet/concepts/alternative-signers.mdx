@@ -1,0 +1,36 @@
+---
+title: Alternative Signers
+description: Learn how Uniswap smart wallet supports alternative signer keys and related security caveats.
+---
+
+Calibur allows users to add any number of signers to their account, known as `keys`.
+
+## Supported Key Types
+
+- `Secp256k1`
+- `Secp256r1 (P256)`
+- `WebAuthn P256`
+
+## Key Encoding and Identity
+
+Each key is identified by its type and its encoded public key, and every key maps to exactly one identifier. When you register a key, you must supply it in its exact canonical form:
+
+- A `Secp256k1` key must be exactly its 20-byte address, with no extra padding or trailing bytes.
+- A `Secp256r1 (P256)` or `WebAuthn P256` key must be exactly its two public-key coordinates, with no extra trailing bytes.
+
+Registrations that include padding or trailing bytes are rejected with `InvalidKey`. Well-behaved libraries already encode keys this way. Requiring the canonical form guarantees a one-to-one mapping between a key and its identifier, so a key's settings such as expiry, hooks, or admin status cannot be sidestepped by registering a look-alike of the same underlying key.
+
+## Passkey Signatures and User Verification
+
+When validating a `WebAuthn P256` (passkey) signature, the wallet does not require the authenticator's User Verification (UV) flag. The UV flag indicates that the user was verified by biometric or PIN rather than by presence alone. A passkey signed with user presence only is still accepted.
+
+If your integration needs stronger guarantees for sensitive actions, enforce the UV requirement in your own client or relayer before submitting. The contract does not reject a signature that lacks the UV flag.
+
+## Security Caveats
+
+This is an **advanced** feature. Please be aware of the following:
+
+- By default, added keys do not expire and have no hooks
+- A malicious key could steal all of your ETH and tokens
+
+Registering external signers on your account changes the security model. Proceed with caution!

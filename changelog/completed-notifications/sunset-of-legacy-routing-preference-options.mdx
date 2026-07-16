@@ -1,0 +1,34 @@
+---
+title: 'Sunset of Legacy routingPreference Options'
+description: 'Posted: July 18th, 2025 | Effective: February 11th, 2026'
+type: changelog
+datePublished: '2025-07-18'
+---
+
+Support for multiple legacy options for the *routingPreference* field in the /quote request has been sunset.
+
+**What changed?**
+
+The *routingPreference* field in the /quote request now only supports the values *BEST_PRICE* or *FASTEST*. The legacy values of *CLASSIC*, *BEST_PRICE_V2*, *UNISWAPX_V2*, *V3_ONLY*, and *V2_ONLY* have been removed. Submitting a request with one of these legacy values will result in an error.
+
+**Why did this change?**
+
+This change clarifies API request intent and allows Uniswap Labs to expand the options for routing in the future. The *routingPreference* field now only indicates the method of routing, whereas the *protocols* field indicates the protocols to be considered while executing the routing method.
+
+**What do I need to do?**
+
+If you are still specifying a deprecated *routingPreference* value, you **must** update your requests to use one of the supported values (*BEST_PRICE* or *FASTEST*). You **may** also use the *protocols* field to more narrowly limit which protocols are considered for your /quote requests.
+
+If you do not specify any value for *routingPreference*, the default is *BEST_PRICE*.
+
+## Legacy routingPreference to protocols Equivalency
+
+The following table maps deprecated *routingPreference* values to equivalent *protocols* field values:
+
+| Legacy `routingPreference` Value | Equivalent `protocols` Value |
+| :------------------------------- | :--------------------------- |
+| CLASSIC                          | V2, V3, V4                   |
+| UNISWAPX_V2                      | UNISWAPX_V2                  |
+| BEST_PRICE_V2                    | V2, V3, V4, UNISWAPX_V2      |
+| V2_ONLY                          | V2                           |
+| V3_ONLY                          | V3                           |

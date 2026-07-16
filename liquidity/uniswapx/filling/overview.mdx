@@ -1,0 +1,73 @@
+---
+id: filleroverview
+title: Fillers Overview
+description: Learn how UniswapX fillers and quoters compete to settle swaps across chains.
+---
+
+## Choose Your Integration Path
+
+| Chain | Auction type | Reactor | Guide |
+|---|---|---|---|
+| Ethereum | RFQ + Exclusive Dutch Auction | Dutch V2 | [Filling on Mainnet](/docs/liquidity/uniswapx/filling/mainnet/filling-on-mainnet), [Become a Quoter](/docs/liquidity/uniswapx/filling/mainnet/become-a-quoter) |
+| Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, Unichain | RFQ + Exclusive Dutch Auction (block-based decay) | Dutch V3 | [Filling Dutch V3 Auctions](/docs/liquidity/uniswapx/filling/dutch-v3-chains/filling-on-dutch-v3-chains) |
+
+UniswapX fillers compete to settle swaps through permissionless auctions. Use this section to choose a chain, ingest orders, and fill.
+
+UniswapX now uses RFQ and the exclusive Dutch auction model on every supported chain. Priority gas auctions are no longer a separate integration path. Fillers previously integrated against a Priority reactor should migrate to DutchV3. See the [changelog entry](/docs/changelog/active-notifications/uniswapx-rfq-auctions-on-base-and-arbitrum) for the Base and Arbitrum transition.
+
+## Filler Roles
+
+UniswapX has one permissioned role (quoter) and one permissionless role (filler). This table is the canonical reference.
+
+| Role | Permission | When they fill | Fade risk | How they discover orders |
+|---|---|---|---|---|
+| **Quoter** | Permissioned, vetted by Uniswap Labs | Responds to the off-chain RFQ; if it wins the hard quote, it gets the exclusivity window | Yes: if it wins exclusivity and does not fill, it triggers the circuit breaker | Receives quote requests from the parameterization service |
+| **Exclusive filler** | The quoter that won the RFQ | During the exclusivity window (about 24 seconds, or 2 blocks, on mainnet) | Yes | It is the RFQ winner |
+| **Non-exclusive filler** | Permissionless, no vetting | After exclusivity expires in the open Dutch auction, or during exclusivity through a soft-exclusivity override (`exclusivityOverrideBps` greater than zero) | No: it never held exclusivity, so it cannot fade and is not subject to the circuit breaker | Polls the orders API at 6 RPS |
+
+A non-exclusive filler carries no fade risk and is never subject to the circuit breaker, because it never commits to an exclusivity it could fail to honor.
+
+An order reaches the open, non-exclusive period in two ways:
+
+- **Exclusivity expiration**: after the exclusivity window ends, the order enters an open Dutch auction for all fillers with no penalty.
+- **Missing exclusivity**: if the hard quote comes back enough lower than the soft quote, no exclusivity is assigned and the order goes straight to decay. See [the Filler FAQ](/docs/liquidity/uniswapx/filling/faq) for details.
+
+## How Filling Works
+
+1. Retrieve open orders from the Uniswap API.
+2. Decode and evaluate each order with your strategy, inventory checks, and risk controls.
+3. Submit `execute` transactions to the target reactor, ensuring required output amounts are met.
+
+## Order Discovery
+
+Retrieve open orders from the UniswapX Orders Endpoint. The [Swagger documentation](https://api.uniswap.org/v2/uniswapx/docs) lists every parameter. Pass the chain ID and order type for the chain you fill:
+
+| Chain | Chain ID | Order type |
+|---|---|---|
+| Ethereum | `1` | `Dutch_V2` |
+| Arbitrum | `42161` | `Dutch_V3` |
+| Avalanche | `43114` | `Dutch_V3` |
+| Base | `8453` | `Dutch_V3` |
+| BNB Smart Chain | `56` | `Dutch_V3` |
+| Robinhood Chain | `4663` | `Dutch_V3` |
+| Tempo | `4217` | `Dutch_V3` |
+| Unichain | `130` | `Dutch_V3` |
+
+```bash
+GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&orderType=Dutch_V2&limit=1000
+```
+
+## Native ETH Input
+
+UniswapX supports native ETH input from EIP-7702 smart wallets through `ERC20ETH`. Fillers may see orders where `inputTokenAddress` is the `ERC20ETH` deployment address; route those orders as native ETH, not as a pool-backed ERC-20.
+
+For the required filler handling and contract details, see the [Native ETH Input FAQ](/docs/liquidity/uniswapx/filling/faq#native-eth-input).
+
+## Troubleshooting
+
+For common RFQ and execution issues, see the [Filler FAQ](/docs/liquidity/uniswapx/filling/faq).
+
+## Support
+
+- Submit a ticket via the <HelpCenter topic="uniswapx-fillers">UniswapX filler help form</HelpCenter>.
+- Subscribe to the [Telegram channel](http://t.me/UniswapXdiscussion) for announcements.

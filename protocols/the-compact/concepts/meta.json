@@ -1,0 +1,4 @@
+{
+  "title": "Concepts",
+  "pages": ["resource-locks", "compacts", "core-interfaces", "allocators", "arbiters", "periphery-contracts"]
+}

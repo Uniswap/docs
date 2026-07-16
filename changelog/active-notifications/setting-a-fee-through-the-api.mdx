@@ -1,0 +1,24 @@
+---
+title: 'Setting A Fee Through the API'
+description: 'Posted: March 6, 2026 | Effective: March 17, 2026'
+type: changelog
+datePublished: '2026-03-06'
+---
+
+API integrators can now set a fee for themselves directly in their API request.
+
+**What changed?**
+
+The `/quote` endpoint of the Uniswap API now supports [a new `integratorFee` field](/docs/api-reference/aggregator_quote) which permits setting one fee in basis points, and the recipient for that fee. Any fee provided in the `/quote` request will be included in the `/quote` response (`aggregatedOutputs` and all `portion` fields) and subsequently coded into the calldata returned by the `/swap` response.
+
+The integrator fee also supports setting a fee in fractional basis points, down to two decimal places of precision (for example, `"bps":10.25`).
+
+**Why did this change?**
+
+We have had strong demand from many integrators to give them more flexibility in establishing non-linear fee structures. Additionally, many builders have been slowed down by needing to contact us in order to establish a fee and fee recipient on an API key, which is traditionally how integrators would set fees.
+
+**What do I need to do?**
+
+If you set a fee through your API key, we strongly recommend now setting your fee through these fields and removing the fee from your API key. Contact your Uniswap Labs account manager to arrange removal of your static API key-based fee.
+
+If you want to set a fee with a fractional basis point value, you must ensure that you set the `x-universal-router-version` header to `2.1.1`. Only this newer version of universal router supports taking fractional basis points.

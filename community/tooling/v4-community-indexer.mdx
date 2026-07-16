@@ -1,0 +1,50 @@
+---
+title: Uniswap v4 Community Indexer
+description: A multi-chain Uniswap v4 indexer that exposes pool, swap, and hook data via GraphQL. Built by Envio with HyperIndex.
+---
+
+The Uniswap v4 Community Indexer is an open-source, multi-chain indexer for Uniswap v4 protocol events, built by [Envio](https://envio.dev) with [HyperIndex](https://docs.envio.dev/docs/HyperIndex/example-uniswap-v4-multi-chain-indexer). It powers [v4.xyz](https://v4.xyz/) and any other UI or analytics tool that needs unified v4 data across chains.
+
+<Callout type="info">
+
+The indexer is maintained by [Envio](https://envio.dev) and is not an official Uniswap Labs product. It is open-source and accepts community contributions.
+
+</Callout>
+
+## What it tracks
+
+The indexer ingests v4 protocol events and exposes them via a unified GraphQL API:
+
+| Event | Description |
+| :--- | :--- |
+| `Initialize` | Pool creation |
+| `Swap` | Swap execution and pricing |
+| `ModifyLiquidity` | Liquidity position changes |
+| `Donate` | Pool donations |
+| `Transfer` and `Approval` | ERC-6909 token movements |
+
+From these events, consumers like v4.xyz surface pool metrics (volume, TVL, fees), swap history, liquidity positions, and hook analytics. The schema mirrors the official Uniswap v4 Subgraph.
+
+## Supported chains
+
+Ethereum, Optimism, Base, Arbitrum, Polygon, Zora, Avalanche, BNB Chain, Unichain, World Chain, Soneium, Ink, Linea, and Celo.
+
+## Run the indexer locally
+
+The indexer is open-source. Run it yourself or fork it as a starting point for custom analytics.
+
+```bash
+git clone https://github.com/enviodev/uniswap-v4-indexer.git
+cd uniswap-v4-indexer
+pnpm install
+pnpm envio dev
+```
+
+Requires Node.js v24+, pnpm v8+, and Docker Desktop. The local GraphQL endpoint runs at `http://localhost:8080`.
+
+## Resources
+
+- [Indexer repository](https://github.com/enviodev/uniswap-v4-indexer)
+- [v4.xyz](https://v4.xyz/) (consumer interface)
+- [Envio HyperIndex docs](https://docs.envio.dev/docs/HyperIndex/example-uniswap-v4-multi-chain-indexer)
+- [Envio](https://envio.dev) (maintainer)

@@ -1,0 +1,44 @@
+---
+title: Uniswap v4 Template
+description: Foundry-based starter template for building, testing, and deploying Uniswap v4 hooks, maintained by the Uniswap Foundation.
+---
+
+The [Uniswap v4 Template](https://github.com/uniswapfoundation/v4-template) is a Foundry starter kit for hook development, maintained by the [Uniswap Foundation](https://www.uniswapfoundation.org/). It comes pre-wired with v4 dependencies, an example hook, ready-to-run tests, and deploy scripts so you can focus on hook logic instead of project setup.
+
+<Callout type="info">
+
+This template is maintained by the Uniswap Foundation. It is provided as is, so review and adapt it to your use case before deploying to production.
+
+</Callout>
+
+## What's included
+
+- **Example hook.** `Counter.sol` demonstrates `beforeSwap()` and `afterSwap()` so you can see how hooks intercept swap behavior.
+- **Test framework.** `Counter.t.sol` is preconfigured with the v4 pool manager, test tokens, and seeded liquidity, eliminating setup boilerplate.
+- **Deploy scripts.** Scripts in `script/` cover deploying hooks (with `HookMiner` for CREATE2 salt mining), creating pools, managing liquidity, and executing swaps on local Anvil and production networks.
+- **Foundry config.** Stable-branch dependency management via git submodules with sensible remappings.
+
+## Quick start
+
+Click **Use this template** on GitHub to scaffold a new repository, then:
+
+```bash
+git clone https://github.com/<your-org>/<your-repo>.git
+cd <your-repo>
+forge install
+forge test
+```
+
+Pull upstream improvements at any time with a git merge from `uniswapfoundation/v4-template`.
+
+<Callout type="warn">
+
+This template is provided as is, without warranties of any kind. Any hook, pool integration, or deploy script built or deployed using this template is the sole responsibility of the developer. Conduct an independent security review and audit before deploying to mainnet. Refer to the [Uniswap v4 security guide](/docs/protocols/v4/security) for additional guidance.
+
+</Callout>
+
+## Resources
+
+- [GitHub repository](https://github.com/uniswapfoundation/v4-template)
+- [Uniswap v4 docs](/docs/protocols/v4/overview)
+- [Uniswap Foundation](https://www.uniswapfoundation.org/)

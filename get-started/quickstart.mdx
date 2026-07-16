@@ -1,0 +1,335 @@
+---
+title: "Quick Start"
+description: Make your first token swap on Uniswap in minutes using Custom Linking, the Uniswap API, SDK, or Solidity.
+---
+
+Uniswap offers distinct methods for integrating swapping functionality into your application. Choosing the right approach depends on your specific needs regarding customization, control, and development resources.
+
+## Choose Your Implementation Path
+
+<ImplementationTabs>
+
+<ImplementationTab value="customlinking">
+
+| Best For | Complexity | Full Guide |
+| :--- | :--- | :--- |
+| Simple Referrals | Very Low | [Custom Linking](/docs/trading/custom-interface-links) |
+
+Use URL query parameters to send users to Uniswap with pre-filled swap settings. This is ideal for simple referrals and lightweight integrations.
+
+### Step 1: Choose the flow
+Pick where users should land: `swap`, `add`, or `remove`.
+
+### Step 2: Build and test the URL
+Set the parameters you need and verify the link opens with the expected prefilled values.
+
+```bash
+https://app.uniswap.org/#/swap?inputCurrency=ETH&field=input&value=1
+```
+
+### Step 3: Add it to your product
+Use the link in your CTA, campaign, or notification flow.
+
+### Where to go next
+
+- [Get started with custom interface links](/docs/trading/custom-interface-links)
+- [Get started with API swap flows](/docs/trading/swapping-api/getting-started)
+
+</ImplementationTab>
+
+<ImplementationTab value="api">
+
+| Best For | Complexity | Full Guide |
+| :--- | :--- | :--- |
+| DApps, Wallets, Agents, Bots | Low | [Uniswap API](https://developers.uniswap.org/dashboard) |
+
+Use the Uniswap API to integrate swapping quickly without implementing routing logic yourself.
+
+### Step 1: Get your API key
+Create an API key at [developers.uniswap.org/dashboard](https://developers.uniswap.org/dashboard/welcome?utm_medium=eco&utm_source=platform&utm_campaign=20260404-dev-platform&utm_content=callout&utm_term=self-serve).
+
+### Step 2: Authenticate your requests
+All requests require an API key.
+
+```bash
+curl --request POST \
+  --url https://trade-api.gateway.uniswap.org/v1/quote \
+  --header 'x-api-key: YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --data '{"tokenIn":"0x...","tokenOut":"0x...","amount":"1000000","type":"EXACT_INPUT","tokenInChainId":1,"tokenOutChainId":1,"swapper":"0x..."}'
+```
+
+### Step 3: Request a quote
+Call `/quote` to get the most efficient route based on current inputs and expected output.
+
+```typescript
+const response = await fetch('https://trade-api.gateway.uniswap.org/v1/quote', {
+  method: 'POST',
+  headers: {
+    'x-api-key': 'YOUR_API_KEY',
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+  body: JSON.stringify({
+    tokenIn: '0x0000000000000000000000000000000000000000', // ETH
+    tokenOut: '0xdAC17F958D2ee523a2206206994597C13D831ec7', // USDT
+    tokenInChainId: 1,
+    tokenOutChainId: 1,
+    type: 'EXACT_INPUT',
+    amount: '1000000000000000000', // 1 ETH in wei
+    swapper: '0x...', // User wallet
+    slippageTolerance: 0.5, // 0.5%
+  }),
+})
+
+const quote = await response.json()
+```
+
+### Step 4: Build the execution request
+Use the `routing` value from `/quote` to choose the next endpoint:
+
+```text
+DUTCH_V2, DUTCH_V3, PRIORITY -> call POST /order
+CLASSIC, WRAP, UNWRAP, BRIDGE -> call POST /swap
+```
+
+### Step 5: Sign and submit
+For `POST /swap`, sign with the user wallet and broadcast the returned transaction through your RPC provider.
+For `POST /order`, sign and submit the order payload, then monitor status with `GET /orders`.
+Your app still handles nonce strategy, error handling, and status tracking.
+
+### Where to go next
+
+- [Get started with API swap flows](/docs/trading/swapping-api/getting-started)
+- [Set up API integration prerequisites](/docs/trading/swapping-api/building-prerequisites)
+- [Implement the end-to-end integration guide](/docs/trading/swapping-api/integration-guide)
+
+</ImplementationTab>
+
+<ImplementationTab value="sdk">
+
+| Best For | Complexity | Full Guide |
+| :--- | :--- | :--- |
+| Front-ends, Scripts, Custom interactions | Medium | [Uniswap v4 SDK](/docs/sdks/v4/overview) |
+
+Use the v4 SDK when you want direct control over pool config, quoting, and Universal Router execution in TypeScript/JavaScript.
+
+### Step 1: Install SDK packages
+
+Install the packages used in the current v4 guides:
+ 
+```bash
+npm install @uniswap/v4-sdk
+npm install @uniswap/sdk-core
+npm install @uniswap/universal-router-sdk
+```
+
+### Step 2: Build config and get a quote
+
+Before executing swaps with the SDK, define a reusable swap config and simulate the trade with Quoter.
+
+Start by creating a `CurrentConfig` object. At minimum, this should include:
+- `poolKey`: identifies the pool (`currency0`, `currency1`, `fee`, `tickSpacing`, `hooks`)
+- `zeroForOne`: swap direction (for example, ETH -> USDC)
+- `amountIn`: exact input amount
+- `amountOutMinimum`: minimum accepted output (set from quote + slippage policy)
+- `hookData`: hook payload (`0x00` if unused)
+
+```typescript
+import { SwapExactInSingle } from '@uniswap/v4-sdk'
+import { parseUnits } from 'ethers'
+import { ETH_TOKEN, USDC_TOKEN } from './constants'
+
+export const CurrentConfig: SwapExactInSingle = {
+  poolKey: {
+    currency0: ETH_TOKEN.address,
+    currency1: USDC_TOKEN.address,
+    fee: 500,
+    tickSpacing: 10,
+    hooks: '0x0000000000000000000000000000000000000000',
+  },
+  zeroForOne: true, // ETH -> USDC
+  amountIn: parseUnits('1', ETH_TOKEN.decimals).toString(),
+  amountOutMinimum: '0', // TODO: replace with quote result minus slippage before production use
+  hookData: '0x00',
+}
+```
+
+Then simulate the swap using Quoter (callStatic) to get expected output without sending a transaction:
+
+```typescript
+const quotedAmountOut = await quoterContract.callStatic.quoteExactInputSingle({
+  poolKey: CurrentConfig.poolKey,
+  zeroForOne: CurrentConfig.zeroForOne,
+  exactAmount: CurrentConfig.amountIn,
+  hookData: CurrentConfig.hookData,
+})
+```
+
+Use the quote to validate route viability and set a safer amountOutMinimum before execution.
+
+[Getting a Quote](/docs/sdks/v4/guides/swapping/quoting)
+
+### Step 3: Execute through Universal Router
+
+Build actions with `V4Planner`, encode them, and execute via Universal Router.
+
+[Executing a Single-Hop Swap](/docs/sdks/v4/guides/swapping/single-hop-swapping)
+
+### Step 4: Add approvals and production data flows
+
+For `ERC20` swaps, include `Permit2` approvals and production-grade `pool/state` reads.
+
+- [Fetching Pool Data](/docs/sdks/v4/guides/pool-data)
+- [Create Pool](/docs/sdks/v4/guides/create-pool)
+- [Minting a Position](/docs/sdks/v4/guides/managing-liquidity/position-minting)
+
+### Where to go next
+
+- [Get started with v4 SDK overview](/docs/sdks/v4/overview)
+- [Get started with quoting](/docs/sdks/v4/guides/swapping/quoting)
+- [Execute your first single-hop swap](/docs/sdks/v4/guides/swapping/single-hop-swapping)
+
+</ImplementationTab>
+
+<ImplementationTab value="solidity">
+
+| Best For | Complexity | Full Guide |
+| :--- | :--- | :--- |
+| Onchain integrations, Arbitrage, Protocol logic | High | [v4 Swapping Guide](/docs/protocols/v4/guides/swapping/swapping) |
+
+Use Solidity when swap execution must happen atomically inside your contract logic and you need direct onchain composability.
+
+### Step 1: Install dependencies and import interfaces
+
+Install the required packages:
+
+```bash
+forge install uniswap/v4-core
+forge install uniswap/v4-periphery
+forge install uniswap/permit2
+forge install uniswap/universal-router
+forge install OpenZeppelin/openzeppelin-contracts
+```
+Then import the Uniswap router interfaces:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.26;
+
+import { UniversalRouter } from "@uniswap/universal-router/contracts/UniversalRouter.sol";
+import { Commands } from "@uniswap/universal-router/contracts/libraries/Commands.sol";
+import { IV4Router } from "@uniswap/v4-periphery/src/interfaces/IV4Router.sol";
+import { Actions } from "@uniswap/v4-periphery/src/libraries/Actions.sol";
+import { IPermit2 } from "@uniswap/permit2/src/interfaces/IPermit2.sol";
+import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { PoolKey } from "@uniswap/v4-core/src/types/PoolKey.sol";
+import { Currency } from "@uniswap/v4-core/src/types/Currency.sol";
+```
+
+### Step 2: Set up your contract
+
+Create a contract that stores Universal Router + Permit2 and exposes an approval helper:
+
+```solidity
+contract V4SwapExample {
+    UniversalRouter public immutable router;
+    IPermit2 public immutable permit2;
+
+    constructor(address _router, address _permit2) {
+        router = UniversalRouter(payable(_router));
+        permit2 = IPermit2(_permit2);
+    }
+
+    function approveTokenWithPermit2(
+        address token,
+        uint160 amount,
+        uint48 expiration
+    ) external {
+        IERC20(token).approve(address(permit2), type(uint256).max);
+        permit2.approve(token, address(router), amount, expiration);
+    }
+}
+```
+
+### Step 3: Build your swap command
+
+Encode V4_SWAP + v4 actions (SWAP_EXACT_IN_SINGLE, SETTLE_ALL, TAKE_ALL), then execute:
+
+```solidity
+function swapExactInputSingle(
+    PoolKey calldata key,
+    bool zeroForOne,
+    uint128 amountIn,
+    uint128 minAmountOut,
+    uint256 deadline
+) external payable {
+    bytes memory commands = abi.encodePacked(uint8(Commands.V4_SWAP));
+
+    bytes memory actions = abi.encodePacked(
+        uint8(Actions.SWAP_EXACT_IN_SINGLE),
+        uint8(Actions.SETTLE_ALL),
+        uint8(Actions.TAKE_ALL)
+    );
+
+    bytes[] memory params = new bytes[](3);
+
+    params[0] = abi.encode(
+        IV4Router.ExactInputSingleParams({
+            poolKey: key,
+            zeroForOne: zeroForOne,
+            amountIn: amountIn,
+            amountOutMinimum: minAmountOut,
+            hookData: bytes("")
+        })
+    );
+
+    Currency inputCurrency = zeroForOne ? key.currency0 : key.currency1;
+    Currency outputCurrency = zeroForOne ? key.currency1 : key.currency0;
+
+    params[1] = abi.encode(inputCurrency, amountIn);
+    params[2] = abi.encode(outputCurrency, minAmountOut);
+
+    bytes[] memory inputs = new bytes[](1);
+    inputs[0] = abi.encode(actions, params);
+
+    router.execute{ value: msg.value }(commands, inputs, deadline);
+}
+```
+
+### Step 4: Deploy and test
+
+```bash
+forge create src/V4SwapExample.sol:V4SwapExample \
+  --rpc-url $SEPOLIA_RPC \
+  --private-key $PRIVATE_KEY \
+  --constructor-args <UNIVERSAL_ROUTER_ADDRESS> <PERMIT2_ADDRESS>
+```
+
+Then test:
+
+- call `approveTokenWithPermit2(...)` for `ERC20` input
+- call `swapExactInputSingle(...)` with a valid `PoolKey`
+- verify `tx` + received output
+
+<Callout type="warn" title="Gas Costs">
+Onchain swaps require you to pay gas. Consider using the Uniswap API with UniswapX for gasless execution when possible.
+</Callout>
+
+### Optional Path: Customize swap behavior with hooks
+If your goal is to extend swap behavior itself (for example dynamic fees, on-swap oracles, limit orders, or access control), build a Hook contract instead of only routing through swap execution.
+
+Hooks can run logic at key lifecycle points such as:
+- `beforeSwap`
+- `afterSwap`
+
+### Where to go next
+
+- [Get started with v4 protocol guides](/docs/protocols/v4/guides/getting-started)
+- [Get started with v4 swap integration](/docs/protocols/v4/guides/swapping/getting-started)
+- [Get started with hooks](/docs/protocols/v4/guides/hooks/getting-started)
+
+</ImplementationTab>
+
+</ImplementationTabs>

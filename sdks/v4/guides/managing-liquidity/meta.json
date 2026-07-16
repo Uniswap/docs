@@ -1,0 +1,9 @@
+{
+  "title": "Managing Liquidity",
+  "pages": [
+    "position-minting",
+    "position-fetching",
+    "collect-fees",
+    "modifying-position"
+  ]
+}

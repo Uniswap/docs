@@ -1,0 +1,65 @@
+---
+title: Resources
+description: Explore audits, core contracts, and infrastructure references for Uniswap The Compact and related repositories.
+---
+
+## Audits
+
+The Compact v1 has undergone two independent security reviews:
+
+- [OpenZeppelin](https://openzeppelin.com)
+- [Spearbit Cantina](https://cantina.xyz)
+
+## Core Contracts
+
+The foundation of The Compact protocol: an ERC6909-based system for reusable resource locks.
+
+- [TheCompact](https://github.com/Uniswap/the-compact) - Main protocol implementation (MIT licensed)
+- [ITheCompact Interface](https://github.com/Uniswap/the-compact/blob/main/src/interfaces/ITheCompact.sol) - Core interface definition
+- [ITheCompactClaims Interface](https://github.com/Uniswap/the-compact/blob/main/src/interfaces/ITheCompactClaims.sol) - Claims interface
+
+## Peripheral Contracts
+
+<Callout type="warn">
+These repositories are under development and are intended to serve as reference implementations for understanding peripheral contract functionality within The Compact. These are for testing/reference purposes only - do not use these contracts in production environments.
+</Callout>
+
+### Reference allocators
+
+#### Smart contract allocators
+
+[Repository](https://github.com/Uniswap/sc-allocators)
+
+Various example allocator implementations for use with The Compact. Allocators co-sign or authorize claims against sponsors' locked balances, prevent under-allocation, and in the case of the HybridERC7683 implementation, broadcast cross-chain orders using ERC-7683. Some allocators also rely on Uniswap Tribunal.
+
+#### Smallocator (offchain)
+
+[Repository](https://github.com/uniswap/smallocator)
+
+A minimalistic server-based allocator for The Compact. Smallocator provides an API for sponsors to request resource lock allocations across multiple blockchains, with support for EIP-4361 session authentication and signing EIP-712 Compact messages.
+
+#### Autocator (offchain)
+
+[Repository](https://github.com/uniswap/autocator)
+
+A server-based allocator for The Compact that leverages protocol signatures and transactions for authentication. Autocator provides an API for requesting resource lock allocations across multiple blockchains by providing the details of associated compacts with accompanying sponsor signatures or onchain registrations.
+
+### Supporting infrastructure
+
+#### Emissary
+
+[Repository](https://github.com/Uniswap/emissary)
+
+An onchain signature authority delegation registry with support for secp256k1 and P256 keys (both HSM and WebAuthn formats). Designed for fallback signature validation.
+
+#### Tribunal
+
+[Repository](https://github.com/Uniswap/Tribunal)
+
+Tribunal illustrates one approach for processing cross-chain swap settlements against PGA (priority gas auction) blockchains. It enforces settlement according to the sponsor mandate and restricts dispute settlement to a single authorized party.
+
+#### Arbiters
+
+[Repository](https://github.com/Uniswap/arbiters)
+
+A repository for developing arbiter implementations that leverage The Compact for performing cross-chain swaps.

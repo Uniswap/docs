@@ -1,0 +1,71 @@
+---
+id: Overview
+title: CCA Overview
+description: Learn how Uniswap Liquidity Launchpad uses CCA auctions and strategies to bootstrap liquidity for Uniswap v4 pools.
+---
+
+## What Is the Uniswap Liquidity Launchpad?
+
+The Uniswap Liquidity Launchpad is a framework for bootstrapping initial liquidity for Uniswap v4 pools through transparent price discovery (see [whitepaper](/whitepaper_cca.pdf)). It combines three functions into a composable flow:
+
+1. **Price Discovery**: run fair auctions using a novel Continuous Clearing Auction (CCA) mechanism to establish market price.
+2. **Liquidity Bootstrapping**: automatically seed Uniswap v4 pools with auction proceeds at the discovered price.
+3. **Token Creation** (optional): deploy new ERC-20 tokens with metadata or integrate existing tokens.
+
+Unlike approaches that rely on centralized market makers or timing advantages, this system provides an open mechanism for bootstrapping deep liquidity on decentralized exchanges.
+
+The system is composable and can support additional auction and strategy implementations.
+
+### Key benefits
+
+- **Fair Price Discovery**: continuous clearing auctions reduce timing games and improve price discovery.
+- **Immediate Deep Liquidity**: transition from price discovery to active Uniswap v4 trading with substantial initial depth.
+- **Permissionless**: anyone can bootstrap liquidity or participate in price discovery without gatekeepers
+- **Transparent**: all parameters are immutable after they are set
+- **Composable**: modular architecture supports multiple auction formats and distribution strategies
+- **Gas Efficient**: optimized implementations using Permit2, multicall, and efficient data structures
+
+## Core Components
+
+The Uniswap Liquidity Launchpad framework is built on three coordinated components:
+
+1. **[Liquidity Launcher](https://github.com/Uniswap/liquidity-launcher)** coordinates distribution and liquidity deployment.
+2. **[Token Factory](https://github.com/Uniswap/uerc20-factory)** optionally creates new ERC-20 tokens with metadata.
+3. **Liquidity Strategies** define how auction outcomes migrate into pool liquidity. See [custom strategy guidance](/docs/liquidity/liquidity-launchpad/concepts/liquidity-strategies#writing-a-custom-strategy).
+
+Each component is composable and extensible so you can customize your launch flow while preserving clear onchain behavior.
+
+Token auctions can be customized and launched through the [Uniswap Launch Auction page](https://app.uniswap.org/liquidity/launch-auction?utm_medium=eco&utm_source=docs&utm_campaign=launch-auction-202606).
+
+## High-Level Architecture
+
+![Token Launcher Architecture](./images/liquidity-launchpad.svg)
+
+Review the architecture and implementation details in [Liquidity Strategies](/docs/liquidity/liquidity-launchpad/concepts/liquidity-strategies) and [Deployments](/docs/liquidity/liquidity-launchpad/deployments).
+
+### Launch auction using Uniswap Web App
+
+Use the [Uniswap Launch Auction page](https://app.uniswap.org/liquidity/launch-auction?utm_medium=eco&utm_source=docs&utm_campaign=launch-auction-202606) to configure and launch an auction with an existing token or a newly created one. The interface guides you through three steps:
+
+1. **Add token info**: import an existing token or create a new one by providing details like token ticker, project name, token image, and launch network.
+2. **Configure auction**: set auction parameters, including currency, supply, auction duration, and more.
+3. **Customize pool**: configure the post-auction liquidity setup, including liquidity provider (LP) allocation and pool parameters. This helps move from token distribution into usable liquidity after the auction ends.
+
+Advanced settings include range selection, custom fund allocation, identity requirements, and verification.
+
+### Example flow
+
+If you want to manually configure and deploy the contracts, use this sample flow:
+
+1. **Prepare Token** (optional): create or configure the token distribution input.
+2. **Deploy Strategy**: call `LiquidityLauncher.distributeToken()` to deploy strategy and auction contracts.
+3. **Auction Completion**: CCA finalizes clearing state and raised funds.
+4. **Seeding Liquidity**: call `migrate()` after `migrationBlock` to initialize the Uniswap v4 pool and liquidity positions.
+5. **After Migration**: participants claim tokens after `claimBlock`, and strategy/auction balances are swept by configuration.
+
+## Where to Go Next
+
+- Read the [CCA whitepaper](/whitepaper_cca.pdf)
+- Learn about the [Continuous Clearing Auction](/docs/liquidity/liquidity-launchpad/concepts/cca) mechanism
+- Create a token via the [Token Factories](/docs/liquidity/liquidity-launchpad/concepts/token-factory) (UERC20 and Superchain-compatible USUPERC20)
+- For full address tables and versions, see [Deployments](/docs/liquidity/liquidity-launchpad/deployments)

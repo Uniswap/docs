@@ -1,0 +1,18 @@
+---
+title: Gas Abstraction
+description: Learn how Uniswap smart wallet enables gasless transactions through ERC-4337 account abstraction.
+---
+
+Gas abstraction allows users to transact without needing to have a balance of ETH to pay for gas fees. Instead, a third party called a [bundler](https://www.alchemy.com/overviews/what-is-a-bundler) can cover or manage those fees on their behalf.
+
+## How It Works
+
+Uniswap smart wallet implements [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337): **Account Abstraction Using Alt Mempool**, a widely adopted account abstraction standard.
+
+## EntryPoint Configuration
+
+By default, EntryPoint v0.8 (`0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108`) is enabled on the account. The root signer can disable or change this, but doing so incorrectly can lead to loss of funds.
+
+## Reference
+
+You can view EntryPoint deployment details [here](https://github.com/eth-infinitism/account-abstraction/releases). EntryPoint is maintained as a public-good contract by the account abstraction community.

@@ -1,0 +1,13 @@
+{
+  "title": "Concepts",
+  "pages": [
+    "architecture",
+    "pools",
+    "swapping",
+    "oracles",
+    "flash-swap",
+    "understanding-returns",
+    "pricing",
+    "meta-transactions"
+  ]
+}

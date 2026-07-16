@@ -1,0 +1,279 @@
+---
+title: v2 Query Examples
+description: Example GraphQL queries for fetching Uniswap v2 analytics data from the subgraph.
+---
+
+This guide shows how to query Uniswap v2 analytics by writing GraphQL queries on the subgraph. You can fetch data points like:
+
+- [Pair reserves and pricing](#pair-data)
+- [Token liquidity and volume](#token-data)
+- [Daily aggregated stats](#pair-daily-aggregated)
+
+To run a query, copy and paste it into the [v2 explorer](https://thegraph.com/explorer/subgraphs/A3Np3RQbaBA6oKJgiwDJeo5T3zrYfGHPWFYayMwtNDum?view=Query&chain=arbitrum-one) to get fresh data.
+
+## Global Data
+
+Global data refers to data points about the Uniswap v2 protocol as a whole, such as total liquidity, total volume, and total transaction counts.
+
+To query global data, pass in the Uniswap v2 Factory address `0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f` and select the desired fields.
+
+### Current global data
+
+An example querying total volume, total liquidity, and all-time transaction count:
+
+```graphql
+{
+  uniswapFactory(id: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f") {
+    totalVolumeUSD
+    totalLiquidityUSD
+    txCount
+  }
+}
+```
+
+### Historical global data
+
+You can query historical data by specifying a block number. See [time travel queries](https://thegraph.com/docs/en/subgraphs/querying/graphql-api/#time-travel-queries-example) for more information.
+
+```graphql
+{
+  uniswapFactory(
+    id: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"
+    block: { number: 10291203 }
+  ) {
+    totalVolumeUSD
+    totalLiquidityUSD
+    txCount
+  }
+}
+```
+
+## Pair Data
+
+### Pair overview
+
+Fetch a snapshot of the current state of a pair. This example fetches the DAI/WETH pair:
+
+```graphql
+{
+  pair(id: "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11") {
+    token0 {
+      id
+      symbol
+      name
+      derivedETH
+    }
+    token1 {
+      id
+      symbol
+      name
+      derivedETH
+    }
+    reserve0
+    reserve1
+    reserveUSD
+    trackedReserveETH
+    token0Price
+    token1Price
+    volumeUSD
+    txCount
+  }
+}
+```
+
+### All pairs
+
+The Graph limits entity return amounts to 1000 per query. Use a loop with the `skip` variable to fetch all pairs:
+
+<Callout type="note">
+This query will not work in the graph explorer and more resembles the structure of a query you'd pass to some GraphQL middleware like Apollo.
+</Callout>
+
+```graphql
+query pairs($skip: Int!) {
+  pairs(first: 1000, skip: $skip) {
+    id
+  }
+}
+```
+
+### Most liquid pairs
+
+Order by `reserveUSD` to get the most liquid pairs:
+
+```graphql
+{
+  pairs(first: 1000, orderBy: reserveUSD, orderDirection: desc) {
+    id
+  }
+}
+```
+
+### Recent swaps within a pair
+
+Get recent swaps for a specific pair by filtering on the pair address:
+
+```graphql
+{
+  swaps(
+    orderBy: timestamp
+    orderDirection: desc
+    where: { pair: "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11" }
+  ) {
+    pair {
+      token0 { symbol }
+      token1 { symbol }
+    }
+    amount0In
+    amount0Out
+    amount1In
+    amount1Out
+    amountUSD
+    to
+  }
+}
+```
+
+### Pair daily aggregated
+
+Query daily aggregated data for a pair. This gets the first 100 days after a given timestamp for the DAI/WETH pair:
+
+```graphql
+{
+  pairDayDatas(
+    first: 100
+    orderBy: date
+    orderDirection: asc
+    where: {
+      pairAddress: "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
+      date_gt: 1592505859
+    }
+  ) {
+    date
+    dailyVolumeToken0
+    dailyVolumeToken1
+    dailyVolumeUSD
+    reserveUSD
+  }
+}
+```
+
+## Token Data
+
+Token data is aggregated across all pairs the token is included in. Any token that appears in at least one Uniswap v2 pair can be queried.
+
+### General token data
+
+Fetch current stats for a token. This example queries DAI:
+
+```graphql
+{
+  token(id: "0x6b175474e89094c44da98b954eedeac495271d0f") {
+    name
+    symbol
+    decimals
+    derivedETH
+    tradeVolumeUSD
+    totalLiquidity
+  }
+}
+```
+
+### All tokens
+
+Similar to fetching all pairs, use `skip` to paginate through all tokens:
+
+<Callout type="note">
+This query will not work in the graph explorer and more resembles the structure of a query you'd pass to some GraphQL middleware like Apollo.
+</Callout>
+
+```graphql
+query tokens($skip: Int!) {
+  tokens(first: 1000, skip: $skip) {
+    id
+    name
+    symbol
+  }
+}
+```
+
+### Token transactions
+
+To get transactions involving a specific token, first fetch the pairs that include the token, then filter transactions by those pairs. This example queries mints, burns, and swaps for DAI:
+
+```graphql
+query($allPairs: [String!]) {
+  mints(first: 30, where: { pair_in: $allPairs }, orderBy: timestamp, orderDirection: desc) {
+    transaction { id, timestamp }
+    to
+    liquidity
+    amount0
+    amount1
+    amountUSD
+  }
+  burns(first: 30, where: { pair_in: $allPairs }, orderBy: timestamp, orderDirection: desc) {
+    transaction { id, timestamp }
+    to
+    liquidity
+    amount0
+    amount1
+    amountUSD
+  }
+  swaps(first: 30, where: { pair_in: $allPairs }, orderBy: timestamp, orderDirection: desc) {
+    transaction { id, timestamp }
+    amount0In
+    amount0Out
+    amount1In
+    amount1Out
+    amountUSD
+    to
+  }
+}
+```
+
+Pass the pairs array as a variable:
+
+```json
+{
+  "allPairs": [
+    "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+    "0xae461ca67b15dc8dc81ce7615e0320da1a9ab8d5"
+  ]
+}
+```
+
+### Token daily aggregated
+
+Daily information for a token, ordered from oldest to newest:
+
+```graphql
+{
+  tokenDayDatas(
+    orderBy: date
+    orderDirection: asc
+    where: { token: "0x6b175474e89094c44da98b954eedeac495271d0f" }
+  ) {
+    id
+    date
+    priceUSD
+    totalLiquidityToken
+    totalLiquidityUSD
+    totalLiquidityETH
+    dailyVolumeETH
+    dailyVolumeToken
+    dailyVolumeUSD
+  }
+}
+```
+
+## ETH Price
+
+Query the current derived USD price of ETH based on a weighted average of stablecoin pairs:
+
+```graphql
+{
+  bundle(id: "1") {
+    ethPrice
+  }
+}
+```

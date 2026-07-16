@@ -1,0 +1,47 @@
+---
+id: hooks
+title: Hooks
+description: Understand validation and execution hooks in Uniswap smart wallet, including call sites and integration cautions.
+---
+
+Hooks are powerful add-ons to keys which can perform arbitrary validation on signatures, and/or actions during execution time.
+
+## Hook Types
+
+There are two subtypes of hooks: `ValidationHook` and `ExecutionHook`. A hook can implement either, or both interfaces.
+
+## Validation Hook Call Sites
+
+Validation hooks have three call sites:
+
+- `afterVerifySignature`
+- `afterIsValidSignature`
+- `afterValidateUserOp`
+
+## Execution Hook Call Sites
+
+Execution hooks have two call sites:
+
+- `beforeExecute`
+- `afterExecute`
+
+Hooks must revert to indicate that the given action should revert.
+
+## Hook Address and Permissions
+
+Which call sites a hook participates in is encoded in the hook's address, using the same address-flag scheme as Uniswap v4 hooks. A hook only runs at the call sites its address declares.
+
+When you attach a hook to a key, the hook must already be deployed on-chain and its address must declare at least one permission. Otherwise the update reverts with `InvalidHook`. This prevents a key from appearing to have protective logic that never runs. To configure a key with no hook, use the zero address, which remains valid.
+
+## Example Use Cases
+
+Example functionality which can be implemented in hooks includes:
+
+- Spending limits
+- Restricting keys from calling certain contracts and methods
+- Turning a key into a multisig, effectively requiring additional signatures for verification
+- Automated actions before or after swaps
+
+## Security Notes
+
+There are a few example hooks referenced in the repo. Be aware that these example hooks are not production code and may contain bugs. We do not recommend you to deploy these hooks or use them as reference implementations for productionized code. They are proof of concepts.

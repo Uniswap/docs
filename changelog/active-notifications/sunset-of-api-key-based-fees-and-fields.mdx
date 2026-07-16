@@ -1,0 +1,33 @@
+---
+title: 'Sunset of API Key-Based Fees and Fields'
+description: 'Posted: March 17, 2026 | Effective: May 18, 2026'
+type: changelog
+datePublished: '2026-03-17'
+---
+
+We will be modifying how API integrators take fees from swappers, including the sunset of multiple features:
+
+- Uniswap setting fees for integrators on API keys
+- The `portionBips`, `portionAmount`, and `portionRecipient` fields in the `/quote` response
+
+These features are superseded by the ability to [set fees in API requests](/docs/changelog/active-notifications/setting-a-fee-through-the-api), and by the introduction of a new `fee` field in the `/quote` response.
+
+**What is changing?**
+
+Uniswap Labs will remove all statically set fees and fee recipient addresses from its systems. Swapper fees paid to integrators will no longer be set through the integrator specifying a fee and recipient on the API key which made the request.
+
+The `portionBips`, `portionAmount`, and `portionRecipient` fields will be removed from the `/quote` response and no longer be required to make a `/swap` request.
+
+A new fee string field will be provided in each aggregatedOutputs object indicating whether the output is a fee (`INTEGRATOR`) or is not a fee (field not included in the object).
+
+**Why is this changing?**
+
+Removing fees on API keys prevents integrators from having conflicting fee information stored against the API key and in the swap message through the recently introduced `integratorFees` field. All fees to swappers are only set by the integrator directly through their own code in the `integratorFees` fields. This change is intended to provide more clarity and transparency to integrators and their swappers on what fees are applied to a swap.
+
+Removing the `portion` fields simplifies the `/quote` response by removing duplicate information. The `aggregatedOutputs` fields are better structured for programmatic consumption of multiple outputs but lacked a clear indicator of which field was a fee. These changes lay the groundwork for Uniswap to continue innovating on multi-output swaps.
+
+**What do I need to do?**
+
+If you currently set a fee through your API key and wish to continue receiving a fee from your customers, you must make a change to set that fee through the recently introduced `integratorFees` fields.
+
+If you currently consume any of the `portion` fields, you must update your logic to read from the `aggregatedOutputs` objects, and may optionally use the new `fee` indicator to identify which output is the fee versus the principal swap result.
