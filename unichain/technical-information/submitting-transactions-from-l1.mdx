@@ -1,0 +1,114 @@
+---
+title: Submitting Transactions from L1
+description: Submit transactions from Ethereum L1 to Unichain using the Optimism Portal contract.
+---
+
+## Withdraw ETH via an L1 Transaction
+
+Initiating an L2 withdrawal from L1 on the OP Stack is a three-step process:
+
+1. Initiate the withdrawal on L2 (either via an L1 deposit transaction or directly on L2).
+2. Relay the withdrawal to L1.
+   - You can do this after the withdrawal occurs on L2 and an output is proposed on L1.
+   - This step can take place up to about 1 hour after the withdrawal is initiated on L2.
+3. Finalize the withdrawal on L1.
+   - This step is available no sooner than 7 days after relay because of the OP Stack fault challenge period.
+
+## Unichain Contract Addresses
+
+```bash
+PORTAL_ADDR=0x0bd48f6B86a26D3a217d0Fa6FfE2B491B956A7a2
+DGF_ADDRESS=0x2F12d621a16e2d3285929C9996f478508951dFe4
+```
+
+
+
+## Initiate a Withdrawal from L1
+
+Via the command line, call the Optimism Portal Proxy on L1 to create an L2 deposit transaction. The L2 transaction will send the ETH to the `L2ToL1Messenger` contract to initiate a withdrawal. You can withdraw up to your total balance on L2 (use `cast balance $ADDR -r $L2_RPC_URL` to get your ETH balance on L2).
+
+```bash
+cast send $PORTAL_ADDR \
+    "depositTransaction(address _to, uint256 _value, uint64 _gasLimit,bool _isCreation,bytes memory _data)" \
+    0x4200000000000000000000000000000000000016 \
+    $AMOUNT_IN_WEI_TO_WITHDRAW \
+    300000 \
+    false \
+    0x --private-key=$PK
+```
+
+After your deposit has landed on L1, determine your L2 transaction hash:
+
+```bash
+git clone https://github.com/ethereum-optimism/optimism
+cd optimism/op-chain-ops/cmd
+
+# Run the following command to get your L2 deposit tx hash
+go run ./deposit-hash -rpc https://eth.merkle.io -tx $L1_DEPOSIT_TX_HASH
+```
+
+## Relaying the Withdrawal from L2 to L1
+
+This step initiates your withdrawal on L1. This step requires a proposer to have proposed an output which includes your withdrawal. Proposals occur about once every hour.
+
+```bash
+git clone https://github.com/base-org/withdrawer
+cd withdrawer
+
+export L2_TX_HASH=... # Take from the deposit-hash command
+export L1_RPC=https://eth.merkle.io
+export L2_RPC=https://mainnet-readonly.unichain.org
+PORTAL_ADDR=0x0bd48f6B86a26D3a217d0Fa6FfE2B491B956A7a2
+DGF_ADDRESS=0x2F12d621a16e2d3285929C9996f478508951dFe4
+export PK=... # L1 private key. Can also use a ledger.
+
+go run main.go --withdrawal $L2_TX_HASH --rpc=$L1_RPC --fault-proofs --l2-rpc=$L2_RPC --portal-address=$PORTAL_ADDR --dfg-address=$DGF_ADDRESS --private-key=$PK --network=op-mainnet
+```
+
+## Finalizing the L1 Withdrawal
+
+After 7 days, run the withdrawer command again to finalize the withdrawal.
+
+```bash
+cd withdrawer
+
+export L2_TX_HASH=... # Take from the deposit-hash command
+export L1_RPC=https://eth.merkle.io
+export L2_RPC=https://mainnet-readonly.unichain.org
+PORTAL_ADDR=0x0bd48f6B86a26D3a217d0Fa6FfE2B491B956A7a2
+DGF_ADDRESS=0x2F12d621a16e2d3285929C9996f478508951dFe4
+export PK=... # L1 private key. Can also use a ledger.
+
+go run main.go --withdrawal $L2_TX_HASH --rpc=$L1_RPC --fault-proofs --l2-rpc=$L2_RPC --portal-address=$PORTAL_ADDR --dfg-address=$DGF_ADDRESS --private-key=$PK --network=op-mainnet
+```
+
+## Submitting Arbitrary Transactions from L1
+
+You can perform arbitrary contract calls (e.g., swaps) on L2 via deposit transactions. To create a deposit transaction on L2, call the Optimism Portal Proxy Contract:
+
+```bash
+cast send $PORTAL_ADDR \
+    "depositTransaction(address _to, uint256 _value, uint64 _gasLimit,bool _isCreation,bytes memory _data)" \
+    $TO $VALUE $GAS_LIMIT false $CALLDATA \
+    --rpc-url $L1_RPC_URL \
+    --private-key # or other cast wallet options
+```
+
+For example, to perform a swap on a fork of a Uniswap v2 pool on L2 using this method you can:
+
+1. Use the Uniswap v2 SDK to generate the required calldata for the swap (see docs [here](/docs/sdks/v2/guides/swapping))
+2. Submit the calldata from step 1, to the `$DEX_ADDRESS` of the v2 fork:
+
+    ```bash
+    cast send $PORTAL_ADDR \
+        "depositTransaction(address _to, uint256 _value, uint64 _gasLimit,bool _isCreation,bytes memory _data)" \
+        $DEX_ADDRESS \
+        0 \
+        $GAS_LIMIT \
+        false \
+        $CALLDATA \
+        --rpc-url $L1_RPC_URL \
+        --private-key # or other cast wallet options
+    ```
+
+3. If you use this method to swap back into ETH on the L2, you can withdraw the resulting ETH using the methods outlined above.

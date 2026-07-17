@@ -1,0 +1,30 @@
+name: Docs issue
+description: Report incorrect, outdated, confusing, or broken content
+title: "[Docs issue]: "
+labels: ["docs-issue"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: URL of the affected page on developers.uniswap.org, or the file path in this repository
+      placeholder: https://developers.uniswap.org/docs/...
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Describe the error, outdated information, broken link, or confusing explanation
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should it say instead?
+      description: If you know the correct information, share it here with a source when possible (contract address, repository link, API response)
+  - type: textarea
+    id: verification
+    attributes:
+      label: How did you verify this?
+      description: e.g. ran the code example, checked the deployed contract, called the API, compared against the protocol repository

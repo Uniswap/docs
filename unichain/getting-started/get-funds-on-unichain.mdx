@@ -1,0 +1,36 @@
+---
+title: Get Funds on Unichain
+description: Bridge ETH to Unichain mainnet or Sepolia and fund your wallet for development and testing.
+---
+
+## Bridge Funds with Uniswap
+The easiest way to get funds on Unichain is to bridge from Ethereum mainnet in the Uniswap interface. Connect your wallet, select ETH as the input token on Ethereum mainnet, and ETH as the output token on Unichain.
+
+Check it out on the [Uniswap Interface](https://app.uniswap.org/swap?chain=mainnet&outputChain=unichain&inputCurrency=NATIVE&outputCurrency=NATIVE).
+<p align="center">
+  <a href="https://app.uniswap.org/swap?chain=mainnet&outputChain=unichain&inputCurrency=NATIVE&outputCurrency=NATIVE" target="_blank">
+    <img src="/unichain/bridge_w_uniswap.png" alt="My Image" width="600" />
+  </a>
+</p>
+
+## Bridge with a Partner Interface
+Many ecosystem partners offer bridges to Unichain. Check out the [bridging page](https://www.unichain.org/bridge) for details.
+
+## Direct to Canonical Bridge
+You can also fund a Unichain wallet directly by sending ETH to the canonical Unichain bridge contracts:
+
+| | Instruction | Mainnet | Sepolia |
+|---| --- | --- | --- |
+| 1 | Make sure your wallet is set to the correct network | Chain ID 1 | Chain ID 11155111  |
+| 2 | Send ETH to the bridge contract | [0x81014F44b0a345033bB2b3B21C7a1A308B35fEeA](https://etherscan.io/address/0x81014F44b0a345033bB2b3B21C7a1A308B35fEeA) | [0xea58fcA6849d79EAd1f26608855c2D6407d54Ce2](https://sepolia.etherscan.io/address/0xea58fcA6849d79EAd1f26608855c2D6407d54Ce2) |
+| 3 | Monitor the transaction in your block explorer of choice | [https://etherscan.io](https://etherscan.io/) | [https://sepolia.etherscan.io](https://sepolia.etherscan.io/) |
+| 4 | Switch your wallet to Unichain. Your ETH should be available there in a few minutes | Chain ID 130 (Unichain Mainnet) | Chain ID 1301 (Unichain Sepolia) |
+
+## Use a Faucet with Unichain Sepolia
+For development and testing, use a provider faucet to get testnet funds directly on Unichain Sepolia. See the [faucets page](/docs/unichain/tools/faucets) for details.
+
+## Where to Go Next
+
+- [Set up a wallet first](/docs/unichain/getting-started/setting-up-a-wallet)
+- [Run your own Unichain node](/docs/unichain/getting-started/set-up-a-node)
+- [Explore partner bridge options](/docs/unichain/tools/bridges)

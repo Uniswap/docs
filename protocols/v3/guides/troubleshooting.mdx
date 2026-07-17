@@ -1,0 +1,57 @@
+---
+title: Troubleshooting (v3)
+description: Review common Uniswap v3 integration error codes and what each selector indicates during failures.
+---
+
+Use this reference to map common Uniswap v3 error codes to likely failure causes.
+
+## Math and Oracle Errors
+
+### LiquidityMath.sol
+
+- `LS`: Liquidity Sub
+- `LA`: Liquidity Add
+
+### Oracle.sol
+
+- `OLD`: The target must be chronologically after the oldest observation
+- `I`: The pool has not been initialized
+
+## Position and Tick Errors
+
+### Position.sol
+
+- `NP`: Burn cannot be called for a position with 0 liquidity
+
+### Tick.sol
+
+- `LO`: LiquidityGrossAfter must be less than MaxLiquidity
+
+### TickMath.sol
+
+- `T`: The given tick must be less than, or equal to, the maximum tick
+- `R`: Second inequality must be `<` because the price can never reach the price at the max tick
+
+## Transfer Helper Errors
+
+### TransferHelper.sol
+
+- `TF`: Transfer failed
+
+## Pool Errors
+
+### UniswapV3Pool.sol
+
+- `LOK`: Reentrancy guard. A transaction cannot re-enter the pool mid-swap
+- `TLU`: The lower tick must be below the upper tick
+- `TLM`: The lower tick must be greater than, or equal to, the minimum tick
+- `TUM`: The upper tick must be less than, or equal to, the maximum tick
+- `AI`: The pool is already initialized
+- `M0`: Mint 0. Token0 balance before minting must be less than, or equal to, the balance after minting
+- `M1`: Mint 1. Token1 balance before minting must be less than, or equal to, the balance after minting
+- `AS`: `amountSpecified` cannot be zero
+- `SPL`: Square root price limit
+- `IIA`: Insufficient input amount. An insufficient amount of input token was sent during the callback
+- `L`: Liquidity in the pool must be greater than zero for a flash to execute
+- `F0`: Token0 balance before flash must be less than, or equal to, token0 balance after flash plus fee
+- `F1`: Token1 balance before flash must be less than, or equal to, token1 balance after flash plus fee

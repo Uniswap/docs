@@ -1,0 +1,5 @@
+{
+  "title": "Unichain",
+  "root": true,
+  "pages": ["index", "getting-started", "guides", "technical-information", "tools"]
+}

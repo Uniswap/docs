@@ -1,0 +1,14 @@
+{
+  "title": "Managing Liquidity",
+  "pages": [
+    "overview",
+    "getting-started",
+    "mint-position",
+    "increase-liquidity",
+    "decrease-liquidity",
+    "calculate-fees",
+    "collect-fees",
+    "burn-liquidity",
+    "batch-liquidity"
+  ]
+}

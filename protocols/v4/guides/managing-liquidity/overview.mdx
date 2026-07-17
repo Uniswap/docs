@@ -1,0 +1,227 @@
+---
+title: Managing Liquidity
+description: Mint, increase, decrease, and collect fees on Uniswap v4 liquidity positions using the PositionManager.
+---
+
+This guide covers the full lifecycle of a Uniswap v4 liquidity position: minting a new position, increasing and decreasing liquidity, and collecting accrued fees. All operations go through the `PositionManager` contract using an encoded command system.
+
+## Prerequisites
+
+Developing with Uniswap v4 requires [Foundry](https://book.getfoundry.sh).
+
+Use [v4-template](https://github.com/new?template_name=v4-template&template_owner=uniswapfoundation) for a pre-configured project, or install manually:
+
+```bash
+forge install uniswap/v4-core
+forge install uniswap/v4-periphery
+```
+
+All examples below assume you have already imported and instantiated the PositionManager:
+
+```solidity
+import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+import {Actions} from "v4-periphery/src/libraries/Actions.sol";
+
+IPositionManager posm = IPositionManager(<address>);
+```
+
+## Minting a Position
+
+Minting creates a new ERC-721 liquidity position in a specific pool and tick range.
+
+### Encode actions
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    uint8(Actions.MINT_POSITION),
+    uint8(Actions.SETTLE_PAIR)
+);
+```
+
+For ETH liquidity positions, add a `SWEEP` action to recover excess ETH:
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    uint8(Actions.MINT_POSITION),
+    uint8(Actions.SETTLE_PAIR),
+    uint8(Actions.SWEEP)
+);
+```
+
+### Encode parameters
+
+```solidity
+bytes[] memory params = new bytes[](2); // 3 for ETH positions
+
+params[0] = abi.encode(
+    poolKey, tickLower, tickUpper, liquidity,
+    amount0Max, amount1Max, recipient, hookData
+);
+
+params[1] = abi.encode(currency0, currency1);
+
+// For ETH positions:
+// params[2] = abi.encode(CurrencyLibrary.ADDRESS_ZERO, recipient);
+```
+
+| Parameter    | Type      | Description                                                    |
+|--------------|-----------|----------------------------------------------------------------|
+| `poolKey`    | _PoolKey_ | the pool to add liquidity to                                   |
+| `tickLower`  | _int24_   | lower tick boundary of the position                            |
+| `tickUpper`  | _int24_   | upper tick boundary of the position                            |
+| `liquidity`  | _uint256_ | amount of liquidity units to mint                              |
+| `amount0Max` | _uint128_ | maximum currency0 the caller is willing to pay                 |
+| `amount1Max` | _uint128_ | maximum currency1 the caller is willing to pay                 |
+| `recipient`  | _address_ | address that receives the position NFT                         |
+| `hookData`   | _bytes_   | arbitrary data forwarded to hook functions                     |
+
+### Submit the call
+
+```solidity
+uint256 deadline = block.timestamp + 60;
+uint256 valueToPass = currency0.isAddressZero() ? amount0Max : 0;
+
+posm.modifyLiquidities{value: valueToPass}(
+    abi.encode(actions, params),
+    deadline
+);
+```
+
+## Increasing Liquidity
+
+Add more tokens to an existing position. In v4, fee revenue is automatically credited when increasing liquidity.
+
+### Encode actions
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    uint8(Actions.INCREASE_LIQUIDITY),
+    uint8(Actions.SETTLE_PAIR)
+);
+```
+
+If accrued fees fully cover the increase (rare), use `CLOSE_CURRENCY` instead of `SETTLE_PAIR` to handle any remainder:
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    uint8(Actions.INCREASE_LIQUIDITY),
+    uint8(Actions.CLOSE_CURRENCY),
+    uint8(Actions.CLOSE_CURRENCY)
+);
+```
+
+### Encode parameters
+
+```solidity
+bytes[] memory params = new bytes[](2);
+
+params[0] = abi.encode(tokenId, liquidity, amount0Max, amount1Max, hookData);
+params[1] = abi.encode(currency0, currency1);
+```
+
+| Parameter    | Type      | Description                                         |
+|--------------|-----------|-----------------------------------------------------|
+| `tokenId`    | _uint256_ | position identifier (ERC-721 token ID)              |
+| `liquidity`  | _uint256_ | amount of liquidity to add                          |
+| `amount0Max` | _uint128_ | maximum currency0 the caller is willing to pay      |
+| `amount1Max` | _uint128_ | maximum currency1 the caller is willing to pay      |
+| `hookData`   | _bytes_   | arbitrary data forwarded to hook functions           |
+
+### Submit the call
+
+```solidity
+uint256 deadline = block.timestamp + 60;
+
+posm.modifyLiquidities(
+    abi.encode(actions, params),
+    deadline
+);
+```
+
+## Decreasing Liquidity
+
+Remove tokens from an existing position. Fee revenue is automatically debited when decreasing liquidity.
+
+### Encode actions
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    uint8(Actions.DECREASE_LIQUIDITY),
+    uint8(Actions.TAKE_PAIR)
+);
+```
+
+### Encode parameters
+
+```solidity
+bytes[] memory params = new bytes[](2);
+
+params[0] = abi.encode(tokenId, liquidity, amount0Min, amount1Min, hookData);
+params[1] = abi.encode(currency0, currency1, recipient);
+```
+
+| Parameter    | Type      | Description                                              |
+|--------------|-----------|----------------------------------------------------------|
+| `tokenId`    | _uint256_ | position identifier                                      |
+| `liquidity`  | _uint256_ | amount of liquidity to remove                            |
+| `amount0Min` | _uint128_ | minimum currency0 the caller expects to receive          |
+| `amount1Min` | _uint128_ | minimum currency1 the caller expects to receive          |
+| `hookData`   | _bytes_   | arbitrary data forwarded to hook functions                |
+
+### Submit the call
+
+```solidity
+uint256 deadline = block.timestamp + 60;
+
+posm.modifyLiquidities(
+    abi.encode(actions, params),
+    deadline
+);
+```
+
+## Collecting Fees
+
+There is no dedicated `COLLECT` command. To collect fees, decrease liquidity by zero:
+
+### Encode actions
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    uint8(Actions.DECREASE_LIQUIDITY),
+    uint8(Actions.TAKE_PAIR)
+);
+```
+
+### Encode parameters
+
+```solidity
+bytes[] memory params = new bytes[](2);
+
+// liquidity = 0, amount0Min = 0, amount1Min = 0
+params[0] = abi.encode(tokenId, 0, 0, 0, hookData);
+params[1] = abi.encode(currency0, currency1, recipient);
+```
+
+<Callout type="note">
+Setting `amount0Min` and `amount1Min` to 0 is safe for fee collection because fee amounts cannot be manipulated via front-running.
+</Callout>
+
+### Submit the call
+
+```solidity
+uint256 deadline = block.timestamp + 60;
+
+posm.modifyLiquidities(
+    abi.encode(actions, params),
+    deadline
+);
+```
+
+To determine how many fee tokens were collected, read the token balances of the `recipient` before and after calling `modifyLiquidities()`.
+
+## Next Steps
+
+- [Create a pool](/docs/protocols/v4/guides/create-pool): initialize a new v4 pool
+- [Burn liquidity](/docs/protocols/v4/guides/managing-liquidity/burn-liquidity): close a position entirely
+- [Batch liquidity](/docs/protocols/v4/guides/managing-liquidity/batch-liquidity): manage multiple positions in a single transaction
+- [PositionManager reference](/docs/protocols/v4/guides/position-manager): full API reference

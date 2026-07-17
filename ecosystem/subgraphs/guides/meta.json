@@ -1,0 +1,4 @@
+{
+  "title": "Guides",
+  "pages": ["using-subgraphs", "v2-query-examples", "v3-query-examples", "v4-query-examples"]
+}

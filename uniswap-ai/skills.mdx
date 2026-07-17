@@ -1,0 +1,83 @@
+---
+title: Uniswap Skills
+description: Browse available Uniswap AI skills for swap integration, hook development, liquidity management, and more.
+---
+
+Use Uniswap AI skills to run specialized workflows for swap integration, hook development, EVM interactions, and liquidity planning.
+
+## Uniswap Skills
+
+These are the official skills currently available in the installer:
+
+- `configurator`
+- `copy-trade`
+- `dca-bot`
+- `deployer`
+- `index-bot`
+- `liquidity-planner`
+- `pay-with-any-token`
+- `swap-integration`
+- `swap-planner`
+- `v4-security-foundations`
+- `viem-integration`
+
+## Available Plugins
+
+| Plugin | Skill | What it helps with | Invocation |
+|---|---|---|---|
+| `uniswap-hooks` | `v4-security-foundations` | Review v4 hook architecture and security risks before implementation | `/v4-security-foundations` |
+| `uniswap-cca` | `configurator` | Configure CCA auction parameters for a new deployment | `/configurator` |
+| `uniswap-cca` | `deployer` | Deploy CCA contracts using the factory deployment pattern | `/deployer` |
+| `uniswap-trading` | `swap-integration` | Integrate swaps using the Uniswap API, Universal Router, or direct smart contract calls | `/swap-integration` |
+| `uniswap-trading` | `pay-with-any-token` | Pay HTTP 402 challenges (x402 and MPP) using tokens via Uniswap swaps | `/pay-with-any-token` |
+| `uniswap-viem` | `viem-integration` | Set up EVM clients and contract interactions with viem and wagmi | `/viem-integration` |
+| `uniswap-driver` | `swap-planner` | Plan token swaps and generate interface deep links | `/swap-planner` |
+| `uniswap-driver` | `liquidity-planner` | Plan LP positions and generate interface deep links | `/liquidity-planner` |
+| `uniswap-trading-tools` | `dca-bot` | Dollar-cost-average a fixed amount into a token on a schedule, optionally gated by a price condition | `/dca-bot` |
+| `uniswap-trading-tools` | `index-bot` | Build a weighted multi-asset basket, buy it in one pass, and rebalance on a cadence | `/index-bot` |
+| `uniswap-trading-tools` | `copy-trade` | Mirror another wallet's swaps, bounded by chain, asset, size, and portfolio guardrails | `/copy-trade` |
+
+## Install Skills
+
+Install Uniswap AI skills with the Skills CLI:
+
+```bash
+npx skills add Uniswap/uniswap-ai
+```
+
+If your environment supports interactive selection, you can choose specific skills from the install prompt.
+
+## Use Skills
+
+### Direct invocation
+
+Invoke a skill explicitly with a slash command:
+
+```text
+/v4-security-foundations
+```
+
+### Contextual activation
+
+Skills also activate contextually when your prompt matches the skill domain:
+
+```text
+What are the security risks of beforeSwapReturnDelta?
+```
+
+In this example, the assistant can activate the v4 security foundations skill automatically.
+
+## Skill Structure
+
+Each skill is defined in a `SKILL.md` file and typically includes:
+
+- Frontmatter metadata (`name`, `description`, and plugin metadata)
+- Step-by-step instructions for the agent
+- Optional references in a `references/` directory
+
+## Add a New Skill
+
+1. Create the skill folder under `packages/plugins/<plugin>/skills/<skill-name>/`
+2. Add a `SKILL.md` file with frontmatter and clear instructions
+3. Register the skill in the plugin manifest (`plugin.json`)
+4. Validate the skill with lint and test checks before opening a PR

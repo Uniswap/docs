@@ -1,0 +1,32 @@
+---
+title: Troubleshooting
+description: Troubleshoot common Uniswap API request, quoting, authentication, and rate limit errors in swapping integrations.
+---
+
+## Common Issues
+
+### Headers
+
+The API is specific about request header validation. In particular, ensure that your `accept` and `content-type` headers only include the value `application/json`. For a complete example of properly formatted request headers, see the authentication section of the [Developer Dashboard](https://developers.uniswap.org/dashboard).
+
+### Rate limits
+
+Most API keys have a default rate limit of 6 requests per second (RPS). If you exceed the rate limit supported by an API key you can expect to receive an HTTP 429 error. If you receive a 429 error, we recommend pausing all requests from your API key and then retrying your requests. If you require a higher rate limit than what your API key is currently provisioned for, please reach out to [Uniswap Developer Support](https://support.uniswap.org/hc/en-us/requests/new). For more information on rate limits, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).
+
+## Error Code Troubleshooting
+
+### 404 No quotes available
+
+The most commonly encountered HTTP error is an HTTP 404 with a message "No quotes available" from the [`/quote`](/docs/trading/swapping-api/getting-started) endpoint. This error can happen for a variety of reasons related to request syntax, rather than there being no actual route between the specified tokens. In order of most common to less common reasons for receiving this error:
+* The `amount` is too low to be quoted by UniswapX. UniswapX requires a minimum of **300 USDC equivalent on all supported chains**. Requests below this threshold will fail. See [UniswapX Chain Support](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support) for details.
+* The specified chain is not supported by UniswapX. UniswapX has limited chain support.
+* The specified token(s) do not match the specified chain. The token addresses specified must be those belonging to the token on the given chain (ex. the USDC address on Mainnet is different than that on Base).
+* A combined bridge and swap quote is requested. The API can provide a quote for either a bridge (different input/output chains, same token) or a swap (same chain, different input/output tokens), but not both simultaneously. For a list of bridgeable tokens, see [Supported Chains](/docs/trading/swapping-api/supported-chains).
+
+### 400 Request validation error
+
+Request validation errors are returned when a request does not contain the minimum required set of fields or has other syntactical errors. Some examples are a required field (ex. `autoSlippage` in the [`/quote`](/docs/trading/swapping-api/getting-started) endpoint) is not populated, or an address is missing a character (eg. is 39 characters long instead of 40). These errors typically include a specific error message which describes the field which could not be interpreted.
+
+### 401 Unauthorized error
+
+All API requests must be authenticated through the inclusion of a valid API key in the header of the request. If you do not have an API key, you may create one through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome?utm_medium=eco&utm_source=platform&utm_campaign=20260428-swapping-api-errors&utm_content=auth-section&utm_term=self-serve). 401 errors may also be returned if the request has malformed or missing required headers, or if headers contain unsupported values (see above). For more details on authentication requirements, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).

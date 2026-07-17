@@ -1,0 +1,197 @@
+---
+title: 'API Swapping Code Examples'
+description: 'Starter code examples for integrating swaps using the Uniswap API'
+---
+
+```typescript tab="Ethers"
+
+const API_KEY = ''
+const API_URL = 'https://trade-api.gateway.uniswap.org/v1'
+const headers = {
+  'x-api-key': API_KEY,
+  'accept': 'application/json',
+  'content-type': 'application/json',
+}
+const signer = provider.getSigner()
+
+
+// APPROVAL
+const approvalResponse = await axios.post(
+  `${API_URL}/check_approval`,
+  {
+    walletAddress: await signer.getAddress(),
+    amount: BigNumber.from(amount).mul(2).toString(),
+    token: tokenIn,
+    chainId: 1,
+    tokenOut: tokenOut,
+    tokenOutChainId: 1,
+  },
+  {
+    headers,
+  }
+)
+
+if (approvalResponse.data.approval) {
+  await signer.sendTransaction(approvalResponse.data.approval)
+}
+
+// QUOTE
+const quoteResponse = await axios.post(
+  `${API_URL}/quote`,
+  {
+    swapper: await signer.getAddress(),
+    tokenInChainId: 1,
+    tokenOutChainId: 1,
+    tokenIn: tokenIn,
+    tokenOut: tokenOut,
+    amount: amount,
+    routingPreference: routingPreference,
+    type: 'EXACT_INPUT',
+  },
+  {
+    headers,
+  }
+)
+
+const { quote, permitData, routing } = quoteResponse.data
+
+let signature
+if (permitData) {
+  signature = await signer._signTypedData(permitData.domain, permitData.types, permitData.values)
+}
+
+//ORDER
+let postTransactionResponse
+if (routing === 'CLASSIC' || routing === 'WRAP' || routing === 'UNWRAP' || routing === 'BRIDGE') {
+  postTransactionResponse = await axios.post(
+    `${API_URL}/swap`,
+    {
+      signature: signature,
+      quote: quote,
+      permitData: permitData,
+    },
+    {
+      headers,
+    }
+  )
+  await signer.sendTransaction(postTransactionResponse.data.swap)
+} else if (routing === 'DUTCH_V2' || routing === 'DUTCH_V3' || routing === 'PRIORITY') {
+  postTransactionResponse = await axios.post(
+    `${API_URL}/order`,
+    {
+      signature: signature,
+      quote: quote,
+    },
+    {
+      headers,
+    }
+  )
+}
+```
+
+```python tab="Fireblocks"
+
+from fireblocks_sdk import FireblocksSDK, TransferPeerPath, DestinationTransferPeerPath, TYPED_MESSAGE, VAULT_ACCOUNT, ONE_TIME_ADDRESS, RawMessage, UnsignedMessage, TRANSACTION_STATUS_COMPLETED, TRANSACTION_STATUS_FAILED, CONTRACT_CALL
+import json
+import hashlib
+import requests
+
+# Setup
+uniswapApiKey = 'redacted'
+uniswapHeader = {'accept': 'application/json', 'content-type': 'application/json', 'x-api-key': uniswapApiKey}
+
+fireblocksApiSecret = 'redacted'
+fireblocksApiKey = 'redacted'
+fireblocks = FireblocksSDK(fireblocksApiSecret, fireblocksApiKey)
+
+# Quote
+quoteRequestData = {
+  "type": "EXACT_INPUT",
+  "tokenInChainId": 1,
+  "tokenOutChainId": 1,
+  "routingPreference": "BEST_PRICE",
+  "protocols": ["V2", "V3", "V4"],
+  "amount": "1000",
+  "swapper": "YOUR_ADDRESS",
+  "tokenIn": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+  "tokenOut": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+}
+
+response = requests.post("https://trade-api.gateway.uniswap.org/v1/quote", json=quoteRequestData, headers=uniswapHeader)
+responseBody = response.json()
+
+
+# construct Permit
+message = responseBody["permitData"]["values"]
+domain = responseBody["permitData"]["domain"] 
+types = {
+    "EIP712Domain": [
+        { "name": 'name', "type": 'string' },
+        { "name": 'chainId', "type": 'uint256' },
+        { "name": 'verifyingContract', "type": 'address' }
+    ],
+    **responseBody["permitData"]["types"] 
+}
+
+data = {
+    "types": types,
+    "domain": domain,
+    "primaryType": 'PermitWitnessTransferFrom',
+    "message": message
+}
+
+extra_parameters={
+        "rawMessageData":{
+        	"messages":[{
+                    "content": data,
+                    "index": 0,
+                    "type": "EIP712"
+                }]
+        }
+   }
+
+# Sign typed message
+tx_result = fireblocks.create_transaction(
+   tx_type=TYPED_MESSAGE,
+   asset_id="ETH",
+   amount="0",
+   source=TransferPeerPath(VAULT_ACCOUNT, 8),
+   extra_parameters=extra_parameters
+)
+
+id = tx_result['id']
+status = tx_result['status']
+
+# Wait for the signing to complete
+tx_info = fireblocks.get_transaction_by_id(id)
+while status != TRANSACTION_STATUS_COMPLETED and status != TRANSACTION_STATUS_FAILED:
+    tx_info = fireblocks.get_transaction_by_id(id)
+    status = tx_info['status']
+
+# Construct Permit signature
+signature = tx_info["signedMessages"][0]["signature"]
+v = 27 + int(signature["v"])
+signature = f"0x{signature['r']}{signature['s']}{hex(v)[2:]}"
+
+# Get the swap calldata
+swapRequestData = {
+	"permitData": responseBody["permitData"],
+	"quote": responseBody["quote"],
+	"signature": signature
+}
+
+swapResponse = requests.post("https://trade-api.gateway.uniswap.org/v1/swap", json=swapRequestData, headers=uniswapHeader)
+swapResponseBody = swapResponse.json()
+
+# Send the swap transaction
+tx = fireblocks.create_transaction(
+   tx_type=CONTRACT_CALL,
+   asset_id="ETH",
+   amount=swapResponseBody["swap"]["value"],
+   source=TransferPeerPath(VAULT_ACCOUNT, 8),
+   destination=DestinationTransferPeerPath(ONE_TIME_ADDRESS, None, {"address": "redacted"}),
+   extra_parameters={
+        "contractCallData":swapResponseBody["swap"]["data"]
+   },
+)
+```

@@ -1,0 +1,56 @@
+---
+title: Subgraphs Overview
+description: Query Uniswap onchain data using subgraphs hosted on The Graph across v2, v3, and v4.
+---
+
+Uniswap uses multiple [subgraphs](https://thegraph.com/docs/about/introduction#what-the-graph-is) for indexing and organizing data from Uniswap smart contracts. The subgraph codebases are open source and publicly available. Because of this, multiple deployments may exist across The Graph Network and other hosting providers.
+
+<Callout type="note">
+Explorer links and endpoints in this page are examples of public deployments. They are not official deployments and may not be actively maintained by Uniswap Labs.
+
+Before integrating with a public subgraph endpoint:
+
+- Confirm the deployment is actively indexed.
+- Confirm the schema version matches the expected release.
+- Confirm chain and contract versions align with your integration target.
+
+For production integrations, consider deploying and managing your own subgraph using the [official repositories](https://github.com/Uniswap) for reliability and version control.
+</Callout>
+
+### Versions and public endpoints
+
+Each version of Uniswap for each chain has its own subgraph. Hosted subgraphs have been deprecated, so you'll need to call through the decentralized network.
+
+Each subgraph has a dedicated endpoint for querying data, as well as a page on [The Graph Explorer](https://thegraph.com/explorer) that exposes the schema and available fields to query.
+
+## Creating an API Key
+
+Create API keys in the [Studio](https://thegraph.com/studio/apikeys/). Include this key in the endpoint to associate usage with your billing.
+
+### v4 (Mainnet)
+
+- [Subgraph](https://thegraph.com/explorer/subgraphs/DiYPVdygkfjDWhbxGSqAQxwBKmfKnkWQojqeM2rkLb3G?view=About&chain=arbitrum-one)
+- GraphQL endpoint: `https://gateway.thegraph.com/api/<YOUR_API_KEY_HERE>/subgraphs/id/DiYPVdygkfjDWhbxGSqAQxwBKmfKnkWQojqeM2rkLb3G`
+- Code: https://github.com/Uniswap/v4-subgraph
+
+### v3 (Mainnet)
+
+- [Subgraph](https://thegraph.com/explorer/subgraphs/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV?view=Query&chain=arbitrum-one)
+- GraphQL endpoint: `https://gateway.thegraph.com/api/<YOUR_API_KEY_HERE>/subgraphs/id/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV`
+- Code: https://github.com/Uniswap/v3-subgraph
+
+### v2 (Mainnet)
+
+- [Subgraph](https://thegraph.com/explorer/subgraphs/A3Np3RQbaBA6oKJgiwDJeo5T3zrYfGHPWFYayMwtNDum?view=Query&chain=arbitrum-one)
+- GraphQL endpoint: `https://gateway.thegraph.com/api/<YOUR_API_KEY_HERE>/subgraphs/id/A3Np3RQbaBA6oKJgiwDJeo5T3zrYfGHPWFYayMwtNDum`
+- Code: https://github.com/Uniswap/v2-subgraph
+
+### v1 (Mainnet)
+
+- [Explorer Page](https://thegraph.com/explorer/subgraphs/ESnjgAG9NjfmHypk4Huu4PVvz55fUwpyrRqHF21thoLJ?view=Query&chain=arbitrum-one)
+- GraphQL endpoint: `https://gateway.thegraph.com/api/<YOUR_API_KEY_HERE>/subgraphs/id/ESnjgAG9NjfmHypk4Huu4PVvz55fUwpyrRqHF21thoLJ`
+- Code: https://github.com/graphprotocol/uniswap-subgraph
+
+## Find Other Deployments
+
+To discover additional Uniswap subgraph deployments across chains and versions, use [The Graph Explorer](https://thegraph.com/explorer).

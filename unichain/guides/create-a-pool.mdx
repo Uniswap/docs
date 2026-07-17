@@ -1,0 +1,228 @@
+---
+title: Create a Pool
+description: Create a Uniswap v4 pool on Unichain and add initial liquidity for your token pair.
+---
+
+## Summary
+
+Create a pool and add initial liquidity to enable trading of the token
+
+This guide prioritizes Uniswap v4, but you can also create pools on Uniswap v2 or Uniswap v3.
+
+## Requirements
+
+> ETH on Unichain is required. See [Get Funds on Unichain](/docs/unichain/getting-started/get-funds-on-unichain).
+
+1. The guide uses [foundry](https://book.getfoundry.sh) for deployments. Install it by running:
+
+    ```bash
+    curl -L https://foundry.paradigm.xyz | bash
+    ```
+
+2. Add Unichain to your `foundry.toml`
+    ```toml
+    [rpc_endpoints]
+    unichain = "https://sepolia.unichain.org"
+    ```
+
+3. Add Uniswap v4 dependencies
+    > For a fully setup repository, see [v4-template](https://github.com/uniswapfoundation/v4-template)
+    ```bash
+    forge install uniswap/v4-core
+    forge install uniswap/v4-periphery
+    ```
+
+For Uniswap contract addresses please see [Contract Addresses](/docs/unichain/technical-information/contract-addresses)
+
+## Uniswap v4
+
+The guide serves as additional material to [Uniswap v4 docs](/docs/protocols/v4/guides/create-pool)
+
+### Create a pool & add liquidity
+Uniswap v4's `PositionManager` supports atomic creation of a pool and initial liquidity using _multicall_. Developers can create a trading pool, with liquidity, in a single transaction:
+
+1. Initialize the parameters provided to `multicall()`
+    ```solidity
+    bytes[] memory params = new bytes[](2);
+    ```
+    * The first call, `params[0]`, will encode `initializePool` parameters
+    * The second call, `params[1]`, will encode a _mint_ operation for `modifyLiquidities`
+2. Configure the pool
+    ```solidity
+    PoolKey memory pool = PoolKey({
+        currency0: currency0,
+        currency1: currency1,
+        fee: lpFee,
+        tickSpacing: tickSpacing,
+        hooks: hookContract
+    });
+    ```
+    > For native token pairs (Ether), use `CurrencyLibrary.ADDRESS_ZERO` as `currency0`
+    * _Currencies_ should be sorted, `uint160(currency0) < uint160(currency1)`
+    * _lpFee_ is the fee expressed in pips, i.e. 3000 = 0.30%
+    * _tickSpacing_ is the granularity of the pool. Lower values are more precise but more expensive to trade
+    * _hookContract_ is the address of the hook contract
+
+3. Encode the `initializePool` parameters
+
+    Pools are initialized with a starting price
+    ```solidity
+    params[0] = abi.encodeWithSelector(
+        IPoolInitializer_v4.initializePool.selector,
+        pool,
+        startingPrice
+    );
+    ```
+    * the _startingPrice_ is expressed as _sqrtPriceX96_: `floor(sqrt(token1 / token0) * 2^96)`
+        - `79228162514264337593543950336` is the starting price for a 1:1 pool
+4. Initialize the _mint-liquidity_ parameters
+
+    PositionManager's `modifyLiquidities` uses an encoded command system
+    ```solidity
+    bytes memory actions = abi.encodePacked(uint8(Actions.MINT_POSITION), uint8(Actions.SETTLE_PAIR));
+    ```
+    >**If providing ETH liquidity, a third action is required:**
+    >sweep - to recover excess eth sent to the position manager
+
+    ```solidity
+    bytes memory actions = abi.encodePacked(uint8(Actions.MINT_POSITION), uint8(Actions.SETTLE_PAIR), uint8(Actions.SWEEP));
+    ```
+    * The first command `MINT_POSITION` creates a new liquidity position
+    * The second command `SETTLE_PAIR` indicates that tokens are to be paid by the caller, to create the position
+    * The third command `SWEEP` indicates that unused tokens should be paid back to the wallet address provided.
+
+5. Encode the `MINT_POSITION` parameters
+    ```solidity
+    bytes[] memory mintParams = new bytes[](2); // use new bytes[](3) for ETH liquidity positions
+    mintParams[0] = abi.encode(pool, tickLower, tickUpper, liquidity, amount0Max, amount1Max, recipient, hookData);
+    ```
+    * _pool_ the same `PoolKey` defined above, in pool-creation
+    * _tickLower_ and _tickUpper_ are the range of the position, must be a multiple of `pool.tickSpacing`
+    * _liquidity_ is the amount of liquidity units to add, see `LiquidityAmounts` for converting token amounts to liquidity units
+    * _amount0Max_ and _amount1Max_ are the maximum amounts of token0 and token1 the caller is willing to transfer
+    * _recipient_ is the address that will receive the liquidity position (ERC-721)
+    * _hookData_ is the optional hook data
+6. Encode the `SETTLE_PAIR` parameters
+
+    Creating a position on a pool requires the caller to transfer `currency0` and `currency1` tokens
+    ```solidity
+    mintParams[1] = abi.encode(pool.currency0, pool.currency1);
+    ```
+7. Encode the `SWEEP` parameters (For ETH liquidity positions)
+   The SWEEP action requires `recipient` address to send excess tokens and `currency` token to sweep (most commonly native Ether: `CurrencyLibrary.ADDRESS_ZERO`)
+    ```solidity
+    mintParams[2] = abi.encode(currency, recipient);
+    ```
+
+8. Encode the `modifyLiquidities` call
+    ```solidity
+    uint256 deadline = block.timestamp + 60;
+    params[1] = abi.encodeWithSelector(
+        posm.modifyLiquidities.selector, abi.encode(actions, mintParams), deadline
+    );
+    ```
+
+9. Approve the tokens
+
+    `PositionManager` uses `Permit2` for token transfers
+    * Repeat for both tokens
+    ```solidity
+    // approve permit2 as a spender
+    IERC20(token).approve(address(permit2), type(uint256).max);
+
+    // approve `PositionManager` as a spender
+    IAllowanceTransfer(address(permit2)).approve(token, address(positionManager), type(uint160).max, type(uint48).max);
+    ```
+
+10. Execute the multicall
+    * The `multicall` is used to execute multiple calls in a single transaction
+    ```solidity
+    PositionManager(posm).multicall(params);
+    ```
+    For pools paired with native tokens (Ether), provide `value` in the contract call
+    ```solidity
+    PositionManager(posm).multicall{value: ethToSend}(params);
+    ```
+    > Excess Ether is **NOT** refunded unless developers encoded `SWEEP` in the `actions` parameter
+
+For a full end-to-end script, developers should see [v4-template#script](https://github.com/uniswapfoundation/v4-template/tree/main/script)
+
+### Create a pool only
+To initialize a Uniswap v4 Pool _without initial liquidity_, developers should call [`PoolManager.initialize()`](https://github.com/Uniswap/v4-core/blob/d153b048868a60c2403a3ef5b2301bb247884d46/src/interfaces/IPoolManager.sol#L60)
+1. Configure the pool
+    ```solidity
+    PoolKey memory pool = PoolKey({
+        currency0: currency0,
+        currency1: currency1,
+        fee: lpFee,
+        tickSpacing: tickSpacing,
+        hooks: hookContract
+    });
+    ```
+    > For native token pairs (Ether), use `CurrencyLibrary.ADDRESS_ZERO` as `currency0`
+    * _Currencies_ should be sorted, `uint160(currency0) < uint160(currency1)`
+    * _lpFee_ is the fee expressed in pips, i.e. 3000 = 0.30%
+    * _tickSpacing_ is the granularity of the pool. Lower values are more precise but more expensive to trade
+    * _hookContract_ is the address of the hook contract
+
+2. Call `initialize`
+    Pools are initialized with a starting price
+    ```solidity
+    IPoolManager(manager).initialize(pool, startingPrice);
+    ```
+    * the _startingPrice_ is expressed as sqrtPriceX96: `floor(sqrt(token1 / token0) * 2^96)`
+        - `79228162514264337593543950336` is the starting price for a 1:1 pool
+
+## Uniswap v3
+
+Developers can opt for the battle-tested Uniswap v3 and create a pool with the `UniswapV3Factory` contract.
+
+1. Install Uniswap v3 dependencies
+```bash
+forge install uniswap/v3-core
+forge install uniswap/v3-periphery
+```
+
+2. Create a pool with `UniswapV3Factory`
+```solidity
+address pair = IUniswapV3Factory(factory).createPool(tokenA, tokenB, 3000);
+```
+Additional [documentation](https://github.com/Uniswap/v3-core/blob/d8b1c635c275d2a9450bd6a78f3fa2484fef73eb/contracts/UniswapV3Factory.sol#L35)
+* _tokenA_ and _tokenB_ are the ERC20 token addresses
+    - the ordering does not matter, however the alphabetically-lower address is assigned to `token0`
+* Starting price is determined by the initial liquidity added
+* The `pair` address return-value corresponds to a [`UniswapV3Pool` contract](https://github.com/Uniswap/v3-core/blob/main/contracts/UniswapV3Pool.sol)
+
+Valid fee values are:
+
+| Fee   | Fee Value |
+|-------|-----------|
+| 0.01% | 100       |
+| 0.05% | 500       |
+| 0.30% | 3000      |
+| 1.00% | 10_000    |
+
+To create a pool with initial liquidity, developers should use [multicall](https://github.com/Uniswap/v3-periphery/blob/main/contracts/interfaces/IMulticall.sol) [PoolInitializer](https://github.com/Uniswap/v3-periphery/blob/main/contracts/interfaces/IPoolInitializer.sol) and [NonfungiblePositionManager.mint](https://github.com/Uniswap/v3-periphery/blob/main/contracts/interfaces/INonfungiblePositionManager.sol)
+
+## Uniswap v2
+
+Developers can opt for Uniswap v2's simplicity and create a pool with the `UniswapV2Factory` contract. Note that pools on Uniswap v2 trade with a fixed 0.30% fee
+
+1. Install Uniswap v2 dependencies
+```bash
+forge install uniswap/v2-core
+forge install uniswap/v2-periphery
+```
+
+2. Create a pool with `UniswapV2Factory`
+```solidity
+address pair = IUniswapV2Factory(factory).createPair(tokenA, tokenB);
+```
+Additional [documentation](https://github.com/Uniswap/v2-core/blob/ee547b17853e71ed4e0101ccfd52e70d5acded58/contracts/UniswapV2Factory.sol#L23)
+* _tokenA_ and _tokenB_ are the ERC20 token addresses
+    - the ordering does not matter, however the alphabetically-lower address is assigned to `token0`
+* Starting price is determined by the initial liquidity added
+* The `pair` address return-value corresponds to a `UniswapV2Pair` contract
+* The pair trades on a fixed 0.30% fee, and is not configurable
+
+To create a pool with initial liquidity, developers should reference [addLiquidity](https://github.com/Uniswap/v2-periphery/blob/0335e8f7e1bd1e8d8329fd300aea2ef2f36dd19f/contracts/UniswapV2Router02.sol#L33). If a pool does not exist, one is automatically created.

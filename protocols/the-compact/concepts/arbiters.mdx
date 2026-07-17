@@ -1,0 +1,296 @@
+---
+id: arbiters
+title: Arbiters
+description: Learn how arbiters verify conditions and submit claims for Uniswap The Compact single-chain and multichain compacts.
+---
+
+Arbiters are entities responsible for verifying and submitting claims against resource locks in The Compact protocol. When a sponsor creates a compact, they assign an arbiter per chain. That arbiter is the sole account that can trigger a claim against the compact on the respective chain and determines which accounts receive the locked balances and in what amounts.
+
+## Role and Responsibilities
+
+Arbiters serve as intermediaries between sponsors and claimants with these key responsibilities:
+
+| Responsibility | Description |
+|---|---|
+| Claim verification | Validate that claim conditions are met before submission. |
+| Claim submission | Submit claims to The Compact on behalf of claimants. |
+| Recipient allocation | Determine which accounts receive funds and in what amounts. |
+| Witness data validation | Verify witness data included in compacts. |
+| Cross-chain coordination | Coordinate claims across chains for multichain compacts. |
+
+## Arbiter Selection
+
+Arbiters are specified per compact or per element (in multichain compacts):
+
+### Single and batch compacts
+```solidity
+struct Compact {
+    address arbiter;    // The designated arbiter for this compact
+    address sponsor;
+    uint256 nonce;
+    uint256 expires;
+    // ...
+}
+```
+
+### Multichain compacts
+```solidity
+struct Element {
+    address arbiter;    // Can be different per chain
+    uint256 chainId;
+    Lock[] commitments;
+    Mandate mandate;    // Required for multichain
+}
+```
+
+## Specifying Claimants
+
+When submitting a claim, arbiters specify claimants through a `Component` struct that encodes both the recipient and the destination format:
+
+```solidity
+struct Component {
+    uint256 claimant;  // Encodes both lockTag and recipient address
+    uint256 amount;    // The amount of tokens to claim
+}
+```
+
+### Claimant encoding
+
+The `claimant` field packs two pieces of information:
+
+| Encoded value | Bits | Description |
+|---|---|---|
+| `bytes12 lockTag` | Upper 96 bits | Destination format for the claimed resource. |
+| `address recipient` | Lower 160 bits | Account that receives the claimed value. |
+
+### Destination options
+
+Based on the `lockTag` in the claimant field, arbiters can direct claimed resources to three different destinations:
+
+#### 1. Direct transfer (keep as ERC6909)
+When the `lockTag` matches the original resource lock's tag, the ERC6909 tokens are transferred directly to the recipient. This maintains the same lock properties (allocator, reset period, scope).
+
+#### 2. Convert to new resource lock
+When the `lockTag` is non-zero but different from the original, the tokens are converted to a new resource lock with different properties. This allows changing allocators, reset periods, or scopes while keeping funds locked.
+
+#### 3. Withdraw to underlying token
+When the `lockTag` is `bytes12(0)`, the ERC6909 tokens are burned and the underlying tokens (native or ERC20) are withdrawn to the recipient. This fully exits The Compact system.
+
+<Callout type="warn">
+To prevent griefing attacks (e.g., via malicious receive hooks or intentionally underpaying gas), The Compact implements a withdrawal fallback mechanism:
+
+1. The protocol first attempts withdrawals with half the available gas
+2. If this fails (and sufficient gas remains above a benchmarked stipend), it falls back to a direct ERC6909 transfer to the recipient
+
+This mechanism ensures that claims cannot be maliciously blocked through receive hook manipulation, while still preserving the intended withdrawal functionality under normal conditions.
+
+The required gas stipends for this fallback are determined through benchmarking, which measures:
+
+- Cold account access costs
+- Typical ERC20 transfer gas requirements
+- Native token transfer gas requirements
+
+The benchmark can be re-run at any time through a call to `__benchmark`.
+</Callout>
+
+### Example
+```solidity
+// Example: Arbiter specifying three different destinations
+Component[] memory claimants = new Component[](3);
+
+// Direct transfer - keep same lock properties
+claimants[0] = Component({
+    claimant: uint256(uint160(alice)) | (uint256(originalLockTag) << 160),
+    amount: 100e18
+});
+
+// Convert to new lock with different allocator
+claimants[1] = Component({
+    claimant: uint256(uint160(bob)) | (uint256(newLockTag) << 160),
+    amount: 50e18
+});
+
+// Withdraw to underlying token
+claimants[2] = Component({
+    claimant: uint256(uint160(charlie)), // lockTag is 0
+    amount: 25e18
+});
+```
+
+## Submitting Claims
+
+Arbiters submit claims using one of six available claim functions based on:
+
+| Dimension | Options | Meaning |
+|---|---|---|
+| Lock scope | Single / Batch | Claim against one resource lock or multiple locks on a chain. |
+| Chain scope | Single-chain / Multichain | Claim against one chain or a compact spanning multiple chains. |
+| Multichain path | Notarized / Exogenous | Claim on the primary signed chain or on non-notarized chains. |
+
+### Single-chain claims
+
+#### claim (Compact)
+For single resource lock on a single chain:
+```solidity
+function claim(Claim calldata claimPayload) external returns (bytes32 claimHash)
+```
+
+#### batchClaim (BatchCompact)
+For multiple resource locks on a single chain:
+```solidity
+function batchClaim(BatchClaim calldata claimPayload) external returns (bytes32 claimHash)
+```
+
+### Multichain claims
+
+#### multichainClaim (MultichainCompact - Notarized)
+For single resource lock on the notarized chain (domain matches signature):
+```solidity
+function multichainClaim(
+    MultichainClaim calldata claimPayload
+) external returns (bytes32 claimHash)
+```
+
+#### exogenousClaim (MultichainCompact - Exogenous)
+For single resource lock on exogenous chains (not the notarized chain):
+```solidity
+function exogenousClaim(
+    ExogenousMultichainClaim calldata claimPayload
+) external returns (bytes32 claimHash)
+```
+
+#### batchMultichainClaim (BatchMultichainClaim - Notarized)
+For multiple resource locks on the notarized chain:
+```solidity
+function batchMultichainClaim(
+    BatchMultichainClaim calldata claimPayload
+) external returns (bytes32 claimHash)
+```
+
+#### exogenousBatchClaim (BatchMultichainClaim - Exogenous)
+For multiple resource locks on exogenous chains:
+```solidity
+function exogenousBatchClaim(
+    ExogenousBatchMultichainClaim calldata claimPayload
+) external returns (bytes32 claimHash)
+```
+
+## Trust Model
+
+### For sponsors
+
+Sponsors trust arbiters to:
+
+| Expectation | Why it matters |
+|---|---|
+| Submit only valid claims | Prevents unauthorized or premature resource movement. |
+| Avoid collusion with claimants | Reduces risk of malicious lock draining. |
+| Verify witness data correctly | Preserves compact conditions and sponsor intent. |
+
+### For claimants
+
+Claimants trust arbiters to:
+
+| Expectation | Why it matters |
+|---|---|
+| Submit claims promptly | Avoids unnecessary settlement delays. |
+| Avoid censoring valid claims | Ensures fair claim execution. |
+| Distribute resources per compact terms | Preserves expected payout behavior. |
+
+## Arbiter Authorization
+
+When an arbiter submits a claim, The Compact verifies authorization in this order:
+
+1. **Arbiter is Caller**: The `msg.sender` must match the arbiter specified in the compact
+2. **Claim Validity**: The claim must be valid (not expired, correct nonce, etc.)
+3. **Sponsor Signature**: The sponsor's signature must authorize the compact (unless registered)
+4. **Allocator Authorization**: The allocator must approve the claim
+
+## Best Practices
+
+### For arbiter selection
+
+| Practice | Benefit |
+|---|---|
+| Choose arbiters with proven track records | Improves baseline reliability. |
+| Consider decentralized arbiter networks | Reduces dependence on a single trusted actor. |
+| Implement arbiter reputation systems | Increases accountability over time. |
+
+### For arbiter implementation
+
+| Practice | Benefit |
+|---|---|
+| Validate all claim parameters before submission | Catches malformed claims before onchain execution. |
+| Implement robust witness data verification | Preserves integrity of witness-bound conditions. |
+| Maintain audit logs of claim submissions | Improves traceability and incident response. |
+| Use secure key management for arbiter accounts | Reduces operational compromise risk. |
+
+## Common Patterns
+
+### Automated arbiters
+Smart contracts can act as arbiters to provide trustless claim verification:
+
+| Pattern | Description |
+|---|---|
+| Oracle-based arbiters | Verify external conditions via oracle inputs. |
+| Time-locked arbiters | Enforce release schedules through timelocks. |
+| Multi-signature arbiters | Require multiple approvals before claim submission. |
+
+### Arbiter networks
+Multiple arbiters can be coordinated through:
+
+| Pattern | Description |
+|---|---|
+| Consensus-based approval | Requires network-level agreement before claim execution. |
+| Reputation-based selection | Weights arbiter participation by historical behavior. |
+| Stake-based security | Uses economic stake to discourage malicious behavior. |
+
+## Error Handling
+
+Common arbiter-related errors:
+
+| Error | Meaning |
+|---|---|
+| `InvalidArbiter()` | Caller is not the designated arbiter. |
+| `ClaimExpired()` | Claim has passed its expiration time. |
+| `InvalidClaimSignature()` | Sponsor signature is invalid. |
+| `UnauthorizedClaim()` | Arbiter is not authorized for this claim. |
+
+## Events
+
+Key events related to arbiter actions:
+```solidity
+event Claim(
+    address indexed sponsor,
+    address indexed allocator,
+    address indexed arbiter,
+    bytes32 claimHash,
+    uint256 nonce
+)
+```
+
+## Security Considerations
+
+### Arbiter compromise
+
+| Risk or mitigation | Details |
+|---|---|
+| Key compromise risk | A compromised arbiter key may submit unauthorized claims. |
+| Activity monitoring | Sponsors should monitor suspicious claim activity. |
+| Defense-in-depth controls | Use timelocks or multisig requirements for high-value compacts. |
+
+### Arbiter censorship
+
+| Risk or mitigation | Details |
+|---|---|
+| Censorship risk | Arbiters could refuse to submit valid claims. |
+| Multiple arbiters | Reduces reliance on a single operator. |
+| Replacement mechanisms | Allows rotating away from unresponsive arbiters. |
+| Expiration design | Appropriate expirations reduce prolonged lockups. |
+
+### Front-running protection
+
+| Practice | Benefit |
+|---|---|
+| Use private mempools or commit-reveal schemes | Reduces public mempool extraction risk. |
+| Use Flashbots bundles for sensitive claims | Improves inclusion control for high-sensitivity claims. |

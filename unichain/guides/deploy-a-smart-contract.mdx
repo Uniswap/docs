@@ -1,0 +1,88 @@
+---
+title: Deploy a Smart Contract
+description: Deploy a smart contract on Unichain using Foundry and verify it on Uniscan.
+---
+
+Deploy a smart contract on Unichain with Foundry, then verify the deployment on Uniscan.
+
+## Requirements
+
+> ETH on Unichain is required. See [Get Funds on Unichain](/docs/unichain/getting-started/get-funds-on-unichain).
+
+1. The guide uses [foundry](https://book.getfoundry.sh) for deployments. Install it by running:
+
+    ```bash
+    curl -L https://foundry.paradigm.xyz | bash
+    ```
+
+    To verify the installation:
+    ```bash
+    forge --version
+    ```
+
+2. Add Unichain to your `foundry.toml`
+    ```toml
+    [rpc_endpoints]
+    unichain = "https://sepolia.unichain.org"
+    ```
+
+## Steps to Deploy
+
+Due to the EVM-equivalence of *Unichain*, foundry commands should work as expected. The major difference is the network URL. In most cases, using `--rpc-url unichain` is sufficient
+
+### 1. Navigate to your smart contract project
+    ```bash
+    cd path/to/your/project
+    ```
+
+### 2. Deploy a smart contract
+    > Your private key should have ETH on the Unichain network. A transaction will be created, and requires a gas fee.
+    ```bash
+    forge create src/{YourContract}.sol:{ContractName} --rpc-url unichain --private-key {YourPrivateKey}
+    ```
+
+### 3. Verify the contract
+    Obtain an API key from [Uniscan Sepolia](https://sepolia.uniscan.xyz).
+
+    There are two options to verify your contract:
+    - During deployment
+    - After deployment
+
+    During deployment provide additional flags:
+    ```bash
+    --etherscan-api-key {API_KEY} --verify
+    ```
+
+    After deployment:
+    ```bash
+    forge verify-contract \
+        --chain-id 1301 \
+        --num-of-optimizations 200 \
+        --watch \
+        --constructor-args $(cast abi-encode "constructor(string,string,uint256,uint256)" "ForgeUSD" "FUSD" 18 1000000000000000000000) \
+        --etherscan-api-key {your_etherscan_api_key} \
+        --compiler-version {v0.8.20+commit.a1b79de} \
+        {the_contract_address} \
+        src/{YourContract}.sol:{ContractName}
+    ```
+    [forge verify-contract](https://book.getfoundry.sh/reference/forge/forge-verify-contract)
+
+Additional information [here](https://book.getfoundry.sh/forge/deploying) or [other deployment options](https://book.getfoundry.sh/reference/forge/forge-create)
+
+## Example Deployment
+
+See [Deploy a SuperchainERC20 token](/docs/unichain/guides/deploy-a-superchain-erc20).
+
+## Best Practices
+
+### Verification
+Verifying during deployment is recommended because compilation parameters are known at deployment time.
+
+### Scripting
+For complex deployments (multiple contracts, complex constructor arguments, or create-and-call patterns), use Foundry's [Solidity scripting](https://book.getfoundry.sh/tutorials/solidity-scripting).
+
+## Where to Go Next
+
+- [Deploy a SuperchainERC20 token](/docs/unichain/guides/deploy-a-superchain-erc20)
+- [Create a pool and add liquidity](/docs/unichain/guides/create-a-pool)
+- [Review Unichain contract addresses](/docs/unichain/technical-information/contract-addresses)

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Developer support and questions
+    url: https://developers.uniswap.org/docs?form=help&utm_medium=eco&utm_source=platform&utm_campaign=20260715-docs_repo_mirror&utm_content=callout&utm_term=self-serve
+    about: For integration questions and support, use the help form on the developer portal

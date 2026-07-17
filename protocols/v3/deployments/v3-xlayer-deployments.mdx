@@ -1,0 +1,36 @@
+---
+id: xlayer-deployments
+title: X Layer Deployments
+description: Review Uniswap v3 deployment addresses and contract references for X Layer integrations.
+---
+
+The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap/swap-router-contracts` are deployed at the addresses listed below. Integrators should **no longer assume that they are deployed to the same addresses across chains** and be extremely careful to confirm mappings below.
+| Contract | Address |
+| --- | --- |
+| [UniswapV3Factory](https://github.com/Uniswap/uniswap-v3-core/blob/v1.0.0/contracts/UniswapV3Factory.sol) | [`0x4B2ab38DBF28D31D467aA8993f6c2585981D6804`](https://www.oklink.com/x-layer/address/0x4B2ab38DBF28D31D467aA8993f6c2585981D6804) |
+| [Multicall](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/base/Multicall.sol) | [`0xe2023f3fa515cf070e07fd9d51c1d236e07843f4`](https://www.oklink.com/x-layer/address/0xe2023f3fa515cf070e07fd9d51c1d236e07843f4) |
+| [TickLens](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/TickLens.sol)                                                          | [`0x661e93cca42afacb172121ef892830ca3b70f08d`](https://www.oklink.com/x-layer/address/0x661e93cca42afacb172121ef892830ca3b70f08d) |
+| [NFTDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/libraries/NFTDescriptor.sol)                                           | [`0x2e9d45bb7b30549f5216813ada9a6b7982c5b3ed`](https://www.oklink.com/x-layer/address/0x2e9d45bb7b30549f5216813ada9a6b7982c5b3ed) |
+| [NonfungiblePositionManager](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungiblePositionManager.sol)                           | [`0x315e413A11AB0df498eF83873012430ca36638Ae`](https://www.oklink.com/x-layer/address/0x315e413A11AB0df498eF83873012430ca36638Ae) |
+| [V3Migrator](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/V3Migrator.sol)                                                           | [`0x7197e214c0b767cfb76fb734ab638e2c192f4e53`](https://www.oklink.com/x-layer/address/0x7197e214c0b767cfb76fb734ab638e2c192f4e53) |
+| [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                                                    | [`0xd1b797d92d87b688193a2b976efc8d577d204343`](https://www.oklink.com/x-layer/address/0xd1b797d92d87b688193a2b976efc8d577d204343) |
+| [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                                                        | [`0x4f0c28f5926afda16bf2506d5d9e57ea190f9bca`](https://www.oklink.com/x-layer/address/0x4f0c28f5926afda16bf2506d5d9e57ea190f9bca) |
+| [Permit2](https://github.com/Uniswap/permit2)                                                                                                                | [`0x000000000022D473030F116dDEE9F6B43aC78BA3`](https://www.oklink.com/x-layer/address/0x000000000022D473030F116dDEE9F6B43aC78BA3) |
+| [UniversalRouter (v2.0)](https://github.com/Uniswap/universal-router)                                                                                        | [`0x5507749f2c558bb3e162c6e90c314c092e7372ff`](https://www.oklink.com/x-layer/address/0x5507749f2c558bb3e162c6e90c314c092e7372ff) |
+| [UniversalRouter (v2.1)](https://github.com/Uniswap/universal-router)                                                                                        | [`0xda00ae15d3a71466517129255255db7c0c0956d3`](https://www.oklink.com/x-layer/address/0xda00ae15d3a71466517129255255db7c0c0956d3) |
+
+These addresses are final and were deployed from these npm package versions:
+
+- [`@uniswap/v3-core@1.0.0`](https://github.com/Uniswap/uniswap-v3-core/tree/v1.0.0)
+- [`@uniswap/v3-periphery@1.0.0`](https://github.com/Uniswap/uniswap-v3-periphery/tree/v1.0.0)
+- [`@uniswap/swap-router-contracts@1.1.0`](https://github.com/Uniswap/swap-router-contracts/tree/v1.1.0)
+
+## Universal Router
+
+The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
+
+## Wrapped Native Token
+
+| Network   | ChainId | Wrapped Native Token | Address                                      |
+| --------- | ------- | -------------------- | -------------------------------------------- |
+| X Layer   | `196`   | WOKB                 | `0xe538905cf8410324e03A5A23C1c177a474D59b2b` |

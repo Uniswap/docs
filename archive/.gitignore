@@ -1,0 +1,44 @@
+.DS_Store
+
+node_modules/
+
+lib/core/metadata.js
+lib/core/MetadataBlog.js
+translated_docs
+build/
+yarn.lock
+i18n/*
+.docusaurus/*
+
+artifacts/
+cache/
+typechain/
+
+.env
+
+# ignore forge-doc artifacts as they are copied to the proper location
+forge-docs/v4-core/*
+forge-docs/v4-periphery/*
+
+# Debugging logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Using yarn, so ignore npm lock
+package-lock.json
+
+# For analytics testing
+*.tgz
+
+# VSCode
+.vscode/
+.yarn/install-state.gz
+
+# Claude files - prevent accidental commits
+CLAUDE.md
+claude.md
+v4-sdk-baseline-assessment.md
+
+# Ignore external repositories
+v4-subgraph/

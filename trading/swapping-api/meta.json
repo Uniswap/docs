@@ -1,0 +1,17 @@
+{
+    "title": "Swapping",
+    "pages": [
+        "getting-started",
+        "concepts",
+        "supported-chains",
+        "integration-guide",
+        "chained-actions",
+        "chained-actions-integration",
+        "amm-vs-uniswapx-routing",
+        "swapping-code-examples",
+        "building-prerequisites",
+        "common-errors",
+        "faqs"
+    ]
+}
+    

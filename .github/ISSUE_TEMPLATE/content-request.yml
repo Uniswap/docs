@@ -1,0 +1,36 @@
+name: Content request
+description: Request a new guide, page, or code example
+title: "[Content request]: "
+labels: ["content-request"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: What should the docs cover?
+      placeholder: e.g. How to build a v4 hook that charges dynamic fees
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Who is it for?
+      description: What kind of developer needs this, and what are they trying to build?
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: What exists today?
+      description: Which pages you already checked and why they did not answer your question
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Links to code, contracts, threads, or examples that could inform the content
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I am interested in writing this myself as a PR

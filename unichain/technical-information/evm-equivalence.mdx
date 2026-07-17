@@ -1,0 +1,16 @@
+---
+title: EVM Equivalence
+description: Understand EVM equivalence on Unichain and how Ethereum tooling works with minimal changes.
+---
+
+## Differences Between Unichain and Ethereum Mainnet
+As an OP Stack chain, Unichain is EVM-equivalent with minimal changes to standard Ethereum behavior. Read more about OP Stack and Ethereum mainnet differences in the [OP Stack docs](https://docs.optimism.io/stack/differences).
+
+## Gas & EIP-1559 Configuration
+| Parameter |	Unichain | OP Mainnet |	Ethereum value |
+| -- | -- | -- | -- |
+| Block time in seconds | 1 |2 |12 |
+| Block gas limit | 30,000,000 | 30,000,000 |30,000,000 |
+| Block gas target | 5,000,000 | 5,000,000 |15,000,000 |
+| EIP-1559 elasticity multiplier | 6 |6 |2 |
+| EIP-1559 denominator | 250 |250 |8 |

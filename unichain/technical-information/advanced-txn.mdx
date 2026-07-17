@@ -1,0 +1,279 @@
+---
+title: Bundles & Revert Protection
+description: Submit advanced transactions on Unichain using bundles, block ranges, and revert protection.
+---
+
+## eth_sendBundle
+
+The `eth_sendBundle` method allows developers to submit transactions with advanced execution controls, including block/timestamp ranges and revert protection. This feature is particularly useful for arbitrageurs and advanced users who need precise timing or want to avoid paying gas for failed transactions.
+
+## Overview
+
+`eth_sendBundle` enables you to:
+- **Control execution timing**: Specify exactly when your transaction should execute using block numbers or timestamps
+- **Revert protection**: Avoid paying gas fees for transactions that revert
+- **Atomic execution**: Ensure your transaction executes in a specific window or not at all
+
+**Current Limitation**: Bundles are limited to a single transaction. This limitation may be removed in future versions.
+
+## Why Use eth_sendBundle?
+
+Traditional transaction submission can result in:
+- Transactions executing at undesirable times
+- Paying gas fees even when transactions revert due to changed market conditions
+- Uncertainty about execution timing for time-sensitive operations
+
+`eth_sendBundle` solves these issues by providing:
+- **Conditional execution**: Transactions only execute within your specified parameters
+- **Cost protection**: No gas fees for reverted transactions (when revert protection is enabled)
+- **Precise timing**: Execute transactions within specific block ranges or time windows
+
+## Method Signature
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_sendBundle",
+  "params": [
+    {
+      "txs": ["0x..."],                    // Array with single tx
+      "minBlockNumber": "0x...",           // Optional: minimum block number (hex)
+      "maxBlockNumber": "0x...",           // Optional: maximum block number (hex)
+      "minTimestamp": 1234567890,          // Optional: minimum timestamp (number)
+      "maxTimestamp": 1234567899,          // Optional: maximum timestamp (number)
+      "revertingTxHashes": ["0x..."]       // Optional: transactions allowed to revert
+    }
+  ]
+}
+```
+
+## Response Format
+
+A successful `eth_sendBundle` call returns:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "bundleHash": "0xc039e46a9cf9f5d7e108642c34a53e7de969ed3f39a138282181d975ba7ffbfa"
+  },
+  "id": 1
+}
+```
+
+**Important**: The `bundleHash` is equivalent to the transaction hash and can be used with standard methods like `eth_getTransactionReceipt` to check execution status.
+
+## Parameters
+
+### txs (required)
+- **Type**: Array of strings
+- **Description**: Array containing a single signed transaction
+- **Format**: Hex-encoded signed transaction data
+
+**Important**: At this time, bundles only support a single transaction per submission.
+
+### Block number range (optional)
+- **minBlockNumber**: Hex-encoded string of the minimum block number
+- **maxBlockNumber**: Hex-encoded string of the maximum block number
+- **Behavior**: Transaction executes when `minBlockNumber ≤ current block ≤ maxBlockNumber`
+- **Default**: If not specified, bundle expires after 10 blocks from submission
+
+### Timestamp range (optional)
+- **minTimestamp**: JSON number representing Unix timestamp
+- **maxTimestamp**: JSON number representing Unix timestamp
+- **Behavior**: Transaction executes when `minTimestamp ≤ current block timestamp ≤ maxTimestamp`
+
+**Important**: Block number ranges and timestamp ranges are mutually exclusive. Do not specify both.
+
+### revertingTxHashes (optional)
+- **Type**: Array of strings
+- **Description**: Transaction hashes that are allowed to revert without failing the bundle
+- **Behavior**: If omitted, reverted transactions will not charge gas fees
+
+## Endpoints
+
+Use the Unichain mainnet endpoint for bundle submission and receipt queries:
+- `https://mainnet.unichain.org`
+
+## Bundle Lifecycle
+
+1. **Submission**: Bundle is submitted and enters the mempool
+2. **Execution Window**: Bundle remains active for up to 10 blocks (or until maxBlockNumber/maxTimestamp)
+3. **Expiration**: After the execution window, bundles are dropped from the mempool
+4. **Receipt Queries**: Expired bundles return error code `-32602: the transaction was dropped from the pool`
+
+## Code Examples
+
+### Basic bundle with block range
+
+```javascript
+const { ethers } = require('ethers');
+
+async function sendBasicBundle() {
+    const provider = new ethers.JsonRpcProvider('https://mainnet.unichain.org');
+    const wallet = new ethers.Wallet(privateKey, provider);
+
+    // Get current block for range calculation
+    const currentBlock = await provider.getBlockNumber();
+
+    // Create and sign transaction
+    const tx = {
+        to: recipientAddress,
+        value: ethers.parseEther('1.0'),
+        gasLimit: 21000,
+        gasPrice: await provider.getFeeData().then(fees => fees.gasPrice)
+    };
+
+    const signedTx = await wallet.signTransaction(tx);
+
+    // Submit bundle
+    const bundleParams = {
+        txs: [signedTx],
+        minBlockNumber: `0x${(currentBlock + 1).toString(16)}`,
+        maxBlockNumber: `0x${(currentBlock + 5).toString(16)}`
+    };
+
+    const txHash = await provider.send('eth_sendBundle', [bundleParams]);
+    console.log('Bundle submitted:', txHash);
+}
+```
+
+### Bundle with timestamp range
+
+```javascript
+async function sendTimestampBundle() {
+    const provider = new ethers.JsonRpcProvider('https://mainnet.unichain.org');
+    const wallet = new ethers.Wallet(privateKey, provider);
+
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    const tx = {
+        to: recipientAddress,
+        value: ethers.parseEther('1.0'),
+        gasLimit: 21000,
+        gasPrice: await provider.getFeeData().then(fees => fees.gasPrice)
+    };
+
+    const signedTx = await wallet.signTransaction(tx);
+
+    const bundleParams = {
+        txs: [signedTx],
+        minTimestamp: currentTime + 60,    // Execute 1 minute from now
+        maxTimestamp: currentTime + 300    // Must execute within 5 minutes
+    };
+
+    const txHash = await provider.send('eth_sendBundle', [bundleParams]);
+    console.log('Timestamp bundle submitted:', txHash);
+}
+```
+
+### Bundle with revert protection
+
+```javascript
+async function sendRevertProtectedBundle() {
+    const provider = new ethers.JsonRpcProvider('https://mainnet.unichain.org');
+    const wallet = new ethers.Wallet(privateKey, provider);
+
+    // Transaction that might revert (e.g., DEX trade with slippage)
+    const riskyTx = {
+        to: dexContractAddress,
+        data: swapCalldata,
+        gasLimit: 200000,
+        gasPrice: await provider.getFeeData().then(fees => fees.gasPrice)
+    };
+
+    const signedTx = await wallet.signTransaction(riskyTx);
+
+    const bundleParams = {
+        txs: [signedTx],
+        // Omit revertingTxHashes to enable automatic revert protection
+        minBlockNumber: `0x${(await provider.getBlockNumber() + 1).toString(16)}`,
+        maxBlockNumber: `0x${(await provider.getBlockNumber() + 3).toString(16)}`
+    };
+
+    const txHash = await provider.send('eth_sendBundle', [bundleParams]);
+    console.log('Protected bundle submitted:', txHash);
+}
+```
+
+## Error Handling
+
+### Transaction receipt errors
+
+When querying receipts for expired or dropped bundles:
+
+```javascript
+async function checkBundleStatus(txHash) {
+    const provider = new ethers.JsonRpcProvider('https://mainnet.unichain.org');
+
+    try {
+        const receipt = await provider.getTransactionReceipt(txHash);
+        console.log('Transaction executed:', receipt);
+    } catch (error) {
+        if (error.code === -32602) {
+            console.log('Bundle was dropped from the pool (likely expired)');
+        } else {
+            console.log('Other error:', error.message);
+        }
+    }
+}
+```
+
+### Common error scenarios
+
+- **Bundle expired**: Error code `-32602` when querying receipt after 10+ blocks
+- **Invalid range**: Bundle with `minBlockNumber > maxBlockNumber` will be rejected
+- **Past timestamps**: Bundles with `maxTimestamp` in the past are immediately invalid
+
+## Best Practices
+
+1. **Use appropriate time windows**: Don't make ranges too narrow (may miss execution) or too wide (unnecessary delay)
+
+2. **Monitor bundle status**: Check transaction receipts to confirm execution or detect expiration
+
+3. **Handle revert protection carefully**: Understand that omitting `revertingTxHashes` provides automatic revert protection
+
+4. **Use the mainnet endpoint for debugging**: Use `https://mainnet.unichain.org` and inspect receipt/error responses when troubleshooting bundles
+
+5. **Plan for expiration**: Implement logic to resubmit bundles if they expire without execution
+
+## Limitations
+
+- **Single transaction per bundle**: Currently limited to one transaction per bundle (temporary limitation)
+- **10-block default lifetime**: Bundles automatically expire after 10 blocks if no `maxBlockNumber` specified
+- **Mutually exclusive ranges**: Cannot specify both block number and timestamp ranges
+- **No bundle cancellation**: Once submitted, bundles cannot be cancelled (they must expire)
+
+## Use Cases
+
+**Arbitrage operations**
+```javascript
+// Execute arbitrage only if profitable within next 3 blocks
+const arbitrageBundle = {
+    txs: [signedArbitrageTx],
+    minBlockNumber: `0x${(currentBlock + 1).toString(16)}`,
+    maxBlockNumber: `0x${(currentBlock + 3).toString(16)}`
+    // Revert protection prevents paying gas if opportunity disappears
+};
+```
+
+**Time-sensitive DeFi operations**
+```javascript
+// Execute a trade only during a specific time window
+const timedTradeBundle = {
+    txs: [signedTradeTx],
+    minTimestamp: auctionStartTime,
+    maxTimestamp: auctionEndTime
+};
+```
+
+**MEV protection**
+```javascript
+// Protect against MEV by constraining execution timing
+const protectedBundle = {
+    txs: [signedTx],
+    minBlockNumber: `0x${targetBlock.toString(16)}`,
+    maxBlockNumber: `0x${targetBlock.toString(16)}` // Execute in specific block only
+};
+```

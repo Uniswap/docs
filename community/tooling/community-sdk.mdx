@@ -1,0 +1,94 @@
+---
+title: Uniswap v4 Community SDK
+description: A community-built TypeScript SDK for Uniswap v4 with first-class React bindings and an experimental Trading SDK.
+---
+
+The [Uniswap v4 Community SDK](https://github.com/ZahaStudio/uniswap-sdk-monorepo) is a TypeScript monorepo for interacting with Uniswap v4, plus an experimental Trading SDK for the Uniswap Trading API. It ships pool queries, swap execution, liquidity management, and Permit2 approvals out of the box, with first-class React bindings.
+
+<Callout type="info">
+
+This SDK is community-built and maintained by [Zaha Studio](https://github.com/ZahaStudio), with contributions from [BootNode](https://bootnode.dev) and support from the Uniswap Foundation. It is not an official Uniswap Labs product.
+
+</Callout>
+
+## Packages
+
+| Package | Description |
+| :--- | :--- |
+| `@zahastudio/uniswap-sdk` | Core SDK, framework-agnostic. Works with any viem client. |
+| `@zahastudio/uniswap-sdk-react` | React hooks and provider built on `wagmi` + TanStack Query. |
+| `@zahastudio/trading-sdk` | Experimental Trading SDK for quote, approval, and swap flows via the Uniswap Trading API. |
+| `@zahastudio/trading-sdk-react` | Experimental React provider and hooks for the Trading SDK. |
+
+## Features
+
+- **Pool queries.** Fetch real-time pool state (slot0, liquidity) via multicall.
+- **Swap execution.** Quote, build calldata, and execute swaps through Universal Router.
+- **Liquidity management.** Mint, increase, decrease positions and collect fees.
+- **Permit2.** Batch token approvals with typed signature generation.
+- **Built-in caching.** LRU cache with a pluggable adapter interface.
+- **React hooks.** Step-by-step hooks for swaps, positions, approvals, and transactions.
+
+## Quick start
+
+### Installation
+
+```bash
+pnpm install @zahastudio/uniswap-sdk viem
+```
+
+### Core SDK usage
+
+```typescript
+import { createPublicClient, http } from "viem";
+import { mainnet } from "viem/chains";
+import { UniswapSDK } from "@zahastudio/uniswap-sdk";
+
+const client = createPublicClient({ chain: mainnet, transport: http() });
+const sdk = UniswapSDK.create(client, mainnet.id);
+```
+
+### React hooks
+
+```bash
+pnpm install @zahastudio/uniswap-sdk-react @zahastudio/uniswap-sdk viem wagmi @tanstack/react-query
+```
+
+```tsx
+import { UniswapSDKProvider, useSwap } from "@zahastudio/uniswap-sdk-react";
+
+function App() {
+  return (
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <UniswapSDKProvider>
+          <SwapPage />
+        </UniswapSDKProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  );
+}
+```
+
+| Hook | Purpose |
+| :--- | :--- |
+| `useUniswapSDK()` | Access cached SDK instances by chain |
+| `useSwap()` | Full swap workflow (quote, approve, permit2, execute) |
+| `useCreatePosition()` | Full position creation workflow |
+| `usePosition()` | Fetch position data by token ID |
+| `usePoolState()` | Fetch current pool state by pool key |
+| `usePositionIncreaseLiquidity()` | Add liquidity to an existing position |
+| `usePositionRemoveLiquidity()` | Remove liquidity from a position |
+| `usePositionCollectFees()` | Collect accrued fees |
+| `useToken()` | Fetch token metadata and balance |
+| `usePermit2()` | Permit2 signature workflow (includes approval) |
+| `useTokenApproval()` | ERC-20 approval workflow |
+| `useTransaction()` | Transaction lifecycle management |
+
+## Resources
+
+- [GitHub repository](https://github.com/ZahaStudio/uniswap-sdk-monorepo)
+- [Example app](https://github.com/ZahaStudio/uniswap-sdk-monorepo/tree/main/apps/example) (Next.js demo for v4 and Trading flows)
+- [AI agent docs](https://github.com/ZahaStudio/uniswap-sdk-monorepo/tree/main/docs) (designed for Claude, Cursor, and Copilot)
+- [Zaha Studio](https://github.com/ZahaStudio) (primary maintainer)
+- [BootNode](https://bootnode.dev) (contributor)

@@ -1,0 +1,35 @@
+---
+title: 'UniswapX Live on Avalanche, Base, BNB Smart Chain, and Tempo'
+description: 'Posted: June 9, 2026 | Effective: June 9, 2026'
+type: changelog
+datePublished: '2026-06-09'
+---
+
+[UniswapX](/docs/liquidity/uniswapx/overview), Uniswap's intent-based execution layer, is now live on Avalanche, Base, BNB Smart Chain, and Tempo. The Uniswap API will [route swaps through UniswapX](/docs/trading/swapping-api/amm-vs-uniswapx-routing) on these chains when it offers the better priced route, bringing MEV protection, gasless swaps, and a competitive market maker network into the same API call you already make.
+
+**What changed?**
+
+UniswapX is available on Avalanche, Base, BNB Smart Chain, and Tempo through the Trading API, and the `/quote` request now accepts a new `UNISWAPX_LATEST` value in the `protocols` field.
+
+`UNISWAPX_LATEST` always resolves to the current UniswapX version on each chain. Requesting it means you receive UniswapX quotes on these chains today, and on future chains as UniswapX launches on them, without changing your request again. You can still pin a specific version by requesting `UNISWAPX_V2` or `UNISWAPX_V3`, although not every chain supports both versions. The newly launched chains currently offer `UNISWAPX_V3`, while `UNISWAPX_V2` remains relevant on other chains such as Mainnet.
+
+**Why did this change?**
+
+Expanding UniswapX to more chains gives swappers access to MEV protection, gasless swaps, and competitive filler pricing.
+
+We are rolling this out for 30 days as an explicit opt-in, where integrators must set `UNISWAPX_LATEST` in their `protocols` field if they want to try UniswapX on these new chains. After 30 days, requests that do not set `protocols` will receive UniswapX quotes on all chains where UniswapX is available, matching the behavior most integrators already expect.
+
+**What do I need to do?**
+
+If you set the `protocols` field in your `/quote` requests and want UniswapX quotes on these chains today, include `UNISWAPX_LATEST` along with any AMM protocols you already request (`V2`, `V3`, and/or `V4`).
+
+Because UniswapX quotes use different response shapes than AMM quotes, confirm your `/quote` parsing handles the routing types you may now receive. Check the top-level `routing` field on the response and parse the matching `quote` object:
+
+- If you request `UNISWAPX_V3`, handle `routing: "DUTCH_V3"` with a `DutchQuoteV3` quote.
+- If you request `UNISWAPX_LATEST`, handle `routing: "DUTCH_V2"` (`DutchQuoteV2`), `routing: "DUTCH_V3"` (`DutchQuoteV3`), and `routing: "PRIORITY"` (`PriorityQuote`), depending on the chain.
+
+See the [integration guide](/docs/trading/swapping-api/integration-guide) for response handling details.
+
+Effective July 9, 2026, this becomes the default: requests that do not set a `protocols` field will receive UniswapX quotes for any chain where UniswapX is available. If you set `protocols` and do not include `UNISWAPX_LATEST` (or a specific UniswapX version such as `UNISWAPX_V2` or `UNISWAPX_V3`), you will not receive UniswapX quotes on these chains.
+
+If you set `protocols` explicitly and do not want UniswapX on a given chain, request only the AMM protocols you need (`V2`, `V3`, and/or `V4`) and omit `UNISWAPX_LATEST`, `UNISWAPX_V2`, and `UNISWAPX_V3`.

@@ -1,0 +1,11 @@
+{
+  "title": "Hooks",
+  "pages": [
+    "getting-started",
+    "swap-hooks",
+    "liquidity-hooks",
+    "async-swap",
+    "accessing-msg.sender",
+    "hook-deployment"
+  ]
+}

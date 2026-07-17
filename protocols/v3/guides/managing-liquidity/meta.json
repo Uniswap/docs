@@ -1,0 +1,11 @@
+{
+  "title": "Managing Liquidity",
+  "pages": [
+    "getting-started",
+    "mint-a-position",
+    "increase-liquidity",
+    "decrease-liquidity",
+    "collect-fees",
+    "the-full-contract"
+  ]
+}

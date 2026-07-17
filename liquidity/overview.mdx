@@ -1,0 +1,126 @@
+---
+id: Overview
+title: Liquidity Overview
+description: "Explore all liquidity-related workflows in the Uniswap ecosystem: providing liquidity, filling UniswapX orders, and bootstrapping new markets."
+---
+
+There are three principal ways to participate in Uniswap as a liquidity provider or market maker. Each serves a different purpose and appeals to a different type of builder.
+
+| Workflow | What You Do | Who It's For | Get Started |
+| :--- | :--- | :--- | :--- |
+| **Liquidity Provisioning (LP)** | Deposit token pairs into Uniswap v2, v3, or v4 pools and earn fees from trades. | Market makers, asset issuers, defi developers, yield seekers | [Here](/docs/liquidity/liquidity-provisioning-api/getting-started) |
+| **UniswapX filling** | Compete in permissionless auctions to fill user swap orders offchain or cross-chain. | Market makers, MEV searchers, trading firms | [Here](/docs/liquidity/uniswapx/overview) |
+| **Liquidity Launchpad (CCA)** | Bootstrap initial liquidity for a new token using a Continuous Clearing Auction and seed a v4 pool at the discovered price. | Token launchers, new projects, DAOs | [Here](/docs/liquidity/liquidity-launchpad/overview) |
+
+## 1. Liquidity Provisioning
+
+Providing liquidity means depositing tokens into a Uniswap pool so that traders can swap against them. In return, you earn a share of the swap fees proportional to your position. In v3 and v4, liquidity is [concentrated](/docs/get-started/concepts/liquidity-providers/concentrated-liquidity). You choose a specific price range, which can dramatically increase capital efficiency but requires active management.
+
+The full lifecycle of a position includes:
+
+- **Minting** a new position in a specific pool and tick range
+- **Increasing** or **decreasing** the liquidity in an existing position
+- **Collecting** accrued fees
+- **Burning** (closing) a position entirely
+
+### How to integrate
+
+You can build LP workflows at three different levels of abstraction:
+
+**Via the Uniswap API**: The simplest path. The API provides endpoints for every step of the position lifecycle and returns fully-formed transactions for the user to sign. [Manage liquidity via the API](/docs/liquidity/liquidity-provisioning-api/getting-started).
+
+| Endpoint | Purpose |
+| :--- | :--- |
+| `/approve` | Check and obtain token approvals |
+| `/create` | Create a pool (if needed) and mint a new position |
+| `/increase` | Add liquidity to an existing position |
+| `/decrease` | Remove liquidity (partial or full withdrawal) |
+| `/claim` | Collect accrued fees |
+| `/migrate` | Move a position from v3 to v4 |
+
+**Via the SDK**: The v4 SDK (`@uniswap/v4-sdk`) provides TypeScript classes for constructing positions and encoding transaction calldata locally. You manage RPC connections and submit transactions yourself using a library like Ethers.js or Viem. [Manage liquidity via the SDK](/docs/sdks/v4/guides/managing-liquidity/position-minting).
+
+```typescript
+import { Pool, Position, V4PositionManager } from '@uniswap/v4-sdk'
+
+// 1. Construct a Pool from onchain state
+const pool = new Pool(token0, token1, fee, tickSpacing, hookAddress, sqrtPriceX96, liquidity, tick)
+
+// 2. Define a Position
+const position = Position.fromAmounts({ pool, tickLower, tickUpper, amount0, amount1, useFullPrecision: true })
+
+// 3. Generate calldata
+const { calldata, value } = V4PositionManager.addCallParameters(position, {
+  recipient: userAddress,
+  slippageTolerance: new Percent(50, 10_000),
+  deadline: Math.floor(Date.now() / 1000) + 1200,
+})
+```
+
+**Via smart contracts**: For onchain integrations (vaults, strategies, automated rebalancers), you interact directly with the v4 `PositionManager` contract using its action-encoding pattern. [Manage liquidity via smart contracts](/docs/protocols/v4/guides/managing-liquidity/getting-started).
+
+```solidity
+bytes memory actions = abi.encodePacked(
+    uint8(Actions.MINT_POSITION),
+    uint8(Actions.SETTLE_PAIR)
+);
+
+bytes[] memory params = new bytes[](2);
+params[0] = abi.encode(poolKey, tickLower, tickUpper, liquidity, amount0Max, amount1Max, recipient, hookData);
+params[1] = abi.encode(currency0, currency1);
+
+posm.modifyLiquidities(abi.encode(actions, params), deadline);
+```
+
+## 2. UniswapX filling
+
+UniswapX is an auction-based protocol where fillers (market makers) compete to execute user swap orders. Instead of swapping against a pool directly, users sign intent-based orders that fillers can fill from any liquidity source: their own inventory, private pools, cross-chain bridges, or onchain AMMs. [Become a UniswapX filler](/docs/liquidity/uniswapx/filling/overview).
+
+Filling is a fundamentally different activity from LP provisioning. As a filler, you are not depositing capital into a pool. You are running infrastructure to monitor, evaluate, and execute orders profitably.
+
+### How it works
+
+1. **Retrieve orders** from the Uniswap API.
+2. **Evaluate each order** against your inventory, pricing models, and risk controls.
+3. **Submit `execute` transactions** to the appropriate Reactor contract, ensuring the required output amounts are delivered to the user.
+
+### Chain-specific models
+
+The auction mechanism varies by chain:
+
+| Chain | Model | Details |
+| :--- | :--- | :--- |
+| **Ethereum mainnet** | RFQ + Dutch auction | Quoters can win temporary exclusivity; fillers execute when orders become fillable. |
+| **Arbitrum** | Dutch auction only | No RFQ phase. Fillers compete directly onchain. |
+| **Unichain & Base** | Priority orders | Priority-fee bidding via `PriorityOrderReactor`. |
+
+### How to integrate
+
+- **Via the UniswapX API**: Retrieve open orders and monitor order status.
+- **Via smart contracts**: Implement a filler contract that calls `execute` on the target Reactor and delivers the required output tokens.
+
+## 3. Liquidity Launchpad (CCA)
+
+The Liquidity Launchpad is a framework for bootstrapping initial liquidity for new tokens. It uses a **Continuous Clearing Auction (CCA)** to establish a fair market price, then automatically seeds a Uniswap v4 pool with the auction proceeds at the discovered price.
+
+This is designed for projects that need to go from "no market exists" to "deep onchain liquidity" in a single, transparent flow.
+
+### How it works
+
+1. **Prepare a token**: optionally deploy a new ERC-20 via the Token Factory, or use an existing token.
+2. **Deploy a strategy**: call `LiquidityLauncher.distributeToken()` to create the auction and strategy contracts.
+3. **Run the auction**: the CCA accepts bids and continuously computes a clearing price, reducing timing games and manipulation.
+4. **Seed liquidity**: after the auction completes, call `migrate()` to initialize the v4 pool and deploy liquidity positions at the discovered price.
+5. **Claim**: auction participants claim their tokens after the claim block.
+
+### Core components
+
+| Component | Purpose |
+| :--- | :--- |
+| **Liquidity Launcher** | Coordinates the overall flow: token distribution, auction deployment, and migration to v4. |
+| **Token Factory** | Optionally creates new ERC-20 tokens with metadata. |
+| **Liquidity Strategies** | Define how auction proceeds are converted into pool liquidity. Extensible, so you can write custom strategies. |
+
+### How to integrate
+
+The Liquidity Launchpad is accessed via **smart contract interactions** with the Liquidity Launcher and strategy contracts onchain. The architecture is modular and permissionless, so anyone can deploy an auction and bootstrap liquidity without gatekeepers.

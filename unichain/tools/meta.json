@@ -1,0 +1,16 @@
+{
+  "title": "Tools",
+  "pages": [
+    "account-abstraction",
+    "block-explorers",
+    "bridges",
+    "cross-chain",
+    "data-indexers",
+    "data-feeds",
+    "development-tools",
+    "faucets",
+    "node-providers",
+    "oracles",
+    "wallets"
+  ]
+}

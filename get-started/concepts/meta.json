@@ -1,0 +1,5 @@
+{
+  "title": "Concepts",
+  "pages": ["how-uniswap-works", "ecosystem-participants", "liquidity-providers", "traders", "fees", "hooks", "glossary"],
+  "defaultOpen": false
+}

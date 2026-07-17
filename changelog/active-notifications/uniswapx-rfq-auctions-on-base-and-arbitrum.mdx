@@ -1,0 +1,32 @@
+---
+title: 'UniswapX RFQ Auctions on Base and Arbitrum'
+description: 'Posted: June 13, 2026 | Effective: June 13, 2026'
+type: changelog
+datePublished: '2026-06-13'
+---
+
+[UniswapX](/docs/liquidity/uniswapx/overview), Uniswap's intent-based execution layer, now runs [RFQ auctions](/docs/liquidity/uniswapx/concepts/auction-types) on Base and Arbitrum. The Uniswap API will [route swaps through UniswapX](/docs/trading/swapping-api/amm-vs-uniswapx-routing) on these chains when it offers the better priced route. With RFQ, a quoter parameterizes each order and holds an exclusivity window to fill it before the order opens to permissionless fillers.
+
+**What changed?**
+
+RFQ is now available for Base and Arbitrum.
+
+- **Base** moves from Priority auctions to DutchV3 auctions. Fillers integrated against the `PriorityOrderReactor` need to update their integration to handle DutchV3 orders.
+- **Arbitrum** moves from open Dutch auctions to RFQ. The winning quoter now holds an exclusivity window before the order becomes permissionless.
+
+Filling remains permissionless on both chains, but only after the exclusivity window.
+
+**What do I need to do?**
+
+**If you are a Uniswap API integrator**
+
+No action is required. You can keep requesting UniswapX by leaving the `protocols` field out of your `/quote` request, which is the existing default. To request UniswapX explicitly on these chains, include `UNISWAPX_V3` in the `protocols` field.
+
+**If you are a filler**
+
+To compete for order flow during the exclusivity window, join the quoter set:
+
+- Update your integration to handle DutchV3 orders. See [Filling Dutch V3 Auctions](/docs/liquidity/uniswapx/filling/dutch-v3-chains/filling-on-dutch-v3-chains) and the reactor addresses on the [deployments page](/docs/liquidity/uniswapx/deployments#base).
+- To verify ownership of your filler address, sign a message with the EOA wallet that has been submitting your fills, and Uniswap confirms it against onchain UniswapX activity.
+
+If you have questions, you can reach out to the team <HelpCenter topic="uniswapx-fillers">here</HelpCenter>.

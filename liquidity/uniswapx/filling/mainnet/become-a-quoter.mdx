@@ -1,0 +1,109 @@
+---
+id: becomequoter
+title: Become a Quoter
+description: Set up a UniswapX quoter on Ethereum mainnet, meet performance requirements, and move from beta to production.
+---
+
+Integrate as a quoter on UniswapX to compete for exclusive filling rights on Ethereum mainnet. This page is intended for experienced DeFi teams that have run similar systems on other protocols.
+
+To ensure a smooth swapping experience for traders, the set of quoters is vetted by Uniswap Labs. The quoting system may become fully permissionless in the future.
+
+Once approved by Uniswap Labs, follow the instructions below to complete your integration. 
+
+## Quoter Requirements
+To participate as a quoter, you must host a service that adheres to the UniswapX RFQ API schema and responds to requests with quotes. The RFQ participant who submits the most competitive quote for a given order receives exclusive rights to fill it using their Executor during the _Exclusivity Period_ of the auction.
+
+## Performance Expectations
+To ensure a smooth experience for swappers and a fair auction process for quoters, participants are held to the following performance standards:
+
+<Callout type="warning" title="500ms Response Time">
+Your server must respond to a request for a quote within 500ms. If you cannot provide a quote, respond with a `204` status code. Consistent failure to meet this standard may result in suspension from the system.
+</Callout>
+
+## Handling Fades & the Circuit Breaker
+Quoters are expected to honor and execute the quotes they submit. If a quoter submits a winning quote but fails to fill the subsequent order, the "circuit breaker" will be triggered, temporarily disabling the quoter from receiving new requests.
+
+<Callout type="warning" title="Cooldown Time">
+The cooldown period starts at 15 minutes for the first fade and increases exponentially for consecutive fades. See the [source code](https://github.com/Uniswap/uniswapx-parameterization-api/blob/bf87dcc0066fa21b72255f7155f5fbd04a518594/lib/cron/fade-rate-v2.ts#L215) for cooldown calculation details.
+</Callout>
+
+For more details on what counts as a fade (and what doesn't), see the [fade mechanics FAQ](/docs/liquidity/uniswapx/filling/faq#fade-mechanics).
+
+## RFQ API Integration Details
+To successfully receive and respond to UniswapX RFQ Quotes, you must have a publicly accessible endpoint that handles incoming quote requests according to the following schema:
+
+### Request schema
+```json
+{
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "data": {
+    "requestId": "uuid",
+    "tokenInChainId": 1,
+    "tokenOutChainId": 1,
+    "swapper": "0x0000000000000000000000000000000000000000",
+    "tokenIn": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "tokenOut": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "amount": "1000000",
+    "type": "EXACT_INPUT",
+    "protocol": "v1",
+    "numOutputs": 1,
+    "quoteId": "uuid"
+  }
+}
+```
+
+### Response schema
+If you can fulfill the quote request, your server should respond with status `200` and the following data:
+```json
+{
+  "chainId": 1,
+  "amountIn": "1000000",
+  "amountOut": "548123456789000000",
+  "filler": "0x1234567890abcdef1234567890abcdef12345678",
+  "requestId": "uuid",
+  "swapper": "0x0000000000000000000000000000000000000000",
+  "tokenIn": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "tokenOut": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+  "quoteId": "uuid"
+}
+```
+
+If you do not wish to respond to a quote request, you must return an empty response with status code `204`.
+
+### Schema when disabled due to circuit breaker
+If you are an onboarded quoter who is currently disabled by the circuit breaker, your server will receive the following message on the same quote endpoint:
+
+```json
+{
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "data": {
+    "blockUntilTimestamp": 1735689600
+  }
+}
+```
+
+## Moving to Production
+All new quoter instances start by being onboarded to the [Beta environment](https://beta.api.uniswap.org/v2/uniswapx/docs). There, at least **5 valid Exclusive RFQ fills** must be demonstrated before moving to production. The Beta environment serves valid mainnet orders that should be filled against production contracts but does not receive traffic from production interfaces.
+
+### Steps to move to production
+
+1. **Provide the quote server URL** to your Uniswap Labs contact along with the contract address used to fill. It is recommended to use the same quoting infrastructure intended for production.
+2. **Begin sending quotes and orders to beta** via the [UniswapX CLI](https://github.com/Uniswap/uniswapx-tool?tab=readme-ov-file#simple-order-creation). Reach out to the Uniswap team to be added to the private GitHub.
+
+   The beta environment now requires a Uniswap API key on every request. Generate one at [developers.uniswap.org](https://developers.uniswap.org/) and add it to a `.env` file in the project root as `UNISWAP_API_KEY`. A private key is only needed for `submit` commands that sign the order; set it as `UNISWAP_PRIVATE_KEY` in `.env` or pass it at runtime with `--private-key`.
+3. **Send hashes of 5 filled transactions** that demonstrate that the integration was able to fill during the exclusive period; specifically before [decayStartTime](https://github.com/Uniswap/UniswapX/blob/abd7a0b080148fc42ef7c86536d14de714eec4c7/src/lib/ExclusiveDutchOrderLib.sol#L12)
+
+The Uniswap Labs team will review the 5 transactions to confirm they were successful exclusive fills. Once confirmed, the quoter setup will be promoted to production and will start receiving traffic.
+
+<Callout title="Interested in becoming a quoter?" type="warn">
+
+To get started, [fill out the quoter intake form](https://developers.uniswap.org/quoter). For questions about the onboarding process, reach out to [quoters@uniswap.org](mailto:quoters@uniswap.org).
+
+</Callout>
+

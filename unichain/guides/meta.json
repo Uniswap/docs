@@ -1,0 +1,12 @@
+{
+  "title": "Guides",
+  "pages": [
+    "deploy-a-smart-contract",
+    "deploy-a-superchain-erc20",
+    "deploy-a-contract-through-thirdweb",
+    "transfer-usdc",
+    "routing-on-unichain",
+    "subgraph-unichain",
+    "create-a-pool"
+  ]
+}

@@ -1,0 +1,107 @@
+---
+title: Permit2 Approval
+description: Learn how to use Permit2 approvals and troubleshoot common signing issues in the Uniswap API swap flow.
+---
+
+## Swapping with Permit2
+The Uniswap API supports a swap flow that uses Permit2 signatures. This option is the default and it provides security to swapper wallets which direct router approval workflows cannot. 
+
+In this flow, the swapping wallet grants ERC-20 approval to the Permit2 contract and then subsequently signs messages which authorize Permit2 to spend tokens from the swapping wallet with the Universal Router. This flow requires that integrators provide up to a three-step swap process: approve —> sign permit —> swap.
+
+## What Is a Permit2 Message and How Is It Used?
+
+- A Permit2 message is an **offchain signed message** (not a transaction).
+- Permit2 signatures are **time-limited** and (optionally) **amount-limited** (see the `permitAmount` field in the request).
+
+Before executing a swap through the Uniswap API, the swapper must grant the **Permit2** contract permission to access their tokens. Most swaps performed through the Uniswap API use Permit2 to ensure a consistent and secure experience for the swapper. If the Permit2 signature is missing or incorrect, the swap will fail.
+
+## What Do I Need to Do When Using Permit2?
+
+**If a Permit2 message is included in the `/quote` response, you must require the swapper to sign it and include the resulting signature in your `/swap` request.**
+
+- You **do not** interact with Permit2 contracts directly. Once provided with signed calldata, Permit2 is given permissions and instructions to pull the required number of tokens from a swapper’s wallet and spend them to achieve the swap on behalf of the swapper.
+- You **do not** need to construct Permit2 messages. The API handles the Permit2 message and swap calldata. You just need to handle signing the Permit2 message.
+- You **do not** need to understand Permit2 logic. You can control the Permit2 amount limit through the `/quote` request and we handle setting a reasonable time limit depending on the way the swap will execute (AMM or UniswapX).
+
+## How the Permit2 Flow Works in Practice
+
+The Uniswap API abstracts the Permit2 process into a simple, three-step workflow:
+
+1. **Call `/quote`**
+
+The quote response may contain a Permit2 message if the swapper needs to authorize Permit2 to spend tokens through the Universal Router.
+
+2. **Prompt the swapping wallet to sign the Permit2 message**
+
+The swapping wallet signs the message, resulting in an EIP-712-style signature. This is an offchain signature. The signature only needs to be returned through the API.
+
+3. **Call `/swap` with the signed Permit2 data**
+
+The structure of the swap request is defined in the [API documentation](/docs/api-reference/create_swap_transaction).
+
+There are no additional steps. Everything needed for Permit2 comes directly from the `/quote` response.
+
+If you are unable to support a three-step workflow, we offer a compatibility option for a two-step approve to swap workflow through our [Proxy Approval workflow](/docs/trading/swapping-api/concepts/no-permit2-workflow).
+
+## Checking Permit2 Approvals
+
+The `/check_approval` endpoint verifies whether a token has been approved for spending by Permit2.
+
+- The endpoint returns transaction calldata **only if approval is required**.
+- Once approved, a token typically remains valid indefinitely and does not need to be reapproved.
+    - In rare cases, a token approval must be revoked and then reapproved. The API will identify this scenario and provide both revoke and approval calldata for the swapper to sign.
+    - As a best practice, call `/check_approval` before a swapper performs a swap to ensure they have a valid approval.
+
+## Signature Validity
+
+Permit2 signatures may expire over time.
+
+If a wallet signs a Permit2 message from an earlier `/quote` response and later initiates a swap using a new quote, the old signature may no longer be valid, especially for quotes that route through **UniswapX** which use shorter expiration windows.
+
+To ensure a successful swap:
+
+- Always use the Permit2 signature from the **`/quote`** response which you are submitting to the **`/swap`** endpoint.
+- Do not reuse Permit2 signatures from earlier quotes.
+
+## Common Permit2 Misunderstandings and Troubleshooting Steps
+
+**1. Skipping the Permit2 signature step**
+
+Don’t assume the classic ERC-20 “approve then swap” flow applies. In the classic flow, a swapper’s wallet directly allows the router to access their wallet.
+
+Permit2 provides time- and (optionally) amount-limited access to a swapper’s wallet, protecting them from compromised routing contracts. When the `/quote` response contains a Permit2 message, the wallet must sign it and you must forward that signature in your `/swap` request. Skipping this step leads to a failed swap.
+
+**2. Reusing a Permit2 signature from a previous quote**
+
+A Permit2 signature returned in `/quote` applies only to that specific quote.
+
+If you fetch a new quote, you must also use the new Permit2 message. Reusing an older signature is a frequent cause of failures.
+
+**3. Waiting too long between quoting, signing, and swapping**
+
+A common issue is a large delay between:
+
+- requesting `/quote`
+- prompting the wallet to sign the Permit2 message
+- submitting `/swap`
+
+Permit2 messages are tied to the timing of the quote. If too much time passes, the signature may no longer be usable.
+
+The best practice is to call `/quote` again just before a user swaps to get the freshest quote possible and then to `/swap` shortly after the wallet signs the Permit2 message from that latest quote.
+
+**4. Assuming Permit2 is always required (or never required)**
+
+Permit2 is **only** required when the Uniswap API includes a Permit2 message in the quote. If the `/quote` response doesn't contain one, you don't need to prompt the user or include a permit2 signature in `/swap`.
+
+**5. Incorrectly packaging the Permit2 signature in `/swap`**
+
+Common mistakes include:
+
+- forgetting to include the signature
+- putting the signature in the wrong field
+- using a signature from a different quote
+- altering the Permit2 payload
+
+The Uniswap API expects the signature exactly as returned, passed into `/swap` without modification.
+
+Click [here](https://github.com/dragonfly-xyz/useful-solidity-patterns/tree/main/patterns/permit2) to read a more detailed explanation on how Permit2 works.

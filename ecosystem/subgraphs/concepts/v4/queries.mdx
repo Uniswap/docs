@@ -1,0 +1,150 @@
+---
+title: v4 Queries
+description: Key entities and query patterns for the Uniswap v4 subgraph.
+---
+
+The Uniswap v4 subgraph indexes onchain events from the PoolManager singleton contract and exposes them as a GraphQL API via [The Graph](https://thegraph.com/). You can use it to query pool state, swap history, token metrics, position data, and aggregated statistics.
+
+The full schema is available in the [v4-subgraph repository](https://github.com/Uniswap/v4-subgraph/blob/main/schema.graphql).
+
+## Key Differences from v3
+
+The v4 subgraph reflects the architectural changes in v4:
+
+- **PoolManager replaces Factory:** Global protocol metrics are queried from the `poolManager` entity rather than a `factory` entity. The PoolManager address is `0x000000000004444c5dc75cb358380d2e3de08a90` on all supported chains.
+- **Pool IDs are hashes:** Pools are identified by a bytes32 hash derived from the pool key (token pair, fee, tick spacing, and hooks address), not a deployed contract address. See the [PoolId Library](https://github.com/Uniswap/v4-core/blob/main/src/types/PoolId.sol) for details on computing pool IDs.
+- **Hooks are first-class:** Pool entities include a `hooks` field referencing the hook contract address, if any.
+- **Subscriptions and notifications:** Position entities track `subscriptions`, `unsubscriptions`, and `transfers` rather than the v3 model of mints, burns, and collects at the position level.
+
+## Core Entities
+
+| Entity | Description |
+|---|---|
+| **PoolManager** | Global protocol metrics: pool count, transaction count, total volume |
+| **Pool** | Individual pool state: liquidity, price, fee tier, tick, volume, associated hook |
+| **Token** | Token metadata and aggregated metrics across all pools |
+| **Swap** | Individual swap events with amounts, sender, and transaction details |
+| **Position** | Liquidity positions tracked by NFT tokenId |
+| **PoolDayData / PoolHourData** | Time-series aggregations of pool metrics |
+| **TokenDayData / TokenHourData** | Time-series aggregations of token metrics |
+
+## Common Query Patterns
+
+### Protocol-wide metrics
+
+Query the PoolManager entity for aggregate protocol data:
+
+```graphql
+{
+  poolManager(id: "0x000000000004444c5dc75cb358380d2e3de08a90") {
+    poolCount
+    txCount
+    totalVolumeUSD
+    totalVolumeETH
+  }
+}
+```
+
+### Pool state
+
+Fetch current state for a specific pool by its ID:
+
+```graphql
+{
+  pool(id: "0x21c67e77068de97969ba93d4aab21826d33ca12bb9f565d8496e8fda8a82ca27") {
+    token0 { symbol }
+    token1 { symbol }
+    feeTier
+    liquidity
+    sqrtPrice
+    tick
+  }
+}
+```
+
+### Recent swaps
+
+Query swap events filtered by pool, ordered by recency:
+
+```graphql
+{
+  swaps(orderBy: timestamp, orderDirection: desc, where: {
+    pool: "0x21c67e77068de97969ba93d4aab21826d33ca12bb9f565d8496e8fda8a82ca27"
+  }) {
+    sender
+    amount0
+    amount1
+    timestamp
+  }
+}
+```
+
+### Token data
+
+Aggregate metrics for a token across all v4 pools:
+
+```graphql
+{
+  token(id: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") {
+    symbol
+    name
+    decimals
+    volumeUSD
+    poolCount
+  }
+}
+```
+
+### Position data
+
+Query position details by NFT tokenId:
+
+```graphql
+{
+  position(id: 3) {
+    id
+    subscriptions { id }
+    unsubscriptions { id }
+    transfers { id }
+  }
+}
+```
+
+## Pagination
+
+The Graph limits query results to 1000 items per request. Use `first` and `skip` to paginate through larger result sets:
+
+```graphql
+{
+  pools(first: 1000, skip: 0, orderBy: liquidity, orderDirection: desc) {
+    id
+    token0 { symbol }
+    token1 { symbol }
+    liquidity
+  }
+}
+```
+
+Increment `skip` by 1000 in each subsequent request until fewer than 1000 results are returned.
+
+## Historical Data
+
+You can query data at a specific block number by passing a `block` parameter:
+
+```graphql
+{
+  poolManager(
+    id: "0x000000000004444c5dc75cb358380d2e3de08a90"
+    block: { number: 22451931 }
+  ) {
+    poolCount
+    totalVolumeUSD
+  }
+}
+```
+
+For time-series analysis, use the `PoolDayData` and `TokenDayData` entities which provide pre-aggregated daily snapshots.
+
+## Next Steps
+
+For complete query examples covering global data, pools, swaps, tokens, and positions, see the [v4 query examples](/docs/ecosystem/subgraphs/guides/v4-query-examples) guide.

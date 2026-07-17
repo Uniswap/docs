@@ -1,0 +1,5 @@
+{
+  "title": "Ecosystem",
+  "root": true,
+  "pages": ["builder-support", "governance", "subgraphs", "research"]
+}

@@ -1,0 +1,312 @@
+---
+title: v4 Query Examples
+description: Example GraphQL queries for fetching Uniswap v4 analytics data from the subgraph.
+---
+
+This guide shows how to query Uniswap v4 analytics by writing GraphQL queries on the subgraph. You can fetch data points like:
+
+- [Position details](#general-position-data)
+- [Current liquidity](#pool-data) of a pool
+- [Volume on a certain day](#historical-global-data)
+
+To run a query, copy and paste it into the [v4 explorer](https://thegraph.com/explorer/subgraphs/DiYPVdygkfjDWhbxGSqAQxwBKmfKnkWQojqeM2rkLb3G?view=Query&chain=arbitrum-one) to get fresh data.
+
+## Global Data
+
+Global data refers to data points about the Uniswap v4 protocol as a whole, such as total value locked, total pools deployed, and total transaction counts.
+
+To query global data, pass in the PoolManager address `0x000000000004444c5dc75cb358380d2e3de08a90` and select the desired fields. Reference the full [poolManager schema](https://github.com/Uniswap/v4-subgraph/blob/main/schema.graphql#L1) to see all possible fields. PoolManager addresses for all supported chains are listed in the [Deployments](/docs/protocols/v4/deployments) section.
+
+### Current global data
+
+An example querying total pool count, transaction count, and total volume in USD and ETH:
+
+```graphql
+{
+  poolManager(id: "0x000000000004444c5dc75cb358380d2e3de08a90") {
+    poolCount
+    txCount
+    totalVolumeUSD
+    totalVolumeETH
+  }
+}
+```
+
+### Historical global data
+
+You can also query historical data by specifying a block number.
+
+```graphql
+{
+  poolManager(
+    id: "0x000000000004444c5dc75cb358380d2e3de08a90"
+    block: { number: 22451931 }
+  ) {
+    poolCount
+    txCount
+    totalVolumeUSD
+    totalVolumeETH
+  }
+}
+```
+
+## Pool Data
+
+To get data about a certain pool, pass in the pool address. Reference the full [pool schema](https://github.com/Uniswap/v4-subgraph/blob/main/schema.graphql#L76) and adjust the query fields to retrieve the data points you want.
+
+### General pool query
+
+The query below returns the feeTier, spot price, and liquidity for the ETH-USDC pool.
+
+```graphql
+{
+  pool(id: "0x21c67e77068de97969ba93d4aab21826d33ca12bb9f565d8496e8fda8a82ca27") {
+    tick
+    token0 {
+      symbol
+      id
+      decimals
+    }
+    token1 {
+      symbol
+      id
+      decimals
+    }
+    feeTier
+    sqrtPrice
+    liquidity
+  }
+}
+```
+
+### All possible pools
+
+The maximum items you can query at once is 1000. To get all possible pools, you can iterate using the skip variable. To get pools beyond the first 1000 you can also set the skip as shown below.
+
+### Skipping first 1000 pools
+
+This query sets the skip value and returns the first 10 responses after the first 1000.
+
+```graphql
+{
+  pools(first: 10, skip: 1000) {
+    id
+    token0 {
+      id
+      symbol
+    }
+    token1 {
+      id
+      symbol
+    }
+  }
+}
+```
+
+### Creating a skip variable
+
+This next query sets a skip variable. In your language and environment of choice you can then iterate through a loop, query to get 1000 pools each time, and continually adjust skip by 1000 until all pool responses are returned.
+
+Check out [this example](https://github.com/Uniswap/v3-info/blob/770a05dc1a191cf229432ebc43c1f2ceb3666e3b/src/data/pools/chartData.ts#L14) from our interface for poolDayData that does something similar.
+
+<Callout type="note">
+This query will not work in the graph explorer and more resembles the structure of a query you'd pass to some GraphQL middleware like Apollo.
+</Callout>
+
+```graphql
+query pools($skip: Int!) {
+  pools(first: 1000, skip: $skip, orderDirection: asc) {
+    id
+    sqrtPrice
+    token0 {
+      id
+    }
+    token1 {
+      id
+    }
+  }
+}
+```
+
+### Most liquid pools
+
+Retrieve the top 1000 most liquid pools. You can use this similar set up to orderBy other variables like number of swaps or volume.
+
+```graphql
+{
+  pools(first: 1000, orderBy: liquidity, orderDirection: desc) {
+    id
+  }
+}
+```
+
+### Pool daily aggregated
+
+This query returns daily aggregated data for the first 10 days since the given timestamp for the UNI-ETH pool. To calculate `poolId`, refer to [PoolId Library](https://github.com/Uniswap/v4-core/blob/main/src/types/PoolId.sol).
+
+```graphql
+{
+  poolDayDatas(
+    first: 10
+    orderBy: date
+    where: {
+      pool: "0x21c67e77068de97969ba93d4aab21826d33ca12bb9f565d8496e8fda8a82ca27"
+      date_gt: 1735689600
+    }
+  ) {
+    date
+    liquidity
+    sqrtPrice
+    token0Price
+    token1Price
+    volumeToken0
+    volumeToken1
+  }
+}
+```
+
+## Swap Data
+
+### General swap data
+
+To query data about a particular swap, input the transaction hash + "-" + the index in the swaps the transaction array. This is the reference for the full [swap schema](https://github.com/Uniswap/v4-subgraph/blob/main/schema.graphql#L186).
+
+This query fetches data about the sender, amounts, transaction data, timestamp, and tokens for a particular swap.
+
+```graphql
+{
+  swap(id: "0x0000329e0d864d8e7c93627b76f6b5b99bd776cb18d9f8829e7da469f563e7d4-212") {
+    sender
+    amount0
+    amount1
+    transaction {
+      id
+      blockNumber
+      gasUsed
+      gasPrice
+    }
+    timestamp
+    token0 {
+      id
+      symbol
+    }
+    token1 {
+      id
+      symbol
+    }
+  }
+}
+```
+
+### Recent swaps within a pool
+
+You can set the `where` field to filter swap data by pool address. This example fetches data about multiple swaps for the ETH-USDT pool, ordered by timestamp.
+
+```graphql
+{
+  swaps(
+    orderBy: timestamp
+    orderDirection: desc
+    where: {
+      pool: "0x21c67e77068de97969ba93d4aab21826d33ca12bb9f565d8496e8fda8a82ca27"
+    }
+  ) {
+    pool {
+      token0 {
+        id
+        symbol
+      }
+      token1 {
+        id
+        symbol
+      }
+    }
+    sender
+    amount0
+    amount1
+  }
+}
+```
+
+## Token Data
+
+Input the token contract address to fetch token data. Any token that exists in at least one Uniswap v4 pool can be queried. The output will aggregate data across all v4 pools that include the token.
+
+### General token data
+
+This queries the decimals, symbol, name, pool count, and volume in USD for the UNI token. Reference the full [token schema](https://github.com/Uniswap/v4-subgraph/blob/main/schema.graphql#L37) for all possible fields you can query.
+
+```graphql
+{
+  token(id: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984") {
+    symbol
+    name
+    decimals
+    volumeUSD
+    poolCount
+  }
+}
+```
+
+### Token daily aggregated
+
+You can fetch aggregate data about a specific token over a 24-hour period. This query gets 10 days of the 24-hour volume data for the UNI token ordered from oldest to newest.
+
+```graphql
+{
+  tokenDayDatas(
+    first: 10
+    where: { token: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984" }
+    orderBy: date
+    orderDirection: asc
+  ) {
+    date
+    token {
+      id
+      symbol
+    }
+    volumeUSD
+  }
+}
+```
+
+### All tokens
+
+Similar to retrieving all pools, you can fetch all tokens by using skip.
+
+<Callout type="note">
+This query will not work in the graph explorer and more resembles the structure of a query you'd pass to some GraphQL middleware like Apollo.
+</Callout>
+
+```graphql
+query tokens($skip: Int!) {
+  tokens(first: 1000, skip: $skip) {
+    id
+    symbol
+    name
+  }
+}
+```
+
+## Position Data
+
+### General position data
+
+To get data about a specific position, input the NFT tokenId. This queries the subscriptions, unsubscriptions, and transfers for the position with tokenId 3. Reference the full [position schema](https://github.com/Uniswap/v4-subgraph/blob/main/schema.graphql#416) to see all fields.
+
+```graphql
+{
+  position(id: 3) {
+    id
+    subscriptions {
+      id
+    }
+    unsubscriptions {
+      id
+    }
+    transfers {
+      id
+    }
+  }
+}
+```

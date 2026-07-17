@@ -1,0 +1,24 @@
+---
+title: 'Swap Routing'
+description: 'Use Uniswap API routing fields to choose protocol paths and return the most efficient quote flow for your integration.'
+icon: 'route'
+---
+## Routing Principles
+In order to get the appropriate swap routing, it is important to closely consider the values submitted through the `/quote` `protocols` and `routingPreference` fields. We recommend specifying the desired swap routing by specifying all `protocols` which you feel comfortable using and leaving the `routingPreference` field blank.
+
+- The `protocols` field is used to specify the protocols from which pricing will be considered and through which your swap may eventually be executed. The possible values for the field are `V2`, `V3`, `V4`, `UNISWAPX_V2`, and `UNISWAPX_V3`
+- The `routingPreference` field is used to specify the preferred matching strategy. The possible values for the field are `BEST_PRICE` and `FASTEST`
+
+For complete information on the available values and combinations for the `protocols` and `routingPreference` fields, see [Swapping Architecture Overview](/docs/trading/swapping-api/getting-started). A summary is provided below:
+
+## Routing Outcomes
+
+- To perform a swap using only Uniswap protocol liquidity pools, specify `protocols` as `V2`, `V3`, and/or `V4`.
+- To perform a swap using only UniswapX protocol liquidity, specify `protocols` as `UNISWAPX_V2` **or** `UNISWAPX_V3`. Note that multiple UniswapX protocols may not be specified in the same request.
+- To perform a wrap/unwrap or bridge action, do not specify values for `protocols` or `routingPreference`. Note that wrapping/unwrapping is not supported through UniswapX protocols at all and a request to wrap/unwrap when `protocols` is set to any UniswapX protocol will fail.
+- To obtain the most efficient route based on current inputs from all protocols or the limited set of `protocols` specified, set `routingPreference` to `BEST_PRICE`
+- To obtain the fastest possible quote from all protocols or the limited set of `protocols` specified, set `routingPreference` to `FASTEST`. (Note that this will not consider private liquidity available via the UniswapX protocols.)
+
+## Cross-chain and multi-step routing
+
+Some trades cannot settle in a single transaction, either because they cross chains or because they need more than one step on the same chain. For these, `/quote` returns `"routing": "CHAINED"` and the API drives execution as an ordered plan of steps. See [Swapping with Chained Actions](/docs/trading/swapping-api/chained-actions).

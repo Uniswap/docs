@@ -1,0 +1,20 @@
+{
+  "title": "Guides",
+  "pages": [
+    "getting-started",
+    "create-pool",
+    "swapping",
+    "managing-liquidity",
+    "hooks",
+    "position-manager",
+    "read-pool-state",
+    "reading-pool-reserves",
+    "unlock-callback-and-deltas",
+    "custom-accounting",
+    "flash-accounting",
+    "state-view",
+    "erc-6909",
+    "subscriber",
+    "troubleshooting"
+  ]
+}

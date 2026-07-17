@@ -1,0 +1,46 @@
+---
+id: robinhood-chain-deployments
+title: Robinhood Chain Deployments
+description: Review Uniswap v3 deployment addresses and contract references for Robinhood Chain integrations.
+---
+
+The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap/swap-router-contracts` are deployed at the addresses listed below. Integrators should **no longer assume that they are deployed to the same addresses across chains** and be extremely careful to confirm mappings below.
+
+Robinhood Chain is an Arbitrum Orbit L2 (chainId `4663`) with ETH as the gas token. Confirm any deployment on the [Robinhood Chain explorer](https://robinhoodchain.blockscout.com/).
+
+| Contract                                                                                                                           | Robinhood Chain Addresses                    |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [UniswapV3Factory](https://github.com/Uniswap/uniswap-v3-core/blob/v1.0.0/contracts/UniswapV3Factory.sol)                         | [`0x1f7d7550b1b028f7571e69a784071f0205fd2efa`](https://robinhoodchain.blockscout.com/address/0x1f7d7550b1b028f7571e69a784071f0205fd2efa?tab=contract) |
+| [UniswapInterfaceMulticall](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/UniswapInterfaceMulticall.sol)       | [`0x282a3c4d320cc7f0d5eaf56b8029e4b88338f0a3`](https://robinhoodchain.blockscout.com/address/0x282a3c4d320cc7f0d5eaf56b8029e4b88338f0a3?tab=contract) |
+| [TickLens](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/TickLens.sol)                               | [`0x7dfd4f31be6814d2906bde155c3e1b146eac1468`](https://robinhoodchain.blockscout.com/address/0x7dfd4f31be6814d2906bde155c3e1b146eac1468?tab=contract) |
+| [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                         | [`0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7`](https://robinhoodchain.blockscout.com/address/0x33e885ed0ec9bf04ecfb19341582aadcb4c8a9e7?tab=contract) |
+| [NonfungiblePositionManager](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungiblePositionManager.sol) | [`0x73991a25c818bf1f1128deaab1492d45638de0d3`](https://robinhoodchain.blockscout.com/address/0x73991a25c818bf1f1128deaab1492d45638de0d3?tab=contract) |
+| [NonfungibleTokenPositionDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungibleTokenPositionDescriptor.sol) | [`0x6f84dae9c064ff453e5c8af51efb819f8f610225`](https://robinhoodchain.blockscout.com/address/0x6f84dae9c064ff453e5c8af51efb819f8f610225?tab=contract) |
+| [NFTDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/libraries/NFTDescriptor.sol)                | [`0x2e9d45bb7b30549f5216813ada9a6b7982c5b3ed`](https://robinhoodchain.blockscout.com/address/0x2e9d45bb7b30549f5216813ada9a6b7982c5b3ed?tab=contract) |
+| [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                             | [`0xcaf681a66d020601342297493863e78c959e5cb2`](https://robinhoodchain.blockscout.com/address/0xcaf681a66d020601342297493863e78c959e5cb2?tab=contract) |
+| [Permit2](https://github.com/Uniswap/permit2)                                                                                     | [`0x000000000022D473030F116dDEE9F6B43aC78BA3`](https://robinhoodchain.blockscout.com/address/0x000000000022d473030f116ddee9f6b43ac78ba3?tab=contract) |
+| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                    | [`0x8876789976decbfcbbbe364623c63652db8c0904`](https://robinhoodchain.blockscout.com/address/0x8876789976decbfcbbbe364623c63652db8c0904?tab=contract) |
+
+These addresses are final and were deployed from these npm package versions:
+
+- [`@uniswap/v3-core@1.0.0`](https://github.com/Uniswap/uniswap-v3-core/tree/v1.0.0)
+- [`@uniswap/v3-periphery@1.0.0`](https://github.com/Uniswap/uniswap-v3-periphery/tree/v1.0.0)
+- [`@uniswap/swap-router-contracts@1.1.0`](https://github.com/Uniswap/swap-router-contracts/tree/v1.1.0)
+
+## Uniswap v3 Staker
+
+An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/v3-staker/releases/tag/v1.0.2) for the `UniswapV3Staker` contract.
+
+## Universal Router
+
+The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
+
+## Uniswap Pool Deployments
+
+Every Uniswap pool is a unique instance of the `UniswapV3Pool` contract and is deployed at its own unique address. The contract source code of the pool will be auto-verified on the explorer. You can browse [Robinhood Chain contracts on the explorer](https://robinhoodchain.blockscout.com/) to confirm any deployment.
+
+You can look up the address of an existing pool on [Uniswap Info](https://info.uniswap.org/#/) or by calling the `getPool` function on the `UniswapV3Factory` contract.
+
+```solidity
+getPool("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", 3000)
+```

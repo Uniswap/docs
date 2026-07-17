@@ -1,0 +1,38 @@
+---
+title: 'Building Prerequisites'
+description: 'Prepare your Uniswap API integration with signer, RPC, JSON request, and API key management prerequisites.'
+---
+
+To build with the Uniswap API, you will need the following technical capabilities and environment parameters.
+
+**1. Ability to Sign and Send EVM Transactions and Messages**
+
+You must have the technical capability to:
+
+- Sign transactions using an EVM-compatible wallet, key management system, or backend signer
+- Broadcast transactions to your preferred RPC provider
+- Manage gas, nonces, and transaction lifecycle
+- Present EIP-712 Permit2 messages to the user for signing
+
+**2. Familiarity with JSON-Based API Integration**
+
+You need to be able to:
+
+- Construct and parse JSON requests/responses
+- Handle standard HTTP status codes
+- Implement retries or timeouts where required
+
+**3. Access to Reliable RPC Infrastructure**
+
+You must operate or use a provider that supports:
+
+- The chains you wish to trade on (e.g., Ethereum, Unichain, other L2s)
+- Knowledge of how to troubleshoot RPC submission failures
+
+**4. Secure API Key Management**
+
+Your system must be able to:
+
+- Store and protect your Uniswap API key
+- Attach it to all requests via HTTPS
+- Protect it from exposure in front-end code (ex. using a proxy)

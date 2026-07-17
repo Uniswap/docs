@@ -1,0 +1,20 @@
+---
+title: ERC-7739
+description: Understand ERC-7739 defensive rehashing for alternative signer validation in Uniswap smart wallet accounts.
+---
+
+ERC-7739 is a standard which defines a defensive rehashing model for external signers on smart contract accounts. This does not apply to signatures from the root EOA (the one delegated to the implementation), but is enforced for all alternative keys which have been added to an account.
+
+## Draft Status
+
+The ERC is still in draft [here](https://eips.ethereum.org/EIPS/eip-7739), with example implementations in [Solady](https://github.com/Vectorized/solady/blob/main/src/accounts/ERC1271.sol) and [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-community-contracts/blob/master/contracts/utils/cryptography/signers/ERC7739.sol).
+
+## Invalidating Signatures
+
+A wallet can invalidate every off-chain signature it has previously issued from its alternative signers at once. It does this by advancing an internal salt that is part of its EIP-712 signing domain, which changes the domain separator so older signatures no longer validate. Signatures from the root EOA are not affected.
+
+Call `updateSalt()` to advance the salt. Rotation is one-way and permanent: each call moves the salt forward and it can never return to a prior value, so invalidated signatures stay invalid. Surface this as a "revoke all outstanding signatures" action, for example after a suspected key compromise or when signing out of all integrations. If your tooling relies on an earlier form of this function that took a value argument, update it to the no-argument `updateSalt()`.
+
+## Client-Side Tooling
+
+Viem has a client-side implementation [here](https://viem.sh/experimental/erc7739/signTypedData).

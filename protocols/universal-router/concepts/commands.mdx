@@ -1,0 +1,100 @@
+---
+id: technical-reference
+title: Universal Router Commands
+description: Reference Uniswap Universal Router command encoding, supported v2 commands, and composition patterns for execute flows.
+---
+
+Transactions to `UniversalRouter` are expressed as a compact command stream. Each command maps to an operation module and reads one ABI-encoded item from `inputs[i]`.
+
+## Execution Entry Points
+
+Most integrations run through one of these `execute` overloads:
+
+```solidity
+execute(bytes calldata commands, bytes[] calldata inputs, uint256 deadline)
+execute(bytes calldata commands, bytes[] calldata inputs)
+```
+
+Both overloads process the same command stream. The deadline overload adds a timestamp guard.
+
+`UniversalRouter` also exposes `executeSigned(...)`, which sets signature context, validates the signature payload, and then routes into `execute(commands, inputs)`.
+
+## Command Byte Encoding
+
+Each command is 1 byte with this layout:
+
+| 7 | 0 to 6 |
+|---|---|
+| `f` | `command` |
+
+- `f`: allow-revert flag. If set, a failed command does not revert the full transaction.
+- `command`: 7-bit command identifier (`commandType & 0x7f` in dispatcher logic).
+
+Undefined command values revert with `InvalidCommandType`.
+
+## Supported Commands (v2)
+
+| Command | Name |
+|---:|---|
+| `0x00` | `V3_SWAP_EXACT_IN` |
+| `0x01` | `V3_SWAP_EXACT_OUT` |
+| `0x02` | `PERMIT2_TRANSFER_FROM` |
+| `0x03` | `PERMIT2_PERMIT_BATCH` |
+| `0x04` | `SWEEP` |
+| `0x05` | `TRANSFER` |
+| `0x06` | `PAY_PORTION` |
+| `0x08` | `V2_SWAP_EXACT_IN` |
+| `0x09` | `V2_SWAP_EXACT_OUT` |
+| `0x0a` | `PERMIT2_PERMIT` |
+| `0x0b` | `WRAP_ETH` |
+| `0x0c` | `UNWRAP_WETH` |
+| `0x0d` | `PERMIT2_TRANSFER_FROM_BATCH` |
+| `0x0e` | `BALANCE_CHECK_ERC20` |
+| `0x10` | `V4_SWAP` |
+| `0x11` | `V3_POSITION_MANAGER_PERMIT` |
+| `0x12` | `V3_POSITION_MANAGER_CALL` |
+| `0x13` | `V4_INITIALIZE_POOL` |
+| `0x14` | `V4_POSITION_MANAGER_CALL` |
+| `0x21` | `EXECUTE_SUB_PLAN` |
+
+## Command Groups
+
+### Swaps
+
+- `V3_SWAP_EXACT_IN`, `V3_SWAP_EXACT_OUT`, `V2_SWAP_EXACT_IN`, `V2_SWAP_EXACT_OUT`, and `V4_SWAP`.
+- Input payloads include recipient, amount bounds, and route/path data.
+- `V4_SWAP` uses action bytes and params arrays that route to v4 swap and settlement handlers.
+
+### Permit2 operations
+
+- `PERMIT2_TRANSFER_FROM`, `PERMIT2_TRANSFER_FROM_BATCH`, `PERMIT2_PERMIT`, and `PERMIT2_PERMIT_BATCH`.
+- These commands configure or consume signature-based transfer permissions.
+- For signature and allowance semantics, see [Permit2 Overview](/docs/protocols/permit2/overview).
+
+### Payments and balance checks
+
+- `SWEEP`, `TRANSFER`, `PAY_PORTION`, `WRAP_ETH`, `UNWRAP_WETH`, and `BALANCE_CHECK_ERC20`.
+- These commands settle router-held balances and enforce post-condition checks.
+- Typical patterns include cleaning residual balances after partial fills.
+
+### Position and sub-plan operations
+
+- `V3_POSITION_MANAGER_PERMIT`, `V3_POSITION_MANAGER_CALL`, `V4_INITIALIZE_POOL`, `V4_POSITION_MANAGER_CALL`, and `EXECUTE_SUB_PLAN`.
+- These commands support liquidity workflows and nested execution plans.
+- `EXECUTE_SUB_PLAN` is useful for conditional branches and fallback sub-flows.
+
+## Safety Patterns
+
+If you need partial-fill behavior, set the high bit on a command:
+
+```solidity
+command = 0x80 | 0x00; // V3_SWAP_EXACT_IN with allow-revert
+```
+
+When allow-revert is used, include cleanup commands such as `SWEEP` to avoid stranded balances in the router.
+
+## References
+
+- [Universal Router repository](https://github.com/Uniswap/universal-router)
+- [Commands.sol](https://github.com/Uniswap/universal-router/blob/main/contracts/libraries/Commands.sol)
+- [Universal Router legacy v1.6.0](https://github.com/Uniswap/universal-router/tree/v1.6.0)

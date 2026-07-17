@@ -1,0 +1,10 @@
+{
+  "title": "Guides",
+  "pages": [
+    "getting-started",
+    "swapping",
+    "managing-liquidity",
+    "pool-data",
+    "price-oracle"
+  ]
+}

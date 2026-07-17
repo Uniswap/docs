@@ -1,0 +1,387 @@
+---
+title: Transfer USDC on Unichain
+description: Build a dApp that transfers USDC on Unichain using Next.js and viem.
+---
+
+## Quickstart: Set Up and Transfer USDC on Unichain
+
+This guide walks you through the process of creating a dApp for transferring USDC on the Unichain Network.
+
+![USDC transfer app preview](https://i.imgur.com/DzmfGKk.png)
+
+## What Is USDC?
+
+For businesses, developers, and consumers, USDC is a digital dollar created by Circle that unlocks global, secure, and frictionless access to a stable store of value, including instant, low-cost payments, and 24/7 capital markets.
+
+> 📘 USDC is backed 100% by highly liquid cash and cash-equivalent assets, so it's always redeemable 1:1 for USD. [Circle](https://www.circle.com/transparency)
+
+## GitHub Repository
+
+You can find the complete source code for the sample application in the [GitHub repository](https://github.com/circle-ccooper/Unichain-USDC-Sample-App).
+
+## Prerequisites
+
+Before you begin:
+
+- Set up a wallet on Unichain
+- Have ETH and USDC on Unichain testnet
+- Use the [USDC Faucet](https://faucet.circle.com/) if needed
+- Use the USDC testnet token contract on Unichain Sepolia: `0x31d0220469e10c4E71834a79b1f276d740d3768F`
+
+## Part 1. Project Setup
+
+Perform the steps below to set up the project files for your application:
+
+1. Create new `Next.js` project
+
+```shell
+npx create-next-app@latest transfer-usdc-app --typescript -- tailwind --eslint
+```
+
+2. Install dependencies
+
+```shell
+npm install viem @radix-ui/react-slot @radix-ui/react-tabs lucide-react
+```
+
+3. Create directory structure
+
+```text
+app/
+  features/
+	wallet/
+	  components/
+		WalletInterface.tsx
+	  constants/
+		contracts.ts
+	  hooks/
+	    useWallets.ts
+```
+
+## Part 2. Create Source Code
+
+Perform the steps below to create the source code for your application:
+
+1. Define Contract Constants
+
+   Create `contracts.ts` and copy the code below:
+
+```javascript
+// The address of the USDC token contract on the Unichain Sepolia network
+export const USDC_CONTRACT_ADDRESS = '0x31d0220469e10c4E71834a79b1f276d740d3768F';
+
+// The ABI (Application Binary Interface) for the USDC token contract
+export const USDC_ABI = [
+  {
+    // Function to transfer USDC tokens from the caller's address to a specified address
+    constant: false,
+    inputs: [
+      { name: '_to', type: 'address' },
+      { name: '_value', type: 'uint256' },
+    ],
+    name: 'transfer',
+    outputs: [{ name: '', type: 'bool' }],
+    type: 'function',
+  },
+  {
+    // Function to get the balance of USDC tokens for a specific address
+    constant: true,
+    inputs: [{ name: '_owner', type: 'address' }],
+    name: 'balanceOf',
+    outputs: [{ name: 'balance', type: 'uint256' }],
+    type: 'function',
+  }
+];
+```
+
+2. Create Wallet Hook
+
+Create `useWallet.ts` and copy the code below:
+
+```javascript
+import { useState, useEffect } from 'react';
+import {
+  http,
+  createPublicClient,
+  createWalletClient,
+  custom,
+  encodeFunctionData,
+} from 'viem';
+import { unichainSepolia } from 'viem/chains';
+import type { Address, Hash, TransactionReceipt } from 'viem';
+import { USDC_CONTRACT_ADDRESS, USDC_ABI } from '../constants/contracts';
+
+// Create a public client to interact with the blockchain
+const publicClient = createPublicClient({
+  chain: unichainSepolia,
+  transport: http()
+});
+
+// Create a wallet client to interact with the user's wallet
+const walletClient = createWalletClient({
+  chain: unichainSepolia,
+  transport: custom(window.ethereum ?? {})
+});
+
+// Custom hook to manage wallet interactions
+export function useWallet() {
+  const [account, setAccount] = useState<Address>();
+  const [hash, setHash] = useState<Hash>();
+  const [receipt, setReceipt] = useState<TransactionReceipt>();
+  const [balance, setBalance] = useState<string>();
+
+  // Effect to wait for the transaction receipt when a hash is available
+  useEffect(() => {
+    (async () => {
+      if (hash) {
+        const receipt = await publicClient.waitForTransactionReceipt({ hash });
+        setReceipt(receipt);
+      }
+    })();
+  }, [hash]);
+
+  // Effect to fetch the balance after the transaction receipt is available
+  useEffect(() => {
+    if (account && receipt) {
+      fetchBalance(account);
+    }
+  }, [receipt]);
+
+  // Function to connect to the user's wallet
+  const connect = async () => {
+    const [address] = await walletClient.requestAddresses();
+    setAccount(address);
+    await fetchBalance(address);
+  };
+
+  // Function to fetch the USDC balance for a given address
+  const fetchBalance = async (address: Address) => {
+    const balance = await publicClient.readContract({
+      address: USDC_CONTRACT_ADDRESS,
+      abi: USDC_ABI,
+      functionName: 'balanceOf',
+      args: [address],
+    });
+
+    // Format the balance from the smallest unit (wei) to a human-readable format
+    const formattedBalance = (Number(balance) / 10 ** 6).toFixed(2);
+    setBalance(formattedBalance);
+  };
+
+  // Function to send a USDC transaction to a specified address
+  const sendTransaction = async (to: Address, value: string) => {
+    if (!account) return;
+
+    // Convert the value from USDC to the smallest unit (wei)
+    const valueInWei = BigInt(parseFloat(value) * 10 ** 6);
+
+    // Encode calldata for the transfer function
+    const data = encodeFunctionData({
+      abi: USDC_ABI,
+      functionName: 'transfer',
+      args: [to, valueInWei],
+    });
+
+    // Send the transaction using the wallet client
+    const hash = await walletClient.sendTransaction({
+      account,
+      to: USDC_CONTRACT_ADDRESS,
+      data,
+    });
+    setHash(hash);
+  };
+
+  // Return the wallet state and functions for use in components
+  return {
+    account,
+    balance,
+    receipt,
+    connect,
+    sendTransaction,
+  };
+}
+```
+
+3. Create Wallet Interface Component
+
+Create `WalletInterface.tsx` and copy the code below:
+
+```javascript
+'use client'
+
+import { useRef } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Tabs, TabsContent } from "@/components/ui/tabs"
+import { Wallet } from "lucide-react"
+import { useWallet } from "../hooks/useWallet"
+import type { Address } from 'viem'
+
+const bigIntReplacer = (_key: string, value: any) => {
+  if (typeof value === 'bigint') {
+    return value.toString();
+  }
+  return value;
+};
+
+export default function WalletInterface() {
+  const { account, balance, receipt, connect, sendTransaction } = useWallet();
+  const addressInput = useRef<HTMLInputElement>(null)
+  const valueInput = useRef<HTMLInputElement>(null)
+
+  const handleSendTransaction = () => {
+    if (!addressInput.current || !valueInput.current) return;
+    sendTransaction(
+      addressInput.current.value as Address,
+      valueInput.current.value
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-black p-4">
+      <div className="max-w-md mx-auto space-y-4">
+        <div className="bg-[#1c1c1c] text-green-500 p-2 rounded-lg text-sm flex items-center gap-2">
+          <Wallet className="h-4 w-4" />
+          You are in testnet mode
+        </div>
+
+        <Card className="border-0 bg-[#1c1c1c] text-white">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="bg-[#2a2a2a] p-2 rounded-lg">
+                  <Wallet className="h-6 w-6" />
+                </div>
+                {account ? (
+                  <div>
+                    <div className="font-bold">Wallet 1</div>
+                    <div className="text-sm text-gray-400">
+                      {`${account.slice(0, 6)}...${account.slice(-4)}`}
+                    </div>
+                  </div>
+                ) : (
+                  <div>Connect Wallet</div>
+                )}
+              </div>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {!account ? (
+              <Button
+                onClick={connect}
+                className="w-full bg-purple-700 hover:bg-purple-600 text-white"
+              >
+                Connect Wallet
+              </Button>
+            ) : (
+              <div className="space-y-6">
+                <div className="flex items-center">
+                  <div className="text-4xl font-bold">${balance || '0.00'}</div>
+                  <img src="/usdc.png" alt="USDC Logo" className="ml-2 w-8 h-8" />
+                </div>
+
+                <Tabs defaultValue="send" className="w-full">
+                  <TabsContent value="send" className="space-y-4">
+                    <div className="space-y-2">
+                      <Input
+                        ref={addressInput}
+                        placeholder="Send to address"
+                        className="bg-[#2a2a2a] border-0 text-white placeholder:text-gray-500"
+                      />
+                      <Input
+                        ref={valueInput}
+                        placeholder="USDC Amount"
+                        type="number"
+                        className="bg-[#2a2a2a] border-0 text-white placeholder:text-gray-500"
+                      />
+                      <Button
+                        onClick={handleSendTransaction}
+                        className="w-full bg-purple-700 hover:bg-purple-600"
+                      >
+                        Send
+                      </Button>
+                    </div>
+
+                    {receipt && (
+                      <div className="mt-4 p-4 bg-[#2a2a2a] rounded-lg">
+                        <div className="text-sm text-gray-400">Transaction Receipt:</div>
+                        <pre className="text-xs overflow-auto">
+                          {JSON.stringify(receipt, bigIntReplacer, 2)}
+                        </pre>
+                      </div>
+                    )}
+                  </TabsContent>
+                </Tabs>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+        <div className="flex justify-center items-center space-x-4 text-white text-sm mt-4">
+        <a href="https://developers.circle.com/stablecoins/what-is-usdc" className="hover:text-purple-400 transition-colors">What is USDC</a>
+        <a href="https://developers.circle.com/w3s/circle-programmable-wallets-an-overview" className="hover:text-purple-400 transition-colors">Developer Tools</a>
+        <a href="https://www.circle.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 transition-colors">Go to Circle.com</a>
+      </div>
+      </div>
+    </div>
+  )
+}
+```
+
+4. Update Main Page
+
+Update `app/page.tsx` with the code below:
+
+```javascript
+import WalletInterface from './features/wallet/components/WalletInterface'
+import Image from 'next/image'
+
+export default function Home() {
+  return (
+    <main>
+      <WalletInterface />
+    </main>
+
+  )
+}
+```
+
+5. Add TypeScript Declaration
+
+      Create `types/global.d.ts` and copy the code below:
+
+```javascript
+declare global {
+    interface Window {
+      ethereum?: any;
+    }
+  }
+
+  export {}
+```
+
+## Part 3. Usage
+
+Perform the steps below to use your application.
+
+1. Start development server
+
+```shell
+npm run dev
+```
+
+2. Connect wallet
+
+- Click "Connect Wallet"
+- Approve Uniswap Wallet connection
+
+3. Send USDC
+
+- Enter recipient address
+- Enter USDC amount
+- Click "Send"
+- Approve transaction in Uniswap Wallet
+
+## Summary
+
+In this guide you learned how to create a dApp for transferring USDC on the Unichain network. For more information, refer to the [Circle Developer Documentation](https://developers.circle.com/). Happy coding!

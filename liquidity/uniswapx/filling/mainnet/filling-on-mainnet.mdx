@@ -1,0 +1,73 @@
+---
+id: createfiller
+title: Filling on Mainnet
+description: Integrate a UniswapX filler on Ethereum mainnet, retrieve open orders, and execute Dutch and limit fills safely.
+---
+
+## When can I fill orders? 
+Most mainnet orders have an **exclusivity window** where a winning [quoter](/docs/liquidity/uniswapx/filling/mainnet/become-a-quoter) from an RFQ has priority to fill. Permissionless fillers become eligible to fill these orders in two cases:
+
+- **Soft exclusivity override**: When an order's `exclusivityOverrideBps` is greater than zero, non-exclusive fillers can fill during the exclusivity window by providing extra tokens to the swapper. Each output amount is scaled up by the override threshold. For example, an order with an exclusivity threshold of 200 bps requires the filler to provide 2% more output than the base price.
+- **Exclusivity expiration**: After the window ends, the order enters a Dutch Auction open to all fillers with no penalty.
+
+## Integrating as a Filler
+Integrating as a filler has two components: defining an execution strategy and retrieving and filling discovered orders.
+
+### Filler execution strategy
+
+To execute a discovered order, a filler needs to call one of the `execute` methods ([source](https://github.com/Uniswap/UniswapX/blob/v1.1.0/src/reactors/BaseReactor.sol#L31)) of a reactor, providing it with the orders to execute. The reactor checks that the required output amounts reach the order's recipients within the same transaction. If they do not, the reactor reverts the fill.
+
+A filler can source the output in two ways: provide the output tokens directly from its own inventory, or use `executeWithCallback` to receive the input tokens first, run a route to acquire the output, and return the output before the transaction ends.
+
+The simplest fill strategy is called `Direct Filler`, where the trade is executed directly against tokens held in the fillers address. To use this strategy, a filler can simply approve the order's output tokens to the reactor and call `execute` or `executeBatch` from their address. (see [source](https://github.com/Uniswap/UniswapX/blob/v1.1.0/src/reactors/BaseReactor.sol#L35)):
+
+```solidity
+// Execute direct filler order
+outputToken.approve(reactor, type(uint256).max);
+reactor.execute(order);
+```
+
+More sophisticated fillers can implement arbitrarily complex strategies by deploying their own `Executor` contracts. This contract should implement the [`IReactorCallback`](https://github.com/Uniswap/UniswapX/blob/v1.1.0/src/interfaces/IReactorCallback.sol) interface, which takes in an order with input tokens and acquires the allotted number of output tokens for the caller. It must approve the output tokens to the reactor, which then transfers them to the order output recipients to settle the order. `Executor` contracts must call `reactor.executeWithCallback` or `reactor.executeBatchWithCallback`. They can also specify arbitrary callback data that will be passed into the `reactorCallback` call.
+
+```solidity
+contract Executor {
+  function execute(Order calldata order, bytes calldata callbackData) {
+    reactor.executeWithCallback(order, callbackData)
+  }
+
+  function reactorCallback(ResolvedOrder[] calldata orders, bytes calldata callbackData) {
+    // implement strategy here
+  }
+}
+
+// Execute custom fill strategy
+address executor = /* Address of deployed executor contract */ ;
+bytes fillData = /* Call data to be sent to your executor contract */;
+executor.execute(order, fillData);
+```
+
+For convenience, an [example Executor Contract](https://github.com/Uniswap/UniswapX/tree/v1.1.0/src/sample-executors) is available to demonstrate how a filler can implement a strategy that executes a UniswapX order against a Uniswap v3 pool. These contracts should be deployed to each chain that the filler would like to support.
+
+### Dutch orders
+
+All signed Dutch Orders created through the Uniswap UI are available via the UniswapX Orders Endpoint. [Swagger documentation](https://api.uniswap.org/v2/uniswapx/docs) is available, but see below for a quick example curl.
+
+```bash
+GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&limit=1
+```
+
+It’s up to the individual filler to architect their own systems for finding and executing profitable orders, but the basic flow is as follows:
+
+1. Call `GET` on the `/orders` of the UniswapX Orders Endpoint as written above, to retrieve open signed orders. This page covers Dutch V2 orders on Mainnet (`chainId=1`). For the DutchV3 chains, see [Filling Dutch V3 Auctions](/docs/liquidity/uniswapx/filling/dutch-v3-chains/filling-on-dutch-v3-chains).
+2. Decode returned orders using the [UniswapX SDK](https://github.com/Uniswap/UniswapX-sdk/#parsing-orders).
+3. Determine which orders you would like to execute.
+4. Send a new transaction to the [execute](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L29) or [executeBatch](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L37) methods of the [`DutchOrderReactor`](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/DutchOrderReactor.sol), specifying the signed orders you’d like to fill and the address of your executor contract.
+
+### Limit orders
+The process for limit orders is the same as Dutch orders except they are retrieved from the [Limit Orders Endpoint](https://api.uniswap.org/v2/limit-orders) ([API docs](https://api.uniswap.org/v2/uniswapx/docs)) and executed against the [`ExclusiveDutchOrderReactor`](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/ExclusiveDutchOrderReactor.sol):
+
+1. Call `GET` on the `/limit-orders` of the UniswapX Limit Orders Endpoint as written above, to retrieve open signed orders
+2. Decode returned orders using the [UniswapX SDK](https://github.com/Uniswap/UniswapX-sdk/#parsing-orders)
+3. Send a new transaction to the [execute](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L29) or [executeBatch](https://github.com/Uniswap/UniswapX/blob/a2025e3306312fc284a29daebdcabb88b50037c2/src/reactors/BaseReactor.sol#L37) methods of the [`ExclusiveDutchOrderReactor`](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/ExclusiveDutchOrderReactor.sol), specifying the signed orders you’d like to fill and the address of your executor contract.
+
+For Dutch and Limit Orders, if the order is valid it will compete against other filler attempts to execute it in a gas auction. For this reason, it is recommended to submit these transactions through a service like [Flashbots Protect](https://docs.flashbots.net/flashbots-protect/overview).
