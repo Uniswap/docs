@@ -6,6 +6,8 @@ Thanks for giving a little extra love to the Uniswap docs! Below are some basic 
 
 The docs published at [developers.uniswap.org](https://developers.uniswap.org) are built from a separate source repository. When we accept a change here, we port it into that publishing pipeline, so your fix may go live on the site before it appears in this repository. Content here is updated in batches on a regular cadence, and accepted contributions are credited as commit co-authors. See the [README](README.md) for details.
 
+All documentation lives in the `content/` directory, and that is where content changes belong. The `archive/` directory holds the previous version of this repository for reference only; PRs against it will not be accepted.
+
 By submitting a pull request you agree that your contribution is licensed under this repository's [MIT license](LICENSE).
 
 ## Creating a pull request
@@ -38,3 +40,4 @@ git checkout -b "my-contribution"
 - Every `.mdx` page needs `title` and `description` frontmatter (see the [README](README.md))
 - Keep pages concise and cross-link related pages instead of repeating content
 - Place images in the `images/` directory of the section that uses them
+- All content lives under `content/`; do not add or edit files under `archive/`
