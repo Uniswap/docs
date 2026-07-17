@@ -2,48 +2,35 @@
 
 Source content for the Uniswap developer documentation published at [developers.uniswap.org](https://developers.uniswap.org).
 
+All documentation lives in the [`content/`](content) directory. Content changes (fixes, new pages, examples) belong there. The [`archive/`](archive) directory holds the previous version of this repository, kept for reference only.
+
 ## Repository structure
 
 ```
-├── get-started/                    # Core concepts and quickstart
-│   └── concepts/                   # AMMs, liquidity, swaps, fees, price impact
-├── trading/                        # Trading integrations
-│   └── swapping-api/               # Swapping API guides and reference
-├── liquidity/                      # Liquidity integrations
-│   ├── liquidity-launchpad/        # Token launch tooling
-│   ├── liquidity-provisioning-api/ # Liquidity Provisioning API
-│   └── uniswapx/                   # UniswapX: quoting, filling, concepts
-├── protocols/                      # Protocol documentation
-│   ├── v2/ v3/ v4/                 # Core protocol versions, concepts, guides
-│   ├── universal-router/           # Universal Router
-│   ├── permit2/                    # Permit2 approvals
-│   ├── smart-wallet/               # Smart wallet
-│   ├── the-compact/                # The Compact
-│   └── protocol-fee/               # Protocol fee
-├── sdks/                           # SDK documentation
-│   └── v2/ v3/ v4/                 # Per-version SDK guides and reference
-├── uniswap-ai/                     # Uniswap AI skills and plugins
-├── unichain/                       # Unichain
-│   ├── getting-started/            # Connect, bridge, deploy
-│   ├── guides/                     # Builder guides
-│   ├── technical-information/      # Contracts, network details
-│   └── tools/                      # Ecosystem tooling
-├── ecosystem/                      # Ecosystem resources
-│   ├── governance/                 # Governance processes and reference
-│   ├── subgraphs/                  # Subgraph data and queries
-│   └── builder-support/            # Support programs for builders
-├── community/                      # Community tooling and learning resources
-├── changelog/                      # API and protocol change notifications
-├── examples/                       # Example contracts and SDK snippets
-│   ├── smart-contracts/            # Solidity examples
-│   └── sdk/                        # SDK examples
-├── archive/                        # Previous version of this repository, kept for reference
-└── meta.json                       # Root navigation configuration
+├── content/                            # developers.uniswap.org content
+│   ├── get-started/                    # Core concepts and quickstart
+│   ├── trading/                        # Trading integrations, Swapping API
+│   ├── liquidity/                      # UniswapX, Liquidity Launchpad, Provisioning API
+│   ├── protocols/                      # v2, v3, v4, Universal Router, Permit2,
+│   │                                   #   smart wallet, The Compact, protocol fee
+│   ├── sdks/                           # SDK documentation (v2, v3, v4)
+│   ├── uniswap-ai/                     # Uniswap AI skills and plugins
+│   ├── unichain/                       # Unichain: getting started, guides, tooling
+│   ├── ecosystem/                      # Governance, subgraphs, builder support
+│   ├── community/                      # Community tooling and learning resources
+│   ├── changelog/                      # API and protocol change notifications
+│   ├── examples/                       # Example contracts and SDK snippets
+│   └── meta.json                       # Root navigation configuration
+├── archive/                            # Previous version of this repository (reference only)
+├── CONTRIBUTING.md
+├── DISCLAIMER.md
+├── LICENSE
+└── README.md
 ```
 
 ## Contributing
 
-Contributions are welcome, and our team reviews every PR. See the [contribution guidelines](CONTRIBUTING.md) for how the process works and how to get started.
+Contributions are welcome, and our team reviews every PR. Content changes go inside `content/`. See the [contribution guidelines](CONTRIBUTING.md) for how the process works and how to get started.
 
 ## Content conventions
 
