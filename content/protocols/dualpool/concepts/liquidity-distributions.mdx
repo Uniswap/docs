@@ -1,0 +1,64 @@
+---
+title: Liquidity Distributions
+description: Learn how DualPool operators shape just-in-time liquidity across weighted tick buckets.
+---
+
+## Liquidity Distributions
+
+When a swap arrives, DualPool does not deploy its capital into a single price range. Each pool carries an owner-configured distribution, a list of tick buckets, each with a weight:
+
+```solidity
+struct LiquidityBucket {
+    int24 tickLower;
+    int24 tickUpper;
+    uint16 weightBps;
+}
+```
+
+During a JIT cycle, the hook budgets each bucket's share of the deployable balance by weight, computes the corresponding liquidity at the current price, and adds one v4 position per bucket. Buckets may overlap, be asymmetric, or be non-contiguous.
+
+A distribution must satisfy:
+
+- 1 to 8 buckets
+- Every `weightBps` nonzero, and weights summing to exactly 10,000 bps
+- Ticks aligned to the pool's `tickSpacing` and within `TickMath` bounds
+
+## Example Shapes
+
+A typical stable-pair distribution concentrates depth at the peg with thinner cover around it:
+
+| Bucket | Tick Range | Weight |
+| --- | --- | --- |
+| Tight | `[-10, 10]` | 75% |
+| Medium | `[-30, 30]` | 15% |
+| Wide | `[-60, 60]` | 10% |
+
+Because buckets are free-form, operators can express more opinionated structures:
+
+- **Ultra-tight**: most weight inside `[-1, 1]` and `[-5, 5]`, maximizing capital efficiency for small swaps near the peg at the cost of sensitivity to drift
+- **Barbell**: a tight center plus one-sided tail buckets (e.g. `[50, 250]`) that are out of range at rest but give large swaps something to trade into, without diluting liquidity across unused middle ticks
+- **Inventory skew**: overweighting the side that sells the maker's excess asset, so directional flow naturally rebalances the pool
+- **Peg defense**: laddering progressively deeper buckets on the vulnerable side of a peg while keeping a small symmetric center
+
+## Pre-Budgeted Allocation
+
+For each bucket, the hook first budgets the balance by weight:
+
+```
+weightedBal0 = bal0 * weightBps / 10_000
+weightedBal1 = bal1 * weightBps / 10_000
+```
+
+then derives the bucket's liquidity with `LiquidityAmounts.getLiquidityForAmounts` and the exact token requirements with `SqrtPriceMath`. Pre-budgeting (rather than sizing every bucket against the full balance and scaling afterward) keeps deployment, indicative quotes, and execution aligned, and means the hook withdraws from the vaults only what the positions actually require at the current price.
+
+## Rotating Distributions
+
+The owner can replace a pool's distribution at any time with `setDistribution`, for example rotating between tighter and wider shapes by volatility regime. Updates are blocked while a JIT cycle is in flight, so rotations always happen cleanly between swaps.
+
+## Reading the Distribution
+
+`getDistribution(poolId)` exposes the active bucket list: tick bounds and weights. The summed, pre-budgeted liquidity of the buckets in range at the current tick is what backs `getIndicativeQuote`; out-of-range buckets deploy alongside them but only become active if a swap moves price into their range.
+
+## Developer Resources
+
+To create a pool and configure its first distribution, read [Create and Operate a Pool](/docs/protocols/dualpool/guides/create-pool).

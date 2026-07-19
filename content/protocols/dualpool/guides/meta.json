@@ -1,0 +1,9 @@
+{
+  "title": "Guides",
+  "pages": [
+    "swap",
+    "provide-liquidity",
+    "router-integration",
+    "create-pool"
+  ]
+}

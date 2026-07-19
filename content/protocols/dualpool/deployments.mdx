@@ -1,0 +1,33 @@
+---
+title: Deployments
+description: Find current DualPool deployment addresses and live pool parameters.
+---
+
+A DualPool test deployment is live on Ethereum mainnet. The hook address encodes DualPool's [permission flags](/docs/protocols/dualpool/concepts/jit-liquidity) per the v4 convention.
+
+## Mainnet Deployments
+
+### Ethereum: 1
+
+| Contract | Address |
+|----------|---------|
+| DualPoolHook | [`0x00000078BD49D5279a99b5F4011a5C61eE8caaC0`](https://etherscan.io/address/0x00000078BD49D5279a99b5F4011a5C61eE8caaC0) |
+
+## Live Pools
+
+### USDC/USDT
+
+| Parameter | Value |
+|-----------|-------|
+| Pool ID | `0xf32349cbc41fec9d3194f2b4e9ee72ded0bfda412427be9cb8a4087f74bdb065` |
+| Fee | `10` pips (0.001%) |
+| Tick spacing | `10` |
+| Steakhouse USDC Prime (ERC-4626) | [`0xbeeff2C5bF38f90e3482a8b19F12E5a6D2FCa757`](https://etherscan.io/address/0xbeeff2C5bF38f90e3482a8b19F12E5a6D2FCa757) |
+| Steakhouse USDT Prime (ERC-4626) | [`0xbeef003C68896c7D2c3c60d363e8d71a49Ab2bf9`](https://etherscan.io/address/0xbeef003C68896c7D2c3c60d363e8d71a49Ab2bf9) |
+| External deposits | Enabled |
+
+The `PoolKey` is `(USDC, USDT, 10, 10, DualPoolHook)`, and the pool ID is `keccak256(abi.encode(poolKey))`. Both tokens use 6 decimals.
+
+<Callout type="note">
+Do not hardcode derived values the chain can tell you: read vault addresses from `vaults(poolId, currency)` on the hook, and compute pool IDs by hashing the key.
+</Callout>

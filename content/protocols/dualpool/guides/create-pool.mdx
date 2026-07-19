@@ -1,0 +1,110 @@
+---
+title: Create and Operate a Pool
+description: Initialize, bootstrap, and manage a DualPool as the hook owner.
+---
+
+## Context
+
+DualPool pools are created and operated by the hook owner; pool creation is not permissionless. The owner configures the pool's fee, price, yield vaults, and liquidity distribution at creation, seeds the first deposit, and manages liveness and configuration afterward.
+
+This guide walks the full lifecycle: configuration, initialization, bootstrap, and ongoing operations.
+
+## 1. Configure the PoolKey
+
+```solidity
+PoolKey memory key = PoolKey({
+    currency0: currency0,
+    currency1: currency1,
+    fee: lpFee,              // static fee in pips, e.g. 10 = 0.001%
+    tickSpacing: tickSpacing,
+    hooks: IHooks(address(dualPoolHook))
+});
+```
+
+Constraints enforced at initialization:
+
+- _Currencies_ must be sorted, and neither may be native ETH. DualPool rejects `address(0)` currencies with `NativeNotSupported`; use wrapped-token pairs
+- _fee_ must be a concrete static value at most `MAX_LP_FEE`; the dynamic-fee flag is rejected with `DynamicFeeNotSupported`
+- _hooks_ must be the DualPool hook address
+
+<Callout type="warn" title="The fee is immutable">
+`key.fee` is fixed for the pool's lifetime; the hook cannot update it in place. To change the fee, deploy a new pool with a different `PoolKey.fee`.
+</Callout>
+
+## 2. Choose the Vaults
+
+Each currency may be paired with an ERC-4626 vault that holds the pool's idle capital. Vaults must satisfy, at initialization:
+
+- `vault.asset()` equals the pool currency (`VaultAssetMismatch` otherwise)
+- Feeless entry and exit: `previewDeposit == convertToShares` and `previewRedeem == convertToAssets` (`VaultChargesEntryFee` / `VaultChargesExitFee` otherwise)
+
+The hook grants each configured vault a standing max token allowance so hot-path JIT deposits avoid an allowance read. This is a deliberate trust tradeoff: a compromised vault can pull the hook's full balance of that currency, including balances attributed to other pools sharing the token. Choose immutable or well-governed vaults, and see [Security](/docs/protocols/dualpool/security) for the emergency controls.
+
+## 3. Initialize the Pool
+
+```solidity
+DualPoolHook.PoolConfig memory config = DualPoolHook.PoolConfig({
+    sqrtPriceX96: TickMath.getSqrtPriceAtTick(0),  // initial price; tick 0 = 1:1
+    distribution: buckets,                          // see below
+    allowExternalDeposits: false,                   // owner-only LPs to start
+    vault0: vault0,
+    vault1: vault1,
+    minDepositBlocks: 1                             // 1 = ban same-block deposit-withdraw
+});
+
+hook.initializePool(key, config);
+```
+
+The distribution is a list of 1-8 weighted tick buckets whose weights sum to 10,000 bps. A conservative stable-pair shape:
+
+```solidity
+LiquidityBucket[] memory buckets = new LiquidityBucket[](3);
+buckets[0] = LiquidityBucket({tickLower: -10, tickUpper: 10, weightBps: 7500});
+buckets[1] = LiquidityBucket({tickLower: -30, tickUpper: 30, weightBps: 1500});
+buckets[2] = LiquidityBucket({tickLower: -60, tickUpper: 60, weightBps: 1000});
+```
+
+See [Liquidity Distributions](/docs/protocols/dualpool/concepts/liquidity-distributions) for design patterns and validation rules.
+
+`initializePool` validates the configuration, binds the vaults, grants their allowances, derives the pool's [virtual-shares offset](/docs/protocols/dualpool/concepts/lp-shares) from the pair's token decimals, and initializes the v4 pool at `sqrtPriceX96`. Direct `PoolManager.initialize` calls on the hook's pools are blocked.
+
+<Callout type="note">
+A newly initialized pool is not live. Swaps revert with `PoolNotLive` until bootstrap, which closes the window where a swap could move the pool price against zero liquidity.
+</Callout>
+
+## 4. Bootstrap
+
+Seed the pool with its first inventory:
+
+```solidity
+IERC20(token0).approve(address(hook), amount0);
+IERC20(token1).approve(address(hook), amount1);
+
+uint256 shares = hook.bootstrap(key, amount0, amount1);
+```
+
+Bootstrap pulls both tokens, mints `sqrt(received0 * received1)` shares to the owner, and flips the pool live. The minted shares must meet a floor of `100 * 10 ** decimalsOffset` (`BootstrapTooSmall` otherwise), about 100 tokens per side for a 6/6-decimal pair. The supplied ratio sets the initial share/asset ratio, which matters for asymmetric-decimal pairs.
+
+From this point, swaps trigger JIT deployment and teardown automatically; there is no keeper or maintenance loop.
+
+## 5. Operate
+
+| Function | Purpose |
+| --- | --- |
+| `setPoolLive(key, live)` | Pause or resume swaps without changing configuration |
+| `setDistribution(key, buckets)` | Replace the tick-bucket distribution (blocked mid-JIT-cycle) |
+| `setExternalDeposits(key, enabled)` | Open or close the pool to third-party LPs |
+| `refreshVaultApproval(key, currency)` | Re-arm a vault's max allowance |
+| `emergencyRevokeVault(key)` | Atomically pause the pool, disable deposits, zero both vault allowances, and best-effort drain the vaults back to the hook |
+
+Ownership uses `Ownable2Step`: transfers require the new owner to accept, and `renounceOwnership` is disabled.
+
+Things to monitor in operation:
+
+- `getReserves` vs `getEffectiveLiquidity`: a widening gap means the vault is throttling withdrawals
+- Quote-vs-execution fidelity from router infrastructure: sustained divergence costs routed flow
+- Vault health: the vaults are the pool's largest external dependency
+
+## Next Steps
+
+Once the pool is live, LPs interact through the flows in [Provide Liquidity](/docs/protocols/dualpool/guides/provide-liquidity), and routers discover it per [Integrate as a Router or Aggregator](/docs/protocols/dualpool/guides/router-integration).
