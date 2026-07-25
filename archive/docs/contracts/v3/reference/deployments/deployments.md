@@ -25,6 +25,7 @@ Please do not assume contracts are deployed to the same addresses across chains,
 - [`WorldChain`](./WorldChain-Deployments.md)
 - [`Monad`](./Monad-Deployments.md)
 - [`MegaETH`](./MegaETH-Deployments.md)
+- [`DeFi Oracle Meta`](./DeFi-Oracle-Meta-Deployments.md)
 
 These addresses are final and were deployed from these npm package versions:
 
