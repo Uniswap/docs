@@ -1,0 +1,47 @@
+name: PR Review (fork)
+
+# AI review of docs PRs using the official anthropics/claude-code-action.
+#
+# This workflow is for fork PRs only. It uses pull_request_target so the
+# trusted base workflow runs, and it uses GITHUB_TOKEN directly to bypass the
+# OIDC exchange path that is currently failing.
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+# One review per PR at a time; a new push supersedes the in-flight run.
+concurrency:
+  group: review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    name: AI review
+    if: ${{ !github.event.pull_request.draft && github.event.pull_request.user.type != 'Bot' && github.event.pull_request.head.repo.full_name != github.repository }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      # Trusted base ref only (checkout default for pull_request_target).
+      # The untrusted PR head is deliberately never checked out.
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+
+      - id: review_prompt
+        uses: ./.github/actions/claude-review-prompt
+        with:
+          repo: ${{ github.repository }}
+          pr_number: ${{ github.event.pull_request.number }}
+
+      - uses: anthropics/claude-code-action@1298632ce7736903d02a1435002705aa2a594a6c # v1.0.175
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: ${{ steps.review_prompt.outputs.prompt }}
+
+          claude_args: |
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
