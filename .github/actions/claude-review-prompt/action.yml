@@ -1,0 +1,40 @@
+name: Claude Review Prompt
+description: Build the shared Claude review prompt for docs PRs.
+
+inputs:
+  repo:
+    description: Repository slug in owner/name form.
+    required: true
+  pr_number:
+    description: Pull request number.
+    required: true
+
+outputs:
+  prompt:
+    description: Rendered review prompt.
+    value: ${{ steps.render.outputs.prompt }}
+
+runs:
+  using: composite
+  steps:
+    - id: render
+      shell: bash
+      run: |
+        escape_sed() {
+          printf '%s' "$1" | sed -e 's/[\\&|]/\\&/g'
+        }
+
+        repo_input='${{ inputs.repo }}'
+        pr_input='${{ inputs.pr_number }}'
+        repo_input="$(escape_sed "${repo_input}")"
+        pr_input="$(escape_sed "${pr_input}")"
+        prompt_template="${GITHUB_ACTION_PATH}/prompt.md"
+        rendered_prompt="$(sed \
+          -e "s|__REPO__|${repo_input}|g" \
+          -e "s|__PR_NUMBER__|${pr_input}|g" \
+          "${prompt_template}")"
+        {
+          printf 'prompt<<EOF\n'
+          printf '%s\n' "${rendered_prompt}"
+          printf 'EOF\n'
+        } >> "${GITHUB_OUTPUT}"
