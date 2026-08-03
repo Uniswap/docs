@@ -1,0 +1,82 @@
+---
+title: Agent Attribution (X-Agent-Info)
+description: Send the optional X-Agent-Info header to attribute agent-driven Trading API traffic, and check x-agent-info-status to confirm it was recognized.
+---
+
+If your integration is built or operated by an AI agent, the Uniswap API accepts an optional `X-Agent-Info` request header so that agent-driven traffic can be measured separately from human-driven traffic.
+
+<Callout title="Optional and zero-downside" type="info">
+
+`X-Agent-Info` is purely for analytics. Humans and human-facing clients can ignore it entirely. Omitting it, sending it, or sending it incorrectly has no effect on your request — it never changes the response status, body, or any swap behavior.
+
+</Callout>
+
+## Sending the header
+
+Send `X-Agent-Info` alongside your usual [authentication](/docs/trading/swapping-api/integration-guide#authentication) headers, with a JSON object value containing up to three fields:
+
+| Field | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `decision_origin` | string | Yes | Must be exactly `autonomous` or `human_mediated` (case-sensitive). Any other value marks the header malformed. |
+| `integration_name` | string | No | Name of your integration or agent, e.g. `my-trading-bot`. Up to 256 characters. |
+| `version` | string | No | Version identifier for your integration. Up to 256 characters. |
+
+Any other keys in the object are silently dropped rather than rejected, so it's safe to reuse an object that carries additional fields for your own purposes — only the three fields above are ever attributed.
+
+```bash
+curl -X POST https://trade-api.gateway.uniswap.org/v1/quote \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H 'X-Agent-Info: {"decision_origin":"autonomous","integration_name":"my-trading-bot","version":"1.4.0"}' \
+  -d '{"tokenIn":"0x...","tokenOut":"0x...","amount":"1000000",...}'
+```
+
+## What makes a header malformed
+
+A header is dropped (marked malformed) rather than rejected outright if any of the following hold. The request still succeeds either way — see [Confirming it was received](#confirming-it-was-received) below for how to tell the difference.
+
+- The raw header value is larger than **1024 bytes** (UTF-8), measured before parsing.
+- The value isn't valid JSON, or is valid JSON that isn't a plain object (an array, string, number, boolean, or `null`).
+- `decision_origin` is missing, or is anything other than exactly `autonomous` or `human_mediated`.
+- `integration_name` or `version` is present but isn't a string, or exceeds 256 characters.
+- `integration_name` or `version` contains control characters or unpaired surrogate code points.
+
+Not sending the header at all, or sending it with an empty value, isn't an error condition — both are simply "no attribution," the same outcome as a header that's out of scope for your client.
+
+## Confirming it was received
+
+Because the request succeeds regardless of whether `X-Agent-Info` parsed, check the `x-agent-info-status` response header to confirm your header was actually recognized:
+
+- **`x-agent-info-status: malformed`** — the header was received but failed one of the checks above and was dropped. This value is a fixed string; it never echoes anything from your request.
+- **No `x-agent-info-status` header at all** — this happens when your `X-Agent-Info` header parsed successfully, when you didn't send one, or when the request's response wasn't itself successful (the diagnostic header is only stamped on successful responses). If you're debugging a request that also failed for an unrelated reason (rate limiting, request validation, no route found), the absence of this header doesn't confirm your `X-Agent-Info` header was fine — retry against a request that otherwise succeeds. Attribution is a side channel: on a successful response, a working integration looks identical, from the response alone, to one that sent nothing.
+
+```typescript
+const response = await fetch('https://trade-api.gateway.uniswap.org/v1/quote', {
+  method: 'POST',
+  headers: {
+    'x-api-key': 'YOUR_API_KEY',
+    'Content-Type': 'application/json',
+    'X-Agent-Info': JSON.stringify({
+      decision_origin: 'autonomous',
+      integration_name: 'my-trading-bot',
+      version: '1.4.0',
+    }),
+  },
+  body: JSON.stringify({
+    /* ...quote request... */
+  }),
+});
+
+if (response.headers.get('x-agent-info-status') === 'malformed') {
+  // Received but dropped — check field names, decision_origin value, and length limits above.
+  console.warn('X-Agent-Info was sent but not recognized.');
+}
+
+const quote = await response.json();
+```
+
+<Callout title="Attribution never affects the request" type="info">
+
+A malformed or missing `X-Agent-Info` header never changes the response status, body, or swap behavior. The worst case is that your traffic isn't attributed to your integration.
+
+</Callout>

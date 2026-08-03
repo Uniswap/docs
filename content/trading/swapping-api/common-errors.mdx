@@ -9,6 +9,8 @@ description: Troubleshoot common Uniswap API request, quoting, authentication, a
 
 The API is specific about request header validation. In particular, ensure that your `accept` and `content-type` headers only include the value `application/json`. For a complete example of properly formatted request headers, see the authentication section of the [Developer Dashboard](https://developers.uniswap.org/dashboard).
 
+If you're sending the optional `X-Agent-Info` attribution header and it isn't being picked up, check the response for an `x-agent-info-status: malformed` header — see [Agent Attribution](/docs/trading/swapping-api/agent-attribution#confirming-it-was-received) for the full set of rules that make the header malformed.
+
 ### Rate limits
 
 Most API keys have a default rate limit of 6 requests per second (RPS). If you exceed the rate limit supported by an API key you can expect to receive an HTTP 429 error. If you receive a 429 error, we recommend pausing all requests from your API key and then retrying your requests. If you require a higher rate limit than what your API key is currently provisioned for, please reach out to [Uniswap Developer Support](https://support.uniswap.org/hc/en-us/requests/new). For more information on rate limits, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).
