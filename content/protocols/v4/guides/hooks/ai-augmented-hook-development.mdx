@@ -77,7 +77,7 @@ who the user is, use the sender parameter (which identifies the router)
 or decode it from hookData, and note which one you chose and why.
 ```
 
-If the hook needs to identify the end user (not just the router), have the agent implement the `hookData` encode/decode helpers rather than trusting `sender` directly — a router can be shared by many callers.
+If the hook needs to identify the end user (not just the router), neither `sender` nor `hookData` is trustworthy on its own — `sender` identifies the router, not the user, and `hookData` is caller-supplied calldata that any router could populate falsely. Both only become safe once the router itself is allowlisted; see [Access msg.sender Inside a Hook](/docs/protocols/v4/guides/hooks/accessing-msg.sender) for the allowlisting pattern before asking the agent to decode identity from either.
 
 ## Step 3: Test
 
@@ -123,17 +123,23 @@ Treat "self-audit + peer review is enough" only for genuinely low-risk hooks (no
 
 ## Step 5: Deploy
 
-Use `viem-integration` for the deployment script rather than hand-rolling transaction signing.
+Use `viem-integration` for the deployment script rather than hand-rolling transaction signing. A v4 hook can't be deployed with a plain CREATE — its address must encode the enabled permission flags, which means mining a CREATE2 `salt` first (see [Hook Deployment](/docs/protocols/v4/guides/hooks/hook-deployment) for why).
 
 ```text
 Write a TypeScript deployment script using viem that:
 1. Reads the private key from process.env.PRIVATE_KEY (never hardcode it).
 2. Creates a WalletClient for [target chain/testnet].
-3. Deploys MyHook.sol with constructor arg poolManagerAddress.
-4. Confirms the deployed address encodes the same permission flags as
-   getHookPermissions() returns (hook addresses in v4 encode their
-   permissions — a mismatch means the deployment is broken).
-5. Prints the deployed address and a link to the block explorer.
+3. Mines a CREATE2 salt for MyHook.sol that produces an address encoding
+   the same permission flags as getHookPermissions() returns — either by
+   shelling out to Foundry's HookMiner (forge script) or by replicating
+   its search in TypeScript against the same CREATE2 deployer proxy
+   (0x4e59b44847b379578588920cA78FbF26c0B4956C on most chains).
+4. Deploys MyHook.sol through that CREATE2 deployer proxy using the mined
+   salt and constructor arg poolManagerAddress.
+5. Confirms the deployed address matches the mined address exactly — a
+   mismatch means the deployment is broken and the pool will reject the
+   hook at initialization.
+6. Prints the deployed address and a link to the block explorer.
 ```
 
 Before running the script against a real network, review it yourself — signing and broadcasting a deployment transaction is an action you should confirm manually, not delegate to unattended agent execution.
@@ -141,7 +147,7 @@ Before running the script against a real network, review it yourself — signing
 ## Customization Ideas
 
 - Swap the permission set for a different lifecycle stage (e.g. `beforeSwap` + `beforeSwapReturnDelta` for a custom-curve AMM) and re-run Step 4's audit prompt — the checklist output will change meaningfully once a `ReturnDelta` permission is in play.
-- Point the Step 3 prompt at [OpenZeppelin's Hooks Library](https://docs.openzeppelin.com/uniswap-hooks/1.x/) base contracts (`BaseCustomAccounting`, `BaseDynamicFee`, etc., available in v4-template) instead of a bare `BaseHook` to skip re-implementing common patterns.
+- Point the Step 1 scaffold prompt at [OpenZeppelin's Hooks Library](https://docs.openzeppelin.com/uniswap-hooks/1.x/) base contracts (`BaseCustomAccounting`, `BaseDynamicFee`, etc., available in v4-template) instead of a bare `BaseHook` to skip re-implementing common patterns.
 - Chain the Step 5 script into a CI job that deploys to a testnet on every merge, using the same viem client setup.
 
 ## Where to Go Next
