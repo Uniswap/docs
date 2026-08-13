@@ -136,6 +136,7 @@ let tickUpper: number
 
 if (fullRange) {
   // For full-range positions, use Uniswap's minimum and maximum allowed ticks
+  // See the note below before hardcoding these bounds in a contract
   const MIN_TICK = -887272
   const MAX_TICK = 887272
 
@@ -162,6 +163,12 @@ const amountBDesired = BigInt(Math.floor(amountB * 10 ** USDC_TOKEN.decimals))
 const amount0Desired = token0IsA ? amountADesired.toString() : amountBDesired.toString()
 const amount1Desired = token0IsA ? amountBDesired.toString() : amountADesired.toString()
 ```
+
+> Each tick has a `liquidityGross` counter capped at `maxLiquidityPerTick`. The cap bounds per-tick liquidity so that a pool's active liquidity cannot overflow when a tick is crossed. It is shared by every position that uses the tick as a bound, first come first served.
+>
+> At the minimum and maximum usable ticks the price range spanned by one tick spacing is very small, so filling the cap there costs very little. Anyone can do it. Once a tick is at its cap, any mint or increase using that exact tick reverts with `TickLiquidityOverflow`. If you hit this, move the affected bound in by one or two tick spacings. On a pool with tick spacing 10 the extreme bounds sit at prices around 1e38 and 1e-39, so shifting in by a spacing or two leaves the position covering the same trading range in practice and requires the same capital.
+>
+> Contracts that hardcode their tick bounds and cannot change them later should not use the extreme ticks. Choose bounds where filling `maxLiquidityPerTick` would require more tokens than the pair's supply. Uniswap's [`InstantLaunchStrategy`](https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/InstantLaunchStrategy.sol) does this with its `MIN_LAUNCH_TICK` and `MAX_INITIAL_TICK` values.
 
 ### Step 5: Create a position
 
