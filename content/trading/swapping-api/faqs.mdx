@@ -33,6 +33,8 @@ faqs:
     answer: If a quote fails, the response includes helpful information to understand the problem with the request. The most common quote failure reason is that no route can be found for the quoted pair. This can occur for various reasons, including all available routes would exceed the slippage tolerance, insufficient liquidity for the requested quote size, or no available route through the specified protocols. We recommend retrying the quote but modifying one or more parameters of the requested quote (protocols used, slippage allowed, or the size of the swap).
   - question: How do I quote the native token?
     answer: See the Supported Chains guide for native-token swap details. To quote the native token via UniswapX you must set the x-erc20eth-enabled header in your quote request to true.
+  - question: How do I force a GuideStar-only quote?
+    answer: "Set the x-api-experimental header to true, alongside x-universal-router-swapsteps set to true, on a /quote request. This is currently only supported for EXACT_INPUT trades on Ethereum mainnet. A forced request is served by GuideStar or fails outright, with no fallback to Uniswap Protocol routing or another order type. A request missing a prerequisite returns a 400 naming the unmet condition; a request GuideStar cannot service returns a 404. This header is experimental and not part of the stable API contract, so reach out through the Uniswap Developer Platform before relying on it in production."
   - question: Why am I getting "No Quotes Available" as a response?
     answer: |-
       A quote response with "No Quotes Available" means that the Uniswap router was unable to find a route for the proposed swap. This can happen for a number of reasons, many of which can be easily avoided by understanding the API constraints. While not exhaustive, some of the most common issues are: there is insufficient liquidity to fill the swap; if making a bridge request, the selected token cannot be bridged between the two selected networks; if making a UniswapX-only request, the amount is below 300 USDC equivalent and the UniswapX quote does not improve on the AMM route by at least 0.2%; the request is requesting a bridge and swap (currently not supported).
@@ -231,6 +233,21 @@ Use this page to find answers to the questions Uniswap API integrators ask most 
   <div style={{ marginInlineStart: '1rem' }}>
 
   See [How Do I Swap Native Tokens?](/docs/trading/swapping-api/supported-chains#how-do-i-swap-native-tokens). Note, to quote the native token via UniswapX you must set the [`x-erc20eth-enabled` header](/docs/api-reference/aggregator_quote) in your quote request to `true`.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>How do I force a GuideStar-only quote?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Set the [`x-api-experimental` header](/docs/api-reference/aggregator_quote) to `true`, alongside `x-universal-router-swapsteps: true`, on a `/quote` request. This is currently only supported for `EXACT_INPUT` trades on Ethereum mainnet.
+
+  A forced request is served by GuideStar or fails outright, with no fallback to Uniswap Protocol routing or another order type. A request missing a prerequisite (the swapsteps header, or an unsupported trade type/chain) returns a `400` naming the unmet condition; a request GuideStar cannot service returns a `404`.
+
+  This header opts into experimental, unstable behavior and is not part of the stable API contract. Reach out through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome) before relying on it in production.
 
   </div>
 
