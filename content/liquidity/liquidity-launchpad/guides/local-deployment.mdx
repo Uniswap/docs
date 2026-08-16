@@ -18,23 +18,26 @@ There are two main ways to deploy new CCA auctions:
 2. Deploying a new `ContinuousClearingAuction` contract directly
 
 ### Deploying via factory (recommended)
-The `ContinuousClearingAuctionFactory` contract is a factory contract that deploys new instances of the contract. It inherits the `IDistributionStrategy` interface from the [Liquidity Launcher](https://github.com/Uniswap/liquidity-launcher) contracts.
+The `ContinuousClearingAuctionFactory` contract is a factory contract that deploys new instances of the contract. It implements the `IDistributorFactory` interface from the [Liquidity Launcher](https://github.com/Uniswap/liquidity-launcher) contracts.
 
 ```solidity
-interface IDistributionStrategy {
-    /// @notice Initialize a distribution of tokens under this strategy.
-    /// @dev Contracts can choose to deploy an instance with a factory-model or handle all distributions within the
-    /// implementing contract. For some strategies this function will handle the entire distribution, for others it
-    /// could merely set up initial state and provide additional entrypoints to handle the distribution logic.
-    /// @param token The token that is being distributed.
-    /// @param totalSupply The supply of the token that is being distributed.
-    /// @param configData Arbitrary, strategy-specific parameters.
-    /// @param salt The optional salt for deterministic deployment.
-    /// @return distributionContract The contract that will handle or manage the distribution.
-    ///         (Could be `address(this)` if the strategy is handled in-place, or a newly deployed instance).
-    function initializeDistribution(address token, uint256 totalSupply, bytes calldata configData, bytes32 salt)
+interface IDistributorFactory {
+    /// @notice Creates a distributor without funding it.
+    /// @param token The token that will be distributed.
+    /// @param totalSupply The supply of the token that will be distributed.
+    /// @param configData Arbitrary, factory-specific parameters.
+    /// @param salt The salt for deterministic deployment, if used by the factory.
+    /// @return distributor The contract that will handle or manage the distribution.
+    function create(address token, uint256 totalSupply, bytes calldata configData, bytes32 salt)
         external
-        returns (IDistributionContract distributionContract);
+        returns (IDistributor distributor);
+
+    /// @notice Returns the distributor address for the provided creation parameters.
+    /// @param sender The address that would call {create}.
+    function getAddress(address token, uint256 totalSupply, bytes calldata configData, bytes32 salt, address sender)
+        external
+        view
+        returns (IDistributor distributor);
 }
 ```
 
@@ -50,7 +53,7 @@ The factory contract is deployed to the same address across the following networ
 CCA auctions can be deployed directly by calling the constructor:
 
 ```solidity
-constructor(address _token, uint128 _totalSupply, AuctionParameters memory _parameters)
+constructor(address _token, uint128 _totalSupply, AuctionParameters memory _parameters, address _protocolFeeController)
 
 /// from: https://github.com/Uniswap/continuous-clearing-auction/blob/main/src/interfaces/IContinuousClearingAuction.sol
 struct AuctionParameters {
@@ -71,9 +74,9 @@ struct AuctionParameters {
 We'll be using the factory method for the rest of this guide.
 
 ## Step 2: Understand Factory Entrypoints
-The factory contract has two functions: `initializeDistribution()` and `getAuctionAddress()`. It has no constructor parameters so it can be easily deployed to the same address across all networks.
+The factory contract has two entrypoints: `create()` and `getAddress()`. Its constructor takes a single `address _protocolFeeController` argument, which is stored as an immutable and applied to every auction the factory creates. Deploy a new factory to use a different fee controller.
 
-### initializeDistribution()
+### create()
 This is the main entrypoint and is called by integrating contracts within the `LiquidityLauncher` system.
 
 It performs basic validation checks:
@@ -93,8 +96,8 @@ Finally, an optional caller provided `salt` is hashed with the auction parameter
 
 This function emits the `AuctionCreated` event with address of the new auction contract as well as the `amount` and `token` being distributed.
 
-### getAuctionAddress()
-This function is a simple view function that performs the same logic as `initializeDistribution()` but does not deploy a new contract. It calculates and returns the address of the new auction contract.
+### getAddress()
+This function is a simple view function that performs the same logic as `create()` but does not deploy a new contract. It calculates and returns the address of the new auction contract.
 
 Onchain integrators will find this function useful for calculating the address of an auction contract before it is deployed.
 
@@ -107,7 +110,7 @@ pragma solidity ^0.8.0;
 
 import {Script} from "forge-std/Script.sol";
 import {ContinuousClearingAuctionFactory} from "../src/ContinuousClearingAuctionFactory.sol";
-import {IDistributionContract} from "../src/interfaces/external/IDistributionContract.sol";
+import {IDistributor} from "liquidity-launcher/src/interfaces/IDistributor.sol";
 import {console2} from "forge-std/console2.sol";
 
 contract ExampleCCADeploymentScript is Script {
@@ -115,10 +118,11 @@ contract ExampleCCADeploymentScript is Script {
 
     function run() public {
         vm.startBroadcast();
-        ContinuousClearingAuctionFactory factory = new ContinuousClearingAuctionFactory();
+        // Pass address(0) to run without a protocol fee controller.
+        ContinuousClearingAuctionFactory factory = new ContinuousClearingAuctionFactory(address(0));
         console2.log("Factory deployed to:", address(factory));
 
-        // TODO: configure the auction and deploy it via `initializeDistribution()`
+        // TODO: configure the auction and deploy it via `create()`
 
         vm.stopBroadcast();
     }

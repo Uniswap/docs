@@ -6,7 +6,7 @@ description: Find Uniswap Liquidity Launchpad, CCA, and strategy contract deploy
 View the changelogs for more details on differences between contract deployments: [continuous-clearing-auction](https://github.com/Uniswap/continuous-clearing-auction/blob/main/CHANGELOG.md) and [liquidity-launcher](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md).
 
 ## ContinuousClearingAuctionFactory
-The CCA factory has no constructor parameters so it can be deployed to the same address across all compatible chains. v2.0.0 is deployed on all currently supported chains.
+The CCA factory constructor takes a single `address _protocolFeeController` argument. The canonical deployments all pass the same value, so they share one address across every compatible chain. Deploy a new factory to use a different fee controller.
 
 | Address                                    | Commit Hash                              | Version           |
 | ------------------------------------------ | ---------------------------------------- | ----------------- |
