@@ -4,12 +4,19 @@ description: 'Use Uniswap API routing fields to choose protocol paths and return
 icon: 'route'
 ---
 ## Routing Principles
-In order to get the appropriate swap routing, it is important to closely consider the values submitted through the `/quote` `protocols` and `routingPreference` fields. We recommend specifying the desired swap routing by specifying all `protocols` which you feel comfortable using and leaving the `routingPreference` field blank.
+In order to get the appropriate swap routing, it is important to closely consider the values submitted through the `/quote` `type`, `protocols`, and `routingPreference` fields. We recommend specifying the desired swap routing by specifying all `protocols` which you feel comfortable using and leaving the `routingPreference` field blank.
 
+- For a Uniswap Protocol AMM swap, the `type` field determines which side is fixed. `EXACT_INPUT` fixes the amount sent and quotes a variable output. `EXACT_OUTPUT` fixes the amount received and quotes a variable input. See [Chained Actions](/docs/trading/swapping-api/chained-actions) for multi-step routes with additional exact-input behavior.
 - The `protocols` field is used to specify the protocols from which pricing will be considered and through which your swap may eventually be executed. The possible values for the field are `V2`, `V3`, `V4`, `UNISWAPX_V2`, and `UNISWAPX_V3`
 - The `routingPreference` field is used to specify the preferred matching strategy. The possible values for the field are `BEST_PRICE` and `FASTEST`
 
 For complete information on the available values and combinations for the `protocols` and `routingPreference` fields, see [Swapping Architecture Overview](/docs/trading/swapping-api/getting-started). A summary is provided below:
+
+<Callout title="Trade type is part of the routing request" type="info">
+  For Uniswap Protocol AMM routing, exact input and exact output are separate quote requests. `BEST_PRICE` optimizes routes for the submitted `type`; it does not reinterpret `EXACT_INPUT` as `EXACT_OUTPUT`.
+
+  This distinction is especially important for v4 hooks with custom swap validation. If a hooked pool accepts a direction only as exact output, an exact-input request for that direction may not return the pool even when the pool can satisfy a separately formulated exact-output request. Supporting the input-budget intent requires hook-specific translation logic or an explicitly requested output amount. See [Integrated Routing with UniswapX](/docs/protocols/v4/concepts/hook-routing#allowlisting-and-swap-compatibility).
+</Callout>
 
 ## Routing Outcomes
 

@@ -21,3 +21,23 @@ If you have built a hook that you would like to have allowlisted, fill out the [
 
 You can review current allowlisted hooks in [Allowlisted Hooks](https://support.uniswap.org/hc/en-us/articles/41305283155597-Allowlisted-Hooks).
 
+## Allowlisting and swap compatibility
+
+Allowlisting makes hooked pools eligible for routing. It does not change a hook's validation rules or guarantee that a pool can satisfy every quote request.
+
+A hook can accept or reject swaps based on the swap direction, trade type, pool, caller, hook data, or current state. For each pool and relevant hook state, test all four direction and trade-type combinations:
+
+| Direction | `EXACT_INPUT` | `EXACT_OUTPUT` |
+| --- | --- | --- |
+| `currency0` to `currency1` | Test | Test |
+| `currency1` to `currency0` | Test | Test |
+
+If the pool is intended for multi-hop routing, test the supported combinations in every applicable path position.
+
+If any combination is unsupported, document the constraint for integrators. If an integration submits a pay-side amount as `EXACT_INPUT`, that request may not return a pool whose hook accepts only `EXACT_OUTPUT` in that direction.
+
+<Callout title="Input budgets for exact-output-only directions" type="info">
+  If the hook guarantees that, for a fixed state, required input is monotonic with requested output over a known range, an integrator can translate an input budget with a bounded search over exact-output quotes. Revalidate the result before execution and use maximum-input protection. Otherwise, require the user to specify the desired output or use hook-specific integration logic.
+</Callout>
+
+See [Getting a Quote](/docs/sdks/v4/guides/swapping/quoting) for v4 exact-input and exact-output quote methods and [Swap Routing](/docs/trading/swapping-api/concepts/swap-routing) for API routing behavior.
