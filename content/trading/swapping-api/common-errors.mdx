@@ -27,7 +27,7 @@ The most commonly encountered HTTP error is an HTTP 404 with a message "No quote
 
 ### 400 Request validation error
 
-Request validation errors are returned when a request does not contain the minimum required set of fields or has other syntactical errors. Some examples are a required field (ex. `autoSlippage` in the [`/quote`](/docs/trading/swapping-api/getting-started) endpoint) is not populated, or an address is missing a character (eg. is 39 characters long instead of 40). These errors typically include a specific error message which describes the field which could not be interpreted.
+Request validation errors are returned when a request does not contain the minimum required set of fields or has other syntactical errors. Some examples are a required field is not populated ([`/quote`](/docs/trading/swapping-api/getting-started) requires `type`, `amount`, `tokenInChainId`, `tokenOutChainId`, `tokenIn`, `tokenOut`, and `swapper`), or an address is missing a character (eg. is 39 characters long instead of 40). These errors typically include a specific error message which describes the field which could not be interpreted.
 
 ### 401 Unauthorized error
 
