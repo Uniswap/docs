@@ -55,7 +55,7 @@ Because the request succeeds regardless of whether `X-Agent-Info` parsed, check 
 - **`x-agent-info-status: malformed`** — the header was received but failed one of the checks above and was dropped. The value is always the fixed string `malformed`; it never echoes anything from your request.
 - **No `x-agent-info-status` header at all** — your `X-Agent-Info` header parsed, or you didn't send one.
 
-The gateway sets this header before it validates or routes your request, so error responses carry it too. A 400 or a 429 still tells you whether your header parsed. You can debug the header without first getting a working quote.
+The gateway sets this header after it routes your request and before it writes any response. Its own error responses carry it too — a 400, a 401, a 403, a 429. So you can debug the header without first getting a working quote. One exception: a 404 for a path the gateway does not route carries no status header.
 
 Browser clients need no extra setup. The gateway lists its own response header names in `Access-Control-Expose-Headers` on each response, so JavaScript can read `x-agent-info-status` cross-origin.
 
