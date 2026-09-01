@@ -18,28 +18,33 @@ Send `X-Agent-Info` alongside your usual [authentication](/docs/trading/swapping
 | Field | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `decision_origin` | string | Yes | Must be exactly `autonomous` or `human_mediated` (case-sensitive). Any other value marks the header malformed. |
-| `integration_name` | string | No | Name of your integration or agent, e.g. `my-trading-bot`. Up to 256 characters. |
-| `version` | string | No | Version identifier for your integration. Up to 256 characters. |
+| `integration_name` | string | No | Name of your integration or agent, e.g. `my-trading-bot`. Up to 256 UTF-16 code units — JavaScript's `String#length`. |
+| `version` | string | No | Version identifier for your integration. Up to 256 UTF-16 code units. |
 
-Any other keys in the object are silently dropped rather than rejected, so it's safe to reuse an object that carries additional fields for your own purposes — only the three fields above are ever attributed.
+Send only these three fields. Any other key is dropped rather than rejected, so an extra key never makes the header malformed.
+
+`integration_name` and `version` are stored per request and queried later. Both must be stable strings that describe your software. Never send a user ID, wallet address, email address, session token, API key, or any value derived from an end user. On our side, a malformed header is never echoed back or logged, and only the three fields above ever reach our analytics.
 
 ```bash
+# Fill in your own token addresses and amount. The header is evaluated either way.
 curl -X POST https://trade-api.gateway.uniswap.org/v1/quote \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -H 'X-Agent-Info: {"decision_origin":"autonomous","integration_name":"my-trading-bot","version":"1.4.0"}' \
-  -d '{"tokenIn":"0x...","tokenOut":"0x...","amount":"1000000",...}'
+  -d '{"tokenIn":"0x...","tokenOut":"0x...","amount":"1000000"}'
 ```
 
 ## What makes a header malformed
 
 A header is dropped (marked malformed) rather than rejected outright if any of the following hold. The request still succeeds either way — see [Confirming it was received](#confirming-it-was-received) below for how to tell the difference.
 
-- The raw header value is larger than **1024 bytes** (UTF-8), measured before parsing.
+- The raw header value is larger than **1024 bytes**, measured on the raw value before parsing. JSON whitespace and `\u` escapes count toward the cap.
+- The raw header value contains any byte outside printable US-ASCII (`0x20`–`0x7E`). This is checked first, before the JSON is parsed, because bytes above `0x7E` decode differently in different HTTP stacks. So a literal `é`, an emoji, or a curly quote in the header marks it malformed no matter how short the value is. Send non-ASCII as a JSON `\u` escape instead.
 - The value isn't valid JSON, or is valid JSON that isn't a plain object (an array, string, number, boolean, or `null`).
+- The request carried two or more `X-Agent-Info` header lines. They are joined with `", "`, which is almost never valid JSON. Set the header once rather than appending to it — some HTTP clients append by default.
 - `decision_origin` is missing, or is anything other than exactly `autonomous` or `human_mediated`.
-- `integration_name` or `version` is present but isn't a string, or exceeds 256 characters.
-- `integration_name` or `version` contains control characters or unpaired surrogate code points.
+- `integration_name` or `version` is present but isn't a string, or is longer than 256 UTF-16 code units. That count is JavaScript's `String#length`, so an emoji or other astral character costs two units, not one.
+- `integration_name` or `version` contains a disallowed character. Those are control characters (C0 `0x00`–`0x1F`, DEL `0x7F`, C1 `0x80`–`0x9F`), the Unicode line separators U+2028 and U+2029, and the replacement character U+FFFD. An escaped unpaired surrogate decodes to U+FFFD, so it is rejected too. Text pasted from a PDF, or left behind by a lossy re-encode, often carries one of these invisibly.
 
 Not sending the header at all, or sending it with an empty value, isn't an error condition — both are simply "no attribution," the same outcome as a header that's out of scope for your client.
 
@@ -47,8 +52,12 @@ Not sending the header at all, or sending it with an empty value, isn't an error
 
 Because the request succeeds regardless of whether `X-Agent-Info` parsed, check the `x-agent-info-status` response header to confirm your header was actually recognized:
 
-- **`x-agent-info-status: malformed`** — the header was received but failed one of the checks above and was dropped. This value is a fixed string; it never echoes anything from your request.
-- **No `x-agent-info-status` header at all** — this happens when your `X-Agent-Info` header parsed successfully, when you didn't send one, or when the request's response wasn't itself successful (the diagnostic header is only stamped on successful responses). If you're debugging a request that also failed for an unrelated reason (rate limiting, request validation, no route found), the absence of this header doesn't confirm your `X-Agent-Info` header was fine — retry against a request that otherwise succeeds. Attribution is a side channel: on a successful response, a working integration looks identical, from the response alone, to one that sent nothing.
+- **`x-agent-info-status: malformed`** — the header was received but failed one of the checks above and was dropped. The value is always the fixed string `malformed`; it never echoes anything from your request.
+- **No `x-agent-info-status` header at all** — your `X-Agent-Info` header parsed, or you didn't send one.
+
+The gateway sets this header before it validates or routes your request, so error responses carry it too. A 400 or a 429 still tells you whether your header parsed. You can debug the header without first getting a working quote.
+
+Browser clients need no extra setup. The gateway lists its own response header names in `Access-Control-Expose-Headers` on each response, so JavaScript can read `x-agent-info-status` cross-origin.
 
 ```typescript
 const response = await fetch('https://trade-api.gateway.uniswap.org/v1/quote', {
