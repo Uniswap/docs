@@ -9,7 +9,7 @@ description: Troubleshoot common Uniswap API request, quoting, authentication, a
 
 The API is specific about request header validation. In particular, ensure that your `accept` and `content-type` headers only include the value `application/json`. For a complete example of properly formatted request headers, see the authentication section of the [Developer Dashboard](https://developers.uniswap.org/dashboard).
 
-If you're sending the optional `X-Agent-Info` attribution header and it isn't being picked up, check the response for an `x-agent-info-status: malformed` header — see [Agent Attribution](/docs/trading/swapping-api/agent-attribution#confirming-it-was-received) for the full set of rules that make the header malformed.
+If you're sending the optional `X-Agent-Info` attribution header and it isn't being picked up, check the response for an `x-agent-info-status: malformed` header — see [Agent Attribution](/docs/trading/swapping-api/agent-attribution#confirming-it-was-received) for the full set of rules that make the header malformed. A malformed `X-Agent-Info` never causes an error response; the request proceeds without attribution.
 
 ### Rate limits
 

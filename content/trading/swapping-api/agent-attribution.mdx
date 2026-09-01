@@ -3,11 +3,11 @@ title: Agent Attribution (X-Agent-Info)
 description: Send the optional X-Agent-Info header to attribute agent-driven Trading API traffic, and check x-agent-info-status to confirm it was recognized.
 ---
 
-If your integration is built or operated by an AI agent, the Uniswap API accepts an optional `X-Agent-Info` request header so that agent-driven traffic can be measured separately from human-driven traffic.
+The Uniswap API accepts an optional `X-Agent-Info` request header. Send it if an AI agent built or operates your integration. It lets us measure agent-driven traffic separately from human-driven traffic.
 
-<Callout title="Optional and zero-downside" type="info">
+<Callout title="Optional, and never affects the request" type="info">
 
-`X-Agent-Info` is purely for analytics. Humans and human-facing clients can ignore it entirely. Omitting it, sending it, or sending it incorrectly has no effect on your request — it never changes the response status, body, or any swap behavior.
+`X-Agent-Info` is purely for analytics. Humans and human-facing clients can ignore it entirely. Omitting it, sending it, or sending it incorrectly has no effect on your request. It never changes the response status, body, or any swap behavior.
 
 </Callout>
 
@@ -31,7 +31,7 @@ curl -X POST https://trade-api.gateway.uniswap.org/v1/quote \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -H 'X-Agent-Info: {"decision_origin":"autonomous","integration_name":"my-trading-bot","version":"1.4.0"}' \
-  -d '{"tokenIn":"0x...","tokenOut":"0x...","amount":"1000000"}'
+  -d '{"tokenIn":"0x...","tokenOut":"0x...","tokenInChainId":1,"tokenOutChainId":1,"type":"EXACT_INPUT","amount":"1000000","swapper":"0x...","slippageTolerance":0.5}'
 ```
 
 ## What makes a header malformed
@@ -55,9 +55,9 @@ Because the request succeeds regardless of whether `X-Agent-Info` parsed, check 
 - **`x-agent-info-status: malformed`** — the header was received but failed one of the checks above and was dropped. The value is always the fixed string `malformed`; it never echoes anything from your request.
 - **No `x-agent-info-status` header at all** — your `X-Agent-Info` header parsed, or you didn't send one.
 
-The gateway sets this header after it routes your request and before it writes any response. Its own error responses carry it too — a 400, a 401, a 403, a 429. So you can debug the header without first getting a working quote. One exception: a 404 for a path the gateway does not route carries no status header.
+The gateway sets this header after it routes your request, and before it writes its own response. Its own error responses carry it too — a 400, a 401, a 403, a 429. So you can debug the header without first getting a working quote. Two cases carry no status header: a 404 for a path the API does not serve, and a CORS preflight.
 
-Browser clients need no extra setup. The gateway lists its own response header names in `Access-Control-Expose-Headers` on each response, so JavaScript can read `x-agent-info-status` cross-origin.
+Call the Trading API server-to-server. The gateway sends CORS headers only to allow-listed Uniswap origins, so a browser page on your own domain cannot read this header. Check it from a server or with curl.
 
 ```typescript
 const response = await fetch('https://trade-api.gateway.uniswap.org/v1/quote', {
@@ -72,7 +72,14 @@ const response = await fetch('https://trade-api.gateway.uniswap.org/v1/quote', {
     }),
   },
   body: JSON.stringify({
-    /* ...quote request... */
+    tokenIn: '0x...',
+    tokenOut: '0x...',
+    tokenInChainId: 1,
+    tokenOutChainId: 1,
+    type: 'EXACT_INPUT',
+    amount: '1000000',
+    swapper: '0x...',
+    slippageTolerance: 0.5,
   }),
 });
 
@@ -84,8 +91,4 @@ if (response.headers.get('x-agent-info-status') === 'malformed') {
 const quote = await response.json();
 ```
 
-<Callout title="Attribution never affects the request" type="info">
-
-A malformed or missing `X-Agent-Info` header never changes the response status, body, or swap behavior. The worst case is that your traffic isn't attributed to your integration.
-
-</Callout>
+The only consequence of a malformed header is that your traffic isn't attributed to your integration.
