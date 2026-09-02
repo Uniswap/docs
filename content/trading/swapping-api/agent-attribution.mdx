@@ -36,7 +36,7 @@ curl -X POST https://trade-api.gateway.uniswap.org/v1/quote \
 
 ## What makes a header malformed
 
-A header is dropped (marked malformed) rather than rejected outright if any of the following hold. The request still succeeds either way — see [Confirming it was received](#confirming-it-was-received) below for how to tell the difference.
+A header is dropped (marked malformed) rather than rejected outright if any of the following hold. The request is handled exactly as if the header were absent — see [Confirming it was received](#confirming-it-was-received) below for how to tell the difference.
 
 - The raw header value is larger than **1024 bytes**, measured on the raw value before parsing. JSON whitespace and `\u` escapes count toward the cap.
 - The raw header value contains any byte outside printable US-ASCII (`0x20`–`0x7E`). This is checked first, before the JSON is parsed, because bytes above `0x7E` decode differently in different HTTP stacks. So a literal `é`, an emoji, or a curly quote in the header marks it malformed no matter how short the value is. Send non-ASCII as a JSON `\u` escape instead.
@@ -55,7 +55,7 @@ Because the request succeeds regardless of whether `X-Agent-Info` parsed, check 
 - **`x-agent-info-status: malformed`** — the header was received but failed one of the checks above and was dropped. The value is always the fixed string `malformed`; it never echoes anything from your request.
 - **No `x-agent-info-status` header at all** — your `X-Agent-Info` header parsed, or you didn't send one.
 
-The gateway sets this header after it routes your request, and before it writes its own response. Error responses carry it too — a 400, a 401, a 403, a 429, and a 404 for a path that does not exist. So you can debug the header without first getting a working quote. The one response that carries no status header is a CORS preflight, which the gateway answers before it looks at `X-Agent-Info`.
+The gateway sets this header after it routes your request, and before it writes its own response. Error responses carry it too — a 400, a 401, a 403, a 429, and a 404 for a path that does not exist. So you can debug the header without first getting a working quote. A CORS preflight carries no status header, because the gateway answers it before it looks at `X-Agent-Info`.
 
 Call the Trading API server-to-server. The gateway sends CORS headers only to a small allow-list of origins, so a browser page on your own domain cannot read this header. Check it from a server or with curl.
 
