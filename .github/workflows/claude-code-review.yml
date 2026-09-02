@@ -55,8 +55,9 @@ jobs:
           # comments. Comments appear as github-actions[bot], not claude[bot].
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # The action refuses actors without write access, and community
-          # authors never have it here. This is the documented escape hatch for
-          # exactly this shape: a job token scoped to `pull-requests: write`, the
+          # authors never have it here. This input is the action's escape hatch.
+          # Its docs restrict it to workflows with very limited permissions, and
+          # this one qualifies: a job token scoped to `pull-requests: write`, the
           # PR head never checked out, and tools limited to reading the diff and
           # posting comments.
           allowed_non_write_users: '*'
