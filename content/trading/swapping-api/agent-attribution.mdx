@@ -55,9 +55,9 @@ Because the request succeeds regardless of whether `X-Agent-Info` parsed, check 
 - **`x-agent-info-status: malformed`** — the header was received but failed one of the checks above and was dropped. The value is always the fixed string `malformed`; it never echoes anything from your request.
 - **No `x-agent-info-status` header at all** — your `X-Agent-Info` header parsed, or you didn't send one.
 
-The gateway sets this header after it routes your request, and before it writes its own response. Its own error responses carry it too — a 400, a 401, a 403, a 429. So you can debug the header without first getting a working quote. Two cases carry no status header: a 404 for a path the API does not serve, and a CORS preflight.
+The gateway sets this header after it routes your request, and before it writes its own response. Error responses carry it too — a 400, a 401, a 403, a 429, and a 404 for a path that does not exist. So you can debug the header without first getting a working quote. The one response that carries no status header is a CORS preflight, which the gateway answers before it looks at `X-Agent-Info`.
 
-Call the Trading API server-to-server. The gateway sends CORS headers only to allow-listed Uniswap origins, so a browser page on your own domain cannot read this header. Check it from a server or with curl.
+Call the Trading API server-to-server. The gateway sends CORS headers only to a small allow-list of origins, so a browser page on your own domain cannot read this header. Check it from a server or with curl.
 
 ```typescript
 const response = await fetch('https://trade-api.gateway.uniswap.org/v1/quote', {
