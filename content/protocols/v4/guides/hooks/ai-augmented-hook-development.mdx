@@ -1,0 +1,196 @@
+---
+title: AI-Augmented Hook Development
+description: Scaffold, implement, test, audit, and deploy a Uniswap v4 hook end to end using AI coding-agent skills alongside the v4-template.
+---
+
+## What You'll Build
+
+A v4 hook developed end to end with an AI coding agent: scaffolded from the [v4-template](https://github.com/uniswapfoundation/v4-template) with a security-first permission set, implemented with the hook logic you need, tested with Foundry (unit, fuzz, and invariant tests), reviewed against a structured security checklist, and deployed with the template's Foundry script.
+
+Each step below pairs a plain-language prompt with the underlying Uniswap AI skill that backs it. The prompts are agent-agnostic — they work with any coding agent that can read a repository and run shell commands, whether or not it has the skill installed. If your agent supports the [Skills CLI](#install-the-skills) or the Claude Code plugin marketplace, install the skills first so the agent has the full reference material (threat models, checklists, code templates) loaded as context; otherwise the prompts still work, just with less structured guidance behind them.
+
+## Prerequisites
+
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) on the **stable** channel — the template documents compatibility issues on Foundry Nightly, so run `foundryup` before you start
+- Node.js and npm, if you plan to build a TypeScript integration on top of the deployed hook
+- An AI coding agent — Claude Code, Cursor, or any agent that can read files and run shell commands
+- Familiarity with the v4 hook lifecycle — see [Hooks Overview](/docs/protocols/v4/guides/hooks/getting-started) if this is your first hook
+
+## Install the Skills
+
+This guide uses two existing [Uniswap AI](/docs/uniswap-ai/overview) skills — no new skills are needed:
+
+- **`v4-security-foundations`** — threat model, permission-flag risk matrix, gas budgets, and a pre-deployment audit checklist for v4 hooks
+- **`viem-integration`** — TypeScript client setup and contract-interaction patterns using [viem](https://viem.sh)
+
+Install them with the Skills CLI (works with any compatible agent):
+
+```bash
+npx skills add Uniswap/uniswap-ai
+```
+
+Or, if you use Claude Code:
+
+```text
+/plugin marketplace add uniswap/uniswap-ai
+/plugin install uniswap-hooks
+/plugin install uniswap-viem
+```
+
+See [Uniswap AI Overview](/docs/uniswap-ai/overview) for other install paths and [Uniswap Skills](/docs/uniswap-ai/skills) for the full skill catalog.
+
+## Step 1: Scaffold
+
+Start from the template rather than an empty Foundry project — its remappings are already configured for `v4-core`, `v4-periphery`, and [OpenZeppelin's Uniswap Hooks library](https://docs.openzeppelin.com/uniswap-hooks/1.x/), and it ships a working example hook, test harness, and deployment scripts.
+
+The template is meant to be consumed with the [`Use this template`](https://github.com/new?template_name=v4-template&template_owner=uniswapfoundation) button, which gives you your own repository. You can also clone it directly:
+
+```bash
+git clone https://github.com/uniswapfoundation/v4-template.git my-hook
+cd my-hook
+forge install
+forge test
+```
+
+`forge test` runs against the template's example hook, `src/Counter.sol`, which counts `beforeSwap`, `afterSwap`, `beforeAddLiquidity`, and `beforeRemoveLiquidity` calls — four of the fourteen permissions enabled, and a useful reference for how `getHookPermissions()` and the callbacks line up. A green run confirms your toolchain and the nested dependencies resolved correctly. Keep `Counter.sol` as a reference while you build, or replace it once your own hook compiles.
+
+Prompt your agent to scaffold the hook contract with a security-first permission set — start every permission disabled and enable only what the hook actually needs:
+
+```text
+Using this v4-template repo, create a new hook contract at src/MyHook.sol.
+Follow the same conventions as the template's existing src/Counter.sol:
+extend the OpenZeppelin BaseHook from
+@openzeppelin/uniswap-hooks/src/base/BaseHook.sol, and override the
+internal underscore-prefixed callbacks (_beforeSwap, _afterSwap, etc.),
+not the external ones.
+
+Start with all 14 permission flags in getHookPermissions() set to false,
+then enable only the flags this hook needs: [describe the swap/liquidity
+behavior you want, e.g. "afterSwap, to track a per-user counter"]. Every
+callback must be safe to call only from the PoolManager. Do not enable
+beforeSwapReturnDelta or afterSwapReturnDelta unless I explicitly ask for
+a NoOp/custom-curve pattern.
+```
+
+With `v4-security-foundations` installed, the agent has the permission-flag risk matrix (which flags are LOW versus CRITICAL risk) and the base hook template already in context, so it will default to the minimal-permission scaffold rather than enabling flags speculatively.
+
+## Step 2: Implement
+
+Describe the hook's actual behavior in plain language and let the agent fill in the callback bodies. Be explicit about anything that touches user identity or external calls — these are the two areas most likely to introduce vulnerabilities.
+
+Identity is the trap worth naming up front. Inside a callback, `msg.sender` is always the `PoolManager`. The `sender` parameter is the contract that called `PoolManager.swap()` — a router, not the end user — and `hookData` is caller-supplied calldata that any router could populate falsely. Neither is trustworthy on its own. The safe pattern is to allowlist trusted routers and read the original caller back from the router, which [Access msg.sender Inside a Hook](/docs/protocols/v4/guides/hooks/accessing-msg.sender) walks through in full. Put that constraint in the prompt rather than correcting it afterward:
+
+```text
+Implement the [afterSwap / beforeAddLiquidity / ...] callback in MyHook.sol
+to [describe the behavior]. If this hook needs to know which EOA or smart
+account initiated the swap, do not read it from the sender parameter or
+from hookData directly — both identify or are supplied by the router.
+Instead, maintain an allowlist of trusted routers in the hook, verify the
+sender against that allowlist, and call the router's msgSender() view
+function to recover the original caller. The functions that add or remove
+routers must be restricted to an owner or admin role — an allowlist that
+anyone can write to gives an attacker a trivial way to spoof any identity.
+Tell me which routers you assumed are trusted and who controls the
+allowlist.
+```
+
+The access-control point is worth checking by hand afterward. The `addRouter` and `removeRouter` examples in [Access msg.sender Inside a Hook](/docs/protocols/v4/guides/hooks/accessing-msg.sender) are written as bare `external` functions to keep the example short, so an agent that copies them literally produces an allowlist any address can write to.
+
+If the hook does not need user identity at all, say so in the prompt — it is the simpler and safer design, and an agent will otherwise tend to add identity plumbing you did not ask for.
+
+## Step 3: Test
+
+Ask for the full pyramid — unit, fuzz, and invariant tests — rather than accepting a single happy-path test.
+
+```text
+Write a Foundry test suite for MyHook.sol in test/MyHook.t.sol. Follow the
+template's existing test/Counter.t.sol: extend BaseTest from
+test/utils/BaseTest.sol (which inherits Deployers) and use the EasyPosm
+library from test/utils/libraries/EasyPosm.sol for position management.
+Include:
+1. Unit tests for each hook callback's happy path.
+2. Fuzz tests for any function that takes a numeric input (swap amounts,
+   liquidity amounts) — vary the input across realistic and edge-case
+   ranges.
+3. An invariant test if the hook maintains any accounting invariant
+   (e.g. a running total that should never go negative, or a delta sum
+   that should always net to zero).
+Run the suite and show me the results, including a gas report.
+```
+
+```bash
+forge test --gas-report
+```
+
+Check the gas report against the per-callback budgets in `v4-security-foundations`. A callback that runs on every swap is on the hot path, and a hook that is too expensive will simply not get used.
+
+## Step 4: Audit
+
+Run a structured review before deployment rather than a general "does this look okay" pass. The `v4-security-foundations` skill's checklist gives the agent a concrete rubric instead of an open-ended judgment call.
+
+```text
+Review MyHook.sol against a v4 hook security checklist:
+1. Does every callback verify it's being called by the PoolManager?
+2. Is the sender parameter used correctly (it's the router, not the
+   user) everywhere the hook needs identity?
+3. Are there any unbounded loops that could hit the block gas limit?
+4. Does any external call lack a reentrancy guard?
+5. Is every state-changing admin function (router allowlists, fee
+   setters, pause switches) restricted to an owner or role?
+6. If any ReturnDelta permission is enabled, is the NoOp/custom-accounting
+   pattern justified and documented?
+7. Are fee-on-transfer or rebasing tokens handled safely, if relevant?
+8. Estimate a risk score and tell me whether this needs a professional
+   audit before mainnet deployment.
+Report each finding with a file and line reference.
+```
+
+Treat "self-audit plus peer review is enough" only for genuinely low-risk hooks (no `ReturnDelta` permissions, no external calls, no upgrade mechanism). Anything that enables `beforeSwapReturnDelta` or `afterSwapReturnDelta`, holds funds, or is upgradeable should get a professional audit — the agent's review is a pre-audit filter, not a substitute for one.
+
+## Step 5: Deploy
+
+A v4 hook cannot be deployed with a plain `CREATE`. Its address has to encode the permission flags the hook enables, which means mining a `CREATE2` salt first — see [Hook Deployment](/docs/protocols/v4/guides/hooks/hook-deployment) for how the encoding works.
+
+The template already implements this in `script/00_DeployHook.s.sol`, which mines a salt with `HookMiner` from `v4-periphery` and deploys through the `CREATE2` proxy at `0x4e59b44847b379578588920cA78FbF26c0B4956C`. Point the agent at that script rather than asking it to write a deployer from scratch:
+
+```text
+Adapt script/00_DeployHook.s.sol in this repo to deploy MyHook instead of
+Counter. Update the flags variable so it matches exactly the permissions
+MyHook's getHookPermissions() returns, update the constructor args, and
+leave the HookMiner and CREATE2 proxy logic as it is. Then explain, line
+by line, what the script will do when I broadcast it, and tell me what I
+still need to fill in before running it against a real network.
+```
+
+Test the whole flow against a local [anvil](https://book.getfoundry.sh/anvil/) node before touching a public network. The template's numbered scripts (`00_DeployHook`, `01_CreatePoolAndAddLiquidity`, `02_AddLiquidity`, `03_Swap`) run the full lifecycle locally, and `script/base/BaseScript.sol` holds the configuration you need to edit first — `token0`, `token1`, and `hookContract`, which defaults to the zero address and must be set to your mined hook address before scripts `01` through `03` do anything useful.
+
+Once the hook is deployed, use `viem-integration` to build the TypeScript side — reading hook state, and calling the hook or the pool from an app:
+
+```text
+Write a TypeScript script using viem that connects to [target chain],
+reads the deployed MyHook contract at [address], and verifies it is live:
+confirm the deployed bytecode is non-empty, and read back [the specific
+hook state you want to check]. Read any private key from process.env,
+never hardcode it. Use a PublicClient for reads and only introduce a
+WalletClient if a transaction is actually required.
+```
+
+Review any script yourself before it signs or broadcasts a transaction. Broadcasting a deployment is an action to confirm manually, not to delegate to unattended agent execution.
+
+## Customization Ideas
+
+- Swap the permission set for a different lifecycle stage (for example `beforeSwap` plus `beforeSwapReturnDelta` for a custom-curve AMM) and re-run Step 4's audit prompt — the checklist output changes meaningfully once a `ReturnDelta` permission is in play.
+- Point the Step 1 scaffold prompt at a more specialized base contract from the OpenZeppelin Hooks library already vendored in the template — `BaseCustomAccounting`, `BaseCustomCurve`, `BaseDynamicFee`, and others — instead of the plain `BaseHook`, to skip re-implementing common patterns.
+- Chain the Step 5 scripts into a CI job that redeploys to a testnet on every merge, then runs the viem verification script against the fresh address.
+
+## Where to Go Next
+
+- [Hooks Overview](/docs/protocols/v4/guides/hooks/getting-started) — local environment setup if you haven't built a hook before
+- [Building Your First Hook](/docs/protocols/v4/guides/hooks/your-first-hook) — the same lifecycle written by hand, without an agent
+- [Hook Deployment](/docs/protocols/v4/guides/hooks/hook-deployment) — how hook address flags work, in depth
+- [Uniswap Skills](/docs/uniswap-ai/skills) — full catalog of available Uniswap AI skills
+- [v4-template repository](https://github.com/uniswapfoundation/v4-template)
+
+## Legal Disclaimer
+
+Code generated by an AI agent, including code produced by the prompts in this guide, has not been audited. See the [Usage Guidelines](https://github.com/Uniswap/uniswap-ai/blob/main/DISCLAIMER.md) for important information about intended use and financial information disclaimers.
