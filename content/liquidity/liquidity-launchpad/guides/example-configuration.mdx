@@ -124,7 +124,8 @@ Now let's finish the script:
         address deployer = vm.envAddress("DEPLOYER");
 
         vm.startBroadcast();
-        ContinuousClearingAuctionFactory factory = new ContinuousClearingAuctionFactory();
+        // Pass address(0) to run without a protocol fee controller.
+        ContinuousClearingAuctionFactory factory = new ContinuousClearingAuctionFactory(address(0));
         console2.log("Factory deployed to:", address(factory));
 
         ERC20Mock token = new ERC20Mock();
@@ -146,7 +147,7 @@ Now let's finish the script:
             auctionStepsData: auctionStepsData
         });
 
-        IDistributionContract auction = IDistributionContract(factory.initializeDistribution(address(token), totalSupply, abi.encode(parameters), bytes32(0)));
+        IDistributor auction = factory.create(address(token), totalSupply, abi.encode(parameters), bytes32(0));
         token.mint(address(auction), totalSupply);
         console2.log("Auction deployed to:", address(auction));
 
@@ -172,7 +173,7 @@ pragma solidity ^0.8.0;
 import {Script} from "forge-std/Script.sol";
 import {ContinuousClearingAuctionFactory} from "../src/ContinuousClearingAuctionFactory.sol";
 import {AuctionParameters} from "../src/interfaces/IContinuousClearingAuction.sol";
-import {IDistributionContract} from "../src/interfaces/external/IDistributionContract.sol";
+import {IDistributor} from "liquidity-launcher/src/interfaces/IDistributor.sol";
 import {AuctionStepsBuilder} from "../test/utils/AuctionStepsBuilder.sol";
 import {ERC20Mock} from '@openzeppelin/contracts/mocks/token/ERC20Mock.sol';
 import {console2} from "forge-std/console2.sol";
@@ -185,7 +186,8 @@ contract ExampleCCADeploymentScript is Script {
         address deployer = vm.envAddress("DEPLOYER");
 
         vm.startBroadcast();
-        ContinuousClearingAuctionFactory factory = new ContinuousClearingAuctionFactory();
+        // Pass address(0) to run without a protocol fee controller.
+        ContinuousClearingAuctionFactory factory = new ContinuousClearingAuctionFactory(address(0));
         console2.log("Factory deployed to:", address(factory));
 
         ERC20Mock token = new ERC20Mock();
@@ -207,7 +209,7 @@ contract ExampleCCADeploymentScript is Script {
             auctionStepsData: auctionStepsData
         });
 
-        IDistributionContract auction = IDistributionContract(factory.initializeDistribution(address(token), totalSupply, abi.encode(parameters), bytes32(0)));
+        IDistributor auction = factory.create(address(token), totalSupply, abi.encode(parameters), bytes32(0));
 
         token.mint(address(auction), totalSupply);
         auction.onTokensReceived();
