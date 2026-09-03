@@ -1,0 +1,94 @@
+---
+title: Integrate as a Router or Aggregator
+description: Source liquidity from DualPool pools with the hook's quote surface, sizing rules, and failure modes.
+---
+
+## Context
+
+This guide is for aggregators, routers, solvers, and quote APIs sourcing liquidity from DualPool pools. The headline: **execution is a completely ordinary v4 swap; only quoting is different.** A DualPool holds zero persistent v4 liquidity between swaps, so onchain pool depth is not a routing signal: `getSlot0` shows a price, but `getLiquidity` is ~0. Capacity is discovered through the hook's view functions.
+
+## Detect a DualPool
+
+There is no shared registry. Discover pools through your own tracking, then confirm the hook implements the ALF view interface via ERC-165:
+
+```solidity
+bool isAlf = IERC165(address(key.hooks)).supportsInterface(type(IALFHook).interfaceId);
+```
+
+A hook that passes carries the uniform `IALFHook` quote surface below, so you do not need to distinguish DualPool from other ALF strategies. DualPool-specific signals, if you want them, include `livePools(poolId)` and `getDistribution(poolId)`.
+
+## The Quote Surface
+
+All methods are `view`, intended to be called via `staticcall`:
+
+| Method | Returns | Use it for |
+| --- | --- | --- |
+| `getIndicativeQuote(key, zeroForOne, amountSpecified, hookData)` | `uint256` | Single-number indicative for ranking |
+| `swapToPrice(key, zeroForOne, amountSpecified, sqrtPriceLimitX96, hookData)` | `(amountIn, amountOut)` | Price-bounded fill simulation for split planning |
+| `getReserves(key)` | `(token0, token1)` | Total economic assets under management |
+| `getEffectiveLiquidity(key)` | `(token0, token1)` | Immediately swappable liquidity |
+| `maxGas()` | `uint32` | Gas budget to cap your `staticcall` at |
+| `isLive()` | `bool` | Hook-level liveness (see caveat below) |
+
+Conventions:
+
+- `amountSpecified` follows v4's convention: negative for exact input, positive for exact output. Exact-input quotes return the expected output; exact-output quotes return the required input.
+- `zeroForOne = true` swaps `currency0 -> currency1`.
+- `hookData` is ignored entirely; pass empty bytes. There are no attestations, signed curves, or per-swap discounts.
+- The quote already composes the static LP fee (`key.fee`) with any v4 protocol fee. Do not re-apply either.
+
+<Callout type="note" title="A 0 quote means skip">
+The views return `0` rather than reverting when the hook cannot price a swap: the pool is paused or un-bootstrapped, effective balances are zero, or an exact-output request exceeds deliverable reserves. Treat `0` as "do not route here right now."
+</Callout>
+
+## Size Fills Against Effective Liquidity
+
+This is the one accounting subtlety that affects fill sizing:
+
+- `getReserves` is what LPs own: `vault.convertToAssets(shares)` + claims + tracked ERC-20
+- `getEffectiveLiquidity` is what the hook can withdraw and deploy this block: `vault.previewRedeem(shares)` + claims + tracked ERC-20
+
+When the pool's ERC-4626 vault is paused, capped, or utilization-constrained, effective liquidity drops below reserves. The JIT cycle and quote path both size against **effective** liquidity, so plan fills against `getEffectiveLiquidity`, not `getReserves`. `swapToPrice` already does this internally, so prefer it for split planning.
+
+## Quote Fidelity
+
+`getIndicativeQuote` and `swapToPrice` are a compact, single-step simulation: they sum the liquidity of the [distribution buckets](/docs/protocols/dualpool/concepts/liquidity-distributions) in range at the current tick and run one `SwapMath.computeSwapStep` against that constant liquidity. Implications:
+
+- Accurate for swaps that stay within the current in-range bucket set, the common small and medium swap near the peg
+- No tick-walking across bucket boundaries: a large swap that crosses into or out of bucket ranges sees liquidity change mid-swap that the single-step quote does not capture
+- The output leg is capped at the effective output reserve, so a quote can never exceed what the pool can deliver
+
+Recommendations:
+
+1. Use `getIndicativeQuote` for ranking
+2. Use `swapToPrice` with a real `sqrtPriceLimitX96` for split planning and tighter fills, so the simulation is bounded the same way execution will be
+3. Track persistent quote-vs-fill divergence per pool and feed it into your routing reputation model; the design expects routers to deprioritize on sustained divergence
+
+## Failure Modes
+
+| Situation | What you observe | Handling |
+| --- | --- | --- |
+| Pool paused or not yet bootstrapped | Quote views return `0`; direct swap reverts `PoolNotLive(poolId)` | Skip on `0`; pre-filter with `livePools(poolId)` |
+| Vault throttled | `getEffectiveLiquidity < getReserves`; oversized fills under-fill or revert on the vault withdrawal | Size against effective liquidity |
+| Quote/execution divergence on large swaps | Realized output differs from the indicative | Use `swapToPrice`; track divergence |
+| `isLive()` returns true for a paused pool | `isLive()` is hook-level, not per-pool | Use `livePools(poolId)` or the `0`-quote signal for pool liveness |
+
+## Execution
+
+Nothing here is DualPool-specific: swap as you would against any v4 pool, via the `PoolManager` or the Universal Router, and enforce your own slippage. See [Swap Against a DualPool](/docs/protocols/dualpool/guides/swap).
+
+## Integration Checklist
+
+- [ ] Confirm the hook via `supportsInterface(type(IALFHook).interfaceId)`
+- [ ] Quote through `getIndicativeQuote` / `swapToPrice`, never pool liquidity
+- [ ] Pass `hookData = ""`
+- [ ] Read the fee from `key.fee` (static; never the dynamic-fee flag)
+- [ ] Size fills against `getEffectiveLiquidity`, not `getReserves`
+- [ ] Cap quote `staticcall` gas at `maxGas()`
+- [ ] Treat a `0` quote as "skip"; pre-filter with `livePools(poolId)` for direct routing
+- [ ] Enforce your own slippage on execution
+- [ ] Track quote fidelity per pool
+
+## Next Steps
+
+For where the numbers behind `getReserves` and `getEffectiveLiquidity` come from, read [Inventory and Yield](/docs/protocols/dualpool/concepts/inventory-and-yield).
