@@ -4,9 +4,11 @@ description: Resolve UniswapX filler and quoter issues, including native ETH inp
 type: faq
 faqs:
   - question: How do I get orders?
-    answer: Fillers should start with polling for orders and rate limit at 6 RPS.
+    answer: Fillers should start with polling for orders and rate limit at 4 RPS. The orders endpoint serves cached responses, and requests above 4 RPS return 429. Each response returns at most the last 50 orders, ordered by most recent.
+  - question: Do I need an API key to poll for orders?
+    answer: No. The orders API is a separate service from the Trading API, and polling for open orders requires no API key. Raising a Trading API key's rate limit does not increase your polling throughput. The orders endpoint limits by client IP, so every request from the same egress IP shares one budget no matter which key, if any, is attached.
   - question: Are webhooks still supported?
-    answer: Webhooks were deprecated on UniswapX due to degraded performance, and we are no longer onboarding new webhook integrations. Existing webhook integrations will continue to work, but new fillers should start with polling orders on the API and rate limit at 6 RPS. We are exploring WebSocket connections going forward.
+    answer: Webhooks were deprecated on UniswapX due to degraded performance, and we are no longer onboarding new webhook integrations. Existing webhook integrations will continue to work, but new fillers should start with polling orders on the API and rate limit at 4 RPS. We are exploring WebSocket connections going forward.
   - question: Which IPs do I need to whitelist to receive quote requests?
     answer: 'Whitelist the UniswapX quote-request source IPs so your quoting server can receive RFQ requests. Beta test environment: 3.135.148.114. Production environment: 3.138.88.28.'
   - question: Why don't I get quote requests for all chains?
@@ -72,7 +74,18 @@ faqs:
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  Fillers should start with polling for orders and rate limit at 6 RPS.
+  Fillers should start with polling for orders and rate limit at 4 RPS. The orders endpoint serves cached responses, and requests above 4 RPS return `429`. Each response returns at most the last 50 orders, ordered by most recent.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Do I need an API key to poll for orders?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  No. The orders API is a separate service from the Trading API, and polling for open orders requires no API key. Raising a Trading API key's rate limit does not increase your polling throughput. The orders endpoint limits by client IP, so every request from the same egress IP shares one budget no matter which key, if any, is attached.
 
   </div>
 
@@ -83,7 +96,7 @@ faqs:
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  Webhooks were deprecated on UniswapX due to degraded performance, and we are no longer onboarding new webhook integrations. Existing webhook integrations will continue to work, but new fillers should start with polling orders on the API and rate limit at 6 RPS. We are exploring WebSocket connections going forward.
+  Webhooks were deprecated on UniswapX due to degraded performance, and we are no longer onboarding new webhook integrations. Existing webhook integrations will continue to work, but new fillers should start with polling orders on the API and rate limit at 4 RPS. We are exploring WebSocket connections going forward.
 
   </div>
 

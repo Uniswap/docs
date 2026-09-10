@@ -23,7 +23,7 @@ UniswapX has one permissioned role (quoter) and one permissionless role (filler)
 |---|---|---|---|---|
 | **Quoter** | Permissioned, vetted by Uniswap Labs | Responds to the off-chain RFQ; if it wins the hard quote, it gets the exclusivity window | Yes: if it wins exclusivity and does not fill, it triggers the circuit breaker | Receives quote requests from the parameterization service |
 | **Exclusive filler** | The quoter that won the RFQ | During the exclusivity window (about 24 seconds, or 2 blocks, on mainnet) | Yes | It is the RFQ winner |
-| **Non-exclusive filler** | Permissionless, no vetting | After exclusivity expires in the open Dutch auction, or during exclusivity through a soft-exclusivity override (`exclusivityOverrideBps` greater than zero) | No: it never held exclusivity, so it cannot fade and is not subject to the circuit breaker | Polls the orders API at 6 RPS |
+| **Non-exclusive filler** | Permissionless, no vetting | After exclusivity expires in the open Dutch auction, or during exclusivity through a soft-exclusivity override (`exclusivityOverrideBps` greater than zero) | No: it never held exclusivity, so it cannot fade and is not subject to the circuit breaker | Polls the orders API at up to 4 RPS |
 
 A non-exclusive filler carries no fade risk and is never subject to the circuit breaker, because it never commits to an exclusivity it could fail to honor.
 
