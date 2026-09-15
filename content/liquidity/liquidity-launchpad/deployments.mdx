@@ -5,6 +5,8 @@ description: Find Uniswap Liquidity Launchpad, CCA, and strategy contract deploy
 ---
 View the changelogs for more details on differences between contract deployments: [continuous-clearing-auction](https://github.com/Uniswap/continuous-clearing-auction/blob/main/CHANGELOG.md) and [liquidity-launcher](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md).
 
+Prior liquidity-launcher deployment addresses are retained for reference, marked deprecated, in the [Deployment Guide](https://github.com/Uniswap/liquidity-launcher/blob/main/docs/DeploymentGuide.md#legacy-deployments-deprecated).
+
 ## ContinuousClearingAuctionFactory
 The CCA factory has no constructor parameters so it can be deployed to the same address across all compatible chains. v2.0.0 is deployed on all currently supported chains.
 
@@ -23,11 +25,109 @@ The LiquidityLauncher is a singleton contract deployed to the same address acros
 
 | Version  | Address | Commit Hash |
 | -------- | ------------------------------------------ | ---------------------------------------- |
-| v3.0.0  | 0x00004c4ccc709Ef590F7C81102C0689F0263D4e9 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
-| v1.0.0  | 0x00000008412db3394C91A5CbD01635c6d140637C | fd5be9b7a918ca3d925d985dff9bcde82b3b8a9d |
+| v3.2.0  | 0x0000FffFBE8efE702c8703aE3477FF5dE3d319C0 | dd8769cd45c0e9450e928513ee129b0af74f7f32 |
 
-## LBP Strategies
-LBP strategies are deployed via factory contracts which are deployed to different addresses on different chains. Make sure to use the correct factory contract for the chain in question.
+## LBPStrategy
+The LBPStrategy contract is deployed to a different address on each chain. It must be deployed to a valid v4 hook address. It is compatible with any LiquidityLauncher of the same major version.
+
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v3.3.0 | Mainnet | 0x2EEF0e2a9a652d755AccAD95a24541A98B5CA000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Base | 0xf10124B01E9fa88b0a2eF3fA95a53B3310446000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Unichain | 0x48F55E7E8ac229aA4e2f3F2d44aa9284D86da000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Arbitrum | 0xc80f3f4497CD9ae41bf8cB5C8809620182B6E000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Robinhood Chain | 0xbf1aB81f7d534b2CC0Da76fcf4d541322bB0e000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Avalanche | 0x7575c9488AB7913e7749B9F5e02789355699E000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | XLayer | 0xde758D7B3202b7f4f842E8313Fc04Bf19c6Be000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Ink | 0x0cB98d78be96D5119E49664a9F24fDA22f83E000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Arc | 0x542BCDA1015485ef0B1cD11B835DC58DF5102000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Sepolia | 0x95434E898Af471945Cab33D5064d2aC1A6Ba2000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Base Sepolia | 0x73ad52384798AdADfBe19fCfD28ff09D2CC82000 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+
+## InstantLaunchStrategy
+The InstantLaunchStrategy is deployed to a different address on each chain. Multiple versions may exist; each pins to a specific [FeeSplitter](#feesplitter).
+
+| Version | Chain | Address | Fee Splitter | Initial Tick | Commit Hash |
+|---------|-------|---------|--------------|--------------|------------|
+| v3.3.0 | Robinhood Chain | 0x7c48DDe3B447381F4d986334679b3Afc7F2D35C2 | [0x9411fa7F956f64aa7981AA27cB3bC6eC0415449C](#feesplitter) | 198,050 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Robinhood Chain | 0xC9566675b1Ea42861546f3c5B74Ace2c79c49572 | [0x882Ae5e2095435A62Fd1BBDEfcb637f5CeAFc0ee](#feesplitter) | 198,050 | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Arc | 0x78429369103a9b8a545d11705bf04b4A4403fcc2 | [0xC2F1D91599d7CB04E6BB156AB3D10972cC2da607](#feesplitter) | 122,050 | b85107731fd278f9c0b28c478bc9e916bbb86540 |
+| v3.3.0 | Arc | 0xA5FFB8B08429a95A75a893717049b6c8A8d5e961 | [0xCDDC6103dD64dd05Cf634166326a21Be06B3165A](#feesplitter) | 122,050 | b85107731fd278f9c0b28c478bc9e916bbb86540 |
+
+## UniversalRouterStrategy
+The UniversalRouterStrategy is deployed to a different address on each chain. It runs a caller-supplied Universal Router route so a launch and a buy can fit in one transaction.
+
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v3.3.0 | Robinhood Chain | 0x0A122717bc36E3C7A7958128a5C789E0b070b3Ae | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+| v3.3.0 | Arc | 0x0A122717bc36E3C7A7958128a5C789E0b070b3Ae | 1c5904912aefceaceb89c24528cd5e25d0b61597 |
+
+## TokenSplitter
+The TokenSplitter is deployed to the same address on all networks.
+
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v3.0.0 | | 0x8B7DCeb5639DB986FCf86606C74e6300C40FE3cd | 3a3103543f50a13a0ae52a253bb98a925d72146f |
+
+## FeeSplitter
+The FeeSplitter is deployed per chain with immutable fee splits. Multiple deployments may exist on the same chain.
+
+| Version | Chain | Address | Fee Splits | Commit Hash |
+|---------|-------|---------|------------|------------|
+| v3.3.0 | Robinhood Chain | 0x9411fa7F956f64aa7981AA27cB3bC6eC0415449C | [UERC20BeneficiaryVault](#uerc20beneficiaryvault): 40% native ETH; [CompoundingClaimRecipient](#compoundingclaimrecipient): 60% native ETH, 100% token | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.3.0 | Robinhood Chain | 0x882Ae5e2095435A62Fd1BBDEfcb637f5CeAFc0ee | [CompoundingClaimRecipient](#compoundingclaimrecipient): 100% native ETH, 100% token | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.2.0 | Arc | 0xC2F1D91599d7CB04E6BB156AB3D10972cC2da607 | [UERC20BeneficiaryVault](#uerc20beneficiaryvault): 40% native ETH; [CompoundingClaimRecipient](#compoundingclaimrecipient): 60% native ETH, 100% token | 1eda9f0c0243e2fdc0cbe0d665200ffa8c2ba53a |
+| v3.2.0 | Arc | 0xCDDC6103dD64dd05Cf634166326a21Be06B3165A | [CompoundingClaimRecipient](#compoundingclaimrecipient): 100% native ETH, 100% token | 1eda9f0c0243e2fdc0cbe0d665200ffa8c2ba53a |
+
+## UERC20BeneficiaryVault
+The UERC20BeneficiaryVault is deployed to a different address on each chain. It distributes and attributes creator fees.
+
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v3.3.0 | Robinhood Chain | 0x26d2F7AcB07707034406a0dC458351Bb63C02553 | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.2.0 | Arc | 0x3892aB3Dcf62785Ee3077ea008486c3a6bCf51Af | 1eda9f0c0243e2fdc0cbe0d665200ffa8c2ba53a |
+
+## CompoundingClaimRecipient
+The CompoundingClaimRecipient is deployed to a different address on each chain. It permissionlessly compounds LP fees into liquidity.
+
+| Version | Chain | Address | Commit Hash |
+|---------|-------|---------|------------|
+| v3.3.0 | Robinhood Chain | 0xf585b5D728A8fdE743027307BF5F3556E3B9C58D | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.2.0 | Arc | 0xBE5A26C5E7ABC4f049971e18214301931e23D1Db | 1eda9f0c0243e2fdc0cbe0d665200ffa8c2ba53a |
+
+## BuybackAndBurnRecipient
+The BuybackAndBurnRecipient is deployed to a different address based on parameters. It releases funds in exchange for burning a fixed token amount.
+
+| Version | Chain | Parameters | Address | Commit Hash |
+|---------|-------|------------|---------|------------|
+| v3.2.0 | Robinhood Chain | minCurrency1Amount: 500_000e18 | 0xa1ba4CC12654D2b188e3ba77dc86c75cA47f1A4e | 0b5ee0527af94a8c635b6af5b334a7d17c5ed719 |
+| v3.2.0 | Arc | minCurrency1Amount: 500_000e18 | 0xF4e3Eb6C63aA47aE18F07D9d30D9fc3F0fF24D37 | 0b5ee0527af94a8c635b6af5b334a7d17c5ed719 |
+
+## VestingClaimRecipient
+The VestingClaimRecipient is deployed to a different address based on parameters. It claims and distributes tokens over time.
+
+| Version | Chain | Parameters | Address | Commit Hash |
+|---------|-------|------------|---------|------------|
+| v3.2.0 | Robinhood Chain | maxCurrency0PerBlock: 125000000000000, maxCurrency1PerBlock: 50000000000000000000000, recipient: [BuybackAndBurnRecipient](#buybackandburnrecipient) | 0xeF451B293ED8C61d20f7d13ef336a496F0cc2c26 | 0b5ee0527af94a8c635b6af5b334a7d17c5ed719 |
+| v3.2.0 | Arc | maxCurrency0PerBlock: 250000, maxCurrency1PerBlock: 50000000000000000000000, recipient: [BuybackAndBurnRecipient](#buybackandburnrecipient) | 0xc4a4129F49291aF60784eEBdDD1B1Ad9aDFA3E4E | 0b5ee0527af94a8c635b6af5b334a7d17c5ed719 |
+
+## InitializerHook
+The InitializerHook restricts pool initialization to a deployed LBPStrategy instance.
+
+| Version | Chain | Address | LBPStrategy | Salt | Commit Hash |
+|---------|-------|---------|-------------|------|------------|
+| v3.3.0 | Mainnet | 0xcDf73dEddE5e8C2FdC9c01C18607e0B40380E000 | [0x2EEF0e2a9a652d755AccAD95a24541A98B5CA000](#lbpstrategy) | 0x00000000000000000000000000000000000000000000000000000000000010a4 | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.3.0 | Unichain | 0xF44Ba9c854Ec0ad6a899864bdfF560AAD4002000 | [0x48F55E7E8ac229aA4e2f3F2d44aa9284D86da000](#lbpstrategy) | 0x0000000000000000000000000000000000000000000000000000000000001046 | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.3.0 | Robinhood Chain | 0x5fB5229FBA341dFE5a7e6A14d4809D6Cf887a000 | [0xbf1aB81f7d534b2CC0Da76fcf4d541322bB0e000](#lbpstrategy) | 0x000000000000000000000000000000000000000000000000000000000000247f | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.3.0 | Avalanche | 0x602bd3e53b5e80f732b0859E90564CFCAcb52000 | [0x7575c9488AB7913e7749B9F5e02789355699E000](#lbpstrategy) | 0x0000000000000000000000000000000000000000000000000000000000000d67 | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.3.0 | XLayer | 0xcaf0443A5F171DC1dd5574eE50dD2c45274da000 | [0xde758D7B3202b7f4f842E8313Fc04Bf19c6Be000](#lbpstrategy) | 0x000000000000000000000000000000000000000000000000000000000000df03 | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.3.0 | Ink | 0x47AFDD2D8591275E9dF688FCacb8Cf5C772Ee000 | [0x0cB98d78be96D5119E49664a9F24fDA22f83E000](#lbpstrategy) | 0x000000000000000000000000000000000000000000000000000000000000ae2a | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.3.0 | Arc | 0x0A2Bf52DA5D72fd1B1cDB21ABd4Bd8672b512000 | [0x542BCDA1015485ef0B1cD11B835DC58DF5102000](#lbpstrategy) | 0x000000000000000000000000000000000000000000000000000000000000403b | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.3.0 | Sepolia | 0x1600059B95A80d500fC42400ea9a88A9C29D2000 | [0x95434E898Af471945Cab33D5064d2aC1A6Ba2000](#lbpstrategy) | 0x0000000000000000000000000000000000000000000000000000000000000edf | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+| v3.3.0 | Base Sepolia | 0xE09e0D23097B08443C09F2AE23e7201601422000 | [0x73ad52384798AdADfBe19fCfD28ff09D2CC82000](#lbpstrategy) | 0x0000000000000000000000000000000000000000000000000000000000011e77 | 7ea523c9d75a51cb2f497be5e49bacdaeb80a342 |
+
+## Previous Deployments
+The following contracts are deprecated and are not recommended for production use. See the [Changelog](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md) for more details.
 
 ### FullRangeLBPStrategyFactory
 The FullRangeLBPStrategyFactory is a factory contract for the [FullRangeLBPStrategy](https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/lbp/FullRangeLBPStrategy.sol).
@@ -48,21 +148,6 @@ The AdvancedLBPStrategyFactory is a factory contract for the [AdvancedLBPStrateg
 | v2.0.0 | Unichain | 0xeB44195e1847F23D4ff411B7d501b726C7620529 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
 | v2.0.0 | Base | 0x9C5A6fb9B0D9A60e665d93a3e6923bDe428c389a | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
 | v2.0.0 | Sepolia | 0xdC3553B7Cea1ad3DAB35cBE9d40728C4198BCBb6 | 610603eed7c35ff504e23ec87cd18ec3f701e746 |
-
-### LBPStrategy
-The LBPStrategy contract is deployed to a different address on each chain. It must be deployed to a valid v4 hook address.
-
-| Version | Chain | Address | Commit Hash |
-|---------|-------|---------|------------|
-| v3.0.0 | Mainnet | 0xb98766A35cdc28415be0767D4EA41e39fBA3e000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
-| v3.0.0 | Base | 0x5bB4bAfafEc57BEd50D864AAA9D1ef992611e000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
-| v3.0.0 | Unichain | 0x824A3eCDe463DD45cC156b64CEfA132596C9A000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
-| v3.0.0 | Arbitrum | 0x18608AD558dcD233F7854242bbAef73988Bee000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
-| v3.0.0 | Sepolia | 0x3f37838651B5AD71D4e01Ec9745862A5D9DF2000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
-| v3.0.0 | Base Sepolia | 0x0e1793a989c682117fcBfB3a9aA8e451D37D2000 | 3a3103543f50a13a0ae52a253bb98a925d72146f |
-
-## Previous Deployments
-The following contracts are deprecated and are not recommended for production use. See the [Changelog](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md) for more details.
 
 ### LBPStrategyBasicFactory
 The LBPStrategyBasicFactory is a factory contract for the [LBPStrategyBasic](https://github.com/Uniswap/liquidity-launcher/blob/v1.0.0-candidate/src/distributionContracts/LBPStrategyBasic.sol).
