@@ -1,0 +1,22 @@
+---
+title: 'Removal of API AMM slippageTolerance Cap'
+description: 'Posted: August 20, 2026 | Effective: August 21, 2026'
+type: changelog
+datePublished: '2026-08-20'
+---
+
+The `slippageTolerance` field will allow any value from 0 to 100, inclusive, with up to two decimal places of precision. This will be applied correctly to AMM orders.
+
+**What is changing?**
+
+The `slippageTolerance` field on the `/quote` request was previously capped at 20% (`20`) for AMM orders. `/quote` requests with slippage set higher than 20% would fail with "No quotes available," or would fall back to UniswapX if allowed by the request. After this change, you can set slippage as high as 100% and still receive an AMM response.
+
+Requests with slippage below 0, above 100, using more than 2 decimal places, or providing a non-number will continue to fail with a field validation error.
+
+**Why is this changing?**
+
+The silent failure behavior was misleading and prevented integrators from offering wider slippage ranges to their end users.
+
+**What do I need to do?**
+
+No change is required for existing integrators. You may continue to keep your own slippage caps in your interface, or allow users to set any slippage from 0% to 100%.

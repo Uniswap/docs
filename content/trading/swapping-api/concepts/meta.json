@@ -3,6 +3,7 @@
   "pages": [
     "permit2",
     "no-permit2-workflow",
-    "swap-routing"
+    "swap-routing",
+    "chained-actions"
   ]
 }

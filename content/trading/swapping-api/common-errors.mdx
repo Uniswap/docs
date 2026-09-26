@@ -9,21 +9,39 @@ description: Troubleshoot common Uniswap API request, quoting, authentication, a
 
 The API is specific about request header validation. In particular, ensure that your `accept` and `content-type` headers only include the value `application/json`. For a complete example of properly formatted request headers, see the authentication section of the [Developer Dashboard](https://developers.uniswap.org/dashboard).
 
-If you're sending the optional `X-Agent-Info` attribution header and it isn't being picked up, check the response for an `x-agent-info-status: malformed` header — see [Agent Attribution](/docs/trading/swapping-api/agent-attribution#confirming-it-was-received) for the full set of rules that make the header malformed. A malformed `X-Agent-Info` never causes an error response; the request proceeds without attribution.
+If you're sending the optional `X-Agent-Info` attribution header and it isn't being picked up, check the response for an `x-agent-info-status: malformed` header. See [Agent Attribution](/docs/trading/swapping-api/start-building/agent-attribution#what-makes-a-header-malformed) for the full set of rules that make the header malformed. A malformed `X-Agent-Info` never causes an error response; the request proceeds without attribution.
 
 ### Rate limits
 
-Most API keys have a default rate limit of 6 requests per second (RPS). If you exceed the rate limit supported by an API key you can expect to receive an HTTP 429 error. If you receive a 429 error, we recommend pausing all requests from your API key and then retrying your requests. If you require a higher rate limit than what your API key is currently provisioned for, please reach out to [Uniswap Developer Support](https://support.uniswap.org/hc/en-us/requests/new). For more information on rate limits, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).
+Most API keys have a default rate limit of 6 requests per second (RPS). If you exceed the rate limit supported by an API key you can expect to receive an HTTP 429 error. If you receive a 429 error, we recommend pausing all requests from your API key and then retrying your requests. If you require a higher rate limit than what your API key is currently provisioned for, please reach out to our team through the <HelpCenter topic="uniswap-api" category="rate-limits">Help Center</HelpCenter>. For more information on rate limits, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).
 
 ## Error Code Troubleshooting
 
 ### 404 No quotes available
 
-The most commonly encountered HTTP error is an HTTP 404 with a message "No quotes available" from the [`/quote`](/docs/trading/swapping-api/getting-started) endpoint. This error can happen for a variety of reasons related to request syntax, rather than there being no actual route between the specified tokens. In order of most common to less common reasons for receiving this error:
-* The `amount` is too low to be quoted by UniswapX. UniswapX requires a minimum of **300 USDC equivalent on all supported chains**. Requests below this threshold will fail. See [UniswapX Chain Support](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support) for details.
-* The specified chain is not supported by UniswapX. UniswapX has limited chain support.
-* The specified token(s) do not match the specified chain. The token addresses specified must be those belonging to the token on the given chain (ex. the USDC address on Mainnet is different than that on Base).
-* A combined bridge and swap quote is requested. The API can provide a quote for either a bridge (different input/output chains, same token) or a swap (same chain, different input/output tokens), but not both simultaneously. For a list of bridgeable tokens, see [Supported Chains](/docs/trading/swapping-api/supported-chains).
+The most commonly encountered HTTP error is an HTTP 404 from the [`/quote`](/docs/trading/swapping-api/getting-started) endpoint. The `errorCode` field identifies the cause, and `detail` carries a human-readable explanation:
+
+```json
+{
+  "errorCode": "QuoteAmountTooLowError",
+  "detail": "Order size is below the minimum quotable size for the requested protocols on this chain.",
+  "requestId": "..."
+}
+```
+
+`errorCode` is a stable enum. `detail` is free text and may be reworded without notice. New `errorCode` values may be added over time, so treat unrecognized values the same as you do `ResourceNotFound`.
+
+| `errorCode` | What it means | What to do |
+|---|---|---|
+| `QuoteAmountTooLowError` | The `amount` is below the minimum quotable size for the requested protocols — most commonly UniswapX minimums on L2s (see [UniswapX Chain Support](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support)) | Increase the amount, or widen `protocols` |
+| `NoRouteFoundError` | Routing completed and found no viable route for this pair | Verify token addresses match the specified chain; do not retry unchanged |
+| `UnsupportedTokenError` | A requested token is not routable (unknown or not on this chain) | Verify the token address belongs to the given chain (ex. USDC on Mainnet differs from Base) |
+| `UnsupportedChainError` | The chain is not supported for this operation | See [Supported Chains](/docs/trading/swapping-api/supported-chains) |
+| `UniswapXNotSupportedOnChainError` | A UniswapX protocol was requested on a chain it does not serve | Remove the UniswapX protocol pin, or change chain |
+| `UpstreamTimeoutError` | A routing dependency timed out or failed | **Retry with exponential backoff** — this is the only cause where an unchanged retry can succeed |
+| `ResourceNotFound` | The failure could not be classified (`detail` is "No quotes available") | Retry cautiously; contact support with the `requestId` if persistent |
+
+A request that combines a bridge and a swap (different chains *and* different tokens) is not supported as a single quote and currently surfaces as `ResourceNotFound`. Request a bridge or a swap, not both — for bridgeable pairs see [Supported Chains](/docs/trading/swapping-api/supported-chains).
 
 ### 400 Request validation error
 
@@ -32,3 +50,5 @@ Request validation errors are returned when a request does not contain the minim
 ### 401 Unauthorized error
 
 All API requests must be authenticated through the inclusion of a valid API key in the header of the request. If you do not have an API key, you may create one through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome?utm_medium=eco&utm_source=platform&utm_campaign=20260428-swapping-api-errors&utm_content=auth-section&utm_term=self-serve). 401 errors may also be returned if the request has malformed or missing required headers, or if headers contain unsupported values (see above). For more details on authentication requirements, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).
+
+For developer support, reach out to our team through the <HelpCenter topic="uniswap-api">Help Center</HelpCenter>.

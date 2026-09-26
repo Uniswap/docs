@@ -1,0 +1,27 @@
+---
+title: Block Price Caching
+description: Learn why StablePair prices every swap in a block from the same cached pool price, and what that means for integrators.
+---
+
+On the first swap of each block, the hook reads the pool price and stores it. Every other swap in that block is priced from that same stored value, not from the live price.
+
+## Why
+
+Without the cache, a corrective swap could be split into legs, each leg facing a price slightly closer to the reference rate and paying a slightly smaller fee than the last. The split trade would pay less in total than the single trade. Caching the price at the start of the block removes the advantage: every leg sees the same inputs and pays the same rate.
+
+This behavior was introduced in response to a finding in the OpenZeppelin review of the fee mechanism. See [StablePair Security](/docs/protocols/uniswap-labs-hooks/stable-pair/security).
+
+## What it means for integrators
+
+- **Splitting a swap gains nothing.** Same-direction corrective swaps within a block all pay the same rate.
+- **The fee does not move within a block.** A quote taken at the top of a block holds for the rest of it, even as other swaps move the actual pool price. The next block reads a fresh price and reprices.
+- **The cached price can go stale inside a block.** Later swaps in a heavily traded block may see a fee derived from a price the pool has already moved away from. For pairs trading near parity the gap is small, and it is bounded to a single block.
+
+<Callout type="warn">
+While a pool is outside its band, the cached price also decides which direction counts as corrective. If a swap pushes the price across the reference rate mid-block, the fee directions invert for the remainder of that block: the newly corrective direction is charged zero and the newly adverse direction pays the decaying fee. The next block restores the correct assignment.
+</Callout>
+
+## Where to Go Next
+
+- [Dynamic Fees](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/dynamic-fees)
+- [Swap Against a StablePair Pool](/docs/protocols/uniswap-labs-hooks/stable-pair/guides/swap)

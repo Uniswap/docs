@@ -1,0 +1,42 @@
+---
+title: 'Improved API Error Codes'
+description: 'Posted: August 20, 2026 | Effective: September 4, 2026'
+type: changelog
+datePublished: '2026-08-20'
+---
+
+Additional HTTP 404 error codes that provide more informative error reasons are being added to the `/quote` endpoint of the API.
+
+**What is changing?**
+
+When a `/quote` request returns an HTTP 404, the response will include more specific `errorCode` values and a `detail` field.
+
+| `errorCode` | Meaning | Retry? |
+| --- | --- | --- |
+| `QuoteAmountTooLowError` | Below the minimum quotable size for the requested protocol (e.g. UniswapX per-chain minimums) | No |
+| `NoRouteFoundError` | Routing completed, but no viable route was found | No |
+| `UnsupportedTokenError` | Token is not routable (e.g. unknown, blocklisted, or on the wrong chain) | No |
+| `UnsupportedChainError` | Chain is not supported for the requested operation | No |
+| `UniswapXNotSupportedOnChainError` | The requested UniswapX variant is not supported on this chain | No |
+| `UpstreamTimeoutError` | A routing dependency timed out or errored; it is unknown whether a route exists | Yes |
+| `ResourceNotFound` (fallback) | Unclassified failure | Yes (conditionally) |
+
+For clarity, the HTTP 404 error structure is not changing and will continue to look like:
+
+```json
+{
+  "errorCode": "UnsupportedTokenError",
+  "detail": "Token not routable (unknown / blocklisted / wrong chain)",
+  "requestId": "a00382a5539523928a4f997974dd27eb"
+}
+```
+
+**Why is this changing?**
+
+Except for field-level validation errors, the `/quote` endpoint usually returned an `errorCode` of `ResourceNotFound` when it could not return a quote. This catch-all error was not specific enough for integrators to tell users whether to retry the request or change its parameters.
+
+**What do I need to do?**
+
+If you parse the `errorCode` field for specific actions or display, add handling for the new error codes. We also recommend a default case so your integration can tolerate additional error codes in the future.
+
+If you pass through the `detail` field from an HTTP 404 response to your users or interface, no change is needed.

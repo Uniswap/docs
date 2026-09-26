@@ -4,9 +4,16 @@ description: Resolve UniswapX filler and quoter issues, including native ETH inp
 type: faq
 faqs:
   - question: How do I get orders?
-    answer: Fillers should start with polling for orders and rate limit at 6 RPS.
+    answer: Fillers should start with polling for orders and rate limit at 4 RPS. The orders endpoint serves cached responses, and requests above 4 RPS return 429. Each response returns at most the last 50 orders, ordered by most recent.
+  - question: Do I need an API key to poll for orders?
+    answer: No. The orders API is a separate service from the Trading API, and polling for open orders requires no API key. Raising a Trading API key's rate limit does not increase your polling throughput.
+  - question: Which orders endpoint should I use?
+    answer: |-
+      Three different endpoints are called "orders", and fillers want the first one. GET /v2/orders on api.uniswap.org polls for open orders to fill and is the filler endpoint. POST /v1/order on trade-api.gateway.uniswap.org submits a signed order, and GET /v1/orders on the same host checks the status of a submitted order; both are for swappers and integrators and require an API key.
+  - question: What should I do if I get a 429?
+    answer: Back off and stop polling until the limit clears. Do not retry. Throttled requests return HTTP 429 with error code TOO_MANY_REQUESTS. Blocked requests still count toward the rolling five-minute window, so retrying while throttled keeps the window full and extends the block.
   - question: Are webhooks still supported?
-    answer: Webhooks were deprecated on UniswapX due to degraded performance, and we are no longer onboarding new webhook integrations. Existing webhook integrations will continue to work, but new fillers should start with polling orders on the API and rate limit at 6 RPS. We are exploring WebSocket connections going forward.
+    answer: Webhooks were deprecated on UniswapX due to degraded performance, and we are no longer onboarding new webhook integrations. Existing webhook integrations will continue to work, but new fillers should start with polling orders on the API and rate limit at 4 RPS. We are exploring WebSocket connections going forward.
   - question: Which IPs do I need to whitelist to receive quote requests?
     answer: 'Whitelist the UniswapX quote-request source IPs so your quoting server can receive RFQ requests. Beta test environment: 3.135.148.114. Production environment: 3.138.88.28.'
   - question: Why don't I get quote requests for all chains?
@@ -14,29 +21,31 @@ faqs:
   - question: How do I know which chain I need to quote on?
     answer: Quote requests include the tokenInChainId field, which identifies the chain of the intent. If you are not interested in quoting for a given chain, respond with HTTP status code 204.
   - question: How quickly do I need to quote?
-    answer: Quote responses must be returned within 500ms on Ethereum, or 250ms on any other chain, to be considered.
+    answer: Quote responses must be returned within 500ms to be considered. The budget is the same on every chain.
   - question: What's the expected RPS for quoting on Ethereum?
     answer: 1 RPS.
   - question: Which tokens are supported in RFQ?
     answer: All tokens are supported, except those on the unsupported token list at unsupportedtokens.uniswap.org.
   - question: I'm getting 404, no quotes available?
     answer: |-
-      There are several reasons why you might receive this error. Price Impact: UniswapX has filters that route trades to the AMM when direct AMM execution would be superior. If the price impact is too high or the benefit of routing through UniswapX isn't significant enough, no quote will be returned for this pair. Order Size: Very small orders may not be economical to fill through UniswapX due to gas costs. Similarly, extremely large orders might exceed available liquidity from quoters. Response Latency: If your filler responds but takes longer than 500ms on Ethereum, or 250ms on any other chain, your quote will be rejected. Ensure your infrastructure can consistently respond within this latency requirement. The quote server is located in AWS US-EAST-2 if you wish to co-locate to reduce latency.
+      There are several reasons why you might receive this error. Price Impact: UniswapX has filters that route trades to the AMM when direct AMM execution would be superior. If the price impact is too high or the benefit of routing through UniswapX isn't significant enough, no quote will be returned for this pair. Order Size: Very small orders may not be economical to fill through UniswapX due to gas costs. Similarly, extremely large orders might exceed available liquidity from quoters. Response Latency: If your filler responds but takes longer than 500ms, on any chain, your quote will be rejected. Ensure your infrastructure can consistently respond within this latency requirement. The quote server is located in AWS US-EAST-2 if you wish to co-locate to reduce latency.
   - question: The transaction is reverting for a certain reason (e.g. DeadlineReached). What does this mean?
     answer: UniswapX reactors revert with custom errors such as DeadlineReached, InvalidCosignerInput, and InvalidCosignerOutput. Look up the revert selector against the reactor and base contracts in the UniswapX repository to find the cause. Custom errors defined under src/v4 (for example IntentAlreadyCancelled and ChunkSizeBelowMin) belong to the v4 DCA hook, not the production Dutch reactors, so do not confuse them with live order reverts.
   - question: Why did my server stop receiving quote requests?
-    answer: Your server may be temporarily blocked due to the fade-rate monitor. If you win an RFQ but don't fill the order, this counts as a "fade." After too many fades, RFQ requests are temporarily paused. You'll know you're blocked when quote requests include a blockUntilTimestamp field indicating when you'll start receiving requests again. Handle this field in your code so your service backs off until the block clears, and log it so you can detect and debug circuit breaker events.
+    answer: There are two reasons. The first is a fade-rate block. Your server may be temporarily blocked by the fade-rate monitor. If you win an RFQ but don't fill the order, this counts as a "fade." After too many fades, RFQ requests are temporarily paused. You'll know you're blocked when quote requests include a blockUntilTimestamp field indicating when you'll start receiving requests again. Handle this field in your code so your service backs off until the block clears, and log it so you can detect and debug circuit breaker events. The second is timeouts. Uniswap Labs may disable a quote endpoint that times out on a meaningful share of quote requests, at its discretion, until the issue is fixed.
   - question: Why does my fill transaction fail the Permit2 nonce check?
     answer: |-
       A Permit2 nonce check failure typically means the order has already been filled by another filler, the user cancelled the order, or the signature has expired. Before attempting to fill, verify the order is still valid. See "How do I know if an order is still fillable?".
   - question: What is ERC20ETH?
     answer: ERC20ETH is a minimal ERC-20 wrapper for native ETH that lets EIP-7702 smart wallets use ETH in ERC-20-based flows like UniswapX and Permit2.
+  - question: How does ERC20ETH work?
+    answer: ERC20ETH is built on Solady's ERC-20 implementation, supports EIP-2612 permit, and automatically gives Permit2 an infinite allowance. It keeps no internal balances and relies on actual native ETH balances, with balanceOf intentionally reverting to prevent double-entry-point balance-check bugs. On transfer and transferFrom it calls ERC-7914's transferFromNative on the sender, pulls native ETH, forwards it to the recipient, and emits standard ERC-20 events for tooling compatibility. The contract was audited by OpenZeppelin.
   - question: How do fillers handle orders with ERC20ETH as the input token?
     answer: Special-case the ERC20ETH address in routing logic and treat it as native ETH. There are no ERC20ETH liquidity pools, and the reactor delivers actual native ETH to the filler when Permit2 pulls the input.
   - question: What setup does a swapper need before using native ETH input?
     answer: The swapper needs an EIP-7702 wallet with ERC-7914 support and a one-time native ETH allowance to ERC20ETH. After setup, each swap only requires the usual offchain Permit2 signature.
   - question: Where is ERC20ETH deployed?
-    answer: ERC20ETH is deployed at 0x00000000e20E49e6dCeE6e8283A0C090578F0fb9, the same address across supported chains.
+    answer: ERC20ETH is deployed at 0x00000000e20E49e6dCeE6e8283A0C090578F0fb9, the same address on the chains that carry it. It is not deployed on every UniswapX chain, so check the Deployments page or deployments.json for a given chain before relying on it.
   - question: How do I know if an order is still fillable?
     answer: The simulation using UniswapXOrderQuoter (sdks/uniswapx-sdk/src/utils/OrderQuoter.ts) will tell you whether the order is still fillable.
   - question: How is orderHash generated? Is it guaranteed to be unique?
@@ -44,7 +53,7 @@ faqs:
   - question: Why do I receive inverse requests for every quote (e.g. USDC<>ETH and ETH<>USDC)?
     answer: Two quote requests are performed per actual quote to obfuscate the swapper's actual request and reduce the chances of front-running.
   - question: How long is the exclusivity period after a winning quote? Is it fixed or dynamic?
-    answer: The exclusivity period on mainnet is currently 24 seconds (2 blocks) and is set by the cosigner when it cosigns the order. It is not a fixed protocol constant and could change in the future. On chains that use the DutchV3 reactor (Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, and Unichain), the exclusivity window is measured in block numbers rather than seconds and is currently about 2 to 4 seconds, likewise set by the cosigner per order. Block times on these chains are roughly 1 second.
+    answer: The exclusivity period on mainnet is currently 24 seconds (2 blocks) and is set by the cosigner when it cosigns the order. It is not a fixed protocol constant and could change in the future. On chains that use the DutchV3 reactor (Arbitrum, Arc, Avalanche, Base, BNB Smart Chain, Ink, Monad, Robinhood Chain, Tempo, and Unichain), the exclusivity window is measured in block numbers rather than seconds and is currently about 2 to 4 seconds, likewise set by the cosigner per order. Block times vary by chain, from sub-second to a couple of seconds.
   - question: Why do some orders not have exclusive fillers?
     answer: The Order Service gets a soft quote to decide between UniswapX and Classic routing. If UniswapX is chosen and the hard quote comes back a certain amount lower than the soft quote, the Order Service cannot assign exclusivity. We call this missing exclusivity. The order then goes straight to decay.
   - question: What counts as a fade?
@@ -60,7 +69,7 @@ faqs:
   - question: Do simulation failures count as fades?
     answer: No. Fades are only counted when a quoter wins exclusivity but fails to fill the order onchain before the exclusivity window expires. Offchain simulation failures (for example quote validation or gas estimation) do not trigger the circuit breaker.
   - question: How do I submit a ticket?
-    answer: Use the UniswapX filler help form to reach the team without leaving this page.
+    answer: Use the Help Center to reach the team without leaving this page.
   - question: How do I stay up to date?
     answer: Subscribe to the Telegram channel at t.me/UniswapXdiscussion for UniswapX announcements.
 ---
@@ -72,7 +81,46 @@ faqs:
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  Fillers should start with polling for orders and rate limit at 6 RPS.
+  Fillers should start with polling for orders and rate limit at 4 RPS. The orders endpoint serves cached responses, and requests above 4 RPS return `429`. Each response returns at most the last 50 orders, ordered by most recent.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Do I need an API key to poll for orders?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  No. The orders API is a separate service from the Trading API, and polling for open orders requires no API key. Raising a Trading API key's rate limit does not increase your polling throughput.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Which `orders` endpoint should I use?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Three different endpoints are called "orders". Fillers want the first one.
+
+  - `GET /v2/orders` on `api.uniswap.org`: poll for open orders to fill. This is the filler endpoint.
+  - `POST /v1/order` on `trade-api.gateway.uniswap.org`: submit a signed order. For swappers and integrators; requires an API key.
+  - `GET /v1/orders` on `trade-api.gateway.uniswap.org`: check the status of a submitted order; requires an API key.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>What should I do if I get a 429?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  Back off and stop polling until the limit clears. Do not retry.
+
+  Throttled requests return HTTP `429` with error code `TOO_MANY_REQUESTS`. Blocked requests still count toward the rolling five-minute window, so retrying while throttled keeps the window full and extends the block.
 
   </div>
 
@@ -83,7 +131,7 @@ faqs:
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  Webhooks were deprecated on UniswapX due to degraded performance, and we are no longer onboarding new webhook integrations. Existing webhook integrations will continue to work, but new fillers should start with polling orders on the API and rate limit at 6 RPS. We are exploring WebSocket connections going forward.
+  Webhooks were deprecated on UniswapX due to degraded performance, and we are no longer onboarding new webhook integrations. Existing webhook integrations will continue to work, but new fillers should start with polling orders on the API and rate limit at 4 RPS. We are exploring WebSocket connections going forward.
 
   </div>
 
@@ -134,7 +182,7 @@ faqs:
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  Quote responses must be returned within 500ms on Ethereum, or 250ms on any other chain, to be considered.
+  Quote responses must be returned within 500ms to be considered. The budget is the same on every chain.
 
   </div>
 
@@ -175,7 +223,7 @@ faqs:
 
   - **Order Size**: Very small orders may not be economical to fill through UniswapX due to gas costs. Similarly, extremely large orders might exceed available liquidity from quoters.
 
-  - **Response Latency**: If your filler responds but takes longer than 500ms on Ethereum, or 250ms on any other chain, your quote will be rejected. Ensure your infrastructure can consistently respond within this latency requirement. The quote server is located in AWS `US-EAST-2` if you wish to co-locate to reduce latency.
+  - **Response Latency**: If your filler responds but takes longer than 500ms, on any chain, your quote will be rejected. Ensure your infrastructure can consistently respond within this latency requirement. The quote server is located in AWS `US-EAST-2` if you wish to co-locate to reduce latency.
 
   </div>
 
@@ -199,11 +247,15 @@ faqs:
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  Your server may be temporarily blocked due to the fade-rate monitor. If you win an RFQ but don't fill the order, this counts as a "fade." After too many fades, RFQ requests are temporarily paused.
+  There are two reasons.
+
+  **Fade-rate block**: your server may be temporarily blocked by the fade-rate monitor. If you win an RFQ but don't fill the order, this counts as a "fade." After too many fades, RFQ requests are temporarily paused.
 
   You'll know you're blocked when quote requests include a `blockUntilTimestamp` field indicating when you'll start receiving requests again.
 
   Handle this field in your code so your service backs off until the block clears, and log it so you can detect and debug circuit breaker events.
+
+  **Timeouts**: Uniswap Labs may disable a quote endpoint that times out on a meaningful share of quote requests, at its discretion, until the issue is fixed. See [Become a Quoter](/docs/liquidity/uniswapx/filling/mainnet/become-a-quoter#performance-expectations) for the full response expectations.
 
   </div>
 
@@ -268,7 +320,7 @@ faqs:
 
   The exclusivity period on mainnet is currently **24 seconds (2 blocks)** and is set by the cosigner when it cosigns the order. It is not a fixed protocol constant and could change in the future.
 
-  On chains that use the DutchV3 reactor (Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, and Unichain), the exclusivity window is measured in **block numbers** rather than seconds and is currently about 2 to 4 seconds, likewise set by the cosigner per order. Block times on these chains are roughly 1 second.
+  On chains that use the DutchV3 reactor (Arbitrum, Arc, Avalanche, Base, BNB Smart Chain, Ink, Monad, Robinhood Chain, Tempo, and Unichain), the exclusivity window is measured in **block numbers** rather than seconds and is currently about 2 to 4 seconds, likewise set by the cosigner per order. Block times vary by chain, from sub-second to a couple of seconds.
 
   </div>
 
@@ -355,7 +407,7 @@ faqs:
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  `ERC20ETH` is deployed at `0x00000000e20E49e6dCeE6e8283A0C090578F0fb9`. The address is the same across supported chains through deterministic CREATE2 deployment and a mined vanity address.
+  `ERC20ETH` is deployed at `0x00000000e20E49e6dCeE6e8283A0C090578F0fb9`, the same address on the chains that carry it through deterministic CREATE2 deployment and a mined vanity address. It is not deployed on every UniswapX chain, so check the [Deployments](/docs/liquidity/uniswapx/deployments) page or deployments.json for a given chain before relying on it.
 
   References:
 
@@ -450,7 +502,7 @@ faqs:
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  Use the <HelpCenter topic="uniswapx-fillers">UniswapX filler help form</HelpCenter> to reach the team without leaving this page.
+  Use the <HelpCenter topic="uniswapx-fillers">Help Center</HelpCenter> to reach the team without leaving this page.
 
   </div>
 

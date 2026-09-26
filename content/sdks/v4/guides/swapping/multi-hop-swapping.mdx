@@ -52,6 +52,7 @@ export const CurrentConfig: SwapExactIn = {
     ),
     amountIn: ethers.utils.parseUnits('1', ETH_TOKEN.decimals).toString(), 
     amountOutMinimum: "minAmountOut", // Change according to the slippage desired
+    minHopPriceX36: [], // Per-hop price floors added in Universal Router 2.1.1. An empty array disables them, so amountOutMinimum alone enforces slippage
 }
 ```
 
@@ -105,7 +106,7 @@ export function encodeMultihopExactInPath(
 We'll use the same contract addresses and ABIs from the single-hop guide and construct the **ethers** `Contract` for them:
 
 ```typescript
-const UNIVERSAL_ROUTER_ADDRESS = "0x66a9893cC07D91D95644AEDD05D03f95e1dBA8Af"
+const UNIVERSAL_ROUTER_ADDRESS = "0x23617e59A5925b2A4Bf75d73ff6711cD0b29De85" // Universal Router 2.1.2 on Ethereum mainnet
 const PERMIT2_ADDRESS = "0x000000000022D473030F116dDEE9F6B43aC78BA3"
 
 // ABIs remain the same as in single-hop guide
@@ -114,10 +115,10 @@ const ERC20_ABI = [/* ... */]
 const PERMIT2_ABI = [/* ... */]
 ```
 
-The main function for executing multi-hop swaps is very similar to the single-hop guide as well. The only difference is that the first action to the Universal Router is `SWAP_EXACT_IN` instead of `SWAP_EXACT_IN_SINGLE`.
+The main function for executing multi-hop swaps is very similar to the single-hop guide as well. The only difference is that the first action to the Universal Router is `SWAP_EXACT_IN` instead of `SWAP_EXACT_IN_SINGLE`. As in the single-hop guide, the actions are encoded for `URVersion.V2_1_1`, the calldata format Universal Router 2.1.2 uses, and `minHopPriceX36` is left empty to disable per-hop price floors.
 
 ```typescript
-import { Actions, V4Planner } from '@uniswap/v4-sdk'
+import { Actions, URVersion, V4Planner } from '@uniswap/v4-sdk'
 import { CommandType, RoutePlanner } from '@uniswap/universal-router-sdk'
 
 const v4Planner = new V4Planner()
@@ -125,9 +126,10 @@ const routePlanner = new RoutePlanner()
 
 const deadline = Math.floor(Date.now() / 1000) + 3600
 
-v4Planner.addAction(Actions.SWAP_EXACT_IN, [CurrentConfig]);
-v4Planner.addAction(Actions.SETTLE_ALL, [ETH_USDC_POOL_KEY.currency0, CurrentConfig.amountIn]);
-v4Planner.addAction(Actions.TAKE_ALL, [USDC_USDT_POOL_KEY.currency1, CurrentConfig.amountOutMinimum]);
+// Universal Router 2.1.2 shares its calldata with 2.1.1, so encode the actions for URVersion.V2_1_1
+v4Planner.addAction(Actions.SWAP_EXACT_IN, [CurrentConfig], URVersion.V2_1_1);
+v4Planner.addAction(Actions.SETTLE_ALL, [ETH_USDC_POOL_KEY.currency0, CurrentConfig.amountIn], URVersion.V2_1_1);
+v4Planner.addAction(Actions.TAKE_ALL, [USDC_USDT_POOL_KEY.currency1, CurrentConfig.amountOutMinimum], URVersion.V2_1_1);
 
 const encodedActions = v4Planner.finalize()
 

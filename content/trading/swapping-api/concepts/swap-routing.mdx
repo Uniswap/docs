@@ -1,5 +1,6 @@
 ---
-title: 'Swap Routing'
+title: Swap Routing in the Uniswap API
+sidebarTitle: Swap Routing
 description: 'Use Uniswap API routing fields to choose protocol paths and return the most efficient quote flow for your integration.'
 icon: 'route'
 ---
@@ -9,7 +10,7 @@ In order to get the appropriate swap routing, it is important to closely conside
 - The `protocols` field is used to specify the protocols from which pricing will be considered and through which your swap may eventually be executed. The possible values for the field are `V2`, `V3`, `V4`, `UNISWAPX_V2`, and `UNISWAPX_V3`
 - The `routingPreference` field is used to specify the preferred matching strategy. The possible values for the field are `BEST_PRICE` and `FASTEST`
 
-For complete information on the available values and combinations for the `protocols` and `routingPreference` fields, see [Swapping Architecture Overview](/docs/trading/swapping-api/getting-started). A summary is provided below:
+For complete information on the available values and combinations for the `protocols` and `routingPreference` fields, see [Swapping via the Uniswap API](/docs/trading/swapping-api/getting-started). A summary is provided below:
 
 ## Routing Outcomes
 
@@ -21,4 +22,4 @@ For complete information on the available values and combinations for the `proto
 
 ## Cross-chain and multi-step routing
 
-Some trades cannot settle in a single transaction, either because they cross chains or because they need more than one step on the same chain. For these, `/quote` returns `"routing": "CHAINED"` and the API drives execution as an ordered plan of steps. See [Swapping with Chained Actions](/docs/trading/swapping-api/chained-actions).
+Some trades cannot settle in a single transaction, either because they cross chains or because they need more than one step on the same chain. For these, `/quote` returns `"routing": "CHAINED"` and the API drives execution as an ordered plan of steps. See [Swapping with Chained Actions](/docs/trading/swapping-api/concepts/chained-actions).

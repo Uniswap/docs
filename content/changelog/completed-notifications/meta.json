@@ -1,7 +1,8 @@
 {
   "title": "Completed Notifications",
   "pages": [
-    "sunset-of-legacy-routing-preference-options",
+    "removal-of-api-amm-slippage-cap",
+    "sunset-of-blast-support",
     "live-on-unichain-flashblocks-200ms-sub-blocks",
     "live-on-unichain-fair-transaction-ordering-and-mev-protection",
     "upgrade-13-opcm-and-incident-response-improvements",

@@ -1,7 +1,30 @@
 ---
-id: overview
-title: Protocols Overview
+title: Uniswap Protocols Overview
+sidebarTitle: Overview
 description: Navigate the Uniswap protocol documentation, from the core AMM versions to supporting infrastructure contracts.
+keywords:
+  - Uniswap protocols
+  - AMM versions
+  - Universal Router
+  - Permit2
+  - The Compact
+  - protocol fees
+faqs:
+  - question: Which Uniswap protocol version should I use for a new integration?
+    answer: |-
+      Uniswap v4 is the current and recommended version for new integrations. It consolidates all pools into a single PoolManager contract, supports hooks that customize pool behavior across the pool lifecycle, and uses flash accounting to defer token transfers until the end of a transaction, which reduces gas for multi-step operations. Use v3 for existing concentrated liquidity integrations and v2 for legacy constant product workflows.
+  - question: What is the difference between the Uniswap AMM and its supporting protocols?
+    answer: |-
+      The AMM contracts are the pool contracts that hold liquidity and execute swaps, versioned as Uniswap v2, v3, and v4. The supporting protocols are infrastructure contracts used across versions: the Universal Router composes swaps across v2, v3, and v4 in a single transaction, Permit2 handles signature-based token transfers and time-bound allowances, Fee Adapter and TokenJar contracts collect protocol fees, The Compact provides ERC-6909 resource locks for cross-chain coordination, and Calibur powers smart wallet delegation through EIP-7702.
+  - question: Which contract should I use to execute Uniswap swaps programmatically?
+    answer: |-
+      The Universal Router is the recommended entry point for executing swaps programmatically. It is an unowned, non-upgradeable contract that composes swaps across Uniswap v2, v3, and v4 in a single transaction using command-based encoding, and it integrates with Permit2 for signature-controlled token approvals.
+  - question: Are the Uniswap protocol contracts audited?
+    answer: |-
+      Yes. The Uniswap v4 core and periphery repositories publish their audit reports, and Uniswap Labs maintains an active bug bounty program on Cantina for eligible vulnerability disclosures.
+  - question: Where do I find Uniswap contract deployment addresses?
+    answer: |-
+      The unified deployments page at developers.uniswap.org/deployments lists Uniswap contract addresses across all protocols and chains. Each protocol section of the docs also has its own deployments page; for example, Uniswap v4 addresses are on the v4 deployments page, and the smart wallet deployments page lists the Calibur address across supported networks.
 ---
 
 ## Protocols
@@ -85,3 +108,68 @@ Uniswap smart wallet features are powered by Calibur, a non-upgradeable contract
 Uniswap Labs maintains an active bug bounty program on Cantina for eligible vulnerability disclosures. 
 
 [Uniswap Bug Bounty Program](https://cantina.xyz/bounties/f9df94db-c7b1-434b-bb06-d1360abdd1be)
+
+## FAQ
+
+<details>
+  <summary>Which Uniswap protocol version should I use for a new integration?</summary>
+
+  <FaqAnswer>
+
+  Uniswap v4 is the current and recommended version for new integrations. It consolidates all pools into a single `PoolManager` contract, supports [hooks](/docs/protocols/v4/concepts/hooks) that customize pool behavior across the pool lifecycle, and uses [flash accounting](/docs/protocols/v4/concepts/flash-accounting) to defer token transfers until the end of a transaction, which reduces gas for multi-step operations.
+
+  Use [Uniswap v3](/docs/protocols/v3/overview) for existing concentrated liquidity integrations and [Uniswap v2](/docs/protocols/v2/overview) for legacy constant product workflows.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What is the difference between the Uniswap AMM and its supporting protocols?</summary>
+
+  <FaqAnswer>
+
+  The AMM contracts are the pool contracts that hold liquidity and execute swaps, versioned as Uniswap v2, v3, and v4. The supporting protocols are infrastructure contracts used across versions:
+
+  * [Universal Router](/docs/protocols/universal-router/overview): composes swaps across v2, v3, and v4 in a single transaction.
+  * [Permit2](/docs/protocols/permit2/overview): signature-based token transfers and time-bound allowances.
+  * [Protocol Fees](/docs/protocols/protocol-fee/overview): Fee Adapter and TokenJar contracts that collect protocol fees.
+  * [The Compact](/docs/protocols/the-compact/overview): ERC-6909 resource locks for cross-chain coordination.
+  * [Smart wallet (Calibur)](/docs/protocols/smart-wallet/overview): EIP-7702 delegation for smart wallet features.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Which contract should I use to execute Uniswap swaps programmatically?</summary>
+
+  <FaqAnswer>
+
+  The [Universal Router](/docs/protocols/universal-router/overview) is the recommended entry point for executing swaps programmatically. It is an unowned, non-upgradeable contract that composes swaps across Uniswap v2, v3, and v4 in a single transaction using command-based encoding, and it integrates with [Permit2](/docs/protocols/permit2/overview) for signature-controlled token approvals.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Are the Uniswap protocol contracts audited?</summary>
+
+  <FaqAnswer>
+
+  Yes. The Uniswap v4 [core audits](https://github.com/Uniswap/v4-core/tree/main/docs/security/audits) and [periphery audits](https://github.com/Uniswap/v4-periphery/tree/main/audits) are published in their repositories, and Uniswap Labs maintains an active [bug bounty program on Cantina](https://cantina.xyz/bounties/f9df94db-c7b1-434b-bb06-d1360abdd1be) for eligible vulnerability disclosures.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Where do I find Uniswap contract deployment addresses?</summary>
+
+  <FaqAnswer>
+
+  The [unified deployments page](/deployments) lists Uniswap contract addresses across all protocols and chains. Each protocol section of the docs also has its own deployments page; for example, [Uniswap v4 addresses](/docs/protocols/v4/deployments) are on the v4 deployments page, and the [smart wallet deployments page](/docs/protocols/smart-wallet/deployments) lists the Calibur address across supported networks.
+
+  </FaqAnswer>
+
+</details>

@@ -1,5 +1,4 @@
 ---
-id: filleroverview
 title: Fillers Overview
 description: Learn how UniswapX fillers and quoters compete to settle swaps across chains.
 ---
@@ -9,11 +8,11 @@ description: Learn how UniswapX fillers and quoters compete to settle swaps acro
 | Chain | Auction type | Reactor | Guide |
 |---|---|---|---|
 | Ethereum | RFQ + Exclusive Dutch Auction | Dutch V2 | [Filling on Mainnet](/docs/liquidity/uniswapx/filling/mainnet/filling-on-mainnet), [Become a Quoter](/docs/liquidity/uniswapx/filling/mainnet/become-a-quoter) |
-| Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, Unichain | RFQ + Exclusive Dutch Auction (block-based decay) | Dutch V3 | [Filling Dutch V3 Auctions](/docs/liquidity/uniswapx/filling/dutch-v3-chains/filling-on-dutch-v3-chains) |
+| Arbitrum, Arc, Avalanche, Base, BNB Smart Chain, Ink, Monad, Robinhood Chain, Tempo, Unichain | RFQ + Exclusive Dutch Auction (block-based decay) | Dutch V3 | [Filling Dutch V3 Auctions](/docs/liquidity/uniswapx/filling/dutch-v3-chains/filling-on-dutch-v3-chains) |
 
 UniswapX fillers compete to settle swaps through permissionless auctions. Use this section to choose a chain, ingest orders, and fill.
 
-UniswapX now uses RFQ and the exclusive Dutch auction model on every supported chain. Priority gas auctions are no longer a separate integration path. Fillers previously integrated against a Priority reactor should migrate to DutchV3. See the [changelog entry](/docs/changelog/active-notifications/uniswapx-rfq-auctions-on-base-and-arbitrum) for the Base and Arbitrum transition.
+UniswapX now uses RFQ and the exclusive Dutch auction model on every supported chain. Priority gas auctions are no longer a separate integration path. Fillers previously integrated against a Priority reactor should migrate to DutchV3. See the [changelog entry](/docs/changelog/completed-notifications/uniswapx-rfq-auctions-on-base-and-arbitrum) for the Base and Arbitrum transition.
 
 ## Filler Roles
 
@@ -23,7 +22,7 @@ UniswapX has one permissioned role (quoter) and one permissionless role (filler)
 |---|---|---|---|---|
 | **Quoter** | Permissioned, vetted by Uniswap Labs | Responds to the off-chain RFQ; if it wins the hard quote, it gets the exclusivity window | Yes: if it wins exclusivity and does not fill, it triggers the circuit breaker | Receives quote requests from the parameterization service |
 | **Exclusive filler** | The quoter that won the RFQ | During the exclusivity window (about 24 seconds, or 2 blocks, on mainnet) | Yes | It is the RFQ winner |
-| **Non-exclusive filler** | Permissionless, no vetting | After exclusivity expires in the open Dutch auction, or during exclusivity through a soft-exclusivity override (`exclusivityOverrideBps` greater than zero) | No: it never held exclusivity, so it cannot fade and is not subject to the circuit breaker | Polls the orders API at 6 RPS |
+| **Non-exclusive filler** | Permissionless, no vetting | After exclusivity expires in the open Dutch auction, or during exclusivity through a soft-exclusivity override (`exclusivityOverrideBps` greater than zero) | No: it never held exclusivity, so it cannot fade and is not subject to the circuit breaker | Polls the orders API at 4 RPS |
 
 A non-exclusive filler carries no fade risk and is never subject to the circuit breaker, because it never commits to an exclusivity it could fail to honor.
 
@@ -46,16 +45,21 @@ Retrieve open orders from the UniswapX Orders Endpoint. The [Swagger documentati
 |---|---|---|
 | Ethereum | `1` | `Dutch_V2` |
 | Arbitrum | `42161` | `Dutch_V3` |
+| Arc | `5042` | `Dutch_V3` |
 | Avalanche | `43114` | `Dutch_V3` |
 | Base | `8453` | `Dutch_V3` |
 | BNB Smart Chain | `56` | `Dutch_V3` |
+| Ink | `57073` | `Dutch_V3` |
+| Monad | `143` | `Dutch_V3` |
 | Robinhood Chain | `4663` | `Dutch_V3` |
 | Tempo | `4217` | `Dutch_V3` |
 | Unichain | `130` | `Dutch_V3` |
 
 ```bash
-GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&orderType=Dutch_V2&limit=1000
+GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&orderType=Dutch_V2&limit=50
 ```
+
+The endpoint serves cached responses and returns at most the last 50 orders, ordered by most recent. Poll at no more than 4 RPS; requests above that return `429`.
 
 ## Native ETH Input
 
@@ -69,5 +73,5 @@ For common RFQ and execution issues, see the [Filler FAQ](/docs/liquidity/uniswa
 
 ## Support
 
-- Submit a ticket via the <HelpCenter topic="uniswapx-fillers">UniswapX filler help form</HelpCenter>.
+- Submit a ticket via the <HelpCenter topic="uniswapx-fillers">Help Center</HelpCenter>.
 - Subscribe to the [Telegram channel](http://t.me/UniswapXdiscussion) for announcements.

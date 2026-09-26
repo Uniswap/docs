@@ -1,0 +1,55 @@
+---
+title: StablePair Deployments
+sidebarTitle: Deployments
+description: Find StablePair hook addresses and live pool parameters on Ethereum and Sepolia.
+---
+
+The registered v4 hook is an ERC1967 proxy. Its address is permanent and encodes the hook permission flags; the implementation behind it changes on a governance upgrade. Always integrate against the hook address.
+
+## Mainnet Deployments
+
+### Ethereum: 1
+
+| Contract | Address |
+| :--- | :--- |
+| StablePairHook (hook) | [`0x0000113dCf4ADd69999Fad8F20F2b63F979bfcC0`](https://etherscan.io/address/0x0000113dCf4ADd69999Fad8F20F2b63F979bfcC0) |
+| StablePairHook (implementation) | [`0x5f216d21b1C81346938EDDc1Df7e0111A0F64000`](https://etherscan.io/address/0x5f216d21b1C81346938EDDc1Df7e0111A0F64000) |
+
+## Testnet Deployments
+
+### Sepolia: 11155111
+
+| Contract | Address |
+| :--- | :--- |
+| StablePairHook (hook) | [`0x2F45A94782d3e187BaB5F72448bb85d6d1d67CC0`](https://sepolia.etherscan.io/address/0x2F45A94782d3e187BaB5F72448bb85d6d1d67CC0) |
+| StablePairHook (implementation) | [`0xDBc81fFadaB5ee9c9fB1c2D43Bef547EB9c64000`](https://sepolia.etherscan.io/address/0xDBc81fFadaB5ee9c9fB1c2D43Bef547EB9c64000) |
+
+## Pool Parameters
+
+Two pools are live on Ethereum.
+
+### USDC / USDT
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0x2b21c65d9a7dc6926ee330a1c6e5a8037fd81774f3dc066536f800128e39f634` |
+| currency0 | USDC [`0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`](https://etherscan.io/address/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) |
+| currency1 | USDT [`0xdAC17F958D2ee523a2206206994597C13D831ec7`](https://etherscan.io/address/0xdAC17F958D2ee523a2206206994597C13D831ec7) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 1 |
+| Reference rate | 1 USDC = 1 USDT |
+
+### USDC / USDG
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0xeda62d2906d0edf26d40c793d581609552a44a87f618a98ff76ebe8dde4b7edb` |
+| currency0 | USDC [`0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`](https://etherscan.io/address/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) |
+| currency1 | USDG [`0xe343167631d89B6Ffc58B88d6b7fB0228795491D`](https://etherscan.io/address/0xe343167631d89B6Ffc58B88d6b7fB0228795491D) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 1 |
+| Reference rate | 1 USDC = 1 USDG |
+
+<Callout type="info">
+Do not hardcode pool IDs. Derive them from the pool key, and read each pool's live fee configuration from the hook rather than from this page. Parameters can be changed by governance.
+</Callout>

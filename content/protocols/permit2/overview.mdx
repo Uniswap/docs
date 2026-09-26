@@ -1,6 +1,30 @@
 ---
-title: Overview
+title: Permit2 Overview
+sidebarTitle: Overview
 description: Learn how Uniswap Permit2 combines signature-based transfers and time-bound allowances for token spending.
+keywords:
+  - permit2
+  - allowance-transfer
+  - signature-transfer
+  - token-approvals
+  - eip-2612
+  - nonces
+faqs:
+  - question: What is the difference between AllowanceTransfer and SignatureTransfer?
+    answer: |-
+      Permit2 exposes two independent modules. AllowanceTransfer stores a standing, time-bound allowance inside the Permit2 contract: you set an amount and an expiration for a spender, and that spender can call transferFrom repeatedly until the allowance is exhausted or expires. This suits recurring flows such as repeated swaps or subscriptions. SignatureTransfer authorizes a single, nonce-scoped transfer through one signature; the permission does not persist after the transaction, so it leaves no standing allowance. Use it when a contract needs tokens infrequently and you want to avoid lingering approvals.
+  - question: Do I still need a per-token approval to use Permit2?
+    answer: |-
+      Yes, but only once per token. Before Permit2 can move a token on a user's behalf, the user makes a one-time standard ERC-20 approval of the Permit2 contract on that token, commonly for the maximum uint256 amount. After that, Permit2 manages granular, per-spender, time-bound permissions through signatures or its own approve function, so integrators no longer trigger a separate onchain approval for every spender.
+  - question: How is Permit2 different from an EIP-2612 permit?
+    answer: |-
+      EIP-2612 adds a permit function to a token itself, so it only works for tokens that implement it. Permit2 is a separate contract that works with any ERC-20, including tokens that will never add EIP-2612 support. After the one-time approval of the Permit2 contract, users get signature-based approvals for every such token, plus batching, expirations, and unordered nonces that a bare EIP-2612 permit does not provide.
+  - question: How do Permit2 nonces and expiration work?
+    answer: |-
+      The two modules use different nonce schemes. AllowanceTransfer packs an incrementing nonce per owner, token, and spender alongside the amount and an expiration timestamp, so two permits with the same nonce do not cancel each other as long as the token or spender differ. SignatureTransfer uses unordered nonces tracked in a bitmap, so signatures can be spent in any order and each nonce is single-use. Both carry a signature deadline, and AllowanceTransfer allowances also carry their own expiration after which the permission is invalid.
+  - question: What is the Permit2 contract address, and has it been audited?
+    answer: |-
+      Permit2 is deployed at the same address on every chain Uniswap supports except zkSync: 0x000000000022D473030F116dDEE9F6B43aC78BA3. On zkSync it is 0x0000000000225e31D15943971F47aD3022F714Fa. The contracts are open source in the Uniswap/permit2 repository, which also publishes the third-party audit reports.
 ---
 
 [Permit2](https://github.com/Uniswap/permit2) is a unification of 2 contracts, `SignatureTransfer` and `AllowanceTransfer`. The `SignatureTransfer` contract handles all signature-based transfers, meaning that an allowance on the token is bypassed and permissions to the spender only last for the duration of the transaction that the one-time signature is spent. The `AllowanceTransfer` contract handles setting allowances on tokens, giving permissions to spenders on a specified amount for a specified duration of time. Any transfers that then happen through the `AllowanceTransfer` contract will only succeed if the proper permissions have been set.
@@ -21,6 +45,81 @@ To maximize Permit2 utility, users can choose a max approval on the contract whe
 ```solidity
 totalAmount = type(uint256).max;
 ```
+
+## FAQ
+
+<details>
+  <summary>What is the difference between AllowanceTransfer and SignatureTransfer?</summary>
+
+  <FaqAnswer>
+
+  Permit2 exposes two independent modules:
+
+  * **[AllowanceTransfer](/docs/protocols/permit2/concepts/allowance-transfer)** stores a standing, time-bound allowance inside the Permit2 contract. You set an amount and an expiration for a spender, and that spender can call `transferFrom` repeatedly until the allowance is exhausted or expires. This suits recurring flows such as repeated swaps or subscriptions.
+  * **[SignatureTransfer](/docs/protocols/permit2/concepts/signature-transfer)** authorizes a single, nonce-scoped transfer through one signature. The permission does not persist after the transaction, so it leaves no standing allowance. Use it when a contract needs tokens infrequently and you want to avoid lingering approvals.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Do I still need a per-token approval to use Permit2?</summary>
+
+  <FaqAnswer>
+
+  Yes, but only once per token. Before Permit2 can move a token on a user's behalf, the user makes a one-time standard ERC-20 approval of the Permit2 contract on that token, commonly for the maximum `uint256` amount:
+
+  ```solidity
+  USDC.approve(permit2Address, type(uint256).max);
+  ```
+
+  After that, Permit2 manages granular, per-spender, time-bound permissions through signatures or its own `approve` function, so integrators no longer trigger a separate onchain approval for every spender.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How is Permit2 different from an EIP-2612 permit?</summary>
+
+  <FaqAnswer>
+
+  [EIP-2612](https://eips.ethereum.org/EIPS/eip-2612) adds a `permit` function to a token itself, so it only works for tokens that implement it. Permit2 is a separate contract that works with any ERC-20, including tokens that will never add EIP-2612 support. After the one-time approval of the Permit2 contract, users get signature-based approvals for every such token, plus batching, expirations, and unordered nonces that a bare EIP-2612 permit does not provide.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do Permit2 nonces and expiration work?</summary>
+
+  <FaqAnswer>
+
+  The two modules use different nonce schemes:
+
+  * **AllowanceTransfer** packs an incrementing nonce per owner, token, and spender alongside the amount and an expiration timestamp. Two permits with the same nonce do not cancel each other as long as the token or spender differ.
+  * **SignatureTransfer** uses unordered nonces tracked in a bitmap, so signatures can be spent in any order and each nonce is single-use.
+
+  Both carry a signature deadline, and AllowanceTransfer allowances also carry their own `expiration` after which the permission is invalid.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What is the Permit2 contract address, and has it been audited?</summary>
+
+  <FaqAnswer>
+
+  Permit2 is deployed at the same address on every chain Uniswap supports **except** zkSync: `0x000000000022D473030F116dDEE9F6B43aC78BA3`.
+
+  On zkSync it is `0x0000000000225e31D15943971F47aD3022F714Fa`.
+
+  The contracts are open source in the [Uniswap/permit2](https://github.com/Uniswap/permit2) repository, which also publishes the third-party audit reports.
+
+  </FaqAnswer>
+
+</details>
 
 ## Where to Go Next
 

@@ -1,6 +1,33 @@
 ---
 description: Explore Uniswap SDK families and choose the right version for your integration workflow.
-title: SDKs Overview
+title: Uniswap SDKs Overview
+sidebarTitle: Overview
+keywords:
+  - Uniswap SDK
+  - SDK versioning
+  - Trading API
+  - Quoter callStatic
+  - CurrencyAmount
+  - BigInt precision
+faqs:
+  - question: Which Uniswap SDK version should I use, v2, v3, or v4?
+    answer: |-
+      Match the SDK to the protocol version of the pools you integrate with. Use the v4 SDK for new integrations that rely on hooks, flash accounting, and singleton pools. Use the v3 SDK for concentrated liquidity workflows on v3 pools. Use the v2 SDK for legacy constant product pools and older routing flows. The versions are not interchangeable because each targets a different set of onchain contracts. All three build on the Core SDK for shared token, amount, and price primitives.
+  - question: When should I use a Uniswap SDK versus the Trading API?
+    answer: |-
+      Use an SDK when you want client-side computation and want to construct calldata yourself. The SDK gives you utility classes to build pool keys, compute quotes, and encode swap parameters, but it does not execute trades or send transactions. You manage RPC connections, token definitions, and pool configuration. Use the Trading API when you prefer a hosted service that handles routing, quoting, and transaction building for you. The API returns encoded transaction data that your application signs and submits, so you do not manage pool state or routing logic yourself.
+  - question: Why does my Quoter call fail when I call it like a normal read function?
+    answer: |-
+      The Uniswap Quoter functions are not view functions. They rely on state-changing calls that are designed to revert in order to return the quote data, so executed as a transaction they cost gas. To read a quote, simulate the call instead with callStatic in ethers v5 or staticCall in ethers v6, which asks the node to simulate the state change and return the result rather than execute it. This applies to both the v3 and v4 Quoter contracts.
+  - question: How do I handle token amounts without losing precision?
+    answer: |-
+      Represent amounts in their smallest onchain unit, not as JavaScript floating point numbers, which lose precision on large integers. The Core SDK provides CurrencyAmount, which you create with CurrencyAmount.fromRawAmount using a Token and a raw integer amount. Convert a human readable amount into raw units by scaling by ten to the power of the token decimals. The SDKs represent these integers with JSBI, so convert strings or native BigInt values into JSBI before passing them to SDK constructors. The key rule is to keep amounts as integers in the token's base units through every calculation.
+  - question: What is the Core SDK and do I need it?
+    answer: |-
+      The Core SDK, published as @uniswap/sdk-core, provides the shared token, amount, and price primitives used across the v2, v3, and v4 SDKs. Types such as Token, CurrencyAmount, and Price live there. You almost always install it alongside a version SDK because the version SDKs expect these primitives as inputs and return them as outputs.
+  - question: Can the SDK execute swaps or send transactions for me?
+    answer: |-
+      No. The SDK computes and encodes the data required to interact with Uniswap safely, but it does not sign or broadcast transactions. Your application is responsible for connecting a signer, submitting the transaction through your RPC provider, and handling approvals. If you want a service that returns ready to sign transaction data instead, use the Trading API.
 ---
 
 Use this page to choose the right Uniswap SDK version for your integration and then jump into implementation guides.
@@ -19,3 +46,106 @@ The Core SDK `@uniswap/sdk-core` provides shared token, amount, and price primit
 
 - [SDK Core GitHub Repo](https://github.com/Uniswap/sdk-core)
 - [Core SDK NPM Package](https://www.npmjs.com/package/@uniswap/sdk-core)
+
+## FAQ
+
+<details>
+  <summary>Which Uniswap SDK version should I use, v2, v3, or v4?</summary>
+
+  <FaqAnswer>
+
+  Match the SDK to the protocol version of the pools you integrate with:
+
+  * [Uniswap v4 SDK](/docs/sdks/v4/overview) for new integrations that rely on hooks, flash accounting, and singleton pools.
+  * [Uniswap v3 SDK](/docs/sdks/v3/overview) for concentrated liquidity workflows on v3 pools.
+  * [Uniswap v2 SDK](/docs/sdks/v2/overview) for legacy constant product pools and older routing flows.
+
+  The versions are not interchangeable because each targets a different set of onchain contracts. All three build on the Core SDK for shared token, amount, and price primitives.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>When should I use a Uniswap SDK versus the Trading API?</summary>
+
+  <FaqAnswer>
+
+  Use an SDK when you want client-side computation and want to construct calldata yourself. The SDK gives you utility classes to build pool keys, compute quotes, and encode swap parameters, but it does not execute trades or send transactions. You manage RPC connections, token definitions, and pool configuration.
+
+  Use the [Trading API](/docs/trading/overview) when you prefer a hosted service that handles routing, quoting, and transaction building for you. The API returns encoded transaction data that your application signs and submits, so you do not manage pool state or routing logic yourself.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Why does my Quoter call fail when I call it like a normal read function?</summary>
+
+  <FaqAnswer>
+
+  The Uniswap Quoter functions are not `view` functions. They rely on state-changing calls that are designed to revert in order to return the quote data, so executed as a transaction they cost gas.
+
+  To read a quote, simulate the call instead with `callStatic` (ethers v5) or `staticCall` (ethers v6). This asks the node to simulate the state change and return the result rather than execute it:
+
+  ```typescript
+  const quotedAmountOut = await quoterContract.callStatic.quoteExactInputSingle(
+    tokenIn,
+    tokenOut,
+    fee,
+    amountIn,
+    0
+  )
+  ```
+
+  The snippet shows the v3 Quoter; the v4 Quoter takes a single struct parameter instead of positional arguments. The simulation requirement applies to both the [v3 Quoter](/docs/sdks/v3/guides/swapping/quoting) and the [v4 Quoter](/docs/sdks/v4/guides/swapping/quoting).
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do I handle token amounts without losing precision?</summary>
+
+  <FaqAnswer>
+
+  Represent amounts in their smallest onchain unit, not as JavaScript floating point numbers, which lose precision on large integers. The Core SDK provides `CurrencyAmount`, which you create with `CurrencyAmount.fromRawAmount` from a `Token` and a raw integer amount:
+
+  ```typescript
+  import { CurrencyAmount } from '@uniswap/sdk-core'
+
+  // amountIn is already scaled to the token's base units (e.g. 1000 * 10 ** decimals)
+  const inputAmount = CurrencyAmount.fromRawAmount(USDC_TOKEN, amountIn)
+  ```
+
+  The SDKs represent these integers with `JSBI`, so convert strings or native `BigInt` values into `JSBI` before passing them to SDK constructors. The key rule is to keep amounts as integers in the token's base units through every calculation.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What is the Core SDK and do I need it?</summary>
+
+  <FaqAnswer>
+
+  The Core SDK, published as [`@uniswap/sdk-core`](https://www.npmjs.com/package/@uniswap/sdk-core), provides the shared token, amount, and price primitives used across the v2, v3, and v4 SDKs. Types such as `Token`, `CurrencyAmount`, and `Price` live there.
+
+  You almost always install it alongside a version SDK because the version SDKs expect these primitives as inputs and return them as outputs.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Can the SDK execute swaps or send transactions for me?</summary>
+
+  <FaqAnswer>
+
+  No. The SDK computes and encodes the data required to interact with Uniswap safely, but it does not sign or broadcast transactions. Your application is responsible for connecting a signer, submitting the transaction through your RPC provider, and handling approvals.
+
+  If you want a service that returns ready to sign transaction data instead, use the [Trading API](/docs/trading/overview).
+
+  </FaqAnswer>
+
+</details>

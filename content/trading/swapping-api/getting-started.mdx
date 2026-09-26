@@ -1,5 +1,6 @@
 ---
 title: Swapping via the Uniswap API
+sidebarTitle: Overview
 description: High-level overview of swapping through the Uniswap API
 ---
 
@@ -21,10 +22,12 @@ The diagram below is an illustration of the token swap flow where steps in gray 
 
 <Callout title="UniswapX Minimum Quote Values" type="info">
 
-If using UniswapX protocols, quote requests require a minimum of 300 USDC equivalent on all supported chains. Below that, UniswapX is included only when its quote improves on the AMM route by at least 0.2%.
+If using UniswapX protocols, quote requests must meet a per-chain minimum quotable size. Below that, UniswapX is included only when its quote improves on the AMM route by at least 0.2%.
 
-Requests that meet neither condition will return "No quotes available." See [Supported Chains](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support) for details.
+Requests that meet neither condition return a 404 with `errorCode: QuoteAmountTooLowError`. See [Supported Chains](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support) for details.
 
 </Callout>
 
 For full request and response schemas for each endpoint, see the [API Reference](/docs/api-reference).
+
+For developer support, reach out to our team through the <HelpCenter topic="uniswap-api">Help Center</HelpCenter>.

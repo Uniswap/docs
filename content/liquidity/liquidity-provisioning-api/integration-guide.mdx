@@ -73,8 +73,6 @@ Your application handles:
 - **Gas Payment**: Actual gas costs
 - **Transaction Error Handling**: Handle reverts and surface errors to users
 
-See the [Build Prerequisites](/docs/trading/swapping-api/building-prerequisites) for more details.
-
 ### Required infrastructure
 
 Your integration must include:
@@ -82,6 +80,7 @@ Your integration must include:
 - **RPC Provider**: Connection to blockchain nodes (e.g. Infura, Alchemy, or self-hosted)
 - **Web3 Library**: ethers.js, viem, or web3.js for transaction signing
 - **Wallet Integration**: Uniswap Wallet, MetaMask, or similar for user signing
+- **API Key Handling**: Store your Uniswap API key server-side and attach it to requests over HTTPS. Do not ship it in front-end code; proxy calls through your own backend so the key is never exposed to users.
 
 ### Data flow
 
@@ -156,7 +155,7 @@ const { transactions } = await approvalResponse.json();
 
 ```ts
 // transactions is a list of ApprovalTransactionRequest objects.
-// If empty, all approvals are already in place — proceed to the LP action.
+// If empty, all approvals are already in place. Proceed to the LP action.
 for (const item of transactions) {
   validateTransaction(item.transaction);
   const signedTx = await wallet.signTransaction(item.transaction);
@@ -206,7 +205,7 @@ For Uniswap v3 positions, `/lp/check_approval` may return `v3NftPermitData` for 
 
 ## Creating a Position
 
-### Uniswap v3 and Uniswap v4 — `/lp/create`
+### Uniswap v3 and Uniswap v4: `/lp/create`
 
 The caller specifies a price range and the amount of one token. The API computes the corresponding amount of the second token based on current pool state.
 
@@ -214,15 +213,15 @@ The caller specifies a price range and the amount of one token. The API computes
 
 Provide exactly one of:
 
-- **`existingPool`** — For an existing pool. Includes `token0address`, `token1address`, and `poolReference` (pool address for Uniswap v3, pool ID for Uniswap v4). The API fetches live pool state to compute the dependent token amount.
-- **`newPool`** — For initializing a new pool. Includes token addresses, `fee`, `tickSpacing`, optional `hooks` (Uniswap v4 only), and `initialPrice` as a `sqrtRatioX96` string. The API uses the initial price to compute the dependent amount.
+- **`existingPool`**: For an existing pool. Includes `token0address`, `token1address`, and `poolReference` (pool address for Uniswap v3, pool ID for Uniswap v4). The API fetches live pool state to compute the dependent token amount.
+- **`newPool`**: For initializing a new pool. Includes token addresses, `fee`, `tickSpacing`, optional `hooks` (Uniswap v4 only), and `initialPrice` as a `sqrtRatioX96` string. The API uses the initial price to compute the dependent amount.
 
 #### Price range
 
 Provide exactly one of:
 
-- **`priceBounds`** — Human-readable decimal price strings (`minPrice`, `maxPrice`). The API converts to ticks, snaps to valid tick spacing, and returns the adjusted prices in the response.
-- **`tickBounds`** — Raw tick integers (`tickLower`, `tickUpper`). Skips price conversion. The API computes the corresponding decimal prices for the response.
+- **`priceBounds`**: Human-readable decimal price strings (`minPrice`, `maxPrice`). The API converts to ticks, snaps to valid tick spacing, and returns the adjusted prices in the response.
+- **`tickBounds`**: Raw tick integers (`tickLower`, `tickUpper`). Skips price conversion. The API computes the corresponding decimal prices for the response.
 
 #### Example request
 
@@ -268,7 +267,7 @@ interface CreatePositionResponse {
 }
 ```
 
-### Uniswap v2 — `/lp/create_classic`
+### Uniswap v2: `/lp/create_classic`
 
 Uniswap v2 positions always span the full price range (0 to ∞). The caller provides an `independentToken` amount; the API computes the `dependentToken` amount from current pair reserves. If creating a new pool, the `independentToken` and `dependentToken` fields are both required.
 
@@ -298,7 +297,7 @@ curl --location 'https://liquidity.api.uniswap.org/lp/create_classic' \
 
 If `dependentToken` is omitted, the API computes the optimal amount from current pool reserves.
 
-## Increasing Liquidity — `/lp/increase`
+## Increasing Liquidity: `/lp/increase`
 
 Adds liquidity to an existing Uniswap v2, v3, or v4 position. Provide one token amount; the API computes the other.
 
@@ -337,7 +336,7 @@ For Uniswap v4 permit-based approvals, include `v4BatchPermitData` and `signatur
 | `independentToken` | Token address and amount the user wants to add |
 | `slippageTolerance` | Optional. Decimal slippage tolerance (e.g., `0.5` for 0.5%) |
 
-## Decreasing Liquidity — `/lp/decrease`
+## Decreasing Liquidity: `/lp/decrease`
 
 Removes a percentage of liquidity from a Uniswap v2, v3, or v4 position. The API computes the token amounts to be returned and generates the withdrawal transaction.
 
@@ -367,7 +366,7 @@ curl --location 'https://liquidity.api.uniswap.org/lp/decrease' \
 
 > **v3 fee collection**: For Uniswap v3, uncollected fees are included in the withdrawal automatically via the SDK's `removeCallParameters`. You do not need to call `/lp/claim_fees` separately.
 
-## Collecting Fees — `/lp/claim_fees`
+## Collecting Fees: `/lp/claim_fees`
 
 Collects accumulated trading fees from a Uniswap v3 or Uniswap v4 position. Not available for Uniswap v2; Uniswap v2 fees are embedded in LP token value and are realized upon liquidity removal.
 
@@ -545,7 +544,7 @@ If a transaction reverts onchain:
 
 1. **Check `data` field**: Verify it is not empty before broadcasting
 2. **Verify token balances**: User has sufficient token balances at broadcast time
-3. **Check approvals**: Run `/lp/check_approval` again — a prior approval may have been consumed or revoked
+3. **Check approvals**: Run `/lp/check_approval` again, since a prior approval may have been consumed or revoked
 4. **Check slippage**: Pool price moved beyond the slippage tolerance between quote and broadcast
 5. **Check deadline**: Transaction was not broadcast before the deadline encoded in the calldata
 6. **Nonce collision**: Another transaction used the same nonce
@@ -592,7 +591,7 @@ async function validateBeforeBroadcast(
 
 ### Always check approvals first
 
-Call `/lp/check_approval` before every LP action — even for positions where approvals were previously granted, since allowances can be revoked or consumed.
+Call `/lp/check_approval` before every LP action, even for positions where approvals were previously granted, since allowances can be revoked or consumed.
 
 ```ts
 async function approveAndExecute(
@@ -624,7 +623,7 @@ async function approveAndExecute(
 
 ### Price range guidance
 
-When using `priceBounds`, note that the API snaps prices to valid tick spacing boundaries. Always display the **adjusted prices** returned in the response to the user — not the original input values.
+When using `priceBounds`, note that the API snaps prices to valid tick spacing boundaries. Always display the **adjusted prices** returned in the response to the user, not the original input values.
 
 ```ts
 const { adjustedMinPrice, adjustedMaxPrice, tickLower, tickUpper } = createResponse;
@@ -754,12 +753,12 @@ function logLpAttempt(
 
 - Verify the amount is in the correct units (wei, not ether)
 - Confirm token decimals match the onchain contract
-- If using `priceBounds`, check the returned `adjustedMinPrice` / `adjustedMaxPrice` in the response — the server may have snapped to different tick boundaries than expected
+- If using `priceBounds`, check the returned `adjustedMinPrice` / `adjustedMaxPrice` in the response. The server may have snapped to different tick boundaries than expected
 - For new pools, confirm `initialPrice` is a valid `sqrtRatioX96` value
 
 **Problem**: Transaction reverts after a successful create response
 
-- Re-check token approvals via `/lp/check_approval` — another transaction may have consumed the allowance
+- Re-check token approvals via `/lp/check_approval`. Another transaction may have consumed the allowance
 - Confirm the quote has not gone stale (price moved significantly since the transaction was built)
 - Verify slippage tolerance is appropriate for the pair's volatility
 
@@ -774,7 +773,7 @@ function logLpAttempt(
 **Problem**: `/lp/decrease` does not return expected amounts
 
 - Confirm `liquidityPercentageToDecrease` is between 1 and 100
-- For Uniswap v3, note that uncollected fees are bundled into the withdrawal — the returned amounts may be higher than the pro-rata liquidity alone
+- For Uniswap v3, note that uncollected fees are bundled into the withdrawal. The returned amounts may be higher than the pro-rata liquidity alone
 
 ### Fee collection issues
 
@@ -786,7 +785,7 @@ function logLpAttempt(
 
 **Problem**: Uniswap v2 claim attempt returns a validation error
 
-- This is expected behavior. Uniswap v2 fees are not claimable independently — use `/lp/decrease` to realize accumulated fees along with liquidity.
+- This is expected behavior. Uniswap v2 fees are not claimable independently. Use `/lp/decrease` to realize accumulated fees along with liquidity.
 
 ### Approval issues
 

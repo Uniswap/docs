@@ -1,8 +1,11 @@
 ---
-id: ethereum-deployments
 title: Ethereum Deployments
 description: Review Uniswap v3 deployment addresses and contract references for Ethereum mainnet integrations.
 ---
+
+<Callout>
+  All Uniswap v3 deployment addresses are also available on the unified [Deployments](/deployments) page and its [deployments.json](/deployments.json) feed.
+</Callout>
 
 The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap/swap-router-contracts` are deployed at the addresses listed below. Integrators should **no longer assume that they are deployed to the same addresses across chains** and be extremely careful to confirm mappings below.
 
@@ -11,8 +14,8 @@ The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap
 | [UniswapV3Factory](https://github.com/Uniswap/uniswap-v3-core/blob/v1.0.0/contracts/UniswapV3Factory.sol)                                                    | `0x1F98431c8aD98523631AE4a59f267346ea31F984` | `0x0227628f3F023bb0B980b67D528571c95c6DaC1c` |
 | [Multicall](https://etherscan.io/address/0x1F98415757620B543A52E61c46B32eB19261F984#code)                                                                    | `0x1F98415757620B543A52E61c46B32eB19261F984` | ``                                           |
 | [Multicall2](https://etherscan.io/address/0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696#code)                                                                   | `0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696` | `0xD7F33bCdb21b359c8ee6F0251d30E94832baAd07` |
-| [ProxyAdmin](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.1-solc-0.7-2/contracts/proxy/ProxyAdmin.sol)                                   | `0xB753548F6E010e7e680BA186F9Ca1BdAB2E90cf2` | `0x0b343475d44EC2b4b8243EBF81dc888BF0A14b36` |
-| [TickLens](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/TickLens.sol)                                                          | `0xbfd8137f7d1516D3ea5cA83523914859ec47F573` | ``                                           |
+| [ProxyAdmin](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.4.1-solc-0.7-2/contracts/proxy/ProxyAdmin.sol)                                   | `0xB753548F6E010e7e680BA186F9Ca1BdAB2E90cf2` | `0x5d3ceBAb8fbA22B48d725a40452e874F24E537f4` |
+| [TickLens](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/TickLens.sol)                                                          | `0xbfd8137f7d1516D3ea5cA83523914859ec47F573` | `0x0b343475d44EC2b4b8243EBF81dc888BF0A14b36` |
 | [Quoter](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/Quoter.sol)                                                              | `0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6` | ``                                           |
 | [SwapRouter](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/SwapRouter.sol)                                                           | `0xE592427A0AEce92De3Edee1F18E0157C05861564` | ``                                           |
 | [NFTDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/libraries/NFTDescriptor.sol)                                           | `0x42B24A95702b9986e82d421cC3568932790A48Ec` | `0x3B5E3c5E595D85fbFBC2a42ECC091e183E76697C` |

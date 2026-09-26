@@ -1,5 +1,4 @@
 ---
-id: auctiontypes
 title: Auction Types
 description: Compare UniswapX auction mechanisms across chains using chain-specific timing models.
 ---
@@ -13,7 +12,7 @@ The following table summarizes the auction mechanisms on each chain.
 | Chain | Auction Type | Reactor | Timing Mechanism |
 |-------|-------------|---------|------------------|
 | **Ethereum** | RFQ + Exclusive Dutch Auction | Dutch V2 | Time-based: exclusivity window, then decay (`decayStartTime`) |
-| **Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, Unichain** | RFQ + Exclusive Dutch Auction | Dutch V3 | Block-based: exclusivity window, then decay (`decayStartBlock`) |
+| **Arbitrum, Arc, Avalanche, Base, BNB Smart Chain, Ink, Monad, Robinhood Chain, Tempo, Unichain** | RFQ + Exclusive Dutch Auction | Dutch V3 | Block-based: exclusivity window, then decay (`decayStartBlock`) |
 
 UniswapX uses the same RFQ and exclusive Dutch auction model on every supported chain. The only difference is how timing is measured: Ethereum measures the exclusivity window and decay in time, while the other chains measure them in block numbers.
 
@@ -81,7 +80,7 @@ Currently, the Uniswap Interface and Uniswap API set the cosigner to Uniswap Lab
 The same RFQ and exclusive Dutch auction as Ethereum, with exclusivity and decay measured in block numbers instead of time.
 </Callout>
 
-Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, and Unichain run the same model described above for Ethereum: a winning quoter from the RFQ holds an exclusivity window, and the order then decays in an open Dutch auction. These chains settle through the [DutchV3 reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol), and both the exclusivity window and the decay are measured in **block numbers** rather than timestamps.
+Arbitrum, Arc, Avalanche, Base, BNB Smart Chain, Ink, Monad, Robinhood Chain, Tempo, and Unichain run the same model described above for Ethereum: a winning quoter from the RFQ holds an exclusivity window, and the order then decays in an open Dutch auction. These chains settle through the [DutchV3 reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol), and both the exclusivity window and the decay are measured in **block numbers** rather than timestamps.
 
 ### How the decay curve works
 
@@ -98,7 +97,7 @@ The exclusive filler has a short exclusivity window before decay begins. After i
 | Reactor | Block time | Exclusivity window | Decay |
 |---|---|---|---|
 | Dutch V2 (Ethereum) | ~12 seconds | ~24 seconds (2 blocks) | Time-based, about 1 minute, then expiry |
-| Dutch V3 (Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, Unichain) | ~1 second | ~2 to 4 seconds | Block-based, about 1 minute, then expiry |
+| Dutch V3 (Arbitrum, Arc, Avalanche, Base, BNB Smart Chain, Ink, Monad, Robinhood Chain, Tempo, Unichain) | Varies by chain, sub-second to a couple of seconds | ~2 to 4 seconds | Block-based, about 1 minute, then expiry |
 
 The cosigner sets the exclusivity window per order, so these values can change. On the DutchV3 chains the window and decay are counted in blocks, and the wall-clock duration follows each chain's block time.
 
