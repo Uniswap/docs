@@ -1,11 +1,12 @@
 ---
 title: Swapping API Integration Guide
+sidebarTitle: Standard Swap Guide
 description: Build swapping integrations with the Uniswap API using this practical step-by-step guide.
 ---
 
 <Callout title="Cross-chain and multi-step trades" type="info">
 
-This guide covers single-transaction swaps. When `/quote` returns `"routing": "CHAINED"` (a trade that crosses chains or needs more than one step), drive execution through the `/plan` endpoints instead. See the [Chained Actions Integration Guide](/docs/trading/swapping-api/chained-actions-integration).
+This guide covers single-transaction swaps. When `/quote` returns `"routing": "CHAINED"` (a trade that crosses chains or needs more than one step), drive execution through the `/plan` endpoints instead. See the [Chained Actions Integration Guide](/docs/trading/swapping-api/start-building/chained-actions-integration).
 
 </Callout>
 
@@ -48,9 +49,9 @@ const quote = await response.json();
 
 AI builders can consume the full Open API Specification (OAS) at [https://trade-api.gateway.uniswap.org/v1/api.json](https://trade-api.gateway.uniswap.org/v1/api.json).
 
-If your integration is built or operated by an AI agent, also consider sending the optional [`X-Agent-Info` attribution header](/docs/trading/swapping-api/agent-attribution) alongside your request.
+If your integration is built or operated by an AI agent, also consider sending the optional [`X-Agent-Info` attribution header](/docs/trading/swapping-api/start-building/agent-attribution) alongside your request.
 
-Full code examples for completing a basic swap workflow are available in [Swapping Code Examples](/docs/trading/swapping-api/swapping-code-examples).
+Full code examples for completing a basic swap workflow are available in [API Swapping Code Examples](/docs/trading/swapping-api/start-building/swapping-code-examples).
 
 ## Architecture
 
@@ -79,8 +80,7 @@ Your integration must include:
 - **RPC Provider**: Connection to blockchain nodes (ex. Infura, Alchemy, or self-hosted)
 - **Web3 Library**: ethers.js, viem, or web3.js for transaction signing
 - **Wallet Integration**: Uniswap Wallet, MetaMask, or similar for user signing
-
-See the [Build Prerequisites](/docs/trading/swapping-api/building-prerequisites) for more details.
+- **API Key Handling**: Store your Uniswap API key server-side and attach it to requests over HTTPS. Do not ship it in front-end code; proxy calls through your own backend so the key is never exposed to users.
 
 ### Data flow
 
@@ -333,13 +333,13 @@ interface ErrorResponse {
 
 #### No quotes available
 
-**Cause**: No route found for the requested swap
+**Cause**: identified by the `errorCode` field on the 404 body (see the [full reference](/docs/trading/swapping-api/common-errors#404-no-quotes-available))
 
 **Solutions**:
-- Verify token addresses are correct and on the specified chain
-- Check chains are available for selected protocol (note [limited chain support for UniswapX](/docs/trading/swapping-api/supported-chains))
-- Try different protocols or routing preferences
-- Reduce trade size
+- Handle the 404 by `errorCode`: only `UpstreamTimeoutError` can succeed on an unchanged retry; all other values indicate the request must be modified
+- Verify token addresses are correct and on the specified chain (`UnsupportedTokenError`, `NoRouteFoundError`)
+- Check chains are available for the selected protocol (`UniswapXNotSupportedOnChainError`; note [limited chain support for UniswapX](/docs/trading/swapping-api/supported-chains))
+- Increase trade size for UniswapX minimums (`QuoteAmountTooLowError`)
 
 #### Validation error
 
@@ -476,7 +476,7 @@ Balance protection vs execution success:
 
 ### Error recovery
 
-If a quote fails, read the error message to address the specific error cause. If the quote fails due to no quotes available, implement retry logic with exponential backoff:
+If a quote fails with a 404, use the `errorCode` field to address the specific cause (see the [errorCode reference](/docs/trading/swapping-api/common-errors#404-no-quotes-available)). Only retry when `errorCode` is `UpstreamTimeoutError` (or, cautiously, `ResourceNotFound`) — every other cause is deterministic and will fail again unchanged. Retry with exponential backoff:
 
 ```typescript
 async function fetchQuoteWithRetry(
@@ -642,11 +642,11 @@ The API does not return every field that some libraries expect to generate an EI
 <Callout title="UniswapX Constraints" type="warn">
 
 - **`UNISWAPX_V2`**: Mainnet, Arbitrum, Base only
-- **`UNISWAPX_V3`**: Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, Unichain
-- **UniswapX minimum**: 300 USDC equivalent on all supported chains
+- **`UNISWAPX_V3`**: Arbitrum, Arc, Avalanche, Base, BNB Smart Chain, Ink, Monad, Robinhood Chain, Tempo, Unichain
+- **UniswapX minimum**: a per-chain minimum quotable size (see [Supported Chains](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support))
 - **Native token swaps**: UniswapX for native token input only when the `x-erc20eth-enabled` header is set to `true` on `/quote` and `/order`
 
-Requests below the minimum threshold will return "No quotes available." See [Supported Chains](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support) for details.
+Requests below the minimum threshold return a 404 with `errorCode: QuoteAmountTooLowError`. See [Supported Chains](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support) for details.
 
 </Callout>
 

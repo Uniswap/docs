@@ -1,5 +1,6 @@
 ---
 title: Swapping with Chained Actions
+sidebarTitle: Chained Actions
 description: Cross-chain and multi-step swaps execute as an ordered plan of steps through the Uniswap Trading API.
 ---
 
@@ -13,13 +14,13 @@ A few common shapes:
 
 Without a coordinating API, an integrator would orchestrate each leg by hand: quote a swap, submit it, wait for confirmation, quote a bridge, submit it, wait again, and handle a failure at any stage. Chained Actions package that sequence into a state-tracked plan. The API handles routing and quoting. Your application handles execution and user confirmation.
 
-To build against the plan endpoints, see the [Chained Actions Integration Guide](/docs/trading/swapping-api/chained-actions-integration).
+To build against the plan endpoints, see the [Chained Actions Integration Guide](/docs/trading/swapping-api/start-building/chained-actions-integration).
 
 ## Execution flow
 
 A trade becomes a Chained Action when `/quote` returns `"routing": "CHAINED"`. From there, three `/plan` endpoints drive execution: `POST /plan` creates the plan, `PATCH /plan` advances it as each step completes, and `GET /plan` reports the current state.
 
-![Chained Actions execution flow](../images/chained-actions-flow.png)
+![Chained Actions execution flow](../../images/chained-actions-flow.png)
 
 At a high level:
 
@@ -31,7 +32,7 @@ At a high level:
 
 ## Plans and steps
 
-A plan is an ordered array of steps identified by a unique `planId`. Each step is one wallet action: an approval, a swap, a bridge, or a UniswapX order. To execute a step, you branch on its `method` and `payloadType`, covered in the [integration guide](/docs/trading/swapping-api/chained-actions-integration).
+A plan is an ordered array of steps identified by a unique `planId`. Each step is one wallet action: an approval, a swap, a bridge, or a UniswapX order. To execute a step, you branch on its `method` and `payloadType`, covered in the [integration guide](/docs/trading/swapping-api/start-building/chained-actions-integration).
 
 Only one step is active at any moment. The rest stay blocked until the preceding step completes. Each future step's amounts derive from the confirmed output of the step before it, so only the active step and any completed steps carry a populated payload.
 
@@ -57,7 +58,7 @@ The router automatically selects one of three patterns, based on the tokens and 
 | **Bridge to Swap (B→S)** | Source token is native ETH, and the destination token is not directly bridgeable from it | ETH (Mainnet) to USDC (Base) | Bridge → Swap |
 | **Swap to Bridge to Swap (S→B→S)** | Default fallback, using ETH as the bridge medium | USDC (Mainnet) to PEPE (Base) | `[Approval]` → Swap → Bridge → Swap |
 
-AMM swap steps can route through Uniswap v2, v3, or v4. The longest plan has three quote-generating steps, plus any approval steps on top. A plan can also end in error: see [error handling and recovery](/docs/trading/swapping-api/chained-actions-integration#error-handling-and-recovery) in the integration guide.
+AMM swap steps can route through Uniswap v2, v3, or v4. The longest plan has three quote-generating steps, plus any approval steps on top. A plan can also end in error: see [error handling and recovery](/docs/trading/swapping-api/start-building/chained-actions-integration#error-handling-and-recovery) in the integration guide.
 
 ## Constraints
 
@@ -67,5 +68,5 @@ AMM swap steps can route through Uniswap v2, v3, or v4. The longest plan has thr
 
 ## Next steps
 
-- [Chained Actions Integration Guide](/docs/trading/swapping-api/chained-actions-integration): the full execution loop, with `cURL` examples for each step, proof submission, polling, and error recovery.
+- [Chained Actions Integration Guide](/docs/trading/swapping-api/start-building/chained-actions-integration): the full execution loop, with `cURL` examples for each step, proof submission, polling, and error recovery.
 - [Swap Routing](/docs/trading/swapping-api/concepts/swap-routing): how to choose protocols and routing preferences on the underlying swaps.

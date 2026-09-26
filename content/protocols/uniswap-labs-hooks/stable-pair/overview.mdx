@@ -1,0 +1,37 @@
+---
+title: StablePair Overview
+sidebarTitle: Overview
+description: Understand StablePair, a Uniswap v4 hook that computes LP fees dynamically for pairs expected to trade at the same price.
+---
+
+StablePair is a dynamic fee hook built on Uniswap v4, for pools whose two assets are expected to trade at the same price: USDC/USDT, or WBTC/cbBTC. Rather than charging one static fee, the hook sets the LP fee on every swap from how far the pool price has drifted from a configured reference rate and which direction the swap pushes it.
+
+Inside a narrow band around that reference rate, where the pool sits under normal conditions, both directions pay a small fee, set so that every buy is quoted at one price and every sell at another, before the price impact of the swap itself. Once the price leaves the band the regime changes: swaps pushing it back toward the reference are charged a fee that starts high and decays each block until an arbitrageur takes it, and swaps pushing it further away pay nothing.
+
+<Callout type="info">
+StablePair pools cannot be created permissionlessly. Calling `PoolManager.initialize` against this hook reverts; pools are created only by Uniswap Labs, which sets each pool's fee parameters atomically with creation. See [Pool Creation and Configuration](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/pool-creation).
+</Callout>
+
+## Concepts
+
+- [Dynamic Fees](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/dynamic-fees): how the fee is chosen for any given swap
+- [Fee Decay](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/fee-decay): how corrective swaps get cheaper over time
+- [Block Price Caching](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/block-price-caching): why the fee is fixed for a whole block
+- [Pool Creation and Configuration](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/pool-creation): who can create pools, and where fee parameters live
+
+## Guides
+
+- [Swap Against a StablePair Pool](/docs/protocols/uniswap-labs-hooks/stable-pair/guides/swap): quote and execute swaps
+- [Provide Liquidity on StablePair](/docs/protocols/uniswap-labs-hooks/stable-pair/guides/provide-liquidity): deposit and withdraw
+
+## Repositories
+
+- [Uniswap/v4-hooks-public](https://github.com/Uniswap/v4-hooks-public): hook source and tests
+
+## Deployments
+
+See [StablePair Deployments](/docs/protocols/uniswap-labs-hooks/stable-pair/deployments) for hook addresses and live pool parameters.
+
+## Security
+
+See [StablePair Security](/docs/protocols/uniswap-labs-hooks/stable-pair/security) for the trust model, protocol invariants, and audit history.

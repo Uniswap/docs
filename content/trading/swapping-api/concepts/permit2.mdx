@@ -6,7 +6,7 @@ description: Learn how to use Permit2 approvals and troubleshoot common signing 
 ## Swapping with Permit2
 The Uniswap API supports a swap flow that uses Permit2 signatures. This option is the default and it provides security to swapper wallets which direct router approval workflows cannot. 
 
-In this flow, the swapping wallet grants ERC-20 approval to the Permit2 contract and then subsequently signs messages which authorize Permit2 to spend tokens from the swapping wallet with the Universal Router. This flow requires that integrators provide up to a three-step swap process: approve —> sign permit —> swap.
+In this flow, the swapping wallet grants ERC-20 approval to the Permit2 contract and then subsequently signs messages which authorize Permit2 to spend tokens from the swapping wallet with the Universal Router. This flow requires that integrators provide up to a three-step swap process: approve -> sign permit -> swap.
 
 ## What Is a Permit2 Message and How Is It Used?
 

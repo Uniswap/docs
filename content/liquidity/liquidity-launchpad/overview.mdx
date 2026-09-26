@@ -1,7 +1,29 @@
 ---
-id: Overview
-title: CCA Overview
+title: Liquidity Launchpad (CCA) Overview
+sidebarTitle: Overview
 description: Learn how Uniswap Liquidity Launchpad uses CCA auctions and strategies to bootstrap liquidity for Uniswap v4 pools.
+keywords:
+  - continuous clearing auction
+  - liquidity launchpad
+  - price discovery
+  - submitBid
+  - liquidity bootstrapping
+faqs:
+  - question: What is a Continuous Clearing Auction (CCA)?
+    answer: |-
+      A Continuous Clearing Auction is the price discovery mechanism behind the Uniswap Liquidity Launchpad. It generalizes the uniform-price auction into continuous time: tokens are sold over the auction window to the current set of active participants, and every block a portion of supply (set by the release schedule) is allocated to bids with higher max prices first. Because bids spread automatically over time, no participant can concentrate demand at a single moment, which reduces timing games and sniping. See the CCA concept page for details.
+  - question: How do I submit a bid in a CCA?
+    answer: |-
+      You submit a bid by calling submitBid on the auction contract. A bid has two main parts: a max price (the highest price you are willing to pay, which must be strictly above the current clearing price) and an amount of currency you are bidding. The owner address receives any purchased tokens or refunded currency. See the Submitting a Bid guide for a full walkthrough.
+  - question: How does price discovery work in a CCA?
+    answer: |-
+      Each bid is willing to buy tokens up to a maximum price, so there is a clearing price at which total demand can purchase all of the tokens being sold. That equilibrium only changes when a new bid enters. Each time a bid is submitted, the auction iterates through price ticks to find the highest price at which there is still enough demand to buy the full supply. That price becomes the clearing price for the block, and all active participants in that block pay it. See the Price Discovery guide for a worked example.
+  - question: What is the clearing price and who pays it?
+    answer: |-
+      The clearing price is the single price that all active bidders in a given block pay, the same concept used in uniform-price auctions. In a CCA it is discovered gradually over time rather than in one shot: each time a bid enters, the auction settles at the highest price at which demand still covers the full supply. A bid is removed from the auction once its max price falls below the clearing price.
+  - question: What happens to the funds raised after a CCA auction ends?
+    answer: |-
+      After the auction finalizes its clearing state and raised funds, a liquidity strategy migrates the proceeds into a Uniswap v4 pool. In the example flow, you call migrate after the configured migration block to initialize the pool and its liquidity positions, and participants then claim their tokens after the claim block. This is what moves a completed auction from price discovery into active v4 trading with initial depth. See the Liquidity Strategies concept page for details.
 ---
 
 ## What Is the Uniswap Liquidity Launchpad?
@@ -63,9 +85,87 @@ If you want to manually configure and deploy the contracts, use this sample flow
 4. **Seeding Liquidity**: call `migrate()` after `migrationBlock` to initialize the Uniswap v4 pool and liquidity positions.
 5. **After Migration**: participants claim tokens after `claimBlock`, and strategy/auction balances are swept by configuration.
 
+## FAQ
+
+<details>
+  <summary>What is a Continuous Clearing Auction (CCA)?</summary>
+
+  <FaqAnswer>
+
+  A [Continuous Clearing Auction](/docs/liquidity/liquidity-launchpad/concepts/cca) is the price discovery mechanism behind the Uniswap Liquidity Launchpad. It generalizes the uniform-price auction into continuous time: tokens are sold over the auction window to the current set of active participants, and every block a portion of supply (set by the release schedule) is allocated to bids with higher max prices first.
+
+  Because bids spread automatically over time:
+
+  * No participant can concentrate demand at a single moment.
+  * Timing of bid submission matters less than valuation.
+  * Sniping and last-minute gaming become ineffective.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do I submit a bid in a CCA?</summary>
+
+  <FaqAnswer>
+
+  You submit a bid by calling `submitBid` on the auction contract. A bid has two main parts:
+
+  * `maxPrice`: the highest price you are willing to pay. It must be strictly above the current clearing price.
+  * `amount`: the amount of currency you are bidding.
+
+  The `owner` address receives any purchased tokens or refunded currency. See the [Submitting a Bid](/docs/liquidity/liquidity-launchpad/guides/submit-bid) guide for a full walkthrough, including the function signature and an example script.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How does price discovery work in a CCA?</summary>
+
+  <FaqAnswer>
+
+  Each bid is willing to buy tokens up to a maximum price, so there is a clearing price at which total demand can purchase all of the tokens being sold. That equilibrium only changes when a new bid enters.
+
+  Each time a bid is submitted, the auction iterates through price ticks to find the highest price at which there is still enough demand to buy the full supply. That price becomes the clearing price for the block, and all active participants in that block pay it. See the [Price Discovery](/docs/liquidity/liquidity-launchpad/guides/price-discovery) guide for a worked example.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What is the clearing price and who pays it?</summary>
+
+  <FaqAnswer>
+
+  The clearing price is the single price that all active bidders in a given block pay, the same concept used in uniform-price auctions. In a CCA it is discovered gradually over time rather than in one shot.
+
+  Each time a bid enters, the auction settles at the highest price at which demand still covers the full supply. A bid is removed from the auction once its max price falls below the clearing price.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What happens to the funds raised after a CCA auction ends?</summary>
+
+  <FaqAnswer>
+
+  After the auction finalizes its clearing state and raised funds, a [liquidity strategy](/docs/liquidity/liquidity-launchpad/concepts/liquidity-strategies) migrates the proceeds into a Uniswap v4 pool. In the example flow:
+
+  * Call `migrate()` after the configured `migrationBlock` to initialize the pool and its liquidity positions.
+  * Participants claim their tokens after the `claimBlock`.
+
+  This is what moves a completed auction from price discovery into active v4 trading with initial depth.
+
+  </FaqAnswer>
+
+</details>
+
 ## Where to Go Next
 
 - Read the [CCA whitepaper](/whitepaper_cca.pdf)
 - Learn about the [Continuous Clearing Auction](/docs/liquidity/liquidity-launchpad/concepts/cca) mechanism
+- Create a pool without an auction with [Instant Launch](/docs/liquidity/liquidity-launchpad/concepts/instant-launch)
 - Create a token via the [Token Factories](/docs/liquidity/liquidity-launchpad/concepts/token-factory) (UERC20 and Superchain-compatible USUPERC20)
 - For full address tables and versions, see [Deployments](/docs/liquidity/liquidity-launchpad/deployments)

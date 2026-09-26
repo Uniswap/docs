@@ -1,0 +1,31 @@
+---
+title: Fee Decay
+description: Understand how StablePair lowers the fee on corrective swaps over time to create a progressively stronger arbitrage incentive.
+---
+
+When the pool price sits outside its band, the pool is mispriced against the wider market and there is an arbitrage opportunity. StablePair auctions that opportunity off rather than fixing a price for it.
+
+## The auction
+
+When the hook reads a price outside the band, the fee on corrective swaps resets to the far edge of the band (the same price an ordinary in-band swap would get) and decays from there, one step per block. As blocks pass and nobody takes it, the fee falls until someone does, and the pool collects whatever the fee is at that moment.
+
+Two configured parameters shape how much that turns out to be: a per-block decay factor, controlling how quickly the fee falls, and a target multiplier, controlling how low it can go.
+
+## The target and the incentive
+
+The target the fee decays toward is set by the target multiplier, applied to the pool's distance outside the band. At the maximum multiplier the target settles near twice the band width and stays roughly there however far the price has drifted. At lower multipliers the target scales up with the mispricing, so the fee is not permitted to fall as far.
+
+At the maximum setting this makes larger mispricings clear sooner: the floor stays put while the arbitrage on offer grows, so the fee becomes worth taking in fewer blocks.
+
+## Adjustment before decay
+
+Between blocks, the price itself moves, and the fee is adjusted before decay is applied:
+
+- **The price moved further out.** The fee is raised to preserve the same quoted price it would have produced at the previous, better pool price. A worsening pool price never lowers the fee.
+- **The price moved back toward the reference.** The fee is capped so it can never exceed what the far edge of the band would produce at the new price, then decays from there.
+- **The price crossed the reference rate, or re-entered the band and left again.** The fee resets to the far edge of the band. There is no meaningful prior fee to carry forward.
+
+## Where to Go Next
+
+- [Block Price Caching](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/block-price-caching)
+- [StablePair Security](/docs/protocols/uniswap-labs-hooks/stable-pair/security)

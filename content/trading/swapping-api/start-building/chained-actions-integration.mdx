@@ -1,11 +1,12 @@
 ---
 title: Chained Actions Integration Guide
+sidebarTitle: Chained Actions Swap Guide
 description: Build cross-chain and multi-step swaps with the Uniswap Trading API plan endpoints, with cURL examples and the full execution loop.
 ---
 
-This guide is the operational counterpart to [Swapping with Chained Actions](/docs/trading/swapping-api/chained-actions). When `/quote` returns `"routing": "CHAINED"`, you drive the trade through the `/plan` endpoints as an ordered sequence of steps under one `planId`.
+This guide is the operational counterpart to [Swapping with Chained Actions](/docs/trading/swapping-api/concepts/chained-actions). When `/quote` returns `"routing": "CHAINED"`, you drive the trade through the `/plan` endpoints as an ordered sequence of steps under one `planId`.
 
-For conceptual background (plans, steps, the state machine, and routing patterns), read the [concepts page](/docs/trading/swapping-api/chained-actions). For full request and response schemas, see the [API Reference](/docs/api-reference). AI builders can consume the full OpenAPI Specification at [https://trade-api.gateway.uniswap.org/v1/api.json](https://trade-api.gateway.uniswap.org/v1/api.json).
+For conceptual background (plans, steps, the state machine, and routing patterns), read the [concepts page](/docs/trading/swapping-api/concepts/chained-actions). For full request and response schemas, see the [API Reference](/docs/api-reference). AI builders can consume the full OpenAPI Specification at [https://trade-api.gateway.uniswap.org/v1/api.json](https://trade-api.gateway.uniswap.org/v1/api.json).
 
 ## Endpoints
 
@@ -195,7 +196,7 @@ Scan the steps array for `STEP_ERROR` rather than assuming which index failed. T
 
 `slippageTolerance` is the value set on the `/quote` request, or the API default if you omit it. It governs the AMM swap steps in a plan. It is fixed at quote time and applied to each swap step independently, not as a single end-to-end guarantee. For an S→B→S plan at 0.5%, each swap applies 0.5% on its own, so the combined deviation across both swaps can exceed 0.5%. Slippage cannot be changed after a plan is created. If no valid swap route exists within tolerance, the step fails with no automatic recovery.
 
-The bridge step is not an AMM swap. It is quoted through the bridge provider (Across Protocol) when the plan is built, so `slippageTolerance` does not apply to it. The bridge runs as a `SEND_TX` step alongside approvals and swaps (see the [execution flow](/docs/trading/swapping-api/chained-actions#execution-flow)), but only the swap steps have a slippage tolerance band.
+The bridge step is not an AMM swap. It is quoted through the bridge provider (Across Protocol) when the plan is built, so `slippageTolerance` does not apply to it. The bridge runs as a `SEND_TX` step alongside approvals and swaps (see the [execution flow](/docs/trading/swapping-api/concepts/chained-actions#execution-flow)), but only the swap steps have a slippage tolerance band.
 
 ## Gas
 
@@ -210,7 +211,7 @@ Gas applies only to `SEND_TX` steps (approvals, swaps, and bridges). `SIGN_MSG` 
 
 ## API Reference
 
-For full request and response schemas, see the [API Reference](/docs/api-reference). For conceptual background, see [Swapping with Chained Actions](/docs/trading/swapping-api/chained-actions).
+For full request and response schemas, see the [API Reference](/docs/api-reference). For conceptual background, see [Swapping with Chained Actions](/docs/trading/swapping-api/concepts/chained-actions).
 
 ## Support
 

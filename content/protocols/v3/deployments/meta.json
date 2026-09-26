@@ -8,6 +8,7 @@
     "v3-bnb-deployments",
     "v3-celo-deployments",
     "v3-ethereum-deployments",
+    "v3-hyperevm-deployments",
     "v3-megaeth-deployments",
     "v3-monad-deployments",
     "v3-tempo-deployments",

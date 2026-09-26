@@ -1,0 +1,59 @@
+---
+title: Pool Creation and Configuration
+description: Understand why StablePair pools are created only by Uniswap Labs, and where each pool's fee parameters live.
+---
+
+## What identifies a pool
+
+Every Uniswap v4 pool is identified by five values, which together form its pool key: the two currencies, a fee field, a tick spacing, and the hook. Change any one of them and it is a different pool.
+
+For a dynamic fee hook the fee field does not hold a rate. It holds a flag meaning that the fee is set by the hook at swap time.
+
+## Fee parameters are not part of pool identity
+
+The parameters StablePair uses to compute a fee live in the hook's own storage, keyed by pool ID, not in the pool key:
+
+| Parameter | What it controls |
+| :--- | :--- |
+| Reference rate | The price the pair is expected to hold. The fee is derived from how far the pool sits from it. |
+| Optimal fee | How wide the band around the reference rate is. |
+| Decay factor | How quickly the corrective fee falls each block once the price is outside the band. |
+| Target multiplier | How far the corrective fee is allowed to fall. |
+
+Because configuration sits outside the pool key, two pools on the same pair, tick spacing, and hook cannot differ by configuration. They would be the same pool.
+
+## Why creation is permissioned
+
+That has a direct consequence: whoever creates the pool for a given pair first occupies the identity permanently, and v4 rejects creating a pool that already exists. Under open creation, anyone could create the pool for a pair ahead of its launch and fix its parameters, with a governance vote as the only remedy.
+
+So creation is restricted structurally. The hook's `beforeInitialize` callback reverts unconditionally, which makes `PoolManager.initialize` unusable against it. Pools are created only through the hook's own `initializePool`, restricted to a role held by a Uniswap Labs Safe, which validates and stores the fee configuration atomically with creation.
+
+Two guarantees follow:
+
+- No pool on this hook can exist without a valid fee configuration.
+- No fee configuration can exist without a live pool.
+
+Support for a new pair is therefore a request rather than a transaction.
+
+## Who controls what
+
+| Action | Who |
+| :--- | :--- |
+| Create a pool and set its opening parameters | Uniswap Labs Safe |
+| Change a live pool's parameters | Uniswap governance |
+| Upgrade the hook | Uniswap governance |
+
+See [StablePair Security](/docs/protocols/uniswap-labs-hooks/stable-pair/security) for the full trust model.
+
+## One hook serves every pool
+
+Every hook entry point takes a pool key, so a single deployment handles every pair. There is one canonical StablePair hook address per chain to integrate against, listed in [Deployments](/docs/protocols/uniswap-labs-hooks/stable-pair/deployments).
+
+<Callout type="info">
+Permissioned creation is a property of this deployment rather than of the fee mechanism. Governance is the role admin and can change who may create pools.
+</Callout>
+
+## Where to Go Next
+
+- [Dynamic Fees](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/dynamic-fees)
+- [StablePair Deployments](/docs/protocols/uniswap-labs-hooks/stable-pair/deployments)

@@ -1,0 +1,20 @@
+---
+title: 'Enforcement of Slippage Validation'
+description: 'Posted: September 4, 2026 | Effective: October 4, 2026'
+type: changelog
+datePublished: '2026-09-04'
+---
+
+On October 4, 2026, we will begin enforcing that every `/quote` request include either `autoSlippage` or `slippageTolerance`.
+
+**What is changing?**
+
+The [API Reference](/docs/api-reference/aggregator_quote) already documents that every `/quote` request must include either a `slippageTolerance` or an `autoSlippage` field. That requirement has not been enforced. Starting October 4, 2026, requests that omit both fields will be rejected.
+
+**Why is this changing?**
+
+This change ensures that integrators or their end users explicitly choose a slippage setting, rather than relying on an implicit default that may not match their intent.
+
+**What do I need to do?**
+
+If your `/quote` requests do not currently set `slippageTolerance` or `autoSlippage`, you must start setting one of them, as described in the [`/quote` API Reference](/docs/api-reference/aggregator_quote). If you already set one of these fields on each request, no change is required.

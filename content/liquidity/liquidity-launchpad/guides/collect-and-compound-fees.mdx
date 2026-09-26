@@ -1,0 +1,45 @@
+---
+title: Collect and Compound Fees
+description: Trigger fee collection on an Instant Launch position and compound part of the fees back into it.
+---
+
+An [Instant Launch](/docs/liquidity/liquidity-launchpad/concepts/instant-launch) position is held permanently by the [FeeSplitter](https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/FeeSplitter.sol). Two permissionless actions apply to it: **collecting** fees from the pool and pushing each recipient its share, and **increasing** a position in its custody.
+
+## Collect Fees
+
+`collectFees` collects the accrued fees of each position from the PoolManager and distributes them to the recipients. The splits are immutable, so the caller cannot redirect them.
+
+Recipients that have a callback receive the token ID and the information about the share of the fees sent to them, so they can be attributed per position.
+
+## Compound Fees
+
+The share of fees to be compounded accrues to a `CompoundingClaimRecipient`.
+
+For a handful of Crowd Launch pools, `claim` must be called on an alternative entrypoint rather than the `CompoundingClaimRecipient` listed against the FeeSplitter. Those positions can be located from the `PositionGuarded` event emitted by that entrypoint contract, at `0x2EB0b14814dCa26Df8b8AD729F8F70aD3399E89e` on Robinhood Chain.
+
+```solidity
+event PositionGuarded(uint256 indexed guardedTokenId, address indexed compounder);
+```
+
+Any address implementing `IClaimExecutor` can call `claim`, which:
+
+1. transfers the full token and native amounts attributed to that position to `msg.sender`
+2. calls `onClaimed` back on `msg.sender`
+3. requires that the position's liquidity has grown by at least `minLiquidityIncrease`, otherwise reverting with `NotEnoughLiquidityAdded`
+
+<Callout type="warning">
+  Collect the position before compounding it. `increaseLiquidity` reverts with
+  `UncollectedFees` while fees are still pending, so a single transaction should
+  call `collectFees` before `claim`.
+</Callout>
+
+## Caller tip
+
+A call to `claim` transfers the caller all balances attributed with the position, while the liquidity it must add is fixed.
+
+`amounts(tokenId)` returns what is currently claimable for a position (not including available fees inside the PoolManager); `minLiquidityIncrease()` returns the minimum liquidity units that the call must add
+
+## Where to Go Next
+
+- [Instant Launch](/docs/liquidity/liquidity-launchpad/concepts/instant-launch)
+- [Deployments](/docs/liquidity/liquidity-launchpad/deployments)

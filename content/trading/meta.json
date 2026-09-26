@@ -1,5 +1,5 @@
 {
-  "title": "Trade",
+  "title": "Swapping",
   "root": true,
-  "pages": [ "overview", "swapping-api", "custom-interface-links"]
+  "pages": ["overview", "swapping-api", "custom-interface-links", "embed-app"]
 }

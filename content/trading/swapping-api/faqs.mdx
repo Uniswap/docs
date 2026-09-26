@@ -1,5 +1,5 @@
 ---
-title: Swapping FAQ
+title: Uniswap API FAQs
 description: Find answers to common Uniswap API integration questions about authentication, quotes, routing, rate limits, Permit2 approvals, UniswapX, error handling, fees, and support.
 keywords:
   - uniswap-api
@@ -21,7 +21,7 @@ faqs:
   - question: Is there an OpenAPI / OAS specification I can use to build a client?
     answer: "Yes. AI builders can consume the full Open API Specification (OAS) at https://trade-api.gateway.uniswap.org/v1/api.json."
   - question: What Permit2 address do I need to whitelist for approvals?
-    answer: "The Permit2 address for all chains we support EXCEPT zkSync is: 0x000000000022D473030F116dDEE9F6B43aC78BA3. The Permit2 address for zkSync is: 0x0000000000225e31D15943971F47aD3022F714Fa."
+    answer: Approving the Permit2 contract uses the same contract address across supported chains, with a separate address on zkSync. See the Permit2 FAQ for the canonical contract address and audit details.
   - question: What parameter determines if I receive a gasless quote?
     answer: |-
       When the /quote endpoint's routingPreference is set to BEST_PRICE, the endpoint will attempt to find a quote that nets users the best execution price for a trade. Assuming the protocols are not limited, the endpoint will attempt to get a gasless order and a Uniswap Protocol swap quote, calculate which is currently providing the best price to the user including transaction costs, and return that quote. Integrators of the API who only want gasless quotes may limit the protocols considered to just gasless options (for example UniswapX). There are some scenarios where the API will not be able to get a gasless quote, even if the integrator attempts to force it. The most common reason for this (on chains where UniswapX is supported) is that the gas price of the swap is too high relative to the value of the trade. In cases where the gas cost is 20% or more of the total trade value, the API will always return Uniswap Protocol swap quotes (if permitted by protocols) or fail.
@@ -33,9 +33,9 @@ faqs:
     answer: If a quote fails, the response includes helpful information to understand the problem with the request. The most common quote failure reason is that no route can be found for the quoted pair. This can occur for various reasons, including all available routes would exceed the slippage tolerance, insufficient liquidity for the requested quote size, or no available route through the specified protocols. We recommend retrying the quote but modifying one or more parameters of the requested quote (protocols used, slippage allowed, or the size of the swap).
   - question: How do I quote the native token?
     answer: See the Supported Chains guide for native-token swap details. To quote the native token via UniswapX you must set the x-erc20eth-enabled header in your quote request to true.
-  - question: Why am I getting "No Quotes Available" as a response?
+  - question: Why am I getting 404 errors from /quote?
     answer: |-
-      A quote response with "No Quotes Available" means that the Uniswap router was unable to find a route for the proposed swap. This can happen for a number of reasons, many of which can be easily avoided by understanding the API constraints. While not exhaustive, some of the most common issues are: there is insufficient liquidity to fill the swap; if making a bridge request, the selected token cannot be bridged between the two selected networks; if making a UniswapX-only request, the amount is below 300 USDC equivalent and the UniswapX quote does not improve on the AMM route by at least 0.2%; the request is requesting a bridge and swap (currently not supported).
+      A 404 from /quote means the request passed schema validation, but the router could not return a quote for it. The errorCode field identifies the cause; the full reference, with what to do for each value, is in the Troubleshooting guide. Common causes: insufficient liquidity for the pair (NoRouteFoundError); a UniswapX-only request below the chain's minimum quotable size (QuoteAmountTooLowError); a token that is not routable (UnsupportedTokenError); or a chain not supported for the operation (UnsupportedChainError). Only UpstreamTimeoutError is safe to retry unchanged.
   - question: What are the valid values for the protocols field?
     answer: "The possible values are V2, V3, V4, UNISWAPX_V2, and UNISWAPX_V3. To perform a swap using only UniswapX protocol liquidity, specify protocols as UNISWAPX_V2 or UNISWAPX_V3. Multiple UniswapX protocols may not be specified in the same request. For more information, please visit Swap Routing."
   - question: Can I do a wrap/unwrap through UniswapX?
@@ -83,7 +83,7 @@ faqs:
     answer: |-
       A Priority quote comes from the PriorityOrderReactor, an older UniswapX auction type that is not currently returned by the API. Today the API returns DutchV2 on Mainnet and DutchV3 on the other supported chains, and it notifies you of the auction type in the quote response. For more information on different auction types, see the auction-types docs.
   - question: Which chains and protocol versions does UniswapX support?
-    answer: "UniswapX v2 is supported on Mainnet (chain ID 1), Arbitrum (42161), and Base (8453). UniswapX v3 is supported on Arbitrum (42161), Avalanche (43114), Base (8453), BNB Smart Chain (56), Robinhood Chain (4663), Tempo (4217), and Unichain (130). If you submit a quote request with protocols set to UNISWAPX_V2 or UNISWAPX_V3 on a chain not listed above, the request will fail. Most integrators do not need to set protocols and can let the API select the best route."
+    answer: "UniswapX v2 is supported on Mainnet (chain ID 1), Arbitrum (42161), and Base (8453). UniswapX v3 is supported on Arbitrum (42161), Arc (5042), Avalanche (43114), Base (8453), BNB Smart Chain (56), Ink (57073), Monad (143), Robinhood Chain (4663), Tempo (4217), and Unichain (130). If you submit a quote request with protocols set to UNISWAPX_V2 or UNISWAPX_V3 on a chain not listed above, the request will fail. Most integrators do not need to set protocols and can let the API select the best route."
   - question: Are there restrictions on how I can integrate the API?
     answer: The API is free to integrate into any application including whitelabeled swap experiences, wallets, mobile apps, and more. You are responsible for ensuring that your integration complies with the API Terms of Use. We are flexible regarding how you decide to offer the API through your application. Developers may create a whitelabel swap experience, add swapping to a custodial wallet, integrate the APIs into a mobile application, and more.
   - question: Can I restrict token pairs available to my users?
@@ -97,7 +97,7 @@ faqs:
   - question: Does Uniswap take positive slippage as fees?
     answer: No. Uniswap Labs never takes positive slippage. All price improvement achieved at execution is for the benefit of the end swapper.
   - question: How do I submit a ticket?
-    answer: Use the Uniswap API help form to reach the team without leaving this page. Note that we are unable to provide technical assistance with troubleshooting your code, deployment, or workflow.
+    answer: Use the Help Center to reach the team without leaving this page. Note that we are unable to provide technical assistance with troubleshooting your code, deployment, or workflow.
   - question: What information should I include when reporting an API issue to support?
     answer: "When reporting issues, include: Request ID from API response, Full request/response payloads (sanitize sensitive data), Chain ID and transaction hash (if applicable), Timestamp of the request."
   - question: Is there a sandbox environment?
@@ -115,7 +115,7 @@ Use this page to find answers to the questions Uniswap API integrators ask most 
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  Integration of the API can be done in less than two weeks. We provide [sample code](/docs/trading/swapping-api/swapping-code-examples) to help get you off the ground quickly. To get started, reach out to request an API key. If you are not yet in touch with Uniswap Labs, register your interest in integrating the API through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome).
+  Integration of the API can be done in less than two weeks. We provide [sample code](/docs/trading/swapping-api/start-building/swapping-code-examples) to help get you off the ground quickly. To get started, reach out to request an API key. If you are not yet in touch with Uniswap Labs, register your interest in integrating the API through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome).
 
   </div>
 
@@ -167,9 +167,7 @@ Use this page to find answers to the questions Uniswap API integrators ask most 
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  The Permit2 address for all chains we support **EXCEPT** zkSync is: `0x000000000022D473030F116dDEE9F6B43aC78BA3`.
-
-  The Permit2 address for zkSync is: `0x0000000000225e31D15943971F47aD3022F714Fa`.
+  Approving the Permit2 contract uses the same contract address across supported chains, with a separate address on zkSync. See the [Permit2 FAQ](/docs/protocols/permit2/overview#faq) for the canonical contract address and audit details.
 
   </div>
 
@@ -237,15 +235,14 @@ Use this page to find answers to the questions Uniswap API integrators ask most 
 </details>
 
 <details>
-  <summary>Why am I getting "No Quotes Available" as a response?</summary>
+  <summary>Why am I getting 404 errors from `/quote`?</summary>
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  A quote response with "No Quotes Available" means that the Uniswap router was unable to find a route for the proposed swap. This can happen for a number of reasons, many of which can be easily avoided by understanding the API constraints. While not exhaustive, some of the most common issues are:
-  * There is insufficient liquidity to fill the swap
+  A 404 from `/quote` means the request passed schema validation, but the router could not return a quote for it. The `errorCode` field identifies the cause; the full reference, with what to do for each value, is in [Troubleshooting Common Errors](/docs/trading/swapping-api/common-errors#404-no-quotes-available). Common causes include:
+  * There is insufficient liquidity to fill the swap (`errorCode: NoRouteFoundError`)
   * If making a bridge request, the selected token cannot be bridged between the two selected networks (check [Supported Bridges](/docs/api-reference/get_swappable_tokens))
-  * If making a UniswapX-only request, the amount is below 300 USDC equivalent and the UniswapX quote does not improve on the AMM route by at least 0.2% (see [Supported Chains](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support))
-  * The request is requesting a bridge and swap (currently not supported)
+  * If making a UniswapX-only request, the amount is below the chain's minimum quotable size (`errorCode: QuoteAmountTooLowError`; see [Supported Chains](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support))
 
   </div>
 
@@ -529,7 +526,7 @@ Use this page to find answers to the questions Uniswap API integrators ask most 
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  UniswapX v2 is supported on Mainnet (chain ID 1), Arbitrum (42161), and Base (8453). UniswapX v3 is supported on Arbitrum (42161), Avalanche (43114), Base (8453), BNB Smart Chain (56), Robinhood Chain (4663), Tempo (4217), and Unichain (130).
+  UniswapX v2 is supported on Mainnet (chain ID 1), Arbitrum (42161), and Base (8453). UniswapX v3 is supported on Arbitrum (42161), Arc (5042), Avalanche (43114), Base (8453), BNB Smart Chain (56), Ink (57073), Monad (143), Robinhood Chain (4663), Tempo (4217), and Unichain (130).
 
   If you submit a quote request with `protocols` set to `UNISWAPX_V2` or `UNISWAPX_V3` on a chain not listed above, the request will fail. Most integrators do not need to set `protocols` and can let the API select the best route.
 
@@ -616,7 +613,7 @@ Use this page to find answers to the questions Uniswap API integrators ask most 
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  Use the <HelpCenter topic="uniswap-api">Uniswap API help form</HelpCenter> to reach the team without leaving this page. Note that we are unable to provide technical assistance with troubleshooting your code, deployment, or workflow.
+  Use the <HelpCenter topic="uniswap-api">Help Center</HelpCenter> to reach the team without leaving this page. Note that we are unable to provide technical assistance with troubleshooting your code, deployment, or workflow.
 
   </div>
 

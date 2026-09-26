@@ -1,0 +1,98 @@
+---
+title: "Embed the Uniswap App"
+description: "Embed the Uniswap app in an iframe with full-app or swap-only layouts, swap prefill parameters, and origin allowlisting."
+---
+
+Embed the Uniswap app on your own site with an `<iframe>` pointed at the `/embed` route. Choose between the full app or a stripped swap-only surface, and prefill the swap form with query parameters.
+
+## Quick Start
+
+Point an `<iframe>` at `https://app.uniswap.org/embed`:
+
+```html
+<iframe
+  src="https://app.uniswap.org/embed"
+  title="Uniswap"
+  width="480"
+  height="640"
+  style="border: none;"
+></iframe>
+```
+
+Framing is gated by an origin allowlist. Your site cannot load the embed until your origin is added. See [Allowlist Your Origin](#allowlist-your-origin).
+
+## Layout Modes
+
+The `view` query parameter selects which surface renders. It is read once when the frame mounts and stays fixed for the session, so in-frame navigation cannot switch surfaces.
+
+| URL | Surface |
+|---|---|
+| `https://app.uniswap.org/embed` | Full app (default) |
+| `https://app.uniswap.org/embed?view=swap` | Swap-only |
+
+### Full app
+
+The default surface renders the complete app, including the header, connection flows, balances, and pending transactions. Use it for larger embeds where users benefit from the full experience.
+
+### Swap only
+
+`?view=swap` drops the surrounding app interface (header, navigation, and menus) and mounts the swap form on its own: no chart, no tab switching, and no in-frame route changes. Use it for tight embeds where that surrounding interface, such as the hamburger menu, looks out of place.
+
+## Swap Configuration Parameters
+
+The swap form reads the same query parameters as [Custom Linking](/docs/trading/custom-interface-links). Append them to the embed URL to prefill the form.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `chain` | `string` | Interface chain name, for example `ethereum`, `base`, `arbitrum`, or `unichain`. |
+| `inputCurrency` | `address` or `ETH` | The currency to swap from. |
+| `outputCurrency` | `address` or `ETH` | The currency to swap to. |
+| `value` | `number` | The token amount. Only applied when a currency parameter is also set. |
+| `field` | `string` | Which side `value` applies to. Must be `input` or `output`, and only applied when `value` is set. |
+
+### Example
+
+```html
+<iframe
+  src="https://app.uniswap.org/embed?view=swap&chain=base&inputCurrency=ETH&outputCurrency=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&value=100&field=output"
+  title="Buy USDC on Base"
+  width="420"
+  height="560"
+  style="border: none;"
+></iframe>
+```
+
+## Allowlist Your Origin
+
+<Callout title="Onboarding is required" type="warning">
+
+The embed surface is served with a `frame-ancestors` Content Security Policy that blocks framing by default. Until your origin is on the embed allowlist, the browser refuses to load the iframe and logs a `frame-ancestors` CSP violation in the console. This is a deliberate onboarding step, not a setting you can configure yourself.
+
+</Callout>
+
+Each allowlisted origin relaxes clickjacking protection for that origin, so additions are manually reviewed and applied by the Uniswap team. This is the same review that all approved embedders go through.
+
+### What to provide
+
+Send the exact production origin(s) you will frame from, each as a full scheme and host with no path or trailing slash, for example `https://app.example.com`.
+
+- Origins are matched exactly. `https://example.com` does not cover `https://app.example.com`, and `http://` does not cover `https://`.
+- Subdomain wildcards are supported (`https://*.example.com`), but a wildcard does not match the apex domain. To cover both, list them separately: `https://example.com` and `https://*.example.com`.
+- You can allowlist more than one origin. Include every origin you plan to embed from, such as separate staging or preview hosts.
+
+### How to request it
+
+Open a request through the <HelpCenter topic="something-else" message={"I'd like to allowlist an origin to embed the Uniswap app.\n\nOrigin(s):\nWhere the embed will appear:\nDetails:"}>Help Center</HelpCenter> with the origins above and a short description of where the embed will appear. The Uniswap team reviews each request and adds approved origins to the allowlist.
+
+Approved origins take effect with the next web release, so allow time for a deploy after your request is confirmed. Once live, your iframe loads without the CSP block.
+
+## Behavior Inside a Frame
+
+Two actions cannot complete inside a frame and instead **frame-bust**: the top-level window navigates to the full Uniswap app to finish the action outside the frame, preserving the current query string and hash.
+
+| Action | Top-level destination |
+|---|---|
+| Send | `/send` |
+| Embedded wallet sign-in or sign-up (passkey) | `/swap` |
+
+Money-moving actions and in-DOM signing must happen on the top-level `app.uniswap.org` origin, never inside a third-party frame. Breaking out is a clickjacking protection: it guarantees the user sees the real Uniswap origin in the address bar before authorizing anything. Expect the parent page to navigate away when a user triggers one of these flows.

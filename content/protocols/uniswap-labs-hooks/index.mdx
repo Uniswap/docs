@@ -1,0 +1,15 @@
+---
+title: Overview
+description: This is the technical repository for production-ready v4 hooks designed and maintained by Uniswap Labs. Every hook is open source and ready to be deployed.
+keywords: ["Uniswap Labs Hooks", "v4 hooks", "production-ready hooks"]
+---
+
+| Hook | Core Mechanism | Primary Technology | Get Started |
+| :--- | :--- | :--- | :--- |
+| **LitePSM** | Facilitates gas-efficient USDC &lt;&gt; USDS conversions in a hook. | Peg Stability Module | [Link](https://github.com/Uniswap/v4-hooks-public/blob/main/src/aggregator-hooks/implementations/LitePSM/LitePSMAggregator.sol) |
+| **Permissioned Pools** | Restricts swaps and liquidity provision to allowlisted addresses. | ERC6909 Wrapped Token Proxy | [Link](/docs/protocols/uniswap-labs-hooks/permissioned-pools/overview) |
+| **StablePair Hook** | Concentrates liquidity around a reference price for assets that should trade at a fixed rate. | Custom Pricing Logic | [Link](/docs/protocols/uniswap-labs-hooks/stable-pair/overview) |
+| **WETH &lt;&gt; ETH** | Facilitates WETH &lt;&gt; ETH conversions in a hook. | Wraps core conversion contract | [Link](https://github.com/Uniswap/v4-hooks-public/blob/main/src/WETHHook.sol) |
+| **wstETH &lt;&gt; stETH** | Facilitates wstETH &lt;&gt; stETH conversions in a hook. | Wraps core conversion contract | [Link](https://github.com/Uniswap/v4-hooks-public/blob/main/src/WstETHHook.sol) |
+
+For bespoke infrastructure or custom asset class support, [get in touch](/uniswap-labs-hooks) with our team.
