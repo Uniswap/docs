@@ -22,3 +22,4 @@ Contract addresses for the [`Uniswap V2 Factory`](https://github.com/Uniswap/v2-
 | WorldChain                                           | `0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f` | `0x541aB7c31A119441eF3575F6973277DE0eF460bd` |
 | Monad                                                | `0x182a927119d56008d921126764bf884221b10f59` | `0x4b2ab38dbf28d31d467aa8993f6c2585981d6804` |
 | MegaETH  | `0xbf56488c857a881ae7e3bed27cf99c10a7ab7e50` | `0xb73055db2B3A3EaE87a331DD88e4a80b43602690` |
+| DeFi Oracle Meta Mainnet (138)                       | [`0x0C30F6e67Ab3667fCc2f5CEA8e274ef1FB920279`](https://blockscout.defi-oracle.io/address/0x0C30F6e67Ab3667fCc2f5CEA8e274ef1FB920279) | [`0x3019A7fDc76ba7F64F18d78e66842760037ee638`](https://blockscout.defi-oracle.io/address/0x3019A7fDc76ba7F64F18d78e66842760037ee638) |
