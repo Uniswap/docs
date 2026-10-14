@@ -79,3 +79,15 @@ To get started, sign up on [Dune](https://dune.com/) or visit their [documentati
 ### Supported networks
 - Unichain Mainnet
 - Unichain Sepolia Testnet
+
+## Pinax
+
+[Pinax](https://pinax.network/) provides Firehose block streaming and Substreams parallel indexing for Unichain, alongside archive JSON-RPC and a Token API. Pinax maintains the open source Firehose and Substreams projects alongside StreamingFast, and runs its own Unichain nodes.
+
+Firehose streams full blocks over gRPC, including call traces, internal transfers and balance changes that a JSON-RPC node does not return. Substreams runs Rust modules in parallel on top of those blocks, writing results to PostgreSQL or ClickHouse, streaming them to a consumer, or feeding a Graph Node as a subgraph data source.
+
+To get started, create a key at [app.pinax.network](https://app.pinax.network/) and see the [documentation](https://app.pinax.network/docs) for endpoints and authentication.
+
+### Supported networks
+- Unichain Mainnet
+- Unichain Sepolia Testnet
