@@ -44,10 +44,10 @@ forge init counter-hook
 cd counter-hook
 ```
 
-Then install the Uniswap `v4-core` and `v4-periphery` contracts as dependencies:
+Then install the Uniswap `v4-core` and `v4-periphery` contracts, along with the OpenZeppelin `uniswap-hooks` library, as dependencies:
 
 ```bash
-forge install Uniswap/v4-core && forge install Uniswap/v4-periphery && forge install openzeppelin/uniswap-hooks
+forge install Uniswap/v4-core && forge install Uniswap/v4-periphery && forge install OpenZeppelin/uniswap-hooks
 ```
 
 Next, set up the remappings so that the shorthand syntax for importing contracts from the dependencies work nicely:
