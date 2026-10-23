@@ -223,27 +223,57 @@ Once the transaction is mined, you'll want to confirm that the fees made it to t
 
 ### Check the transaction receipt logs
 
-For ERC-20 tokens, the fee amounts taken will appear as `Transfer` events from the pool or PositionManager contract to your address. Token contracts will emit these events when the PositionManager transfers the fees to you. You can parse the receipt for `Transfer` logs of `token0` and `token1`. The amounts in those events should match the fees we calculated (or be very close, allowing for rounding).
+For ERC-20 tokens, the fee amounts taken appear as `Transfer` events emitted by the token contracts, from the PoolManager to the `recipient`. Parse the receipt for `Transfer` logs whose emitting address (`log.address`) is `currency0` or `currency1` of the pool, whose `from` topic is the PoolManager, and whose `to` topic is the recipient. Filter by the emitting address: a single transaction can contain `Transfer` logs of other tokens, and any contract can emit a log with the `Transfer` topic. The amounts in those events should match the fees calculated earlier (or be very close, allowing for rounding). If the same transaction moves other amounts of the pool's tokens from the PoolManager to the recipient (for example, a hook payout or a second position), the logs cannot tell them apart from the fees.
+
+Native ETH works differently, and the behavior depends on the chain:
+
+- After the Glamsterdam activation on Ethereum mainnet, [EIP-7708](https://eips.ethereum.org/EIPS/eip-7708) makes every successful nonzero native ETH transfer to another account (transaction value, `CALL`, `CREATE`, `SELFDESTRUCT`) emit a log with the same `Transfer` topic. The log comes from the system address `0xfffffffffffffffffffffffffffffffffffffffe`, not from a token contract. `topics[1]` and `topics[2]` hold the sender and the recipient, and `data` holds the amount in wei. For a fee collection the sender is the PoolManager, because `TAKE_PAIR` makes the PoolManager send the ETH. When the pool's currency is native ETH (`0x0000000000000000000000000000000000000000`), these logs show the ETH fees.
+- Before that activation, and on other chains until they adopt the change, a native ETH transfer emits no log. Use the balance check below or the transaction's internal traces to confirm the ETH amount.
+
+The function below handles both cases. On a chain without EIP-7708 it returns `0n` for native ETH, so use the balance check for that amount.
 
 ```typescript
-async function verifyFeeCollection(receipt, userAddress, positionDetails, ethBalanceBefore) {
-  // Search for ERC-20 Transfer events
-  const transferSignature = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
-  const erc20Transfers = receipt.logs
-    .filter(
-      (log) =>
-        log.topics[0] === transferSignature && log.topics[2]?.toLowerCase().includes(userAddress.slice(2).toLowerCase())
-    )
-    .map((log) => ({
-      token: log.address as Address,
-      amount: BigInt(log.data),
-    }))
+import type { Address, TransactionReceipt } from 'viem'
+
+const TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+// EIP-7708 system address. Native ETH Transfer logs come from this address.
+const ETH_TRANSFER_LOG_ADDRESS = '0xfffffffffffffffffffffffffffffffffffffffe'
+const NATIVE_CURRENCY = '0x0000000000000000000000000000000000000000'
+
+function verifyFeeCollection(
+  receipt: TransactionReceipt,
+  userAddress: Address,
+  positionDetails: { poolKey: { currency0: Address; currency1: Address } }
+) {
+  const toTopic = (address: Address) => `0x${address.slice(2).toLowerCase().padStart(64, '0')}`
+  const poolManagerTopic = toTopic(POOL_MANAGER_ADDRESS)
+  const recipientTopic = toTopic(userAddress)
+  const { currency0, currency1 } = positionDetails.poolKey
+  const collected = new Map<string, bigint>([
+    [currency0.toLowerCase(), 0n],
+    [currency1.toLowerCase(), 0n],
+  ])
+
+  for (const log of receipt.logs) {
+    // ERC-20 and EIP-7708 Transfer logs have exactly three topics: signature, from, to
+    if (log.topics.length !== 3 || log.topics[0].toLowerCase() !== TRANSFER_TOPIC) continue
+    if (log.topics[1].toLowerCase() !== poolManagerTopic) continue
+    if (log.topics[2].toLowerCase() !== recipientTopic) continue
+
+    // ERC-20: the token contract emits the log. Native ETH: the system address emits it.
+    const emitter = log.address.toLowerCase()
+    const currency = emitter === ETH_TRANSFER_LOG_ADDRESS ? NATIVE_CURRENCY : emitter
+    if (!collected.has(currency)) continue // another token, or ETH in a pool without native ETH
+    collected.set(currency, collected.get(currency)! + BigInt(log.data))
+  }
+
+  return [...collected].map(([token, amount]) => ({ token: token as Address, amount }))
 }
 ```
 
 ### Check your token balances
 
-You can simply measure the balance change in your wallet before vs. after the call. For example, read your token balances (and ETH balance) prior to calling, then after the transaction confirm the increases. Because v4 might auto-wrap or unwrap ETH, if one of the tokens was ETH you should check your ETH balance difference. In ETH pools, no ERC-20 transfer event will fire for the ETH - the ETH will be sent directly to you (as an internal transfer), which is why checking the balance or the transaction's internal traces is necessary to confirm the amount.
+You can also measure the balance change in your wallet before vs. after the call. For example, read your token balances (and ETH balance) prior to calling, then after the transaction confirm the increases. Because v4 might auto-wrap or unwrap ETH, if one of the tokens was ETH you should check your ETH balance difference. On chains without EIP-7708, this balance check (or the transaction's internal traces) is the way to confirm the native ETH amount, because the ETH is sent to you as an internal transfer that emits no log. If the recipient also sent the transaction, the balance change is the fees minus the transaction fee, so add the fee back. On OP Stack chains such as Unichain, the sender also pays an L1 data fee (`l1Fee` in the receipt), and on some chains an operator fee. The balance method also assumes that no other transaction changes the balance between the two reads.
 
 ```typescript
 // Check native ETH balance changes
@@ -251,7 +281,12 @@ const hasNativeETH = isNativeETH(positionDetails.poolKey.currency0)
 
 if (hasNativeETH) {
   const ethBalanceAfter = await publicClient.getBalance({ address: userAddress })
-  const ethChange = ethBalanceAfter - ethBalanceBefore
+  // The sender pays the transaction fee from the same balance. OP Stack receipts (Unichain) also report
+  // an L1 data fee. Add any other fee your chain charges, such as an OP Stack operator fee.
+  const l1Fee = 'l1Fee' in receipt && typeof receipt.l1Fee === 'bigint' ? receipt.l1Fee : 0n
+  const txFee =
+    receipt.from.toLowerCase() === userAddress.toLowerCase() ? receipt.gasUsed * receipt.effectiveGasPrice + l1Fee : 0n
+  const ethChange = ethBalanceAfter - ethBalanceBefore + txFee
 
   if (ethChange > 0n) {
     collectedFees.push({
