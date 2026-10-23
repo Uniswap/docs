@@ -44,10 +44,10 @@ forge init counter-hook
 cd counter-hook
 ```
 
-Then install the Uniswap `v4-core` and `v4-periphery` contracts as dependencies:
+Then install the Uniswap `v4-core` and `v4-periphery` contracts, along with the OpenZeppelin `uniswap-hooks` library, as dependencies:
 
 ```bash
-forge install Uniswap/v4-core && forge install Uniswap/v4-periphery
+forge install Uniswap/v4-core && forge install Uniswap/v4-periphery && forge install OpenZeppelin/uniswap-hooks
 ```
 
 Next, set up the remappings so that the shorthand syntax for importing contracts from the dependencies work nicely:
@@ -61,6 +61,7 @@ If there is something wrong with the inferred remappings, please replace with th
 </Callout>
 
 ```
+@openzeppelin/uniswap-hooks/=lib/uniswap-hooks/
 @uniswap/v4-core/=lib/v4-core/
 forge-gas-snapshot/=lib/v4-core/lib/forge-gas-snapshot/src/
 forge-std/=lib/v4-core/lib/forge-std/src/
@@ -98,7 +99,7 @@ To confirm that the environment is configured correctly let's write a basic Coun
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {BaseHook} from "v4-periphery/src/utils/BaseHook.sol";
+import {BaseHook} from "@openzeppelin/uniswap-hooks/src/base/BaseHook.sol";
 
 import {Hooks} from "v4-core/src/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
@@ -232,7 +233,7 @@ forge test --rpc-url 127.0.0.1:8545
 [OpenZeppelin Hooks Library](https://docs.openzeppelin.com/uniswap-hooks/1.x/), included in [v4-template](https://github.com/uniswapfoundation/v4-template), provides secure and modular reference implementations for Uniswap v4 hooks.
 </Callout>
 
-If you're starting from scratch, you can install the OpenZeppelin Hooks library:
+The Start from Scratch setup above already installs this library, since the `CounterHook` sample imports `BaseHook` from it. To add it to an existing project:
 
 ```bash
 $ forge install OpenZeppelin/uniswap-hooks
