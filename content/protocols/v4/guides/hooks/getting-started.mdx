@@ -47,7 +47,7 @@ cd counter-hook
 Then install the Uniswap `v4-core` and `v4-periphery` contracts as dependencies:
 
 ```bash
-forge install Uniswap/v4-core && forge install Uniswap/v4-periphery
+forge install Uniswap/v4-core && forge install Uniswap/v4-periphery && forge install openzeppelin/uniswap-hooks
 ```
 
 Next, set up the remappings so that the shorthand syntax for importing contracts from the dependencies work nicely:
@@ -68,6 +68,7 @@ permit2/=lib/v4-periphery/lib/permit2/
 solmate/=lib/v4-core/lib/solmate/
 v4-core/=lib/v4-core/
 v4-periphery/=lib/v4-periphery/
+@openzeppelin/uniswap-hooks/=lib/uniswap-hooks/
 ```
 
 After that, remove the default Counter contract and its associated test and script file that Foundry initially set up. To do that, either manually delete those files, or just run the following:
@@ -98,7 +99,7 @@ To confirm that the environment is configured correctly let's write a basic Coun
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {BaseHook} from "v4-periphery/src/utils/BaseHook.sol";
+import {BaseHook} from "@openzeppelin/uniswap-hooks/src/base/BaseHook.sol";
 
 import {Hooks} from "v4-core/src/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
