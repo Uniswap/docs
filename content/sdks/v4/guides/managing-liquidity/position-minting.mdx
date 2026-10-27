@@ -402,7 +402,7 @@ Under the hood, `addCallParameters` builds the necessary function calls to the P
 
 - It encodes a MINT_POSITION command with your position parameters (pool key, tickLower, tickUpper, liquidity) and a SETTLE_PAIR command to pull in the tokens.
 - The slippageTolerance is applied to calculate amount0Max and amount1Max - these are the maximum token amounts the contract is allowed to take.
-- If useNative was true, it would also append a SWEEP command for the native token. In case of solidity, please read this [report](https://reports.electisec.com/reports/04-2025-Sickle#2-high---uniswapv4connectoraddliquidity-does-not-reclaim-excess-eth) carefully.
+- If useNative was true, it would also append a SWEEP command for the native token. In case of solidity, please read this [report](https://reports.electisec.com/04-2025-Sickle#2-high---uniswapv4connectoraddliquidity-does-not-reclaim-excess-eth) carefully.
 - If batchPermit is provided, the SDK will prepend the permit call using the contract's multicall capability.
 
 ## Executing the Transaction with Viem
