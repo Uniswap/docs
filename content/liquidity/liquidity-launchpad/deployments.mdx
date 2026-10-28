@@ -6,17 +6,25 @@ description: Find Uniswap Liquidity Launchpad, CCA, and strategy contract deploy
 View the changelogs for more details on differences between contract deployments: [continuous-clearing-auction](https://github.com/Uniswap/continuous-clearing-auction/blob/main/CHANGELOG.md) and [liquidity-launcher](https://github.com/Uniswap/liquidity-launcher/blob/main/CHANGELOG.md).
 
 ## ContinuousClearingAuctionFactory
-The CCA factory has no constructor parameters so it can be deployed to the same address across all compatible chains. v2.0.0 is deployed on all currently supported chains.
+Canonical factory deployments share one address across every compatible chain. The recommended factory is **v2.1.0**, which is equivalent to v2.0.0 plus an Arbitrum/Orbit bug fix. Verified with `eth_getCode` on Ethereum, Unichain, Base, Arbitrum, Avalanche C-Chain (43114), X Layer (196), Ink (57073), and Sepolia.
 
 | Address                                    | Commit Hash                              | Version           |
 | ------------------------------------------ | ---------------------------------------- | ----------------- |
-| 0x00cCa200BF124dBfA848937c553864f4B4CE0632 |                                          | v2.0.0            |
+| 0x000000001F26a0044BaA66024e7b6599c61963F8 | 7d7602d257733315434570f2a0c2f94f1c7b207a | v2.1.0            |
+| 0x00cCa200BF124dBfA848937c553864f4B4CE0632 | aee9bca51c92c24eb24a00d75ad98e678bac61d3 | v2.0.0            |
 | 0xCCccCcCAE7503Cac057829BF2811De42E16e0bD5 | 87b2546a298f691c095b06ec077ceef25ba56007 | v1.1.0            |
 | 0x0000ccaDF55C911a2FbC0BB9d2942Aa77c6FAa1D | 154fd189022858707837112943c09346869c964f | v1.0.0-candidate\* |
 
 <Callout type="warn">
   \*v1.0.0-candidate is the initial version of CCA and is NOT recommended for production use. See the [Changelog](https://github.com/Uniswap/continuous-clearing-auction/blob/main/CHANGELOG.md) for more details.
 </Callout>
+
+## CCALens
+[CCALens](https://github.com/Uniswap/continuous-clearing-auction/blob/main/src/lens/CCALens.sol) is a stateless periphery contract for offchain reads of auction state and initialized tick data. It is safe to share across auctions on a chain. Verified with `eth_getCode` on Ethereum, Avalanche C-Chain, and X Layer (no code on Ink).
+
+| Address                                    | Commit Hash                              | Version |
+| ------------------------------------------ | ---------------------------------------- | ------- |
+| 0xc3C65F5453A3674aDb693cbdA3C842545cD30f53 | aee9bca51c92c24eb24a00d75ad98e678bac61d3 | v2.0.0  |
 
 ## LiquidityLauncher
 The LiquidityLauncher is a singleton contract deployed to the same address across all networks with the canonical Permit2 deployment address (0x000000000022D473030F116dDEE9F6B43aC78BA3).
