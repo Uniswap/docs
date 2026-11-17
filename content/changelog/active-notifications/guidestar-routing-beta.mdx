@@ -1,0 +1,34 @@
+---
+title: 'Guidestar Routing Beta'
+description: 'Posted: October 22, 2026'
+type: changelog
+datePublished: '2026-10-22'
+---
+
+Guidestar, the new Uniswap routing engine, is now available in beta through the `/quote` endpoint of the API.
+
+**What is changing?**
+
+You can opt into Guidestar routing by adding two headers to your `/quote` request: `x-api-experimental: true` and `x-universal-router-swapsteps: true`. The request body is unchanged. During the beta, Guidestar supports same-chain `EXACT_INPUT` swaps on Ethereum (1), Base (8453), and Robinhood Chain (4663).
+
+Guidestar quotes have the same response structure as standard `CLASSIC` quotes, with three differences:
+
+| Field | Guidestar quote |
+| --- | --- |
+| `quote.swapSteps` | New array describing the Universal Router swap sequence, in execution order |
+| `quote.route` | Empty array (`[]`) |
+| `quote.routeString` | Free-form summary text intended for debugging, not the standard path format |
+
+A Guidestar request does not fall back to standard routing. Requests outside the supported scope return an HTTP 400 `InputValidationError`, and supported requests that Guidestar cannot route return an HTTP 404. During the beta it is recommended that you request Guidestar routes in parallel with standard routing to avoid missing a quote.
+
+**Why is this changing?**
+
+Guidestar returns quotes with lower latency and improved execution quality over standard routing. Guidestar quotes execute through the same Universal Router and Permit2 contracts as standard quotes.
+
+**What do I need to do?**
+
+No change is required. Requests without the new headers continue to use standard routing.
+
+To try Guidestar, add both headers to supported `/quote` requests. If you read `route` or `routeString` for display or validation, switch to `swapSteps` for Guidestar quotes. If a Guidestar request returns an error, retry it without the two headers to get a standard quote. The `/swap` request is unchanged.
+
+For integration details, supported requests, and error handling, see [Guidestar Routing](/docs/trading/swapping-api/amm-vs-uniswapx-routing#guidestar-routing-beta). For more information on Guidestar, see the [Guidestar Github](https://github.com/Uniswap/guidestar-public).

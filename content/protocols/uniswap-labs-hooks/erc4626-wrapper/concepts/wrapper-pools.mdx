@@ -1,0 +1,38 @@
+---
+title: Wrapper Pools
+description: Learn how an ERC-4626 wrapper pool works, which hook permissions it enables, and how the wrapper hook contracts are organized.
+---
+
+A wrapper pool is a v4 pool whose two currencies are a vault share token and its underlying, and whose behavior is defined entirely by the hook rather than by a liquidity curve:
+
+- **No liquidity.** `beforeAddLiquidity` unconditionally reverts with `LiquidityNotAllowed`. The pool never holds reserves of either token between transactions.
+- **No fee.** Initialization requires `poolKey.fee == 0` (`InvalidPoolFee`), and `beforeSwap` returns a zero fee override.
+- **Fixed token pair.** Initialization requires the pool's two currencies to be exactly the wrapper and underlying currencies (`InvalidPoolToken`).
+
+Because the pool holds no reserves, the hook sources tokens through v4 flash accounting during the swap itself (see [Swap Mechanics](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/swap-mechanics)) rather than from a standing balance.
+
+## Hook Permissions
+
+`getHookPermissions` enables exactly four flags:
+
+| Permission | Purpose |
+| :--- | :--- |
+| `beforeInitialize` | Validate the token pair and enforce a zero fee. |
+| `beforeAddLiquidity` | Block all liquidity provision. |
+| `beforeSwap` | Perform the wrap or unwrap and return the swap delta. |
+| `beforeSwapReturnDelta` | Allow `beforeSwap` to return a `BeforeSwapDelta` and take over accounting. |
+
+No `after*` callbacks are used. The hook's deployed address must encode these flags in its low bits, per standard v4 hook address mining.
+
+## Contract Hierarchy
+
+```text
+BaseHook, DeltaResolver
+  └─ BaseTokenWrapperHook              abstract: pool rules, beforeSwap dispatch, delta settlement
+       └─ ERC4626WrapperHook           vault deposit/redeem and preview math
+            ├─ ERC4626RoutingHook                    quoting twin (overrides _deposit to a preview)
+            │    └─ DeallocatingERC4626RoutingHook   deallocating quoting twin
+            └─ DeallocatingERC4626WrapperHook        Spark variant (overrides the unwrap source)
+```
+
+`BaseTokenWrapperHook` is shared by every wrapper hook, including the WETH and wstETH wrappers. It owns the generic machinery: pool validation, the `beforeSwap` dispatch between wrap and unwrap, liquidity blocking, and the `DeltaResolver`-based settlement helpers. `ERC4626WrapperHook` fills in the vault-specific seams: `_deposit`, `_withdraw` (which delegates to the overridable `_redeemToUnderlying`), the `previewMint` and `previewWithdraw` helpers, and the exact-output flag.

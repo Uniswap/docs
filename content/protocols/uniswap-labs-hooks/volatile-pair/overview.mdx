@@ -1,0 +1,43 @@
+---
+title: VolatilePair Overview
+sidebarTitle: Overview
+description: Understand VolatilePair, a Uniswap v4 hook that sets a separate LP fee for each swap direction on pools of volatile pairs.
+---
+
+VolatilePair is a Uniswap v4 dynamic fee hook for volatile pairs such as ETH/USDC. On every swap, the hook uses a custom algorithm to set swap fees. Both the ask and bid fees are determined by the algorithm.
+
+There are four design goals accomplished by the dynamic fee:
+
+1. **Constant spread in calm blocks.** The pool aims to quote a fixed spread.
+2. **LPs share backrun value.** When a large trade moves the price, fees in the backrun direction are raised to capture a share of backrun value.
+3. **Lower LVR.** The side that informed flow trades on pays more. The total spread stays the same.
+4. **Less sandwiching.** The mid-block extra makes the back leg of a sandwich pay more.
+
+<Callout type="info">
+Only Uniswap Labs can create VolatilePair pools. Uniswap Labs creates each pool and sets its fee parameters in the same transaction. See [Pool Creation and Configuration](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/pool-creation).
+</Callout>
+
+## Concepts
+
+- [Dynamic Fees](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/dynamic-fees): overview of the dynamic fee algorithm with a worked example
+- [Permanent Fee](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/permanent-fee): how the fees change after a price move
+- [Temporary Fee](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/temporary-fee): the one-block fee on the backrun side
+- [Mid-Block Fees](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/mid-block-fees): how the fee grows within a block
+- [Pool Creation and Configuration](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/pool-creation): who can create pools, and where fee parameters are stored
+
+## Guides
+
+- [Swap Against a VolatilePair Pool](/docs/protocols/uniswap-labs-hooks/volatile-pair/guides/swap): quote and execute swaps
+- [Provide Liquidity on VolatilePair](/docs/protocols/uniswap-labs-hooks/volatile-pair/guides/provide-liquidity): deposit and withdraw
+
+## Repositories
+
+- [Uniswap/v4-hooks-public](https://github.com/Uniswap/v4-hooks-public): hook source and tests
+
+## Deployments
+
+See [VolatilePair Deployments](/docs/protocols/uniswap-labs-hooks/volatile-pair/deployments) for hook addresses and pool parameters.
+
+## Security
+
+See [VolatilePair Security](/docs/protocols/uniswap-labs-hooks/volatile-pair/security) for the trust model, invariants, and audit.

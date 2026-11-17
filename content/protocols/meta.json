@@ -5,12 +5,14 @@
     "overview",
     "[Deployments](/deployments)",
     "v4",
+    "uniswap-labs-hooks",
     "v3",
     "v2",
     "smart-wallet",
     "the-compact",
     "permit2",
     "universal-router",
-    "protocol-fee"
+    "protocol-fee",
+    "tjar"
   ]
 }

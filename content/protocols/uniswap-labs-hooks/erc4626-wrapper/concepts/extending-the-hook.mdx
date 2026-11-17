@@ -1,0 +1,9 @@
+---
+title: Extending the Hook
+description: Learn the narrow seams ERC4626WrapperHook exposes for subclasses, including the overridable unwrap source.
+---
+
+`ERC4626WrapperHook` is designed to be subclassed at narrow seams:
+
+- `_redeemToUnderlying(wrappedAmount)` is the overridable source of the unwrap leg. The default redeems directly from the vault. A subclass can add fallback sourcing, for example forcing liquidity back into a vault that keeps most assets deployed, while leaving the share `take`, the settle-to-`PoolManager` tail, and all accounting unchanged. The contract holds the shares on entry and must hold the received underlying on return.
+- `_deposit`, the preview helpers, and `_supportsExactOutput` / `_supportsExactInput` are `virtual` for further specialization.

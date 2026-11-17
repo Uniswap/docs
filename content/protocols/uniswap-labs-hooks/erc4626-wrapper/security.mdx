@@ -1,0 +1,23 @@
+---
+title: ERC-4626 Wrapper Security
+sidebarTitle: Security
+description: Review ERC4626WrapperHook's security model, invariants, and audit.
+---
+
+## Audit
+
+The hook was reviewed by OpenZeppelin with no critical, high, or medium findings.
+
+## Security Model
+
+- **The vault's exchange rate is trusted as the price.** The hook is intended for vaults whose share value accrues from a yield or savings rate and cannot be moved by donations or by capital entering or leaving. A vault whose rate can be manipulated within a block would let a swapper misprice the conversion.
+- **The pool holds no funds between transactions**, charges no fee, and has no admin in the base hook. Its security rests on the vault it points at and on the integrations that call the pool.
+- **Liquidity cannot be added**, so there is no LP exposure and no first-depositor or donation surface at the pool layer.
+
+## Core Invariants
+
+- The wrapper pool never holds a liquidity position; `beforeAddLiquidity` always reverts.
+- Every pool using the hook has `fee == 0` and exactly the wrapper and underlying currencies.
+- For every swap, the amount settled into the `PoolManager` equals the amount the hook measured moving, or the swap reverts (`SettlementMismatch`).
+- Conversion uses the vault's exchange rate: a wrap mints what `vault.deposit` mints, an unwrap returns what `vault.redeem` returns.
+- Exact-output swaps always revert.

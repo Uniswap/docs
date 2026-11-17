@@ -1,0 +1,20 @@
+---
+title: 'Swap the Universal Router Balance'
+description: 'Posted: September 28, 2026'
+type: changelog
+datePublished: '2026-09-28'
+---
+
+The `/quote` and `/swap` endpoints now accept a new optional `swapSource` field which can be used to generate calldata that swaps the Universal Router's entire balance of the input token instead of pulling funds from a wallet. This enables bridge-and-swap in one atomic transaction.
+
+**What is changing?**
+
+`swapSource` is optional. Leaving it unset (or setting `"WALLET"`) keeps the existing wallet-funded behavior. Setting `"UNIVERSAL_ROUTER"` returns calldata meant to be executed on the destination chain of a bridge, against the tokens the bridge deposited into the Universal Router, with no destination-chain signature or approval from the user.
+
+**Why is this changing?**
+
+Bridge providers asked for a way to swap on arrival without a second user transaction on the destination chain.
+
+**What do I need to do?**
+
+To use the feature, set `swapSource: "UNIVERSAL_ROUTER"` on your `/quote` or `/swap` request and follow the [Universal Router balance swaps section of the integration guide](/docs/trading/swapping-api/start-building/integration-guide#swapping-funds-already-in-the-universal-router). We highly recommend reading the guide before using this feature to avoid loss of funds.

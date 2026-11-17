@@ -1,0 +1,50 @@
+---
+title: Swap Mechanics
+description: Learn how ERC4626WrapperHook performs the wrap and unwrap paths in beforeSwap and how it accounts for them with a BeforeSwapDelta.
+---
+
+All conversion happens in `_beforeSwap`. The pool's own swap math is never consulted; the returned `BeforeSwapDelta` fully specifies the token movement.
+
+## Direction Detection
+
+```text
+isExactInput = params.amountSpecified < 0
+wrapping     = (wrapZeroForOne == params.zeroForOne)
+```
+
+A wrapping swap runs `_deposit`; otherwise it runs `_withdraw`. Exact output is rejected before either runs when the subclass does not support it (see [Exact Input and Exact Output](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/exact-input-and-exact-output)).
+
+## Wrap Path (Deposit)
+
+```solidity
+function _deposit(uint256 underlyingAmount)
+    internal
+    returns (uint256 actualUnderlyingAmount, uint256 wrappedAmount);
+```
+
+1. **Take the input.** `_take(underlyingCurrency, this, underlyingAmount)` pulls the underlying out of the `PoolManager` into the hook. The received amount is measured by balance delta (`actualUnderlyingAmount`), so a rebasing underlying that delivers slightly less is handled correctly.
+2. **Deposit to the vault, minting to the pool.** After `poolManager.sync(wrapperCurrency)`, `vault.deposit(actualUnderlyingAmount, address(poolManager))` mints shares **directly to the `PoolManager`**, avoiding an extra transfer. The minted amount is measured by balance delta (`wrappedAmount`).
+3. **Settle the shares.** `poolManager.settle()` registers the minted shares as paid into the pool. The settled amount must equal `wrappedAmount`, or the call reverts with `SettlementMismatch`.
+
+The hook holds a standing unlimited allowance of the underlying to the vault, granted in the constructor, so `vault.deposit` can pull the underlying from the hook.
+
+## Unwrap Path (Withdraw)
+
+```solidity
+function _withdraw(uint256 wrappedAmount)
+    internal
+    returns (uint256 actualWrappedAmount, uint256 underlyingAmount);
+```
+
+1. **Take the shares.** `_take(wrapperCurrency, this, wrappedAmount)` pulls the shares out of the `PoolManager` into the hook. Shares do not rebase, so `actualWrappedAmount == wrappedAmount`.
+2. **Source the underlying.** `_redeemToUnderlying(wrappedAmount)` redeems the shares into the hook and returns the underlying received, measured by balance delta. In the base hook this is a plain `vault.redeem(wrappedAmount, this, this)`. This is the single overridable seam a subclass uses to change how the underlying is sourced (see [Extending the Hook](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/extending-the-hook)).
+3. **Settle the underlying.** After `poolManager.sync(underlyingCurrency)`, the hook transfers the received underlying to the `PoolManager` and calls `poolManager.settle()`. The settled amount is measured by balance delta and must equal what the `PoolManager` received, or the call reverts with `SettlementMismatch`. Sending the full received balance and letting `settle` measure it tolerates a rebasing underlying that rounds the transfer down.
+
+## BeforeSwapDelta Accounting
+
+`beforeSwap` returns `toBeforeSwapDelta(specified, unspecified)`:
+
+- The **specified** delta offsets the swap's `amountSpecified` exactly, so the pool's core swap math nets to zero and the hook fully owns the trade.
+- The **unspecified** delta is the output the hook produced: the shares minted (wrap) or the underlying redeemed (unwrap).
+
+For an exact-input swap the specified side is the input the caller provided and the unspecified side is the conversion output. The `PoolManager` resolves these deltas against the caller when the unlock closes: the caller settles the input and takes the output.

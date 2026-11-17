@@ -1,7 +1,33 @@
 ---
-id: overview
 title: Smart Wallet Overview
+sidebarTitle: Overview
 description: Learn how Uniswap smart wallet uses the Calibur implementation with EIP-7702 delegation across supported networks.
+keywords:
+  - smart wallet
+  - EIP-7702
+  - delegation
+  - gas abstraction
+  - batched transactions
+  - ERC-7739
+faqs:
+  - question: What is EIP-7702 delegation, and does it change my account address?
+    answer: |-
+      No. Your address and onchain history stay the same. Delegation is the EIP-7702 process where an Externally Owned Account (EOA) points to code deployed at a remote smart contract address, called the implementation. After the Pectra fork, an EOA can internalize that code and execute transactions using the implementation logic while keeping its original address and onchain history. Uniswap smart wallet uses the Calibur implementation for this.
+  - question: Can I delegate to more than one implementation at a time?
+    answer: |-
+      No. A user can only be delegated to one contract at a time on a given chain. You can, however, have separate delegations on different chains, since delegation state is tracked per chain. To move to a different implementation on the same chain, you replace the existing delegation rather than adding a second one.
+  - question: What are batched transactions, and when would I use them?
+    answer: |-
+      Batched transactions combine multiple actions in the same execution flow. A common example is approving an ERC-20 token and then swapping that token in a single batched flow, rather than sending two separate transactions. Uniswap smart wallet supports simple batch calls and the ERC-7821 Minimal Batch Executor Interface, which improves interoperability between dapps and contract implementations.
+  - question: How does gas abstraction let someone else pay for gas?
+    answer: |-
+      Gas abstraction allows a user to transact without holding ETH to pay for gas. A third party called a bundler can cover or manage those fees on the user's behalf. Uniswap smart wallet implements ERC-4337, Account Abstraction Using Alt Mempool. By default, EntryPoint v0.8 is enabled on the account; see the gas abstraction concept page for the address. The root signer can disable or change this, but doing so incorrectly can lead to loss of funds.
+  - question: What is ERC-7739, and which signatures does it apply to?
+    answer: |-
+      ERC-7739 defines a defensive rehashing model for external signers on smart contract accounts. In Uniswap smart wallet it is enforced for all alternative keys added to an account, but does not apply to signatures from the root EOA, the account delegated to the implementation. It protects signatures from being replayed across accounts by binding the signed data to the account and chain. The standard is still in draft.
+  - question: What does Calibur add on top of a plain EOA?
+    answer: |-
+      Calibur is the contract implementation that a user delegates to through EIP-7702. Once delegated, the account can batch multiple actions into one flow, use gas abstraction so a third party can pay fees, and apply custom permission controls through alternative signers. Calibur is deployed to the same address across supported networks, is non-upgradeable, and has no owner.
 ---
 
 Uniswap smart wallet features are powered by [Calibur](/docs/protocols/smart-wallet/deployments), a contract implementation designed for [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702).
@@ -13,6 +39,90 @@ Uniswap smart wallet features are powered by [Calibur](/docs/protocols/smart-wal
 ## Deployment Model
 
 Users delegate to the implementation through EIP-7702 and then use smart wallet features while keeping the same EOA address.
+
+## FAQ
+
+<details>
+  <summary>What is EIP-7702 delegation, and does it change my account address?</summary>
+
+  <FaqAnswer>
+
+  No. Your address and onchain history stay the same. [Delegation](/docs/protocols/smart-wallet/concepts/delegation) is the [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702) process where an Externally Owned Account (EOA) points to code deployed at a remote smart contract address, called the *implementation*. After the Pectra fork, an EOA can internalize that code and execute transactions using the implementation logic while keeping its original address and onchain history.
+
+  Uniswap smart wallet uses the [Calibur](/docs/protocols/smart-wallet/deployments) implementation for this.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Can I delegate to more than one implementation at a time?</summary>
+
+  <FaqAnswer>
+
+  No. A user can only be delegated to one contract at a time on a given chain. You can, however, have separate delegations on different chains, since delegation state is tracked per chain.
+
+  To move to a different implementation on the same chain, you replace the existing delegation rather than adding a second one.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What are batched transactions, and when would I use them?</summary>
+
+  <FaqAnswer>
+
+  [Batched transactions](/docs/protocols/smart-wallet/concepts/batched-transactions) combine multiple actions in the same execution flow. A common example is approving an ERC-20 token and then swapping that token in a single batched flow, rather than sending two separate transactions.
+
+  Uniswap smart wallet supports simple batch calls and [ERC-7821](https://eips.ethereum.org/EIPS/eip-7821), the Minimal Batch Executor Interface, which improves interoperability between dapps and contract implementations.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How does gas abstraction let someone else pay for gas?</summary>
+
+  <FaqAnswer>
+
+  [Gas abstraction](/docs/protocols/smart-wallet/concepts/gas-abstraction) allows a user to transact without holding ETH to pay for gas. A third party called a [bundler](https://www.alchemy.com/overviews/what-is-a-bundler) can cover or manage those fees on the user's behalf. Uniswap smart wallet implements [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337), Account Abstraction Using Alt Mempool.
+
+  By default, EntryPoint v0.8 is enabled on the account; see [Gas Abstraction](/docs/protocols/smart-wallet/concepts/gas-abstraction) for the address. The root signer can disable or change this, but doing so incorrectly can lead to loss of funds.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What is ERC-7739, and which signatures does it apply to?</summary>
+
+  <FaqAnswer>
+
+  [ERC-7739](/docs/protocols/smart-wallet/concepts/erc-7739) defines a defensive rehashing model for external signers on smart contract accounts. In Uniswap smart wallet it is enforced for all alternative keys added to an account, but does not apply to signatures from the root EOA, the account delegated to the implementation.
+
+  It protects signatures from being replayed across accounts by binding the signed data to the account and chain. The [standard](https://eips.ethereum.org/EIPS/eip-7739) is still in draft.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What does Calibur add on top of a plain EOA?</summary>
+
+  <FaqAnswer>
+
+  [Calibur](/docs/protocols/smart-wallet/deployments) is the contract implementation that a user delegates to through EIP-7702. Once delegated, the account can:
+
+  * Batch multiple actions into one flow.
+  * Use gas abstraction so a third party can pay fees.
+  * Apply custom permission controls through alternative signers.
+
+  Calibur is deployed to the same address across supported networks, is non-upgradeable, and has no owner.
+
+  </FaqAnswer>
+
+</details>
 
 ## Where to Go Next
 

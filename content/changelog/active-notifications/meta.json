@@ -1,13 +1,16 @@
 {
   "title": "Active Notifications",
   "pages": [
-    "uniswapx-live-on-robinhood-chain",
-    "sunset-of-blast-support",
-    "uniswapx-rfq-auctions-on-base-and-arbitrum",
-    "uniswapx-live-on-avalanche-base-bnb-and-tempo",
-    "recipient-parameter-on-trading-api",
-    "sunset-of-api-key-based-fees-and-fields",
-    "proxy-approval",
-    "setting-a-fee-through-the-api"
+    "lowercase-urgency-values-removed",
+    "numeric-chain-ids-required",
+    "guidestar-routing-beta",
+    "uppercase-urgency-values",
+    "sunset-of-blast-swapping-support",
+    "sunset-of-universal-router-2-0-and-2-1-1",
+    "swap-router-balance-mode",
+    "multiple-integrator-fees",
+    "swap-calldata-in-quote-response",
+    "enforcement-of-slippage-validation",
+    "improved-api-error-codes"
   ]
 }

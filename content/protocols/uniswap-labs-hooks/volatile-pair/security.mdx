@@ -1,0 +1,57 @@
+---
+title: VolatilePair Security
+sidebarTitle: Security
+description: Review VolatilePair's trust model, protocol invariants, known limitations, and audit history.
+---
+
+## Audit
+
+OpenZeppelin audited the VolatilePair hook, its fee calculation libraries, and its configuration contract on October 9, 2026. The audit found no critical, high, or medium severity issues.
+
+## Trust Model
+
+### Governance
+
+The hook is an upgradeable proxy controlled by Uniswap Governance. Governance can upgrade the implementation to change the fee logic. Governance cannot change the hook's permissions.
+
+In Uniswap v4, a hook's permissions are encoded in its address, and the address does not change. An upgrade cannot add permissions. The remove-liquidity callbacks and the return-delta flags are disabled. So no upgrade can block LP withdrawals or change swap amounts.
+
+A fee configuration update resets the pool's fee state. The next swap uses the current pool price as its starting point.
+
+### Pool creation
+
+A Uniswap Labs Safe holds the pool creation role. This role cannot change fee configurations, upgrade the implementation, or grant roles.
+
+### Roles
+
+| Capability | Holder |
+| :--- | :--- |
+| Upgrade the implementation; grant and revoke all roles | [Uniswap Governance Timelock](https://etherscan.io/address/0x1a9C8182C09F50C8318d769245beA52c32BE35BC) |
+| Change a pool's fee configuration | [Uniswap Governance Timelock](https://etherscan.io/address/0x1a9C8182C09F50C8318d769245beA52c32BE35BC) |
+| Create pools and set initial pool fee configuration | [Uniswap Labs Safe](https://etherscan.io/address/0xFc43582532E90Fa8726FE9cdb5FAd48f4e487d27) |
+
+The pool creation and configuration roles cannot grant or revoke roles. The hook address stays the same across upgrades, so pools and integrations do not need to migrate.
+
+## Core Invariants
+
+- Every fee is at most 999,998 pips. v4 always accepts it, and exact-output swaps work with any protocol fee.
+- The swap callback and `getFee` do not revert for a configured pool.
+- The ask and bid permanent fees always add up to the resting spread. Each one stays between `restingSpreadE6 - maxSkewE6` and `maxSkewE6`.
+- A swap's starting fee is its side's permanent fee. Only the backrun side adds the temporary fee. Every swap pays at least its starting fee. If the price has not moved since the previous block open, the temporary fee is zero.
+- Within a block, a larger displacement from the block open does not lower the fee in either direction.
+- A larger price impact since the previous block open does not lower the leaning side's permanent fee or the temporary fee.
+- `getFee` returns the same fee the next swap pays for the same state, block, and direction.
+- Every pool has a valid fee configuration, and every fee configuration belongs to a pool that exists.
+- The hook cannot block or change a liquidity withdrawal.
+
+## Known Limitations
+
+- **The temporary fee applies to the whole block.** Every swap on the backrun side in that block pays both it and the mid-block extra.
+- **A backrun can avoid the temporary fee if another swap lands first.** The temporary fee applies only in the first block that contains a swap after the price move. Swaps in blocks after that will not have to pay the same backrun fee. But a backrunner who skips that first block can lose the opportunity to one who pays the fee.
+- **Moves are measured against the older price.** In a round trip, the up move starts from the lower price, so it is the larger percentage. The ask fee ends slightly higher unless caps or rounding prevent it.
+- **A split backrun pays about half the mid-block extra.** Each piece pays on the displacement left at its start.
+- **One side's permanent fee can reach zero.** If `maxSkewE6` equals the resting spread, a long enough trend brings the backrun side's permanent fee to zero. The temporary fee and the mid-block extra still apply.
+- **`getFee` is exact for the next swap only.** Later swaps in the same block can pay more as the price moves away from the block open.
+- **Price moves through ranges with no liquidity are free.** These moves can set the block open, the permanent fees, and the temporary fee. A skew built this way over many blocks unwinds by at most `maxSkewStepE6` per block. Pools with all liquidity on one side of the price are affected.
+- **A configuration update resets the fee state immediately.** It resets both permanent fees to half the resting spread and clears the temporary fee and the block open, even in the middle of a block. The next swap uses the current pool price as its starting point.
+- **Each permanent fee step rounds up on the leaning side.** Any price move raises the leaning side's permanent fee by at least one pip, until it reaches `maxSkewE6`. The backrun side's fee drops by the same amount, so it rounds down. On a pool with little trading, a tiny swap in every block can lower one side's permanent fee one pip at a time. The saving is at most half the resting spread per unit traded at the lower fee. Slippage and gas make this unprofitable on low-activity pools.

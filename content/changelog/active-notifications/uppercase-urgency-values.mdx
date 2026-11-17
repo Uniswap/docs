@@ -1,0 +1,26 @@
+---
+title: 'Uppercase urgency Values on the Trading API'
+description: 'Posted: October 22, 2026 | Effective: November 6, 2026'
+type: changelog
+datePublished: '2026-10-22'
+---
+
+Starting November 6, 2026, the Trading API swap endpoints accept `NORMAL`, `FAST`, and `URGENT` for the `urgency` field, and these become the canonical values. The lowercase values stay accepted. Until November 6, 2026, the API accepts only lowercase.
+
+**What is changing?**
+
+Starting November 6, 2026, the `urgency` field on `/quote`, `/check_approval`, `/swap`, `/swap_5792`, `/swap_7702`, and `/plan` accepts `NORMAL`, `FAST`, and `URGENT` as its canonical values, in both the bare string form (`"urgency": "FAST"`) and the object form (`"urgency": {"level": "FAST", "overrides": {...}}`). In the OpenAPI spec, the bare `urgency` string lists the uppercase values first and marks lowercase as deprecated. The object form's `level` lists only `NORMAL`, `FAST`, and `URGENT`. The API still accepts lowercase there too.
+
+Starting November 6, 2026, the validation error for an invalid `urgency` has new text. Today the bare form returns `"urgency" must be one of [normal, fast, urgent, object]` and the object form returns `"urgency.level" must be one of [normal, fast, urgent]`. After November 6, 2026, the bare form returns `` "urgency" must be one of [NORMAL, FAST, URGENT], or an object carrying one as its `level`; the lowercase spelling is deprecated. `` and the object form returns `"urgency.level" must be one of [NORMAL, FAST, URGENT]; the lowercase spelling is deprecated.` Mixed case such as `Normal` is still rejected, as before.
+
+**Why is this changing?**
+
+The liquidity (`/lp/*`) endpoints already use uppercase `GasUrgency` values. Making the swap endpoints match gives both endpoint families one spelling and removes a source of confusion for integrators using both.
+
+**What do I need to do?**
+
+After November 6, 2026, switch to sending `NORMAL`, `FAST`, or `URGENT`. If you send `urgency` as a bare string, changing the value is the only change. If you use a client generated from our OpenAPI spec, regenerate it after November 6, 2026, then read the note on generated clients below. If you match on the validation error text, update the match after November 6, 2026.
+
+If you do nothing, your API calls keep working. Lowercase `normal`, `fast`, and `urgent` are still accepted and behave exactly as before. We will remove the lowercase values in a later release and will send a separate notice with a date before that happens.
+
+If you generate a client from our OpenAPI spec, the urgency enum members keep their names and send the uppercase value after you regenerate. `UrgencyWithOverridesLevelEnum.Urgent` (OpenAPI Generator `typescript-axios` and `typescript-fetch`) and `UrgencyWithOverrides.level.URGENT` (`openapi-typescript-codegen`) send `'URGENT'` with no code change. With `openapi-typescript`, the `level` type becomes `"NORMAL" | "FAST" | "URGENT"`. Some code stops compiling after you regenerate: a raw lowercase `level` value such as `level: 'urgent'` (in every generator except `openapi-typescript-codegen`, where it already did not compile), a `switch` over lowercase `level` cases, a comparison such as `level === 'urgent'`, and assigning `level` to a lowercase-only type. The API still accepts lowercase values. If you compare, store, or log the urgency value, expect `URGENT` where you saw `urgent`.

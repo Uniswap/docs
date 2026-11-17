@@ -1,0 +1,9 @@
+---
+title: Exact Input and Exact Output
+description: Learn which swap types ERC4626WrapperHook supports and why exact-output swaps revert.
+---
+
+- **Exact input is supported** in both directions.
+- **Exact output is not supported** (`_supportsExactOutput` returns `false`). An exact-output swap would require minting an exact number of shares, which `vault.deposit` cannot guarantee. Exact-output swaps revert with `ExactOutputNotSupported`.
+
+Integrations should always construct wrapper hops as exact-input.

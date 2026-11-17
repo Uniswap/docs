@@ -1,11 +1,35 @@
 ---
 title: Uniswap AI Overview
+sidebarTitle: Overview
 description: Get started with Uniswap AI plugins, skills, and LLM context.
+keywords:
+  - Uniswap AI
+  - AI plugins
+  - coding agents
+  - llms.txt
+  - Claude Code marketplace
+  - open source
+faqs:
+  - question: Is Uniswap AI free and open source?
+    answer: |-
+      Yes. Uniswap AI is an open-source collection of plugins and skills published under the MIT license in the Uniswap/uniswap-ai repository on GitHub. There is no cost to install or use the skills, and you can read, fork, and contribute to the source.
+  - question: Do I need Claude Code to use Uniswap AI skills?
+    answer: |-
+      No. The skills are designed for any coding agent and install with the Skills CLI. Claude Code is one supported option: it adds a plugin marketplace that bundles the skills with expert agents and protocol-specific tools, but it is not required.
+  - question: Do Uniswap AI skills run in production?
+    answer: |-
+      No. Skills are build-time workflows that guide your coding agent while you write integration code. They are instructions and references loaded into the agent, not a runtime service that ships inside your deployed application. The code your agent produces with a skill is what runs in production.
+  - question: How are skills different from the llms.txt context files?
+    answer: |-
+      Both give an AI model Uniswap knowledge, but at different levels of structure. The llms.txt and llms-full.txt files are raw documentation context you add to a model's context window. Skills are structured, task-scoped workflows with step-by-step instructions and references that a coding agent activates directly or by matching your prompt. Use the context files when you want plain documentation grounding, and use skills when you want guided, protocol-specific workflows.
+  - question: Which skills are available and how do I install them?
+    answer: |-
+      Uniswap AI publishes skills such as swap-integration, v4-security-foundations, and liquidity-planner; see the Uniswap/uniswap-ai repository on GitHub for the full, current list. Install them with the Skills CLI, or add the Claude Code marketplace to install plugins individually.
 ---
 
 Use Uniswap AI to speed up swap integration, hook development, and EVM workflows with tools designed for builders on Uniswap.
 
-If your agent talks to the Trading API directly, send the optional [`X-Agent-Info` attribution header](/docs/trading/swapping-api/agent-attribution) so agent-driven traffic is measured separately from human-driven traffic.
+If your agent talks to the Trading API directly, send the optional [`X-Agent-Info` attribution header](/docs/trading/swapping-api/start-building/agent-attribution) so agent-driven traffic is measured separately from human-driven traffic.
 
 ## Uniswap AI
 
@@ -98,6 +122,80 @@ https://developers.uniswap.org/llms-full.txt
 ### Claude Code
 
 Install the Uniswap AI plugins (see [above](#claude-code-marketplace)) for the richest integration. The plugins provide structured skills, expert agents, and protocol-specific tools that go beyond static documentation context.
+
+## FAQ
+
+<details>
+  <summary>Is Uniswap AI free and open source?</summary>
+
+  <FaqAnswer>
+
+  Yes. Uniswap AI is an open-source collection of plugins and skills published under the MIT license in the [Uniswap/uniswap-ai](https://github.com/Uniswap/uniswap-ai) repository on GitHub. There is no cost to install or use the skills, and you can read, fork, and contribute to the source.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Do I need Claude Code to use Uniswap AI skills?</summary>
+
+  <FaqAnswer>
+
+  No. The skills are designed for any coding agent and install with the Skills CLI:
+
+  ```bash
+  npx skills add Uniswap/uniswap-ai
+  ```
+
+  [Claude Code](https://claude.ai/code) is one supported option: it adds a [plugin marketplace](#claude-code-marketplace) that bundles the skills with expert agents and protocol-specific tools, but it is not required.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Do Uniswap AI skills run in production?</summary>
+
+  <FaqAnswer>
+
+  No. Skills are build-time workflows that guide your coding agent while you write integration code. They are instructions and references loaded into the agent, not a runtime service that ships inside your deployed application. The code your agent produces with a skill is what runs in production. See [Uniswap Skills](/docs/uniswap-ai/skills) for how skills activate.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How are skills different from the llms.txt context files?</summary>
+
+  <FaqAnswer>
+
+  Both give an AI model Uniswap knowledge, but at different levels of structure:
+
+  * `llms.txt` and `llms-full.txt` are raw documentation context you add to a model's context window. See [LLM Context Files](#llm-context-files).
+  * Skills are structured, task-scoped workflows with step-by-step instructions and references that a coding agent activates directly or by matching your prompt.
+
+  Use the context files when you want plain documentation grounding, and use skills when you want guided, protocol-specific workflows.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Which skills are available and how do I install them?</summary>
+
+  <FaqAnswer>
+
+  Uniswap AI publishes skills such as `swap-integration`, `v4-security-foundations`, and `liquidity-planner`. See the [Uniswap/uniswap-ai](https://github.com/Uniswap/uniswap-ai) repository for the full, current list. Install them with the Skills CLI:
+
+  ```bash
+  npx skills add Uniswap/uniswap-ai
+  ```
+
+  Alternatively, add the [Claude Code marketplace](#claude-code-marketplace) to install plugins individually.
+
+  </FaqAnswer>
+
+</details>
 
 ## Where to Go Next
 

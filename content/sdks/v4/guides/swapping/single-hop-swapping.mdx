@@ -37,6 +37,7 @@ export const CurrentConfig: SwapExactInSingle = {
     zeroForOne: true, // The direction of swap is ETH to USDC. Change it to 'false' for the reverse direction
     amountIn: ethers.utils.parseUnits('1', ETH_TOKEN.decimals).toString(), 
     amountOutMinimum: "minAmountOut", // Change according to the slippage desired
+    minHopPriceX36: "0", // Per-hop price floor added in Universal Router 2.1.1. "0" disables it, so amountOutMinimum alone enforces slippage
     hookData: '0x00'
 }
 ```
@@ -50,7 +51,7 @@ The Universal Router is a flexible, gas-efficient contract designed to execute c
 So, we construct an instance of an **ethers** `Contract` for the Universal Router contract in order to interact with it:
 
 ```typescript
-const UNIVERSAL_ROUTER_ADDRESS = "0x66a9893cc07d91d95644aedd05d03f95e1dba8af" // Change the Universal Router address as per the chain
+const UNIVERSAL_ROUTER_ADDRESS = "0x23617e59A5925b2A4Bf75d73ff6711cD0b29De85" // Universal Router 2.1.2 on Ethereum mainnet. Change the address as per the chain
 
 const UNIVERSAL_ROUTER_ABI = [
   {
@@ -73,7 +74,7 @@ const universalRouter = new ethers.Contract(
 )
 ```
 
-We can get the `UNIVERSAL_ROUTER_ADDRESS` for our chain from [Uniswap Deployments](/docs/protocols/v4/deployments).
+We can get the `UNIVERSAL_ROUTER_ADDRESS` for our chain from the Universal Router 2.1.2 row in [Uniswap Deployments](/docs/protocols/v4/deployments). Universal Router 2.1.2 uses the same calldata as 2.1.1, so the v4 SDK encodes for it with `URVersion.V2_1_1`.
 
 A signer object can be created like this:
 
@@ -93,7 +94,7 @@ Now, let's implement the main function that handles the swap. When encoding a sw
 We will be doing an Exact Input swap in this example.
 
 ```typescript
-import { Actions, V4Planner } from '@uniswap/v4-sdk'
+import { Actions, URVersion, V4Planner } from '@uniswap/v4-sdk'
 import { CommandType, RoutePlanner } from '@uniswap/universal-router-sdk'
 
 const v4Planner = new V4Planner()
@@ -102,9 +103,10 @@ const routePlanner = new RoutePlanner()
 // Set deadline (1 hour from now)
 const deadline = Math.floor(Date.now() / 1000) + 3600
 
-v4Planner.addAction(Actions.SWAP_EXACT_IN_SINGLE, [CurrentConfig]);
-v4Planner.addAction(Actions.SETTLE_ALL, [CurrentConfig.poolKey.currency0, CurrentConfig.amountIn]);
-v4Planner.addAction(Actions.TAKE_ALL, [CurrentConfig.poolKey.currency1, CurrentConfig.amountOutMinimum]);
+// Universal Router 2.1.2 shares its calldata with 2.1.1, so encode the actions for URVersion.V2_1_1
+v4Planner.addAction(Actions.SWAP_EXACT_IN_SINGLE, [CurrentConfig], URVersion.V2_1_1);
+v4Planner.addAction(Actions.SETTLE_ALL, [CurrentConfig.poolKey.currency0, CurrentConfig.amountIn], URVersion.V2_1_1);
+v4Planner.addAction(Actions.TAKE_ALL, [CurrentConfig.poolKey.currency1, CurrentConfig.amountOutMinimum], URVersion.V2_1_1);
 
 const encodedActions = v4Planner.finalize()
 
@@ -128,7 +130,7 @@ console.log('Swap completed! Transaction hash:', receipt.transactionHash)
 
 The actions in the planner define the sequence of operations that will be performed in our v4 swap:
 
-- `SWAP_EXACT_IN_SINGLE`: This action specifies that we want to perform an exact input swap using a single pool.
+- `SWAP_EXACT_IN_SINGLE`: This action specifies that we want to perform an exact input swap using a single pool. Its `minHopPriceX36` field is the per-hop price floor added in Universal Router 2.1.1. Setting it to `"0"` disables the per-hop check, so `amountOutMinimum` alone enforces slippage.
 - `SETTLE_ALL`: This action ensures all input tokens involved in the swap are properly paid. This is part of v4's settlement pattern for handling token transfers.
 - `TAKE_ALL`: This final action collects all output tokens after the swap is complete.
 
