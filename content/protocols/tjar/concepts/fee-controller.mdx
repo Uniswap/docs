@@ -1,0 +1,42 @@
+---
+title: The TJAR Fee Controller
+sidebarTitle: Fee Controller
+description: Understand the optional TJAR protocol fee, its hard cap, and how releasers read it live at execution time.
+---
+
+The Fee Controller is a chain-wide singleton for an optional protocol fee. Every releaser the Factory deploys holds an immutable reference to it and reads its configuration when pricing a release, so a fee can be set or changed in one place without touching any operator's contracts.
+
+## How a Fee Would Be Charged
+
+If set, the fee is `threshold * feeBps / 10_000` in the `resource` token, **on top of** the threshold. An operator's `threshold` stays their net amount.
+
+```solidity
+function feeConfig() external view returns (uint256 bps, address recipient);
+function MAX_FEE_BPS() external view returns (uint256);
+```
+
+`feeConfig()` returns both values in one call, so searchers and releasers always price against consistent state. On a releaser, `releaseCost()` returns the total debit and the fee component together.
+
+## Current State
+
+The fee is **0 bps on every chain** and no fee recipient is set.
+
+`feeBps` can never exceed `MAX_FEE_BPS`, which is 1000 bps (10%). That cap is a compile-time constant, not a setting.
+
+## What a Fee Would Mean for Searchers
+
+If set, the protocol fee is the one release term a releaser's nonce does not cover. It can move between a simulation and the transaction that follows without advancing the nonce.
+
+`maxFee` protects against this, preventing releases with a protocol fee that the searcher doesn't expect. Passing `type(uint256).max` accepts anything up to the 1000 bps cap. A fee that has moved above the bound reverts with `FeeExceedsMax(fee, maxFee)`.
+
+## Ownership
+
+Only the owner can change the fee or its recipient, and the owner is Uniswap governance on each chain. Ownership is per-chain state, so the owning address differs by chain while the contract address does not.
+
+If the fee recipient cannot receive the resource, because the token has blacklisted it for example, releases revert and fees accumulate safely in the jar until either the recipient or the resource changes. A jar's operator should be aware of this if they ever see their jar not clearing.
+
+## Deterministic Deployment
+
+The Fee Controller is deployed once per chain at the same address, through the canonical CREATE2 deployer. Its only constructor argument is the initial owner, passed identically on every chain, which keeps its initcode and therefore its address chain-invariant. Ownership was then transferred to each chain's governance executor, which can differ per chain because ownership lives in storage rather than in initcode.
+
+Uniswap protocol fee flow, where protocol fees are converted to UNI and burned, is documented in [Uniswap Protocol Fees](/docs/protocols/protocol-fee/overview).

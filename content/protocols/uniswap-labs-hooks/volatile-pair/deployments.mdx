@@ -1,0 +1,51 @@
+---
+title: VolatilePair Deployments
+sidebarTitle: Deployments
+description: Find VolatilePair hook addresses and live pool parameters on Ethereum and Robinhood Chain.
+---
+
+The registered v4 hook is an ERC1967 proxy. Its address encodes the hook permission flags and does not change. A governance upgrade changes the implementation behind it. Integrate against the proxy address.
+
+## Mainnet Deployments
+
+### Ethereum: 1
+
+| Contract | Address |
+| :--- | :--- |
+| VolatilePairHook (proxy) | [`0x000022Ec4eBD6b12294396E852E4C3876b253Cc0`](https://etherscan.io/address/0x000022Ec4eBD6b12294396E852E4C3876b253Cc0) |
+| VolatilePairHook (implementation) | [`0x1DDbf7215be4F8A7623B9B1B0255C6e1E3F6c000`](https://etherscan.io/address/0x1DDbf7215be4F8A7623B9B1B0255C6e1E3F6c000) |
+
+### Robinhood Chain: 4663
+
+| Contract | Address |
+| :--- | :--- |
+| VolatilePairHook (proxy) | [`0x987E330F00B79864a07FE81dFaC344D0078ABCC0`](https://robinhoodchain.blockscout.com/address/0x987E330F00B79864a07FE81dFaC344D0078ABCC0) |
+| VolatilePairHook (implementation) | [`0x3328004Ae3B4eE272f25F3a2873F47C2Fb678000`](https://robinhoodchain.blockscout.com/address/0x3328004Ae3B4eE272f25F3a2873F47C2Fb678000) |
+
+## Pool Parameters
+
+One pool is live on each chain.
+
+### Ethereum: ETH / USDC
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0x98316e8405502774a5d0a0761276b5d26505a8195c1905169864008d5e7a3eea` |
+| currency0 | ETH (`0x0000000000000000000000000000000000000000`) |
+| currency1 | USDC [`0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`](https://etherscan.io/address/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 4 |
+
+### Robinhood Chain: ETH / USDG
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0xa791e5169faf703c0b63fd9552c33ec1128a773a00f5dc33a640da62a022cd35` |
+| currency0 | ETH (`0x0000000000000000000000000000000000000000`) |
+| currency1 | USDG [`0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168`](https://robinhoodchain.blockscout.com/token/0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 1 |
+
+<Callout type="info">
+Do not hardcode pool IDs. Derive them from the pool key, and read each pool's live fee configuration from the hook with `feeConfig(poolId)`. Governance can change the parameters.
+</Callout>

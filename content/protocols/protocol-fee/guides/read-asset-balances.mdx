@@ -1,15 +1,15 @@
 ---
 title: Reading Asset Balances
-description: Read releasable asset balances across AssetSink, Uniswap v2 LP tokens, and Uniswap v3 pools.
+description: Read releasable asset balances across the Token Jar, Uniswap v2 LP tokens, and Uniswap v3 pools.
 ---
 
-As noted in [Best Practices](/docs/protocols/protocol-fee/guides/best-practices), the `AssetSink's` available asset balance is observed in three places:
+As noted in [Best Practices](/docs/protocols/protocol-fee/guides/best-practices), the Token Jar's available asset balance is observed in three places:
 
-* the contract address of the `AssetSink` itself
+* the contract address of the Token Jar itself
 * the `UniswapV3Pool` contract addresses
 * the `UniswapV2Pair` liquidity tokens
 
-For example, the *releasable* USDC balance is `USDC.balanceOf(address(assetSink)) + sum of UniswapV3Pool.protocolFees() + sum of UniswapV2Pair.burn()` for each USDC-paired pool
+For example, the *releasable* USDC balance is `USDC.balanceOf(tokenJar) + sum of UniswapV3Pool.protocolFees() + sum of UniswapV2Pair.burn()` for each USDC-paired pool
 
 ---
 
@@ -20,17 +20,16 @@ Reading available Uniswap v3 Pool protocol fees requires calling `.protocolFees(
 ```solidity
 import {IERC20} from "forge-std/interfaces/IERC20.sol";
 import {IUniswapV3Pool} from "@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3Pool.sol";
-import {IAssetSink} from "@uniswap/phoenix-fees/src/interfaces/IAssetSink.sol";
 
 contract Example {
-    IAssetSink assetSink = IAssetSink(0x0);
+    address tokenJar = address(0);
 
     function releaseableBalance(address token, address[] calldata pools)
         external
         view
         returns (uint256)
     {
-        return IERC20(token).balanceOf(address(assetSink)) // [!code hl]
+        return IERC20(token).balanceOf(tokenJar) // [!code hl]
             + _getV3ProtocolFeesUnclaimed(token, pools); // [!code hl]
     }
 
@@ -45,9 +44,9 @@ contract Example {
             (token0Unclaimed, token1Unclaimed) = IUniswapV3Pool(pools[i]).protocolFees(); // [!code hl]
 
             // determine if the requested `token` parameter is `pool.token0()` or `pool.token1()`
-            feesUnclaimed += pool.token0() == token
+            feesUnclaimed += IUniswapV3Pool(pools[i]).token0() == token
                 ? token0Unclaimed
-                : pool.token1() == token
+                : IUniswapV3Pool(pools[i]).token1() == token
                 ? token1Unclaimed
                 : 0;
         }
@@ -72,7 +71,7 @@ To track which pools contain the asset of interest, we recommend to index the `P
 
 ## Uniswap v2 Pool Protocol Fees
 
-Uniswap v2 protocol fees are automatically "pushed" to the `AssetSink` so no additional calls are required to make the assets releasable.
+Uniswap v2 protocol fees are automatically "pushed" to the Token Jar so no additional calls are required to make the assets releasable.
 However, Uniswap v2 protocol fees are accrued in the form of liquidity tokens (LP tokens) which are redeemable for underlying assets. Ownership of the LP
 token represents the proportional share of the pool's assets.
 
@@ -81,10 +80,10 @@ token represents the proportional share of the pool's assets.
 ```
 
 ```solidity
-IERC20 lpToken;
+IUniswapV2Pair lpToken;
 
-uint256 amount0 = (lpToken.balanceOf(address(assetSink)) * IERC20(lpToken.token0()).balanceOf(address(lpToken))) / lpToken.totalSupply();
-uint256 amount1 = (lpToken.balanceOf(address(assetSink)) * IERC20(lpToken.token1()).balanceOf(address(lpToken))) / lpToken.totalSupply();
+uint256 amount0 = (lpToken.balanceOf(tokenJar) * IERC20(lpToken.token0()).balanceOf(address(lpToken))) / lpToken.totalSupply();
+uint256 amount1 = (lpToken.balanceOf(tokenJar) * IERC20(lpToken.token1()).balanceOf(address(lpToken))) / lpToken.totalSupply();
 ```
 
 <Callout type="info">

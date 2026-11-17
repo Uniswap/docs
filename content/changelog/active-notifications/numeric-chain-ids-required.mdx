@@ -1,0 +1,31 @@
+---
+title: 'Numeric Chain IDs Required'
+description: 'Posted: November 3, 2026 | Effective: November 18, 2026'
+type: changelog
+datePublished: '2026-11-03'
+---
+
+From November 18, 2026, every Trading API endpoint that takes a chain ID, including the [liquidity endpoints](/docs/liquidity/liquidity-provisioning-api/integration-guide) under `/lp/` and excluding `POST /wallet/encode_7702`, will handle it as described below. Today the `/lp/` endpoints accept chain names and reject digits in a string.
+
+**What is changing?**
+
+- A chain ID sent as a number, such as `"chainId": 1`, is accepted.
+- A chain ID sent as digits in a string, such as `"chainId": "1"` or `?chainId=1`, is accepted. The API reads it as the number.
+- A chain ID sent as a name, such as `"chainId": "MAINNET"`, gets a `400` validation error.
+- The same three rules apply to `permitData.domain.chainId` on `POST /swap`, `POST /swap_5792` and `POST /swap_7702`. That field does not check whether the chain is supported, so any number is accepted.
+
+Today, a chain name gets a `200` or a `500` on most endpoints, and already gets a `400` on a few fields. After the effective date, on endpoints other than `/lp/`, it gets a `400` with `errorCode` `RequestValidationError`, and, except in `permitData.domain.chainId`, an unknown numeric chain ID gets the same response.
+
+Where the endpoint names the invalid field, such as `GET /v1/tokens` and `POST /v1/quote`, the `detail` message will list only the accepted numeric chain IDs, such as `"tokenInChainId" must be one of [1, 10, 137, …]`, where today it lists chain names and numbers. On `/v1/swap*` endpoints, `detail` is a generic message that lists no chain IDs, as before. See [Common Errors](/docs/trading/swapping-api/common-errors#400-request-validation-error).
+
+The `/lp/` endpoints return `400` errors in a different format, `{"code": "invalid_argument", "message": "…", "details": […]}`, with no `errorCode` or `detail` field. The `message` names the invalid field and lists the accepted numeric chain IDs.
+
+**Why is this changing?**
+
+Today a request with a chain name returns a `200` response on some endpoints, a `500` on others, and a `400` on a few fields. This change makes these endpoints accept chain IDs the same way, which reduces the API's complexity.
+
+**What do I need to do?**
+
+Before November 18, 2026, send the numeric chain ID from [Supported Chains](/docs/trading/swapping-api/supported-chains), such as `1` for Ethereum Mainnet or `8453` for Base.
+
+Quotes the API returns already carry numeric chain IDs, so sending one back unchanged needs no work.

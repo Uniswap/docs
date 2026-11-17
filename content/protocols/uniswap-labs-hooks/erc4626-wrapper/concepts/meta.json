@@ -1,0 +1,4 @@
+{
+  "title": "Concepts",
+  "pages": ["wrapper-pools", "pool-initialization", "swap-mechanics", "exchange-rate-and-rounding", "exact-input-and-exact-output", "routing-twin", "extending-the-hook"]
+}

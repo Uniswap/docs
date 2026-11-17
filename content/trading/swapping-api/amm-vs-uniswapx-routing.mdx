@@ -1,9 +1,10 @@
 ---
 title: "AMM vs UniswapX Routing"
-description: "Understand how the Uniswap API evaluates Uniswap AMM and UniswapX routes when returning swap quotes."
+sidebarTitle: "Routing"
+description: "Understand how the Uniswap API evaluates Uniswap AMM and UniswapX routes when returning swap quotes, and how to opt into Guidestar routing."
 ---
 
-The Uniswap API can return routes from Uniswap AMM liquidity, UniswapX liquidity, or both depending on the request inputs and route availability. This guide explains how routing works and which request fields control route selection.
+The Uniswap API can return routes from Uniswap AMM liquidity, UniswapX liquidity, or both depending on the request inputs and route availability. This guide explains how routing works, which request fields control route selection, and how to opt into [Guidestar routing](#guidestar-routing-beta).
 
 ## How Uniswap AMM Routing Works
 
@@ -49,7 +50,7 @@ The `protocols` field is applied when `routingPreference` is `BEST_PRICE`.
 
 - If `protocols` is omitted, the API considers both Uniswap AMM and UniswapX protocols and returns the most efficient route based on current inputs
 - If `protocols` contains only `V2`, `V3`, or `V4`, routing is restricted to Uniswap AMM routes
-- If `protocols` includes `UNISWAPX_V2` (or other supported UniswapX values), UniswapX routes are also considered
+- If `protocols` includes `UNISWAPX_LATEST`, UniswapX routes are also considered, using the latest UniswapX protocol supported on the request chain
 
 ### UniswapX availability
 
@@ -62,6 +63,102 @@ UniswapX quotes may be unavailable when solvers cannot or choose not to fill a s
 Solver activity varies across chains, so UniswapX route frequency can differ by network. UniswapX is available only on selected chains, and constraints can vary by chain.
 
 See [Supported Chains](/docs/trading/swapping-api/supported-chains) for current coverage and constraints.
+
+## Guidestar Routing (Beta)
+
+Guidestar is the new Uniswap routing engine for AMM swaps. It returns quotes with lower latency and improved execution quality over standard routing. Guidestar quotes execute through the same Universal Router and Permit2 contracts as standard quotes, so approvals and the `/swap` flow are unchanged.
+
+### Supported Requests
+
+During the beta, Guidestar supports same-chain `EXACT_INPUT` swaps between two different tokens on these chains:
+
+| Chain | Chain ID |
+| --- | --- |
+| Ethereum | 1 |
+| Base | 8453 |
+| Robinhood Chain | 4663 |
+
+Guidestar returns `CLASSIC` (AMM) quotes only and routes with `BEST_PRICE` (the default `routingPreference`). It respects AMM `protocols` restrictions (`V2`, `V3`, `V4`), `hooksOptions`, `integratorFees`, and the `x-permit2-disabled` header. If `protocols` includes `UNISWAPX_LATEST` alongside AMM protocols, UniswapX is not considered.
+
+### Enabling Guidestar
+
+Add both of these headers to your `/quote` request:
+
+| Header | Value |
+| --- | --- |
+| `x-api-experimental` | `true` |
+| `x-universal-router-swapsteps` | `true` |
+
+The request body is the same as any other `/quote` request:
+
+```bash
+curl -X POST https://trade-api.gateway.uniswap.org/v1/quote \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json" \
+  -H "x-api-experimental: true" \
+  -H "x-universal-router-swapsteps: true" \
+  -d '{
+    "tokenIn": "0x0000000000000000000000000000000000000000",
+    "tokenOut": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "tokenInChainId": 1,
+    "tokenOutChainId": 1,
+    "amount": "1000000000000000000",
+    "type": "EXACT_INPUT",
+    "swapper": "0x...",
+    "slippageTolerance": 0.5
+  }'
+```
+
+`x-api-experimental` requires `x-universal-router-swapsteps`. Setting only `x-universal-router-swapsteps` does not request Guidestar: the API picks the routing engine as usual, and the response includes `swapSteps` only when Guidestar routed the quote.
+
+The `/swap` request does not change. Send the quote from the `/quote` response as usual, with no extra headers, or use the `swapTransaction` returned in the quote response when present.
+
+### Unsupported Requests and Errors
+
+A Guidestar request never falls back to standard routing. If the request is outside the supported scope, or Guidestar cannot produce a quote, the API returns an error instead of a standard quote:
+
+| Request | Response |
+| --- | --- |
+| `x-api-experimental` without `x-universal-router-swapsteps` | HTTP 400, `errorCode` `InputValidationError`, `detail` "x-api-experimental requires the x-universal-router-swapsteps header" |
+| `EXACT_OUTPUT`, an unsupported chain, a cross-chain swap, an ETH/WETH wrap or unwrap, `routingPreference` `FASTEST`, or `protocols` with only UniswapX | HTTP 400, `errorCode` `InputValidationError`, `detail` "x-api-experimental is only supported for EXACT_INPUT quotes on Ethereum mainnet, Base, and Robinhood" |
+| Supported request where Guidestar finds no route, for example an unknown token or an amount too small to route | HTTP 404, `errorCode` `NotFound`, `detail` "No quotes available" |
+
+<Callout title="Request a standard quote in parallel" type="info">
+During the beta, request a Guidestar quote in parallel with a standard quote (the same request without `x-api-experimental` and `x-universal-router-swapsteps`) so you don't miss a quote when Guidestar returns an error. Only send the Guidestar headers for supported requests.
+</Callout>
+
+### Response Differences
+
+A Guidestar quote uses the same response structure as a standard `CLASSIC` quote: `routing`, `input`, `output`, gas estimates, `permitData`, and `swapTransaction` work the same way. These fields differ:
+
+| Field | Guidestar quote |
+| --- | --- |
+| `quote.swapSteps` | New array describing the Universal Router swap sequence, in execution order. Present only on Guidestar quotes, so use it to tell which engine routed a quote. |
+| `quote.route` | Empty array (`[]`). Use `swapSteps` instead if you display or validate the route. |
+| `quote.routeString` | Free-form summary text intended for debugging, not the standard path format. Do not parse it. |
+
+For example, a 1 ETH to USDC quote on Ethereum can return:
+
+```json
+"swapSteps": [
+  {
+    "type": "WRAP_ETH",
+    "recipient": "0x0000000000000000000000000000000000000002",
+    "amount": "1000000000000000000"
+  },
+  {
+    "type": "V3_SWAP_EXACT_IN",
+    "recipient": "0x...",
+    "amountIn": "57896044618658097711785492504343953926634992332820282019728792003956564819968",
+    "amountOutMin": "2396539110",
+    "path": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000064a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+  }
+],
+"route": []
+```
+
+Each step has a `type` (`WRAP_ETH`, `UNWRAP_WETH`, `V2_SWAP_EXACT_IN`, `V3_SWAP_EXACT_IN`, or `V4_SWAP` with a list of `v4Actions`, among others). A `recipient` of `0x0000000000000000000000000000000000000002` is the Universal Router itself, and an amount of `57896044618658097711785492504343953926634992332820282019728792003956564819968` (2^255) spends the router's full balance of the token. For the full schema, see `swapSteps` in the [POST `/quote` API reference](/docs/api-reference/aggregator_quote).
 
 ## Routing Best Practices for Uniswap API Integrators
 
@@ -76,7 +173,7 @@ See [Supported Chains](/docs/trading/swapping-api/supported-chains) for current 
 
 If you support both Uniswap AMM and UniswapX, set `routingPreference` to `BEST_PRICE` (or omit it, which defaults to `BEST_PRICE`) and omit `protocols` to maximize available liquidity sources.
 
-If you specify `UNISWAPX_V2` in `protocols`, include at least one AMM protocol (`V2`, `V3`, or `V4`) as fallback.
+If you specify `UNISWAPX_LATEST` in `protocols`, include at least one AMM protocol (`V2`, `V3`, or `V4`) as fallback.
 
 ### Quote differs from app.uniswap.org
 
@@ -89,3 +186,5 @@ The web app typically considers all available protocols unless the user changes 
 This is expected in some cases. On some chains, UniswapX quotes are subject to minimum notional thresholds, and solver participation may vary by trade size and market conditions.
 
 For route behavior and configuration details, see [Swap Routing](/docs/trading/swapping-api/concepts/swap-routing) and the [POST `/quote` API reference](/docs/api-reference/aggregator_quote).
+
+For developer support, please reach out to our team via the <HelpCenter topic="uniswap-api">Help form</HelpCenter>.

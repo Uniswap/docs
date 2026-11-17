@@ -1,11 +1,10 @@
 ---
-id: security-framework
 title: Security Framework
 description: Evaluate Uniswap v4 hook security risks with a structured framework, scoring model, and operational guidance.
 ---
 ## A Self-Directed Security Framework
 
-The aim of this guide, and its accompanying [worksheet](https://docs.google.com/spreadsheets/d/1oZdKZh13UbqVp3HujAcv-2NKP-j7NQAELhB7kyWlLRE/edit?usp=sharing), is to give hook developers a clear, structured, and self-directed framework for understanding the security risks inherent to their project. It explains how complexity, math, external dependencies, upgradeability, liquidity behavior, and other factors contribute to risk. It also provides a consistent rubric for classifying risk tiers and choosing an appropriate combination of audits, monitoring services, bug bounties, and optional formal verification.
+The aim of this guide is to give hook developers a clear, structured, and self-directed framework for understanding the security risks inherent to their project. It explains how complexity, math, external dependencies, upgradeability, liquidity behavior, and other factors contribute to risk. It also provides a consistent rubric for classifying risk tiers and choosing an appropriate combination of audits, monitoring services, bug bounties, and optional formal verification.
 
 This [framework](https://github.com/uniswapfoundation/security-framework/tree/main) is provided as a public, informational resource. The [Uniswap Foundation](https://www.uniswapfoundation.org/) does not review, audit, or certify any submissions, scores, or implementations derived from it. Use of this framework is voluntary and self-directed. 
 
@@ -13,7 +12,7 @@ Scores and categorizations do **not** represent security assurances or guarantee
 
 ## Guide Overview
 
-The guide consists of 12 sections. Here is a brief overview of each section and what you will find inside:
+The guide consists of 11 sections. Here is a brief overview of each section and what you will find inside:
 
 1. **[Understanding Hook Risk in v4:](#1-understanding-hook-risk-in-v4)** Explains how hooks can introduce new security risks through accounting, math, external dependencies, governance, and liquidity behaviors.
 2. [Hook Risk Self-Scoring Dimensions:](#2-hook-risk-self-scoring-dimensions) Defines the nine quantitative dimensions used to evaluate a hook's inherent risk profile.
@@ -22,15 +21,14 @@ The guide consists of 12 sections. Here is a brief overview of each section and 
 5. [How to Evaluate Your Security Needs:](#5-how-to-evaluate-your-security-needs) Explains how to combine risk tiers and feature triggers into an actionable security plan for your hook.
 6. [Operational Security (OPSEC):](#6-operational-security-opsec) Focuses on protecting processes, information, people, and workflows around your hook, ensuring attackers cannot exploit how you operate, not just how your code behaves.
 7. [Security Best Practices Checklist:](#7-security-best-practices-checklist) Provides universal best-practice guidelines that all hooks should follow across accounting, access control, upgradeability, and transparency.
-8. [Risk Calculator Scoring Sheet:](#8-risk-calculator-scoring-sheet) Introduces an automated worksheet to calculate scores, identify triggers, and generate tailored recommendations.
-9. [How To Use This Framework:](#9-how-to-use-this-framework) Outlines a step-by-step workflow for scoring your hook, interpreting results, and preparing for audits and deployment.
-10. [Future Extensions Community Driven:](#10-future-extensions-community-driven) Describes how the community can evolve the framework by adding dimensions, patterns, tools, and shared learnings.
-11. [Security Resources:](#11-security-resources) A list of external resources for hook builders.
-12. [Conclusion:](#12-conclusion) Summarizes the framework's purpose and reinforces the importance of self-directed, ongoing security responsibility for hook developers.
+8. [How To Use This Framework:](#8-how-to-use-this-framework) Outlines a step-by-step workflow for scoring your hook, interpreting results, and preparing for audits and deployment.
+9. [Future Extensions Community Driven:](#9-future-extensions-community-driven) Describes how the community can evolve the framework by adding dimensions, patterns, tools, and shared learnings.
+10. [Security Resources:](#10-security-resources) A list of external resources for hook builders.
+11. [Conclusion:](#11-conclusion) Summarizes the framework's purpose and reinforces the importance of self-directed, ongoing security responsibility for hook developers.
 
-## How to Use the Guide + Worksheet
+## How to Use the Guide
 
-This guide begins with an overview of hook security risk and the key dimensions used to evaluate it. Teams can go through the process more easily using the [Uniswap Hooks Security Worksheet](https://docs.google.com/spreadsheets/d/1oZdKZh13UbqVp3HujAcv-2NKP-j7NQAELhB7kyWlLRE/edit?usp=sharing), which automates scoring and generates recommendations based on both tier and feature triggers. Together, these resources help teams understand their risk profile, identify required safeguards, and plan audits and monitoring before deployment.
+This guide begins with an overview of hook security risk and the key dimensions used to evaluate it. This guide helps teams understand their risk profile, identify required safeguards, and plan audits and monitoring before deployment.
 
 By the end of this process, teams should have:
 
@@ -130,7 +128,7 @@ Even in these cases, strict controls are necessary.
 
 When safety is higher priority than convenience:
 
-- Deploy new hook contracts (v1 —> v2) rather than upgrading old ones.
+- Deploy new hook contracts (v1 -> v2) rather than upgrading old ones.
 - Allow pools to migrate voluntarily rather than forcing an upgrade path.
 
 ### Autonomous behavior or parameter updates
@@ -250,8 +248,6 @@ To remain safe, cross-chain hooks should incorporate:
 ## 2. Hook Risk Self-Scoring Dimensions
 
 The risk framework assigns a score across nine dimensions. Together, these describe the hook’s complexity, potential failure surface, systemic impact, and team preparedness. 
-
-These dimensions align with a [Uniswap Hooks Security Worksheet](https://docs.google.com/spreadsheets/d/1oZdKZh13UbqVp3HujAcv-2NKP-j7NQAELhB7kyWlLRE/edit?gid=1821687847#gid=1821687847) (both tools work seamlessly together).
 
 Teams should score themselves on these 9 dimensions and evaluate each dimension honestly and conservatively. Slight underestimation can lead to insufficient audits or missed safety processes
 
@@ -598,23 +594,7 @@ While security practices must scale with the hook’s complexity, some fundament
 - [Nethermind](https://www.nethermind.io/blog/best-practices-for-writing-secure-smart-contract-code)
 - [Official Solidity docs on Security Considerations](https://docs.soliditylang.org/en/latest/security-considerations.html) 
 
-## 8. Risk Calculator Scoring Sheet
-
-A [Uniswap Hooks Security Worksheet](https://docs.google.com/spreadsheets/d/1oZdKZh13UbqVp3HujAcv-2NKP-j7NQAELhB7kyWlLRE/edit?usp=sharing) is provided that implements:
-
-- The nine dimension scoring model
-- All feature flags
-- Automatic tier calculation
-- Automatic base recommendation
-- Dynamic recommendations triggered by feature flags
-
-The calculator ensures consistent scoring across teams and audit providers.
-
-<Callout type="note">
-UF does not review or validate spreadsheet outputs.
-</Callout>
-
-## 9. How to Use This Framework
+## 8. How to Use This Framework
 
 - Review the risks associated with hooks
 - Self score your hook across the nine dimensions
@@ -627,7 +607,7 @@ UF does not review or validate spreadsheet outputs.
 Teams should re evaluate their tier after any major upgrade or when incentivized liquidity is introduced.
 </Callout>
 
-## 10. Future Extensions Community Driven
+## 9. Future Extensions Community Driven
 
 Future community improvements may include:
 
@@ -640,7 +620,7 @@ Future community improvements may include:
 
 The security landscape will evolve and this framework should evolve with it.
 
-## 11. Security Resources
+## 10. Security Resources
 
 Teams developing hooks may find the following providers and tools helpful when implementing the security recommendations in this framework. Some services may offer discounts to hook teams. Inquire directly with the providers for more information.
 
@@ -683,7 +663,7 @@ Teams developing hooks may find the following providers and tools helpful when i
 These resources are illustrative, not exhaustive. Teams should choose tools appropriate for their design, risk level, and operational maturity.
 </Callout>
 
-## 12. Conclusion
+## 11. Conclusion
 
 This self-assessment guide provides a robust framework for teams to assess their hook security needs. It provides a structured language for understanding risk and a consistent rubric for selecting minimum security measures.
 

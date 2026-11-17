@@ -1,0 +1,20 @@
+---
+title: Exchange Rate and Rounding
+description: Learn how ERC4626WrapperHook uses the vault as the sole source of price for execution and quoting, and how rounding is handled.
+---
+
+The vault is the sole source of price. Execution and quoting use the vault's own entry points so a swap matches what the vault would do if called directly:
+
+| Operation | Execution (wrapper hook) | Quote (base routing twin) |
+| :--- | :--- | :--- |
+| Wrap (underlying in) | `vault.deposit` | `vault.previewDeposit` |
+| Unwrap (shares in) | `vault.redeem` | `vault.redeem` against the simulated share balance |
+
+The base routing twin overrides only the wrap leg to a preview; it prices an unwrap by running the real `vault.redeem` against the shares the `PoolManager` is assumed to hold in simulation (see [The Routing Twin](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/routing-twin)).
+
+Two further helpers exist for exact-output-style sizing. They are defined but unreachable in this hook, because exact output reverts; a subclass that enables exact output would use them:
+
+- `_getWrapInputRequired(wrappedAmount)` returns `vault.previewMint(wrappedAmount)`.
+- `_getUnwrapInputRequired(underlyingAmount)` returns `vault.previewWithdraw(underlyingAmount)`.
+
+All rounding follows ERC-4626 semantics (deposits and redeems round in the vault's favor). For a rebasing underlying, the hook measures actual balances moved rather than trusting the requested amount, and the `SettlementMismatch` guard ensures the amount settled into the pool matches the amount measured.

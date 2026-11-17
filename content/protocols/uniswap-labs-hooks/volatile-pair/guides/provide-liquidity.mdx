@@ -1,0 +1,27 @@
+---
+title: Provide Liquidity on VolatilePair
+description: Add and remove liquidity in VolatilePair pools using the standard Uniswap v4 position flow.
+---
+
+Add and remove liquidity in a VolatilePair pool the same way as in any Uniswap v4 pool. Use `PositionManager`. The hook needs no extra calldata, allowlist, or deposit wrapper.
+
+## Hook permissions
+
+- The remove-liquidity callbacks are disabled. The hook cannot block a withdrawal.
+- The hook has no return-delta permissions. It cannot change the amounts on a mint or a burn.
+- The add-liquidity callbacks are enabled and do nothing.
+
+In a live pool, the hook only sets the LP fee on swaps.
+
+## Keep liquidity on both sides of the price
+
+A swap through a price range with no liquidity moves the price for free. The hook records that move as price impact. If all of a pool's liquidity is on one side of the price, these free moves can set the block open, the permanent fees, and the temporary fee. VolatilePair pools should keep liquidity on both sides of the price.
+
+## Pool creation
+
+Anyone can add liquidity. Pools themselves are created by Uniswap Labs, see [Pool Creation and Configuration](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/pool-creation).
+
+## Where to Go Next
+
+- [VolatilePair Deployments](/docs/protocols/uniswap-labs-hooks/volatile-pair/deployments)
+- [VolatilePair Security](/docs/protocols/uniswap-labs-hooks/volatile-pair/security)
