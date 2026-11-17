@@ -1,0 +1,82 @@
+---
+title: TJAR Overview
+sidebarTitle: Overview
+description: Learn how TJAR accumulates protocol fees in any asset and converts them into a single chosen token through permissionless releases.
+---
+
+[TJAR](https://github.com/Uniswap/tjar) is a pair of immutable contracts that turn fees collected in many assets into a single token. A **Token Jar** accumulates whatever its fee sources send it. A **Releaser** releases the jar's contents to any searcher who sends a fixed amount of a token the jar's operator chooses.
+
+Any protocol that collects fees in mixed assets can use TJAR without running its own trading operations. The jar does not care where assets come from, and the releaser does not care what the chosen token is or what happens to it afterward.
+
+Uniswap uses the same primitive for its own protocol fees, where the chosen token is UNI and the destination is a burn address. That deployment is documented separately in [Uniswap Protocol Fees](/docs/protocols/protocol-fee/overview).
+
+## Flow of Assets
+
+```text
+in:   fee sources ──▶ Token Jar
+      any ERC-20 or native asset, from any number of sources
+
+out:  a searcher calls release() on the Releaser
+        sends  threshold        ──▶  resource recipient
+        sends  protocol fee     ──▶  fee recipient  (only if one is set)
+        takes  the named assets ──▶  a recipient the searcher chooses
+```
+
+The jar holds assets and never prices them. The releaser sets one price for the whole jar and lets anyone take the trade.
+
+## Components
+
+| Contract | Role |
+|---|---|
+| [Token Jar](/docs/protocols/tjar/concepts/token-jar) | Collects fees. Authorizes exactly one releaser at a time and has no other way out. |
+| [Releaser](/docs/protocols/tjar/concepts/releasers) | Releases the jar's assets to a searcher who sends a fixed `threshold` of a chosen `resource` token. |
+| [Fee Controller](/docs/protocols/tjar/concepts/fee-controller) | Chain-wide singleton for an optional protocol fee. No fee is set today. Owned by the Uniswap DAO governance. |
+| [Factory](/docs/protocols/tjar/guides/deploy-a-token-jar) | Deploys a jar and releaser together, hands both to the operator, and retains no authority. |
+
+## How a Release Works
+
+1. Fee sources send assets to the jar. Nothing is emitted and nothing is recorded: the jar's holdings are exactly its balances.
+2. A searcher decides which of those assets are worth taking and calls `release(nonce, assets, recipient, maxFee)` on the releaser.
+3. The releaser pulls `threshold` of the `resource` token from the searcher to the resource recipient, plus the protocol fee to the fee recipient if one is set.
+4. The jar transfers its full balance of every named asset to the recipient the searcher chose.
+
+A release is profitable when
+
+```text
+value(the assets named)  >  threshold + gas
+```
+
+No oracle sets the price. The `threshold` moves only when the operator changes it, and a protocol fee, if one is ever set, is read from the [Fee Controller](/docs/protocols/tjar/concepts/fee-controller) at execution time.
+
+The release threshold is static:
+
+- **A jar gets more profitable the longer nobody sweeps it.** The price does not rise with the contents. The first searcher who finds a jar profitable clears it, so searchers compete on the smallest margin they will accept.
+- **A searcher sends the full `threshold` regardless of how many assets they name.** Naming fewer assets does not make a release cheaper. It only leaves value behind for whoever comes next.
+
+## Who Can Change What
+
+| Party | Can change | Cannot change |
+|---|---|---|
+| Jar owner | Which releaser the jar authorizes, through `setReleaser`. Can transfer ownership of the jar. | Any deployed contract's code |
+| Releaser owner | The release terms through `setConfig`, and who holds the `configSetter` role through `setConfigSetter`. Can transfer ownership of the releaser. | Which releaser the jar authorizes |
+| `configSetter`, if appointed | The release terms only | Who holds the `configSetter` role, ownership of the releaser, and which releaser the jar authorizes |
+| Uniswap governance | The protocol fee and its recipient. Can transfer ownership of the Fee Controller. | Anything about an operator's jar or releaser |
+
+The Factory hands ownership of both contracts to the same address at deployment, so the first two rows start as one party. Every ownership transfer is single-step, so a transfer to the wrong address is final.
+
+Release terms are `resource`, `resourceRecipient`, `threshold`, and `maxReleaseLength`, and they change only together through a single `setConfig` call. Every such call advances a nonce, so a release priced against terms that have since moved reverts rather than executing.
+
+An operator can also give up control permanently. Deploying with the owner set to `0xdead` and no `configSetter` freezes the pair completely: the terms, the recipients, and the wiring between jar and releaser can never change again.
+
+## Security
+
+TJAR has been reviewed by [OpenZeppelin](https://openzeppelin.com), as a diff against the upstream Uniswap protocol fee contracts it derives from. That upstream code carries three further OpenZeppelin reviews and one by [Cantina](https://cantina.xyz). All reports are listed in [Resources](/docs/protocols/tjar/resources).
+
+## Deployments
+
+The Factory and the Fee Controller sit at the same address on every chain, and an operator deploying from the same account with the same salt gets the same jar address on every chain. Key everything by chain id and address, never by address alone. See [Deployments](/docs/protocols/tjar/deployments).
+
+## Where to Go Next
+
+- [Deploy a Token Jar](/docs/protocols/tjar/guides/deploy-a-token-jar): collect fees in any asset and convert them into one token.
+- [Search Token Jars](/docs/protocols/tjar/guides/search-token-jars): find jars, view their parameters, and release them.

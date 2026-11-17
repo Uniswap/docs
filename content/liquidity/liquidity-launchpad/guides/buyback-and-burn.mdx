@@ -1,0 +1,89 @@
+---
+title: Buyback and Burn
+description: Run a searcher against the Uniswap buyback and burn recipient, which pays out accumulated creator fees in exchange for burning a fixed amount of the token.
+keywords:
+  - buyback and burn
+  - BuybackAndBurnClaimRecipient
+  - searcher
+  - creator fees
+  - token burn
+  - Uniswap v4
+  - MEV
+  - IClaimExecutor
+---
+
+The Uniswap buyback and burn recipient pays out accumulated creator fees to anyone willing to burn a fixed amount of the pool's token. Calling it is permissionless and it pays the caller, so third parties compete to run it.
+
+Some creator fee streams are routed to this contract instead of to a creator. It accumulates those fees per position and releases them only against a burn: the caller takes what has accumulated and sends a fixed amount of the pool's token to the burn address in the same transaction. This page is the searcher side, covering what the calls require and when they are worth making.
+
+Fees reach the burn recipient through a fee splitter and then a vesting contract that releases them gradually, so several calls are in play. All but the last are permissionless plumbing that anyone can run, and the last is the one that pays.
+
+## Collect Fees Into the Splitter
+
+<Callout type="warning">
+  Swap fees do not appear in any recipient's accounting until someone collects them. A searcher that
+  only polls `amounts(tokenId)` will watch a mapping that never moves and conclude there is nothing
+  to do.
+</Callout>
+
+Launch positions are held permanently by the [FeeSplitter](https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/FeeSplitter.sol), and fees sit in the PoolManager until `collectFees(tokenIds)` pulls them out and pushes each recipient its immutable share. It is permissionless and takes an array, so a searcher can sweep several positions in one call.
+
+Three things make it revert: an empty array, with `NoTokenIds`; a position the splitter does not own, with `NotOwner`; and being called while the PoolManager is already unlocked, with `PoolManagerAlreadyUnlocked`, so collection cannot be nested inside an existing unlock. A recipient that reverts its notification reverts the whole call and leaves those fees in the pool, so exclude a token ID that behaves that way rather than retrying the batch.
+
+## Release Fees From Vesting
+
+[VestingClaimRecipient](https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/VestingClaimRecipient.sol) holds the beneficiary NFT for a renounced position and meters the fee stream out over time. Its downstream `recipient` is immutable, set at deployment, so everything it releases goes to the same place.
+
+Two calls move fees through it, both permissionless:
+
+`claimFrom(beneficiaryVault, tokenId, minCurrency0Amount, minCurrency1Amount)` pulls whatever the vault has attributed to the position into the vesting contract. The vault must be one of the allowlisted ones fixed at deployment, and the vesting contract must already hold that position's beneficiary NFT, otherwise it reverts with `NotPositionOwner`. The first successful call starts the clock for that position and emits `VestingStarted`.
+
+`claim(tokenId, minCurrency0Amount, minCurrency1Amount)` then releases the vested portion into the buyback and burn recipient and registers it there. The amount released is capped at `maxCurrency0PerBlock` and `maxCurrency1PerBlock` multiplied by the blocks elapsed since the last claim, so calling it twice in the same block releases nothing the second time. Both caps are immutable and rejected at deployment if zero.
+
+Neither call pays the caller. They exist so the ETH is sitting in the burn recipient when the trade below becomes worth making.
+
+## Claim Accumulated Fees
+
+[BuybackAndBurnClaimRecipient](https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/BuybackAndBurnClaimRecipient.sol) is a singleton that holds the amounts attributed to each position and releases them only against a burn. It can hold either side of the pair. Today it holds ETH, because creator fees accrue in ETH, but the accounting is per currency and may carry the token side in future launches.
+
+`claim(tokenId, minCurrency0Amount, minCurrency1Amount)` runs in this order:
+
+1. transfers the amounts attributed to `tokenId` to the caller
+2. reverts unless the position's `currency0` is native ETH, with `InvalidCurrency`
+3. calls `onClaimed(poolKey, tokenId, currency0Received, currency1Received)` on the caller
+4. pulls `minCurrency1BurnAmount` of the position's `currency1` from the caller, sends it to `0x000000000000000000000000000000000000dEaD`, and emits `TokensBurned`
+
+The whole sequence is one transaction, so a failure at any step reverts the payout as well.
+
+The callback is not optional. The caller of `claim` must be a contract implementing [IClaimExecutor](https://github.com/Uniswap/liquidity-launcher/blob/main/src/interfaces/IClaimExecutor.sol), and it must have approved the recipient for at least `minCurrency1BurnAmount` of `currency1` by the time the callback returns. `claim` is non-reentrant, and the `minCurrency0Amount` and `minCurrency1Amount` arguments let the caller abort when less than expected is attributed.
+
+The burn amount is fixed and the same for every call, so it does not scale with what has accumulated. Read it from `minCurrency1BurnAmount()`. The payout is whatever has accrued since the last claim, which means the trade becomes profitable once the attributed amount is worth more than the cost of acquiring the burn amount. A searcher watches for that crossing rather than for a schedule.
+
+## Running a Searcher
+
+Index the contracts above, then loop:
+
+1. call `collectFees(tokenIds)` on the fee splitter so accrued swap fees leave the PoolManager and reach the recipients
+2. call `claimFrom` and then `claim` on the vesting contract to move the released portion into the burn recipient
+3. read `amounts(tokenId)` on the burn recipient for what is attributed to the position, and `minCurrency1BurnAmount()` for the burn cost
+4. when the attributed value exceeds what it costs to acquire the burn amount, call `claim` on the burn recipient from your executor
+
+Steps 1 and 2 cost gas and pay nothing, so in practice whoever intends to take step 4 runs them.
+
+### What the executor has to do
+
+The contract you call `claim` from has to satisfy everything the recipient enforces during that single transaction:
+
+- **Implement `IClaimExecutor`.** The recipient calls `onClaimed` on the caller unconditionally, so a plain EOA cannot claim.
+- **Accept native ETH.** The payout is sent before the callback runs, so a contract that cannot receive ETH reverts the whole claim.
+- **Hold `minCurrency1BurnAmount` of the pool's token and approve the recipient for it before the callback returns.** The recipient pulls that exact amount immediately afterwards. Where the tokens come from is up to you: a swap funded by the ETH just received, existing inventory, or any other route.
+- **Account for the token side already paid out.** `onClaimed` reports both currencies received. If the position carried a token amount, you only need to source the difference.
+- **Have a way to withdraw.** Whatever is left after funding the burn is your profit, and it stays in the contract until you move it out.
+
+Bound the price you are willing to pay when you source the burn amount. `minCurrency0Amount` only floors the payout, so a claim that clears it can still settle at a loss if the token has appreciated.
+
+## Where to Go Next
+
+- [Deployments](/docs/liquidity/liquidity-launchpad/deployments) for the recipient address
+- [Collect and Compound Fees](/docs/liquidity/liquidity-launchpad/guides/collect-and-compound-fees) for the compounding recipient, a different mechanism
+- [Instant Launch](/docs/liquidity/liquidity-launchpad/concepts/instant-launch)

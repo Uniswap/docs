@@ -4,12 +4,13 @@ description: Run a Unichain node using OP Stack tooling for mainnet or Sepolia d
 ---
 
 Unichain (including Unichain Sepolia testnet) runs on the OP Stack as part of the Superchain. The Optimism team provides detailed docs for running Superchain nodes, so review them before proceeding:
-- [How to Run a Superchain Node](https://docs.optimism.io/builders/node-operators/rollup-node)
-- [Node Operation Tutorials](https://docs.optimism.io/builders/node-operators/rollup-node#node-operator-tutorials)
+- [Node Operator Overview](https://docs.optimism.io/node-operators/overview)
+- [Running a Node With Docker](https://docs.optimism.io/node-operators/tutorials/node-from-docker)
+- [Building and Running a Node From Source](https://docs.optimism.io/node-operators/tutorials/run-node-from-source)
 
 ## Running a Unichain Node
 
-Check out the [Unichain node repository](https://github.com/Uniswap/unichain-node) for an easy-to-use setup. It correctly configures op-node and op-geth for both `unichain-mainnet` and `unichain-sepolia`.
+Follow the Optimism [Running a Node With Docker](https://docs.optimism.io/node-operators/tutorials/node-from-docker) tutorial for an easy-to-use setup. Unichain is part of the Superchain registry, so use the network names and sequencer endpoints below in place of the OP Mainnet or OP Sepolia values.
 
 ## Manually Running Unichain Mainnet Nodes
 
@@ -20,7 +21,7 @@ For op-geth, set `--op-network=unichain-mainnet`.
 
 Set tx ingress to `GETH_ROLLUP_SEQUENCERHTTP=https://mainnet.unichain.org`.
 
-More documentation on running your own nodes is available in the [Optimism docs](https://docs.optimism.io/builders/node-operators/rollup-node).
+More documentation on running your own nodes is available in the [Optimism docs](https://docs.optimism.io/node-operators/overview).
 
 ## Manually Running Unichain Sepolia Nodes
 
@@ -31,7 +32,7 @@ For op-geth, set `--op-network=unichain-sepolia`.
 
 Set tx ingress to `GETH_ROLLUP_SEQUENCERHTTP=https://sepolia-sequencer.unichain.org`.
 
-More documentation on running your own nodes is available in the [Optimism docs](https://docs.optimism.io/builders/node-operators/rollup-node).
+More documentation on running your own nodes is available in the [Optimism docs](https://docs.optimism.io/node-operators/overview).
 
 ## Where to Go Next
 

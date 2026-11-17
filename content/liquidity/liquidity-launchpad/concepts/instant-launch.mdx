@@ -1,0 +1,52 @@
+---
+title: Instant Launch
+description: Learn how Instant Launch creates a Uniswap v4 pool with the entire token supply as a single-sided position.
+---
+
+## How It Works
+
+[InstantLaunchStrategy](https://github.com/Uniswap/liquidity-launcher/blob/main/src/strategies/InstantLaunchStrategy.sol) is called via `LiquidityLauncher.distributeToken()` like other strategies. In a single transaction, it:
+
+1. pulls the full token supply from [Liquidity Launcher](https://github.com/Uniswap/liquidity-launcher/blob/main/src/LiquidityLauncher.sol) into the strategy
+2. initializes a hookless Uniswap v4 pool pairing native ETH with the token, using the strategy's fixed parameters
+3. mints a single position holding the entire token supply as a single-sided position
+4. if a [BeneficiaryVault](https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/BeneficiaryVault.sol) address was provided during the deployment of that Instant Launch strategy contract, it registers the fee beneficiary provided via the `InstantLaunchConfig` struct inside the `configData`.
+5. transfers the position to the [FeeSplitter](https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/FeeSplitter.sol), which holds it permanently and allows only to collect fees or to increase the position's size.
+
+The pool allows the token to be traded instantly after the launch.
+
+## Fixed Token and Launch Parameters
+
+The strategy calls `token.totalSupply()` and `token.decimals()` to verify they match the required launch parameters, before proceeding to create a pool. All pool parameters are fixed during the strategy's deployment to ensure every launch from a specific deployment of Instant Launch shares these parameters.
+
+| Parameter      | Value                               |
+| -------------- | ----------------------------------- |
+| Total supply   | 1,000,000,000 (18 decimals)         |
+| Pool           | native ETH / token, no hook         |
+| LP fee         | 0.25% (`2500`)                      |
+| Tick spacing   | 25                                  |
+| Position range | `MIN_LAUNCH_TICK` to `initialTick`  |
+| `initialTick`  | fixed at deployment of the strategy |
+
+## LP Fees
+
+LP fees accrue to the launch position, which the `FeeSplitter` owns and cannot transfer out. Collection is permissionless, and collected amounts are split by immutable shares set at deployment, with separate basis points for the native and the token side.
+
+- **[UERC20BeneficiaryVault](https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/UERC20BeneficiaryVault.sol)** holds the creator's share. It mints a transferable ERC-721 at registration; only its holder can claim. Registration does not have to happen at launch: a claim on an unregistered position registers it, provided the caller matches the token's graffiti.
+- **[CompoundingClaimRecipient](https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/CompoundingClaimRecipient.sol)** allows any caller to compound collected swap fees back into the locked position, via a contract implementing [IClaimExecutor](https://github.com/Uniswap/liquidity-launcher/blob/main/src/interfaces/IClaimExecutor.sol). See [Collect and Compound Fees](/docs/liquidity/liquidity-launchpad/guides/collect-and-compound-fees).
+- **[BuybackAndBurnClaimRecipient](https://github.com/Uniswap/liquidity-launcher/blob/main/src/periphery/BuybackAndBurnClaimRecipient.sol)** accumulates the fee share routed to it and releases it to any caller who burns a fixed amount of the token. See [Buyback and Burn](/docs/liquidity/liquidity-launchpad/guides/buyback-and-burn).
+
+## Compared to CCA
+
+|                   | Instant Launch            | CCA                                      |
+| ----------------- | ------------------------- | ---------------------------------------- |
+| Price             | fixed at deployment       | discovered by the auction                |
+| Capital to launch | token only                | the currency raised by the auction       |
+| Supply            | all of it, into the pool  | split between auction and LP             |
+| Positions         | exactly one, single-sided | weighted plan plus a full-range fallback |
+
+## Where to Go Next
+
+- [Collect and Compound Fees](/docs/liquidity/liquidity-launchpad/guides/collect-and-compound-fees)
+- [Liquidity Strategies](/docs/liquidity/liquidity-launchpad/concepts/liquidity-strategies)
+- [Deployments](/docs/liquidity/liquidity-launchpad/deployments)

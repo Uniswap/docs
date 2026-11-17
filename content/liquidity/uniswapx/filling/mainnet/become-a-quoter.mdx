@@ -1,5 +1,4 @@
 ---
-id: becomequoter
 title: Become a Quoter
 description: Set up a UniswapX quoter on Ethereum mainnet, meet performance requirements, and move from beta to production.
 ---
@@ -16,8 +15,14 @@ To participate as a quoter, you must host a service that adheres to the UniswapX
 ## Performance Expectations
 To ensure a smooth experience for swappers and a fair auction process for quoters, participants are held to the following performance standards:
 
-<Callout type="warning" title="500ms Response Time">
-Your server must respond to a request for a quote within 500ms. If you cannot provide a quote, respond with a `204` status code. Consistent failure to meet this standard may result in suspension from the system.
+<Callout type="warning" title="Respond to Every Quote Request Within 500ms">
+
+Your server must respond to every quote request within 500ms. The budget is the same on every chain.
+
+If you cannot quote, return a `204` with an empty body.
+
+Do not let quote requests time out. Endpoints that time out on a meaningful share of requests may be disabled at Uniswap Labs' discretion until the issue is fixed.
+
 </Callout>
 
 ## Handling Fades & the Circuit Breaker
@@ -71,7 +76,7 @@ If you can fulfill the quote request, your server should respond with status `20
 }
 ```
 
-If you do not wish to respond to a quote request, you must return an empty response with status code `204`.
+A `204` with an empty body is the expected signal when you cannot or will not quote.
 
 ### Schema when disabled due to circuit breaker
 If you are an onboarded quoter who is currently disabled by the circuit breaker, your server will receive the following message on the same quote endpoint:

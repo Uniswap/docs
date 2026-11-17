@@ -1,0 +1,116 @@
+---
+title: Search Token Jars
+sidebarTitle: Search Token Jars
+description: Find Token Jars, price their contents, and release them, including failure modes and the sharp edges worth knowing first.
+type: how-to
+---
+
+A Token Jar's contents can be redeemed at a fixed price. A searcher sends the jar's `threshold` in its `resource` token and takes the assets they name. This guide covers how to find jars, price what they hold, and release them without reverting.
+
+Everything here describes the shipped `ExchangeReleaser`. A jar owner can adopt a custom releaser, so read an unfamiliar releaser's code before trading against it.
+
+## The Trade
+
+A release is profitable when
+
+```text
+value(the named assets)  >  threshold + gas
+```
+
+The searcher sends the `threshold` in the jar's `resource` token. If a jar's threshold is 1,000 USDC and gas costs $2, a release is profitable once the named assets are worth more than $1,002 to the searcher.
+
+The assets arrive as-is, and converting them is up to the searcher.
+
+**The threshold does not rise as the jar fills.** A jar becomes more profitable to clear the longer it goes unswept. The first searcher who finds it profitable clears it, so searchers compete on the smallest margin they will accept.
+
+**A release costs the full `threshold` no matter how many assets it names.** Naming fewer assets does not lower the price. It leaves value for the next searcher. Name the most valuable assets, up to `maxReleaseLength` and what gas allows.
+
+## Finding Jars
+
+Jars are discovered through events. The Factory keeps no registry.
+
+| Event | Contract | Meaning |
+|---|---|---|
+| `JarDeployed` | Factory | A new jar and its first releaser, already paired. |
+| `ReleaserDeployed` | Factory | A standalone releaser for an existing jar, inert until the jar adopts it. |
+| `ReleaserSet` | jar | The jar switched releasers. The latest one is live. |
+
+Only `ReleaserSet` makes a releaser live. Anyone can deploy a releaser that points at any jar, and one the jar never adopted cannot move any asset. A releaser deployed outside the Factory shows up only through `ReleaserSet`.
+
+The Factory and the Fee Controller sit at the same address on every chain. An operator who deploys from the same account with the same salt gets the same jar address on every chain, so key jars by chain id and address.
+
+For a quick scan, the [TJAR Dashboard](https://app.hex.tech/uniswap/app/EXTERNAL-TJAR-Dashboard-034fNKQRw8KjUhNsgrGe3T/latest) lists existing jars and their release terms.
+
+## Pricing a Jar
+
+A jar does not record what it holds, and no onchain call lists the tokens it has received. Build the asset list from ERC-20 `Transfer` logs where `to` is the jar, plus call traces for native token transfers, since those emit no log. Then read each balance with `balanceOf`.
+
+Read the releaser's live state directly:
+
+```bash
+cast call $RELEASER "nonce()(uint256)"                --rpc-url $RPC
+cast call $RELEASER "releaseCost()(uint256,uint256)"  --rpc-url $RPC
+cast call $RELEASER "resource()(address)"             --rpc-url $RPC
+cast call $RELEASER "maxReleaseLength()(uint256)"     --rpc-url $RPC
+cast call $JAR      "releaser()(address)"             --rpc-url $RPC   # still this one?
+```
+
+## Making a Release
+
+1. Read `releaseCost()`. It returns `(total, fee)` at the current block. With no protocol fee set, `total` equals the `threshold` and `fee` is 0.
+2. Approve the releaser to spend `total` of the `resource`.
+3. Call `release` with the current nonce and `maxFee` set to the fee from step 1.
+
+```solidity
+releaser.release(
+    uint256    nonce,      // must equal releaser.nonce() when the call executes
+    Currency[] assets,     // plain addresses; address(0) means the native token
+    address    recipient,  // where the assets land; may not be address(0)
+    uint256    maxFee      // upper bound on the protocol fee
+);
+```
+
+`Currency` is a user-defined value type over `address`. In the ABI it is `address`, so an `address[]` encodes correctly.
+
+## The Nonce
+
+The nonce locks the release terms between simulation and execution. If the nonce a searcher simulated at still matches when the transaction executes, the `resource`, `resourceRecipient`, `threshold`, and `maxReleaseLength` have not changed.
+
+Two things advance the nonce:
+
+- every release
+- every `setConfig` call, even one that changes nothing
+
+If the nonce moved, the transaction reverts with `InvalidNonce`. Losing a race costs gas and nothing else. Since config changes also advance it, count `Released` events to count releases, not the nonce.
+
+The nonce does not cover the protocol fee. No fee is set today. If one is set, the [Fee Controller](/docs/protocols/tjar/concepts/fee-controller) adds it on top of the `threshold`, capped at 1,000 bps, and every releaser reads it at execution. A release reverts with `FeeExceedsMax` when the fee at execution is above `maxFee`.
+
+## Failure Modes
+
+| Revert | From | Cause | What to do |
+|---|---|---|---|
+| `InvalidNonce()` | releaser | Another release or a config change landed first. | Re-read `nonce()` and simulate again. |
+| `Unauthorized()` | jar | The releaser is not the jar's current one. It was rotated out or never adopted. | Read `jar.releaser()` and use that. |
+| `TooManyAssets(count, max)` | releaser | The asset list is longer than `maxReleaseLength`, 20 by default. | Drop the lowest-value assets. |
+| `FeeExceedsMax(fee, maxFee)` | releaser | A protocol fee was set or raised above `maxFee` after simulation. | Re-read `releaseCost()` and reprice. |
+| `InvalidRecipient()` | releaser | `recipient` is the zero address. | Use `0xdead` to burn released assets. |
+| `TRANSFER_FROM_FAILED` | releaser | Pulling the resource from the caller failed, usually from low balance or allowance, or the token's pause or blacklist rules. | Check balance and allowance against `total`. |
+| A token's own revert | jar | A named asset reverted on `balanceOf` or `transfer`. | Remove it. See Sharp Edges. |
+
+## Sharp Edges
+
+**The native token is `address(0)` in the asset list, and its transfer emits no log.** Reconciling releases from logs alone misses it.
+
+**One address with no code reverts the whole release.** The exception is `address(0)`, which means the native token. The jar calls `balanceOfSelf()` on every other named asset, and that call reverts for an address with no code. Check that every address in the list other than `address(0)` has code before submitting. Assets the jar holds none of are fine, and naming them costs only gas.
+
+**A rotated-out releaser still looks live.** A jar owner can switch to a new releaser at any time. The old one keeps returning a normal config from its view functions and reverts with `Unauthorized()` on every release. Watch `ReleaserSet` on the jar instead of trusting the releaser's own state.
+
+**Fee-on-transfer resources are send-denominated.** The caller is debited exactly the `threshold`, plus the protocol fee as a second transfer if one is set. Each recipient may receive less than the nominal amount.
+
+**Every named token runs code during the release.** A token that reverts on `transfer` reverts the whole release, so drop any asset that fails in simulation.
+
+## Where to Go Next
+
+- [Deployments](/docs/protocols/tjar/deployments) for Factory and Fee Controller addresses per chain.
+- [Releasers](/docs/protocols/tjar/concepts/releasers) for the terms model and rotation.
+- [Token Jar](/docs/protocols/tjar/concepts/token-jar) for what the jar does and does not track.

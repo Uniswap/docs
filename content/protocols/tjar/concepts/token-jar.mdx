@@ -1,0 +1,49 @@
+---
+title: The Token Jar Contract
+sidebarTitle: Token Jar
+description: Understand how a Token Jar accumulates fees, authorizes a single releaser, and releases full asset balances.
+---
+
+A Token Jar is a collection point. Fee sources transfer assets to it the way they would to any other address, and the jar holds them until a releaser moves them out.
+
+## The Releaser Role
+
+A jar authorizes exactly one `releaser` at a time, and that address is the only one permitted to move anything out. Everything else reverts with `Unauthorized()`.
+
+```solidity
+function releaser() external view returns (address);
+function setReleaser(address _releaser) external;   // jar owner only
+
+event ReleaserSet(address indexed oldReleaser, address indexed newReleaser);
+```
+
+The jar's owner can rotate the releaser at any time. There is no timelock and no other path to it: not the Factory, not governance, not the releaser itself. Rotation takes effect immediately, and a release already in flight against the previous releaser reverts before any asset moves.
+
+## Releases Are Full-Balance
+
+A release names a list of assets and a recipient. For each named asset the jar transfers its **entire balance** to that recipient. There is no partial release and no per-asset amount.
+
+```solidity
+function release(Currency[] calldata assets, address recipient) external;   // releaser only
+```
+
+- The native token is `address(0)` in the asset list. Its transfer emits no log, so anything reconciling releases from logs alone will silently miss it.
+- Naming an asset the jar does not hold is a no-op that costs a little gas. A slightly stale asset list is not dangerous.
+- Naming an address with no code reverts the entire release. The exception is `address(0)`, which means the native token. The jar reads `balanceOfSelf()` on every other entry, and that read reverts against a codeless address. This is deliberate, since it stops a garbage entry from appearing to succeed, but it means one bad address costs the whole transaction.
+- The number of assets in one release is capped by the releaser's `maxReleaseLength`.
+
+## Reentrancy
+
+`release` is guarded on both the jar and the releaser with a transient storage lock ([EIP-1153](https://eips.ethereum.org/EIPS/eip-1153)), so a malicious jar asset cannot re-enter a release mid-sweep.
+
+## The Jar Is the Stable Identity
+
+A jar outlives its releasers. Releasers are disposable: an operator may rotate through several over a jar's life, changing terms or adopting a specialized variant each time. Each releaser points at exactly one jar, immutably, and a jar may have many releasers over its lifetime.
+
+The jar address never changes, and an operator deploying from the same account with the same salt gets the same jar address on every chain. Key labels, indexes, and monitoring on the jar and the chain id rather than on the releaser.
+
+## The Jar Does Not Track Its Contents
+
+The jar keeps no record of what it holds. It emits nothing when assets arrive, maintains no list of assets it has ever received, and offers no way to enumerate its contents. Its holdings are exactly its balances.
+
+This matters most to searchers. Pricing a jar means knowing which assets it holds, and nothing onchain lists them. [Search Token Jars](/docs/protocols/tjar/guides/search-token-jars) covers how to build a jar's asset list by indexing transfers into the jar.

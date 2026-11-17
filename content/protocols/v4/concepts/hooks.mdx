@@ -1,6 +1,33 @@
 ---
-title: Hooks
+title: Uniswap v4 Hooks
+sidebarTitle: Hooks
 description: Learn how Uniswap v4 hooks extend pool behavior at key lifecycle execution points.
+keywords:
+  - Uniswap v4 hooks
+  - hook permissions
+  - hook address flags
+  - HookMiner
+  - CREATE2 salt mining
+  - pool initialization
+faqs:
+  - question: When do I need a hook in Uniswap v4?
+    answer: |-
+      Hooks are optional. A v4 pool works without one, using the same concentrated liquidity behavior as Uniswap v3. You need a hook only when you want to customize pool behavior at specific lifecycle points, such as running logic before or after a swap, gating who can add liquidity, applying dynamic fees, or building custom accounting. If your use case is a standard pool, you do not need to write or attach a hook.
+  - question: How do I deploy a hook to a valid hook address?
+    answer: |-
+      A hook contract must be deployed to an address whose low bits encode exactly the permissions it implements. Each hook function maps to a flag stored in a specific bit of the 20-byte address, so you cannot deploy a hook to an arbitrary address. To get a valid address you mine a CREATE2 salt that produces an address with the correct flag bits set, then deploy with that salt. The HookMiner helper library finds the salt, and the deployment script asserts that the deployed address matches the mined address. For local testing, Foundry's deployCodeTo cheatcode can place a hook at any address without mining.
+  - question: What hook permissions are available in Uniswap v4?
+    answer: |-
+      A hook declares its permissions through getHookPermissions, which returns a struct of boolean flags. The call permissions are beforeInitialize, afterInitialize, beforeAddLiquidity, afterAddLiquidity, beforeRemoveLiquidity, afterRemoveLiquidity, beforeSwap, afterSwap, beforeDonate, and afterDonate. There are also four return-delta permissions that let a hook adjust balances: beforeSwapReturnDelta, afterSwapReturnDelta, afterAddLiquidityReturnDelta, and afterRemoveLiquidityReturnDelta. A hook implements only the functions it needs, and those choices must match the flags encoded in its address.
+  - question: Can I add a hook to an existing pool?
+    answer: |-
+      No. The hook is part of the PoolKey and is set once when the pool is created through PoolManager.initialize. It cannot be added, removed, or swapped afterward. To use a different hook, or to add one to a pool that has none, you create a new pool with the desired hook in its key. A single hook contract can serve many pools, so you do not need to redeploy the hook itself.
+  - question: How do I test a Uniswap v4 hook?
+    answer: |-
+      Most hook development uses Foundry. The v4-template repository ships a preconfigured Foundry project with v4-core and v4-periphery already imported, so you can clone it, run forge test, and start from working examples. For unit tests you can deploy the hook to a valid address using the deployCodeTo cheatcode, which avoids mining during tests. You can also run a local Anvil node, deploy v4 and your hook with a Foundry script, and point the test suite at it with the rpc-url flag.
+  - question: What happens if the address flags do not match the implemented functions?
+    answer: |-
+      The address flags and the implemented functions must agree. If the address lacks a flag, the PoolManager never calls that hook function, so the logic silently does nothing. Permissions are also validated against the address at deployment, so declaring permissions that do not match the mined address makes the deployment fail. Mining the correct address and declaring matching permissions through getHookPermissions keeps the two in sync.
 ---
 
 Uniswap v4 introduces Hooks, a system that allows developers to customize and extend the behavior of liquidity pools.
@@ -58,3 +85,119 @@ The introduction of hooks in Uniswap v4 opens up a world of possibilities for de
 - Lending hooks integrated with Uniswap v4 pools.
 
 As a hook developer you can easily bootstrap the codebase of an entirely new DeFi protocol through hook designs, which subsequently drives down your audit costs and allows you to develop faster. However, it's important to note that just because you made a hook, that does not mean you will get liquidity routed to your hook from the Uniswap frontend.
+
+## FAQ
+
+<details>
+  <summary>When do I need a hook in Uniswap v4?</summary>
+
+  <FaqAnswer>
+
+  Hooks are optional. A v4 pool works without one, using the same concentrated liquidity behavior as Uniswap v3. You need a hook only when you want to customize pool behavior at specific lifecycle points, such as:
+
+  * Running logic before or after a swap
+  * Gating who can add or remove liquidity
+  * Applying dynamic fees
+  * Building custom accounting or a custom curve
+
+  If your use case is a standard pool, you do not need to write or attach a hook.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do I deploy a hook to a valid hook address?</summary>
+
+  <FaqAnswer>
+
+  A hook contract must be deployed to an address whose low bits encode exactly the permissions it implements. Each hook function maps to a flag stored in a specific bit of the 20-byte address, so you cannot deploy a hook to an arbitrary address.
+
+  To get a valid address you mine a `CREATE2` salt that produces an address with the correct flag bits set, then deploy with that salt. The [`HookMiner`](https://github.com/Uniswap/v4-periphery/blob/main/src/utils/HookMiner.sol) helper library finds the salt:
+
+  ```solidity
+  uint160 flags = uint160(Hooks.AFTER_ADD_LIQUIDITY_FLAG | Hooks.AFTER_SWAP_FLAG);
+  bytes memory constructorArgs = abi.encode(POOLMANAGER);
+  (address hookAddress, bytes32 salt) =
+      HookMiner.find(CREATE2_DEPLOYER, flags, type(PointsHook).creationCode, constructorArgs);
+  ```
+
+  The deployment script then asserts that the deployed address matches the mined address. For local testing, Foundry's `deployCodeTo` cheatcode can place a hook at any address without mining. See [Hook Deployment](/docs/protocols/v4/guides/hooks/hook-deployment) for the full walkthrough.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What hook permissions are available in Uniswap v4?</summary>
+
+  <FaqAnswer>
+
+  A hook declares its permissions through `getHookPermissions`, which returns a struct of boolean flags. The call permissions are:
+
+  * `beforeInitialize` / `afterInitialize`
+  * `beforeAddLiquidity` / `afterAddLiquidity`
+  * `beforeRemoveLiquidity` / `afterRemoveLiquidity`
+  * `beforeSwap` / `afterSwap`
+  * `beforeDonate` / `afterDonate`
+
+  There are also four return-delta permissions that let a hook adjust balances: `beforeSwapReturnDelta`, `afterSwapReturnDelta`, `afterAddLiquidityReturnDelta`, and `afterRemoveLiquidityReturnDelta`. A hook implements only the functions it needs, and those choices must match the flags encoded in its address. See the full flag list in [`Hooks.sol`](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Hooks.sol).
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Can I add a hook to an existing pool?</summary>
+
+  <FaqAnswer>
+
+  No. The hook is part of the `PoolKey` and is set once when the pool is created through `PoolManager.initialize`. It cannot be added, removed, or swapped afterward.
+
+  To use a different hook, or to add one to a pool that has none, you create a new pool with the desired hook in its key. A single hook contract can serve many pools, so you do not need to redeploy the hook itself.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do I test a Uniswap v4 hook?</summary>
+
+  <FaqAnswer>
+
+  Most hook development uses [Foundry](https://book.getfoundry.sh/). The [v4-template](https://github.com/uniswapfoundation/v4-template) repository ships a preconfigured project with `v4-core` and `v4-periphery` already imported:
+
+  ```bash
+  git clone https://github.com/uniswapfoundation/v4-template.git
+  cd v4-template
+  forge install
+  forge test
+  ```
+
+  For unit tests you can deploy the hook to a valid address using the `deployCodeTo` cheatcode, which avoids mining during tests. You can also run a local [Anvil](https://book.getfoundry.sh/anvil/) node, deploy v4 and your hook with a Foundry script, and point the test suite at it:
+
+  ```bash
+  forge test --rpc-url 127.0.0.1:8545
+  ```
+
+  See [Hooks Overview](/docs/protocols/v4/guides/hooks/getting-started) for the full local setup.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What happens if the address flags do not match the implemented functions?</summary>
+
+  <FaqAnswer>
+
+  The address flags and the implemented functions must agree:
+
+  * If the address lacks a flag, the `PoolManager` never calls that hook function, so the logic silently does nothing.
+  * Permissions are validated against the address at deployment, so declaring permissions that do not match the mined address makes the deployment fail.
+
+  Mining the correct address and declaring matching permissions through `getHookPermissions` keeps the two in sync.
+
+  </FaqAnswer>
+
+</details>

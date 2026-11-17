@@ -1,5 +1,4 @@
 ---
-id: priorityorderreactor
 title: Filling Priority Auctions
 description: Fill UniswapX Priority orders using priority-fee bidding and reactor execution patterns.
 ---
@@ -23,7 +22,6 @@ If a filler assumes a desired margin of 10% of the total profit, a competitive p
 - To minimize the gas used on reverting transactions, reversion happens early if the order is already filled or is not fillable yet.
 - For every wei of priority fee above a certain threshold (an optional value specified in the order), the user is owed 1 milli-bps more of their output token (or less of their input token). 
 - Milli-bps (or MPS) are one-thousandth of a basis point.
-- Unichain supports specifying a target block and has revert protection. For more information, please see the [Unichain Docs](/docs/unichain/technical-information/advanced-txn).
 
 ## Retrieving and Executing Signed Orders
 All signed `PriorityOrder` messages created through the Uniswap UI are available via the UniswapX Orders Endpoint. [Swagger documentation](https://api.uniswap.org/v2/uniswapx/docs) is available, but see below for a quick example curl.

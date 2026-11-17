@@ -1,5 +1,4 @@
 ---
-id: createfiller
 title: Filling on Mainnet
 description: Integrate a UniswapX filler on Ethereum mainnet, retrieve open orders, and execute Dutch and limit fills safely.
 ---
@@ -55,6 +54,8 @@ All signed Dutch Orders created through the Uniswap UI are available via the Uni
 ```bash
 GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=1&limit=1
 ```
+
+The endpoint serves cached responses and returns at most the last 50 orders, ordered by most recent. Poll at no more than 4 RPS; requests above that return `429`.
 
 It’s up to the individual filler to architect their own systems for finding and executing profitable orders, but the basic flow is as follows:
 

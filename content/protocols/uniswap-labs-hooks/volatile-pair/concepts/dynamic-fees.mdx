@@ -1,0 +1,99 @@
+---
+title: Dynamic Fees
+description: Learn how VolatilePair builds each swap's LP fee from a permanent fee, a one-block temporary fee, and a mid-block extra.
+---
+
+VolatilePair sets a separate LP fee for each swap direction. A swap that buys token0 (`zeroForOne = false`, price goes up) pays the ask fee. A swap that sells token0 (`zeroForOne = true`, price goes down) pays the bid fee.
+
+The dynamic fee contains three separate fee components: the [permanent fee](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/permanent-fee), [temporary fee](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/temporary-fee), and [mid-block fees](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/mid-block-fees):
+
+- **Permanent fee.** The ask and bid fees add up to a configured resting spread. Each fee starts at half the spread. When the price moves, the fee in the direction of the move goes up. The other fee goes down by the same amount.
+- **Temporary fee.** A price move also adds a temporary fee to the other side, where backruns trade. The temporary fee lasts for one block.
+- **Mid-block extra.** Fees increase during the block as the price moves further from the block open.
+
+The total swap fee is the sum of these 3 fees:
+
+```
+fee = permanent fee + temporary fee + mid-block extra
+```
+
+## How a price move is measured
+
+The block open is the pool price before the block's first swap. The hook determines the dynamic fee from two price movements:
+
+- Price impact is the % change from the previous block's open to this block's open, and determines the permanent fee and the temporary fee.
+- Displacement is the % change from this block's open to the current price, and determines the mid-block extra.
+
+<Callout type="info">
+The fee does not depend on swap size. The hook reads the pool price, the block number, and the swap direction. It does not read the swap amount.
+</Callout>
+
+## Worked example
+
+Note that all fee values are in pips. `1_000_000` is 100% and `100` is 1 bp.
+
+| Setting | Fee part | Value |
+| :--- | :--- | :--- |
+| Resting spread | Permanent fee | `900` (9 bp) |
+| Skew rate | Permanent fee | 10% |
+| Max skew step | Permanent fee | `300` |
+| Max skew | Permanent fee | `900` |
+| Backrun capture fraction | Temporary fee | 50% |
+| Backrun threshold | Temporary fee | `1000` (10 bp) |
+| Restore fraction | Temporary fee | 100% |
+| Restore threshold | Temporary fee | `0` |
+| Backrun capture fraction (shared with the temporary fee) | Mid-block extra | 50% |
+| Mid fade rate | Mid-block extra | 5% |
+| Max mid fade | Mid-block extra | `200` |
+
+From this configuration, the pool starts with a `450` pip fee on both the ask and bid side.
+
+**Block A, price up 5 bp (price impact `500`):**
+
+- Permanent fee changes:
+  1. Step value: 10% of 500 = 50
+  2. This shifts the ask permanent fee to 500 and the bid permanent fee down to 400.
+
+- Temporary fee:
+  1. Restore component: 50, since 100% of 50
+  2. Backrun component: 0 because the 500 bps move is below the 1000 threshold.
+  -> Temporary fee on the bid: 50.
+
+  Block starting fees: ask 500, bid 450. Spread 950 (9.5 bp), mid-block extra for the first swap in the block is 0.
+
+**Block B, price up 20 bp (price impact `2000`):**
+
+- Permanent fee changes:
+  1. Step value: 10% of 2000 = 200
+  2. This shifts the ask permanent fee to 700 and the bid permanent fee down to 200.
+
+- Temporary fee:
+  1. Restore component: 200, since 100% of 200
+  2. Backrun component: 1000, since 50% of 2000 and the 2000 move is above the 1000 threshold
+  -> Temporary fee on the bid: 1200.
+
+  Block starting fees: ask 700, bid 1400. Spread 2100 (21 bp), mid-block extra for the first swap in the block is 0.
+
+**Later in block B, a buy moves the price up 1% from the block open (displacement `10_000`):**
+
+- Mid-block extra:
+  1. Sell (backrun): 50% of 10,000 = 5000, so it pays 1400 + 5000 = 6400
+  2. Buy (continuing): min(5% of 10,000, 200) = 200, so it pays 700 + 200 = 900
+
+**Block C, the price is back at block B's open price:**
+
+- Permanent fee changes:
+  1. Step value: 0, since the price did not move
+  2. The ask permanent fee stays at 700 and the bid permanent fee stays at 200.
+
+- Temporary fee:
+  1. Restore component: 0
+  2. Backrun component: 0
+  -> Temporary fee on the bid: 0.
+
+  Block starting fees: ask 700, bid 200. Spread 900 (9 bp).
+
+## Where to Go Next
+
+- [Permanent Fee](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/permanent-fee)
+- [Swap Against a VolatilePair Pool](/docs/protocols/uniswap-labs-hooks/volatile-pair/guides/swap)

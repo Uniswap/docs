@@ -1,0 +1,20 @@
+---
+title: 'Multiple Integrator Fees'
+description: 'Posted: September 25, 2026'
+type: changelog
+datePublished: '2026-09-25'
+---
+
+The `integratorFees` field on `/quote` now accepts up to 4 fee entries, so you can split your fee across multiple recipients in a single swap.
+
+**What is changing?**
+
+`integratorFees` accepts up to 4 entries with distinct recipients. Each entry may be up to 500 bips of the gross swap output, and all entries together may not exceed 500 bips. Splitting fees is only available on Universal Router versions 2.1.1 and above. A single fee entry continues to work exactly as it does today.
+
+**Why is this changing?**
+
+Integrators asked to route parts of their fee to different recipients (for example sub-integrator or rewards payouts) without running their own splitting contracts.
+
+**What do I need to do?**
+
+If you send zero or one fee entry, no change is required. To split fees, send additional entries in `integratorFees` and use `x-universal-router-version: 2.1.1` or higher. Invalid fee configurations return a 400 with an `errorCode` such as `IntegratorFeesTotalExceedsMaxError` or `InvalidIntegratorFeesError`. For more information on errors see [Common Errors](/docs/trading/swapping-api/common-errors), and for the fee mechanics see the [Swapping API FAQ](/docs/trading/swapping-api/faqs#fees).

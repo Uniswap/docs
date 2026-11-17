@@ -1,0 +1,39 @@
+---
+title: Permanent Fee
+description: Understand how VolatilePair moves the ask and bid permanent fees toward the last price move while keeping their total fixed.
+---
+
+Each side of a VolatilePair pool has a permanent fee. The ask and bid permanent fees always add up to the pool's resting spread.
+
+## How the fee changes
+
+On the first swap of a new block, the hook measures the price impact since the previous block's open. It then raises the leaning side by a step:
+
+```
+step         = min(skewRate × priceImpact, maxSkewStep)
+newLeanPerm  = min(oldLeanPerm + step, maxSkew)
+backrun perm = restingSpread - newLeanPerm
+```
+
+The backrun side goes down by the same amount the leaning side goes up. Both sides stay within `[restingSpread - maxSkew, maxSkew]`.
+
+The new values persist until the price moves again.
+
+## Purpose
+
+Informed flow tends to trade in the direction of the last price move. A higher fee on that side reduces loss-versus-rebalancing (LVR) for LPs. The total spread stays the same.
+
+## Parameters
+
+| Parameter | Effect |
+| :--- | :--- |
+| `skewRateE6` | Permanent fee step per unit of price impact. |
+| `maxSkewStepE6` | Maximum step in one block. |
+| `maxSkewE6` | Maximum permanent fee on either side. |
+
+`maxSkewE6` must be between half the resting spread and the full resting spread. If `maxSkewE6` equals the resting spread, a long enough trend can bring the backrun side's permanent fee to zero. The temporary fee and the mid-block extra still apply.
+
+## Where to Go Next
+
+- [Temporary Fee](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/temporary-fee)
+- [Pool Creation and Configuration](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/pool-creation)

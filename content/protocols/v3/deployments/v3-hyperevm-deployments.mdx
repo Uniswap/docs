@@ -1,0 +1,54 @@
+---
+title: HyperEVM Deployments
+description: Review Uniswap v3 deployment addresses and contract references for HyperEVM integrations.
+---
+
+<Callout>
+  All Uniswap v3 deployment addresses are also available on the unified [Deployments](/deployments) page and its [deployments.json](/deployments.json) feed.
+</Callout>
+
+The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap/swap-router-contracts` are deployed at the addresses listed below. Integrators should **no longer assume that they are deployed to the same addresses across chains** and be extremely careful to confirm mappings below.
+
+HyperEVM is chainId `999` with HYPE as the gas token. Confirm any deployment on the [HyperEVM explorer](https://hyperevmscan.io).
+
+| Contract                                                                                                                           | HyperEVM Addresses                           |
+| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [UniswapV3Factory](https://github.com/Uniswap/uniswap-v3-core/blob/v1.0.0/contracts/UniswapV3Factory.sol)                         | [`0xf0db7b58379503491d857dB50AC9ece64c653918`](https://hyperevmscan.io/address/0xf0db7b58379503491d857dB50AC9ece64c653918) |
+| [UniswapInterfaceMulticall](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/UniswapInterfaceMulticall.sol)       | [`0x33e885eD0Ec9bF04EcfB19341582aADCb4c8A9E7`](https://hyperevmscan.io/address/0x33e885eD0Ec9bF04EcfB19341582aADCb4c8A9E7) |
+| [TickLens](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/TickLens.sol)                               | [`0x9EB8600665b55d10C1eB2316Ca5127A9cA6E2E76`](https://hyperevmscan.io/address/0x9EB8600665b55d10C1eB2316Ca5127A9cA6E2E76) |
+| [Quoter](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/Quoter.sol)                                   | [`0xe29df26bce7F7e691F37f2313eA6726fc2b481B3`](https://hyperevmscan.io/address/0xe29df26bce7F7e691F37f2313eA6726fc2b481B3) |
+| [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                         | [`0x7DfD4F31be6814D2906BDE155c3e1B146EAc1468`](https://hyperevmscan.io/address/0x7DfD4F31be6814D2906BDE155c3e1B146EAc1468) |
+| [MixedRouteQuoterV2](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/lens/MixedRouteQuoterV2.sol)            | [`0xD6A1239f7d0A47420349a80a4406EAa7a1283576`](https://hyperevmscan.io/address/0xD6A1239f7d0A47420349a80a4406EAa7a1283576) |
+| [NFTDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/libraries/NFTDescriptor.sol)                | [`0x2E9D45Bb7b30549F5216813aDA9a6b7982C5B3ED`](https://hyperevmscan.io/address/0x2E9D45Bb7b30549F5216813aDA9a6b7982C5B3ED) |
+| [NonfungibleTokenPositionDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungibleTokenPositionDescriptor.sol) | [`0x73991a25C818Bf1f1128dEAaB1492D45638DE0D3`](https://hyperevmscan.io/address/0x73991a25C818Bf1f1128dEAaB1492D45638DE0D3) |
+| [NonfungiblePositionManager](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungiblePositionManager.sol) | [`0x39654A85A4C05127f5Fd6ED22CAeC077A0fB1377`](https://hyperevmscan.io/address/0x39654A85A4C05127f5Fd6ED22CAeC077A0fB1377) |
+| [V3Migrator](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/V3Migrator.sol)                                | [`0x384461c47446324EC0D861aD902fc3935c969B5c`](https://hyperevmscan.io/address/0x384461c47446324EC0D861aD902fc3935c969B5c) |
+| [SwapRouter](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/SwapRouter.sol)                                | [`0xfF8137B0E0B9EF7021850B5124987C51E5424A9E`](https://hyperevmscan.io/address/0xfF8137B0E0B9EF7021850B5124987C51E5424A9E) |
+| [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                             | [`0x7AdF4701AbCDBc5Dcf5Cb58B526f897e048F0D11`](https://hyperevmscan.io/address/0x7AdF4701AbCDBc5Dcf5Cb58B526f897e048F0D11) |
+| [Permit2](https://github.com/Uniswap/permit2)                                                                                     | [`0x000000000022D473030F116dDEE9F6B43aC78BA3`](https://hyperevmscan.io/address/0x000000000022D473030F116dDEE9F6B43aC78BA3) |
+| [UniversalRouter](https://github.com/Uniswap/universal-router)                                                                    | [`0x9aFe3C497e19501DB228F28CdBdD29bC98F65DBa`](https://hyperevmscan.io/address/0x9aFe3C497e19501DB228F28CdBdD29bC98F65DBa) |
+| [UniversalRouter 2.1.2](https://github.com/Uniswap/universal-router)                                                              | [`0xeD270A1Bcdc63cf1356D695e7f40961d4819d6bF`](https://hyperevmscan.io/address/0xeD270A1Bcdc63cf1356D695e7f40961d4819d6bF) |
+
+These addresses are final and were deployed from these npm package versions:
+
+- [`@uniswap/v3-core@1.0.0`](https://github.com/Uniswap/uniswap-v3-core/tree/v1.0.0)
+- [`@uniswap/v3-periphery@1.0.0`](https://github.com/Uniswap/uniswap-v3-periphery/tree/v1.0.0)
+- [`@uniswap/swap-router-contracts@1.1.0`](https://github.com/Uniswap/swap-router-contracts/tree/v1.1.0)
+
+## Uniswap v3 Staker
+
+An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/v3-staker/releases/tag/v1.0.2) for the `UniswapV3Staker` contract.
+
+## Universal Router
+
+The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. An up-to-date list of [deploy addresses by chain is hosted on GitHub](https://github.com/Uniswap/universal-router/tree/main/deploy-addresses).
+
+## Uniswap Pool Deployments
+
+Every Uniswap pool is a unique instance of the `UniswapV3Pool` contract and is deployed at its own unique address. The contract source code of the pool will be auto-verified on the explorer. You can browse [HyperEVM contracts on the explorer](https://hyperevmscan.io) to confirm any deployment.
+
+You can look up the address of an existing pool on [Uniswap Info](https://info.uniswap.org/#/) or by calling the `getPool` function on the `UniswapV3Factory` contract.
+
+```solidity
+getPool("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", 3000)
+```

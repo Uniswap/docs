@@ -1,4 +1,9 @@
 {
   "title": "Concepts",
-  "pages": ["liquidity-strategies", "cca", "token-factory"]
+  "pages": [
+    "liquidity-strategies",
+    "cca",
+    "instant-launch",
+    "token-factory"
+  ]
 }

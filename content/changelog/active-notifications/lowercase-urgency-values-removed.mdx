@@ -1,0 +1,26 @@
+---
+title: 'Lowercase Urgency Values Removed from the Trading API'
+description: 'Posted: November 13, 2026 | Effective: January 19, 2027'
+type: changelog
+datePublished: '2026-11-13'
+---
+
+Starting January 19, 2027, the Trading API swap endpoints reject the lowercase `urgency` values `normal`, `fast`, and `urgent`. Send `NORMAL`, `FAST`, or `URGENT` instead. The [uppercase urgency values notice](/docs/changelog/active-notifications/uppercase-urgency-values) made the uppercase values canonical and promised this dated notice before removal.
+
+**What is changing?**
+
+Starting January 19, 2027, the `urgency` field on `/quote`, `/check_approval`, `/swap`, `/swap_5792`, `/swap_7702`, and `/plan` accepts only `NORMAL`, `FAST`, and `URGENT`. This applies to the bare string form (`"urgency": "FAST"`) and to `level` in the object form (`"urgency": {"level": "FAST", "overrides": {...}}`). Mixed case such as `Normal` is still rejected, as before. Requests that leave out `urgency` are unaffected.
+
+A request that sends a lowercase value gets a `400` response with `errorCode` `RequestValidationError`. The `detail` text also changes on that date: it drops the sentence about the deprecated lowercase spelling. The bare form returns `` "urgency" must be one of [NORMAL, FAST, URGENT], or an object carrying one as its `level` `` and the object form returns `"urgency.level" must be one of [NORMAL, FAST, URGENT]`.
+
+The OpenAPI spec drops the deprecated lowercase `urgency` values on the same date.
+
+**Why is this changing?**
+
+Accepting two spellings for one value adds complexity for integrators and for the API. With the lowercase values removed, the swap and liquidity endpoints accept the same uppercase spelling only.
+
+**What do I need to do?**
+
+Before January 19, 2027, send `NORMAL`, `FAST`, or `URGENT` wherever you send `urgency`. The uppercase values are accepted today, so you can switch now. If you send `urgency` as a bare string, changing the value is the only change. If you use a client generated from our OpenAPI spec, regenerate it; the generated enum members already send the uppercase values. If you match on the validation error text, update the match after January 19, 2027.
+
+If you do nothing and keep sending lowercase values, those requests will fail with a `400` from January 19, 2027.

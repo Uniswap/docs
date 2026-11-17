@@ -1,0 +1,13 @@
+---
+title: The Routing Twin
+description: Learn how ERC4626RoutingHook, a side-effect-free twin of the wrapper hook, lets the v4 Quoter price wrapper swaps.
+---
+
+The v4 `Quoter` prices a swap by running the real `beforeSwap` inside a call that always reverts, then reads the simulated deltas from the revert data. The execution hook cannot serve a quote this way: its `beforeSwap` moves tokens (`vault.deposit` / `vault.redeem` and real settlement), which fails under simulation because no input has been funded into the pool.
+
+`ERC4626RoutingHook` is a side-effect-free twin, deployed at its own mined flag address and used as the hook in the pool the `Quoter` simulates against:
+
+- It overrides `_deposit` to a pure preview: `actualUnderlyingAmount = underlyingAmount`, `wrappedAmount = vault.previewDeposit(underlyingAmount)`. No tokens move.
+- It does not override `_withdraw`. In simulation the `PoolManager` is assumed to hold enough shares to cover the redeem, so the inherited unwrap path (a real `vault.redeem`) prices correctly.
+
+Because the twin reads the same vault, its quote matches the execution hook's result, up to a few wei of transfer rounding for a rebasing underlying, where the quote may exceed execution.

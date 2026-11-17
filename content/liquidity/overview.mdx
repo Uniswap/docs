@@ -1,7 +1,30 @@
 ---
-id: Overview
 title: Liquidity Overview
+sidebarTitle: Overview
 description: "Explore all liquidity-related workflows in the Uniswap ecosystem: providing liquidity, filling UniswapX orders, and bootstrapping new markets."
+keywords:
+  - liquidity provisioning
+  - concentrated liquidity
+  - full-range liquidity
+  - fee collection
+  - v3 to v4 migration
+  - token ratio
+faqs:
+  - question: How much of each token do I deposit when adding liquidity?
+    answer: |-
+      The token ratio depends on where the current pool price sits relative to your chosen range. When the price is inside your range, you deposit both tokens, and the split shifts as the price moves toward either bound. When the price is at or beyond one bound, your position is single-sided and you deposit only one token. A full-range position always takes both tokens at the current price ratio. When you use the API, you provide one token amount and the API computes the dependent amount from live pool state.
+  - question: How do fees accrue on my Uniswap v3 or v4 position, and how do I collect them?
+    answer: |-
+      Fees accrue to your position as swaps cross the price range where your liquidity is active, and you collect them manually as a separate action, for example the claim_fees endpoint in the Uniswap Liquidity Provisioning API or, onchain, a decrease with zero liquidity change on the v4 Position Manager, which has no dedicated collect command. A position only earns fees while the current price is inside its range; once the price moves out of range, that position stops earning until the price returns. Accrued fees are not auto-compounded back into your position, and you can collect fees without withdrawing your principal liquidity.
+  - question: What is the difference between full-range and concentrated liquidity?
+    answer: |-
+      Full-range liquidity spreads your capital evenly across all possible prices, from 0 to infinity, the way Uniswap v2 works. It stays active at any price but uses capital less efficiently because most of it sits at prices that rarely trade. Concentrated liquidity, available in v3 and v4, lets you allocate capital to a chosen price band. This can earn more fees from the same capital, but the position stops earning when the price leaves the band, so it needs more active management.
+  - question: What happens when the price moves outside my range in a Uniswap v3 or v4 position?
+    answer: |-
+      When the price exits the bounds of a concentrated position, that position's liquidity becomes inactive and stops earning fees. As the price moves toward one bound, your position converts increasingly into a single token, and once the price is fully out of range it holds only one of the two tokens. If the price later reenters your range, the liquidity becomes active again and resumes earning fees. Full-range positions avoid this because they remain active across the entire price interval.
+  - question: How do I move a Uniswap v3 position to Uniswap v4?
+    answer: |-
+      Moving a v3 position to v4 means removing the liquidity from your v3 position and minting a new position in a v4 pool, since the two versions use separate contracts. You can do this in steps, or in a single transaction. The Universal Router can compose the v3 withdrawal and the v4 mint into one transaction through its command-based encoding, and the Uniswap Liquidity Provisioning API supports the migration flow through the MIGRATE action on its check_approval endpoint.
 ---
 
 There are three principal ways to participate in Uniswap as a liquidity provider or market maker. Each serves a different purpose and appeals to a different type of builder.
@@ -31,12 +54,11 @@ You can build LP workflows at three different levels of abstraction:
 
 | Endpoint | Purpose |
 | :--- | :--- |
-| `/approve` | Check and obtain token approvals |
+| `/check_approval` | Check and obtain token approvals |
 | `/create` | Create a pool (if needed) and mint a new position |
 | `/increase` | Add liquidity to an existing position |
 | `/decrease` | Remove liquidity (partial or full withdrawal) |
-| `/claim` | Collect accrued fees |
-| `/migrate` | Move a position from v3 to v4 |
+| `/claim_fees` | Collect accrued fees |
 
 **Via the SDK**: The v4 SDK (`@uniswap/v4-sdk`) provides TypeScript classes for constructing positions and encoding transaction calldata locally. You manage RPC connections and submit transactions yourself using a library like Ethers.js or Viem. [Manage liquidity via the SDK](/docs/sdks/v4/guides/managing-liquidity/position-minting).
 
@@ -124,3 +146,80 @@ This is designed for projects that need to go from "no market exists" to "deep o
 ### How to integrate
 
 The Liquidity Launchpad is accessed via **smart contract interactions** with the Liquidity Launcher and strategy contracts onchain. The architecture is modular and permissionless, so anyone can deploy an auction and bootstrap liquidity without gatekeepers.
+
+## FAQ
+
+<details>
+  <summary>How much of each token do I deposit when adding liquidity?</summary>
+
+  <FaqAnswer>
+
+  The token ratio depends on where the current pool price sits relative to your chosen range:
+
+  * **Price inside your range**: you deposit both tokens, and the split shifts as the price moves toward either bound.
+  * **Price at or beyond a bound**: the position is single-sided, so you deposit only one token.
+  * **Full-range position**: always takes both tokens at the current price ratio.
+
+  When you use the [Liquidity Provisioning API](/docs/liquidity/liquidity-provisioning-api/getting-started), you provide one token amount and the API computes the dependent amount from live pool state.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do fees accrue on my Uniswap v3 or v4 position, and how do I collect them?</summary>
+
+  <FaqAnswer>
+
+  Fees accrue to your position as swaps cross the price range where your liquidity is active, and you collect them manually as a separate action. A position only earns fees while the current price is inside its range; once the price moves out of range, it stops earning until the price returns.
+
+  Accrued fees are not auto-compounded back into your position. Collect them via:
+
+  * **[Liquidity Provisioning API](/docs/liquidity/liquidity-provisioning-api/getting-started)**: the `/lp/claim_fees` endpoint
+  * **Smart contracts**: a decrease with zero liquidity change on the v4 `PositionManager` (there is no dedicated collect command)
+
+  You can collect fees without withdrawing your principal liquidity.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What is the difference between full-range and concentrated liquidity?</summary>
+
+  <FaqAnswer>
+
+  Full-range liquidity spreads your capital evenly across all possible prices, from 0 to infinity, the way Uniswap v2 works. It stays active at any price but uses capital less efficiently, because most of it sits at prices that rarely trade.
+
+  [Concentrated liquidity](/docs/get-started/concepts/liquidity-providers/concentrated-liquidity), available in v3 and v4, lets you allocate capital to a chosen price band. This can earn more fees from the same capital, but the position stops earning when the price leaves the band, so it needs more active management.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>What happens when the price moves outside my range in a Uniswap v3 or v4 position?</summary>
+
+  <FaqAnswer>
+
+  When the price exits the bounds of a concentrated position, that position's liquidity becomes inactive and stops earning fees. As the price moves toward one bound, your position converts increasingly into a single token, and once the price is fully out of range it holds only one of the two tokens.
+
+  If the price later reenters your range, the liquidity becomes active again and resumes earning fees. Full-range positions avoid this because they remain active across the entire price interval.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do I move a Uniswap v3 position to Uniswap v4?</summary>
+
+  <FaqAnswer>
+
+  Moving a v3 position to v4 means removing the liquidity from your v3 position and minting a new position in a v4 pool, since the two versions use separate contracts. You can do this in steps, or in a single transaction:
+
+  * **[Liquidity Provisioning API](/docs/liquidity/liquidity-provisioning-api/getting-started)**: the `MIGRATE` action on `/lp/check_approval` returns the approvals needed to migrate a position.
+  * **[Universal Router](/docs/protocols/universal-router/overview)**: composes the v3 withdrawal and the v4 mint into one transaction through its command-based encoding.
+
+  </FaqAnswer>
+
+</details>

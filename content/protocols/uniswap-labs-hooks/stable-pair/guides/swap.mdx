@@ -1,0 +1,52 @@
+---
+title: Swap Against a StablePair Pool
+description: Quote and execute swaps against StablePair pools, including how to read the current dynamic fee.
+---
+
+Swapping against a StablePair pool uses the standard v4 swap path. The only difference is the fee: it is set by the hook at swap time, so it cannot be read from the pool key.
+
+## Build the pool key
+
+The pool uses v4's dynamic fee flag rather than a fixed fee tier. Code that assumes a static tier will not find the pool.
+
+```solidity
+PoolKey memory key = PoolKey({
+    currency0: Currency.wrap(USDC),
+    currency1: Currency.wrap(USDT),
+    fee: LPFeeLibrary.DYNAMIC_FEE_FLAG, // 0x800000, not a fee tier
+    tickSpacing: 1,
+    hooks: IHooks(0x0000113dCf4ADd69999Fad8F20F2b63F979bfcC0)
+});
+```
+
+## Read the current fee
+
+`PoolKey.fee` holds the dynamic flag, not a rate. Instead, the hook exposes a view function returning the exact LP fee a swap will be charged in the current block, per direction:
+
+```solidity
+function getFee(PoolKey calldata key) external view returns (uint24 feeE6ZeroForOne, uint24 feeE6OneForZero);
+```
+
+Both values are returned in 1e6 precision, matching v4's own fee units.
+
+For routers and aggregators this makes quoting substantially cheaper: the fee can be computed locally rather than simulated per size. Two properties are why.
+
+- **Size-independent.** The fee never depends on the swap amount, so the same value applies to every size. `getFee` never reads a swap amount, and so never reverts on the basis of one.
+- **Fixed for the block.** Both values are computed from the start-of-block price the next swap will see, so one read per pool per block covers every quote in that block. See [Block Price Caching](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/block-price-caching).
+
+The two directions differ, often substantially (outside the band one of them is zero), so quote the direction being swapped.
+
+`getFee` reverts with `PoolNotInitialized` if the pool was not initialized through the hook.
+
+<Callout type="info">
+Two things the returned value is not. It is the LP fee only: if the pool has a protocol fee enabled, v4 compounds the two, taking the protocol fee from the input first and the LP fee from the remainder, and rounds the combined rate up to a whole pip. And it is pre price impact: the fee is exact, but the execution price still depends on the liquidity the swap traverses.
+</Callout>
+
+## Execute the swap
+
+Swap through the standard v4 router or `PoolManager` unlock flow. StablePair holds no return-delta permissions, so it never alters swap amounts. It only overrides the fee.
+
+## Where to Go Next
+
+- [Dynamic Fees](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/dynamic-fees)
+- [Provide Liquidity on StablePair](/docs/protocols/uniswap-labs-hooks/stable-pair/guides/provide-liquidity)

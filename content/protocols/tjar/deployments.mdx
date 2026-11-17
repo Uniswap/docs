@@ -1,0 +1,49 @@
+---
+title: TJAR Deployments
+sidebarTitle: Deployments
+description: Find the chain-invariant TJAR Factory and Fee Controller addresses on every supported chain.
+---
+
+<Callout>
+  All TJAR deployment addresses are also available on the unified [Deployments](/deployments) page and its [deployments.json](/deployments.json) feed.
+</Callout>
+
+The Factory and the Fee Controller each sit at the same address on every chain. Both are deployed through the canonical CREATE2 deployer with byte-identical initcode, which is what fixes the address.
+
+| Contract | Address |
+|---|---|
+| Factory | `0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee` |
+| FeeController | `0xfEeC0FEE579Be52a5409cd75a42bCc9E6b149EF8` |
+
+## Supported Chains
+
+| Chain | Chain ID | Factory | FeeController |
+| --- | --- | --- | --- |
+| Ethereum | 1 | [Etherscan](https://etherscan.io/address/0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee) | [Etherscan](https://etherscan.io/address/0xfEeC0FEE579Be52a5409cd75a42bCc9E6b149EF8) |
+| Optimism | 10 | [Etherscan](https://optimistic.etherscan.io/address/0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee) | [Etherscan](https://optimistic.etherscan.io/address/0xfEeC0FEE579Be52a5409cd75a42bCc9E6b149EF8) |
+| BNB Chain | 56 | [BscScan](https://bscscan.com/address/0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee) | [BscScan](https://bscscan.com/address/0xfEeC0FEE579Be52a5409cd75a42bCc9E6b149EF8) |
+| Polygon | 137 | [Polygonscan](https://polygonscan.com/address/0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee) | [Polygonscan](https://polygonscan.com/address/0xfEeC0FEE579Be52a5409cd75a42bCc9E6b149EF8) |
+| Base | 8453 | [Basescan](https://basescan.org/address/0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee) | [Basescan](https://basescan.org/address/0xfEeC0FEE579Be52a5409cd75a42bCc9E6b149EF8) |
+| Arbitrum | 42161 | [Arbiscan](https://arbiscan.io/address/0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee) | [Arbiscan](https://arbiscan.io/address/0xfEeC0FEE579Be52a5409cd75a42bCc9E6b149EF8) |
+| Robinhood Chain | 4663 | [Blockscout](https://robinhoodchain.blockscout.com/address/0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee) | [Blockscout](https://robinhoodchain.blockscout.com/address/0xfEeC0FEE579Be52a5409cd75a42bCc9E6b149EF8) |
+
+## Token Jars
+
+Individual Token Jars are not listed here. They are deployed permissionlessly by anyone, the Factory keeps no registry, and an operator can rotate a jar's releaser at any time.
+
+Discover them by event instead. `JarDeployed` on the Factory announces a new pair, and `ReleaserSet` on a jar is the only proof of which releaser is currently live. See [Search Token Jars](/docs/protocols/tjar/guides/search-token-jars) for the full discovery flow.
+
+## Verifying an Address
+
+Before wiring anything on a chain, confirm the Factory's code is actually there.
+
+```bash
+cast code 0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee --rpc-url $RPC
+cast call 0xfAc70EEEE259F2140CBbB8e3157b75A52ce39fee "FEE_CONTROLLER()(address)" --rpc-url $RPC
+```
+
+The second call should return the Fee Controller address above. A Factory wired to anything else is not this deployment.
+
+<Callout type="warn">
+A chain not listed here has no TJAR deployment. Funds sent to a predicted jar address on such a chain are stranded until the Factory lands there, and there is no guarantee it ever will. Deploy the jar before pointing any fee source at its address.
+</Callout>

@@ -1,0 +1,26 @@
+---
+title: Mid-Block Fees
+description: Learn how VolatilePair raises the fee within a block as the price moves away from the block open.
+---
+
+Displacement is the price movement from the block open to the price right before the swap. The hook adds an extra fee based on it to the swap's starting fee.
+
+## Backrun and continuing swaps
+
+| Swap | Fee |
+| :--- | :--- |
+| Against the displacement (backrun) | `startingFee + backrunCaptureFraction × displacement` |
+| In the direction of the displacement (continuing) | `startingFee + min(midFadeRate × displacement, maxMidFade)` |
+
+The first swap of a block has zero displacement and pays the starting fee. A later swap in the same block pays at least as much as the first swap on the same side.
+
+This also makes sandwiches less profitable. The attacker's second swap goes back against the price move from their first swap, so it pays the backrun extra. Only the maximum fee caps the backrun extra. `maxMidFadeE6` caps the continuing extra.
+
+## Split swaps
+
+The extra is set at the start of each swap and applies to the whole swap. If a backrun is split into many small swaps in one block, each swap pays on the displacement left at its start. In total, the split backrun pays about half the extra of one large swap. As the number of pieces grows, LPs receive about `backrunCaptureFractionE6` of the backrun value.
+
+## Where to Go Next
+
+- [Swap Against a VolatilePair Pool](/docs/protocols/uniswap-labs-hooks/volatile-pair/guides/swap)
+- [Dynamic Fees](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/dynamic-fees)

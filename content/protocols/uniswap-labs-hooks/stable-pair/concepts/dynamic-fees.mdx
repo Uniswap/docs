@@ -1,0 +1,38 @@
+---
+title: Dynamic Fees
+description: Learn how StablePair sets the LP fee from the pool's distance from its reference rate and the direction of the swap.
+---
+
+StablePair sets the LP fee dynamically instead of charging one fixed number. Each pool is configured with a reference rate (the price the pair is expected to hold) and a narrow band around it. The hook derives the fee from that reference rate and the pool's price at the start of the block.
+
+## Inside the band
+
+Within the band, the hook sets the fee so that every buy clears at one price and every sell at another, regardless of where the spot price sits inside the band. Two swappers arriving at different moments in the band see the same quote.
+
+<Callout type="info">
+These are pre-impact prices. The hook derives the fee from the pool price as it stands before the swap executes, so a quoted rate never includes the price impact of the swap itself. A large swap still walks the curve and realizes a worse average price than a small one. The consistency guarantee is about the fee, not the execution.
+</Callout>
+
+At exactly the reference rate, both directions are charged the configured band width. As the price drifts toward one edge, the fee for swaps pushing toward that edge falls toward zero, while the fee in the opposite direction rises toward roughly twice the band width.
+
+The band is defined symmetrically in price terms, so a buy-then-sell roundtrip at the two edges costs the same percentage in either direction.
+
+## Outside the band
+
+Once the price leaves the band, the hook switches regime and the fee depends on the direction of the swap.
+
+| Swap direction | Fee |
+| :--- | :--- |
+| Toward the reference rate (corrective) | A decaying fee. It starts at the far edge of the band and falls each block toward a target. See [Fee Decay](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/fee-decay). |
+| Away from the reference rate (adverse) | Zero. |
+
+Adverse swaps pay nothing because they bring volume without extracting from the mispricing. Charging them would cost the pool activity and gain liquidity providers nothing.
+
+<Callout type="info">
+The fee never depends on swap size. StablePair reads the pool price and the swap direction, never the amount, so a quote holds for any size.
+</Callout>
+
+## Where to Go Next
+
+- [Fee Decay](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/fee-decay)
+- [Swap Against a StablePair Pool](/docs/protocols/uniswap-labs-hooks/stable-pair/guides/swap)

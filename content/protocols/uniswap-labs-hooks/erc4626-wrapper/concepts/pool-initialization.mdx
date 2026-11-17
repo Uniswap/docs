@@ -1,0 +1,16 @@
+---
+title: Pool Initialization
+description: Learn the conditions ERC4626WrapperHook enforces before a wrapper pool can exist, and how swap direction maps to wrap or unwrap.
+---
+
+`_beforeInitialize` enforces two conditions before the pool can exist:
+
+1. `currency0` and `currency1` are the wrapper and underlying currencies, in the order fixed by `wrapZeroForOne` (`InvalidPoolToken`).
+2. `fee == 0` (`InvalidPoolFee`).
+
+`wrapZeroForOne` is an immutable set in the constructor to `underlyingCurrency < wrapperCurrency` (by address). It records which token is `currency0`:
+
+- `wrapZeroForOne == true`: `currency0` is the underlying, `currency1` is the wrapper. A `zeroForOne` swap wraps.
+- `wrapZeroForOne == false`: `currency0` is the wrapper, `currency1` is the underlying. A `zeroForOne` swap unwraps.
+
+This maps a swap direction to wrap or unwrap deterministically, regardless of how the two token addresses sort.

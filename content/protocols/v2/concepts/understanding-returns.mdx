@@ -1,5 +1,4 @@
 ---
-id: understanding-returns
 title: Understanding Returns
 description: Understand Uniswap v2 LP return drivers, including fee income, divergence loss, and market volatility effects.
 ---
@@ -46,7 +45,7 @@ So let’s look at the impact of a price change on a liquidity provider. To keep
 
 "Of course, if the price were to return to the same value as when the liquidity provider added their liquidity, this loss would disappear. **For this reason, we can call it an **impermanent loss**.** Using the equations above, we can derive a formula for the size of the impermanent loss in terms of the price ratio between when liquidity was supplied and now. We get the following:"
 
-- "`impermanent_loss = 2 * sqrt(price_ratio) / (1+price_ratio) — 1`"
+- "`impermanent_loss = 2 * sqrt(price_ratio) / (1+price_ratio) - 1`"
 
 - "Which we can plot out to get a general sense of the scale of the impermanent loss at different price ratios:"
   ![](https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Fdnazarov%2FOscQ_nmzbA.png?alt=media&token=4dff866e-a740-4121-9da4-9c9105baa404)

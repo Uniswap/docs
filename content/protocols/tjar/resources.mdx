@@ -1,0 +1,46 @@
+---
+title: TJAR Resources
+sidebarTitle: Resources
+description: Find the TJAR repository, security reviews, contract interfaces, and the upstream Uniswap protocol fee implementation.
+---
+
+## Repository
+
+[Uniswap/tjar](https://github.com/Uniswap/tjar) holds the contracts, tests, and deployment scripts. It is licensed AGPL-3.0-only.
+
+TJAR derives from [Uniswap/protocol-fees](https://github.com/Uniswap/protocol-fees), pruned to the Token Jar and Releaser contracts and their supporting base and interface files. Everything specific to the Uniswap protocol fee and governance lives in that upstream repository.
+
+## Security Reviews
+
+| Review | Scope |
+|---|---|
+| OpenZeppelin, TJAR | The TJAR-specific diff against upstream. All findings remediated. |
+| OpenZeppelin, upstream (three reports) | The Uniswap protocol fee contracts TJAR derives from. |
+| Cantina, upstream | The Uniswap protocol fee contracts TJAR derives from. |
+
+All reports are in [audit/](https://github.com/Uniswap/tjar/tree/main/audit).
+
+## Contracts
+
+| Contract | Source |
+|---|---|
+| TokenJar | [src/TokenJar.sol](https://github.com/Uniswap/tjar/blob/main/src/TokenJar.sol) |
+| ExchangeReleaser | [src/releasers/ExchangeReleaser.sol](https://github.com/Uniswap/tjar/blob/main/src/releasers/ExchangeReleaser.sol) |
+| FeeController | [src/FeeController.sol](https://github.com/Uniswap/tjar/blob/main/src/FeeController.sol) |
+| Factory | [src/Factory.sol](https://github.com/Uniswap/tjar/blob/main/src/Factory.sol) |
+
+## Interfaces
+
+| Interface | Source |
+|---|---|
+| ITokenJar | [src/interfaces/ITokenJar.sol](https://github.com/Uniswap/tjar/blob/main/src/interfaces/ITokenJar.sol) |
+| IReleaser | [src/interfaces/IReleaser.sol](https://github.com/Uniswap/tjar/blob/main/src/interfaces/IReleaser.sol) |
+| IFeeController | [src/interfaces/IFeeController.sol](https://github.com/Uniswap/tjar/blob/main/src/interfaces/IFeeController.sol) |
+| IFactory | [src/interfaces/IFactory.sol](https://github.com/Uniswap/tjar/blob/main/src/interfaces/IFactory.sol) |
+| IResourceManager | [src/interfaces/base/IResourceManager.sol](https://github.com/Uniswap/tjar/blob/main/src/interfaces/base/IResourceManager.sol) |
+| INonce | [src/interfaces/base/INonce.sol](https://github.com/Uniswap/tjar/blob/main/src/interfaces/base/INonce.sol) |
+
+## Related
+
+- [Uniswap Protocol Fees](/docs/protocols/protocol-fee/overview) covers Uniswap's own deployment of this primitive, where fees are converted to UNI and burned.
+- [Deployments](/docs/protocols/tjar/deployments) lists the Factory and Fee Controller addresses per chain.
