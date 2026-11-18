@@ -6,7 +6,7 @@ faqs:
   - question: How do I get orders?
     answer: Fillers should start with polling for orders and rate limit at 4 RPS. The orders endpoint serves cached responses, and requests above 4 RPS return 429. Each response returns at most the last 50 orders, ordered by most recent.
   - question: Do I need an API key to poll for orders?
-    answer: No. The orders API is a separate service from the Trading API, and polling for open orders requires no API key. Raising a Trading API key's rate limit does not increase your polling throughput.
+    answer: No. The orders API is a separate service from the Trading API, and polling for open orders requires no API key. Raising a Trading API key's rate limit does not increase your polling throughput. The orders endpoint limits by client IP, so every request from the same egress IP shares one budget no matter which Trading API key, if any, is attached.
   - question: Which orders endpoint should I use?
     answer: |-
       Three different endpoints are called "orders", and fillers want the first one. GET /v2/orders on api.uniswap.org polls for open orders to fill and is the filler endpoint. POST /v1/order on trade-api.gateway.uniswap.org submits a signed order, and GET /v1/orders on the same host checks the status of a submitted order; both are for swappers and integrators and require an API key.
@@ -92,7 +92,7 @@ faqs:
 
   <div style={{ marginInlineStart: '1rem' }}>
 
-  No. The orders API is a separate service from the Trading API, and polling for open orders requires no API key. Raising a Trading API key's rate limit does not increase your polling throughput.
+  No. The orders API is a separate service from the Trading API, and polling for open orders requires no API key. Raising a Trading API key's rate limit does not increase your polling throughput. The orders endpoint limits by client IP, so every request from the same egress IP shares one budget no matter which Trading API key, if any, is attached.
 
   </div>
 
