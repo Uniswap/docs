@@ -1,0 +1,100 @@
+---
+title: Swap Against a DualPool
+description: Quote and execute swaps against DualPool pools using standard Uniswap v4 execution.
+---
+
+## Context
+
+Executing a swap against a DualPool requires nothing DualPool-specific. The pool is a standard Uniswap v4 pool; the hook deploys liquidity inside `beforeSwap` and removes it in `afterSwap`, transparently to the swapper. If your integration already swaps against hooked v4 pools, the execution path is unchanged.
+
+The two things that differ from a vanilla pool:
+
+1. **Quoting**: the pool holds ~0 resident liquidity between swaps, so quotes come from the hook's view functions, not from pool state or a tick-walking quoter
+2. **Gas**: each swap pays for a full JIT cycle (vault withdrawal, position adds/removes, re-deposit), which costs several times a vanilla v4 swap
+
+## Get a Quote
+
+Quote through the hook's `getIndicativeQuote`:
+
+```solidity
+uint256 quoted = IALFHook(address(key.hooks)).getIndicativeQuote(
+    key,
+    zeroForOne,          // true = currency0 -> currency1
+    amountSpecified,     // < 0 exact input, > 0 exact output (v4 convention)
+    ""                   // hookData is ignored; pass empty bytes
+);
+```
+
+- For exact input (`amountSpecified < 0`), the return value is the expected output
+- For exact output (`amountSpecified > 0`), the return value is the required input
+- A return value of `0` means the pool cannot price the swap right now (paused, unfunded, or the requested output exceeds deliverable reserves); do not route to it
+
+<Callout type="warn" title="Quotes are indicative">
+`getIndicativeQuote` is a non-binding upper bound, not a firm price. Enforce your own slippage with `amountOutMinimum` (or a maximum input) on execution. Never forward the quote as the user's bound.
+</Callout>
+
+## Execute via Universal Router
+
+Swaps route through the [Universal Router](/docs/protocols/universal-router/overview) exactly as for any v4 pool, with the `V4_SWAP` command:
+
+```solidity
+bytes memory commands = abi.encodePacked(uint8(Commands.V4_SWAP));
+
+bytes memory actions = abi.encodePacked(
+    uint8(Actions.SWAP_EXACT_IN_SINGLE),
+    uint8(Actions.SETTLE_ALL),
+    uint8(Actions.TAKE_ALL)
+);
+
+bytes[] memory params = new bytes[](3);
+params[0] = abi.encode(
+    IV4Router.ExactInputSingleParams({
+        poolKey: key,
+        zeroForOne: zeroForOne,
+        amountIn: amountIn,
+        amountOutMinimum: amountOutMinimum,  // your slippage bound
+        hookData: ""                          // ignored by DualPool
+    })
+);
+params[1] = abi.encode(inputCurrency, amountIn);
+params[2] = abi.encode(outputCurrency, amountOutMinimum);
+
+bytes[] memory inputs = new bytes[](1);
+inputs[0] = abi.encode(actions, params);
+
+router.execute(commands, inputs, deadline);
+```
+
+Token allowances follow the standard [Permit2](/docs/protocols/permit2/overview) flow: a one-time max ERC-20 approval to Permit2, then a signed `PermitSingle` embedded in the same `execute` call via the `PERMIT2_PERMIT` command. Steady-state swaps that already have an unexpired permit are a single `V4_SWAP` command.
+
+For a full walkthrough of v4 swap encoding, see the [v4 swapping guides](/docs/protocols/v4/guides/swapping/getting-started).
+
+## Execute via PoolManager
+
+Contracts integrating at the core layer swap through the `PoolManager` directly. Call `unlock`, then inside `unlockCallback`:
+
+```solidity
+SwapParams memory params = SwapParams({
+    zeroForOne: zeroForOne,
+    amountSpecified: amountSpecified,   // < 0 exact input, > 0 exact output
+    sqrtPriceLimitX96: yourPriceLimit   // your slippage bound
+});
+BalanceDelta delta = poolManager.swap(key, params, "");
+```
+
+Then settle and take the resulting deltas as usual. See [Unlock Callback and Deltas](/docs/protocols/v4/guides/unlock-callback-and-deltas).
+
+## Practical Notes
+
+- **Paused pools revert.** A paused or not-yet-bootstrapped pool reverts with `PoolNotLive(poolId)` on execution and returns `0` from the quote views. Read `livePools(poolId)` on the hook to pre-filter.
+- **Native ETH is unsupported.** DualPool rejects native-currency pools at creation; use wrapped-token pairs.
+- **No callbacks into the swapper.** DualPool declares no return-delta permissions, so your `BalanceDelta` is plain v4 swap math at the pool's static `key.fee`.
+- **Token quirks still apply.** For example, USDT requires resetting a non-zero allowance to zero before changing it, and both USDC and USDT use 6 decimals; read `decimals()` rather than assuming 18.
+
+<Callout type="info" title="Gas profile">
+A DualPool swap costs roughly 15x a vanilla v4 swap (observed 1.7M-2.1M gas on the mainnet USDC/USDT pool) because the JIT cycle includes vault withdrawals and deposits. At sub-gwei base fees this is pennies, but routers should weigh it in EV calculations.
+</Callout>
+
+## Next Steps
+
+Building a router or aggregator integration? Read [Integrate as a Router or Aggregator](/docs/protocols/dualpool/guides/router-integration) for the full quote surface, sizing rules, and failure modes.

@@ -1,0 +1,67 @@
+---
+title: LP Shares
+description: Understand DualPool's internal share accounting, virtual-shares inflation defense, and deposit locks.
+---
+
+## LP Shares
+
+Liquidity providers in a DualPool do not receive ERC-20 share tokens and do not hold v4 positions. Shares are internal, non-transferable accounting entries kept per pool by the hook. A share represents a proportional claim on the pool's [total assets](/docs/protocols/dualpool/concepts/inventory-and-yield) (vault shares, claims, and tracked ERC-20 together), so LPs earn swap fees and vault yield without taking any further action.
+
+## Bootstrap
+
+Every pool must be seeded by the owner before it can trade:
+
+```solidity
+bootstrap(PoolKey key, uint256 amount0, uint256 amount1) returns (uint256 shares)
+```
+
+Bootstrap pulls both tokens, mints `sqrt(received0 * received1)` shares to the owner, and flips the pool live. The owner-supplied amounts set the initial share/asset ratio, which matters for pairs with asymmetric decimals. Amounts below a per-pool floor revert with `BootstrapTooSmall`, so the bootstrapper's economic claim is not meaningfully diluted by the virtual position described below.
+
+## Virtual-Shares Inflation Defense
+
+Share conversion uses the EIP-4626 virtual-offset pattern. Conversions add one virtual asset and `10 ** decimalsOffset` virtual shares to the ratio:
+
+```
+amount = shares * (totalAssets + 1) / (totalShares + 10 ** offset)
+```
+
+The offset is derived per pool from the pair's token decimals:
+
+```
+offset = clamp((decimals0 + decimals1) / 2 - 6, 6, 12)
+```
+
+For an 18/18-decimal pair the offset is 12; for a 6/6-decimal stablecoin pair it is 6. The virtual position makes post-bootstrap donation attacks uneconomic, at the cost of permanently retaining a dust amount of assets (roughly one token unit per side on a 6/6 pool).
+
+<Callout type="warn">
+Interfaces must reproduce this exact math, `totalShares + 10 ** offset` denominators with the rounding below, when displaying redeemable amounts. Naive pro-rata math will not match the contract. Prefer the contract's `previewWithdraw` answer when they differ.
+</Callout>
+
+## Deposits and Withdrawals
+
+After bootstrap:
+
+- `addLiquidity` mints a requested number of shares and pulls token0/token1 proportional to current total assets. Deposits round up, so new LPs cannot dilute existing LPs.
+- `removeLiquidity` burns shares and returns proportional token0/token1. Withdrawals round down, so exiting LPs cannot over-withdraw.
+
+Both entry points take caller slippage bounds (`maxAmount0`/`maxAmount1` on deposit, `minAmount0`/`minAmount1` on withdrawal) and a deadline, protecting LPs from ratio changes and vault share-price moves between preview and execution.
+
+Use `previewDeposit(key, shares)` and `previewWithdraw(key, shares)` for offchain sizing, and `sharesOf(key, account)` / `totalShares(poolId)` to read positions.
+
+## Deposit Lock
+
+Each pool has a `minDepositBlocks` parameter, fixed at initialization, that controls how many blocks must elapse after an account's last deposit before it may withdraw:
+
+- `0`: no lock; same-block deposit-then-withdraw is allowed
+- `1`: same-block withdrawals revert, preventing single-block fee sniping
+- Larger values enforce longer holding periods
+
+A withdrawal inside the lock window reverts with `DepositLocked`.
+
+## External Deposits
+
+`addLiquidity` is owner-only by default. The owner can open a pool to third-party LPs with `setExternalDeposits(key, true)`; the current policy is readable via `externalDepositsEnabled(poolId)`.
+
+## Developer Resources
+
+For the end-to-end deposit and withdrawal flow, read [Provide Liquidity](/docs/protocols/dualpool/guides/provide-liquidity).
