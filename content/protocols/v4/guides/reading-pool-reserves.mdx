@@ -9,11 +9,11 @@ description: Read a Uniswap v4 pool's total reserves in one eth_call with Reserv
 
 | Field | Meaning |
 |---|---|
-| `coreAmount0`, `coreAmount1` | The pool's reserves: token amounts represented by the liquidity curve at the current price. **Fee-excluded principal**: uncollected LP fees, protocol fees, and donations are not included. |
+| `coreAmount0`, `coreAmount1` | The pool's reserves: token amounts represented by the entire liquidity curve, i.e. all LP positions, in range and out of range. The current price only determines the token0/token1 split of the one tick range containing it. **Fee-excluded principal**: uncollected LP fees, protocol fees, and donations are not included. |
 | `sqrtPriceX96`, `tick`, `activeLiquidity` | Pool price state at the same snapshot, so you don't need a second call. |
 | `blockNumber` | Block the snapshot was evaluated at. |
 | `hookPermissions` | The pool hook's 14 permission bits, decoded from its address. |
-| `hasCustomAccounting` | True if the hook has any return-delta permission, meaning it can hold value outside the curve. **If true, treat `coreAmount0/1` as approximate swappable depth.** |
+| `hasCustomAccounting` | True if the hook has any return-delta permission, meaning it can hold value outside the curve. **If true, treat `coreAmount0/1` as approximate: they miss hook-held value.** |
 | `hookReserves0/1`, `hookEffective0/1`, `statsProvider`, `statsStatus` | Optional hook-self-reported reserves (see below). |
 
 It cannot silently return wrong numbers: the lens reconstructs the liquidity curve from `PoolManager` storage and reverts (`LiquidityInvariantFailed`) unless the reconstruction exactly matches the pool's own stored liquidity.
@@ -100,7 +100,8 @@ Hook-reported numbers are self-reported: the lens verifies the provider claims t
 
 ## Reserve Semantics
 
-- **Reserves are fee-excluded principal**, i.e. "current liquidity value", the definition the official v4-subgraph also adopted (Uniswap/v4-subgraph#88). A pool's actual token balance is principal + not-yet-collected fees; the core amounts are the honest swappable-depth number. Subgraph data indexed before that fix carried "principal + all fees ever accrued" and reads high on busy pools (see appendix).
+- **Reserves cover the whole curve, not just in-range liquidity.** The lens walks every initialized tick and converts each position's liquidity back to raw token amounts. Ranges above the current price count as token0, ranges below as token1, and the range straddling the current price splits between both at `sqrtPriceX96`. If you want depth immediately available to swap at the current price, that's `activeLiquidity`, not the core amounts.
+- **Reserves are fee-excluded principal**, i.e. "current liquidity value", the definition the official v4-subgraph also adopted (Uniswap/v4-subgraph#88). A pool's actual token balance is principal + not-yet-collected fees. Subgraph data indexed before that fix carried "principal + all fees ever accrued" and reads high on busy pools (see appendix).
 - v2 `pool_info`-style reserves are balance-based and fee-inclusive; don't expect v4 numbers from the lens to be constructed identically.
 - The lens is stateless and view-only, intended for offchain `eth_call` use. Do not compose on it from another contract: its gas cost grows with the pool's tick count and is unbounded for adversarially-filled pools.
 - The `PoolManager` is a parameter, which makes one lens address work on every chain. Passing a wrong or non-canonical manager yields invalid data or reverts; always use the canonical `PoolManager` from the [deployments page](/docs/protocols/v4/deployments).
@@ -136,7 +137,7 @@ Fee-collection calls appear as `ModifyLiquidity` with `liquidityDelta = 0` and a
 
 ### Which TVL you are computing
 
-- **Current liquidity value (this method, and the lens):** tokens on the curve, i.e. actual swappable depth. This is the definition the Uniswap subgraph standardized on for v4 in #88.
+- **Current liquidity value (this method, and the lens):** tokens on the curve, across all price ranges, excluding fees. This is the definition the Uniswap subgraph standardized on for v4 in #88.
 - **v3 subgraph legacy semantics:** principal + accrued-but-uncollected fees (v3 has a `Collect` event that subtracts on collection; v4 has no such event, which is why v4 must exclude fees at swap time instead).
 - v2 has no distinction (fees auto-compound into reserves).
 
