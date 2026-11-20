@@ -29,22 +29,23 @@ The Unichain Public RPCs support a subset of the standard Ethereum JSON-RPC API 
 | `eth_accounts`               | Returns a list of addresses owned by the client       |
 | `eth_getBlockReceipts`       | Returns the receipts of a block by block hash or number |
 | `eth_sendRawTransaction`     | Submits a pre-signed transaction for broadcast to the Ethereum network |
+| `eth_getBlockTransactionCountByNumber` | Returns the number of transactions in the block with the given block number |
+| `eth_getBlockTransactionCountByHash` | Returns the number of transactions in the block with the given block hash |
+| `eth_getTransactionByBlockHashAndIndex` | Returns the information about a transaction by block hash and transaction index position |
+| `eth_getUncleByBlockHashAndIndex` | Returns information about an uncle of a block by hash and uncle index position |
+| `eth_syncing` | Returns an object with data about the sync status or false |
 
 ## Unsupported RPC Calls on Unichain Public RPCs
 
 The Unichain Public RPCs do not support the following Ethereum JSON-RPC API methods:
+
 | **RPC Method**               | **Description**                                      |
 | ---------------------------- | ---------------------------------------------------- |
 | `eth_blobBaseFee`            | Returns the base fee per blob gas in wei             |
-| `eth_getBlockTransactionCountByNumber` | Returns the number of transactions in the block with the given block number |
-| `eth_getBlockTransactionCountByHash` | Returns the number of transactions in the block with the given block hash |
 | `eth_getUncleCountByBlockNumber` | Returns the number of uncles in a block from a block matching the given block number |
 | `eth_getUncleCountByBlockHash` | Returns the number of uncles in a block from a block matching the given block hash |
 | `eth_getTransactionByBlockNumberAndIndex` | Returns the information about a transaction by block number and transaction index position |
-| `eth_getTransactionByBlockHashAndIndex` | Returns the information about a transaction by block hash and transaction index position |
 | `eth_getUncleByBlockNumberAndIndex` | Returns information about an uncle of a block by number and uncle index position |
-| `eth_getUncleByBlockHashAndIndex` | Returns information about an uncle of a block by hash and uncle index position |
-| `eth_syncing`                | Returns an object with data about the sync status or false |
 | `eth_mining`                 | Returns whether the client is actively mining new blocks |
 | `eth_hashrate`               | Returns the number of hashes per second that the node is mining with |
 | `eth_subscribe`              | Creates a new subscription for particular events                     |

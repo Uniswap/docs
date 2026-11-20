@@ -1,8 +1,11 @@
 {
   "title": "Completed Notifications",
   "pages": [
-    "removal-of-api-amm-slippage-cap",
-    "sunset-of-blast-support",
+    "numeric-chain-ids-required",
+    "uppercase-urgency-values",
+    "sunset-of-blast-swapping-support",
+    "sunset-of-universal-router-2-0-and-2-1-1",
+    "enforcement-of-slippage-validation",
     "live-on-unichain-flashblocks-200ms-sub-blocks",
     "live-on-unichain-fair-transaction-ordering-and-mev-protection",
     "upgrade-13-opcm-and-incident-response-improvements",

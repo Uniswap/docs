@@ -184,18 +184,18 @@ async function sendFastTransaction() {
 ```javascript
 import { createWalletClient, createPublicClient, http, parseEther } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
-import { unichain } from 'viem/chains';
+import { unichainSepolia } from 'viem/chains';
 
 const account = privateKeyToAccount(`0x${process.env.PRIVATE_KEY}`);
 
 const walletClient = createWalletClient({
   account,
-  chain: unichain,
+  chain: unichainSepolia,
   transport: http('https://sepolia.unichain.org'),
 });
 
 const publicClient = createPublicClient({
-  chain: unichain,
+  chain: unichainSepolia,
   transport: http('https://sepolia.unichain.org'),
 });
 
@@ -296,16 +296,18 @@ class WalletProvider {
 For production use cases, consider using a node provider that supports Flashblocks on Unichain.
 
 - **Alchemy:** https://www.alchemy.com/docs/reference/unichain-flashblocks-api-quickstart
-- **Quicknode:** https://www.quicknode.com/docs/Unichain/flashblocks/overview
+- **Quicknode:** https://www.quicknode.com/docs/unichain/flashblocks/overview
 
 ## Integrating Flashblocks (Node Operators)
 
 Flashblocks are published via a WebSocket API. Any `op-reth` node can subscribe to the WebSocket
-stream and serve pending data. [Supported RPC Methods](#supported-rpc-methods).
+stream and serve pending data for the [supported RPC methods](#supported-rpc-methods).
 
-Run the docker image `ghcr.io/base/node-reth:latest` with the binary name `./base-node-reth` like a typical
-op-reth node with the additional flag `--websocket-url=wss://mainnet-flashblocks.unichain.org/ws`
-(or the Unichain Sepolia URL if you are running a Unichain Sepolia node).
+Run op-reth as described in [Set Up a Node](/docs/unichain/getting-started/set-up-a-node) and add the
+flag `--flashblocks-url=wss://mainnet-flashblocks.unichain.org/ws` (or the Unichain Sepolia URL if you are
+running a Unichain Sepolia node). Requests that use the `pending` block tag are then answered from the
+Flashblocks state. See the [op-reth node reference](https://docs.optimism.io/node-operators/op-reth/cli/op-reth/node)
+for related flags.
 
 ### WebSocket API
 

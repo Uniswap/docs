@@ -1,18 +1,18 @@
 ---
 title: Protocol Fee Configuration
-description: Review protocol fee splits for Uniswap v2 and Uniswap v3 fee tiers in the current rollout.
+description: Review protocol fee splits for Uniswap v2, v3, and v4 in the current rollout.
 ---
 
-Protocol fees are a portion of swap fees routed to protocol-controlled collection contracts instead of LPs. They are distinct from LP swap fees and are governance-configurable.
+Protocol fees in v2 and v3 are a portion of swap fees routed to protocol-controlled collection contracts instead of LPs. They are distinct from LP swap fees and are governance-configurable. Uniswap v4 fees are an additive protocol fee on the trader side determined through a governance-controlled policy contract and configurable at the pool level.
 
 ## Swap Fees and Protocol Fees
 
 - **Swap fee:** charged on every trade and distributed to LPs based on active liquidity.
-- **Protocol fee:** a portion of the swap fee redirected to protocol fee collection contracts.
+- **Protocol fee:** In v2 and v3, the pool's total swap fee is fixed, and protocol fees reallocate a portion of that fixed fee away from LPs based on the pool's fee tier. In v4, LP fee and protocol fee are independent parameters that combine into the effective swap fee, so protocol fees are additive to the swapper.
 
-In the current rollout, protocol fees are active on all Uniswap v2 pools and selected Uniswap v3 pools. Additional adapter flows can be enabled through governance.
+In the current rollout, protocol fees are active on all Uniswap v2 pools, all Uniswap v3 pools, and three v4 pool families: static/native-math pools, CCA pools, and aggregator hook pools. Additional v4 families can be enabled through governance.
 
-## Fee Split Table
+## v2 and v3 Fee Split Table
 
 | Version | Fee tier | LP fee | Protocol fee |
 |---------|----------|--------|--------------|
@@ -22,13 +22,67 @@ In the current rollout, protocol fees are active on all Uniswap v2 pools and sel
 | v3      | 0.30%    | 0.25%  | 0.05%       |
 | v3      | 1.00%    | 0.8334% | 0.1666%   |
 
+## v4 Fee Resolution
+
+v4 pools don't have fixed fee tiers like v3, so protocol fees can't be set per-tier the same way. Instead, a **V4FeePolicy** contract computes the fee for any pool from governance-defined rules, and a **V4FeeAdapter**, registered with the PoolManager as `protocolFeeController`, applies that fee and routes the proceeds to the TokenJar.
+
+The adapter resolves a pool's fee in order: a per-pool override (if governance set one) → a per-pair rate within the pool's family → the family's own default or curve → a global default.
+
+A pool's **family** depends on its characteristics, meaning whether it has a hook, uses native swap math, or charges dynamic fees. Hooks can self-classify via `protocolFeeFlags()`, or governance can assign a family directly with `setHookFamily`, which always takes priority. Two families have configured fees today:
+
+- **Static/native-math and CCA pools** use the piecewise curve below, keyed to the LP fee tier.
+- **Aggregator hook pools,** or hooks routing external liquidity into the v4 graph, use the flat fee below instead.
+
+Governance configures all overrides, pair rates, family defaults, curve buckets through the policy's `feeSetter` role. The `owner` role can swap the policy contract itself or reassign `feeSetter`.
+
+For further detail, see the [V4FeePolicy Governance Operator Guide](https://github.com/Uniswap/protocol-fees/blob/main/docs/V4FeePolicy-governance-guide.md).
+
+## v4 Static Pool Fee Curve
+
+Static/native-math and CCA pools use a piecewise-linear curve keyed to the pool's LP fee tier. Each range has a floor, and the next range's floor is the previous range's ceiling. Within a range, fee = `alpha + beta × (lpFee - floor)`, floored to the nearest 0.01bp (v4's minimum fee resolution).
+
+| Range (bps) | Floor | Alpha (bps) | Beta |
+|-------------|-------|-------------|------|
+| 0 to 0.03    | 0     | 0.01        | 0     |
+| 0.03 to 0.75 | 0.03  | 0.01        | 19/72 |
+| 0.75 to 1    | 0.75  | 0.2         | 0.2   |
+| 1 to 3.75    | 1     | 0.25        | 3/11  |
+| 3.75 to 5    | 3.75  | 1           | 0.2   |
+| 5 to 25      | 5     | 1.25        | 11/80 |
+| 25 to 55     | 25    | 4           | 0.2   |
+| &gt; 55     | 55    | 10          | 0     |
+
+Resulting fee at representative LP fee tiers:
+
+| LP Fee (bps) | Protocol Fee (bps) |
+|--------------|--------------------|
+| 0.03         | 0.01               |
+| 0.75         | 0.20               |
+| 1            | 0.25               |
+| 3.75         | 1                  |
+| 5            | 1.25               |
+| 25           | 4                  |
+| 30           | 5                  |
+| 83.34        | 10                 |
+| 100          | 10                 |
+
+## v4 Aggregator Hook Fee Table
+
+Aggregator hook pools use a flat fee instead of the curve above, with a discount on select stable pairs. Because the PoolManager caps protocol fees at 10bps, aggregator hooks multiply their assigned fee by 25x internally to reach the effective rate below (allowing an effective cap of 250bps on this externally-sourced flow).
+
+| Chain | Family default | Select stable pairs |
+|-------|----------------|---------------------|
+| All chains except Base | 10bp | 3bp |
+| Base  | 3bp            | 1bp                 |
+
+Per-pair overrides on top of these defaults are set by governance through the `feeSetter` role on V4FeePolicy.
+
 ## How Configuration Is Enabled
 
 - **Uniswap v2:** protocol fees are enabled or disabled globally by setting `feeTo` on the v2 factory through governance. When enabled, the protocol fee rate is fixed in pair contracts at `1/6` of the swap fee (`0.05%` of the `0.30%` total).
-- **Uniswap v3:** protocol fee configuration is applied to selected pools via governance-controlled configuration flows.
-- **Uniswap v4 adapters:** part of the broader protocol-fees architecture and can be enabled through governance.
+- **Uniswap v3:** protocol fees are set via the open, tier-based `V3OpenFeeAdapter`. Every pool inherits its tier's default fee automatically; governance can override individual pools.
+- **Uniswap v4:** protocol fees are computed by `V4FeePolicy` and enforced by `V4FeeAdapter`.
 
-A full list of v3 pools in the initial rollout is available [here](https://github.com/Uniswap/protocol-fees/blob/main/merkle-generator/data/merkle-tree.json).
 For a broader conceptual overview of fees across protocol versions, see [Fees](/docs/get-started/concepts/fees).
 
 ## Collection and Conversion

@@ -695,7 +695,7 @@ Swapping native ETH works a little differently. Don't transfer ETH to the router
 
 ### Simulation
 
-We simulate these quotes the same way we simulate everything else, so a `/quote` response includes `swapTransaction` under the usual [calldata-in-quote](/docs/changelog/active-notifications/swap-calldata-in-quote-response) rules. Two simulation failures don't count against you here, because they don't apply when a bridge is funding the router: `TRANSFER_FROM_FAILED` (the swapper couldn't pay, but they aren't paying) and `SLIPPAGE_TOO_LOW` (just re-quote with a wider tolerance). You still get calldata for those.
+We simulate these quotes the same way we simulate everything else, so a `/quote` response includes `swapTransaction` under the usual [calldata-in-quote](/docs/trading/swapping-api/getting-started#high-level-message-flow) rules. Two simulation failures don't count against you here, because they don't apply when a bridge is funding the router: `TRANSFER_FROM_FAILED` (the swapper couldn't pay, but they aren't paying) and `SLIPPAGE_TOO_LOW` (just re-quote with a wider tolerance). You still get calldata for those.
 
 If the simulation fails for any other reason, like the swap reverting outright or the simulation not being able to run, we return a 422 instead of a quote with no calldata. There's no safe way to hand you calldata for a route we know is broken.
 

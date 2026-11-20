@@ -9,7 +9,7 @@ Deploy a smart contract on Unichain with Foundry, then verify the deployment on 
 
 > ETH on Unichain is required. See [Get Funds on Unichain](/docs/unichain/getting-started/get-funds-on-unichain).
 
-1. The guide uses [foundry](https://book.getfoundry.sh) for deployments. Install it by running:
+1. The guide uses [foundry](https://www.getfoundry.sh) for deployments. Install it by running:
 
     ```bash
     curl -L https://foundry.paradigm.xyz | bash
@@ -42,7 +42,7 @@ Due to the EVM-equivalence of *Unichain*, foundry commands should work as expect
     ```
 
 ### 3. Verify the contract
-    Obtain an API key from [Uniscan Sepolia](https://sepolia.uniscan.xyz).
+    Obtain an API key from [Etherscan](https://etherscan.io/apis). Etherscan API V2 keys work for Unichain Mainnet and Unichain Sepolia, which are both on the [supported chains list](https://docs.etherscan.io/supported-chains).
 
     There are two options to verify your contract:
     - During deployment
@@ -65,9 +65,9 @@ Due to the EVM-equivalence of *Unichain*, foundry commands should work as expect
         {the_contract_address} \
         src/{YourContract}.sol:{ContractName}
     ```
-    [forge verify-contract](https://book.getfoundry.sh/reference/forge/forge-verify-contract)
+    [forge verify-contract](https://www.getfoundry.sh/reference/forge/verify-contract)
 
-Additional information [here](https://book.getfoundry.sh/forge/deploying) or [other deployment options](https://book.getfoundry.sh/reference/forge/forge-create)
+Additional information [here](https://www.getfoundry.sh/guides/deploying-contracts) or [other deployment options](https://www.getfoundry.sh/reference/forge/create)
 
 ## Example Deployment
 
@@ -79,7 +79,7 @@ See [Deploy a SuperchainERC20 token](/docs/unichain/guides/deploy-a-superchain-e
 Verifying during deployment is recommended because compilation parameters are known at deployment time.
 
 ### Scripting
-For complex deployments (multiple contracts, complex constructor arguments, or create-and-call patterns), use Foundry's [Solidity scripting](https://book.getfoundry.sh/tutorials/solidity-scripting).
+For complex deployments (multiple contracts, complex constructor arguments, or create-and-call patterns), use Foundry's [Solidity scripting](https://www.getfoundry.sh/forge/scripting).
 
 ## Where to Go Next
 
