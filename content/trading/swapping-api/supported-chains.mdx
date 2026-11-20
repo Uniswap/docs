@@ -9,7 +9,7 @@ The following chains are supported for swapping. **Note the router address, whic
 
 For the avoidance of any doubt, the most up to date list of routers is available in GitHub [here](https://github.com/Uniswap/sdks/blob/main/sdks/universal-router-sdk/src/utils/constants.ts).
 
-Support for Universal Router 2.0 and 2.1.1 ends on October 21, 2026. See [Sunset of Universal Router 2.0 and 2.1.1](/docs/changelog/active-notifications/sunset-of-universal-router-2-0-and-2-1-1).
+Support for Universal Router 2.0 and 2.1.1 ends on October 21, 2026. See [Sunset of Universal Router 2.0 and 2.1.1](/docs/changelog/completed-notifications/sunset-of-universal-router-2-0-and-2-1-1).
 
 
 | Chain ID             | Chain Name                 | Universal Router 2.1.2 Address             | UniswapX Support |
@@ -34,6 +34,7 @@ Support for Universal Router 2.0 and 2.1.1 ends on October 21, 2026. See [Sunset
 | 43114                | Avalanche                  | 0x661E93cca42AfacB172121EF892830cA3b70F08d | Yes              |
 | 57073                | Ink                        | 0x661E93cca42AfacB172121EF892830cA3b70F08d | Yes              |
 | 59144                | Linea                      | 0xDc264714F68d84CF29BC605589405E78bDBE7C9f |                  |
+| 99901                | Elysium                    | 0xA13f7611115752DEB2B13813BDDE16A5073e4b45 |                  |
 | 7777777              | Zora                       | 0xF025e0Fe9E331A0eF05c2ad3C4E9C64b625cda6f |                  |
 | **Testnets**         |                            |                                            |                  |
 | 1301                 | Unichain Sepolia (Testnet) | 0xDf38F24fE153761634Be942F9d859f3DBA857E95 |                  |
@@ -54,7 +55,7 @@ The Trading API builds swap calldata for a specific Universal Router version. Se
 
 When you do not send the `x-universal-router-version` header, the API defaults to Universal Router `2.1.2` on every chain that has a 2.1.2 deployment. zkSync has no 2.1.2 and runs `2.0` only. zkSync's 2.0 Universal Router address is `0x28731BCC616B5f51dD52CF2e4dF0E78dD1136C06`.
 
-You can always set the header explicitly. Requesting a version a chain does not support returns an error, for example `2.0` on Robinhood Chain and Arc, neither of which has a `2.0` deployment.
+You can always set the header explicitly. Requesting a version a chain does not support returns an error, for example `2.0` on Robinhood Chain, Arc, and Elysium, none of which has a `2.0` deployment.
 
 The table above lists the 2.1.2 address for each chain. **The default can change over time, so set the header explicitly when you need a stable target.**
 

@@ -52,7 +52,7 @@ go run ./deposit-hash -rpc https://eth.merkle.io -tx $L1_DEPOSIT_TX_HASH
 This step initiates your withdrawal on L1. This step requires a proposer to have proposed an output which includes your withdrawal. Proposals occur about once every hour.
 
 ```bash
-git clone https://github.com/base-org/withdrawer
+git clone https://github.com/base/withdrawer
 cd withdrawer
 
 export L2_TX_HASH=... # Take from the deposit-hash command
@@ -62,7 +62,7 @@ PORTAL_ADDR=0x0bd48f6B86a26D3a217d0Fa6FfE2B491B956A7a2
 DGF_ADDRESS=0x2F12d621a16e2d3285929C9996f478508951dFe4
 export PK=... # L1 private key. Can also use a ledger.
 
-go run main.go --withdrawal $L2_TX_HASH --rpc=$L1_RPC --fault-proofs --l2-rpc=$L2_RPC --portal-address=$PORTAL_ADDR --dfg-address=$DGF_ADDRESS --private-key=$PK --network=op-mainnet
+go run main.go --withdrawal $L2_TX_HASH --rpc=$L1_RPC --fault-proofs --l2-rpc=$L2_RPC --portal-address=$PORTAL_ADDR --dgf-address=$DGF_ADDRESS --private-key=$PK --network=op-mainnet
 ```
 
 ## Finalizing the L1 Withdrawal
@@ -79,7 +79,7 @@ PORTAL_ADDR=0x0bd48f6B86a26D3a217d0Fa6FfE2B491B956A7a2
 DGF_ADDRESS=0x2F12d621a16e2d3285929C9996f478508951dFe4
 export PK=... # L1 private key. Can also use a ledger.
 
-go run main.go --withdrawal $L2_TX_HASH --rpc=$L1_RPC --fault-proofs --l2-rpc=$L2_RPC --portal-address=$PORTAL_ADDR --dfg-address=$DGF_ADDRESS --private-key=$PK --network=op-mainnet
+go run main.go --withdrawal $L2_TX_HASH --rpc=$L1_RPC --fault-proofs --l2-rpc=$L2_RPC --portal-address=$PORTAL_ADDR --dgf-address=$DGF_ADDRESS --private-key=$PK --network=op-mainnet
 ```
 
 ## Submitting Arbitrary Transactions from L1

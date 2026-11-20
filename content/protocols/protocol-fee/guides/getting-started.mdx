@@ -11,9 +11,15 @@ The simplest way to interact with the system is calling [`Firepit.release()`](/d
 <Callout type="note">
 It is possible to interact with the `Firepit` contract via a custom smart contract to enable:
 * slippage / balance checks
-* Uniswap v3 Fee [collection](/docs/protocols/protocol-fee/guides/best-practices#collect-uniswap-v3-fees)
+* Uniswap v3 Fee collection
 * Uniswap v2 LP Token [redemptions](/docs/protocols/protocol-fee/guides/read-asset-balances#uniswap-v2-pool-protocol-fees)
 * UNI token flash loans
+</Callout>
+
+<Callout type="error">
+The nonce mechanism prevents front-running attacks, where a successful front-run would cause the victim to burn a substantial amount of UNI in exchange for little to no assets.
+
+Integrating *contracts* should **NEVER** read the `nonce` at the time of the transaction. In the safe pattern, the caller is responsible for reading the `Firepit.nonce()` offchain, associating it with releasable assets, and passing it as a **calldata** parameter.
 </Callout>
 
 ## Step 1: Acquire a Sufficient Amount of UNI
@@ -96,5 +102,4 @@ Confirm the `release` transaction is successful and inspect token transfers to v
 ## Where to Go Next
 
 - [Read Asset Balances](/docs/protocols/protocol-fee/guides/read-asset-balances)
-- [Best Practices](/docs/protocols/protocol-fee/guides/best-practices)
 - [Deployments](/docs/protocols/protocol-fee/deployments)

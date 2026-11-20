@@ -6,21 +6,12 @@ description: Understand how protocol fees flow from Uniswap products into TokenJ
 
 Fees from protocol versions (v2, v3, v4, UniswapX, Unichain) flow into a single onchain collector on each network. From there, specialized contracts handle how those assets are released or transformed (for example, burning UNI).
 
-The Token Jar and Releaser pattern described here is also available as standalone infrastructure that any protocol can deploy for its own fees. See [TJAR](/docs/protocols/tjar/overview).
-
 ## Flow of Assets
 
-1. **Fee Sources**
-Each protocol component that generates fees (v2, v3, v4, UniswapX, Unichain, and others) routes those fees through an associated Fee Adapter contract. Adapters define how and when fees are collected and send them to the TokenJar on the same chain.
-
-2. **TokenJar**
-   Each chain has one immutable contract called the **TokenJar**. All fee sources send tokens here. It’s the unified collection point for raw tokens.
-
-3. **Releasers**
-   Releasers define how tokens in the TokenJar are accessed. The simplest version burns UNI in exchange for the collected tokens. Other Releasers could handle cross-chain conversions or alternative value flows.
-
-4. **Governance Control**
-   Governance can update which Releaser a TokenJar uses or adjust configuration on Fee Adapters, but the core contracts themselves are immutable.
+1. **Fee Sources**: Each protocol component that generates fees (v2, v3, v4, UniswapX, Unichain, and others) routes those fees through an associated Fee Adapter contract. Adapters define how and when fees are collected and send them to the TokenJar on the same chain.
+2. **TokenJar**: Each chain has one immutable contract called the TokenJar. All fee sources send tokens here. It's the unified collection point for raw tokens.
+3. **Releasers**: Releasers define how tokens in the TokenJar are accessed. The simplest version burns UNI in exchange for the collected tokens. Other Releasers could handle cross-chain conversions or alternative value flows.
+4. **Governance Control**: Governance can update which Releaser a TokenJar uses or adjust configuration on Fee Adapters, but the core contracts themselves are immutable.
 
 ## Components
 
@@ -34,21 +25,20 @@ See the [TokenJar contract source](https://github.com/Uniswap/protocol-fees/blob
 
 Adapters that connect specific protocol versions or products to the TokenJar. They define how and when fees are collected.
 
-See the [Fee Adapter contract sources](https://github.com/Uniswap/protocol-fees/tree/main/src/feeAdapters) for more.
+See the [Fee Adapter contract source](https://github.com/Uniswap/protocol-fees/tree/main/src/feeAdapters) for more.
 
 ### Releasers
 
-Contracts that convert collected fees into protocol value according to defined logic.
-Examples include the Firepit Releaser, which burns UNI in return for assets.
+Contracts that convert collected fees into protocol value according to defined logic. Examples include the Firepit Releaser, which burns UNI in return for assets.
 
-See the [Releaser contract sources](https://github.com/Uniswap/protocol-fees/tree/main/src/releasers) for more.
+See the [Releaser contract source](https://github.com/Uniswap/protocol-fees/tree/main/src/releasers) for more.
 
 ## Real-World Example
 
-- Assume 100 UNI is the `threshold` amount for the Firepit Releaser.
-- When the top *N* assets in the *TokenJar* are worth slightly more than 100 UNI, **anyone** is incentivized to use the `Firepit.release()` contract to:
-    1. Burn 100 UNI
-    2. Withdraw the top *N* assets, *valued* at slightly more than 100 UNI
+- Assume 100 UNI is the threshold amount for the Firepit Releaser.
+- When the top N assets in the TokenJar are worth slightly more than 100 UNI, anyone is incentivized to use the `Firepit.release()` contract to:
+  1. Burn 100 UNI
+  2. Withdraw the top N assets, valued at slightly more than 100 UNI
 
 ## Firepit Mechanics
 
@@ -59,10 +49,3 @@ See the [Releaser contract sources](https://github.com/Uniswap/protocol-fees/tre
 ### Release
 
 `Firepit.release()` is user-triggered. The caller submits the transaction with their signer and burns the required UNI amount to withdraw configured assets from the releaser flow.
-
-## Where to Go Next
-
-- [Concepts](/docs/protocols/protocol-fee/concepts/fees)
-- [Guides](/docs/protocols/protocol-fee/guides/getting-started)
-- [Deployments](/docs/protocols/protocol-fee/deployments)
-- [TJAR](/docs/protocols/tjar/overview)

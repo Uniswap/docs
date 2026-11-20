@@ -1,25 +1,11 @@
 ---
 title: Troubleshooting
-description: Troubleshoot common Uniswap API request, quoting, authentication, and rate limit errors in swapping integrations.
+description: Troubleshoot common Uniswap API request, quoting, UniswapX order, authentication, and rate limit errors in swapping integrations.
 ---
 
-## Common Issues
+## How to read this page
 
-### Headers
-
-The API is specific about request header validation. In particular, ensure that your `accept` and `content-type` headers only include the value `application/json`. For a complete example of properly formatted request headers, see the authentication section of the [Developer Dashboard](https://developers.uniswap.org/dashboard).
-
-If you're sending the optional `X-Agent-Info` attribution header and it isn't being picked up, check the response for an `x-agent-info-status: malformed` header. See [Agent Attribution](/docs/trading/swapping-api/start-building/agent-attribution#what-makes-a-header-malformed) for the full set of rules that make the header malformed. A malformed `X-Agent-Info` never causes an error response; the request proceeds without attribution.
-
-### Rate limits
-
-Most API keys have a default rate limit of 6 requests per second (RPS). If you exceed the rate limit supported by an API key you can expect to receive an HTTP 429 error. If you receive a 429 error, we recommend pausing all requests from your API key and then retrying your requests. If you require a higher rate limit than what your API key is currently provisioned for, please reach out to our team via the <HelpCenter topic="uniswap-api" category="rate-limits">Help form</HelpCenter>. For more information on rate limits, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).
-
-## Error Code Troubleshooting
-
-### 404 No quotes available
-
-The most commonly encountered HTTP error is an HTTP 404 from the [`/quote`](/docs/trading/swapping-api/getting-started) endpoint. The `errorCode` field identifies the cause, and `detail` carries a human-readable explanation:
+Every error response has the same shape:
 
 ```json
 {
@@ -29,55 +15,34 @@ The most commonly encountered HTTP error is an HTTP 404 from the [`/quote`](/doc
 }
 ```
 
-`errorCode` is a stable enum. `detail` is free text and may be reworded without notice. New `errorCode` values may be added over time, so treat unrecognized values the same as you do `ResourceNotFound`.
+- **HTTP status:** the kind of problem. Start here.
+- **`errorCode`:** the cause, as a stable value you can match on. New values may be added over time.
+- **`detail`:** a human-readable explanation. Some errors share an `errorCode` and differ only in `detail`; the tables below say which field to read.
+- **`requestId`:** identifies the request. Include it whenever you contact support.
 
-| `errorCode` | What it means | What to do |
+| Status | Meaning | Retry unchanged? |
 |---|---|---|
-| `QuoteAmountTooLowError` | The `amount` is below the minimum quotable size for the requested protocols — most commonly UniswapX minimums on L2s (see [UniswapX Chain Support](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support)) | Increase the amount, or widen `protocols` |
-| `NoRouteFoundError` | Routing completed and found no viable route for this pair | Verify token addresses match the specified chain; do not retry unchanged |
-| `UnsupportedTokenError` | A requested token is not routable (unknown or not on this chain), or the only route goes through a token we have no metadata for | Verify the token address belongs to the given chain (ex. USDC on Mainnet differs from Base) |
-| `UnsupportedChainError` | The chain is not supported for this operation | See [Supported Chains](/docs/trading/swapping-api/supported-chains) |
-| `UniswapXNotSupportedOnChainError` | A UniswapX protocol was requested on a chain it does not serve | Remove the UniswapX protocol pin, or change chain |
-| `UpstreamTimeoutError` | A routing dependency timed out or failed | **Retry with exponential backoff** — this is the only cause where an unchanged retry can succeed |
-| `ResourceNotFound` | The failure could not be classified (`detail` is "No quotes available") | Retry cautiously |
+| 400 | The request or the signed order needs fixing | No |
+| 401 | Missing or invalid API key, or malformed headers | No |
+| 403 | A token or wallet in the request failed a compliance check | No |
+| 404 | `/quote` couldn't return a quote for this request | Only for the causes marked below |
+| 422 | The request was valid, but a swap couldn't be built for it | No |
+| 429 | Rate limit exceeded | Yes, after pausing |
+| 5xx | A service on Uniswap's side failed or timed out | Yes, with backoff |
 
-A request that combines a bridge and a swap (different chains *and* different tokens) is not supported as a single quote and currently surfaces as `ResourceNotFound`. Request a bridge or a swap, not both — for bridgeable pairs see [Supported Chains](/docs/trading/swapping-api/supported-chains).
+[All endpoints](#all-endpoints) covers errors any request can hit. The sections after it cover each endpoint: [POST /quote](#post-quote), [POST /quote and /swap with swapSource](#post-quote-and-swap-with-swapsource) and [POST /order](#post-order).
 
-### 400 Request validation error
+## All endpoints
 
-Request validation errors are returned when a request does not contain the minimum required set of fields or has other syntactical errors. Some examples are a required field is not populated ([`/quote`](/docs/trading/swapping-api/getting-started) requires `type`, `amount`, `tokenInChainId`, `tokenOutChainId`, `tokenIn`, `tokenOut`, and `swapper`), or an address is missing a character (eg. is 39 characters long instead of 40). These errors typically include a specific error message which describes the field which could not be interpreted.
+### Headers
 
-### 400 Integrator fee errors
+The API is specific about request header validation. In particular, ensure that your `accept` and `content-type` headers only include the value `application/json`. For a complete example of properly formatted request headers, see the authentication section of the [Developer Dashboard](https://developers.uniswap.org/dashboard).
 
-If something's off with your `integratorFees`, `/quote` returns a 400 with one of these `errorCode` values:
+If you're sending the optional `X-Agent-Info` attribution header and it isn't being picked up, check the response for an `x-agent-info-status: malformed` header. See [Agent Attribution](/docs/trading/swapping-api/start-building/agent-attribution#what-makes-a-header-malformed) for the full set of rules that make the header malformed. A malformed `X-Agent-Info` never causes an error response; the request proceeds without attribution.
 
-| `errorCode` | What went wrong | How to fix it |
-|---|---|---|
-| `IntegratorFeesTooManyEntriesError` | You sent more than 4 fee entries | Send 4 or fewer |
-| `IntegratorFeeEntryExceedsMaxError` | One entry is over 500 bips | Bring that entry down to 500 or less |
-| `IntegratorFeesTotalExceedsMaxError` | The entries add up to more than 500 bips | Bring the total down to 500 or less |
-| `InvalidIntegratorFeesError` | Something else is malformed: a repeated recipient, a zero or over-precise `bips`, or a sentinel address as a recipient | Check `detail`, it names the problem |
+### 401 Unauthorized error
 
-Splitting fees across more than one entry also needs `x-universal-router-version: 2.1.1` or higher. A lower version, or a chain that doesn't have 2.1.1 deployed yet, returns a 400.
-
-### Universal Router balance swap errors
-
-A normal `/quote` can return a 200 without `swapTransaction` and leave it to `/swap`. A `/quote` or `/swap` with `swapSource: "UNIVERSAL_ROUTER"` doesn't do that: if we can't build the calldata, you get an error instead of a quote. A 400 means the request itself needs fixing. A 422 means the request was fine but we couldn't build a swap for it. Either way, `detail` tells you what happened.
-
-| Status | `detail` | What to do |
-|---|---|---|
-| 400 | `swapSource "UNIVERSAL_ROUTER" requires tokenInChainId to equal tokenOutChainId` | Quote on the destination chain only |
-| 400 | `swapSource "UNIVERSAL_ROUTER" requires an EXACT_INPUT trade` | Use `EXACT_INPUT` |
-| 400 | `autoSlippage is not supported with swapSource "UNIVERSAL_ROUTER"` | Send a `slippageTolerance` instead |
-| 400 | `x-permit2-disabled is not supported with swapSource "UNIVERSAL_ROUTER"` | Drop the header; there's no permit in this flow |
-| 400 | `recipient cannot be a Universal Router sentinel (address(1)/address(2)) or the zero address` | Put the end user's address in `swapper` (or `recipient`) |
-| 400 | `wrap/unwrap pairs cannot be balance swapped; deliver the wrapped token directly` | Have your bridge deliver WETH |
-| 422 | `permissioned tokens cannot be balance swapped` | Not supported in this mode |
-| 422 | `no balance-swap route available for this pair` | Check the pair and chain; retrying unchanged won't help |
-| 422 | `the routed swap failed simulation; no balance-swap calldata is served for a known-failing route` | The swap reverted in simulation. Re-quote, or re-quote without `swapSource` to see `txFailureReasons` |
-| 422 | `the routed path cannot be executed from the router balance; re-quote without swapSource` | The route spends raw ETH in a v4 pool. Re-quote without `swapSource`, or deliver WETH |
-
-Two simulation failures don't trigger the 422: `TRANSFER_FROM_FAILED` and `SLIPPAGE_TOO_LOW`. Those quotes still come back with calldata. The [integration guide](/docs/trading/swapping-api/start-building/integration-guide#swapping-funds-already-in-the-universal-router) explains why.
+All API requests must be authenticated through the inclusion of a valid API key in the header of the request. If you do not have an API key, you may create one through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome?utm_medium=eco&utm_source=platform&utm_campaign=20260428-swapping-api-errors&utm_content=auth-section&utm_term=self-serve). 401 errors may also be returned if the request has malformed or missing required headers, or if headers contain unsupported values (see [Headers](#headers)). For more details on authentication requirements, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).
 
 ### 403 Compliance refusals
 
@@ -100,8 +65,158 @@ If a token or wallet in your request fails a compliance check, the request is re
 
 Don't retry these unchanged. Show the user that the token or wallet can't be traded.
 
-### 401 Unauthorized error
+### 429 Rate limits
 
-All API requests must be authenticated through the inclusion of a valid API key in the header of the request. If you do not have an API key, you may create one through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard/welcome?utm_medium=eco&utm_source=platform&utm_campaign=20260428-swapping-api-errors&utm_content=auth-section&utm_term=self-serve). 401 errors may also be returned if the request has malformed or missing required headers, or if headers contain unsupported values (see above). For more details on authentication requirements, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).
+Most API keys have a default rate limit of 6 requests per second (RPS). If you exceed the rate limit supported by an API key you can expect to receive an HTTP 429 error. If you receive a 429 error, we recommend pausing all requests from your API key and then retrying your requests. If you require a higher rate limit than what your API key is currently provisioned for, please reach out to our team via the <HelpCenter topic="uniswap-api" category="rate-limits">Help form</HelpCenter>. For more information on rate limits, see the [Developer Dashboard](https://developers.uniswap.org/dashboard).
 
-For developer support, please reach out to our team via the <HelpCenter topic="uniswap-api">Help form</HelpCenter>.
+### 400 Request validation error
+
+Request validation errors are returned when a request does not contain the minimum required set of fields or has other syntactical errors. Some examples are a required field is not populated ([`/quote`](/docs/api-reference/aggregator_quote) requires `type`, `amount`, `tokenInChainId`, `tokenOutChainId`, `tokenIn`, `tokenOut`, and `swapper`), or an address is missing a character (eg. is 39 characters long instead of 40). These errors typically include a specific error message which describes the field which could not be interpreted.
+
+## POST /quote
+
+### 404 No quotes available
+
+The most commonly encountered HTTP error is an HTTP 404 from the [`/quote`](/docs/api-reference/aggregator_quote) endpoint. Read `errorCode` to find the cause. Treat a value that isn't in this table the same as `ResourceNotFound`.
+
+| `errorCode` | What it means | What to do |
+|---|---|---|
+| `QuoteAmountTooLowError` | The `amount` is below the minimum quotable size for the requested protocols, most commonly UniswapX minimums on L2s (see [UniswapX Chain Support](/docs/trading/swapping-api/supported-chains#uniswapx-chain-support)) | Increase the amount, or widen `protocols` |
+| `NoRouteFoundError` | Routing completed and found no viable route for this pair | Verify token addresses match the specified chain; do not retry unchanged |
+| `UnsupportedTokenError` | A requested token is not routable (unknown or not on this chain), or the only route goes through a token we have no metadata for | Verify the token address belongs to the given chain (ex. USDC on Mainnet differs from Base) |
+| `UnsupportedChainError` | The chain is not supported for this operation | See [Supported Chains](/docs/trading/swapping-api/supported-chains) |
+| `UniswapXNotSupportedOnChainError` | A UniswapX protocol was requested on a chain it does not serve | Remove the UniswapX protocol pin, or change chain |
+| `UpstreamTimeoutError` | A routing dependency timed out or failed | **Retry with exponential backoff.** This is the only cause where an unchanged retry can succeed |
+| `ResourceNotFound` | The failure could not be classified (`detail` is "No quotes available") | Retry cautiously |
+
+A request that combines a bridge and a swap (different chains *and* different tokens) is not supported as a single quote and currently surfaces as `ResourceNotFound`. Request a bridge or a swap, not both. For bridgeable pairs, see [Supported Chains](/docs/trading/swapping-api/supported-chains).
+
+### 400 Integrator fee errors
+
+If something's off with your `integratorFees`, `/quote` returns a 400 with one of these `errorCode` values:
+
+| `errorCode` | What went wrong | How to fix it |
+|---|---|---|
+| `IntegratorFeesTooManyEntriesError` | You sent more than 4 fee entries | Send 4 or fewer |
+| `IntegratorFeeEntryExceedsMaxError` | One entry is over 500 bips | Bring that entry down to 500 or less |
+| `IntegratorFeesTotalExceedsMaxError` | The entries add up to more than 500 bips | Bring the total down to 500 or less |
+| `InvalidIntegratorFeesError` | Something else is malformed: a repeated recipient, a zero or over-precise `bips`, or a sentinel address as a recipient | Check `detail`, it names the problem |
+
+Splitting fees across more than one entry also needs `x-universal-router-version: 2.1.1` or higher. A lower version, or a chain that doesn't have 2.1.1 deployed yet, returns a 400.
+
+## POST /quote and /swap with swapSource
+
+### Universal Router balance swap errors
+
+A normal [`/quote`](/docs/api-reference/aggregator_quote) can return a 200 without `swapTransaction` and leave it to [`/swap`](/docs/api-reference/create_swap_transaction). A `/quote` or `/swap` with `swapSource: "UNIVERSAL_ROUTER"` doesn't do that: if we can't build the calldata, you get an error instead of a quote. A 400 means the request itself needs fixing. A 422 means the request was fine but we couldn't build a swap for it. Either way, read `detail` to find the cause.
+
+| Status | `detail` | What to do |
+|---|---|---|
+| 400 | `swapSource "UNIVERSAL_ROUTER" requires tokenInChainId to equal tokenOutChainId` | Quote on the destination chain only |
+| 400 | `swapSource "UNIVERSAL_ROUTER" requires an EXACT_INPUT trade` | Use `EXACT_INPUT` |
+| 400 | `autoSlippage is not supported with swapSource "UNIVERSAL_ROUTER"` | Send a `slippageTolerance` instead |
+| 400 | `x-permit2-disabled is not supported with swapSource "UNIVERSAL_ROUTER"` | Drop the header; there's no permit in this flow |
+| 400 | `recipient cannot be a Universal Router sentinel (address(1)/address(2)) or the zero address` | Put the end user's address in `swapper` (or `recipient`) |
+| 400 | `wrap/unwrap pairs cannot be balance swapped; deliver the wrapped token directly` | Have your bridge deliver WETH |
+| 422 | `permissioned tokens cannot be balance swapped` | Not supported in this mode |
+| 422 | `no balance-swap route available for this pair` | Check the pair and chain; retrying unchanged won't help |
+| 422 | `the routed swap failed simulation; no balance-swap calldata is served for a known-failing route` | The swap reverted in simulation. Re-quote, or re-quote without `swapSource` to see `txFailureReasons` |
+| 422 | `the routed path cannot be executed from the router balance; re-quote without swapSource` | The route spends raw ETH in a v4 pool. Re-quote without `swapSource`, or deliver WETH |
+
+Two simulation failures don't trigger the 422: `TRANSFER_FROM_FAILED` and `SLIPPAGE_TOO_LOW`. Those quotes still come back with calldata. The [integration guide](/docs/trading/swapping-api/start-building/integration-guide#swapping-funds-already-in-the-universal-router) explains why.
+
+## POST /order
+
+### Order validation errors
+
+[`POST /order`](/docs/api-reference/post_order) checks the swapper and the order before it accepts a UniswapX order, then simulates a fill of the signed order onchain. A failed check returns a 400 with `errorCode: "InputValidationError"`. Every row below shares that `errorCode`, so read `detail` to find the cause:
+
+```json
+{
+  "errorCode": "InputValidationError",
+  "detail": "Onchain validation failed: InvalidSignature",
+  "requestId": "..."
+}
+```
+
+Errors from the simulation start with `Onchain validation failed:`. For most of them the signed order can't be posted as is: request a new quote and sign its `permitData` instead of resubmitting the same order. Changing `slippageTolerance` doesn't fix signature, balance, allowance or deadline errors: they come from the signed order and the swapper's account, not from pool liquidity.
+
+| `detail` | Cause | What to do |
+|---|---|---|
+| `Insufficient balance` | The swapper's balance of the input token is below the order's input amount | Fund the swapper or quote a smaller amount |
+| `Insufficient allowance` | The swapper's allowance to Permit2 for the input token is below the order's input amount | [Approve Permit2](/docs/trading/swapping-api/concepts/permit2) for the input token, then post again |
+| `No quotes available` | No filler returned a firm quote when the order was posted | Request a new quote and sign a new order |
+| `Order deadline is too close or has already expired ...` | The order's auction window ends after its deadline | Request a new quote and sign it without delay |
+| `Signature in wrong format`, or another validation error on the signature | The signature is not a 65-byte hex string, for example a 64-byte compact (EIP-2098) signature | Send the 65-byte signature. See [Signing UniswapX orders from smart accounts](#signing-uniswapx-orders-from-smart-accounts) |
+| `Deadline must be in the future`, `Invalid reactor address`, `Invalid cosigner: ...` | The order failed the order service's field checks before simulation | Request a new quote, and post `encodedOrder` exactly as `/quote` returned it |
+| `Onchain validation failed: Expired` | The order's deadline, or its Permit2 signature deadline, passed before the simulation | Request a new quote and sign it without delay |
+| `Onchain validation failed: NonceUsed` | The order's Permit2 nonce was already used or cancelled | Don't resubmit this order. A new quote carries a new nonce |
+| `Onchain validation failed: InsufficientFunds` | The simulated transfer failed (`TRANSFER_FROM_FAILED`): balance or Permit2 allowance didn't cover the order at simulation time | Check balance and Permit2 allowance on the order's chain, then request a new quote |
+| `Onchain validation failed: InvalidSignature` | Permit2 recovered no signer, or a signer that isn't the order's swapper. For a swapper with code, the account's ERC-1271 `isValidSignature` rejected the signature | Sign `permitData` exactly as returned, with the key of the `swapper` you sent to `/quote`. For a smart account or EIP-7702 wallet, see [Signing UniswapX orders from smart accounts](#signing-uniswapx-orders-from-smart-accounts) |
+| `Onchain validation failed: InvalidOrderFields` | The reactor rejected the order's fields (amounts, decay times, reactor address, cosigner overrides, or fee outputs) | Request a new quote. Don't edit `encodedOrder` |
+| `Onchain validation failed: InvalidCosignature` | The order's cosignature doesn't verify | Request a new quote. Don't edit `encodedOrder` |
+| `Onchain validation failed: ExclusivityPeriod` or `ValidationFailed` | The simulated fill was rejected by the order's exclusivity rules or its additional validation contract | Request a new quote |
+| `Onchain validation failed: OrderNotFillableYet` | The simulation ran before the block from which the order can be filled. Priority orders in this state are accepted; other order types are rejected | Request a new quote |
+| `Onchain validation failed: UnknownError (revert 0x...)` | The simulation reverted with a reason the UniswapX SDK doesn't recognize. When the revert carries data, its 4-byte selector is appended | See [Troubleshooting UnknownError](#troubleshooting-unknownerror) |
+
+#### Troubleshooting UnknownError
+
+The order service simulates the fill through the UniswapX SDK, which maps known revert selectors to the values in the table above. Any other revert is reported as `UnknownError`. When the revert carries data, `detail` ends with its 4-byte selector, for example `Onchain validation failed: UnknownError (revert 0x12345678)`.
+
+Look the selector up in the ABIs of the contracts the order touches: the UniswapX reactor, Permit2, the input token and, for a swapper with code, its account implementation. Typical sources are an input token that reverts on transfer, or an account whose `isValidSignature` reverts instead of returning a value.
+
+If no selector is appended, the revert carried no data. For a swapper with code, the order service then checks the account's `isValidSignature` itself and returns `InvalidSignature` when the account doesn't accept the signature, including accounts that don't implement `isValidSignature`. An `UnknownError` without a selector that remains is rare: retry once, then contact support.
+
+If you can't identify it, contact support through the <HelpCenter topic="uniswap-api">Help form</HelpCenter> with the full `detail` (including the selector), the `requestId` from the error response, the chain ID and the swapper address.
+
+### 503 Failed to post order
+
+A 503 with `errorCode: "ServiceUnavailable"` and `detail: "Failed to post order"` means a service behind `/order` failed or timed out. The problem is on Uniswap's side, not in the order, so retry with backoff. The order may have been accepted anyway: check [`GET /orders`](/docs/api-reference/get_order) for the swapper before you ask the user to sign a new one.
+
+### Signing UniswapX orders from smart accounts
+
+A UniswapX order is signed as a Permit2 [signature transfer](/docs/protocols/permit2/concepts/signature-transfer). Permit2 verifies the signature in one of two ways, depending on whether the swapper address has code on the order's chain:
+
+- **No code:** Permit2 recovers the signer with `ecrecover` and compares it to the swapper.
+- **Has code:** Permit2 calls `isValidSignature(hash, signature)` on the swapper and requires the ERC-1271 magic value `0x1626ba7e`. An EOA with an EIP-7702 [delegation](/docs/protocols/smart-wallet/concepts/delegation) has code, so the delegate implementation decides whether the signature is valid. If it rejects the signature, or doesn't implement `isValidSignature`, `/order` returns `Onchain validation failed: InvalidSignature`.
+
+Before you call `POST /order` for a swapper with code:
+
+1. Make sure the signature is 65 bytes. `/order` rejects any other length before simulation, including 64-byte compact signatures and wrapped formats such as the [ERC-7739](/docs/protocols/smart-wallet/concepts/erc-7739) signatures from alternative signers on the Uniswap smart wallet. Signatures from the wallet's root EOA aren't wrapped.
+2. Call `isValidSignature` on the swapper, on the order's chain, with the EIP-712 hash of `permitData` and the signature. Post the order only if it returns `0x1626ba7e`.
+3. Run the check on every chain you support. Delegations are set per chain, so the same address can point to a different implementation, or have no code, on another chain.
+
+```typescript
+import { ethers } from 'ethers'
+
+const ERC1271_MAGIC_VALUE = '0x1626ba7e'
+
+// provider is connected to the order's chain; swapper and permitData are the ones used for /quote
+async function permit2WillAcceptSignature(provider, swapper, permitData, signature) {
+  if (ethers.utils.hexDataLength(signature) !== 65) return false
+  // No code: Permit2 uses ecrecover, so there is no ERC-1271 call to check
+  if ((await provider.getCode(swapper)) === '0x') return true
+
+  const hash = ethers.utils._TypedDataEncoder.hash(permitData.domain, permitData.types, permitData.values)
+  const account = new ethers.Contract(
+    swapper,
+    ['function isValidSignature(bytes32 hash, bytes signature) view returns (bytes4)'],
+    provider,
+  )
+  try {
+    return (await account.isValidSignature(hash, signature)) === ERC1271_MAGIC_VALUE
+  } catch {
+    return false
+  }
+}
+```
+
+If the check fails, the account's implementation doesn't accept a plain EIP-712 signature over the Permit2 hash. Sign with a method it accepts that still produces a 65-byte signature. To confirm the rest of your integration works, run the same flow from an EOA without code.
+
+If the account can't produce a signature that passes the check, for example because it only accepts wrapped signatures, it can't post UniswapX orders. It can still swap through [AMM routes](/docs/trading/swapping-api/amm-vs-uniswapx-routing): request them with `generatePermitAsTransaction: true` so the Permit2 approval comes back as a transaction instead of a message to sign, or use the [proxy approval flow](/docs/trading/swapping-api/concepts/no-permit2-workflow), which doesn't use Permit2.
+
+If the same swapper sometimes passes and sometimes fails, check what changed between the orders: the chain, the signing key, the signature format, or the account's delegation. Re-delegating an EIP-7702 account to another implementation changes how it validates signatures from that block on.
+
+## Contact support
+
+If an error isn't covered here, reach out through the <HelpCenter topic="uniswap-api">Help form</HelpCenter> with the `requestId` from the error response, the endpoint, and the full `detail`.
