@@ -1,0 +1,53 @@
+---
+title: Swap Against a VolatilePair Pool
+description: Quote and execute swaps against VolatilePair pools, including how to read the current dynamic fee for each direction.
+---
+
+Swaps against a VolatilePair pool use the standard v4 swap path. The hook sets the fee at swap time. Read the fee from the hook.
+
+## Build the pool key
+
+The pool key uses v4's dynamic fee flag in the fee field. Code that looks up pools by fee tier will not find it.
+
+```solidity
+PoolKey memory key = PoolKey({
+    currency0: Currency.wrap(TOKEN0),
+    currency1: Currency.wrap(TOKEN1),
+    fee: LPFeeLibrary.DYNAMIC_FEE_FLAG, // 0x800000
+    tickSpacing: TICK_SPACING,
+    hooks: IHooks(VOLATILE_PAIR_HOOK)
+});
+```
+
+Hook addresses are listed in [Deployments](/docs/protocols/uniswap-labs-hooks/volatile-pair/deployments).
+
+## Read the current fee
+
+`getFee` returns the LP fee the next swap in each direction would pay:
+
+```solidity
+function getFee(PoolKey calldata key) external view returns (uint24 feeE6ZeroForOne, uint24 feeE6OneForZero);
+```
+
+`feeE6ZeroForOne` is the bid fee (selling token0). `feeE6OneForZero` is the ask fee (buying token0). Both use 1e6 precision, the same as v4 fees.
+
+The fee is the same for any swap size. It can go up if other swaps land before yours in the same block. See [Mid-Block Fees](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/mid-block-fees).
+
+Bid and ask fees can be far apart. Make sure you use the one for your swap's direction.
+
+`getFee` reverts with `PoolNotInitialized` if the pool was not created through the hook.
+
+<Callout type="info">
+The returned value is the LP fee. If the pool has a protocol fee, v4 takes the protocol fee from the input first and the LP fee from the rest. The fee does not include price impact. The execution price depends on the liquidity the swap moves through. Every fee is at most 999,998 pips, so exact-output swaps work with any protocol fee.
+</Callout>
+
+## Execute the swap
+
+Swap through the standard v4 router or the `PoolManager` unlock flow. VolatilePair has no return-delta permissions, so it cannot change swap amounts. It only sets the LP fee.
+
+Set a slippage limit on every swap. An earlier swap in the same block or a fee configuration update can change the fee after you quote.
+
+## Where to Go Next
+
+- [Dynamic Fees](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/dynamic-fees)
+- [Provide Liquidity on VolatilePair](/docs/protocols/uniswap-labs-hooks/volatile-pair/guides/provide-liquidity)

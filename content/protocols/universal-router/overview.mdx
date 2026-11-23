@@ -1,6 +1,29 @@
 ---
-title: Overview
+title: Universal Router Overview
+sidebarTitle: Overview
 description: Learn how Uniswap Universal Router composes v2, v3, and v4 swaps with Permit2-based approvals in one transaction.
+keywords:
+  - universal-router
+  - swaprouter
+  - command-encoding
+  - permit2
+  - router-address
+faqs:
+  - question: How does Universal Router command encoding work?
+    answer: |-
+      You call execute(commands, inputs), optionally with a deadline. The commands argument is a byte string where each byte is one operation, and inputs is a parallel array holding the ABI-encoded parameters for each command. The router walks the command stream in order and dispatches each byte to its module, so a single transaction can chain swaps across v2, v3, and v4, Permit2 permits, ETH wrapping, payments, and position-manager calls. The low 7 bits of each byte select the command, and the high bit is an allow-revert flag.
+  - question: How is Universal Router different from SwapRouter?
+    answer: |-
+      SwapRouter (SwapRouter02) exposed fixed functions tightly coupled to v2 and v3, so each call ran a scripted sequence. Universal Router is command-based: the caller composes an arbitrary ordered list of operations, so it aggregates v2, v3, and v4 swaps, Permit2 approvals, ETH wrapping, and position-manager actions in one transaction, and it supports splitting, interleaving, and partial fills. It is unowned and non-upgradeable. New integrations should target Universal Router rather than the legacy SwapRouter.
+  - question: Which Universal Router address should I use for each chain?
+    answer: |-
+      Universal Router is deployed at a different address on each chain and per router version, so do not hardcode a single address. The current per-chain addresses are published in Supported Chains and Tokens, and the canonical source of truth is maintained in the universal-router-sdk constants on GitHub. Whitelist the address for the specific chain and version you integrate.
+  - question: How do I enable partial fills with Universal Router?
+    answer: |-
+      Set the high bit (0x80) on a command byte to mark it allow-revert. If that command fails, the rest of the transaction still executes, which is how partial fills work. For example, 0x80 combined with 0x00 is a V3_SWAP_EXACT_IN that is allowed to revert. When you use allow-revert, include a cleanup command such as SWEEP so no funds are stranded in the router.
+  - question: Do I need Permit2 to use Universal Router?
+    answer: |-
+      Universal Router pulls a user's ERC-20 tokens through Permit2, so the user first approves the Permit2 contract once per token and then authorizes the router by signature. Native ETH does not require Permit2. See the Permit2 documentation for allowance and signature-transfer patterns.
 ---
 
 The `UniversalRouter` is an ETH and ERC20 swap router that aggregates trades across Uniswap v2, v3, and v4. It is unowned and non-upgradeable.
@@ -25,6 +48,71 @@ You call `execute(...)` with a `commands` byte string and a parallel `inputs` ar
 `UniversalRouter` integrates with `Permit2`, so token transfer permissions can be provided by signature. This reduces repeated approval flows and enables more composable routing plans.
 
 See [Permit2 documentation](/docs/protocols/permit2/overview) for allowance and signature-transfer patterns.
+
+## FAQ
+
+<details>
+  <summary>How does Universal Router command encoding work?</summary>
+
+  <FaqAnswer>
+
+  You call `execute(commands, inputs)`, optionally with a `deadline`. The `commands` argument is a byte string where each byte is one operation, and `inputs` is a parallel array holding the ABI-encoded parameters for each command. The router walks the command stream in order and dispatches each byte to its module, so a single transaction can chain swaps across v2, v3, and v4, Permit2 permits, ETH wrapping, payments, and position-manager calls. The low 7 bits of each byte select the command, and the high bit is an allow-revert flag.
+
+  See [Universal Router Commands](/docs/protocols/universal-router/concepts/commands) for the full command table.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How is Universal Router different from SwapRouter?</summary>
+
+  <FaqAnswer>
+
+  `SwapRouter` (SwapRouter02) exposed fixed functions tightly coupled to v2 and v3, so each call ran a scripted sequence. Universal Router is command-based: the caller composes an arbitrary ordered list of operations, so it aggregates v2, v3, and v4 swaps, Permit2 approvals, ETH wrapping, and position-manager actions in one transaction, and it supports splitting, interleaving, and partial fills. It is unowned and non-upgradeable. New integrations should target Universal Router rather than the legacy `SwapRouter`.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Which Universal Router address should I use for each chain?</summary>
+
+  <FaqAnswer>
+
+  Universal Router is deployed at a different address on each chain and per router version, so do not hardcode a single address. The current per-chain addresses are published in [Supported Chains & Tokens](/docs/trading/swapping-api/supported-chains#supported-chains-for-swapping), and the canonical source of truth is maintained in the [universal-router-sdk constants](https://github.com/Uniswap/sdks/blob/main/sdks/universal-router-sdk/src/utils/constants.ts) on GitHub. Whitelist the address for the specific chain and version you integrate.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do I enable partial fills with Universal Router?</summary>
+
+  <FaqAnswer>
+
+  Set the high bit (`0x80`) on a command byte to mark it allow-revert. If that command fails, the rest of the transaction still executes, which is how partial fills work:
+
+  ```solidity
+  command = 0x80 | 0x00; // V3_SWAP_EXACT_IN with allow-revert
+  ```
+
+  When you use allow-revert, include a cleanup command such as `SWEEP` so no funds are stranded in the router.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Do I need Permit2 to use Universal Router?</summary>
+
+  <FaqAnswer>
+
+  Universal Router pulls a user's ERC-20 tokens through Permit2, so the user first approves the Permit2 contract once per token and then authorizes the router by signature. Native ETH does not require Permit2. See the [Permit2 documentation](/docs/protocols/permit2/overview) for allowance and signature-transfer patterns.
+
+  </FaqAnswer>
+
+</details>
 
 ## Where to Go Next
 

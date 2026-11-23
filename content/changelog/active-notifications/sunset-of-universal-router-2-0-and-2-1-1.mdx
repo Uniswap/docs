@@ -1,0 +1,26 @@
+---
+title: 'Sunset of Universal Router 2.0 and 2.1.1'
+description: 'Posted: September 21, 2026 | Effective: October 21, 2026'
+type: changelog
+datePublished: '2026-09-21'
+---
+
+We are introducing Universal Router 2.1.2 as of September 21, 2026, and sunsetting support for Universal Router 2.0 and 2.1.1 on October 21, 2026.
+
+**What is changing?**
+
+Universal Router 2.1.2 is deployed across the chains listed on [Supported Chains](/docs/trading/swapping-api/supported-chains), and the API already routes to it by default. Universal Router 2.1.2 is the new recommended version for all API integrators. Starting October 21, 2026, requests that pin 2.0 or 2.1.1 through the `x-universal-router-version` header will cause an error response from the API.
+
+**Why is this changing?**
+
+The new version of Universal Router carries important improvements and fixes, including all of the changes in Universal Router 2.1.1. To reduce operational complexity and to simplify the integration experience, we are sunsetting the older versions of Universal Router.
+
+**What do I need to do?**
+
+If you pin a router version with the `x-universal-router-version` header, set it to `2.1.2` or drop the header to take the API default. If you allowlist router addresses in a wallet or in a contract, add the 2.1.2 address for every chain you use.
+
+Moving from 2.1.1 to 2.1.2 does not require any change aside from accepting the new Universal Router 2.1.2 address. There are no calldata or ABI changes, so a 2.1.1 integration can repoint to the 2.1.2 addresses without requiring any SDK, parsing, or other changes in calldata processing.
+
+Moving from 2.0 to 2.1.2 does require changes beyond accepting the new Universal Router address, if you parse the calldata. New arguments and commands meaningfully change the calldata and may require that you update the SDK you use if you parse the calldata. See [SDK compatibility for decoding calldata](/docs/trading/swapping-api/supported-chains#sdk-compatibility-for-decoding-calldata) for the SDK release and `UniversalRouterVersion` to use.
+
+If you do not set the `x-universal-router-version` header, you will automatically receive Universal Router 2.1.2.

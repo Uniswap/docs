@@ -1,0 +1,124 @@
+---
+title: StablePair Deployments
+sidebarTitle: Deployments
+description: Find StablePair hook addresses and live pool parameters on Ethereum, Arbitrum, X Layer and Sepolia.
+---
+
+The registered v4 hook is an ERC1967 proxy. Its address is permanent and encodes the hook permission flags; the implementation behind it changes on a governance upgrade. Always integrate against the hook address.
+
+## Mainnet Deployments
+
+### Ethereum: 1
+
+| Contract | Address |
+| :--- | :--- |
+| StablePairHook (hook) | [`0x0000113dCf4ADd69999Fad8F20F2b63F979bfcC0`](https://etherscan.io/address/0x0000113dCf4ADd69999Fad8F20F2b63F979bfcC0) |
+| StablePairHook (implementation) | [`0x5f216d21b1C81346938EDDc1Df7e0111A0F64000`](https://etherscan.io/address/0x5f216d21b1C81346938EDDc1Df7e0111A0F64000) |
+
+### Arbitrum: 42161
+
+| Contract | Address |
+| :--- | :--- |
+| StablePairHook (hook) | [`0x630e9CaC0ffF557Bd3A01DAa111ed253c771Bcc0`](https://arbiscan.io/address/0x630e9CaC0ffF557Bd3A01DAa111ed253c771Bcc0) |
+| StablePairHook (implementation) | [`0x424e2f8D89eeaB51AF10669D149Fbd4BEB090000`](https://arbiscan.io/address/0x424e2f8D89eeaB51AF10669D149Fbd4BEB090000) |
+
+### X Layer: 196
+
+| Contract | Address |
+| :--- | :--- |
+| StablePairHook (hook) | [`0x630e9CaC0ffF557Bd3A01DAa111ed253c771Bcc0`](https://web3.okx.com/explorer/x-layer/address/0x630e9CaC0ffF557Bd3A01DAa111ed253c771Bcc0) |
+| StablePairHook (implementation) | [`0x424e2f8D89eeaB51AF10669D149Fbd4BEB090000`](https://web3.okx.com/explorer/x-layer/address/0x424e2f8D89eeaB51AF10669D149Fbd4BEB090000) |
+
+## Testnet Deployments
+
+### Sepolia: 11155111
+
+| Contract | Address |
+| :--- | :--- |
+| StablePairHook (hook) | [`0x2F45A94782d3e187BaB5F72448bb85d6d1d67CC0`](https://sepolia.etherscan.io/address/0x2F45A94782d3e187BaB5F72448bb85d6d1d67CC0) |
+| StablePairHook (implementation) | [`0xDBc81fFadaB5ee9c9fB1c2D43Bef547EB9c64000`](https://sepolia.etherscan.io/address/0xDBc81fFadaB5ee9c9fB1c2D43Bef547EB9c64000) |
+
+## Pool Parameters
+
+Two pools are live on Ethereum, two on Arbitrum and three on X Layer.
+
+### Ethereum: USDC / USDT
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0x2b21c65d9a7dc6926ee330a1c6e5a8037fd81774f3dc066536f800128e39f634` |
+| currency0 | USDC [`0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`](https://etherscan.io/address/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) |
+| currency1 | USDT [`0xdAC17F958D2ee523a2206206994597C13D831ec7`](https://etherscan.io/address/0xdAC17F958D2ee523a2206206994597C13D831ec7) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 1 |
+| Reference rate | 1 USDC = 1 USDT |
+
+### Ethereum: USDC / USDG
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0xeda62d2906d0edf26d40c793d581609552a44a87f618a98ff76ebe8dde4b7edb` |
+| currency0 | USDC [`0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`](https://etherscan.io/address/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) |
+| currency1 | USDG [`0xe343167631d89B6Ffc58B88d6b7fB0228795491D`](https://etherscan.io/address/0xe343167631d89B6Ffc58B88d6b7fB0228795491D) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 1 |
+| Reference rate | 1 USDC = 1 USDG |
+
+### Arbitrum: USDG / USDC (tick spacing 1)
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0x52b42d5f1e4a0d4bce86667bb069cf257e512d98ce617f549f6e4fbb0bee41e6` |
+| currency0 | USDG [`0x004B506865409877C9fA29bfb1ebA929984B9bbC`](https://arbiscan.io/address/0x004B506865409877C9fA29bfb1ebA929984B9bbC) |
+| currency1 | USDC [`0xaf88d065e77c8cC2239327C5EDb3A432268e5831`](https://arbiscan.io/address/0xaf88d065e77c8cC2239327C5EDb3A432268e5831) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 1 |
+| Reference rate | 1 USDG = 1 USDC |
+
+### Arbitrum: USDG / USDC (tick spacing 2)
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0xa3f30a5e5c37d1119a6f6149a16827c181efe513938c5dea88213d00f14c4e51` |
+| currency0 | USDG [`0x004B506865409877C9fA29bfb1ebA929984B9bbC`](https://arbiscan.io/address/0x004B506865409877C9fA29bfb1ebA929984B9bbC) |
+| currency1 | USDC [`0xaf88d065e77c8cC2239327C5EDb3A432268e5831`](https://arbiscan.io/address/0xaf88d065e77c8cC2239327C5EDb3A432268e5831) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 2 |
+| Reference rate | 1 USDG = 1 USDC |
+
+### X Layer: USDG / USDT0
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0x472a136cc430cb6fc27870fe8e973a2891abc619752fabbdc4d78cf887cd0851` |
+| currency0 | USDG [`0x4ae46a509F6b1D9056937BA4500cb143933D2dc8`](https://web3.okx.com/explorer/x-layer/address/0x4ae46a509F6b1D9056937BA4500cb143933D2dc8) |
+| currency1 | USDT0 [`0x779Ded0c9e1022225f8E0630b35a9b54bE713736`](https://web3.okx.com/explorer/x-layer/address/0x779Ded0c9e1022225f8E0630b35a9b54bE713736) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 1 |
+| Reference rate | 1 USDG = 1 USDT0 |
+
+### X Layer: USDT0 / USDC
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0xc3157901d6cdc7ddc8e0e99d03494aab58126bac3e09bad5d107f59fc81a6456` |
+| currency0 | USDT0 [`0x779Ded0c9e1022225f8E0630b35a9b54bE713736`](https://web3.okx.com/explorer/x-layer/address/0x779Ded0c9e1022225f8E0630b35a9b54bE713736) |
+| currency1 | USDC [`0xB6CEceAB302E2E4948951eE7843FC24E92933061`](https://web3.okx.com/explorer/x-layer/address/0xB6CEceAB302E2E4948951eE7843FC24E92933061) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 1 |
+| Reference rate | 1 USDT0 = 1 USDC |
+
+### X Layer: USDG / USDC
+
+| Parameter | Value |
+| :--- | :--- |
+| Pool ID | `0x97b14788c981b4c79f3fe4d8a3725a2364e03ae56cab6cae4b3ac31c86d73fea` |
+| currency0 | USDG [`0x4ae46a509F6b1D9056937BA4500cb143933D2dc8`](https://web3.okx.com/explorer/x-layer/address/0x4ae46a509F6b1D9056937BA4500cb143933D2dc8) |
+| currency1 | USDC [`0xB6CEceAB302E2E4948951eE7843FC24E92933061`](https://web3.okx.com/explorer/x-layer/address/0xB6CEceAB302E2E4948951eE7843FC24E92933061) |
+| Fee | Dynamic (`0x800000`) |
+| Tick spacing | 1 |
+| Reference rate | 1 USDG = 1 USDC |
+
+<Callout type="info">
+Do not hardcode pool IDs. Derive them from the pool key, and read each pool's live fee configuration from the hook rather than from this page. Parameters can be changed by governance.
+</Callout>

@@ -1,0 +1,49 @@
+---
+title: Elysium Deployments
+description: Review Uniswap v3 deployment addresses and contract references for Elysium integrations.
+---
+
+<Callout>
+  All Uniswap v3 deployment addresses are also available on the unified [Deployments](/deployments) page and its [deployments.json](/deployments.json) feed.
+</Callout>
+
+The latest version of `@uniswap/v3-core`, `@uniswap/v3-periphery`, and `@uniswap/swap-router-contracts` are deployed at the addresses listed below. Integrators should **no longer assume that they are deployed to the same addresses across chains** and be extremely careful to confirm mappings below.
+
+Elysium is chainId `99901` with HYPE as the gas token. Confirm any deployment on the [Elysium explorer](https://elysium.kinetiq.xyz/explorer).
+
+| Contract                                                                                                                           | Elysium Addresses                            |
+| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [UniswapV3Factory](https://github.com/Uniswap/uniswap-v3-core/blob/v1.0.0/contracts/UniswapV3Factory.sol)                         | [`0x1707327F626496A7b5b3872e7E4d2879Df7d7a9f`](https://elysium.kinetiq.xyz/explorer/address/0x1707327F626496A7b5b3872e7E4d2879Df7d7a9f) |
+| [UniswapInterfaceMulticall](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/UniswapInterfaceMulticall.sol)       | [`0x4B2ab38DBF28D31D467aA8993f6c2585981D6804`](https://elysium.kinetiq.xyz/explorer/address/0x4B2ab38DBF28D31D467aA8993f6c2585981D6804) |
+| [TickLens](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/lens/TickLens.sol)                               | [`0x58ead433EA99708604C4dD7c9b7E80C70976E202`](https://elysium.kinetiq.xyz/explorer/address/0x58ead433EA99708604C4dD7c9b7E80C70976E202) |
+| [QuoterV2](https://github.com/Uniswap/v3-periphery/blob/main/contracts/lens/QuoterV2.sol)                                         | [`0x204FAca1764B154221e35c0d20aBb3c525710498`](https://elysium.kinetiq.xyz/explorer/address/0x204FAca1764B154221e35c0d20aBb3c525710498) |
+| [MixedRouteQuoterV2](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/lens/MixedRouteQuoterV2.sol)            | [`0x976183AC3d09840D243A88c0268BADb3B3e3259f`](https://elysium.kinetiq.xyz/explorer/address/0x976183AC3d09840D243A88c0268BADb3B3e3259f) |
+| [NFTDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/libraries/NFTDescriptor.sol)                | [`0x2E9D45Bb7b30549F5216813aDA9a6b7982C5B3ED`](https://elysium.kinetiq.xyz/explorer/address/0x2E9D45Bb7b30549F5216813aDA9a6b7982C5B3ED) |
+| [NonfungibleTokenPositionDescriptor](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungibleTokenPositionDescriptor.sol) | [`0x661E93cca42AfacB172121EF892830cA3b70F08d`](https://elysium.kinetiq.xyz/explorer/address/0x661E93cca42AfacB172121EF892830cA3b70F08d) |
+| [NonfungiblePositionManager](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/NonfungiblePositionManager.sol) | [`0xF025e0Fe9E331A0eF05c2ad3C4E9C64b625cda6f`](https://elysium.kinetiq.xyz/explorer/address/0xF025e0Fe9E331A0eF05c2ad3C4E9C64b625cda6f) |
+| [V3Migrator](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/V3Migrator.sol)                                | [`0xABfb859E6c3324fE522bFbB19CB41345003ceD65`](https://elysium.kinetiq.xyz/explorer/address/0xABfb859E6c3324fE522bFbB19CB41345003ceD65) |
+| [SwapRouter](https://github.com/Uniswap/uniswap-v3-periphery/blob/v1.0.0/contracts/SwapRouter.sol)                                | [`0x003aa18c6E682dB80Cf4aa17261CcbFfd28690CE`](https://elysium.kinetiq.xyz/explorer/address/0x003aa18c6E682dB80Cf4aa17261CcbFfd28690CE) |
+| [SwapRouter02](https://github.com/Uniswap/swap-router-contracts/blob/main/contracts/SwapRouter02.sol)                             | [`0x2d01411773c8C24805306E89A41F7855C3c4Fe65`](https://elysium.kinetiq.xyz/explorer/address/0x2d01411773c8C24805306E89A41F7855C3c4Fe65) |
+| [Permit2](https://github.com/Uniswap/permit2)                                                                                     | [`0x000000000022D473030F116dDEE9F6B43aC78BA3`](https://elysium.kinetiq.xyz/explorer/address/0x000000000022D473030F116dDEE9F6B43aC78BA3) |
+| [UniversalRouter 2.2.0](https://github.com/Uniswap/universal-router)                                                              | [`0x1B341FDD55d56F8E08409A2C25DDFad93Eb03C1a`](https://elysium.kinetiq.xyz/explorer/address/0x1B341FDD55d56F8E08409A2C25DDFad93Eb03C1a) |
+| [UniversalRouter 2.1.2](https://github.com/Uniswap/universal-router)                                                              | [`0xA13f7611115752DEB2B13813BDDE16A5073e4b45`](https://elysium.kinetiq.xyz/explorer/address/0xA13f7611115752DEB2B13813BDDE16A5073e4b45) |
+
+These addresses are final and were deployed from these npm package versions:
+
+- [`@uniswap/v3-core@1.0.0`](https://github.com/Uniswap/uniswap-v3-core/tree/v1.0.0)
+- [`@uniswap/v3-periphery@1.0.0`](https://github.com/Uniswap/uniswap-v3-periphery/tree/v1.0.0)
+- [`@uniswap/swap-router-contracts@1.1.0`](https://github.com/Uniswap/swap-router-contracts/tree/v1.1.0)
+
+## Universal Router
+
+The `UniversalRouter` contract is the current preferred entrypoint for ERC20 and NFT swaps, replacing, among other contracts, `SwapRouter02`. The Elysium `UniversalRouter` addresses are listed in the table above and on the [Uniswap v4 deployments](/docs/protocols/v4/deployments) page.
+
+## Uniswap Pool Deployments
+
+Every Uniswap pool is a unique instance of the `UniswapV3Pool` contract and is deployed at its own unique address. The contract source code of the pool will be auto-verified on the explorer. You can browse [Elysium contracts on the explorer](https://elysium.kinetiq.xyz/explorer) to confirm any deployment.
+
+You can look up the address of an existing pool on [Uniswap Info](https://info.uniswap.org/#/) or by calling the `getPool` function on the `UniswapV3Factory` contract.
+
+```solidity
+getPool("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", 3000)
+```

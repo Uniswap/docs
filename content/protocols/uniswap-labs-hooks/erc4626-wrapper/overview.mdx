@@ -1,0 +1,27 @@
+---
+title: ERC-4626 Wrapper Overview
+sidebarTitle: Overview
+description: Understand the ERC4626 Wrapper Hook, a Uniswap v4 hook that wraps and unwraps ERC-4626 vault shares against their underlying asset at the vault's own exchange rate.
+---
+
+`ERC4626WrapperHook` exposes an [ERC-4626](https://eips.ethereum.org/EIPS/eip-4626) vault as a Uniswap v4 pool. One side of the pool is the vault's share token (the **wrapper currency**), the other is `vault.asset()` (the **underlying currency**). A swap in one direction deposits the underlying into the vault and returns freshly minted shares; a swap in the other direction redeems shares and returns the underlying. Conversion always happens at the vault's reported exchange rate, so a swap settles exactly as `vault.deposit` or `vault.redeem` would, reached through the swap interface routers and aggregators already speak to.
+
+The pool holds no liquidity and charges no fee. It is a conversion venue, not a market: no price discovery, no LP position, and no slippage beyond the vault's own rounding. All swap-time logic lives in `beforeSwap`, which absorbs the entire swap and returns a `BeforeSwapDelta` describing the conversion.
+
+## Concepts
+
+- [Wrapper Pools](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/wrapper-pools): pool rules, hook permissions, and contract hierarchy
+- [Pool Initialization](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/pool-initialization): how the token pair and fee are validated
+- [Swap Mechanics](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/swap-mechanics): the wrap and unwrap paths and delta accounting
+- [Exchange Rate and Rounding](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/exchange-rate-and-rounding): how the vault prices every swap
+- [Exact Input and Exact Output](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/exact-input-and-exact-output): which swap types are supported
+- [The Routing Twin](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/routing-twin): how quotes are served
+- [Extending the Hook](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/extending-the-hook): the overridable seams for subclasses
+
+## Guides
+
+- [Integration](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/guides/integration): route, quote, and execute wrapper hops
+
+## Security
+
+See [ERC-4626 Wrapper Security](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/security) for the security model, invariants, and audit.

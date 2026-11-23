@@ -1,7 +1,30 @@
 ---
-id: Overview
 title: Trading Overview
+sidebarTitle: Overview
 description: Understand swap integration paths on Uniswap v4 using Custom Linking, the Uniswap API, SDK, and smart contracts.
+keywords:
+  - swap integration
+  - Trading API
+  - custom linking
+  - Universal Router
+  - swap hooks
+  - slippage
+faqs:
+  - question: What are the ways to integrate Uniswap swaps into my app?
+    answer: |-
+      There are four integration paths, in rising order of complexity. Custom Linking directs users to the Uniswap web app with pre-filled swap parameters through URL query strings. The Uniswap Trading API is a hosted service that handles routing, quoting, and transaction construction. The Uniswap SDK computes routes and quotes locally on the client side. Direct smart contract integration against the Universal Router or PoolManager gives onchain contracts direct control and composability.
+  - question: Does the Uniswap Trading API execute swaps for me?
+    answer: |-
+      No. The Uniswap Trading API handles routing, quoting, and transaction construction, and returns encoded transaction data. Your application handles wallet signing and onchain submission through your own signer or RPC provider. The flow is check_approval to verify Permit2 or router authorization, quote to get routing and quote data, then swap to get the encoded transaction.
+  - question: How do I add Uniswap swaps to my site without building a swap UI?
+    answer: |-
+      Use Custom Linking. Append URL query parameters to the Uniswap web app swap URL to pre-fill the input and output tokens, the amount, and the UI theme. The Uniswap interface configures the swap automatically for the user, so you do not manage transactions, quoting, or a custom UI.
+  - question: How do I execute a Uniswap swap from a smart contract?
+    answer: |-
+      Interact with the Universal Router, the recommended entry point, or with the PoolManager directly. The Universal Router uses a command-encoding pattern where you pack a sequence of actions, such as swap, settle input tokens, and take output tokens, into byte arrays and execute them in a single transaction. Always enforce slippage limits through amountOutMinimum or an onchain price oracle; setting it to zero leaves your contract vulnerable to sandwich attacks and price manipulation.
+  - question: Can I customize how swaps execute on Uniswap v4?
+    answer: |-
+      Yes, by writing a hook contract. Hooks are external contracts that a Uniswap v4 pool calls at specific lifecycle points. For swaps, beforeSwap runs before the swap executes and can modify fees, enforce conditions, or reject the swap, while afterSwap runs after execution and receives the resulting balance delta. A hook declares which lifecycle points it implements through getHookPermissions.
 ---
 
 Uniswap offers distinct methods for integrating swapping functionality into your application. Choosing the right approach depends on your specific needs regarding customization, control, and development resources.
@@ -155,3 +178,69 @@ Hooks are external contracts that a Uniswap v4 pool calls at specific points dur
 - **`afterSwap`**: called after the swap executes. Receives the resulting `BalanceDelta` and can perform follow-up logic.
 
 A hook contract declares which lifecycle points it implements via `getHookPermissions()`, and is associated with a pool during deployment.
+
+## FAQ
+
+<details>
+  <summary>What are the ways to integrate Uniswap swaps into my app?</summary>
+
+  <FaqAnswer>
+
+  There are four integration paths, in rising order of complexity:
+
+  * **[Custom Linking](/docs/trading/custom-interface-links)**: directs users to the Uniswap web app with pre-filled swap parameters through URL query strings.
+  * **[Uniswap Trading API](/docs/trading/swapping-api/getting-started)**: a hosted service that handles routing, quoting, and transaction construction.
+  * **[Uniswap SDK](/docs/sdks/v4/guides/swapping/quoting)**: computes routes and quotes locally on the client side.
+  * **[Smart contracts](/docs/protocols/v4/guides/swapping/swapping)**: direct integration against the Universal Router or `PoolManager` for onchain control and composability.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Does the Uniswap Trading API execute swaps for me?</summary>
+
+  <FaqAnswer>
+
+  No. The [Trading API](/docs/trading/swapping-api/getting-started) handles routing, quoting, and transaction construction, and returns encoded transaction data. Your application handles wallet signing and onchain submission through your own signer or RPC provider.
+
+  The flow is `/check_approval` to verify Permit2 or router authorization, `/quote` to get routing and quote data, then `/swap` to get the encoded transaction.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do I add Uniswap swaps to my site without building a swap UI?</summary>
+
+  <FaqAnswer>
+
+  Use [Custom Linking](/docs/trading/custom-interface-links). Append URL query parameters to `https://app.uniswap.org/#/swap` to pre-fill the input and output tokens, the amount, and the UI theme. The Uniswap interface configures the swap automatically for the user, so you do not manage transactions, quoting, or a custom UI.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>How do I execute a Uniswap swap from a smart contract?</summary>
+
+  <FaqAnswer>
+
+  Interact with the [Universal Router](/docs/protocols/universal-router/overview), the recommended entry point, or with the `PoolManager` directly. The Universal Router uses a command-encoding pattern where you pack a sequence of actions, such as swap, settle input tokens, and take output tokens, into byte arrays and execute them in a single transaction. See [swapping with smart contracts](/docs/protocols/v4/guides/swapping/swapping).
+
+  Always enforce slippage limits through `amountOutMinimum` or an onchain price oracle; setting it to zero leaves your contract vulnerable to sandwich attacks and price manipulation.
+
+  </FaqAnswer>
+
+</details>
+
+<details>
+  <summary>Can I customize how swaps execute on Uniswap v4?</summary>
+
+  <FaqAnswer>
+
+  Yes, by writing a [hook](/docs/protocols/v4/guides/hooks/swap-hooks) contract. Hooks are external contracts that a Uniswap v4 pool calls at specific lifecycle points. For swaps, `beforeSwap` runs before the swap executes and can modify fees, enforce conditions, or reject the swap, while `afterSwap` runs after execution and receives the resulting `BalanceDelta`. A hook declares which lifecycle points it implements through `getHookPermissions`.
+
+  </FaqAnswer>
+
+</details>

@@ -1,0 +1,20 @@
+---
+title: 'Sunset of Blast Swapping Support'
+description: 'Posted: October 7, 2026 | Effective: October 28, 2026'
+type: changelog
+datePublished: '2026-10-07'
+---
+
+We are sunsetting swapping support for the Blast network (chain id 81457) on October 28, 2026.
+
+**What is changing?**
+
+Starting October 28, 2026, Uniswap will no longer support swapping on Blast. Quote requests for Blast will return a 404 with `errorCode: UnsupportedChainError` (see [Troubleshooting Common Errors](/docs/trading/swapping-api/common-errors#404-no-quotes-available)).
+
+**Why is this changing?**
+
+The Blast network has announced their intention to shut down. We are ending support for swapping on Blast in line with their team.
+
+**What do I need to do?**
+
+If your integration requests quotes or swaps on Blast, stop those requests and move funds to an alternative supported chain before October 28, 2026.

@@ -1,5 +1,6 @@
 ---
-title: Architecture
+title: Uniswap v4 Architecture
+sidebarTitle: Architecture
 description: Understand the core design pillars of Uniswap v4, including hooks, singleton architecture, and flash accounting.
 ---
 
@@ -43,3 +44,31 @@ Example use cases:
 - Custom curves, opting out of the concentrated liquidity curve in favor of an independent pricing mechanism
 - Hook swap fees, charging and collecting fees on swaps
 - Liquidity withdrawal fees, penalizing and/or redistributing fee revenue
+
+## Core libraries
+
+The `PoolManager` delegates most of its arithmetic and state handling to a set of libraries in `v4-core`. These are the contracts a v4 integration reads when reasoning about ticks, prices, deltas and hook permissions.
+
+| Library | What it does |
+| --- | --- |
+| [TickMath](https://github.com/Uniswap/v4-core/blob/main/src/libraries/TickMath.sol) | Computes sqrt prices from ticks and vice versa |
+| [SqrtPriceMath](https://github.com/Uniswap/v4-core/blob/main/src/libraries/SqrtPriceMath.sol) | Price and amount functions based on Q64.96 sqrt price and liquidity |
+| [SwapMath](https://github.com/Uniswap/v4-core/blob/main/src/libraries/SwapMath.sol) | Computes the result of a swap within a single tick |
+| [Pool](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Pool.sol) | Every action that can be performed on a pool |
+| [Position](https://github.com/Uniswap/v4-core/blob/main/src/libraries/Position.sol) | Per-position state, keyed by owner and tick range |
+| [CurrencyDelta](https://github.com/Uniswap/v4-core/blob/main/src/libraries/CurrencyDelta.sol) | Stores callers' currency deltas in transient storage, the basis of flash accounting |
+| [TransientStateLibrary](https://github.com/Uniswap/v4-core/blob/main/src/libraries/TransientStateLibrary.sol) | Reads the transient state the manager keeps during a lock |
+| [ProtocolFeeLibrary](https://github.com/Uniswap/v4-core/blob/main/src/libraries/ProtocolFeeLibrary.sol) | Packs and reads the protocol fee for each swap direction |
+| [FullMath](https://github.com/Uniswap/v4-core/blob/main/src/libraries/FullMath.sol) | 512-bit multiply and divide without loss of precision |
+| [LiquidityMath](https://github.com/Uniswap/v4-core/blob/main/src/libraries/LiquidityMath.sol) | Adds a signed liquidity delta to liquidity |
+| [TickBitmap](https://github.com/Uniswap/v4-core/blob/main/src/libraries/TickBitmap.sol) | Packed record of which ticks are initialized |
+
+Three libraries have their own pages rather than a row here, because they carry concepts rather than arithmetic: [Hooks](/docs/protocols/v4/concepts/hooks), [LPFeeLibrary](/docs/protocols/v4/concepts/dynamic-fees) and [StateLibrary](/docs/protocols/v4/guides/state-view).
+
+Alongside these sit the numeric and encoding helpers: `BitMath`, `FixedPoint96`, `FixedPoint128`, `SafeCast`, `UnsafeMath`, `CustomRevert`, `ParseBytes`, `Lock`, `NonzeroDeltaCount` and `CurrencyReserves`.
+
+Every library carries natspec on each function, so the source is the reference.
+
+<Callout title="">
+Source code: [src/libraries/](https://github.com/Uniswap/v4-core/tree/main/src/libraries)
+</Callout>

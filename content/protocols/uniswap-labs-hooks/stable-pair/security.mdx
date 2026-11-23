@@ -1,0 +1,58 @@
+---
+title: StablePair Security
+sidebarTitle: Security
+description: Review StablePair's trust model, protocol invariants, and audit history.
+---
+
+## Audit
+
+OpenZeppelin reviewed the StablePair fee mechanism from February 9 to February 13, 2026. One high-severity finding, that splitting a corrective swap into legs produced a cheaper aggregate price, was resolved by caching the pool price once per block, the behavior described in [Block Price Caching](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/block-price-caching).
+
+The review covered the fee mechanism as implemented in the hook's non-upgradeable predecessor, which shares StablePair's core fee math. The upgradeability and role model described below postdate that review.
+
+## Trust Model
+
+### Governance
+
+The hook sits behind an upgradeable proxy controlled by Uniswap Governance, so the implementation can change over time as new research identifies opportunities to increase LP value capture. Even so, governance can never change the permissions that protect LP funds.
+
+In Uniswap v4, a hook's permissions are encoded in its address, and that address is permanent. A hook's permissions are strictly scoped, so upgrades cannot expand them. Because the flags for the remove-liquidity callbacks and for returning custom accounting deltas are switched off, no upgrade can let the hook block LP withdrawals or alter swap amounts to skim additional fees.
+
+A fee configuration change also resets the pool's decay state, so the next swap starts from a fresh price reading.
+
+### Pool creation
+
+A Uniswap Labs Safe holds the role that can create pools. It cannot change fee configurations, upgrade the implementation, or grant roles.
+
+### Roles
+
+| Capability | Holder |
+| :--- | :--- |
+| Upgrade the implementation; grant and revoke all roles | [Uniswap Governance Timelock](https://etherscan.io/address/0x1a9C8182C09F50C8318d769245beA52c32BE35BC) |
+| Change a pool's fee configuration | [Uniswap Governance Timelock](https://etherscan.io/address/0x1a9C8182C09F50C8318d769245beA52c32BE35BC) |
+| Create pools and set initial pool fee configuration | [Uniswap Labs Safe](https://etherscan.io/address/0xFc43582532E90Fa8726FE9cdb5FAd48f4e487d27) |
+
+Neither operational role can grant or revoke roles. Because the hook sits behind a proxy, the pool address survives upgrades: no liquidity migration and no re-integration when the implementation changes.
+
+## Core Invariants
+
+- The decaying fee always sits between its target and its starting value.
+- Inside the band, every buy is quoted at one price and every sell at another, before price impact, for every pool price in the band.
+- The swap callback never reverts.
+- While a pool is outside its band, a worsening price can only raise the corrective fee, never lower it.
+- Splitting a corrective swap within a block yields no fee advantage.
+- No pool can exist without a valid fee configuration, and no fee configuration can exist without a live pool.
+- The hook cannot block or alter a liquidity withdrawal.
+
+## Known Limitations
+
+The cached start-of-block price is intentionally stale within a block. Two consequences are accepted rather than fixed, because resolving either would restore the swap-splitting advantage the cache exists to remove:
+
+- Later swaps in a heavily traded block may be priced from a pool price that has already moved.
+- A swap that pushes the price across the reference rate mid-block inverts the fee directions for the remainder of that block.
+
+Both are bounded to a single block and self-correct on the next one.
+
+## Quote Semantics
+
+`getFee` returns the LP fee a swap would pay right now, in both directions, computed from the same start-of-block price the next swap will see. It is size-independent, excludes any protocol fee, and does not account for price impact: the realized execution price of a large swap will differ from the quoted rate according to the depth of the liquidity it traverses.

@@ -18,7 +18,7 @@ The proxy approval flow cannot execute UniswapX orders. UniswapX requires Permit
 ## When to Use Proxy Approval
 The no-Permit2 flow may be appropriate if:
 
-- Your infrastructure requires a strict approve —> swap transaction sequence
+- Your infrastructure requires a strict approve -> swap transaction sequence
 - Your system cannot generate Permit2 signatures
 - Your wallet or signing system does not support EIP-712 signing
 
@@ -165,3 +165,5 @@ Permit2 is widely adopted across the Ethereum ecosystem and is the default swap 
 If your system supports EIP-712 signing, we recommend implementing the Permit2 flow. The no-Permit2 flow should be considered a compatibility option for systems that cannot support Permit2 signatures.
 
 For guidance on the recommended integration, see the [Permit2 guide](/docs/trading/swapping-api/concepts/permit2).
+
+For developer support, please reach out to our team via the <HelpCenter topic="uniswap-api">Help form</HelpCenter>.

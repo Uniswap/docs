@@ -1,12 +1,11 @@
 ---
-id: fillingondutchv3chains
 title: Filling Dutch V3 Auctions
 description: Fill UniswapX orders on chains that use the DutchV3 reactor, where exclusivity and decay are measured in block numbers.
 ---
 
 Ethereum uses the Dutch V2 reactor. Every other UniswapX chain that runs a Dutch auction uses the [DutchV3 reactor](https://github.com/Uniswap/UniswapX/blob/main/src/reactors/V3DutchOrderReactor.sol), so the execution flow is the same across them. This guide covers:
 
-- **Arbitrum, Avalanche, Base, BNB Smart Chain, Robinhood Chain, Tempo, and Unichain**: RFQ with exclusive filling, the same model as [Ethereum mainnet](/docs/liquidity/uniswapx/filling/mainnet/filling-on-mainnet) but with block-based timing.
+- **Arbitrum, Arc, Avalanche, Base, BNB Smart Chain, Ink, Monad, Robinhood Chain, Tempo, and Unichain**: RFQ with exclusive filling, the same model as [Ethereum mainnet](/docs/liquidity/uniswapx/filling/mainnet/filling-on-mainnet) but with block-based timing.
 
 Find reactor, quoter, and Permit2 addresses on the [Deployments](/docs/liquidity/uniswapx/deployments) page.
 
@@ -24,10 +23,12 @@ On all of these chains, the exclusivity window and the auction decay are measure
 All signed Dutch orders created through the Uniswap interface are available via the UniswapX Orders Endpoint. [Swagger documentation](https://api.uniswap.org/v2/uniswapx/docs) is available. Pass the chain ID of the chain you want to fill:
 
 ```bash
-GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=42161&limit=1000&orderType=Dutch_V3
+GET https://api.uniswap.org/v2/orders?orderStatus=open&chainId=42161&limit=50&orderType=Dutch_V3
 ```
 
-Use one of the following chain IDs: Arbitrum `42161`, Avalanche `43114`, Base `8453`, BNB Smart Chain `56`, Robinhood Chain `4663`, Tempo `4217`, Unichain `130`. Quote requests include a `tokenInChainId` field that identifies the chain of the intent. If you are not interested in quoting for a given chain, respond with HTTP status code `204`.
+The endpoint serves cached responses and returns at most the last 50 orders, ordered by most recent. Poll at no more than 4 RPS; requests above that return `429`.
+
+Use one of the following chain IDs: Arbitrum `42161`, Arc `5042`, Avalanche `43114`, Base `8453`, BNB Smart Chain `56`, Ink `57073`, Monad `143`, Robinhood Chain `4663`, Tempo `4217`, Unichain `130`. Quote requests include a `tokenInChainId` field that identifies the chain of the intent. If you are not interested in quoting for a given chain, respond with HTTP status code `204`.
 
 Decode the `encodedOrder` field returned from the endpoint with the [UniswapX SDK](https://github.com/Uniswap/sdks/tree/main/sdks/uniswapx-sdk). Each order represents a fillable user trade.
 
@@ -75,7 +76,8 @@ If you already fill on mainnet, the integration is the same with the following a
 - **Block-based timing**: The reactor uses block numbers for both exclusivity and decay. Cosigner data carries only `decayStartBlock`; there is no separate end time, since the decay end is implied by the curve. See [`dutchBlockDecay.ts`](https://github.com/Uniswap/sdks/blob/main/sdks/uniswapx-sdk/src/utils/dutchBlockDecay.ts).
 - **Cosignature digest includes the chain ID**: The digest hashes in `chainid` as `orderHash || chainid || cosignerData`. See `cosignerDigest()` in [`V3DutchOrder.ts`](https://github.com/Uniswap/sdks/blob/main/sdks/uniswapx-sdk/src/order/V3DutchOrder.ts).
 - **Base fee adjustment is unused for now**: DutchV3 supports a dynamic base fee adjustment on inputs and outputs. It is not used today, so set `startingBaseFee` and `adjustmentPerGweiBaseFee` to zero on every input and output to keep it a no-op.
-- **Faster quote responses**: Quote responses for any chain other than Ethereum must be returned within 250ms (compared to 500ms on Ethereum).
+- **Same quote response budget**: Quote responses must be returned within 500ms, the same budget as Ethereum.
+- **No timeouts**: Answer every quote request, including the ones you do not want to quote. See [Become a Quoter](/docs/liquidity/uniswapx/filling/mainnet/become-a-quoter#performance-expectations) for the full response expectations.
 
 Build orders with [`V3DutchOrderBuilder.ts`](https://github.com/Uniswap/sdks/blob/main/sdks/uniswapx-sdk/src/builder/V3DutchOrderBuilder.ts) (compare against `V2DutchOrderBuilder.ts`).
 

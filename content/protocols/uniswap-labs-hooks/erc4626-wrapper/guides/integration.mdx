@@ -1,0 +1,10 @@
+---
+title: Integration
+description: Route, quote, and execute swaps through ERC-4626 wrapper pools.
+---
+
+- **Route wrapper hops as exact-input.** Exact output reverts.
+- **Quote against the routing twin, execute against the wrapper hook.** They are deployed at different addresses; a router uses the twin's address when simulating and the wrapper's address when executing.
+- **Fund the input to the `PoolManager`.** The wrap and unwrap paths `take` the swap input out of the `PoolManager` during `beforeSwap`, so the input must be available when the hook runs. In a multi-hop route the input is typically the prior hop's output; for a single wrapper hop the router must settle the input into the `PoolManager` before the swap executes.
+- **Use a standard ERC-20 underlying.** Fee-on-transfer underlyings are not supported. A rebasing underlying is tolerated by balance measurement but is outside the primary design target.
+- **Expect vault-rate pricing.** There is no slippage from pool depth; the only deviation from a naive rate is the vault's ERC-4626 rounding.

@@ -1,0 +1,92 @@
+---
+title: Releasers and Release Terms
+sidebarTitle: Releasers
+description: Learn how an ExchangeReleaser prices a Token Jar, how release terms change atomically, and what the release nonce guarantees.
+---
+
+A releaser is paired with a jar and sets the terms for emptying it. `ExchangeReleaser` is the shipped implementation: a searcher sends a fixed `threshold` of a `resource` token, and the jar releases the assets the searcher names.
+
+## The Interface
+
+```solidity
+function release(
+    uint256 _nonce,           // must equal releaser.nonce() when the call executes
+    Currency[] calldata assets,  // plain addresses; address(0) is the native token
+    address recipient,        // where the assets land; may not be address(0)
+    uint256 maxFee            // the caller's bound on the protocol fee
+) external;
+
+function releaseCost() external view returns (uint256 total, uint256 fee);
+```
+
+`Currency` is a user-defined value type over `address`. In the ABI it is `address`, so an `address[]` encodes correctly.
+
+`releaseCost()` returns the full resource debit and its protocol fee component, priced at the current block. No fee is set today, so the debit equals the `threshold`. If a fee is set, the releaser pulls it in a second `transferFrom`, and one allowance covering the sum is enough.
+
+## Release Terms
+
+Four values define the trade:
+
+| Term | Meaning |
+|---|---|
+| `resource` | The token a searcher sends to clear the jar |
+| `threshold` | The amount of `resource` a searcher sends for each release |
+| `resourceRecipient` | The address that receives the `threshold` from every release |
+| `maxReleaseLength` | The most assets one release may name, 20 by default |
+
+The price is fixed and set by the operator. It does not vary based on the jar's contents, demand, or an oracle.
+
+## Terms Change Atomically
+
+All four terms change together, through one call:
+
+```solidity
+function setConfig(
+    address newResource,
+    address newResourceRecipient,
+    uint256 newThreshold,
+    uint256 newMaxReleaseLength
+) external;   // owner or configSetter
+
+event ConfigSet(
+    address indexed resource,
+    address indexed resourceRecipient,
+    uint256 threshold,
+    uint256 maxReleaseLength
+);
+```
+
+There are deliberately no per-field setters. `threshold` is a quantity of `resource`, so changing one without the other would briefly leave a threshold priced in the wrong token, and that intermediate config would be releasable at its own nonce.
+
+`setConfig` is callable by the releaser's owner or by an appointed `configSetter`. The second role exists for delegation.
+
+Lowering the threshold relative to the resource's value can create instantaneous value leakage, since the jar's contents become releasable at the new lower price the moment the call lands.
+
+## The Nonce
+
+Every releaser exposes a `nonce()`, and a release must pass the current value or revert with `InvalidNonce()`.
+
+**What it guarantees:** if a searcher simulates at nonce N and the releaser is still at N when the transaction executes, then `resource`, `resourceRecipient`, `threshold`, and `maxReleaseLength` have not changed.
+
+Anything that could change the terms advances it. Another searcher's release advances it, and so does any `setConfig`, including one that writes identical values, because the bump is unconditional. Rotating the `configSetter` does not bump it, since that changes who may set terms rather than the terms themselves.
+
+**What it does not cover:** the protocol fee, if one is ever set, which every releaser reads from a chain-wide contract at execution time, and the `resource` token's own behavior such as a pause, a blacklist, or a fee toggle. `maxFee` is the protection against the first. The second is outside what the contract can defend, and checking it is the searcher's responsibility.
+
+Since config changes also advance the nonce, it does not count releases. Count `Released` events instead. Losing a race costs gas and nothing else, because a stale nonce reverts the release instead of filling it on new terms.
+
+## Rotation
+
+An operator moves a jar to a new releaser in two steps, both under their own keys:
+
+1. `factory.deployReleaser(jar, ...)` deploys a fresh releaser pointed at the existing jar. It is **inert until adopted**: anyone may deploy a releaser at any jar, and an unadopted one cannot move a single asset.
+2. `jar.setReleaser(newReleaser)` adopts it.
+
+The Factory has no power to redirect a jar. `setReleaser` belongs solely to the jar owner, which keeps jar ownership the system's only trust anchor.
+
+## Fee-on-Transfer Resources
+
+`release()` is send-denominated. The searcher is debited exactly `threshold`, so a fee-on-transfer resource delivers `threshold * (1 - f)` (where `f` is the token fee) to the recipient, and a protocol fee, if set, is shaved the same way. Operators should account for this when configuring the `threshold`.
+
+## Custom Releasers
+
+A jar owner may adopt any contract as a releaser. `ReleaserSet` proves adoption, not compatibility. When a jar names an unfamiliar releaser, inspect it before assuming it implements `releaseCost()` or prices releases the way this page describes.

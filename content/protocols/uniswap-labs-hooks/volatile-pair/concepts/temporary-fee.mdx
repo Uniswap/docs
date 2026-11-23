@@ -1,0 +1,37 @@
+---
+title: Temporary Fee
+description: Learn how VolatilePair charges the backrun side a one-block temporary fee after a price move, and how its restore and capture parts work.
+---
+
+After a price move, the backrun side pays a temporary fee for one block. The hook sets it on the first swap of the block. Every swap on the backrun side pays it until the end of that block.
+
+## Restore and capture
+
+```
+restore = restoreFraction × (newLeanPerm - oldLeanPerm)   if priceImpact >= restoreThreshold, else 0
+capture = backrunCaptureFraction × priceImpact            if priceImpact >= backrunThreshold, else 0
+temporary fee = restore + capture
+```
+
+- **Restore** adds back the amount the backrun side's permanent fee just dropped. With a restore fraction of 100% and a threshold of 0, the full drop is added back on every move. With a lower fraction or a higher threshold, a price move can lower the backrun side's starting fee for that block.
+- **Capture** charges the backrun side a share of the price move. It applies only when the move is at least the backrun threshold. LPs receive this share when someone backruns a large trade.
+
+The two thresholds are set separately. If both are 10 bp, moves below 10 bp have no temporary fee and larger moves get both parts.
+
+## Starting fee for the block
+
+| Side | Starting fee |
+| :--- | :--- |
+| Leaning | Permanent fee |
+| Backrun | Permanent fee + temporary fee |
+
+If the price did not move since the last block open, the temporary fee is zero and ask plus bid equals the resting spread.
+
+## Duration
+
+The temporary fee lasts until the next block that contains a swap. That block's first swap recomputes it from the price impact since the previous block open. If the price has not moved since then, the new temporary fee is zero.
+
+## Where to Go Next
+
+- [Mid-Block Fees](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/mid-block-fees)
+- [VolatilePair Security](/docs/protocols/uniswap-labs-hooks/volatile-pair/security)

@@ -1,6 +1,6 @@
 ---
-id: overview
-title: Architecture
+title: Uniswap v3 Architecture
+sidebarTitle: Architecture
 description: Understand Uniswap v3 architecture, including core contracts, factory design, and pool interaction patterns.
 ---
 
@@ -36,6 +36,29 @@ Pools primarily serve as automated market makers for the paired assets. Addition
 
 <Callout title="">
 Source code: [UniswapV3Pool.sol](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/UniswapV3Pool.sol)
+</Callout>
+
+### Core libraries
+
+The pool contract delegates most of its arithmetic to a set of libraries. They are the contracts a v3 integration reads most often when reasoning about ticks, prices and liquidity, and each one is small enough to read end to end.
+
+| Library | What it does |
+| --- | --- |
+| [TickMath](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/TickMath.sol) | Computes sqrt prices from ticks and vice versa, for ticks of size 1.0001 |
+| [SqrtPriceMath](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/SqrtPriceMath.sol) | Price and amount functions based on Q64.96 sqrt price and liquidity |
+| [SwapMath](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/SwapMath.sol) | Computes the result of a swap within a single tick |
+| [FullMath](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/FullMath.sol) | 512-bit multiply and divide without loss of precision |
+| [LiquidityMath](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/LiquidityMath.sol) | Adds a signed liquidity delta to liquidity |
+| [TickBitmap](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/TickBitmap.sol) | Packed record of which ticks are initialized |
+| [Tick](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/Tick.sol) | Per-tick state, including liquidity and fee growth |
+| [Position](https://github.com/Uniswap/uniswap-v3-core/blob/main/contracts/libraries/Position.sol) | Per-position state, keyed by owner and tick range |
+
+Alongside these sit the numeric helpers the pool uses internally: `BitMath`, `FixedPoint96`, `FixedPoint128`, `LowGasSafeMath`, `SafeCast`, `UnsafeMath` and `TransferHelper`.
+
+Every library carries natspec on each function, so the source is the reference.
+
+<Callout title="">
+Source code: [libraries/](https://github.com/Uniswap/uniswap-v3-core/tree/main/contracts/libraries)
 </Callout>
 
 ## Periphery

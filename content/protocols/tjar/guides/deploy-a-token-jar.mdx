@@ -1,0 +1,110 @@
+---
+title: Deploy a Token Jar
+sidebarTitle: Deploy a Token Jar
+description: Deploy a Token Jar and releaser pair with the TJAR Factory, choose release terms, and configure fee sources safely.
+type: how-to
+---
+
+A single Factory call deploys both a jar and a releaser paired together. The Factory keeps no registry and retains no authority over contracts deployed through it.
+
+## Prerequisites
+
+- [Foundry](https://getfoundry.sh/), for the `cast` commands on this page.
+- A deployer account with gas on the target chain. For a jar that should land at the same address on several chains, deploy from an EOA. See the callout under Wire Fee Sources After Deployment.
+- The Factory address, which is the same on every supported chain. [Deployments](/docs/protocols/tjar/deployments) lists the address and the chains.
+- The `resource` token's address and an RPC URL for the chain.
+
+## Parameters
+
+| Parameter | What to set | Changed later by |
+|---|---|---|
+| `resource` | The token a searcher sends to clear the jar. Prefer an immutable, non-upgradeable token, since the release nonce cannot protect against changes to the token itself. | `owner` or `configSetter`, with `setConfig` |
+| `threshold` | The amount of `resource` a searcher sends for each release, in the token's smallest unit. If a protocol fee is ever set, it is added on top. | `owner` or `configSetter`, with `setConfig` |
+| `resourceRecipient` | The address that receives the `threshold` from every release, such as a treasury, or `0xdead` to burn it. It cannot be the jar or the releaser. | `owner` or `configSetter`, with `setConfig` |
+| `owner` | The address that owns both the jar and the releaser. It can point the jar at a new releaser, change release terms, appoint the `configSetter`, and transfer ownership. A zero address reverts. Pass `0xdead` to renounce. | `owner`, with `transferOwnership` on each contract |
+| `configSetter` | An optional second address that can change release terms and nothing else. Pass `address(0)` to leave the role empty. | `owner`, with `setConfigSetter` |
+
+Choosing `threshold` is a judgment call for the operator. A high threshold means fewer, larger releases and more value sitting in the jar between them. A low threshold means more frequent sweeps. The tradeoff is that converting tokens less often allows their value to fluctuate more while converting tokens more often can cause fee loss when fees overshoot the threshold value.
+
+## Deploy
+
+```solidity
+(address jar, address releaser) = factory.deploy(
+    revenueToken,      // resource, the token searchers send
+    revenueRecipient,  // resourceRecipient, receives each release's threshold
+    threshold,         // amount searchers send, in the resource's smallest unit
+    owner,             // receives ownership of both contracts; zero reverts
+    configSetter,      // may retune terms; address(0) leaves the role unset
+    salt
+);
+```
+
+```bash
+cast send $FACTORY \
+    "deploy(address,address,uint256,address,address,bytes32)(address,address)" \
+    $RESOURCE $RESOURCE_RECIPIENT $THRESHOLD $OWNER $CONFIG_SETTER $SALT \
+    --rpc-url $RPC
+```
+
+In one transaction the Factory deploys both contracts, sets the releaser on the jar, transfers ownership of both to `owner`, and appoints the `configSetter`. It emits `JarDeployed`, and the initial terms appear in the releaser's own `ConfigSet` event in the same transaction.
+
+Deploying is permissionless; anyone can call `deploy`.
+
+## Choose Roles Deliberately
+
+`owner` and `configSetter` are separate roles to support better operational security. The owner can always call `setConfig` directly, so `configSetter` exists purely for delegation.
+
+A zero `owner` reverts, since it is far more likely a bug than an intention. Use `0xdead` to relinquish.
+
+<Callout type="warn">
+Renouncement is irreversible. With no owner and no config setter there is no `setConfig` and no `setReleaser`. The only remedy is deploying a second jar and re-pointing the fee source.
+</Callout>
+
+## Wire Fee Sources After Deployment
+
+`predictJar` returns the address a jar will have before it exists, so an operator can confirm it on every chain before deploying anything.
+
+```bash
+cast call $FACTORY "predictJar(address,bytes32)(address)" $DEPLOYER $SALT --rpc-url $RPC
+```
+
+Point fee sources at the jar only once it is deployed. A push-style source such as a Uniswap v2 `feeTo` starts sending the moment it is set, and anything sent before the jar exists sits at a bare address until it does. The order is predict, deploy, then wire.
+
+<Callout type="warn">
+A predicted address is reachable only through the canonical Factory on that chain and only by the same address calling the Factory.
+
+A contract wallet created with CREATE that someone else can recreate at the same address on another chain, lets an unintended party call `deploy` as that sender and take the jar under their own owner.
+</Callout>
+
+## The Same Address on Every Chain
+
+The effective CREATE2 salt is `keccak256(msg.sender, salt)`. Deploy from the same address with the same salt and the jar lands at the same address on every chain.
+
+## Retune Terms Later
+
+```bash
+cast send $RELEASER \
+    "setConfig(address,address,uint256,uint256)" \
+    $RESOURCE $RESOURCE_RECIPIENT $THRESHOLD $MAX_RELEASE_LENGTH \
+    --rpc-url $RPC
+```
+
+All four parameters move together, and every call advances the release nonce so no searcher can execute against old terms. Note that a config change reverts every in-flight `release()`, which costs those searchers gas. See [Releasers](/docs/protocols/tjar/concepts/releasers) for what the nonce does and does not guarantee.
+
+To change anything else, deploy a new releaser with `factory.deployReleaser` and adopt it with `jar.setReleaser`.
+
+## Verify the Deployment
+
+```bash
+cast call $JAR "releaser()(address)" --rpc-url $RPC                  # the new releaser
+cast call $JAR "owner()(address)" --rpc-url $RPC                     # the owner
+cast call $RELEASER "TOKEN_JAR()(address)" --rpc-url $RPC            # the jar
+cast call $RELEASER "releaseCost()(uint256,uint256)" --rpc-url $RPC  # total, fee
+cast call $RELEASER "nonce()(uint256)" --rpc-url $RPC
+```
+
+## Where to Go Next
+
+- [Releasers](/docs/protocols/tjar/concepts/releasers) for the full terms model and rotation.
+- [Fee Controller](/docs/protocols/tjar/concepts/fee-controller) for the optional protocol fee, which is not set today.
+- [Search Token Jars](/docs/protocols/tjar/guides/search-token-jars) for how searchers find and price jars.

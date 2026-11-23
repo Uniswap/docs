@@ -1,0 +1,20 @@
+---
+title: 'Swap Calldata in the Quote Response'
+description: 'Posted: September 24, 2026'
+type: changelog
+datePublished: '2026-09-24'
+---
+
+`/quote` responses can now include the ready-to-send swap transaction, so you can skip the second `/swap` call when no permit signature needs to be embedded in the calldata.
+
+**What is changing?**
+
+Eligible CLASSIC quotes carry two new response fields: `swapTransaction`, the same transaction `/swap` would return built with the default `deadline` and `safetyMode`, and `swapGasFee`. They are included whenever no permit signature has to be embedded in the calldata, which is the case when the request used `x-permit2-disabled: true`, the swapper already holds a valid permit (`permitData` is `null`), or the permit was requested as a transaction (`generatePermitAsTransaction: true`). They are left out when `txFailureReasons` is populated, in which case `/swap` still builds the calldata for you. `/swap` itself is unchanged.
+
+**Why is this changing?**
+
+Integrators comparing quotes across aggregators need the executable transaction at quote time. Returning it in `/quote` removes a full round trip and matches the single-call shape most aggregator APIs use.
+
+**What do I need to do?**
+
+No change is required, as these fields are added for optional use. If you want the single-call flow, read `swapTransaction` from the `/quote` response when present, and fall back to `/swap` when it is absent or when you need a custom deadline or safety mode. See the [`/quote` reference](/docs/api-reference/aggregator_quote).

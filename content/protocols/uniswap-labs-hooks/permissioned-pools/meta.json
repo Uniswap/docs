@@ -1,0 +1,4 @@
+{
+  "title": "Permissioned Pools Hook",
+  "pages": ["overview", "architecture", "deploy-a-permissioned-pool", "provide-liquidity"]
+}

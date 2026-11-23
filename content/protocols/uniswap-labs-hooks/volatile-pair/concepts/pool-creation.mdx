@@ -1,0 +1,70 @@
+---
+title: Pool Creation and Configuration
+description: Understand why VolatilePair pools are created only by Uniswap Labs, and where each pool's fee parameters are stored.
+---
+
+## Pool key
+
+A Uniswap v4 pool is identified by its pool key: the two currencies, a fee field, a tick spacing, and the hook. Pools with different keys are different pools.
+
+For a dynamic fee hook, the fee field holds a flag. The flag tells v4 that the hook sets the fee at swap time.
+
+## Fee parameters
+
+VolatilePair stores each pool's fee parameters in the hook's storage, keyed by pool ID. All values are in pips (`1_000_000` is 100%).
+
+| Parameter | Description |
+| :--- | :--- |
+| `restingSpreadE6` | Ask permanent fee plus bid permanent fee. This is the spread in a calm block. |
+| `skewRateE6` | Permanent fee step per unit of price impact. |
+| `maxSkewStepE6` | Maximum permanent fee step per block. |
+| `maxSkewE6` | Maximum permanent fee on either side. |
+| `restoreFractionE6` | Share of the backrun side's permanent fee drop that the temporary fee adds back. |
+| `restoreThresholdE6` | Minimum price impact for the restore part. |
+| `backrunCaptureFractionE6` | Share of a price move charged to the backrun side. Used by the temporary fee and the mid-block backrun extra. |
+| `backrunThresholdE6` | Minimum price impact for the capture part. |
+| `midFadeRateE6` | Growth rate of the mid-block extra for swaps in the direction of the in-block move. |
+| `maxMidFadeE6` | Maximum continuing mid-block extra. |
+
+`feeConfig(poolId)` returns a pool's parameters. `feeState(poolId)` returns its current fee state.
+
+The fee parameters are not part of the pool key. A pair, tick spacing, and hook identify one pool with one configuration.
+
+## Validation
+
+The maximum fee is the hook constant `MAX_FEE_E6`, 999,998 pips. Each configuration write checks that:
+
+- The resting spread is not zero and is at most twice the maximum fee.
+- `maxSkewE6` is between half the resting spread and the full resting spread, and is at most the maximum fee.
+- `maxSkewStepE6` is at most the width of the range the permanent fees can move in.
+- `maxMidFadeE6` is at most the maximum fee.
+- The capture and restore fractions are at most 100%, and both thresholds are below 100%.
+
+`skewRateE6` and `midFadeRateE6` have no upper bound. `maxSkewStepE6`, `maxMidFadeE6`, and the maximum fee limit their effect.
+
+Each write also resets the pool's fee state. Both permanent fees go back to half the resting spread, the temporary fee goes to zero, and the next swap uses the current pool price as its starting point.
+
+## Pool creation
+
+v4 allows only one pool per pool key. If anyone could create pools, someone could create a pair's pool before Uniswap Labs does and pick its fee settings. After that, only a governance vote could change them.
+
+To prevent this, the hook's `beforeInitialize` callback reverts for every caller except the hook itself. Calling `PoolManager.initialize` with this hook reverts. Pools are created through the hook's `initializePool` function. A Uniswap Labs Safe holds the role that can call it. `initializePool` validates the fee configuration, stores it, and creates the pool in one transaction.
+
+## Roles
+
+| Action | Who |
+| :--- | :--- |
+| Create a pool and set its initial parameters | Uniswap Labs Safe |
+| Change a pool's parameters | Uniswap governance |
+| Upgrade the hook | Uniswap governance |
+
+See [VolatilePair Security](/docs/protocols/uniswap-labs-hooks/volatile-pair/security) for the trust model.
+
+## One hook for all pools
+
+Every hook function takes a pool key, so one deployment serves every pair. Each chain has one VolatilePair hook address. See [Deployments](/docs/protocols/uniswap-labs-hooks/volatile-pair/deployments).
+
+## Where to Go Next
+
+- [Dynamic Fees](/docs/protocols/uniswap-labs-hooks/volatile-pair/concepts/dynamic-fees)
+- [VolatilePair Deployments](/docs/protocols/uniswap-labs-hooks/volatile-pair/deployments)

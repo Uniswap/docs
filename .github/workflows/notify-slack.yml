@@ -9,7 +9,7 @@ permissions: {}
 
 jobs:
   notify:
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.author_association != 'MEMBER' && github.event.pull_request.author_association != 'OWNER')
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.author_association != 'MEMBER' && github.event.pull_request.author_association != 'OWNER' && github.event.pull_request.user.type != 'Bot')
     runs-on: ubuntu-latest
     steps:
       - name: Post new PR to Slack

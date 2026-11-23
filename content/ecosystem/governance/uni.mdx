@@ -1,0 +1,92 @@
+---
+title: UNI Token
+description: Learn what the UNI token is, its supply and initial distribution, contract addresses, and how protocol fees burn UNI.
+---
+
+UNI is the governance token of the Uniswap Protocol. UNI holders have governance rights and are represented through [DUNI](/docs/ecosystem/governance/overview#duni). Since December 2025, [protocol fees](/docs/protocols/protocol-fee/overview) collected across Uniswap's products are used to burn UNI, reducing its total supply over time.
+
+## Token Details
+
+| Property | Value |
+| :---- | :---- |
+| Token standard | ERC-20 |
+| Total supply at launch | 1,000,000,000 UNI |
+| Inflation | No active inflation. Governance has authority to mint up to 2% of total supply annually but has not exercised this to date. |
+| Decimals | 18 |
+
+## Initial Distribution
+
+At genesis in September 2020, 1 billion UNI were minted and allocated as follows:
+
+| Recipient | Allocation | Amount |
+| :---- | :---- | :---- |
+| Community treasury | 43.00% | 430,000,000 UNI |
+| Historical users and LPs (immediate airdrop) | 15.00% | 150,000,000 UNI |
+| Team and future employees | 21.27% | 212,660,000 UNI |
+| Investors | 18.04% | 180,440,000 UNI |
+| Advisors | 0.69% | 6,900,000 UNI |
+
+The remaining 2.00% (20,000,000 UNI) was allocated to an initial liquidity mining program that ran from September to November 2020, per the [UNI genesis announcement](https://blog.uniswap.org/uni).
+
+The 15% airdrop was immediately claimable by historical liquidity providers, users of Uniswap v1 or v2, and [SOCKS](https://socks.uniswap.org/) token holders, based on a snapshot taken September 1, 2020.
+
+The community treasury vested over four years on the following schedule, with governance gaining access to vested UNI beginning October 18, 2020:
+
+| Year | Treasury release |
+| :---- | :---- |
+| Year 1 | 172,000,000 UNI |
+| Year 2 | 129,000,000 UNI |
+| Year 3 | 86,000,000 UNI |
+| Year 4 | 43,000,000 UNI |
+
+Team, investor, and advisor allocations vested on the same four-year schedule. All vesting concluded in September 2025.
+
+## Contract Addresses
+
+### Ethereum mainnet
+
+| Contract | Address |
+| :---- | :---- |
+| UNI Token | [0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984](https://etherscan.io/address/0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984) |
+| GovernorBravo | [0x408ED6354d4973f66138C91495F2f2FCbd8724C3](https://etherscan.io/address/0x408ED6354d4973f66138C91495F2f2FCbd8724C3) |
+| Timelock | [0x1a9C8182C09F50C8318d769245beA52c32BE35BC](https://etherscan.io/address/0x1a9C8182C09F50C8318d769245beA52c32BE35BC) |
+
+### Other networks
+
+UNI is available as a bridged token on several networks. Below are the contract addresses for UNI on chains where the protocol fee is active, matching the `releaserUni` values in [govkit](https://github.com/Uniswap/govkit/blob/main/src/types/Uniswap.sol).
+
+| Network | Address |
+| :---- | :---- |
+| Arbitrum One | [0xFa7F8980b0f1E64A2062791cc3b0871572f1F7f0](https://arbiscan.io/address/0xFa7F8980b0f1E64A2062791cc3b0871572f1F7f0) |
+| OP Mainnet | [0x6fd9d7AD17242c41f7131d257212c54A0e816691](https://optimistic.etherscan.io/address/0x6fd9d7AD17242c41f7131d257212c54A0e816691) |
+| Polygon | [0x06e8bdE95BE4ce5cB1134BD47aD18a79fFB35822](https://polygonscan.com/address/0x06e8bdE95BE4ce5cB1134BD47aD18a79fFB35822) |
+| Base | [0xc3De830EA07524a0761646a6a4e4be0e114a3C83](https://basescan.org/address/0xc3De830EA07524a0761646a6a4e4be0e114a3C83) |
+| BNB Chain | [0x06e8bdE95BE4ce5cB1134BD47aD18a79fFB35822](https://bscscan.com/address/0x06e8bdE95BE4ce5cB1134BD47aD18a79fFB35822) |
+| Celo | [0xd7493e84a060292CDca6B67619402F7702336bF4](https://celoscan.io/address/0xd7493e84a060292CDca6B67619402F7702336bF4) |
+| Unichain | [0x8f187aA05619a017077f5308904739877ce9eA21](https://uniscan.xyz/address/0x8f187aA05619a017077f5308904739877ce9eA21) |
+| World Chain | [0x6fD31f56eb971113bEA12C5883deC68337b3B7b5](https://worldscan.org/address/0x6fD31f56eb971113bEA12C5883deC68337b3B7b5) |
+| Soneium | [0x8f187aA05619a017077f5308904739877ce9eA21](https://soneium.blockscout.com/address/0x8f187aA05619a017077f5308904739877ce9eA21) |
+| X Layer | [0x57FB37d035e6Ad0E687E0a50dC3F515691deB815](https://www.oklink.com/xlayer/address/0x57FB37d035e6Ad0E687E0a50dC3F515691deB815) |
+| Zora | [0xE7798f023fC62146e8Aa1b36Da45fb70855a77Ea](https://explorer.zora.energy/address/0xE7798f023fC62146e8Aa1b36Da45fb70855a77Ea) |
+
+## How UNI Is Used
+
+### Governance
+
+UNI holders govern the Uniswap Protocol through onchain voting. Governance authority includes:
+
+- Setting and modifying protocol fee parameters
+- Approving treasury allocations
+- Minting additional UNI, up to 2% of total supply annually
+
+For the full governance process, see [Governance Process](/docs/ecosystem/governance/governance-process).
+
+### Protocol fee and UNI burn
+
+Protocol fees can be collected across Uniswap's products and are currently active only on Uniswap v2 and v3. Fees are routed into an onchain collector on each network where they are claimed by external participants in exchange for UNI, which is then permanently burned. UNI holders have no individual or pro-rata claim on protocol revenue; value accrual is mediated entirely through this burn mechanism and any other distribution mechanism governance may subsequently authorize.
+
+For a full description of the fee flow and burn mechanics, see [Protocol Fees](/docs/protocols/protocol-fee/overview).
+
+## FAQs
+
+Common questions about UNI, the protocol fee and burn mechanism, and DUNI are answered in the [Governance FAQs](/docs/ecosystem/governance/faqs).

@@ -1,0 +1,25 @@
+---
+title: Provide Liquidity on StablePair
+description: Add and remove liquidity in StablePair pools using the standard Uniswap v4 position flow.
+---
+
+Liquidity in a StablePair pool works exactly as it does in any Uniswap v4 pool. Use `PositionManager` as normal. There is no hook-specific calldata, no allowlist, and no deposit wrapper.
+
+## What the hook can and cannot do
+
+StablePair deliberately claims almost no power over liquidity:
+
+- Its remove-liquidity callbacks are switched off entirely, so it cannot block or interfere with an exit.
+- It holds none of v4's return-delta permissions, so it cannot alter the amounts on a mint or a burn.
+- Its add-liquidity callbacks are enabled but inert.
+
+The hook's only active role in a live pool is overriding the LP fee on swaps.
+
+## Creating pools is permissioned
+
+Liquidity is open to anyone, but pool creation is not. Calling `PoolManager.initialize` against this hook reverts; pools are created only by Uniswap Labs, which sets each pool's fee parameters atomically with creation. See [Pool Creation and Configuration](/docs/protocols/uniswap-labs-hooks/stable-pair/concepts/pool-creation) for why.
+
+## Where to Go Next
+
+- [StablePair Deployments](/docs/protocols/uniswap-labs-hooks/stable-pair/deployments)
+- [StablePair Security](/docs/protocols/uniswap-labs-hooks/stable-pair/security)
