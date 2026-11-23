@@ -11,10 +11,10 @@ Tycho, built on Substreams, gives you simulation and routing logic for Unichain 
 
 ## Quickstart: Trade on Unichain Liquidity
 
-Clone the [Tycho Simulation repository](https://github.com/propeller-heads/tycho-simulation); you'll find the [quickstart code](https://github.com/propeller-heads/tycho-simulation/blob/main/examples/quickstart/main.rs) there.
+Clone the [Tycho repository](https://github.com/propeller-heads/tycho); you'll find the [quickstart code](https://github.com/propeller-heads/tycho/blob/main/crates/tycho-simulation/examples/quickstart/main.rs) in the `tycho-simulation` crate.
 
 ```bash
-git clone https://github.com/propeller-heads/tycho-simulation.git && cd tycho-simulation
+git clone https://github.com/propeller-heads/tycho.git && cd tycho/crates/tycho-simulation
 ```
 
 Then run:
@@ -23,9 +23,13 @@ Then run:
 export RPC_URL=https://unichain-rpc.publicnode.com
 export TYCHO_URL=tycho-unichain-beta.propellerheads.xyz
 export TYCHO_API_KEY=sampletoken
+unset HISTFILE
 export PRIVATE_KEY=YOUR_TEST_WALLET_PRIVATE_KEY
-cargo run --release --example quickstart -- --sell-token "0x078D782b760474a361dDA0AF3839290b0EF57AD6" --buy-token "0x4200000000000000000000000000000000000006" --sell-amount 10 --chain "unichain" --swapper-pk $PRIVATE_KEY
+cargo run --release --example quickstart -- --sell-token "0x078D782b760474a361dDA0AF3839290b0EF57AD6" --buy-token "0x4200000000000000000000000000000000000006" --sell-amount 10 --chain "unichain"
 ```
+
+The quickstart reads your signer key from the `PRIVATE_KEY` environment variable. Without it, the example prints quotes but skips simulation and execution.
+
 <Callout type="info">
   More options for [public RPCs](https://chainlist.org/chain/130).
 </Callout>

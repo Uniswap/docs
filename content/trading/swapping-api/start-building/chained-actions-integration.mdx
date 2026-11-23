@@ -196,7 +196,7 @@ Scan the steps array for `STEP_ERROR` rather than assuming which index failed. T
 
 `slippageTolerance` is the value set on the `/quote` request, or the API default if you omit it. It governs the AMM swap steps in a plan. It is fixed at quote time and applied to each swap step independently, not as a single end-to-end guarantee. For an S→B→S plan at 0.5%, each swap applies 0.5% on its own, so the combined deviation across both swaps can exceed 0.5%. Slippage cannot be changed after a plan is created. If no valid swap route exists within tolerance, the step fails with no automatic recovery.
 
-The bridge step is not an AMM swap. It is quoted through the bridge provider (Across Protocol) when the plan is built, so `slippageTolerance` does not apply to it. The bridge runs as a `SEND_TX` step alongside approvals and swaps (see the [execution flow](/docs/trading/swapping-api/concepts/chained-actions#execution-flow)), but only the swap steps have a slippage tolerance band.
+The bridge step is not an AMM swap. It is quoted through a bridge provider (Across, or Relay when you list it in [`bridgeProviders`](/docs/trading/swapping-api/start-building/integration-guide#bridge-providers)) when the plan is built, so `slippageTolerance` does not apply to it. The bridge runs as a `SEND_TX` step alongside approvals and swaps (see the [execution flow](/docs/trading/swapping-api/concepts/chained-actions#execution-flow)), but only the swap steps have a slippage tolerance band.
 
 ## Gas
 

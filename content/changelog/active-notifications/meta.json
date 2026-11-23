@@ -1,16 +1,4 @@
 {
   "title": "Active Notifications",
-  "pages": [
-    "lowercase-urgency-values-removed",
-    "numeric-chain-ids-required",
-    "guidestar-routing-beta",
-    "uppercase-urgency-values",
-    "sunset-of-blast-swapping-support",
-    "sunset-of-universal-router-2-0-and-2-1-1",
-    "swap-router-balance-mode",
-    "multiple-integrator-fees",
-    "swap-calldata-in-quote-response",
-    "enforcement-of-slippage-validation",
-    "improved-api-error-codes"
-  ]
+  "pages": ["lowercase-urgency-values-removed", "guidestar-routing-beta"]
 }
