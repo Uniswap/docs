@@ -1,83 +1,79 @@
 ---
 title: Unichain Node Snapshots
-description: Use snapshots to quickly bootstrap Unichain nodes without a full blockchain sync.
+description: Use op-reth snapshots to bootstrap Unichain nodes without a full blockchain sync.
 ---
 
-Starting a new Unichain node from scratch requires a full blockchain sync, which can take 4 to 8 hours for mainnet and 2 to 4 hours for testnet. A snapshot can reduce this initial sync time to a few minutes.
+Starting a new Unichain node from scratch requires a full blockchain sync, which can take a long time. Restoring a snapshot lets the node start close to the chain head and sync only the remaining blocks.
 
 ## Snapshot Sources
 
-Allnodes provides regularly updated snapshots for both Unichain networks. Hourly differential updates are also available for nodes that need to catch up quickly without downloading a full snapshot.
+Allnodes publishes op-reth snapshots for both Unichain networks on [PublicNode](https://publicnode.com/snapshots#unichain). Each snapshot has two archives that you restore together:
 
-| Network | Base image | 24h snapshot | Hourly diff |
-| :---- | :---- | :---- | :---- |
-| Mainnet | https://snapshots.publicnode.com/unichain-geth-base.tar.lz4 | https://publicnode.com/snapshots#unichain | https://sdca9.share.hsforms.com/2Nxi8y1IhRPO8mluwjYKgWA |
-| Sepolia Testnet | https://snapshots.publicnode.com/unichain-sepolia-geth-base-0-13772176.tar.lz4 | https://publicnode.com/snapshots#unichain | https://sdca9.share.hsforms.com/2Nxi8y1IhRPO8mluwjYKgWA |
+- A **base** archive with historical data. It is updated rarely and has a stable download URL.
+- A **part** archive with the current database. A new part is published every 24 hours, and its filename includes the block height, so get the latest link from the PublicNode page.
+
+| Network | Base archive | Latest part archive |
+| :---- | :---- | :---- |
+| Mainnet | https://snapshots.publicnode.com/unichain-reth-base.tar.lz4 | [publicnode.com/snapshots#unichain](https://publicnode.com/snapshots#unichain) |
+| Sepolia Testnet | https://snapshots.publicnode.com/unichain-sepolia-reth-base.tar.lz4 | [publicnode.com/snapshots#unichain](https://publicnode.com/snapshots#unichain) |
+
+These are full node snapshots. The Unichain Mainnet archive node snapshot is available only to Allnodes bare metal customers.
 
 ## Snapshot Restoration Process
 
-These instructions assume a Docker Compose setup, such as the one from the Optimism [Running a Node With Docker](https://docs.optimism.io/node-operators/tutorials/node-from-docker) tutorial, run from the directory that contains `docker-compose.yml`, with op-geth data mounted at `./geth-data`. If you do not have a node running yet, follow [Set Up a Node](/docs/unichain/getting-started/set-up-a-node).
+These instructions assume a Docker Compose setup, such as the one from the Optimism [Running a Node With Docker](https://docs.optimism.io/node-operators/tutorials/node-from-docker) tutorial, run from the directory that contains `docker-compose.yml`, with op-reth data mounted at `./reth-data` and the op-reth service named `op-reth`. If you do not have a node running yet, follow [Set Up a Node](/docs/unichain/getting-started/set-up-a-node).
 
 ### 1. Prepare the data directory
 
 Create the data directory that will store your blockchain data:
 
 ```bash
-mkdir ./geth-data
+mkdir -p ./reth-data
 ```
 
 For existing installations, if you have previously run the node, stop it first and clear the existing data:
 
 ```bash
 docker compose down
-rm -rf ./geth-data/*
+rm -rf ./reth-data/*
 ```
 
 ### 2. Download the snapshot
 
-Visit the appropriate Allnodes link from the table above and download the snapshot for your target network.
-
-**Important**: Ensure sufficient disk space is available. The compressed snapshot archive will expand to a significantly larger size when extracted.
-
-### 3. Extract the archive
-
-Extract the downloaded snapshot file:
+Download the base archive for your target network from the table above, and the latest part archive for the same network from the [PublicNode snapshots page](https://publicnode.com/snapshots#unichain). For Unichain Mainnet:
 
 ```bash
-tar -I lz4 -xvf <downloaded-snapshot-filename.tar.lz4>
+curl -L -o unichain-reth-base.tar.lz4 https://snapshots.publicnode.com/unichain-reth-base.tar.lz4
+curl -L -o unichain-reth-part.tar.lz4 <latest-part-url-from-publicnode>
 ```
 
-### 4. Organize the data
+**Important**: Ensure sufficient disk space is available. Each archive is tens of gigabytes compressed and expands to a significantly larger size when extracted. Check the current sizes on the PublicNode page before you start.
 
-The extraction process creates a directory structure (typically named geth). Move the contents to your prepared data directory:
+### 3. Extract the archives
+
+Extract the base archive first, then the part archive, into the same data directory:
 
 ```bash
-mv ./geth/* ./geth-data/
-rm -rf ./geth
+lz4 -dc unichain-reth-base.tar.lz4 | tar -xf - -C ./reth-data
+lz4 -dc unichain-reth-part.tar.lz4 | tar -xf - -C ./reth-data
 ```
 
-**Expected result**: The `./geth-data/` directory should contain blockchain data folders (`chaindata`, `nodes`, and others) directly, without additional nesting.
+**Expected result**: The `./reth-data/` directory should contain the op-reth data folders (`db` and `static_files`) directly, without additional nesting.
 
-### 5. Start the node
+### 4. Start the node
 
 Launch your Unichain node with the restored data:
 
 ```bash
-docker compose up --build -d
+docker compose up -d
 ```
 
-### 6. Verify operation
+### 5. Verify operation
 
 Monitor the node startup and sync process:
 
 ```bash
-docker compose logs -f op-geth
+docker compose logs -f op-reth
 ```
 
-The node should begin syncing from the snapshot's block height rather than genesis. Once operation is confirmed, the downloaded snapshot archive can be deleted to recover disk space.
-
-## Incremental Updates with Hourly Diffs
-
-For nodes that are already synchronized but have fallen behind, hourly differential files provide a more efficient update method than full snapshots. These smaller files contain only recent blockchain changes and can quickly bring a node current without the overhead of a complete snapshot download.
-
-Download the appropriate hourly diff from the links above and apply it to your existing node data for faster synchronization.
+The node should begin syncing from the snapshot's block height rather than genesis. Once operation is confirmed, the downloaded snapshot archives can be deleted to recover disk space.

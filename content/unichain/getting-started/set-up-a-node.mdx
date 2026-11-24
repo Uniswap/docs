@@ -1,38 +1,55 @@
 ---
 title: Set Up a Node
-description: Run a Unichain node using OP Stack tooling for mainnet or Sepolia development workflows.
+description: Run a Unichain node with op-node and op-reth for mainnet or Sepolia using OP Stack tooling.
 ---
 
-Unichain (including Unichain Sepolia testnet) runs on the OP Stack as part of the Superchain. The Optimism team provides detailed docs for running Superchain nodes, so review them before proceeding:
+Unichain (including Unichain Sepolia testnet) runs on the OP Stack as part of the Superchain. A Unichain node pairs a consensus client (op-node) with an execution client (op-reth). The Optimism team provides detailed docs for running OP Stack nodes, so review them before proceeding:
 - [Node Operator Overview](https://docs.optimism.io/node-operators/overview)
 - [Running a Node With Docker](https://docs.optimism.io/node-operators/tutorials/node-from-docker)
 - [Building and Running a Node From Source](https://docs.optimism.io/node-operators/tutorials/run-node-from-source)
 
+<Callout type="warning">
+  op-geth reached end of support on May 31, 2026 and cannot follow the canonical chain after the Karst hardfork. Run op-reth as the execution client. See the [op-geth deprecation notice](https://docs.optimism.io/notices/archive/op-geth-deprecation) for migration steps.
+</Callout>
+
+<Callout type="warning">
+  OP Stack interop is targeted to activate on Unichain Sepolia on December 10, 2026 and on Unichain Mainnet on January 11, 2027, pending governance approval. Unichain and OP Mainnet form one interop dependency set, so node operators need an op-supernode that derives both chains before activation. Follow the [interop preparation notice](https://docs.optimism.io/notices/interop-prep) for the required topology and versions.
+</Callout>
+
 ## Running a Unichain Node
 
-Follow the Optimism [Running a Node With Docker](https://docs.optimism.io/node-operators/tutorials/node-from-docker) tutorial for an easy-to-use setup. Unichain is part of the Superchain registry, so use the network names and sequencer endpoints below in place of the OP Mainnet or OP Sepolia values.
+Follow the Optimism [Running a Node With Docker](https://docs.optimism.io/node-operators/tutorials/node-from-docker) tutorial for a Docker Compose setup with the official op-node and op-reth images. Unichain is part of the Superchain registry, so op-node and op-reth recognize it by name. Use the network names and sequencer endpoints below in place of the OP Mainnet or OP Sepolia values.
+
+| Network | op-node `--network` | op-reth `--chain` | op-reth `--rollup.sequencer` |
+| :-- | :-- | :-- | :-- |
+| Unichain Mainnet | `unichain-mainnet` | `unichain` | `https://mainnet-sequencer.unichain.org` |
+| Unichain Sepolia | `unichain-sepolia` | `unichain-sepolia` | `https://sepolia-sequencer.unichain.org` |
 
 ## Manually Running Unichain Mainnet Nodes
 
-If you want to run op-node and op-geth manually, set the network name to `unichain-mainnet`.
+If you want to run op-node and op-reth manually:
 
-For op-node, set `--network=unichain-mainnet`.
-For op-geth, set `--op-network=unichain-mainnet`.
+- For op-node, set `--network=unichain-mainnet`.
+- For op-reth, set `--chain=unichain`.
+- Set tx ingress on op-reth to `--rollup.sequencer=https://mainnet-sequencer.unichain.org`.
 
-Set tx ingress to `GETH_ROLLUP_SEQUENCERHTTP=https://mainnet.unichain.org`.
+To serve Flashblocks preconfirmation data from your node, also see [Integrating Flashblocks (Node Operators)](/docs/unichain/technical-information/flashblocks#integrating-flashblocks-node-operators).
 
 More documentation on running your own nodes is available in the [Optimism docs](https://docs.optimism.io/node-operators/overview).
 
 ## Manually Running Unichain Sepolia Nodes
 
-If you want to run op-node and op-geth manually, set the network name to `unichain-sepolia`.
+If you want to run op-node and op-reth manually:
 
-For op-node, set `--network=unichain-sepolia`.
-For op-geth, set `--op-network=unichain-sepolia`.
-
-Set tx ingress to `GETH_ROLLUP_SEQUENCERHTTP=https://sepolia-sequencer.unichain.org`.
+- For op-node, set `--network=unichain-sepolia`.
+- For op-reth, set `--chain=unichain-sepolia`.
+- Set tx ingress on op-reth to `--rollup.sequencer=https://sepolia-sequencer.unichain.org`.
 
 More documentation on running your own nodes is available in the [Optimism docs](https://docs.optimism.io/node-operators/overview).
+
+## Bootstrapping From a Snapshot
+
+To skip most of the initial sync, restore an op-reth snapshot before starting the node. See [Unichain Node Snapshots](/docs/unichain/technical-information/node-snapshots).
 
 ## Where to Go Next
 

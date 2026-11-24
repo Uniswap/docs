@@ -174,6 +174,57 @@ const nativeEthQuoteResponse = await fetch('https://trade-api.gateway.uniswap.or
 });
 ```
 
+### Bridge providers
+
+A `BRIDGE` quote is filled by a third-party bridge provider: Across by default. To let Relay compete as well, list the providers you accept in `bridgeProviders` on the `/quote` request. The API returns the best quote among them and names the winner in `quote.provider`. Omit `bridgeProviders` to keep Across only. The same list applies to the bridge step of a [chained quote](/docs/trading/swapping-api/concepts/chained-actions).
+
+Each provider pulls the input token through its own contract, so when you list a provider other than Across, approve after you quote:
+
+1. Request the quote with `bridgeProviders`.
+2. Call `/check_approval` with that quote in its `quote` field. The approval it returns names the contract that quote's deposit pulls from, also given as `quote.approvalSpender`.
+3. Send the quote to `/swap` unchanged and broadcast the returned transaction. A provider quote that was altered or has expired returns a 400, so request a new quote.
+
+If you approve before quoting, the approval goes to Across's contract and a Relay deposit reverts. Bridges don't use Permit2: the approval is a plain ERC-20 approval of the provider's contract, and bridging the native token needs none.
+
+```typescript
+const headers = {
+  'x-api-key': 'YOUR_API_KEY',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+};
+
+const quoteResponse = await fetch('https://trade-api.gateway.uniswap.org/v1/quote', {
+  method: 'POST',
+  headers,
+  body: JSON.stringify({
+    tokenIn: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831', // USDC on Arbitrum
+    tokenOut: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', // USDC on Base
+    tokenInChainId: 42161,
+    tokenOutChainId: 8453,
+    type: 'EXACT_INPUT',
+    amount: '100000000',
+    swapper: '0x...',
+    bridgeProviders: ['ACROSS', 'RELAY'],
+  }),
+});
+const { quote } = await quoteResponse.json();
+
+const approvalResponse = await fetch('https://trade-api.gateway.uniswap.org/v1/check_approval', {
+  method: 'POST',
+  headers,
+  body: JSON.stringify({
+    walletAddress: quote.swapper,
+    token: quote.input.token,
+    amount: quote.input.amount,
+    chainId: 42161,
+    tokenOut: quote.output.token,
+    tokenOutChainId: 8453,
+    quote,
+  }),
+});
+const { approval } = await approvalResponse.json();
+```
+
 ## Schema Reference
 
 ### TransactionRequest
@@ -695,7 +746,7 @@ Swapping native ETH works a little differently. Don't transfer ETH to the router
 
 ### Simulation
 
-We simulate these quotes the same way we simulate everything else, so a `/quote` response includes `swapTransaction` under the usual [calldata-in-quote](/docs/changelog/active-notifications/swap-calldata-in-quote-response) rules. Two simulation failures don't count against you here, because they don't apply when a bridge is funding the router: `TRANSFER_FROM_FAILED` (the swapper couldn't pay, but they aren't paying) and `SLIPPAGE_TOO_LOW` (just re-quote with a wider tolerance). You still get calldata for those.
+We simulate these quotes the same way we simulate everything else, so a `/quote` response includes `swapTransaction` under the usual [calldata-in-quote](/docs/trading/swapping-api/getting-started#high-level-message-flow) rules. Two simulation failures don't count against you here, because they don't apply when a bridge is funding the router: `TRANSFER_FROM_FAILED` (the swapper couldn't pay, but they aren't paying) and `SLIPPAGE_TOO_LOW` (just re-quote with a wider tolerance). You still get calldata for those.
 
 If the simulation fails for any other reason, like the swap reverting outright or the simulation not being able to run, we return a 422 instead of a quote with no calldata. There's no safe way to hand you calldata for a route we know is broken.
 

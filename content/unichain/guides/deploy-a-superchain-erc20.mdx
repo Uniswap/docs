@@ -21,7 +21,7 @@ While the `SuperchainERC20` is a trust-minimized way to enable for giving your t
 
 These alternatives can also benefit from Superchain interop by giving cross-chain mint/burn permissions to the `SuperchainTokenBridge` or `L2ToL2CrossDomainMessenger`.
 
-For more information about compatible tokens and implementations, see <a href="https://docs.optimism.io/interop/compatible-tokens" target="_"> superchain compatible tokens documentation</a>.
+For more information about compatible tokens and implementations, see <a href="https://docs.optimism.io/op-stack/interop/explainer" target="_"> superchain compatible tokens documentation</a>.
 </Callout>
 
 ## Requirements
@@ -30,7 +30,7 @@ For more information about compatible tokens and implementations, see <a href="h
 ETH on Unichain is required. See [Get Funds on Unichain](/docs/unichain/getting-started/get-funds-on-unichain).
 </Callout>
 
-1. The guide uses [foundry](https://book.getfoundry.sh) for deployments. Install it by running:
+1. The guide uses [foundry](https://www.getfoundry.sh) for deployments. Install it by running:
 
     ```bash
     curl -L https://foundry.paradigm.xyz | bash
@@ -146,7 +146,7 @@ Upon creation of the token, the deployer is the owner of all 1,000,000 tokens. T
 function transfer(address to, uint256 amount) external returns (bool);
 ```
 
-The `transfer` function is callable from a block explorer, a web framework, or a backend language such as typescript, python, or rust. To transfer tokens using [cast](https://book.getfoundry.sh/reference/cast):
+The `transfer` function is callable from a block explorer, a web framework, or a backend language such as typescript, python, or rust. To transfer tokens using [cast](https://www.getfoundry.sh/reference/cast/cast):
 
 ```bash
 cast send {TOKEN_ADDRESS} "transfer(address,uint256)" {RECIPIENT_ADDRESS} {AMOUNT} \

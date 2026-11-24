@@ -66,6 +66,8 @@ faqs:
     answer: "Request validation errors are returned when a request does not contain the minimum required set of fields or has other syntactical errors. Some examples are a required field (ex. autoSlippage in the /quote endpoint) is not populated, or an address is missing a character (eg. is 39 characters long instead of 40). These errors typically include a specific error message which describes the field which could not be interpreted."
   - question: What does an HTTP 401 Unauthorized error mean?
     answer: "All API requests must be authenticated through the inclusion of a valid API key in the header of the request. If you do not have an API key, you may create one through the Uniswap Developer Platform. 401 errors may also be returned if the request has malformed or missing required headers, or if headers contain unsupported values. The API is specific about request header validation. In particular, ensure that your accept and content-type headers only include the value application/json."
+  - question: 'Why does POST /order return "Onchain validation failed: UnknownError"?'
+    answer: "The order service simulated a fill of your signed order and the simulation reverted with a reason the UniswapX SDK does not recognize. When the revert carries data, the error ends with its 4-byte selector, for example (revert 0x12345678), which you can look up in the ABIs of the contracts the order touches. A smart account or EIP-7702 wallet that rejects the signature returns InvalidSignature instead. The Troubleshooting guide lists every /order validation error and what to send support."
   - question: Can I query all tokens available to trade?
     answer: No, at this time we do not offer an endpoint to query all tokens which are tradable. For more information on tradable tokens, see our guide on Supported Chains and Tokens.
   - question: Which Universal Router address do I whitelist for my wallet or application?
@@ -429,6 +431,19 @@ Use this page to find answers to the questions Uniswap API integrators ask most 
   All API requests must be authenticated through the inclusion of a valid API key in the header of the request. If you do not have an API key, you may create one through the [Uniswap Developer Platform](https://developers.uniswap.org/dashboard). 401 errors may also be returned if the request has malformed or missing required headers, or if headers contain unsupported values.
 
   The API is specific about request header validation. In particular, ensure that your `accept` and `content-type` headers only include the value `application/json`.
+
+  </div>
+
+</details>
+
+<details>
+  <summary>Why does POST /order return "Onchain validation failed: UnknownError"?</summary>
+
+  <div style={{ marginInlineStart: '1rem' }}>
+
+  The order service simulated a fill of your signed order and the simulation reverted with a reason the UniswapX SDK does not recognize. When the revert carries data, the error ends with its 4-byte selector, for example `(revert 0x12345678)`, which you can look up in the ABIs of the contracts the order touches. A smart account or EIP-7702 wallet that rejects the signature returns `InvalidSignature` instead; see [Signing UniswapX orders from smart accounts](/docs/trading/swapping-api/common-errors#signing-uniswapx-orders-from-smart-accounts).
+
+  The [/order validation errors](/docs/trading/swapping-api/common-errors#order-validation-errors) reference lists every error and what to send support.
 
   </div>
 
