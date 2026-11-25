@@ -91,7 +91,7 @@ The `StateLibrary` is a crucial component in Uniswap v4 for reading pool state. 
 
 This method is more gas-efficient than traditional getter functions, especially when reading multiple storage slots.
 
-Moreover, using `extsload` instead of hand-written Solidity view functions lowers the contract bytecode size. This optimization is particularly important for Uniswap v4, as the core contracts are nearly at Ethereum's contract size limit.
+Moreover, using `extsload` instead of hand-written Solidity view functions lowers the contract bytecode size. This optimization is particularly important for Uniswap v4, as the core contracts are close to the 24,576-byte (24 KiB) contract size limit of [EIP-170](https://eips.ethereum.org/EIPS/eip-170). After the Glamsterdam activation on Ethereum mainnet, [EIP-7954](https://eips.ethereum.org/EIPS/eip-7954) raises the Ethereum limit to 65,536 bytes (64 KiB). Other chains keep their own limits until they adopt this change, and the same core contracts are deployed on many chains.
 
 ### TransientStateLibrary and `exttload`
 
