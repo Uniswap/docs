@@ -1,0 +1,68 @@
+---
+title: Security
+description: Review DualPool's trust model, protocol invariants, and audit history.
+---
+
+## Audit
+
+DualPool was audited by OpenZeppelin (May 20 to June 17, 2026). The audit reported no critical and no high-severity issues; all findings and notes were resolved. The full report is published in the DualPool repository.
+
+## Trust Model
+
+### Owner
+
+The hook owner is the protocol's single privileged principal. Ownership uses `Ownable2Step`, so transfers require the recipient to accept, and `renounceOwnership` is disabled, so the hook can never become unowned.
+
+The owner controls:
+
+- Pool creation (`initializePool`) and seeding (`bootstrap`)
+- Liveness (`setPoolLive`): pausing and resuming swaps
+- The liquidity distribution (`setDistribution`)
+- External deposit policy (`setExternalDeposits`)
+- Vault allowance management (`refreshVaultApproval`, `emergencyRevokeVault`)
+
+The owner does **not** control pricing: the LP fee is fixed at pool creation and cannot be updated, and `hookData` cannot alter fees or execution.
+
+### Vaults
+
+The pool's ERC-4626 vaults are its largest external dependency. The hook grants each configured vault a standing max token allowance, so a compromised or malicious vault can pull the hook's full balance of that currency, including balances attributed to other pools sharing the same token. Operators should choose immutable or well-governed vaults.
+
+Mitigations built into the protocol:
+
+- Vaults must be feeless on entry and exit, verified at pool initialization
+- JIT sizing and quotes use `previewRedeem`, so a throttled vault reduces routable liquidity without corrupting LP claims
+- Vault deposits in `afterSwap` are best-effort: a capped or paused vault cannot brick swaps (the deposit is skipped and retried on later cycles)
+- `emergencyRevokeVault` atomically pauses the pool, disables deposits, zeroes both vault allowances, and best-effort drains vault balances back to the hook
+
+Curated or gated vaults (e.g. Morpho VaultV2) additionally require trusting the curator not to deny the hook withdrawal access.
+
+### Tokens
+
+Fee-on-transfer and rebasing tokens are unsupported. Deposits measure actual receipt and revert on shortfall, so a fee-charging token cannot seed a pool. This is a deposit-time check only, so operators must still restrict pools to well-behaved tokens. Native ETH is rejected at pool creation.
+
+## Reentrancy Model
+
+There are two defenses because there are two kinds of entry:
+
+1. User and admin entry points (`bootstrap`, `addLiquidity`, `removeLiquidity`, owner configuration) use OpenZeppelin's transient `nonReentrant` guard
+2. `PoolManager` callbacks use transient JIT locks: a per-pool lock rejects reentrant `beforeSwap` on the same pool, and a global in-flight counter rejects LP or admin calls while any JIT cycle is active anywhere on the hook, so a malicious vault callback during pool A's swap cannot enter pool B
+
+`unlockCallback` is callable only by the `PoolManager`.
+
+## Core Invariants
+
+The implementation is shaped around these invariants:
+
+- No persistent DualPool v4 liquidity remains after a completed swap
+- Direct `PoolManager` initialization, add-liquidity, and remove-liquidity paths are blocked
+- Pools reject dynamic fees; pricing is static for the pool's lifetime
+- Pools are not swappable until `bootstrap` succeeds, and share supply cannot return to zero afterward
+- Deposits round up; withdrawals round down; virtual-shares math bounds inflation attacks
+- Asset custody is tracked per `(PoolId, Currency)`, never by the hook's global token balance, and claims minted for one pool cannot be redeemed into another pool's ledger
+- Distribution weights sum to exactly 10,000 bps with at most 8 buckets
+- User and admin mutators cannot run during any in-flight JIT cycle
+- `hookData` cannot change DualPool pricing or fees
+
+## Quote Semantics
+
+`getIndicativeQuote` is a non-binding upper bound intended for ranking, capped so it can never exceed deliverable reserves. Binding slippage protection belongs in the caller: enforce a minimum output or maximum input on every execution. See [Integrate as a Router or Aggregator](/docs/protocols/dualpool/guides/router-integration) for fidelity characteristics and failure modes.
