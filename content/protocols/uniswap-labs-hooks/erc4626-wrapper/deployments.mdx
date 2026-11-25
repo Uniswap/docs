@@ -1,0 +1,55 @@
+---
+title: Wrapper Hook Deployments
+sidebarTitle: Deployments
+description: Find the AllowlistedFactory address, the pinned source commit, and the allowlisted creation-code hashes for ERC-4626 wrapper hooks.
+---
+
+Each ERC-4626 vault has its own wrapper hook, so there is no single hook address for a chain. The stable address for a chain is the `AllowlistedFactory`. Each hook that the factory deploys is in its registry. To deploy a hook for a new vault, see [Deploy a Wrapper Hook](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/guides/deploy-a-wrapper-hook).
+
+## Mainnet Deployments
+
+### Monad: 143
+
+| Contract | Address |
+| :--- | :--- |
+| [AllowlistedFactory](https://github.com/Uniswap/v4-hooks-public/blob/b116f79a997ab7bf4065808168e8ac8bc3d54c17/src/AllowlistedFactory.sol) | [`0x33a9b9a7Ca2e8744bA946c34Fc38a1b34e9197FD`](https://monadvision.com/address/0x33a9b9a7Ca2e8744bA946c34Fc38a1b34e9197FD) |
+| [PoolManager](https://github.com/Uniswap/v4-core/blob/main/src/PoolManager.sol) | [`0x188d586Ddcf52439676Ca21A244753fA19F9Ea8e`](https://monadvision.com/address/0x188d586Ddcf52439676Ca21A244753fA19F9Ea8e) |
+| [Quoter](https://github.com/Uniswap/v4-periphery/blob/main/src/lens/V4Quoter.sol) | [`0xa222dd357a9076d1091ed6aa2e16c9742dd26891`](https://monadvision.com/address/0xa222dd357a9076d1091ed6aa2e16c9742dd26891) |
+
+## Allowlisted Builds
+
+The factory accepts only creation code with one of the hashes below. The allowlist is immutable. A new version of a hook needs a new factory.
+
+| Contract | Creation-code hash |
+| :--- | :--- |
+| [ERC4626WrapperHook](https://github.com/Uniswap/v4-hooks-public/blob/b116f79a997ab7bf4065808168e8ac8bc3d54c17/src/ERC4626WrapperHook.sol) | `0x23a12d71d4519c65144344c75b6c7855faeb71bc9881800e022ba9056da53960` |
+| [ERC4626RoutingHook](https://github.com/Uniswap/v4-hooks-public/blob/b116f79a997ab7bf4065808168e8ac8bc3d54c17/src/ERC4626RoutingHook.sol) | `0x6d9536034d5af5527f9c82dd2ec3c9b41761c8840f5e2e099722a26ce296c77f` |
+
+To get these hashes, compile [`Uniswap/v4-hooks-public`](https://github.com/Uniswap/v4-hooks-public) at commit [`b116f79`](https://github.com/Uniswap/v4-hooks-public/tree/b116f79a997ab7bf4065808168e8ac8bc3d54c17) with the `foundry.toml` of the repository. Each hash is the `keccak256` of the creation bytecode without constructor arguments.
+
+```bash
+cast keccak $(forge inspect src/ERC4626WrapperHook.sol:ERC4626WrapperHook bytecode)
+cast keccak $(forge inspect src/ERC4626RoutingHook.sol:ERC4626RoutingHook bytecode)
+```
+
+## Hook Parameters
+
+All hooks from the factory have the same parameters:
+
+| Parameter | Value |
+| :--- | :--- |
+| Constructor arguments | `(address poolManager, address vault)` |
+| Permission flags | `0x2888` (`beforeInitialize`, `beforeAddLiquidity`, `beforeSwap`, `beforeSwapReturnDelta`) |
+| Pool fee | `0` |
+| Pool tick spacing | `60` |
+
+## Find Deployed Hooks
+
+Read the registry of the factory to get the full list of hooks.
+
+```bash
+cast call $FACTORY "allDeploymentsLength()(uint256)" --rpc-url $RPC_URL
+cast call $FACTORY "allDeployments(uint256)(address)" 0 --rpc-url $RPC_URL
+```
+
+See [Find Hooks From the Factory](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/guides/deploy-a-wrapper-hook#find-hooks-from-the-factory) for the event and the verification checks.

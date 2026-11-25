@@ -1,4 +1,4 @@
 {
   "title": "Guides",
-  "pages": ["integration"]
+  "pages": ["deploy-a-wrapper-hook", "integration"]
 }

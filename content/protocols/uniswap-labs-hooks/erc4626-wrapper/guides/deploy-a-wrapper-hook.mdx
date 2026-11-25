@@ -1,0 +1,271 @@
+---
+title: Deploy a Wrapper Hook
+description: Deploy an ERC4626WrapperHook for a new ERC-4626 vault through the AllowlistedFactory, initialize its wrapper pool, and make the pool available for routing.
+---
+
+This guide shows how to make a new ERC-4626 vault available as a Uniswap v4 wrapper pool. You start with two addresses: the vault (the wrapped token) and its underlying asset. You finish with a registered hook and an initialized pool that routers can find.
+
+Each vault needs its own hook. All hooks for a chain deploy through one [`AllowlistedFactory`](https://github.com/Uniswap/v4-hooks-public/blob/b116f79a997ab7bf4065808168e8ac8bc3d54c17/src/AllowlistedFactory.sol). The factory keeps a record of each hook that it deploys. Routers and aggregators use this record to find new hooks and to verify their bytecode.
+
+The procedure has six steps:
+
+1. **Build the hook.** Compile `ERC4626WrapperHook` at the pinned commit, so that its creation code agrees with the factory allowlist.
+2. **Check the vault.** Make sure that the vault is a standard ERC-4626 vault for the correct asset.
+3. **Deploy the hook.** Use the deploy script to find a salt and to call the factory.
+4. **Initialize the pool.** Create the zero-fee wrapper pool on the `PoolManager`.
+5. **Verify the deployment.** Read the factory registry and get a quote.
+6. **Wait for routing.** Routers find the hook from the factory registry.
+
+<Callout type="warn">
+Deployment through the factory is permissionless. A registered hook proves that the bytecode is a known build. It does not prove that the vault is safe. Read [ERC-4626 Wrapper Security](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/security) before you deploy a hook for a vault.
+</Callout>
+
+## How the Factory Accepts a Hook
+
+The factory has one deploy function:
+
+```solidity
+function deploy(bytes calldata creationCode, bytes calldata constructorArgs, bytes32 salt)
+    external
+    returns (address deployed);
+```
+
+Each argument has one rule:
+
+| Argument | Value | Rule |
+| :--- | :--- | :--- |
+| `creationCode` | The compiled creation bytecode of `ERC4626WrapperHook`, without constructor arguments. | Its `keccak256` hash must be in the factory allowlist. If it is not, the call reverts with `CreationCodeNotAllowed`. |
+| `constructorArgs` | `abi.encode(poolManager, vault)` | The `PoolManager` address and the vault address, in this sequence. |
+| `salt` | A CREATE2 salt that you find for this factory. | The hook address must contain the permission flags `0x2888` in its low 14 bits. |
+
+The allowlist is immutable and contains the hashes of specific builds. A different commit, compiler version, or optimizer setting gives a different hash, and the factory rejects that bytecode. Thus you must compile the hook from the pinned commit with the settings of the repository. The [Deployments](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/deployments) page lists the pinned commit and the hashes.
+
+The factory is the CREATE2 deployer, so the hook address depends on the factory address, the salt, and the init code. A v4 hook must have its permission flags in its address. If the salt gives an address with incorrect flags, the hook constructor reverts and nothing deploys.
+
+## Prerequisites
+
+- [Foundry](https://book.getfoundry.sh) (`forge` and `cast`).
+- An account with the native token of the chain. Each hook deployment uses approximately 2,000,000 gas.
+- The address of the vault.
+- The addresses of the `AllowlistedFactory` and the `PoolManager` for your chain. See [Deployments](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/deployments).
+
+## Step 1: Build the Hook
+
+Clone the repository and check out the commit that the factory allowlist pins.
+
+```bash
+git clone --recurse-submodules https://github.com/Uniswap/v4-hooks-public.git
+cd v4-hooks-public
+git checkout b116f79a997ab7bf4065808168e8ac8bc3d54c17
+git submodule update --init --recursive
+forge build
+```
+
+Set the addresses for your chain. The values below are for Monad.
+
+```bash
+export RPC_URL=https://rpc.monad.xyz
+export FACTORY=0x33a9b9a7Ca2e8744bA946c34Fc38a1b34e9197FD
+export POOL_MANAGER=0x188d586Ddcf52439676Ca21A244753fA19F9Ea8e
+export VAULT=<your ERC-4626 vault address>
+```
+
+Make sure that the factory accepts your build.
+
+```bash
+HASH=$(cast keccak $(forge inspect src/ERC4626WrapperHook.sol:ERC4626WrapperHook bytecode))
+echo $HASH
+cast call $FACTORY "isAllowedCreationCode(bytes32)(bool)" $HASH --rpc-url $RPC_URL
+```
+
+The second command must print `true`. If it prints `false`, your build is different from the pinned build. Check the commit, and do not change `foundry.toml`.
+
+## Step 2: Check the Vault
+
+Read the underlying asset of the vault.
+
+```bash
+cast call $VAULT "asset()(address)" --rpc-url $RPC_URL
+```
+
+The result must be the unwrapped token that you expect. The hook reads this value in its constructor, and you cannot change it later.
+
+Make sure that the vault and the asset agree with these conditions:
+
+- The underlying asset is not a fee-on-transfer token.
+- The exchange rate of the vault is safe to use as a conversion rate. See [ERC-4626 Wrapper Security](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/security).
+
+## Step 3: Deploy the Hook
+
+The script [`DeployERC4626WrapperHook.s.sol`](https://github.com/Uniswap/v4-hooks-public/blob/b116f79a997ab7bf4065808168e8ac8bc3d54c17/script/DeployERC4626WrapperHook.s.sol) finds a salt, calls the factory, and checks the result.
+
+First, do a dry run. A dry run sends no transaction.
+
+```bash
+export MIN_LEADING_ZERO_NIBBLES=0
+forge script script/DeployERC4626WrapperHook.s.sol --rpc-url $RPC_URL
+```
+
+Then, broadcast the transactions.
+
+```bash
+forge script script/DeployERC4626WrapperHook.s.sol --rpc-url $RPC_URL --broadcast --account <your keystore account>
+```
+
+The script prints the address of each hook that it deploys. Record the `ERC4626WrapperHook` address as `HOOK`.
+
+The script reads these environment variables:
+
+| Variable | Default | Function |
+| :--- | :--- | :--- |
+| `FACTORY` | Necessary | The `AllowlistedFactory` address. |
+| `POOL_MANAGER` | Necessary | The v4 `PoolManager` address. |
+| `VAULT` | Necessary | The ERC-4626 vault address. |
+| `MIN_LEADING_ZERO_NIBBLES` | `6` | The number of leading zero hex digits in the hook address. Set it to `0`. |
+| `DEPLOY_ROUTING` | `true` | Also deploy the [routing twin](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/routing-twin), `ERC4626RoutingHook`. |
+| `HOOK_SALT`, `ROUTING_SALT` | Not set | Salts that you found offchain. If they are not set, the script finds the salts. |
+
+<Callout type="info">
+Set `MIN_LEADING_ZERO_NIBBLES=0`. With this value, the script finds a salt for the permission flags only, which takes a few seconds. A prefix of leading zeros is optional. It has no effect on the hook, and it needs a GPU salt miner.
+</Callout>
+
+The routing twin lets the v4 `Quoter` simulate a wrap. Deploy it if your integrators quote through the `Quoter`. Set `DEPLOY_ROUTING=false` to deploy the wrapper hook only.
+
+## Step 4: Initialize the Pool
+
+The factory deploys the hook. It does not create the pool. Call `initialize` on the `PoolManager` with this pool key:
+
+| Field | Value |
+| :--- | :--- |
+| `currency0` | The lower of the two addresses (the vault and its asset). |
+| `currency1` | The higher of the two addresses. |
+| `fee` | `0` |
+| `tickSpacing` | `60` |
+| `hooks` | The `ERC4626WrapperHook` address from Step 3. |
+
+Use `79228162514264337593543950336` (`2^96`, a price of 1) as `sqrtPriceX96`.
+
+```bash
+cast send $POOL_MANAGER \
+  "initialize((address,address,uint24,int24,address),uint160)" \
+  "($CURRENCY0,$CURRENCY1,0,60,$HOOK)" \
+  79228162514264337593543950336 \
+  --rpc-url $RPC_URL --account <your keystore account>
+```
+
+The hook examines the pool key during initialization:
+
+- If the two currencies are not the vault and its asset in the correct sequence, the call reverts with `InvalidPoolToken`.
+- If the fee is not `0`, the call reverts with `InvalidPoolFee`.
+
+The tick spacing and the start price have no effect on a conversion, because the pool contains no liquidity and the hook does the full swap. Use the values above so that each hook has one pool with the same key as the existing wrapper pools. See [Pool Initialization](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/pool-initialization).
+
+If you deployed the routing twin, initialize a second pool. Use the same pool key, but set `hooks` to the `ERC4626RoutingHook` address.
+
+## Step 5: Verify the Deployment
+
+Read the registry of the factory and the immutables of the hook.
+
+```bash
+cast call $FACTORY "isFromFactory(address)(bool)" $HOOK --rpc-url $RPC_URL   # true
+cast call $HOOK "factory()(address)" --rpc-url $RPC_URL                       # the factory
+cast call $HOOK "vault()(address)" --rpc-url $RPC_URL                         # your vault
+```
+
+If you deployed the routing twin, get a quote for a wrap from the v4 `Quoter`. Set `ZERO_FOR_ONE` to `true` if `currency0` is the underlying asset. If not, set it to `false`.
+
+```bash
+cast call $QUOTER \
+  "quoteExactInputSingle(((address,address,uint24,int24,address),bool,uint128,bytes))(uint256,uint256)" \
+  "(($CURRENCY0,$CURRENCY1,0,60,$ROUTING_HOOK),$ZERO_FOR_ONE,$AMOUNT_IN,0x)" \
+  --rpc-url $RPC_URL
+```
+
+The first value in the result must be equal to `vault.previewDeposit(AMOUNT_IN)`.
+
+<Callout type="info">
+A quote against the `ERC4626WrapperHook` pool reverts for a wrap. This is correct. The execution hook moves tokens, and a simulation has no input tokens in the `PoolManager`. See [The Routing Twin](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/concepts/routing-twin).
+</Callout>
+
+## Step 6: Wait for Routing
+
+Routers find hooks from the registry of the factory. A hook from the factory does not need its own allowlist request.
+
+Three conditions apply before a swap of the underlying asset can route:
+
+- **The wrapper pool exists.** Step 4 creates it.
+- **A market pool exists.** The wrapper pool only converts between the asset and the vault share. A route to a different token, for example USDC, needs a pool with liquidity between the vault share and that token.
+- **The router updated its data.** A router can take some time to find a new hook and a new pool.
+
+For the rules that a router must obey when it executes a wrapper hop, see [Integration](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/guides/integration).
+
+## Deploy Without the Script
+
+You can call the factory directly. This procedure does the same work as the script in Step 3.
+
+1. Get the creation code and encode the constructor arguments.
+
+   ```bash
+   CODE=$(forge inspect src/ERC4626WrapperHook.sol:ERC4626WrapperHook bytecode)
+   ARGS=$(cast abi-encode "constructor(address,address)" $POOL_MANAGER $VAULT)
+   ```
+
+2. Find a salt. An address that ends in `2888` has the correct permission flags.
+
+   ```bash
+   INIT_CODE_HASH=$(cast keccak $(cast concat-hex $CODE $ARGS))
+   cast create2 --deployer $FACTORY --init-code-hash $INIT_CODE_HASH --ends-with 2888
+   ```
+
+   Record the salt that the command prints as `SALT`.
+
+3. Make sure that the factory calculates the same address.
+
+   ```bash
+   cast call $FACTORY "computeAddress(bytes,bytes,bytes32)(address)" $CODE $ARGS $SALT --rpc-url $RPC_URL
+   ```
+
+4. Deploy the hook.
+
+   ```bash
+   cast send $FACTORY "deploy(bytes,bytes,bytes32)" $CODE $ARGS $SALT \
+     --rpc-url $RPC_URL --account <your keystore account>
+   ```
+
+To deploy the routing twin, do the procedure again with `src/ERC4626RoutingHook.sol:ERC4626RoutingHook`. A salt is valid for one combination of factory, contract, and constructor arguments only.
+
+## Find Hooks From the Factory
+
+Integrators can find each hook in two ways:
+
+- **Offchain.** Index the `Deployed` event of the factory.
+- **Onchain.** Read `allDeploymentsLength()` and `allDeployments(index)`.
+
+```solidity
+event Deployed(
+    address indexed deployed,
+    bytes32 indexed creationCodeHash,
+    address indexed deployer,
+    bytes constructorArgs,
+    bytes32 salt
+);
+```
+
+Use `creationCodeHash` to identify the contract type: the wrapper hook or the routing twin. Decode `constructorArgs` as `(address poolManager, address vault)`.
+
+To verify one hook, do these two checks:
+
+```solidity
+bool isCanonical = ERC4626WrapperHook(hook).factory() == factory
+    && IAllowlistedFactory(factory).isFromFactory(hook);
+```
+
+<Callout type="warn">
+The checks above prove bytecode provenance only. Any account can deploy a hook for any vault, and more than one hook can exist for the same vault. Before you route through a hook, make sure that its `poolManager` is the canonical `PoolManager` and that you trust its vault and asset.
+</Callout>
+
+## Where to Go Next
+
+- [Wrapper Hook Deployments](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/deployments)
+- [Integration](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/guides/integration)
+- [ERC-4626 Wrapper Security](/docs/protocols/uniswap-labs-hooks/erc4626-wrapper/security)
